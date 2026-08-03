@@ -1,4 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
+import fs from 'node:fs';
+import path from 'node:path';
 import { enableReducedMotion, matchesReducedMotion } from './helpers/reduced-motion';
 
 /**
@@ -324,5 +326,42 @@ test.describe('deploy artefacts', () => {
     expect(body).toContain('/en/index.html');
     expect(body).toContain('/de/index.html');
     expect(body).toContain('hreflang="x-default"');
+  });
+
+  /**
+   * The site is served under `script-src 'self'` with no 'unsafe-inline'. An
+   * inline <script> is therefore refused by the browser — and a CSP refusal is
+   * not a JavaScript error, so nothing throws and the console stays clean. The
+   * quote wizard shipped inline in all three languages and rendered an empty
+   * page in production for exactly that reason; `externalise_js` in
+   * _build/build.py now writes it out as a real file.
+   *
+   * This walks the built output rather than one URL, because the failure is
+   * silent and the next page to grow an inline script would fail the same way.
+   */
+  test('no built page carries an executable inline script', () => {
+    // Same folder the webServer in playwright.config.ts serves.
+    const dist = path.join(process.cwd(), 'dist');
+    const offenders: string[] = [];
+
+    const walk = (dir: string) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          if (entry.name !== 'portal') walk(full);   // the SPA ships its own bundle
+        } else if (entry.name.endsWith('.html')) {
+          const html = fs.readFileSync(full, 'utf8');
+          // A <script> with a `type` is a data block (the i18n JSON), not code.
+          const inline = [...html.matchAll(
+            /<script(?![^>]*\bsrc=)(?![^>]*\btype=)[^>]*>([\s\S]*?)<\/script>/g)];
+          if (inline.some((m) => m[1].trim().length > 0)) {
+            offenders.push(path.relative(dist, full));
+          }
+        }
+      }
+    };
+
+    walk(dist);
+    expect(offenders, `inline <script> is blocked by script-src 'self'`).toEqual([]);
   });
 });

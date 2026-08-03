@@ -302,6 +302,37 @@ def build_menu(lang, key):
         for i, k in enumerate(MENU))
 
 
+def build_font_preload(lang, base):
+    """Preload only the font files the first screen genuinely needs.
+
+    The brief is explicit that this is not "preload every weight and family":
+    a preload competes with the stylesheet and the LCP image for the same
+    connection, so a file that is not needed to paint the first screen is worse
+    than useless here.
+
+    What is left is the upright Archivo `latin` subset, which sets the nav, the
+    H1 and the lede on every page in all three languages, plus `latin-ext` on
+    Hungarian only — ő and ű are outside `latin`, they are common enough in
+    Hungarian headlines to be first-screen text, and English and German never
+    touch that file at all.
+
+    JetBrains Mono is deliberately not preloaded. It sets the altimeter rail and
+    the small technical labels, none of which is the LCP element, and it arrives
+    in time through the normal stylesheet path.
+
+    `crossorigin` is required even though these are same-origin: font fetches
+    are always made in CORS mode, and a preload without it is a second, wasted
+    request rather than a warm cache entry.
+    """
+    faces = ["archivo/archivo-normal-latin.woff2"]
+    if lang == "hu":
+        faces.append("archivo/archivo-normal-latin-ext.woff2")
+    return "".join(
+        f'\n<link rel="preload" href="{base}assets/fonts/{f}" as="font" '
+        f'type="font/woff2" crossorigin>'
+        for f in faces)
+
+
 def build_alternates(key):
     tags = "".join(
         f'\n<link rel="alternate" hreflang="{l}" href="{absolute(l, key)}">'
@@ -317,9 +348,8 @@ SHELL = """<!DOCTYPE html>
 <title>{{title}}</title>
 <meta name="description" content="{{desc}}">
 <link rel="icon" href="{{base}}assets/img/favicon.png">{{alternates}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+{{fontpreload}}
+<link rel="stylesheet" href="{{base}}assets/css/type.css">
 <link rel="stylesheet" href="{{base}}assets/css/main.css">{{extra_css}}
 <script id="i18n" type="application/json">{{i18n}}</script>
 </head>
@@ -474,6 +504,51 @@ def relink(html, lang):
     return html
 
 
+# ------------------------------------------------------------------ inline js
+# The site is served under `script-src 'self'` with no 'unsafe-inline' (see the
+# CSP block in netlify.toml), so an inline <script> is refused by the browser.
+# A CSP refusal is not a JavaScript error: nothing throws, nothing rejects, the
+# console stays clean and the page simply renders empty. The quote wizard
+# shipped that way in all three languages and was dead in production.
+#
+# So any executable inline script a fragment carries is written out as a real
+# file instead. A <script> with a `type` is a data block (the i18n JSON), not
+# code, and is left where it is.
+INLINE_JS_RE = re.compile(
+    r'<script(?![^>]*\bsrc=)(?![^>]*\btype=)[^>]*>(.*?)</script>', re.S)
+
+
+def externalise_js(html, key, lang, base):
+    """Move executable inline scripts into assets/js/<key>.<lang>.js.
+
+    Runs after relink(), so the extracted code keeps the localised page links
+    and asset depth it would have had inline.
+    """
+    blocks = [b.strip() for b in INLINE_JS_RE.findall(html) if b.strip()]
+    if not blocks:
+        return html, None
+
+    name = f"{key}.{lang}.js"
+    out = ROOT / "assets" / "js" / name
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text("\n\n".join(blocks) + "\n", encoding="utf-8")
+
+    # `defer` runs the file after the document is parsed, which is a strictly
+    # weaker requirement than the inline version had — it executed mid-body and
+    # depended on #app already being above it.
+    tag = f'<script src="{base}assets/js/{name}" defer></script>'
+    seen = False
+
+    def swap(_m):
+        nonlocal seen
+        if seen:
+            return ""
+        seen = True
+        return tag
+
+    return INLINE_JS_RE.sub(swap, html), name
+
+
 # --------------------------------------------------------------------- build
 def parse(path):
     raw = path.read_text(encoding="utf-8")
@@ -517,6 +592,7 @@ def main():
     for lang in LANGS:
         table = load_dict(lang)
         missing = []
+        scripts = []
         outdir = ROOT if lang == "hu" else ROOT / lang
         outdir.mkdir(exist_ok=True)
         u = UI[lang]
@@ -549,6 +625,7 @@ def main():
                 lang=lang, title=title, desc=desc,
                 base=base,
                 alternates=build_alternates(key),
+                fontpreload=build_font_preload(lang, base),
                 i18n=json.dumps(js, ensure_ascii=False),
                 ceiling=meta.get("ceiling", "20000"),
                 body_class="",
@@ -564,11 +641,16 @@ def main():
                 body=body,
                 footer=build_footer(lang, key) if show_footer else "",
             ))
-            (outdir / SLUGS[key][lang]).write_text(relink(html, lang), encoding="utf-8")
+            html, script = externalise_js(relink(html, lang), key, lang, base)
+            if script:
+                scripts.append(script)
+            (outdir / SLUGS[key][lang]).write_text(html, encoding="utf-8")
 
         where = "/" if lang == "hu" else f"/{lang}/"
         note = f"  ({len(missing)} untranslated)" if missing else ""
         print(f"{lang}: {len(frags)} pages -> {where}{note}")
+        if scripts:
+            print(f"  inline js -> assets/js/{', '.join(sorted(scripts))}")
         # not inside i18n/ — that folder is only ever read as dictionaries
         report = DICTS.parent / f"missing-{lang}.json"
         if missing:

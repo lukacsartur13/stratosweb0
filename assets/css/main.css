@@ -19,15 +19,24 @@
   --fg:      var(--paper);
   --bg:      var(--void);
 
-  /* Type. Archivo is a variable font with a width axis as well as a weight
-     axis — the ascent used both: dense and heavy at ground level, wide and
-     thin in the stratosphere. --wd/--wt were written by the old homepage's
-     flight.js, which was removed when the Altimeter Meridian became the
-     homepage; the remaining eleven pages set these statically. The values
-     here are what every other page uses. */
-  --display: 'Archivo', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  --body:    'Archivo', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  --data:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* Type. The families, the fallback stacks and every semantic role now live in
+     assets/css/type.css, which the generator links immediately before this file
+     and which the Altimeter Meridian homepage links too. These three names are
+     kept as the local aliases the rest of this stylesheet already spells, so
+     the switch to the self-hosted, token-driven system is one place rather than
+     two hundred declarations.
+
+     Archivo is a variable font with a width axis as well as a weight axis — the
+     ascent used both: dense and heavy at ground level, wide and thin in the
+     stratosphere. --wd/--wt were written by the old homepage's flight.js, which
+     was removed when the Altimeter Meridian became the homepage; the remaining
+     eleven pages set these statically. Both axis ranges are verified against
+     the binaries by `node scripts/font-metadata.mjs` (wght 100–900,
+     wdth 62–125), so 112/680 are inside the design space rather than being
+     silently clamped. */
+  --display: var(--font-display);
+  --body:    var(--font-body);
+  --data:    var(--font-mono);
   --wd: 112;
   --wt: 680;
 

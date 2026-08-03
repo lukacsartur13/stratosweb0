@@ -1,0 +1,350 @@
+/* ==========================================================================
+   STRATOS — the typography system.
+
+   One file, two consumers: the eleven generated static pages (via
+   assets/css/main.css) and the Altimeter Meridian homepage (via
+   experiments/src/full/styles.css). Every font declaration on this site
+   originates here. A component that wants a different size reaches for a token;
+   it does not name a family, a weight or a pixel value of its own.
+
+   ---------------------------------------------------------------------------
+   WHAT IS ACTUALLY LOADED, AND WHY IT IS NOT WHAT THE BRIEF NAMED
+   ---------------------------------------------------------------------------
+   The Phase 6 brief specifies ABC Arizona Variable, ABC Diatype and ABC Diatype
+   Mono. None of the three exists in this repository, there is no licence for any
+   of them, and they are commercial Dinamo releases. See FONTS.md for the audit
+   and for the exact drop-in procedure once they are licensed.
+
+   The operating tier is Archivo and JetBrains Mono, self-hosted, both SIL Open
+   Font License 1.1. This is deliberately *not* the system-font fallback the
+   brief suggested, because a system stack exposes no variation axes at all and
+   the kinetic typography in §6.7/6.8 is built out of them. Verified by reading
+   the `fvar` table out of the binaries — `node scripts/font-metadata.mjs`:
+
+     Archivo          wght 100..900   wdth 62..125   upright + italic files
+     JetBrains Mono   wght 100..800   no width axis  upright only
+
+   Two consequences are load-bearing and are honoured throughout this file:
+
+     * Archivo's italic is a *separate file*, not an `ital` or `slnt` axis. A
+       roman-to-italic move is therefore a discrete swap, never an interpolation.
+       That suits the brief, which asks for "discrete snap without overshoot"
+       and forbids liquid morphs — but it does mean a continuous slant is not
+       available and none is faked.
+     * JetBrains Mono has no width axis, so no mono token asks for one.
+
+   ---------------------------------------------------------------------------
+   NO LAYOUT SHIFT
+   ---------------------------------------------------------------------------
+   `font-display: swap` paints text immediately in a fallback and swaps when the
+   webfont lands. Left alone that is a guaranteed reflow, which is exactly what
+   §6.10 forbids and what the CLS measurement would catch.
+
+   The two `-fallback` faces below are metric-matched shims: real local fonts,
+   re-scaled so their line box is identical to the webfont they stand in for.
+   The numbers are computed from metrics read out of the actual binaries
+   (unitsPerEm 1000 for both):
+
+     Archivo         ascent 878  descent 210  lineGap 0  xHeight 526
+     JetBrains Mono  ascent 1020 descent 300  lineGap 0  xHeight 550
+     Arial           ascent 1854 descent 434  lineGap 67 xHeight 1062  (upem 2048)
+
+   size-adjust is the x-height ratio, so the fallback and the webfont have the
+   same apparent size; the ascent/descent overrides are then divided by that
+   same ratio so the line box matches too.
+
+     Archivo:        526/1000 ÷ 1062/2048 = 1.0143  -> size-adjust 101.4%
+                     ascent  0.878 / 1.0143 = 86.6%
+                     descent 0.210 / 1.0143 = 20.7%
+     JetBrains Mono: 550/1000 ÷ 1062/2048 = 1.0606  -> size-adjust 106.1%
+                     ascent  1.020 / 1.0606 = 96.2%
+                     descent 0.300 / 1.0606 = 28.3%
+   ========================================================================== */
+
+/* ------------------------------------------------------------------ faces */
+/* Two subsets per face. `latin` carries English and German in full — ä ö ü ß
+   are all below U+0100 — and `latin-ext` exists for Hungarian's ő (U+0151) and
+   ű (U+0171). A German or English page never downloads latin-ext at all. */
+
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url('../fonts/archivo/archivo-normal-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url('../fonts/archivo/archivo-normal-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url('../fonts/archivo/archivo-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url('../fonts/archivo/archivo-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono/jetbrains-mono-normal-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ------------------------------------------------- metric-matched shims */
+/* `local()` only: these never cause a network request. If none of the named
+   faces exists the rule contributes nothing and the next family in the stack
+   takes over, so this can only ever improve the fallback, never break it. */
+
+@font-face {
+  font-family: 'Archivo Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Liberation Sans');
+  size-adjust: 101.4%;
+  ascent-override: 86.6%;
+  descent-override: 20.7%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono Fallback';
+  src: local('Menlo'), local('Consolas'), local('DejaVu Sans Mono'), local('Courier New');
+  size-adjust: 106.1%;
+  ascent-override: 96.2%;
+  descent-override: 28.3%;
+  line-gap-override: 0%;
+}
+
+/* ============================================================== the tokens */
+
+:root {
+  /* ---------------------------------------------------------- families */
+  /* `--font-display` and `--font-body` are the same family today and are still
+     two tokens, because they are two *roles*. When licensed Arizona and Diatype
+     arrive they diverge here and nowhere else. */
+  --font-display: 'Archivo', 'Archivo Fallback', -apple-system, BlinkMacSystemFont,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Archivo', 'Archivo Fallback', -apple-system, BlinkMacSystemFont,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace,
+    'SF Mono', Menlo, monospace;
+
+  /* The stacks the brief asked to have written down explicitly, for the case
+     where no webfont loads at all. These are what the families above degrade
+     to, not a separate mode. */
+  --font-display-fallback: 'Archivo Fallback', -apple-system, BlinkMacSystemFont,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-body-fallback: 'Archivo Fallback', -apple-system, BlinkMacSystemFont,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono-fallback: 'JetBrains Mono Fallback', ui-monospace, 'SF Mono', Menlo,
+    monospace;
+
+  /* ------------------------------------------------------------- scale */
+  /* Fluid between 360px and 1440px. The signature step is the only one that
+     keeps climbing on very wide viewports; everything else settles, because a
+     paragraph that grows with the window stops being a paragraph. */
+  --type-signature-size: clamp(2.6rem, 1.15rem + 6.4vw, 7rem);
+  --type-section-size: clamp(1.85rem, 1.2rem + 2.9vw, 3.6rem);
+  --type-project-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.85rem);
+  --type-body-large-size: clamp(1.05rem, 0.98rem + 0.34vw, 1.25rem);
+  --type-body-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.06rem);
+  --type-body-small-size: clamp(0.85rem, 0.82rem + 0.15vw, 0.93rem);
+  --type-label-size: clamp(0.62rem, 0.6rem + 0.1vw, 0.7rem);
+  --type-altitude-size: clamp(1.6rem, 1.1rem + 2.2vw, 2.9rem);
+  --type-nav-size: clamp(0.78rem, 0.76rem + 0.1vw, 0.85rem);
+  --type-cta-size: clamp(0.8rem, 0.77rem + 0.14vw, 0.9rem);
+  --type-meta-size: clamp(0.68rem, 0.66rem + 0.1vw, 0.76rem);
+
+  /* ------------------------------------------------- semantic composites */
+  /* Each role names family, weight, width, size, leading and tracking. Width is
+     a real `font-stretch` percentage inside Archivo's 62–125 range, so it maps
+     onto the `wdth` axis rather than triggering synthetic scaling. */
+
+  /* Signature — the homepage headline, and nothing else on a page. Slightly
+     condensed and heavy: an instrument face, not a poster face. */
+  --type-display-signature-family: var(--font-display);
+  --type-display-signature-weight: 700;
+  --type-display-signature-width: 94%;
+  --type-display-signature-leading: 0.94;
+  --type-display-signature-tracking: -0.022em;
+
+  /* Section — the top of a band on any page. */
+  --type-display-section-family: var(--font-display);
+  --type-display-section-weight: 620;
+  --type-display-section-width: 100%;
+  --type-display-section-leading: 1.06;
+  --type-display-section-tracking: -0.015em;
+
+  /* Project / card headline. */
+  --type-display-project-family: var(--font-display);
+  --type-display-project-weight: 600;
+  --type-display-project-width: 100%;
+  --type-display-project-leading: 1.16;
+  --type-display-project-tracking: -0.008em;
+
+  /* Body. Two sizes above the default for leads and pull-quotes. */
+  --type-body-primary-family: var(--font-body);
+  --type-body-primary-weight: 400;
+  --type-body-primary-width: 100%;
+  --type-body-primary-leading: 1.65;
+  --type-body-primary-tracking: 0;
+
+  --type-body-secondary-family: var(--font-body);
+  --type-body-secondary-weight: 400;
+  --type-body-secondary-width: 100%;
+  --type-body-secondary-leading: 1.6;
+  --type-body-secondary-tracking: 0.004em;
+
+  /* Technical label — mono, spaced, upper. Stage markers, field labels, the
+     small print that reads as instrumentation rather than as prose. */
+  --type-label-technical-family: var(--font-mono);
+  --type-label-technical-weight: 500;
+  --type-label-technical-leading: 1.2;
+  --type-label-technical-tracking: 0.2em;
+  --type-label-technical-transform: uppercase;
+
+  /* Altitude — the one number the whole homepage is about. Tabular so the
+     digits do not jitter as it counts. */
+  --type-number-altitude-family: var(--font-mono);
+  --type-number-altitude-weight: 600;
+  --type-number-altitude-leading: 1;
+  --type-number-altitude-tracking: 0.01em;
+
+  /* Metadata — mono, small, for project sectors, dates, figures in a table. */
+  --type-metadata-family: var(--font-mono);
+  --type-metadata-weight: 450;
+  --type-metadata-leading: 1.45;
+  --type-metadata-tracking: 0.06em;
+
+  /* Navigation. */
+  --type-navigation-family: var(--font-body);
+  --type-navigation-weight: 550;
+  --type-navigation-width: 100%;
+  --type-navigation-leading: 1;
+  --type-navigation-tracking: 0.04em;
+
+  /* CTA. */
+  --type-cta-family: var(--font-body);
+  --type-cta-weight: 600;
+  --type-cta-width: 100%;
+  --type-cta-leading: 1;
+  --type-cta-tracking: 0.06em;
+
+  /* Forms — deliberately the body face at body size. An input that is smaller
+     than the prose around it is the single most common reason a mobile browser
+     zooms on focus. */
+  --type-form-family: var(--font-body);
+  --type-form-weight: 450;
+  --type-form-leading: 1.4;
+  --type-form-tracking: 0.01em;
+  --type-form-size: max(1rem, var(--type-body-size));
+
+  /* ------------------------------------------------- kinetic type limits */
+  /* The bounds every altitude-driven typographic move is clamped to. They exist
+     as tokens so the ceiling is stated once, and so the engine can never ask
+     for an axis value the font does not have — see FONTS.md and
+     experiments/src/full/kineticType.ts. */
+  --kinetic-weight-min: 300;
+  --kinetic-weight-max: 800;
+  --kinetic-width-min: 82%;
+  --kinetic-width-max: 118%;
+  --kinetic-tracking-min: -0.03em;
+  --kinetic-tracking-max: 0.24em;
+}
+
+/* --------------------------------------------------------------- locale */
+/* German compounds are long and Hungarian is agglutinative; both produce words
+   that a Hungarian-sized measure cannot break. Rather than shrinking the type —
+   which §6.10 forbids — the display roles give back a little width and allow
+   hyphenation, which is the first two corrections in the brief's preferred
+   order. `lang` is set on <html> by the generator and by each homepage shell,
+   so this needs no JavaScript and is correct before first paint. */
+
+:root:lang(de) {
+  --type-display-signature-width: 90%;
+  --type-display-section-width: 96%;
+}
+
+:root:lang(hu) {
+  --type-display-signature-width: 92%;
+}
+
+[lang='de'] h1,
+[lang='de'] h2,
+[lang='hu'] h1,
+[lang='hu'] h2 {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* Except at signature size, where a hyphen is a defect rather than a fallback.
+   `hyphens: auto` is the right answer for a section heading in a narrow column —
+   it prevents a long German compound from overflowing — but applied to the
+   homepage headline it broke "weboldalakat" as "webolda-lakat" across two lines
+   at 1440px. That is a valid Hungarian syllable break and still wrong: the
+   signature line is the one piece of type on the site that is read as an image
+   before it is read as words, and a hyphen in it looks like a bug.
+
+   The overflow protection stays. Only the automatic break is withdrawn, so a
+   word that genuinely cannot fit still wraps rather than escaping its column.
+
+   Two qualifiers, because `[lang='hu'] h1` above is (0,1,1) and a bare class
+   would tie-and-lose to it. */
+[lang] h1.panel__title--hero,
+[lang] .type-display-signature {
+  hyphens: manual;
+}
+
+/* ------------------------------------------------------------- reduced */
+/* Under a real reduced-motion preference the axes stop being animated at all.
+   The engine also checks the media query in JavaScript; this is the half that
+   holds even if the script never runs. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --kinetic-duration: 0ms;
+  }
+}

@@ -35,8 +35,12 @@
     <meta name="twitter:image" content="https://media-stratos.com/assets/img/hero.jpg" />
 
     <link rel="icon" href="/assets/img/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Typography is self-hosted and shared with the eleven static pages: one
+         file, one cache entry, no third-party origin in the critical path. The
+         preconnects that used to sit here pointed at a Google Fonts stylesheet
+         this route never actually requested. See assets/css/type.css. -->
+    <link rel="preload" href="/assets/fonts/archivo/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/type.css" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

@@ -14,6 +14,37 @@
       content="Produkciós jelölt: a teljes Stratos emelkedési narratíva a földi kalibrációtól 30 000 méterig, valódi 3D-ben, teljes értékű HTML tartalommal."
     />
     <link rel="icon" href="/assets/img/favicon.png" />
+
+    <!-- The typography, on the same terms as the three locale shells in `home/`.
+         Without this the route has no `--font-display` at all and every heading
+         falls back to the browser's default serif — which is what it did, while
+         production rendered Archivo.
+
+         That mattered more here than on any other page, because this file is
+         the route the full-ascent suite and the evaluation stills are built
+         from. Layout collision, viewport overflow and every accepted still were
+         being measured against Times metrics that the live site never uses, and
+         the kinetic typography could not work at all: it drives `wght` and
+         `wdth`, and Times has no variation axes to drive.
+
+         Root-relative on purpose. It is correct in the built output, where this
+         route and `dist/assets/` are served by one static server, and the dev
+         server's base-prefixed rewrite of it is handled by `siteAssets`. -->
+    <link
+      rel="preload"
+      href="/assets/fonts/archivo/archivo-normal-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/archivo/archivo-normal-latin-ext.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/assets/css/type.css" />
   </head>
   <body>
     <div id="root"></div>

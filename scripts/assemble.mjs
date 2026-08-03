@@ -12,7 +12,7 @@
 
 import { cp, mkdir, rm, writeFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -30,7 +30,18 @@ const COPY_DIRS = ['assets', 'en', 'de'];
 // verbatim — a .blend is several hundred KB nobody requests and a look inside
 // the workshop nobody asked for.
 const SKIP = [join('assets', 'blender')];
-const isSkipped = (path) => SKIP.some((s) => path === join(ROOT, s));
+
+// iCloud Drive writes "thing 2.ext" next to "thing.ext" when the folder syncs
+// from two machines. .gitignore already refuses to commit them, so Netlify —
+// which builds from the repository — has never seen one. A local build did:
+// it copied them into dist/ and shipped stale pages alongside the real ones,
+// which meant `npm test` was checking a different site from the deployed one.
+// Mirrors the "* [0-9].*" rule in .gitignore, and also catches directories,
+// which have no extension to strip.
+const isDuplicate = (name) => / \d+$/.test(name.replace(/\.[^.]+$/, ''));
+
+const isSkipped = (path) =>
+  SKIP.some((s) => path === join(ROOT, s)) || isDuplicate(basename(path));
 
 async function main() {
   // dist/portal is written by Vite in a later step, so only clear what we own.
@@ -42,7 +53,8 @@ async function main() {
   await mkdir(DIST, { recursive: true });
 
   // Hungarian pages live at the root of the repo.
-  const pages = (await readdir(ROOT)).filter((f) => f.endsWith('.html'));
+  const pages = (await readdir(ROOT))
+    .filter((f) => f.endsWith('.html') && !isDuplicate(f));
   for (const page of pages) {
     await cp(join(ROOT, page), join(DIST, page));
   }
