@@ -364,13 +364,44 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (min-aspect-ratio: 1 / 1) {
-  .panel { --copy-width: min(34rem, calc(32vw - 4rem)); }
+  /* The copy budget is the clear gap beside the dial, less everything that
+     also has to fit in it. Each term is measured, not guessed:
+
+       29vw    the narrowest side gap the centred instrument leaves, as a
+               fraction of viewport width. It is not constant, because the
+               camera's FRAME_WIDTH opens with aspect and the dial therefore
+               takes a *smaller* share of a wider screen: measured 29.3% at
+               1024×768, 31.9% at 1440×900, 33.2% at 1366×768, 34.1% at
+               844×390. 29vw is the floor of that range, so the budget holds
+               at every aspect rather than only at the one it was tuned on.
+       pad     the panel's own inline padding, which the plate sits behind —
+               the same clamp() the panel declares.
+       1.5vmin the safety margin the validator expands the instrument bounds
+               by before testing for collisions (`pad` in validate-meridian).
+               Budgeting to the bare silhouette passes geometry and fails the
+               check, which is how the previous formula — 32vw - 4rem — landed
+               the plate's right edge at 460.8px against a dial starting at
+               459px on a 1440×900.
+       0.5rem  slack, so a subpixel rounding difference is not a failure. */
+  .panel {
+    --gap-share: 29vw;
+    --copy-width: min(34rem, calc(var(--gap-share) - clamp(1.25rem, 5vw, 4rem) - 1.5vmin - 0.5rem));
+  }
+  /* The share is not one number, because the gap is not one fraction. The
+     camera's FRAME_WIDTH opens with aspect, so the dial takes a smaller slice
+     of a wider screen and the gap beside it grows: measured 29.3% at 1024×768,
+     31.9% at 1440×900, 33.2% at 1366×768, 34.1% at 844×390. Banding it back
+     recovers the room a single 29vw floor throws away at wide aspects — worth
+     37px at 1440×900 and 94px at 844×390, which is the difference between a
+     case study that fits its plate and one that overflows it. Each band stays
+     under the measurement that opens it. */
+  @media (min-aspect-ratio: 3 / 2) { .panel { --gap-share: 31vw; } }
+  @media (min-aspect-ratio: 16 / 9) { .panel { --gap-share: 32.5vw; } }
+  @media (min-aspect-ratio: 2 / 1) { .panel { --gap-share: 33.5vw; } }
   /* A centred plate would sit on the dial by definition, so on these viewports
      the dense panels stop centring and pick a side like the rest. */
   .panel--centre { justify-content: flex-start; text-align: left; }
   .panel--centre:nth-of-type(even) { justify-content: flex-end; }
-  .panel--wide .panel__inner,
-  .panel--centre .panel__inner { width: min(100%, var(--copy-width)); }
 }
 
 .panel__inner {
@@ -386,6 +417,16 @@ img { max-width: 100%; height: auto; }
   width: min(100%, var(--copy-width, 34rem));
   padding: clamp(1.4rem, 2.4vw, 2rem);
   pointer-events: auto;
+  /* The plate is the containing block for the dense content inside it, and the
+     case grid, the system grid and the checkpoint grid all key off *it* rather
+     than off the viewport — see the container queries further down.
+
+     Naming it is what makes the difference honest: a 1440px viewport says
+     "wide", but the plate the case study actually gets is ~330px because the
+     instrument is centred and takes the middle. Keyed to the viewport, a case
+     study inside that plate laid itself out in two columns with an image
+     beside the prose, in a third of the width that layout needs. */
+  container: panel / inline-size;
   /* A wash rather than an opaque card: the instrument and the sky stay visible
      through the copy, which is the entire reason for compositing HTML over a
      3D scene instead of beside it. The gradient falls off toward the canvas
@@ -414,8 +455,30 @@ img { max-width: 100%; height: auto; }
   -webkit-backdrop-filter: blur(14px);
 }
 
-.panel--wide .panel__inner { width: min(100%, 68rem); }
-.panel--centre .panel__inner { width: min(100%, 46rem); }
+/* The dense panels are wider than the rest — but only up to the copy budget,
+   and the budget has to be applied *here*, in the same declaration.
+
+   It used to be applied in the landscape media query above, as
+   `width: min(100%, var(--copy-width))`. That rule never took effect. A media
+   query adds no specificity, both selectors are (0,2,0), and these two
+   declarations come later in the file — so at equal specificity these won.
+   `.panel--wide` rendered at 68rem/1088px inside a 1440px viewport with a
+   522px dial centred in it, which is a guaranteed collision, and it is why
+   the remaining failures were concentrated in exactly these two classes while
+   the plain panels — which read `--copy-width` from their own declaration and
+   so were never overridden — measured clean.
+
+   This is the second time this file has been bitten by it; see the note on
+   `.panel .panel__title + *` above. Reading the budget through a custom
+   property in the winning declaration is what makes it immune: there is no
+   second declaration left to lose to.
+
+   The fallbacks are the portrait values. In portrait `--copy-width` is unset
+   by design — the copy goes above and below the instrument, not beside it —
+   and `min(100%, 68rem)` resolves to the full column, which is the portrait
+   composition unchanged. */
+.panel--wide .panel__inner { width: min(100%, var(--copy-width, 68rem)); }
+.panel--centre .panel__inner { width: min(100%, var(--copy-width, 46rem)); }
 
 .panel__eyebrow {
   display: flex;
@@ -557,11 +620,45 @@ img { max-width: 100%; height: auto; }
   border: 1px solid var(--hair);
 }
 
+/* Let the dense content shrink to the plate it is given.
+
+   A grid or flex child's default `min-width: auto` refuses to go below its
+   min-content width, and min-content for a paragraph is its longest *word*.
+   Hungarian and German supply plenty that are 20+ characters, so a case study
+   inside a 189px plate on an 844×390 sat at its 244px floor and pushed the
+   document 36px sideways at every altitude — the whole viewport failed on
+   h-overflow, not on collision.
+
+   This is correction 1, better line breaking, and it is the right one here:
+   the alternative readings all cost content. `min-width: 0` lets the track
+   shrink; `overflow-wrap: break-word` lets the one over-long word break rather
+   than setting the floor for the entire column. Ordinary words are untouched —
+   `break-word` only acts when a word cannot fit on a line of its own — so this
+   changes no line that was already able to break normally. */
+.case,
+.case > *,
+.case__head > *,
+.case__body > *,
+.system__ring,
+.system__ring > *,
+.check,
+.check > *,
+.check__grid > * {
+  min-width: 0;
+}
+
+.case,
+.system__ring,
+.check,
+.ladder__step {
+  overflow-wrap: break-word;
+}
+
 /* Two columns from tablet up, image beside the prose. Deliberately not a
    horizontal carousel: a carousel hides most of the work behind an interaction
    nobody performs, and it makes the case studies feel interchangeable — which
    is the opposite of "passing meaningful altitude milestones". */
-@media (min-width: 900px) {
+@container panel (min-width: 46rem) {
   .case {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
     grid-template-areas:
@@ -663,7 +760,7 @@ img { max-width: 100%; height: auto; }
   margin-top: 2rem;
 }
 
-@media (min-width: 860px) {
+@container panel (min-width: 44rem) {
   .system { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
@@ -762,7 +859,7 @@ img { max-width: 100%; height: auto; }
   gap: 0.9rem;
 }
 
-@media (min-width: 760px) {
+@container panel (min-width: 34rem) {
   .check__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 

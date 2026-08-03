@@ -54,7 +54,45 @@ const PARALLAX_RAD = (PARALLAX_DEGREES * Math.PI) / 180;
  */
 const FRAME_WIDTH_PORTRAIT = 2.2;
 const FRAME_WIDTH_WIDE = 3.5;
-const FRAME_HEIGHT = 1.24;
+
+/**
+ * The vertical frame, and why it opens on mobile landscape.
+ *
+ * 1.24 frames the *essential* silhouette — dial, body, needle, aperture. The
+ * active ring is a separate rule: §4 lets it approach the edge, but it must
+ * stay whole, and the ring is much bigger than the silhouette it surrounds.
+ * Measured off the gimbal subtree, it reaches **2.53 world units** at 30 000 m,
+ * where the dolly is also at its widest.
+ *
+ * A very wide, very short viewport is the one shape where that does not fit.
+ * `fit` takes whichever axis is tighter, and at 2.16:1 the width term wins —
+ * 2.82 units against the height term's 2.16 — so the vertical view ends up
+ * only 2.22 units tall and the ring is cut off top and bottom. Measured before
+ * this change: −10px at 844×390, −15px at 800×360, −11px at 932×430, −10px at
+ * 896×414, all on the top and bottom edges, with 199–275px of unused room to
+ * the left and right. It is a vertical framing problem exclusively.
+ *
+ * So the vertical frame opens with aspect, exactly as the horizontal one does.
+ * The value is derived rather than tuned: when the height term binds, the
+ * visible world height is `k × FRAME_HEIGHT`, so containing the ring with the
+ * 16px mobile edge margin needs
+ *
+ *     FRAME_HEIGHT ≥ ringHeight × h / (h − 32) / k
+ *
+ * which evaluates to 1.98–2.02 across the four landscape viewports, worst at
+ * 800×360. 2.15 is that worst case with headroom.
+ *
+ * The ramp starts at 1.85 rather than at 1.0 on purpose. Every desktop
+ * viewport in the matrix sits at or below it — 1440×900 is 1.60, 1366×768 and
+ * 1920×1080 are 1.78 — so all three keep the 1.24 frame and the dial size they
+ * already validate at, and none of them needs the help: their ring margins
+ * measure +41px, +21px and +16px. This is a mobile-landscape composition mode,
+ * and confining it to mobile landscape is the point.
+ */
+const FRAME_HEIGHT_BASE = 1.24;
+const FRAME_HEIGHT_LANDSCAPE = 2.15;
+const LANDSCAPE_ASPECT_FROM = 1.85;
+const LANDSCAPE_ASPECT_TO = 2.2;
 
 export function JourneyCamera({ parallax }: { parallax: boolean }) {
   const camera = useThree((s) => s.camera) as PerspectiveCamera;
@@ -80,7 +118,12 @@ export function JourneyCamera({ parallax }: { parallax: boolean }) {
     // portrait phone and the 768×1024 tablet keep the framing they already
     // validate at.
     const frameWidth = lerp(FRAME_WIDTH_PORTRAIT, FRAME_WIDTH_WIDE, clamp((aspect - 1) / 1));
-    return Math.max(frameWidth / 2 / Math.tan(hFovHalf), FRAME_HEIGHT / 2 / Math.tan(vFovHalf));
+    const frameHeight = lerp(
+      FRAME_HEIGHT_BASE,
+      FRAME_HEIGHT_LANDSCAPE,
+      clamp((aspect - LANDSCAPE_ASPECT_FROM) / (LANDSCAPE_ASPECT_TO - LANDSCAPE_ASPECT_FROM)),
+    );
+    return Math.max(frameWidth / 2 / Math.tan(hFovHalf), frameHeight / 2 / Math.tan(vFovHalf));
   }, [camera.fov, size.width, size.height]);
 
   useFrame((_, delta) => {
