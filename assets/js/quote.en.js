@@ -8,10 +8,10 @@ const kkv = () => !isNagy();
 
 const Q = [
   // ===== KÖZÖS: alapadatok =====
-  {t:'text',    q:'What is the name of the business?', req:1, id:'cegnev'},
+  {t:'text',    q:'What is the name of the business?', req:1, min:2, id:'cegnev'},
   {t:'radio',   q:'Which best describes the business?', req:1, id:'szegmens',
     o:['Sole trader / small business','Medium-sized business',NAGY]},
-  {t:'text',    q:'Who is filling in the questionnaire? (name, role)', id:'kitolto'},
+  {t:'text',    q:'Who is filling in the questionnaire? (name, role)', min:2, id:'kitolto'},
   {t:'tel',     q:'Phone number:', req:1, id:'telefon'},
   {t:'email',   q:'Email address:', req:1, id:'email'},
 
@@ -204,6 +204,12 @@ function render(){
   if(first && d.t!=='consent') first.focus();
 }
 
+// A két hibaüzenet külön konstans, mert a fordítás statikus szövegeket cserél:
+// egy sablonliterálba írt üzenet magyar maradna az angol és a német oldalon.
+const ERR_REQUIRED = 'This question is required.';
+const ERR_SHORT = 'Please use at least two characters.';
+
+/** null, ha a válasz rendben van; különben a megjelenítendő hibaüzenet. */
 function save(skipValidate){
   const d = Q[step];
   if(['text','tel','email','textarea'].includes(d.t)){
@@ -217,16 +223,31 @@ function save(skipValidate){
   } else if(d.t==='consent'){
     answers[step] = {value: document.getElementById('inp').checked};
   }
-  if(skipValidate || !d.req) return true;
+  if(skipValidate) return null;
   const a = answers[step] || {};
-  if(d.t==='check') return a.value.length>0;
-  if(d.t==='consent') return a.value===true;
-  if(d.t==='email') return /.+@.+\..+/.test(a.value);
-  return !!a.value;
+  // Egy túl rövid válasz akkor is hiba, ha a kérdés nem kötelező: a beküldés
+  // ezt a mezőt használja, és a végén elutasítaná — ott viszont már 30 kérdés
+  // múlva, egy olyan üzenettel, ami nem ehhez a képernyőhöz tartozik.
+  // `min` csak szöveges kérdésen van, így a jelölőnégyzetek tömbjével nem
+  // találkozik. Típusvizsgálat helyett azért így, mert a fordító a JS
+  // string-literálokat is szövegnek látja, és egy lefordított 'string' szó
+  // csendben elrontaná az összehasonlítást az angol és a német oldalon.
+  if(d.min && a.value && a.value.length < d.min) return ERR_SHORT;
+  if(!d.req) return null;
+  if(d.t==='check') return a.value.length>0 ? null : ERR_REQUIRED;
+  if(d.t==='consent') return a.value===true ? null : ERR_REQUIRED;
+  if(d.t==='email') return /.+@.+\..+/.test(a.value) ? null : ERR_REQUIRED;
+  return a.value ? null : ERR_REQUIRED;
 }
 
 function next(){
-  if(!save()){ document.getElementById('err').classList.add('show'); return; }
+  const problem = save();
+  if(problem){
+    const err = document.getElementById('err');
+    err.textContent = problem;
+    err.classList.add('show');
+    return;
+  }
   const n = nextVisible(step,1);
   step = (n===undefined) ? Q.length : n;
   render();
@@ -291,8 +312,10 @@ function buildLead(){
   const lead = {
     source: 'questionnaire',
     locale: document.documentElement.lang || 'hu',
-    // A kapcsolattartó neve nem kötelező kérdés; ha üres, a cégnév azonosít.
-    name: cut(val('kitolto') || val('cegnev'), LIMIT.name),
+    // A kapcsolattartó neve nem kötelező, és csak akkor lép a cégnév helyébe,
+    // ha önmagában is elfogadható. Egy `||` itt egy egykarakteres választ is
+    // igaznak vett, eldobta a jó cégnevet, és a beküldést a végén utasította el.
+    name: cut(val('kitolto').length >= 2 ? val('kitolto') : val('cegnev'), LIMIT.name),
     company: cut(val('cegnev'), LIMIT.company),
     email: cut(val('email'), LIMIT.email),
     phone: cut(val('telefon'), LIMIT.phone),

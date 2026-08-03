@@ -176,6 +176,7 @@
  "Adatkezelési Nyilatkozat:": ["Privacy statement:", "Datenschutzerklärung:"],
  "adatkezelesi-tajekoztato": ["privacy-policy", "datenschutz"],
  "Ez a kérdés kötelező.": ["This question is required.", "Diese Frage ist erforderlich."],
+ "Legalább két karakter kell.": ["Please use at least two characters.", "Bitte mindestens zwei Zeichen verwenden."],
  "Vissza": ["Back", "Zurück"],
  "Beküldés": ["Submit", "Absenden"],
  "Tovább": ["Next", "Weiter"],
