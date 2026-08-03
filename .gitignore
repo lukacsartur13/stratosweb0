@@ -29,3 +29,10 @@ experiments/bench-out/
 _backup/
 
 .DS_Store
+
+# iCloud Drive conflict duplicates. Syncing this folder from more than one
+# place makes copies named "thing 2.ext" alongside the original. They are never
+# source, and committing one is actively harmful: a stray
+# "netlify/functions/submit-lead 2.mjs" would deploy as a second function.
+* [0-9].*
+* [0-9][0-9].*
