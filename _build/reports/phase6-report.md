@@ -211,18 +211,114 @@ protection retained.
 
 ## 9. Open
 
-Measured by `node experiments/validate-meridian.mjs` (hu, 12 altitudes,
-9 viewports). Down from 108 problem samples to **37**.
+### 9.0 The 34/3 figures were measured at 12 altitudes, and are not the floor
 
-| Class | Count | Where |
+The "34 collisions + 3 ring clips = 37" headline came from a 12-altitude,
+hu-only, 9-viewport run — 108 samples. Re-run at 17 altitudes (`SAMPLES=12`
+unions the 7 named stops, giving 153 samples) the same tree measures **56**.
+Nothing regressed between the two; the denser grid simply finds more, which is
+the whole reason §9 of the brief asks for 101 samples. Every count below is at
+17 altitudes so it can be compared with the one before it.
+
+### 9.1 Fixed since, with before/after
+
+`node experiments/validate-meridian.mjs` (hu, 17 altitudes, 9 viewports):
+**56 problem samples → 30.**
+
+| Viewport | Before | After |
 |---|---|---|
-| Text collision with instrument safe zone | 34 | dense/wide panels at 6k, 7k, 9k, 12k, 15k, 21k m |
-| Ring clipped | 3 | 844×390 mobile landscape at 7k, 27k, 30k m |
+| 1440×900 | 6 | **0** |
+| 1366×768 | 6 | **0** |
+| 844×390 landscape | 9 | **0** |
+| 1024×768 | 7 | 1 |
+| 768×1024 | 6 | 6 |
+| 430×932 | 4 | 4 |
+| 390×844 | 5 | 5 |
+| 360×800 | 6 | 6 |
+| 320×568 | 8 | 8 |
 
-1440×900 and 1366×768 are **clean**. The remaining collisions are concentrated
-in `.panel--wide` and `.panel--centre` panels — case studies, the system grid,
-the process list — whose content is wider and taller than the simple panels and
-which the band-split composition does not yet fully handle.
+Four causes, all systemic rather than per-panel:
+
+* **The landscape copy budget never applied to the dense panels.** Declared in
+  the aspect media query, overridden by two later same-specificity rules, so
+  `.panel--wide` rendered at 1088px inside a 1440px viewport with a 522px dial
+  centred in it. This is why the failures were concentrated in exactly
+  `.panel--wide` and `.panel--centre`: the plain panels read the budget from
+  their own winning declaration and were never overridden.
+* **The budget was a boundary value.** `32vw - 4rem` landed the plate's right
+  edge 1.8px *inside* the dial at 1440×900 and ignored the safety margin the
+  validator expands the instrument by. Now measured, banded by aspect (the gap
+  is 29.3% of width at 1024×768 and 34.1% at 844×390, because FRAME_WIDTH opens
+  with aspect), and reduced by the panel padding, that margin and slack.
+* **The dense grids keyed to the viewport, not to the plate.** `.case`,
+  `.system` and `.check__grid` are container queries now. With `min-width: 0`
+  and `overflow-wrap`, because a grid child will not shrink below its longest
+  word and Hungarian supplied enough 20-character words to hold a case study at
+  a 244px floor inside a 189px plate — 36px of horizontal document overflow at
+  every altitude on an 844×390.
+* **The ring was clipped on every mobile-landscape viewport, not just one.**
+  −10px at 844×390, −15px at 800×360, −11px at 932×430, −10px at 896×414, all
+  top and bottom, with 199–275px unused left and right. `fit` takes the tighter
+  axis; at 2.16:1 the width term wins and leaves a 2.22-unit vertical view for a
+  ring measuring 2.53 units. FRAME_HEIGHT now opens with aspect from 1.85,
+  derived from that measurement. Now +33/+36/+38/+36px; desktop untouched.
+
+### 9.2 Still open: portrait text collisions (30 samples)
+
+All 30 remaining failures are portrait: 768×1024, 430×932, 390×844, 360×800,
+320×568, plus one at 1024×768. **The cause is now identified rather than
+guessed, and it is not the one §9 previously assumed.**
+
+A panel is as tall as its stage's share of the track — up to 4.4 screens — and
+the copy plate is centred inside it. So the band split, which puts the eyebrow
+and headline above the instrument and everything else below it, lines up with
+the two clear bands at *exactly one scroll offset*: the one where plate and
+viewport coincide. Through the rest of the stage the plate is simply travelling
+— it enters from the bottom of the screen, crosses the instrument, and leaves at
+the top. Measured on a 390×844 at 5 454 m, the eyebrow sits at y=486 and the
+headline at y=518, both mid-screen, across a dial spanning 325–516.
+
+**Pinning the plate was tried and is recorded as rejected.** `position: sticky;
+top: 0; height: 100svh` in portrait makes the bands hold at every scroll
+position by construction, and it made the measured count *worse* — 30 → 40 —
+because it keeps the copy on screen for the whole stage instead of roughly one
+screen of it, exposing the second half of the problem everywhere rather than
+occasionally: **the dense panels' content does not fit the bottom band.** On a
+390×844 the band below the instrument is ~328px and the ladder stage's copy is
+~500px. It does not fit, and no amount of anchoring makes it fit.
+
+The reverted state is therefore not "passing"; it is failing less often because
+the copy is off-screen for most of each stage.
+
+### 9.3 What closing 9.2 requires — a decision, not a patch
+
+Within the corrections the brief permits, and with readable font size, section
+count, word volume, all three locales and a central instrument all preserved,
+the arithmetic on a 320×568 does not close. The remaining levers are:
+
+1. **A portrait-only bounded instrument scale during dense stages.** The
+   `recede` mechanism already does exactly this for the case studies
+   (12 300–15 600 m) — scale and depth, never displacement, so the instrument
+   stays central and complete. The ladder (3 000–8 000 m) and system/process
+   (17 000–24 000 m) stages have comparable copy density and no recede, because
+   recede was wound back so the second and third ring locks would not land as
+   thumbnails. That trade was tuned against desktop framing.
+2. **Accepting that dense portrait copy extends below the fold**, which the
+   brief sanctions for 200% zoom and which is arguably the same situation.
+
+Both change accepted composition, so both are escalated rather than chosen here.
+
+### 9.4 Not yet measured
+
+Unchanged from the previous revision, and still required before sign-off:
+
+* CLS before/after font integration;
+* font load timing, fallback duration, slow load and load failure;
+* the 101-sample sweep across all three locales (runs so far are hu, 17-sample);
+* 200% browser zoom and increased text size;
+* the 16 evaluation stills, which need regenerating at the production font and
+  re-accepting as a Phase 6 set;
+* the full regression and the deploy preview.
 
 Not yet measured, and required before Phase 6 can be signed off:
 
