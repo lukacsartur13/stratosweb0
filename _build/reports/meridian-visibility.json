@@ -1,0 +1,1942 @@
+{
+ "generatedAt": "2026-08-03T19:44:13.986Z",
+ "altitudes": [
+  0,
+  3000,
+  6000,
+  7000,
+  9000,
+  12000,
+  15000,
+  18000,
+  21000,
+  24000,
+  27000,
+  30000
+ ],
+ "results": [
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 1440,
+    "h": 900,
+    "tier": "desktop"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0005065002503515517,
+      "dy": -0.009324292994356697
+     },
+     "minMarginEssential": 200.3994290406217,
+     "minMarginRings": 197.92440658416822,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006168250081432328,
+      "dy": -0.0011960113943603624
+     },
+     "minMarginEssential": 179.51542350623697,
+     "minMarginRings": 177.3953410655235,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 6000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.000641662162016369,
+      "dy": -0.002629822265756666
+     },
+     "minMarginEssential": 184.86428124820088,
+     "minMarginRings": 128.77397261001371,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
+      "h2.panel__title \"Hat terület, egy rendsze\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\""
+     ]
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00033669118306376176,
+      "dy": -0.007785472809686161
+     },
+     "minMarginEssential": 189.62422579845983,
+     "minMarginRings": 53.68412980173969,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 9000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002804824889839747,
+      "dy": -0.007915428709824382
+     },
+     "minMarginEssential": 214.5592639792051,
+     "minMarginRings": 76.81941003871532,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00025680952665499353,
+      "dy": -0.008497848396188171
+     },
+     "minMarginEssential": 225.24758642317383,
+     "minMarginRings": 87.00905849426772,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"",
+      "h2.panel__title \"A tisztaság ott kezdődik\"",
+      "p.panel__lead \"Nem több eszköz kell. Ke\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"; h2.panel__title \"A tisztaság ott kezdődik\"; p.panel__lead \"Nem több eszköz kell. Ke\""
+     ]
+    },
+    {
+     "altitude": 15000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0006794293510146253,
+      "dy": -0.0034727594288275062
+     },
+     "minMarginEssential": 346.4381787317124,
+     "minMarginRings": 295.5706837881288,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0018944924857742585,
+      "dy": -0.006329912188990458
+     },
+     "minMarginEssential": 309.49703382193195,
+     "minMarginRings": 265.72329064227546,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0020863212939442773,
+      "dy": -0.008459471206468708
+     },
+     "minMarginEssential": 282.9020252873303,
+     "minMarginRings": 218.6824057587977,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"VII · A rendszer17 000 –\"",
+      "h2.panel__title \"Kilenc terület, három ré\"",
+      "p.panel__lead \"A háttérben ugyanez láth\"",
+      "p.system__ring-note \"Amit a stratégia meghatá\"",
+      "p.system__ring-note \"Ami csak akkor működik, \""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"VII · A rendszer17 000 –\"; h2.panel__title \"Kilenc terület, három ré\"; p.panel__lead \"A háttérben ugyanez láth\"; p.system__ring-note \"Amit a stratégia meghatá\"; p.system__ring-note \"Ami csak akkor működik, \""
+     ]
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0016217450633806468,
+      "dy": -0.011661144149567489
+     },
+     "minMarginEssential": 273.83537764618023,
+     "minMarginRings": 74.4991658810643,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0017945625089990042,
+      "dy": -0.011452588268195238
+     },
+     "minMarginEssential": 263.43853586604115,
+     "minMarginRings": 45.487531411618534,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0019403660901705028,
+      "dy": -0.012497922578446542
+     },
+     "minMarginEssential": 251.71260610643017,
+     "minMarginRings": 20.238748530533826,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 179.51542350623697,
+   "worstCentre": 0.012497922578446542
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 1366,
+    "h": 768,
+    "tier": "desktop"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00048382364805162856,
+      "dy": -0.009461301793083132
+     },
+     "minMarginEssential": 164.01821736471138,
+     "minMarginRings": 161.79723594920887,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0005222212838253024,
+      "dy": -0.0011743976021961384
+     },
+     "minMarginEssential": 145.64638186533708,
+     "minMarginRings": 143.728859649754,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 6000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0005477954873762066,
+      "dy": -0.002688417392197865
+     },
+     "minMarginEssential": 150.34451169773791,
+     "minMarginRings": 99.28846123589408,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
+      "h2.panel__title \"Hat terület, egy rendsze\"",
+      "p.panel__lead \"Nem hat különálló szolgá\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\"; p.panel__lead \"Nem hat különálló szolgá\""
+     ]
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0003209710852435798,
+      "dy": -0.007911145379437453
+     },
+     "minMarginEssential": 154.4524800584692,
+     "minMarginRings": 33.81646944298632,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 9000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002672618467254537,
+      "dy": -0.008068975863529134
+     },
+     "minMarginEssential": 176.47223340785695,
+     "minMarginRings": 54.32480563813124,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00024464755433134235,
+      "dy": -0.00867385770784949
+     },
+     "minMarginEssential": 185.9141762026194,
+     "minMarginRings": 63.42303756129718,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"",
+      "h2.panel__title \"A tisztaság ott kezdődik\"",
+      "p.panel__lead \"Nem több eszköz kell. Ke\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"; h2.panel__title \"A tisztaság ott kezdődik\"; p.panel__lead \"Nem több eszköz kell. Ke\""
+     ]
+    },
+    {
+     "altitude": 15000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0006419119400308771,
+      "dy": -0.003641047929636043
+     },
+     "minMarginEssential": 293.44333692677503,
+     "minMarginRings": 248.97215626825766,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p \"Az eredmények gyorsan lá\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p \"Az eredmények gyorsan lá\""
+     ]
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0017981440295069611,
+      "dy": -0.00666772399474332
+     },
+     "minMarginEssential": 260.80578260116,
+     "minMarginRings": 222.5503997716517,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0019927387291662378,
+      "dy": -0.008940316902037152
+     },
+     "minMarginEssential": 237.1924186317289,
+     "minMarginRings": 180.48650995407706,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"VII · A rendszer17 000 –\"",
+      "h2.panel__title \"Kilenc terület, három ré\"",
+      "p.panel__lead \"A háttérben ugyanez láth\"",
+      "p.system__ring-note \"Amit a stratégia meghatá\"",
+      "p.system__ring-note \"Ami csak akkor működik, \""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"VII · A rendszer17 000 –\"; h2.panel__title \"Kilenc terület, három ré\"; p.panel__lead \"A háttérben ugyanez láth\"; p.system__ring-note \"Amit a stratégia meghatá\"; p.system__ring-note \"Ami csak akkor működik, \""
+     ]
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0015865732415508023,
+      "dy": -0.012258540362614609
+     },
+     "minMarginEssential": 229.2038014204875,
+     "minMarginRings": 54.669711633779116,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0017583584415029694,
+      "dy": -0.01211474411288179
+     },
+     "minMarginEssential": 219.84443382338102,
+     "minMarginRings": 28.82341414889447,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.001905157451295378,
+      "dy": -0.01325130833988486
+     },
+     "minMarginEssential": 209.29823314179376,
+     "minMarginRings": 6.213453350041732,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 145.64638186533708,
+   "worstCentre": 0.01325130833988486
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 1024,
+    "h": 768,
+    "tier": "tablet"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0005423091870095931,
+      "dy": -0.009047484725597243
+     },
+     "minMarginEssential": 183.68098013276608,
+     "minMarginRings": 181.76007845054153,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008081977385394623,
+      "dy": -0.0012253083245621355
+     },
+     "minMarginEssential": 166.864225866068,
+     "minMarginRings": 165.243693620338,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "h1.panel__title \"Nem weboldalakat építünk\"",
+      "p.panel__lead \"A legtöbb vállalkozás a \""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: h1.panel__title \"Nem weboldalakat építünk\"; p.panel__lead \"A legtöbb vállalkozás a \""
+     ]
+    },
+    {
+     "altitude": 6000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008307454710122508,
+      "dy": -0.002618380141882944
+     },
+     "minMarginEssential": 171.10759005482046,
+     "minMarginRings": 128.71636484978137,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
+      "h2.panel__title \"Hat terület, egy rendsze\"",
+      "p.panel__lead \"Nem hat különálló szolgá\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\"; p.panel__lead \"Nem hat különálló szolgá\""
+     ]
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00036191113521133467,
+      "dy": -0.007556437082833896
+     },
+     "minMarginEssential": 175.13158759127342,
+     "minMarginRings": 67.4196344128967,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 9000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00030176530543712943,
+      "dy": -0.007632557460880873
+     },
+     "minMarginEssential": 195.07714231512225,
+     "minMarginRings": 85.7876274541095,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.000276421265027027,
+      "dy": -0.008150195109581926
+     },
+     "minMarginEssential": 203.63767930876554,
+     "minMarginRings": 93.75336032651023,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"",
+      "h2.panel__title \"A tisztaság ott kezdődik\"",
+      "p.panel__lead \"Nem több eszköz kell. Ke\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"; h2.panel__title \"A tisztaság ott kezdődik\"; p.panel__lead \"Nem több eszköz kell. Ke\""
+     ]
+    },
+    {
+     "altitude": 15000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0007418482485481714,
+      "dy": -0.003170638427434961
+     },
+     "minMarginEssential": 299.67662708365464,
+     "minMarginRings": 258.24409708299595,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p \"Az eredmények gyorsan lá\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p \"Az eredmények gyorsan lá\""
+     ]
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0020511218740295045,
+      "dy": -0.005729518787677505
+     },
+     "minMarginEssential": 270.172618395134,
+     "minMarginRings": 234.49530842070843,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.case__at \"16 100 m\"",
+      "p.case__sector \"Kézműves gyártás\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.case__at \"16 100 m\"; p.case__sector \"Kézműves gyártás\""
+     ]
+    },
+    {
+     "altitude": 21000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0022318187546788715,
+      "dy": -0.007611170814261585
+     },
+     "minMarginEssential": 249.1248960791437,
+     "minMarginRings": 197.76530915873923,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"VII · A rendszer17 000 –\"",
+      "h2.panel__title \"Kilenc terület, három ré\"",
+      "p.panel__lead \"A háttérben ugyanez láth\"",
+      "p.system__ring-note \"Amit a stratégia meghatá\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"VII · A rendszer17 000 –\"; h2.panel__title \"Kilenc terület, három ré\"; p.panel__lead \"A háttérben ugyanez láth\"; p.system__ring-note \"Amit a stratégia meghatá\""
+     ]
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0016503262817773034,
+      "dy": -0.010551867218483077
+     },
+     "minMarginEssential": 241.88611873761215,
+     "minMarginRings": 79.90178903850915,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0018215685753120159,
+      "dy": -0.010289163071866225
+     },
+     "minMarginEssential": 233.82960102121797,
+     "minMarginRings": 57.12815511706867,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.001962427275244316,
+      "dy": -0.011180812696748385
+     },
+     "minMarginEssential": 224.77040724439027,
+     "minMarginRings": 37.46619002898683,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 166.864225866068,
+   "worstCentre": 0.011180812696748385
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 768,
+    "h": 1024,
+    "tier": "tablet"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00045189673559139126,
+      "dy": -0.004821996135395412
+     },
+     "minMarginEssential": 212.71360269268826,
+     "minMarginRings": 207.56936586829758,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0016570415051460803,
+      "dy": -0.0011671762255974216
+     },
+     "minMarginEssential": 192.03223985268255,
+     "minMarginRings": 190.8634352535073,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 6000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0016497575640412137,
+      "dy": -0.0020214310016368753
+     },
+     "minMarginEssential": 196.64288944879706,
+     "minMarginRings": 167.83238188458063,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
+      "h2.panel__title \"Hat terület, egy rendsze\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\""
+     ]
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0024803277317849335,
+      "dy": -0.0029611815026492905
+     },
+     "minMarginEssential": 205.9396167676167,
+     "minMarginRings": 120.19483488741241,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"IV · Felhőréteg6 000 – 8\"",
+      "h2.panel__title \"Idelent minden zajos.\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"IV · Felhőréteg6 000 – 8\"; h2.panel__title \"Idelent minden zajos.\""
+     ]
+    },
+    {
+     "altitude": 9000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.002040578513712976,
+      "dy": -0.0030884573055056652
+     },
+     "minMarginEssential": 222.72742048029647,
+     "minMarginRings": 137.04772760157732,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p \"Öt ügynökség öt különböz\"",
+      "p \"Nem a zaj a probléma, ha\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
+     ]
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0018452738191464906,
+      "dy": -0.0028056592909942446
+     },
+     "minMarginEssential": 230.75071119158224,
+     "minMarginRings": 151.32623558252612,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 15000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00027827166299942974,
+      "dy": -0.001464252063787308
+     },
+     "minMarginEssential": 306.45460370827914,
+     "minMarginRings": 281.0826979433396,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0005059160853512582,
+      "dy": -0.0022124619430343717
+     },
+     "minMarginEssential": 286.87170847643563,
+     "minMarginRings": 244.41236876322796,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00009438132152099025,
+      "dy": -0.0027611753719805066
+     },
+     "minMarginEssential": 270.98361055269044,
+     "minMarginRings": 205.24506726108598,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__lead \"A háttérben ugyanez láth\"",
+      "p.system__ring-note \"Ez dönti el a többit. En\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__lead \"A háttérben ugyanez láth\"; p.system__ring-note \"Ez dönti el a többit. En\""
+     ]
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.000654496608263259,
+      "dy": -0.0041528863190950505
+     },
+     "minMarginEssential": 269.8538686137088,
+     "minMarginRings": 112.77963068578772,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008222740740004101,
+      "dy": -0.0035269428555260163
+     },
+     "minMarginEssential": 263.5687928286867,
+     "minMarginRings": 90.54001641177082,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0010317753608615199,
+      "dy": -0.0036696194059542275
+     },
+     "minMarginEssential": 257.36520170536994,
+     "minMarginRings": 71.47947692596532,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 192.03223985268255,
+   "worstCentre": 0.004821996135395412
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 430,
+    "h": 932,
+    "tier": "mobile"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002985696385771229,
+      "dy": -0.0018271088907200004
+     },
+     "minMarginEssential": 119.5871548792378,
+     "minMarginRings": 116.62779146464497,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0021768420964084338,
+      "dy": -0.0008760491355153863
+     },
+     "minMarginEssential": 108.4607967195048,
+     "minMarginRings": 106.86526693715719,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 6000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00214432713190321,
+      "dy": -0.001380824015179008
+     },
+     "minMarginEssential": 110.99772784390007,
+     "minMarginRings": 99.61088025947168,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001527068473021462,
+      "dy": -0.002009498627799766
+     },
+     "minMarginEssential": 115.94612835975641,
+     "minMarginRings": 73.90131723634141,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "h2.panel__title \"Idelent minden zajos.\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: h2.panel__title \"Idelent minden zajos.\""
+     ]
+    },
+    {
+     "altitude": 9000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0012575700263501267,
+      "dy": -0.00185738611288373
+     },
+     "minMarginEssential": 125.23062701828042,
+     "minMarginRings": 81.16682185296281,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p \"Öt ügynökség öt különböz\"",
+      "p \"Nem a zaj a probléma, ha\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
+     ]
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001138679934591347,
+      "dy": -0.001650262428702087
+     },
+     "minMarginEssential": 129.63816667584564,
+     "minMarginRings": 87.10499169342523,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 15000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00017736525520220756,
+      "dy": -0.0006281164969089965
+     },
+     "minMarginEssential": 168.84060279259688,
+     "minMarginRings": 153.46178862378315,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0003146878865132474,
+      "dy": -0.0009086500762477607
+     },
+     "minMarginEssential": 158.53612294259077,
+     "minMarginRings": 135.611510664075,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00001768134442219762,
+      "dy": -0.001107200952049031
+     },
+     "minMarginEssential": 150.2810911521657,
+     "minMarginRings": 114.46724267618492,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008820284254471877,
+      "dy": -0.0032444391761707833
+     },
+     "minMarginEssential": 149.56494209863098,
+     "minMarginRings": 60.286037043490836,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0009669134919023648,
+      "dy": -0.0014443291086058269
+     },
+     "minMarginEssential": 146.68490006082544,
+     "minMarginRings": 49.48451749578339,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00106882377096863,
+      "dy": -0.0014771493580545557
+     },
+     "minMarginEssential": 143.9122812979375,
+     "minMarginRings": 40.58125775258331,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 108.4607967195048,
+   "worstCentre": 0.0032444391761707833
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 390,
+    "h": 844,
+    "tier": "mobile"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002989445119689039,
+      "dy": -0.0018327401195476181
+     },
+     "minMarginEssential": 108.46167845196908,
+     "minMarginRings": 105.77777990122433,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.002175588419681582,
+      "dy": -0.000877019802529558
+     },
+     "minMarginEssential": 98.36932969780452,
+     "minMarginRings": 96.92514423488099,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 6000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.002143653664050213,
+      "dy": -0.0014043330986997034
+     },
+     "minMarginEssential": 100.63402191799815,
+     "minMarginRings": 90.2899648972076,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
+      "h2.panel__title \"Hat terület, egy rendsze\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\""
+     ]
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0015314995786203174,
+      "dy": -0.002028422676032388
+     },
+     "minMarginEssential": 105.09678899515637,
+     "minMarginRings": 66.94509493168368,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "h2.panel__title \"Idelent minden zajos.\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: h2.panel__title \"Idelent minden zajos.\""
+     ]
+    },
+    {
+     "altitude": 9000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0012578093369389383,
+      "dy": -0.0017994005483849022
+     },
+     "minMarginEssential": 113.63529536783813,
+     "minMarginRings": 73.69588024661778,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p \"Öt ügynökség öt különböz\"",
+      "p \"Nem a zaj a probléma, ha\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
+     ]
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0011524235276307484,
+      "dy": -0.0023574038082266853
+     },
+     "minMarginEssential": 117.16566268607232,
+     "minMarginRings": 78.27556517095019,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 15000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0001776489186708793,
+      "dy": -0.0006298560878039694
+     },
+     "minMarginEssential": 153.14102091160507,
+     "minMarginRings": 138.76724982199664,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0003151991524273894,
+      "dy": -0.0009112679144409892
+     },
+     "minMarginEssential": 143.79341253492737,
+     "minMarginRings": 123.5603566720145,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00001739195058514899,
+      "dy": -0.0011104460815057667
+     },
+     "minMarginEssential": 136.3049430331538,
+     "minMarginRings": 103.98879542289768,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008814429021805235,
+      "dy": -0.002177287943107307
+     },
+     "minMarginEssential": 135.65541730802096,
+     "minMarginRings": 54.61773430714512,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0009665482924126478,
+      "dy": -0.0014484026640711554
+     },
+     "minMarginEssential": 133.04180153423857,
+     "minMarginRings": 44.8189427044524,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0010687319647430717,
+      "dy": -0.001481374833586752
+     },
+     "minMarginEssential": 130.52550823529873,
+     "minMarginRings": 36.7423865021086,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 98.36932969780452,
+   "worstCentre": 0.0023574038082266853
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 360,
+    "h": 800,
+    "tier": "mobile"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002925829782708907,
+      "dy": -0.0017383221913520686
+     },
+     "minMarginEssential": 100.1355480157759,
+     "minMarginRings": 97.65535823599122,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0021968517322783834,
+      "dy": -0.0008603768265356848
+     },
+     "minMarginEssential": 90.83520606471399,
+     "minMarginRings": 89.45631912491686,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__lead \"A legtöbb vállalkozás a \""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__lead \"A legtöbb vállalkozás a \""
+     ]
+    },
+    {
+     "altitude": 6000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0021633761059670557,
+      "dy": -0.0012817312779739608
+     },
+     "minMarginEssential": 92.95769842434436,
+     "minMarginRings": 83.57229214809053,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
+      "h2.panel__title \"Hat terület, egy rendsze\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\""
+     ]
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0014896860328631886,
+      "dy": -0.0018889815997565052
+     },
+     "minMarginEssential": 97.09219565010864,
+     "minMarginRings": 62.07865350299579,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "h2.panel__title \"Idelent minden zajos.\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: h2.panel__title \"Idelent minden zajos.\""
+     ]
+    },
+    {
+     "altitude": 9000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001211643204469068,
+      "dy": -0.0015135373154190291
+     },
+     "minMarginEssential": 105.33509361143194,
+     "minMarginRings": 68.73624966590023,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p \"Öt ügynökség öt különböz\"",
+      "p \"Nem a zaj a probléma, ha\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
+     ]
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001115663298254235,
+      "dy": -0.0018853111999519712
+     },
+     "minMarginEssential": 108.39456785141158,
+     "minMarginRings": 72.7793538895649,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 15000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0001728078009599522,
+      "dy": -0.0006005772416355626
+     },
+     "minMarginEssential": 141.25850873622684,
+     "minMarginRings": 128.34805996466093,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00030649181459712813,
+      "dy": -0.000867267777773435
+     },
+     "minMarginEssential": 132.6564880808152,
+     "minMarginRings": 113.44856712638355,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.000022313642296249252,
+      "dy": -0.0010559482316918434
+     },
+     "minMarginEssential": 125.76523470440159,
+     "minMarginRings": 95.71594865263233,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008913994382045271,
+      "dy": -0.002054911959235568
+     },
+     "minMarginEssential": 125.1655975234859,
+     "minMarginRings": 50.30834528575611,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.000972753579175942,
+      "dy": -0.0013799864026090348
+     },
+     "minMarginEssential": 122.776328211807,
+     "minMarginRings": 41.31152302050266,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0010702907262206116,
+      "dy": -0.0014104451410041463
+     },
+     "minMarginEssential": 120.47856681944086,
+     "minMarginRings": 33.91763121077524,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 90.83520606471399,
+   "worstCentre": 0.0021968517322783834
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 320,
+    "h": 568,
+    "tier": "mobile"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0003524498276842536,
+      "dy": -0.002722431165313716
+     },
+     "minMarginEssential": 88.86672258986425,
+     "minMarginRings": 86.68508147278729,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "h1.panel__title \"Nem weboldalakat építünk\"",
+      "p.panel__lead \"A legtöbb vállalkozás a \""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: h1.panel__title \"Nem weboldalakat építünk\"; p.panel__lead \"A legtöbb vállalkozás a \""
+     ]
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001995965561853108,
+      "dy": -0.0010026893727418525
+     },
+     "minMarginEssential": 80.46841714646627,
+     "minMarginRings": 79.62529125906877,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "h1.panel__title \"Nem weboldalakat építünk\"",
+      "p.panel__lead \"A legtöbb vállalkozás a \""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: h1.panel__title \"Nem weboldalakat építünk\"; p.panel__lead \"A legtöbb vállalkozás a \""
+     ]
+    },
+    {
+     "altitude": 6000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001969433924073627,
+      "dy": -0.0010119097189749
+     },
+     "minMarginEssential": 82.56782687084274,
+     "minMarginRings": 72.93192618368232,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "h2.panel__title \"Hat terület, egy rendsze\"",
+      "p.panel__lead \"Nem hat különálló szolgá\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: h2.panel__title \"Hat terület, egy rendsze\"; p.panel__lead \"Nem hat különálló szolgá\""
+     ]
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001882156831349846,
+      "dy": -0.0023918943508367103
+     },
+     "minMarginEssential": 85.73249540779108,
+     "minMarginRings": 52.847377660698385,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"IV · Felhőréteg6 000 – 8\"",
+      "h2.panel__title \"Idelent minden zajos.\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"IV · Felhőréteg6 000 – 8\"; h2.panel__title \"Idelent minden zajos.\""
+     ]
+    },
+    {
+     "altitude": 9000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0015429161715689865,
+      "dy": -0.00233146139968184
+     },
+     "minMarginEssential": 92.85000545615745,
+     "minMarginRings": 59.01475745473681,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p \"Öt ügynökség öt különböz\"",
+      "p \"Nem a zaj a probléma, ha\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
+     ]
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001450859069350674,
+      "dy": -0.005152847747906939
+     },
+     "minMarginEssential": 94.91153390063718,
+     "minMarginRings": 61.732510034718246,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 15000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00021614806600602776,
+      "dy": -0.000895239844328804
+     },
+     "minMarginEssential": 126.39881895879824,
+     "minMarginRings": 114.55187483694084,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00038587156872011975,
+      "dy": -0.0013156504422163996
+     },
+     "minMarginEssential": 118.54137633570375,
+     "minMarginRings": 102.34709570761532,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00002311516388537882,
+      "dy": -0.001615670719809239
+     },
+     "minMarginEssential": 112.22896371252713,
+     "minMarginRings": 85.83510997999696,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0007993830042423156,
+      "dy": -0.006545407903854379
+     },
+     "minMarginEssential": 111.71140296258977,
+     "minMarginRings": 45.675131858999904,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0009150162576554877,
+      "dy": -0.0020826388205854086
+     },
+     "minMarginEssential": 109.39589979533463,
+     "minMarginRings": 37.2273204266221,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001055690754090044,
+      "dy": -0.0021425666875637796
+     },
+     "minMarginEssential": 107.14636236691905,
+     "minMarginRings": 30.13992113718235,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 80.46841714646627,
+   "worstCentre": 0.006545407903854379
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 844,
+    "h": 390,
+    "tier": "mobile",
+    "landscape": true
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0004935371190360001,
+      "dy": -0.00988618184927456
+     },
+     "minMarginEssential": 69.53957875704445,
+     "minMarginRings": 68.18520208899668,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0003002346537066473,
+      "dy": -0.0010540020919001026
+     },
+     "minMarginEssential": 59.13673810789346,
+     "minMarginRings": 57.9348628964837,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 6000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00033283240938713804,
+      "dy": -0.0021003900342039155
+     },
+     "minMarginEssential": 62.090095006356776,
+     "minMarginRings": 29.354690661880383,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
+      "h2.panel__title \"Hat terület, egy rendsze\"",
+      "p.panel__lead \"Nem hat különálló szolgá\"",
+      "p.ladder__line \"Előbb eldöntjük, mit érd\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\"; p.panel__lead \"Nem hat különálló szolgá\"; p.ladder__line \"Előbb eldöntjük, mit érd\""
+     ]
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00032290530707695177,
+      "dy": -0.00774112017704592
+     },
+     "minMarginEssential": 64.65433291854565,
+     "minMarginRings": -6.467694051528724,
+     "essentialClipped": false,
+     "ringClipped": true,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": [
+      "ring clipped"
+     ]
+    },
+    {
+     "altitude": 9000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002701880042211251,
+      "dy": -0.008103198196599238
+     },
+     "minMarginEssential": 76.80287129111929,
+     "minMarginRings": 4.892569526781358,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002472206927748541,
+      "dy": -0.009111628487539892
+     },
+     "minMarginEssential": 82.09037009770006,
+     "minMarginRings": 10.628838999433754,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"",
+      "h2.panel__title \"A tisztaság ott kezdődik\"",
+      "p.panel__lead \"Nem több eszköz kell. Ke\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"; h2.panel__title \"A tisztaság ott kezdődik\"; p.panel__lead \"Nem több eszköz kell. Ke\""
+     ]
+    },
+    {
+     "altitude": 15000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.000626929179993279,
+      "dy": -0.004301604254320287
+     },
+     "minMarginEssential": 144.87696655979573,
+     "minMarginRings": 120.30550178435874,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0017870602862132988,
+      "dy": -0.00801636763441058
+     },
+     "minMarginEssential": 126.11045868464612,
+     "minMarginRings": 104.98180955715375,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0020257487243159865,
+      "dy": -0.010884528670070217
+     },
+     "minMarginEssential": 112.2773160948317,
+     "minMarginRings": 79.80767546687099,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [
+      "p.system__ring-note \"Ez dönti el a többit. En\""
+     ],
+     "canvasOk": true,
+     "problems": [
+      "text collision: p.system__ring-note \"Ez dönti el a többit. En\""
+     ]
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0017389454139794466,
+      "dy": -0.014971638102664778
+     },
+     "minMarginEssential": 107.59703434799866,
+     "minMarginRings": 10.781717935490065,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.001940043906740833,
+      "dy": -0.014811546954048429
+     },
+     "minMarginEssential": 101.96518394616449,
+     "minMarginRings": -4.664875314875303,
+     "essentialClipped": false,
+     "ringClipped": true,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": [
+      "ring clipped"
+     ]
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0021195100870069258,
+      "dy": -0.01634649924385893
+     },
+     "minMarginEssential": 95.48709507521333,
+     "minMarginRings": -18.3385135577862,
+     "essentialClipped": false,
+     "ringClipped": true,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": [
+      "ring clipped"
+     ]
+    }
+   ],
+   "errors": [],
+   "worstMargin": 59.13673810789346,
+   "worstCentre": 0.01634649924385893
+  }
+ ]
+}

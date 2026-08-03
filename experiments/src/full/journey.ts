@@ -218,6 +218,53 @@ export function damp(current: number, target: number, smoothing: number, dt: num
 export const SETTLE_EPSILON = 1e-6;
 
 /**
+ * The camera's height above the world origin, as a function of journey
+ * progress — and, because the instrument rides with it, the instrument's too.
+ *
+ * The camera climbs a little across the journey while the mountains, the cloud
+ * deck and the sky stay where they are, which is what makes the ascent read as
+ * movement through an environment rather than as an environment sliding past.
+ *
+ * The instrument must not take part in that. It sat near y = 0 while the camera
+ * travelled from −0.1 to +0.16 around it, so it rendered above the viewport
+ * centre at the bottom of the journey and below it at the top — measured at
+ * about 8% of viewport height at 0 m, against a ±3% budget. Anchoring it to the
+ * camera's own height puts it on the view axis at every altitude, so it is
+ * vertically centred by construction rather than by tuning, and the camera is
+ * still free to climb relative to everything else.
+ *
+ * Exported as one function because two copies of it would drift, and a drift
+ * here is the instrument slowly wandering off centre — the exact defect this
+ * exists to prevent.
+ */
+export const CAMERA_Y_GROUND = -0.1;
+export const CAMERA_Y_CEILING = 0.16;
+
+export function cameraHeightAt(progress: number): number {
+  return lerp(CAMERA_Y_GROUND, CAMERA_Y_CEILING, ease(clamp(progress)));
+}
+
+/**
+ * The journey clock's smoothing constant, and the largest frame delta it will
+ * integrate.
+ *
+ * Both were inline in `advance` and are named here because the full-ascent
+ * suite has to reason about them. A test that waits for the instrument to
+ * settle cannot wait a fixed number of milliseconds — how long convergence
+ * takes is a function of the frame rate, which on a software rasteriser is an
+ * order of magnitude off a real GPU. It can only wait for the *decay* these two
+ * numbers describe, so it needs the numbers themselves rather than a copy of
+ * them that is free to drift.
+ *
+ * `MAX_FRAME_DT` deliberately breaks frame-rate independence below 20 Hz: a
+ * damper handed a one-second delta jumps straight to its target, and after a
+ * stall that reads as a teleport rather than as a catch-up. Capping trades
+ * exactness at very low frame rates for motion that always looks damped.
+ */
+export const JOURNEY_SMOOTHING = 0.82;
+export const MAX_FRAME_DT = 1 / 20;
+
+/**
  * `damp`, with an end to it.
  *
  * Every exponentially damped value in this scene has the property described
@@ -523,7 +570,7 @@ export function advance(dt: number) {
   // the direction it was approached from.
   journey.current =
     forced === null
-      ? settle(journey.current, journey.target, 0.82, Math.min(dt, 1 / 20))
+      ? settle(journey.current, journey.target, JOURNEY_SMOOTHING, Math.min(dt, MAX_FRAME_DT))
       : progressAt(forced);
 
   journey.altitude = altitudeAt(journey.current);

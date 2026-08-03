@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import type { PerspectiveCamera } from 'three';
-import { clamp, ease, journey, lerp, settle, span } from '../journey';
+import { cameraHeightAt, clamp, ease, journey, lerp, settle, span } from '../journey';
 
 /**
  * The camera is on rails for all 30 000 metres. No orbit controls, nothing
@@ -26,15 +26,34 @@ const PARALLAX_RAD = (PARALLAX_DEGREES * Math.PI) / 180;
  * The frame the instrument has to fit inside, in world units.
  *
  * Measured off the render rather than assumed from the model: the instrument
- * including its housing occupies about 1.1 units, and these frame it to roughly
- * half the width of a 1440×900 viewport — large enough to read as the subject,
- * with the left ~45% left clear for the copy plate.
+ * including its housing occupies about 1.1 units. A bigger frame means the
+ * instrument has to fit into more world units at the same field of view, so the
+ * camera sits further back and the dial lands *smaller* on screen.
  *
- * Slightly wider than the prototype's 1.34 × 1.30 because this route carries a
- * headline, a lead paragraph and two buttons beside the dial rather than a
- * single narrow card over it.
+ * ## Why the width is now a function of aspect
+ *
+ * It used to be a single 2.2, which framed the dial to about half the width of
+ * a 1440×900 viewport and left the left ~45% clear for the copy plate. That
+ * worked only because the instrument was parked off to the right. Centred, the
+ * same number puts a 610px dial in the middle of a 1440px screen and the copy
+ * plate lands straight across its face — there is no longer a clear side, there
+ * are two half-width margins, and 610 + 2 × 544 does not fit in 1440.
+ *
+ * The room has to come from somewhere, and of the levers the brief allows —
+ * camera distance, field of view, ring scale, safe-zone sizing, typography
+ * placement — camera distance is the one that costs nothing else. So on wide
+ * viewports the frame opens up and the dial gets smaller, which is the price of
+ * centring it.
+ *
+ * Narrow viewports must not pay that price. A phone stacks its copy above and
+ * below the instrument rather than beside it, so it needs no side margins at
+ * all, and shrinking the dial there would only make it unreadable — the
+ * portrait viewports already measure inside ±3% with the 2.2 frame. Hence the
+ * interpolation rather than a constant: unchanged at portrait aspects, opening
+ * to 3.5 by the time the viewport is twice as wide as it is tall.
  */
-const FRAME_WIDTH = 2.2;
+const FRAME_WIDTH_PORTRAIT = 2.2;
+const FRAME_WIDTH_WIDE = 3.5;
 const FRAME_HEIGHT = 1.24;
 
 export function JourneyCamera({ parallax }: { parallax: boolean }) {
@@ -57,7 +76,11 @@ export function JourneyCamera({ parallax }: { parallax: boolean }) {
     const vFovHalf = ((camera.fov ?? 32) * Math.PI) / 360;
     const aspect = Math.max(size.width, 1) / Math.max(size.height, 1);
     const hFovHalf = Math.atan(Math.tan(vFovHalf) * aspect);
-    return Math.max(FRAME_WIDTH / 2 / Math.tan(hFovHalf), FRAME_HEIGHT / 2 / Math.tan(vFovHalf));
+    // Square is the hinge, 2:1 the far end: below 1.0 nothing changes, so every
+    // portrait phone and the 768×1024 tablet keep the framing they already
+    // validate at.
+    const frameWidth = lerp(FRAME_WIDTH_PORTRAIT, FRAME_WIDTH_WIDE, clamp((aspect - 1) / 1));
+    return Math.max(frameWidth / 2 / Math.tan(hFovHalf), FRAME_HEIGHT / 2 / Math.tan(vFovHalf));
   }, [camera.fov, size.width, size.height]);
 
   useFrame((_, delta) => {
@@ -87,8 +110,7 @@ export function JourneyCamera({ parallax }: { parallax: boolean }) {
     // Small and monotonic. The ascent is told by the atmosphere, the readout
     // and the receding cloud deck; a camera that lurches upward as well is the
     // fourth thing saying the same word.
-    const rise = ease(clamp(journey.current));
-    const y = lerp(-0.1, 0.16, rise);
+    const y = cameraHeightAt(journey.current);
 
     // Damped rather than assigned: ScrollTrigger delivers position changes in
     // discrete jumps on a trackpad flick, and an undamped camera reproduces

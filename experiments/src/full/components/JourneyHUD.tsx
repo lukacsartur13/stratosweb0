@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { CEILING_M, STAGES, advance, clamp, formatAltitude, journey } from '../journey';
 import { m } from '../i18n';
+import { publishKinetic, reserveKinetic } from '../kineticDom';
 import { advanceMeridian, meridianStageAt, type MeridianStageId } from '../meridian';
 import { meridianSound } from '../meridianSound';
 
@@ -49,6 +50,11 @@ export function JourneyHUD() {
 
       advance(dt);
       advanceMeridian(journey.altitude, journey.current);
+      // Kinetic typography rides the same tick and the same altitude. A second
+      // rAF here would be a second clock, which is the one thing the journey
+      // does not have. Writes are quantised inside, so this is a comparison per
+      // axis on most frames and a style write on very few.
+      publishKinetic();
       // Fed unconditionally: the threshold arming has to track the altitude
       // even while muted, or switching sound on halfway up replays every event
       // below the visitor at once.
@@ -93,6 +99,11 @@ export function JourneyHUD() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  // Space reservation for the kinetic anchors. Separate effect because it is
+  // measurement rather than animation, and it runs on font load and resize
+  // rather than per frame.
+  useEffect(() => reserveKinetic(), []);
+
   // Nothing is created until this is clicked, so there is no suspended audio
   // context sitting around on a page that never asked for one.
   useEffect(() => () => meridianSound.dispose(), []);
@@ -100,7 +111,13 @@ export function JourneyHUD() {
   return (
     <div className="hud" ref={root} data-stage="calibration" data-testid="altitude-hud">
       <div className="hud__readout">
-        <span className="hud__digits" ref={digits} data-testid="altitude-value" aria-hidden="true">
+        <span
+          className="hud__digits"
+          ref={digits}
+          data-testid="altitude-value"
+          data-kinetic="altitude-readout"
+          aria-hidden="true"
+        >
           0
         </span>
         <span className="hud__unit" aria-hidden="true">

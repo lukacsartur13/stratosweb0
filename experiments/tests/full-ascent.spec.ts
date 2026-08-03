@@ -6,7 +6,16 @@ import {
   assertReducedMotionInactive,
   enableReducedMotion,
 } from '../../tests/helpers/reduced-motion';
-import { STAGES, altitudeAt, stageAt, stageAtAltitude, type StageId } from '../src/full/journey';
+import {
+  JOURNEY_SMOOTHING,
+  MAX_FRAME_DT,
+  SETTLE_EPSILON,
+  STAGES,
+  altitudeAt,
+  stageAt,
+  stageAtAltitude,
+  type StageId,
+} from '../src/full/journey';
 import {
   HIDE_ABOVE,
   MOUNTAIN_SCALE,
@@ -1203,6 +1212,11 @@ test.describe('Altimeter Meridian — as the visitor gets it', () => {
 
   test('the stage announced at a scroll position does not depend on the direction', async ({ page }, info) => {
     test.skip(info.project.name === 'reduced-motion', 'the fallback has no scroll-driven stage label');
+    // Twenty settles, each of which now waits for the instrument to stop rather
+    // than for a fixed 1.7 s. On a real GPU that is quicker than the old flat
+    // wait; on a software rasteriser it is honest about how long convergence
+    // actually takes, and the default 120 s is not enough room for that.
+    test.setTimeout(300_000);
 
     // The page-level half of the 3 000 m fix, and the half that covers mobile:
     // the arithmetic tests run once on desktop, and this one runs on all four
@@ -1264,9 +1278,61 @@ test.describe('Altimeter Meridian — as the visitor gets it', () => {
     // was reported at, is always among them because it is the third.
     const sampled = boundaries.slice(1, 6);
 
+    // Wait for the damper to have *provably* arrived, rather than for a fixed
+    // number of milliseconds.
+    //
+    // This was a flat 1.7 s, which is a statement about hardware rather than
+    // about the journey, and it is why this test failed. `advance` moves
+    // `journey.current` a fixed fraction of the remaining distance per frame,
+    // so how long convergence takes is a function of the frame rate — measured
+    // here at 39 fps on the mobile projects and 7.9 fps on desktop, where the
+    // scene is four times the pixels through a software rasteriser. The three
+    // mobile projects converged inside 1.7 s and passed; desktop did not, and
+    // the test read "still moving" as "disagrees by direction".
+    //
+    // Waiting for the readout to stop changing does not fix it either, and that
+    // is worth stating because it is the obvious repair. The altitude is
+    // displayed rounded to 10 m, so on the final approach it sits unchanged at
+    // "6 000" for a second or more while `current` is still creeping toward the
+    // boundary that decides the stage. A stability window lands inside that
+    // plateau and reads a settled altitude next to a stage that has not flipped
+    // yet — which is precisely the shape of the failure being chased.
+    //
+    // So the wait reproduces the damper's own arithmetic. Each frame multiplies
+    // the remaining fraction by the same decay `advance` applies, and the wait
+    // ends when that fraction is far enough below `SETTLE_EPSILON` that the snap
+    // in `settle` must have fired for any starting distance this test can
+    // create. Frame-rate independent by construction: ~34 frames at 39 fps,
+    // ~18 at 8 fps, and correct at either.
     const settleAt = async (y: number) => {
       await page.evaluate((to) => scrollTo({ top: to, behavior: 'instant' as ScrollBehavior }), y);
-      await page.waitForTimeout(1_700);
+
+      await page.evaluate(
+        ({ smoothing, maxDt, epsilon }) =>
+          new Promise<void>((resolve, reject) => {
+            // The largest distance a park-then-read step can leave on the clock
+            // is the 600 px hop as a fraction of the track. Being generous here
+            // only costs frames.
+            let remaining = 1;
+            let frames = 0;
+            let last = performance.now();
+            const tick = () => {
+              const now = performance.now();
+              const dt = Math.min((now - last) / 1000, maxDt);
+              last = now;
+              remaining *= Math.pow(smoothing, dt * 60);
+              frames++;
+              // epsilon / 1000: three orders of margin under the snap threshold,
+              // so the conclusion holds however far the clock had to travel.
+              if (remaining < epsilon / 1000) return resolve();
+              if (frames > 900) return reject(new Error('journey clock never settled'));
+              requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          }),
+        { smoothing: JOURNEY_SMOOTHING, maxDt: MAX_FRAME_DT, epsilon: SETTLE_EPSILON },
+      );
+
       return page.evaluate(() => ({
         stage: (document.querySelector('.hud') as HTMLElement | null)?.dataset.stage ?? '',
         metres: (document.querySelector('[data-testid="altitude-value"]')?.textContent ?? '').replace(/\D/g, ''),

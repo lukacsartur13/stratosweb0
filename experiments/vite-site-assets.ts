@@ -1,6 +1,6 @@
 import { createReadStream, statSync } from 'node:fs';
 import { extname, join, normalize, resolve, sep } from 'node:path';
-import type { Plugin } from 'vite';
+import type { Connect, Plugin } from 'vite';
 
 /**
  * Serve the site's hand-written `assets/` tree on the dev server.
@@ -71,13 +71,20 @@ const MIME: Record<string, string> = {
 
 export function siteAssets(rootDir: string): Plugin {
   const root = resolve(rootDir);
+  let base = '/';
 
   return {
     name: 'stratos-site-assets',
     apply: 'serve',
 
+    // The dev server needs the *resolved* base, not the literal one: a config
+    // may omit it, and Vite normalises what it is given.
+    configResolved(config) {
+      base = config.base;
+    },
+
     configureServer(server) {
-      server.middlewares.use('/assets', (req, res, next) => {
+      const handler: Connect.NextHandleFunction = (req, res, next) => {
         // Query strings and hashes are not part of the path, and a decode
         // failure means the request was never going to name a real file.
         let pathname: string;
@@ -107,7 +114,32 @@ export function siteAssets(rootDir: string): Plugin {
         // next reload rather than on the next hard reload.
         res.setHeader('Cache-Control', 'no-cache');
         createReadStream(file).pipe(res);
-      });
+      };
+
+      // Two mount points, because in development the URL that reaches the
+      // server is not the one written in the HTML.
+      //
+      // `/assets/css/type.css` is correct in production for every route: the
+      // stylesheet, the fonts and the eleven generated pages all sit under one
+      // `dist/assets/` tree served by one static server, and a build leaves the
+      // URL untouched (Vite warns that it cannot resolve it and emits it
+      // verbatim, which is the wanted behaviour).
+      //
+      // The dev server does not do that. It rewrites every root-relative URL in
+      // HTML by prepending `base`, so under this config the browser asks for
+      // `/experiments/stratos-ascent-full/assets/css/type.css` — a path that
+      // never reached a middleware mounted at `/assets`, fell through to the
+      // SPA fallback, and came back as the index document with
+      // `Content-Type: text/html`. A stylesheet served as HTML is dropped
+      // silently: no 404, no console error, and `--font-display` simply never
+      // exists, so the whole page renders in the browser's default serif.
+      //
+      // That is exactly how the full-ascent route came to be validated in Times
+      // while production rendered Archivo. Mounting the same handler at both
+      // paths closes it. Connect strips the mount prefix before the handler
+      // runs, so one handler serves both without knowing which it answered.
+      server.middlewares.use('/assets', handler);
+      if (base !== '/') server.middlewares.use(base.replace(/\/$/, '') + '/assets', handler);
     },
   };
 }

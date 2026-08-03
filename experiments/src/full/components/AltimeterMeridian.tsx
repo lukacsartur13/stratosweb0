@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import type { Group, Mesh, MeshStandardMaterial } from 'three';
-import { clamp, settle, ease, journey, lerp, span } from '../journey';
+import { cameraHeightAt, clamp, settle, ease, journey, lerp, span } from '../journey';
 import { RINGS, meridian } from '../meridian';
 import { useDebugOverride } from '../useJourneyScroll';
 import { ApertureCore } from './ApertureCore';
@@ -313,14 +313,33 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
     }
 
     if (root.current) {
-      // Landscape: the copy owns the left, so the instrument sits well right of
-      // centre. Portrait: there is no left to own, so it moves *up* instead —
-      // centring it on a phone puts the dial behind the paragraph.
-      const baseX = landscape ? 0.45 : 0;
-      const baseY = landscape ? 0.04 : 0.66;
-
-      root.current.position.x = baseX + recede * (landscape ? 0.72 : 0.2);
-      root.current.position.y = baseY - 0.02 + ease(clamp(journey.current)) * 0.05 + recede * 0.52;
+      // The instrument is centred, and stays centred, at every altitude and on
+      // every viewport.
+      //
+      // It did not used to be. Landscape put it at x = 0.45 so the copy could
+      // own the left; portrait pushed it to y = 0.66 so the dial cleared the
+      // paragraph; and `recede` moved it further aside again through the prose
+      // stages. Measured, that composition sat 16–30% off the viewport centre
+      // on all nine tested viewports — against a ±3% requirement — and clipped
+      // the essential silhouette outright on the short ones (−49px at
+      // 1366×768, −26px at 844×390).
+      //
+      // Making room for copy by moving the instrument is the one correction the
+      // brief rules out first. So the offsets are gone and the room is made the
+      // other two ways it allows: the instrument *shrinks* and *withdraws in
+      // depth* through the prose stages, which frees the same screen area
+      // without ever leaving the centre. `recede` still does that work; it just
+      // no longer does it sideways.
+      //
+      // Anything non-zero here is a direct debit against the ±3% budget, which
+      // is why what is left is only the depth and scale terms, and a rise small
+      // enough to read as the ascent rather than as a drift off centre.
+      root.current.position.x = 0;
+      // Rides at exactly the camera's height, so it sits on the view axis and is
+      // vertically centred at every altitude. The camera still climbs relative
+      // to the mountains, the cloud deck and the sky — which is where the ascent
+      // is actually told — but it no longer climbs relative to the instrument.
+      root.current.position.y = cameraHeightAt(journey.current);
       root.current.position.z = -recede * 1.35;
       root.current.scale.setScalar(lerp(1, 0.62, recede));
 
@@ -376,8 +395,15 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
       <ApertureCore parts={parts} simplified={lowDetail} />
       <MeridianAxis parts={parts} />
 
-      {/* All three rings share one gimbal. The axis and the core do not. */}
-      <group ref={gimbal}>
+      {/* All three rings share one gimbal. The axis and the core do not.
+          Tagged for the same reason the root is, and with the same reasoning:
+          the visibility check has to measure the *essential instrument* and the
+          *active ring composition* against different rules — the brief allows a
+          ring to approach the viewport edge, and does not allow the dial to.
+          Subtracting this subtree from the root's is what separates them, and
+          doing it by tag rather than by child index means re-ordering the JSX
+          cannot silently repoint the measurement at the wrong geometry. */}
+      <group ref={gimbal} userData={{ meridianGimbal: true }}>
         {RINGS.map((config, i) => (
           <MeridianRing
             key={config.id}

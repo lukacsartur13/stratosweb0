@@ -1,0 +1,6350 @@
+{
+  "generatedAt": "2026-08-03T17:20:45.404Z",
+  "summary": {
+    "routes": 33,
+    "sections": 174,
+    "words": 20044,
+    "images": 51,
+    "ctas": 57,
+    "forms": 9
+  },
+  "routes": [
+    {
+      "route": "/adatkezelesi-tajekoztato.html",
+      "locale": "hu",
+      "title": "Adatkezelési tájékoztató | Stratos",
+      "description": "Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR szerint — és milyen jogaid vannak.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/adatkezelesi-tajekoztato.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/privacy-policy.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/datenschutz.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/adatkezelesi-tajekoztato.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Adatkezelési tájékoztató"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Adatkezelési tájékoztató"
+        },
+        {
+          "level": 2,
+          "text": "Az Adatkezelő felelőssége és elérhetősége"
+        },
+        {
+          "level": 2,
+          "text": "Az adatkezelés célja"
+        },
+        {
+          "level": 2,
+          "text": "Kezelt személyes adatok köre"
+        },
+        {
+          "level": 3,
+          "text": "Kapcsolatfelvétel vagy ajánlatkérés esetén"
+        },
+        {
+          "level": 3,
+          "text": "Hírlevél-feliratkozás esetén"
+        },
+        {
+          "level": 2,
+          "text": "Az adatkezelés időtartama"
+        },
+        {
+          "level": 2,
+          "text": "Adattovábbítás és adatfeldolgozók"
+        },
+        {
+          "level": 3,
+          "text": "Adatfeldolgozók"
+        },
+        {
+          "level": 2,
+          "text": "Cookie-k (sütik) használata"
+        },
+        {
+          "level": 3,
+          "text": "A sütik típusai"
+        },
+        {
+          "level": 3,
+          "text": "Elengedhetetlen munkamenet (session-id) sütik"
+        },
+        {
+          "level": 3,
+          "text": "Analitikai vagy teljesítményfigyelő sütik"
+        },
+        {
+          "level": 3,
+          "text": "Funkcionális sütik"
+        },
+        {
+          "level": 3,
+          "text": "Célzott vagy reklám sütik"
+        },
+        {
+          "level": 3,
+          "text": "Tartalmaznak a sütik személyes adatokat?"
+        },
+        {
+          "level": 3,
+          "text": "Biztonsággal kapcsolatos tényezők"
+        },
+        {
+          "level": 3,
+          "text": "A sütik kezelése, törlése"
+        },
+        {
+          "level": 2,
+          "text": "Érintetti jogok"
+        },
+        {
+          "level": 2,
+          "text": "Jogorvoslat"
+        },
+        {
+          "level": 2,
+          "text": "Fogalmak"
+        },
+        {
+          "level": 2,
+          "text": "Záró rendelkezések"
+        }
+      ],
+      "sectionCount": 2,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        }
+      ],
+      "meaningfulWordCount": 971,
+      "paragraphCount": 19,
+      "listItemCount": 50,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "+36 30 584 8024",
+          "className": null
+        },
+        {
+          "href": "mailto:info@media-stratos.com",
+          "text": "info@media-stratos.com",
+          "className": null
+        },
+        {
+          "href": "https://stratosweb.hu",
+          "text": "https://stratosweb.hu",
+          "className": null
+        },
+        {
+          "href": "mailto:support@wix.com",
+          "text": "support@wix.com",
+          "className": null
+        },
+        {
+          "href": "https://naih.hu",
+          "text": "https://naih.hu",
+          "className": null
+        },
+        {
+          "href": "mailto:ugyfelszolgalat@naih.hu",
+          "text": "ugyfelszolgalat@naih.hu",
+          "className": null
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        }
+      ],
+      "ctas": [],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/arajanlat.html",
+      "locale": "hu",
+      "title": "Weboldal igényfelmérő kérdőív | Stratos",
+      "description": "Töltsd ki a kérdőívet pár perc alatt, és a válaszaid alapján személyre szabott árajánlattal keresünk.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/arajanlat.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/quote.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/angebot.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/arajanlat.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [],
+      "headings": [],
+      "sectionCount": 1,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "quiz"
+        }
+      ],
+      "meaningfulWordCount": 0,
+      "paragraphCount": 0,
+      "listItemCount": 0,
+      "links": [],
+      "internalLinks": [],
+      "ctas": [],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/blog.html",
+      "locale": "hu",
+      "title": "Blog — webdesign és online marketing tippek | Stratos",
+      "description": "Érthető, szakzsargon nélküli útmutatók vállalkozóknak: SEO, weboldal árak, Google Cégprofil, hirdetések és a leggyakoribb weboldal-hibák.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/blog.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/blog.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/blog.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/blog.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Amit tudnod kell, érthetően."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Amit tudnod kell, érthetően."
+        },
+        {
+          "level": 2,
+          "text": "Hogyan kerülj a Google első oldalára? 7 lépés"
+        },
+        {
+          "level": 3,
+          "text": "Mennyibe kerül egy weboldal 2026-ban?"
+        },
+        {
+          "level": 3,
+          "text": "Google Cégprofil beállítása lépésről lépésre"
+        },
+        {
+          "level": 3,
+          "text": "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban"
+        },
+        {
+          "level": 3,
+          "text": "Mennyi ügyfelet veszítesz egy elavult weboldal miatt?"
+        },
+        {
+          "level": 3,
+          "text": "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba"
+        },
+        {
+          "level": 3,
+          "text": "Félsz, hogy kimaradsz?"
+        },
+        {
+          "level": 2,
+          "text": "Az olvasás jó. A rendszer jobb."
+        }
+      ],
+      "sectionCount": 4,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 250,
+      "paragraphCount": 12,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "blog.html",
+          "text": "Kiemelt · SEO Hogyan kerülj a Google első oldalára? 7 lépés Nem varázslat kell a Google első oldalához, hanem rendszer. 7 lépéses keresőoptimalizálási útmutató kisvállalkozásoknak, érthetően, szakzsargon nélkül. Elolvasom →",
+          "className": "post post--feature"
+        },
+        {
+          "href": "blog.html",
+          "text": "Árak Mennyibe kerül egy weboldal 2026-ban? Nulla forinttól több millióig terjednek a weboldal árak. Megmutatjuk, mitől függ a költség, és hogyan számold ki, mennyit ér egy weboldal a vállalkozásodnak.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Helyi keresés Google Cégprofil beállítása lépésről lépésre A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Állítsd be 8 lépésben, és jelenj meg a térképes találatok között!",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Hirdetés Google vagy Facebook hirdetés? Melyik éri meg 2026-ban Rossz a kérdés. Megmutatjuk, melyik platform mire való, és miért a rendszer hozza az ügyfeleket, nem a platform.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Számolás Mennyi ügyfelet veszítesz egy elavult weboldal miatt? Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Számold ki, mennyibe kerül havonta egy elavult weboldal — és mennyit nyernél.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Konverzió Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba Van weboldalad, mégsem jönnek az ügyfelek? A 7 leggyakoribb hiba, amit a vállalkozások többsége elkövet — és hogyan javítsd ki mindegyiket.",
+          "className": "post"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlatot kérek",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Kérdésem van",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "blog.html",
+          "text": "Kiemelt · SEO Hogyan kerülj a Google első oldalára? 7 lépés Nem varázslat kell a Google első oldalához, hanem rendszer. 7 lépéses keresőoptimalizálási útmutató kisvállalkozásoknak, érthetően, szakzsargon nélkül. Elolvasom →",
+          "className": "post post--feature"
+        },
+        {
+          "href": "blog.html",
+          "text": "Árak Mennyibe kerül egy weboldal 2026-ban? Nulla forinttól több millióig terjednek a weboldal árak. Megmutatjuk, mitől függ a költség, és hogyan számold ki, mennyit ér egy weboldal a vállalkozásodnak.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Helyi keresés Google Cégprofil beállítása lépésről lépésre A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Állítsd be 8 lépésben, és jelenj meg a térképes találatok között!",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Hirdetés Google vagy Facebook hirdetés? Melyik éri meg 2026-ban Rossz a kérdés. Megmutatjuk, melyik platform mire való, és miért a rendszer hozza az ügyfeleket, nem a platform.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Számolás Mennyi ügyfelet veszítesz egy elavult weboldal miatt? Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Számold ki, mennyibe kerül havonta egy elavult weboldal — és mennyit nyernél.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Konverzió Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba Van weboldalad, mégsem jönnek az ügyfelek? A 7 leggyakoribb hiba, amit a vállalkozások többsége elkövet — és hogyan javítsd ki mindegyiket.",
+          "className": "post"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlatot kérek",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Kérdésem van",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Árajánlatot kérek",
+          "href": "arajanlat.html"
+        },
+        {
+          "text": "Kérdésem van",
+          "href": "ugyfelszolgalat.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/img/blog-1.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/blog-2.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/blog-3.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/blog-4.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/blog-5.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/blog-6.jpg",
+          "alt": "",
+          "loading": "lazy"
+        }
+      ],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "id": null,
+          "fields": [
+            {
+              "tag": "input",
+              "name": "email",
+              "type": "email",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "company_website",
+              "type": "text",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/branding.html",
+      "locale": "hu",
+      "title": "Branding és arculattervezés | Stratos",
+      "description": "Logó, színvilág, tipográfia, képi stílus és hangnem — egy rendszerben. Építs olyan márkát, ami egy színről is eszébe jut az embereknek.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/branding.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/branding.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/branding.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/branding.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Egy szín. Egy szlogen. És te jutsz eszükbe."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Egy szín. Egy szlogen. És te jutsz eszükbe."
+        },
+        {
+          "level": 2,
+          "text": "A logó egy jel. Az arculat egy rendszer."
+        },
+        {
+          "level": 2,
+          "text": "Brandépítés A-tól Z-ig"
+        },
+        {
+          "level": 3,
+          "text": "Megismerés"
+        },
+        {
+          "level": 3,
+          "text": "Irányok és döntés"
+        },
+        {
+          "level": 3,
+          "text": "Rendszerbe foglalás"
+        },
+        {
+          "level": 3,
+          "text": "Kivezetés minden felületre"
+        },
+        {
+          "level": 2,
+          "text": "Gyakori kérdések"
+        },
+        {
+          "level": 2,
+          "text": "Legyen a márkád felismerhető."
+        }
+      ],
+      "sectionCount": 6,
+      "articleCount": 4,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 819,
+      "paragraphCount": 29,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Konzultáció",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Konzultációt kérek",
+          "className": "btn"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlatot kérek",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Konzultáció",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Konzultációt kérek",
+          "className": "btn"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlatot kérek",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Konzultáció",
+          "href": "ugyfelszolgalat.html"
+        },
+        {
+          "text": "Konzultációt kérek",
+          "href": "ugyfelszolgalat.html"
+        },
+        {
+          "text": "Árajánlatot kérek",
+          "href": "arajanlat.html"
+        }
+      ],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/de/angebot.html",
+      "locale": "de",
+      "title": "Fragebogen zur Website-Anforderung | Stratos",
+      "description": "Füll den Fragebogen in wenigen Minuten aus, und wir melden uns mit einem auf deine Antworten zugeschnittenen Angebot.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/arajanlat.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/quote.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/angebot.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/arajanlat.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [],
+      "headings": [],
+      "sectionCount": 1,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "quiz"
+        }
+      ],
+      "meaningfulWordCount": 0,
+      "paragraphCount": 0,
+      "listItemCount": 0,
+      "links": [],
+      "internalLinks": [],
+      "ctas": [],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/de/blog.html",
+      "locale": "de",
+      "title": "Blog — Tipps zu Webdesign und Online-Marketing | Stratos",
+      "description": "Verständliche Leitfäden ohne Fachjargon für Unternehmer: SEO, Website-Preise, Google-Unternehmensprofil, Werbung und die häufigsten Website-Fehler.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/blog.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/blog.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/blog.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/blog.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Was du wissen musst, verständlich."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Was du wissen musst, verständlich."
+        },
+        {
+          "level": 2,
+          "text": "Wie kommst du auf Googles erste Seite? 7 Schritte"
+        },
+        {
+          "level": 3,
+          "text": "Was kostet eine Website 2026?"
+        },
+        {
+          "level": 3,
+          "text": "Google-Unternehmensprofil Schritt für Schritt einrichten"
+        },
+        {
+          "level": 3,
+          "text": "Google- oder Facebook-Werbung? Was lohnt sich 2026?"
+        },
+        {
+          "level": 3,
+          "text": "Wie viele Kunden kostet dich eine veraltete Website?"
+        },
+        {
+          "level": 3,
+          "text": "Warum bringt deine Website keine Kunden? 7 häufige Fehler"
+        },
+        {
+          "level": 3,
+          "text": "Angst, etwas zu verpassen?"
+        },
+        {
+          "level": 2,
+          "text": "Lesen ist gut. Ein System ist besser."
+        }
+      ],
+      "sectionCount": 4,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 273,
+      "paragraphCount": 12,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "blog.html",
+          "text": "Empfohlen · SEO Wie kommst du auf Googles erste Seite? 7 Schritte Auf Googles erste Seite zu kommen braucht keine Magie, sondern ein System. Ein SEO-Leitfaden in sieben Schritten für kleine Unternehmen, verständlich und ohne Fachjargon. Lesen →",
+          "className": "post post--feature"
+        },
+        {
+          "href": "blog.html",
+          "text": "Preise Was kostet eine Website 2026? Website-Preise reichen von null bis zu mehreren Zehntausend. Wir zeigen, wovon die Kosten abhängen und wie du berechnest, was dir eine Website wert ist.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Lokale Suche Google-Unternehmensprofil Schritt für Schritt einrichten Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Richte es in acht Schritten ein und erscheine in den Kartenergebnissen.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Werbung Google- oder Facebook-Werbung? Was lohnt sich 2026? Falsche Frage. Wir zeigen, wofür welche Plattform gut ist — und warum die Kunden vom System kommen, nicht von der Plattform.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Rechnen Wie viele Kunden kostet dich eine veraltete Website? Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Rechne aus, was dich eine veraltete Website monatlich kostet — und was du gewinnen würdest.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Conversion Warum bringt deine Website keine Kunden? 7 häufige Fehler Du hast eine Website, aber die Kunden bleiben aus? Die sieben häufigsten Fehler der meisten Unternehmen — und wie du jeden behebst.",
+          "className": "post"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfordern",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Ich habe eine Frage",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "blog.html",
+          "text": "Empfohlen · SEO Wie kommst du auf Googles erste Seite? 7 Schritte Auf Googles erste Seite zu kommen braucht keine Magie, sondern ein System. Ein SEO-Leitfaden in sieben Schritten für kleine Unternehmen, verständlich und ohne Fachjargon. Lesen →",
+          "className": "post post--feature"
+        },
+        {
+          "href": "blog.html",
+          "text": "Preise Was kostet eine Website 2026? Website-Preise reichen von null bis zu mehreren Zehntausend. Wir zeigen, wovon die Kosten abhängen und wie du berechnest, was dir eine Website wert ist.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Lokale Suche Google-Unternehmensprofil Schritt für Schritt einrichten Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Richte es in acht Schritten ein und erscheine in den Kartenergebnissen.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Werbung Google- oder Facebook-Werbung? Was lohnt sich 2026? Falsche Frage. Wir zeigen, wofür welche Plattform gut ist — und warum die Kunden vom System kommen, nicht von der Plattform.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Rechnen Wie viele Kunden kostet dich eine veraltete Website? Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Rechne aus, was dich eine veraltete Website monatlich kostet — und was du gewinnen würdest.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Conversion Warum bringt deine Website keine Kunden? 7 häufige Fehler Du hast eine Website, aber die Kunden bleiben aus? Die sieben häufigsten Fehler der meisten Unternehmen — und wie du jeden behebst.",
+          "className": "post"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfordern",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Ich habe eine Frage",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Angebot anfordern",
+          "href": "angebot.html"
+        },
+        {
+          "text": "Ich habe eine Frage",
+          "href": "kontakt.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/blog-1.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-2.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-3.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-4.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-5.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-6.jpg",
+          "alt": "",
+          "loading": "lazy"
+        }
+      ],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "id": null,
+          "fields": [
+            {
+              "tag": "input",
+              "name": "email",
+              "type": "email",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "company_website",
+              "type": "text",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/de/branding.html",
+      "locale": "de",
+      "title": "Branding und Corporate Design | Stratos",
+      "description": "Logo, Farbwelt, Typografie, Bildsprache und Tonalität — in einem System. Bau eine Marke, an die man schon bei einer Farbe denkt.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/branding.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/branding.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/branding.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/branding.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Eine Farbe. Ein Satz. Und man denkt an dich."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Eine Farbe. Ein Satz. Und man denkt an dich."
+        },
+        {
+          "level": 2,
+          "text": "Ein Logo ist ein Zeichen. Ein Erscheinungsbild ist ein System."
+        },
+        {
+          "level": 2,
+          "text": "Markenaufbau von A bis Z"
+        },
+        {
+          "level": 3,
+          "text": "Kennenlernen"
+        },
+        {
+          "level": 3,
+          "text": "Richtungen und Entscheidung"
+        },
+        {
+          "level": 3,
+          "text": "In ein System bringen"
+        },
+        {
+          "level": 3,
+          "text": "Ausrollen auf alle Flächen"
+        },
+        {
+          "level": 2,
+          "text": "Häufige Fragen"
+        },
+        {
+          "level": 2,
+          "text": "Mach deine Marke wiedererkennbar."
+        }
+      ],
+      "sectionCount": 6,
+      "articleCount": 4,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 891,
+      "paragraphCount": 29,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Beratung",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Beratung anfragen",
+          "className": "btn"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfordern",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Beratung",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Beratung anfragen",
+          "className": "btn"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfordern",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Beratung",
+          "href": "kontakt.html"
+        },
+        {
+          "text": "Beratung anfragen",
+          "href": "kontakt.html"
+        },
+        {
+          "text": "Angebot anfordern",
+          "href": "angebot.html"
+        }
+      ],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/de/datenschutz.html",
+      "locale": "de",
+      "title": "Datenschutzerklärung | Stratos",
+      "description": "Wie wir personenbezogene Daten nach DSGVO erheben, nutzen und verarbeiten — und welche Rechte du hast.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/adatkezelesi-tajekoztato.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/privacy-policy.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/datenschutz.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/adatkezelesi-tajekoztato.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Datenschutz­ erklärung"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Datenschutz­ erklärung"
+        },
+        {
+          "level": 2,
+          "text": "Verantwortlichkeit und Kontaktdaten des Verantwortlichen"
+        },
+        {
+          "level": 2,
+          "text": "Zwecke der Verarbeitung"
+        },
+        {
+          "level": 2,
+          "text": "Kategorien verarbeiteter Daten"
+        },
+        {
+          "level": 3,
+          "text": "Bei Kontaktaufnahme oder Angebotsanfrage"
+        },
+        {
+          "level": 3,
+          "text": "Bei Newsletter-Anmeldung"
+        },
+        {
+          "level": 2,
+          "text": "Dauer der Verarbeitung"
+        },
+        {
+          "level": 2,
+          "text": "Datenübermittlung und Auftragsverarbeiter"
+        },
+        {
+          "level": 3,
+          "text": "Auftragsverarbeiter"
+        },
+        {
+          "level": 2,
+          "text": "Verwendung von Cookies"
+        },
+        {
+          "level": 3,
+          "text": "Cookie-Typen"
+        },
+        {
+          "level": 3,
+          "text": "Unbedingt erforderliche Sitzungs-Cookies"
+        },
+        {
+          "level": 3,
+          "text": "Analyse- oder Performance-Cookies"
+        },
+        {
+          "level": 3,
+          "text": "Funktions-Cookies"
+        },
+        {
+          "level": 3,
+          "text": "Targeting- oder Werbe-Cookies"
+        },
+        {
+          "level": 3,
+          "text": "Enthalten Cookies personenbezogene Daten?"
+        },
+        {
+          "level": 3,
+          "text": "Sicherheitsaspekte"
+        },
+        {
+          "level": 3,
+          "text": "Cookies verwalten und löschen"
+        },
+        {
+          "level": 2,
+          "text": "Betroffenenrechte"
+        },
+        {
+          "level": 2,
+          "text": "Rechtsbehelf"
+        },
+        {
+          "level": 2,
+          "text": "Begriffe"
+        },
+        {
+          "level": 2,
+          "text": "Schlussbestimmungen"
+        }
+      ],
+      "sectionCount": 2,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        }
+      ],
+      "meaningfulWordCount": 1006,
+      "paragraphCount": 20,
+      "listItemCount": 50,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "../adatkezelesi-tajekoztato.html",
+          "text": "ungarische Fassung",
+          "className": null
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "+36 30 584 8024",
+          "className": null
+        },
+        {
+          "href": "mailto:info@media-stratos.com",
+          "text": "info@media-stratos.com",
+          "className": null
+        },
+        {
+          "href": "https://stratosweb.hu",
+          "text": "https://stratosweb.hu",
+          "className": null
+        },
+        {
+          "href": "mailto:support@wix.com",
+          "text": "support@wix.com",
+          "className": null
+        },
+        {
+          "href": "https://naih.hu",
+          "text": "https://naih.hu",
+          "className": null
+        },
+        {
+          "href": "mailto:ugyfelszolgalat@naih.hu",
+          "text": "ugyfelszolgalat@naih.hu",
+          "className": null
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "../adatkezelesi-tajekoztato.html",
+          "text": "ungarische Fassung",
+          "className": null
+        }
+      ],
+      "ctas": [],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/de/impact-programm.html",
+      "locale": "de",
+      "title": "Stratos Impact-Programm — kostenlose Websites für Non-Profits | Stratos",
+      "description": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/impact-program.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/impact-program.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/impact-programm.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/impact-program.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Erstklassige Websites für die Menschen, die Leben verändern."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Erstklassige Websites für die Menschen, die Leben verändern."
+        },
+        {
+          "level": 2,
+          "text": "Dieses Projekt ist persönlich."
+        },
+        {
+          "level": 2,
+          "text": "Zwei Anliegen, die uns nahegehen"
+        },
+        {
+          "level": 3,
+          "text": "Sucht und psychische Gesundheit"
+        },
+        {
+          "level": 3,
+          "text": "Kinder"
+        },
+        {
+          "level": 2,
+          "text": "Alles, was eine moderne Non-Profit braucht — kostenlos"
+        },
+        {
+          "level": 2,
+          "text": "Für alle, die wirklich Gutes tun"
+        },
+        {
+          "level": 2,
+          "text": "Ein einfacher, menschlicher Ablauf"
+        },
+        {
+          "level": 3,
+          "text": "Bewerbung"
+        },
+        {
+          "level": 3,
+          "text": "Auswahl"
+        },
+        {
+          "level": 3,
+          "text": "Gespräch"
+        },
+        {
+          "level": 3,
+          "text": "Website-Bau"
+        },
+        {
+          "level": 2,
+          "text": "Wir helfen denen, die anderen helfen."
+        },
+        {
+          "level": 2,
+          "text": "Häufige Fragen"
+        },
+        {
+          "level": 2,
+          "text": "Bewirb dich fürs Impact- Programm"
+        }
+      ],
+      "sectionCount": 9,
+      "articleCount": 10,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": "jelentkezes",
+          "className": "band band--pale"
+        }
+      ],
+      "meaningfulWordCount": 704,
+      "paragraphCount": 39,
+      "listItemCount": 22,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "#jelentkezes",
+          "text": "Jetzt bewerben",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Jetzt bewerben",
+          "href": "#jelentkezes"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "id": null,
+          "fields": [
+            {
+              "tag": "input",
+              "name": "org",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "kapcs",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "mail",
+              "type": "email",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "tel",
+              "type": "tel",
+              "required": false
+            },
+            {
+              "tag": "input",
+              "name": "web",
+              "type": "url",
+              "required": false
+            },
+            {
+              "tag": "select",
+              "name": "terulet",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "mivel",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "hatas",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "miert",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "mit",
+              "type": null,
+              "required": false
+            },
+            {
+              "tag": "input",
+              "name": "adatkezeles_elfogadva",
+              "type": "checkbox",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "company_website",
+              "type": "text",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/de/impressum.html",
+      "locale": "de",
+      "title": "Impressum | Stratos",
+      "description": "Angaben zum Betreiber von Stratos Media, Kontaktdaten und Hosting-Anbieter.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/impresszum.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/imprint.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/impressum.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/impresszum.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Impressum"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Impressum"
+        },
+        {
+          "level": 2,
+          "text": "Hosting-Anbieter"
+        },
+        {
+          "level": 2,
+          "text": "Kontakt"
+        }
+      ],
+      "sectionCount": 2,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        }
+      ],
+      "meaningfulWordCount": 80,
+      "paragraphCount": 5,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "../impresszum.html",
+          "text": "ungarische Fassung",
+          "className": null
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "+36 30 584 8024",
+          "className": null
+        },
+        {
+          "href": "https://stratosweb.hu/",
+          "text": "https://stratosweb.hu/",
+          "className": null
+        },
+        {
+          "href": "mailto:support@wix.com",
+          "text": "support@wix.com",
+          "className": null
+        },
+        {
+          "href": "mailto:lukacs.artur@media-stratos.com",
+          "text": "lukacs.artur@media-stratos.com",
+          "className": null
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "+36 30 584 8024",
+          "className": null
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Kontakt →",
+          "className": "tlink"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "../impresszum.html",
+          "text": "ungarische Fassung",
+          "className": null
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Kontakt →",
+          "className": "tlink"
+        }
+      ],
+      "ctas": [],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/de/kontakt.html",
+      "locale": "de",
+      "title": "Kontakt und Support | Stratos",
+      "description": "Eine Frage oder Interesse an einer kostenlosen Beratung? Schreib eine E-Mail, ruf an oder füll das Formular aus — wir antworten auf jede Anfrage so schnell wie möglich.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/ugyfelszolgalat.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/contact.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/kontakt.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/ugyfelszolgalat.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Nimm Kontakt auf."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Nimm Kontakt auf."
+        },
+        {
+          "level": 3,
+          "text": "lukacs.artur@media-stratos.com"
+        },
+        {
+          "level": 3,
+          "text": "+36 30 584 8024"
+        },
+        {
+          "level": 3,
+          "text": "Győr & Budapest"
+        },
+        {
+          "level": 2,
+          "text": "Ein Gespräch, und du weißt, was du brauchst."
+        },
+        {
+          "level": 2,
+          "text": "Frag nach oder fordere ein Angebot an"
+        }
+      ],
+      "sectionCount": 4,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": "uzenet",
+          "className": "band band--pale"
+        }
+      ],
+      "meaningfulWordCount": 198,
+      "paragraphCount": 11,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "mailto:lukacs.artur@media-stratos.com",
+          "text": "E-Mail lukacs.artur@media-stratos.com Schriftlich ist am einfachsten — wir antworten meist innerhalb eines Werktags.",
+          "className": "card"
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "Telefon +36 30 584 8024 Wenn es schnell gehen muss, ruf uns während der Geschäftszeiten an.",
+          "className": "card"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Fragebogen ausfüllen",
+          "className": "btn"
+        },
+        {
+          "href": "#uzenet",
+          "text": "Ich möchte lieber nur fragen",
+          "className": "btn btn--ghost"
+        },
+        {
+          "href": "datenschutz.html",
+          "text": "Datenschutzerklärung",
+          "className": "tlink"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "angebot.html",
+          "text": "Fragebogen ausfüllen",
+          "className": "btn"
+        },
+        {
+          "href": "datenschutz.html",
+          "text": "Datenschutzerklärung",
+          "className": "tlink"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Fragebogen ausfüllen",
+          "href": "angebot.html"
+        },
+        {
+          "text": "Ich möchte lieber nur fragen",
+          "href": "#uzenet"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "id": null,
+          "fields": [
+            {
+              "tag": "input",
+              "name": "vezeteknev",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "keresztnev",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "email",
+              "type": "email",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "telefon",
+              "type": "tel",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "ceg",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "megjegyzes",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "adatvedelem_elfogadva",
+              "type": "checkbox",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "hirlevel",
+              "type": "checkbox",
+              "required": false
+            },
+            {
+              "tag": "input",
+              "name": "company_website",
+              "type": "text",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/de/ueber-uns.html",
+      "locale": "de",
+      "title": "Über uns — die Geschichte von Stratos | Stratos Media",
+      "description": "Der Name Stratos stammt aus der Stratosphäre. Hier erfährst du, wer wir sind, wie wir denken und warum uns die alltägliche Höhe nie reicht.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/rolunk.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/about.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/ueber-uns.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/rolunk.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Die Geschichte von Stratos"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Die Geschichte von Stratos"
+        },
+        {
+          "level": 2,
+          "text": "Das ist kein Job. Das ist eine Lebenshaltung."
+        },
+        {
+          "level": 3,
+          "text": "Artúr Lukács"
+        },
+        {
+          "level": 3,
+          "text": "Richárd Tímár"
+        },
+        {
+          "level": 2,
+          "text": "Warum Stratos — sechs Gründe"
+        },
+        {
+          "level": 3,
+          "text": "Weltklasse-Qualität"
+        },
+        {
+          "level": 3,
+          "text": "Individuelles Design"
+        },
+        {
+          "level": 3,
+          "text": "Problemlösung"
+        },
+        {
+          "level": 3,
+          "text": "Text inklusive"
+        },
+        {
+          "level": 3,
+          "text": "Schnelle Umsetzung"
+        },
+        {
+          "level": 3,
+          "text": "Transparente Preise"
+        },
+        {
+          "level": 2,
+          "text": "Häufige Fragen"
+        },
+        {
+          "level": 2,
+          "text": "Lernen wir uns kennen."
+        }
+      ],
+      "sectionCount": 8,
+      "articleCount": 8,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        }
+      ],
+      "meaningfulWordCount": 709,
+      "paragraphCount": 29,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Kostenlose Beratung",
+          "className": "btn"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfordern",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Kostenlose Beratung",
+          "className": "btn"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfordern",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Kostenlose Beratung",
+          "href": "kontakt.html"
+        },
+        {
+          "text": "Angebot anfordern",
+          "href": "angebot.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/hero.jpg",
+          "alt": "",
+          "loading": null
+        },
+        {
+          "src": "../assets/img/team-artur.jpg",
+          "alt": "Artúr Lukács, Gründer",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/team-richard.png",
+          "alt": "Richárd Tímár, Partner",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/client-rapidkert.png",
+          "alt": "Rapidkert Kft.",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/client-barbershop.png",
+          "alt": "Barbershop Győr",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/client-pille.png",
+          "alt": "Pille Sewing",
+          "loading": "lazy"
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/de/webdesign-grossunternehmen.html",
+      "locale": "de",
+      "title": "Webdesign für Großunternehmen — dediziertes Entwicklungsteam | Stratos",
+      "description": "Individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/nagyvallalat.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/web-design-enterprise.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/webdesign-grossunternehmen.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/nagyvallalat.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Jede Entwicklung, ein Partner."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Jede Entwicklung, ein Partner."
+        },
+        {
+          "level": 2,
+          "text": "Was wir entwickeln"
+        },
+        {
+          "level": 3,
+          "text": "Individuelle Plattformen und Web-Apps"
+        },
+        {
+          "level": 3,
+          "text": "System­integration"
+        },
+        {
+          "level": 3,
+          "text": "Designsystem und Erscheinungsbild"
+        },
+        {
+          "level": 3,
+          "text": "Sicherheit und Compliance"
+        },
+        {
+          "level": 3,
+          "text": "Dediziertes Entwicklungsteam"
+        },
+        {
+          "level": 3,
+          "text": "Betrieb und SLA"
+        },
+        {
+          "level": 2,
+          "text": "So arbeiten wir zusammen bis zum Go-live"
+        },
+        {
+          "level": 3,
+          "text": "Analyse und Strategie"
+        },
+        {
+          "level": 3,
+          "text": "Entwicklung mit dediziertem Team"
+        },
+        {
+          "level": 3,
+          "text": "Go-live und Weiterentwicklung"
+        },
+        {
+          "level": 2,
+          "text": "Warum besser als mehrere Dienstleister?"
+        },
+        {
+          "level": 2,
+          "text": "Häufige Fragen"
+        },
+        {
+          "level": 2,
+          "text": "Bauen wir euer System."
+        }
+      ],
+      "sectionCount": 7,
+      "articleCount": 9,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 835,
+      "paragraphCount": 32,
+      "listItemCount": 4,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Gespräch vereinbaren",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Gespräch vereinbaren",
+          "className": "btn"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfragen",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Gespräch vereinbaren",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Gespräch vereinbaren",
+          "className": "btn"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfragen",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Gespräch vereinbaren",
+          "href": "kontakt.html"
+        },
+        {
+          "text": "Gespräch vereinbaren",
+          "href": "kontakt.html"
+        },
+        {
+          "text": "Angebot anfragen",
+          "href": "angebot.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/kivitelezes.jpg",
+          "alt": "",
+          "loading": null
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/de/webdesign-kmu.html",
+      "locale": "de",
+      "title": "Webdesign für KMU — Website zur Monatsgebühr | Stratos",
+      "description": "Konzeption, Entwicklung, Hosting und laufende Wartung in einer festen Monatsgebühr. Eine Website für Selbstständige und kleine Unternehmen — ohne hohe Einmalkosten.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/kkv.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/web-design-sme.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/webdesign-kmu.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/kkv.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Eine Website ohne hohe Einmalkosten."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Eine Website ohne hohe Einmalkosten."
+        },
+        {
+          "level": 2,
+          "text": "Was du für die Monatsgebühr bekommst"
+        },
+        {
+          "level": 3,
+          "text": "Individuelles Design"
+        },
+        {
+          "level": 3,
+          "text": "Eine schnelle, moderne Website"
+        },
+        {
+          "level": 3,
+          "text": "Hosting und Wartung"
+        },
+        {
+          "level": 3,
+          "text": "Änderungen"
+        },
+        {
+          "level": 2,
+          "text": "So kommst du zu deiner Website"
+        },
+        {
+          "level": 3,
+          "text": "Wir sprechen"
+        },
+        {
+          "level": 3,
+          "text": "Wir gestalten und bauen"
+        },
+        {
+          "level": 3,
+          "text": "Wir starten und warten"
+        },
+        {
+          "level": 2,
+          "text": "Warum besser als einmal zahlen?"
+        },
+        {
+          "level": 2,
+          "text": "Häufige Fragen"
+        },
+        {
+          "level": 2,
+          "text": "Starten wir deine Website."
+        }
+      ],
+      "sectionCount": 8,
+      "articleCount": 7,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 806,
+      "paragraphCount": 34,
+      "listItemCount": 4,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfragen",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Fragebogen ausfüllen",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Erst eine Frage stellen",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfragen",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Fragebogen ausfüllen",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Erst eine Frage stellen",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Angebot anfragen",
+          "href": "angebot.html"
+        },
+        {
+          "text": "Fragebogen ausfüllen",
+          "href": "angebot.html"
+        },
+        {
+          "text": "Erst eine Frage stellen",
+          "href": "kontakt.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/work-1.jpg",
+          "alt": "Website von Barbershop Győr",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/work-2.jpg",
+          "alt": "Website von mentaltrening.com",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/work-3.jpg",
+          "alt": "Website von Rapidkert Gartenbau",
+          "loading": "lazy"
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/de/werbeanzeigen.html",
+      "locale": "de",
+      "title": "Werbebetreuung — Google &amp; Meta Ads | Stratos",
+      "description": "Google- und Meta-Kampagnen, die Kunden bringen statt Reichweite. Zielgruppenrecherche, Kreation, Gebotsstrategie, Conversion-Tracking und Monatsreport.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/hirdeteskezeles.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/ads-management.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/werbeanzeigen.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/hirdeteskezeles.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Du kaufst keine Reichweite. Du kaufst Kunden."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Du kaufst keine Reichweite. Du kaufst Kunden."
+        },
+        {
+          "level": 2,
+          "text": "Aufmerksamkeit ist die wertvollste Ressource"
+        },
+        {
+          "level": 2,
+          "text": "Suchen sie dich, oder musst du sie finden?"
+        },
+        {
+          "level": 3,
+          "text": "Der Nachfragekanal"
+        },
+        {
+          "level": 3,
+          "text": "Der Nachfrage schaffende Kanal"
+        },
+        {
+          "level": 2,
+          "text": "Der Ablauf der Werbebetreuung"
+        },
+        {
+          "level": 3,
+          "text": "Recherche und Aufbau"
+        },
+        {
+          "level": 3,
+          "text": "Lernphase — 2–4 Wochen"
+        },
+        {
+          "level": 3,
+          "text": "Optimierung und Skalierung"
+        },
+        {
+          "level": 2,
+          "text": "Wir schauen nicht auf Likes, sondern auf das Geschäftsergebnis."
+        },
+        {
+          "level": 2,
+          "text": "Häufige Fragen"
+        },
+        {
+          "level": 2,
+          "text": "Finden wir heraus, wo deine Kunden sind."
+        }
+      ],
+      "sectionCount": 7,
+      "articleCount": 5,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 1033,
+      "paragraphCount": 31,
+      "listItemCount": 8,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Kostenlose Beratung",
+          "className": "btn"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfordern",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot",
+          "className": "btn"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Schreib uns",
+          "className": "tlink"
+        },
+        {
+          "href": "kontakt.html",
+          "text": "Kostenlose Beratung",
+          "className": "btn"
+        },
+        {
+          "href": "angebot.html",
+          "text": "Angebot anfordern",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Angebot",
+          "href": "angebot.html"
+        },
+        {
+          "text": "Kostenlose Beratung",
+          "href": "kontakt.html"
+        },
+        {
+          "text": "Angebot anfordern",
+          "href": "angebot.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/struktura.jpg",
+          "alt": "",
+          "loading": null
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/en/about.html",
+      "locale": "en",
+      "title": "About us — the Stratos story | Stratos Media",
+      "description": "The name Stratos comes from the stratosphere. Here's who we are, how we think, and why the everyday altitude is never enough for us.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/rolunk.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/about.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/ueber-uns.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/rolunk.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "The Stratos story"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "The Stratos story"
+        },
+        {
+          "level": 2,
+          "text": "This isn't a job. It's a way of life."
+        },
+        {
+          "level": 3,
+          "text": "Artúr Lukács"
+        },
+        {
+          "level": 3,
+          "text": "Richárd Tímár"
+        },
+        {
+          "level": 2,
+          "text": "Why Stratos — six reasons"
+        },
+        {
+          "level": 3,
+          "text": "World-class quality"
+        },
+        {
+          "level": 3,
+          "text": "Bespoke design"
+        },
+        {
+          "level": 3,
+          "text": "Problem solving"
+        },
+        {
+          "level": 3,
+          "text": "Copywriting included"
+        },
+        {
+          "level": 3,
+          "text": "Fast turnaround"
+        },
+        {
+          "level": 3,
+          "text": "Clear pricing"
+        },
+        {
+          "level": 2,
+          "text": "Frequently asked"
+        },
+        {
+          "level": 2,
+          "text": "Let's get to know each other."
+        }
+      ],
+      "sectionCount": 8,
+      "articleCount": 8,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        }
+      ],
+      "meaningfulWordCount": 789,
+      "paragraphCount": 29,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "contact.html",
+          "text": "Free consultation",
+          "className": "btn"
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "contact.html",
+          "text": "Free consultation",
+          "className": "btn"
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Free consultation",
+          "href": "contact.html"
+        },
+        {
+          "text": "Get a quote",
+          "href": "quote.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/hero.jpg",
+          "alt": "",
+          "loading": null
+        },
+        {
+          "src": "../assets/img/team-artur.jpg",
+          "alt": "Artúr Lukács, founder",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/team-richard.png",
+          "alt": "Richárd Tímár, partner",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/client-rapidkert.png",
+          "alt": "Rapidkert Kft.",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/client-barbershop.png",
+          "alt": "Barbershop Győr",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/client-pille.png",
+          "alt": "Pille Sewing",
+          "loading": "lazy"
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/en/ads-management.html",
+      "locale": "en",
+      "title": "Ads management — Google &amp; Meta Ads | Stratos",
+      "description": "Google and Meta campaigns that bring clients, not reach. Audience research, creative, bidding strategy, conversion tracking and a monthly report.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/hirdeteskezeles.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/ads-management.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/werbeanzeigen.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/hirdeteskezeles.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "You're not buying reach. You're buying clients."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "You're not buying reach. You're buying clients."
+        },
+        {
+          "level": 2,
+          "text": "Attention is the most valuable resource"
+        },
+        {
+          "level": 2,
+          "text": "Are they searching for you, or must you find them?"
+        },
+        {
+          "level": 3,
+          "text": "The demand channel"
+        },
+        {
+          "level": 3,
+          "text": "The demand-generation channel"
+        },
+        {
+          "level": 2,
+          "text": "How ads management works"
+        },
+        {
+          "level": 3,
+          "text": "Research and setup"
+        },
+        {
+          "level": 3,
+          "text": "Learning phase — 2–4 weeks"
+        },
+        {
+          "level": 3,
+          "text": "Optimisation and scaling"
+        },
+        {
+          "level": 2,
+          "text": "We don't watch likes, we watch business results."
+        },
+        {
+          "level": 2,
+          "text": "Frequently asked"
+        },
+        {
+          "level": 2,
+          "text": "Let's find out where your clients are."
+        }
+      ],
+      "sectionCount": 7,
+      "articleCount": 5,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 1145,
+      "paragraphCount": 31,
+      "listItemCount": 8,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "contact.html",
+          "text": "Free consultation",
+          "className": "btn"
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "contact.html",
+          "text": "Free consultation",
+          "className": "btn"
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Get a quote",
+          "href": "quote.html"
+        },
+        {
+          "text": "Free consultation",
+          "href": "contact.html"
+        },
+        {
+          "text": "Get a quote",
+          "href": "quote.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/struktura.jpg",
+          "alt": "",
+          "loading": null
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/en/blog.html",
+      "locale": "en",
+      "title": "Blog — web design and online marketing tips | Stratos",
+      "description": "Clear, jargon-free guides for business owners: SEO, website pricing, Google Business Profile, advertising and the most common website mistakes.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/blog.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/blog.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/blog.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/blog.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "What you need to know, in plain words."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "What you need to know, in plain words."
+        },
+        {
+          "level": 2,
+          "text": "How to reach Google's first page — 7 steps"
+        },
+        {
+          "level": 3,
+          "text": "How much does a website cost in 2026?"
+        },
+        {
+          "level": 3,
+          "text": "Setting up a Google Business Profile, step by step"
+        },
+        {
+          "level": 3,
+          "text": "Google or Facebook ads — which is worth it in 2026?"
+        },
+        {
+          "level": 3,
+          "text": "How many clients is an outdated website costing you?"
+        },
+        {
+          "level": 3,
+          "text": "Why isn't your website bringing clients? 7 common mistakes"
+        },
+        {
+          "level": 3,
+          "text": "Afraid of missing out?"
+        },
+        {
+          "level": 2,
+          "text": "Reading is good. A system is better."
+        }
+      ],
+      "sectionCount": 4,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 304,
+      "paragraphCount": 12,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "blog.html",
+          "text": "Featured · SEO How to reach Google's first page — 7 steps Getting onto Google's first page doesn't take magic, it takes a system. A seven-step SEO guide for small businesses, in plain language. Read it →",
+          "className": "post post--feature"
+        },
+        {
+          "href": "blog.html",
+          "text": "Pricing How much does a website cost in 2026? Website prices run from nothing to tens of thousands. We show what drives the cost and how to work out what a website is worth to your business.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Local search Setting up a Google Business Profile, step by step A Google Business Profile is the most powerful free client acquisition tool for local businesses. Set it up in eight steps and show up in the map results.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Advertising Google or Facebook ads — which is worth it in 2026? It's the wrong question. We show what each platform is for, and why clients come from the system, not the platform.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Doing the maths How many clients is an outdated website costing you? There's one number no business owner ever sees: the clients they lost. Work out what an outdated website costs you monthly — and what you'd gain.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Conversion Why isn't your website bringing clients? 7 common mistakes You have a website but the clients aren't coming? The seven most common mistakes most businesses make — and how to fix each one.",
+          "className": "post"
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "I have a question",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "blog.html",
+          "text": "Featured · SEO How to reach Google's first page — 7 steps Getting onto Google's first page doesn't take magic, it takes a system. A seven-step SEO guide for small businesses, in plain language. Read it →",
+          "className": "post post--feature"
+        },
+        {
+          "href": "blog.html",
+          "text": "Pricing How much does a website cost in 2026? Website prices run from nothing to tens of thousands. We show what drives the cost and how to work out what a website is worth to your business.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Local search Setting up a Google Business Profile, step by step A Google Business Profile is the most powerful free client acquisition tool for local businesses. Set it up in eight steps and show up in the map results.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Advertising Google or Facebook ads — which is worth it in 2026? It's the wrong question. We show what each platform is for, and why clients come from the system, not the platform.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Doing the maths How many clients is an outdated website costing you? There's one number no business owner ever sees: the clients they lost. Work out what an outdated website costs you monthly — and what you'd gain.",
+          "className": "post"
+        },
+        {
+          "href": "blog.html",
+          "text": "Conversion Why isn't your website bringing clients? 7 common mistakes You have a website but the clients aren't coming? The seven most common mistakes most businesses make — and how to fix each one.",
+          "className": "post"
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "I have a question",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Get a quote",
+          "href": "quote.html"
+        },
+        {
+          "text": "I have a question",
+          "href": "contact.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/blog-1.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-2.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-3.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-4.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-5.jpg",
+          "alt": "",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/blog-6.jpg",
+          "alt": "",
+          "loading": "lazy"
+        }
+      ],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "id": null,
+          "fields": [
+            {
+              "tag": "input",
+              "name": "email",
+              "type": "email",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "company_website",
+              "type": "text",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/en/branding.html",
+      "locale": "en",
+      "title": "Branding and visual identity design | Stratos",
+      "description": "Logo, colour system, typography, image style and tone of voice — in one system. Build a brand people recall from a single colour.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/branding.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/branding.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/branding.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/branding.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "One colour. One line. And they think of you."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "One colour. One line. And they think of you."
+        },
+        {
+          "level": 2,
+          "text": "A logo is a mark. An identity is a system."
+        },
+        {
+          "level": 2,
+          "text": "Brand building from A to Z"
+        },
+        {
+          "level": 3,
+          "text": "Getting to know you"
+        },
+        {
+          "level": 3,
+          "text": "Directions and decision"
+        },
+        {
+          "level": 3,
+          "text": "Turning it into a system"
+        },
+        {
+          "level": 3,
+          "text": "Rolling it out everywhere"
+        },
+        {
+          "level": 2,
+          "text": "Frequently asked"
+        },
+        {
+          "level": 2,
+          "text": "Make your brand recognisable."
+        }
+      ],
+      "sectionCount": 6,
+      "articleCount": 4,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 1016,
+      "paragraphCount": 29,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "contact.html",
+          "text": "Consultation",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "contact.html",
+          "text": "Book a consultation",
+          "className": "btn"
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "contact.html",
+          "text": "Consultation",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "contact.html",
+          "text": "Book a consultation",
+          "className": "btn"
+        },
+        {
+          "href": "quote.html",
+          "text": "Get a quote",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Consultation",
+          "href": "contact.html"
+        },
+        {
+          "text": "Book a consultation",
+          "href": "contact.html"
+        },
+        {
+          "text": "Get a quote",
+          "href": "quote.html"
+        }
+      ],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/en/contact.html",
+      "locale": "en",
+      "title": "Contact and support | Stratos",
+      "description": "Got a question, or want a free consultation? Send an email, call us, or fill in the form — we answer every enquiry as soon as we can.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/ugyfelszolgalat.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/contact.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/kontakt.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/ugyfelszolgalat.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Get in touch."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Get in touch."
+        },
+        {
+          "level": 3,
+          "text": "lukacs.artur@media-stratos.com"
+        },
+        {
+          "level": 3,
+          "text": "+36 30 584 8024"
+        },
+        {
+          "level": 3,
+          "text": "Győr & Budapest"
+        },
+        {
+          "level": 2,
+          "text": "One conversation and you'll know what you need."
+        },
+        {
+          "level": 2,
+          "text": "Ask, or request a quote"
+        }
+      ],
+      "sectionCount": 4,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": "uzenet",
+          "className": "band band--pale"
+        }
+      ],
+      "meaningfulWordCount": 206,
+      "paragraphCount": 11,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "mailto:lukacs.artur@media-stratos.com",
+          "text": "Email lukacs.artur@media-stratos.com Writing is easiest — we usually reply within one working day.",
+          "className": "card"
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "Phone +36 30 584 8024 If you need an answer quickly, call us during business hours.",
+          "className": "card"
+        },
+        {
+          "href": "quote.html",
+          "text": "Fill in the questionnaire",
+          "className": "btn"
+        },
+        {
+          "href": "#uzenet",
+          "text": "I'd rather just ask",
+          "className": "btn btn--ghost"
+        },
+        {
+          "href": "privacy-policy.html",
+          "text": "privacy policy",
+          "className": "tlink"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "quote.html",
+          "text": "Fill in the questionnaire",
+          "className": "btn"
+        },
+        {
+          "href": "privacy-policy.html",
+          "text": "privacy policy",
+          "className": "tlink"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Fill in the questionnaire",
+          "href": "quote.html"
+        },
+        {
+          "text": "I'd rather just ask",
+          "href": "#uzenet"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "id": null,
+          "fields": [
+            {
+              "tag": "input",
+              "name": "vezeteknev",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "keresztnev",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "email",
+              "type": "email",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "telefon",
+              "type": "tel",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "ceg",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "megjegyzes",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "adatvedelem_elfogadva",
+              "type": "checkbox",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "hirlevel",
+              "type": "checkbox",
+              "required": false
+            },
+            {
+              "tag": "input",
+              "name": "company_website",
+              "type": "text",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/en/impact-program.html",
+      "locale": "en",
+      "title": "Stratos Impact Program — free websites for nonprofits | Stratos",
+      "description": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/impact-program.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/impact-program.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/impact-programm.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/impact-program.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Premium websites for the people who change lives."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Premium websites for the people who change lives."
+        },
+        {
+          "level": 2,
+          "text": "This project is personal."
+        },
+        {
+          "level": 2,
+          "text": "Two causes close to us"
+        },
+        {
+          "level": 3,
+          "text": "Addiction and mental health"
+        },
+        {
+          "level": 3,
+          "text": "Children"
+        },
+        {
+          "level": 2,
+          "text": "Everything a modern nonprofit needs — for free"
+        },
+        {
+          "level": 2,
+          "text": "For those who do real good"
+        },
+        {
+          "level": 2,
+          "text": "A simple, human process"
+        },
+        {
+          "level": 3,
+          "text": "Application"
+        },
+        {
+          "level": 3,
+          "text": "Review"
+        },
+        {
+          "level": 3,
+          "text": "A conversation"
+        },
+        {
+          "level": 3,
+          "text": "Building the website"
+        },
+        {
+          "level": 2,
+          "text": "We help the people who help others."
+        },
+        {
+          "level": 2,
+          "text": "Frequently asked"
+        },
+        {
+          "level": 2,
+          "text": "Apply to the Impact Program"
+        }
+      ],
+      "sectionCount": 9,
+      "articleCount": 10,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": "jelentkezes",
+          "className": "band band--pale"
+        }
+      ],
+      "meaningfulWordCount": 755,
+      "paragraphCount": 39,
+      "listItemCount": 22,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "#jelentkezes",
+          "text": "Apply now",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Apply now",
+          "href": "#jelentkezes"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "id": null,
+          "fields": [
+            {
+              "tag": "input",
+              "name": "org",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "kapcs",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "mail",
+              "type": "email",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "tel",
+              "type": "tel",
+              "required": false
+            },
+            {
+              "tag": "input",
+              "name": "web",
+              "type": "url",
+              "required": false
+            },
+            {
+              "tag": "select",
+              "name": "terulet",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "mivel",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "hatas",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "miert",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "mit",
+              "type": null,
+              "required": false
+            },
+            {
+              "tag": "input",
+              "name": "adatkezeles_elfogadva",
+              "type": "checkbox",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "company_website",
+              "type": "text",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/en/imprint.html",
+      "locale": "en",
+      "title": "Imprint | Stratos",
+      "description": "Details of the operator of Stratos Media, contact information and hosting provider.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/impresszum.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/imprint.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/impressum.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/impresszum.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Imprint"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Imprint"
+        },
+        {
+          "level": 2,
+          "text": "Hosting provider"
+        },
+        {
+          "level": 2,
+          "text": "Contact"
+        }
+      ],
+      "sectionCount": 2,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        }
+      ],
+      "meaningfulWordCount": 93,
+      "paragraphCount": 5,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "../impresszum.html",
+          "text": "Hungarian version",
+          "className": null
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "+36 30 584 8024",
+          "className": null
+        },
+        {
+          "href": "https://stratosweb.hu/",
+          "text": "https://stratosweb.hu/",
+          "className": null
+        },
+        {
+          "href": "mailto:support@wix.com",
+          "text": "support@wix.com",
+          "className": null
+        },
+        {
+          "href": "mailto:lukacs.artur@media-stratos.com",
+          "text": "lukacs.artur@media-stratos.com",
+          "className": null
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "+36 30 584 8024",
+          "className": null
+        },
+        {
+          "href": "contact.html",
+          "text": "Contact →",
+          "className": "tlink"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "../impresszum.html",
+          "text": "Hungarian version",
+          "className": null
+        },
+        {
+          "href": "contact.html",
+          "text": "Contact →",
+          "className": "tlink"
+        }
+      ],
+      "ctas": [],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/en/privacy-policy.html",
+      "locale": "en",
+      "title": "Privacy policy | Stratos",
+      "description": "How we collect, use and process personal data under the GDPR — and what rights you have.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/adatkezelesi-tajekoztato.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/privacy-policy.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/datenschutz.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/adatkezelesi-tajekoztato.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Privacy policy"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Privacy policy"
+        },
+        {
+          "level": 2,
+          "text": "The Controller's responsibility and contact details"
+        },
+        {
+          "level": 2,
+          "text": "Purposes of processing"
+        },
+        {
+          "level": 2,
+          "text": "Categories of personal data processed"
+        },
+        {
+          "level": 3,
+          "text": "When contacting us or requesting a quote"
+        },
+        {
+          "level": 3,
+          "text": "When subscribing to the newsletter"
+        },
+        {
+          "level": 2,
+          "text": "Retention periods"
+        },
+        {
+          "level": 2,
+          "text": "Data transfers and processors"
+        },
+        {
+          "level": 3,
+          "text": "Processors"
+        },
+        {
+          "level": 2,
+          "text": "Use of cookies"
+        },
+        {
+          "level": 3,
+          "text": "Types of cookie"
+        },
+        {
+          "level": 3,
+          "text": "Strictly necessary session cookies"
+        },
+        {
+          "level": 3,
+          "text": "Analytical or performance cookies"
+        },
+        {
+          "level": 3,
+          "text": "Functional cookies"
+        },
+        {
+          "level": 3,
+          "text": "Targeting or advertising cookies"
+        },
+        {
+          "level": 3,
+          "text": "Do cookies contain personal data?"
+        },
+        {
+          "level": 3,
+          "text": "Security considerations"
+        },
+        {
+          "level": 3,
+          "text": "Managing and deleting cookies"
+        },
+        {
+          "level": 2,
+          "text": "Data subject rights"
+        },
+        {
+          "level": 2,
+          "text": "Legal remedies"
+        },
+        {
+          "level": 2,
+          "text": "Definitions"
+        },
+        {
+          "level": 2,
+          "text": "Final provisions"
+        }
+      ],
+      "sectionCount": 2,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        }
+      ],
+      "meaningfulWordCount": 1125,
+      "paragraphCount": 20,
+      "listItemCount": 50,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "../adatkezelesi-tajekoztato.html",
+          "text": "Hungarian version",
+          "className": null
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "+36 30 584 8024",
+          "className": null
+        },
+        {
+          "href": "mailto:info@media-stratos.com",
+          "text": "info@media-stratos.com",
+          "className": null
+        },
+        {
+          "href": "https://stratosweb.hu",
+          "text": "https://stratosweb.hu",
+          "className": null
+        },
+        {
+          "href": "mailto:support@wix.com",
+          "text": "support@wix.com",
+          "className": null
+        },
+        {
+          "href": "https://naih.hu",
+          "text": "https://naih.hu",
+          "className": null
+        },
+        {
+          "href": "mailto:ugyfelszolgalat@naih.hu",
+          "text": "ugyfelszolgalat@naih.hu",
+          "className": null
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "../adatkezelesi-tajekoztato.html",
+          "text": "Hungarian version",
+          "className": null
+        }
+      ],
+      "ctas": [],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/en/quote.html",
+      "locale": "en",
+      "title": "Website requirements questionnaire | Stratos",
+      "description": "Fill in the questionnaire in a few minutes and we'll come back with a quote tailored to your answers.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/arajanlat.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/quote.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/angebot.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/arajanlat.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [],
+      "headings": [],
+      "sectionCount": 1,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "quiz"
+        }
+      ],
+      "meaningfulWordCount": 0,
+      "paragraphCount": 0,
+      "listItemCount": 0,
+      "links": [],
+      "internalLinks": [],
+      "ctas": [],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/en/web-design-enterprise.html",
+      "locale": "en",
+      "title": "Web design for enterprises — a dedicated development team | Stratos",
+      "description": "Bespoke platforms, internal systems, integrations and operations. Enterprise-grade quality, SLA and security — from strategy to launch.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/nagyvallalat.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/web-design-enterprise.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/webdesign-grossunternehmen.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/nagyvallalat.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Every build, one partner."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Every build, one partner."
+        },
+        {
+          "level": 2,
+          "text": "What we build"
+        },
+        {
+          "level": 3,
+          "text": "Bespoke platforms and web apps"
+        },
+        {
+          "level": 3,
+          "text": "System integration"
+        },
+        {
+          "level": 3,
+          "text": "Design system and identity"
+        },
+        {
+          "level": 3,
+          "text": "Security and compliance"
+        },
+        {
+          "level": 3,
+          "text": "Dedicated development team"
+        },
+        {
+          "level": 3,
+          "text": "Operations and SLA"
+        },
+        {
+          "level": 2,
+          "text": "How we work together up to go-live"
+        },
+        {
+          "level": 3,
+          "text": "Discovery and strategy"
+        },
+        {
+          "level": 3,
+          "text": "Development with a dedicated team"
+        },
+        {
+          "level": 3,
+          "text": "Launch and continuous development"
+        },
+        {
+          "level": 2,
+          "text": "Why is it better than several suppliers?"
+        },
+        {
+          "level": 2,
+          "text": "Frequently asked"
+        },
+        {
+          "level": 2,
+          "text": "Let's build your system."
+        }
+      ],
+      "sectionCount": 7,
+      "articleCount": 9,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 949,
+      "paragraphCount": 32,
+      "listItemCount": 4,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "contact.html",
+          "text": "Book a call",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "contact.html",
+          "text": "Book a call",
+          "className": "btn"
+        },
+        {
+          "href": "quote.html",
+          "text": "Request a quote",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "contact.html",
+          "text": "Book a call",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "contact.html",
+          "text": "Book a call",
+          "className": "btn"
+        },
+        {
+          "href": "quote.html",
+          "text": "Request a quote",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Book a call",
+          "href": "contact.html"
+        },
+        {
+          "text": "Book a call",
+          "href": "contact.html"
+        },
+        {
+          "text": "Request a quote",
+          "href": "quote.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/kivitelezes.jpg",
+          "alt": "",
+          "loading": null
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/en/web-design-sme.html",
+      "locale": "en",
+      "title": "Web design for SMEs — a website on a monthly fee | Stratos",
+      "description": "Design, development, hosting and ongoing maintenance in one fixed monthly fee. A website for sole traders and small businesses, without a large upfront cost.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/kkv.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/web-design-sme.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/webdesign-kmu.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/kkv.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "A website without the big upfront cost."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "A website without the big upfront cost."
+        },
+        {
+          "level": 2,
+          "text": "What the monthly fee buys"
+        },
+        {
+          "level": 3,
+          "text": "Bespoke design"
+        },
+        {
+          "level": 3,
+          "text": "A fast, modern website"
+        },
+        {
+          "level": 3,
+          "text": "Hosting and maintenance"
+        },
+        {
+          "level": 3,
+          "text": "Changes"
+        },
+        {
+          "level": 2,
+          "text": "How you get to a live site"
+        },
+        {
+          "level": 3,
+          "text": "We talk"
+        },
+        {
+          "level": 3,
+          "text": "We design and build"
+        },
+        {
+          "level": 3,
+          "text": "We launch and maintain"
+        },
+        {
+          "level": 2,
+          "text": "Why is it better than paying once?"
+        },
+        {
+          "level": 2,
+          "text": "Frequently asked"
+        },
+        {
+          "level": 2,
+          "text": "Let's start your website."
+        }
+      ],
+      "sectionCount": 8,
+      "articleCount": 7,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 910,
+      "paragraphCount": 34,
+      "listItemCount": 4,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "quote.html",
+          "text": "Request a quote",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "quote.html",
+          "text": "Fill in the questionnaire",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "I'd rather ask first",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "quote.html",
+          "text": "Request a quote",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "Write to us",
+          "className": "tlink"
+        },
+        {
+          "href": "quote.html",
+          "text": "Fill in the questionnaire",
+          "className": "btn"
+        },
+        {
+          "href": "contact.html",
+          "text": "I'd rather ask first",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Request a quote",
+          "href": "quote.html"
+        },
+        {
+          "text": "Fill in the questionnaire",
+          "href": "quote.html"
+        },
+        {
+          "text": "I'd rather ask first",
+          "href": "contact.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/work-1.jpg",
+          "alt": "Barbershop Győr website",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/work-2.jpg",
+          "alt": "mentaltrening.com website",
+          "loading": "lazy"
+        },
+        {
+          "src": "../assets/img/work-3.jpg",
+          "alt": "Rapidkert landscaping website",
+          "loading": "lazy"
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/hirdeteskezeles.html",
+      "locale": "hu",
+      "title": "Hirdetéskezelés — Google &amp; Meta Ads | Stratos",
+      "description": "Google és Meta kampányok, amelyek nem elérést, hanem ügyfeleket hoznak. Célközönség-kutatás, kreatív, licitstratégia, konverziómérés és havi riport.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/hirdeteskezeles.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/ads-management.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/werbeanzeigen.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/hirdeteskezeles.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Nem elérést veszel. Ügyfelet."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Nem elérést veszel. Ügyfelet."
+        },
+        {
+          "level": 2,
+          "text": "A figyelem a legértékesebb erőforrás"
+        },
+        {
+          "level": 2,
+          "text": "Keres rád, vagy neked kell megtalálnod?"
+        },
+        {
+          "level": 3,
+          "text": "A keresleti csatorna"
+        },
+        {
+          "level": 3,
+          "text": "A kereslet-teremtő csatorna"
+        },
+        {
+          "level": 2,
+          "text": "A hirdetés­kezelés folyamata"
+        },
+        {
+          "level": 3,
+          "text": "Kutatás és felépítés"
+        },
+        {
+          "level": 3,
+          "text": "Tanulási szakasz — 2–4 hét"
+        },
+        {
+          "level": 3,
+          "text": "Optimalizálás és skálázás"
+        },
+        {
+          "level": 2,
+          "text": "Nem a lájkokat nézzük, hanem az üzleti eredményt."
+        },
+        {
+          "level": 2,
+          "text": "Gyakori kérdések"
+        },
+        {
+          "level": 2,
+          "text": "Nézzük meg, hol vannak az ügyfeleid."
+        }
+      ],
+      "sectionCount": 7,
+      "articleCount": 5,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 1013,
+      "paragraphCount": 31,
+      "listItemCount": 8,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlat",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Ingyenes konzultáció",
+          "className": "btn"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlatot kérek",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlat",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Ingyenes konzultáció",
+          "className": "btn"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlatot kérek",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Árajánlat",
+          "href": "arajanlat.html"
+        },
+        {
+          "text": "Ingyenes konzultáció",
+          "href": "ugyfelszolgalat.html"
+        },
+        {
+          "text": "Árajánlatot kérek",
+          "href": "arajanlat.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/img/struktura.jpg",
+          "alt": "",
+          "loading": null
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/impact-program.html",
+      "locale": "hu",
+      "title": "Stratos Impact Program — ingyenes weboldal nonprofitoknak | Stratos",
+      "description": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/impact-program.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/impact-program.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/impact-programm.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/impact-program.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Prémium weboldalak azoknak, akik életeket változtatnak meg."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Prémium weboldalak azoknak, akik életeket változtatnak meg."
+        },
+        {
+          "level": 2,
+          "text": "Ez a projekt személyes."
+        },
+        {
+          "level": 2,
+          "text": "Két ügy, ami közel áll hozzánk"
+        },
+        {
+          "level": 3,
+          "text": "Függőség és mentális egészség"
+        },
+        {
+          "level": 3,
+          "text": "Gyermekek"
+        },
+        {
+          "level": 2,
+          "text": "Minden, ami egy modern nonprofitnak kell — ingyen"
+        },
+        {
+          "level": 2,
+          "text": "Azoknak, akik valódi jót tesznek"
+        },
+        {
+          "level": 2,
+          "text": "Egyszerű, emberi folyamat"
+        },
+        {
+          "level": 3,
+          "text": "Jelentkezés"
+        },
+        {
+          "level": 3,
+          "text": "Elbírálás"
+        },
+        {
+          "level": 3,
+          "text": "Egyeztetés"
+        },
+        {
+          "level": 3,
+          "text": "Weboldal készítés"
+        },
+        {
+          "level": 2,
+          "text": "Segítünk azoknak, akik másokon segítenek."
+        },
+        {
+          "level": 2,
+          "text": "Gyakori kérdések"
+        },
+        {
+          "level": 2,
+          "text": "Jelentkezz az Impact Programba"
+        }
+      ],
+      "sectionCount": 9,
+      "articleCount": 10,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": "jelentkezes",
+          "className": "band band--pale"
+        }
+      ],
+      "meaningfulWordCount": 670,
+      "paragraphCount": 39,
+      "listItemCount": 22,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "#jelentkezes",
+          "text": "Jelentkezem",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Jelentkezem",
+          "href": "#jelentkezes"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "id": null,
+          "fields": [
+            {
+              "tag": "input",
+              "name": "org",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "kapcs",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "mail",
+              "type": "email",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "tel",
+              "type": "tel",
+              "required": false
+            },
+            {
+              "tag": "input",
+              "name": "web",
+              "type": "url",
+              "required": false
+            },
+            {
+              "tag": "select",
+              "name": "terulet",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "mivel",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "hatas",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "miert",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "mit",
+              "type": null,
+              "required": false
+            },
+            {
+              "tag": "input",
+              "name": "adatkezeles_elfogadva",
+              "type": "checkbox",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "company_website",
+              "type": "text",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/impresszum.html",
+      "locale": "hu",
+      "title": "Impresszum | Stratos",
+      "description": "A Stratos Media üzemeltetőjének adatai, elérhetőségek és tárhelyszolgáltató.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/impresszum.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/imprint.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/impressum.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/impresszum.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Impresszum"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Impresszum"
+        },
+        {
+          "level": 2,
+          "text": "Tárhelyszolgáltató"
+        },
+        {
+          "level": 2,
+          "text": "Kapcsolat"
+        }
+      ],
+      "sectionCount": 2,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        }
+      ],
+      "meaningfulWordCount": 66,
+      "paragraphCount": 4,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "+36 30 584 8024",
+          "className": null
+        },
+        {
+          "href": "https://stratosweb.hu/",
+          "text": "https://stratosweb.hu/",
+          "className": null
+        },
+        {
+          "href": "mailto:support@wix.com",
+          "text": "support@wix.com",
+          "className": null
+        },
+        {
+          "href": "mailto:lukacs.artur@media-stratos.com",
+          "text": "lukacs.artur@media-stratos.com",
+          "className": null
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "+36 30 584 8024",
+          "className": null
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Ügyfélszolgálat →",
+          "className": "tlink"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Ügyfélszolgálat →",
+          "className": "tlink"
+        }
+      ],
+      "ctas": [],
+      "images": [],
+      "forms": []
+    },
+    {
+      "route": "/kkv.html",
+      "locale": "hu",
+      "title": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
+      "description": "Tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban. Weboldal egyéni és kisvállalkozóknak, nagy egyszeri költség nélkül.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/kkv.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/web-design-sme.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/webdesign-kmu.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/kkv.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Weboldal, nagy egyszeri költség nélkül."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Weboldal, nagy egyszeri költség nélkül."
+        },
+        {
+          "level": 2,
+          "text": "Mit kapsz a havidíjért?"
+        },
+        {
+          "level": 3,
+          "text": "Egyedi dizájn"
+        },
+        {
+          "level": 3,
+          "text": "Gyors, modern weboldal"
+        },
+        {
+          "level": 3,
+          "text": "Tárhely és karbantartás"
+        },
+        {
+          "level": 3,
+          "text": "Módosítások"
+        },
+        {
+          "level": 2,
+          "text": "Így jutsz el az élő oldaladig"
+        },
+        {
+          "level": 3,
+          "text": "Beszélgetünk"
+        },
+        {
+          "level": 3,
+          "text": "Megtervezzük és megépítjük"
+        },
+        {
+          "level": 3,
+          "text": "Élesítünk és karbantartunk"
+        },
+        {
+          "level": 2,
+          "text": "Miért jobb, mint egyszer kifizetni?"
+        },
+        {
+          "level": 2,
+          "text": "Gyakori kérdések"
+        },
+        {
+          "level": 2,
+          "text": "Kezdjük el a weboldalad."
+        }
+      ],
+      "sectionCount": 8,
+      "articleCount": 7,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 750,
+      "paragraphCount": 34,
+      "listItemCount": 4,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Kérek ajánlatot",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Kitöltöm a kérdőívet",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Előbb kérdeznék",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Kérek ajánlatot",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Kitöltöm a kérdőívet",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Előbb kérdeznék",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Kérek ajánlatot",
+          "href": "arajanlat.html"
+        },
+        {
+          "text": "Kitöltöm a kérdőívet",
+          "href": "arajanlat.html"
+        },
+        {
+          "text": "Előbb kérdeznék",
+          "href": "ugyfelszolgalat.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/img/work-1.jpg",
+          "alt": "Barbershop Győr weboldal",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/work-2.jpg",
+          "alt": "mentaltrening.com weboldal",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/work-3.jpg",
+          "alt": "Rapidkert kertépítés weboldal",
+          "loading": "lazy"
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/nagyvallalat.html",
+      "locale": "hu",
+      "title": "Webdesign nagyvállalatoknak — dedikált fejlesztőcsapat | Stratos",
+      "description": "Egyedi platformok, belső rendszerek, integrációk és üzemeltetés. Nagyvállalati szintű minőség, SLA és biztonság — a stratégiától az élesítésig.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/nagyvallalat.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/web-design-enterprise.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/webdesign-grossunternehmen.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/nagyvallalat.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Minden fejlesztés, egy partnerrel."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Minden fejlesztés, egy partnerrel."
+        },
+        {
+          "level": 2,
+          "text": "Mit fejlesztünk?"
+        },
+        {
+          "level": 3,
+          "text": "Egyedi platformok és web appok"
+        },
+        {
+          "level": 3,
+          "text": "Rendszer­integráció"
+        },
+        {
+          "level": 3,
+          "text": "Design system és arculat"
+        },
+        {
+          "level": 3,
+          "text": "Biztonság és megfelelőség"
+        },
+        {
+          "level": 3,
+          "text": "Dedikált fejlesztőcsapat"
+        },
+        {
+          "level": 3,
+          "text": "Üzemeltetés és SLA"
+        },
+        {
+          "level": 2,
+          "text": "Így dolgozunk együtt a bevezetésig"
+        },
+        {
+          "level": 3,
+          "text": "Felmérés és stratégia"
+        },
+        {
+          "level": 3,
+          "text": "Fejlesztés dedikált csapattal"
+        },
+        {
+          "level": 3,
+          "text": "Élesítés és folyamatos fejlesztés"
+        },
+        {
+          "level": 2,
+          "text": "Miért jobb, mint több beszállítóval?"
+        },
+        {
+          "level": 2,
+          "text": "Gyakori kérdések"
+        },
+        {
+          "level": 2,
+          "text": "Építsük meg a rendszereteket."
+        }
+      ],
+      "sectionCount": 7,
+      "articleCount": 9,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale"
+        },
+        {
+          "id": null,
+          "className": "band"
+        }
+      ],
+      "meaningfulWordCount": 792,
+      "paragraphCount": 32,
+      "listItemCount": 4,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Egyeztetést kérek",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Egyeztetést kérek",
+          "className": "btn"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlat kérése",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Egyeztetést kérek",
+          "className": "btn"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Egyeztetést kérek",
+          "className": "btn"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlat kérése",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Egyeztetést kérek",
+          "href": "ugyfelszolgalat.html"
+        },
+        {
+          "text": "Egyeztetést kérek",
+          "href": "ugyfelszolgalat.html"
+        },
+        {
+          "text": "Árajánlat kérése",
+          "href": "arajanlat.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/img/kivitelezes.jpg",
+          "alt": "",
+          "loading": null
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/rolunk.html",
+      "locale": "hu",
+      "title": "Rólunk — A Stratos története | Stratos Media",
+      "description": "A Stratos név a sztratoszférából ered. Megmutatjuk, kik vagyunk, hogyan gondolkodunk, és miért nem elégszünk meg a hétköznapi szinttel.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/rolunk.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/about.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/ueber-uns.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/rolunk.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "A Stratos története"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "A Stratos története"
+        },
+        {
+          "level": 2,
+          "text": "Ez nem munka. Ez életszemlélet."
+        },
+        {
+          "level": 3,
+          "text": "Lukács Artúr"
+        },
+        {
+          "level": 3,
+          "text": "Tímár Richárd"
+        },
+        {
+          "level": 2,
+          "text": "Miért a Stratos — hat ok"
+        },
+        {
+          "level": 3,
+          "text": "Világszínvonalú kivitelezés"
+        },
+        {
+          "level": 3,
+          "text": "Egyedi dizájn"
+        },
+        {
+          "level": 3,
+          "text": "Problémamegoldás"
+        },
+        {
+          "level": 3,
+          "text": "A szövegírás is benne van"
+        },
+        {
+          "level": 3,
+          "text": "Gyors átfutás"
+        },
+        {
+          "level": 3,
+          "text": "Átlátható árazás"
+        },
+        {
+          "level": 2,
+          "text": "Gyakori kérdések"
+        },
+        {
+          "level": 2,
+          "text": "Ismerjük meg egymást."
+        }
+      ],
+      "sectionCount": 8,
+      "articleCount": 8,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--pale band--tight"
+        },
+        {
+          "id": null,
+          "className": "band"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        }
+      ],
+      "meaningfulWordCount": 709,
+      "paragraphCount": 29,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Ingyenes konzultáció",
+          "className": "btn"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlatot kérek",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Írj nekünk",
+          "className": "tlink"
+        },
+        {
+          "href": "ugyfelszolgalat.html",
+          "text": "Ingyenes konzultáció",
+          "className": "btn"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Árajánlatot kérek",
+          "className": "btn btn--ghost"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Ingyenes konzultáció",
+          "href": "ugyfelszolgalat.html"
+        },
+        {
+          "text": "Árajánlatot kérek",
+          "href": "arajanlat.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/img/hero.jpg",
+          "alt": "",
+          "loading": null
+        },
+        {
+          "src": "assets/img/team-artur.jpg",
+          "alt": "Lukács Artúr, alapító",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/team-richard.png",
+          "alt": "Tímár Richárd, partner",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/client-rapidkert.png",
+          "alt": "Rapidkert Kft.",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/client-barbershop.png",
+          "alt": "Barbershop Győr",
+          "loading": "lazy"
+        },
+        {
+          "src": "assets/img/client-pille.png",
+          "alt": "Pille Sewing",
+          "loading": "lazy"
+        }
+      ],
+      "forms": []
+    },
+    {
+      "route": "/ugyfelszolgalat.html",
+      "locale": "hu",
+      "title": "Ügyfélszolgálat és kapcsolat | Stratos",
+      "description": "Kérdésed van, vagy ingyenes konzultációt kérnél? Írj e-mailt, hívj minket, vagy töltsd ki az űrlapot — minden megkeresésre a lehető leghamarabb válaszolunk.",
+      "canonical": null,
+      "hreflang": [
+        {
+          "hreflang": "hu",
+          "href": "/ugyfelszolgalat.html"
+        },
+        {
+          "hreflang": "en",
+          "href": "/en/contact.html"
+        },
+        {
+          "hreflang": "de",
+          "href": "/de/kontakt.html"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "/ugyfelszolgalat.html"
+        }
+      ],
+      "og": {
+        "title": null,
+        "description": null,
+        "image": null
+      },
+      "twitter": {
+        "card": null,
+        "title": null
+      },
+      "h1": [
+        "Vedd fel a kapcsolatot."
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Vedd fel a kapcsolatot."
+        },
+        {
+          "level": 3,
+          "text": "lukacs.artur@media-stratos.com"
+        },
+        {
+          "level": 3,
+          "text": "+36 30 584 8024"
+        },
+        {
+          "level": 3,
+          "text": "Győr & Budapest"
+        },
+        {
+          "level": 2,
+          "text": "Egy beszélgetés, ami után tudni fogod, mi kell."
+        },
+        {
+          "level": 2,
+          "text": "Kérdezz, vagy kérj árajánlatot"
+        }
+      ],
+      "sectionCount": 4,
+      "articleCount": 0,
+      "sections": [
+        {
+          "id": null,
+          "className": "phead"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": null,
+          "className": "band band--tight"
+        },
+        {
+          "id": "uzenet",
+          "className": "band band--pale"
+        }
+      ],
+      "meaningfulWordCount": 177,
+      "paragraphCount": 11,
+      "listItemCount": 0,
+      "links": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "mailto:lukacs.artur@media-stratos.com",
+          "text": "E-mail lukacs.artur@media-stratos.com Írásban a legegyszerűbb — általában egy munkanapon belül válaszolunk.",
+          "className": "card"
+        },
+        {
+          "href": "tel:+36305848024",
+          "text": "Telefon +36 30 584 8024 Ha gyorsan kell egy válasz, hívj minket munkaidőben.",
+          "className": "card"
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Kitöltöm a kérdőívet",
+          "className": "btn"
+        },
+        {
+          "href": "#uzenet",
+          "text": "Inkább csak kérdeznék",
+          "className": "btn btn--ghost"
+        },
+        {
+          "href": "adatkezelesi-tajekoztato.html",
+          "text": "Adatvédelmi nyilatkozatban",
+          "className": "tlink"
+        }
+      ],
+      "internalLinks": [
+        {
+          "href": "index.html",
+          "text": "Stratos",
+          "className": null
+        },
+        {
+          "href": "arajanlat.html",
+          "text": "Kitöltöm a kérdőívet",
+          "className": "btn"
+        },
+        {
+          "href": "adatkezelesi-tajekoztato.html",
+          "text": "Adatvédelmi nyilatkozatban",
+          "className": "tlink"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Kitöltöm a kérdőívet",
+          "href": "arajanlat.html"
+        },
+        {
+          "text": "Inkább csak kérdeznék",
+          "href": "#uzenet"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "id": null,
+          "fields": [
+            {
+              "tag": "input",
+              "name": "vezeteknev",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "keresztnev",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "email",
+              "type": "email",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "telefon",
+              "type": "tel",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "ceg",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "textarea",
+              "name": "megjegyzes",
+              "type": null,
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "adatvedelem_elfogadva",
+              "type": "checkbox",
+              "required": true
+            },
+            {
+              "tag": "input",
+              "name": "hirlevel",
+              "type": "checkbox",
+              "required": false
+            },
+            {
+              "tag": "input",
+              "name": "company_website",
+              "type": "text",
+              "required": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -309,7 +309,7 @@ function LowerAtmosphere() {
       wide
     >
       <h2 className="panel__title">
-        {m('lowerAtmosphere.title.a')} <em>{m('lowerAtmosphere.title.em')}</em>
+        {m('lowerAtmosphere.title.a')} <em data-kinetic="lower-atmosphere">{m('lowerAtmosphere.title.em')}</em>
       </h2>
       <p className="panel__lead">{m('lowerAtmosphere.lead')}</p>
 
@@ -354,7 +354,7 @@ function CloudBreakthrough() {
       <h2 className="panel__title panel__title--statement">
         {m('cloudBreakthrough.title.a')}
         <br />
-        <em>{m('cloudBreakthrough.title.em')}</em>
+        <em data-kinetic="cloud-breakthrough">{m('cloudBreakthrough.title.em')}</em>
       </h2>
       <p className="panel__lead">{m('cloudBreakthrough.lead')}</p>
     </Panel>
@@ -540,7 +540,7 @@ function FullStratosphere() {
       align="centre"
     >
       <h2 className="panel__title panel__title--statement">
-        {m('fullStratosphere.title.a')} <em>{m('fullStratosphere.title.em')}</em>
+        {m('fullStratosphere.title.a')} <em data-kinetic="full-stratosphere">{m('fullStratosphere.title.em')}</em>
       </h2>
       <p className="panel__lead">{m('fullStratosphere.lead')}</p>
     </Panel>

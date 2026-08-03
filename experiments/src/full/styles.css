@@ -17,8 +17,21 @@
   --hair: rgba(244, 244, 244, 0.14);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --body: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  --data: ui-monospace, 'SF Mono', Menlo, monospace;
+  /* The families come from assets/css/type.css, which each locale shell links
+     directly rather than importing through Vite. That is deliberate: an
+     `@import` here would pull the four Archivo files into this bundle's asset
+     graph, emit them again under /assets/home/ with different hashes, and cost
+     a second 417 kB download for a visitor who has already loaded them on a
+     subpage. Linking the same URL from both surfaces means one file and one
+     cache entry for the whole site.
+
+     This route previously set a bare system stack here and carried a preconnect
+     to a Google Fonts stylesheet it never requested, so the homepage — the one
+     page the whole brand argument rests on — was the only part of the site not
+     using the brand typeface at all. */
+  --display: var(--font-display);
+  --body: var(--font-body);
+  --data: var(--font-mono);
 
   /* The panel's own backdrop. Panels sit over a live 3D scene, so every block
      of prose needs its own contrast floor — without it the copy is legible at
@@ -270,11 +283,107 @@ img { max-width: 100%; height: auto; }
 .panel:nth-of-type(even) { justify-content: flex-end; }
 .panel--centre { justify-content: center; text-align: center; }
 
+/* The copy budget on a landscape viewport.
+
+   With the instrument centred, the clear area is no longer one wide margin on
+   the left; it is two narrower ones, and the plate has to fit inside whichever
+   it is pinned to. The dial occupies roughly a third of the width at these
+   aspects — see the aspect-aware frame in JourneyCamera — so half of what is
+   left, less the panel's own padding, is what the copy can have.
+
+   Keyed to aspect rather than to a width breakpoint on purpose: it is the
+   aspect that decides whether copy sits *beside* the instrument or above and
+   below it, and it is the same hinge the camera frame uses. A 1024×768 tablet
+   in landscape needs this; a 768×1024 tablet in portrait must not get it. */
+/* The portrait composition: copy above and below the instrument, never across it.
+
+   A phone has no room beside a centred dial, so the copy has to go around it
+   vertically. Measured on a 390×844 the instrument occupies y 325–517, leaving
+   two clear bands of about 325px — and the copy block is 513px tall, so it fits
+   in neither band alone and fits comfortably across both.
+
+   `margin-top: auto` inside a viewport-tall flex column is what splits it: the
+   eyebrow and the headline stay at the top of the screen, and everything from
+   the lead paragraph down is pushed to the bottom, leaving the middle band —
+   where the instrument is — empty. No DOM change and no duplicated markup,
+   which matters because §8.4 counts duplicated responsive markup as filler
+   rather than as content.
+
+   This is the brief's fourth correction, the alternate mobile composition, and
+   it is reached only after the first three were applied on landscape. */
+@media (max-aspect-ratio: 1 / 1) {
+  /* The plate has to be exactly as tall as the viewport for its two bands to
+     line up with the two clear bands beside the instrument. The panel's own
+     block padding would make it taller than that and then centre it, pushing
+     the top band off-screen and the bottom band below the fold — so the
+     padding moves inside, onto the plate, where it no longer displaces it. */
+  .panel { padding-block: 0; }
+  .panel .panel__inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+  }
+
+  /* The plate has to open in the middle.
+
+     Stretching it to the full viewport height put its wash straight over the
+     dial: the copy cleared the instrument, and then the plate it sits on
+     covered it anyway — a darker failure than the one being fixed, because the
+     instrument was still *there*, just unreadable.
+
+     So the background becomes a vertical band pair. Opaque behind the two text
+     bands, fully transparent between roughly 35% and 65% of the viewport, which
+     is where the instrument sits at every altitude (measured 38.5%–61.3% on a
+     390×844 at 0 m, and it only shrinks from there as the recede takes hold).
+     The stops are soft so there is no hard horizontal edge cutting the frame. */
+  .panel .panel__inner,
+  .panel.panel--wide .panel__inner,
+  .panel.panel--centre .panel__inner {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 8, 14, 0.92) 0%,
+      rgba(4, 8, 14, 0.92) 30%,
+      rgba(4, 8, 14, 0) 38%,
+      rgba(4, 8, 14, 0) 62%,
+      rgba(4, 8, 14, 0.92) 70%,
+      rgba(4, 8, 14, 0.92) 100%
+    );
+    /* The side rules belong to the landscape composition; a full-height hairline
+       down a phone screen reads as a stray border. */
+    border-left: 0;
+    border-right: 0;
+  }
+  /* Whatever follows the headline starts the lower band — the lead on most
+     panels, the meta line on the ones that have no lead.
+
+     Two classes rather than one, deliberately: `.panel p { margin: 0 0 1rem }`
+     is declared later in this file and, at equal specificity, later wins. A
+     single-class selector here loses the `margin-top` it is entirely made of,
+     silently, and the composition simply does not happen. */
+  .panel .panel__title + * { margin-top: auto; }
+}
+
+@media (min-aspect-ratio: 1 / 1) {
+  .panel { --copy-width: min(34rem, calc(32vw - 4rem)); }
+  /* A centred plate would sit on the dial by definition, so on these viewports
+     the dense panels stop centring and pick a side like the rest. */
+  .panel--centre { justify-content: flex-start; text-align: left; }
+  .panel--centre:nth-of-type(even) { justify-content: flex-end; }
+  .panel--wide .panel__inner,
+  .panel--centre .panel__inner { width: min(100%, var(--copy-width)); }
+}
+
 .panel__inner {
   /* Narrow on purpose. Two reasons and they point the same way: prose is
      readable at roughly 60–70 characters and unreadable much past it, and every
-     rem of extra width is a rem of instrument the plate covers up. */
-  width: min(100%, 34rem);
+     rem of extra width is a rem of instrument the plate covers up.
+
+     34rem was tuned against an instrument parked on the right, where the plate
+     had a clear 45% of the frame to itself. The instrument is centred now, so
+     the clear area is two side margins instead of one wide one, and the plate
+     has to fit inside one of them. `--copy-width` is that budget; the wide
+     breakpoint below narrows it once there are two margins to share. */
+  width: min(100%, var(--copy-width, 34rem));
   padding: clamp(1.4rem, 2.4vw, 2rem);
   pointer-events: auto;
   /* A wash rather than an opaque card: the instrument and the sky stay visible
@@ -1003,3 +1112,54 @@ img { max-width: 100%; height: auto; }
   cursor: pointer;
 }
 .debug__knob input[type='color'] { width: 100%; height: 1.4rem; padding: 0; }
+
+/* ==========================================================================
+   Kinetic typography.
+
+   The four moments are published as custom properties on <html> by
+   `publishKinetic`, once per frame, from the same tick that advances the
+   altitude. These rules are the whole of the binding: no component sets a
+   font property on itself, and nothing here animates on its own clock.
+
+   `font-stretch` rather than a transform, because Archivo carries a real wdth
+   axis (62–125, verified against the binary) and a scaled transform would be
+   synthetic width — a different thing, and a worse one.
+
+   There is no `transition`. The value already arrives eased, from `arrive` or
+   `snapCurve` in meridian.ts, as a function of altitude. A CSS transition on
+   top would add a second, time-based easing over a scroll-based one, and the
+   result would lag the instrument and differ by scroll speed — which is the
+   direction-dependence the whole journey is built to avoid.
+   ========================================================================== */
+
+[data-kinetic='lower-atmosphere'] {
+  font-weight: var(--kin-lower-atmosphere-wght, 400);
+  font-stretch: calc(var(--kin-lower-atmosphere-wdth, 100) * 1%);
+  letter-spacing: calc(var(--kin-lower-atmosphere-track, 0) * 1em);
+}
+
+[data-kinetic='cloud-breakthrough'] {
+  font-weight: var(--kin-cloud-breakthrough-wght, 400);
+  font-stretch: calc(var(--kin-cloud-breakthrough-wdth, 100) * 1%);
+  letter-spacing: calc(var(--kin-cloud-breakthrough-track, 0) * 1em);
+}
+
+[data-kinetic='full-stratosphere'] {
+  font-weight: var(--kin-full-stratosphere-wght, 400);
+  font-stretch: calc(var(--kin-full-stratosphere-wdth, 100) * 1%);
+  letter-spacing: calc(var(--kin-full-stratosphere-track, 0) * 1em);
+}
+
+/* The readout is monospaced, so its advance width is the same at every weight
+   and the lock cannot reflow the HUD. `tabular-nums` is belt and braces for the
+   same reason the digits are rounded to 10 m: the number must not jitter. */
+[data-kinetic='altitude-readout'] {
+  font-weight: var(--kin-altitude-readout-wght, 600);
+  letter-spacing: calc(var(--kin-altitude-readout-track, 0.01) * 1em);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The moments are typography, not decoration: if the axes never arrive — no
+   JavaScript, a failed chunk — every anchor still reads at its resting weight
+   because each `var()` above carries its own fallback. Nothing here is required
+   for the sentence to be legible. */

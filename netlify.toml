@@ -53,10 +53,14 @@
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
     # CSP notes — every allowance below is here for a named reason:
-    #   'unsafe-inline' on style-src   Google Fonts injects an inline <style>,
-    #                                  and the site sets per-frame custom
-    #                                  properties on element style attributes.
-    #   fonts.googleapis / gstatic     Aboreto, Instrument Sans, JetBrains Mono.
+    #   'unsafe-inline' on style-src   the site sets per-frame custom properties
+    #                                  on element style attributes. (The other
+    #                                  reason used to be Google Fonts' injected
+    #                                  inline <style>; that origin is gone.)
+    #   no font CDN at all             Archivo and JetBrains Mono are self-hosted
+    #                                  under /assets/fonts, so font-src and
+    #                                  style-src are both plain 'self'. See
+    #                                  assets/css/type.css and scripts/sync-fonts.mjs.
     #   *.supabase.co on connect-src   the portal's REST, auth and realtime.
     #   'self' on script-src only      no inline scripts, no CDN, no eval; the
     #                                  WebGL shaders are strings, not scripts.
@@ -108,8 +112,8 @@
       default-src 'self';
       script-src 'self';
       worker-src 'self' blob:;
-      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      font-src 'self' https://fonts.gstatic.com;
+      style-src 'self' 'unsafe-inline';
+      font-src 'self';
       img-src 'self' data: blob: https://*.supabase.co;
       connect-src 'self' https://*.supabase.co wss://*.supabase.co;
       form-action 'self';

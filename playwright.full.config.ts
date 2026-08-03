@@ -104,6 +104,14 @@ export default defineConfig({
     command:
       `test -f dist/experiments/stratos-ascent-full/index.html || ` +
       `{ echo "\\nmissing dist/experiments/stratos-ascent-full — run: npm run build:full\\n" >&2; exit 1; }; ` +
+      // The typography has to be present too, and its absence is silent.
+      // `build:full` emits the route but not `dist/assets/`, which comes from
+      // `npm run build`. Run this suite against a tree that has one and not the
+      // other and every page renders in the browser's default serif: no 404 in
+      // the console, no failing assertion, just layout, collision and stills
+      // measured against metrics the live site never uses. Fail loudly instead.
+      `test -f dist/assets/css/type.css || ` +
+      `{ echo "\\nmissing dist/assets/css/type.css — the route would render in a fallback serif. Run: npm run build\\n" >&2; exit 1; }; ` +
       `python3 -m http.server ${PORT} --directory dist`,
     url: BASE,
     reuseExistingServer: !process.env.CI,
