@@ -1,0 +1,689 @@
+{
+  "variants": {
+    "desktop": {
+      "variant": "desktop",
+      "file": "public/models/stratos-mountains-desktop.glb",
+      "exists": true,
+      "bytes": 345744,
+      "nodes": {
+        "ASCENT_ROUTE": {
+          "triangles": 300,
+          "vertices": 302,
+          "material": "MAT_ROUTE_ACCENT",
+          "bounds_min": [
+            -37.64,
+            -202.17,
+            -1440
+          ],
+          "bounds_max": [
+            123.33,
+            -191.58,
+            120
+          ],
+          "draco": true
+        },
+        "CLOUD_PASS": {
+          "triangles": 4608,
+          "vertices": 2401,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            -1050,
+            -420,
+            -3000
+          ],
+          "bounds_max": [
+            1050,
+            -128.18,
+            -2050
+          ],
+          "draco": true
+        },
+        "CLOUD_PEAK_L": {
+          "triangles": 6272,
+          "vertices": 3249,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            -1700,
+            -420,
+            -2450
+          ],
+          "bounds_max": [
+            -520,
+            718.58,
+            -1500
+          ],
+          "draco": true
+        },
+        "CLOUD_PEAK_R": {
+          "triangles": 6272,
+          "vertices": 3249,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            520,
+            -420,
+            -2540
+          ],
+          "bounds_max": [
+            1750,
+            317.5,
+            -1580
+          ],
+          "draco": true
+        },
+        "MNT_BACKGROUND_C": {
+          "triangles": 4608,
+          "vertices": 2401,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            -1400,
+            -420,
+            -4350
+          ],
+          "bounds_max": [
+            1400,
+            -168.43,
+            -3250
+          ],
+          "draco": true
+        },
+        "MNT_BACKGROUND_L": {
+          "triangles": 4608,
+          "vertices": 2401,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            -3400,
+            -420,
+            -3950
+          ],
+          "bounds_max": [
+            -1100,
+            573.24,
+            -2700
+          ],
+          "draco": true
+        },
+        "MNT_BACKGROUND_R": {
+          "triangles": 4608,
+          "vertices": 2401,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            1100,
+            -420,
+            -4030
+          ],
+          "bounds_max": [
+            3500,
+            1184.94,
+            -2780
+          ],
+          "draco": true
+        },
+        "MNT_FOREGROUND_L": {
+          "triangles": 18432,
+          "vertices": 9409,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            -1500,
+            -420,
+            -1050
+          ],
+          "bounds_max": [
+            -360,
+            196.83,
+            -150
+          ],
+          "draco": true
+        },
+        "MNT_FOREGROUND_R": {
+          "triangles": 18432,
+          "vertices": 9409,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            360,
+            -420,
+            -1180
+          ],
+          "bounds_max": [
+            1580,
+            832.56,
+            -210
+          ],
+          "draco": true
+        },
+        "MNT_MID_L_01": {
+          "triangles": 8192,
+          "vertices": 4225,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            -1950,
+            -420,
+            -1900
+          ],
+          "bounds_max": [
+            -480,
+            880.31,
+            -950
+          ],
+          "draco": true
+        },
+        "MNT_MID_L_02": {
+          "triangles": 8192,
+          "vertices": 4225,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            -2600,
+            -420,
+            -2750
+          ],
+          "bounds_max": [
+            -820,
+            525.94,
+            -1700
+          ],
+          "draco": true
+        },
+        "MNT_MID_R_01": {
+          "triangles": 8192,
+          "vertices": 4225,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            480,
+            -420,
+            -1990
+          ],
+          "bounds_max": [
+            2050,
+            1058.57,
+            -1010
+          ],
+          "draco": true
+        },
+        "MNT_MID_R_02": {
+          "triangles": 8192,
+          "vertices": 4225,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            820,
+            -420,
+            -2840
+          ],
+          "bounds_max": [
+            2700,
+            690.23,
+            -1790
+          ],
+          "draco": true
+        },
+        "VALLEY_FLOOR": {
+          "triangles": 18432,
+          "vertices": 9409,
+          "material": "MAT_VALLEY_DARK",
+          "bounds_min": [
+            -2400,
+            -205.31,
+            -4400
+          ],
+          "bounds_max": [
+            2400,
+            -98.96,
+            900
+          ],
+          "draco": true
+        },
+        "VALLEY_WALL_L": {
+          "triangles": 6272,
+          "vertices": 3249,
+          "material": "MAT_VALLEY_DARK",
+          "bounds_min": [
+            -1600.0,
+            -160,
+            -2900
+          ],
+          "bounds_max": [
+            -190.0,
+            669.82,
+            900
+          ],
+          "draco": true
+        },
+        "VALLEY_WALL_R": {
+          "triangles": 6272,
+          "vertices": 3249,
+          "material": "MAT_VALLEY_DARK",
+          "bounds_min": [
+            190.0,
+            -160,
+            -2900
+          ],
+          "bounds_max": [
+            1600.0,
+            668.66,
+            900
+          ],
+          "draco": true
+        }
+      },
+      "total_triangles": 131884,
+      "mesh_count": 16,
+      "material_count": 4,
+      "materials": [
+        "MAT_ROCK_GRAPHITE",
+        "MAT_ROCK_TITANIUM",
+        "MAT_ROUTE_ACCENT",
+        "MAT_VALLEY_DARK"
+      ],
+      "bounds_min": [
+        -3400,
+        -420,
+        -4400
+      ],
+      "bounds_max": [
+        3500,
+        1184.94,
+        900
+      ],
+      "bounds_size": [
+        6900,
+        1604.94,
+        5300
+      ],
+      "duplicate_names": [],
+      "missing_objects": [],
+      "unexpected_objects": [],
+      "guide_objects_leaked": [],
+      "empty_meshes": [],
+      "invalid_bounds": [],
+      "failures": [],
+      "warnings": [],
+      "extensions_required": [
+        "KHR_draco_mesh_compression"
+      ],
+      "generator": "Khronos glTF Blender I/O v5.2.39"
+    },
+    "mobile": {
+      "variant": "mobile",
+      "file": "public/models/stratos-mountains-mobile.glb",
+      "exists": true,
+      "bytes": 164148,
+      "nodes": {
+        "ASCENT_ROUTE": {
+          "triangles": 160,
+          "vertices": 162,
+          "material": "MAT_ROUTE_ACCENT",
+          "bounds_min": [
+            -37.64,
+            -202.17,
+            -1440
+          ],
+          "bounds_max": [
+            123.31,
+            -191.58,
+            120
+          ],
+          "draco": true
+        },
+        "CLOUD_PASS": {
+          "triangles": 3200,
+          "vertices": 1681,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            -560,
+            -420,
+            -3600
+          ],
+          "bounds_max": [
+            560,
+            -86.18,
+            -2600
+          ],
+          "draco": true
+        },
+        "CLOUD_PEAK_L": {
+          "triangles": 3872,
+          "vertices": 2025,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            -632.14,
+            -420,
+            -3300
+          ],
+          "bounds_max": [
+            -188.0,
+            887.83,
+            -2200
+          ],
+          "draco": true
+        },
+        "CLOUD_PEAK_R": {
+          "triangles": 3872,
+          "vertices": 2025,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            180.33,
+            -420,
+            -3150
+          ],
+          "bounds_max": [
+            630.21,
+            812.43,
+            -2000
+          ],
+          "draco": true
+        },
+        "MNT_BACKGROUND_C": {
+          "triangles": 3200,
+          "vertices": 1681,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            -900,
+            -420,
+            -6600
+          ],
+          "bounds_max": [
+            900,
+            186.14,
+            -5200
+          ],
+          "draco": true
+        },
+        "MNT_BACKGROUND_L": {
+          "triangles": 2312,
+          "vertices": 1225,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            -1500,
+            -420,
+            -4900
+          ],
+          "bounds_max": [
+            -90,
+            -29.21,
+            -3700
+          ],
+          "draco": true
+        },
+        "MNT_BACKGROUND_R": {
+          "triangles": 2312,
+          "vertices": 1225,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            110,
+            -420,
+            -5050
+          ],
+          "bounds_max": [
+            1560,
+            -54.66,
+            -3850
+          ],
+          "draco": true
+        },
+        "MNT_FOREGROUND_L": {
+          "triangles": 6272,
+          "vertices": 3249,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            -303.49,
+            -420,
+            -1320
+          ],
+          "bounds_max": [
+            -45.65,
+            316.67,
+            -430
+          ],
+          "draco": true
+        },
+        "MNT_FOREGROUND_R": {
+          "triangles": 5000,
+          "vertices": 2601,
+          "material": "MAT_ROCK_GRAPHITE",
+          "bounds_min": [
+            75.15,
+            -420,
+            -1720
+          ],
+          "bounds_max": [
+            381.25,
+            216.4,
+            -760
+          ],
+          "draco": true
+        },
+        "MNT_MID_L_01": {
+          "triangles": 3872,
+          "vertices": 2025,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            -614.78,
+            -420,
+            -2620
+          ],
+          "bounds_max": [
+            -152.25,
+            554.06,
+            -1560
+          ],
+          "draco": true
+        },
+        "MNT_MID_R_01": {
+          "triangles": 4232,
+          "vertices": 2209,
+          "material": "MAT_ROCK_TITANIUM",
+          "bounds_min": [
+            142.22,
+            -420,
+            -2560
+          ],
+          "bounds_max": [
+            545.51,
+            526.59,
+            -1520
+          ],
+          "draco": true
+        },
+        "VALLEY_FLOOR": {
+          "triangles": 5408,
+          "vertices": 2809,
+          "material": "MAT_VALLEY_DARK",
+          "bounds_min": [
+            -1000,
+            -205.29,
+            -9000
+          ],
+          "bounds_max": [
+            1000,
+            -147.6,
+            900
+          ],
+          "draco": true
+        },
+        "VALLEY_WALL_L": {
+          "triangles": 2312,
+          "vertices": 1225,
+          "material": "MAT_VALLEY_DARK",
+          "bounds_min": [
+            -527.37,
+            -160,
+            -2900
+          ],
+          "bounds_max": [
+            -60.0,
+            303.26,
+            900
+          ],
+          "draco": true
+        },
+        "VALLEY_WALL_R": {
+          "triangles": 2312,
+          "vertices": 1225,
+          "material": "MAT_VALLEY_DARK",
+          "bounds_min": [
+            60.0,
+            -160,
+            -2900
+          ],
+          "bounds_max": [
+            527.37,
+            339.61,
+            900
+          ],
+          "draco": true
+        }
+      },
+      "total_triangles": 48336,
+      "mesh_count": 14,
+      "material_count": 4,
+      "materials": [
+        "MAT_ROCK_GRAPHITE",
+        "MAT_ROCK_TITANIUM",
+        "MAT_ROUTE_ACCENT",
+        "MAT_VALLEY_DARK"
+      ],
+      "bounds_min": [
+        -1500,
+        -420,
+        -9000
+      ],
+      "bounds_max": [
+        1560,
+        887.83,
+        900
+      ],
+      "bounds_size": [
+        3060,
+        1307.83,
+        9900
+      ],
+      "duplicate_names": [],
+      "missing_objects": [
+        "MNT_MID_L_02",
+        "MNT_MID_R_02"
+      ],
+      "unexpected_objects": [],
+      "guide_objects_leaked": [],
+      "empty_meshes": [],
+      "invalid_bounds": [],
+      "failures": [],
+      "warnings": [],
+      "extensions_required": [
+        "KHR_draco_mesh_compression"
+      ],
+      "generator": "Khronos glTF Blender I/O v5.2.39"
+    }
+  },
+  "ok": true,
+  "mobile_composition": {
+    "present": true,
+    "ok": true,
+    "camera": {
+      "vertical_fov_deg": 32.0,
+      "advance_m": 900.0,
+      "rise_m": 780.0,
+      "rise_power": 1.5,
+      "stations": {
+        "valley": [
+          0.0,
+          -150.0,
+          200.0
+        ],
+        "passage": [
+          0.0,
+          57.0,
+          286.0
+        ],
+        "approach": [
+          0.0,
+          183.0,
+          375.5
+        ]
+      }
+    },
+    "safe_zone": {
+      "meridian_frame_fraction": 0.5303,
+      "protected_frame_fraction": 0.605,
+      "slope": 0.078066,
+      "half_angle_deg": 4.464,
+      "enforced_to_y": 2600.0,
+      "radius_at_enforcement_limit": 214.68,
+      "corridor_frame_fraction": 0.72,
+      "ellipse_by_viewport": {
+        "430x932": {
+          "half_width_fraction": 0.605,
+          "half_height_fraction": 0.2791,
+          "px": [
+            260.1,
+            260.1
+          ]
+        },
+        "390x844": {
+          "half_width_fraction": 0.605,
+          "half_height_fraction": 0.2796,
+          "px": [
+            235.9,
+            235.9
+          ]
+        },
+        "360x800": {
+          "half_width_fraction": 0.605,
+          "half_height_fraction": 0.2722,
+          "px": [
+            217.8,
+            217.8
+          ]
+        }
+      }
+    },
+    "limits": {
+      "max_flat_silhouette_run": 0.09,
+      "max_vertical_edge_run": 0.11,
+      "max_frame_top_touch": 0.15,
+      "max_pierced_px": 0,
+      "min_skyline_asymmetry": 0.15,
+      "min_mountain_columns": 0.55,
+      "min_sky_above_horizon": 0.3,
+      "max_sky_above_horizon": 0.97,
+      "min_clearance": 0.0,
+      "min_visible_px_per_mass": 300
+    },
+    "peak_visible_px": {
+      "ASCENT_ROUTE": 594,
+      "CLOUD_PASS": 13746,
+      "CLOUD_PEAK_L": 15245,
+      "CLOUD_PEAK_R": 3654,
+      "MNT_BACKGROUND_C": 19042,
+      "MNT_BACKGROUND_L": 2689,
+      "MNT_BACKGROUND_R": 2257,
+      "MNT_FOREGROUND_L": 14101,
+      "MNT_FOREGROUND_R": 7137,
+      "MNT_MID_L_01": 2082,
+      "MNT_MID_R_01": 3898,
+      "VALLEY_FLOOR": 57409,
+      "VALLEY_WALL_L": 7169,
+      "VALLEY_WALL_R": 9960
+    },
+    "projected_safe_zone_clearance": {
+      "min": 0.0838,
+      "max": 0.2354,
+      "by_frame": {
+        "valley@430x932": 0.0853,
+        "valley@390x844": 0.0838,
+        "valley@360x800": 0.1024,
+        "passage@430x932": 0.1582,
+        "passage@390x844": 0.1558,
+        "passage@360x800": 0.1777,
+        "approach@430x932": 0.2137,
+        "approach@390x844": 0.2135,
+        "approach@360x800": 0.2354
+      }
+    },
+    "worst_frame_metrics": {
+      "max_flat_silhouette_run": 0.0536,
+      "min_skyline_asymmetry": 0.2602,
+      "max_pierced_px": 0,
+      "max_safe_zone_violation_px": 0,
+      "max_sky_above_horizon": 0.96
+    },
+    "failures": []
+  }
+}

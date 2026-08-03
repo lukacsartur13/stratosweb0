@@ -1,0 +1,1005 @@
+/* ==========================================================================
+   Stratos Ascent — full journey, 0–30 000 m.
+
+   Scoped entirely to this route. Nothing here is imported by the production
+   site or the portal, and the palette is copied from assets/css/main.css rather
+   than shared, so this file can never change how the live site looks.
+   ========================================================================== */
+
+:root {
+  --void: #000000;
+  --ink: #04060a;
+  --signal: #ffee25;
+  --chrome: #cbdce9;
+  --paper: #f4f4f4;
+  --haze: #8a929b;
+
+  --hair: rgba(244, 244, 244, 0.14);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --body: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --data: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* The panel's own backdrop. Panels sit over a live 3D scene, so every block
+     of prose needs its own contrast floor — without it the copy is legible at
+     ground level and unreadable inside the cloud deck, which is the brightest
+     part of the journey. */
+  --plate: rgba(4, 8, 14, 0.72);
+  --plate-strong: rgba(4, 8, 14, 0.86);
+
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: auto;
+  /* Anchor links land below the HUD rather than under it. On mobile the HUD is
+     an opaque strip across the top of the sticky stage, so a link to
+     #stage-selected-work would otherwise deliver the visitor to a heading with
+     an instrument readout sitting on it. */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--body);
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.06rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  /* The one rule that stops a wide canvas ever producing a sideways scrollbar. */
+  overflow-x: clip;
+}
+
+img { max-width: 100%; height: auto; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  top: -100px; left: 1rem;
+  z-index: 60;
+  padding: 0.6rem 1rem;
+  background: var(--signal);
+  color: var(--void);
+  font: 600 0.8rem/1 var(--data);
+  text-decoration: none;
+}
+.skip:focus { top: 1rem; }
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}
+
+/* ============================================================== the track ===
+   One sticky stage, spanning the entire journey *including* the closing CTA.
+
+   The height comes from the stage map in journey.ts — `TRACK_VH * 100svh`, set
+   inline — so adding a stage changes one number in one file rather than a
+   magic value here that silently disagrees with the altitude mapping.
+
+   `svh`, not `vh` or `dvh`, and this is the mobile-stability fix:
+     * `vh` is the *large* viewport on iOS, so with the address bar showing, a
+       100vh sticky stage is taller than the visible area and the bottom of the
+       HUD sits under the browser chrome;
+     * `dvh` tracks the address bar as it hides and shows, which means the whole
+       track changes height mid-scroll, ScrollTrigger's mapping shifts under the
+       user, and the altitude visibly jumps;
+     * `svh` is the small viewport, fixed for the session. It costs a little
+       unused space when the bar is hidden and it never moves.
+   ========================================================================== */
+/* No height here, and that is the fix.
+
+   The track used to be `TRACK_VH * 100svh` with the narrative absolutely
+   positioned over it. That works exactly as long as every panel fits inside its
+   nominal share — which it does at 1440px and does not at 390px, where the case
+   studies stack into a single column half again as tall as their budget. The
+   overflowing narrative escaped the absolute box, the closing CTA ended up
+   below the footer, and the sticky handoff this route exists to fix was broken
+   again by the mechanism meant to fix it.
+
+   Now the content is in normal flow and *defines* the height; the sticky stage
+   is pulled behind it with a negative margin instead of being overlaid. The
+   track is therefore always exactly as tall as its content, on any viewport, in
+   any language, at any font size. The altitude curve is calibrated from the
+   resulting layout rather than assuming it — see journey.ts `calibrate`. */
+.journey__track {
+  position: relative;
+}
+
+.journey__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  z-index: 0;
+}
+
+.stage__surface,
+.stage__surface > canvas,
+.stage__loading {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stage__loading { background: var(--ink); }
+
+/* In flow, so it determines the track's height — then pulled up by exactly the
+   sticky stage's own flow box, so the first panel still shares a frame with the
+   instrument it describes.
+
+   The negative margin is doing the job absolute positioning used to do, minus
+   the failure mode: a sticky element occupies its flow box, so without the pull
+   the narrative would start one full viewport below the top of the track.
+
+   `pointer-events: none` hands the canvas back its pointer input for the
+   parallax; only the panel plates take events back. */
+.journey__content {
+  position: relative;
+  z-index: 2;
+  margin-top: -100svh;
+  pointer-events: none;
+}
+
+/* ================================================================= the HUD == */
+.hud {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1.25rem, 4vw, 3.5rem);
+  bottom: clamp(1.25rem, 4vw, 3rem);
+  pointer-events: none;
+  font-family: var(--data);
+}
+
+.hud__readout {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud__digits {
+  font-size: clamp(2.1rem, 1rem + 4.4vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  /* The readout crosses the whole altitude palette, from near-black to bright
+     cloud. A shadow rather than a plate keeps it legible against all of it
+     without putting a box in the corner of every frame. */
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.75);
+}
+
+.hud__unit {
+  font-size: clamp(0.85rem, 0.7rem + 0.5vw, 1.1rem);
+  color: var(--chrome);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
+}
+
+.hud__scale {
+  --fill: 0;
+  position: relative;
+  width: clamp(90px, 16vw, 190px);
+  height: 2px;
+  margin: 0.85rem 0 0.6rem;
+  background: rgba(244, 244, 244, 0.2);
+}
+
+.hud__scale > i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: block;
+  width: calc(var(--fill) * 100%);
+  background: var(--signal);
+}
+
+.hud__stage {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--chrome);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.85);
+}
+
+/* The sound toggle. The HUD as a whole is `pointer-events: none` so it never
+   sits between the visitor and the page; this is the one part of it that has to
+   be clickable, so it opts back in. */
+.hud__sound {
+  pointer-events: auto;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.6rem;
+  padding: 0;
+  color: var(--haze);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--hair);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.hud__sound[aria-pressed='true'] { color: var(--signal); border-color: rgba(255, 238, 37, 0.5); }
+
+/* Off is the same glyph with a strike through it, so the control does not
+   change size when it is pressed. */
+.hud__sound[aria-pressed='false'] .hud__sound-glyph::after {
+  content: '';
+  position: absolute;
+  left: 0.35rem;
+  right: 0.35rem;
+  top: 50%;
+  height: 1px;
+  background: currentColor;
+  transform: rotate(-40deg);
+}
+
+/* ============================================================== the panels == */
+/* Each panel is as tall as its stage's share of the track, set inline from the
+   stage map. That is what keeps the scroll position and the altitude in
+   agreement: a stage given 4.4 screens of scroll in journey.ts occupies 4.4
+   screens of narrative here, so the case studies arrive exactly when the
+   altitude says they do. A fixed 100svh per panel would put the two out of step
+   by ten screens over the full journey. */
+.panel {
+  position: relative;
+  min-height: calc(var(--share, 1) * 100svh);
+  display: flex;
+  align-items: center;
+  padding: clamp(4rem, 10vh, 8rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+/* Alternating sides, so the instrument is never permanently behind text on a
+   wide screen — and so the eye has somewhere to go as the journey progresses. */
+.panel:nth-of-type(even) { justify-content: flex-end; }
+.panel--centre { justify-content: center; text-align: center; }
+
+.panel__inner {
+  /* Narrow on purpose. Two reasons and they point the same way: prose is
+     readable at roughly 60–70 characters and unreadable much past it, and every
+     rem of extra width is a rem of instrument the plate covers up. */
+  width: min(100%, 34rem);
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  pointer-events: auto;
+  /* A wash rather than an opaque card: the instrument and the sky stay visible
+     through the copy, which is the entire reason for compositing HTML over a
+     3D scene instead of beside it. The gradient falls off toward the canvas
+     side so there is no hard edge cutting across the frame. */
+  /* Runs all the way to fully transparent. Stopping at any non-zero alpha
+     leaves a hard vertical edge down the frame — which, at the width this plate
+     needs, lands directly across the dial. */
+  background: linear-gradient(100deg, rgba(4, 8, 14, 0.92) 55%, rgba(4, 8, 14, 0.5) 82%, rgba(4, 8, 14, 0));
+  border-left: 1px solid var(--hair);
+}
+
+.panel:nth-of-type(even) .panel__inner {
+  background: linear-gradient(260deg, rgba(4, 8, 14, 0.92) 55%, rgba(4, 8, 14, 0.5) 82%, rgba(4, 8, 14, 0));
+  border-left: 0;
+  border-right: 1px solid var(--hair);
+}
+
+/* The wide and centred panels carry dense content — case studies, the process
+   grid — so they get a flat plate instead of a wash. A gradient behind a
+   four-column definition list is unreadable at the transparent end. */
+.panel--wide .panel__inner,
+.panel--centre .panel__inner {
+  background: var(--plate);
+  border: 1px solid var(--hair);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.panel--wide .panel__inner { width: min(100%, 68rem); }
+.panel--centre .panel__inner { width: min(100%, 46rem); }
+
+.panel__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin: 0 0 1.2rem;
+  font: 500 0.72rem/1.4 var(--data);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+.panel--centre .panel__eyebrow { justify-content: center; }
+
+.panel__altitude {
+  color: var(--signal);
+  letter-spacing: 0.1em;
+}
+
+.panel__title {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.55rem, 1rem + 1.9vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+/* Sized so the whole hero panel — eyebrow, four heading lines, lead, two
+   buttons and the caption — still clears the HUD at 900px tall. It fitted at
+   4.6rem only if the caption was allowed to run off the bottom of the frame. */
+.panel__title--hero { font-size: clamp(1.9rem, 1rem + 2.5vw, 3.1rem); }
+.panel__title--statement { font-size: clamp(1.6rem, 1rem + 2vw, 2.7rem); }
+
+.panel__title em {
+  font-style: normal;
+  color: var(--signal);
+}
+
+.panel__lead {
+  margin: 0 0 1.2rem;
+  font-size: clamp(0.96rem, 0.92rem + 0.24vw, 1.1rem);
+  color: var(--chrome);
+}
+
+.panel p { margin: 0 0 1rem; }
+.panel p:last-child { margin-bottom: 0; }
+
+.panel__meta {
+  margin-top: 1.4rem;
+  font-size: 0.82rem;
+  color: var(--haze);
+}
+
+/* ---------------------------------------------------------------- buttons -- */
+.panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.8rem 0 0;
+}
+.panel--centre .panel__actions { justify-content: center; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--signal);
+  color: var(--void);
+  font: 600 0.85rem/1 var(--body);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: 1px solid var(--signal);
+  transition: transform 0.25s var(--ease), background-color 0.25s var(--ease);
+  /* 44px minimum target on touch, without the padding having to carry it. */
+  min-height: 44px;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--paper);
+  border-color: var(--hair);
+}
+.btn--ghost:hover { border-color: var(--chrome); }
+
+.btn--lg { padding: 1.05rem 2rem; font-size: 0.95rem; }
+
+/* ------------------------------------------- stage 3 — the capability ladder */
+.ladder {
+  counter-reset: rung;
+  list-style: none;
+  margin: 1.8rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--hair);
+}
+
+.ladder__step {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.2rem 1.6rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--hair);
+}
+
+.ladder__at {
+  grid-row: span 2;
+  font: 500 0.78rem/1.6 var(--data);
+  color: var(--signal);
+  letter-spacing: 0.08em;
+}
+
+.ladder__name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.ladder__line {
+  margin: 0 !important;
+  color: var(--chrome);
+  font-size: 0.94rem;
+}
+
+/* ------------------------------------------------- stage 6 — the case studies */
+.work {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: 2rem;
+}
+
+.case {
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.2rem, 2.4vw, 2rem);
+  background: rgba(4, 8, 14, 0.5);
+  border: 1px solid var(--hair);
+}
+
+/* Two columns from tablet up, image beside the prose. Deliberately not a
+   horizontal carousel: a carousel hides most of the work behind an interaction
+   nobody performs, and it makes the case studies feel interchangeable — which
+   is the opposite of "passing meaningful altitude milestones". */
+@media (min-width: 900px) {
+  .case {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-areas:
+      'head  figure'
+      'body  figure'
+      'quote figure'
+      'logo  figure';
+    align-items: start;
+    column-gap: 2.2rem;
+  }
+  .case__head { grid-area: head; }
+  .case__figure { grid-area: figure; align-self: stretch; }
+  .case__body { grid-area: body; }
+  .case__quote { grid-area: quote; }
+  .case__logo { grid-area: logo; }
+  .case:nth-child(even) {
+    grid-template-areas:
+      'figure head'
+      'figure body'
+      'figure quote'
+      'figure logo';
+  }
+}
+
+.case__head { display: grid; gap: 0.25rem; }
+
+.case__at {
+  margin: 0 !important;
+  font: 500 0.78rem/1.4 var(--data);
+  letter-spacing: 0.14em;
+  color: var(--signal);
+}
+
+.case__name {
+  margin: 0;
+  font-size: clamp(1.3rem, 1rem + 1.1vw, 1.9rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.case__sector {
+  margin: 0 !important;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+.case__figure { margin: 0; }
+.case__figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--hair);
+}
+
+.case__body { margin: 0; display: grid; gap: 0.15rem; }
+.case__body dt {
+  margin-top: 0.75rem;
+  font: 500 0.72rem/1.6 var(--data);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+.case__body dt:first-child { margin-top: 0; }
+.case__body dd { margin: 0; color: var(--chrome); font-size: 0.95rem; }
+
+.case__metric {
+  margin: 0 !important;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--hair);
+}
+.case__metric strong {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--signal);
+}
+
+.case__quote {
+  margin: 0;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--signal);
+}
+.case__quote p { margin: 0 0 0.5rem; font-size: 1rem; }
+.case__quote footer { font-size: 0.85rem; color: var(--haze); }
+
+.case__logo {
+  width: auto;
+  max-height: 34px;
+  opacity: 0.75;
+  justify-self: start;
+}
+
+/* --------------------------------------------------- stage 7 — the system --- */
+.system {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 860px) {
+  .system { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.system__ring {
+  padding: 1.2rem;
+  border: 1px solid var(--hair);
+  background: rgba(4, 8, 14, 0.42);
+}
+
+/* The three layers are not peers, and the border weight says so before the
+   text does. */
+.system__ring[data-ring='0'] { border-color: rgba(255, 238, 37, 0.4); }
+.system__ring[data-ring='1'] { border-color: rgba(203, 220, 233, 0.24); }
+
+.system__ring-name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.system__ring-index {
+  font: 500 0.75rem/1 var(--data);
+  color: var(--signal);
+}
+
+.system__ring-note {
+  margin: 0 0 0.9rem !important;
+  font-size: 0.85rem;
+  color: var(--haze);
+}
+
+.system__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+.system__list li {
+  font-size: 0.9rem;
+  color: var(--chrome);
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--hair);
+}
+.system__list b { color: var(--paper); font-weight: 500; }
+
+/* -------------------------------------------------- stage 8 — the process --- */
+.process {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.check {
+  padding: 1.2rem;
+  border: 1px solid var(--hair);
+  background: rgba(4, 8, 14, 0.42);
+}
+
+.check__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--hair);
+}
+
+.check__index {
+  font: 500 0.8rem/1 var(--data);
+  color: var(--signal);
+}
+
+.check__name {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.check__at {
+  margin-left: auto;
+  font: 400 0.75rem/1 var(--data);
+  color: var(--haze);
+}
+
+.check__grid {
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+@media (min-width: 760px) {
+  .check__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.check__grid dt {
+  font: 500 0.7rem/1.6 var(--data);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+.check__grid dd { margin: 0.15rem 0 0; font-size: 0.92rem; color: var(--chrome); }
+
+/* ============================================== stage 11 — the destination ===
+   The final CTA is the last panel *inside* the sticky container, not a section
+   after it. It therefore sits over the finished scene — Earth curvature, thin
+   horizon, stars — which is the intended composition rather than a handoff to
+   be disguised. The plate is heavier here than elsewhere because this is the
+   one panel that must be readable over the brightest thing in the journey.
+   ========================================================================== */
+.panel--destination {
+  min-height: calc(var(--share, 1) * 100svh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(4rem, 10vh, 8rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.panel--destination .panel__inner {
+  width: min(100%, 48rem);
+  background: var(--plate-strong);
+  border: 1px solid var(--hair);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.panel--destination .panel__eyebrow { justify-content: center; }
+
+.panel__actions--final { justify-content: center; margin-top: 2rem; }
+
+.panel__contact {
+  margin-top: 1.4rem !important;
+  font-size: 0.92rem;
+  color: var(--haze);
+}
+.panel__contact a { color: var(--chrome); }
+
+.panel__stages {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 1.4rem 0 0;
+  border-top: 1px solid var(--hair);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.5rem 1rem;
+}
+
+.panel__stages a {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  color: var(--chrome);
+  text-decoration: none;
+  font-size: 0.82rem;
+  border-bottom: 1px solid transparent;
+}
+.panel__stages a:hover { border-bottom-color: var(--hair); }
+.panel__stages i { font: 400 0.75rem/1.6 var(--data); font-style: normal; color: var(--haze); }
+
+/* =================================================================== footer == */
+.journey__footer {
+  position: relative;
+  z-index: 2;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 5vw, 4rem);
+  background: var(--void);
+  border-top: 1px solid var(--hair);
+  font-size: 0.82rem;
+  color: var(--haze);
+}
+.journey__footer p { margin: 0 0 0.5rem; }
+.journey__footer a { color: var(--chrome); }
+
+/* ================================================================ fallback == */
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: var(--ink);
+}
+
+.fallback__dial { width: min(46vw, 34svh); height: auto; }
+.fallback__note { max-width: 30rem; text-align: center; font-size: 0.85rem; color: var(--haze); }
+.fallback__range { font: 400 0.8rem/1 var(--data); color: var(--chrome); letter-spacing: 0.14em; }
+
+/* The six structural states, as controls rather than as an animation.
+   Deliberately no transition on any of these: this is the reduced-motion path,
+   and a state selector that eases between states is the same failure the path
+   exists to avoid. */
+.fallback__states {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+  max-width: 40rem;
+}
+
+.fallback__states button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.45rem 0.7rem;
+  font: 400 0.68rem/1.3 var(--data);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--haze);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hair);
+  cursor: pointer;
+  transition: none;
+}
+
+.fallback__states button i { font-style: normal; font-size: 0.62rem; opacity: 0.7; }
+.fallback__states button:hover { color: var(--chrome); }
+
+.fallback__states button[aria-pressed='true'] {
+  color: var(--void);
+  background: var(--signal);
+  border-color: var(--signal);
+}
+
+.fallback__state-note {
+  max-width: 34rem;
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--paper);
+}
+
+/* ============================================================ mobile tuning ==
+   Narrow viewports get the same journey with less of it: fewer simultaneous
+   layers in the scene (handled in JS by the `reduced` tier) and a lighter
+   layout here. The panels stop being floating cards and become full-width
+   plates, because a 42rem card inside a 390px viewport is a card with 1rem of
+   margin pretending to be a layout.
+   ========================================================================== */
+@media (max-width: 700px) {
+  .panel { padding: clamp(3rem, 8vh, 5rem) 1rem; }
+
+  .panel__inner {
+    width: 100%;
+    padding: 1.25rem 1.1rem;
+    /* Slightly heavier: on a phone the canvas is behind *all* of the text, not
+       beside it, so there is no unobstructed area to rely on. */
+    background: var(--plate-strong);
+  }
+
+  /* On mobile the HUD becomes an instrument strip across the top, not a
+     floating readout in a corner.
+
+     The corner version was wrong in both places it was tried. At the bottom it
+     sat on the panel plate, which is full-bleed at this width. Moved to the top
+     it printed itself through whatever heading happened to be passing — the
+     closing CTA headline at 390px, the process heading at 430px — because a
+     panel three viewports tall inevitably scrolls its own heading under a fixed
+     overlay.
+
+     A strip with its own opaque backdrop makes that a non-event: content
+     passing beneath is occluded rather than tangled with, which is exactly how
+     a fixed header behaves and how a real instrument strip reads. It also
+     recovers the vertical space the stacked corner layout was spending. */
+  .hud {
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: max(0.45rem, env(safe-area-inset-top)) 1rem 0.5rem;
+    background: linear-gradient(rgba(4, 8, 14, 0.96) 62%, rgba(4, 8, 14, 0.78) 88%, rgba(4, 8, 14, 0));
+    transition: opacity 0.5s var(--ease);
+  }
+
+  /* …and stands down entirely over the closing panel. It has finished its job
+     by then — the panel's own eyebrow reads 30 000 m — so the strip is only in
+     the way. The element stays mounted, because it owns the clock. */
+  .hud[data-stage='destination'] {
+    opacity: 0;
+  }
+
+  .hud__readout { gap: 0.2em; }
+  .hud__digits { font-size: 1.45rem; text-shadow: none; }
+  .hud__unit { font-size: 0.7rem; }
+  .hud__scale { width: auto; margin: 0; }
+  .hud__stage { font-size: 0.6rem; text-shadow: none; }
+
+  /* Tightened so the plate has a chance of fitting the viewport. At the default
+     spacing the lower-atmosphere panel came to 987px inside a 740px screen,
+     which means no scroll position exists where the whole thing is readable at
+     once. */
+  .ladder__step { grid-template-columns: 1fr; gap: 0.1rem; padding: 0.85rem 0; }
+  .ladder__at { grid-row: auto; font-size: 0.72rem; }
+  .ladder__name { font-size: 0.98rem; }
+  .ladder__line { font-size: 0.88rem; }
+
+  .case { padding: 1.1rem; }
+  .panel__stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ======================================================== reduced motion ==== */
+@media (prefers-reduced-motion: reduce) {
+  /* The scene is never mounted on this path — the capability probe refuses it
+     before the chunk is requested — but the *document* still has to behave.
+     Un-sticking the stage is the important part: a sticky element over a
+     1 100 vh track is itself a motion effect, and leaving it in place would
+     mean a reduced-motion visitor scrolls eleven screens past a pinned static
+     instrument.
+     */
+  .journey__track { height: auto !important; }
+
+  .journey__stage {
+    position: relative;
+    height: auto;
+    min-height: 60svh;
+  }
+
+  /* The pull-up has to go with the sticky positioning, and forgetting it was a
+     real bug rather than a tidiness point.
+
+     In the animated layout the content is lifted by exactly one viewport
+     (`margin-top: -100svh`) because the stage is a sticky 100svh box the copy is
+     supposed to be composited *over*. Un-stick the stage without undoing the
+     lift and the copy is still pulled up a full viewport while the stage is only
+     60svh tall — so the narrative starts 40svh above the top of the document, in
+     a region no scroll position can reach. On a 1440×900 desktop that put the
+     entire hero headline off screen: a reduced-motion visitor landed mid-sentence
+     in the second paragraph, with the fallback's own state buttons showing
+     through the copy plate underneath it.
+
+     On this path nothing is being composited over anything. The instrument is a
+     static figure, and the narrative belongs after it, in flow. */
+  .journey__content {
+    margin-top: 0;
+    pointer-events: auto;
+  }
+
+  .panel { min-height: 0; }
+
+  .panel__inner {
+    /* No blur: it is a per-frame composite for an effect nobody asked for, and
+       on this path there is nothing behind it to blur. */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(4, 8, 14, 0.92);
+  }
+
+  .btn { transition: none; }
+  .btn:hover { transform: none; }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================ debug panel ====
+   Development builds only — the module is never imported in a production
+   build, so these rules are inert there. Kept in this file rather than a
+   separate one so the panel has no build-time cost of its own.
+   ========================================================================== */
+.debug__toggle {
+  position: absolute;
+  z-index: 40;
+  right: 0.75rem;
+  top: 0.75rem;
+  padding: 0.35rem 0.6rem;
+  font: 500 0.68rem/1 var(--data);
+  color: var(--chrome);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--hair);
+  cursor: pointer;
+}
+
+.debug {
+  position: absolute;
+  z-index: 40;
+  right: 0.75rem;
+  top: 0.75rem;
+  width: min(19rem, calc(100vw - 1.5rem));
+  max-height: min(80svh, 44rem);
+  overflow-y: auto;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.86);
+  border: 1px solid var(--hair);
+  font: 400 0.72rem/1.5 var(--data);
+  color: var(--chrome);
+}
+
+.debug__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.debug__head button { background: none; border: none; color: var(--chrome); font-size: 1.1rem; cursor: pointer; }
+.debug__readout {
+  margin: 0 0 0.6rem;
+  color: var(--signal);
+  font: 400 0.66rem/1.45 var(--data);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.debug__check { display: flex; gap: 0.4rem; align-items: center; margin-bottom: 0.6rem; }
+.debug__knob { display: block; margin-bottom: 0.5rem; }
+.debug__knob span { display: flex; justify-content: space-between; }
+.debug__knob i { font-style: normal; color: var(--signal); }
+.debug__knob input { width: 100%; }
+.debug__label { margin: 0.7rem 0 0.35rem; color: var(--haze); }
+.debug__jumps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.25rem; }
+.debug__jumps button {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.3rem;
+  padding: 0.3rem 0.4rem;
+  font: 400 0.66rem/1.3 var(--data);
+  color: var(--chrome);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--hair);
+  cursor: pointer;
+}
+.debug__jumps i { font-style: normal; color: var(--haze); }
+.debug__knob select { width: 100%; margin-top: 0.15rem; font: 400 0.68rem/1.4 var(--data); }
+.debug__knob--override span { align-items: center; gap: 0.35rem; justify-content: flex-start; }
+.debug__knob--override span i { margin-left: auto; }
+.debug__note { margin: 0.25rem 0 0.6rem; font-size: 0.62rem; line-height: 1.45; color: var(--haze); }
+.debug__reset {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.4rem;
+  font: 400 0.66rem/1.3 var(--data);
+  color: var(--haze);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--hair);
+  cursor: pointer;
+}
+.debug__knob input[type='color'] { width: 100%; height: 1.4rem; padding: 0; }

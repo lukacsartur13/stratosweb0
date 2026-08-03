@@ -1,0 +1,145 @@
+#==============================================================================
+# Stratos — Netlify configuration
+#
+# One site serves two things:
+#   /            the static, generated, trilingual public site
+#   /portal/*    the React SPA (admin now, client accounts later)
+#   /api/*       serverless functions
+#==============================================================================
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+#------------------------------------------------------------------ redirects
+# The portal is a single-page app: a direct hit on /portal/leads must return the
+# SPA shell and let the router resolve the path, rather than 404. Everything
+# under /portal that is not a real file falls through to index.html.
+[[redirects]]
+  from = "/portal/*"
+  to = "/portal/index.html"
+  status = 200
+
+# Convenience: bare /portal and the old /login and /dashboard guesses land in
+# the right place instead of on the static 404.
+[[redirects]]
+  from = "/portal"
+  to = "/portal/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/login"
+  to = "/portal/login"
+  status = 302
+
+[[redirects]]
+  from = "/dashboard/*"
+  to = "/portal/"
+  status = 302
+
+#-------------------------------------------------------------------- headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+    # CSP notes — every allowance below is here for a named reason:
+    #   'unsafe-inline' on style-src   Google Fonts injects an inline <style>,
+    #                                  and the site sets per-frame custom
+    #                                  properties on element style attributes.
+    #   fonts.googleapis / gstatic     Aboreto, Instrument Sans, JetBrains Mono.
+    #   *.supabase.co on connect-src   the portal's REST, auth and realtime.
+    #   'self' on script-src only      no inline scripts, no CDN, no eval; the
+    #                                  WebGL shaders are strings, not scripts.
+    #   frame-ancestors 'none'         belt and braces with X-Frame-Options.
+    #   worker-src 'self' blob:        three's DRACOLoader builds its decoder
+    #                                  Worker from a blob: URL. See the block
+    #                                  below — this is measured, not assumed.
+    #
+    # ON worker-src, AND WHY THERE IS NO 'wasm-unsafe-eval' HERE
+    # ----------------------------------------------------------
+    # The two mountain GLBs require KHR_draco_mesh_compression, so they do not
+    # parse without a decoder. `experiments/probe-draco-csp.mjs` serves the real
+    # files under the real header and measures what Chromium actually does;
+    # `_build/reports/draco-csp-probe.txt` is its output. What it found:
+    #
+    #   * The blocker is `worker-src`, not WebAssembly. DRACOLoader creates its
+    #     worker from a blob: URL; with no worker-src set the policy falls back
+    #     to `script-src 'self'`, which refuses blob:. Chromium's own words:
+    #     "Creating a worker from 'blob:…' violates the following Content
+    #     Security Policy directive: \"script-src 'self'\". Note that
+    #     'worker-src' was not explicitly set, so 'script-src' is used as a
+    #     fallback. The action has been blocked."
+    #
+    #   * The failure is a HANG, not an error. `GLTFLoader.loadAsync` never
+    #     settles, because the worker that would have answered was never
+    #     started. Nothing rejects and nothing logs beyond the violation.
+    #
+    #   * Adding 'wasm-unsafe-eval' on its own fixes nothing — same hang, same
+    #     violation, because the worker still never starts.
+    #
+    #   * With worker-src fixed and NOTHING else added, the self-hosted
+    #     JavaScript decoder decodes both files: 106 ms for the 131,884-triangle
+    #     desktop asset and 76 ms for the 48,336-triangle mobile one, once, in a
+    #     worker, off the main thread.
+    #
+    #   * 'wasm-unsafe-eval' would additionally allow the WASM decoder, which is
+    #     about four times faster at 24 ms / 19 ms. It is therefore *faster*,
+    #     and it is not *required*: the brief's rule is that it may only be used
+    #     if demonstrably required, and a working decoder at a one-off 106 ms in
+    #     a worker means it is not. So the narrower policy ships and
+    #     `MOUNTAIN_DECODER` in mountainAsset.ts is pinned to 'js' to match it.
+    #     Widening the policy and flipping that constant is a two-line change if
+    #     the decode cost ever turns out to matter on a real device.
+    #
+    # blob: on worker-src is a small allowance in this policy specifically:
+    # script-src stays 'self' with no unsafe-inline and no eval, so there is no
+    # route by which injected script could author the blob in the first place.
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self';
+      worker-src 'self' blob:;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: blob: https://*.supabase.co;
+      connect-src 'self' https://*.supabase.co wss://*.supabase.co;
+      form-action 'self';
+      frame-ancestors 'none';
+      base-uri 'self';
+      object-src 'none';
+      upgrade-insecure-requests
+    """
+
+# The portal is private. Nothing about it should be cached by a shared cache or
+# indexed, and a stale shell after a deploy would strand people on old JS.
+[[headers]]
+  for = "/portal/*"
+  [headers.values]
+    Cache-Control = "no-store, must-revalidate"
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
+# Hashed build output is immutable by definition.
+[[headers]]
+  for = "/portal/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Robots-Tag = "noindex"

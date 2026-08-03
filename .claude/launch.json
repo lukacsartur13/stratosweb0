@@ -1,0 +1,32 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dist",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "--prefix",
+        "experiments",
+        "vite",
+        "preview",
+        "--config",
+        "experiments/vite.home.config.ts",
+        "--port",
+        "4326",
+        "--strictPort"
+      ],
+      "port": 4326
+    },
+    {
+      "name": "home-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "experiments",
+        "run",
+        "dev:home"
+      ],
+      "port": 5177
+    }
+  ]
+}

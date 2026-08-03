@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webdesign für Großunternehmen — dediziertes Entwicklungsteam | Stratos</title>
+<meta name="description" content="Individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live.">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="alternate" hreflang="hu" href="/nagyvallalat.html">
+<link rel="alternate" hreflang="en" href="/en/web-design-enterprise.html">
+<link rel="alternate" hreflang="de" href="/de/webdesign-grossunternehmen.html">
+<link rel="alternate" hreflang="x-default" href="/nagyvallalat.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
+</head>
+<body data-ceiling="21000">
+
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="contrail" aria-hidden="true"></canvas>
+<div class="plane-cursor" aria-hidden="true"><img src="../assets/img/plane-cursor.png" alt=""></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<aside class="rail" aria-hidden="true">
+  <img class="rail__mark" src="../assets/img/plane-cursor.png" alt="">
+  <div class="rail__tape"><div class="rail__ticks"></div></div>
+  <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">METER</span></div>
+  <div class="rail__layer">TROPOSPHÄRE</div>
+</aside>
+
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Stratos — Startseite">
+    <img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span>
+  </a>
+  <nav class="nav__links" aria-label="Hauptnavigation">
+    <a class="navlink" href="ueber-uns.html">Über uns</a>
+    <div class="drop">
+      <a class="navlink" href="webdesign-kmu.html" aria-haspopup="true" aria-current="true">Leistungen</a>
+      <div class="drop__panel">
+        <a href="webdesign-kmu.html">Webdesign für KMU <em>1.200 M</em></a>
+        <a href="webdesign-grossunternehmen.html" aria-current="page">Webdesign für Großunternehmen <em>9.400 M</em></a>
+        <a href="branding.html">Branding <em>4.800 M</em></a>
+        <a href="werbeanzeigen.html">Werbeanzeigen <em>17.000 M</em></a>
+        <a href="impact-programm.html">Impact-Programm <em>30.000 M</em></a>
+      </div>
+    </div>
+    <a class="navlink" href="blog.html">Blog</a>
+    <a class="navlink" href="kontakt.html">Kontakt</a>
+    <div class="lang" role="group" aria-label="Sprache wählen"><a href="../nagyvallalat.html" hreflang="hu" lang="hu">HU</a><a href="../en/web-design-enterprise.html" hreflang="en" lang="en">EN</a><a href="webdesign-grossunternehmen.html" hreflang="de" lang="de" aria-current="true">DE</a></div>
+    <a class="btn" href="angebot.html" data-magnet><span>Angebot</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Menü"><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobile Navigation">
+  <a href="index.html"><b>00</b> Start</a>
+  <a href="ueber-uns.html"><b>01</b> Über uns</a>
+  <a href="webdesign-kmu.html"><b>02</b> KMU</a>
+  <a href="webdesign-grossunternehmen.html" aria-current="page"><b>03</b> Konzerne</a>
+  <a href="branding.html"><b>04</b> Branding</a>
+  <a href="werbeanzeigen.html"><b>05</b> Werbung</a>
+  <a href="impact-programm.html"><b>06</b> Impact</a>
+  <a href="blog.html"><b>07</b> Blog</a>
+  <a href="kontakt.html"><b>08</b> Kontakt</a>
+  <a href="angebot.html"><b>09</b> Angebot</a>
+  <div class="lang" role="group" aria-label="Sprache wählen"><a href="../nagyvallalat.html" hreflang="hu" lang="hu">HU</a><a href="../en/web-design-enterprise.html" hreflang="en" lang="en">EN</a><a href="webdesign-grossunternehmen.html" hreflang="de" lang="de" aria-current="true">DE</a></div>
+  <div class="menu__foot">
+    <span>lukacs.artur@media-stratos.com</span>
+    <span>+36 30 584 8024</span>
+  </div>
+</nav>
+
+<div class="shell">
+<main id="main">
+<section class="phead">
+    <img class="phead__bg" src="../assets/img/kivitelezes.jpg" alt="" data-para="0.05">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Stratos</a> / Leistungen / <b>Webdesign für Großunternehmen</b></p>
+      <h1 class="display h-xl">Jede Entwicklung,<br><span class="sig">ein Partner.</span></h1>
+      <div class="grid g-split" style="align-items:end">
+        <p class="lede">Individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live.</p>
+        <div>
+          <div class="tags" style="margin-bottom:1.6rem">
+            <span>Dediziertes Entwicklungsteam</span>
+            <span>Enterprise-SLA</span>
+            <span>Skalierbare Architektur</span>
+            <span>Admin-Oberfläche</span>
+          </div>
+          <div class="btn-row">
+            <a class="btn" href="kontakt.html" data-magnet><span>Gespräch vereinbaren</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ számok -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><span class="stat__n">99,9%</span><span class="stat__l">Garantierte Verfügbarkeit</span></div>
+        <div class="stat"><span class="stat__n">Beliebig</span><span class="stat__l">Märkte, mehrsprachig</span></div>
+        <div class="stat"><span class="stat__n">&lt; 4 Stunden</span><span class="stat__l">Reaktionszeit bei kritischen Fehlern</span></div>
+        <div class="stat"><span class="stat__n" data-count="4">0</span><span class="stat__l">Jahre Entwicklungserfahrung</span></div>
+      </div>
+      <p class="lede" style="max-width:62ch;margin-top:clamp(2rem,5vw,3.5rem)">In einem Großunternehmen ist digitale Entwicklung kein Projekt, sondern laufender Betrieb. Wir konzipieren, bauen, integrieren und betreiben — mit <span class="sig">einem Team</span>, einem Verantwortlichen und planbarem SLA.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ mit fejlesztünk -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(2rem,5vw,3.5rem)">
+        <div>
+          <p class="eyebrow">Umfang</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Was wir<br>entwickeln</h2>
+        </div>
+      </div>
+
+      <div class="grid g-3" data-stagger>
+        <article class="card" data-reveal>
+          <span class="card__k">Plattform</span>
+          <h3>Individuelle Plattformen und Web-Apps</h3>
+          <p>Kundenportale, interne Werkzeuge, SaaS-Oberflächen. In Code gebaut und auf eure Prozesse zugeschnitten — nicht aus einer Vorlage, nicht aus einem Baukasten.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Integration</span>
+          <h3>System­integration</h3>
+          <p>Verbindung von ERP, CRM, Zahlungs- und Logistiksystemen. APIs, Datensynchronisation und ein einheitlicher Datenfluss mit eurer bestehenden Infrastruktur.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Design</span>
+          <h3>Designsystem und Erscheinungsbild</h3>
+          <p>Eine skalierbare Komponentenbibliothek und ein einheitliches Erscheinungsbild auf allen Flächen — damit eure Marke über Märkte und Produkte hinweg konsistent bleibt.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Sicherheit</span>
+          <h3>Sicherheit und Compliance</h3>
+          <p>DSGVO, Zugriffsverwaltung, Auditierbarkeit, Penetrationstests. Sicherheit auf Unternehmensniveau von der Konzeption bis zum Betrieb.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Team</span>
+          <h3>Dediziertes Entwicklungsteam</h3>
+          <p>Ein skalierbares Team an eurer Seite: Entwickler, Designer, Projektleitung. Flexible Kapazität, an die Auslastung angepasst.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Betrieb</span>
+          <h3>Betrieb und SLA</h3>
+          <p>Monitoring, Störungsbehebung, Versionierung, Backups und Skalierung. Garantierte Verfügbarkeit und definierte Reaktionszeiten.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ folyamat -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(1.5rem,4vw,2.5rem)">
+        <div>
+          <p class="eyebrow">Der Ablauf</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">So arbeiten wir<br>zusammen bis<br>zum Go-live</h2>
+        </div>
+        <p class="prose" style="align-self:end">Ein Prozess auf Konzernniveau, vollständig transparent.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step" data-reveal>
+          <h3>Analyse und Strategie</h3>
+          <p>Wir erfassen eure Prozesse, bestehenden Systeme und Ziele. Architektur, Zeitplan und messbare KPIs — noch vor der Entwicklung.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Entwicklung mit dediziertem Team</h3>
+          <p>Wir arbeiten in Sprints mit sichtbarem Ergebnis alle zwei Wochen. Designsystem, Entwicklung, Integrationen und laufende Abstimmung mit euren Stakeholdern.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Go-live und Weiterentwicklung</h3>
+          <p>Ein kontrollierter Rollout, Schulung und Übergabe. Ab dann betreiben wir unter SLA und entwickeln laufend weiter — gemeinsam mit euch.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ miért egy partner -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split">
+        <div>
+          <p class="eyebrow">Der Vergleich</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Warum besser<br>als mehrere<br>Dienstleister?</h2>
+        </div>
+        <div class="prose">
+          <p>Mehrere Agenturen, mehrere Freelancer, mehrere Verträge — und die Schnittstellen, Verantwortungsfragen und Verzögerungen entstehen genau dort, wo die Systeme aufeinandertreffen. Das Wissen zersplittert, und bei Fehlern zeigen die Dienstleister aufeinander.</p>
+          <p>Mit einem Partner liegen Strategie, Design, Entwicklung, Integration und Betrieb in einer Hand. Ein Verantwortlicher, eine Roadmap, ein SLA. Planbares Tempo, planbare Qualität — auf allen digitalen Flächen der Marke.</p>
+          <ul class="checks" style="margin-top:2rem">
+            <li>Quellcode, Dokumentation und sämtliches geistiges Eigentum gehören euch — kein Vendor-Lock-in.</li>
+            <li>Moderner Stack: React/Next.js, Node, TypeScript, Cloud- und containerbasierte Infrastruktur.</li>
+            <li>Festpreisrahmen, dediziertes Team (Time &amp; Material) oder Betriebs-Retainer.</li>
+            <li>Bestehende, von anderen entwickelte Systeme übernehmen wir nach technischem Audit.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ GYIK -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-sticky">
+        <div class="sticky">
+          <p class="eyebrow">Hilfe</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Häufige<br>Fragen</h2>
+          <p class="muted" style="margin-top:1.4rem;max-width:28ch">Antwort nicht gefunden? <a class="tlink" href="kontakt.html">Schreib uns</a>, wir besprechen es gern.</p>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Welches SLA und welche Verfügbarkeit sagt ihr zu?</summary>
+            <p class="faq__a">Wir definieren das SLA nach Geschäftskritikalität: garantierte Verfügbarkeit (typisch 99,9 %), definierte Reaktions- und Lösungszeiten sowie einen Eskalationsprozess. Die genauen Stufen halten wir im Vertrag fest und verfolgen sie in Reports.</p>
+          </details>
+          <details>
+            <summary>Wie fügt ihr euch in unsere bestehenden Systeme und Prozesse ein?</summary>
+            <p class="faq__a">Wir planen die Entwicklung auf eurer bestehenden Infrastruktur, mit Integration von ERP, CRM, SSO, Zahlungs- und Logistiksystemen. Wir richten uns nach euren internen Prozessen, Sicherheitsvorgaben und Entwicklungsstandards — ob Cloud oder On-Premise.</p>
+          </details>
+          <details>
+            <summary>Wie geht ihr mit Datensicherheit und DSGVO-Konformität um?</summary>
+            <p class="faq__a">Sicherheit ist Teil der Konzeption, keine nachträgliche Schicht: Zugriffsverwaltung, Verschlüsselung, Audit-Logging und regelmäßige Sicherheitstests. Wir bieten DSGVO-konforme Datenverarbeitung, einen Auftragsverarbeitungsvertrag, auf Wunsch Penetrationstests und einen Prozess, der euren internen Compliance-Vorgaben folgt.</p>
+          </details>
+          <details>
+            <summary>Skaliert die Lösung auf mehrere Märkte und hohe Last?</summary>
+            <p class="faq__a">Ja. Wir entwerfen die Systeme von Anfang an auf skalierbarer Architektur: mehrere Sprachen und Märkte, lastabhängige Infrastruktur, Caching und CDN sowie modularer Aufbau. Wenn ihr wachst, skalieren System und zugeordnete Teamkapazität mit.</p>
+          </details>
+          <details>
+            <summary>Wie wird das dedizierte Team aufgestellt und skaliert?</summary>
+            <p class="faq__a">Wir stellen dem Projekt ein dediziertes Team zur Seite — Entwickler, Designer und eine feste Projektleitung als eure einzige Ansprechperson. Die Kapazität folgt der Auslastung: Wir skalieren das Team nach Roadmap und Sprintbedarf hoch und runter.</p>
+          </details>
+          <details>
+            <summary>Wem gehören Quellcode und geistiges Eigentum?</summary>
+            <p class="faq__a">Quellcode, Dokumentation und sämtliches geistiges Eigentum gehören euch. Wir geben vollen Zugriff auf Repositories und Umgebungen, der Prozess ist transparent, und euer internes Team kann jederzeit übernehmen — kein Vendor-Lock-in.</p>
+          </details>
+          <details>
+            <summary>Mit welchen Technologien arbeitet ihr?</summary>
+            <p class="faq__a">Wir nutzen einen modernen, gut unterstützten Stack (z. B. React/Next.js, Node, TypeScript, Cloud- und containerbasierte Infrastruktur), wählen das Werkzeug aber immer passend zur Aufgabe und zu eurer bestehenden Umgebung. Ziel ist eine langfristig wartbare Lösung nach Industriestandards.</p>
+          </details>
+          <details>
+            <summary>Übernehmt ihr bestehende, von anderen entwickelte Systeme?</summary>
+            <p class="faq__a">Ja. Zuerst führen wir ein technisches Audit durch: Wir prüfen Code, Architektur und Risiken und schlagen dann Stabilisierung, Weiterentwicklung oder — falls nötig — einen schrittweisen Neuaufbau vor. Die Übernahme erfolgt kontrolliert und ohne Betriebsunterbrechung.</p>
+          </details>
+          <details>
+            <summary>Wie laufen Reporting und Projektverfolgung?</summary>
+            <p class="faq__a">Wir arbeiten in Sprints mit regelmäßigen Demos und transparentem Backlog. Ihr erhaltet Zugriff auf Projekt-Tracking und Monitoring, und wir fassen Fortschritt, KPIs und Systemleistung in regelmäßigen Reports zusammen, die auch auf Führungsebene verständlich sind.</p>
+          </details>
+          <details>
+            <summary>In welchen Vertrags- und Abrechnungsmodellen arbeitet ihr?</summary>
+            <p class="faq__a">Je nach Projektcharakter arbeiten wir im Festpreisrahmen, im Modell des dedizierten Teams (Time &amp; Material) oder im laufenden Betriebs-Retainer. Wir passen uns euren Beschaffungs-, Rechts- und Compliance-Prozessen an und halten alle Bedingungen in einem Rahmenvertrag fest.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ CTA -->
+  <section class="band">
+    <div class="wrap">
+      <div class="launch">
+        <p class="eyebrow">Abflug</p>
+        <h2 class="display h-lg" style="margin:1.4rem 0 1.6rem;max-width:14ch">Bauen wir <span class="sig">euer System.</span></h2>
+        <p class="lede" style="max-width:56ch;margin-bottom:2.2rem">Jeder zusätzliche Dienstleister bedeutet eine weitere Schnittstelle, einen weiteren Verantwortlichen und eine weitere Verzögerung. Sprechen wir — wir zeigen euch, wie ein dediziertes Team jede Entwicklung auf eine Roadmap, einen Verantwortlichen und ein SLA bringt.</p>
+        <div class="btn-row">
+          <a class="btn" href="kontakt.html" data-magnet><span>Gespräch vereinbaren</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="angebot.html" data-magnet><span>Angebot anfragen</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:1.4rem"><img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Angst, etwas zu verpassen? Ab jetzt nicht mehr — abonniere unseren Newsletter.</p>
+        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
+          <label class="vh" for="nl">E-Mail-Adresse</label>
+          <input id="nl" type="email" name="email" placeholder="E-Mail-Adresse" required>
+          <div class="hp" aria-hidden="true">
+            <label for="hp-foot">Company website</label>
+            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit">Abonnieren</button>
+        </form>
+        <p class="form__note" style="margin-top:.6rem" role="status"></p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="angebot.html">Angebot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="webdesign-kmu.html">Webdesign für KMU</a></li>
+          <li><a href="webdesign-grossunternehmen.html">Webdesign für Großunternehmen</a></li>
+          <li><a href="branding.html">Branding</a></li>
+          <li><a href="werbeanzeigen.html">Werbeanzeigen</a></li>
+          <li><a href="impact-programm.html">Impact-Programm</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+        </ul>
+        <h4 style="margin-top:1.6rem">Social Media</h4>
+        <ul>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Stratos Media Agency — Alle Rechte vorbehalten.</span>
+      <span style="display:flex;gap:1.4rem;align-items:center">
+        <a href="datenschutz.html">Datenschutzerklärung</a>
+        <a href="impressum.html">Impressum</a>
+        <img src="../assets/img/gdpr.png" alt="GDPR Ready">
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

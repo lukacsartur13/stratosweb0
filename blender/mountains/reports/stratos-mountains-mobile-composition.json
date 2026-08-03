@@ -1,0 +1,516 @@
+{
+  "camera": {
+    "vertical_fov_deg": 32.0,
+    "advance_m": 900.0,
+    "rise_m": 780.0,
+    "rise_power": 1.5,
+    "stations": {
+      "valley": [
+        0.0,
+        -150.0,
+        200.0
+      ],
+      "passage": [
+        0.0,
+        57.0,
+        286.0
+      ],
+      "approach": [
+        0.0,
+        183.0,
+        375.5
+      ]
+    }
+  },
+  "safe_zone": {
+    "meridian_frame_fraction": 0.5303,
+    "protected_frame_fraction": 0.605,
+    "slope": 0.078066,
+    "half_angle_deg": 4.464,
+    "enforced_to_y": 2600.0,
+    "radius_at_enforcement_limit": 214.68,
+    "corridor_frame_fraction": 0.72
+  },
+  "limits": {
+    "max_flat_silhouette_run": 0.09,
+    "max_vertical_edge_run": 0.11,
+    "max_frame_top_touch": 0.15,
+    "max_pierced_px": 0,
+    "min_skyline_asymmetry": 0.15,
+    "min_mountain_columns": 0.55,
+    "min_sky_above_horizon": 0.3,
+    "max_sky_above_horizon": 0.97,
+    "min_clearance": 0.0,
+    "min_visible_px_per_mass": 300
+  },
+  "peak_visible_px": {
+    "ASCENT_ROUTE": 594,
+    "CLOUD_PASS": 13746,
+    "CLOUD_PEAK_L": 15245,
+    "CLOUD_PEAK_R": 3654,
+    "MNT_BACKGROUND_C": 19042,
+    "MNT_BACKGROUND_L": 2689,
+    "MNT_BACKGROUND_R": 2257,
+    "MNT_FOREGROUND_L": 14101,
+    "MNT_FOREGROUND_R": 7137,
+    "MNT_MID_L_01": 2082,
+    "MNT_MID_R_01": 3898,
+    "VALLEY_FLOOR": 57409,
+    "VALLEY_WALL_L": 7169,
+    "VALLEY_WALL_R": 9960
+  },
+  "frames": [
+    {
+      "aspect": 0.4614,
+      "resolution": [
+        336,
+        728
+      ],
+      "camera": [
+        0.0,
+        -150.0,
+        200.0
+      ],
+      "safe_zone_ellipse": [
+        0.605,
+        0.2791
+      ],
+      "safe_zone_violation_px": 0,
+      "safe_zone_far_fill_px": 10512,
+      "safe_zone_sky_fraction": 0.65,
+      "safe_zone_clearance": 0.0853,
+      "pierced_px": 0,
+      "haze_band": 0.1058,
+      "sky_fraction_above_horizon": 0.8447,
+      "mountain_column_fraction": 1.0,
+      "frame_top_touch_fraction": 0.0,
+      "max_flat_silhouette_run": 0.0476,
+      "max_vertical_edge_run": 0.0742,
+      "silhouette_asymmetry": 0.0806,
+      "skyline_asymmetry": 0.2603,
+      "skyline_column_fraction": 0.3095,
+      "visible_objects": {
+        "ASCENT_ROUTE": 566,
+        "CLOUD_PASS": 8024,
+        "CLOUD_PEAK_L": 12676,
+        "CLOUD_PEAK_R": 2561,
+        "MNT_BACKGROUND_C": 14133,
+        "MNT_BACKGROUND_L": 1340,
+        "MNT_BACKGROUND_R": 1488,
+        "MNT_FOREGROUND_L": 14011,
+        "MNT_FOREGROUND_R": 7084,
+        "MNT_MID_L_01": 379,
+        "MNT_MID_R_01": 3871,
+        "VALLEY_FLOOR": 54554,
+        "VALLEY_WALL_L": 4041,
+        "VALLEY_WALL_R": 9949
+      },
+      "station": "valley",
+      "caption": "0 m \u2014 valley baseline",
+      "viewport": [
+        430,
+        932
+      ]
+    },
+    {
+      "aspect": 0.4621,
+      "resolution": [
+        336,
+        727
+      ],
+      "camera": [
+        0.0,
+        -150.0,
+        200.0
+      ],
+      "safe_zone_ellipse": [
+        0.605,
+        0.2796
+      ],
+      "safe_zone_violation_px": 0,
+      "safe_zone_far_fill_px": 10514,
+      "safe_zone_sky_fraction": 0.6498,
+      "safe_zone_clearance": 0.0838,
+      "pierced_px": 0,
+      "haze_band": 0.1073,
+      "sky_fraction_above_horizon": 0.8439,
+      "mountain_column_fraction": 1.0,
+      "frame_top_touch_fraction": 0.0,
+      "max_flat_silhouette_run": 0.0238,
+      "max_vertical_edge_run": 0.0605,
+      "silhouette_asymmetry": 0.0805,
+      "skyline_asymmetry": 0.2602,
+      "skyline_column_fraction": 0.3095,
+      "visible_objects": {
+        "ASCENT_ROUTE": 566,
+        "CLOUD_PASS": 7987,
+        "CLOUD_PEAK_L": 12668,
+        "CLOUD_PEAK_R": 2571,
+        "MNT_BACKGROUND_C": 14103,
+        "MNT_BACKGROUND_L": 1341,
+        "MNT_BACKGROUND_R": 1486,
+        "MNT_FOREGROUND_L": 14101,
+        "MNT_FOREGROUND_R": 7137,
+        "MNT_MID_L_01": 376,
+        "MNT_MID_R_01": 3898,
+        "VALLEY_FLOOR": 54397,
+        "VALLEY_WALL_L": 4030,
+        "VALLEY_WALL_R": 9944
+      },
+      "station": "valley",
+      "caption": "0 m \u2014 valley baseline",
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "aspect": 0.45,
+      "resolution": [
+        336,
+        747
+      ],
+      "camera": [
+        0.0,
+        -150.0,
+        200.0
+      ],
+      "safe_zone_ellipse": [
+        0.605,
+        0.2723
+      ],
+      "safe_zone_violation_px": 0,
+      "safe_zone_far_fill_px": 10585,
+      "safe_zone_sky_fraction": 0.6547,
+      "safe_zone_clearance": 0.1024,
+      "pierced_px": 0,
+      "haze_band": 0.0991,
+      "sky_fraction_above_horizon": 0.8592,
+      "mountain_column_fraction": 1.0,
+      "frame_top_touch_fraction": 0.0,
+      "max_flat_silhouette_run": 0.0417,
+      "max_vertical_edge_run": 0.0803,
+      "silhouette_asymmetry": 0.0818,
+      "skyline_asymmetry": 0.2804,
+      "skyline_column_fraction": 0.2917,
+      "visible_objects": {
+        "ASCENT_ROUTE": 594,
+        "CLOUD_PASS": 8427,
+        "CLOUD_PEAK_L": 12920,
+        "CLOUD_PEAK_R": 2263,
+        "MNT_BACKGROUND_C": 14859,
+        "MNT_BACKGROUND_L": 1416,
+        "MNT_BACKGROUND_R": 1566,
+        "MNT_FOREGROUND_L": 12449,
+        "MNT_FOREGROUND_R": 6193,
+        "MNT_MID_L_01": 399,
+        "MNT_MID_R_01": 3505,
+        "VALLEY_FLOOR": 57409,
+        "VALLEY_WALL_L": 4252,
+        "VALLEY_WALL_R": 9960
+      },
+      "station": "valley",
+      "caption": "0 m \u2014 valley baseline",
+      "viewport": [
+        360,
+        800
+      ]
+    },
+    {
+      "aspect": 0.4614,
+      "resolution": [
+        336,
+        728
+      ],
+      "camera": [
+        0.0,
+        57.0,
+        286.0
+      ],
+      "safe_zone_ellipse": [
+        0.605,
+        0.2791
+      ],
+      "safe_zone_violation_px": 0,
+      "safe_zone_far_fill_px": 7441,
+      "safe_zone_sky_fraction": 0.7707,
+      "safe_zone_clearance": 0.1582,
+      "pierced_px": 0,
+      "haze_band": 0.1525,
+      "sky_fraction_above_horizon": 0.9068,
+      "mountain_column_fraction": 1.0,
+      "frame_top_touch_fraction": 0.0,
+      "max_flat_silhouette_run": 0.0327,
+      "max_vertical_edge_run": 0.0426,
+      "silhouette_asymmetry": 0.0773,
+      "skyline_asymmetry": 0.3247,
+      "skyline_column_fraction": 0.2381,
+      "visible_objects": {
+        "CLOUD_PASS": 10522,
+        "CLOUD_PEAK_L": 14945,
+        "CLOUD_PEAK_R": 3220,
+        "MNT_BACKGROUND_C": 16421,
+        "MNT_BACKGROUND_L": 2018,
+        "MNT_BACKGROUND_R": 1834,
+        "MNT_MID_L_01": 2057,
+        "MNT_MID_R_01": 2452,
+        "VALLEY_FLOOR": 51405,
+        "VALLEY_WALL_L": 7124,
+        "VALLEY_WALL_R": 9132
+      },
+      "station": "passage",
+      "caption": "7 000 m \u2014 mountain passage",
+      "viewport": [
+        430,
+        932
+      ]
+    },
+    {
+      "aspect": 0.4621,
+      "resolution": [
+        336,
+        727
+      ],
+      "camera": [
+        0.0,
+        57.0,
+        286.0
+      ],
+      "safe_zone_ellipse": [
+        0.605,
+        0.2796
+      ],
+      "safe_zone_violation_px": 0,
+      "safe_zone_far_fill_px": 7463,
+      "safe_zone_sky_fraction": 0.7701,
+      "safe_zone_clearance": 0.1558,
+      "pierced_px": 0,
+      "haze_band": 0.1513,
+      "sky_fraction_above_horizon": 0.9061,
+      "mountain_column_fraction": 1.0,
+      "frame_top_touch_fraction": 0.0,
+      "max_flat_silhouette_run": 0.0268,
+      "max_vertical_edge_run": 0.0509,
+      "silhouette_asymmetry": 0.0772,
+      "skyline_asymmetry": 0.3242,
+      "skyline_column_fraction": 0.2381,
+      "visible_objects": {
+        "CLOUD_PASS": 10491,
+        "CLOUD_PEAK_L": 14950,
+        "CLOUD_PEAK_R": 3242,
+        "MNT_BACKGROUND_C": 16378,
+        "MNT_BACKGROUND_L": 2017,
+        "MNT_BACKGROUND_R": 1825,
+        "MNT_MID_L_01": 2082,
+        "MNT_MID_R_01": 2478,
+        "VALLEY_FLOOR": 51268,
+        "VALLEY_WALL_L": 7169,
+        "VALLEY_WALL_R": 9183
+      },
+      "station": "passage",
+      "caption": "7 000 m \u2014 mountain passage",
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "aspect": 0.45,
+      "resolution": [
+        336,
+        747
+      ],
+      "camera": [
+        0.0,
+        57.0,
+        286.0
+      ],
+      "safe_zone_ellipse": [
+        0.605,
+        0.2723
+      ],
+      "safe_zone_violation_px": 0,
+      "safe_zone_far_fill_px": 7187,
+      "safe_zone_sky_fraction": 0.7787,
+      "safe_zone_clearance": 0.1777,
+      "pierced_px": 0,
+      "haze_band": 0.1526,
+      "sky_fraction_above_horizon": 0.9212,
+      "mountain_column_fraction": 1.0,
+      "frame_top_touch_fraction": 0.0,
+      "max_flat_silhouette_run": 0.0536,
+      "max_vertical_edge_run": 0.0348,
+      "silhouette_asymmetry": 0.0785,
+      "skyline_asymmetry": 0.3566,
+      "skyline_column_fraction": 0.2202,
+      "visible_objects": {
+        "CLOUD_PASS": 11063,
+        "CLOUD_PEAK_L": 14861,
+        "CLOUD_PEAK_R": 2871,
+        "MNT_BACKGROUND_C": 17285,
+        "MNT_BACKGROUND_L": 2126,
+        "MNT_BACKGROUND_R": 1921,
+        "MNT_MID_L_01": 1579,
+        "MNT_MID_R_01": 1956,
+        "VALLEY_FLOOR": 54090,
+        "VALLEY_WALL_L": 6334,
+        "VALLEY_WALL_R": 8087
+      },
+      "station": "passage",
+      "caption": "7 000 m \u2014 mountain passage",
+      "viewport": [
+        360,
+        800
+      ]
+    },
+    {
+      "aspect": 0.4614,
+      "resolution": [
+        336,
+        728
+      ],
+      "camera": [
+        0.0,
+        183.0,
+        375.5
+      ],
+      "safe_zone_ellipse": [
+        0.605,
+        0.2791
+      ],
+      "safe_zone_violation_px": 0,
+      "safe_zone_far_fill_px": 3602,
+      "safe_zone_sky_fraction": 0.889,
+      "safe_zone_clearance": 0.2137,
+      "pierced_px": 0,
+      "haze_band": 0.2129,
+      "sky_fraction_above_horizon": 0.9499,
+      "mountain_column_fraction": 1.0,
+      "frame_top_touch_fraction": 0.0,
+      "max_flat_silhouette_run": 0.0536,
+      "max_vertical_edge_run": 0.0357,
+      "silhouette_asymmetry": 0.0697,
+      "skyline_asymmetry": 0.3902,
+      "skyline_column_fraction": 0.1786,
+      "visible_objects": {
+        "CLOUD_PASS": 13078,
+        "CLOUD_PEAK_L": 15212,
+        "CLOUD_PEAK_R": 3622,
+        "MNT_BACKGROUND_C": 18109,
+        "MNT_BACKGROUND_L": 2555,
+        "MNT_BACKGROUND_R": 2145,
+        "MNT_MID_L_01": 1188,
+        "MNT_MID_R_01": 1057,
+        "VALLEY_FLOOR": 45887,
+        "VALLEY_WALL_L": 2460,
+        "VALLEY_WALL_R": 3792
+      },
+      "station": "approach",
+      "caption": "11 000 m \u2014 cloud approach",
+      "viewport": [
+        430,
+        932
+      ]
+    },
+    {
+      "aspect": 0.4621,
+      "resolution": [
+        336,
+        727
+      ],
+      "camera": [
+        0.0,
+        183.0,
+        375.5
+      ],
+      "safe_zone_ellipse": [
+        0.605,
+        0.2796
+      ],
+      "safe_zone_violation_px": 0,
+      "safe_zone_far_fill_px": 3632,
+      "safe_zone_sky_fraction": 0.8881,
+      "safe_zone_clearance": 0.2135,
+      "pierced_px": 0,
+      "haze_band": 0.2118,
+      "sky_fraction_above_horizon": 0.9493,
+      "mountain_column_fraction": 1.0,
+      "frame_top_touch_fraction": 0.0,
+      "max_flat_silhouette_run": 0.0327,
+      "max_vertical_edge_run": 0.0358,
+      "silhouette_asymmetry": 0.0698,
+      "skyline_asymmetry": 0.378,
+      "skyline_column_fraction": 0.1845,
+      "visible_objects": {
+        "CLOUD_PASS": 13043,
+        "CLOUD_PEAK_L": 15245,
+        "CLOUD_PEAK_R": 3654,
+        "MNT_BACKGROUND_C": 18051,
+        "MNT_BACKGROUND_L": 2547,
+        "MNT_BACKGROUND_R": 2141,
+        "MNT_MID_L_01": 1217,
+        "MNT_MID_R_01": 1094,
+        "VALLEY_FLOOR": 45756,
+        "VALLEY_WALL_L": 2491,
+        "VALLEY_WALL_R": 3830
+      },
+      "station": "approach",
+      "caption": "11 000 m \u2014 cloud approach",
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "aspect": 0.45,
+      "resolution": [
+        336,
+        747
+      ],
+      "camera": [
+        0.0,
+        183.0,
+        375.5
+      ],
+      "safe_zone_ellipse": [
+        0.605,
+        0.2723
+      ],
+      "safe_zone_violation_px": 0,
+      "safe_zone_far_fill_px": 3288,
+      "safe_zone_sky_fraction": 0.8987,
+      "safe_zone_clearance": 0.2354,
+      "pierced_px": 0,
+      "haze_band": 0.2115,
+      "sky_fraction_above_horizon": 0.96,
+      "mountain_column_fraction": 1.0,
+      "frame_top_touch_fraction": 0.0,
+      "max_flat_silhouette_run": 0.0417,
+      "max_vertical_edge_run": 0.0455,
+      "silhouette_asymmetry": 0.0681,
+      "skyline_asymmetry": 0.424,
+      "skyline_column_fraction": 0.1607,
+      "visible_objects": {
+        "CLOUD_PASS": 13746,
+        "CLOUD_PEAK_L": 14751,
+        "CLOUD_PEAK_R": 2893,
+        "MNT_BACKGROUND_C": 19042,
+        "MNT_BACKGROUND_L": 2689,
+        "MNT_BACKGROUND_R": 2257,
+        "MNT_MID_L_01": 702,
+        "MNT_MID_R_01": 522,
+        "VALLEY_FLOOR": 48296,
+        "VALLEY_WALL_L": 1987,
+        "VALLEY_WALL_R": 3297
+      },
+      "station": "approach",
+      "caption": "11 000 m \u2014 cloud approach",
+      "viewport": [
+        360,
+        800
+      ]
+    }
+  ],
+  "failures": [],
+  "ok": true
+}

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Werbebetreuung — Google &amp; Meta Ads | Stratos</title>
+<meta name="description" content="Google- und Meta-Kampagnen, die Kunden bringen statt Reichweite. Zielgruppenrecherche, Kreation, Gebotsstrategie, Conversion-Tracking und Monatsreport.">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="alternate" hreflang="hu" href="/hirdeteskezeles.html">
+<link rel="alternate" hreflang="en" href="/en/ads-management.html">
+<link rel="alternate" hreflang="de" href="/de/werbeanzeigen.html">
+<link rel="alternate" hreflang="x-default" href="/hirdeteskezeles.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
+</head>
+<body data-ceiling="27000">
+
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="contrail" aria-hidden="true"></canvas>
+<div class="plane-cursor" aria-hidden="true"><img src="../assets/img/plane-cursor.png" alt=""></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<aside class="rail" aria-hidden="true">
+  <img class="rail__mark" src="../assets/img/plane-cursor.png" alt="">
+  <div class="rail__tape"><div class="rail__ticks"></div></div>
+  <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">METER</span></div>
+  <div class="rail__layer">TROPOSPHÄRE</div>
+</aside>
+
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Stratos — Startseite">
+    <img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span>
+  </a>
+  <nav class="nav__links" aria-label="Hauptnavigation">
+    <a class="navlink" href="ueber-uns.html">Über uns</a>
+    <div class="drop">
+      <a class="navlink" href="webdesign-kmu.html" aria-haspopup="true" aria-current="true">Leistungen</a>
+      <div class="drop__panel">
+        <a href="webdesign-kmu.html">Webdesign für KMU <em>1.200 M</em></a>
+        <a href="webdesign-grossunternehmen.html">Webdesign für Großunternehmen <em>9.400 M</em></a>
+        <a href="branding.html">Branding <em>4.800 M</em></a>
+        <a href="werbeanzeigen.html" aria-current="page">Werbeanzeigen <em>17.000 M</em></a>
+        <a href="impact-programm.html">Impact-Programm <em>30.000 M</em></a>
+      </div>
+    </div>
+    <a class="navlink" href="blog.html">Blog</a>
+    <a class="navlink" href="kontakt.html">Kontakt</a>
+    <div class="lang" role="group" aria-label="Sprache wählen"><a href="../hirdeteskezeles.html" hreflang="hu" lang="hu">HU</a><a href="../en/ads-management.html" hreflang="en" lang="en">EN</a><a href="werbeanzeigen.html" hreflang="de" lang="de" aria-current="true">DE</a></div>
+    <a class="btn" href="angebot.html" data-magnet><span>Angebot</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Menü"><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobile Navigation">
+  <a href="index.html"><b>00</b> Start</a>
+  <a href="ueber-uns.html"><b>01</b> Über uns</a>
+  <a href="webdesign-kmu.html"><b>02</b> KMU</a>
+  <a href="webdesign-grossunternehmen.html"><b>03</b> Konzerne</a>
+  <a href="branding.html"><b>04</b> Branding</a>
+  <a href="werbeanzeigen.html" aria-current="page"><b>05</b> Werbung</a>
+  <a href="impact-programm.html"><b>06</b> Impact</a>
+  <a href="blog.html"><b>07</b> Blog</a>
+  <a href="kontakt.html"><b>08</b> Kontakt</a>
+  <a href="angebot.html"><b>09</b> Angebot</a>
+  <div class="lang" role="group" aria-label="Sprache wählen"><a href="../hirdeteskezeles.html" hreflang="hu" lang="hu">HU</a><a href="../en/ads-management.html" hreflang="en" lang="en">EN</a><a href="werbeanzeigen.html" hreflang="de" lang="de" aria-current="true">DE</a></div>
+  <div class="menu__foot">
+    <span>lukacs.artur@media-stratos.com</span>
+    <span>+36 30 584 8024</span>
+  </div>
+</nav>
+
+<div class="shell">
+<main id="main">
+<section class="phead">
+    <img class="phead__bg" src="../assets/img/struktura.jpg" alt="" data-para="0.05">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Stratos</a> / Leistungen / <b>Werbebetreuung</b></p>
+      <h1 class="display h-xl">Du kaufst keine<br>Reichweite.<br><span class="sig">Du kaufst Kunden.</span></h1>
+      <div class="grid g-split" style="align-items:end">
+        <p class="lede">Werbebetreuung, Analyse und Skalierung auf Google und Meta. Wir verwandeln Aufmerksamkeit in Interesse und Interesse in Kunden.</p>
+        <div>
+          <div class="tags" style="margin-bottom:1.6rem">
+            <span>Google Ads</span><span>Meta Ads</span>
+            <span>Conversion-Tracking</span><span>Monatsreport</span>
+          </div>
+          <div class="btn-row">
+            <a class="btn" href="angebot.html" data-magnet><span>Angebot</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ tézis -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split">
+        <div>
+          <p class="eyebrow">Die Lage</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Aufmerksamkeit ist<br>die wertvollste<br>Ressource</h2>
+        </div>
+        <div class="prose">
+          <p>Im heutigen digitalen Markt ist Aufmerksamkeit die wertvollste Ressource, während der Wettbewerb auf jeder Plattform weiter wächst. Organische Reichweite allein reicht nicht mehr: Die meisten Unternehmen konkurrieren in bezahlten Werbesystemen um dieselbe Zielgruppe — und dort entscheidet die Strategie, nicht die bloße Präsenz.</p>
+          <p>In diesem Umfeld gewinnen die Unternehmen, die genau verstehen, wie man Anzeigen und Nutzerwege datenbasiert aufbaut. Ziel ist nicht bloße Sichtbarkeit, sondern die richtige Botschaft zur richtigen Zeit beim richtigen Menschen.</p>
+          <p>Wir bauen Werbestrukturen auf der Analyse von Zielgruppe und Marktverhalten auf und richten Kreation und Kampagnenlogik daran aus. Wir denken also nicht in einzelnen Anzeigen, sondern in aufeinander aufbauenden, skalierbaren Systemen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ Google vs Meta -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(2rem,5vw,3rem)">
+        <div>
+          <p class="eyebrow">Zwei Kanäle</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Suchen sie dich,<br>oder musst du<br>sie finden?</h2>
+        </div>
+        <p class="prose" style="align-self:end">Die Frage ist nicht, welche Plattform besser ist, sondern wo deine Kunden sind. Für viele Unternehmen bringt die Kombination beider das beste Ergebnis.</p>
+      </div>
+
+      <div class="grid g-2">
+        <article class="panel" data-reveal>
+          <span class="card__k">Google Ads</span>
+          <h3>Der Nachfragekanal</h3>
+          <p>Wer „Klempner in der Nähe“ eingibt, will kaufen. Hier musst du nicht überzeugen, sondern in dem Moment da sein, in dem die Entscheidung fällt.</p>
+          <ul class="checks">
+            <li>Keyword-Recherche und Struktur nach Suchintention</li>
+            <li>Gebotsstrategie und Budgetoptimierung</li>
+            <li>Anzeigentexte und Erweiterungen</li>
+            <li>Google-Unternehmensprofil und Kartenpräsenz</li>
+          </ul>
+        </article>
+
+        <article class="panel panel--lit" data-reveal>
+          <span class="card__k">Meta Ads</span>
+          <h3>Der Nachfrage schaffende Kanal</h3>
+          <p>Hier sprichst du den Nutzer im Feed an — mit einem guten Angebot und auffälliger Kreation. Aufmerksamkeit muss zuerst verdient werden, das Interesse kommt danach.</p>
+          <ul class="checks">
+            <li>Zielgruppenrecherche und Segmentierung</li>
+            <li>Kreation: Bild, Video, Anzeigentext</li>
+            <li>Remarketing und Lookalike-Zielgruppen</li>
+            <li>Meta Pixel und Conversion-Events</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ folyamat -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(1.5rem,4vw,2.5rem)">
+        <div>
+          <p class="eyebrow">Der Ablauf</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Der Ablauf der<br>Werbebetreuung</h2>
+        </div>
+        <p class="prose" style="align-self:end">Werbung ist der einzige Kanal, bei dem die ersten Anfragen praktisch am Tag der Aktivierung kommen können. Für belastbare Ergebnisse braucht es aber Zeit.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step" data-reveal>
+          <h3>Recherche und Aufbau</h3>
+          <p>Zielgruppen- und Wettbewerbsanalyse, Schärfung des Angebots, Aufbau der Kontostruktur in deinen eigenen Google-Ads- und Meta-Konten. Conversion-Tracking wird eingerichtet, damit wir ab Tag eins Zahlen sehen statt Eindrücke.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Lernphase — 2–4 Wochen</h3>
+          <p>Die ersten Wochen dienen dem Datensammeln. Wir schalten mehrere Botschaften, Targetings und Kreationen live und lassen die Daten entscheiden, welche Richtung funktioniert.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Optimierung und Skalierung</h3>
+          <p>Nach 4–6 Wochen zeigt sich die stabile Richtung: welche Anzeige, Zielgruppe und Botschaft am meisten zurückbringt. Ab dann verschieben wir Budget auf die Gewinnerkombinationen und fahren den Rest aus.</p>
+        </article>
+      </div>
+
+      <div class="stats" style="margin-top:clamp(2.5rem,6vw,4rem)">
+        <div class="stat"><span class="stat__n">200–400 €</span><span class="stat__l">Empfohlenes Startbudget pro Monat</span></div>
+        <div class="stat"><span class="stat__n">2–4 Wochen</span><span class="stat__l">Lernphase</span></div>
+        <div class="stat"><span class="stat__n">4–6 Wochen</span><span class="stat__l">Bis sich die Richtung zeigt</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ mérés -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="launch">
+        <p class="eyebrow">Messung</p>
+        <h2 class="display h-md" style="margin:1.4rem 0 1.4rem;max-width:20ch">Wir schauen nicht auf Likes, sondern auf das <span class="sig">Geschäftsergebnis.</span></h2>
+        <p class="lede" style="max-width:60ch">Wir richten Conversion-Tracking ein: wie viele Angebotsanfragen, Anrufe, Formulareinsendungen oder Käufe aus der Werbung kamen und was sie gekostet haben. So wissen wir in Zahlen, was ein Interessent kostet. Du bekommst das im Monatsreport — nicht im Fachjargon, sondern so, dass du sofort siehst, was Geld bringt und was nicht.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ GYIK -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-sticky">
+        <div class="sticky">
+          <p class="eyebrow">Hilfe</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Häufige<br>Fragen</h2>
+          <p class="muted" style="margin-top:1.4rem;max-width:28ch">Antwort nicht gefunden? <a class="tlink" href="kontakt.html">Schreib uns</a> — wir helfen gern.</p>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Mit welchem Werbebudget sollte ich starten, und wie verhält es sich zur Betreuungsgebühr?</summary>
+            <p class="faq__a">Das sind zwei getrennte Posten: das Werbebudget, das an Google oder Meta geht, und die Betreuungsgebühr für unsere Arbeit. Die meisten kleinen und mittleren Unternehmen können sinnvoll mit 200–400 € pro Monat starten — darunter ist es schwer, genug Daten zur Optimierung zu sammeln. Das Startbudget richten wir immer nach deinem Markt und deinen Zielen.</p>
+          </details>
+          <details>
+            <summary>Wann sehe ich die ersten Ergebnisse?</summary>
+            <p class="faq__a">Werbung ist der einzige Kanal, bei dem die ersten Anfragen praktisch am Tag der Aktivierung kommen können. Belastbare Ergebnisse brauchen länger: Die ersten 2–4 Wochen sind Lern- und Datensammelphase, danach optimieren wir im laufenden Betrieb. Realistisch zeigt sich die stabile Richtung nach 4–6 Wochen.</p>
+          </details>
+          <details>
+            <summary>Was lohnt sich für mein Unternehmen mehr — Google Ads oder Meta?</summary>
+            <p class="faq__a">Das hängt davon ab, ob dein Kunde nach dir sucht oder ob du ihn finden musst. Google Ads ist der Nachfragekanal: Wer „Klempner in der Nähe“ eingibt, will kaufen. Meta ist der Nachfrage schaffende Kanal: Dort sprichst du den Nutzer im Feed an. Für viele Unternehmen bringt die Kombination das beste Ergebnis.</p>
+          </details>
+          <details>
+            <summary>Woher weiß ich, dass sich Werbung rechnet — was messt ihr und wie?</summary>
+            <p class="faq__a">Wir schauen nicht auf Likes und Impressionen, sondern auf das Geschäftsergebnis. Wir richten Conversion-Tracking ein: wie viele Angebotsanfragen, Anrufe, Formulareinsendungen oder Käufe aus der Werbung kamen und was sie gekostet haben. Das bekommst du übersichtlich im Monatsreport.</p>
+          </details>
+          <details>
+            <summary>Was passiert mit dem Werbekonto, wenn ich kündige?</summary>
+            <p class="faq__a">Das Werbekonto bleibt deins — das ist bei uns Grundsatz. Kampagnen bauen wir immer in deinen eigenen Google-Ads- und Meta-Konten auf, zu denen wir Verwalterzugriff erhalten, nicht umgekehrt. Trennen sich unsere Wege, bleiben Konto, Daten und Kampagnen bei dir.</p>
+          </details>
+          <details>
+            <summary>Warum zahle ich eine monatliche Betreuungsgebühr, wenn das Werbebudget ohnehin an Google/Meta geht?</summary>
+            <p class="faq__a">Weil die Plattform nur ein Werkzeug ist — wie das Geld ausgegeben wird, entscheidet über die Rendite. Eine schlecht aufgesetzte Kampagne verbrennt dein Budget genauso schnell, nur ohne Ergebnis. Die Betreuungsgebühr deckt die eigentliche Arbeit: Zielgruppenrecherche, Anzeigentexte, Kreation, Gebotsstrategie, laufende Optimierung und Messung.</p>
+          </details>
+          <details>
+            <summary>Brauche ich eine fertige Website, oder reicht eine Facebook-Seite?</summary>
+            <p class="faq__a">Du brauchst einen Ort, zu dem die Anzeige führt und an dem der Interessent entscheiden kann. Am besten eine dafür gebaute Landingpage oder eine gut strukturierte Website, denn dort steuerst du das Erlebnis und kannst messen. Fehlt eine geeignete Seite, kommen Website und Werbung bei uns aus einer Hand.</p>
+          </details>
+          <details>
+            <summary>Garantiert ihr mehr Kunden?</summary>
+            <p class="faq__a">Eine konkrete Kundenzahl oder einen Umsatz kann seriös niemand garantieren — wer das verspricht, sollte dich misstrauisch machen. Was wir garantieren: fachgerechte Einrichtung, laufende Optimierung auf Basis von Messwerten, transparentes Reporting und ehrliche Kommunikation.</p>
+          </details>
+          <details>
+            <summary>Wer schreibt die Anzeigentexte und erstellt die Kreation?</summary>
+            <p class="faq__a">Texte und Kampagnenaufbau sind unsere Aufgabe — sie sind Teil der Leistung. Für visuelle Kreation ist es am besten, wenn wir Material von deiner tatsächlichen Arbeit oder deinen Produkten bekommen, denn ein echtes, authentisches Bild schlägt oft das sterile Stockfoto. Eine gute Handyaufnahme fertiger Arbeit ist oft Gold wert.</p>
+          </details>
+          <details>
+            <summary>Was ist der Unterschied zwischen bezahlter Werbung und SEO?</summary>
+            <p class="faq__a">Sie ersetzen einander nicht, sie ergänzen sich. Werbung bringt sofort Traffic: einschalten, Anfragen kommen — aber sobald du den Hahn zudrehst, versiegt es. SEO baut sich langsamer auf, kostet Monate Arbeit, bringt danach aber dauerhaft Kunden ohne Werbebudget. Zusammen sind beide am stärksten.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ CTA -->
+  <section class="band">
+    <div class="wrap">
+      <div class="launch">
+        <p class="eyebrow">Abflug</p>
+        <h2 class="display h-lg" style="margin:1.4rem 0 1.6rem;max-width:15ch">Finden wir heraus, wo <span class="sig">deine Kunden sind.</span></h2>
+        <p class="lede" style="max-width:52ch;margin-bottom:2.2rem">Ein Gespräch zeigt dir, welcher Kanal zu dir passt, mit welchem Budget du starten solltest und was du in den ersten Monaten erwarten kannst.</p>
+        <div class="btn-row">
+          <a class="btn" href="kontakt.html" data-magnet><span>Kostenlose Beratung</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="angebot.html" data-magnet><span>Angebot anfordern</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:1.4rem"><img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Angst, etwas zu verpassen? Ab jetzt nicht mehr — abonniere unseren Newsletter.</p>
+        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
+          <label class="vh" for="nl">E-Mail-Adresse</label>
+          <input id="nl" type="email" name="email" placeholder="E-Mail-Adresse" required>
+          <div class="hp" aria-hidden="true">
+            <label for="hp-foot">Company website</label>
+            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit">Abonnieren</button>
+        </form>
+        <p class="form__note" style="margin-top:.6rem" role="status"></p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="angebot.html">Angebot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="webdesign-kmu.html">Webdesign für KMU</a></li>
+          <li><a href="webdesign-grossunternehmen.html">Webdesign für Großunternehmen</a></li>
+          <li><a href="branding.html">Branding</a></li>
+          <li><a href="werbeanzeigen.html">Werbeanzeigen</a></li>
+          <li><a href="impact-programm.html">Impact-Programm</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+        </ul>
+        <h4 style="margin-top:1.6rem">Social Media</h4>
+        <ul>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Stratos Media Agency — Alle Rechte vorbehalten.</span>
+      <span style="display:flex;gap:1.4rem;align-items:center">
+        <a href="datenschutz.html">Datenschutzerklärung</a>
+        <a href="impressum.html">Impressum</a>
+        <img src="../assets/img/gdpr.png" alt="GDPR Ready">
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

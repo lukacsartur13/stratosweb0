@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    background:
+      radial-gradient(120% 90% at 50% -20%, rgba(30, 52, 84, 0.5), transparent 60%),
+      #0b0f16;
+    min-height: 100dvh;
+  }
+
+  /* The site's focus ring, unchanged. Anything that can be reached by keyboard
+     shows it — including inside dialogs and the mobile drawer. */
+  :focus-visible {
+    outline: 2px solid theme('colors.signal');
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: theme('colors.signal');
+    color: #000;
+  }
+}
+
+@layer components {
+  /* Numbers are monospaced and tabular everywhere in this product, so that a
+     column of figures in a table lines up without per-cell effort. */
+  .num {
+    font-family: theme('fontFamily.data');
+    font-variant-numeric: tabular-nums;
+  }
+
+  .label {
+    font-family: theme('fontFamily.data');
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: theme('colors.haze');
+  }
+}

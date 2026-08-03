@@ -1,0 +1,10 @@
+import { chromium } from '@playwright/test';
+const OUT='/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/893d249a-232a-4d08-a617-690bdf5874fe/scratchpad/shots';
+const b=await chromium.launch();
+const p=await b.newPage({viewport:{width:1600,height:1000}});
+await p.goto('http://localhost:5176/experiments/stratos-ascent-full/full.html',{waitUntil:'networkidle'});
+await p.waitForSelector('canvas'); await p.waitForTimeout(2500);
+await p.evaluate(()=>{const s=globalThis.__stratos; s.journey.debug.altitude=30000; s.journey.debug.instrumentYaw=0.55; s.journey.debug.cameraZ=-0.5;});
+await p.waitForTimeout(2400);
+await p.screenshot({path:`${OUT}/axis-yaw.png`});
+await b.close(); console.log('ok');

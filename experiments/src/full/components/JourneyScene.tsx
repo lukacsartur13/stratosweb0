@@ -1,0 +1,221 @@
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import type { Frameloop } from './QualityManager';
+import { Environment, Lightformer } from '@react-three/drei';
+import * as THREE from 'three';
+import { cappedDpr } from '@/lib/capabilities';
+import { journey, type MountainMode } from '../journey';
+import { CloudDeck } from './CloudDeck';
+import { EarthLimb } from './EarthLimb';
+import { AltimeterMeridian } from './AltimeterMeridian';
+import { JourneyCamera } from './JourneyCamera';
+import { MeridianLights } from './MeridianLights';
+import { QualityManager } from './QualityManager';
+import { Sky } from './Sky';
+import { StarField } from './StarField';
+import { Checkpoints, SystemRings } from './SystemRings';
+import { MountainRange } from './MountainRange';
+
+/**
+ * The WebGL half of the full journey, in its own module so it can be code-split.
+ *
+ * Nothing above this file imports `three`. That single rule is what lets the
+ * reduced-motion, no-WebGL and low-capability paths skip the renderer entirely
+ * rather than download 600 KB of it and decline to use it — and it is asserted
+ * by the test suite, because it is the kind of invariant that a stray
+ * convenience import breaks silently.
+ */
+
+/**
+ * Mount a stage's geometry only while the journey is near it.
+ *
+ * Everything in this scene is cheap to *have* and not free to *render*: nine
+ * ring nodes and a 64-segment Earth cost nothing at 1 200 m except a matrix
+ * update and a frustum test each, but they also gain nothing, and on a phone a
+ * few dozen unnecessary objects per frame is real. The hysteresis band matters
+ * more than the saving: without it a visitor parked exactly on a boundary
+ * toggles a mount every frame, which is far worse than never unmounting at all.
+ */
+function useNearAltitude(from: number, to: number, margin = 2_500) {
+  const [near, setNear] = useState(false);
+  const state = useRef(false);
+
+  useFrame(() => {
+    const m = journey.altitude;
+    // Asymmetric bounds: enter early, leave late.
+    const inside = state.current
+      ? m > from - margin * 1.6 && m < to + margin * 1.6
+      : m > from - margin && m < to + margin;
+    if (inside !== state.current) {
+      state.current = inside;
+      setNear(inside);
+    }
+  });
+
+  return near;
+}
+
+/**
+ * The mountain range's residency, including the benchmark override.
+ *
+ * `forced-on` has to reach the *mount* and not only the draw, because the range
+ * is unmounted above 13 600 m and a benchmark arm that asks for mountains at
+ * 20 000 m would otherwise get a component that is not there. `forced-off`
+ * deliberately does not un-mount: keeping the asset resident is what makes an
+ * interleaved A/B/A/B run measure a toggle rather than a DRACO decode.
+ */
+function useMountainMode(): MountainMode {
+  const [mode, setMode] = useState<MountainMode>(journey.debug.mountains);
+  useFrame(() => {
+    if (journey.debug.mountains !== mode) setMode(journey.debug.mountains);
+  });
+  return mode;
+}
+
+function StagedGeometry({ simplified }: { simplified: boolean }) {
+  const nearSystem = useNearAltitude(17_000, 22_000);
+  const nearProcess = useNearAltitude(22_000, 25_500);
+  const nearSpace = useNearAltitude(24_000, 30_000, 3_000);
+
+  // The range exists from the ground to just past the cloud pass and nowhere
+  // else, so it is mounted on the same rule as everything else here rather than
+  // being left resident and merely hidden for the upper two thirds of the
+  // journey. The margin is asymmetric by construction — `useNearAltitude`
+  // leaves late — and `mountainStateAt` has already faded the geometry to zero
+  // opacity well below this boundary, so the unmount is never the thing a
+  // visitor sees. That split is what keeps the *picture* a pure function of
+  // altitude while the *residency* is allowed hysteresis.
+  const mountainMode = useMountainMode();
+  const nearMountains = useNearAltitude(0, 12_400, 1_200) || mountainMode === 'forced-on';
+
+  return (
+    <>
+      {nearMountains && <MountainRange />}
+      {nearSystem && <SystemRings simplified={simplified} />}
+      {nearProcess && <Checkpoints simplified={simplified} />}
+      {nearSpace && (
+        <>
+          <StarField simplified={simplified} />
+          <EarthLimb simplified={simplified} />
+        </>
+      )}
+    </>
+  );
+}
+
+/**
+ * Publishes the renderer's own objects to the development handle.
+ *
+ * `main.tsx` puts the two singletons on `__stratos`; this adds the scene, the
+ * camera and the WebGL renderer to the same place. That is what lets a script
+ * ask where the Meridian actually lands on screen, and whether anything is
+ * drawn in front of it, instead of inferring both from a screenshot.
+ *
+ * The Blender safe zone is a *source composition* guide — it constrains where
+ * masses were authored, under Blender's camera. Whether the instrument is
+ * clear in the browser depends on this camera, this viewport and this aspect
+ * ratio, so it has to be measured here or not claimed at all.
+ *
+ * `import.meta.env.DEV` is statically replaced, so neither this component nor
+ * its assignment survives a production build — the same rule the debug panel
+ * and the `__stratos` handle already follow.
+ */
+function DevSceneHandle() {
+  const scene = useThree((s) => s.scene);
+  const camera = useThree((s) => s.camera);
+  const gl = useThree((s) => s.gl);
+
+  useEffect(() => {
+    // Create-or-merge, for the same reason main.tsx merges: this effect and the
+    // dynamic import that publishes the singletons race, and either can be
+    // first. Reassigning through the property rather than mutating in place
+    // matters too — the screenshot scripts install an accessor on `__stratos`
+    // to freeze idle ring rotation the moment the handle appears, and a
+    // mutation would never trip it.
+    const g = globalThis as { __stratos?: Record<string, unknown> };
+    g.__stratos = { ...(g.__stratos ?? {}), scene, camera, gl, three: THREE };
+    return () => {
+      const h = g.__stratos;
+      if (h) delete h.scene;
+    };
+  }, [scene, camera, gl]);
+
+  return null;
+}
+
+export default function JourneyScene({
+  simplified,
+  parallax,
+  onContextLost,
+}: {
+  simplified: boolean;
+  parallax: boolean;
+  onContextLost: () => void;
+}) {
+  // Owned here rather than inside QualityManager because `<Canvas>` re-asserts
+  // this prop on every render — see the long note in QualityManager. Passing it
+  // down as a prop is the only way the parked state survives a scroll.
+  const [frameloop, setFrameloop] = useState<Frameloop>('always');
+
+  return (
+    <Canvas
+      frameloop={frameloop}
+      dpr={cappedDpr()}
+      // The far plane is 60, not 30 000. See JourneyCamera: the world moves
+      // past a nearly stationary camera precisely so this number can stay small
+      // and every surface in the scene can keep its depth precision.
+      camera={{ fov: 32, near: 0.1, far: 60, position: [0, -0.1, 2.35] }}
+      gl={{
+        antialias: !simplified,
+        powerPreference: 'high-performance',
+        alpha: false,
+        stencil: false,
+        depth: true,
+      }}
+      onCreated={({ gl }) => {
+        gl.toneMapping = THREE.ACESFilmicToneMapping;
+        gl.toneMappingExposure = 1.05;
+        gl.setClearColor('#04060a', 1);
+      }}
+      // No shadow map anywhere in the journey. One hero object that lights
+      // itself does not need a second depth pass, and on a phone that pass is
+      // the entire budget.
+      shadows={false}
+      data-testid="journey-canvas"
+    >
+      <JourneyCamera parallax={parallax} />
+      <QualityManager onContextLost={onContextLost} onFrameloop={setFrameloop} />
+      {import.meta.env.DEV && <DevSceneHandle />}
+
+      {/* The sky is the backdrop for all eleven stages and is never unmounted:
+          it is one draw call and it is what the other layers are composited
+          against. */}
+      <Sky simplified={simplified} />
+
+      {/* Lighting is authored here, not imported. The GLB carries no lights and
+          no HDRI is fetched — the environment below is built from flat emitters
+          inside the scene, so the instrument's metal has something to reflect
+          without a byte crossing the network.
+
+          The intensities are altitude-driven and live in MeridianLights: the
+          breakthrough at 12 000 m and the Meridian state at 30 000 m are both
+          lighting events, and a fixed key light gave neither of them anything
+          to do. The environment probe below stays static — it is baked once and
+          it is what the metal reflects, not what lights it. */}
+      <MeridianLights simplified={simplified} />
+
+      <Suspense fallback={null}>
+        <Environment resolution={simplified ? 64 : 128} frames={1}>
+          <Lightformer form="rect" intensity={2.6} position={[-2.2, 2.4, 2.0]} scale={[5, 5, 1]} color="#dce8f7" />
+          <Lightformer form="rect" intensity={1.1} position={[2.8, 0.4, 1.2]} scale={[3, 6, 1]} color="#7f96b5" />
+          <Lightformer form="ring" intensity={0.7} position={[0, -2.4, 1.6]} scale={[4, 4, 1]} color="#2b3446" />
+        </Environment>
+
+        <AltimeterMeridian simplified={simplified} />
+      </Suspense>
+
+      <CloudDeck simplified={simplified} />
+      <StagedGeometry simplified={simplified} />
+    </Canvas>
+  );
+}

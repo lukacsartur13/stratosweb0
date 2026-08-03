@@ -1,0 +1,18 @@
+{
+  "three": "0.171.0",
+  "source": "three/examples/jsm/libs/draco/gltf",
+  "files": {
+    "draco_wasm_wrapper.js": {
+      "bytes": 58456,
+      "sha256": "8bb2952d2ba7d67e"
+    },
+    "draco_decoder.wasm": {
+      "bytes": 192420,
+      "sha256": "a680d927bed9cb86"
+    },
+    "draco_decoder.js": {
+      "bytes": 512465,
+      "sha256": "8625489da79a805f"
+    }
+  }
+}

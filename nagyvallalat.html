@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webdesign nagyvállalatoknak — dedikált fejlesztőcsapat | Stratos</title>
+<meta name="description" content="Egyedi platformok, belső rendszerek, integrációk és üzemeltetés. Nagyvállalati szintű minőség, SLA és biztonság — a stratégiától az élesítésig.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="alternate" hreflang="hu" href="/nagyvallalat.html">
+<link rel="alternate" hreflang="en" href="/en/web-design-enterprise.html">
+<link rel="alternate" hreflang="de" href="/de/webdesign-grossunternehmen.html">
+<link rel="alternate" hreflang="x-default" href="/nagyvallalat.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
+</head>
+<body data-ceiling="21000">
+
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="contrail" aria-hidden="true"></canvas>
+<div class="plane-cursor" aria-hidden="true"><img src="assets/img/plane-cursor.png" alt=""></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<aside class="rail" aria-hidden="true">
+  <img class="rail__mark" src="assets/img/plane-cursor.png" alt="">
+  <div class="rail__tape"><div class="rail__ticks"></div></div>
+  <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">MÉTER</span></div>
+  <div class="rail__layer">TROPOSZFÉRA</div>
+</aside>
+
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Stratos — főoldal">
+    <img src="assets/img/plane-cursor.png" alt=""><span>Stratos</span>
+  </a>
+  <nav class="nav__links" aria-label="Fő navigáció">
+    <a class="navlink" href="rolunk.html">Rólunk</a>
+    <div class="drop">
+      <a class="navlink" href="kkv.html" aria-haspopup="true" aria-current="true">Szolgáltatások</a>
+      <div class="drop__panel">
+        <a href="kkv.html">Webdesign KKV-nak <em>1 200 M</em></a>
+        <a href="nagyvallalat.html" aria-current="page">Webdesign nagyvállalatoknak <em>9 400 M</em></a>
+        <a href="branding.html">Branding <em>4 800 M</em></a>
+        <a href="hirdeteskezeles.html">Hirdetéskezelés <em>17 000 M</em></a>
+        <a href="impact-program.html">Impact Program <em>30 000 M</em></a>
+      </div>
+    </div>
+    <a class="navlink" href="blog.html">Blog</a>
+    <a class="navlink" href="ugyfelszolgalat.html">Ügyfélszolgálat</a>
+    <div class="lang" role="group" aria-label="Nyelvválasztás"><a href="nagyvallalat.html" hreflang="hu" lang="hu" aria-current="true">HU</a><a href="en/web-design-enterprise.html" hreflang="en" lang="en">EN</a><a href="de/webdesign-grossunternehmen.html" hreflang="de" lang="de">DE</a></div>
+    <a class="btn" href="arajanlat.html" data-magnet><span>Árajánlat</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Menü"><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobil navigáció">
+  <a href="index.html"><b>00</b> Főoldal</a>
+  <a href="rolunk.html"><b>01</b> Rólunk</a>
+  <a href="kkv.html"><b>02</b> KKV</a>
+  <a href="nagyvallalat.html" aria-current="page"><b>03</b> Nagyvállalat</a>
+  <a href="branding.html"><b>04</b> Branding</a>
+  <a href="hirdeteskezeles.html"><b>05</b> Hirdetés</a>
+  <a href="impact-program.html"><b>06</b> Impact</a>
+  <a href="blog.html"><b>07</b> Blog</a>
+  <a href="ugyfelszolgalat.html"><b>08</b> Kapcsolat</a>
+  <a href="arajanlat.html"><b>09</b> Árajánlat</a>
+  <div class="lang" role="group" aria-label="Nyelvválasztás"><a href="nagyvallalat.html" hreflang="hu" lang="hu" aria-current="true">HU</a><a href="en/web-design-enterprise.html" hreflang="en" lang="en">EN</a><a href="de/webdesign-grossunternehmen.html" hreflang="de" lang="de">DE</a></div>
+  <div class="menu__foot">
+    <span>lukacs.artur@media-stratos.com</span>
+    <span>+36 30 584 8024</span>
+  </div>
+</nav>
+
+<div class="shell">
+<main id="main">
+<section class="phead">
+    <img class="phead__bg" src="assets/img/kivitelezes.jpg" alt="" data-para="0.05">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Stratos</a> / Szolgáltatások / <b>Webdesign nagyvállalatoknak</b></p>
+      <h1 class="display h-xl">Minden fejlesztés,<br><span class="sig">egy partnerrel.</span></h1>
+      <div class="grid g-split" style="align-items:end">
+        <p class="lede">
+          Egyedi platformok, belső rendszerek, integrációk és üzemeltetés.
+          Nagyvállalati szintű minőség, SLA és biztonság — a stratégiától az élesítésig.
+        </p>
+        <div>
+          <div class="tags" style="margin-bottom:1.6rem">
+            <span>Dedikált fejlesztőcsapat</span>
+            <span>Nagyvállalati SLA</span>
+            <span>Skálázható architektúra</span>
+            <span>Admin felület</span>
+          </div>
+          <div class="btn-row">
+            <a class="btn" href="ugyfelszolgalat.html" data-magnet><span>Egyeztetést kérek</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ számok -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><span class="stat__n">99,9%</span><span class="stat__l">Garantált rendelkezésre állás</span></div>
+        <div class="stat"><span class="stat__n">Bármilyen</span><span class="stat__l">Piac, több nyelven</span></div>
+        <div class="stat"><span class="stat__n">&lt; 4 óra</span><span class="stat__l">Reakcióidő kritikus hibára</span></div>
+        <div class="stat"><span class="stat__n" data-count="4">0</span><span class="stat__l">Év fejlesztői tapasztalat</span></div>
+      </div>
+      <p class="lede" style="max-width:62ch;margin-top:clamp(2rem,5vw,3.5rem)">
+        Egy nagyvállalatnál a digitális fejlesztés nem projekt, hanem folyamatos működés.
+        Mi megtervezzük, megépítjük, integráljuk és üzemeltetjük — <span class="sig">egy csapattal</span>,
+        egy felelőssel, kiszámítható SLA mellett.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ mit fejlesztünk -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(2rem,5vw,3.5rem)">
+        <div>
+          <p class="eyebrow">Hatókör</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Mit<br>fejlesztünk?</h2>
+        </div>
+      </div>
+
+      <div class="grid g-3" data-stagger>
+        <article class="card" data-reveal>
+          <span class="card__k">Platform</span>
+          <h3>Egyedi platformok és web appok</h3>
+          <p>Ügyfélportálok, belső eszközök, SaaS felületek. Kódból építve, a folyamataitokra szabva — nem sablonból, nem oldalépítőből.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Integráció</span>
+          <h3>Rendszer­integráció</h3>
+          <p>ERP, CRM, fizetési és logisztikai rendszerek összekötése. API-k, adatszinkron és egységes adatfolyam a meglévő infrastruktúrátokkal.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Dizájn</span>
+          <h3>Design system és arculat</h3>
+          <p>Skálázható komponenskönyvtár és egységes arculat minden felületen — hogy a márkátok minden piacon és terméken konzisztens legyen.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Biztonság</span>
+          <h3>Biztonság és megfelelőség</h3>
+          <p>GDPR, hozzáférés-kezelés, auditálhatóság, penetrációs tesztek. Vállalati szintű biztonság a tervezéstől az üzemeltetésig.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Csapat</span>
+          <h3>Dedikált fejlesztőcsapat</h3>
+          <p>Nálatok dolgozó, felskálázható csapat: fejlesztők, dizájner, projektvezető. Rugalmas kapacitás a terheléshez igazítva.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Üzemeltetés</span>
+          <h3>Üzemeltetés és SLA</h3>
+          <p>Monitoring, hibakezelés, verziózás, mentések és skálázás. Garantált rendelkezésre állás és definiált reakcióidők.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ folyamat -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(1.5rem,4vw,2.5rem)">
+        <div>
+          <p class="eyebrow">A folyamat</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Így dolgozunk<br>együtt a<br>bevezetésig</h2>
+        </div>
+        <p class="prose" style="align-self:end">
+          Nagyvállalati szintű folyamat, teljes átláthatósággal.
+        </p>
+      </div>
+
+      <div class="steps">
+        <article class="step" data-reveal>
+          <h3>Felmérés és stratégia</h3>
+          <p>Feltérképezzük a folyamataitokat, a meglévő rendszereket és a célokat. Architektúra, ütemterv és mérhető KPI-ok — még a fejlesztés előtt.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Fejlesztés dedikált csapattal</h3>
+          <p>Sprintekben dolgozunk, kéthetente látható eredménnyel. Design system, fejlesztés, integrációk és folyamatos egyeztetés a ti stakeholdereitekkel.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Élesítés és folyamatos fejlesztés</h3>
+          <p>Kontrollált bevezetés, betanítás és átadás. Onnantól SLA mellett üzemeltetünk és folyamatosan fejlesztünk tovább — veletek együtt.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ miért egy partner -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split">
+        <div>
+          <p class="eyebrow">Az összehasonlítás</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Miért jobb,<br>mint több<br>beszállítóval?</h2>
+        </div>
+        <div class="prose">
+          <p>Több ügynökség, több szabadúszó, több szerződés — és az illesztések, felelősségi kérdések, késések ott keletkeznek, ahol a rendszerek találkoznak. A tudás szétaprózódik, a hibáknál pedig egymásra mutogatnak a beszállítók.</p>
+          <p>Egy partnerrel a stratégia, a dizájn, a fejlesztés, az integráció és az üzemeltetés egy kézben van. Egy felelős, egy roadmap, egy SLA. Kiszámítható tempó, kiszámítható minőség — a márka minden digitális felületén.</p>
+          <ul class="checks" style="margin-top:2rem">
+            <li>A forráskód, a dokumentáció és minden szellemi termék a tiétek — nincs vendor lock-in.</li>
+            <li>Modern stack: React/Next.js, Node, TypeScript, felhő- és konténeralapú infrastruktúra.</li>
+            <li>Fix áras keret, dedikált csapat (time &amp; material) vagy üzemeltetési retainer.</li>
+            <li>Meglévő, más által fejlesztett rendszert is átveszünk technikai audit után.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ GYIK -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-sticky">
+        <div class="sticky">
+          <p class="eyebrow">Segítség</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Gyakori<br>kérdések</h2>
+          <p class="muted" style="margin-top:1.4rem;max-width:28ch">
+            Nem találod a választ? <a class="tlink" href="ugyfelszolgalat.html">Írj nekünk</a>, és szívesen egyeztetünk.
+          </p>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Milyen SLA-t és rendelkezésre állást vállaltok?</summary>
+            <p class="faq__a">Az üzleti kritikusságtól függően definiálunk SLA-t: garantált rendelkezésre állást (jellemzően 99,9%), definiált reakció- és megoldási időket, valamint eszkalációs folyamatot. A pontos szinteket a szerződésben rögzítjük, és riportokban követjük.</p>
+          </details>
+          <details>
+            <summary>Hogyan illeszkedtek a meglévő rendszereinkhez és folyamatainkhoz?</summary>
+            <p class="faq__a">A fejlesztést a meglévő infrastruktúrátokra tervezzük: ERP, CRM, SSO, fizetési és logisztikai rendszerek integrációjával. Igazodunk a belső folyamataitokhoz, a biztonsági előírásaitokhoz és a fejlesztési sztenderdjeitekhez, legyen szó cloud vagy on-premise környezetről.</p>
+          </details>
+          <details>
+            <summary>Hogyan kezelitek az adatbiztonságot és a GDPR-megfelelőséget?</summary>
+            <p class="faq__a">A biztonság a tervezés része, nem utólagos réteg: hozzáférés-kezelés, titkosítás, auditnaplózás és rendszeres biztonsági tesztek. GDPR-megfelelő adatkezelést, adatfeldolgozói szerződést és igény esetén penetrációs teszteket, valamint a belső compliance-előírásaitokhoz igazodó folyamatot biztosítunk.</p>
+          </details>
+          <details>
+            <summary>Skálázható a megoldás több piacra és nagy terhelésre?</summary>
+            <p class="faq__a">Igen. A rendszereket eleve skálázható architektúrára tervezzük: több nyelv és piac, terheléshez igazodó infrastruktúra, cache és CDN, valamint moduláris felépítés. Ahogy nőtök, a rendszer és a hozzá rendelt csapatkapacitás is együtt skálázódik.</p>
+          </details>
+          <details>
+            <summary>Hogyan áll fel és hogyan skálázódik a dedikált csapat?</summary>
+            <p class="faq__a">A projekthez dedikált csapatot rendelünk — fejlesztők, dizájner és egy állandó projektvezető, aki a ti oldalatokon egy kapcsolattartó. A kapacitást a terheléshez igazítjuk: fel- és leskálázzuk a csapatot a roadmap és a sprintek igényei szerint.</p>
+          </details>
+          <details>
+            <summary>Kié a forráskód és a szellemi tulajdon?</summary>
+            <p class="faq__a">A forráskód, a dokumentáció és minden szellemi termék a tiétek. A repókhoz és a környezetekhez teljes hozzáférést adunk, a folyamat átlátható, és bármikor átvehető akár a belső csapatotok által is — nincs vendor lock-in.</p>
+          </details>
+          <details>
+            <summary>Milyen technológiákkal dolgoztok?</summary>
+            <p class="faq__a">Modern, jól támogatott stacket használunk (pl. React/Next.js, Node, TypeScript, felhő- és konténeralapú infrastruktúra), de mindig az adott feladathoz és a ti meglévő környezetetekhez választjuk a megfelelő eszközt. A cél a hosszú távon karbantartható, ipari sztenderdeket követő megoldás.</p>
+          </details>
+          <details>
+            <summary>Átvesztek meglévő, más által fejlesztett rendszert?</summary>
+            <p class="faq__a">Igen. Először technikai auditot végzünk: átnézzük a kódot, az architektúrát és a kockázatokat, majd javaslatot teszünk a stabilizálásra, továbbfejlesztésre vagy szükség esetén a fokozatos újraépítésre. Az átvételt kontrolláltan, a működés megszakítása nélkül végezzük.</p>
+          </details>
+          <details>
+            <summary>Hogyan zajlik a riportálás és a projektkövetés?</summary>
+            <p class="faq__a">Sprintekben dolgozunk, rendszeres demókkal és átlátható backloggal. Hozzáférést kaptok a projektkövető és a monitoring felületekhez, és rendszeres, vezetői szintre is érthető riportokban foglaljuk össze a haladást, a KPI-okat és a rendszer teljesítményét.</p>
+          </details>
+          <details>
+            <summary>Milyen szerződéses és elszámolási modellben dolgoztok?</summary>
+            <p class="faq__a">A projekt jellegétől függően dolgozhatunk fix áras keretben, dedikált csapat (time &amp; material) modellben vagy folyamatos üzemeltetési retainerben. A beszerzési, jogi és compliance-folyamataitokhoz igazodunk, és minden feltételt keretszerződésben rögzítünk.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ CTA -->
+  <section class="band">
+    <div class="wrap">
+      <div class="launch">
+        <p class="eyebrow">Felszállás</p>
+        <h2 class="display h-lg" style="margin:1.4rem 0 1.6rem;max-width:14ch">
+          Építsük meg a <span class="sig">rendszereteket.</span>
+        </h2>
+        <p class="lede" style="max-width:56ch;margin-bottom:2.2rem">
+          Ahány beszállító, annyi illesztés, felelős és csúszás. Egyeztessünk, és
+          megmutatjuk, hogyan visz egy dedikált csapat minden fejlesztést egy
+          roadmapre, egy felelőshöz és egy SLA alá.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="ugyfelszolgalat.html" data-magnet><span>Egyeztetést kérek</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="arajanlat.html" data-magnet><span>Árajánlat kérése</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:1.4rem"><img src="assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Félsz, hogy kimaradsz? Többé nem kell — iratkozz fel a hírlevelünkre.</p>
+        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
+          <label class="vh" for="nl">E-mail cím</label>
+          <input id="nl" type="email" name="email" placeholder="e-mail cím" required>
+          <div class="hp" aria-hidden="true">
+            <label for="hp-foot">Company website</label>
+            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit">Feliratkozom</button>
+        </form>
+        <p class="form__note" style="margin-top:.6rem" role="status"></p>
+      </div>
+      <div>
+        <h4>Linkek</h4>
+        <ul>
+          <li><a href="rolunk.html">Rólunk</a></li>
+          <li><a href="ugyfelszolgalat.html">Kapcsolat</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="arajanlat.html">Árajánlat</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Szolgáltatások</h4>
+        <ul>
+          <li><a href="kkv.html">Webdesign KKV-nak</a></li>
+          <li><a href="nagyvallalat.html">Webdesign nagyvállalatoknak</a></li>
+          <li><a href="branding.html">Branding</a></li>
+          <li><a href="hirdeteskezeles.html">Hirdetéskezelés</a></li>
+          <li><a href="impact-program.html">Impact Program</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kapcsolat</h4>
+        <ul>
+          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+        </ul>
+        <h4 style="margin-top:1.6rem">Közösség</h4>
+        <ul>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Stratos Media Agency — Minden jog fenntartva.</span>
+      <span style="display:flex;gap:1.4rem;align-items:center">
+        <a href="adatkezelesi-tajekoztato.html">Adatkezelési tájékoztató</a>
+        <a href="impresszum.html">Impresszum</a>
+        <img src="assets/img/gdpr.png" alt="GDPR Ready">
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

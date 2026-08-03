@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stratos Impact Program — free websites for nonprofits | Stratos</title>
+<meta name="description" content="Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="alternate" hreflang="hu" href="/impact-program.html">
+<link rel="alternate" hreflang="en" href="/en/impact-program.html">
+<link rel="alternate" hreflang="de" href="/de/impact-programm.html">
+<link rel="alternate" hreflang="x-default" href="/impact-program.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
+</head>
+<body data-ceiling="34000">
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="contrail" aria-hidden="true"></canvas>
+<div class="plane-cursor" aria-hidden="true"><img src="../assets/img/plane-cursor.png" alt=""></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<aside class="rail" aria-hidden="true">
+  <img class="rail__mark" src="../assets/img/plane-cursor.png" alt="">
+  <div class="rail__tape"><div class="rail__ticks"></div></div>
+  <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">METRES</span></div>
+  <div class="rail__layer">TROPOSPHERE</div>
+</aside>
+
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Stratos — home">
+    <img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span>
+  </a>
+  <nav class="nav__links" aria-label="Main navigation">
+    <a class="navlink" href="about.html">About</a>
+    <div class="drop">
+      <a class="navlink" href="web-design-sme.html" aria-haspopup="true" aria-current="true">Services</a>
+      <div class="drop__panel">
+        <a href="web-design-sme.html">Web design for SMEs <em>1,200 M</em></a>
+        <a href="web-design-enterprise.html">Web design for enterprises <em>9,400 M</em></a>
+        <a href="branding.html">Branding <em>4,800 M</em></a>
+        <a href="ads-management.html">Ads management <em>17,000 M</em></a>
+        <a href="impact-program.html" aria-current="page">Impact Program <em>30,000 M</em></a>
+      </div>
+    </div>
+    <a class="navlink" href="blog.html">Blog</a>
+    <a class="navlink" href="contact.html">Contact</a>
+    <div class="lang" role="group" aria-label="Choose language"><a href="../impact-program.html" hreflang="hu" lang="hu">HU</a><a href="impact-program.html" hreflang="en" lang="en" aria-current="true">EN</a><a href="../de/impact-programm.html" hreflang="de" lang="de">DE</a></div>
+    <a class="btn" href="quote.html" data-magnet><span>Get a quote</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Menu"><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobile navigation">
+  <a href="index.html"><b>00</b> Home</a>
+  <a href="about.html"><b>01</b> About</a>
+  <a href="web-design-sme.html"><b>02</b> SME</a>
+  <a href="web-design-enterprise.html"><b>03</b> Enterprise</a>
+  <a href="branding.html"><b>04</b> Branding</a>
+  <a href="ads-management.html"><b>05</b> Ads</a>
+  <a href="impact-program.html" aria-current="page"><b>06</b> Impact</a>
+  <a href="blog.html"><b>07</b> Blog</a>
+  <a href="contact.html"><b>08</b> Contact</a>
+  <a href="quote.html"><b>09</b> Get a quote</a>
+  <div class="lang" role="group" aria-label="Choose language"><a href="../impact-program.html" hreflang="hu" lang="hu">HU</a><a href="impact-program.html" hreflang="en" lang="en" aria-current="true">EN</a><a href="../de/impact-programm.html" hreflang="de" lang="de">DE</a></div>
+  <div class="menu__foot">
+    <span>lukacs.artur@media-stratos.com</span>
+    <span>+36 30 584 8024</span>
+  </div>
+</nav>
+
+<div class="shell">
+<main id="main">
+<section class="phead">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Stratos</a> / <b>Impact Program</b></p>
+      <p class="eyebrow" style="margin-bottom:1rem">A social initiative by Stratos Web</p>
+      <h1 class="display h-xl">Premium websites<br>for the people who<br><span class="chr">change lives.</span></h1>
+      <div class="grid g-split" style="align-items:end">
+        <p class="lede">Every year we build a handful of nonprofits a professional website completely free, so their digital presence matches the work they do.</p>
+        <div class="btn-row">
+          <a class="btn" href="#jelentkezes" data-magnet><span>Apply now</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ miért -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split">
+        <div>
+          <p class="eyebrow">The backstory</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">This project<br>is <span class="chr">personal.</span></h2>
+        </div>
+        <div class="prose">
+          <p>Stratos Web exists so that ambitious brands look ambitious online. This programme, though, started somewhere else entirely.</p>
+          <p>Our founder created the Impact Program because addiction touched people close to him. Seeing those struggles up close made it clear how vital organisations working in rehabilitation, prevention and mental health are — and how often an outdated website holds them back while they do extraordinary work.</p>
+          <p>The goal was never simply to build websites. The goal is for these organisations to reach more of the people who need them, and to have more impact than ever.</p>
+          <p class="muted" style="font-family:var(--data);font-size:var(--step--1);letter-spacing:.14em;text-transform:uppercase;margin-top:1.6rem">— The Stratos Web team</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ két ügy -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(2rem,5vw,3rem)">
+        <div>
+          <p class="eyebrow">Focus</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Two causes<br>close to us</h2>
+        </div>
+        <p class="prose" style="align-self:end">We focus where good digital work can change the most lives.</p>
+      </div>
+
+      <div class="grid g-2">
+        <article class="panel" data-reveal>
+          <span class="card__k">Cause 01</span>
+          <h3>Addiction and mental health</h3>
+          <p>Organisations that help people recover, support families, and prevent harm before it happens.</p>
+          <div class="tags">
+            <span>Recovery</span><span>Rehabilitation</span><span>Prevention</span>
+            <span>Mental health</span><span>Family support</span><span>Youth prevention</span>
+          </div>
+        </article>
+        <article class="panel" data-reveal>
+          <span class="card__k">Cause 02</span>
+          <h3>Children</h3>
+          <p>Organisations that protect, teach and support the children who need it most.</p>
+          <div class="tags">
+            <span>Children's homes</span><span>Disadvantaged children</span><span>Education</span>
+            <span>Child protection</span><span>Family support</span><span>Youth organisations</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ mit tartalmaz -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(2rem,5vw,3rem)">
+        <div>
+          <p class="eyebrow">What's included</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Everything a modern<br>nonprofit needs<br>— <span class="chr">for free</span></h2>
+        </div>
+        <p class="prose" style="align-self:end">Every selected organisation gets a complete, professional website. The same package we build for paying clients.</p>
+      </div>
+
+      <div class="grid g-4" data-stagger>
+        <article class="card" data-reveal>
+          <span class="card__k">Design and development</span>
+          <ul class="checks" style="margin-top:.6rem">
+            <li>Bespoke premium website</li><li>UX and UI design</li>
+            <li>Responsive development</li><li>Mobile optimisation</li>
+          </ul>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Working features</span>
+          <ul class="checks" style="margin-top:.6rem">
+            <li>Contact forms</li><li>Volunteer sign-up forms</li>
+            <li>Donation pages</li><li>Event pages</li><li>Blog and news system</li>
+          </ul>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Visibility</span>
+          <ul class="checks" style="margin-top:.6rem">
+            <li>SEO setup</li><li>Google Analytics</li>
+            <li>Google Search Console</li><li>Performance optimisation</li>
+          </ul>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Quality and launch</span>
+          <ul class="checks" style="margin-top:.6rem">
+            <li>Accessibility</li><li>Security best practices</li>
+            <li>Website launch</li><li>Initial technical support</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="launch" style="margin-top:clamp(2rem,5vw,3rem);text-align:center">
+        <p class="display" style="font-size:var(--step-4);color:var(--chr)">€0</p>
+        <p class="lede" style="margin-top:.6rem">Zero cost to your organisation. No hidden fees.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ kinek szól -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-split">
+        <div>
+          <p class="eyebrow">Who it's for</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">For those<br>who do<br>real good</h2>
+          <p class="prose" style="margin-top:1.6rem">If your work helps people, and a better website would help you reach more of them, this programme is for you.</p>
+        </div>
+        <div>
+          <ul class="checks" style="font-size:var(--step-1)">
+            <li>You operate as a nonprofit</li>
+            <li>You create measurable social impact</li>
+            <li>You genuinely need a better website</li>
+            <li>You want to reach more people</li>
+            <li>You're open to working together</li>
+          </ul>
+          <p class="muted" style="margin-top:1.8rem;max-width:46ch"><b style="color:inherit;font-weight:600">Priority goes to</b> organisations working in recovery, mental health and child protection. But any organisation creating real impact can apply.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ folyamat -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(1.5rem,4vw,2.5rem)">
+        <div>
+          <p class="eyebrow">The process</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">A simple,<br>human process</h2>
+        </div>
+        <p class="prose" style="align-self:end">Four steps from application to a new website.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step" data-reveal>
+          <h3>Application</h3>
+          <p>Organisations send in their application and share their story.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Review</h3>
+          <p>We review every applying organisation carefully.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>A conversation</h3>
+          <p>We go through needs, goals and possibilities together.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Building the website</h3>
+          <p>Together we build a professional digital presence.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ vízió -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="launch">
+        <p class="eyebrow">Our vision</p>
+        <h2 class="display h-lg" style="margin:1.4rem 0 1.4rem;max-width:16ch">We help the people who <span class="chr">help others.</span></h2>
+        <p class="lede" style="max-width:58ch">This isn't a one-off campaign. Over the coming years we want to build dozens of nonprofit websites and contribute to stronger communities in Hungary.</p>
+        <div class="stats" style="margin-top:clamp(2rem,5vw,3rem)">
+          <div class="stat"><span class="stat__n" style="color:var(--chrome)">Dozens</span><span class="stat__l">Websites over the coming years</span></div>
+          <div class="stat"><span class="stat__n" style="color:var(--chrome)">Every year</span><span class="stat__l">We choose new organisations</span></div>
+          <div class="stat"><span class="stat__n" style="color:var(--chrome)">100%</span><span class="stat__l">Free, always</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ GYIK -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-sticky">
+        <div class="sticky">
+          <p class="eyebrow">Help</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Frequently<br>asked</h2>
+          <p class="muted" style="margin-top:1.4rem;max-width:28ch">Can't find your answer? <a class="tlink" href="contact.html">Write to us</a> — we're glad to help.</p>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Is it really free?</summary>
+            <p class="faq__a">Yes, entirely. Selected organisations pay nothing. There are no hidden fees, licence costs or obligations. We cover the design, the development and the launch.</p>
+          </details>
+          <details>
+            <summary>Why do you do this?</summary>
+            <p class="faq__a">Because we've seen first hand how vital organisations working in rehabilitation, mental health and child protection are. We have the expertise to help, so we help.</p>
+          </details>
+          <details>
+            <summary>Who can apply?</summary>
+            <p class="faq__a">Nonprofit organisations that create real, measurable social impact and are open to working together. Priority goes to organisations working in recovery, mental health and child protection.</p>
+          </details>
+          <details>
+            <summary>How many organisations do you select?</summary>
+            <p class="faq__a">Only a handful each year. We deliberately keep the number small so every organisation gets our full attention and the highest quality website.</p>
+          </details>
+          <details>
+            <summary>Do you maintain the website?</summary>
+            <p class="faq__a">Every organisation gets initial technical support after launch. Longer-term needs we discuss together during the conversation.</p>
+          </details>
+          <details>
+            <summary>Do you also redesign existing websites?</summary>
+            <p class="faq__a">Of course. Whether you're starting from scratch or replacing an outdated site, we build a modern, professional presence from the ground up.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ jelentkezés -->
+  <section class="band band--pale" id="jelentkezes">
+    <div class="wrap">
+      <div class="grid g-sticky">
+        <div class="sticky">
+          <p class="eyebrow">Application</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Apply to the<br>Impact<br>Program</h2>
+          <p class="prose" style="margin-top:1.6rem;max-width:36ch">If your organisation creates real social impact, we'd like to hear your story.</p>
+        </div>
+
+        <form class="form" data-lead="impact">
+          <div class="grid g-2" style="gap:1.4rem">
+            <div class="field">
+              <label for="org">Organisation name *</label>
+              <input id="org" name="org" required>
+            </div>
+            <div class="field">
+              <label for="kapcs">Contact person *</label>
+              <input id="kapcs" name="kapcs" required>
+            </div>
+            <div class="field">
+              <label for="mail">Email address *</label>
+              <input id="mail" name="mail" type="email" required>
+            </div>
+            <div class="field">
+              <label for="tel">Phone number</label>
+              <input id="tel" name="tel" type="tel">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="web">Current website — leave empty if you don't have one</label>
+            <input id="web" name="web" type="url" placeholder="https://">
+          </div>
+
+          <div class="field">
+            <label for="terulet">Area of work *</label>
+            <select id="terulet" name="terulet" required>
+              <option value="">Choose…</option>
+              <option>Addiction / mental health</option>
+              <option>Child protection / children</option>
+              <option>Another social cause</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="mivel">What does your organisation do? *</label>
+            <textarea id="mivel" name="mivel" required></textarea>
+          </div>
+          <div class="field">
+            <label for="hatas">What impact have you achieved so far? *</label>
+            <textarea id="hatas" name="hatas" required></textarea>
+          </div>
+          <div class="field">
+            <label for="miert">Why would a new website matter to you? *</label>
+            <textarea id="miert" name="miert" required></textarea>
+          </div>
+          <div class="field">
+            <label for="mit">What would you like the new website to do?</label>
+            <textarea id="mit" name="mit"></textarea>
+          </div>
+
+          <label class="check"><input type="checkbox" name="adatkezeles_elfogadva" value="Yes" required> <span>I consent to my data being processed for the purpose of assessing my application. *</span></label>
+
+          <div class="hp" aria-hidden="true">
+            <label for="hp-impact">Company website</label>
+            <input id="hp-impact" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="btn-row" style="margin-top:.6rem">
+            <button class="btn" type="submit" data-magnet><span>Submit application</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+            </button>
+          </div>
+          <p class="form__note">We read every application personally.</p>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:1.4rem"><img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Afraid of missing out? Not any more — subscribe to our newsletter.</p>
+        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
+          <label class="vh" for="nl">Email address</label>
+          <input id="nl" type="email" name="email" placeholder="email address" required>
+          <div class="hp" aria-hidden="true">
+            <label for="hp-foot">Company website</label>
+            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="form__note" style="margin-top:.6rem" role="status"></p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="quote.html">Get a quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="web-design-sme.html">Web design for SMEs</a></li>
+          <li><a href="web-design-enterprise.html">Web design for enterprises</a></li>
+          <li><a href="branding.html">Branding</a></li>
+          <li><a href="ads-management.html">Ads management</a></li>
+          <li><a href="impact-program.html">Impact Program</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+        </ul>
+        <h4 style="margin-top:1.6rem">Social</h4>
+        <ul>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Stratos Media Agency — All rights reserved.</span>
+      <span style="display:flex;gap:1.4rem;align-items:center">
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="imprint.html">Imprint</a>
+        <img src="../assets/img/gdpr.png" alt="GDPR Ready">
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "name": "stratos-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Stratos Media — static trilingual public site plus the private React portal.",
+  "scripts": {
+    "postinstall": "npm ci --prefix portal && npm ci --prefix experiments",
+    "generate": "python3 _build/build.py",
+    "build:site": "node scripts/assemble.mjs",
+    "build:portal": "npm --prefix portal run build",
+    "build": "npm run generate && npm run build:site && npm run build:home && npm run build:portal",
+    "dev": "python3 -m http.server 4321",
+    "dev:portal": "npm --prefix portal run dev",
+    "typecheck": "npm --prefix portal run typecheck && npm --prefix experiments run typecheck",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "dev:experiments": "npm --prefix experiments run dev",
+    "build:experiments": "npm --prefix experiments run build",
+    "test:experiments": "playwright test --config playwright.experiments.config.ts",
+    "dev:full": "npm --prefix experiments run dev:full",
+    "build:full": "npm --prefix experiments run build:full",
+    "test:full": "npm run build:full && playwright test --config playwright.full.config.ts",
+    "clean:validate": "rm -rf dist/experiments test-results",
+    "validate:full": "npm run clean:validate && npm run build && npm run test:full",
+    "bench": "node experiments/bench.mjs",
+    "bench:meridian": "node experiments/bench-meridian.mjs",
+    "bench:lifecycle": "node experiments/bench-lifecycle.mjs",
+    "shots:meridian": "node experiments/shots-meridian.mjs",
+    "scan:secrets": "node scripts/secret-scan.mjs",
+    "serve:dist": "python3 -m http.server 4322 --directory dist",
+    "build:home": "npm --prefix experiments run build:home",
+    "dev:home": "npm --prefix experiments run dev:home",
+    "i18n:meridian": "node scripts/meridian-i18n.mjs",
+    "draco:sync": "node scripts/sync-draco.mjs",
+    "draco:check": "node scripts/sync-draco.mjs --check"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1"
+  }
+}

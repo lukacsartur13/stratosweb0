@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webdesign für KMU — Website zur Monatsgebühr | Stratos</title>
+<meta name="description" content="Konzeption, Entwicklung, Hosting und laufende Wartung in einer festen Monatsgebühr. Eine Website für Selbstständige und kleine Unternehmen — ohne hohe Einmalkosten.">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="alternate" hreflang="hu" href="/kkv.html">
+<link rel="alternate" hreflang="en" href="/en/web-design-sme.html">
+<link rel="alternate" hreflang="de" href="/de/webdesign-kmu.html">
+<link rel="alternate" hreflang="x-default" href="/kkv.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
+</head>
+<body data-ceiling="12000">
+
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="contrail" aria-hidden="true"></canvas>
+<div class="plane-cursor" aria-hidden="true"><img src="../assets/img/plane-cursor.png" alt=""></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<aside class="rail" aria-hidden="true">
+  <img class="rail__mark" src="../assets/img/plane-cursor.png" alt="">
+  <div class="rail__tape"><div class="rail__ticks"></div></div>
+  <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">METER</span></div>
+  <div class="rail__layer">TROPOSPHÄRE</div>
+</aside>
+
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Stratos — Startseite">
+    <img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span>
+  </a>
+  <nav class="nav__links" aria-label="Hauptnavigation">
+    <a class="navlink" href="ueber-uns.html">Über uns</a>
+    <div class="drop">
+      <a class="navlink" href="webdesign-kmu.html" aria-haspopup="true" aria-current="true">Leistungen</a>
+      <div class="drop__panel">
+        <a href="webdesign-kmu.html" aria-current="page">Webdesign für KMU <em>1.200 M</em></a>
+        <a href="webdesign-grossunternehmen.html">Webdesign für Großunternehmen <em>9.400 M</em></a>
+        <a href="branding.html">Branding <em>4.800 M</em></a>
+        <a href="werbeanzeigen.html">Werbeanzeigen <em>17.000 M</em></a>
+        <a href="impact-programm.html">Impact-Programm <em>30.000 M</em></a>
+      </div>
+    </div>
+    <a class="navlink" href="blog.html">Blog</a>
+    <a class="navlink" href="kontakt.html">Kontakt</a>
+    <div class="lang" role="group" aria-label="Sprache wählen"><a href="../kkv.html" hreflang="hu" lang="hu">HU</a><a href="../en/web-design-sme.html" hreflang="en" lang="en">EN</a><a href="webdesign-kmu.html" hreflang="de" lang="de" aria-current="true">DE</a></div>
+    <a class="btn" href="angebot.html" data-magnet><span>Angebot</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Menü"><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobile Navigation">
+  <a href="index.html"><b>00</b> Start</a>
+  <a href="ueber-uns.html"><b>01</b> Über uns</a>
+  <a href="webdesign-kmu.html" aria-current="page"><b>02</b> KMU</a>
+  <a href="webdesign-grossunternehmen.html"><b>03</b> Konzerne</a>
+  <a href="branding.html"><b>04</b> Branding</a>
+  <a href="werbeanzeigen.html"><b>05</b> Werbung</a>
+  <a href="impact-programm.html"><b>06</b> Impact</a>
+  <a href="blog.html"><b>07</b> Blog</a>
+  <a href="kontakt.html"><b>08</b> Kontakt</a>
+  <a href="angebot.html"><b>09</b> Angebot</a>
+  <div class="lang" role="group" aria-label="Sprache wählen"><a href="../kkv.html" hreflang="hu" lang="hu">HU</a><a href="../en/web-design-sme.html" hreflang="en" lang="en">EN</a><a href="webdesign-kmu.html" hreflang="de" lang="de" aria-current="true">DE</a></div>
+  <div class="menu__foot">
+    <span>lukacs.artur@media-stratos.com</span>
+    <span>+36 30 584 8024</span>
+  </div>
+</nav>
+
+<div class="shell">
+<main id="main">
+<section class="phead">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Stratos</a> / Leistungen / <b>Webdesign für KMU</b></p>
+      <h1 class="display h-xl">Eine Website<br>ohne hohe<br><span class="sig">Einmalkosten.</span></h1>
+      <div class="grid g-split" style="align-items:end">
+        <p class="lede">Konzeption, Entwicklung, Hosting und laufende Wartung. Alles in einer festen Monatsgebühr.</p>
+        <div>
+          <div class="tags" style="margin-bottom:1.6rem">
+            <span>Website zur Monatsgebühr</span>
+            <span>Keine versteckten Kosten</span>
+            <span>Laufende Wartung</span>
+          </div>
+          <div class="btn-row">
+            <a class="btn" href="angebot.html" data-magnet><span>Angebot anfragen</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ tézis -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <p class="display h-md" style="max-width:22ch">Eine gute Website ist keine einmalige Ausgabe, sondern ein <span class="sig">funktionierendes Werkzeug.</span></p>
+      <p class="lede" style="max-width:56ch;margin-top:1.6rem">Wir gestalten, bauen und warten sie — du nutzt sie für eine Monatsgebühr. So wie deinen Strom oder dein Telefon.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ mit kapsz -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(2rem,5vw,3.5rem)">
+        <div>
+          <p class="eyebrow">Das Paket</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Was du für<br>die Monatsgebühr bekommst</h2>
+        </div>
+      </div>
+
+      <div class="grid g-4" data-stagger>
+        <article class="card" data-reveal>
+          <span class="card__k">Konzeption</span>
+          <h3>Individuelles Design</h3>
+          <p>Wir arbeiten nicht mit Vorlagen. Wir gestalten einen Auftritt, der auf dein Unternehmen zugeschnitten ist und dich von der Konkurrenz abhebt.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Entwicklung</span>
+          <h3>Eine schnelle, moderne Website</h3>
+          <p>Eine mobiloptimierte, blitzschnelle Seite, die auch in Suchmaschinen gut abschneidet. In Code gebaut, nicht im Baukasten zusammengeklickt.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Betrieb</span>
+          <h3>Hosting und Wartung</h3>
+          <p>Domain, Hosting, Backups, Updates. Den Betrieb der Seite übernehmen wir — du musst dich um nichts kümmern.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Support</span>
+          <h3>Änderungen</h3>
+          <p>Neue Preisliste, neue Leistung, frische Fotos? Schreib eine E-Mail, und wir pflegen es ein. Kleinere Änderungen sind in der Monatsgebühr enthalten.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ folyamat -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(1.5rem,4vw,2.5rem)">
+        <div>
+          <p class="eyebrow">Der Ablauf</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">So kommst du<br>zu deiner Website</h2>
+        </div>
+        <p class="prose" style="align-self:end">Nur das, was ein kleines Unternehmen wirklich braucht — nicht mehr und nicht weniger.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step" data-reveal>
+          <h3>Wir sprechen</h3>
+          <p>In einem kurzen Online- oder Telefongespräch klären wir, was dein Unternehmen braucht.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Wir gestalten und bauen</h3>
+          <p>Wir erstellen den Designentwurf und nach deiner Freigabe die fertige Website. Du siehst unterwegs alles und kannst Feedback geben.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Wir starten und warten</h3>
+          <p>Die Seite geht live, und ab dann kümmern wir uns weiter darum. Du machst dein Geschäft, die Website ist unsere Sache.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ munkák -->
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom:2rem">Live-Websites</p>
+      <div class="grid g-3" data-stagger>
+        <figure class="shot" data-reveal style="aspect-ratio:4/5">
+          <img src="../assets/img/work-1.jpg" alt="Website von Barbershop Győr" loading="lazy">
+          <figcaption class="shot__tag">Barbershop Győr</figcaption>
+        </figure>
+        <figure class="shot" data-reveal style="aspect-ratio:4/5">
+          <img src="../assets/img/work-2.jpg" alt="Website von mentaltrening.com" loading="lazy">
+          <figcaption class="shot__tag">mentaltrening.com</figcaption>
+        </figure>
+        <figure class="shot" data-reveal style="aspect-ratio:4/5">
+          <img src="../assets/img/work-3.jpg" alt="Website von Rapidkert Gartenbau" loading="lazy">
+          <figcaption class="shot__tag">Rapidkert Kft.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ miért jobb -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split">
+        <div>
+          <p class="eyebrow">Der Vergleich</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Warum besser<br>als einmal<br>zahlen?</h2>
+        </div>
+        <div class="prose">
+          <p>Eine individuelle Website kostet einmalig meist mehrere Tausend Euro — und damit ist die Arbeit nicht vorbei: Hosting, Updates, Fehlerbehebung, Änderungen. Ohne das ist die Seite in wenigen Jahren veraltet.</p>
+          <p>Im Monatsmodell gibt es keine hohe Anfangsausgabe, und deine Seite bleibt nie sich selbst überlassen. Was kaputtgeht, reparieren wir. Was veraltet, aktualisieren wir. Planbare Kosten, planbarer Betrieb.</p>
+          <ul class="checks" style="margin-top:2rem">
+            <li>Keine Mindestlaufzeit und keine Vertragsstrafe — monatlich kündbar.</li>
+            <li>Domain und sämtliche Inhalte bleiben deins.</li>
+            <li>Modularer Aufbau: erweiterbar, auch um einen Onlineshop.</li>
+            <li>Responsives Design, auf jedem Gerätetyp getestet.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ GYIK -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-sticky">
+        <div class="sticky">
+          <p class="eyebrow">Hilfe</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Häufige<br>Fragen</h2>
+          <p class="muted" style="margin-top:1.4rem;max-width:28ch">Antwort nicht gefunden? <a class="tlink" href="kontakt.html">Schreib uns</a> — wir helfen gern.</p>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Wie lange dauert eine Website?</summary>
+            <p class="faq__a">Eine einfachere Website ist meist in 1–2 Wochen fertig, sobald wir die nötigen Inhalte haben (Texte, Bilder, Markenelemente). Bei komplexeren Seiten mit mehr Funktionen können es 3–4 Wochen werden — wir halten dich in jedem Schritt auf dem Laufenden.</p>
+          </details>
+          <details>
+            <summary>Warum ist die Monatsgebühr besser als hohe Einmalkosten?</summary>
+            <p class="faq__a">Du musst keine vierstellige Investition auf einmal stemmen, sondern startest deinen Online-Auftritt mit planbaren, niedrigeren Monatskosten. Die Gebühr deckt zudem laufende Wartung, Hosting, Updates und Support ab — unerwartete Zusatzkosten gibt es nicht.</p>
+          </details>
+          <details>
+            <summary>Wie individuell wird meine Website?</summary>
+            <p class="faq__a">Deine Website entsteht rund um deine Marke, dein Erscheinungsbild und deine Ziele — wir arbeiten nicht ohne kreativen Spielraum aus einer Vorlage. Design, Texte und Funktionen richten sich nach den Anforderungen deines Unternehmens.</p>
+          </details>
+          <details>
+            <summary>Lässt sich das System später erweitern?</summary>
+            <p class="faq__a">Ja. Die Website ist modular aufgebaut, sodass neue Seiten, Funktionen oder sogar ein Onlineshop ergänzt werden können, während dein Unternehmen wächst. Du musst nicht alles am Anfang entscheiden — das System wächst mit.</p>
+          </details>
+          <details>
+            <summary>Funktioniert die Seite auch auf Handy und Tablet?</summary>
+            <p class="faq__a">Ja. Jede Website ist responsiv und passt sich automatisch an Handy, Tablet und Desktop an. Das testen wir vor dem Go-live auf jedem Gerätetyp.</p>
+          </details>
+          <details>
+            <summary>Betreut ihr auch Google- und Meta-Werbung?</summary>
+            <p class="faq__a">Ja. Auf Wunsch helfen wir bei Einrichtung und Betreuung deiner Google- und Meta-Werbung (Facebook/Instagram) — vom Targeting bis zur laufenden Kampagnenoptimierung. So ist neben der Website auch der Traffic dorthin in erfahrenen Händen.</p>
+          </details>
+          <details>
+            <summary>Bekomme ich Hilfe, die Website und das Online-Marketing zu verstehen?</summary>
+            <p class="faq__a">Selbstverständlich — nach der Übergabe lassen wir dich nicht allein. Wir erklären verständlich, wie deine Seite funktioniert, und geben dir eine Einführung in die wichtigsten Begriffe des Online-Marketings, damit du sicher entscheiden kannst.</p>
+          </details>
+          <details>
+            <summary>Wie wird die Leistung von Website und Werbung gemessen?</summary>
+            <p class="faq__a">Für Website und Werbung liefern wir verständliche Statistiken mit Besucherzahlen, den wichtigsten Kennzahlen und Kampagnenergebnissen. Auf Wunsch fassen wir die Leistung zusätzlich in regelmäßigen, klar formulierten Reports zusammen.</p>
+          </details>
+          <details>
+            <summary>Wem gehören Website und Domain?</summary>
+            <p class="faq__a">Domain und sämtliche Inhalte gehören dir. Wir betreiben die Seite, solange das Abo läuft; bei Kündigung übergeben wir Domain und Inhalte selbstverständlich.</p>
+          </details>
+          <details>
+            <summary>Gibt es Mindestlaufzeit oder Vertragsstrafe?</summary>
+            <p class="faq__a">Nein. Der Vertrag ist monatlich kündbar, ohne versteckte Kosten. Du bleibst so lange, wie du zufrieden bist.</p>
+          </details>
+          <details>
+            <summary>Was muss ich für den Start bereitstellen?</summary>
+            <p class="faq__a">Ein paar Grundinformationen über dein Unternehmen sowie Texte und Bilder, falls vorhanden. Wenn nicht, helfen wir bei Formulierung und Bildauswahl — daran soll der Start nicht scheitern.</p>
+          </details>
+          <details>
+            <summary>Was, wenn ich schon eine Website habe?</summary>
+            <p class="faq__a">Bestehende Seiten übernehmen wir ebenfalls. Wir prüfen, was erhaltenswert ist, und erneuern sie entweder oder bauen eine neue; Inhalte und Domain bleiben selbstverständlich bei dir.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ CTA -->
+  <section class="band">
+    <div class="wrap">
+      <div class="launch">
+        <p class="eyebrow">Abflug</p>
+        <h2 class="display h-lg" style="margin:1.4rem 0 1.6rem;max-width:13ch">Starten wir <span class="sig">deine Website.</span></h2>
+        <p class="lede" style="max-width:52ch;margin-bottom:2.2rem">Jeden Tag ohne professionelle Website landet ein Kunde bei deiner Konkurrenz. Füll den Fragebogen aus, und in wenigen Tagen bist du dort, wo man nach dir sucht.</p>
+        <div class="btn-row">
+          <a class="btn" href="angebot.html" data-magnet><span>Fragebogen ausfüllen</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="kontakt.html" data-magnet><span>Erst eine Frage stellen</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:1.4rem"><img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Angst, etwas zu verpassen? Ab jetzt nicht mehr — abonniere unseren Newsletter.</p>
+        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
+          <label class="vh" for="nl">E-Mail-Adresse</label>
+          <input id="nl" type="email" name="email" placeholder="E-Mail-Adresse" required>
+          <div class="hp" aria-hidden="true">
+            <label for="hp-foot">Company website</label>
+            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit">Abonnieren</button>
+        </form>
+        <p class="form__note" style="margin-top:.6rem" role="status"></p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="angebot.html">Angebot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="webdesign-kmu.html">Webdesign für KMU</a></li>
+          <li><a href="webdesign-grossunternehmen.html">Webdesign für Großunternehmen</a></li>
+          <li><a href="branding.html">Branding</a></li>
+          <li><a href="werbeanzeigen.html">Werbeanzeigen</a></li>
+          <li><a href="impact-programm.html">Impact-Programm</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+        </ul>
+        <h4 style="margin-top:1.6rem">Social Media</h4>
+        <ul>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Stratos Media Agency — Alle Rechte vorbehalten.</span>
+      <span style="display:flex;gap:1.4rem;align-items:center">
+        <a href="datenschutz.html">Datenschutzerklärung</a>
+        <a href="impressum.html">Impressum</a>
+        <img src="../assets/img/gdpr.png" alt="GDPR Ready">
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

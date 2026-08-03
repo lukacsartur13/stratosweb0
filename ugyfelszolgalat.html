@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ügyfélszolgálat és kapcsolat | Stratos</title>
+<meta name="description" content="Kérdésed van, vagy ingyenes konzultációt kérnél? Írj e-mailt, hívj minket, vagy töltsd ki az űrlapot — minden megkeresésre a lehető leghamarabb válaszolunk.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="alternate" hreflang="hu" href="/ugyfelszolgalat.html">
+<link rel="alternate" hreflang="en" href="/en/contact.html">
+<link rel="alternate" hreflang="de" href="/de/kontakt.html">
+<link rel="alternate" hreflang="x-default" href="/ugyfelszolgalat.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
+</head>
+<body data-ceiling="6000">
+
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="contrail" aria-hidden="true"></canvas>
+<div class="plane-cursor" aria-hidden="true"><img src="assets/img/plane-cursor.png" alt=""></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<aside class="rail" aria-hidden="true">
+  <img class="rail__mark" src="assets/img/plane-cursor.png" alt="">
+  <div class="rail__tape"><div class="rail__ticks"></div></div>
+  <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">MÉTER</span></div>
+  <div class="rail__layer">TROPOSZFÉRA</div>
+</aside>
+
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Stratos — főoldal">
+    <img src="assets/img/plane-cursor.png" alt=""><span>Stratos</span>
+  </a>
+  <nav class="nav__links" aria-label="Fő navigáció">
+    <a class="navlink" href="rolunk.html">Rólunk</a>
+    <div class="drop">
+      <a class="navlink" href="kkv.html" aria-haspopup="true">Szolgáltatások</a>
+      <div class="drop__panel">
+        <a href="kkv.html">Webdesign KKV-nak <em>1 200 M</em></a>
+        <a href="nagyvallalat.html">Webdesign nagyvállalatoknak <em>9 400 M</em></a>
+        <a href="branding.html">Branding <em>4 800 M</em></a>
+        <a href="hirdeteskezeles.html">Hirdetéskezelés <em>17 000 M</em></a>
+        <a href="impact-program.html">Impact Program <em>30 000 M</em></a>
+      </div>
+    </div>
+    <a class="navlink" href="blog.html">Blog</a>
+    <a class="navlink" href="ugyfelszolgalat.html" aria-current="page">Ügyfélszolgálat</a>
+    <div class="lang" role="group" aria-label="Nyelvválasztás"><a href="ugyfelszolgalat.html" hreflang="hu" lang="hu" aria-current="true">HU</a><a href="en/contact.html" hreflang="en" lang="en">EN</a><a href="de/kontakt.html" hreflang="de" lang="de">DE</a></div>
+    <a class="btn" href="arajanlat.html" data-magnet><span>Árajánlat</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Menü"><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobil navigáció">
+  <a href="index.html"><b>00</b> Főoldal</a>
+  <a href="rolunk.html"><b>01</b> Rólunk</a>
+  <a href="kkv.html"><b>02</b> KKV</a>
+  <a href="nagyvallalat.html"><b>03</b> Nagyvállalat</a>
+  <a href="branding.html"><b>04</b> Branding</a>
+  <a href="hirdeteskezeles.html"><b>05</b> Hirdetés</a>
+  <a href="impact-program.html"><b>06</b> Impact</a>
+  <a href="blog.html"><b>07</b> Blog</a>
+  <a href="ugyfelszolgalat.html" aria-current="page"><b>08</b> Kapcsolat</a>
+  <a href="arajanlat.html"><b>09</b> Árajánlat</a>
+  <div class="lang" role="group" aria-label="Nyelvválasztás"><a href="ugyfelszolgalat.html" hreflang="hu" lang="hu" aria-current="true">HU</a><a href="en/contact.html" hreflang="en" lang="en">EN</a><a href="de/kontakt.html" hreflang="de" lang="de">DE</a></div>
+  <div class="menu__foot">
+    <span>lukacs.artur@media-stratos.com</span>
+    <span>+36 30 584 8024</span>
+  </div>
+</nav>
+
+<div class="shell">
+<main id="main">
+<section class="phead">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Stratos</a> / <b>Ügyfélszolgálat</b></p>
+      <h1 class="display h-xl">Vedd fel<br>a <span class="sig">kapcsolatot.</span></h1>
+      <p class="lede" style="max-width:56ch">
+        Kérdésed van, érdeklődnél a szolgáltatásaink iránt, vagy csak szeretnél többet
+        megtudni rólunk? Ne habozz — írj vagy hívj minket. Minden megkeresésre a lehető
+        leghamarabb válaszolunk.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ elérhetőségek -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="grid g-3" data-stagger>
+        <a class="card" href="mailto:lukacs.artur@media-stratos.com" data-reveal>
+          <span class="card__k">E-mail</span>
+          <h3 style="font-size:var(--step-1);text-transform:none;font-family:var(--body)">lukacs.artur@media-stratos.com</h3>
+          <p>Írásban a legegyszerűbb — általában egy munkanapon belül válaszolunk.</p>
+        </a>
+        <a class="card" href="tel:+36305848024" data-reveal>
+          <span class="card__k">Telefon</span>
+          <h3 style="font-size:var(--step-1)">+36 30 584 8024</h3>
+          <p>Ha gyorsan kell egy válasz, hívj minket munkaidőben.</p>
+        </a>
+        <div class="card" data-reveal>
+          <span class="card__k">Hol vagyunk</span>
+          <h3>Győr &amp; Budapest</h3>
+          <p>Országszerte dolgozunk — az egyeztetések nagy része online zajlik, így nem a földrajz dönt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ ingyenes konzultáció -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="launch">
+        <p class="eyebrow">Ingyenes konzultáció</p>
+        <h2 class="display h-md" style="margin:1.4rem 0 1.2rem;max-width:20ch">
+          Egy beszélgetés, ami után <span class="sig">tudni fogod, mi kell.</span>
+        </h2>
+        <p class="lede" style="max-width:60ch">
+          Ha már közölnéd az igényeidet, a kérdőívünkön részletesen le tudod adni őket,
+          és egy ingyenes online megbeszélés keretében átbeszélünk mindent az áraktól
+          a kész projektig. Nincs kötelezettség, nincs értékesítési nyomás.
+        </p>
+        <div class="btn-row" style="margin-top:2rem">
+          <a class="btn" href="arajanlat.html" data-magnet><span>Kitöltöm a kérdőívet</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#uzenet" data-magnet><span>Inkább csak kérdeznék</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ űrlap -->
+  <section class="band band--pale" id="uzenet">
+    <div class="wrap">
+      <div class="grid g-sticky">
+        <div class="sticky">
+          <p class="eyebrow">Üzenet</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Kérdezz,<br>vagy kérj<br>árajánlatot</h2>
+          <p class="prose" style="margin-top:1.6rem;max-width:34ch">
+            Írd le pár mondatban, mire lenne szükséged. Ha nem tudod pontosan, az sem baj —
+            pont ezért van a beszélgetés.
+          </p>
+        </div>
+
+        <form class="form" data-lead="contact">
+          <div class="grid g-2" style="gap:1.4rem">
+            <div class="field">
+              <label for="vez">Vezetéknév *</label>
+              <input id="vez" name="vezeteknev" required autocomplete="family-name">
+            </div>
+            <div class="field">
+              <label for="ker">Keresztnév *</label>
+              <input id="ker" name="keresztnev" required autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label for="em">E-mail *</label>
+              <input id="em" name="email" type="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="tl">Telefonszám *</label>
+              <input id="tl" name="telefon" type="tel" required autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cg">Vállalkozás neve *</label>
+            <input id="cg" name="ceg" required autocomplete="organization">
+          </div>
+
+          <div class="field">
+            <label for="mj">Megjegyzés *</label>
+            <textarea id="mj" name="megjegyzes" required placeholder="Mire lenne szükséged?"></textarea>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" name="adatvedelem_elfogadva" value="Igen" required>
+            <span>A továbblépéssel kijelentem, hogy elfogadtam az
+              <a class="tlink" href="adatkezelesi-tajekoztato.html">Adatvédelmi nyilatkozatban</a>
+              foglaltakat és annak feltételeit. *</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="hirlevel" value="Igen">
+            <span>Hozzájárulok, hogy a Stratos Media e-mailben értesítsen az újdonságokról és frissítésekről.</span>
+          </label>
+
+          <div class="hp" aria-hidden="true">
+            <label for="hp-contact">Company website</label>
+            <input id="hp-contact" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="btn-row" style="margin-top:.6rem">
+            <button class="btn" type="submit" data-magnet><span>Küldés</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+            </button>
+          </div>
+          <p class="form__note">A *-gal jelölt mezők kitöltése kötelező.</p>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:1.4rem"><img src="assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Félsz, hogy kimaradsz? Többé nem kell — iratkozz fel a hírlevelünkre.</p>
+        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
+          <label class="vh" for="nl">E-mail cím</label>
+          <input id="nl" type="email" name="email" placeholder="e-mail cím" required>
+          <div class="hp" aria-hidden="true">
+            <label for="hp-foot">Company website</label>
+            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit">Feliratkozom</button>
+        </form>
+        <p class="form__note" style="margin-top:.6rem" role="status"></p>
+      </div>
+      <div>
+        <h4>Linkek</h4>
+        <ul>
+          <li><a href="rolunk.html">Rólunk</a></li>
+          <li><a href="ugyfelszolgalat.html">Kapcsolat</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="arajanlat.html">Árajánlat</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Szolgáltatások</h4>
+        <ul>
+          <li><a href="kkv.html">Webdesign KKV-nak</a></li>
+          <li><a href="nagyvallalat.html">Webdesign nagyvállalatoknak</a></li>
+          <li><a href="branding.html">Branding</a></li>
+          <li><a href="hirdeteskezeles.html">Hirdetéskezelés</a></li>
+          <li><a href="impact-program.html">Impact Program</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kapcsolat</h4>
+        <ul>
+          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+        </ul>
+        <h4 style="margin-top:1.6rem">Közösség</h4>
+        <ul>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Stratos Media Agency — Minden jog fenntartva.</span>
+      <span style="display:flex;gap:1.4rem;align-items:center">
+        <a href="adatkezelesi-tajekoztato.html">Adatkezelési tájékoztató</a>
+        <a href="impresszum.html">Impresszum</a>
+        <img src="assets/img/gdpr.png" alt="GDPR Ready">
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

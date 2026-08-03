@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt und Support | Stratos</title>
+<meta name="description" content="Eine Frage oder Interesse an einer kostenlosen Beratung? Schreib eine E-Mail, ruf an oder füll das Formular aus — wir antworten auf jede Anfrage so schnell wie möglich.">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="alternate" hreflang="hu" href="/ugyfelszolgalat.html">
+<link rel="alternate" hreflang="en" href="/en/contact.html">
+<link rel="alternate" hreflang="de" href="/de/kontakt.html">
+<link rel="alternate" hreflang="x-default" href="/ugyfelszolgalat.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
+</head>
+<body data-ceiling="6000">
+
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="contrail" aria-hidden="true"></canvas>
+<div class="plane-cursor" aria-hidden="true"><img src="../assets/img/plane-cursor.png" alt=""></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<aside class="rail" aria-hidden="true">
+  <img class="rail__mark" src="../assets/img/plane-cursor.png" alt="">
+  <div class="rail__tape"><div class="rail__ticks"></div></div>
+  <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">METER</span></div>
+  <div class="rail__layer">TROPOSPHÄRE</div>
+</aside>
+
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Stratos — Startseite">
+    <img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span>
+  </a>
+  <nav class="nav__links" aria-label="Hauptnavigation">
+    <a class="navlink" href="ueber-uns.html">Über uns</a>
+    <div class="drop">
+      <a class="navlink" href="webdesign-kmu.html" aria-haspopup="true">Leistungen</a>
+      <div class="drop__panel">
+        <a href="webdesign-kmu.html">Webdesign für KMU <em>1.200 M</em></a>
+        <a href="webdesign-grossunternehmen.html">Webdesign für Großunternehmen <em>9.400 M</em></a>
+        <a href="branding.html">Branding <em>4.800 M</em></a>
+        <a href="werbeanzeigen.html">Werbeanzeigen <em>17.000 M</em></a>
+        <a href="impact-programm.html">Impact-Programm <em>30.000 M</em></a>
+      </div>
+    </div>
+    <a class="navlink" href="blog.html">Blog</a>
+    <a class="navlink" href="kontakt.html" aria-current="page">Kontakt</a>
+    <div class="lang" role="group" aria-label="Sprache wählen"><a href="../ugyfelszolgalat.html" hreflang="hu" lang="hu">HU</a><a href="../en/contact.html" hreflang="en" lang="en">EN</a><a href="kontakt.html" hreflang="de" lang="de" aria-current="true">DE</a></div>
+    <a class="btn" href="angebot.html" data-magnet><span>Angebot</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Menü"><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobile Navigation">
+  <a href="index.html"><b>00</b> Start</a>
+  <a href="ueber-uns.html"><b>01</b> Über uns</a>
+  <a href="webdesign-kmu.html"><b>02</b> KMU</a>
+  <a href="webdesign-grossunternehmen.html"><b>03</b> Konzerne</a>
+  <a href="branding.html"><b>04</b> Branding</a>
+  <a href="werbeanzeigen.html"><b>05</b> Werbung</a>
+  <a href="impact-programm.html"><b>06</b> Impact</a>
+  <a href="blog.html"><b>07</b> Blog</a>
+  <a href="kontakt.html" aria-current="page"><b>08</b> Kontakt</a>
+  <a href="angebot.html"><b>09</b> Angebot</a>
+  <div class="lang" role="group" aria-label="Sprache wählen"><a href="../ugyfelszolgalat.html" hreflang="hu" lang="hu">HU</a><a href="../en/contact.html" hreflang="en" lang="en">EN</a><a href="kontakt.html" hreflang="de" lang="de" aria-current="true">DE</a></div>
+  <div class="menu__foot">
+    <span>lukacs.artur@media-stratos.com</span>
+    <span>+36 30 584 8024</span>
+  </div>
+</nav>
+
+<div class="shell">
+<main id="main">
+<section class="phead">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Stratos</a> / <b>Kontakt</b></p>
+      <h1 class="display h-xl">Nimm<br><span class="sig">Kontakt auf.</span></h1>
+      <p class="lede" style="max-width:56ch">Eine Frage, Interesse an unseren Leistungen oder einfach neugierig auf uns? Zögere nicht — schreib oder ruf an. Wir antworten auf jede Anfrage so schnell wie möglich.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ elérhetőségek -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="grid g-3" data-stagger>
+        <a class="card" href="mailto:lukacs.artur@media-stratos.com" data-reveal>
+          <span class="card__k">E-Mail</span>
+          <h3 style="font-size:var(--step-1);text-transform:none;font-family:var(--body)">lukacs.artur@media-stratos.com</h3>
+          <p>Schriftlich ist am einfachsten — wir antworten meist innerhalb eines Werktags.</p>
+        </a>
+        <a class="card" href="tel:+36305848024" data-reveal>
+          <span class="card__k">Telefon</span>
+          <h3 style="font-size:var(--step-1)">+36 30 584 8024</h3>
+          <p>Wenn es schnell gehen muss, ruf uns während der Geschäftszeiten an.</p>
+        </a>
+        <div class="card" data-reveal>
+          <span class="card__k">Wo wir sind</span>
+          <h3>Győr &amp; Budapest</h3>
+          <p>Wir arbeiten landesweit — die meisten Termine laufen online, Geografie ist also nicht entscheidend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ ingyenes konzultáció -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="launch">
+        <p class="eyebrow">Kostenlose Beratung</p>
+        <h2 class="display h-md" style="margin:1.4rem 0 1.2rem;max-width:20ch">Ein Gespräch, und <span class="sig">du weißt, was du brauchst.</span></h2>
+        <p class="lede" style="max-width:60ch">Wenn du deine Anforderungen schon nennen willst, kannst du sie im Fragebogen ausführlich hinterlegen, und in einem kostenlosen Online-Termin besprechen wir alles von den Preisen bis zum fertigen Projekt. Keine Verpflichtung, kein Verkaufsdruck.</p>
+        <div class="btn-row" style="margin-top:2rem">
+          <a class="btn" href="angebot.html" data-magnet><span>Fragebogen ausfüllen</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#uzenet" data-magnet><span>Ich möchte lieber nur fragen</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ űrlap -->
+  <section class="band band--pale" id="uzenet">
+    <div class="wrap">
+      <div class="grid g-sticky">
+        <div class="sticky">
+          <p class="eyebrow">Nachricht</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Frag nach<br>oder fordere<br>ein Angebot an</h2>
+          <p class="prose" style="margin-top:1.6rem;max-width:34ch">Beschreib in ein paar Sätzen, was du brauchst. Wenn du es noch nicht genau weißt, ist das kein Problem — genau dafür ist das Gespräch da.</p>
+        </div>
+
+        <form class="form" data-lead="contact">
+          <div class="grid g-2" style="gap:1.4rem">
+            <div class="field">
+              <label for="vez">Nachname *</label>
+              <input id="vez" name="vezeteknev" required autocomplete="family-name">
+            </div>
+            <div class="field">
+              <label for="ker">Vorname *</label>
+              <input id="ker" name="keresztnev" required autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label for="em">E-Mail *</label>
+              <input id="em" name="email" type="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="tl">Telefonnummer *</label>
+              <input id="tl" name="telefon" type="tel" required autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cg">Firmenname *</label>
+            <input id="cg" name="ceg" required autocomplete="organization">
+          </div>
+
+          <div class="field">
+            <label for="mj">Nachricht *</label>
+            <textarea id="mj" name="megjegyzes" required placeholder="Was brauchst du?"></textarea>
+          </div>
+
+          <label class="check"><input type="checkbox" name="adatvedelem_elfogadva" value="Ja" required> <span>Mit dem Fortfahren bestätige ich, dass ich die Bestimmungen der <a class="tlink" href="datenschutz.html">Datenschutzerklärung</a> akzeptiere. *</span></label>
+          <label class="check"><input type="checkbox" name="hirlevel" value="Ja"> <span>Ich bin einverstanden, dass Stratos Media mich per E-Mail über Neuigkeiten und Updates informiert.</span></label>
+
+          <div class="hp" aria-hidden="true">
+            <label for="hp-contact">Company website</label>
+            <input id="hp-contact" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="btn-row" style="margin-top:.6rem">
+            <button class="btn" type="submit" data-magnet><span>Senden</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+            </button>
+          </div>
+          <p class="form__note">Mit * markierte Felder sind Pflichtfelder.</p>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:1.4rem"><img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Angst, etwas zu verpassen? Ab jetzt nicht mehr — abonniere unseren Newsletter.</p>
+        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
+          <label class="vh" for="nl">E-Mail-Adresse</label>
+          <input id="nl" type="email" name="email" placeholder="E-Mail-Adresse" required>
+          <div class="hp" aria-hidden="true">
+            <label for="hp-foot">Company website</label>
+            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit">Abonnieren</button>
+        </form>
+        <p class="form__note" style="margin-top:.6rem" role="status"></p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="angebot.html">Angebot</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="webdesign-kmu.html">Webdesign für KMU</a></li>
+          <li><a href="webdesign-grossunternehmen.html">Webdesign für Großunternehmen</a></li>
+          <li><a href="branding.html">Branding</a></li>
+          <li><a href="werbeanzeigen.html">Werbeanzeigen</a></li>
+          <li><a href="impact-programm.html">Impact-Programm</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+        </ul>
+        <h4 style="margin-top:1.6rem">Social Media</h4>
+        <ul>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Stratos Media Agency — Alle Rechte vorbehalten.</span>
+      <span style="display:flex;gap:1.4rem;align-items:center">
+        <a href="datenschutz.html">Datenschutzerklärung</a>
+        <a href="impressum.html">Impressum</a>
+        <img src="../assets/img/gdpr.png" alt="GDPR Ready">
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

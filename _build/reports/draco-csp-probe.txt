@@ -1,0 +1,128 @@
+
+DRACO decode under the production CSP — Chromium 151.0.7922.34
+==============================================================================
+policy             decoder  asset    ok   ms       triangles
+------------------------------------------------------------------------------
+production         wasm     desktop  NO   —        
+production         wasm     mobile   NO   —        
+production         js       desktop  NO   —        
+production         js       mobile   NO   —        
+wasm-allowed       wasm     desktop  NO   —        
+wasm-allowed       wasm     mobile   NO   —        
+wasm-allowed       js       desktop  NO   —        
+wasm-allowed       js       mobile   NO   —        
+worker-blob        wasm     desktop  NO   —        
+worker-blob        wasm     mobile   NO   —        
+worker-blob        js       desktop  yes  105.8    131,884
+worker-blob        js       mobile   yes  75.8     48,336
+worker-blob+wasm   wasm     desktop  yes  24.1     131,884
+worker-blob+wasm   wasm     mobile   yes  19       48,336
+worker-blob+wasm   js       desktop  yes  103.1    131,884
+worker-blob+wasm   js       mobile   yes  82.2     48,336
+none               wasm     desktop  yes  27.1     131,884
+none               wasm     mobile   yes  20       48,336
+none               js       desktop  yes  99.7     131,884
+none               js       mobile   yes  78.2     48,336
+
+Failures, with the browser's own message:
+
+  production / runs-on-worker / wasm
+    error: timed out after 20000 ms with no error and no result
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/61f6ea39-c889-4a66-8abc-9040fac58301' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/61f6ea39-c889-4a66-8abc-9040fac58301' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/61f6ea39-c889-4a66-8abc-9040fac58301' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+
+  production / runs-on-worker / wasm
+    error: timed out after 20000 ms with no error and no result
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/30ef90e7-1df7-457e-90d5-c2120408b8bd' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/30ef90e7-1df7-457e-90d5-c2120408b8bd' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/30ef90e7-1df7-457e-90d5-c2120408b8bd' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+
+  production / runs-on-worker / js
+    error: timed out after 20000 ms with no error and no result
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/7b247fd8-0505-4baa-8776-689a2a0bf37a' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/7b247fd8-0505-4baa-8776-689a2a0bf37a' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/7b247fd8-0505-4baa-8776-689a2a0bf37a' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+
+  production / runs-on-worker / js
+    error: timed out after 20000 ms with no error and no result
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/c8cecafc-1c6d-424b-bc45-4576d7d0048f' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/c8cecafc-1c6d-424b-bc45-4576d7d0048f' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/c8cecafc-1c6d-424b-bc45-4576d7d0048f' violates the following Content Security Policy directive: "script-src 'self'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.
+
+  wasm-allowed / runs-on-worker / wasm
+    error: timed out after 20000 ms with no error and no result
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/c6e42d15-32af-4a6d-817b-76f4bb91e254' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/c6e42d15-32af-4a6d-817b-76f4bb91e254' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/c6e42d15-32af-4a6d-817b-76f4bb91e254' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+
+  wasm-allowed / runs-on-worker / wasm
+    error: timed out after 20000 ms with no error and no result
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/c88b719c-69dd-4006-b883-d8fdd6c6c6fe' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/c88b719c-69dd-4006-b883-d8fdd6c6c6fe' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/c88b719c-69dd-4006-b883-d8fdd6c6c6fe' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+
+  wasm-allowed / runs-on-worker / js
+    error: timed out after 20000 ms with no error and no result
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/9444cb91-83c9-4a9e-ad0c-01a1c16f7249' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/9444cb91-83c9-4a9e-ad0c-01a1c16f7249' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/9444cb91-83c9-4a9e-ad0c-01a1c16f7249' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+
+  wasm-allowed / runs-on-worker / js
+    error: timed out after 20000 ms with no error and no result
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    violation: worker-src blocked=blob sample=
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/3850f66c-2135-41fa-a1b3-a262cc5ab7c6' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/3850f66c-2135-41fa-a1b3-a262cc5ab7c6' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+    console: Creating a worker from 'blob:http://127.0.0.1:4331/3850f66c-2135-41fa-a1b3-a262cc5ab7c6' violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked
+
+  worker-blob / runs-on-worker / wasm
+    error: timed out after 20000 ms with no error and no result
+    console: pageerror: Aborted(CompileError: WebAssembly.instantiate(): Compiling or instantiating WebAssembly module violates the following Content Security policy directive because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self'".). Build with -sASS
+    console: pageerror: Aborted(CompileError: WebAssembly.instantiate(): Compiling or instantiating WebAssembly module violates the following Content Security policy directive because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self'".). Build with -sASS
+    console: pageerror: Aborted(CompileError: WebAssembly.instantiate(): Compiling or instantiating WebAssembly module violates the following Content Security policy directive because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self'".). Build with -sASS
+
+  worker-blob / runs-on-worker / wasm
+    error: timed out after 20000 ms with no error and no result
+    console: pageerror: Aborted(CompileError: WebAssembly.instantiate(): Compiling or instantiating WebAssembly module violates the following Content Security policy directive because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self'".). Build with -sASS
+    console: pageerror: Aborted(CompileError: WebAssembly.instantiate(): Compiling or instantiating WebAssembly module violates the following Content Security policy directive because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self'".). Build with -sASS
+    console: pageerror: Aborted(CompileError: WebAssembly.instantiate(): Compiling or instantiating WebAssembly module violates the following Content Security policy directive because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self'".). Build with -sASS
+
+CSP violations reported across all runs: 32
+  worker-src blocked=blob sample=
+  worker-src blocked=blob sample=
+  worker-src blocked=blob sample=
+  worker-src blocked=blob sample=
+  worker-src blocked=blob sample=
+  worker-src blocked=blob sample=
+

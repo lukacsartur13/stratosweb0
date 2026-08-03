@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webdesign KKV-nak — havidíjas weboldal | Stratos</title>
+<meta name="description" content="Tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban. Weboldal egyéni és kisvállalkozóknak, nagy egyszeri költség nélkül.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="alternate" hreflang="hu" href="/kkv.html">
+<link rel="alternate" hreflang="en" href="/en/web-design-sme.html">
+<link rel="alternate" hreflang="de" href="/de/webdesign-kmu.html">
+<link rel="alternate" hreflang="x-default" href="/kkv.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
+</head>
+<body data-ceiling="12000">
+
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="contrail" aria-hidden="true"></canvas>
+<div class="plane-cursor" aria-hidden="true"><img src="assets/img/plane-cursor.png" alt=""></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<aside class="rail" aria-hidden="true">
+  <img class="rail__mark" src="assets/img/plane-cursor.png" alt="">
+  <div class="rail__tape"><div class="rail__ticks"></div></div>
+  <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">MÉTER</span></div>
+  <div class="rail__layer">TROPOSZFÉRA</div>
+</aside>
+
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Stratos — főoldal">
+    <img src="assets/img/plane-cursor.png" alt=""><span>Stratos</span>
+  </a>
+  <nav class="nav__links" aria-label="Fő navigáció">
+    <a class="navlink" href="rolunk.html">Rólunk</a>
+    <div class="drop">
+      <a class="navlink" href="kkv.html" aria-haspopup="true" aria-current="true">Szolgáltatások</a>
+      <div class="drop__panel">
+        <a href="kkv.html" aria-current="page">Webdesign KKV-nak <em>1 200 M</em></a>
+        <a href="nagyvallalat.html">Webdesign nagyvállalatoknak <em>9 400 M</em></a>
+        <a href="branding.html">Branding <em>4 800 M</em></a>
+        <a href="hirdeteskezeles.html">Hirdetéskezelés <em>17 000 M</em></a>
+        <a href="impact-program.html">Impact Program <em>30 000 M</em></a>
+      </div>
+    </div>
+    <a class="navlink" href="blog.html">Blog</a>
+    <a class="navlink" href="ugyfelszolgalat.html">Ügyfélszolgálat</a>
+    <div class="lang" role="group" aria-label="Nyelvválasztás"><a href="kkv.html" hreflang="hu" lang="hu" aria-current="true">HU</a><a href="en/web-design-sme.html" hreflang="en" lang="en">EN</a><a href="de/webdesign-kmu.html" hreflang="de" lang="de">DE</a></div>
+    <a class="btn" href="arajanlat.html" data-magnet><span>Árajánlat</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Menü"><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobil navigáció">
+  <a href="index.html"><b>00</b> Főoldal</a>
+  <a href="rolunk.html"><b>01</b> Rólunk</a>
+  <a href="kkv.html" aria-current="page"><b>02</b> KKV</a>
+  <a href="nagyvallalat.html"><b>03</b> Nagyvállalat</a>
+  <a href="branding.html"><b>04</b> Branding</a>
+  <a href="hirdeteskezeles.html"><b>05</b> Hirdetés</a>
+  <a href="impact-program.html"><b>06</b> Impact</a>
+  <a href="blog.html"><b>07</b> Blog</a>
+  <a href="ugyfelszolgalat.html"><b>08</b> Kapcsolat</a>
+  <a href="arajanlat.html"><b>09</b> Árajánlat</a>
+  <div class="lang" role="group" aria-label="Nyelvválasztás"><a href="kkv.html" hreflang="hu" lang="hu" aria-current="true">HU</a><a href="en/web-design-sme.html" hreflang="en" lang="en">EN</a><a href="de/webdesign-kmu.html" hreflang="de" lang="de">DE</a></div>
+  <div class="menu__foot">
+    <span>lukacs.artur@media-stratos.com</span>
+    <span>+36 30 584 8024</span>
+  </div>
+</nav>
+
+<div class="shell">
+<main id="main">
+<section class="phead">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Stratos</a> / Szolgáltatások / <b>Webdesign KKV-nak</b></p>
+      <h1 class="display h-xl">Weboldal,<br>nagy egyszeri<br><span class="sig">költség nélkül.</span></h1>
+      <div class="grid g-split" style="align-items:end">
+        <p class="lede">
+          Tervezés, fejlesztés, tárhely és folyamatos karbantartás.
+          Minden egy fix havidíjban.
+        </p>
+        <div>
+          <div class="tags" style="margin-bottom:1.6rem">
+            <span>Havidíjas weboldal</span>
+            <span>Nincs rejtett költség</span>
+            <span>Folyamatos karbantartás</span>
+          </div>
+          <div class="btn-row">
+            <a class="btn" href="arajanlat.html" data-magnet><span>Kérek ajánlatot</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ tézis -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <p class="display h-md" style="max-width:22ch">
+        Egy jó weboldal nem egyszeri kiadás, hanem <span class="sig">működő eszköz.</span>
+      </p>
+      <p class="lede" style="max-width:56ch;margin-top:1.6rem">
+        Mi megtervezzük, megépítjük és karbantartjuk, te pedig havidíjért használod.
+        Úgy, mint az áramot vagy a telefonod.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ mit kapsz -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(2rem,5vw,3.5rem)">
+        <div>
+          <p class="eyebrow">A csomag</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Mit kapsz<br>a havidíjért?</h2>
+        </div>
+      </div>
+
+      <div class="grid g-4" data-stagger>
+        <article class="card" data-reveal>
+          <span class="card__k">Tervezés</span>
+          <h3>Egyedi dizájn</h3>
+          <p>Nem sablonból dolgozunk. A vállalkozásodra szabott megjelenést tervezünk, ami megkülönböztet a konkurenciától.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Fejlesztés</span>
+          <h3>Gyors, modern weboldal</h3>
+          <p>Mobilra optimalizált, villámgyors oldal, ami a keresőkben is jól teljesít. Kód, nem oldalépítő.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Üzemeltetés</span>
+          <h3>Tárhely és karbantartás</h3>
+          <p>Domain, tárhely, biztonsági mentés, frissítések. Az oldal működéséről mi gondoskodunk, neked nincs vele dolgod.</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__k">Támogatás</span>
+          <h3>Módosítások</h3>
+          <p>Új árlista, új szolgáltatás, friss képek? Írj egy e-mailt, és mi átvezetjük. A kisebb módosítások a havidíj részei.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ folyamat -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-split" style="margin-bottom:clamp(1.5rem,4vw,2.5rem)">
+        <div>
+          <p class="eyebrow">A folyamat</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Így jutsz el<br>az élő oldaladig</h2>
+        </div>
+        <p class="prose" style="align-self:end">
+          Csak az, amire egy kisvállalkozásnak tényleg szüksége van — se több, se kevesebb.
+        </p>
+      </div>
+
+      <div class="steps">
+        <article class="step" data-reveal>
+          <h3>Beszélgetünk</h3>
+          <p>Egy rövid online vagy telefonos egyeztetésen átbeszéljük, mire van szüksége a vállalkozásodnak.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Megtervezzük és megépítjük</h3>
+          <p>Elkészítjük a dizájntervet, majd jóváhagyás után a kész weboldalt. Menet közben mindent látsz és véleményezhetsz.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Élesítünk és karbantartunk</h3>
+          <p>Az oldal elindul, és onnantól folyamatosan gondozzuk. Te a vállalkozásoddal foglalkozol, a weboldal a mi dolgunk.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ munkák -->
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom:2rem">Élő oldalak</p>
+      <div class="grid g-3" data-stagger>
+        <figure class="shot" data-reveal style="aspect-ratio:4/5">
+          <img src="assets/img/work-1.jpg" alt="Barbershop Győr weboldal" loading="lazy">
+          <figcaption class="shot__tag">Barbershop Győr</figcaption>
+        </figure>
+        <figure class="shot" data-reveal style="aspect-ratio:4/5">
+          <img src="assets/img/work-2.jpg" alt="mentaltrening.com weboldal" loading="lazy">
+          <figcaption class="shot__tag">mentaltrening.com</figcaption>
+        </figure>
+        <figure class="shot" data-reveal style="aspect-ratio:4/5">
+          <img src="assets/img/work-3.jpg" alt="Rapidkert kertépítés weboldal" loading="lazy">
+          <figcaption class="shot__tag">Rapidkert Kft.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ miért jobb -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid g-split">
+        <div>
+          <p class="eyebrow">Az összehasonlítás</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Miért jobb,<br>mint egyszer<br>kifizetni?</h2>
+        </div>
+        <div class="prose">
+          <p>Egy egyedi weboldal egyszeri díja jellemzően több százezer forint, és a munka ott nem ér véget: tárhely, frissítések, javítások, módosítások. Ezek nélkül az oldal pár év alatt elavul.</p>
+          <p>A havidíjas modellben nincs nagy kezdeti kiadás, és az oldalad sosem marad magára. Ami elromlik, javítjuk. Ami elavul, frissítjük. Kiszámítható költség, kiszámítható működés.</p>
+          <ul class="checks" style="margin-top:2rem">
+            <li>Nincs hűségidő és nincs kötbér — havonta felmondható.</li>
+            <li>A domain és minden tartalom a tiéd marad.</li>
+            <li>Moduláris felépítés: bővíthető, akár webshoppal is.</li>
+            <li>Reszponzív kialakítás, minden eszköztípuson tesztelve.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ GYIK -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <div class="grid g-sticky">
+        <div class="sticky">
+          <p class="eyebrow">Segítség</p>
+          <h2 class="display h-md" style="margin-top:1.2rem">Gyakori<br>kérdések</h2>
+          <p class="muted" style="margin-top:1.4rem;max-width:28ch">
+            Nem találod a választ? <a class="tlink" href="ugyfelszolgalat.html">Írj nekünk</a>, és szívesen segítünk.
+          </p>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Mennyi idő alatt készül el egy weboldal?</summary>
+            <p class="faq__a">Egy egyszerűbb weboldal jellemzően 1–2 hét alatt elkészül, miután megkaptuk a szükséges tartalmakat (szövegek, képek, arculati elemek). Összetettebb, több funkciót tartalmazó oldalak esetén ez 3–4 hétre nőhet, de a folyamat minden lépéséről folyamatosan tájékoztatunk.</p>
+          </details>
+          <details>
+            <summary>Miért előnyös a havidíjas konstrukció a nagy egyszeri költség helyett?</summary>
+            <p class="faq__a">Így nem kell egyszerre több százezer forintos beruházást vállalnod, hanem kiszámítható, alacsonyabb havi költséggel indíthatod el az online jelenléted. A havidíj emellett a folyamatos karbantartást, tárhelyet, frissítéseket és supportot is tartalmazza, így nem érnek váratlan extra költségek.</p>
+          </details>
+          <details>
+            <summary>Mennyire lesz testreszabott a weboldalam?</summary>
+            <p class="faq__a">A weboldalad a te márkádhoz, arculatodhoz és céljaidhoz igazodva készül, nem egy sablonból dolgozunk kreatív keretek nélkül. A dizájn, a szövegezés és a funkciók is a te vállalkozásod igényei alapján kerülnek kialakításra.</p>
+          </details>
+          <details>
+            <summary>Később bővíthető vagy fejleszthető a rendszer?</summary>
+            <p class="faq__a">Igen, a weboldal moduláris felépítésű, így új oldalakkal, funkciókkal vagy akár webshoppal is bővíthető, ahogy a vállalkozásod növekszik. Nem kell mindent az elején eldöntened, a rendszer veled együtt fejlődik.</p>
+          </details>
+          <details>
+            <summary>Mobiltelefonon és tableten is megfelelően működik majd az oldal?</summary>
+            <p class="faq__a">Igen, minden weboldal reszponzív kialakítású, vagyis automatikusan alkalmazkodik mobiltelefonhoz, tablethez és asztali géphez egyaránt. Ezt élesítés előtt minden eszköztípuson leteszteljük.</p>
+          </details>
+          <details>
+            <summary>Segítetek a Google és Meta hirdetések kezelésében is?</summary>
+            <p class="faq__a">Igen, kérésre a Google és Meta (Facebook/Instagram) hirdetéseid beállításában és kezelésében is tudunk segíteni, a célzástól a kampányok folyamatos optimalizálásáig. Így a weboldalad mellett a hozzá vezető forgalom is szakértő kezekben van.</p>
+          </details>
+          <details>
+            <summary>Kapok segítséget a weboldal és az online marketing megértésében?</summary>
+            <p class="faq__a">Természetesen, nem hagyunk magadra az átadás után. Érthetően elmagyarázzuk, hogyan működik az oldalad, és alapszintű útmutatást adunk az online marketing legfontosabb fogalmairól is, hogy magabiztosan tudj döntéseket hozni.</p>
+          </details>
+          <details>
+            <summary>Hogyan követhető a weboldal és a hirdetések teljesítménye?</summary>
+            <p class="faq__a">A weboldalhoz és a hirdetésekhez is átlátható statisztikákat biztosítunk, amelyekből látod a látogatottságot, a legfontosabb mutatókat és a kampányok eredményességét. Igény esetén rendszeres, közérthető riportokban is összefoglaljuk a teljesítményt.</p>
+          </details>
+          <details>
+            <summary>Kié a weboldal és a domain?</summary>
+            <p class="faq__a">A domain és minden tartalom a tiéd. Az oldalt mi üzemeltetjük, amíg él az előfizetés; ha felmondod, a domaint és a tartalmaidat természetesen átadjuk.</p>
+          </details>
+          <details>
+            <summary>Van hűségidő vagy kötbér?</summary>
+            <p class="faq__a">Nincs. A szerződés havonta mondható fel, rejtett költségek nélkül. Addig maradsz, amíg elégedett vagy a szolgáltatással.</p>
+          </details>
+          <details>
+            <summary>Mit kell nekem biztosítanom a kezdéshez?</summary>
+            <p class="faq__a">Elég néhány alapinformáció a vállalkozásodról, valamint szövegek és képek, ha vannak. Ha nincsenek, a megfogalmazásban és a képek kiválasztásában is segítünk, hogy ne ezen múljon az indulás.</p>
+          </details>
+          <details>
+            <summary>Mi van, ha már van weboldalam?</summary>
+            <p class="faq__a">Meglévő oldalt is átveszünk. Átnézzük, mi menthető belőle, és vagy megújítjuk, vagy újat építünk helyette; a tartalmaid és a domained természetesen megmaradnak.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ CTA -->
+  <section class="band">
+    <div class="wrap">
+      <div class="launch">
+        <p class="eyebrow">Felszállás</p>
+        <h2 class="display h-lg" style="margin:1.4rem 0 1.6rem;max-width:13ch">
+          Kezdjük el a <span class="sig">weboldalad.</span>
+        </h2>
+        <p class="lede" style="max-width:52ch;margin-bottom:2.2rem">
+          Minden nap, amíg nincs profi oldalad, egy ügyfél a versenytársadnál köt ki.
+          Töltsd ki a kérdőívet, és pár napon belül ott lehetsz, ahol keresnek.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="arajanlat.html" data-magnet><span>Kitöltöm a kérdőívet</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="ugyfelszolgalat.html" data-magnet><span>Előbb kérdeznék</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:1.4rem"><img src="assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Félsz, hogy kimaradsz? Többé nem kell — iratkozz fel a hírlevelünkre.</p>
+        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
+          <label class="vh" for="nl">E-mail cím</label>
+          <input id="nl" type="email" name="email" placeholder="e-mail cím" required>
+          <div class="hp" aria-hidden="true">
+            <label for="hp-foot">Company website</label>
+            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit">Feliratkozom</button>
+        </form>
+        <p class="form__note" style="margin-top:.6rem" role="status"></p>
+      </div>
+      <div>
+        <h4>Linkek</h4>
+        <ul>
+          <li><a href="rolunk.html">Rólunk</a></li>
+          <li><a href="ugyfelszolgalat.html">Kapcsolat</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="arajanlat.html">Árajánlat</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Szolgáltatások</h4>
+        <ul>
+          <li><a href="kkv.html">Webdesign KKV-nak</a></li>
+          <li><a href="nagyvallalat.html">Webdesign nagyvállalatoknak</a></li>
+          <li><a href="branding.html">Branding</a></li>
+          <li><a href="hirdeteskezeles.html">Hirdetéskezelés</a></li>
+          <li><a href="impact-program.html">Impact Program</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kapcsolat</h4>
+        <ul>
+          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+        </ul>
+        <h4 style="margin-top:1.6rem">Közösség</h4>
+        <ul>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Stratos Media Agency — Minden jog fenntartva.</span>
+      <span style="display:flex;gap:1.4rem;align-items:center">
+        <a href="adatkezelesi-tajekoztato.html">Adatkezelési tájékoztató</a>
+        <a href="impresszum.html">Impresszum</a>
+        <img src="assets/img/gdpr.png" alt="GDPR Ready">
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "stratos-experiments",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Development-only 3D prototypes, plus the production homepage build (build:home -> dist/{index,en/index,de/index}.html). See README.md.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit",
+    "dev:full": "vite --config vite.full.config.ts",
+    "build:full": "tsc -b && vite build --config vite.full.config.ts",
+    "preview:full": "vite preview --config vite.full.config.ts",
+    "dev:home": "vite --config vite.home.config.ts",
+    "build:home": "tsc -b && vite build --config vite.home.config.ts",
+    "preview:home": "vite preview --config vite.home.config.ts"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.117.3",
+    "@react-three/fiber": "^8.17.10",
+    "gsap": "^3.12.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.171.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/three": "^0.171.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  }
+}
