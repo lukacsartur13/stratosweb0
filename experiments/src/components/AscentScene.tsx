@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Lightformer } from '@react-three/drei';
 import * as THREE from 'three';
-import { cappedDpr } from '@/lib/capabilities';
+import { renderScale } from '@/lib/capabilities';
 import { AltimeterModel } from './AltimeterModel';
 import { AtmosphericLayer } from './AtmosphericLayer';
 import { CameraRig } from './CameraRig';
@@ -25,7 +25,11 @@ export default function AscentScene({
 }) {
   return (
     <Canvas
-      dpr={cappedDpr()}
+      // The Phase 1 prototype, and dev-only — but it reads the same canonical
+      // policy as the homepage rather than keeping a second opinion about what
+      // a handheld is worth. §3 of the fidelity gate: one effective-DPR policy,
+      // not one per route.
+      dpr={renderScale().start}
       camera={{ fov: 30, near: 0.1, far: 40, position: [0, -0.12, 2.05] }}
       gl={{
         antialias: !simplified,

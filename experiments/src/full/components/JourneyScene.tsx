@@ -1,9 +1,9 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import type { Frameloop } from './QualityManager';
 import { Environment, Lightformer } from '@react-three/drei';
 import * as THREE from 'three';
-import { cappedDpr } from '@/lib/capabilities';
+import { renderScale } from '@/lib/capabilities';
 import { journey, type MountainMode } from '../journey';
 import { CloudDeck } from './CloudDeck';
 import { EarthLimb } from './EarthLimb';
@@ -157,16 +157,108 @@ export default function JourneyScene({
   // down as a prop is the only way the parked state survives a scroll.
   const [frameloop, setFrameloop] = useState<Frameloop>('always');
 
+  // The effective device pixel ratio, owned here for exactly the same reason and
+  // by exactly the same mechanism. `configure()` runs in a layout effect with no
+  // dependency array and ends with
+  //
+  //     if (dpr && state.viewport.dpr !== calculateDpr(dpr)) state.setDpr(dpr)
+  //
+  // so an imperative `setDpr` is undone by the next `<Canvas>` render — and
+  // `<Canvas>` measures itself with `useMeasure({ scroll: true })`, on a page
+  // whose entire interaction is scrolling. The old code called `setDpr` from a
+  // `PerformanceMonitor` inside the canvas and was silently reverted on the next
+  // scroll, then called again on the next decline. That is the resolution
+  // pumping §4 forbids, and it was invisible because both halves worked.
+  //
+  // Held as a number, not a `[min, max]` tuple: a tuple is re-derived from the
+  // hardware ratio on every render, so it can only ever say "clamp the device",
+  // never "this is the ratio we chose".
+  const [dpr, setDpr] = useState(() => renderScale().start);
+
+  // `devicePixelRatio` is not a constant. Browser zoom changes it, and the
+  // policy clamps to it, so a ratio latched at mount is the wrong one after a
+  // visitor zooms out — the canvas would keep a buffer denser than the screen it
+  // is being shown on, which is the mirror image of the defect being fixed here.
+  // §10 lists zoom, orientation and address-bar collapse together for this
+  // reason; the renderer's own size comes from react-three-fiber's
+  // `ResizeObserver`, but the *ratio* is ours and has to be re-derived.
+  //
+  // Only ever *raises* back to the policy's start, and only while the ladder has
+  // not stepped down — `stepDown` below owns the downward direction, so a resize
+  // can never undo a decision the frame budget made. §3: one writer per
+  // direction.
+  const stepped = useRef(false);
+  useEffect(() => {
+    let dppx: MediaQueryList | null = null;
+
+    const sync = () => {
+      if (!stepped.current) {
+        const next = renderScale().start;
+        setDpr((current) => (current === next ? current : next));
+      }
+      watch();
+    };
+
+    // `resize` covers zoom in the browsers that reflow the CSS viewport when a
+    // visitor zooms, which is most of them, and it is what fires when a device
+    // metrics override is cleared — both measured. It does not cover a ratio
+    // that moves while the CSS viewport stays put, so the ratio is also watched
+    // directly. There is no `devicePixelRatio` change event; a `dppx` query
+    // pinned to the current value, re-pinned each time it fires, is the way this
+    // is done.
+    const watch = () => {
+      dppx?.removeEventListener('change', sync);
+      if (typeof matchMedia !== 'function') return;
+      dppx = matchMedia(`(resolution: ${devicePixelRatio}dppx)`);
+      dppx.addEventListener('change', sync);
+    };
+    watch();
+
+    addEventListener('resize', sync);
+    addEventListener('orientationchange', sync);
+    return () => {
+      dppx?.removeEventListener('change', sync);
+      removeEventListener('resize', sync);
+      removeEventListener('orientationchange', sync);
+    };
+  }, []);
+
+  // One way, once, and never back up. See QualityManager.
+  const stepDown = useCallback(() => {
+    if (stepped.current) return;
+    stepped.current = true;
+    setDpr(renderScale().floor);
+  }, []);
+
   return (
     <Canvas
       frameloop={frameloop}
-      dpr={cappedDpr()}
+      dpr={dpr}
       // The far plane is 60, not 30 000. See JourneyCamera: the world moves
       // past a nearly stationary camera precisely so this number can stay small
       // and every surface in the scene can keep its depth precision.
       camera={{ fov: 32, near: 0.1, far: 60, position: [0, -0.1, 2.35] }}
       gl={{
-        antialias: !simplified,
+        // Intentional, and intentionally not conditional on the tier. It used to
+        // be `!simplified`, which meant every handheld — the entire population
+        // this scene is hardest on — created its context with multisampling
+        // switched off, on top of a 1.5x buffer. The instrument's silhouette,
+        // its tick ring and its aperture edge are all one-pixel features at that
+        // size, and there was nothing left to resolve them with.
+        //
+        // The context reports MAX_SAMPLES 4 on every device measured, and
+        // `gl.getParameter(gl.SAMPLES)` reads back 4 on the live context, so this
+        // is real 4x MSAA and not a request the driver quietly ignored.
+        //
+        // It is not free, and it is the expensive half of this fix: measured on
+        // the reference GPU, going 1.5x -> 2x cost 10% of the frame and adding
+        // MSAA on top cost another 77%. Both were kept because the crops show
+        // both were needed — the resolution is what makes the engraved face text
+        // resolve, the multisampling is what makes the silhouette and the thin
+        // orbital rings stop stair-stepping. §9's order was followed: the
+        // drawing buffer was corrected first and this is the second half of the
+        // same fix, not a post-processing pass hiding an undersized buffer.
+        antialias: true,
         powerPreference: 'high-performance',
         alpha: false,
         stencil: false,
@@ -184,7 +276,7 @@ export default function JourneyScene({
       data-testid="journey-canvas"
     >
       <JourneyCamera parallax={parallax} />
-      <QualityManager onContextLost={onContextLost} onFrameloop={setFrameloop} />
+      <QualityManager onContextLost={onContextLost} onFrameloop={setFrameloop} onStepDown={stepDown} />
       {import.meta.env.DEV && <DevSceneHandle />}
 
       {/* The sky is the backdrop for all eleven stages and is never unmounted:

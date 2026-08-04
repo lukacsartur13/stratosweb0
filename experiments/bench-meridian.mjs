@@ -263,14 +263,19 @@ async function onePass(browser, target, cal, url) {
   /**
    * What the page actually decided, rather than what the target row claims.
    *
-   * The quality tier is chosen inside the bundle and is not exposed in
-   * production, so it is inferred from its two observable consequences:
-   * `cappedDpr()` ceilings the backing store at 1.5 on a handheld and 2
-   * elsewhere, and the reduced tier turns antialiasing off. Dividing the
-   * canvas's backing-store width by its CSS width recovers the first directly.
-   * A "mobile" row whose canvas came back at 3.0 would be a phone-sized
-   * viewport running the desktop tier, and every number in it would be
-   * describing something no phone will ever run.
+   * This used to double as a tier probe: `cappedDpr()` ceilinged the backing
+   * store at 1.5 on a handheld and 2 elsewhere, and the reduced tier turned
+   * antialiasing off, so the backing-store ratio told you which tier had run.
+   * Phase 6.5 removed both signals — `renderScale()` is now one policy for every
+   * form factor and multisampling is always on — so **the ratio no longer
+   * identifies the tier**. `pointer: coarse` below is what distinguishes a
+   * handheld now; the tier still is not exposed in production.
+   *
+   * What the ratio is still worth reading for is the thing it was always
+   * measuring underneath: whether the buffer is at policy. A row whose canvas
+   * came back at 3.0, or at 1.0 on a 3x viewport, is a run whose renderer was
+   * not configured the way the shipped page configures it, and every number in
+   * it is describing something no visitor will ever get.
    */
   const surface = await page.evaluate(() => {
     const canvas = document.querySelector('canvas');

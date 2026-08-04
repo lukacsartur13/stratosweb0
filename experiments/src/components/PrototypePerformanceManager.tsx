@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useThree } from '@react-three/fiber';
 import { PerformanceMonitor } from '@react-three/drei';
-import { cappedDpr } from '@/lib/capabilities';
+import { renderScale } from '@/lib/capabilities';
 import { ascent } from '@/lib/ascent';
 
 /**
@@ -21,7 +21,7 @@ export function PrototypePerformanceManager({
   onContextLost: () => void;
 }) {
   const { gl, setDpr, setFrameloop } = useThree();
-  const ceiling = useRef(cappedDpr()[1]);
+  const ceiling = useRef(renderScale().start);
 
   useEffect(() => {
     const canvas = gl.domElement;

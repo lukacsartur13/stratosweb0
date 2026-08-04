@@ -1,7 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 import { PerformanceMonitor } from '@react-three/drei';
-import { cappedDpr } from '@/lib/capabilities';
 import { journey } from '../journey';
 
 /** What the render loop should be doing. Owned by JourneyScene — see below. */
@@ -46,17 +45,50 @@ export type Frameloop = 'always' | 'never';
  * `frameloop` prop. `configure` then re-asserts the value we want rather than
  * fighting it. The observer and the visibility listener stay here, because this
  * is where the canvas is.
+ *
+ * ## The device pixel ratio had the identical bug, and nobody noticed
+ *
+ * Job 1 above used to be done here, imperatively, with `useThree().setDpr` —
+ * `onDecline` to three quarters of the ceiling, `onIncline` back to it. The last
+ * line of the same `configure()` is
+ *
+ *     if (dpr && state.viewport.dpr !== calculateDpr(dpr)) state.setDpr(dpr)
+ *
+ * so every one of those calls was reverted by the next `<Canvas>` render, which
+ * on this page means the next scroll. The decline lowered the ratio, the scroll
+ * put it back, the next decline lowered it again: the signature object's
+ * resolution oscillating with the visitor's thumb. Both halves were individually
+ * correct, which is why it survived a performance audit.
+ *
+ * What replaces it is a ladder that can only go down, once:
+ *
+ *   - the ratio is a number owned by `JourneyScene` and passed as the prop, so
+ *     `configure` re-asserts our value instead of overwriting it;
+ *   - `onDecline` reports upwards, and the step it asks for is to the policy
+ *     floor and no further;
+ *   - there is no `onIncline`. A climb back is what a pump is made of, and §4
+ *     asks for an instrument that does not visibly change sharpness, not for one
+ *     that recovers quickly. One transition per session, in the direction that
+ *     keeps frames, is the bound.
+ *
+ * `PerformanceMonitor`'s own `flipflops`/`onFallback` is the hysteresis: it
+ * declines only on a sustained average, not on a single slow frame, and
+ * `onFallback` fires once the signal has proven unstable. Both now arrive at the
+ * same place, because the floor is the bottom either way — an instrument that is
+ * playable and blurry has failed at the only thing it is on the page to do.
  */
 export function QualityManager({
   onContextLost,
   onFrameloop,
+  onStepDown,
 }: {
   onContextLost: () => void;
   /** Must be referentially stable — a `useState` setter is. */
   onFrameloop: (mode: Frameloop) => void;
+  /** Ask the scene for the one permitted resolution step. Idempotent. */
+  onStepDown: () => void;
 }) {
-  const { gl, setDpr } = useThree();
-  const ceiling = useRef(cappedDpr()[1]);
+  const { gl } = useThree();
 
   useEffect(() => {
     const canvas = gl.domElement;
@@ -98,12 +130,5 @@ export function QualityManager({
     };
   }, [gl, onContextLost, onFrameloop]);
 
-  return (
-    <PerformanceMonitor
-      onDecline={() => setDpr(Math.max(1, ceiling.current * 0.75))}
-      onIncline={() => setDpr(ceiling.current)}
-      flipflops={3}
-      onFallback={() => setDpr(1)}
-    />
-  );
+  return <PerformanceMonitor onDecline={onStepDown} flipflops={3} onFallback={onStepDown} />;
 }
