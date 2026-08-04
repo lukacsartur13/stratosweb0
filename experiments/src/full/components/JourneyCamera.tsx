@@ -1,7 +1,8 @@
 import { useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import type { PerspectiveCamera } from 'three';
-import { cameraHeightAt, clamp, ease, journey, lerp, settle, span } from '../journey';
+import { cameraHeightAt, clamp, journey, settle } from '../journey';
+import { dollyK, fitDistance } from '../composition';
 
 /**
  * The camera is on rails for all 30 000 metres. No orbit controls, nothing
@@ -25,12 +26,19 @@ const PARALLAX_RAD = (PARALLAX_DEGREES * Math.PI) / 180;
 /**
  * The frame the instrument has to fit inside, in world units.
  *
+ * The constants and the `fitDistance`/`dollyK` functions themselves now live in
+ * `composition.ts`, unchanged in value and in curve. They moved because the
+ * portrait copy bands have to be laid out against the same numbers — the dial's
+ * projected size *is* the band geometry — and a second copy of the frame maths
+ * is a second thing that can fall out of step with the camera. The reasoning
+ * for each value is kept here, next to the rig it describes.
+ *
  * Measured off the render rather than assumed from the model: the instrument
  * including its housing occupies about 1.1 units. A bigger frame means the
  * instrument has to fit into more world units at the same field of view, so the
  * camera sits further back and the dial lands *smaller* on screen.
  *
- * ## Why the width is now a function of aspect
+ * ## Why the width is a function of aspect
  *
  * It used to be a single 2.2, which framed the dial to about half the width of
  * a 1440×900 viewport and left the left ~45% clear for the copy plate. That
@@ -51,9 +59,14 @@ const PARALLAX_RAD = (PARALLAX_DEGREES * Math.PI) / 180;
  * portrait viewports already measure inside ±3% with the 2.2 frame. Hence the
  * interpolation rather than a constant: unchanged at portrait aspects, opening
  * to 3.5 by the time the viewport is twice as wide as it is tall.
+ *
+ * The portrait dense-stage recede does not change any of this. It moves the
+ * *instrument group* in scale and depth, exactly as the case-study recede
+ * already does, and leaves the camera rig — and therefore the framing of the
+ * sky dome, the cloud deck, the Earth limb and the mountain range — untouched.
+ * That is why it can be applied on portrait without reopening the accepted
+ * mountain art direction.
  */
-const FRAME_WIDTH_PORTRAIT = 2.2;
-const FRAME_WIDTH_WIDE = 3.5;
 
 /**
  * The vertical frame, and why it opens on mobile landscape.
@@ -89,10 +102,6 @@ const FRAME_WIDTH_WIDE = 3.5;
  * measure +41px, +21px and +16px. This is a mobile-landscape composition mode,
  * and confining it to mobile landscape is the point.
  */
-const FRAME_HEIGHT_BASE = 1.24;
-const FRAME_HEIGHT_LANDSCAPE = 2.15;
-const LANDSCAPE_ASPECT_FROM = 1.85;
-const LANDSCAPE_ASPECT_TO = 2.2;
 
 export function JourneyCamera({ parallax }: { parallax: boolean }) {
   const camera = useThree((s) => s.camera) as PerspectiveCamera;
@@ -110,21 +119,10 @@ export function JourneyCamera({ parallax }: { parallax: boolean }) {
    * headline off it. Everything below is now expressed as a *multiple* of this
    * fit distance, so the composition survives a resize and a phone.
    */
-  const fit = useMemo(() => {
-    const vFovHalf = ((camera.fov ?? 32) * Math.PI) / 360;
-    const aspect = Math.max(size.width, 1) / Math.max(size.height, 1);
-    const hFovHalf = Math.atan(Math.tan(vFovHalf) * aspect);
-    // Square is the hinge, 2:1 the far end: below 1.0 nothing changes, so every
-    // portrait phone and the 768×1024 tablet keep the framing they already
-    // validate at.
-    const frameWidth = lerp(FRAME_WIDTH_PORTRAIT, FRAME_WIDTH_WIDE, clamp((aspect - 1) / 1));
-    const frameHeight = lerp(
-      FRAME_HEIGHT_BASE,
-      FRAME_HEIGHT_LANDSCAPE,
-      clamp((aspect - LANDSCAPE_ASPECT_FROM) / (LANDSCAPE_ASPECT_TO - LANDSCAPE_ASPECT_FROM)),
-    );
-    return Math.max(frameWidth / 2 / Math.tan(hFovHalf), frameHeight / 2 / Math.tan(vFovHalf));
-  }, [camera.fov, size.width, size.height]);
+  const fit = useMemo(
+    () => fitDistance(Math.max(size.width, 1) / Math.max(size.height, 1), camera.fov ?? 32),
+    [camera.fov, size.width, size.height],
+  );
 
   useFrame((_, delta) => {
     const dt = Math.min(delta, 1 / 20);
@@ -134,20 +132,9 @@ export function JourneyCamera({ parallax }: { parallax: boolean }) {
     // Four legs, one per act, each a smoothstep so the camera always arrives
     // rather than stopping, and the joins are invisible because every leg's
     // velocity is zero at both ends. Multiples of `fit`, never absolute units.
-    const closeOnInstrument = ease(span(m, 0, 2_400)); // push in on the dial
-    const pullBack = ease(span(m, 5_000, 9_500)); // back off as cloud arrives
-    const openOut = ease(span(m, 9_500, 17_000)); // the breakthrough opens up
-    // Named `wideHold` rather than `settle`, which is what it was called: that
-    // name now belongs to the damping helper imported above, and the two mean
-    // different things — this is the fourth dolly leg, that is how any damped
-    // value stops.
-    const wideHold = ease(span(m, 24_000, 30_000)); // hold, wide, for the Earth
-
-    let k = lerp(1.06, 0.94, closeOnInstrument);
-    k = lerp(k, 1.14, pullBack);
-    k = lerp(k, 1.3, openOut);
-    k = lerp(k, 1.38, wideHold);
-    const z = fit * k + journey.debug.cameraZ;
+    // The legs themselves are `dollyK` in composition.ts, so the copy bands can
+    // ask where the camera is without this component having to tell them.
+    const z = fit * dollyK(m) + journey.debug.cameraZ;
 
     // --- vertical ----------------------------------------------------------
     // Small and monotonic. The ascent is told by the atmosphere, the readout

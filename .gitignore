@@ -36,3 +36,7 @@ _backup/
 # "netlify/functions/submit-lead 2.mjs" would deploy as a second function.
 * [0-9].*
 * [0-9][0-9].*
+
+# Sharded output from `validate-meridian.mjs`, joined into
+# meridian-visibility.json by `merge-meridian.mjs`. Intermediate, per-run.
+_build/reports/shards/

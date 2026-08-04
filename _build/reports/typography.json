@@ -1,0 +1,7178 @@
+{
+ "generatedAt": "2026-08-04T10:39:48.060Z",
+ "results": [
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "webfont",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 15,
+     "duration": 8,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 15,
+     "duration": 8,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.00001573472094960991,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00002,
+   "shifts": [
+    {
+     "t": 106,
+     "v": 0.00002,
+     "arrival": false,
+     "nodes": [
+      "SPAN.hud__unit",
+      "SPAN.panel__altitude"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 5
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 783
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 619
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1201
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 466
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 504
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 5007
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1459
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3366
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 466
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 372
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 834
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 21778,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "fallback",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 8,
+     "duration": 3,
+     "transferSize": 300
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 8,
+     "duration": 4,
+     "transferSize": 300
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 783
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 647
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1219
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 466
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 504
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 5007
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1482
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3390
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 466
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 372
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 834
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 21803,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "failure",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 6,
+     "duration": 4,
+     "transferSize": 0
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 6,
+     "duration": 4,
+     "transferSize": 0
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 783
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 647
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1219
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 466
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 504
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 5007
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1482
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3390
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 466
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 372
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 834
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 21803,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "zoom200",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 7,
+     "duration": 13,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 7,
+     "duration": 13,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 5
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1091
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1119
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1628
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 775
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 632
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 8651
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 2931
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 6648
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 780
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 549
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1364
+    }
+   ],
+   "doc": {
+    "scrollWidth": 720,
+    "clientWidth": 720,
+    "scrollHeight": 27735,
+    "innerHeight": 450
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "textsize",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 6,
+     "duration": 10,
+     "transferSize": 86156
+    },
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 6,
+     "duration": 10,
+     "transferSize": 90396
+    }
+   ],
+   "cls": 0.00002974074877829218,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00003,
+   "shifts": [
+    {
+     "t": 108,
+     "v": 0.00003,
+     "arrival": false,
+     "nodes": [
+      "SPAN.hud__unit",
+      "SPAN.panel__altitude"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 5
+   },
+   "smallestFontPx": 16.8,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1373
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1277
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1935
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 886
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 760
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 9417
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 2975
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 6634
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 901
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 739
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1730
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 32369,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "webfont",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 6,
+     "duration": 9,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 6,
+     "duration": 11,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 1.0032685526104361,
+   "clsFromArrival": 0,
+   "clsFromMovement": 1.00327,
+   "shifts": [
+    {
+     "t": 176,
+     "v": 1,
+     "arrival": false,
+     "nodes": [
+      "SECTION.panel",
+      "P.hud__stage"
+     ]
+    },
+    {
+     "t": 180,
+     "v": 0.00327,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 5
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 270,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 304,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 794,
+     "travel": 478,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 194,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 52,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 4256,
+     "travel": 3940,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 1153,
+     "travel": 837,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 2947,
+     "travel": 2631,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 194,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 103,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 337,
+     "travel": 21,
+     "innerH": 844
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 18406,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "fallback",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 4,
+     "duration": 4,
+     "transferSize": 300
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 4,
+     "duration": 4,
+     "transferSize": 300
+    }
+   ],
+   "cls": 1.0021604900942742,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00216,
+   "shifts": [
+    {
+     "t": 98,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 1617,
+     "v": 0.00216,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 296,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 325,
+     "travel": 5,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 794,
+     "travel": 474,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 194,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 52,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 4306,
+     "travel": 3986,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 1177,
+     "travel": 857,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 2972,
+     "travel": 2652,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 194,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 103,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 337,
+     "travel": 17,
+     "innerH": 844
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 18406,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "failure",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 5,
+     "duration": 4,
+     "transferSize": 0
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 5,
+     "duration": 4,
+     "transferSize": 0
+    }
+   ],
+   "cls": 1.0021604900942742,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00216,
+   "shifts": [
+    {
+     "t": 102,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 1560,
+     "v": 0.00216,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 296,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 325,
+     "travel": 5,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 794,
+     "travel": 474,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 194,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 52,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 4306,
+     "travel": 3986,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 1177,
+     "travel": 857,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 320,
+     "copyH": 2972,
+     "travel": 2652,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 194,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 103,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 320,
+     "copyH": 337,
+     "travel": 17,
+     "innerH": 844
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 18406,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "zoom200",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 6,
+     "duration": 6,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 6,
+     "duration": 9,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.8360226577028761,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.8360299999999999,
+   "shifts": [
+    {
+     "t": 111,
+     "v": 0.00013,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage"
+     ]
+    },
+    {
+     "t": 131,
+     "v": 0.8359,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__inner"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 5
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1001
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 914
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1395
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 467,
+     "travel": 310,
+     "innerH": 422
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 476
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 8363
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 2858
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 6578
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 442,
+     "travel": 285,
+     "innerH": 422
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 475
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1318
+    }
+   ],
+   "doc": {
+    "scrollWidth": 195,
+    "clientWidth": 195,
+    "scrollHeight": 26042,
+    "innerHeight": 422
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "textsize",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 5,
+     "duration": 8,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 5,
+     "duration": 8,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 1.0041408046634865,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00414,
+   "shifts": [
+    {
+     "t": 97,
+     "v": 0.00013,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage",
+      "SPAN.panel__altitude"
+     ]
+    },
+    {
+     "t": 112,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 1580,
+     "v": 0.00401,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 5
+   },
+   "smallestFontPx": 16.8,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 755,
+     "travel": 433,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 742,
+     "travel": 420,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 1435,
+     "travel": 1113,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 513,
+     "travel": 191,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 520
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 8031,
+     "travel": 7709,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 2396,
+     "travel": 2074,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 5945,
+     "travel": 5623,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 400,
+     "travel": 78,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 228,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1432
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 19499,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "webfont",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 4,
+     "duration": 6,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 4,
+     "duration": 9,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 1.0094091850149092,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.009410000000000002,
+   "shifts": [
+    {
+     "t": 93,
+     "v": 0.0001,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage",
+      "SPAN.panel__altitude"
+     ]
+    },
+    {
+     "t": 107,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 1563,
+     "v": 0.00561,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    },
+    {
+     "t": 1645,
+     "v": 0.0037,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 5
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 376,
+     "travel": 174,
+     "innerH": 568
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 373,
+     "travel": 171,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 839,
+     "travel": 637,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 242,
+     "travel": 40,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 51,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 4570,
+     "travel": 4368,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 1273,
+     "travel": 1071,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3262,
+     "travel": 3060,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 242,
+     "travel": 40,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 128,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 815
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 12943,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "fallback",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 4,
+     "duration": 4,
+     "transferSize": 300
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 4,
+     "duration": 4,
+     "transferSize": 300
+    }
+   ],
+   "cls": 1.0093096762795082,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00931,
+   "shifts": [
+    {
+     "t": 100,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 1542,
+     "v": 0.00561,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    },
+    {
+     "t": 1623,
+     "v": 0.0037,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 376,
+     "travel": 174,
+     "innerH": 568
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 373,
+     "travel": 171,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 839,
+     "travel": 637,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 242,
+     "travel": 40,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 51,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 4621,
+     "travel": 4419,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 1319,
+     "travel": 1117,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3336,
+     "travel": 3134,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 242,
+     "travel": 40,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 128,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 835
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 12964,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "failure",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 4,
+     "duration": 3,
+     "transferSize": 0
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 4,
+     "duration": 3,
+     "transferSize": 0
+    }
+   ],
+   "cls": 1.0093096762795082,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00931,
+   "shifts": [
+    {
+     "t": 96,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 1541,
+     "v": 0.00561,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    },
+    {
+     "t": 1623,
+     "v": 0.0037,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 376,
+     "travel": 174,
+     "innerH": 568
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 373,
+     "travel": 171,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 839,
+     "travel": 637,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 242,
+     "travel": 40,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 51,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 4621,
+     "travel": 4419,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 1319,
+     "travel": 1117,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3336,
+     "travel": 3134,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 242,
+     "travel": 40,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 128,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 835
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 12964,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "zoom200",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 5,
+     "duration": 6,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 5,
+     "duration": 8,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 5
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1314
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1372
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1767
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 932
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 680
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 12842
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 4207
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 10155
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 912
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 655
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1529
+    }
+   ],
+   "doc": {
+    "scrollWidth": 160,
+    "clientWidth": 160,
+    "scrollHeight": 37797,
+    "innerHeight": 284
+   },
+   "problems": []
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "textsize",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 5,
+     "duration": 5,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 5,
+     "duration": 6,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.00014358578019614166,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00014,
+   "shifts": [
+    {
+     "t": 98,
+     "v": 0.00014,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 5
+   },
+   "smallestFontPx": 16.8,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1303
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1201
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1874
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 701,
+     "travel": 499,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 604
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 10388,
+     "travel": 10186,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3139,
+     "travel": 2937,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 8087,
+     "travel": 7885,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 588,
+     "travel": 386,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 304,
+     "travel": 102,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1712
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 16191,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "webfont",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 6,
+     "duration": 4,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 6,
+     "duration": 6,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.00001680749126586077,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00002,
+   "shifts": [
+    {
+     "t": 87,
+     "v": 0.00002,
+     "arrival": false,
+     "nodes": [
+      "SPAN.hud__unit",
+      "SPAN.panel__altitude"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 698
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 598
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1269
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 566
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 504
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 4960
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1459
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3443
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 510
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 390
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 875
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 21745,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "fallback",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 7,
+     "duration": 3,
+     "transferSize": 300
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 8,
+     "duration": 3,
+     "transferSize": 300
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 753
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 598
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1294
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 566
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 522
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 5010
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1506
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3468
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 529
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 343
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 875
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 21852,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "failure",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 6,
+     "duration": 3,
+     "transferSize": 0
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 6,
+     "duration": 3,
+     "transferSize": 0
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 753
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 598
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1294
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 566
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 522
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 5010
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1506
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3468
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 529
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 343
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 875
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 21852,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "zoom200",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 11,
+     "duration": 10,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 11,
+     "duration": 10,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1036
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 969
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1640
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 941
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 655
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 8864
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 2959
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 6955
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 770
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 522
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1424
+    }
+   ],
+   "doc": {
+    "scrollWidth": 720,
+    "clientWidth": 720,
+    "scrollHeight": 28302,
+    "innerHeight": 450
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "textsize",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 7,
+     "duration": 11,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 7,
+     "duration": 17,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.00003189511397247942,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00003,
+   "shifts": [
+    {
+     "t": 132,
+     "v": 0.00003,
+     "arrival": false,
+     "nodes": [
+      "SPAN.hud__unit",
+      "SPAN.panel__altitude"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 16.8,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1311
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1236
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 2033
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1109
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 818
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 9102
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 2937
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 6993
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 957
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 654
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1721
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 32361,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "webfont",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 11,
+     "duration": 10,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 11,
+     "duration": 11,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 1,
+   "clsFromArrival": 0,
+   "clsFromMovement": 1,
+   "shifts": [
+    {
+     "t": 185,
+     "v": 1,
+     "arrival": false,
+     "nodes": [
+      "SECTION.panel",
+      "P.hud__stage"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 270,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 278,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 817,
+     "travel": 501,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 244,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 52,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 4256,
+     "travel": 3940,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 1179,
+     "travel": 863,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 2996,
+     "travel": 2680,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 194,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 77,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 358,
+     "travel": 42,
+     "innerH": 844
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 18406,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "fallback",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 9,
+     "duration": 5,
+     "transferSize": 300
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 9,
+     "duration": 5,
+     "transferSize": 300
+    }
+   ],
+   "cls": 1,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0,
+   "shifts": [
+    {
+     "t": 143,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 270,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 278,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 817,
+     "travel": 501,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 244,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 52,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 4281,
+     "travel": 3965,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 1179,
+     "travel": 863,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 2996,
+     "travel": 2680,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 194,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 77,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 358,
+     "travel": 42,
+     "innerH": 844
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 18406,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "failure",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 6,
+     "duration": 4,
+     "transferSize": 0
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 6,
+     "duration": 4,
+     "transferSize": 0
+    }
+   ],
+   "cls": 1,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0,
+   "shifts": [
+    {
+     "t": 140,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 270,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 278,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 817,
+     "travel": 501,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 244,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 52,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 4281,
+     "travel": 3965,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 1179,
+     "travel": 863,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 316,
+     "copyH": 2996,
+     "travel": 2680,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 194,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 77,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 316,
+     "copyH": 358,
+     "travel": 42,
+     "innerH": 844
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 18406,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "zoom200",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 7,
+     "duration": 9,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 7,
+     "duration": 12,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.00015230496239458302,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00015,
+   "shifts": [
+    {
+     "t": 138,
+     "v": 0.00015,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 917
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 667,
+     "travel": 510,
+     "innerH": 422
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 1242,
+     "travel": 1085,
+     "innerH": 422
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 593,
+     "travel": 436,
+     "innerH": 422
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 518
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 8059,
+     "travel": 7902,
+     "innerH": 422
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 2571,
+     "travel": 2414,
+     "innerH": 422
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 6852
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 684
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 475
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1316
+    }
+   ],
+   "doc": {
+    "scrollWidth": 195,
+    "clientWidth": 195,
+    "scrollHeight": 16871,
+    "innerHeight": 422
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "textsize",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 6,
+     "duration": 9,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 6,
+     "duration": 9,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 1.0037015807579137,
+   "clsFromArrival": 0,
+   "clsFromMovement": 1.0037,
+   "shifts": [
+    {
+     "t": 145,
+     "v": 1,
+     "arrival": false,
+     "nodes": [
+      "SECTION.panel",
+      "P.hud__stage"
+     ]
+    },
+    {
+     "t": 1788,
+     "v": 0.0037,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 16.8,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 659,
+     "travel": 337,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 704,
+     "travel": 382,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 1467,
+     "travel": 1145,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 588,
+     "travel": 266,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 520
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 8035,
+     "travel": 7713,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 2505,
+     "travel": 2183,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 6202,
+     "travel": 5880,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 438,
+     "travel": 116,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 228,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1455
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 19490,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "webfont",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 7,
+     "duration": 9,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 7,
+     "duration": 13,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 1.0094251163893575,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.009430000000000001,
+   "shifts": [
+    {
+     "t": 155,
+     "v": 0.00012,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage",
+      "SPAN.panel__altitude"
+     ]
+    },
+    {
+     "t": 175,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 1882,
+     "v": 0.00561,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    },
+    {
+     "t": 1964,
+     "v": 0.0037,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 372,
+     "travel": 170,
+     "innerH": 568
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 348,
+     "travel": 146,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 862,
+     "travel": 660,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 317,
+     "travel": 115,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 51,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 4569,
+     "travel": 4367,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 1343,
+     "travel": 1141,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3409,
+     "travel": 3207,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 242,
+     "travel": 40,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 102,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 837
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 12965,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "fallback",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 7,
+     "duration": 5,
+     "transferSize": 300
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 7,
+     "duration": 5,
+     "transferSize": 300
+    }
+   ],
+   "cls": 1.0093271308086191,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00933,
+   "shifts": [
+    {
+     "t": 164,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 1906,
+     "v": 0.00562,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    },
+    {
+     "t": 1990,
+     "v": 0.00371,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 372,
+     "travel": 170,
+     "innerH": 568
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 348,
+     "travel": 146,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 862,
+     "travel": 660,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 317,
+     "travel": 115,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 51,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 4621,
+     "travel": 4419,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 1391,
+     "travel": 1189,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3458,
+     "travel": 3256,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 242,
+     "travel": 40,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 102,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 857
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 12986,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "failure",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 7,
+     "duration": 4,
+     "transferSize": 0
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 7,
+     "duration": 4,
+     "transferSize": 0
+    }
+   ],
+   "cls": 1.0093271308086191,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00933,
+   "shifts": [
+    {
+     "t": 175,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 1978,
+     "v": 0.00562,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    },
+    {
+     "t": 2064,
+     "v": 0.00371,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 372,
+     "travel": 170,
+     "innerH": 568
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 348,
+     "travel": 146,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 862,
+     "travel": 660,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 317,
+     "travel": 115,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 51,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 4621,
+     "travel": 4419,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 1391,
+     "travel": 1189,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3458,
+     "travel": 3256,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 242,
+     "travel": 40,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 102,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 857
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 12986,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "zoom200",
+   "fontsReady": 1,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 7,
+     "duration": 9,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 7,
+     "duration": 10,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1289
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1337
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1884
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1154
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 652
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 12767
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 4324
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 11057
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 964
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 554
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1662
+    }
+   ],
+   "doc": {
+    "scrollWidth": 160,
+    "clientWidth": 160,
+    "scrollHeight": 39055,
+    "innerHeight": 284
+   },
+   "problems": []
+  },
+  {
+   "locale": "en",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "textsize",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 9,
+     "duration": 8,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 9,
+     "duration": 10,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.000172433699910732,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00017,
+   "shifts": [
+    {
+     "t": 149,
+     "v": 0.00017,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 16.8,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1277
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 963,
+     "travel": 761,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 2013
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1074
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 667
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 10463,
+     "travel": 10261,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3250,
+     "travel": 3048,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 8839
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 588,
+     "travel": 386,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 612
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1735
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 23332,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "webfont",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 7,
+     "duration": 9,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 7,
+     "duration": 9,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.000017988500608174724,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00002,
+   "shifts": [
+    {
+     "t": 160,
+     "v": 0.00002,
+     "arrival": false,
+     "nodes": [
+      "SPAN.hud__unit",
+      "SPAN.panel__altitude"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 783
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 647
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1319
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 569
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 533
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 5273
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1559
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3569
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 482
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 419
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 929
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 22276,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "fallback",
+   "fontsReady": 1,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 9,
+     "duration": 6,
+     "transferSize": 300
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 10,
+     "duration": 6,
+     "transferSize": 300
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 812
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 647
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1343
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 569
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 533
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 5298
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1605
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3618
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 538
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 419
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 929
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 22379,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "failure",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 11,
+     "duration": 5,
+     "transferSize": 0
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 11,
+     "duration": 5,
+     "transferSize": 0
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 812
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 647
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1343
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 569
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 533
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 5298
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1605
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3618
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 538
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 419
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 929
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 22379,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "zoom200",
+   "fontsReady": 1,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 11,
+     "duration": 15,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 11,
+     "duration": 20,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1235
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1136
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1749
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 881
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 742
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 9726
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3440
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 7709
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 893
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 611
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1585
+    }
+   ],
+   "doc": {
+    "scrollWidth": 720,
+    "clientWidth": 720,
+    "scrollHeight": 31276,
+    "innerHeight": 450
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "condition": "textsize",
+   "fontsReady": 1,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 9,
+     "duration": 15,
+     "transferSize": 86156
+    },
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 9,
+     "duration": 15,
+     "transferSize": 90396
+    }
+   ],
+   "cls": 0.000018490487557870373,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00002,
+   "shifts": [
+    {
+     "t": 187,
+     "v": 0.00002,
+     "arrival": false,
+     "nodes": [
+      "SPAN.hud__unit"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 16.8,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "landscape",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1419
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1334
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 2071
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1010
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 802
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 10155
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 3303
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 7654
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 999
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 681
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1845
+    }
+   ],
+   "doc": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "scrollHeight": 34808,
+    "innerHeight": 900
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "webfont",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 11,
+     "duration": 17,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 12,
+     "duration": 19,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 1.0032685526104361,
+   "clsFromArrival": 0,
+   "clsFromMovement": 1.00327,
+   "shifts": [
+    {
+     "t": 271,
+     "v": 1,
+     "arrival": false,
+     "nodes": [
+      "SECTION.panel",
+      "P.hud__stage"
+     ]
+    },
+    {
+     "t": 2204,
+     "v": 0.00327,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 352,
+     "travel": 30,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 325,
+     "travel": 3,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 817,
+     "travel": 495,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 270,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 52,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 4382,
+     "travel": 4060,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 1251,
+     "travel": 929,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 3190,
+     "travel": 2868,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 219,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 103,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 403,
+     "travel": 81,
+     "innerH": 844
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 18406,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "fallback",
+   "fontsReady": 1,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 14,
+     "duration": 6,
+     "transferSize": 300
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 14,
+     "duration": 6,
+     "transferSize": 300
+    }
+   ],
+   "cls": 1.0032685526104361,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00327,
+   "shifts": [
+    {
+     "t": 209,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 2109,
+     "v": 0.00327,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 352,
+     "travel": 30,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 325,
+     "travel": 3,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 817,
+     "travel": 495,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 270,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 52,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 4457,
+     "travel": 4135,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 1274,
+     "travel": 952,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 3190,
+     "travel": 2868,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 219,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 103,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 403,
+     "travel": 81,
+     "innerH": 844
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 18406,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "failure",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 12,
+     "duration": 5,
+     "transferSize": 0
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 12,
+     "duration": 6,
+     "transferSize": 0
+    }
+   ],
+   "cls": 1.0032685526104361,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00327,
+   "shifts": [
+    {
+     "t": 195,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 2100,
+     "v": 0.00327,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 352,
+     "travel": 30,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 325,
+     "travel": 3,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 817,
+     "travel": 495,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 270,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 52,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 4457,
+     "travel": 4135,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 1274,
+     "travel": 952,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 3190,
+     "travel": 2868,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 219,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 103,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 403,
+     "travel": 81,
+     "innerH": 844
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 18406,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "zoom200",
+   "fontsReady": 1,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 12,
+     "duration": 11,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 12,
+     "duration": 12,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.00018136068314635734,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00018,
+   "shifts": [
+    {
+     "t": 184,
+     "v": 0.00018,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1022
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 950
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 1311,
+     "travel": 1154,
+     "innerH": 422
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 618,
+     "travel": 461,
+     "innerH": 422
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 9251
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 2973,
+     "travel": 2816,
+     "innerH": 422
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 7631
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 157,
+     "copyH": 543,
+     "travel": 386,
+     "innerH": 422
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 526
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1415
+    }
+   ],
+   "doc": {
+    "scrollWidth": 195,
+    "clientWidth": 195,
+    "scrollHeight": 25664,
+    "innerHeight": 422
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 390,
+    "h": 844
+   },
+   "condition": "textsize",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 9,
+     "duration": 9,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 9,
+     "duration": 14,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 1.1852142934996392,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.18520999999999999,
+   "shifts": [
+    {
+     "t": 155,
+     "v": 0.1812,
+     "arrival": false,
+     "nodes": [
+      "P.panel__lead",
+      "H1.panel__title",
+      "P.panel__actions"
+     ]
+    },
+    {
+     "t": 176,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 2008,
+     "v": 0.00401,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 16.8,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 755,
+     "travel": 433,
+     "innerH": 844
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 704,
+     "travel": 382,
+     "innerH": 844
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 1539,
+     "travel": 1217,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 626,
+     "travel": 304,
+     "innerH": 844
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 562
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 8667,
+     "travel": 8345,
+     "innerH": 844
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 2680,
+     "travel": 2358,
+     "innerH": 844
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 7051,
+     "travel": 6729,
+     "innerH": 844
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 322,
+     "copyH": 513,
+     "travel": 191,
+     "innerH": 844
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 322,
+     "copyH": 266,
+     "travel": 0,
+     "innerH": 844
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1608
+    }
+   ],
+   "doc": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "scrollHeight": 19643,
+    "innerHeight": 844
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "webfont",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 11,
+     "duration": 10,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 11,
+     "duration": 13,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 1.0086367203966535,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00864,
+   "shifts": [
+    {
+     "t": 180,
+     "v": 0.00013,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage",
+      "SPAN.panel__altitude"
+     ]
+    },
+    {
+     "t": 206,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 2099,
+     "v": 0.00513,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    },
+    {
+     "t": 2187,
+     "v": 0.00338,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 423,
+     "travel": 221,
+     "innerH": 568
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 373,
+     "travel": 171,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 886,
+     "travel": 684,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 317,
+     "travel": 115,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 77,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 4741,
+     "travel": 4539,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 1532,
+     "travel": 1330,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3657,
+     "travel": 3455,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 267,
+     "travel": 65,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 128,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 868
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 12997,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "fallback",
+   "fontsReady": 1,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 9,
+     "duration": 6,
+     "transferSize": 300
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 9,
+     "duration": 6,
+     "transferSize": 300
+    }
+   ],
+   "cls": 1.0085041720392778,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00851,
+   "shifts": [
+    {
+     "t": 186,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 2067,
+     "v": 0.00513,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    },
+    {
+     "t": 2155,
+     "v": 0.00338,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 423,
+     "travel": 221,
+     "innerH": 568
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 394,
+     "travel": 192,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 886,
+     "travel": 684,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 317,
+     "travel": 115,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 77,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 4817,
+     "travel": 4615,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 1532,
+     "travel": 1330,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3706,
+     "travel": 3504,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 267,
+     "travel": 65,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 128,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 910
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 13038,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "failure",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 9,
+     "duration": 5,
+     "transferSize": 0
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 9,
+     "duration": 5,
+     "transferSize": 0
+    }
+   ],
+   "cls": 1.0085041720392778,
+   "clsFromArrival": 1,
+   "clsFromMovement": 0.00851,
+   "shifts": [
+    {
+     "t": 188,
+     "v": 1,
+     "arrival": true,
+     "nodes": [
+      "SECTION.panel"
+     ]
+    },
+    {
+     "t": 2067,
+     "v": 0.00513,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    },
+    {
+     "t": 2157,
+     "v": 0.00338,
+     "arrival": false,
+     "nodes": [
+      "DIV.panel__band",
+      "DIV.panel__band"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": false,
+    "monoLoaded": false,
+    "loadedFaces": 2
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 423,
+     "travel": 221,
+     "innerH": 568
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 394,
+     "travel": 192,
+     "innerH": 568
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 886,
+     "travel": 684,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 317,
+     "travel": 115,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 77,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "selected-work",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 4817,
+     "travel": 4615,
+     "innerH": 568
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 1532,
+     "travel": 1330,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3706,
+     "travel": 3504,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 267,
+     "travel": 65,
+     "innerH": 568
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "0",
+     "bandH": 202,
+     "copyH": 128,
+     "travel": 0,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 910
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 13038,
+    "innerHeight": 568
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "zoom200",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 9,
+     "duration": 10,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 9,
+     "duration": 13,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0,
+   "shifts": [],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 11.2,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1397
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1424
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1979
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1108
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 706
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 14263
+    },
+    {
+     "stage": "system",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 4873
+    },
+    {
+     "stage": "process",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 12006
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1039
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 715
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1890
+    }
+   ],
+   "doc": {
+    "scrollWidth": 160,
+    "clientWidth": 160,
+    "scrollHeight": 42832,
+    "innerHeight": 284
+   },
+   "problems": []
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 320,
+    "h": 568
+   },
+   "condition": "textsize",
+   "fontsReady": 0,
+   "fontTimings": [
+    {
+     "name": "archivo-normal-latin.woff2",
+     "start": 8,
+     "duration": 9,
+     "transferSize": 90396
+    },
+    {
+     "name": "archivo-normal-latin-ext.woff2",
+     "start": 8,
+     "duration": 14,
+     "transferSize": 86156
+    }
+   ],
+   "cls": 0.00020588740685751833,
+   "clsFromArrival": 0,
+   "clsFromMovement": 0.00021,
+   "shifts": [
+    {
+     "t": 160,
+     "v": 0.00021,
+     "arrival": false,
+     "nodes": [
+      "P.hud__stage"
+     ]
+    }
+   ],
+   "resolved": {
+    "display": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "Archivo, \"Archivo Fallback\", -apple-system, \"system-ui\", \"Helvetica Neue\", Arial, sans-serif",
+    "archivoLoaded": true,
+    "monoLoaded": true,
+    "loadedFaces": 4
+   },
+   "smallestFontPx": 16.8,
+   "smallestWhat": "dt.",
+   "tooSmall": false,
+   "composition": "portrait",
+   "panels": [
+    {
+     "stage": "calibration",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1424
+    },
+    {
+     "stage": "initial-ascent",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1309
+    },
+    {
+     "stage": "lower-atmosphere",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 2121
+    },
+    {
+     "stage": "cloud-entry",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 814,
+     "travel": 612,
+     "innerH": 568
+    },
+    {
+     "stage": "cloud-breakthrough",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 680
+    },
+    {
+     "stage": "selected-work",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 11615
+    },
+    {
+     "stage": "system",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 3741,
+     "travel": 3539,
+     "innerH": 568
+    },
+    {
+     "stage": "process",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 9523,
+     "travel": 9321,
+     "innerH": 568
+    },
+    {
+     "stage": "stratosphere-transition",
+     "fit": "flow",
+     "dense": "1",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 977
+    },
+    {
+     "stage": "full-stratosphere",
+     "fit": "window",
+     "dense": "1",
+     "bandH": 202,
+     "copyH": 380,
+     "travel": 178,
+     "innerH": 568
+    },
+    {
+     "stage": "destination",
+     "fit": "flow",
+     "dense": "0",
+     "bandH": 0,
+     "copyH": 0,
+     "travel": 0,
+     "innerH": 1904
+    }
+   ],
+   "doc": {
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "scrollHeight": 26444,
+    "innerHeight": 568
+   },
+   "problems": []
+  }
+ ]
+}

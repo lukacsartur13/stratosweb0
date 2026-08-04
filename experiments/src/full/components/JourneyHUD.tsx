@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CEILING_M, STAGES, advance, clamp, formatAltitude, journey } from '../journey';
 import { m } from '../i18n';
 import { publishKinetic, reserveKinetic } from '../kineticDom';
+import { clearComposition, measureComposition, publishComposition } from '../composition';
 import { advanceMeridian, meridianStageAt, type MeridianStageId } from '../meridian';
 import { meridianSound } from '../meridianSound';
 
@@ -55,6 +56,12 @@ export function JourneyHUD() {
       // does not have. Writes are quantised inside, so this is a comparison per
       // axis on most frames and a style write on very few.
       publishKinetic();
+      // The portrait composition rides the same tick for the same reason: the
+      // copy bands are sized from the instrument's projected height, so they
+      // have to be derived from the altitude on the frame that altitude is set,
+      // not one frame later. Writes are quantised to 4px inside, so this is a
+      // comparison on almost every frame and a style write on very few.
+      publishComposition();
       // Fed unconditionally: the threshold arming has to track the altitude
       // even while muted, or switching sound on halfway up replays every event
       // below the visitor at once.
@@ -103,6 +110,44 @@ export function JourneyHUD() {
   // measurement rather than animation, and it runs on font load and resize
   // rather than per frame.
   useEffect(() => reserveKinetic(), []);
+
+  /**
+   * The portrait composition decision — window or natural flow, per panel.
+   *
+   * Measurement, not animation, so it runs on the same triggers `reserveKinetic`
+   * does and for the same reasons. Fonts first: the headline band is decided by
+   * whether the headline fits it, and the fallback and the webfont wrap
+   * differently. Then on resize, on `visualViewport` resize — which is what
+   * fires when mobile browser chrome collapses and when the visitor zooms, and
+   * neither of those raises a plain `resize` — and on the track's own resize,
+   * which is what catches a locale change and an increased system text size.
+   */
+  useEffect(() => {
+    let frame = 0;
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => measureComposition());
+    };
+
+    if ('fonts' in document) document.fonts.ready.then(schedule).catch(schedule);
+    else schedule();
+
+    addEventListener('resize', schedule);
+    addEventListener('orientationchange', schedule);
+    visualViewport?.addEventListener('resize', schedule);
+    const track = document.querySelector('[data-testid="journey-track"]');
+    const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(schedule) : null;
+    if (observer && track) observer.observe(track);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      removeEventListener('resize', schedule);
+      removeEventListener('orientationchange', schedule);
+      visualViewport?.removeEventListener('resize', schedule);
+      observer?.disconnect();
+      clearComposition();
+    };
+  }, []);
 
   // Nothing is created until this is clicked, so there is no suspended audio
   // context sitting around on a page that never asked for one.

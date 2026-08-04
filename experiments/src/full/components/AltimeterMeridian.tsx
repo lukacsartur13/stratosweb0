@@ -3,7 +3,14 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import type { Group, Mesh, MeshStandardMaterial } from 'three';
-import { cameraHeightAt, clamp, settle, ease, journey, lerp, span } from '../journey';
+import { cameraHeightAt, clamp, settle, journey, lerp } from '../journey';
+import {
+  currentFit,
+  recededScale,
+  recededDepth,
+  recedeAt,
+  setLiveRecede,
+} from '../composition';
 import { RINGS, meridian } from '../meridian';
 import { useDebugOverride } from '../useJourneyScroll';
 import { ApertureCore } from './ApertureCore';
@@ -218,7 +225,16 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
    * reduced-motion preference mid-session. That is the cheaper side of the trade
    * by a wide margin.
    */
-  useEffect(() => () => useGLTF.clear(MODEL_URL), []);
+  useEffect(
+    () => () => {
+      useGLTF.clear(MODEL_URL);
+      // The band geometry falls back to the analytic target the moment there
+      // is no instrument left to measure. Leaving a stale number here would
+      // size the copy bands for a scene that is no longer on the page.
+      setLiveRecede(null);
+    },
+    [],
+  );
 
   const smoothed = useRef({ primary: 0, secondary: 0, power: 0, recede: 0, tiltX: 0, tiltY: 0 });
   const lastProgress = useRef(0);
@@ -258,11 +274,22 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
     //                    stages, whose panels are text in a plate rather than
     //                    imagery, and for the second ring lock
     //   24 000 → 30 000  the rest of the way, for the Meridian state
-    const handover = ease(span(m, 12_300, 15_600));
-    const back = ease(span(m, 16_200, 19_200)) * 0.66;
-    const target = clamp(handover - back - meridian.finalCalibration * 0.26);
+    //
+    // On a portrait viewport there is a fourth leg, and it is the one Phase 6
+    // was blocked on. The three above were tuned against landscape framing,
+    // where the copy sits *beside* the instrument; in portrait it has to go
+    // above and below, and on the dense narrative stages the two measured
+    // exclusion zones did not both fit. So the same mechanism — scale and
+    // depth, never displacement — is given a bounded extra term over exactly
+    // the stages measured to be dense, and only on portrait. `recedeAt` is a
+    // pure function of altitude and the measured portrait strength, so nothing
+    // about it is direction-dependent and landscape reads an added zero.
+    const target = recedeAt(m, meridian.finalCalibration, currentFit().strength);
     s.recede = settle(s.recede, target, 0.9, dt);
     const recede = s.recede;
+    // The copy bands are laid out against the size the instrument actually is,
+    // not the size it is heading for. See setLiveRecede.
+    setLiveRecede(recede);
 
     const dim = lerp(1, 0.42, recede);
     // Clarity brightens the markings on the way through the deck: the dial gains
@@ -340,8 +367,8 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
       // to the mountains, the cloud deck and the sky — which is where the ascent
       // is actually told — but it no longer climbs relative to the instrument.
       root.current.position.y = cameraHeightAt(journey.current);
-      root.current.position.z = -recede * 1.35;
-      root.current.scale.setScalar(lerp(1, 0.62, recede));
+      root.current.position.z = recededDepth(recede);
+      root.current.scale.setScalar(recededScale(recede));
 
       // The three-quarter reveal. It opens as the rings separate and holds.
       //

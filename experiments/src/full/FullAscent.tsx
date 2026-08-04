@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react';
+import { Children, Suspense, isValidElement, lazy, useCallback, useEffect, useRef, useState } from 'react';
 import { JourneyHUD } from './components/JourneyHUD';
 import { LanguageSwitch } from './components/LanguageSwitch';
 import { m, pageHref } from './i18n';
@@ -217,6 +217,53 @@ export function FullAscent() {
  */
 const shareOf = (id: string) => STAGES.find((s) => s.id === id)?.share ?? 1;
 
+/**
+ * Split a panel's children into the headline band and the flow band.
+ *
+ * The portrait composition needs two boxes, not two rows: the flow band is a
+ * window onto copy that is taller than it, so it has to be an element with an
+ * overflow of its own. Grid rows cannot do that, and giving the eyebrow and the
+ * headline a row each would put the headline in the row the instrument
+ * occupies.
+ *
+ * The split point is the headline — everything up to and including the first
+ * `.panel__title` leads, everything after it flows. That is a property of every
+ * panel on this page rather than a convention being hoped for: each one opens
+ * with an eyebrow and exactly one h1 or h2, and the assertion below makes a
+ * panel that stops doing so a development-time error rather than a silent
+ * composition failure.
+ *
+ * Nothing about the *content* changes. Same nodes, same order, same one copy of
+ * every string — the two wrappers are `display: contents` everywhere except the
+ * portrait window, so on desktop and landscape the box tree is the one that was
+ * already accepted.
+ */
+function splitBands(
+  children: React.ReactNode,
+  /**
+   * Where to cut, as a class name. The headline everywhere except the closing
+   * panel, whose lead band has to hold the call to action — see `Destination`.
+   */
+  boundary = 'panel__title',
+): [React.ReactNode[], React.ReactNode[]] {
+  const all = Children.toArray(children);
+  const isTitle = (node: React.ReactNode) =>
+    isValidElement<{ className?: string }>(node) &&
+    typeof node.props.className === 'string' &&
+    node.props.className.includes(boundary);
+  const at = all.findIndex(isTitle);
+  if (at < 0) {
+    if (import.meta.env.DEV) {
+      throw new Error(
+        'Panel: no .panel__title among the children. The portrait composition splits the ' +
+          'copy at the headline, so a panel without one has no band boundary to split at.',
+      );
+    }
+    return [all, []];
+  }
+  return [all.slice(0, at + 1), all.slice(at + 1)];
+}
+
 function Panel({
   id,
   eyebrow,
@@ -232,6 +279,7 @@ function Panel({
   align?: 'left' | 'centre';
   wide?: boolean;
 }) {
+  const [lead, flow] = splitBands(children);
   return (
     <section
       // The id is a real anchor target, not only a test hook: the destination
@@ -244,11 +292,16 @@ function Panel({
       data-testid={`stage-${id}`}
     >
       <div className="panel__inner">
-        <p className="panel__eyebrow">
-          {eyebrow}
-          <span className="panel__altitude">{altitude}</span>
-        </p>
-        {children}
+        <div className="panel__band panel__band--lead">
+          <p className="panel__eyebrow">
+            {eyebrow}
+            <span className="panel__altitude">{altitude}</span>
+          </p>
+          {lead}
+        </div>
+        <div className="panel__band panel__band--flow">
+          <div className="panel__band-inner">{flow}</div>
+        </div>
       </div>
     </section>
   );
@@ -548,7 +601,89 @@ function FullStratosphere() {
 }
 
 // --- 11 · 30 000 m -----------------------------------------------------------
+/**
+ * The closing CTA — and the one panel that was not composed against the
+ * instrument at all.
+ *
+ * It is hand-built rather than a `<Panel>` because it carries three things no
+ * other panel has: two calls to action, a contact line, and the stage index. It
+ * therefore also missed the two band wrappers, and the effect of that was not
+ * cosmetic. `measureComposition` decides a panel's composition by measuring its
+ * lead band; a panel with no lead band measures zero, falls to `data-fit="flow"`
+ * by the rule that a band which cannot hold a headline must not be used, and
+ * flows straight across the centred instrument. Measured at 30 000 m the plate
+ * covered the essential silhouette completely on *every* viewport — desktop,
+ * landscape and portrait alike — which is the state the finished instrument was
+ * supposed to be the subject of.
+ *
+ * It was invisible until the validation harness was fixed. The harness read
+ * `journey.current` in the same tick it wrote the altitude override, so every
+ * sample was scrolled to the previous sample's position and the final state was
+ * never actually measured under the final panel. See validate-meridian.mjs.
+ *
+ * The bands are the same ones `Panel` uses, split at the same boundary, so this
+ * panel now composes exactly as the other ten do and needs no rule of its own.
+ */
 function Destination() {
+  // Split after the actions, not after the headline.
+  //
+  // Everywhere else the lead band holds the eyebrow and the headline and the
+  // flow band walks the prose through the lower band as the stage advances.
+  // Applied here that puts the two calls to action *in the walk*, and at the
+  // end of the track — where `--stage-flow` is 1 and the window shows the tail
+  // of the copy — the primary action has travelled out of the band. The closing
+  // action being on screen and tappable when the visitor reaches the bottom of
+  // the page is an accepted requirement with a test of its own; walking it past
+  // them would break it.
+  //
+  // So the closing panel's *lead* is its argument and its actions, held still
+  // above the instrument for the whole stage, and only the contact line and the
+  // stage index — which are an afterword and a site index — go in the window.
+  // Measured across three locales, the lead band holds that on 430×932,
+  // 390×844, 360×800 and 768×1024; where it does not,
+  // `measureComposition` falls the panel back to natural flow, which is §6's
+  // answer and not a failure.
+  const [lead, flow] = splitBands(
+    [
+    <h2 className="panel__title panel__title--statement" key="title">
+      {m('destination.title.a')} <em>{m('destination.title.em')}</em>
+    </h2>,
+    <p className="panel__lead" key="lead">
+      {m('destination.lead')}
+    </p>,
+    <p className="panel__actions panel__actions--final" key="actions">
+      <a className="btn btn--lg" href={pageHref('quote')} data-testid="cta-primary">
+        {m('common.cta.ascend')}
+      </a>
+      <a className="btn btn--ghost btn--lg" href="#stage-selected-work" data-testid="cta-secondary">
+        {m('destination.cta.work')}
+      </a>
+    </p>,
+    <p className="panel__contact" key="contact">
+      {m('destination.contact.a')}{' '}
+      <a href={pageHref('contact')} data-testid="cta-contact">
+        {m('destination.contact.link.contact')}
+      </a>{' '}
+      {m('destination.contact.b')}{' '}
+      <a href={pageHref('quote')} data-testid="cta-qualify">
+        {m('destination.contact.link.quote')}
+      </a>
+      {m('destination.contact.c')}
+    </p>,
+    <ul className="panel__stages" aria-label={m('destination.stages.label')} key="stages">
+      {STAGES.filter((s) => s.id !== 'destination').map((s) => (
+        <li key={s.id}>
+          <a href={`#stage-${s.id}`}>
+            <span>{s.label}</span>
+            <i>{formatAltitude(s.to)} m</i>
+          </a>
+        </li>
+      ))}
+    </ul>,
+    ],
+    'panel__actions',
+  );
+
   return (
     <section
       id="stage-destination"
@@ -558,47 +693,16 @@ function Destination() {
       data-testid="stage-destination"
     >
       <div className="panel__inner">
-        <p className="panel__eyebrow">
-          {m('destination.eyebrow')}
-          <span className="panel__altitude">{m('destination.altitude')}</span>
-        </p>
-
-        <h2 className="panel__title panel__title--statement">
-          {m('destination.title.a')} <em>{m('destination.title.em')}</em>
-        </h2>
-        <p className="panel__lead">{m('destination.lead')}</p>
-
-        <p className="panel__actions panel__actions--final">
-          <a className="btn btn--lg" href={pageHref('quote')} data-testid="cta-primary">
-            {m('common.cta.ascend')}
-          </a>
-          <a className="btn btn--ghost btn--lg" href="#stage-selected-work" data-testid="cta-secondary">
-            {m('destination.cta.work')}
-          </a>
-        </p>
-
-        <p className="panel__contact">
-          {m('destination.contact.a')}{' '}
-          <a href={pageHref('contact')} data-testid="cta-contact">
-            {m('destination.contact.link.contact')}
-          </a>{' '}
-          {m('destination.contact.b')}{' '}
-          <a href={pageHref('quote')} data-testid="cta-qualify">
-            {m('destination.contact.link.quote')}
-          </a>
-          {m('destination.contact.c')}
-        </p>
-
-        <ul className="panel__stages" aria-label={m('destination.stages.label')}>
-          {STAGES.filter((s) => s.id !== 'destination').map((s) => (
-            <li key={s.id}>
-              <a href={`#stage-${s.id}`}>
-                <span>{s.label}</span>
-                <i>{formatAltitude(s.to)} m</i>
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="panel__band panel__band--lead">
+          <p className="panel__eyebrow">
+            {m('destination.eyebrow')}
+            <span className="panel__altitude">{m('destination.altitude')}</span>
+          </p>
+          {lead}
+        </div>
+        <div className="panel__band panel__band--flow">
+          <div className="panel__band-inner">{flow}</div>
+        </div>
       </div>
     </section>
   );

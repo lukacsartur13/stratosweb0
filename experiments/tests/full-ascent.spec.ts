@@ -647,6 +647,41 @@ test.describe('the sticky handoff into the final CTA', () => {
       await scrollToStage(page, stage.id);
       const bad = await page.evaluate(() => {
         const out: string[] = [];
+
+        // The rect an element is *painted* at: its border box intersected with
+        // every clipping ancestor.
+        //
+        // `getBoundingClientRect` ignores `overflow` entirely, so an element
+        // scrolled out of a clipped region still reports the position it would
+        // occupy if the region were unbounded. The portrait composition has one
+        // such region by design — the flow band is a window onto copy taller
+        // than itself — and measured against the raw rect the paragraph that has
+        // been scrolled up out of that window reports y=36 while the window it
+        // lives in starts at y=338. The check then reports the altitude readout
+        // as covering a paragraph that is not on screen at all.
+        //
+        // This makes the assertion stricter about what it means, not weaker: an
+        // element clipped entirely away contributes no pixels to the frame, and
+        // the same reasoning is already written down in validate-meridian.mjs,
+        // which measures the same overlap from the instrument's side.
+        const painted = (el: Element) => {
+          const r = el.getBoundingClientRect();
+          let [left, top, right, bottom] = [r.left, r.top, r.right, r.bottom];
+          for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+            const cs = getComputedStyle(p);
+            const pr = p.getBoundingClientRect();
+            if (cs.overflowX !== 'visible') {
+              left = Math.max(left, pr.left);
+              right = Math.min(right, pr.right);
+            }
+            if (cs.overflowY !== 'visible') {
+              top = Math.max(top, pr.top);
+              bottom = Math.min(bottom, pr.bottom);
+            }
+          }
+          return { left, top, right, bottom, width: right - left, height: bottom - top };
+        };
+
         // Every visible panel plate must sit inside the viewport horizontally.
         for (const el of document.querySelectorAll('.panel__inner')) {
           const r = el.getBoundingClientRect();
@@ -661,9 +696,26 @@ test.describe('the sticky handoff into the final CTA', () => {
         // A HUD faded out of the way is not an overlap.
         const hudVisible = hudEl && Number(getComputedStyle(hudEl).opacity) > 0.05;
         if (hud && hudVisible) {
+          // Something painted at zero opacity is not something the readout is
+          // covering. The portrait composition hands over between stages by
+          // fading one plate out and the next in, so at any stage's resting
+          // position the neighbouring plates are still in the document, still
+          // in the accessibility tree — which is the point of using `opacity`
+          // rather than `display` — and contributing no pixels. The same guard,
+          // including the walk up the ancestors, is in validate-meridian.mjs.
+          const invisible = (el: Element) => {
+            const cs = getComputedStyle(el);
+            if (cs.visibility === 'hidden' || Number(cs.opacity) < 0.05) return true;
+            for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+              if (Number(getComputedStyle(p).opacity) < 0.05) return true;
+            }
+            return false;
+          };
+
           for (const el of document.querySelectorAll('a.btn, .panel h1, .panel h2, .panel__lead')) {
-            const r = el.getBoundingClientRect();
-            if (r.height === 0) continue;
+            const r = painted(el);
+            if (r.height <= 0 || r.width <= 0) continue;
+            if (invisible(el)) continue;
             // Only elements *wholly* on screen count. Something straddling the
             // viewport edge is being scrolled past, not read — a plate taller
             // than the viewport cannot have all of its content at rest at once

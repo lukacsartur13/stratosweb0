@@ -92,7 +92,25 @@ export function useStageCalibration(trackRef: React.RefObject<HTMLElement>, enab
       for (const stage of STAGES) {
         const el = document.getElementById(`stage-${stage.id}`);
         if (!el) continue;
-        const top = el.getBoundingClientRect().top + scrollY - trackTop;
+        // The panel's *flow* position, not its border-box top, and the two are
+        // no longer the same thing.
+        //
+        // The portrait window gives each panel a box two screens taller than
+        // its stage and a negative margin at each end, so adjacent plates share
+        // a screen of sticky range to hand over in (see styles.css). The border
+        // box therefore begins one screen *before* the stage does, and reading
+        // it here would calibrate every stage one screen early — which is not a
+        // cosmetic error: `calibrate` writes the boundaries the altitude curve
+        // is built from, so the readout, the instrument and the copy would all
+        // disagree about where the visitor is by a full screen. Measured on a
+        // 390×844, it put the lower-atmosphere plate 194px below the viewport
+        // top at the altitude its own stage was supposed to begin at.
+        //
+        // Subtracting the margin recovers the flow position exactly, and costs
+        // nothing where there is no margin to subtract: every landscape and
+        // desktop viewport reads a zero here.
+        const lead = parseFloat(getComputedStyle(el).marginTop) || 0;
+        const top = el.getBoundingClientRect().top + scrollY - trackTop - lead;
         measured.set(stage.id, { start: clamp(top / travel) });
       }
       calibrate(measured);

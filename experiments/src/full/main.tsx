@@ -61,9 +61,24 @@ class JourneyBoundary extends Component<{ children: ReactNode }, { failed: boole
  * been overwritten.
  */
 if (import.meta.env.DEV) {
-  void Promise.all([import('./journey'), import('./meridian')]).then(([j, m]) => {
+  void Promise.all([import('./journey'), import('./meridian'), import('./composition')]).then(([j, m, c]) => {
     const g = globalThis as { __stratos?: Record<string, unknown> };
-    g.__stratos = { ...(g.__stratos ?? {}), journey: j.journey, meridian: m.meridian };
+    g.__stratos = {
+      ...(g.__stratos ?? {}),
+      journey: j.journey,
+      meridian: m.meridian,
+      // The portrait composition's own answers: which stages measured dense on
+      // this viewport in this locale, and what usable box they were measured
+      // against. A capture script that has to *infer* which stages recede picks
+      // its own altitudes and then photographs whatever it guessed, which is
+      // how a still set ends up not showing the thing it was made to show.
+      composition: {
+        denseStages: c.denseStages,
+        fit: c.currentFit,
+        measurement: c.measurement,
+        stages: j.STAGES,
+      },
+    };
   });
 }
 

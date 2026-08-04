@@ -68,7 +68,12 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = process.env.URL ?? 'http://localhost:5176/experiments/stratos-ascent-full/full.html';
-const OUT = resolve(ROOT, '_build/reports/meridian-visibility.json');
+// Overridable so the sweep can be sharded across processes. The full matrix is
+// 3 locales × 9 viewports × 102 altitudes, and each sample costs a scroll, a
+// settle and a measurement; run in one process that is upwards of five hours,
+// which is long enough that nobody runs it. Nine shards write nine files and
+// `merge-meridian.mjs` joins them into the report the gate reads.
+const OUT = process.env.OUT ? resolve(ROOT, process.env.OUT) : resolve(ROOT, '_build/reports/meridian-visibility.json');
 
 /** §10's matrix. `landscape` marks the mobile-landscape row. */
 const DEFAULT_VIEWPORTS = [
@@ -258,6 +263,33 @@ const PAGE_FN = ({ altitude, centreTolerance }) => {
   // --- typography collision ----------------------------------------------------
   // §5: text is tested against the *live projected* instrument bounds expanded
   // by the visual safety margin, not against a design coordinate.
+  //
+  // The rect an element is tested by is its *painted* rect, which is its border
+  // box intersected with every clipping ancestor. `getBoundingClientRect`
+  // ignores `overflow`, so a paragraph scrolled out of a clipped region still
+  // reports the position it would occupy if the region were unbounded — and a
+  // check built on that cannot measure any page with a scrollable region on it
+  // at all. The portrait composition has one, deliberately: the flow band is a
+  // window onto copy taller than itself.
+  //
+  // This makes the check *more* faithful, not more permissive: an element that
+  // is entirely clipped away contributes no pixels to the frame, which is the
+  // same thing the `opacity` and `visibility` guards below already encode.
+  const paintedRect = (el) => {
+    let r = el.getBoundingClientRect();
+    let left = r.left, top = r.top, right = r.right, bottom = r.bottom;
+    for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+      const cs = getComputedStyle(p);
+      const clipsX = cs.overflowX !== 'visible';
+      const clipsY = cs.overflowY !== 'visible';
+      if (!clipsX && !clipsY) continue;
+      const pr = p.getBoundingClientRect();
+      if (clipsX) { left = Math.max(left, pr.left); right = Math.min(right, pr.right); }
+      if (clipsY) { top = Math.max(top, pr.top); bottom = Math.min(bottom, pr.bottom); }
+    }
+    return { left, top, right, bottom, width: right - left, height: bottom - top };
+  };
+
   const pad = Math.max(8, Math.min(vpW, vpH) * 0.015);
   const zone = essential
     ? { left: essential.left - pad, top: essential.top - pad, right: essential.right + pad, bottom: essential.bottom + pad }
@@ -266,8 +298,8 @@ const PAGE_FN = ({ altitude, centreTolerance }) => {
   if (zone) {
     const sel = '.panel h1, .panel h2, .panel__lead, a.btn, .hud__digits, .hud__stage, .panel p';
     for (const el of document.querySelectorAll(sel)) {
-      const r = el.getBoundingClientRect();
-      if (r.width === 0 || r.height === 0) continue;
+      const r = paintedRect(el);
+      if (r.width <= 0 || r.height <= 0) continue;
       // Off-screen or straddling the edge: being scrolled past, not read.
       if (r.bottom < vpY || r.top > vpY + vpH) continue;
       const cs = getComputedStyle(el);
@@ -325,8 +357,35 @@ for (const locale of LOCALES) {
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
 
-    const url = `${BASE}${BASE.includes('?') ? '&' : '?'}lang=${locale}`;
-    await page.goto(url, { waitUntil: 'networkidle' });
+    // The locale is a property of the *document*, not of the URL.
+    //
+    // `detectLocale` reads `<html lang>` — which is right, because it is
+    // correct before any script runs and is the same value assistive technology
+    // uses — and the three production homepages are three separate shells that
+    // set it statically. The single dev route this harness measures is one
+    // shell, `experiments/full.html`, and it says `lang="hu"`.
+    //
+    // So the `?lang=` this script used to append did nothing at all: no module
+    // reads the query string. Every "three-locale" run measured Hungarian three
+    // times and reported it as three passes — which is worse than not running
+    // German, because it looks like coverage. Rewriting the attribute in the
+    // served HTML makes the document genuinely German before the first module
+    // evaluates, which is exactly what the production `/de/` shell does.
+    await page.route(BASE.split('?')[0], async (route) => {
+      const response = await route.fetch();
+      const body = await response.text();
+      await route.fulfill({
+        response,
+        body: body.replace(/<html\s+lang="[^"]*"/i, `<html lang="${locale}"`),
+      });
+    });
+    await page.goto(BASE, { waitUntil: 'networkidle' });
+    const served = await page.evaluate(() => document.documentElement.lang);
+    if (served !== locale) {
+      // A silent fallback to Hungarian is the failure mode this replaced. It
+      // must not come back quietly.
+      throw new Error(`locale rewrite failed: asked for ${locale}, document is ${served}`);
+    }
     await page.locator('canvas').waitFor({ state: 'visible', timeout: 30_000 });
     // The handle is published by a dynamic import and by the canvas mounting,
     // whichever lands last.
@@ -353,16 +412,39 @@ for (const locale of LOCALES) {
       //
       // `journey.current` is the progress the override resolved to, and the
       // track's scrollable travel maps it straight back to a scroll offset.
-      await page.evaluate((m) => {
-        const s = globalThis.__stratos;
-        s.journey.debug.altitude = m;
-        const track = document.querySelector('[data-testid="journey-track"]');
-        const travel = (track?.offsetHeight ?? document.documentElement.scrollHeight) - innerHeight;
-        scrollTo({ top: s.journey.current * travel, behavior: 'instant' });
-        // Scrolling rewrites the journey's target; the override still wins on
-        // the next frame, but re-assert it so no frame is read in between.
-        s.journey.debug.altitude = m;
-      }, a);
+      //
+      // It has to be *read a frame later*, and that is not a detail. `advance`
+      // is what turns the forced altitude into a progress — `journey.current =
+      // progressAt(forced)` — and it runs on the next frame, so the value
+      // standing in `journey.current` at the instant the override is written is
+      // still the previous sample's. Reading it synchronously scrolls the
+      // document to where the *last* altitude was: at twelve samples that is
+      // 2 700 m of lag, a whole stage, and the copy under test belongs to a
+      // different panel from the instrument under test. It also makes the run
+      // order-dependent, which is why two runs of the same tree reported
+      // different failing altitudes. Two frames, because the first is the one
+      // `advance` writes in and the second is the one anything reading it
+      // downstream settles on.
+      await page.evaluate(
+        (m) =>
+          new Promise((res) => {
+            const s = globalThis.__stratos;
+            s.journey.debug.altitude = m;
+            requestAnimationFrame(() =>
+              requestAnimationFrame(() => {
+                const track = document.querySelector('[data-testid="journey-track"]');
+                const travel = (track?.offsetHeight ?? document.documentElement.scrollHeight) - innerHeight;
+                scrollTo({ top: s.journey.current * travel, behavior: 'instant' });
+                // Scrolling rewrites the journey's target; the override still
+                // wins on the next frame, but re-assert it so no frame is read
+                // in between.
+                s.journey.debug.altitude = m;
+                res();
+              }),
+            );
+          }),
+        a,
+      );
       // Forced altitude is applied as `progressAt(forced)` — no damping — but
       // the camera rig and the ring gimbal still need frames to write their
       // matrices. Wait until the projected centre stops moving rather than

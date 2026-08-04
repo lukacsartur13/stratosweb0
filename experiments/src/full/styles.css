@@ -275,7 +275,22 @@ img { max-width: 100%; height: auto; }
   min-height: calc(var(--share, 1) * 100svh);
   display: flex;
   align-items: center;
-  padding: clamp(4rem, 10vh, 8rem) clamp(1.25rem, 5vw, 4rem);
+  /* Read through a custom property rather than declared directly, because the
+     block padding is one of the things the portrait window has to take to
+     zero — the sticky plate's containing block is the panel's *content* box,
+     so 67px of block padding is 67px the plate cannot stick through, and the
+     bands end up 67px off the instrument they were sized against.
+
+     Declaring `padding-block: 0` in the portrait media query does not work.
+     `@media (max-width: 700px)` further down this file declares the shorthand
+     at the same (0,1,0) specificity and later, so it wins, and the portrait
+     composition silently does not happen. That is the third time this file has
+     been bitten by exactly this — see the notes on `.panel .panel__title + *`
+     and on `.panel--wide .panel__inner` — and the remedy is the same one that
+     worked there: put the value in a custom property that the winning
+     declaration reads, so there is no second declaration left to lose to. */
+  --panel-pad-block: clamp(4rem, 10vh, 8rem);
+  padding: var(--panel-pad-block) clamp(1.25rem, 5vw, 4rem);
 }
 
 /* Alternating sides, so the instrument is never permanently behind text on a
@@ -295,33 +310,293 @@ img { max-width: 100%; height: auto; }
    aspect that decides whether copy sits *beside* the instrument or above and
    below it, and it is the same hinge the camera frame uses. A 1024×768 tablet
    in landscape needs this; a 768×1024 tablet in portrait must not get it. */
-/* The portrait composition: copy above and below the instrument, never across it.
+/* ================================================ the portrait composition ==
 
-   A phone has no room beside a centred dial, so the copy has to go around it
-   vertically. Measured on a 390×844 the instrument occupies y 325–517, leaving
-   two clear bands of about 325px — and the copy block is 513px tall, so it fits
-   in neither band alone and fits comfortably across both.
+   A phone has no room beside a centred dial. 154px of instrument in a 390px
+   viewport leaves two 118px margins, and 118px is not a column of Hungarian
+   prose at any size worth reading — so in portrait the copy has to go *around*
+   the instrument vertically rather than beside it.
 
-   `margin-top: auto` inside a viewport-tall flex column is what splits it: the
-   eyebrow and the headline stay at the top of the screen, and everything from
-   the lead paragraph down is pushed to the bottom, leaving the middle band —
-   where the instrument is — empty. No DOM change and no duplicated markup,
-   which matters because §8.4 counts duplicated responsive markup as filler
-   rather than as content.
+   ## What was here before, and why it did not hold
 
-   This is the brief's fourth correction, the alternate mobile composition, and
-   it is reached only after the first three were applied on landscape. */
+   The previous version of this block split the copy with `margin-top: auto`
+   inside a viewport-tall flex column: eyebrow and headline at the top of the
+   screen, everything from the lead down pushed to the bottom, middle band left
+   for the dial. The idea is right and it survives below. Two things about the
+   execution did not:
+
+   * **The plate travelled.** A panel is as tall as its stage's share of the
+     track — up to 4.4 screens — and the plate was centred inside it, so the
+     two bands lined up with the two clear bands at exactly one scroll offset
+     and spent the rest of the stage crossing the instrument. Measured on a
+     390×844 at 5 454 m the eyebrow sat at y=486 and the headline at y=518,
+     both mid-screen, across a dial spanning 325–516.
+   * **The band edges were a guess.** `38%`/`62%` was measured once, on a
+     390×844, at 0 m. On a 768×1024 the essential silhouette is 37% of the
+     viewport height rather than 23%, so those stops laid the copy over the
+     dial by construction.
+
+   ## What holds now
+
+   The plate is `position: sticky` and exactly one viewport tall, so the bands
+   hold at *every* scroll offset instead of at one. The band edges come from
+   `--meridian-gap`, published each frame by `composition.ts` from the
+   instrument's actual projected height — the closed form checked against the
+   renderer to within a pixel — so they are measured on every viewport at every
+   altitude rather than tuned on one.
+
+   Sticky alone was tried first and made the measured count *worse*, 30 → 40,
+   which is recorded in §9.2 of the Phase 6 report. That result is real and it
+   is not an argument against sticky: it is the second half of the problem
+   becoming visible. Holding the copy on screen for the whole stage exposes
+   everywhere what was previously exposed occasionally — that the dense panels'
+   copy does not fit the bottom band. On a 390×844 that band is ~328px and the
+   ladder stage's copy is ~500px, and no amount of anchoring makes it fit.
+
+   So the bottom band is a *window*, not a box: `--stage-flow` walks the copy
+   through it as the stage advances, which is the same scroll the visitor is
+   already doing and the same canonical progress the altimeter reads. The copy
+   is complete, in document order, in one copy, crawlable and announced in full
+   — it is scrolled, not hidden, exactly as it would be in any overflowing
+   region. And the instrument gets out of its way at the same time: see
+   DENSE_RECEDE_MAX in composition.ts.
+
+   ## The fallback is not the failure case
+
+   `data-fit="flow"` is the other half of the decision, and it is correct
+   behaviour rather than a degraded one. When the measured headline band cannot
+   hold the headline — 200% zoom, a 320×568, increased system text size, German
+   running a third longer than Hungarian — the window is wrong and natural
+   vertical flow is right. Content access wins over single-screen composition,
+   the visitor is never trapped in a fixed-height panel, nothing is scaled down
+   to fit, and the instrument stays as a smaller visible anchor. Which of the
+   two a panel gets is measured in `measureComposition`, per panel, after the
+   fonts have settled and again on every resize. Nothing is keyed to a device
+   width. */
 @media (max-aspect-ratio: 1 / 1) {
-  /* The plate has to be exactly as tall as the viewport for its two bands to
-     line up with the two clear bands beside the instrument. The panel's own
-     block padding would make it taller than that and then centre it, pushing
-     the top band off-screen and the bottom band below the fold — so the
-     padding moves inside, onto the plate, where it no longer displaces it. */
-  .panel { padding-block: 0; }
-  .panel .panel__inner {
+  /* Adjacent sibling margins must not collapse.
+
+     The window gives each panel a negative margin at both ends so that the
+     extra two screens of box it needs for the sticky overlap cost the flow
+     nothing. In block layout the bottom margin of one panel and the top margin
+     of the next are adjoining, and two negative margins collapse to the *more
+     negative of the two* rather than to their sum — so only one of each pair
+     applied and every panel advanced the flow by one screen too many. Measured:
+     a 21.6-screen track laid out at 25 826px instead of 18 230px, with each
+     stage starting a screen late, which put the plate 76px below its stuck
+     position at the altitude its own stage was supposed to own.
+
+     A flex column does not collapse margins between its items, which is the
+     whole of the fix. Scoped to portrait so no other composition sees it, and
+     `flex-shrink: 0` because a panel is sized by its stage, never by what is
+     left over. */
+  .journey__content {
     display: flex;
     flex-direction: column;
-    min-height: 100svh;
+  }
+  .panel { flex-shrink: 0; }
+
+  /* The two clear bands, from the measured exclusion zone.
+
+     `--meridian-gap` is published in pixels and already carries everything the
+     collision test adds to the raw silhouette — the 1.5vmin visual safety
+     margin and an allowance for the residual centre drift the pointer parallax
+     produces. Budgeting to the bare projected bounds passes geometry and fails
+     the check, which is the mistake §9.1 records the landscape copy budget
+     making. The fallback is a conservative 34svh, used for the frames before
+     the first publication lands. */
+  .panel .panel__inner {
+    --band: max(0px, calc((100svh - var(--meridian-gap, 34svh)) / 2));
+  }
+
+  /* --- natural flow: the fallback, and the state before measurement --------
+
+     Also the state every panel is in for the first frames, before
+     `measureComposition` has had a font-settled layout to measure. Defaulting
+     to the accessible composition rather than to the immersive one means the
+     worst case of the measurement never running at all — scripting blocked, the
+     module failing to load — is a page that reads correctly, not one clipped to
+     a band that was never sized. */
+  .panel .panel__inner { display: block; }
+
+  /* --- the window --------------------------------------------------------- */
+  /* Stretch rather than centre, and no block padding on the panel: the plate is
+     given an explicit viewport height and stuck to the top of the panel's
+     *content* box, so a centred flex item would start from the middle of a
+     four-screen panel, and any block padding would inset the box it sticks
+     inside and carry the bands that far off the instrument. */
+  /* ## Why the panel is two screens taller than its stage, and then pulled back
+     by two screens
+
+     `position: sticky` holds a plate for `share − 1` screens and then lets it
+     travel for one, because the plate has to leave its panel eventually. That
+     travelling screen is the handover to the next stage, and it is where the
+     copy crosses the instrument: measured on a 390×844 at 8 182 m, the outgoing
+     ladder plate at −507..337 and the incoming cloud-entry plate at 337..1181,
+     the latter's headline sitting at y 616–643 across a dial spanning 338–503.
+
+     It is not a rare case either. Every boundary spends one screen of scroll
+     that way, and the track is 21.6 screens with ten boundaries — so nearly
+     half of the journey would be a plate in transit. Fading the travel out is
+     not available: the fade would have to finish inside the ~10px of slack
+     between the band edge and the collision zone, which is a hard cut rather
+     than a transition.
+
+     So the plates are given somewhere to hand over. Each panel's *box* is two
+     screens taller than its stage and its margins are one screen negative at
+     each end, which leaves the flow advancing by exactly `share` screens — the
+     track height, and therefore the scroll-to-altitude mapping, is unchanged to
+     the pixel — while the sticky range grows by a screen at each end. Adjacent
+     ranges now overlap by exactly one screen, and in that screen *both* plates
+     are stuck, both have their copy in the bands, and neither is moving. The
+     handover is a cross-fade between two stationary compositions instead of two
+     moving ones, and there is no scroll position at which visible copy is in
+     transit across the dial.
+
+     The first panel takes no leading margin — there is no previous stage to
+     hand over from, and pulling it up a screen would shift the whole track and
+     with it every altitude. The last takes no trailing one, for the mirror of
+     the same reason and with a sharper consequence: there is no following plate
+     to hand over to, only the footer, and a negative bottom margin would pull
+     the footer up over the closing panel's final screen. */
+  .panel[data-fit='window'] {
+    align-items: stretch;
+    --panel-pad-block: 0px;
+    height: calc((var(--share, 1) + 2) * 100svh);
+    min-height: 0;
+    margin-block: -100svh;
+  }
+  .panel[data-fit='window']:first-of-type {
+    height: calc((var(--share, 1) + 1) * 100svh);
+    margin-top: 0;
+  }
+  .panel[data-fit='window']:last-of-type {
+    height: calc((var(--share, 1) + 1) * 100svh);
+    margin-bottom: 0;
+  }
+  .panel[data-fit='window']:first-of-type:last-of-type {
+    height: calc(var(--share, 1) * 100svh);
+  }
+
+  /* --- the closing panel, when it falls back to flow ----------------------
+     Where the closing copy will not fit the bands — 320×568 in every locale,
+     375×667, and 360×800 in German, all measured — the panel takes natural
+     flow, which is §6's answer. Dropped in unmodified that puts an opaque
+     803px plate over the finished instrument at the exact altitude the
+     instrument is the subject of, which is the composition this whole phase
+     set out to stop.
+
+     So the fallback gets a composed entry: the plate begins below the
+     instrument's measured band and the copy runs on downward, past the fold,
+     into ordinary document scroll. At the moment the panel arrives — its own
+     stage begins with its top at the top of the viewport, which is a property
+     of being the *last* stage and is not true of any other panel — the frame
+     is the completed Meridian above and the call to action below it. Reading
+     on scrolls the copy up over the scene, which is what the end of a page
+     does; nothing is clipped, hidden or shrunk, and the panel grows to hold
+     whatever the locale needs.
+
+     Scoped to the closing panel because the reasoning is: every other panel's
+     stage is sampled at a dozen altitudes with the plate at a dozen different
+     offsets, so a top margin would only move where it crosses the dial rather
+     than stop it crossing. */
+  .panel.panel--destination[data-fit='flow'] {
+    /* Measured from the top of the panel, so the block padding has to go —
+       otherwise the offset is the band plus however much padding the phone
+       breakpoint happens to declare, which is a different number on every
+       viewport and none of them the measured one. */
+    align-items: flex-start;
+    --panel-pad-block: 0px;
+  }
+  .panel--destination[data-fit='flow'] .panel__inner {
+    margin-top: calc(var(--band) + var(--meridian-gap, 34svh));
+    margin-bottom: 0;
+  }
+
+  .panel[data-fit='window'] .panel__inner {
+    position: sticky;
+    top: 0;
+    display: grid;
+    /* Three rows: headline band, the instrument's own band, flow band. The
+       middle row is empty and stays empty — it is the only part of this
+       composition the copy may never enter. */
+    grid-template-rows: var(--band) auto var(--band);
+    height: 100svh;
+    min-height: 0;
+    padding-block: 0;
+    /* The cross-fade. Published from the canonical stage progress, so it is a
+       pure function of scroll position and identical in both directions.
+
+       `opacity` rather than `visibility` or `display`: a veiled plate stays in
+       the accessibility tree, stays in the document for a crawler, and keeps
+       its place in the reading order. It is a transition between two stages,
+       not content being withheld — the same copy is fully opaque a few hundred
+       pixels of scroll either side of it. Pointer events go with the paint, so
+       an invisible plate cannot swallow a click meant for the one behind it. */
+    opacity: var(--panel-veil, 1);
+    pointer-events: var(--panel-events, auto);
+  }
+  /* The lead band's own rhythm, tighter than the page's.
+     ----------------------------------------------------
+     Everywhere else the eyebrow and the headline are two elements with a
+     1.2rem gap in an open column. In the window they are one unit, bottom-
+     aligned against the instrument, and the gap that reads as breathing room
+     in an open column reads as a hole when the pair is sitting on the dial.
+
+     It also buys back the pixels that decide whether a panel gets the
+     immersive composition at all, and the margin there is genuinely that
+     fine: on a 320×568 in German the cloud-breakthrough headline makes a
+     204px lead band against a 203px budget, and one pixel dropped that panel
+     — which has 77px of body copy, the sparsest on the page — into the
+     natural-flow fallback, where its plate then travelled across the
+     instrument. Tightening the pair is the composition being right about its
+     own spacing; the panel staying in the window is the consequence.
+
+     Scoped to portrait rather than to `[data-fit='window']`, and that is not
+     laziness. `measureComposition` measures the lead band in order to *decide*
+     `data-fit`, so a rule that only applies once the decision has been made
+     cannot influence it: the panel is measured at the old spacing, sent to the
+     fallback, and never gets the spacing that would have kept it. Any style
+     that changes a band's height has to be in force while the band is being
+     measured. */
+  .panel .panel__eyebrow {
+    margin-bottom: 0.7rem;
+  }
+
+  .panel[data-fit='window'] .panel__band--lead {
+    display: block;
+    grid-row: 1;
+    /* Bottom-aligned against the instrument, so the headline sits just above
+       the dial rather than floating at the top of the screen with a hole under
+       it. `min-height: 0` because a grid item's automatic minimum size is its
+       content, which would push the row past the band it was given. */
+    align-self: end;
+    min-height: 0;
+    margin-top: 0;
+  }
+  .panel[data-fit='window'] .panel__band--flow {
+    display: block;
+    grid-row: 3;
+    /* The window. Scoped to this one element and to portrait window mode — it
+       is not a page-level `overflow: hidden`, and it is not concealing an
+       unresolved composition: what leaves the top of this band is copy the
+       visitor has read, and what waits below is copy the next few hundred
+       pixels of scroll will bring in. */
+    overflow: hidden;
+    min-height: 0;
+    margin-top: 0;
+  }
+  .panel[data-fit='window'] .panel__band-inner {
+    display: block;
+    /* Walk the copy through the window as the stage advances.
+
+       `min()` rather than a bare subtraction so a panel whose copy already fits
+       its band does not translate at all: `--band - 100%` is positive there,
+       and translating by a positive amount would push the copy *down* out of
+       the window it fits in. The percentage resolves against this element's own
+       height, which is the full copy height, so the two terms are the window
+       and the content and the difference is exactly the travel. */
+    transform: translateY(calc(var(--stage-flow, 0) * min(0px, var(--band) - 100%)));
   }
 
   /* The plate has to open in the middle.
@@ -331,21 +606,32 @@ img { max-width: 100%; height: auto; }
      covered it anyway — a darker failure than the one being fixed, because the
      instrument was still *there*, just unreadable.
 
-     So the background becomes a vertical band pair. Opaque behind the two text
-     bands, fully transparent between roughly 35% and 65% of the viewport, which
-     is where the instrument sits at every altitude (measured 38.5%–61.3% on a
-     390×844 at 0 m, and it only shrinks from there as the recede takes hold).
-     The stops are soft so there is no hard horizontal edge cutting the frame. */
-  .panel .panel__inner,
-  .panel.panel--wide .panel__inner,
-  .panel.panel--centre .panel__inner {
+     So the background is a vertical band pair, opaque behind the two text bands
+     and fully transparent between them. The stops are the measured band edges
+     rather than the 38%/62% guess they replace, and they are soft over 10px so
+     there is no hard horizontal edge cutting the frame. */
+  /* Window mode only, and the scoping is the point.
+
+     These stops are fractions of the plate's own height, and they mean "clear
+     between the two bands" only because the window plate is exactly one
+     viewport tall with the instrument in its middle. A plate in *flow* mode is
+     as tall as its copy and sits wherever the panel has travelled to, so the
+     same declaration opens a transparent stripe across the middle of a card —
+     through the text, not around it. That is the composition the fallback path
+     gets at 200% zoom, where eight of eleven panels are in flow, and it is
+     unreadable. Unscoped it was applying there. Flow plates keep the landscape
+     wash, which is a background designed for a card. */
+  .panel[data-fit='window'] .panel__inner,
+  .panel[data-fit='window'].panel--wide .panel__inner,
+  .panel[data-fit='window'].panel--centre .panel__inner,
+  .panel[data-fit='window'].panel--destination .panel__inner {
     background: linear-gradient(
       180deg,
-      rgba(4, 8, 14, 0.92) 0%,
-      rgba(4, 8, 14, 0.92) 30%,
-      rgba(4, 8, 14, 0) 38%,
-      rgba(4, 8, 14, 0) 62%,
-      rgba(4, 8, 14, 0.92) 70%,
+      rgba(4, 8, 14, 0.92) 0,
+      rgba(4, 8, 14, 0.92) max(0px, calc(var(--band) - 10px)),
+      rgba(4, 8, 14, 0) var(--band),
+      rgba(4, 8, 14, 0) calc(100% - var(--band)),
+      rgba(4, 8, 14, 0.92) calc(100% - var(--band) + 10px),
       rgba(4, 8, 14, 0.92) 100%
     );
     /* The side rules belong to the landscape composition; a full-height hairline
@@ -353,14 +639,39 @@ img { max-width: 100%; height: auto; }
     border-left: 0;
     border-right: 0;
   }
-  /* Whatever follows the headline starts the lower band — the lead on most
-     panels, the meta line on the ones that have no lead.
 
-     Two classes rather than one, deliberately: `.panel p { margin: 0 0 1rem }`
-     is declared later in this file and, at equal specificity, later wins. A
-     single-class selector here loses the `margin-top` it is entirely made of,
-     silently, and the composition simply does not happen. */
-  .panel .panel__title + * { margin-top: auto; }
+  /* No backdrop filter on a plate that is a whole viewport tall.
+
+     `backdrop-filter` is clipped to the element's border box and applies across
+     the whole of it — including the parts whose own background is fully
+     transparent. On a landscape plate that is exactly the intended effect: a
+     34rem card frosts what is behind it, and the instrument is beside it,
+     untouched. On the portrait window the plate *is* the viewport, so a 14px
+     blur is applied to the entire frame: the clear middle band this composition
+     exists to produce, and the altitude readout above it.
+
+     Measured as an A/B on a 390×844 at 13 130 m. With the filter the instrument
+     is a smear and the HUD digits are unreadable; without it both read normally
+     and the band composition is visible as designed. The transparent middle was
+     never the problem — the filter was painting over it. The two dense classes
+     inherited it from the landscape rules they share, and the destination plate
+     brought its own.
+
+     This is §2's `unobscured` taken literally: an instrument behind a blur is
+     not a visible instrument, it is a shape where the instrument is. */
+  .panel[data-fit='window'] .panel__inner {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* The two band wrappers exist only for the portrait window. Everywhere else
+   they are not boxes at all, so the box tree — and every margin collapse,
+   container query and grid inside it — is the one that was already accepted on
+   desktop and landscape. */
+.panel__band,
+.panel__band-inner {
+  display: contents;
 }
 
 @media (min-aspect-ratio: 1 / 1) {
@@ -399,9 +710,25 @@ img { max-width: 100%; height: auto; }
   @media (min-aspect-ratio: 16 / 9) { .panel { --gap-share: 32.5vw; } }
   @media (min-aspect-ratio: 2 / 1) { .panel { --gap-share: 33.5vw; } }
   /* A centred plate would sit on the dial by definition, so on these viewports
-     the dense panels stop centring and pick a side like the rest. */
+     the dense panels stop centring and pick a side like the rest.
+
+     The destination is in this list now for exactly the same reason and was
+     missing from it for no reason but that it is hand-built rather than a
+     `<Panel>`. It keeps its centred *text*: a call to action is a different
+     thing from a case study, the plate is narrow at these aspects, and centred
+     lines inside a narrow plate read as deliberate. What it gives up is being
+     centred in the *frame*, which is the part that was covering the
+     instrument. */
   .panel--centre { justify-content: flex-start; text-align: left; }
   .panel--centre:nth-of-type(even) { justify-content: flex-end; }
+  /* Two classes for the destination, not one. `.panel--destination` declares
+     `justify-content: center` in the stage-11 block six hundred lines further
+     down; a media query adds no specificity, so a single-class selector here
+     loses to it on source order and the plate stays centred on the dial —
+     which is the whole defect this rule exists to fix, reintroduced silently.
+     Fourth occurrence in this file of the same collision. */
+  .panel.panel--destination { justify-content: flex-start; }
+  .panel.panel--destination:nth-of-type(even) { justify-content: flex-end; }
 }
 
 .panel__inner {
@@ -480,11 +807,49 @@ img { max-width: 100%; height: auto; }
 .panel--wide .panel__inner { width: min(100%, var(--copy-width, 68rem)); }
 .panel--centre .panel__inner { width: min(100%, var(--copy-width, 46rem)); }
 
+/* Nothing in a panel may hold its column open.
+   -------------------------------------------
+   `overflow-wrap: break-word` breaks a word only when it does not fit at all,
+   so at every ordinary width this rule does nothing. At the widths §6 asks
+   about it is the difference between a page that reflows and a page that
+   scrolls sideways: at 200% zoom the layout viewport of a 390×844 is 195px and
+   of a 320×568 is 160px, and German supplies compounds wider than the column
+   that is left. Measured before this rule: `.panel__lead` 170px inside a 127px
+   plate, 41px of horizontal document overflow; with the root font size raised
+   150%, 13px at the ordinary 390px width.
+
+   Applied to the prose rather than to `*`, because breaking a word is a last
+   resort and the elements that should take it are the ones that carry
+   sentences. The grids that were holding themselves open are fixed at the
+   source — a grid item's automatic minimum size — in their own rules. */
+.panel p,
+.panel li,
+.panel dd,
+.panel dt,
+.panel h1,
+.panel h2,
+.panel h3 {
+  overflow-wrap: break-word;
+}
+
 .panel__eyebrow {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.9rem;
+  /* Inherited by the label, which is an anonymous flex item and cannot be
+     given a class of its own. */
+  overflow-wrap: anywhere;
+  /* Two axes, because only one of them was ever meant.
+     0.9rem is the space between the chapter label and the altitude range when
+     they share a line. `gap` sets both axes, so when they *stop* sharing a line
+     the same 14.4px lands between the two rows — on top of the leading, which
+     already provides the space. Measured on a 320×568 in German: the label is
+     129px and the range is 129px in a 251px eyebrow, so they wrap, and the
+     eyebrow measures 47px for two 16px lines. Those 14 pixels were the whole of
+     the difference between the cloud-breakthrough panel getting the immersive
+     composition and being sent to the fallback, where its headline then crossed
+     the instrument. */
+  gap: 0.15rem 0.9rem;
   margin: 0 0 1.2rem;
   font: 500 0.72rem/1.4 var(--data);
   letter-spacing: 0.2em;
@@ -496,6 +861,13 @@ img { max-width: 100%; height: auto; }
 .panel__altitude {
   color: var(--signal);
   letter-spacing: 0.1em;
+  /* An altitude range is one unbroken run of digits, spaces and an en dash, and
+     as a flex item it will not shrink below the width of that run. At 200% zoom
+     on a 320×568 — a 160px layout viewport — it measured 111px inside a 92px
+     eyebrow and took the document with it. Allowed to break, it costs a line at
+     that size and nothing at any other. */
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .panel__title {
@@ -556,6 +928,18 @@ img { max-width: 100%; height: auto; }
   transition: transform 0.25s var(--ease), background-color 0.25s var(--ease);
   /* 44px minimum target on touch, without the padding having to carry it. */
   min-height: 44px;
+  /* A button is a flex item whose label will not shrink, and 1.5rem of inline
+     padding on each side is 48px of it before a word is set. At 200% zoom on a
+     320×568 the pair measured 125px inside a 92px row. It wraps to two rows
+     already; this is what lets each row fit. The label wraps rather than the
+     target shrinking, so the 44px minimum is untouched. */
+  max-width: 100%;
+  /* `min-width: auto` on a flex item floors it at min-content, which for a
+     button is its whole label plus 48px of padding. Zero is what lets the
+     label actually wrap. */
+  min-width: 0;
+  overflow-wrap: break-word;
+  text-align: center;
 }
 .btn:hover { transform: translateY(-2px); }
 
@@ -568,6 +952,18 @@ img { max-width: 100%; height: auto; }
 
 .btn--lg { padding: 1.05rem 2rem; font-size: 0.95rem; }
 
+/* Below any real device width, which means this is reached by zoom and by
+   nothing else: 200% on a 320×568 gives a 160px layout viewport, and on a
+   390×844 gives 195px. There the large button's 2rem of inline padding is 64px
+   of a 92px plate, so the label cannot fit however it wraps and the document
+   scrolls sideways by six pixels. The padding gives way rather than the target:
+   `min-height: 44px` is untouched, and at every width a device actually
+   reports, this rule does not apply. */
+@media (max-width: 260px) {
+  .btn--lg { padding-inline: 0.9rem; }
+  .btn { padding-inline: 0.8rem; }
+}
+
 /* ------------------------------------------- stage 3 — the capability ladder */
 .ladder {
   counter-reset: rung;
@@ -579,10 +975,41 @@ img { max-width: 100%; height: auto; }
 
 .ladder__step {
   display: grid;
-  grid-template-columns: 6.5rem 1fr;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
   gap: 0.2rem 1.6rem;
   padding: 1.15rem 0;
   border-bottom: 1px solid var(--hair);
+}
+
+/* The fourth grid that was keyed to the viewport rather than to the plate.
+
+   `.case`, `.system` and `.check__grid` were converted to container queries
+   when the instrument was centred; the ladder was missed because it never
+   *looked* dense — two columns, one of them a fixed 6.5rem. That fixed column
+   is the problem. On a 1024×768 the copy budget gives the plate a 177px content
+   box, of which 104px is the altitude column and 25.6px is the gap, leaving
+   47px for a Hungarian sentence. A grid item will not shrink below its
+   min-content width, so the row simply grew past the plate and laid the line
+   across the dial: measured at 5 454 m, `.ladder__line` at x 168..242 inside an
+   exclusion zone starting at 157.
+
+   Stated as a container query because the constraint is the plate's width, not
+   the window's — the same 1024px viewport gives this list 177px in landscape
+   and the full column in portrait. `max-width` rather than the mobile-first
+   `min-width` the other three use, because here the two-column form is the
+   accepted desktop composition and it must stay untouched: at 1440×900 the
+   plate measures 18.6rem and keeps it.
+
+   The threshold is the width at which the two columns stop working: 6.5rem of
+   altitude plus a 1.6rem gap leaves under 9rem of prose below 17rem, which is
+   about six words a line. */
+@container panel (max-width: 17rem) {
+  .ladder__step {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.1rem;
+    padding: 0.85rem 0;
+  }
+  .ladder__at { grid-row: auto; }
 }
 
 .ladder__at {
@@ -594,15 +1021,22 @@ img { max-width: 100%; height: auto; }
 
 .ladder__name {
   margin: 0;
+  min-width: 0;
   font-size: 1.05rem;
   font-weight: 500;
   letter-spacing: -0.01em;
+  /* A single 20-character Hungarian compound is enough to hold a grid column
+     open on its own; one column that will not shrink is one plate that will not
+     fit. Same remedy the case grid needed. */
+  overflow-wrap: break-word;
 }
 
 .ladder__line {
   margin: 0 !important;
+  min-width: 0;
   color: var(--chrome);
   font-size: 0.94rem;
+  overflow-wrap: break-word;
 }
 
 /* ------------------------------------------------- stage 6 — the case studies */
@@ -807,6 +1241,12 @@ img { max-width: 100%; height: auto; }
   color: var(--chrome);
   padding-top: 0.6rem;
   border-top: 1px solid var(--hair);
+  /* A grid item will not shrink below its longest word, and German supplies
+     enough long ones to hold this list open past the plate: measured 110px wide
+     inside an 84px content box at 200% zoom. Same remedy the case, system and
+     ladder grids needed. */
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 .system__list b { color: var(--paper); font-weight: 500; }
 
@@ -845,6 +1285,12 @@ img { max-width: 100%; height: auto; }
   font-size: 1.15rem;
   font-weight: 500;
   letter-spacing: -0.01em;
+  /* `.check__head` is a flex row, so this is a flex item and its automatic
+     minimum size is min-content — a single Hungarian word at 1.15rem, measured
+     111px inside a 92px plate at 200% zoom, and the last six pixels of
+     horizontal document overflow at that size. The wrapping is already
+     inherited from `.check`; this is what lets it happen. */
+  min-width: 0;
 }
 
 .check__at {
@@ -877,6 +1323,23 @@ img { max-width: 100%; height: auto; }
    horizon, stars — which is the intended composition rather than a handoff to
    be disguised. The plate is heavier here than elsewhere because this is the
    one panel that must be readable over the brightest thing in the journey.
+
+   ## What it sat over that it should not have
+
+   "The finished scene" was taken to mean the sky. It also contains the finished
+   *instrument*, and this panel was the only one that never read the copy budget
+   the other ten use to stay off it: a 48rem plate centred in the frame, over a
+   dial centred in the same frame. Measured at 30 000 m with the corrected
+   harness, the plate covered the essential silhouette completely on every
+   viewport tested — 1440×900, 1366×768, 1024×768, 844×390 and all five
+   portraits. The last thing the journey showed of the instrument it is about
+   was a rectangle.
+
+   So it composes like the rest now. In landscape it reads `--copy-width` and
+   picks a side, exactly as `.panel--centre` does at these aspects and for the
+   same reason. In portrait it carries the two bands and goes above and below.
+   Nothing was moved to make room for it — the instrument is where it always
+   was, and this is the panel that got out of the way.
    ========================================================================== */
 .panel--destination {
   min-height: calc(var(--share, 1) * 100svh);
@@ -884,11 +1347,20 @@ img { max-width: 100%; height: auto; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: clamp(4rem, 10vh, 8rem) clamp(1.25rem, 5vw, 4rem);
+  /* Through the custom property, not as a shorthand. The portrait window takes
+     the block padding to zero — the sticky plate's containing block is this
+     element's content box — and a shorthand here would win on source order and
+     silently offset every band from the instrument it was measured against.
+     Third occurrence of the same trap in this file; see `--panel-pad-block`. */
+  --panel-pad-block: clamp(4rem, 10vh, 8rem);
+  padding: var(--panel-pad-block) clamp(1.25rem, 5vw, 4rem);
 }
 
 .panel--destination .panel__inner {
-  width: min(100%, 48rem);
+  /* The portrait fallback is the full column, as it is for the dense panels:
+     `--copy-width` is unset in portrait by design, because there the copy goes
+     above and below the instrument rather than beside it. */
+  width: min(100%, var(--copy-width, 48rem));
   background: var(--plate-strong);
   border: 1px solid var(--hair);
   backdrop-filter: blur(14px);
@@ -918,13 +1390,28 @@ img { max-width: 100%; height: auto; }
 
 .panel__stages a {
   display: flex;
+  /* Wraps, and the two children may shrink.
+     -------------------------------------------
+     A label and an altitude on one row, space-between, is the composition —
+     until the row has less width than the two of them need, at which point a
+     flex item's automatic minimum size is its min-content and neither gives.
+     Measured with the root font size raised 150%, which is what an OS "larger
+     text" setting does to a page built on rem: the altitude `<i>` at 349..403
+     in a 390px viewport, 13px of horizontal document overflow at the ordinary
+     phone size, and 48px at 320. Wrapping the altitude under its label costs a
+     line and nothing else. */
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 0.6rem;
+  gap: 0.1rem 0.6rem;
   padding: 0.4rem 0;
   color: var(--chrome);
   text-decoration: none;
   font-size: 0.82rem;
   border-bottom: 1px solid transparent;
+}
+.panel__stages a > span {
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 .panel__stages a:hover { border-bottom-color: var(--hair); }
 .panel__stages i { font: 400 0.75rem/1.6 var(--data); font-style: normal; color: var(--haze); }
@@ -1011,7 +1498,13 @@ img { max-width: 100%; height: auto; }
    margin pretending to be a layout.
    ========================================================================== */
 @media (max-width: 700px) {
-  .panel { padding: clamp(3rem, 8vh, 5rem) 1rem; }
+  /* Through the custom property, for the reason given where it is declared:
+     the shorthand here used to override the portrait composition's
+     `padding-block: 0` from a media query it knows nothing about. */
+  .panel {
+    --panel-pad-block: clamp(3rem, 8vh, 5rem);
+    padding-inline: 1rem;
+  }
 
   .panel__inner {
     width: 100%;
@@ -1041,7 +1534,11 @@ img { max-width: 100%; height: auto; }
     bottom: auto;
     left: 0;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    /* `minmax(0, …)` on the outer two, because an `auto` track is floored at
+       its content's min-content width and will push the strip past the
+       viewport rather than shrink. At 200% zoom on a 320×568 the stage label
+       measured 90px in a 160px viewport and took the document with it. */
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
     align-items: center;
     gap: 0.75rem;
     padding: max(0.45rem, env(safe-area-inset-top)) 1rem 0.5rem;
@@ -1060,7 +1557,12 @@ img { max-width: 100%; height: auto; }
   .hud__digits { font-size: 1.45rem; text-shadow: none; }
   .hud__unit { font-size: 0.7rem; }
   .hud__scale { width: auto; margin: 0; }
-  .hud__stage { font-size: 0.6rem; text-shadow: none; }
+  .hud__stage {
+    font-size: 0.6rem;
+    text-shadow: none;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
 
   /* Tightened so the plate has a chance of fitting the viewport. At the default
      spacing the lower-atmosphere panel came to 987px inside a 740px screen,
