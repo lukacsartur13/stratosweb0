@@ -18,6 +18,12 @@
       "port": 4326
     },
     {
+      "name": "full-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "experiments", "run", "dev:full"],
+      "port": 5176
+    },
+    {
       "name": "home-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": [

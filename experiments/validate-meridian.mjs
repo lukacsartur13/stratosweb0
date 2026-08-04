@@ -96,13 +96,84 @@ const VIEWPORTS = process.env.VIEWPORTS
   : DEFAULT_VIEWPORTS;
 
 const LOCALES = (process.env.LOCALES ?? 'hu,en,de').split(',');
-/** §9: at least 101 evenly distributed samples, and the seven named stops. */
+
+/**
+ * §13's four extra run states, as flags rather than as separate scripts.
+ *
+ *   ZOOM=2      200% browser zoom. Emulated by halving the *layout* viewport
+ *               and doubling the device scale factor, which is precisely what a
+ *               browser does at 200%: the CSS pixel gets twice as many device
+ *               pixels and the page sees half as many of them. Setting a CSS
+ *               `zoom` instead would leave `innerWidth` reporting the unzoomed
+ *               width and every fraction-of-viewport figure in this file would
+ *               be measured against a viewport the page is not laid out in.
+ *
+ *   REDUCED=1   `prefers-reduced-motion: reduce`. On this route that path does
+ *               not mount the scene at all, so there is no instrument to clip
+ *               and no collision to have; what has to hold is that all the copy
+ *               is present, the reading order is the narrative order and the
+ *               page does not scroll sideways. The harness therefore skips the
+ *               projection entirely rather than waiting thirty seconds for a
+ *               handle that is never going to be published.
+ *
+ *   FALLBACK=1  The metric-matched shim faces. The webfonts are aborted at the
+ *               network layer, which is the honest way to reach this state —
+ *               `document.fonts` cannot be made to fail from script, and a run
+ *               that merely *asked* for a fallback family would measure a
+ *               different stack from the one a visitor on a failed font load
+ *               actually gets.
+ */
+const ZOOM = Number(process.env.ZOOM ?? 1);
+const REDUCED = process.env.REDUCED === '1';
+const FALLBACK = process.env.FALLBACK === '1';
+const MODE = [ZOOM !== 1 && `zoom${ZOOM * 100}`, REDUCED && 'reduced', FALLBACK && 'fallback-font']
+  .filter(Boolean)
+  .join('+');
+/** §13: at least 101 evenly distributed samples, and the seven named stops. */
 const SAMPLES = Number(process.env.SAMPLES ?? 101);
 const NAMED = [0, 3_000, 7_000, 12_000, 18_000, 24_000, 30_000];
 
+/**
+ * The rail handoffs, and why they are sampled by name.
+ *
+ * §8 asks for explicit no-collision transition states: "the middle of the
+ * movement must not create a temporary collision that is absent at the
+ * endpoints". An evenly spaced grid does not test that. The five crossings are
+ * at 150, 6 000, 11 000, 17 000 and 28 000 m and each takes 0.9 screens of
+ * scroll, which at the local altitude rates is between 60 and 900 metres wide —
+ * so a 101-sample grid with a 300-metre step can step straight over the
+ * narrowest of them, and lands on the middle of none of them by construction.
+ *
+ * Each crossing therefore contributes its midpoint and four points either side
+ * of it, spaced by the altitude the handoff window actually spans there. Those
+ * are the states in which the instrument is between rails and both the outgoing
+ * and the incoming column may be on screen.
+ */
+const HANDOFFS = [150, 6_000, 11_000, 17_000, 28_000];
+const handoffSamples = (spanFor) =>
+  HANDOFFS.flatMap((m) => {
+    const w = spanFor(m);
+    return [-1, -0.6, -0.25, 0, 0.25, 0.6, 1].map((k) => Math.min(30_000, Math.max(0, m + k * w)));
+  });
+
+/**
+ * The altitude width of one handoff half-window at each crossing, derived from
+ * the stage map rather than guessed: a stage of `share` screens covers
+ * `to - from` metres, so 0.45 screens of it is that fraction of its range. The
+ * tighter of the two stages meeting at the crossing is the one that matters.
+ */
+const HANDOFF_SPAN = {
+  150: 130,
+  6_000: 520,
+  11_000: 560,
+  17_000: 900,
+  28_000: 320,
+};
+
 const altitudes = (() => {
   const even = Array.from({ length: SAMPLES }, (_, i) => (i * 30_000) / (SAMPLES - 1));
-  return [...new Set([...even, ...NAMED])].sort((a, b) => a - b);
+  const handoff = handoffSamples((m) => HANDOFF_SPAN[m] ?? 300);
+  return [...new Set([...even, ...NAMED, ...handoff].map((a) => Math.round(a)))].sort((a, b) => a - b);
 })();
 
 /** §4's minimum edge margins, as a fraction of the usable viewport or in px. */
@@ -113,8 +184,24 @@ const marginFor = (tier, vw, vh) =>
       ? { x: 0.03 * vw, y: 0.03 * vh, label: '3%' }
       : { x: 16, y: 16, label: '16px' };
 
-/** §3's compositional-centre tolerance. */
-const CENTRE_TOLERANCE = 0.03;
+/**
+ * §13's replacement for the old global centre tolerance.
+ *
+ * The previous rule — the projected centre within ±3% of the *viewport* centre
+ * at every altitude — no longer applies and must not be left in place, because
+ * on this composition it is not merely stricter, it is wrong: the instrument is
+ * supposed to be 19% off the viewport centre for most of the journey, and a
+ * check that failed it for doing so would fail the accepted design.
+ *
+ * What replaces it is stricter in the way that matters. The horizontal
+ * deviation is measured against the rail the composition *intended* at that
+ * altitude, read off the page's own `railAt` rather than reconstructed here, so
+ * a wandering instrument is caught at ±3% wherever the rail happens to be. The
+ * vertical deviation is still measured against the viewport centre, because the
+ * rails move the composition laterally only and nothing in the revision loosens
+ * the vertical.
+ */
+const RAIL_TOLERANCE = 0.03;
 
 // -----------------------------------------------------------------------------
 // The in-page measurement. Everything below `page.evaluate` runs in the browser.
@@ -123,10 +210,11 @@ const measure = (altitude) =>
   // eslint-disable-next-line no-undef
   new Promise((done) => done()).then(() => altitude);
 
-const PAGE_FN = ({ altitude, centreTolerance }) => {
+const PAGE_FN = ({ altitude, railTolerance }) => {
   const s = globalThis.__stratos;
   const THREE = s.three;
   const camera = s.camera;
+  const comp = s.composition ?? {};
 
   // --- usable viewport ------------------------------------------------------
   const vv = globalThis.visualViewport;
@@ -214,17 +302,41 @@ const PAGE_FN = ({ altitude, centreTolerance }) => {
   const rings = project(ringMeshes);
   const whole = project([...essentialMeshes, ...ringMeshes]);
 
-  // --- centre ----------------------------------------------------------------
+  // --- rail deviation ----------------------------------------------------------
+  //
+  // The horizontal is measured against the rail the composition intended at
+  // this altitude, the vertical still against the viewport centre. `railAt`
+  // returns a fraction of the *usable* width and is read off the page rather
+  // than recomputed here — see RAIL_TOLERANCE above for why that distinction is
+  // the whole point of the check.
+  //
+  // `budget` of zero means this viewport carries no lateral travel at all
+  // (portrait, and any landscape viewport whose measurement leaves no room). It
+  // is not a special case in the arithmetic — `railAt` returns exactly 0.5
+  // there and the check reduces to the centre tolerance it replaced.
   const centreOf = (b) => (b ? { x: (b.left + b.right) / 2, y: (b.top + b.bottom) / 2 } : null);
   const c = centreOf(essential);
+  const metres = s.journey.altitude;
+  const intended = typeof comp.railAt === 'function' ? comp.railAt(metres) : 0.5;
+  const railBudget = typeof comp.railBudget === 'function' ? comp.railBudget() : 0;
+  const rail = {
+    intended,
+    budget: railBudget,
+    track: typeof comp.railTrack === 'function' ? comp.railTrack(metres) : 0,
+    stage: typeof comp.railOf === 'function' ? comp.railOf(s.journey.stage) : null,
+    copySide: typeof comp.copySideOf === 'function' ? comp.copySideOf(s.journey.stage) : null,
+  };
   const centre = c
     ? {
-        dx: (c.x - (vpX + vpW / 2)) / vpW,
+        // Where it actually is, as a fraction of the usable width.
+        at: (c.x - vpX) / vpW,
+        // Deviation from the intended rail, and from the vertical centre.
+        dx: (c.x - (vpX + intended * vpW)) / vpW,
         dy: (c.y - (vpY + vpH / 2)) / vpH,
       }
     : null;
-  const centreOk = centre
-    ? Math.abs(centre.dx) <= centreTolerance && Math.abs(centre.dy) <= centreTolerance
+  const railOk = centre
+    ? Math.abs(centre.dx) <= railTolerance && Math.abs(centre.dy) <= railTolerance
     : false;
 
   // --- margins and clipping ---------------------------------------------------
@@ -295,6 +407,7 @@ const PAGE_FN = ({ altitude, centreTolerance }) => {
     ? { left: essential.left - pad, top: essential.top - pad, right: essential.right + pad, bottom: essential.bottom + pad }
     : null;
   const collisions = [];
+  let overlapArea = 0;
   if (zone) {
     const sel = '.panel h1, .panel h2, .panel__lead, a.btn, .hud__digits, .hud__stage, .panel p';
     for (const el of document.querySelectorAll(sel)) {
@@ -310,8 +423,19 @@ const PAGE_FN = ({ altitude, centreTolerance }) => {
         if (Number(getComputedStyle(p).opacity) < 0.05) { faded = true; break; }
       }
       if (faded) continue;
-      const hit = r.left < zone.right && r.right > zone.left && r.top < zone.bottom && r.bottom > zone.top;
-      if (hit) collisions.push(`${el.tagName.toLowerCase()}${el.className ? '.' + String(el.className).trim().split(/\s+/)[0] : ''} "${(el.textContent ?? '').trim().slice(0, 24)}"`);
+      const ox = Math.min(r.right, zone.right) - Math.max(r.left, zone.left);
+      const oy = Math.min(r.bottom, zone.bottom) - Math.max(r.top, zone.top);
+      if (ox > 0 && oy > 0) {
+        // §13 asks for the overlap *area*, not only the fact of a hit. A
+        // four-pixel clip of a descender and a headline laid across the dial
+        // are the same boolean and very different defects, and the area is what
+        // tells them apart in the report without reopening the browser.
+        overlapArea += ox * oy;
+        collisions.push(
+          `${el.tagName.toLowerCase()}${el.className ? '.' + String(el.className).trim().split(/\s+/)[0] : ''} ` +
+            `${Math.round(ox)}×${Math.round(oy)}px "${(el.textContent ?? '').trim().slice(0, 24)}"`,
+        );
+      }
       if (collisions.length >= 6) break;
     }
   }
@@ -325,21 +449,73 @@ const PAGE_FN = ({ altitude, centreTolerance }) => {
     Math.abs(buffer.h - Math.round(ch * dpr)) <= 2 &&
     !(canvas.width === 300 && canvas.height === 150);
 
+  // --- vertical clipping of essential content -----------------------------------
+  // §13 asks for vertical essential-content clipping separately from the
+  // instrument's own bounds: copy that runs off the bottom of the frame with no
+  // scroll left to reach it is content loss, which §15 forbids outright.
+  const de2 = document.documentElement;
+  const atBottom = window.scrollY + innerHeight >= de2.scrollHeight - 2;
+  let clippedCopy = [];
+  if (atBottom) {
+    for (const el of document.querySelectorAll('.panel--destination a, .panel--destination p')) {
+      const r = el.getBoundingClientRect();
+      if (r.height > 0 && r.top >= vpY + vpH) clippedCopy.push(el.className || el.tagName);
+      if (clippedCopy.length >= 4) break;
+    }
+  }
+
   return {
     altitude,
     reported: s.journey.altitude,
+    stage: s.journey.stage,
     viewport: { w: vpW, h: vpH, x: vpX, y: vpY, safe },
     essential,
     rings,
     whole,
+    rail,
     centre,
-    centreOk,
+    railOk,
     margins: { essential: em, rings: rm },
     minMargin: { essential: minMargin(em), rings: minMargin(rm) },
     overflow,
     culprits,
     collisions,
+    overlapArea,
+    clippedCopy,
     canvas: { css: { w: cw, h: ch }, buffer, dpr, ok: canvasOk },
+  };
+};
+
+/**
+ * The reduced-motion measurement.
+ *
+ * A separate function because it is a different page, not a degraded one: there
+ * is no canvas, no camera and no instrument, so there is nothing to project and
+ * the four instrument checks have no subject. What is left is what §12 and §15
+ * actually require of this path — every panel present, in narrative order, with
+ * its copy intact, and no horizontal overflow.
+ *
+ * Reading order is checked against the stage map rather than against a
+ * hard-coded list, and it is checked in *document* order: §12 requires the DOM
+ * order to be the narrative order and independent of visual placement, which is
+ * exactly the property that a left/right composition can silently break by
+ * reaching for `order` or `row-reverse` to move a column.
+ */
+const REDUCED_FN = ({ altitude, stages }) => {
+  const de = document.documentElement;
+  const vpW = (globalThis.visualViewport?.width ?? innerWidth);
+  const order = [...document.querySelectorAll('.panel')].map((p) => p.dataset.stage);
+  const empty = [...document.querySelectorAll('.panel')]
+    .filter((p) => (p.textContent ?? '').trim().length < 40)
+    .map((p) => p.dataset.stage);
+  return {
+    altitude,
+    viewport: { w: vpW, h: globalThis.visualViewport?.height ?? innerHeight },
+    overflow: de.scrollWidth - de.clientWidth,
+    orderOk: order.length === stages.length && order.every((id, i) => id === stages[i]),
+    order,
+    empty,
+    panels: order.length,
   };
 };
 
@@ -351,11 +527,22 @@ let failures = 0;
 for (const locale of LOCALES) {
   for (const vp of VIEWPORTS) {
     const page = await browser.newPage({
-      viewport: { width: vp.w, height: vp.h },
-      deviceScaleFactor: 1,
+      // 200% zoom halves the layout viewport and doubles the device pixel
+      // ratio. Both halves matter: the first is what makes German wrap
+      // differently, the second is what makes the canvas allocate the buffer it
+      // would really allocate.
+      viewport: { width: Math.round(vp.w / ZOOM), height: Math.round(vp.h / ZOOM) },
+      deviceScaleFactor: ZOOM,
+      reducedMotion: REDUCED ? 'reduce' : 'no-preference',
     });
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
+
+    // The fallback-font state, reached the way a visitor reaches it: the font
+    // files do not arrive. `document.fonts` has no failure mode that can be
+    // triggered from script, so anything short of this measures a stack the
+    // failure case never produces.
+    if (FALLBACK) await page.route('**/*.woff2', (route) => route.abort());
 
     // The locale is a property of the *document*, not of the URL.
     //
@@ -386,6 +573,41 @@ for (const locale of LOCALES) {
       // must not come back quietly.
       throw new Error(`locale rewrite failed: asked for ${locale}, document is ${served}`);
     }
+    const label = `${locale} ${vp.w}x${vp.h}${vp.landscape ? ' (landscape)' : ''}${MODE ? ` [${MODE}]` : ''}`;
+    const rows = [];
+
+    if (REDUCED) {
+      // No canvas, no handle, nothing to wait for beyond layout and fonts.
+      await page.waitForSelector('.panel', { timeout: 30_000 });
+      await page.evaluate(() => document.fonts.ready);
+      await page.waitForTimeout(600);
+      const stages = ['calibration', 'initial-ascent', 'lower-atmosphere', 'cloud-entry', 'cloud-breakthrough',
+        'selected-work', 'system', 'process', 'stratosphere-transition', 'full-stratosphere', 'destination'];
+      // Three positions rather than 101: with no scene there is no altitude,
+      // and the only thing that varies with scroll is which copy is on screen.
+      for (const frac of [0, 0.5, 1]) {
+        await page.evaluate((f) => scrollTo({ top: (document.documentElement.scrollHeight - innerHeight) * f, behavior: 'instant' }), frac);
+        await page.waitForTimeout(250);
+        const r = await page.evaluate(REDUCED_FN, { altitude: frac, stages });
+        const problems = [];
+        if (r.overflow > 1) problems.push(`h-overflow ${r.overflow}px`);
+        if (!r.orderOk) problems.push(`reading order ${r.order.join(',')}`);
+        if (r.empty.length) problems.push(`empty panels: ${r.empty.join(', ')}`);
+        if (r.panels !== stages.length) problems.push(`${r.panels} panels, expected ${stages.length}`);
+        rows.push({ altitude: frac, overflow: r.overflow, orderOk: r.orderOk, empty: r.empty, panels: r.panels, problems });
+        if (problems.length) failures++;
+      }
+      console.log(
+        `${label.padEnd(34)} scrolls=${rows.length}  fail=${rows.filter((r) => r.problems.length).length}  ` +
+          `panels=${rows[0]?.panels ?? '?'}  order=${rows[0]?.orderOk ? 'ok' : 'BAD'}` +
+          (errors.length ? `  pageerrors=${errors.length}` : ''),
+      );
+      for (const b of rows.filter((r) => r.problems.length)) console.log(`    scroll ${b.altitude}  ${b.problems.join(' | ')}`);
+      results.push({ locale, viewport: vp, mode: MODE, rows, errors });
+      await page.close();
+      continue;
+    }
+
     await page.locator('canvas').waitFor({ state: 'visible', timeout: 30_000 });
     // The handle is published by a dynamic import and by the canvas mounting,
     // whichever lands last.
@@ -393,9 +615,6 @@ for (const locale of LOCALES) {
       timeout: 30_000,
     });
     await page.waitForTimeout(1_200);
-
-    const label = `${locale} ${vp.w}x${vp.h}${vp.landscape ? ' (landscape)' : ''}`;
-    const rows = [];
 
     for (const a of altitudes) {
       // Force the altitude *and* scroll the document to where that altitude
@@ -473,7 +692,7 @@ for (const locale of LOCALES) {
           }),
       );
 
-      const r = await page.evaluate(PAGE_FN, { altitude: a, centreTolerance: CENTRE_TOLERANCE });
+      const r = await page.evaluate(PAGE_FN, { altitude: a, railTolerance: RAIL_TOLERANCE });
       if (r.error) {
         console.error(`  !! ${label} @ ${a}m: ${r.error}`);
         failures++;
@@ -493,23 +712,31 @@ for (const locale of LOCALES) {
       if (r.overflow > 1) problems.push(`h-overflow ${r.overflow}px [${r.culprits.join('; ')}]`);
       if (essentialClipped) problems.push('essential clipped');
       if (ringClipped) problems.push('ring clipped');
-      if (!r.centreOk)
-        problems.push(`centre ${(r.centre.dx * 100).toFixed(1)}%,${(r.centre.dy * 100).toFixed(1)}%`);
+      if (!r.railOk)
+        problems.push(
+          `rail ${(r.centre.at * 100).toFixed(1)}% vs ${(r.rail.intended * 100).toFixed(1)}% ` +
+            `(dx ${(r.centre.dx * 100).toFixed(1)}%, dy ${(r.centre.dy * 100).toFixed(1)}%)`,
+        );
       if (!marginOk)
         problems.push(`margin ${r.minMargin.essential?.toFixed(0)}px < ${m.label}`);
-      if (r.collisions.length) problems.push(`text collision: ${r.collisions.join('; ')}`);
+      if (r.collisions.length)
+        problems.push(`text collision ${Math.round(r.overlapArea)}px²: ${r.collisions.join('; ')}`);
+      if (r.clippedCopy.length) problems.push(`copy below the fold at rest: ${r.clippedCopy.join('; ')}`);
       if (!r.canvas.ok)
         problems.push(`canvas ${r.canvas.css.w}x${r.canvas.css.h} buf ${r.canvas.buffer.w}x${r.canvas.buffer.h}`);
 
       rows.push({
         altitude: a,
+        stage: r.stage,
         overflow: r.overflow,
+        rail: r.rail,
         centre: r.centre,
         minMarginEssential: r.minMargin.essential,
         minMarginRings: r.minMargin.rings,
         essentialClipped,
         ringClipped,
         collisions: r.collisions,
+        overlapArea: r.overlapArea,
         canvasOk: r.canvas.ok,
         problems,
       });
@@ -521,29 +748,36 @@ for (const locale of LOCALES) {
       (acc, r) => (r.minMarginEssential !== null && r.minMarginEssential < acc ? r.minMarginEssential : acc),
       Infinity,
     );
-    const worstCentre = rows.reduce(
-      (acc, r) =>
-        r.centre ? Math.max(acc, Math.abs(r.centre.dx), Math.abs(r.centre.dy)) : acc,
+    const worstRail = rows.reduce(
+      (acc, r) => (r.centre ? Math.max(acc, Math.abs(r.centre.dx), Math.abs(r.centre.dy)) : acc),
       0,
     );
+    const budget = rows[0]?.rail?.budget ?? 0;
 
     console.log(
       `${label.padEnd(28)} samples=${rows.length}  fail=${bad.length}  ` +
         `worstMargin=${Number.isFinite(worstMargin) ? worstMargin.toFixed(0) + 'px' : 'n/a'}  ` +
-        `worstCentre=${(worstCentre * 100).toFixed(2)}%` +
+        `worstRail=${(worstRail * 100).toFixed(2)}%  ` +
+        `rails=${budget > 0 ? `${((0.5 - budget) * 100).toFixed(1)}/${((0.5 + budget) * 100).toFixed(1)}%` : 'off'}` +
         (errors.length ? `  pageerrors=${errors.length}` : ''),
     );
     for (const b of bad.slice(0, 8)) console.log(`    ${String(b.altitude).padStart(6)}m  ${b.problems.join(' | ')}`);
     if (bad.length > 8) console.log(`    … ${bad.length - 8} more`);
 
-    results.push({ locale, viewport: vp, rows, errors, worstMargin, worstCentre });
+    results.push({ locale, viewport: vp, rows, errors, worstMargin, worstRail, railBudget: budget });
     await page.close();
   }
 }
 
 await browser.close();
 await mkdir(dirname(OUT), { recursive: true });
-await writeFile(OUT, JSON.stringify({ generatedAt: new Date().toISOString(), altitudes, results }, null, 1));
+await writeFile(
+  OUT,
+  JSON.stringify({ generatedAt: new Date().toISOString(), mode: MODE || 'standard', locales: LOCALES, altitudes, results }, null, 1),
+);
 
-console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${failures} problem sample(s). Report: ${OUT}`);
+console.log(
+  `\n${failures === 0 ? 'PASS' : 'FAIL'} — ${failures} problem sample(s)` +
+    `${MODE ? ` [${MODE}]` : ''}. Report: ${OUT}`,
+);
 process.exit(failures === 0 ? 0 : 1);

@@ -77,6 +77,21 @@ if (import.meta.env.DEV) {
         fit: c.currentFit,
         measurement: c.measurement,
         stages: j.STAGES,
+        // The rails, for the validator.
+        //
+        // §13 replaced the global centre tolerance with a deviation from the
+        // *intended* rail, which means the check needs to know what the
+        // composition intended — and it must not be allowed to work that out
+        // for itself. A harness that reimplements `railAt` is a second
+        // implementation of the thing under test, and the two agreeing proves
+        // only that the same mistake was made twice. Reading the number the
+        // page actually composed against is what makes the ±3% meaningful.
+        railAt: c.railAt,
+        railTrack: c.railTrack,
+        railBudget: c.railBudgetNow,
+        railOf: c.railOf,
+        copySideOf: c.copySideOf,
+        railTolerance: c.RAIL_TOLERANCE,
       },
     };
   });

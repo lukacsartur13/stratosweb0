@@ -67,10 +67,18 @@ const READ = () => {
     panels[id] = {
       fit: panel.dataset.fit ?? null,
       dense: panel.dataset.dense ?? null,
+      // Which side this panel's copy is on, and how much of it is present. The
+      // side is a constant of the stage and the presence is a smoothstep of the
+      // altitude, so both must be identical in the two directions — and if the
+      // handoff ever acquired a direction-dependent state, `veil` is where it
+      // would show first.
+      copy: panel.dataset.copy ?? null,
+      room: panel.style.getPropertyValue('--copy-room') || null,
       flow: panel.style.getPropertyValue('--stage-flow') || null,
       veil: panel.style.getPropertyValue('--panel-veil') || null,
     };
   }
+  const rootStyle = getComputedStyle(document.documentElement);
   return {
     altitude: round(s.journey.altitude, 3),
     progress: round(s.journey.current, 6),
@@ -79,15 +87,26 @@ const READ = () => {
       x: round(s.camera.position.x, 6),
       y: round(s.camera.position.y, 6),
       z: round(s.camera.position.z, 6),
+      // The rail pan. It is the camera's share of the lateral move, and it was
+      // not in this comparison before because the camera did not have one.
+      yaw: round(s.camera.rotation.y, 6),
     },
     meridian: root
       ? {
           scale: round(root.scale.x, 6),
+          // The rail itself. If any part of the lateral composition were
+          // direction-dependent — a damper that never lands, a knot walked from
+          // the wrong end, an easing applied per component — this is the number
+          // it would differ in, and comparing everything *but* it is how a
+          // reversibility check passes a composition that is not reversible.
+          x: round(root.position.x, 6),
           y: round(root.position.y, 6),
           z: round(root.position.z, 6),
+          yaw: round(root.rotation.y, 6),
         }
       : null,
-    gap: getComputedStyle(document.documentElement).getPropertyValue('--meridian-gap').trim(),
+    gap: rootStyle.getPropertyValue('--meridian-gap').trim(),
+    railX: rootStyle.getPropertyValue('--rail-x').trim(),
     panels,
   };
 };

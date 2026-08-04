@@ -5,7 +5,13 @@ import * as THREE from 'three';
 import type { Group, Mesh, MeshStandardMaterial } from 'three';
 import { cameraHeightAt, clamp, settle, journey, lerp } from '../journey';
 import {
+  RAIL_DEPTH_TRIM,
+  RAIL_SCALE_TRIM,
   currentFit,
+  railCameraYaw,
+  railFaceYaw,
+  railTrack,
+  railWorldX,
   recededScale,
   recededDepth,
   recedeAt,
@@ -100,6 +106,10 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
   const gimbal = useRef<Group>(null);
   const housing = useRef<Group>(null);
   const size = useThree((s) => s.size);
+  // Read for its position and nothing else: the rail is solved against the
+  // camera's *distance*, which the dolly damps, so the solve has to use the
+  // value the camera is actually at rather than the one it is heading for.
+  const camera = useThree((s) => s.camera);
 
   const landscape = useMemo(() => size.width / size.height > 1.2, [size]);
 
@@ -340,35 +350,62 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
     }
 
     if (root.current) {
-      // The instrument is centred, and stays centred, at every altitude and on
-      // every viewport.
+      // --- the rails -----------------------------------------------------------
       //
-      // It did not used to be. Landscape put it at x = 0.45 so the copy could
-      // own the left; portrait pushed it to y = 0.66 so the dial cleared the
-      // paragraph; and `recede` moved it further aside again through the prose
-      // stages. Measured, that composition sat 16–30% off the viewport centre
-      // on all nine tested viewports — against a ±3% requirement — and clipped
-      // the essential silhouette outright on the short ones (−49px at
-      // 1366×768, −26px at 844×390).
+      // The instrument no longer sits at 50% for all 30 000 metres. It moves
+      // between three measured compositional rails and the copy takes the side
+      // it is not on, which is the revision that supersedes the permanently
+      // centred composition.
       //
-      // Making room for copy by moving the instrument is the one correction the
-      // brief rules out first. So the offsets are gone and the room is made the
-      // other two ways it allows: the instrument *shrinks* and *withdraws in
-      // depth* through the prose stages, which frees the same screen area
-      // without ever leaving the centre. `recede` still does that work; it just
-      // no longer does it sideways.
+      // What has *not* changed is the rule that made centring necessary in the
+      // first place: the position is not a tuned offset. `railWorldX` solves,
+      // in closed form, for the world x at which this instrument — at this
+      // distance, under this camera yaw, on this viewport — projects onto the
+      // rail the altitude asks for. The rail itself is a fraction of the usable
+      // width whose ceiling was measured against the ring composition's own
+      // projected extent, so the complete Meridian stays inside the viewport at
+      // every rail and at every point of every crossing. In portrait, and on any
+      // viewport whose measurement leaves no room, the budget is zero and every
+      // line below returns exactly the centred composition.
       //
-      // Anything non-zero here is a direct debit against the ±3% budget, which
-      // is why what is left is only the depth and scale terms, and a rise small
-      // enough to read as the ascent rather than as a drift off centre.
-      root.current.position.x = 0;
+      // The move is three things at once, which is §6's "the camera is
+      // recomposing around it" rather than "a UI object is sliding":
+      //
+      //   * the camera pans by up to a degree            (JourneyCamera)
+      //   * the instrument translates, solved against that pan   (here)
+      //   * it settles a little further away as it goes          (here)
+      //
+      // and a fourth that stops it reading as a billboard being dragged: it
+      // turns most of the way back to face the camera.
+      const track = railTrack(m);
+      const off = Math.abs(track);
+
+      // The bounded scale and depth correction. Three per cent and 0.09 world
+      // units at the full displacement, applied through the same scale/depth
+      // pair the recede uses so there is no second way for the instrument to
+      // change size. It buys the ring composition a little more edge margin
+      // exactly where the lateral budget is tightest, and settling further away
+      // as it moves aside is the mass-bearing direction.
+      const scale = recededScale(recede) * (1 - RAIL_SCALE_TRIM * off);
+      const z = recededDepth(recede) - RAIL_DEPTH_TRIM * off;
+
+      // Distance from the camera to the instrument's plane. The camera's z is
+      // damped and lands exactly (`settle`), so at rest this is a pure function
+      // of the altitude and forward and reverse traversal agree to the ulp.
+      const distance = Math.max(camera.position.z - z, 1e-3);
+      const camYaw = railCameraYaw(m);
+      const x = railWorldX(m, distance, camYaw, Math.max(size.width, 1) / Math.max(size.height, 1));
+
+      root.current.position.x = x;
       // Rides at exactly the camera's height, so it sits on the view axis and is
       // vertically centred at every altitude. The camera still climbs relative
       // to the mountains, the cloud deck and the sky — which is where the ascent
       // is actually told — but it no longer climbs relative to the instrument.
+      // The rails move the composition laterally only; nothing here touches the
+      // vertical, and the vertical centre tolerance is unchanged.
       root.current.position.y = cameraHeightAt(journey.current);
-      root.current.position.z = recededDepth(recede);
-      root.current.scale.setScalar(recededScale(recede));
+      root.current.position.z = z;
+      root.current.scale.setScalar(scale);
 
       // The three-quarter reveal. It opens as the rings separate and holds.
       //
@@ -385,7 +422,15 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
 
       const settle = clamp(s.power);
       root.current.rotation.x = lerp(POSE.ground.pitch, POSE.lit.pitch, settle) + pitch;
-      root.current.rotation.y = lerp(POSE.ground.yaw, POSE.lit.yaw, settle) + recede * 0.2 + yaw;
+      // The last term keeps the dial presenting its face as it leaves the axis.
+      // At the full displacement the instrument stands about eleven degrees off
+      // the view axis, and left alone it would be seen increasingly from the
+      // side — which reads as the object having been pushed. Turning it most of
+      // the way back is what sells the frame having moved instead; the residual
+      // few degrees are what stop it looking like a flat translation, and they
+      // are the same order as the pose yaw it already carries.
+      root.current.rotation.y =
+        lerp(POSE.ground.yaw, POSE.lit.yaw, settle) + recede * 0.2 + yaw + railFaceYaw(x, distance);
       // No roll, ever. An altimeter with its zero off the vertical reads as
       // broken rather than as styled.
       root.current.rotation.z = 0;

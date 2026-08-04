@@ -2,7 +2,7 @@ import { useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import type { PerspectiveCamera } from 'three';
 import { cameraHeightAt, clamp, journey, settle } from '../journey';
-import { dollyK, fitDistance } from '../composition';
+import { dollyK, fitDistance, railCameraYaw } from '../composition';
 
 /**
  * The camera is on rails for all 30 000 metres. No orbit controls, nothing
@@ -166,8 +166,29 @@ export function JourneyCamera({ parallax }: { parallax: boolean }) {
     eased.current.x = settle(eased.current.x, px, 0.9, dt);
     eased.current.y = settle(eased.current.y, py, 0.9, dt);
 
+    // --- the rail pan --------------------------------------------------------
+    //
+    // The camera's own share of the lateral move, and §6's first-listed way of
+    // getting it: one degree of yaw pans the sky, the cloud deck and the
+    // mountain range by about 2% of the viewport width, which is enough for the
+    // frame to read as having been re-aimed at the instrument rather than as
+    // the instrument sliding across a stationary frame.
+    //
+    // Added to the parallax rather than folded into it, and *outside* the
+    // parallax clamp, because they are two different budgets: the clamp exists
+    // so no combination of pointer inputs can exceed two degrees, and the rail
+    // pan is not a pointer input. Undamped, and that is the determinism
+    // requirement rather than an omission — it is a pure function of the
+    // altitude, so at equal altitude the camera is at equal yaw whichever
+    // direction the visitor arrived from (§7). It needs no damping of its own:
+    // the knot track already crosses over most of a screen of scrolling.
+    //
+    // `AltimeterMeridian` solves the instrument's world position against this
+    // same function rather than against `camera.rotation.y`, so the rail is hit
+    // exactly and neither component depends on which of the two ran first.
     // Clamped at the source, so no combination of inputs can exceed the budget.
-    camera.rotation.y = clamp(-eased.current.x * PARALLAX_RAD, -PARALLAX_RAD, PARALLAX_RAD);
+    camera.rotation.y =
+      clamp(-eased.current.x * PARALLAX_RAD, -PARALLAX_RAD, PARALLAX_RAD) + railCameraYaw(m);
     camera.rotation.x = clamp(-eased.current.y * PARALLAX_RAD, -PARALLAX_RAD, PARALLAX_RAD);
     camera.rotation.z = 0;
   });

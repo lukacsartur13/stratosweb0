@@ -171,9 +171,87 @@ img { max-width: 100%; height: auto; }
   position: absolute;
   z-index: 3;
   left: clamp(1.25rem, 4vw, 3.5rem);
-  bottom: clamp(1.25rem, 4vw, 3rem);
+  /* The design inset, unless the instrument's travel reaches this corner.
+
+     `--hud-max-bottom` is the highest the readout may sit and still clear the
+     instrument's worst exclusion band on this viewport — see `measureHud`. The
+     `min()` is what keeps this a *constraint* rather than a new position: where
+     the clear band is generous the design value wins and the readout is exactly
+     where it always was, and only where the band is tight does the measurement
+     take over. The 8px floor stops a pathological measurement pushing it off
+     the bottom edge. */
+  bottom: max(8px, min(clamp(1.25rem, 4vw, 3rem), var(--hud-max-bottom, 100vh)));
   pointer-events: none;
   font-family: var(--data);
+}
+
+/* The strip.
+   ----------
+   A wide, short frame has no room for a corner stack beneath a centred
+   instrument — the clear band below the exclusion zone is 97px on an 844×390
+   and the stack is 134 — but it has plenty of room for a line. Same content,
+   same order, same elements: only the axis changes.
+
+   Chosen by measurement in `measureHud`, never by a device width, and never
+   applied in portrait, which has its own HUD composition. */
+:root[data-hud='strip'] .hud {
+  /* Content width, not full bleed. A strip stretched edge to edge has a
+     bounding box across the whole frame, and every check that asks "does the
+     readout cover this text" — the one in the full-ascent suite included —
+     answers against the box rather than against the glyphs. Sized to its
+     content, it occupies about half the width and can be put somewhere.
+     `max-width` keeps a long German stage name inside the frame. */
+  left: 50%;
+  right: auto;
+  width: max-content;
+  max-width: calc(100% - 2 * clamp(1.25rem, 4vw, 3.5rem));
+
+  /* Where the copy is not.
+
+     `--hud-track` is `−copyTrack`: −1 while the narrative is on the right, +1
+     while it is on the left, and interpolated between them across the three
+     copy handoffs. So the readout always occupies the side the narrative has
+     just vacated, which on a wide short frame is the only place it can sit
+     without printing itself across something. It is also, in the frame, the
+     side the instrument is on — which is the intentional relationship §11 asks
+     the altitude display to keep with the object it is reading.
+
+     `--hud-travel` is the measured distance from centre to the inset edge for
+     *this* strip on *this* viewport, so ±1 lands flush against the inset and
+     nothing has to be assumed about how wide the readout is in this locale. */
+  transform: translateX(calc(-50% + var(--hud-track, -1) * var(--hud-travel, 0px)));
+
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.4rem);
+}
+
+:root[data-hud='strip'] .hud__readout { flex: 0 0 auto; }
+
+:root[data-hud='strip'] .hud__scale {
+  /* Fixed rather than flexible: inside a `max-content` box a flexible item with
+     no content of its own resolves to zero, and the bar is one empty div. As a
+     row item it no longer needs its own line, and the margins that separated it
+     from the digits above and the stage below are now the flex gap's job. */
+  flex: 0 0 auto;
+  width: clamp(56px, 10vw, 120px);
+  margin: 0;
+}
+
+:root[data-hud='strip'] .hud__stage {
+  flex: 0 1 auto;
+  /* A grid or flex child will not shrink below its longest word without this,
+     and the German stage names supply some long ones. Wrapping rather than
+     truncating: a stage name that has lost its ending is content removed to
+     solve a layout problem, and `measureHud` sizes the offset from the strip's
+     *measured* height, so a second line is accounted for rather than forbidden. */
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+:root[data-hud='strip'] .hud__sound {
+  flex: 0 0 auto;
+  margin-top: 0;
 }
 
 .hud__readout {
@@ -290,12 +368,36 @@ img { max-width: 100%; height: auto; }
      worked there: put the value in a custom property that the winning
      declaration reads, so there is no second declaration left to lose to. */
   --panel-pad-block: clamp(4rem, 10vh, 8rem);
-  padding: var(--panel-pad-block) clamp(1.25rem, 5vw, 4rem);
+  /* Named for the same reason the block padding is, and needed for a second:
+     the measured copy budget is the room between the viewport edge and the
+     instrument, and the column has to fit inside that room *after* the panel's
+     own inline padding has taken its share. A budget that could not subtract
+     the padding would be wrong by exactly the padding, which at 4rem is 64px
+     of instrument. */
+  --panel-pad-inline: clamp(1.25rem, 5vw, 4rem);
+  padding: var(--panel-pad-block) var(--panel-pad-inline);
 }
 
-/* Alternating sides, so the instrument is never permanently behind text on a
-   wide screen — and so the eye has somewhere to go as the journey progresses. */
-.panel:nth-of-type(even) { justify-content: flex-end; }
+/* The side the copy takes.
+   ------------------------
+   This used to be `:nth-of-type(even)` — a mechanical alternation keyed to the
+   panel's position in the document, which is neither the altitude nor the
+   composition. It flipped at every panel, eleven times over the journey, which
+   is exactly the restless oscillation the revision rules out, and it had no
+   relationship at all to where the instrument was.
+
+   It is now `data-copy`, written by `composition.ts` from `copySideOf(stage)`:
+   three changes over eleven stages, each one landing on a structural event the
+   instrument is already having, and always the side the instrument is *not* on.
+   `flow` is the portrait and no-rails answer, where there is no side to take.
+
+   The attribute is written from script rather than rendered into the JSX
+   because in portrait it has to be *withdrawn*, and an attribute React owns
+   would be reset to the authored value on the next render — silently
+   reinstating a landscape composition on a phone. It joins `data-fit` and
+   `data-dense`, which are measured the same way and for the same reason. */
+.panel:where([data-copy='left'], [data-copy='flow'], :not([data-copy])) { justify-content: flex-start; }
+.panel[data-copy='right'] { justify-content: flex-end; }
 .panel--centre { justify-content: center; text-align: center; }
 
 /* The copy budget on a landscape viewport.
@@ -720,7 +822,7 @@ img { max-width: 100%; height: auto; }
      centred in the *frame*, which is the part that was covering the
      instrument. */
   .panel--centre { justify-content: flex-start; text-align: left; }
-  .panel--centre:nth-of-type(even) { justify-content: flex-end; }
+  .panel--centre[data-copy='right'] { justify-content: flex-end; }
   /* Two classes for the destination, not one. `.panel--destination` declares
      `justify-content: center` in the stage-11 block six hundred lines further
      down; a media query adds no specificity, so a single-class selector here
@@ -728,7 +830,70 @@ img { max-width: 100%; height: auto; }
      which is the whole defect this rule exists to fix, reintroduced silently.
      Fourth occurrence in this file of the same collision. */
   .panel.panel--destination { justify-content: flex-start; }
-  .panel.panel--destination:nth-of-type(even) { justify-content: flex-end; }
+  .panel.panel--destination[data-copy='right'] { justify-content: flex-end; }
+}
+
+/* ==================================================== the compositional rails ==
+
+   The instrument no longer sits at 50% for all 30 000 metres, so the copy is no
+   longer squeezed into whichever of two narrow side margins a centred dial
+   leaves. It moves between three measured rails and the active narrative owns
+   the side it is not on — which is a materially different amount of room, and
+   the whole point of the revision.
+
+   ## Everything here is measured, nothing is a breakpoint
+
+   `--copy-room` is written per panel by `composition.ts` and is the distance, in
+   CSS pixels on *this* viewport, from the viewport edge on the copy's side to
+   the nearest the instrument's essential silhouette ever comes to it over that
+   stage's *settled* altitudes — the range in which the instrument has finished
+   arriving on its rail — expanded by the same visual safety margin the
+   validator tests against. What happens while it is still arriving is the
+   handoff, and `copyPresence` yields the column through it rather than the
+   budget paying for it; see `copyRoom` for why those are the same mechanism.
+
+   It is one number per stage rather than one per frame: the ring composition
+   grows by half its own width between 11 000 and 12 000 m, and a column that
+   tracked it would be visibly breathing.
+
+   ## The three caps, and why each is there
+
+     --copy-room   the instrument. Hard: past it the copy is on the dial.
+     38vw          the decision's upper target. Room alone would allow 50vw+ on
+                   the stages where the instrument is fully railed, and a 700px
+                   line of Hungarian prose is not an editorial column, it is a
+                   wall.
+     60rem         an absolute ceiling for the ultrawide case, where 38vw is
+                   1307px and the dense grids would sprawl.
+
+   Readable line length is held separately, on the prose itself, rather than by
+   narrowing this box — see `.panel__lead` below. A case-study grid and a
+   paragraph want different widths out of the same column, and capping the
+   container at a `ch` measure would take the grid's second column away to fix
+   the paragraph's measure.
+
+   Specificity is deliberate and it is the fourth lesson this file has learned
+   the same way: `:root[data-rails='on']` is (0,3,0) against `.panel--wide
+   .panel__inner`'s (0,2,0), so these rules cannot lose to a later
+   same-specificity declaration the way the landscape copy budget did. */
+@media (min-aspect-ratio: 1 / 1) {
+  :root[data-rails='on'] .panel__inner {
+    width: min(100%, var(--copy-room, 34rem) - var(--panel-pad-inline), 38vw, 60rem);
+    /* Generous negative space is part of the treatment rather than decoration
+       around it: the atmospheric wash has to reach zero *inside* this box, and
+       the padding is the distance it has to do that in. At 32px the falloff
+       reads as an edge; at 48–64 it reads as air. */
+    padding: clamp(1.75rem, 3.4vh, 2.75rem) clamp(1.75rem, 2.6vw, 2.75rem);
+  }
+
+  /* A centred *column* is a centred plate on the dial, which is the defect the
+     rails exist to remove. Centred *lines* inside a column that has taken a
+     side are a different thing and the closing panel keeps them. */
+  :root[data-rails='on'] .panel--centre,
+  :root[data-rails='on'] .panel--wide {
+    text-align: left;
+  }
+  :root[data-rails='on'] .panel--destination { text-align: center; }
 }
 
 .panel__inner {
@@ -744,6 +909,9 @@ img { max-width: 100%; height: auto; }
   width: min(100%, var(--copy-width, 34rem));
   padding: clamp(1.4rem, 2.4vw, 2rem);
   pointer-events: auto;
+  /* The containing block for the atmospheric wash below. Harmless everywhere
+     else: nothing else in a panel is positioned. */
+  position: relative;
   /* The plate is the containing block for the dense content inside it, and the
      case grid, the system grid and the checkpoint grid all key off *it* rather
      than off the viewport — see the container queries further down.
@@ -780,6 +948,233 @@ img { max-width: 100%; height: auto; }
   border: 1px solid var(--hair);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+}
+
+/* ================================================ the editorial surface ==
+
+   The panels above are the previous visual system: a bordered rectangle with a
+   flat translucent fill and a 14px backdrop blur behind the dense ones. Read
+   against the new composition they are three separate problems.
+
+   * The rectangle is the loudest thing in the frame. Eleven of them in a row,
+     each with the same radius-free but unmistakably card-shaped outline, is a
+     slide deck laid over a mountain range.
+   * The flat fill cuts a hole. `--plate` is a constant alpha to its own border,
+     so wherever the plate meets the sky there is a hard vertical edge with the
+     scene visibly darker on one side of it — at the widths this column now
+     needs, straight across the frame.
+   * The blur is glassmorphism, and it does the one thing this page must not:
+     an instrument behind a 14px blur is not a visible instrument, it is a shape
+     where the instrument is. The portrait composition already withdrew it for
+     exactly that reason; the rails make the same argument for landscape, where
+     the ring composition now passes behind the copy's outer edge.
+
+   What replaces them is a local atmospheric gradient and nothing else: no
+   surface, no border, no blur, no radius, no outline. The wash is an ellipse
+   centred on the text, at its densest where the prose is and reaching *exactly
+   zero* on every side before the pseudo-element's own box ends — which is what
+   makes it read as haze gathering behind the copy rather than as a panel with
+   soft edges. Its box is inset negatively so the falloff happens outside the
+   text, in air, rather than inside the padding where it would read as a vignette
+   on a card.
+
+   The hairline that remains is one 2rem technical rule leading into the mono
+   stage label, which is the only drawn line in the treatment. Everything else
+   is type, negative space and the sky.
+
+   ## Why this is keyed to the aspect and not to `data-rails`
+
+   The layout above — which side the copy takes, how wide it is — is a fact about
+   the rails and is correctly gated on them. The *surface* is not: it is the
+   design of the narrative panel, and it has to hold in the three landscape
+   states where the rails are absent as well. Reduced motion is the one that
+   matters. There the scene never mounts, so `measureComposition` never runs and
+   `data-rails` is never written, and gating the surface on it would leave a
+   reduced-motion visitor looking at the old bordered card — the one visual
+   system this revision exists to remove — on the one path that cannot show them
+   anything else instead.
+
+   Portrait keeps its own plate, which is a different composition solving a
+   different problem: there the copy is above and below the instrument rather
+   than beside it, the plate is a whole viewport tall, and its background is the
+   band split. `min-aspect-ratio: 1 / 1` is the same hinge the rest of the
+   landscape composition uses.
+
+   Specificity is (0,4,0) — `:root` + `[data-composition]`-free selector plus two
+   classes — against the (0,2,0) of the card rules above. That is deliberate and
+   it is the same lesson as everywhere else in this file: at equal specificity
+   the later declaration wins, and "later" is a property of how the file happens
+   to be ordered rather than of what was meant. */
+@media (min-aspect-ratio: 1 / 1) {
+  :root .panel .panel__inner {
+    background: none;
+    border: 0;
+    /* Both, because the prefixed property is a separate declaration in Safari
+       and resetting only the unprefixed one leaves the blur running there. */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    /* The handoff yield — see `copyPresence` in composition.ts.
+
+       A column is faded only while the instrument is standing where that column
+       is about to be, which is a state that lasts about nine tenths of a screen
+       of scrolling, five times in thirty thousand metres. Everywhere else this
+       is exactly 1 and costs nothing.
+
+       No transition: the value is already a smoothstep of the altitude, and a
+       CSS transition on top of it would be a second easing on a canonical
+       state — which is how a composition acquires a direction-dependent one. */
+    opacity: var(--panel-veil, 1);
+    pointer-events: var(--panel-events, auto);
+  }
+
+  :root .panel .panel__inner::before {
+    content: '';
+    position: absolute;
+    /* Behind the copy, and no further. `container-type: inline-size` on
+       `.panel__inner` makes it a stacking context, so this cannot fall behind
+       the canvas the way a negative z-index in an uncontained box would. */
+    z-index: -1;
+    /* The room the falloff happens in, and the horizontal bleed is bounded by
+       the document rather than by taste.
+
+       The column is flush against the panel's inline padding on its outer side,
+       so a horizontal bleed wider than that padding puts painted pixels past
+       the viewport edge — and a background on a pseudo-element contributes to
+       `scrollWidth` exactly as any other box does. Measured at -30%: 100px of
+       horizontal document overflow at *every* altitude on a 1440×900, with no
+       culprit reported, because the overflow scan walks elements and a
+       pseudo-element is not one. A decorative wash that makes the page scroll
+       sideways is the same defect as a paragraph that does.
+
+       10% is the largest bleed that cannot overflow at any viewport in the
+       matrix: the column is capped at 38vw and the padding is
+       `clamp(1.25rem, 5vw, 4rem)`, so the worst ratio is at 1440 and above,
+       where 0.10 × 38vw = 3.8vw against 4rem of padding. Vertically there is no
+       such bound — a panel is at least a screen tall and the wash is inside it
+       — so the vertical bleed stays generous.
+
+       The zero stop still lands inside the box on both axes: 47% of a 1.20×
+       box is 0.56 of the column horizontally and 47% of a 1.44× box is 0.68 of
+       it vertically, against a 0.5 half-column and half-height. */
+    inset: -22% -10%;
+    background: radial-gradient(
+      47% 47% at 50% 48%,
+      rgb(3 7 13 / var(--wash, 0.84)) 0%,
+      rgb(3 7 13 / calc(var(--wash, 0.84) * 0.93)) 40%,
+      rgb(3 7 13 / calc(var(--wash, 0.84) * 0.58)) 75%,
+      rgb(3 7 13 / 0) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* The dense panels ask a little more of the wash and get it as density rather
+     than as a surface: a case grid and a four-column definition list need more
+     contrast than a lead paragraph, and the previous answer to that was the
+     flat plate this replaces. */
+  :root .panel--wide .panel__inner,
+  :root .panel--centre .panel__inner,
+  :root .panel--destination .panel__inner {
+    --wash: 0.9;
+  }
+
+  /* The fine technical rule, and the mono stage label it leads into.
+     The label is the eyebrow, which was already `--data` at 0.72rem with 0.2em
+     of tracking — it did not need redesigning, it needed to stop being the top
+     line inside a box. The rule is a flex item rather than a border so it spans
+     two rem of the column instead of all of it: a full-width rule at the top of
+     a column is the top edge of a card, which is the thing being removed. */
+  :root .panel .panel__eyebrow::before {
+    content: '';
+    flex: 0 0 auto;
+    align-self: center;
+    width: 2rem;
+    height: 1px;
+    background: rgb(244 244 244 / 0.34);
+  }
+
+  /* The readout reserves its final width from the first frame.
+
+     Six characters is the widest it can ever be — `30 000` in Hungarian,
+     `30,000` in English, `30.000` in German, all six glyphs of a monospace
+     face, so `ch` is exact rather than approximate in every locale. The kinetic
+     tracking only ever subtracts (−0.03em to −0.004em), so the reservation can
+     be too generous and never too tight.
+
+     Two things depend on it. The unit stops sliding left as the number grows,
+     which for a technical readout counting to thirty thousand is the whole
+     difference between an instrument and a caption. And the strip layout's
+     travel is measured once, from the rendered box — a readout that was 32px
+     wider at 3 000 m than at the 0 m it was measured at put 16px of horizontal
+     document overflow on an 844×390, because the strip is positioned from its
+     own centre and half of that growth went past the inset.
+
+     Landscape only, and that is not tidiness. The portrait HUD is a grid strip
+     across the top whose outer tracks are `minmax(0, auto)` precisely so they
+     may shrink below their content — the note on that rule records a 90px stage
+     label taking the document sideways in a 160px viewport at 200% zoom. A
+     `min-width` on a grid item overflows the track it was allowed to shrink,
+     which would reintroduce exactly that defect on the one path that has
+     already been bitten by it. */
+  .hud__digits { min-width: 6ch; }
+
+  /* Readable line length, held on the prose rather than on the column.
+     ------------------------------------------------------------------
+     The column is capped at 38vw, which is 547px at 1440 and 730px at 1920 —
+     the first is a good measure and the second is not. Capping the *container*
+     at a `ch` value would fix the second by taking the case grid's second
+     column away, so the measure lives here, on the elements that carry
+     sentences, and the grids keep the full column.
+
+     `ch` rather than `rem` because the target is characters per line and `ch`
+     is the only unit that tracks the font actually in use — including the
+     fallback face, whose advance widths differ from Archivo's, and the locale
+     width adjustments `type.css` applies to `:lang(de)` and `:lang(hu)`. 68ch
+     is inside the 60–75 the type scale was built around.
+
+     `min-width: 0` because a flex or grid child's automatic minimum size is its
+     longest word, and Hungarian supplies compounds long enough to hold a column
+     open on its own. */
+  :root .panel .panel__lead,
+  :root .panel .panel__meta,
+  :root .panel__band > p,
+  :root .panel__band-inner > p {
+    max-width: 68ch;
+    min-width: 0;
+  }
+
+  :root .panel .panel__title {
+    /* Headlines are set larger, so the same character count is a wider box.
+       Held shorter so a German headline breaks where a Hungarian one does. */
+    max-width: 24ch;
+  }
+
+  :root .panel--destination .panel__lead,
+  :root .panel--destination .panel__title {
+    /* Centred lines in a centred column: a max-width would pin them left. */
+    max-width: none;
+  }
+
+  /* The nested cards.
+     -----------------
+     Removing the panel's own rectangle and leaving three more inside it is half
+     a job: with the plate gone, `.case`, `.system__ring` and `.check` become
+     the visible card treatment, and the case grid repeats four times in a row.
+
+     They are grouping, not surfaces, so they group the way the rest of this
+     composition does — one fine rule above the block and the sky behind it. */
+  :root .case,
+  :root .system__ring,
+  :root .check {
+    background: none;
+    /* Width and style only. The colour is deliberately not touched, so
+       `.system__ring[data-ring='n']` — which is (0,2,0) and would otherwise
+       lose to this rule — keeps deciding it and the three layers stay
+       distinguishable. A `border-top` shorthand here would have set the colour
+       too and silently flattened them. */
+    border-width: 1px 0 0;
+    border-style: solid;
+    padding: 1.15rem 0 0;
+  }
 }
 
 /* The dense panels are wider than the rest — but only up to the copy budget,
@@ -1351,9 +1746,15 @@ img { max-width: 100%; height: auto; }
      the block padding to zero — the sticky plate's containing block is this
      element's content box — and a shorthand here would win on source order and
      silently offset every band from the instrument it was measured against.
-     Third occurrence of the same trap in this file; see `--panel-pad-block`. */
+     Third occurrence of the same trap in this file; see `--panel-pad-block`.
+
+     The inline padding is now the token too, and for a related reason: the
+     measured copy budget subtracts `--panel-pad-inline`, so a literal here that
+     happened to differ from the token would put this one panel's column over
+     the instrument by exactly the difference — silently, and only on the
+     closing frame. */
   --panel-pad-block: clamp(4rem, 10vh, 8rem);
-  padding: var(--panel-pad-block) clamp(1.25rem, 5vw, 4rem);
+  padding: var(--panel-pad-block) var(--panel-pad-inline);
 }
 
 .panel--destination .panel__inner {
