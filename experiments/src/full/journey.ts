@@ -465,6 +465,33 @@ export const journey = {
    */
   debug: {
     cloudDensity: 1,
+    /**
+     * Freeze every time-dependent term in the cloud system, without freezing
+     * the altitude.
+     *
+     * §8 requires validation mode to be able to freeze all cloud motion, and
+     * `freeze` above is not that: it stops `advance` entirely, so the sweep
+     * could not move between altitudes. The cloud clock is the only integrated
+     * quantity in the deck, so stopping it is sufficient — every other cloud
+     * value is already a pure function of altitude.
+     */
+    cloudFreeze: false,
+    /**
+     * Hold the runtime quality ladder still.
+     *
+     * The ladder is a property of *this session's measured frame budget*, not of
+     * the scene, and it is one-way: once `PerformanceMonitor` declines, the
+     * scene stays stepped down. On a software rasteriser it declines almost
+     * immediately, which made the first cloud sweep measure a forward pass at
+     * full layer counts and a reverse pass at stepped ones and report six
+     * direction-dependent results that were nothing of the kind.
+     *
+     * A validation run has to hold it still to measure the thing it is about.
+     * Production never writes this, and pinning is *not* the same as disabling:
+     * `stepDown` still runs and is still the only writer, it simply declines to
+     * act while this is set.
+     */
+    cloudPinQuality: false,
     starDensity: 1,
     earthScale: 1,
     horizonGlow: 1,

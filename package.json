@@ -31,6 +31,8 @@
     "validate:meridian": "node experiments/validate-meridian.mjs",
     "validate:traversal": "node experiments/validate-traversal.mjs",
     "validate:typography": "node experiments/validate-typography.mjs",
+    "validate:navigation": "node experiments/validate-navigation.mjs",
+    "validate:focus": "node experiments/validate-focus.mjs",
     "scan:secrets": "node scripts/secret-scan.mjs",
     "serve:dist": "python3 -m http.server 4322 --directory dist",
     "build:home": "npm --prefix experiments run build:home",

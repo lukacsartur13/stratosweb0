@@ -81,8 +81,12 @@ export function FullAscent() {
   // un-stuck there and there is no altitude to map.
   useStageCalibration(track, failure !== 'reduced-motion' && capability !== null);
 
+  // No <main> wrapper. The landmark is `<main class="journey" id="main">` in the
+  // locale shell, and this component renders into it — see main.tsx. Rendering
+  // one here as well would nest two main landmarks and, more to the point,
+  // would mean the landmark only exists once this component has mounted.
   return (
-    <main className="journey" id="main">
+    <>
       <a className="skip" href="#journey-content">
         {m('common.skipToContent')}
       </a>
@@ -192,7 +196,7 @@ export function FullAscent() {
           <a href={pageHref('privacy')}>{m('footer.privacy')}</a>
         </p>
       </footer>
-    </main>
+    </>
   );
 }
 

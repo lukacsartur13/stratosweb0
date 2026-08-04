@@ -1,0 +1,371 @@
+/* ===========================================================================
+   Cross-document page transitions.
+
+   Phase 7, §15–§22. Everything here is progressive enhancement over ordinary
+   document navigation: no router, no framework, no third-party library, and no
+   change to the Content-Security-Policy. `@view-transition` is a CSS at-rule,
+   so the whole default path costs zero bytes of JavaScript — the companion
+   `assets/js/transitions.js` only assigns transition *types* and provides the
+   fallback for browsers that do not implement cross-document transitions.
+
+   The load-bearing property of this file is that **navigation never depends on
+   it**. If the at-rule is unrecognised, if the stylesheet 404s, if an animation
+   is interrupted by a second click — the destination document still loads and
+   renders, because it is a normal navigation that this decorates.
+
+   ## Naming
+
+   `view-transition-name` is assigned here rather than in script, so an element
+   that is not in the DOM simply has no name and the transition degrades to a
+   whole-page cross-fade instead of erroring. Names must be unique per document;
+   every name below is on a singleton element (`.nav`, `.site-foot`, `#main`).
+   =========================================================================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   §26. A real opt-out, not a shortened duration.
+
+   The site already promises a readable document without animation and asserts
+   it in the `reduced-motion` Playwright project. `navigation: none` means the
+   browser performs an ordinary navigation with no snapshot, no pseudo-element
+   tree and no animation — so reduced motion cannot delay navigation, which is
+   §26's closing requirement, by construction rather than by tuning a duration
+   to zero.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Stable chrome.
+
+   The header and footer are byte-identical across every *generated* page, so
+   naming them makes them hold still while the main column changes, instead of
+   cross-fading into a copy of themselves. This is the single biggest difference
+   between a transition that reads as one site and one that reads as two pages
+   swapping.
+
+   The class is `.foot`, not `.site-foot` — checked against the emitted markup
+   rather than assumed, because a `view-transition-name` on a selector that
+   matches nothing fails silently and degrades to a whole-page cross-fade that
+   looks deliberate.
+
+   **The three homepages carry neither.** They are a full-viewport journey with
+   no shared header or footer at all, so home ↔ subpage has no shared element by
+   construction and is a whole-page move — which is exactly what §15 and §16 ask
+   for, and why the aperture and the veil are authored on `root`.
+   --------------------------------------------------------------------------- */
+.nav {
+  view-transition-name: site-nav;
+}
+
+.foot {
+  view-transition-name: site-foot;
+}
+
+/* The mobile menu is a fixed overlay. Snapshotting it mid-transition captures
+   it in whatever open/closed state it happened to be in, which then animates
+   independently of the header that owns it. */
+.menu {
+  view-transition-name: none;
+}
+
+/* ---------------------------------------------------------------------------
+   §5 of the architecture note: the homepage canvas is not a participant.
+
+   The three homepages render a 30 000 m WebGL journey. Capturing it into a
+   transition snapshot means rasterising a live canvas at navigation time, on
+   the frame the visitor is least able to spare it — and the snapshot is a still
+   image, so a canvas that is mid-animation freezes visibly for the duration of
+   the transition. The DOM chrome around it transitions; the canvas does not.
+   --------------------------------------------------------------------------- */
+canvas.contrail,
+canvas[data-testid='journey-canvas'],
+.journey__stage canvas {
+  view-transition-name: none;
+}
+
+/* ===========================================================================
+   The default move, and the floor under every category below.
+
+   A short, restrained cross-fade with no travel. Every named category overrides
+   this; anything that reaches a route pair the script did not classify gets
+   this, which is why it is deliberately the most conservative move in the file.
+   =========================================================================== */
+::view-transition-old(root) {
+  animation: stratos-fade-out 180ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: stratos-fade-in 220ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Chrome elements hold still by default: no animation at all, so they are
+   composited from the snapshot without moving. */
+::view-transition-group(site-nav),
+::view-transition-group(site-foot) {
+  animation-duration: 0ms;
+}
+
+@keyframes stratos-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes stratos-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ===========================================================================
+   §15 — homepage → subpage.  Target 0.8–1.3 s.
+
+   The Meridian aperture as the conceptual origin: the destination is revealed
+   through a clip that opens from the point on screen where the instrument sits,
+   rather than through a circular wipe centred on the viewport (§15 forbids the
+   generic wipe by name). The origin is published by the script as
+   `--stratos-origin-x/y` from the instrument's measured centre, and falls back
+   to the viewport centre when there is no instrument to measure — a reduced
+   motion or no-WebGL homepage, where the fallback is also the correct answer.
+
+   Total: 240 ms hold + 820 ms reveal = 1.06 s, inside the band.
+   =========================================================================== */
+html:active-view-transition-type(home-to-page) {
+  &::view-transition-old(root) {
+    /* The source does not move. The aperture opens *over* it, which is what
+       makes the instrument read as the thing granting access rather than as a
+       layer being wiped away. */
+    animation: stratos-recede 820ms cubic-bezier(0.6, 0, 0.2, 1) both;
+  }
+
+  &::view-transition-new(root) {
+    animation: stratos-aperture-open 820ms cubic-bezier(0.6, 0, 0.2, 1) 240ms both;
+  }
+
+  /* The chrome travels with the destination rather than holding, because the
+     homepage's header sits over a canvas and the subpage's over a document —
+     holding it still across that change reads as the header failing to repaint. */
+  &::view-transition-group(site-nav) {
+    animation-duration: 820ms;
+  }
+}
+
+@keyframes stratos-aperture-open {
+  from {
+    clip-path: circle(2% at var(--stratos-origin-x, 50%) var(--stratos-origin-y, 50%));
+    opacity: 0.4;
+  }
+  to {
+    clip-path: circle(140% at var(--stratos-origin-x, 50%) var(--stratos-origin-y, 50%));
+    opacity: 1;
+  }
+}
+
+@keyframes stratos-recede {
+  from {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  to {
+    transform: scale(0.985);
+    filter: brightness(0.72);
+  }
+}
+
+/* ===========================================================================
+   §16 — subpage → homepage.  A restrained atmospheric return.
+
+   Not the reverse of the above. §16 asks for a *veil*, not for the aperture
+   event played backwards, and explicitly forbids replaying the altitude
+   journey. The source softens, a short cloud-coloured veil passes, and the
+   homepage's own environment reveals underneath it.
+   =========================================================================== */
+html:active-view-transition-type(page-to-home) {
+  &::view-transition-old(root) {
+    animation: stratos-veil-out 420ms cubic-bezier(0.4, 0, 1, 1) both;
+  }
+
+  &::view-transition-new(root) {
+    animation: stratos-veil-in 620ms cubic-bezier(0, 0, 0.2, 1) 180ms both;
+  }
+}
+
+@keyframes stratos-veil-out {
+  to {
+    opacity: 0;
+    filter: brightness(1.25) saturate(0.4) blur(6px);
+  }
+}
+
+@keyframes stratos-veil-in {
+  from {
+    opacity: 0;
+    filter: brightness(1.3) saturate(0.5);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* ===========================================================================
+   §17 — subpage → subpage.  Target 0.4–0.8 s. The common case.
+
+   "Ordinary navigation must remain faster and less dominant than homepage
+   transitions." One editorial move: the nav and footer hold still, and the main
+   column is handed off with a measured clip and a short vertical settle. No
+   atmosphere, no aperture, no environment.
+
+   Total: 460 ms, the shortest of the three families.
+   =========================================================================== */
+html:active-view-transition-type(page-to-page) {
+  &::view-transition-old(root) {
+    animation: stratos-fade-out 160ms linear both;
+  }
+
+  &::view-transition-new(root) {
+    animation: stratos-rule 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes stratos-rule {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(10px);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+
+/* ===========================================================================
+   §18 / §21 — work index ↔ case study.
+
+   **These categories are declared and currently inert, and that is a finding
+   rather than an omission.** The generated site has twelve route keys — index,
+   about, five services, blog, contact, quote, privacy, imprint — and no work
+   index and no case-study routes at all. The case studies live inside the
+   homepage's own scroll, as the `selected-work` journey stage, not as
+   documents. There is therefore no route pair for a shared-element handoff to
+   act on, and inventing one would be adding routes, which §34 forbids and
+   Phase 8 owns.
+
+   §18's own escape clause is what ships: "Where cross-document shared elements
+   are unsupported: use the normal editorial transition." The script never
+   assigns these types today, so any such pair would fall through to
+   `page-to-page`. The rules below are the shared-element handoff, ready for the
+   markup Phase 8 introduces, and they are exercised by the transition spec
+   against a synthetic pair so that they cannot rot unnoticed.
+   =========================================================================== */
+html:active-view-transition-type(work-to-case) {
+  &::view-transition-group(case-figure) {
+    animation-duration: 620ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &::view-transition-old(root) {
+    animation: stratos-fade-out 200ms linear both;
+  }
+
+  &::view-transition-new(root) {
+    animation: stratos-fade-in 420ms ease-out 120ms both;
+  }
+}
+
+html:active-view-transition-type(case-to-work) {
+  &::view-transition-group(case-figure) {
+    animation-duration: 520ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &::view-transition-old(root) {
+    animation: stratos-fade-out 180ms linear both;
+  }
+
+  &::view-transition-new(root) {
+    animation: stratos-fade-in 380ms ease-out both;
+  }
+}
+
+/* ===========================================================================
+   §19 — locale switching.  Short, neutral, and the least dominant move here.
+
+   A morph across a language change animates one text into another that means
+   the same thing in a different tongue, which reads as a glitch rather than as
+   continuity. So: no shared elements, no travel, no clip. A 260 ms neutral
+   cross-fade, and the chrome is explicitly *released* from its hold because the
+   nav labels themselves change language and holding them still would show the
+   old language for the duration.
+   =========================================================================== */
+html:active-view-transition-type(locale-switch) {
+  &::view-transition-old(root) {
+    animation: stratos-fade-out 130ms linear both;
+  }
+
+  &::view-transition-new(root) {
+    animation: stratos-fade-in 260ms ease-out both;
+  }
+
+  &::view-transition-group(site-nav),
+  &::view-transition-group(site-foot) {
+    animation-duration: 260ms;
+  }
+}
+
+/* ===========================================================================
+   §22 — the fallback, for browsers without cross-document View Transitions.
+
+   A fixed, inert veil. It is not a router, it retains no page snapshot, it
+   holds no navigation open, and it removes itself — see `transitions.js`, which
+   is the only thing that ever adds these classes.
+
+   `pointer-events: none` is not decoration: an overlay that swallows clicks
+   while a navigation is in flight is how a page ends up feeling frozen, and
+   §27 requires that never to happen.
+   =========================================================================== */
+.stratos-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 9200;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at var(--stratos-origin-x, 50%) var(--stratos-origin-y, 50%),
+    rgb(214 226 240 / 92%),
+    rgb(160 180 205 / 88%) 45%,
+    rgb(96 118 146 / 82%)
+  );
+  transition: opacity 260ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+.stratos-veil[data-state='out'] {
+  opacity: 1;
+}
+
+/* The incoming side: the veil is painted at full strength on load and faded
+   away, so the destination resolves *out of* the veil the source faded into. */
+.stratos-veil[data-state='in'] {
+  opacity: 1;
+  transition: opacity 380ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.stratos-veil[data-state='clear'] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* §26. The fallback does not run under reduced motion at all — the script
+     checks the same query — but the rule is here as well so that a veil left
+     in the DOM by an interrupted navigation cannot be visible. */
+  .stratos-veil {
+    display: none;
+  }
+}

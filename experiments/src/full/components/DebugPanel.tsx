@@ -52,6 +52,14 @@ const INSTRUMENT: Knob[] = [
 /** The instrument's own stops, which are not the narrative's stage boundaries. */
 const STOPS = Object.entries(ALTITUDE_STOPS) as [keyof typeof ALTITUDE_STOPS, number][];
 
+/** The shape of `WebGLRenderer.info` this panel reads. Declared locally so the
+ *  panel does not import `three` — it is reachable from the eager chunk. */
+type THREE_INFO = {
+  render: { calls: number; triangles: number };
+  memory: { geometries: number; textures: number };
+  programs?: { length: number };
+};
+
 export default function DebugPanel() {
   const [open, setOpen] = useState(() => new URLSearchParams(location.search).has('meridianDebug'));
   const [, force] = useState(0);
@@ -69,13 +77,33 @@ export default function DebugPanel() {
     const id = setInterval(() => {
       if (!readout.current) return;
       const r = meridian.rings;
+      // §12 asks for the quality state to be *recorded*, and this is where a
+      // person reads it. The renderer's own numbers come off the dev handle the
+      // scene publishes; the cloud line is the canonical state, not a second
+      // derivation of it.
+      const h = globalThis as unknown as {
+        __stratos?: { cloud?: import('../cloud').CloudState; gl?: { info: THREE_INFO; getPixelRatio(): number } };
+      };
+      const cloud = h.__stratos?.cloud;
+      const gl = h.__stratos?.gl;
       readout.current.textContent =
         `${formatAltitude(journey.altitude)} m · ${journey.stage} · p=${journey.current.toFixed(3)}\n` +
         `rekesz ${meridian.apertureOpen.toFixed(3)} · fény ${meridian.lightBreakthrough.toFixed(2)} · ` +
         `gimbal ${meridian.gimbalStrength.toFixed(2)} · kalibráció ${meridian.finalCalibration.toFixed(2)}\n` +
         r
           .map((s, i) => `gy${i + 1} varrat ${s.seam.toFixed(2)} emelés ${s.lift.toFixed(2)} zár ${s.settle.toFixed(2)}${s.locked ? ' ✔' : ''}`)
-          .join('\n');
+          .join('\n') +
+        (cloud
+          ? `\nfelhő ${cloud.art} · fedés ${cloud.coverage.toFixed(3)} · átlátszatlanság ${cloud.opacity.toFixed(3)}\n` +
+            `rétegek ${cloud.layers.distant}/${cloud.layers.enclosure}/${cloud.layers.floor} = ${cloud.layerCount} · ` +
+            `mintavétel ${cloud.sampling} · szint ${cloud.qualityTier}\n` +
+            `y ${cloud.verticalPosition.toFixed(2)} · rekesz-szabad ${cloud.apertureClearance.toFixed(2)} · ` +
+            `hegyhalványulás ${cloud.mountainFade.toFixed(2)} · Meridián-kontraszt ${cloud.meridianContrast.toFixed(3)}`
+          : '\nfelhő —') +
+        (gl
+          ? `\nDPR ${gl.getPixelRatio()} · rajzhívás ${gl.info.render.calls} · háromszög ${gl.info.render.triangles}\n` +
+            `geometria ${gl.info.memory.geometries} · textúra ${gl.info.memory.textures} · program ${gl.info.programs?.length ?? 0}`
+          : '');
     }, 250);
     return () => clearInterval(id);
   }, []);

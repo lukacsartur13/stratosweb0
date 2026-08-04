@@ -41,10 +41,19 @@
          this route never actually requested. See assets/css/type.css. -->
     <link rel="preload" href="/assets/fonts/archivo/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/assets/css/type.css" />
+    <!-- Phase 7 page transitions. The homepage opts in from CSS like every
+         other document; the script only assigns the transition category and
+         is never required for a link to work. See assets/css/transitions.css. -->
+    <link rel="stylesheet" href="/assets/css/transitions.css" />
+    <script src="/assets/js/transitions.js" defer></script>
   </head>
   <body>
     <a class="skip" href="#main">Zum Inhalt springen</a>
-    <div id="root"></div>
+    <!-- The React mount host *is* the main landmark — see home/hu.html for why.
+         In short: React renders into a container and never replaces it, so a
+         landmark that is the container exists in the parsed shell before any
+         module is fetched and survives every mount underneath it. -->
+    <main class="journey" id="main" tabindex="-1"></main>
     <script type="module" src="/src/full/main.tsx"></script>
   </body>
 </html>

@@ -1,0 +1,536 @@
+{
+  "url": "http://localhost:5176/experiments/stratos-ascent-full/full.html",
+  "capturedAt": "2026-08-04T19:53:21.150Z",
+  "views": {
+    "1440x900": {
+      "samples": [
+        {
+          "altitude": 0,
+          "drawCalls": 2,
+          "triangles": 4,
+          "geometries": 66,
+          "textures": 3,
+          "programs": 12,
+          "renderTargets": null,
+          "sceneChildren": 105,
+          "meshes": 68,
+          "effectiveDpr": 1,
+          "samples": 4,
+          "cloud": {
+            "visible": false,
+            "coverage": 0,
+            "opacity": 0,
+            "layerCount": 0,
+            "layers": {
+              "distant": 0,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 256,
+            "art": "desktop-wide",
+            "meridianContrast": 1,
+            "mountainFade": 0
+          }
+        },
+        {
+          "altitude": 7000,
+          "drawCalls": 61,
+          "triangles": 158222,
+          "geometries": 68,
+          "textures": 3,
+          "programs": 12,
+          "renderTargets": null,
+          "sceneChildren": 105,
+          "meshes": 68,
+          "effectiveDpr": 1,
+          "samples": 4,
+          "cloud": {
+            "visible": false,
+            "coverage": 0,
+            "opacity": 0,
+            "layerCount": 0,
+            "layers": {
+              "distant": 0,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "desktop-wide",
+            "meridianContrast": 1,
+            "mountainFade": 0
+          }
+        },
+        {
+          "altitude": 9500,
+          "drawCalls": 62,
+          "triangles": 158218,
+          "geometries": 71,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 105,
+          "meshes": 68,
+          "effectiveDpr": 1,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 0.18,
+            "opacity": 0.1476,
+            "layerCount": 5,
+            "layers": {
+              "distant": 5,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "desktop-wide",
+            "meridianContrast": 1,
+            "mountainFade": 0
+          }
+        },
+        {
+          "altitude": 11000,
+          "drawCalls": 64,
+          "triangles": 158258,
+          "geometries": 71,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 105,
+          "meshes": 68,
+          "effectiveDpr": 1,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 0.52,
+            "opacity": 0.3214,
+            "layerCount": 15,
+            "layers": {
+              "distant": 6,
+              "enclosure": 9,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "desktop-wide",
+            "meridianContrast": 0.7538,
+            "mountainFade": 0.0741
+          }
+        },
+        {
+          "altitude": 11800,
+          "drawCalls": 66,
+          "triangles": 158278,
+          "geometries": 71,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 105,
+          "meshes": 68,
+          "effectiveDpr": 1,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 0.8963,
+            "opacity": 0.4608,
+            "layerCount": 20,
+            "layers": {
+              "distant": 6,
+              "enclosure": 13,
+              "floor": 1
+            },
+            "sampling": 128,
+            "art": "desktop-wide",
+            "meridianContrast": 0.6269,
+            "mountainFade": 0.9259
+          }
+        },
+        {
+          "altitude": 12000,
+          "drawCalls": 50,
+          "triangles": 26402,
+          "geometries": 71,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 105,
+          "meshes": 68,
+          "effectiveDpr": 1,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 1,
+            "opacity": 0.5084,
+            "layerCount": 22,
+            "layers": {
+              "distant": 6,
+              "enclosure": 13,
+              "floor": 3
+            },
+            "sampling": 128,
+            "art": "desktop-wide",
+            "meridianContrast": 0.62,
+            "mountainFade": 1
+          }
+        },
+        {
+          "altitude": 12500,
+          "drawCalls": 50,
+          "triangles": 26386,
+          "geometries": 71,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 105,
+          "meshes": 68,
+          "effectiveDpr": 1,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 0.3519,
+            "opacity": 0.2337,
+            "layerCount": 18,
+            "layers": {
+              "distant": 3,
+              "enclosure": 7,
+              "floor": 8
+            },
+            "sampling": 128,
+            "art": "desktop-wide",
+            "meridianContrast": 0.81,
+            "mountainFade": 1
+          }
+        },
+        {
+          "altitude": 18000,
+          "drawCalls": 60,
+          "triangles": 30802,
+          "geometries": 69,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 101,
+          "meshes": 64,
+          "effectiveDpr": 1,
+          "samples": 4,
+          "cloud": {
+            "visible": false,
+            "coverage": 0,
+            "opacity": 0,
+            "layerCount": 0,
+            "layers": {
+              "distant": 0,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "desktop-wide",
+            "meridianContrast": 1,
+            "mountainFade": 1
+          }
+        },
+        {
+          "altitude": 30000,
+          "drawCalls": 54,
+          "triangles": 35546,
+          "geometries": 63,
+          "textures": 4,
+          "programs": 16,
+          "renderTargets": null,
+          "sceneChildren": 91,
+          "meshes": 55,
+          "effectiveDpr": 1,
+          "samples": 4,
+          "cloud": {
+            "visible": false,
+            "coverage": 0,
+            "opacity": 0,
+            "layerCount": 0,
+            "layers": {
+              "distant": 0,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "desktop-wide",
+            "meridianContrast": 1,
+            "mountainFade": 1
+          }
+        }
+      ],
+      "transfer": {
+        "requests": 0,
+        "totalBytes": 0,
+        "jsBytes": 0,
+        "cssBytes": 0,
+        "modelBytes": 0,
+        "fontBytes": 0,
+        "imageBytes": 0
+      }
+    },
+    "390x844": {
+      "samples": [
+        {
+          "altitude": 0,
+          "drawCalls": 55,
+          "triangles": 68770,
+          "geometries": 63,
+          "textures": 3,
+          "programs": 12,
+          "renderTargets": null,
+          "sceneChildren": 103,
+          "meshes": 66,
+          "effectiveDpr": 2,
+          "samples": 4,
+          "cloud": {
+            "visible": false,
+            "coverage": 0,
+            "opacity": 0,
+            "layerCount": 0,
+            "layers": {
+              "distant": 0,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "portrait-mobile",
+            "meridianContrast": 1,
+            "mountainFade": 0
+          }
+        },
+        {
+          "altitude": 7000,
+          "drawCalls": 59,
+          "triangles": 69094,
+          "geometries": 65,
+          "textures": 3,
+          "programs": 12,
+          "renderTargets": null,
+          "sceneChildren": 103,
+          "meshes": 66,
+          "effectiveDpr": 2,
+          "samples": 4,
+          "cloud": {
+            "visible": false,
+            "coverage": 0,
+            "opacity": 0,
+            "layerCount": 0,
+            "layers": {
+              "distant": 0,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "portrait-mobile",
+            "meridianContrast": 1,
+            "mountainFade": 0
+          }
+        },
+        {
+          "altitude": 9500,
+          "drawCalls": 60,
+          "triangles": 69090,
+          "geometries": 68,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 103,
+          "meshes": 66,
+          "effectiveDpr": 1.5,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 0.18,
+            "opacity": 0.1188,
+            "layerCount": 2,
+            "layers": {
+              "distant": 2,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "portrait-mobile",
+            "meridianContrast": 1,
+            "mountainFade": 0
+          }
+        },
+        {
+          "altitude": 11000,
+          "drawCalls": 62,
+          "triangles": 69102,
+          "geometries": 68,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 103,
+          "meshes": 66,
+          "effectiveDpr": 1.5,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 0.52,
+            "opacity": 0.2587,
+            "layerCount": 5,
+            "layers": {
+              "distant": 2,
+              "enclosure": 3,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "portrait-mobile",
+            "meridianContrast": 0.7538,
+            "mountainFade": 0.0741
+          }
+        },
+        {
+          "altitude": 11800,
+          "drawCalls": 64,
+          "triangles": 69110,
+          "geometries": 68,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 103,
+          "meshes": 66,
+          "effectiveDpr": 1.5,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 0.8963,
+            "opacity": 0.3709,
+            "layerCount": 7,
+            "layers": {
+              "distant": 2,
+              "enclosure": 4,
+              "floor": 1
+            },
+            "sampling": 128,
+            "art": "portrait-mobile",
+            "meridianContrast": 0.6269,
+            "mountainFade": 0.9259
+          }
+        },
+        {
+          "altitude": 12000,
+          "drawCalls": 50,
+          "triangles": 20774,
+          "geometries": 68,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 103,
+          "meshes": 66,
+          "effectiveDpr": 1.5,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 1,
+            "opacity": 0.4092,
+            "layerCount": 7,
+            "layers": {
+              "distant": 2,
+              "enclosure": 4,
+              "floor": 1
+            },
+            "sampling": 128,
+            "art": "portrait-mobile",
+            "meridianContrast": 0.62,
+            "mountainFade": 1
+          }
+        },
+        {
+          "altitude": 12500,
+          "drawCalls": 50,
+          "triangles": 20770,
+          "geometries": 68,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 103,
+          "meshes": 66,
+          "effectiveDpr": 1.5,
+          "samples": 4,
+          "cloud": {
+            "visible": true,
+            "coverage": 0.3519,
+            "opacity": 0.1881,
+            "layerCount": 6,
+            "layers": {
+              "distant": 1,
+              "enclosure": 2,
+              "floor": 3
+            },
+            "sampling": 128,
+            "art": "portrait-mobile",
+            "meridianContrast": 0.81,
+            "mountainFade": 1
+          }
+        },
+        {
+          "altitude": 18000,
+          "drawCalls": 60,
+          "triangles": 23230,
+          "geometries": 68,
+          "textures": 4,
+          "programs": 14,
+          "renderTargets": null,
+          "sceneChildren": 101,
+          "meshes": 64,
+          "effectiveDpr": 1.5,
+          "samples": 4,
+          "cloud": {
+            "visible": false,
+            "coverage": 0,
+            "opacity": 0,
+            "layerCount": 0,
+            "layers": {
+              "distant": 0,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "portrait-mobile",
+            "meridianContrast": 1,
+            "mountainFade": 1
+          }
+        },
+        {
+          "altitude": 30000,
+          "drawCalls": 54,
+          "triangles": 23554,
+          "geometries": 62,
+          "textures": 4,
+          "programs": 16,
+          "renderTargets": null,
+          "sceneChildren": 91,
+          "meshes": 55,
+          "effectiveDpr": 1.5,
+          "samples": 4,
+          "cloud": {
+            "visible": false,
+            "coverage": 0,
+            "opacity": 0,
+            "layerCount": 0,
+            "layers": {
+              "distant": 0,
+              "enclosure": 0,
+              "floor": 0
+            },
+            "sampling": 128,
+            "art": "portrait-mobile",
+            "meridianContrast": 1,
+            "mountainFade": 1
+          }
+        }
+      ],
+      "transfer": {
+        "requests": 0,
+        "totalBytes": 0,
+        "jsBytes": 0,
+        "cssBytes": 0,
+        "modelBytes": 0,
+        "fontBytes": 0,
+        "imageBytes": 0
+      }
+    }
+  }
+}

@@ -26,9 +26,10 @@ function collectErrors(page: Page) {
 // generated static document whose altitude readout was `<b class="rail__alt">`
 // inside a decorative rail, seeded at 420 m, with the hero call to action
 // inside a `.st--valley` section. None of that markup exists any more: the
-// homepage is the React Meridian ascent, client-rendered into `#root`, and it
-// publishes `data-testid` hooks precisely so tests do not have to name its
-// class structure.
+// homepage is the React Meridian ascent, client-rendered into the `<main
+// id="main">` the locale shell ships as its mount host, and it publishes
+// `data-testid` hooks precisely so tests do not have to name its class
+// structure.
 //
 // They are rewritten here rather than deleted or re-pointed one selector at a
 // time. Each one existed to answer a question about the product, and the

@@ -1,0 +1,883 @@
+{
+  "ranAt": "2026-08-04T23:22:09.073Z",
+  "results": [
+    {
+      "name": "shell hu ships <main id=\"main\" tabindex=\"-1\"> in the initial HTML",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shell en ships <main id=\"main\" tabindex=\"-1\"> in the initial HTML",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shell de ships <main id=\"main\" tabindex=\"-1\"> in the initial HTML",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "unmounted hu: one focusable <main>, 0 children, no React",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "unmounted en: one focusable <main>, 0 children, no React",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "unmounted de: one focusable <main>, 0 children, no React",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "React mounts *into* the landmark — one <main>, still a direct child of <body>",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "static page -> homepage",
+      "pass": true,
+      "detail": "main (focused) 21 ms after navigation start, unchanged through 3200 ms"
+    },
+    {
+      "name": "static page -> homepage (en)",
+      "pass": true,
+      "detail": "main (focused) 52 ms after navigation start, unchanged through 3200 ms"
+    },
+    {
+      "name": "homepage -> static page",
+      "pass": true,
+      "detail": "main (focused) 112 ms after navigation start, unchanged through 3200 ms"
+    },
+    {
+      "name": "homepage (en) -> static page (en)",
+      "pass": true,
+      "detail": "main (focused) 116 ms after navigation start, unchanged through 3200 ms"
+    },
+    {
+      "name": "locale homepage -> equivalent homepage (hu -> en)",
+      "pass": true,
+      "detail": "main (focused) 106 ms after navigation start, unchanged through 3200 ms"
+    },
+    {
+      "name": "locale homepage -> equivalent homepage (en -> de)",
+      "pass": true,
+      "detail": "main (focused) 107 ms after navigation start, unchanged through 3200 ms"
+    },
+    {
+      "name": "locale homepage -> equivalent homepage (de -> hu)",
+      "pass": true,
+      "detail": "main (focused) 104 ms after navigation start, unchanged through 3200 ms"
+    },
+    {
+      "name": "page -> page (control)",
+      "pass": true,
+      "detail": "main (focused) 31 ms after navigation start, unchanged through 3200 ms"
+    },
+    {
+      "name": "focus the visitor set is not taken back",
+      "pass": true,
+      "detail": "A held for 3 s after the scene finished loading"
+    },
+    {
+      "name": "engagement guard declines the focus move",
+      "pass": true,
+      "detail": "reported skipped-engaged, focus left on BODY"
+    },
+    {
+      "name": "static: browser back does not move focus",
+      "pass": true,
+      "detail": "BODY (skipped-restore) 34 ms after navigation start, unchanged through 2500 ms"
+    },
+    {
+      "name": "static: scroll restored",
+      "pass": true,
+      "detail": "1400px -> 1428px (28px drift)"
+    },
+    {
+      "name": "static: browser forward does not move focus",
+      "pass": true,
+      "detail": "BODY (skipped-restore) 27 ms after navigation start, unchanged through 2500 ms"
+    },
+    {
+      "name": "homepage: browser back does not move focus",
+      "pass": true,
+      "detail": "BODY (skipped-restore) 30 ms after navigation start, unchanged through 2500 ms"
+    },
+    {
+      "name": "homepage: scroll restoration observed",
+      "pass": true,
+      "detail": "1400px -> 1400px (0px drift), single trial"
+    },
+    {
+      "name": "homepage: browser forward does not move focus",
+      "pass": true,
+      "detail": "BODY (skipped-restore) 292 ms after navigation start, unchanged through 2500 ms"
+    },
+    {
+      "name": "homepage scroll restoration is not affected by the transition layer",
+      "pass": true,
+      "detail": "8/10 with, 10/10 without — the homepage's own race, unchanged"
+    },
+    {
+      "name": "homepage BFCache restore is clean and keeps native focus",
+      "pass": true,
+      "detail": "persisted=false, focus=skipped-restore, y=0, no veil"
+    },
+    {
+      "name": "reduced motion: static page -> homepage",
+      "pass": true,
+      "detail": "main (focused) 14 ms after navigation start, unchanged through 2000 ms"
+    },
+    {
+      "name": "reduced motion: homepage -> static page",
+      "pass": true,
+      "detail": "main (focused) 41 ms after navigation start, unchanged through 2000 ms"
+    },
+    {
+      "name": "reduced motion: locale homepage -> equivalent homepage",
+      "pass": true,
+      "detail": "main (focused) 32 ms after navigation start, unchanged through 2000 ms"
+    },
+    {
+      "name": "fallback: static page -> homepage",
+      "pass": true,
+      "detail": "main (focused) 42 ms after navigation start, unchanged through 2400 ms"
+    },
+    {
+      "name": "fallback BFCache branch",
+      "pass": true,
+      "detail": "veil cleared, focus left on main, reported skipped-restore"
+    }
+  ],
+  "rows": [
+    {
+      "name": "static page -> homepage",
+      "expect": "focused",
+      "landed": "/index.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 21,
+          "y": 0
+        },
+        {
+          "at": 150,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 21,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 21,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 21,
+          "y": 0
+        },
+        {
+          "at": 1500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 21,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 21,
+          "y": 0
+        },
+        {
+          "at": 3200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 21,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "static page -> homepage (en)",
+      "expect": "focused",
+      "landed": "/en/index.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 52,
+          "y": 0
+        },
+        {
+          "at": 150,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 52,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 52,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 52,
+          "y": 0
+        },
+        {
+          "at": 1500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 52,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 52,
+          "y": 0
+        },
+        {
+          "at": 3200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 52,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "homepage -> static page",
+      "expect": "focused",
+      "landed": "/kkv.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 112,
+          "y": 0
+        },
+        {
+          "at": 150,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 112,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 112,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 112,
+          "y": 0
+        },
+        {
+          "at": 1500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 112,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 112,
+          "y": 0
+        },
+        {
+          "at": 3200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 112,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "homepage (en) -> static page (en)",
+      "expect": "focused",
+      "landed": "/en/about.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 116,
+          "y": 0
+        },
+        {
+          "at": 150,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 116,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 116,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 116,
+          "y": 0
+        },
+        {
+          "at": 1500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 116,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 116,
+          "y": 0
+        },
+        {
+          "at": 3200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 116,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "locale homepage -> equivalent homepage (hu -> en)",
+      "expect": "focused",
+      "landed": "/en/",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 106,
+          "y": 0
+        },
+        {
+          "at": 150,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 106,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 106,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 106,
+          "y": 0
+        },
+        {
+          "at": 1500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 106,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 106,
+          "y": 0
+        },
+        {
+          "at": 3200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 106,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "locale homepage -> equivalent homepage (en -> de)",
+      "expect": "focused",
+      "landed": "/de/",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 107,
+          "y": 0
+        },
+        {
+          "at": 150,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 107,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 107,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 107,
+          "y": 0
+        },
+        {
+          "at": 1500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 107,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 107,
+          "y": 0
+        },
+        {
+          "at": 3200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 107,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "locale homepage -> equivalent homepage (de -> hu)",
+      "expect": "focused",
+      "landed": "/",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 104,
+          "y": 0
+        },
+        {
+          "at": 150,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 104,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 104,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 104,
+          "y": 0
+        },
+        {
+          "at": 1500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 104,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 104,
+          "y": 0
+        },
+        {
+          "at": 3200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 104,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "page -> page (control)",
+      "expect": "focused",
+      "landed": "/rolunk.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 31,
+          "y": 0
+        },
+        {
+          "at": 150,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 31,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 31,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 31,
+          "y": 0
+        },
+        {
+          "at": 1500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 31,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 31,
+          "y": 0
+        },
+        {
+          "at": 3200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 31,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "static: browser back does not move focus",
+      "expect": "skipped-restore",
+      "landed": "/kkv.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 34,
+          "y": 1428
+        },
+        {
+          "at": 400,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 34,
+          "y": 1428
+        },
+        {
+          "at": 1200,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 34,
+          "y": 1428
+        },
+        {
+          "at": 2500,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 34,
+          "y": 1428
+        }
+      ]
+    },
+    {
+      "name": "static: browser forward does not move focus",
+      "expect": "skipped-restore",
+      "landed": "/rolunk.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 27,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 27,
+          "y": 0
+        },
+        {
+          "at": 1200,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 27,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 27,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "homepage: browser back does not move focus",
+      "expect": "skipped-restore",
+      "landed": "/",
+      "series": [
+        {
+          "at": 0,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 30,
+          "y": 1400
+        },
+        {
+          "at": 400,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 30,
+          "y": 1400
+        },
+        {
+          "at": 1200,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 30,
+          "y": 1400
+        },
+        {
+          "at": 2500,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 30,
+          "y": 1400
+        }
+      ]
+    },
+    {
+      "name": "homepage: browser forward does not move focus",
+      "expect": "skipped-restore",
+      "landed": "/kkv.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 292,
+          "y": 0
+        },
+        {
+          "at": 400,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 292,
+          "y": 0
+        },
+        {
+          "at": 1200,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 292,
+          "y": 0
+        },
+        {
+          "at": 2500,
+          "active": "BODY",
+          "focus": "skipped-restore",
+          "decidedAt": 292,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "reduced motion: static page -> homepage",
+      "expect": "focused",
+      "landed": "/index.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 14,
+          "y": 0
+        },
+        {
+          "at": 200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 14,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 14,
+          "y": 0
+        },
+        {
+          "at": 2000,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 14,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "reduced motion: homepage -> static page",
+      "expect": "focused",
+      "landed": "/kkv.html",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 41,
+          "y": 0
+        },
+        {
+          "at": 200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 41,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 41,
+          "y": 0
+        },
+        {
+          "at": 2000,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 41,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "reduced motion: locale homepage -> equivalent homepage",
+      "expect": "focused",
+      "landed": "/en/",
+      "series": [
+        {
+          "at": 0,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 32,
+          "y": 0
+        },
+        {
+          "at": 200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 32,
+          "y": 0
+        },
+        {
+          "at": 800,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 32,
+          "y": 0
+        },
+        {
+          "at": 2000,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 32,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "fallback: static page -> homepage",
+      "expect": "focused",
+      "landed": "/index.html",
+      "series": [
+        {
+          "at": 400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 42,
+          "y": 0
+        },
+        {
+          "at": 1200,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 42,
+          "y": 0
+        },
+        {
+          "at": 2400,
+          "active": "main",
+          "focus": "focused",
+          "decidedAt": 42,
+          "y": 0
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "skipped": [
+    "static: BFCache restore: not reachable under CDP (persisted=false)",
+    "homepage: BFCache restore: not reachable under CDP (persisted=false)"
+  ]
+}

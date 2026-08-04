@@ -1308,17 +1308,10 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 }
 .is-in .mask > span, .mask.is-in > span { transform: none; }
 
-/* --------------------------------------------------------- page transition curtain */
-.curtain {
-  position: fixed; inset: 0; z-index: 9200; pointer-events: none;
-  background: var(--signal); transform: translateY(100%);
-}
-.curtain.is-up { animation: curtain .9s var(--ease) forwards; }
-@keyframes curtain {
-  0%   { transform: translateY(100%); }
-  45%  { transform: translateY(0); }
-  100% { transform: translateY(-100%); }
-}
+/* --------------------------------------------------------- page transitions
+   Moved to assets/css/transitions.css in Phase 7. The `.curtain` element, its
+   keyframes and the click handler that drove it are gone; see the note in
+   assets/js/main.js for the six defects that made keeping it impossible. */
 
 /* --------------------------------------------------------- reduced motion */
 @media (prefers-reduced-motion: reduce) {

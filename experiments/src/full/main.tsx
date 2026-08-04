@@ -32,12 +32,13 @@ class JourneyBoundary extends Component<{ children: ReactNode }, { failed: boole
 
   render() {
     if (!this.state.failed) return this.props.children;
+    // No <main> of its own: the landmark is the mount host in the HTML shell,
+    // and this renders *inside* it. Wrapping this in a second <main> would give
+    // the crashed page two main landmarks, one nested in the other.
     return (
-      <main className="journey" id="main">
-        <div className="journey__stage" style={{ position: 'relative' }}>
-          <JourneyFallback reason="context-lost" />
-        </div>
-      </main>
+      <div className="journey__stage" style={{ position: 'relative' }}>
+        <JourneyFallback reason="context-lost" />
+      </div>
     );
   }
 }
@@ -97,7 +98,24 @@ if (import.meta.env.DEV) {
   });
 }
 
-const host = document.getElementById('root');
+/**
+ * The mount host is the `<main id="main" tabindex="-1">` in the locale shell,
+ * not a `<div id="root">`.
+ *
+ * React owns a container's *children*; the container element itself is never
+ * replaced, re-created or unmounted. Mounting onto the landmark therefore makes
+ * it a fixed point: it is in the parsed HTML before the first module request,
+ * it is still the same node after hydration, after every re-render, and after
+ * the error boundary above swaps the whole tree for a static instrument.
+ *
+ * That is what the transition controller needs. `assets/js/transitions.js`
+ * moves focus to `#main` the moment the destination document is revealed, and
+ * before this change the homepage had nothing there to move focus to for the
+ * second or so it took React and a 1 MB scene chunk to arrive. The only fix
+ * available on the old structure was to poll until the landmark appeared, which
+ * lands a focus change on a visitor who has already started reading.
+ */
+const host = document.getElementById('main');
 if (host) {
   createRoot(host).render(
     <StrictMode>

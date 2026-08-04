@@ -388,21 +388,28 @@
     })();
   }
 
-  /* ---------------------------------------------------------- page curtain */
-  const curtain = $('.curtain');
-  if (curtain && !RM) {
-    document.addEventListener('click', e => {
-      const a = e.target.closest('a');
-      if (!a) return;
-      const href = a.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto:') ||
-          href.startsWith('tel:') || a.target === '_blank' ||
-          a.hostname !== location.hostname) return;
-      e.preventDefault();
-      curtain.classList.add('is-up');
-      setTimeout(() => { location.href = href; }, 420);
-    });
-  }
+  /* ---------------------------------------------------------- page curtain
+     Removed in Phase 7. `assets/js/transitions.js` owns page transitions now,
+     and the curtain that used to live here could not be kept alongside it:
+
+       * it called `e.preventDefault()` on *every* same-origin left-or-modified
+         click, so ⌘-click, Ctrl-click, Shift-click and Alt-click on every
+         internal link on the site were swallowed. "Open in new tab" opened in
+         the current tab. §20 forbids intercepting all four by name, and this
+         was the site's most visible violation of it;
+       * it did not check `download`, so a download link was intercepted and
+         then navigated to;
+       * it did not exclude `/portal/`, `/api/` or asset paths, so it animated
+         into an authenticated SPA and into non-documents;
+       * `location.href = href` used the raw attribute after a 420 ms wait with
+         no timeout and no failure path, so an interrupted navigation left the
+         page under a red curtain with nothing scheduled to remove it;
+       * nothing cleared `.is-up` on `pageshow`, so a BFCache restore came back
+         with the class still applied.
+
+     All six are fixed in `transitions.js`, which also handles the supported
+     cross-document path that this could not. The `.curtain` element and its
+     keyframes are gone from `_build/build.py` and `assets/css/main.css`. */
 
   /* ---------------------------------------------------------- forms
      Every public form posts JSON to POST /api/lead: one endpoint, one schema,

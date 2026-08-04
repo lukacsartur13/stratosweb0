@@ -1,0 +1,347 @@
+{
+  "ranAt": "2026-08-04T23:24:10.395Z",
+  "results": [
+    {
+      "name": "transition layer present on all 13 sampled routes, no inline script, no old curtain",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "portal excluded from the transition layer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "meta-click leaves the current tab alone",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "middle-click leaves the current tab alone",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "keyboard activation navigates",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "7 non-navigable/external hrefs present on contact and left to the browser",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "homepage -> services",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "homepage -> work (SUBSTITUTED: blog, no work route)",
+      "pass": true,
+      "detail": "direct, focus main"
+    },
+    {
+      "name": "homepage -> about",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "homepage -> contact",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "services -> homepage",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "work -> homepage (SUBSTITUTED: blog)",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "about -> homepage",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "contact -> homepage",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "services -> work (SUBSTITUTED: blog)",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "work -> about (SUBSTITUTED: blog)",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "about -> contact",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "hu -> en",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "en -> hu",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "hu -> de",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "de -> hu",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "en -> de",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "de -> en",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "about hu -> about en",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "about en -> about de",
+      "pass": true,
+      "detail": "via anchor, focus main"
+    },
+    {
+      "name": "back returns to the previous document",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "forward returns",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restored document is clean — no veil, no stale overlay",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no duplicate history entries",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reload leaves no overlay",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced motion navigates immediately (16ms)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced motion shows no veil",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "fallback navigates within the bound (292ms)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "fallback removes its overlay",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "navigation works with JavaScript disabled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "lifecycle nodes stable",
+      "pass": true,
+      "detail": "946.0 -> 946.0"
+    },
+    {
+      "name": "lifecycle listeners stable",
+      "pass": true,
+      "detail": "207.0 -> 207.0"
+    },
+    {
+      "name": "lifecycle documents stable",
+      "pass": true,
+      "detail": "2.0 -> 2.0"
+    },
+    {
+      "name": "lifecycle frames stable",
+      "pass": true,
+      "detail": "2.0 -> 2.0"
+    },
+    {
+      "name": "lifecycle veils stable",
+      "pass": true,
+      "detail": "0.0 -> 0.0"
+    },
+    {
+      "name": "lifecycle curtains stable",
+      "pass": true,
+      "detail": "0.0 -> 0.0"
+    },
+    {
+      "name": "lifecycle canvases stable",
+      "pass": true,
+      "detail": "1.0 -> 1.0"
+    },
+    {
+      "name": "lifecycle heap bounded",
+      "pass": true,
+      "detail": "2.3% across cycles 2-6 vs 6-10"
+    }
+  ],
+  "cycles": [
+    {
+      "cycle": 1,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7309716,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    },
+    {
+      "cycle": 2,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7399400,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    },
+    {
+      "cycle": 3,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7399208,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    },
+    {
+      "cycle": 4,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7386404,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    },
+    {
+      "cycle": 5,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7403144,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    },
+    {
+      "cycle": 6,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7403676,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    },
+    {
+      "cycle": 7,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7403832,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    },
+    {
+      "cycle": 8,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7899392,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    },
+    {
+      "cycle": 9,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7404844,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    },
+    {
+      "cycle": 10,
+      "nodes": 946,
+      "listeners": 207,
+      "documents": 2,
+      "frames": 2,
+      "heapBytes": 7727620,
+      "veils": 0,
+      "curtains": 0,
+      "canvases": 1,
+      "rafPending": null
+    }
+  ],
+  "failures": [],
+  "skipped": [
+    "work index -> case study: no work index and no case-study routes exist (see phase7-baseline.md §3)",
+    "case study -> work index: same"
+  ]
+}

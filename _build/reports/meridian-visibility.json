@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-03T21:47:46.966Z",
+ "generatedAt": "2026-08-04T08:29:55.970Z",
  "altitudes": [
   0,
   2727.2727272727275,
@@ -63,10 +63,10 @@
      "overflow": 0,
      "centre": {
       "dx": 0.0006168250081432328,
-      "dy": -0.0012491145031220362
+      "dy": -0.0012297879453068896
      },
-     "minMarginEssential": 179.4679172259769,
-     "minMarginRings": 177.34753648847615,
+     "minMarginEssential": 179.48520685163984,
+     "minMarginRings": 177.36493467746504,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -77,11 +77,11 @@
      "altitude": 5454.545454545455,
      "overflow": 0,
      "centre": {
-      "dx": 0.0006227307069315834,
-      "dy": -0.0021471305025839785
+      "dx": 0.0006229766522887795,
+      "dy": -0.0018013759684282604
      },
-     "minMarginEssential": 180.19382195774793,
-     "minMarginRings": 167.59446557743618,
+     "minMarginEssential": 180.5674395334356,
+     "minMarginRings": 167.98561154039547,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -92,11 +92,11 @@
      "altitude": 7000,
      "overflow": 0,
      "centre": {
-      "dx": 0.00033787697642640384,
-      "dy": -0.00792806417644556
+      "dx": 0.0003360267203801312,
+      "dy": -0.007631551744947905
      },
-     "minMarginEssential": 188.9898965643063,
-     "minMarginRings": 46.79388442307118,
+     "minMarginEssential": 190.04566692494774,
+     "minMarginRings": 47.54403639105192,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -107,11 +107,11 @@
      "altitude": 8181.818181818182,
      "overflow": 0,
      "centre": {
-      "dx": 0.0002956177709780011,
-      "dy": -0.00750318885038938
+      "dx": 0.00029246787720404023,
+      "dy": -0.007043629494760416
      },
-     "minMarginEssential": 207.97868761474314,
-     "minMarginRings": 66.1960035697548,
+     "minMarginEssential": 209.81932166225954,
+     "minMarginRings": 67.43424652922329,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -122,11 +122,11 @@
      "altitude": 10909.09090909091,
      "overflow": 0,
      "centre": {
-      "dx": 0.000266612557590583,
-      "dy": -0.007246782473218648
+      "dx": 0.00026616056192483797,
+      "dy": -0.007040840705651147
      },
-     "minMarginEssential": 221.66577001253728,
-     "minMarginRings": 77.7315572079093,
+     "minMarginEssential": 222.06347861286818,
+     "minMarginRings": 77.79583954494717,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -137,11 +137,11 @@
      "altitude": 12000,
      "overflow": 0,
      "centre": {
-      "dx": 0.00025494293076656996,
-      "dy": -0.00696503875241155
+      "dx": 0.0002551991983801195,
+      "dy": -0.007165683524807492
      },
-     "minMarginEssential": 227.51258761320747,
-     "minMarginRings": 87.7803866911147,
+     "minMarginEssential": 227.21014846190286,
+     "minMarginRings": 87.93905370347659,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -156,7 +156,7 @@
       "dy": -0.0064706917457106605
      },
      "minMarginEssential": 286.1576708406451,
-     "minMarginRings": 197.99946044240312,
+     "minMarginRings": 198.51419821554555,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -171,7 +171,7 @@
       "dy": -0.0030189368473223666
      },
      "minMarginEssential": 354.7947871518607,
-     "minMarginRings": 318.2404583408567,
+     "minMarginRings": 318.5740758566384,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -186,7 +186,7 @@
       "dy": -0.006329912188990458
      },
      "minMarginEssential": 309.49703382193195,
-     "minMarginRings": 270.495564634224,
+     "minMarginRings": 269.7433077793602,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -201,7 +201,7 @@
       "dy": -0.008277389037417543
      },
      "minMarginEssential": 283.4951179700032,
-     "minMarginRings": 218.5308420753073,
+     "minMarginRings": 217.7955343844069,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -216,7 +216,7 @@
       "dy": -0.008739431997534994
      },
      "minMarginEssential": 282.398095863411,
-     "minMarginRings": 205.68758285389913,
+     "minMarginRings": 205.4738742880735,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -228,10 +228,10 @@
      "overflow": 0,
      "centre": {
       "dx": -0.0016217450633806468,
-      "dy": -0.011731999088537653
+      "dy": -0.01115800972998247
      },
-     "minMarginEssential": 273.7682390711983,
-     "minMarginRings": 75.83776743892963,
+     "minMarginEssential": 274.3121225061184,
+     "minMarginRings": 75.21300655768118,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -246,7 +246,7 @@
       "dy": -0.010465134670852952
      },
      "minMarginEssential": 274.4782591118318,
-     "minMarginRings": 71.3872551161744,
+     "minMarginRings": 71.34498580079014,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -261,7 +261,7 @@
       "dy": -0.011594357996853736
      },
      "minMarginEssential": 261.85262768183026,
-     "minMarginRings": 42.00204013867642,
+     "minMarginRings": 41.99424417752277,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -276,7 +276,7 @@
       "dy": -0.012497922578446542
      },
      "minMarginEssential": 251.71260610643017,
-     "minMarginRings": 20.2193549575112,
+     "minMarginRings": 20.241693969149196,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -285,276 +285,8 @@
     }
    ],
    "errors": [],
-   "worstMargin": 179.4679172259769,
+   "worstMargin": 179.48520685163984,
    "worstCentre": 0.012497922578446542
-  },
-  {
-   "locale": "hu",
-   "viewport": {
-    "w": 1366,
-    "h": 768,
-    "tier": "desktop"
-   },
-   "rows": [
-    {
-     "altitude": 0,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00048382364805162856,
-      "dy": -0.009461301793083132
-     },
-     "minMarginEssential": 164.01821736471138,
-     "minMarginRings": 161.79723594920887,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 2727.2727272727275,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0005222212838253024,
-      "dy": -0.0011743976021962126
-     },
-     "minMarginEssential": 145.64638186533708,
-     "minMarginRings": 143.728859649754,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 3000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0005222212838253024,
-      "dy": -0.0012247870524696076
-     },
-     "minMarginEssential": 145.6079223942903,
-     "minMarginRings": 143.69015074767646,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 5454.545454545455,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0005282903561512097,
-      "dy": -0.0020663699906172304
-     },
-     "minMarginEssential": 146.3155281663134,
-     "minMarginRings": 134.9018445171689,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 7000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00032210434409890294,
-      "dy": -0.007975199481432771
-     },
-     "minMarginEssential": 153.95507742244143,
-     "minMarginRings": 27.626764662557434,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 8181.818181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0002817222309802954,
-      "dy": -0.007573205484651642
-     },
-     "minMarginEssential": 170.70935336744424,
-     "minMarginRings": 44.85139068651017,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 10909.09090909091,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0002540117146429416,
-      "dy": -0.007325814636194232
-     },
-     "minMarginEssential": 182.78942644123734,
-     "minMarginRings": 55.144905328446384,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 12000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00024286460246896631,
-      "dy": -0.007110191676207227
-     },
-     "minMarginEssential": 187.89702947353257,
-     "minMarginRings": 64.16061655727162,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 13636.363636363636,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0005826179791150906,
-      "dy": -0.006612117490253366
-     },
-     "minMarginEssential": 240.1324446762184,
-     "minMarginRings": 162.54842632663667,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 16363.636363636364,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0005897247220825778,
-      "dy": -0.003162872196690388
-     },
-     "minMarginEssential": 300.78601229917496,
-     "minMarginRings": 268.8508504152842,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 18000,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0017981440295069611,
-      "dy": -0.00666772399474332
-     },
-     "minMarginEssential": 260.80578260116,
-     "minMarginRings": 226.6063433186348,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 19090.909090909092,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0021922326394287353,
-      "dy": -0.008749861339251671
-     },
-     "minMarginEssential": 237.71992080688443,
-     "minMarginRings": 180.5864959413226,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 21818.18181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0016324927850627782,
-      "dy": -0.009232054589201807
-     },
-     "minMarginEssential": 236.744309544244,
-     "minMarginRings": 169.20736259937257,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 24000,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0015865732415508023,
-      "dy": -0.012827461429438655
-     },
-     "minMarginEssential": 228.74313489316665,
-     "minMarginRings": 56.24999390672713,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 24545.454545454544,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0015950100747762436,
-      "dy": -0.0110461134413223
-     },
-     "minMarginEssential": 229.74742595850867,
-     "minMarginRings": 51.94598086582073,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 27272.727272727272,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0017799788323863291,
-      "dy": -0.01226856007823581
-     },
-     "minMarginEssential": 218.41975470688914,
-     "minMarginRings": 25.7106908704352,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 30000,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.001905157451295378,
-      "dy": -0.01325130833988486
-     },
-     "minMarginEssential": 209.29823314179376,
-     "minMarginRings": 6.189398024285879,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    }
-   ],
-   "errors": [],
-   "worstMargin": 145.6079223942903,
-   "worstCentre": 0.01325130833988486
   },
   {
    "locale": "hu",
@@ -599,10 +331,10 @@
      "overflow": 0,
      "centre": {
       "dx": 0.0008081977385394623,
-      "dy": -0.0012596702751133115
+      "dy": -0.0012469841038809844
      },
-     "minMarginEssential": 166.83798466779393,
-     "minMarginRings": 165.21729747269578,
+     "minMarginEssential": 166.84767271894668,
+     "minMarginRings": 165.22704272997873,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -613,11 +345,11 @@
      "altitude": 5454.545454545455,
      "overflow": 0,
      "centre": {
-      "dx": 0.0008135852818484945,
-      "dy": -0.001955044414878889
+      "dx": 0.0008138093148368775,
+      "dy": -0.0016016070429671163
      },
-     "minMarginEssential": 167.53076143338467,
-     "minMarginRings": 157.93766882187478,
+     "minMarginEssential": 167.8521318579126,
+     "minMarginRings": 158.27303621725082,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -628,30 +360,26 @@
      "altitude": 7000,
      "overflow": 0,
      "centre": {
-      "dx": 0.00036317956913345384,
-      "dy": -0.007503210539041645
+      "dx": 0.0003612003575890199,
+      "dy": -0.007250589858578331
      },
-     "minMarginEssential": 174.76652866274654,
-     "minMarginRings": 61.81901547569191,
+     "minMarginEssential": 175.5906994127519,
+     "minMarginRings": 62.43465465939721,
      "essentialClipped": false,
      "ringClipped": false,
-     "collisions": [
-      "p.ladder__line \"Ami ismétlődik, az fusso\""
-     ],
+     "collisions": [],
      "canvasOk": true,
-     "problems": [
-      "text collision: p.ladder__line \"Ami ismétlődik, az fusso\""
-     ]
+     "problems": []
     },
     {
      "altitude": 8181.818181818182,
      "overflow": 0,
      "centre": {
-      "dx": 0.0003179647615991765,
-      "dy": -0.0070857396809317725
+      "dx": 0.00031625171124882723,
+      "dy": -0.006918559658489827
      },
-     "minMarginEssential": 189.9431562624552,
-     "minMarginRings": 77.22094738683984,
+     "minMarginEssential": 190.65067962883967,
+     "minMarginRings": 77.76202956904774,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -662,11 +390,11 @@
      "altitude": 10909.09090909091,
      "overflow": 0,
      "centre": {
-      "dx": 0.00028868645844060126,
-      "dy": -0.0073684433041528346
+      "dx": 0.00028645764461465717,
+      "dy": -0.006695606056645135
      },
-     "minMarginEssential": 199.85436480899477,
-     "minMarginRings": 85.65937217439455,
+     "minMarginEssential": 201.15399926030463,
+     "minMarginRings": 86.3971850267992,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -677,11 +405,11 @@
      "altitude": 12000,
      "overflow": 0,
      "centre": {
-      "dx": 0.0002744664896043858,
-      "dy": -0.006754900155563792
+      "dx": 0.0002742288472900034,
+      "dy": -0.006607304755176457
      },
-     "minMarginEssential": 205.40218599994776,
-     "minMarginRings": 94.24915573572525,
+     "minMarginEssential": 205.6001344642005,
+     "minMarginRings": 94.48761314752755,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -696,7 +424,7 @@
       "dy": -0.006188737912344718
      },
      "minMarginEssential": 251.61855344235624,
-     "minMarginRings": 180.332446704836,
+     "minMarginRings": 180.9285735498686,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -711,7 +439,7 @@
       "dy": -0.002760122489319302
      },
      "minMarginEssential": 306.4195159248783,
-     "minMarginRings": 276.34139775993395,
+     "minMarginRings": 276.7453652786545,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -726,7 +454,7 @@
       "dy": -0.005729518787677579
      },
      "minMarginEssential": 270.17261839513384,
-     "minMarginRings": 239.27964996692197,
+     "minMarginRings": 238.47098615988375,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -741,7 +469,7 @@
       "dy": -0.007443927675037099
      },
      "minMarginEssential": 249.59281351860864,
-     "minMarginRings": 198.06397767682836,
+     "minMarginRings": 197.36576394956012,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -756,7 +484,7 @@
       "dy": -0.007870107428087211
      },
      "minMarginEssential": 248.72716944030753,
-     "minMarginRings": 187.33544872405548,
+     "minMarginRings": 187.13671020037214,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -768,10 +496,10 @@
      "overflow": 0,
      "centre": {
       "dx": -0.0016503262817773034,
-      "dy": -0.011008966350806837
+      "dy": -0.010794936085196364
      },
-     "minMarginEssential": 241.51747964001135,
-     "minMarginRings": 81.28141991708412,
+     "minMarginEssential": 241.6900897335217,
+     "minMarginRings": 81.05348350136694,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -783,10 +511,10 @@
      "overflow": 0,
      "centre": {
       "dx": -0.0016588511352712554,
-      "dy": -0.00943954146207071
+      "dy": -0.009439541462070785
      },
-     "minMarginEssential": 242.3996276186163,
-     "minMarginRings": 77.45148866120292,
+     "minMarginEssential": 242.39962761861628,
+     "minMarginRings": 77.44612433452448,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -797,11 +525,11 @@
      "altitude": 27272.727272727272,
      "overflow": 0,
      "centre": {
-      "dx": -0.0018427072120946186,
+      "dx": -0.0018427072120945631,
       "dy": -0.010410567039079202
      },
      "minMarginEssential": 232.6017407852975,
-     "minMarginRings": 54.408885072160615,
+     "minMarginRings": 54.405919102448024,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -816,7 +544,7 @@
       "dy": -0.011180812696748385
      },
      "minMarginEssential": 224.77040724439027,
-     "minMarginRings": 37.44122706354324,
+     "minMarginRings": 37.44942167155,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -825,1496 +553,15 @@
     }
    ],
    "errors": [],
-   "worstMargin": 166.83798466779393,
+   "worstMargin": 166.84767271894668,
    "worstCentre": 0.011180812696748385
-  },
-  {
-   "locale": "hu",
-   "viewport": {
-    "w": 768,
-    "h": 1024,
-    "tier": "tablet"
-   },
-   "rows": [
-    {
-     "altitude": 0,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00045189673559139126,
-      "dy": -0.004821996135395412
-     },
-     "minMarginEssential": 212.71360269268826,
-     "minMarginRings": 207.56936586829758,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 2727.2727272727275,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0016570415051460803,
-      "dy": -0.0011671762255974216
-     },
-     "minMarginEssential": 192.03223985268255,
-     "minMarginRings": 190.8634352535073,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 3000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0016570415051460803,
-      "dy": -0.0012058766462445525
-     },
-     "minMarginEssential": 192.03223985268255,
-     "minMarginRings": 190.8634352535073,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 5454.545454545455,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0016555062675339312,
-      "dy": -0.001857735756677359
-     },
-     "minMarginEssential": 193.09485928792537,
-     "minMarginRings": 186.30155545989408,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
-      "h2.panel__title \"Hat terület, egy rendsze\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\""
-     ]
-    },
-    {
-     "altitude": 7000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0024896288721876956,
-      "dy": -0.0031332064817942706
-     },
-     "minMarginEssential": 205.60101618847807,
-     "minMarginRings": 115.91951335190367,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 8181.818181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0021587514675250516,
-      "dy": -0.0028882750591048834
-     },
-     "minMarginEssential": 218.05496947890754,
-     "minMarginRings": 130.16017563279956,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p \"Öt ügynökség öt különböz\"",
-      "p \"Nem a zaj a probléma, ha\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
-     ]
-    },
-    {
-     "altitude": 10909.09090909091,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0019326630624644607,
-      "dy": -0.002767540534783064
-     },
-     "minMarginEssential": 227.11162683615862,
-     "minMarginRings": 144.03750334732376,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"",
-      "h2.panel__title \"A tisztaság ott kezdődik\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"; h2.panel__title \"A tisztaság ott kezdődik\""
-     ]
-    },
-    {
-     "altitude": 12000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0018449496405232857,
-      "dy": -0.0027124385829270237
-     },
-     "minMarginEssential": 230.76436632799982,
-     "minMarginRings": 154.15831127270985,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 13636.363636363636,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00040015095319064403,
-      "dy": -0.0023964200801355195
-     },
-     "minMarginEssential": 266.74114213039013,
-     "minMarginRings": 222.31428813354864,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 16363.636363636364,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0002916881942034433,
-      "dy": -0.0012909034875067116
-     },
-     "minMarginEssential": 312.4079666921556,
-     "minMarginRings": 287.09763237605415,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 18000,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0005059160853512582,
-      "dy": -0.0022124619430343717
-     },
-     "minMarginEssential": 286.87170847643563,
-     "minMarginRings": 235.15014702533063,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 19090.909090909092,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.00028486672783449113,
-      "dy": -0.00269045445325794
-     },
-     "minMarginEssential": 271.16435035590973,
-     "minMarginRings": 205.9403337715362,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__lead \"A háttérben ugyanez láth\"",
-      "p.system__ring-note \"Ez dönti el a többit. En\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__lead \"A háttérben ugyanez láth\"; p.system__ring-note \"Ez dönti el a többit. En\""
-     ]
-    },
-    {
-     "altitude": 21818.18181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00023594086040186943,
-      "dy": -0.0028766236903490783
-     },
-     "minMarginEssential": 270.6212053911132,
-     "minMarginRings": 205.3342360277145,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.system__ring-note \"Ami csak akkor működik, \""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.system__ring-note \"Ami csak akkor működik, \""
-     ]
-    },
-    {
-     "altitude": 24000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.000654496608263259,
-      "dy": -0.005298877287792214
-     },
-     "minMarginEssential": 269.8538686137088,
-     "minMarginRings": 115.27688305012022,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 24545.454545454544,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0006614320058768719,
-      "dy": -0.0033675603913083108
-     },
-     "minMarginEssential": 269.55942453841925,
-     "minMarginRings": 111.08825937099314,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 27272.727272727272,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0008482430673732999,
-      "dy": -0.0035478845477716625
-     },
-     "minMarginEssential": 262.7201861001323,
-     "minMarginRings": 88.52658329376479,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 30000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0010317753608615199,
-      "dy": -0.0036696194059542275
-     },
-     "minMarginEssential": 257.36520170536994,
-     "minMarginRings": 71.80636888368481,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"X · Sztratoszféra28 000 \""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"X · Sztratoszféra28 000 \""
-     ]
-    }
-   ],
-   "errors": [],
-   "worstMargin": 192.03223985268255,
-   "worstCentre": 0.005298877287792214
-  },
-  {
-   "locale": "hu",
-   "viewport": {
-    "w": 430,
-    "h": 932,
-    "tier": "mobile"
-   },
-   "rows": [
-    {
-     "altitude": 0,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0002985696385771229,
-      "dy": -0.0018271088907200004
-     },
-     "minMarginEssential": 119.5871548792378,
-     "minMarginRings": 116.62779146464497,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 2727.2727272727275,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0021768420964084338,
-      "dy": -0.0008760491355153863
-     },
-     "minMarginEssential": 108.4607967195048,
-     "minMarginRings": 106.86526693715719,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 3000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0021768420964084338,
-      "dy": -0.000937123961093695
-     },
-     "minMarginEssential": 108.4607967195048,
-     "minMarginRings": 106.86526693715719,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 5454.545454545455,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0021706998052717064,
-      "dy": -0.0019126871564701185
-     },
-     "minMarginEssential": 108.94576393389013,
-     "minMarginRings": 106.17588854248709,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 7000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0015679574325543474,
-      "dy": -0.002721735965257615
-     },
-     "minMarginEssential": 114.61056503497338,
-     "minMarginRings": 69.75095177863466,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 8181.818181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0013815789818794376,
-      "dy": -0.0025103178946527787
-     },
-     "minMarginEssential": 120.84757446208056,
-     "minMarginRings": 75.2611548079924,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p \"Öt ügynökség öt különböz\"",
-      "p \"Nem a zaj a probléma, ha\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
-     ]
-    },
-    {
-     "altitude": 10909.09090909091,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0012223938321996187,
-      "dy": -0.0026965435632103608
-     },
-     "minMarginEssential": 126.51239642648113,
-     "minMarginRings": 81.5473366062107,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"",
-      "h2.panel__title \"A tisztaság ott kezdődik\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"; h2.panel__title \"A tisztaság ott kezdődik\""
-     ]
-    },
-    {
-     "altitude": 12000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0011555752864240482,
-      "dy": -0.002379198106815109
-     },
-     "minMarginEssential": 128.99839684434585,
-     "minMarginRings": 86.7128901587015,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.case__sector \"Kertépítés\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.case__sector \"Kertépítés\""
-     ]
-    },
-    {
-     "altitude": 13636.363636363636,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0002729631050488817,
-      "dy": -0.0010317989489618494
-     },
-     "minMarginEssential": 147.64804372829695,
-     "minMarginRings": 120.70156769587595,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 16363.636363636364,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0001885149613947755,
-      "dy": -0.0005578783616995039
-     },
-     "minMarginEssential": 172.22797625349256,
-     "minMarginRings": 159.35892002150337,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 18000,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0003146878865132474,
-      "dy": -0.0009086500762477607
-     },
-     "minMarginEssential": 158.53612294259077,
-     "minMarginRings": 131.03705062562466,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 19090.909090909092,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.00016275201402335857,
-      "dy": -0.0010711466879440464
-     },
-     "minMarginEssential": 150.38862180965455,
-     "minMarginRings": 115.51185534656423,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 21818.18181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00033223990080167567,
-      "dy": -0.0011677702284244424
-     },
-     "minMarginEssential": 150.01057079367934,
-     "minMarginRings": 113.12100603252497,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.system__ring-note \"Ami csak akkor működik, \""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.system__ring-note \"Ami csak akkor működik, \""
-     ]
-    },
-    {
-     "altitude": 24000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0008820284254471877,
-      "dy": -0.003648480184753225
-     },
-     "minMarginEssential": 149.56494209863098,
-     "minMarginRings": 61.55913291439284,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 24545.454545454544,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0008856146135997939,
-      "dy": -0.001402684686355686
-     },
-     "minMarginEssential": 149.4284358975105,
-     "minMarginRings": 59.40458306643272,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 27272.727272727272,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0009797578801496011,
-      "dy": -0.0014494575571391104
-     },
-     "minMarginEssential": 146.301491420354,
-     "minMarginRings": 48.53119410205415,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 30000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00106882377096863,
-      "dy": -0.0014771493580545557
-     },
-     "minMarginEssential": 143.9122812979375,
-     "minMarginRings": 40.71612619800588,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    }
-   ],
-   "errors": [],
-   "worstMargin": 108.4607967195048,
-   "worstCentre": 0.003648480184753225
-  },
-  {
-   "locale": "hu",
-   "viewport": {
-    "w": 390,
-    "h": 844,
-    "tier": "mobile"
-   },
-   "rows": [
-    {
-     "altitude": 0,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0002989445119689039,
-      "dy": -0.0018327401195476181
-     },
-     "minMarginEssential": 108.46167845196908,
-     "minMarginRings": 105.77777990122433,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 2727.2727272727275,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.002175588419681582,
-      "dy": -0.000877019802529558
-     },
-     "minMarginEssential": 98.36932969780452,
-     "minMarginRings": 96.92514423488099,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 3000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.002175588419681582,
-      "dy": -0.0009400377978504775
-     },
-     "minMarginEssential": 98.36932969780452,
-     "minMarginRings": 96.92514423488099,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 5454.545454545455,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0021696630707011967,
-      "dy": -0.0019187543324736232
-     },
-     "minMarginEssential": 98.79451184070359,
-     "minMarginRings": 96.2794331853649,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
-      "h2.panel__title \"Hat terület, egy rendsze\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\""
-     ]
-    },
-    {
-     "altitude": 7000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0015784800730198156,
-      "dy": -0.0027911881993478126
-     },
-     "minMarginEssential": 103.70935586517686,
-     "minMarginRings": 62.912290154947414,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 8181.818181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0013687451433925483,
-      "dy": -0.0022579474032015674
-     },
-     "minMarginEssential": 110.0735405440953,
-     "minMarginRings": 68.96437335739222,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p \"Öt ügynökség öt különböz\"",
-      "p \"Nem a zaj a probléma, ha\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
-     ]
-    },
-    {
-     "altitude": 10909.09090909091,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0012478844477628243,
-      "dy": -0.0034661250116788988
-     },
-     "minMarginEssential": 113.96137803124219,
-     "minMarginRings": 72.72879774327811,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"",
-      "h2.panel__title \"A tisztaság ott kezdődik\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"; h2.panel__title \"A tisztaság ott kezdődik\""
-     ]
-    },
-    {
-     "altitude": 12000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0011630170788355196,
-      "dy": -0.0026108197797788998
-     },
-     "minMarginEssential": 116.80376266780797,
-     "minMarginRings": 78.29636276885788,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.case__at \"11 800 m\"",
-      "p.case__sector \"Kertépítés\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.case__at \"11 800 m\"; p.case__sector \"Kertépítés\""
-     ]
-    },
-    {
-     "altitude": 13636.363636363636,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00027329429250139235,
-      "dy": -0.0010348451553441856
-     },
-     "minMarginEssential": 133.91724146154252,
-     "minMarginRings": 109.33627329573073,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 16363.636363636364,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0001888075088483167,
-      "dy": -0.0005594125518125975
-     },
-     "minMarginEssential": 156.2131845858651,
-     "minMarginRings": 144.66891302689538,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 18000,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0003151991524273894,
-      "dy": -0.0009112679144409892
-     },
-     "minMarginEssential": 143.79341253492737,
-     "minMarginRings": 118.96041448188163,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 19090.909090909092,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0001630677859050313,
-      "dy": -0.0010743176563990451
-     },
-     "minMarginEssential": 136.40226596801708,
-     "minMarginRings": 104.84071405399163,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 21818.18181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00033199171094618296,
-      "dy": -0.0011711354900695214
-     },
-     "minMarginEssential": 136.05955522007216,
-     "minMarginRings": 102.57903390011012,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.system__ring-note \"Ami csak akkor működik, \""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.system__ring-note \"Ami csak akkor működik, \""
-     ]
-    },
-    {
-     "altitude": 24000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0008814429021805235,
-      "dy": -0.003927458314244179
-     },
-     "minMarginEssential": 135.65541730802096,
-     "minMarginRings": 55.83805662996337,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 24545.454545454544,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0008850382231057753,
-      "dy": -0.001406583847402669
-     },
-     "minMarginEssential": 135.53154273913984,
-     "minMarginRings": 53.88494679703037,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 27272.727272727272,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0009794266697152575,
-      "dy": -0.0014535537081186978
-     },
-     "minMarginEssential": 132.6938483713509,
-     "minMarginRings": 44.01576726491309,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 30000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0010687319647430717,
-      "dy": -0.001481374833586752
-     },
-     "minMarginEssential": 130.52550823529873,
-     "minMarginRings": 36.923978364099284,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    }
-   ],
-   "errors": [],
-   "worstMargin": 98.36932969780452,
-   "worstCentre": 0.003927458314244179
-  },
-  {
-   "locale": "hu",
-   "viewport": {
-    "w": 360,
-    "h": 800,
-    "tier": "mobile"
-   },
-   "rows": [
-    {
-     "altitude": 0,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0002925829782708907,
-      "dy": -0.0017383221913520686
-     },
-     "minMarginEssential": 100.1355480157759,
-     "minMarginRings": 97.65535823599122,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 2727.2727272727275,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0021968517322783834,
-      "dy": -0.0008603768265356848
-     },
-     "minMarginEssential": 90.83520606471399,
-     "minMarginRings": 89.45631912491686,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__lead \"A legtöbb vállalkozás a \""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__lead \"A legtöbb vállalkozás a \""
-     ]
-    },
-    {
-     "altitude": 3000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0021968517322783834,
-      "dy": -0.0009260555327043818
-     },
-     "minMarginEssential": 90.83520606471399,
-     "minMarginRings": 89.45631912491686,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 5454.545454545455,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0021909255924125797,
-      "dy": -0.0018932233025474687
-     },
-     "minMarginEssential": 91.21525290377849,
-     "minMarginRings": 88.92863470509076,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
-      "h2.panel__title \"Hat terület, egy rendsze\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\""
-     ]
-    },
-    {
-     "altitude": 7000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0015431109217213172,
-      "dy": -0.0027303926600622218
-     },
-     "minMarginEssential": 95.5982179123153,
-     "minMarginRings": 58.07229402050251,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 8181.818181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0013417542175368957,
-      "dy": -0.002234513843045676
-     },
-     "minMarginEssential": 101.37293163563072,
-     "minMarginRings": 63.46639068457449,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p \"Öt ügynökség öt különböz\"",
-      "p \"Nem a zaj a probléma, ha\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
-     ]
-    },
-    {
-     "altitude": 10909.09090909091,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0012248731501135997,
-      "dy": -0.0034897429787476143
-     },
-     "minMarginEssential": 104.92290847673809,
-     "minMarginRings": 66.78305415845006,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"",
-      "h2.panel__title \"A tisztaság ott kezdődik\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"; h2.panel__title \"A tisztaság ott kezdődik\""
-     ]
-    },
-    {
-     "altitude": 12000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0011385869243878707,
-      "dy": -0.0027090294161435224
-     },
-     "minMarginEssential": 107.65238485665895,
-     "minMarginRings": 72.03471108358332,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.case__at \"11 800 m\"",
-      "p.case__sector \"Kertépítés\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.case__at \"11 800 m\"; p.case__sector \"Kertépítés\""
-     ]
-    },
-    {
-     "altitude": 13636.363636363636,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00026765993717137664,
-      "dy": -0.0009836866784836218
-     },
-     "minMarginEssential": 123.55474846151759,
-     "minMarginRings": 100.75737964090212,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 16363.636363636364,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.00018381297007579177,
-      "dy": -0.0005335847287047102
-     },
-     "minMarginEssential": 144.0959904119684,
-     "minMarginRings": 133.52711500013152,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 18000,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.00030649181459712813,
-      "dy": -0.000867267777773435
-     },
-     "minMarginEssential": 132.6564880808152,
-     "minMarginRings": 109.81949443513253,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 19090.909090909092,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.0001576972007184294,
-      "dy": -0.0010210710649444365
-     },
-     "minMarginEssential": 125.85828741072096,
-     "minMarginRings": 96.80798798226584,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 21818.18181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00033621231653313544,
-      "dy": -0.0011146088823133483
-     },
-     "minMarginEssential": 125.539227658951,
-     "minMarginRings": 94.62650188057222,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 24000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0008913994382045271,
-      "dy": -0.003996721033579576
-     },
-     "minMarginEssential": 125.1655975234859,
-     "minMarginRings": 51.434443987544796,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__lead \"Minden ponton tudod, mi \""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__lead \"Minden ponton tudod, mi \""
-     ]
-    },
-    {
-     "altitude": 24545.454545454544,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0008948391073074744,
-      "dy": -0.0013410617271509295
-     },
-     "minMarginEssential": 125.05229773107021,
-     "minMarginRings": 49.6402487245732,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 27272.727272727272,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0009850538539581065,
-      "dy": -0.0013847630606989014
-     },
-     "minMarginEssential": 122.45844159901372,
-     "minMarginRings": 40.59014847302346,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 30000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0010702907262206116,
-      "dy": -0.0014104451410041463
-     },
-     "minMarginEssential": 120.47856681944086,
-     "minMarginRings": 34.09703085100672,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    }
-   ],
-   "errors": [],
-   "worstMargin": 90.83520606471399,
-   "worstCentre": 0.003996721033579576
-  },
-  {
-   "locale": "hu",
-   "viewport": {
-    "w": 320,
-    "h": 568,
-    "tier": "mobile"
-   },
-   "rows": [
-    {
-     "altitude": 0,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0003524498276842536,
-      "dy": -0.002722431165313716
-     },
-     "minMarginEssential": 88.86672258986425,
-     "minMarginRings": 86.68508147278729,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "h1.panel__title \"Nem weboldalakat építünk\"",
-      "p.panel__lead \"A legtöbb vállalkozás a \""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: h1.panel__title \"Nem weboldalakat építünk\"; p.panel__lead \"A legtöbb vállalkozás a \""
-     ]
-    },
-    {
-     "altitude": 2727.2727272727275,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.002069005957345027,
-      "dy": -0.0010427413244105215
-     },
-     "minMarginEssential": 80.4468179152478,
-     "minMarginRings": 79.58802897090449,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "h1.panel__title \"Nem weboldalakat építünk\"",
-      "p.panel__lead \"A legtöbb vállalkozás a \""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: h1.panel__title \"Nem weboldalakat építünk\"; p.panel__lead \"A legtöbb vállalkozás a \""
-     ]
-    },
-    {
-     "altitude": 3000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0019957909097636064,
-      "dy": -0.0010025942648642478
-     },
-     "minMarginEssential": 80.46846915675275,
-     "minMarginRings": 79.62538069588469,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"III · Alsó légkör3 000 –\"",
-      "h2.panel__title \"Hat terület, egy rendsze\"",
-      "p.panel__lead \"Nem hat különálló szolgá\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"III · Alsó légkör3 000 –\"; h2.panel__title \"Hat terület, egy rendsze\"; p.panel__lead \"Nem hat különálló szolgá\""
-     ]
-    },
-    {
-     "altitude": 5454.545454545455,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0019917625765096146,
-      "dy": -0.001934371087410139
-     },
-     "minMarginEssential": 80.79689435830858,
-     "minMarginRings": 78.46509743098963,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "h2.panel__title \"Hat terület, egy rendsze\"",
-      "p.panel__lead \"Nem hat különálló szolgá\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: h2.panel__title \"Hat terület, egy rendsze\"; p.panel__lead \"Nem hat különálló szolgá\""
-     ]
-    },
-    {
-     "altitude": 7000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.001938741815414069,
-      "dy": -0.003096150997921769
-     },
-     "minMarginEssential": 84.60883046220815,
-     "minMarginRings": 49.48012838399711,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 8181.818181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.001694029648436235,
-      "dy": -0.002800068546118645
-     },
-     "minMarginEssential": 89.59318645234592,
-     "minMarginRings": 54.43696492858891,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p \"Öt ügynökség öt különböz\"",
-      "p \"Nem a zaj a probléma, ha\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p \"Öt ügynökség öt különböz\"; p \"Nem a zaj a probléma, ha\""
-     ]
-    },
-    {
-     "altitude": 10909.09090909091,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.001548458981562284,
-      "dy": -0.004151325369284129
-     },
-     "minMarginEssential": 92.72784038256896,
-     "minMarginRings": 57.83074321199473,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"",
-      "h2.panel__title \"A tisztaság ott kezdődik\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: p.panel__eyebrow \"V · Áttörés8 500 – 11 00\"; h2.panel__title \"A tisztaság ott kezdődik\""
-     ]
-    },
-    {
-     "altitude": 12000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0014358247113970713,
-      "dy": -0.0040034670671925
-     },
-     "minMarginEssential": 95.2542734168315,
-     "minMarginRings": 62.85005678001676,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "h2.panel__title \"Akikkel együtt emelkedtü\"",
-      "p.panel__lead \"Négy magassági pont. Min\"",
-      "p.case__at \"11 800 m\""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: h2.panel__title \"Akikkel együtt emelkedtü\"; p.panel__lead \"Négy magassági pont. Min\"; p.case__at \"11 800 m\""
-     ]
-    },
-    {
-     "altitude": 13636.363636363636,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00031951362884177217,
-      "dy": -0.0015089035696288827
-     },
-     "minMarginEssential": 110.33193682189773,
-     "minMarginRings": 90.13980229792674,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 16363.636363636364,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.000228386863301111,
-      "dy": -0.000792966262557836
-     },
-     "minMarginEssential": 128.9065591713699,
-     "minMarginRings": 119.57497690019034,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 18000,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.00038587156872011975,
-      "dy": -0.0013156504422163996
-     },
-     "minMarginEssential": 118.54137633570375,
-     "minMarginRings": 98.18624822167934,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 19090.909090909092,
-     "overflow": 0,
-     "centre": {
-      "dx": -0.00020724616108385162,
-      "dy": -0.0015684149512169034
-     },
-     "minMarginEssential": 112.30007971351188,
-     "minMarginRings": 86.23220033769198,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 21818.18181818182,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.00029722737833317583,
-      "dy": -0.0016942374918083318
-     },
-     "minMarginEssential": 112.03873819039393,
-     "minMarginRings": 84.49201590482969,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 24000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0007993830042423156,
-      "dy": -0.005983642201056267
-     },
-     "minMarginEssential": 111.71140296258977,
-     "minMarginRings": 46.61956629021855,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [
-      "h2.panel__title \"Hét ellenőrzőpont, talál\"",
-      "p.panel__lead \"Minden ponton tudod, mi \""
-     ],
-     "canvasOk": true,
-     "problems": [
-      "text collision: h2.panel__title \"Hét ellenőrzőpont, talál\"; p.panel__lead \"Minden ponton tudod, mi \""
-     ]
-    },
-    {
-     "altitude": 24545.454545454544,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.000804232365749069,
-      "dy": -0.0020106808877210047
-     },
-     "minMarginEssential": 111.60211986655855,
-     "minMarginRings": 44.974291642042786,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 27272.727272727272,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.0009326478796850779,
-      "dy": -0.0020917486601261335
-     },
-     "minMarginEssential": 109.08605104417617,
-     "minMarginRings": 36.41563321878056,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    },
-    {
-     "altitude": 30000,
-     "overflow": 0,
-     "centre": {
-      "dx": 0.001055690754090044,
-      "dy": -0.0021425666875637796
-     },
-     "minMarginEssential": 107.14636236691905,
-     "minMarginRings": 30.191383661853433,
-     "essentialClipped": false,
-     "ringClipped": false,
-     "collisions": [],
-     "canvasOk": true,
-     "problems": []
-    }
-   ],
-   "errors": [],
-   "worstMargin": 80.4468179152478,
-   "worstCentre": 0.005983642201056267
   },
   {
    "locale": "hu",
    "viewport": {
     "w": 844,
     "h": 390,
-    "tier": "mobile",
-    "landscape": true
+    "tier": "tablet"
    },
    "rows": [
     {
@@ -2352,10 +599,10 @@
      "overflow": 0,
      "centre": {
       "dx": 0.0005206459321295523,
-      "dy": -0.0012725191622066836
+      "dy": -0.0012594364149418442
      },
-     "minMarginEssential": 89.26985046241072,
-     "minMarginRings": 88.50671886325249,
+     "minMarginEssential": 89.27492516136668,
+     "minMarginRings": 88.51182228449983,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2366,11 +613,11 @@
      "altitude": 5454.545454545455,
      "overflow": 0,
      "centre": {
-      "dx": 0.0005233359748771637,
-      "dy": -0.0020595154248243173
+      "dx": 0.0005234476766649768,
+      "dy": -0.0015876028808295272
      },
-     "minMarginEssential": 89.55919275996095,
-     "minMarginRings": 85.0509702008758,
+     "minMarginEssential": 89.76724900661908,
+     "minMarginRings": 85.26734360693668,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2381,11 +628,11 @@
      "altitude": 7000,
      "overflow": 0,
      "centre": {
-      "dx": 0.00020743551809084316,
-      "dy": -0.007295973743129025
+      "dx": 0.0002063089266119146,
+      "dy": -0.007031887917026307
      },
-     "minMarginEssential": 93.19652462197149,
-     "minMarginRings": 38.644573195273324,
+     "minMarginEssential": 93.60511648091229,
+     "minMarginRings": 38.932851698043464,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2396,11 +643,11 @@
      "altitude": 8181.818181818182,
      "overflow": 0,
      "centre": {
-      "dx": 0.00018169460174146342,
-      "dy": -0.006808216017015175
+      "dx": 0.00017977505920566405,
+      "dy": -0.006583995263787666
      },
-     "minMarginEssential": 100.5937166317551,
-     "minMarginRings": 46.057362930771205,
+     "minMarginEssential": 101.23532214402341,
+     "minMarginRings": 46.60822019702948,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2411,11 +658,11 @@
      "altitude": 10909.09090909091,
      "overflow": 0,
      "centre": {
-      "dx": 0.00016401378475133655,
-      "dy": -0.00652214468724664
+      "dx": 0.0001643348246824982,
+      "dy": -0.0066107420798085185
      },
-     "minMarginEssential": 105.92197145826822,
-     "minMarginRings": 50.39493685301005,
+     "minMarginEssential": 105.79089575497734,
+     "minMarginRings": 50.225594657317515,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2426,11 +673,11 @@
      "altitude": 12000,
      "overflow": 0,
      "centre": {
-      "dx": 0.0001577819155064822,
-      "dy": -0.0075408972386583175
+      "dx": 0.00015702653940477765,
+      "dy": -0.006657157848535433
      },
-     "minMarginEssential": 107.42756088823666,
-     "minMarginRings": 54.18643739365285,
+     "minMarginEssential": 108.00072361167659,
+     "minMarginRings": 54.31596241334597,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2445,7 +692,7 @@
       "dy": -0.0058635005236182605
      },
      "minMarginEssential": 130.2723181877751,
-     "minMarginRings": 95.35732828429212,
+     "minMarginRings": 95.6186750492476,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2460,7 +707,7 @@
       "dy": -0.002592548137992696
      },
      "minMarginEssential": 156.85168533042003,
-     "minMarginRings": 141.92261092267876,
+     "minMarginRings": 142.09637424234901,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2475,7 +722,7 @@
       "dy": -0.005345690034355226
      },
      "minMarginEssential": 139.24558708365578,
-     "minMarginRings": 124.31145903855268,
+     "minMarginRings": 124.15131043881183,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2490,7 +737,7 @@
       "dy": -0.00691541429573969
      },
      "minMarginEssential": 129.32240055058782,
-     "minMarginRings": 104.6332442064757,
+     "minMarginRings": 104.3154584767438,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2505,7 +752,7 @@
       "dy": -0.007318605866486923
      },
      "minMarginEssential": 128.90583103500805,
-     "minMarginRings": 99.17242181214635,
+     "minMarginRings": 99.06220054126646,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2517,10 +764,10 @@
      "overflow": 0,
      "centre": {
       "dx": -0.0009033903858735185,
-      "dy": -0.012776863038669935
+      "dy": -0.012341862584570552
      },
-     "minMarginEssential": 124.38794603390933,
-     "minMarginRings": 47.74176384445923,
+     "minMarginEssential": 124.56578749121715,
+     "minMarginRings": 47.55157845846901,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2535,7 +782,7 @@
       "dy": -0.008788617530278158
      },
      "minMarginEssential": 125.83504319606566,
-     "minMarginRings": 44.941510385133085,
+     "minMarginRings": 44.93720839896628,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2550,7 +797,7 @@
       "dy": -0.009663583715704596
      },
      "minMarginEssential": 121.17373197881463,
-     "minMarginRings": 33.875197059170944,
+     "minMarginRings": 33.87452684795829,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2565,7 +812,7 @@
       "dy": -0.010353576167624804
      },
      "minMarginEssential": 117.45976072189667,
-     "minMarginRings": 25.749734625482517,
+     "minMarginRings": 25.750834940668994,
      "essentialClipped": false,
      "ringClipped": false,
      "collisions": [],
@@ -2574,8 +821,1884 @@
     }
    ],
    "errors": [],
-   "worstMargin": 89.26985046241072,
-   "worstCentre": 0.012776863038669935
+   "worstMargin": 89.27492516136668,
+   "worstCentre": 0.012341862584570552
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 390,
+    "h": 844,
+    "tier": "mobile"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002989445119689039,
+      "dy": -0.0018327401195476181
+     },
+     "minMarginEssential": 108.46167845196908,
+     "minMarginRings": 105.77777990122433,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 2727.2727272727275,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.002454320394628932,
+      "dy": -0.0008937595930818524
+     },
+     "minMarginEssential": 100.40860641537091,
+     "minMarginRings": 98.90314579974739,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0019920830298016693,
+      "dy": -0.0009330486764474268
+     },
+     "minMarginEssential": 106.00637049142603,
+     "minMarginRings": 104.34298614450334,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 5454.545454545455,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001332770151968787,
+      "dy": -0.0009648066149922565
+     },
+     "minMarginEssential": 113.80567712879656,
+     "minMarginRings": 110.83617821750653,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0015109105502726075,
+      "dy": -0.0017805662448706586
+     },
+     "minMarginEssential": 105.71143765796216,
+     "minMarginRings": 62.52236993647932,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 8181.818181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0013494437638369979,
+      "dy": -0.002041861611579914
+     },
+     "minMarginEssential": 110.6827035533687,
+     "minMarginRings": 68.03915029025677,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 10909.09090909091,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008589190095867648,
+      "dy": -0.0013372667295076957
+     },
+     "minMarginEssential": 120.36275815197234,
+     "minMarginRings": 85.1024649826399,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00039840257905424527,
+      "dy": -0.0011613438114862153
+     },
+     "minMarginEssential": 129.2270845058723,
+     "minMarginRings": 104.38097862412042,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 13636.363636363636,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00006018690339095802,
+      "dy": -0.0008383437303562662
+     },
+     "minMarginEssential": 143.97839701814283,
+     "minMarginRings": 131.36353133198247,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 16363.636363636364,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00018976354509498916,
+      "dy": -0.0005560287458160013
+     },
+     "minMarginEssential": 156.37568119544304,
+     "minMarginRings": 136.9634194346536,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0003748892511881562,
+      "dy": -0.0006970235129722531
+     },
+     "minMarginEssential": 152.99633600496887,
+     "minMarginRings": 126.50887378386216,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 19090.909090909092,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0003412607756877296,
+      "dy": -0.0008607017289452557
+     },
+     "minMarginEssential": 145.9947967392062,
+     "minMarginRings": 116.36144456375627,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21818.18181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00017288532392402162,
+      "dy": -0.0009931933537856371
+     },
+     "minMarginEssential": 143.52893932610374,
+     "minMarginRings": 118.56900269340446,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0007319150103330393,
+      "dy": -0.001112309940425112
+     },
+     "minMarginEssential": 145.52792998424457,
+     "minMarginRings": 78.12930855515803,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24545.454545454544,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0007335878300032105,
+      "dy": -0.001115339677228828
+     },
+     "minMarginEssential": 145.40088308052324,
+     "minMarginRings": 76.69337230669284,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27272.727272727272,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0009794266697152575,
+      "dy": -0.0014535537081186978
+     },
+     "minMarginEssential": 132.6938483713509,
+     "minMarginRings": 43.192338003150965,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0009289644446355192,
+      "dy": -0.0013556697448932407
+     },
+     "minMarginEssential": 135.44943868816932,
+     "minMarginRings": 48.70405851360099,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 100.40860641537091,
+   "worstCentre": 0.002454320394628932
+  },
+  {
+   "locale": "hu",
+   "viewport": {
+    "w": 320,
+    "h": 568,
+    "tier": "mobile"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00008575226285749693,
+      "dy": -0.002501602476760642
+     },
+     "minMarginEssential": 94.86772683236308,
+     "minMarginRings": 92.67144255408067,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 2727.2727272727275,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0017960249285253304,
+      "dy": -0.0011164425219890787
+     },
+     "minMarginEssential": 91.94774411982564,
+     "minMarginRings": 90.6755450962859,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0024033684234614936,
+      "dy": -0.0010779615495907116
+     },
+     "minMarginEssential": 87.21113968668831,
+     "minMarginRings": 86.08970581218745,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 5454.545454545455,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0015884894419965433,
+      "dy": -0.0011219274517770828
+     },
+     "minMarginEssential": 93.97340620017519,
+     "minMarginRings": 91.38837138833853,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.000630032199775421,
+      "dy": -0.002908175826821886
+     },
+     "minMarginEssential": 97.67706413176717,
+     "minMarginRings": 66.20568965901577,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 8181.818181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006081460960794871,
+      "dy": -0.0019823881353811406
+     },
+     "minMarginEssential": 101.67264490002333,
+     "minMarginRings": 70.06957246536308,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 10909.09090909091,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001036024435008809,
+      "dy": -0.0019575350372480578
+     },
+     "minMarginEssential": 98.86469878904467,
+     "minMarginRings": 69.32530124193775,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00047057937610919256,
+      "dy": -0.0016974651824942495
+     },
+     "minMarginEssential": 106.4435287932775,
+     "minMarginRings": 85.57859732850528,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 13636.363636363636,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00007984981714024287,
+      "dy": -0.0012041459571402473
+     },
+     "minMarginEssential": 118.83431396278777,
+     "minMarginRings": 108.37110346943524,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 16363.636363636364,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00022944034448846296,
+      "dy": -0.0007879806802489537
+     },
+     "minMarginEssential": 129.040488753745,
+     "minMarginRings": 113.58473633233132,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0004502620267913926,
+      "dy": -0.000992757928328478
+     },
+     "minMarginEssential": 126.2199473388792,
+     "minMarginRings": 104.87829136449659,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 19090.909090909092,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00041544075400761215,
+      "dy": -0.0012385848608879957
+     },
+     "minMarginEssential": 120.38735968118246,
+     "minMarginRings": 96.24162699857857,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21818.18181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00010501585424833592,
+      "dy": -0.001421063885559038
+     },
+     "minMarginEssential": 118.36528730324758,
+     "minMarginRings": 97.73809433558398,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006210329817323057,
+      "dy": -0.0015666500994432483
+     },
+     "minMarginEssential": 120.0545526593379,
+     "minMarginRings": 65.3917114219726,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24545.454545454544,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006231951449455764,
+      "dy": -0.0015713908379658458
+     },
+     "minMarginEssential": 119.94518242171264,
+     "minMarginRings": 64.1847527323516,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27272.727272727272,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006842678150610126,
+      "dy": -0.0016759312422909539
+     },
+     "minMarginEssential": 117.41936547635055,
+     "minMarginRings": 56.300638354518355,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008757967270550005,
+      "dy": -0.0019468446598679835
+     },
+     "minMarginEssential": 111.38191826690411,
+     "minMarginRings": 40.22869974734942,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 87.21113968668831,
+   "worstCentre": 0.002908175826821886
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 1440,
+    "h": 900,
+    "tier": "desktop"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0005065002503515517,
+      "dy": -0.009324292994356697
+     },
+     "minMarginEssential": 200.3994290406217,
+     "minMarginRings": 197.92440658416822,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 2727.2727272727275,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006168250081432328,
+      "dy": -0.0011960113943603624
+     },
+     "minMarginEssential": 179.51542350623697,
+     "minMarginRings": 177.3953410655235,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006168250081432328,
+      "dy": -0.0012282783868086098
+     },
+     "minMarginEssential": 179.48655730947107,
+     "minMarginRings": 177.36629361495898,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 5454.545454545455,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006229766522887795,
+      "dy": -0.0017752962971434904
+     },
+     "minMarginEssential": 180.59077135716367,
+     "minMarginRings": 168.00984302030412,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0003360267203801312,
+      "dy": -0.007612522964724286
+     },
+     "minMarginEssential": 190.06254380777773,
+     "minMarginRings": 47.525944715665105,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 8181.818181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00029246787720404023,
+      "dy": -0.007038702224844542
+     },
+     "minMarginEssential": 209.82369662954,
+     "minMarginRings": 67.42956433632298,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 10909.09090909091,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00026616056192483797,
+      "dy": -0.007029374441731496
+     },
+     "minMarginEssential": 222.07366686952602,
+     "minMarginRings": 77.7849993329304,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002551991983801195,
+      "dy": -0.007173027339361069
+     },
+     "minMarginEssential": 227.20362117807542,
+     "minMarginRings": 87.94595513164961,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 13636.363636363636,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0006115427504519112,
+      "dy": -0.0064706917457106605
+     },
+     "minMarginEssential": 286.1576708406451,
+     "minMarginRings": 198.51419821554555,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 16363.636363636364,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.000624641267324143,
+      "dy": -0.0030189368473223666
+     },
+     "minMarginEssential": 354.7947871518607,
+     "minMarginRings": 318.68471549931587,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0018944924857742585,
+      "dy": -0.006329912188990521
+     },
+     "minMarginEssential": 309.4970338219318,
+     "minMarginRings": 269.42674334953597,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 19090.909090909092,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0023013836022612744,
+      "dy": -0.008277389037417543
+     },
+     "minMarginEssential": 283.4951179700032,
+     "minMarginRings": 217.48209476332443,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21818.18181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.001698369796010013,
+      "dy": -0.008739431997534994
+     },
+     "minMarginEssential": 282.398095863411,
+     "minMarginRings": 205.4218927815641,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0016217450633806468,
+      "dy": -0.011183999352191323
+     },
+     "minMarginEssential": 274.2874960478252,
+     "minMarginRings": 75.23598497081844,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24545.454545454544,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0016302718160168361,
+      "dy": -0.010465134670852952
+     },
+     "minMarginEssential": 274.4782591118318,
+     "minMarginRings": 71.34498580079014,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27272.727272727272,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0018161712238569155,
+      "dy": -0.011594357996853736
+     },
+     "minMarginEssential": 261.85262768183026,
+     "minMarginRings": 41.99424417752277,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0019403660901705028,
+      "dy": -0.012497922578446542
+     },
+     "minMarginEssential": 251.71260610643017,
+     "minMarginRings": 20.24169396914931,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 179.48655730947107,
+   "worstCentre": 0.012497922578446542
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 1024,
+    "h": 768,
+    "tier": "tablet"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0005423091870095931,
+      "dy": -0.009047484725597243
+     },
+     "minMarginEssential": 183.68098013276608,
+     "minMarginRings": 181.76007845054153,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 2727.2727272727275,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008191345746370038,
+      "dy": -0.0012460064521343146
+     },
+     "minMarginEssential": 166.82725843973896,
+     "minMarginRings": 165.20339470601186,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008081977385394623,
+      "dy": -0.0012253083245621355
+     },
+     "minMarginEssential": 166.864225866068,
+     "minMarginRings": 165.243693620338,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 5454.545454545455,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008138093148368775,
+      "dy": -0.0015615581404418617
+     },
+     "minMarginEssential": 167.88271703490642,
+     "minMarginRings": 158.30472833472692,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0003612003575890199,
+      "dy": -0.007220724708093688
+     },
+     "minMarginEssential": 175.61332261660198,
+     "minMarginRings": 62.410507290984015,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 8181.818181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00031625171124882723,
+      "dy": -0.006895968774446389
+     },
+     "minMarginEssential": 190.6678097874585,
+     "minMarginRings": 77.74377104601194,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 10909.09090909091,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00028645764461465717,
+      "dy": -0.006675508226149522
+     },
+     "minMarginEssential": 201.16924973150867,
+     "minMarginRings": 86.38101777917586,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0002742288472900034,
+      "dy": -0.006600900080533674
+     },
+     "minMarginEssential": 205.60499585714135,
+     "minMarginRings": 94.4824908485516,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 13636.363636363636,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.000657449752664685,
+      "dy": -0.006188737912344718
+     },
+     "minMarginEssential": 251.61855344235624,
+     "minMarginRings": 180.9799108571201,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 16363.636363636364,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0006829349848583299,
+      "dy": -0.002760122489319302
+     },
+     "minMarginEssential": 306.4195159248783,
+     "minMarginRings": 276.8227938976923,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00205112187402956,
+      "dy": -0.005729518787677579
+     },
+     "minMarginEssential": 270.1726183951338,
+     "minMarginRings": 238.0322218982751,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 19090.909090909092,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0024752046340958955,
+      "dy": -0.007443927675037099
+     },
+     "minMarginEssential": 249.59281351860864,
+     "minMarginRings": 196.82167692213523,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21818.18181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0017935950239619802,
+      "dy": -0.007870107428087211
+     },
+     "minMarginEssential": 248.72716944030753,
+     "minMarginRings": 186.97593096014793,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0016503262817773034,
+      "dy": -0.010362389286387183
+     },
+     "minMarginEssential": 242.03892798393036,
+     "minMarginRings": 80.68843590583288,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24545.454545454544,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0016588511352712554,
+      "dy": -0.009439541462070785
+     },
+     "minMarginEssential": 242.39962761861628,
+     "minMarginRings": 77.4080669532882,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27272.727272727272,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0018427072120946186,
+      "dy": -0.010410567039079202
+     },
+     "minMarginEssential": 232.6017407852975,
+     "minMarginRings": 54.39898645137805,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.001962427275244316,
+      "dy": -0.011180812696748385
+     },
+     "minMarginEssential": 224.77040724439027,
+     "minMarginRings": 37.46835806659146,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 166.82725843973896,
+   "worstCentre": 0.011180812696748385
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 844,
+    "h": 390,
+    "tier": "tablet"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00030889112721987016,
+      "dy": -0.008846621021868518
+     },
+     "minMarginEssential": 97.4874550608078,
+     "minMarginRings": 96.57322610616195,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 2727.2727272727275,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0005206459321295523,
+      "dy": -0.001237579608798365
+     },
+     "minMarginEssential": 89.28340325156229,
+     "minMarginRings": 88.52034835984271,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0005206459321295523,
+      "dy": -0.0012585203017016656
+     },
+     "minMarginEssential": 89.27528051478058,
+     "minMarginRings": 88.5121796491787,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 5454.545454545455,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0005234476766649768,
+      "dy": -0.0015806418425277056
+     },
+     "minMarginEssential": 89.76994922723766,
+     "minMarginRings": 85.27013738478654,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00020630892661184725,
+      "dy": -0.007034647320976389
+     },
+     "minMarginEssential": 93.6040543888723,
+     "minMarginRings": 38.93398216745402,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 8181.818181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00017977505920566405,
+      "dy": -0.006587070019707962
+     },
+     "minMarginEssential": 101.2341374876607,
+     "minMarginRings": 46.60947930493393,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 10909.09090909091,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0001643348246824982,
+      "dy": -0.006601367466332821
+     },
+     "minMarginEssential": 105.79450986310721,
+     "minMarginRings": 50.22177237519912,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0001569532151212607,
+      "dy": -0.006577775662197219
+     },
+     "minMarginEssential": 108.05391921370286,
+     "minMarginRings": 54.33045086196813,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 13636.363636363636,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00037525000701645555,
+      "dy": -0.0058635005236182605
+     },
+     "minMarginEssential": 130.2723181877751,
+     "minMarginRings": 95.66727816632607,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 16363.636363636364,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00039423062787294995,
+      "dy": -0.002592548137992696
+     },
+     "minMarginEssential": 156.85168533042003,
+     "minMarginRings": 142.12469000749923,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0011763701390652163,
+      "dy": -0.005345690034355226
+     },
+     "minMarginEssential": 139.24558708365578,
+     "minMarginRings": 124.0645082132815,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 19090.909090909092,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0014133679701102497,
+      "dy": -0.00691541429573969
+     },
+     "minMarginEssential": 129.32240055058782,
+     "minMarginRings": 104.23804362346931,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21818.18181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0010104313063409546,
+      "dy": -0.007318605866486923
+     },
+     "minMarginEssential": 128.90583103500805,
+     "minMarginRings": 99.03101665471257,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0009033903858735185,
+      "dy": -0.011847145421117998
+     },
+     "minMarginEssential": 124.76804296123905,
+     "minMarginRings": 47.35820777020564,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24545.454545454544,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.000908016208948283,
+      "dy": -0.008788617530278158
+     },
+     "minMarginEssential": 125.83504319606568,
+     "minMarginRings": 44.929797375911676,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27272.727272727272,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0010070214701884234,
+      "dy": -0.009663583715704596
+     },
+     "minMarginEssential": 121.17373197881463,
+     "minMarginRings": 33.87238873880244,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0010703003537492811,
+      "dy": -0.010353576167624804
+     },
+     "minMarginEssential": 117.45976072189667,
+     "minMarginRings": 25.757109351048143,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 89.27528051478058,
+   "worstCentre": 0.011847145421117998
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 390,
+    "h": 844,
+    "tier": "mobile"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00005905320914668011,
+      "dy": -0.0017006638408429164
+     },
+     "minMarginEssential": 115.35018841988249,
+     "minMarginRings": 112.67597033038825,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 2727.2727272727275,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001502145685538363,
+      "dy": -0.0009616557871820651
+     },
+     "minMarginEssential": 111.43548792479089,
+     "minMarginRings": 109.66599654450779,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0019920830298016693,
+      "dy": -0.0009330486764474268
+     },
+     "minMarginEssential": 106.00637049142603,
+     "minMarginRings": 104.34298614450334,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 5454.545454545455,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001332770151968787,
+      "dy": -0.0009648066149922565
+     },
+     "minMarginEssential": 113.80567712879656,
+     "minMarginRings": 110.83617821750653,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0015109105502726075,
+      "dy": -0.0017805662448706586
+     },
+     "minMarginEssential": 105.71143765796216,
+     "minMarginRings": 62.52687119242603,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 8181.818181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0013494091048395754,
+      "dy": -0.002041405473968112
+     },
+     "minMarginEssential": 110.6838012675887,
+     "minMarginRings": 68.04213909278826,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 10909.09090909091,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008589190095867648,
+      "dy": -0.0013372667295076957
+     },
+     "minMarginEssential": 120.36275815197234,
+     "minMarginRings": 85.12439698323777,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00039840257905424527,
+      "dy": -0.0011613438114862153
+     },
+     "minMarginEssential": 129.2270845058723,
+     "minMarginRings": 104.41188830040807,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 13636.363636363636,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00006018690339095802,
+      "dy": -0.0008383437303562662
+     },
+     "minMarginEssential": 143.97839701814283,
+     "minMarginRings": 131.36353133198247,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 16363.636363636364,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00018976354509498916,
+      "dy": -0.0005560287458160013
+     },
+     "minMarginEssential": 156.37568119544304,
+     "minMarginRings": 136.9521048018088,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0003748892511881562,
+      "dy": -0.0006970235129722531
+     },
+     "minMarginEssential": 152.99633600496887,
+     "minMarginRings": 126.50591993071441,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 19090.909090909092,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0003412607756877296,
+      "dy": -0.0008607017289452557
+     },
+     "minMarginEssential": 145.9947967392062,
+     "minMarginRings": 116.36443915583436,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21818.18181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00017288532392402162,
+      "dy": -0.0009931933537856371
+     },
+     "minMarginEssential": 143.52893932610374,
+     "minMarginRings": 118.58442239475062,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0007319150103330393,
+      "dy": -0.001112309940425112
+     },
+     "minMarginEssential": 145.52792998424457,
+     "minMarginRings": 78.12949830001102,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24545.454545454544,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0007335878300032105,
+      "dy": -0.001115339677228828
+     },
+     "minMarginEssential": 145.40088308052324,
+     "minMarginRings": 76.6930115060487,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27272.727272727272,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0009794266697152575,
+      "dy": -0.0014535537081186978
+     },
+     "minMarginEssential": 132.6938483713509,
+     "minMarginRings": 43.19288082752469,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0009289644446355192,
+      "dy": -0.0013556697448932407
+     },
+     "minMarginEssential": 135.44943868816932,
+     "minMarginRings": 48.70727861179142,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 105.71143765796216,
+   "worstCentre": 0.002041405473968112
+  },
+  {
+   "locale": "de",
+   "viewport": {
+    "w": 320,
+    "h": 568,
+    "tier": "mobile"
+   },
+   "rows": [
+    {
+     "altitude": 0,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00008575226285749693,
+      "dy": -0.002501602476760642
+     },
+     "minMarginEssential": 94.86772683236308,
+     "minMarginRings": 92.67144255408067,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 2727.2727272727275,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0017960249285253304,
+      "dy": -0.0011164425219890787
+     },
+     "minMarginEssential": 91.94774411982564,
+     "minMarginRings": 90.6755450962859,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 3000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0024033684234614936,
+      "dy": -0.0010779615495907116
+     },
+     "minMarginEssential": 87.21113968668831,
+     "minMarginRings": 86.08970581218745,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 5454.545454545455,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0015884894419965433,
+      "dy": -0.0011219274517770828
+     },
+     "minMarginEssential": 93.97340620017519,
+     "minMarginRings": 91.38837138833853,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 7000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006326359491053424,
+      "dy": -0.003013713448905104
+     },
+     "minMarginEssential": 97.5436991431942,
+     "minMarginRings": 66.0116156211528,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 8181.818181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006081460960794871,
+      "dy": -0.0019823881353811406
+     },
+     "minMarginEssential": 101.67264490002333,
+     "minMarginRings": 70.07822437271173,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 10909.09090909091,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.001036024435008809,
+      "dy": -0.0019575350372480578
+     },
+     "minMarginEssential": 98.86469878904467,
+     "minMarginRings": 69.2966654235002,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 12000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00047057937610919256,
+      "dy": -0.0016974651824942495
+     },
+     "minMarginEssential": 106.4435287932775,
+     "minMarginRings": 85.50737049908014,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 13636.363636363636,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00007984981714024287,
+      "dy": -0.0012041459571402473
+     },
+     "minMarginEssential": 118.83431396278777,
+     "minMarginRings": 108.37110346943524,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 16363.636363636364,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00022944034448846296,
+      "dy": -0.0007879806802489537
+     },
+     "minMarginEssential": 129.040488753745,
+     "minMarginRings": 113.62099644556054,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 18000,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.0004502620267913926,
+      "dy": -0.000992757928328478
+     },
+     "minMarginEssential": 126.2199473388792,
+     "minMarginRings": 104.88825994815357,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 19090.909090909092,
+     "overflow": 0,
+     "centre": {
+      "dx": -0.00041544075400761215,
+      "dy": -0.0012385848608879957
+     },
+     "minMarginEssential": 120.38735968118246,
+     "minMarginRings": 96.23352318188972,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 21818.18181818182,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.00010501585424833592,
+      "dy": -0.001421063885559038
+     },
+     "minMarginEssential": 118.36528730324758,
+     "minMarginRings": 97.6927521689635,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006210329817323057,
+      "dy": -0.0015666500994432483
+     },
+     "minMarginEssential": 120.0545526593379,
+     "minMarginRings": 65.39147467463381,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 24545.454545454544,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006231951449455764,
+      "dy": -0.0015713908379658458
+     },
+     "minMarginEssential": 119.94518242171264,
+     "minMarginRings": 64.18899919201755,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 27272.727272727272,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0006842678150610126,
+      "dy": -0.0016759312422909539
+     },
+     "minMarginEssential": 117.41936547635055,
+     "minMarginRings": 56.30396109393109,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    },
+    {
+     "altitude": 30000,
+     "overflow": 0,
+     "centre": {
+      "dx": 0.0008757967270550005,
+      "dy": -0.0019468446598679835
+     },
+     "minMarginEssential": 111.38191826690411,
+     "minMarginRings": 40.23254395277732,
+     "essentialClipped": false,
+     "ringClipped": false,
+     "collisions": [],
+     "canvasOk": true,
+     "problems": []
+    }
+   ],
+   "errors": [],
+   "worstMargin": 87.21113968668831,
+   "worstCentre": 0.003013713448905104
   }
  ]
 }

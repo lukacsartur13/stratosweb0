@@ -15,6 +15,7 @@
 <link rel="preload" href="assets/fonts/archivo/archivo-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/type.css">
 <link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/transitions.css">
 <script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
 </head>
 <body data-ceiling="27000">
@@ -23,7 +24,6 @@
 <div class="grain" aria-hidden="true"></div>
 <canvas class="contrail" aria-hidden="true"></canvas>
 <div class="plane-cursor" aria-hidden="true"><img src="assets/img/plane-cursor.png" alt=""></div>
-<div class="curtain" aria-hidden="true"></div>
 
 <aside class="rail" aria-hidden="true">
   <img class="rail__mark" src="assets/img/plane-cursor.png" alt="">
@@ -361,5 +361,9 @@
 </div>
 
 <script src="assets/js/main.js"></script>
+<!-- Page transitions. First-party, so the policy stays `script-src 'self'`, and
+     `defer` rather than `async` so it runs after parsing. It is not ordered
+     before `pagereveal` and does not need to be — see assets/js/transitions.js. -->
+<script src="assets/js/transitions.js" defer></script>
 </body>
 </html>

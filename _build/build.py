@@ -350,7 +350,8 @@ SHELL = """<!DOCTYPE html>
 <link rel="icon" href="{{base}}assets/img/favicon.png">{{alternates}}
 {{fontpreload}}
 <link rel="stylesheet" href="{{base}}assets/css/type.css">
-<link rel="stylesheet" href="{{base}}assets/css/main.css">{{extra_css}}
+<link rel="stylesheet" href="{{base}}assets/css/main.css">
+<link rel="stylesheet" href="{{base}}assets/css/transitions.css">{{extra_css}}
 <script id="i18n" type="application/json">{{i18n}}</script>
 </head>
 <body data-ceiling="{{ceiling}}"{{body_class}}>
@@ -359,7 +360,6 @@ SHELL = """<!DOCTYPE html>
 <div class="grain" aria-hidden="true"></div>
 <canvas class="contrail" aria-hidden="true"></canvas>
 <div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt=""></div>
-<div class="curtain" aria-hidden="true"></div>
 {{instruments}}
 
 <header class="nav">
@@ -386,7 +386,11 @@ SHELL = """<!DOCTYPE html>
 {{footer}}
 </div>
 
-<script src="{{base}}assets/js/main.js"></script>{{extra_js}}
+<script src="{{base}}assets/js/main.js"></script>
+<!-- Page transitions. First-party, so the policy stays `script-src 'self'`, and
+     `defer` rather than `async` so it runs after parsing. It is not ordered
+     before `pagereveal` and does not need to be — see assets/js/transitions.js. -->
+<script src="{{base}}assets/js/transitions.js" defer></script>{{extra_js}}
 </body>
 </html>
 """

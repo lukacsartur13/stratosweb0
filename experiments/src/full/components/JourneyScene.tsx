@@ -1,10 +1,12 @@
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import type { Frameloop } from './QualityManager';
 import { Environment, Lightformer } from '@react-three/drei';
 import * as THREE from 'three';
-import { renderScale } from '@/lib/capabilities';
+import { prefersReducedMotion, renderScale } from '@/lib/capabilities';
 import { journey, type MountainMode } from '../journey';
+import { readFit } from '../composition';
+import type { CloudViewport } from '../cloud';
 import { CloudDeck } from './CloudDeck';
 import { EarthLimb } from './EarthLimb';
 import { AltimeterMeridian } from './AltimeterMeridian';
@@ -188,6 +190,26 @@ export default function JourneyScene({
   // can never undo a decision the frame budget made. §3: one writer per
   // direction.
   const stepped = useRef(false);
+
+  // The measured viewport the cloud composition is art-directed against (§11).
+  //
+  // Read here rather than inside `CloudDeck` because this is where the resize,
+  // orientation and pixel-ratio listeners already are, and a second set of them
+  // watching the same three events is a second thing to keep in step. `readFit`
+  // is called rather than `currentFit` because the fit `composition.ts` caches is
+  // refreshed on its own schedule and a cloud composition one frame behind an
+  // orientation change is a visible reflow of the sky.
+  const [cloudViewport, setCloudViewport] = useState<CloudViewport>(() => readFit());
+
+  // Reduced motion is latched at mount, not watched. The scene does not exist
+  // under `prefers-reduced-motion: reduce` at all — `detect()` returns a
+  // capability failure and `FullAscent` renders the static fallback instead of
+  // this component — so this is only ever `false` in practice. It is plumbed
+  // through regardless so that `getCloudState`'s contract holds for the sweep,
+  // which calls it directly with `reducedMotion: true` and asserts a static
+  // deterministic result (§26).
+  const reducedMotion = useMemo(() => prefersReducedMotion(), []);
+
   useEffect(() => {
     let dppx: MediaQueryList | null = null;
 
@@ -196,6 +218,14 @@ export default function JourneyScene({
         const next = renderScale().start;
         setDpr((current) => (current === next ? current : next));
       }
+      // Re-art-direct the clouds on the same signal. `layoutFor` is generated
+      // once at the maximum count and re-sliced, so a viewport change re-frames
+      // one fixed sky rather than authoring a new one — §8's "no cloud should
+      // visibly jump when the viewport resizes or the orientation changes".
+      setCloudViewport((current) => {
+        const next = readFit();
+        return current.vw === next.vw && current.vh === next.vh ? current : next;
+      });
       watch();
     };
 
@@ -223,9 +253,62 @@ export default function JourneyScene({
     };
   }, []);
 
-  // One way, once, and never back up. See QualityManager.
+  // One way, never back up — and now a *ladder of two rungs* rather than one
+  // step, because §12 fixes the order quality is spent in and the instrument is
+  // last on that list, not first.
+  //
+  // The Phase 6.5 policy is unchanged: `renderScale()` still owns both numbers,
+  // there is still exactly one canonical writer of the renderer's ratio, and the
+  // floor is still the floor. What changes is *when* the second rung is reached.
+  // Previously the first sustained decline went straight to the pixel ratio,
+  // which meant the very first thing a struggling device gave up was the
+  // Meridian's sharpness — the one thing §12 says to give up last. Now:
+  //
+  //   rung 1  cloud layer count and cloud sampling  (`CLOUD_STEP_DOWN_SCALE`,
+  //           and 256 -> 128 on the texture; see `getCloudState`)
+  //   rung 2  the pixel ratio, to the policy floor and no further
+  //
+  // A device that recovers after rung 1 never reaches rung 2, so the common
+  // case is now that the instrument keeps its accepted quality floor and the
+  // clouds pay for the frame instead. `PerformanceMonitor`'s own sustained
+  // average and `flipflops` remain the hysteresis between the two, so neither
+  // rung can be reached by a single slow frame — §12's "use hysteresis", and
+  // the reason neither rung produces visible resolution pumping.
+  const [cloudStepped, setCloudStepped] = useState(false);
+
+  /**
+   * Which rung the ladder is on. A ref, not state, and deliberately.
+   *
+   * The rung is written from a `PerformanceMonitor` callback, is never read
+   * during render, and must advance exactly once per call. Deriving it from the
+   * `cloudStepped` updater instead — which is what this was — meant performing
+   * rung 2's side effects *inside* a state updater: `setDpr` and a ref
+   * mutation, in a function React is entitled to replay and which StrictMode
+   * (see `main.tsx`) does replay on every call. It happened to survive that only
+   * because a second ref guard made the replay idempotent, which is a way of
+   * saying the updater was impure and the impurity had been papered over.
+   *
+   * A ref advanced in an event callback is the same ladder with none of that:
+   * the two `set*` calls are ordinary event-handler updates, and the guard is
+   * the rung itself rather than a second variable that has to agree with it.
+   */
+  const rung = useRef(0);
   const stepDown = useCallback(() => {
-    if (stepped.current) return;
+    // A validation run pins the ladder so it measures the scene rather than the
+    // rasteriser it happens to be running on. Production never sets this; see
+    // `journey.debug.cloudPinQuality`.
+    if (journey.debug.cloudPinQuality) return;
+    if (rung.current >= 2) return;
+    rung.current += 1;
+
+    if (rung.current === 1) {
+      // Rung 1 — cloud layer count and cloud sampling. §12's first two items.
+      setCloudStepped(true);
+      return;
+    }
+    // Rung 2 — the pixel ratio, to the policy floor and no further. Reached
+    // only by a second decline, so a device that recovers after rung 1 keeps
+    // the instrument's accepted quality floor.
     stepped.current = true;
     setDpr(renderScale().floor);
   }, []);
@@ -306,7 +389,12 @@ export default function JourneyScene({
         <AltimeterMeridian simplified={simplified} />
       </Suspense>
 
-      <CloudDeck simplified={simplified} />
+      <CloudDeck
+        simplified={simplified}
+        viewport={cloudViewport}
+        reducedMotion={reducedMotion}
+        stepped={cloudStepped}
+      />
       <StagedGeometry simplified={simplified} />
     </Canvas>
   );

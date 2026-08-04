@@ -68,8 +68,18 @@ const CEILING = 30_000;
  */
 const PASSED_BELOW = ALTITUDE_STOPS.breakthrough;
 
-/** Where the fade out begins. Complete by `PASSED_BELOW`. */
-const FADE_FROM = 10_800;
+/**
+ * Where the fade out begins. Complete by `PASSED_BELOW`.
+ *
+ * Exported for `cloud.ts`, which recomputes the range's disappearance from this
+ * same constant rather than choosing its own. §7 asks for "no abrupt mountain
+ * visibility switch", and two independently-tuned fades either side of the same
+ * altitude is how you get one. The dependency points that way — the cloud system
+ * adapts to the accepted range, never the reverse — and nothing in this module
+ * imports from `cloud.ts`.
+ */
+export const MOUNTAIN_FADE_FROM = 10_800;
+const FADE_FROM = MOUNTAIN_FADE_FROM;
 
 /**
  * Altitudes at which the geometry stops being drawn and stops being resident.
