@@ -1046,17 +1046,28 @@ img { max-width: 100%; height: auto; }
        pseudo-element is not one. A decorative wash that makes the page scroll
        sideways is the same defect as a paragraph that does.
 
-       10% is the largest bleed that cannot overflow at any viewport in the
-       matrix: the column is capped at 38vw and the padding is
-       `clamp(1.25rem, 5vw, 4rem)`, so the worst ratio is at 1440 and above,
-       where 0.10 × 38vw = 3.8vw against 4rem of padding. Vertically there is no
-       such bound — a panel is at least a screen tall and the wash is inside it
-       — so the vertical bleed stays generous.
+       The bleed is therefore expressed as the *smaller* of a share of the
+       column and the padding that is actually there. A bare 10% is not safe,
+       and the way it fails is a lesson in checking the crossing rather than a
+       sample: the column grows with the viewport (38vw) while the padding stops
+       growing at 4rem, so the two cross at 1684px and every viewport wider than
+       that overflows. Measured at 1920×1080 — 0.10 × 38vw = 73px against 64px
+       of padding — the homepage scrolled sideways by exactly 9px. The
+       validation matrix stops at 1440, where 3.8vw is 54.7px and comfortably
+       inside the padding, so only the regression suite could find it.
+
+       `min()` makes the bound structural: below 1684px this is the 10% it
+       always was and nothing measured changes, and above it the padding takes
+       over. The 6px is headroom, so subpixel rounding cannot tip it back over.
+
+       Vertically there is no such bound — a panel is at least a screen tall and
+       the wash is inside it — so the vertical bleed stays generous.
 
        The zero stop still lands inside the box on both axes: 47% of a 1.20×
        box is 0.56 of the column horizontally and 47% of a 1.44× box is 0.68 of
        it vertically, against a 0.5 half-column and half-height. */
-    inset: -22% -10%;
+    inset-block: -22%;
+    inset-inline: calc(-1 * min(10%, var(--panel-pad-inline) - 6px));
     background: radial-gradient(
       47% 47% at 50% 48%,
       rgb(3 7 13 / var(--wash, 0.84)) 0%,
