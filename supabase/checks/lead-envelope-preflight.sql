@@ -57,12 +57,35 @@ select policyname, cmd, qual, with_check
 from pg_policies where schemaname = 'public' and tablename = 'leads'
 order by policyname;
 
--- 7. Grants. New columns inherit TABLE-level grants automatically. If any
---    COLUMN-level grant exists on leads, that inheritance does not apply and
---    the new columns would be unreadable by that grantee. Expected: 0 rows.
-select grantee, privilege_type, column_name
-from information_schema.column_privileges
-where table_schema = 'public' and table_name = 'leads';
+-- 7. Grants. New columns inherit TABLE-level grants automatically. A real
+--    COLUMN-level grant would break that inheritance and leave the new columns
+--    unreadable by that grantee, so it is worth knowing about first.
+--
+--    `pg_attribute.attacl` is the authoritative source: it is non-null ONLY
+--    when an explicit `GRANT … (column) ON leads` or a column-level REVOKE has
+--    been issued. Expected: 0 rows.
+--
+--    NOT `information_schema.column_privileges`, which this check used to read.
+--    That view is defined over pg_class.relacl as well as pg_attribute.attacl,
+--    so it expands ordinary TABLE-level grants into one row per column — on a
+--    stock Supabase project it returns a few hundred rows and always looked
+--    like a finding. Measured on this project: attacl is empty, while
+--    column_privileges is full. The view was answering a different question.
+select attname as column_name, attacl
+from pg_attribute
+where attrelid = 'public.leads'::regclass
+  and attnum > 0 and not attisdropped
+  and attacl is not null;
+
+--    For context rather than as a check: the table-level grants the new
+--    columns will inherit. A stock Supabase project shows ALL privileges for
+--    anon, authenticated, postgres and service_role. `anon` appearing here is
+--    not a hole — RLS is enabled and forced on leads (§6), and there is no
+--    policy for anon, so the grant opens a door onto nothing.
+select grantee, privilege_type
+from information_schema.table_privileges
+where table_schema = 'public' and table_name = 'leads'
+order by grantee, privilege_type;
 
 -- 8. Triggers. Expected: leads_updated_at only. The migration adds none and
 --    changes none.
