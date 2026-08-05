@@ -302,3 +302,125 @@ and no fixed public pricing anywhere.
 
 Phase 8 therefore starts compliant with "never introduce fixed public pricing"
 and must stay that way.
+
+---
+---
+
+# Phase 8 — continuation baseline
+
+Recorded at the start of the Workstream C–L continuation, **before** any edit
+in that continuation. The values above are the original Phase 8 baseline and
+are not touched; this section records the second starting line, so the two can
+be told apart.
+
+---
+
+## C1. Repository state at the continuation point
+
+| | |
+|---|---|
+| branch | `main` — production-linked, so §20's push gate applies |
+| commit | `9e730c3c3b23d4a017fb0f95aa2cf74762e9642c` |
+| commit subject | `fix(phase-8): stop telling search engines the site lives on someone else's domain` |
+| commits since the original baseline | 7 (`c224c33` … `9e730c3`), none rewritten |
+| working tree | dirty — 2 modified, 37 untracked |
+| staged files | none |
+
+**Modified**
+
+```
+.claude/settings.local.json
+portal/tsconfig.app.tsbuildinfo
+```
+
+**Untracked**
+
+```
+_build/reports/phase7-baseline-shots/   Phase 7 screenshot package
+_build/reports/phase7-review/           Phase 7 review package
+experiments/.tmp-*.mjs                  33 Phase 7 probe scripts
+experiments/.tmp-cand.css
+```
+
+Unchanged from the original baseline: none of these is a Phase 8 input, and
+none of them is staged.
+
+---
+
+## C2. Gate results at the continuation point
+
+Measured, not carried over.
+
+| gate | command | result |
+|---|---|---|
+| typecheck | `npm run typecheck` | **pass** — portal and experiments, no errors |
+| production build | `npm run build` | **pass** — generate + assemble + build:home + build:portal |
+| test suite | `npx playwright test --workers=1` | **370 passed, 10 skipped, 0 failed** (14.6 min) |
+| content inventory | `node scripts/content-inventory.mjs --check` | **pass** — 33 routes, no reductions |
+
+### Note on the "294 tests" figure
+
+The brief states 294 regression tests at the accepted baseline. The suite
+actually reports **380 total (370 passed, 10 skipped)** on this tree. The
+difference is Phase 7 and Workstream A/B test growth, not a discrepancy to
+reconcile: 294 was correct when it was written and the number has moved since.
+The measured figure is the one this continuation is compared against.
+
+The 10 skipped are the two reduced-motion specs, which are skipped in every
+project except `reduced-motion`.
+
+---
+
+## C3. Route and content inventory at the continuation point
+
+| measure | original baseline | continuation start |
+|---|---|---|
+| public routes (generated) | 33 | **33** |
+| React homepage shells | 3 | **3** |
+| page keys | 12 | **12** |
+| locales | 3 | **3** |
+| sections | 174 | **174** |
+| meaningful words | 20,044 | **20,044** |
+| images | 51 | **51** |
+| CTA destinations | 57 | **57** |
+| forms | 9 | **9** |
+
+Identical, as expected: Workstreams A and B changed `<head>`, the lead
+pipeline and the stylesheet, none of which is body content.
+
+### What Workstream B had already delivered
+
+Confirmed present before the continuation began, and not rebuilt:
+
+* canonical, Open Graph and Twitter metadata on all 33 routes;
+* origin resolved from Netlify's primary domain, not hard-coded;
+* intrinsic `width`/`height` on all 51 images, measured from the real files;
+* the Phase 8 primitive block in `assets/css/main.css` — `.smark`, `.metrics`,
+  `.caps`, `.cases`, `.related`, `.note`, `.frame`.
+
+### Structural findings still open at the continuation point
+
+| finding | count |
+|---|---|
+| blog entries with no article destination | 6 |
+| services overview pages | 0 |
+| work / portfolio index pages | 0 |
+| case-study routes | 0 |
+| Hungarian routes not linked from any page body | 7 |
+| routes with no server-rendered H1 | 3 (the questionnaires) |
+| routes whose body renders nothing without JS | 3 (the questionnaires) |
+| routes with no primary CTA | 9 |
+| rights-unresolved media in the published tree | 1 (`cruise-jet.jpg`) |
+| unoptimised assets over 1 MB | 1 (`team-richard.png`, 2.2 MB) |
+
+---
+
+## C4. Frozen comparison floor
+
+`_build/reports/content-baseline.json` is unchanged and stays unchanged:
+**33 routes, 174 sections, 20,044 words, 51 images, 57 CTAs, 9 forms.**
+
+Every continuation measurement is compared against that file. It was
+accidentally regenerated once during this continuation by running
+`content-inventory.mjs` without `--check`, and was restored from git before
+anything was committed; the file in the tree is the original.

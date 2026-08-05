@@ -749,6 +749,7 @@ def load_dict(lang):
         return {}
     col = LANGS.index(lang) - 1
     table = {}
+    owner = {}
     for path in sorted(DICTS.glob("*.json")):
         for hu, vals in json.loads(path.read_text(encoding="utf-8")).items():
             if hu.startswith("_"):                        # notes, not strings
@@ -756,7 +757,18 @@ def load_dict(lang):
             if isinstance(vals, str):
                 vals = [vals, vals]
             if vals[col]:
-                table[tr.normalise(hu)] = vals[col]
+                key = tr.normalise(hu)
+                # One flat namespace merged in filename order, so a key defined
+                # twice is silently decided by which file sorts later. That is
+                # not theoretical: a Phase 8 file defined "Kezdés" as a CTA
+                # label and thereby renamed the questionnaire's Start button in
+                # English and German, in generated JS nobody was reading.
+                # Disagreements are worth a line of output; agreement is not.
+                if key in table and table[key] != vals[col]:
+                    print(f"  ! {lang}: '{hu[:48]}' redefined in "
+                          f"{path.name} (was {owner[key]}) — later file wins")
+                table[key] = vals[col]
+                owner[key] = path.name
     if not table:
         print(f"  ! no strings in {DICTS.relative_to(ROOT)} — {lang} stays Hungarian")
     return table

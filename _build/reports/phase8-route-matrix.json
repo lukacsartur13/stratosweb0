@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-05T07:40:22.601Z",
+  "generatedAt": "2026-08-05T18:16:03.472Z",
   "summary": {
-    "routes": 33,
+    "routes": 66,
     "locales": 3,
-    "keys": 12,
+    "keys": 23,
     "missingRoutes": [
       "/index.html",
       "/en/index.html",
@@ -11,9 +11,13 @@
     ],
     "archetypes": {
       "about": 3,
+      "service overview": 3,
       "service detail": 12,
       "Impact Program": 3,
+      "work index": 3,
+      "case study": 9,
       "blog / editorial": 3,
+      "article": 18,
       "contact": 3,
       "questionnaire": 3,
       "legal / utility": 6
@@ -31,6 +35,11 @@
       "/rolunk.html",
       "/en/about.html",
       "/de/ueber-uns.html"
+    ],
+    "service overview": [
+      "/szolgaltatasok.html",
+      "/en/services.html",
+      "/de/leistungen.html"
     ],
     "service detail": [
       "/kkv.html",
@@ -51,10 +60,46 @@
       "/en/impact-program.html",
       "/de/impact-programm.html"
     ],
+    "work index": [
+      "/munkaink.html",
+      "/en/work.html",
+      "/de/projekte.html"
+    ],
+    "case study": [
+      "/munka-rapidkert.html",
+      "/en/work-rapidkert.html",
+      "/de/projekt-rapidkert.html",
+      "/munka-barbershop.html",
+      "/en/work-barbershop.html",
+      "/de/projekt-barbershop.html",
+      "/munka-mentaltrening.html",
+      "/en/work-mentaltrening.html",
+      "/de/projekt-mentaltrening.html"
+    ],
     "blog / editorial": [
       "/blog.html",
       "/en/blog.html",
       "/de/blog.html"
+    ],
+    "article": [
+      "/blog-google-elso-oldal.html",
+      "/en/blog-google-first-page.html",
+      "/de/blog-google-erste-seite.html",
+      "/blog-weboldal-arak.html",
+      "/en/blog-website-cost.html",
+      "/de/blog-website-kosten.html",
+      "/blog-google-cegprofil.html",
+      "/en/blog-google-business-profile.html",
+      "/de/blog-google-unternehmensprofil.html",
+      "/blog-google-vagy-facebook.html",
+      "/en/blog-google-or-facebook.html",
+      "/de/blog-google-oder-facebook.html",
+      "/blog-elavult-weboldal.html",
+      "/en/blog-outdated-website.html",
+      "/de/blog-veraltete-website.html",
+      "/blog-miert-nem-hoz-ugyfelet.html",
+      "/en/blog-no-enquiries.html",
+      "/de/blog-keine-anfragen.html"
     ],
     "contact": [
       "/ugyfelszolgalat.html",
@@ -77,12 +122,6 @@
   },
   "duplicates": [],
   "orphans": [
-    "/rolunk.html",
-    "/kkv.html",
-    "/nagyvallalat.html",
-    "/branding.html",
-    "/hirdeteskezeles.html",
-    "/impact-program.html",
     "/impresszum.html"
   ],
   "routes": [
@@ -94,7 +133,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Rólunk — A Stratos története | Stratos Media",
       "metaDescription": "A Stratos név a sztratoszférából ered. Megmutatjuk, kik vagyunk, hogyan gondolkodunk, és miért nem elégszünk meg a hétköznapi szinttel.",
-      "canonical": "https://media-stratos.com/rolunk.html",
+      "canonical": "https://stratosweb.hu/rolunk.html",
       "hreflang": [
         "hu",
         "en",
@@ -102,7 +141,7 @@
         "x-default"
       ],
       "ogTitle": "Rólunk — A Stratos története | Stratos Media",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -122,9 +161,10 @@
         3,
         3,
         2,
+        2,
         2
       ],
-      "sectionCount": 8,
+      "sectionCount": 9,
       "sectionClasses": [
         "phead",
         "band band--tight",
@@ -133,9 +173,10 @@
         "band",
         "band band--pale band--tight",
         "band",
+        "band band--tight",
         "band band--tight"
       ],
-      "meaningfulWords": 709,
+      "meaningfulWords": 748,
       "primaryCta": {
         "text": "Ingyenes konzultáció",
         "href": "ugyfelszolgalat.html",
@@ -197,10 +238,13 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 4,
+      "internalLinkCount": 7,
       "internalLinks": [
         "index.html",
         "ugyfelszolgalat.html",
+        "szolgaltatasok.html",
+        "munkaink.html",
+        "impact-program.html",
         "arajanlat.html"
       ],
       "faults": []
@@ -213,7 +257,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "About us — the Stratos story | Stratos Media",
       "metaDescription": "The name Stratos comes from the stratosphere. Here's who we are, how we think, and why the everyday altitude is never enough for us.",
-      "canonical": "https://media-stratos.com/en/about.html",
+      "canonical": "https://stratosweb.hu/en/about.html",
       "hreflang": [
         "hu",
         "en",
@@ -221,7 +265,7 @@
         "x-default"
       ],
       "ogTitle": "About us — the Stratos story | Stratos Media",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -241,9 +285,10 @@
         3,
         3,
         2,
+        2,
         2
       ],
-      "sectionCount": 8,
+      "sectionCount": 9,
       "sectionClasses": [
         "phead",
         "band band--tight",
@@ -252,9 +297,10 @@
         "band",
         "band band--pale band--tight",
         "band",
+        "band band--tight",
         "band band--tight"
       ],
-      "meaningfulWords": 789,
+      "meaningfulWords": 836,
       "primaryCta": {
         "text": "Free consultation",
         "href": "contact.html",
@@ -316,10 +362,13 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 4,
+      "internalLinkCount": 7,
       "internalLinks": [
         "index.html",
         "contact.html",
+        "services.html",
+        "work.html",
+        "impact-program.html",
         "quote.html"
       ],
       "faults": []
@@ -332,7 +381,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Über uns — die Geschichte von Stratos | Stratos Media",
       "metaDescription": "Der Name Stratos stammt aus der Stratosphäre. Hier erfährst du, wer wir sind, wie wir denken und warum uns die alltägliche Höhe nie reicht.",
-      "canonical": "https://media-stratos.com/de/ueber-uns.html",
+      "canonical": "https://stratosweb.hu/de/ueber-uns.html",
       "hreflang": [
         "hu",
         "en",
@@ -340,7 +389,7 @@
         "x-default"
       ],
       "ogTitle": "Über uns — die Geschichte von Stratos | Stratos Media",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -360,9 +409,10 @@
         3,
         3,
         2,
+        2,
         2
       ],
-      "sectionCount": 8,
+      "sectionCount": 9,
       "sectionClasses": [
         "phead",
         "band band--tight",
@@ -371,9 +421,10 @@
         "band",
         "band band--pale band--tight",
         "band",
+        "band band--tight",
         "band band--tight"
       ],
-      "meaningfulWords": 709,
+      "meaningfulWords": 754,
       "primaryCta": {
         "text": "Kostenlose Beratung",
         "href": "kontakt.html",
@@ -435,11 +486,296 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 4,
+      "internalLinkCount": 7,
       "internalLinks": [
         "index.html",
         "kontakt.html",
+        "leistungen.html",
+        "projekte.html",
+        "impact-programm.html",
         "angebot.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/szolgaltatasok.html",
+      "key": "services",
+      "locale": "hu",
+      "archetype": "service overview",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Szolgáltatások — webdesign, fejlesztés, branding, hirdetés | Stratos",
+      "metaDescription": "Négy szolgáltatás, egy rendszer: egyedi weboldal KKV-nak és nagyvállalatnak, arculat és szövegezés, valamint Google és Meta hirdetéskezelés. Az ajánlat mindig egyedi.",
+      "canonical": "https://stratosweb.hu/szolgaltatasok.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Szolgáltatások — webdesign, fejlesztés, branding, hirdetés | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Négy szolgáltatás, egy rendszer."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 8,
+      "sectionClasses": [
+        "phead phead--index",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight",
+        "band"
+      ],
+      "meaningfulWords": 739,
+      "primaryCta": {
+        "text": "Beszéljünk róla",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Megnézem az Impact Programot",
+        "href": "impact-program.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Megnézem az Impact Programot",
+          "href": "impact-program.html",
+          "variant": "secondary"
+        },
+        {
+          "text": "Beszéljünk róla",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Előbb megnézem a munkáinkat",
+          "href": "munkaink.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 8,
+      "internalLinks": [
+        "index.html",
+        "kkv.html",
+        "nagyvallalat.html",
+        "branding.html",
+        "hirdeteskezeles.html",
+        "impact-program.html",
+        "ugyfelszolgalat.html",
+        "munkaink.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/services.html",
+      "key": "services",
+      "locale": "en",
+      "archetype": "service overview",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Services — web design, development, branding, advertising | Stratos",
+      "metaDescription": "Four services, one system: custom websites for SMEs and enterprises, brand identity and copywriting, and Google and Meta ads management. Every proposal is tailored.",
+      "canonical": "https://stratosweb.hu/en/services.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Services — web design, development, branding, advertising | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Four services, one system."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 8,
+      "sectionClasses": [
+        "phead phead--index",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight",
+        "band"
+      ],
+      "meaningfulWords": 877,
+      "primaryCta": {
+        "text": "Let's talk about it",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "See the Impact Program",
+        "href": "impact-program.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "See the Impact Program",
+          "href": "impact-program.html",
+          "variant": "secondary"
+        },
+        {
+          "text": "Let's talk about it",
+          "href": "contact.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Show me your work first",
+          "href": "work.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 8,
+      "internalLinks": [
+        "index.html",
+        "web-design-sme.html",
+        "web-design-enterprise.html",
+        "branding.html",
+        "ads-management.html",
+        "impact-program.html",
+        "contact.html",
+        "work.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/leistungen.html",
+      "key": "services",
+      "locale": "de",
+      "archetype": "service overview",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Leistungen — Webdesign, Entwicklung, Branding, Werbung | Stratos",
+      "metaDescription": "Vier Leistungen, ein System: individuelle Websites für KMU und Großunternehmen, Erscheinungsbild und Texte sowie Google- und Meta-Werbebetreuung. Jedes Angebot ist individuell.",
+      "canonical": "https://stratosweb.hu/de/leistungen.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Leistungen — Webdesign, Entwicklung, Branding, Werbung | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Vier Leistungen, ein System."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 8,
+      "sectionClasses": [
+        "phead phead--index",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight",
+        "band"
+      ],
+      "meaningfulWords": 797,
+      "primaryCta": {
+        "text": "Sprechen wir darüber",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Impact-Programm ansehen",
+        "href": "impact-programm.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Impact-Programm ansehen",
+          "href": "impact-programm.html",
+          "variant": "secondary"
+        },
+        {
+          "text": "Sprechen wir darüber",
+          "href": "kontakt.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Erst eure Projekte ansehen",
+          "href": "projekte.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 8,
+      "internalLinks": [
+        "index.html",
+        "webdesign-kmu.html",
+        "webdesign-grossunternehmen.html",
+        "branding.html",
+        "werbeanzeigen.html",
+        "impact-programm.html",
+        "kontakt.html",
+        "projekte.html"
       ],
       "faults": []
     },
@@ -451,7 +787,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
       "metaDescription": "Tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban. Weboldal egyéni és kisvállalkozóknak, nagy egyszeri költség nélkül.",
-      "canonical": "https://media-stratos.com/kkv.html",
+      "canonical": "https://stratosweb.hu/kkv.html",
       "hreflang": [
         "hu",
         "en",
@@ -459,7 +795,7 @@
         "x-default"
       ],
       "ogTitle": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -479,9 +815,10 @@
         3,
         2,
         2,
+        2,
         2
       ],
-      "sectionCount": 8,
+      "sectionCount": 9,
       "sectionClasses": [
         "phead",
         "band band--tight",
@@ -490,9 +827,10 @@
         "band",
         "band",
         "band band--pale",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 750,
+      "meaningfulWords": 814,
       "primaryCta": {
         "text": "Kérek ajánlatot",
         "href": "arajanlat.html",
@@ -541,11 +879,17 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 5,
+      "internalLinkCount": 12,
       "internalLinks": [
         "index.html",
         "arajanlat.html",
-        "ugyfelszolgalat.html"
+        "munka-barbershop.html",
+        "munka-mentaltrening.html",
+        "munka-rapidkert.html",
+        "ugyfelszolgalat.html",
+        "szolgaltatasok.html",
+        "branding.html",
+        "blog-weboldal-arak.html"
       ],
       "faults": []
     },
@@ -557,7 +901,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Web design for SMEs — a website on a monthly fee | Stratos",
       "metaDescription": "Design, development, hosting and ongoing maintenance in one fixed monthly fee. A website for sole traders and small businesses, without a large upfront cost.",
-      "canonical": "https://media-stratos.com/en/web-design-sme.html",
+      "canonical": "https://stratosweb.hu/en/web-design-sme.html",
       "hreflang": [
         "hu",
         "en",
@@ -565,7 +909,7 @@
         "x-default"
       ],
       "ogTitle": "Web design for SMEs — a website on a monthly fee | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -585,9 +929,10 @@
         3,
         2,
         2,
+        2,
         2
       ],
-      "sectionCount": 8,
+      "sectionCount": 9,
       "sectionClasses": [
         "phead",
         "band band--tight",
@@ -596,9 +941,10 @@
         "band",
         "band",
         "band band--pale",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 910,
+      "meaningfulWords": 984,
       "primaryCta": {
         "text": "Request a quote",
         "href": "quote.html",
@@ -647,11 +993,17 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 5,
+      "internalLinkCount": 12,
       "internalLinks": [
         "index.html",
         "quote.html",
-        "contact.html"
+        "work-barbershop.html",
+        "work-mentaltrening.html",
+        "work-rapidkert.html",
+        "contact.html",
+        "services.html",
+        "branding.html",
+        "blog-website-cost.html"
       ],
       "faults": []
     },
@@ -663,7 +1015,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Webdesign für KMU — Website zur Monatsgebühr | Stratos",
       "metaDescription": "Konzeption, Entwicklung, Hosting und laufende Wartung in einer festen Monatsgebühr. Eine Website für Selbstständige und kleine Unternehmen — ohne hohe Einmalkosten.",
-      "canonical": "https://media-stratos.com/de/webdesign-kmu.html",
+      "canonical": "https://stratosweb.hu/de/webdesign-kmu.html",
       "hreflang": [
         "hu",
         "en",
@@ -671,7 +1023,7 @@
         "x-default"
       ],
       "ogTitle": "Webdesign für KMU — Website zur Monatsgebühr | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -691,9 +1043,10 @@
         3,
         2,
         2,
+        2,
         2
       ],
-      "sectionCount": 8,
+      "sectionCount": 9,
       "sectionClasses": [
         "phead",
         "band band--tight",
@@ -702,9 +1055,10 @@
         "band",
         "band",
         "band band--pale",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 806,
+      "meaningfulWords": 872,
       "primaryCta": {
         "text": "Angebot anfragen",
         "href": "angebot.html",
@@ -753,11 +1107,17 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 5,
+      "internalLinkCount": 12,
       "internalLinks": [
         "index.html",
         "angebot.html",
-        "kontakt.html"
+        "projekt-barbershop.html",
+        "projekt-mentaltrening.html",
+        "projekt-rapidkert.html",
+        "kontakt.html",
+        "leistungen.html",
+        "branding.html",
+        "blog-website-kosten.html"
       ],
       "faults": []
     },
@@ -769,7 +1129,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Webdesign nagyvállalatoknak — dedikált fejlesztőcsapat | Stratos",
       "metaDescription": "Egyedi platformok, belső rendszerek, integrációk és üzemeltetés. Nagyvállalati szintű minőség, SLA és biztonság — a stratégiától az élesítésig.",
-      "canonical": "https://media-stratos.com/nagyvallalat.html",
+      "canonical": "https://stratosweb.hu/nagyvallalat.html",
       "hreflang": [
         "hu",
         "en",
@@ -777,7 +1137,7 @@
         "x-default"
       ],
       "ogTitle": "Webdesign nagyvállalatoknak — dedikált fejlesztőcsapat | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -799,9 +1159,10 @@
         3,
         2,
         2,
+        2,
         2
       ],
-      "sectionCount": 7,
+      "sectionCount": 8,
       "sectionClasses": [
         "phead",
         "band band--tight",
@@ -809,9 +1170,10 @@
         "band band--pale",
         "band",
         "band band--pale",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 792,
+      "meaningfulWords": 854,
       "primaryCta": {
         "text": "Egyeztetést kérek",
         "href": "ugyfelszolgalat.html",
@@ -848,10 +1210,14 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 5,
+      "internalLinkCount": 9,
       "internalLinks": [
         "index.html",
         "ugyfelszolgalat.html",
+        "szolgaltatasok.html",
+        "kkv.html",
+        "munkaink.html",
+        "hirdeteskezeles.html",
         "arajanlat.html"
       ],
       "faults": []
@@ -864,7 +1230,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Web design for enterprises — a dedicated development team | Stratos",
       "metaDescription": "Bespoke platforms, internal systems, integrations and operations. Enterprise-grade quality, SLA and security — from strategy to launch.",
-      "canonical": "https://media-stratos.com/en/web-design-enterprise.html",
+      "canonical": "https://stratosweb.hu/en/web-design-enterprise.html",
       "hreflang": [
         "hu",
         "en",
@@ -872,7 +1238,7 @@
         "x-default"
       ],
       "ogTitle": "Web design for enterprises — a dedicated development team | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -894,9 +1260,10 @@
         3,
         2,
         2,
+        2,
         2
       ],
-      "sectionCount": 7,
+      "sectionCount": 8,
       "sectionClasses": [
         "phead",
         "band band--tight",
@@ -904,9 +1271,10 @@
         "band band--pale",
         "band",
         "band band--pale",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 949,
+      "meaningfulWords": 1020,
       "primaryCta": {
         "text": "Book a call",
         "href": "contact.html",
@@ -943,10 +1311,14 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 5,
+      "internalLinkCount": 9,
       "internalLinks": [
         "index.html",
         "contact.html",
+        "services.html",
+        "web-design-sme.html",
+        "work.html",
+        "ads-management.html",
         "quote.html"
       ],
       "faults": []
@@ -959,7 +1331,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Webdesign für Großunternehmen — dediziertes Entwicklungsteam | Stratos",
       "metaDescription": "Individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live.",
-      "canonical": "https://media-stratos.com/de/webdesign-grossunternehmen.html",
+      "canonical": "https://stratosweb.hu/de/webdesign-grossunternehmen.html",
       "hreflang": [
         "hu",
         "en",
@@ -967,7 +1339,7 @@
         "x-default"
       ],
       "ogTitle": "Webdesign für Großunternehmen — dediziertes Entwicklungsteam | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -989,9 +1361,10 @@
         3,
         2,
         2,
+        2,
         2
       ],
-      "sectionCount": 7,
+      "sectionCount": 8,
       "sectionClasses": [
         "phead",
         "band band--tight",
@@ -999,9 +1372,10 @@
         "band band--pale",
         "band",
         "band band--pale",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 835,
+      "meaningfulWords": 904,
       "primaryCta": {
         "text": "Gespräch vereinbaren",
         "href": "kontakt.html",
@@ -1038,10 +1412,14 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 5,
+      "internalLinkCount": 9,
       "internalLinks": [
         "index.html",
         "kontakt.html",
+        "leistungen.html",
+        "webdesign-kmu.html",
+        "projekte.html",
+        "werbeanzeigen.html",
         "angebot.html"
       ],
       "faults": []
@@ -1054,7 +1432,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Branding és arculattervezés | Stratos",
       "metaDescription": "Logó, színvilág, tipográfia, képi stílus és hangnem — egy rendszerben. Építs olyan márkát, ami egy színről is eszébe jut az embereknek.",
-      "canonical": "https://media-stratos.com/branding.html",
+      "canonical": "https://stratosweb.hu/branding.html",
       "hreflang": [
         "hu",
         "en",
@@ -1062,7 +1440,7 @@
         "x-default"
       ],
       "ogTitle": "Branding és arculattervezés | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1078,18 +1456,20 @@
         3,
         3,
         2,
+        2,
         2
       ],
-      "sectionCount": 6,
+      "sectionCount": 7,
       "sectionClasses": [
         "phead",
         "band",
         "band band--tight",
         "band band--pale",
         "band",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 819,
+      "meaningfulWords": 878,
       "primaryCta": {
         "text": "Konzultáció",
         "href": "ugyfelszolgalat.html",
@@ -1119,10 +1499,14 @@
       ],
       "forms": [],
       "images": [],
-      "internalLinkCount": 5,
+      "internalLinkCount": 9,
       "internalLinks": [
         "index.html",
         "ugyfelszolgalat.html",
+        "szolgaltatasok.html",
+        "kkv.html",
+        "munka-mentaltrening.html",
+        "munkaink.html",
         "arajanlat.html"
       ],
       "faults": []
@@ -1135,7 +1519,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Branding and visual identity design | Stratos",
       "metaDescription": "Logo, colour system, typography, image style and tone of voice — in one system. Build a brand people recall from a single colour.",
-      "canonical": "https://media-stratos.com/en/branding.html",
+      "canonical": "https://stratosweb.hu/en/branding.html",
       "hreflang": [
         "hu",
         "en",
@@ -1143,7 +1527,7 @@
         "x-default"
       ],
       "ogTitle": "Branding and visual identity design | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1159,18 +1543,20 @@
         3,
         3,
         2,
+        2,
         2
       ],
-      "sectionCount": 6,
+      "sectionCount": 7,
       "sectionClasses": [
         "phead",
         "band",
         "band band--tight",
         "band band--pale",
         "band",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 1016,
+      "meaningfulWords": 1085,
       "primaryCta": {
         "text": "Consultation",
         "href": "contact.html",
@@ -1200,10 +1586,14 @@
       ],
       "forms": [],
       "images": [],
-      "internalLinkCount": 5,
+      "internalLinkCount": 9,
       "internalLinks": [
         "index.html",
         "contact.html",
+        "services.html",
+        "web-design-sme.html",
+        "work-mentaltrening.html",
+        "work.html",
         "quote.html"
       ],
       "faults": []
@@ -1216,7 +1606,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Branding und Corporate Design | Stratos",
       "metaDescription": "Logo, Farbwelt, Typografie, Bildsprache und Tonalität — in einem System. Bau eine Marke, an die man schon bei einer Farbe denkt.",
-      "canonical": "https://media-stratos.com/de/branding.html",
+      "canonical": "https://stratosweb.hu/de/branding.html",
       "hreflang": [
         "hu",
         "en",
@@ -1224,7 +1614,7 @@
         "x-default"
       ],
       "ogTitle": "Branding und Corporate Design | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1240,18 +1630,20 @@
         3,
         3,
         2,
+        2,
         2
       ],
-      "sectionCount": 6,
+      "sectionCount": 7,
       "sectionClasses": [
         "phead",
         "band",
         "band band--tight",
         "band band--pale",
         "band",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 891,
+      "meaningfulWords": 958,
       "primaryCta": {
         "text": "Beratung",
         "href": "kontakt.html",
@@ -1281,10 +1673,14 @@
       ],
       "forms": [],
       "images": [],
-      "internalLinkCount": 5,
+      "internalLinkCount": 9,
       "internalLinks": [
         "index.html",
         "kontakt.html",
+        "leistungen.html",
+        "webdesign-kmu.html",
+        "projekt-mentaltrening.html",
+        "projekte.html",
         "angebot.html"
       ],
       "faults": []
@@ -1297,7 +1693,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Hirdetéskezelés — Google & Meta Ads | Stratos",
       "metaDescription": "Google és Meta kampányok, amelyek nem elérést, hanem ügyfeleket hoznak. Célközönség-kutatás, kreatív, licitstratégia, konverziómérés és havi riport.",
-      "canonical": "https://media-stratos.com/hirdeteskezeles.html",
+      "canonical": "https://stratosweb.hu/hirdeteskezeles.html",
       "hreflang": [
         "hu",
         "en",
@@ -1305,7 +1701,7 @@
         "x-default"
       ],
       "ogTitle": "Hirdetéskezelés — Google &amp; Meta Ads | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1324,9 +1720,10 @@
         3,
         2,
         2,
+        2,
         2
       ],
-      "sectionCount": 7,
+      "sectionCount": 8,
       "sectionClasses": [
         "phead",
         "band",
@@ -1334,9 +1731,10 @@
         "band",
         "band band--tight",
         "band band--pale",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 1013,
+      "meaningfulWords": 1078,
       "primaryCta": {
         "text": "Árajánlat",
         "href": "arajanlat.html",
@@ -1373,11 +1771,15 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 5,
+      "internalLinkCount": 9,
       "internalLinks": [
         "index.html",
         "arajanlat.html",
-        "ugyfelszolgalat.html"
+        "ugyfelszolgalat.html",
+        "szolgaltatasok.html",
+        "blog-google-vagy-facebook.html",
+        "blog-google-cegprofil.html",
+        "kkv.html"
       ],
       "faults": []
     },
@@ -1389,7 +1791,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Ads management — Google & Meta Ads | Stratos",
       "metaDescription": "Google and Meta campaigns that bring clients, not reach. Audience research, creative, bidding strategy, conversion tracking and a monthly report.",
-      "canonical": "https://media-stratos.com/en/ads-management.html",
+      "canonical": "https://stratosweb.hu/en/ads-management.html",
       "hreflang": [
         "hu",
         "en",
@@ -1397,7 +1799,7 @@
         "x-default"
       ],
       "ogTitle": "Ads management — Google &amp; Meta Ads | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1416,9 +1818,10 @@
         3,
         2,
         2,
+        2,
         2
       ],
-      "sectionCount": 7,
+      "sectionCount": 8,
       "sectionClasses": [
         "phead",
         "band",
@@ -1426,9 +1829,10 @@
         "band",
         "band band--tight",
         "band band--pale",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 1145,
+      "meaningfulWords": 1219,
       "primaryCta": {
         "text": "Get a quote",
         "href": "quote.html",
@@ -1465,11 +1869,15 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 5,
+      "internalLinkCount": 9,
       "internalLinks": [
         "index.html",
         "quote.html",
-        "contact.html"
+        "contact.html",
+        "services.html",
+        "blog-google-or-facebook.html",
+        "blog-google-business-profile.html",
+        "web-design-sme.html"
       ],
       "faults": []
     },
@@ -1481,7 +1889,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Werbebetreuung — Google & Meta Ads | Stratos",
       "metaDescription": "Google- und Meta-Kampagnen, die Kunden bringen statt Reichweite. Zielgruppenrecherche, Kreation, Gebotsstrategie, Conversion-Tracking und Monatsreport.",
-      "canonical": "https://media-stratos.com/de/werbeanzeigen.html",
+      "canonical": "https://stratosweb.hu/de/werbeanzeigen.html",
       "hreflang": [
         "hu",
         "en",
@@ -1489,7 +1897,7 @@
         "x-default"
       ],
       "ogTitle": "Werbebetreuung — Google &amp; Meta Ads | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1508,9 +1916,10 @@
         3,
         2,
         2,
+        2,
         2
       ],
-      "sectionCount": 7,
+      "sectionCount": 8,
       "sectionClasses": [
         "phead",
         "band",
@@ -1518,9 +1927,10 @@
         "band",
         "band band--tight",
         "band band--pale",
+        "band band--tight",
         "band"
       ],
-      "meaningfulWords": 1033,
+      "meaningfulWords": 1102,
       "primaryCta": {
         "text": "Angebot",
         "href": "angebot.html",
@@ -1557,11 +1967,15 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 5,
+      "internalLinkCount": 9,
       "internalLinks": [
         "index.html",
         "angebot.html",
-        "kontakt.html"
+        "kontakt.html",
+        "leistungen.html",
+        "blog-google-oder-facebook.html",
+        "blog-google-unternehmensprofil.html",
+        "webdesign-kmu.html"
       ],
       "faults": []
     },
@@ -1573,7 +1987,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Stratos Impact Program — ingyenes weboldal nonprofitoknak | Stratos",
       "metaDescription": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
-      "canonical": "https://media-stratos.com/impact-program.html",
+      "canonical": "https://stratosweb.hu/impact-program.html",
       "hreflang": [
         "hu",
         "en",
@@ -1581,7 +1995,7 @@
         "x-default"
       ],
       "ogTitle": "Stratos Impact Program — ingyenes weboldal nonprofitoknak | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1603,9 +2017,11 @@
         3,
         2,
         2,
+        2,
+        2,
         2
       ],
-      "sectionCount": 9,
+      "sectionCount": 11,
       "sectionClasses": [
         "phead",
         "band",
@@ -1614,10 +2030,12 @@
         "band band--pale",
         "band",
         "band band--tight",
+        "band band--tight",
         "band",
-        "band band--pale"
+        "band band--pale",
+        "band band--tight"
       ],
-      "meaningfulWords": 672,
+      "meaningfulWords": 850,
       "primaryCta": {
         "text": "Jelentkezem",
         "href": "#jelentkezes",
@@ -1638,10 +2056,13 @@
         }
       ],
       "images": [],
-      "internalLinkCount": 2,
+      "internalLinkCount": 5,
       "internalLinks": [
         "index.html",
-        "ugyfelszolgalat.html"
+        "ugyfelszolgalat.html",
+        "rolunk.html",
+        "szolgaltatasok.html",
+        "munkaink.html"
       ],
       "faults": []
     },
@@ -1653,7 +2074,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Stratos Impact Program — free websites for nonprofits | Stratos",
       "metaDescription": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
-      "canonical": "https://media-stratos.com/en/impact-program.html",
+      "canonical": "https://stratosweb.hu/en/impact-program.html",
       "hreflang": [
         "hu",
         "en",
@@ -1661,7 +2082,7 @@
         "x-default"
       ],
       "ogTitle": "Stratos Impact Program — free websites for nonprofits | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1683,9 +2104,11 @@
         3,
         2,
         2,
+        2,
+        2,
         2
       ],
-      "sectionCount": 9,
+      "sectionCount": 11,
       "sectionClasses": [
         "phead",
         "band",
@@ -1694,10 +2117,12 @@
         "band band--pale",
         "band",
         "band band--tight",
+        "band band--tight",
         "band",
-        "band band--pale"
+        "band band--pale",
+        "band band--tight"
       ],
-      "meaningfulWords": 757,
+      "meaningfulWords": 967,
       "primaryCta": {
         "text": "Apply now",
         "href": "#jelentkezes",
@@ -1718,10 +2143,13 @@
         }
       ],
       "images": [],
-      "internalLinkCount": 2,
+      "internalLinkCount": 5,
       "internalLinks": [
         "index.html",
-        "contact.html"
+        "contact.html",
+        "about.html",
+        "services.html",
+        "work.html"
       ],
       "faults": []
     },
@@ -1733,7 +2161,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Stratos Impact-Programm — kostenlose Websites für Non-Profits | Stratos",
       "metaDescription": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
-      "canonical": "https://media-stratos.com/de/impact-programm.html",
+      "canonical": "https://stratosweb.hu/de/impact-programm.html",
       "hreflang": [
         "hu",
         "en",
@@ -1741,7 +2169,7 @@
         "x-default"
       ],
       "ogTitle": "Stratos Impact-Programm — kostenlose Websites für Non-Profits | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1763,9 +2191,11 @@
         3,
         2,
         2,
+        2,
+        2,
         2
       ],
-      "sectionCount": 9,
+      "sectionCount": 11,
       "sectionClasses": [
         "phead",
         "band",
@@ -1774,10 +2204,12 @@
         "band band--pale",
         "band",
         "band band--tight",
+        "band band--tight",
         "band",
-        "band band--pale"
+        "band band--pale",
+        "band band--tight"
       ],
-      "meaningfulWords": 706,
+      "meaningfulWords": 921,
       "primaryCta": {
         "text": "Jetzt bewerben",
         "href": "#jelentkezes",
@@ -1798,9 +2230,1008 @@
         }
       ],
       "images": [],
-      "internalLinkCount": 2,
+      "internalLinkCount": 5,
       "internalLinks": [
         "index.html",
+        "kontakt.html",
+        "ueber-uns.html",
+        "leistungen.html",
+        "projekte.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/munkaink.html",
+      "key": "work",
+      "locale": "hu",
+      "archetype": "work index",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Munkáink — élő weboldalak és ügyfélprojektek | Stratos",
+      "metaDescription": "Kertépítés, borbélyüzlet, mentáltréning — élő weboldalak, amiket építettünk. Mit kapott az ügyfél, milyen szerkezettel, és milyen vizuális irányban.",
+      "canonical": "https://stratosweb.hu/munkaink.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Munkáink — élő weboldalak és ügyfélprojektek | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Élő oldalak, nem portfólió-képek."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 5,
+      "sectionClasses": [
+        "phead phead--index",
+        "band",
+        "band band--tight",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 333,
+      "primaryCta": {
+        "text": "Beszéljünk a projektről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Megnézem a szolgáltatásokat",
+        "href": "szolgaltatasok.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Beszéljünk a projektről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Megnézem a szolgáltatásokat",
+          "href": "szolgaltatasok.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/work-3.jpg",
+          "alt": "A Rapidkert Kft. weboldalának nyitóképernyője: esti kertfotó, „Automata öntözőrendszerek telepítése és kertépítés” címsorral.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/work-1.jpg",
+          "alt": "A Barbershop Győr weboldalának nyitóképernyője: monokróm háttér, középen a logó, alatta arany „Időpontfoglalás” gomb és a menüpontok.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/work-2.jpg",
+          "alt": "A mentaltrening.com weboldalának nyitóképernyője: felülnézeti salakos teniszpálya, „Légy nyitott a változásra és szárnyakra lelsz!” címsorral.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/client-rapidkert.png",
+          "alt": "Rapidkert Kft.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/client-barbershop.png",
+          "alt": "Barbershop Győr",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/client-pille.png",
+          "alt": "Pille Sewing",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "munka-rapidkert.html",
+        "munka-barbershop.html",
+        "munka-mentaltrening.html",
+        "ugyfelszolgalat.html",
+        "szolgaltatasok.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/work.html",
+      "key": "work",
+      "locale": "en",
+      "archetype": "work index",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Work — live websites and client projects | Stratos",
+      "metaDescription": "Landscaping, a barbershop, mental coaching — live websites we built. What the client got, with what structure, and in what visual direction.",
+      "canonical": "https://stratosweb.hu/en/work.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Work — live websites and client projects | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Live sites, not portfolio pictures."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 5,
+      "sectionClasses": [
+        "phead phead--index",
+        "band",
+        "band band--tight",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 391,
+      "primaryCta": {
+        "text": "Let's talk about the project",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "See the services",
+        "href": "services.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Let's talk about the project",
+          "href": "contact.html",
+          "variant": "primary"
+        },
+        {
+          "text": "See the services",
+          "href": "services.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-3.jpg",
+          "alt": "The opening screen of the Rapidkert Kft. website: an evening garden photograph with the headline &quot;Automatic irrigation system installation and landscaping&quot;.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/work-1.jpg",
+          "alt": "The opening screen of the Barbershop Győr website: a monochrome background, the logo in the centre, a gold &quot;Book an appointment&quot; button beneath it and the menu items.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/work-2.jpg",
+          "alt": "The opening screen of the mentaltrening.com website: an overhead view of a clay tennis court with the headline &quot;Be open to change and you'll find your wings!&quot;",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-rapidkert.png",
+          "alt": "Rapidkert Kft.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-barbershop.png",
+          "alt": "Barbershop Győr",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-pille.png",
+          "alt": "Pille Sewing",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "work-rapidkert.html",
+        "work-barbershop.html",
+        "work-mentaltrening.html",
+        "contact.html",
+        "services.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/projekte.html",
+      "key": "work",
+      "locale": "de",
+      "archetype": "work index",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Projekte — Live-Websites und Kundenprojekte | Stratos",
+      "metaDescription": "Gartenbau, Barbershop, Mentaltraining — Live-Websites, die wir gebaut haben. Was der Kunde bekommen hat, mit welcher Struktur und in welcher visuellen Richtung.",
+      "canonical": "https://stratosweb.hu/de/projekte.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Projekte — Live-Websites und Kundenprojekte | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Live-Websites, keine Portfoliobilder."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 5,
+      "sectionClasses": [
+        "phead phead--index",
+        "band",
+        "band band--tight",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 361,
+      "primaryCta": {
+        "text": "Sprechen wir über das Projekt",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Leistungen ansehen",
+        "href": "leistungen.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Sprechen wir über das Projekt",
+          "href": "kontakt.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Leistungen ansehen",
+          "href": "leistungen.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-3.jpg",
+          "alt": "Der Startbildschirm der Website von Rapidkert Kft.: ein abendliches Gartenfoto mit der Überschrift „Installation automatischer Bewässerungssysteme und Gartenbau“.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/work-1.jpg",
+          "alt": "Der Startbildschirm der Website von Barbershop Győr: monochromer Hintergrund, das Logo in der Mitte, darunter ein goldener Button „Termin buchen“ und die Menüpunkte.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/work-2.jpg",
+          "alt": "Der Startbildschirm der Website mentaltrening.com: ein Sandplatz aus der Vogelperspektive mit der Überschrift „Sei offen für Veränderung, und du bekommst Flügel!“",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-rapidkert.png",
+          "alt": "Rapidkert Kft.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-barbershop.png",
+          "alt": "Barbershop Győr",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-pille.png",
+          "alt": "Pille Sewing",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "projekt-rapidkert.html",
+        "projekt-barbershop.html",
+        "projekt-mentaltrening.html",
+        "kontakt.html",
+        "leistungen.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/munka-rapidkert.html",
+      "key": "case-rapidkert",
+      "locale": "hu",
+      "archetype": "case study",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Rapidkert Kft. — kertépítés weboldal | Stratos",
+      "metaDescription": "Esettanulmány: automata öntözőrendszer és kertépítés weboldala. Egy esti kertfotó, egy kimondott szolgáltatás, egy díjmentes konzultáció mint egyetlen kérés.",
+      "canonical": "https://stratosweb.hu/munka-rapidkert.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Rapidkert Kft. — kertépítés weboldal | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/work-3.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Egy kert, amit este is meg akarsz nézni."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead phead--case",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight"
+      ],
+      "meaningfulWords": 407,
+      "primaryCta": {
+        "text": "Beszéljünk a projektedről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Beszéljünk a projektedről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/work-3.jpg",
+          "alt": "A Rapidkert Kft. weboldalának nyitóképernyője: esti kertfotó megvilágított járdával, „Automata öntözőrendszerek telepítése és kertépítés” címsorral és egy „Ingyenes konzultáció” gombbal.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "munkaink.html",
+        "kkv.html",
+        "munka-barbershop.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/work-rapidkert.html",
+      "key": "case-rapidkert",
+      "locale": "en",
+      "archetype": "case study",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Rapidkert Kft. — landscaping website | Stratos",
+      "metaDescription": "Case study: a website for automatic irrigation and landscaping. One evening garden photograph, one service named out loud, one free consultation as the only request.",
+      "canonical": "https://stratosweb.hu/en/work-rapidkert.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Rapidkert Kft. — landscaping website | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/work-3.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "A garden you want to look at after dark, too."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead phead--case",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight"
+      ],
+      "meaningfulWords": 495,
+      "primaryCta": {
+        "text": "Let's talk about your project",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Let's talk about your project",
+          "href": "contact.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-3.jpg",
+          "alt": "The opening screen of the Rapidkert Kft. website: an evening garden photograph with a lit path, the headline &quot;Automatic irrigation system installation and landscaping&quot; and a &quot;Free consultation&quot; button.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "work.html",
+        "web-design-sme.html",
+        "work-barbershop.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/projekt-rapidkert.html",
+      "key": "case-rapidkert",
+      "locale": "de",
+      "archetype": "case study",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Rapidkert Kft. — Website für Gartenbau | Stratos",
+      "metaDescription": "Fallstudie: eine Website für automatische Bewässerung und Gartenbau. Ein abendliches Gartenfoto, eine klar benannte Leistung, eine kostenlose Beratung als einzige Aufforderung.",
+      "canonical": "https://stratosweb.hu/de/projekt-rapidkert.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Rapidkert Kft. — Website für Gartenbau | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/work-3.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Ein Garten, den du auch abends ansehen willst."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead phead--case",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight"
+      ],
+      "meaningfulWords": 427,
+      "primaryCta": {
+        "text": "Sprechen wir über dein Projekt",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Sprechen wir über dein Projekt",
+          "href": "kontakt.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-3.jpg",
+          "alt": "Der Startbildschirm der Website von Rapidkert Kft.: ein abendliches Gartenfoto mit beleuchtetem Weg, der Überschrift „Installation automatischer Bewässerungssysteme und Gartenbau“ und einem Button „Kostenlose Beratung“.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "projekte.html",
+        "webdesign-kmu.html",
+        "projekt-barbershop.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/munka-barbershop.html",
+      "key": "case-barbershop",
+      "locale": "hu",
+      "archetype": "case study",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Barbershop Győr — foglalásvezérelt weboldal | Stratos",
+      "metaDescription": "Esettanulmány: borbélyüzlet weboldala, ahol a nyitóképernyő egyetlen dolga az időpontfoglalás. Valódi Google-értékelések, kétnyelvű felület.",
+      "canonical": "https://stratosweb.hu/munka-barbershop.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Barbershop Győr — foglalásvezérelt weboldal | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/work-1.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Egy oldal, aminek egyetlen dolga az időpont."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead phead--case",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight"
+      ],
+      "meaningfulWords": 388,
+      "primaryCta": {
+        "text": "Beszéljünk a projektedről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Beszéljünk a projektedről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/work-1.jpg",
+          "alt": "A Barbershop Győr weboldalának nyitóképernyője: monokróm háttérfotó, középen a logó, alatta arany „Időpontfoglalás” gomb, a menüpontok és egy megjelenített Google-értékelés.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "munkaink.html",
+        "kkv.html",
+        "munka-mentaltrening.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/work-barbershop.html",
+      "key": "case-barbershop",
+      "locale": "en",
+      "archetype": "case study",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Barbershop Győr — a booking-led website | Stratos",
+      "metaDescription": "Case study: a barbershop website where the opening screen has one job — booking. Real Google reviews, a bilingual interface.",
+      "canonical": "https://stratosweb.hu/en/work-barbershop.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Barbershop Győr — a booking-led website | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/work-1.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "A site whose only job is the appointment."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead phead--case",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight"
+      ],
+      "meaningfulWords": 477,
+      "primaryCta": {
+        "text": "Let's talk about your project",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Let's talk about your project",
+          "href": "contact.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-1.jpg",
+          "alt": "The opening screen of the Barbershop Győr website: a monochrome background photograph, the logo in the centre, a gold &quot;Book an appointment&quot; button beneath it, the menu items and a displayed Google review.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "work.html",
+        "web-design-sme.html",
+        "work-mentaltrening.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/projekt-barbershop.html",
+      "key": "case-barbershop",
+      "locale": "de",
+      "archetype": "case study",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Barbershop Győr — buchungsgesteuerte Website | Stratos",
+      "metaDescription": "Fallstudie: die Website eines Barbershops, deren Startbildschirm nur eine Aufgabe hat — die Terminbuchung. Echte Google-Bewertungen, zweisprachige Oberfläche.",
+      "canonical": "https://stratosweb.hu/de/projekt-barbershop.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Barbershop Győr — buchungsgesteuerte Website | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/work-1.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Eine Seite, deren einzige Aufgabe der Termin ist."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead phead--case",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight"
+      ],
+      "meaningfulWords": 425,
+      "primaryCta": {
+        "text": "Sprechen wir über dein Projekt",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Sprechen wir über dein Projekt",
+          "href": "kontakt.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-1.jpg",
+          "alt": "Der Startbildschirm der Website von Barbershop Győr: ein monochromes Hintergrundfoto, das Logo in der Mitte, darunter ein goldener Button „Termin buchen“, die Menüpunkte und eine eingeblendete Google-Bewertung.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "projekte.html",
+        "webdesign-kmu.html",
+        "projekt-mentaltrening.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/munka-mentaltrening.html",
+      "key": "case-mentaltrening",
+      "locale": "hu",
+      "archetype": "case study",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "mentáliserő.hu — mentáltréning weboldal | Stratos",
+      "metaDescription": "Esettanulmány: sportolóknak szóló mentáltréning weboldala. Egyszemélyes szolgáltatás, személyes hangvétel, egyetlen döntés a nyitóképernyőn.",
+      "canonical": "https://stratosweb.hu/munka-mentaltrening.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "mentáliserő.hu — mentáltréning weboldal | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/work-2.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Egy szakember, egy ígéret, egy gomb."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead phead--case",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight"
+      ],
+      "meaningfulWords": 369,
+      "primaryCta": {
+        "text": "Beszéljünk a projektedről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Beszéljünk a projektedről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/work-2.jpg",
+          "alt": "A mentaltrening.com weboldalának nyitóképernyője: felülnézeti salakos teniszpálya adogató játékossal, „Légy nyitott a változásra és szárnyakra lelsz!” címsorral és egy „Kezdjük” gombbal.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "munkaink.html",
+        "branding.html",
+        "munka-rapidkert.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/work-mentaltrening.html",
+      "key": "case-mentaltrening",
+      "locale": "en",
+      "archetype": "case study",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "mentáliserő.hu — mental coaching website | Stratos",
+      "metaDescription": "Case study: a mental coaching website for athletes. A one-person practice, a personal tone of voice, a single decision on the opening screen.",
+      "canonical": "https://stratosweb.hu/en/work-mentaltrening.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "mentáliserő.hu — mental coaching website | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/work-2.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "One practitioner, one promise, one button."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead phead--case",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight"
+      ],
+      "meaningfulWords": 461,
+      "primaryCta": {
+        "text": "Let's talk about your project",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Let's talk about your project",
+          "href": "contact.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-2.jpg",
+          "alt": "The opening screen of the mentaltrening.com website: an overhead view of a clay tennis court with a player serving, the headline &quot;Be open to change and you'll find your wings!&quot; and a &quot;Let's begin&quot; button.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "work.html",
+        "branding.html",
+        "work-rapidkert.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/projekt-mentaltrening.html",
+      "key": "case-mentaltrening",
+      "locale": "de",
+      "archetype": "case study",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "mentáliserő.hu — Website für Mentaltraining | Stratos",
+      "metaDescription": "Fallstudie: eine Website für Mentaltraining im Sport. Eine Ein-Personen-Praxis, ein persönlicher Ton, eine einzige Entscheidung auf dem Startbildschirm.",
+      "canonical": "https://stratosweb.hu/de/projekt-mentaltrening.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "mentáliserő.hu — Website für Mentaltraining | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/work-2.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Ein Experte, ein Versprechen, ein Button."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead phead--case",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--tight"
+      ],
+      "meaningfulWords": 398,
+      "primaryCta": {
+        "text": "Sprechen wir über dein Projekt",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Sprechen wir über dein Projekt",
+          "href": "kontakt.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-2.jpg",
+          "alt": "Der Startbildschirm der Website mentaltrening.com: ein Sandplatz aus der Vogelperspektive mit aufschlagender Spielerin, der Überschrift „Sei offen für Veränderung, und du bekommst Flügel!“ und einem Button „Fangen wir an“.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "projekte.html",
+        "branding.html",
+        "projekt-rapidkert.html",
         "kontakt.html"
       ],
       "faults": []
@@ -1813,7 +3244,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Blog — webdesign és online marketing tippek | Stratos",
       "metaDescription": "Érthető, szakzsargon nélküli útmutatók vállalkozóknak: SEO, weboldal árak, Google Cégprofil, hirdetések és a leggyakoribb weboldal-hibák.",
-      "canonical": "https://media-stratos.com/blog.html",
+      "canonical": "https://stratosweb.hu/blog.html",
       "hreflang": [
         "hu",
         "en",
@@ -1821,7 +3252,7 @@
         "x-default"
       ],
       "ogTitle": "Blog — webdesign és online marketing tippek | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1837,16 +3268,18 @@
         3,
         3,
         3,
+        2,
         2
       ],
-      "sectionCount": 4,
+      "sectionCount": 5,
       "sectionClasses": [
-        "phead",
+        "phead phead--index",
+        "band band--tight",
         "band band--tight",
         "band band--tight",
         "band"
       ],
-      "meaningfulWords": 252,
+      "meaningfulWords": 289,
       "primaryCta": {
         "text": "Árajánlatot kérek",
         "href": "arajanlat.html",
@@ -1913,12 +3346,19 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 9,
+      "internalLinkCount": 12,
       "internalLinks": [
         "index.html",
-        "blog.html",
-        "arajanlat.html",
-        "ugyfelszolgalat.html"
+        "blog-google-elso-oldal.html",
+        "blog-weboldal-arak.html",
+        "blog-google-cegprofil.html",
+        "blog-google-vagy-facebook.html",
+        "blog-elavult-weboldal.html",
+        "blog-miert-nem-hoz-ugyfelet.html",
+        "szolgaltatasok.html",
+        "munkaink.html",
+        "ugyfelszolgalat.html",
+        "arajanlat.html"
       ],
       "faults": []
     },
@@ -1930,7 +3370,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Blog — web design and online marketing tips | Stratos",
       "metaDescription": "Clear, jargon-free guides for business owners: SEO, website pricing, Google Business Profile, advertising and the most common website mistakes.",
-      "canonical": "https://media-stratos.com/en/blog.html",
+      "canonical": "https://stratosweb.hu/en/blog.html",
       "hreflang": [
         "hu",
         "en",
@@ -1938,7 +3378,7 @@
         "x-default"
       ],
       "ogTitle": "Blog — web design and online marketing tips | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -1954,16 +3394,18 @@
         3,
         3,
         3,
+        2,
         2
       ],
-      "sectionCount": 4,
+      "sectionCount": 5,
       "sectionClasses": [
-        "phead",
+        "phead phead--index",
+        "band band--tight",
         "band band--tight",
         "band band--tight",
         "band"
       ],
-      "meaningfulWords": 306,
+      "meaningfulWords": 349,
       "primaryCta": {
         "text": "Get a quote",
         "href": "quote.html",
@@ -2030,12 +3472,19 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 9,
+      "internalLinkCount": 12,
       "internalLinks": [
         "index.html",
-        "blog.html",
-        "quote.html",
-        "contact.html"
+        "blog-google-first-page.html",
+        "blog-website-cost.html",
+        "blog-google-business-profile.html",
+        "blog-google-or-facebook.html",
+        "blog-outdated-website.html",
+        "blog-no-enquiries.html",
+        "services.html",
+        "work.html",
+        "contact.html",
+        "quote.html"
       ],
       "faults": []
     },
@@ -2047,7 +3496,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Blog — Tipps zu Webdesign und Online-Marketing | Stratos",
       "metaDescription": "Verständliche Leitfäden ohne Fachjargon für Unternehmer: SEO, Website-Preise, Google-Unternehmensprofil, Werbung und die häufigsten Website-Fehler.",
-      "canonical": "https://media-stratos.com/de/blog.html",
+      "canonical": "https://stratosweb.hu/de/blog.html",
       "hreflang": [
         "hu",
         "en",
@@ -2055,7 +3504,7 @@
         "x-default"
       ],
       "ogTitle": "Blog — Tipps zu Webdesign und Online-Marketing | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -2071,16 +3520,18 @@
         3,
         3,
         3,
+        2,
         2
       ],
-      "sectionCount": 4,
+      "sectionCount": 5,
       "sectionClasses": [
-        "phead",
+        "phead phead--index",
+        "band band--tight",
         "band band--tight",
         "band band--tight",
         "band"
       ],
-      "meaningfulWords": 275,
+      "meaningfulWords": 320,
       "primaryCta": {
         "text": "Angebot anfordern",
         "href": "angebot.html",
@@ -2147,11 +3598,1359 @@
           "hasDimensions": true
         }
       ],
-      "internalLinkCount": 9,
+      "internalLinkCount": 12,
+      "internalLinks": [
+        "index.html",
+        "blog-google-erste-seite.html",
+        "blog-website-kosten.html",
+        "blog-google-unternehmensprofil.html",
+        "blog-google-oder-facebook.html",
+        "blog-veraltete-website.html",
+        "blog-keine-anfragen.html",
+        "leistungen.html",
+        "projekte.html",
+        "kontakt.html",
+        "angebot.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/blog-google-elso-oldal.html",
+      "key": "post-seo",
+      "locale": "hu",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
+      "metaDescription": "Nem varázslat kell a Google első oldalához, hanem rendszer. Hét lépés, amit egy kisvállalkozás magától is végig tud csinálni, szakzsargon nélkül.",
+      "canonical": "https://stratosweb.hu/blog-google-elso-oldal.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Hogyan kerülj a Google első oldalára? 7 lépés"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 568,
+      "primaryCta": {
+        "text": "Kérdésem van erről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Kérdésem van erről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/blog-1.jpg",
+          "alt": "Illusztráció a keresőoptimalizálásról szóló cikkhez.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 7,
       "internalLinks": [
         "index.html",
         "blog.html",
+        "blog-google-cegprofil.html",
+        "blog-miert-nem-hoz-ugyfelet.html",
+        "kkv.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/blog-google-first-page.html",
+      "key": "post-seo",
+      "locale": "en",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "How to reach Google's first page — 7 steps | Stratos",
+      "metaDescription": "Getting onto Google's first page doesn't take magic, it takes a system. Seven steps a small business can work through on its own, without jargon.",
+      "canonical": "https://stratosweb.hu/en/blog-google-first-page.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "How to reach Google's first page — 7 steps"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 646,
+      "primaryCta": {
+        "text": "I have a question about this",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "I have a question about this",
+          "href": "contact.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-1.jpg",
+          "alt": "Illustration for the article about search engine optimisation.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 7,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-google-business-profile.html",
+        "blog-no-enquiries.html",
+        "web-design-sme.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/blog-google-erste-seite.html",
+      "key": "post-seo",
+      "locale": "de",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
+      "metaDescription": "Auf Googles erste Seite zu kommen braucht keine Magie, sondern ein System. Sieben Schritte, die ein kleines Unternehmen selbst durchgehen kann, ohne Fachjargon.",
+      "canonical": "https://stratosweb.hu/de/blog-google-erste-seite.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Wie kommst du auf Googles erste Seite? 7 Schritte"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 615,
+      "primaryCta": {
+        "text": "Ich habe dazu eine Frage",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Ich habe dazu eine Frage",
+          "href": "kontakt.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-1.jpg",
+          "alt": "Illustration zum Artikel über Suchmaschinenoptimierung.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 7,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-google-unternehmensprofil.html",
+        "blog-keine-anfragen.html",
+        "webdesign-kmu.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/blog-weboldal-arak.html",
+      "key": "post-arak",
+      "locale": "hu",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Mennyibe kerül egy weboldal 2026-ban? | Stratos",
+      "metaDescription": "A weboldal ára nem egy szám, hanem egy tartomány. Megmutatjuk, mi hajtja fel a költséget, mi nincs benne az ajánlatokban, és hogyan számold ki, mennyit ér neked.",
+      "canonical": "https://stratosweb.hu/blog-weboldal-arak.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Mennyibe kerül egy weboldal 2026-ban? | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-2.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Mennyibe kerül egy weboldal 2026-ban?"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 508,
+      "primaryCta": {
+        "text": "Kérdésem van erről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Kérdésem van erről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/blog-2.jpg",
+          "alt": "Illusztráció a weboldal árakról szóló cikkhez.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-elavult-weboldal.html",
+        "kkv.html",
+        "arajanlat.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/blog-website-cost.html",
+      "key": "post-arak",
+      "locale": "en",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "How much does a website cost in 2026? | Stratos",
+      "metaDescription": "A website's price isn't a number, it's a range. We show what drives the cost, what proposals leave out, and how to work out what it's worth to you.",
+      "canonical": "https://stratosweb.hu/en/blog-website-cost.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "How much does a website cost in 2026? | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-2.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "How much does a website cost in 2026?"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 609,
+      "primaryCta": {
+        "text": "I have a question about this",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "I have a question about this",
+          "href": "contact.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-2.jpg",
+          "alt": "Illustration for the article about website pricing.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-outdated-website.html",
+        "web-design-sme.html",
+        "quote.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/blog-website-kosten.html",
+      "key": "post-arak",
+      "locale": "de",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Was kostet eine Website 2026? | Stratos",
+      "metaDescription": "Der Preis einer Website ist keine Zahl, sondern eine Spanne. Wir zeigen, was die Kosten treibt, was in Angeboten fehlt und wie du berechnest, was sie dir wert ist.",
+      "canonical": "https://stratosweb.hu/de/blog-website-kosten.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Was kostet eine Website 2026? | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-2.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Was kostet eine Website 2026?"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 572,
+      "primaryCta": {
+        "text": "Ich habe dazu eine Frage",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Ich habe dazu eine Frage",
+          "href": "kontakt.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-2.jpg",
+          "alt": "Illustration zum Artikel über Website-Preise.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-veraltete-website.html",
+        "webdesign-kmu.html",
         "angebot.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/blog-google-cegprofil.html",
+      "key": "post-cegprofil",
+      "locale": "hu",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Google Cégprofil beállítása lépésről lépésre | Stratos",
+      "metaDescription": "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Nyolc lépés a beállításától a rendszeres karbantartásáig.",
+      "canonical": "https://stratosweb.hu/blog-google-cegprofil.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Google Cégprofil beállítása lépésről lépésre | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-3.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Google Cégprofil beállítása lépésről lépésre"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 519,
+      "primaryCta": {
+        "text": "Kérdésem van erről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Kérdésem van erről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/blog-3.jpg",
+          "alt": "Illusztráció a Google Cégprofilról szóló cikkhez.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-google-elso-oldal.html",
+        "blog-google-vagy-facebook.html",
+        "hirdeteskezeles.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/blog-google-business-profile.html",
+      "key": "post-cegprofil",
+      "locale": "en",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Setting up a Google Business Profile, step by step | Stratos",
+      "metaDescription": "A Google Business Profile is the most powerful free client acquisition tool for local businesses. Eight steps from setting it up to keeping it current.",
+      "canonical": "https://stratosweb.hu/en/blog-google-business-profile.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Setting up a Google Business Profile, step by step | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-3.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Setting up a Google Business Profile, step by step"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 593,
+      "primaryCta": {
+        "text": "I have a question about this",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "I have a question about this",
+          "href": "contact.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-3.jpg",
+          "alt": "Illustration for the article about the Google Business Profile.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-google-first-page.html",
+        "blog-google-or-facebook.html",
+        "ads-management.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/blog-google-unternehmensprofil.html",
+      "key": "post-cegprofil",
+      "locale": "de",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Google-Unternehmensprofil Schritt für Schritt einrichten | Stratos",
+      "metaDescription": "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Acht Schritte von der Einrichtung bis zur laufenden Pflege.",
+      "canonical": "https://stratosweb.hu/de/blog-google-unternehmensprofil.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Google-Unternehmensprofil Schritt für Schritt einrichten | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-3.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Google-Unternehmensprofil Schritt für Schritt einrichten"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 553,
+      "primaryCta": {
+        "text": "Ich habe dazu eine Frage",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Ich habe dazu eine Frage",
+          "href": "kontakt.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-3.jpg",
+          "alt": "Illustration zum Artikel über das Google-Unternehmensprofil.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-google-erste-seite.html",
+        "blog-google-oder-facebook.html",
+        "werbeanzeigen.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/blog-google-vagy-facebook.html",
+      "key": "post-hirdetes",
+      "locale": "hu",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban | Stratos",
+      "metaDescription": "Rossz a kérdés. Megmutatjuk, melyik platform mire való, mikor melyiket érdemes választani, és miért a rendszer hozza az ügyfeleket, nem a platform.",
+      "canonical": "https://stratosweb.hu/blog-google-vagy-facebook.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-4.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 433,
+      "primaryCta": {
+        "text": "Kérdésem van erről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Kérdésem van erről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/blog-4.jpg",
+          "alt": "Illusztráció a Google és Facebook hirdetésekről szóló cikkhez.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-miert-nem-hoz-ugyfelet.html",
+        "blog-google-cegprofil.html",
+        "hirdeteskezeles.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/blog-google-or-facebook.html",
+      "key": "post-hirdetes",
+      "locale": "en",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Google or Facebook ads — which is worth it in 2026? | Stratos",
+      "metaDescription": "It's the wrong question. We show what each platform is for, when to choose which, and why clients come from the system, not the platform.",
+      "canonical": "https://stratosweb.hu/en/blog-google-or-facebook.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Google or Facebook ads — which is worth it in 2026? | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-4.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Google or Facebook ads — which is worth it in 2026?"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 486,
+      "primaryCta": {
+        "text": "I have a question about this",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "I have a question about this",
+          "href": "contact.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-4.jpg",
+          "alt": "Illustration for the article about Google and Facebook advertising.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-no-enquiries.html",
+        "blog-google-business-profile.html",
+        "ads-management.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/blog-google-oder-facebook.html",
+      "key": "post-hirdetes",
+      "locale": "de",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Google- oder Facebook-Werbung? Was lohnt sich 2026? | Stratos",
+      "metaDescription": "Falsche Frage. Wir zeigen, wofür welche Plattform gut ist, wann sich welche lohnt und warum die Kunden vom System kommen, nicht von der Plattform.",
+      "canonical": "https://stratosweb.hu/de/blog-google-oder-facebook.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Google- oder Facebook-Werbung? Was lohnt sich 2026? | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-4.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Google- oder Facebook-Werbung? Was lohnt sich 2026?"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 468,
+      "primaryCta": {
+        "text": "Ich habe dazu eine Frage",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Ich habe dazu eine Frage",
+          "href": "kontakt.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-4.jpg",
+          "alt": "Illustration zum Artikel über Google- und Facebook-Werbung.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-keine-anfragen.html",
+        "blog-google-unternehmensprofil.html",
+        "werbeanzeigen.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/blog-elavult-weboldal.html",
+      "key": "post-elavult",
+      "locale": "hu",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Mennyi ügyfelet veszítesz egy elavult weboldal miatt? | Stratos",
+      "metaDescription": "Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Végigvezetünk a számoláson, és megmutatjuk, mit érdemes megmérni előtte.",
+      "canonical": "https://stratosweb.hu/blog-elavult-weboldal.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Mennyi ügyfelet veszítesz egy elavult weboldal miatt? | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-5.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Mennyi ügyfelet veszítesz egy elavult weboldal miatt?"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 460,
+      "primaryCta": {
+        "text": "Kérdésem van erről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Kérdésem van erről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/blog-5.jpg",
+          "alt": "Illusztráció az elavult weboldal költségéről szóló cikkhez.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-miert-nem-hoz-ugyfelet.html",
+        "blog-weboldal-arak.html",
+        "kkv.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/blog-outdated-website.html",
+      "key": "post-elavult",
+      "locale": "en",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "How many clients is an outdated website costing you? | Stratos",
+      "metaDescription": "There's one number no business owner ever sees: the clients they lost. We walk through the calculation and show what to measure first.",
+      "canonical": "https://stratosweb.hu/en/blog-outdated-website.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "How many clients is an outdated website costing you? | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-5.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "How many clients is an outdated website costing you?"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 540,
+      "primaryCta": {
+        "text": "I have a question about this",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "I have a question about this",
+          "href": "contact.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-5.jpg",
+          "alt": "Illustration for the article about the cost of an outdated website.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-no-enquiries.html",
+        "blog-website-cost.html",
+        "web-design-sme.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/blog-veraltete-website.html",
+      "key": "post-elavult",
+      "locale": "de",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Wie viele Kunden kostet dich eine veraltete Website? | Stratos",
+      "metaDescription": "Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Wir gehen die Rechnung durch und zeigen, was du vorher messen solltest.",
+      "canonical": "https://stratosweb.hu/de/blog-veraltete-website.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Wie viele Kunden kostet dich eine veraltete Website? | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-5.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Wie viele Kunden kostet dich eine veraltete Website?"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 512,
+      "primaryCta": {
+        "text": "Ich habe dazu eine Frage",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Ich habe dazu eine Frage",
+          "href": "kontakt.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-5.jpg",
+          "alt": "Illustration zum Artikel über die Kosten einer veralteten Website.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-keine-anfragen.html",
+        "blog-website-kosten.html",
+        "webdesign-kmu.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/blog-miert-nem-hoz-ugyfelet.html",
+      "key": "post-konverzio",
+      "locale": "hu",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba | Stratos",
+      "metaDescription": "Van weboldalad, mégsem jönnek az ügyfelek. A hét leggyakoribb ok, amit a legtöbb vállalkozás elkövet — és hogyan javítsd ki mindegyiket.",
+      "canonical": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-6.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 478,
+      "primaryCta": {
+        "text": "Kérdésem van erről",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Kérdésem van erről",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/blog-6.jpg",
+          "alt": "Illusztráció a weboldal konverziós hibáiról szóló cikkhez.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-elavult-weboldal.html",
+        "blog-google-elso-oldal.html",
+        "munkaink.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/blog-no-enquiries.html",
+      "key": "post-konverzio",
+      "locale": "en",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Why isn't your website bringing clients? 7 common mistakes | Stratos",
+      "metaDescription": "You have a website but the clients aren't coming. The seven most common causes most businesses run into — and how to fix each one.",
+      "canonical": "https://stratosweb.hu/en/blog-no-enquiries.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Why isn't your website bringing clients? 7 common mistakes | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-6.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Why isn't your website bringing clients? 7 common mistakes"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 545,
+      "primaryCta": {
+        "text": "I have a question about this",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "I have a question about this",
+          "href": "contact.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-6.jpg",
+          "alt": "Illustration for the article about website conversion mistakes.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-outdated-website.html",
+        "blog-google-first-page.html",
+        "work.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/blog-keine-anfragen.html",
+      "key": "post-konverzio",
+      "locale": "de",
+      "archetype": "article",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Warum bringt deine Website keine Kunden? 7 häufige Fehler | Stratos",
+      "metaDescription": "Du hast eine Website, aber die Kunden bleiben aus. Die sieben häufigsten Ursachen, in die die meisten Unternehmen laufen — und wie du jede behebst.",
+      "canonical": "https://stratosweb.hu/de/blog-keine-anfragen.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Warum bringt deine Website keine Kunden? 7 häufige Fehler | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/blog-6.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Warum bringt deine Website keine Kunden? 7 häufige Fehler"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead phead--article",
+        "band band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 545,
+      "primaryCta": {
+        "text": "Ich habe dazu eine Frage",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Ich habe dazu eine Frage",
+          "href": "kontakt.html",
+          "variant": "primary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/blog-6.jpg",
+          "alt": "Illustration zum Artikel über Conversion-Fehler auf Websites.",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 6,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "blog-veraltete-website.html",
+        "blog-google-erste-seite.html",
+        "projekte.html",
         "kontakt.html"
       ],
       "faults": []
@@ -2162,59 +4961,68 @@
       "locale": "hu",
       "archetype": "contact",
       "template": "_build/build.py SHELL + _build/pages/*.html",
-      "title": "Ügyfélszolgálat és kapcsolat | Stratos",
-      "metaDescription": "Kérdésed van, vagy ingyenes konzultációt kérnél? Írj e-mailt, hívj minket, vagy töltsd ki az űrlapot — minden megkeresésre a lehető leghamarabb válaszolunk.",
-      "canonical": "https://media-stratos.com/ugyfelszolgalat.html",
+      "title": "Kapcsolat és projektindítás | Stratos",
+      "metaDescription": "Így indul egy Stratos projekt: rövid megkeresés vagy részletes igényfelmérő, díjmentes konzultáció, majd egyedi ajánlat. Írj, hívj, vagy töltsd ki az űrlapot.",
+      "canonical": "https://stratosweb.hu/ugyfelszolgalat.html",
       "hreflang": [
         "hu",
         "en",
         "de",
         "x-default"
       ],
-      "ogTitle": "Ügyfélszolgálat és kapcsolat | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogTitle": "Kapcsolat és projektindítás | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
-        "Vedd fel a kapcsolatot."
+        "Kezdjük ott, hogy elmondod."
       ],
       "h1Count": 1,
       "headingLevels": [
         1,
+        2,
+        3,
+        3,
+        2,
+        3,
         3,
         3,
         3,
         2,
+        2,
         2
       ],
-      "sectionCount": 4,
+      "sectionCount": 7,
       "sectionClasses": [
-        "phead",
+        "phead phead--index",
         "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
         "band band--tight",
-        "band band--pale"
+        "band band--tight"
       ],
-      "meaningfulWords": 179,
+      "meaningfulWords": 564,
       "primaryCta": {
-        "text": "Kitöltöm a kérdőívet",
+        "text": "Kitöltöm az igényfelmérőt",
         "href": "arajanlat.html",
         "variant": "primary"
       },
       "secondaryCta": {
-        "text": "Inkább csak kérdeznék",
+        "text": "Írok egy üzenetet",
         "href": "#uzenet",
         "variant": "secondary"
       },
       "ctas": [
         {
-          "text": "Kitöltöm a kérdőívet",
-          "href": "arajanlat.html",
-          "variant": "primary"
-        },
-        {
-          "text": "Inkább csak kérdeznék",
+          "text": "Írok egy üzenetet",
           "href": "#uzenet",
           "variant": "secondary"
+        },
+        {
+          "text": "Kitöltöm az igényfelmérőt",
+          "href": "arajanlat.html",
+          "variant": "primary"
         }
       ],
       "forms": [
@@ -2224,15 +5032,17 @@
         }
       ],
       "images": [],
-      "internalLinkCount": 3,
+      "internalLinkCount": 7,
       "internalLinks": [
         "index.html",
         "arajanlat.html",
-        "adatkezelesi-tajekoztato.html"
+        "adatkezelesi-tajekoztato.html",
+        "szolgaltatasok.html",
+        "munkaink.html",
+        "rolunk.html",
+        "impact-program.html"
       ],
-      "faults": [
-        "heading order skips h1 -> h3"
-      ]
+      "faults": []
     },
     {
       "route": "/en/contact.html",
@@ -2240,59 +5050,68 @@
       "locale": "en",
       "archetype": "contact",
       "template": "_build/build.py SHELL + _build/pages/*.html",
-      "title": "Contact and support | Stratos",
-      "metaDescription": "Got a question, or want a free consultation? Send an email, call us, or fill in the form — we answer every enquiry as soon as we can.",
-      "canonical": "https://media-stratos.com/en/contact.html",
+      "title": "Contact and starting a project | Stratos",
+      "metaDescription": "How a Stratos project starts: a short enquiry or a detailed questionnaire, a free consultation, then a tailored proposal. Write, call, or fill in the form.",
+      "canonical": "https://stratosweb.hu/en/contact.html",
       "hreflang": [
         "hu",
         "en",
         "de",
         "x-default"
       ],
-      "ogTitle": "Contact and support | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogTitle": "Contact and starting a project | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
-        "Get in touch."
+        "It starts when you tell us."
       ],
       "h1Count": 1,
       "headingLevels": [
         1,
+        2,
+        3,
+        3,
+        2,
+        3,
         3,
         3,
         3,
         2,
+        2,
         2
       ],
-      "sectionCount": 4,
+      "sectionCount": 7,
       "sectionClasses": [
-        "phead",
+        "phead phead--index",
         "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
         "band band--tight",
-        "band band--pale"
+        "band band--tight"
       ],
-      "meaningfulWords": 208,
+      "meaningfulWords": 690,
       "primaryCta": {
         "text": "Fill in the questionnaire",
         "href": "quote.html",
         "variant": "primary"
       },
       "secondaryCta": {
-        "text": "I'd rather just ask",
+        "text": "Write a message",
         "href": "#uzenet",
         "variant": "secondary"
       },
       "ctas": [
         {
+          "text": "Write a message",
+          "href": "#uzenet",
+          "variant": "secondary"
+        },
+        {
           "text": "Fill in the questionnaire",
           "href": "quote.html",
           "variant": "primary"
-        },
-        {
-          "text": "I'd rather just ask",
-          "href": "#uzenet",
-          "variant": "secondary"
         }
       ],
       "forms": [
@@ -2302,15 +5121,17 @@
         }
       ],
       "images": [],
-      "internalLinkCount": 3,
+      "internalLinkCount": 7,
       "internalLinks": [
         "index.html",
         "quote.html",
-        "privacy-policy.html"
+        "privacy-policy.html",
+        "services.html",
+        "work.html",
+        "about.html",
+        "impact-program.html"
       ],
-      "faults": [
-        "heading order skips h1 -> h3"
-      ]
+      "faults": []
     },
     {
       "route": "/de/kontakt.html",
@@ -2318,59 +5139,68 @@
       "locale": "de",
       "archetype": "contact",
       "template": "_build/build.py SHELL + _build/pages/*.html",
-      "title": "Kontakt und Support | Stratos",
-      "metaDescription": "Eine Frage oder Interesse an einer kostenlosen Beratung? Schreib eine E-Mail, ruf an oder füll das Formular aus — wir antworten auf jede Anfrage so schnell wie möglich.",
-      "canonical": "https://media-stratos.com/de/kontakt.html",
+      "title": "Kontakt und Projektstart | Stratos",
+      "metaDescription": "So beginnt ein Stratos-Projekt: kurze Anfrage oder ausführlicher Fragebogen, kostenlose Beratung, dann ein individuelles Angebot. Schreib, ruf an oder füll das Formular aus.",
+      "canonical": "https://stratosweb.hu/de/kontakt.html",
       "hreflang": [
         "hu",
         "en",
         "de",
         "x-default"
       ],
-      "ogTitle": "Kontakt und Support | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogTitle": "Kontakt und Projektstart | Stratos",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
-        "Nimm Kontakt auf."
+        "Es beginnt damit, dass du es erzählst."
       ],
       "h1Count": 1,
       "headingLevels": [
         1,
+        2,
+        3,
+        3,
+        2,
+        3,
         3,
         3,
         3,
         2,
+        2,
         2
       ],
-      "sectionCount": 4,
+      "sectionCount": 7,
       "sectionClasses": [
-        "phead",
+        "phead phead--index",
         "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
         "band band--tight",
-        "band band--pale"
+        "band band--tight"
       ],
-      "meaningfulWords": 200,
+      "meaningfulWords": 656,
       "primaryCta": {
         "text": "Fragebogen ausfüllen",
         "href": "angebot.html",
         "variant": "primary"
       },
       "secondaryCta": {
-        "text": "Ich möchte lieber nur fragen",
+        "text": "Nachricht schreiben",
         "href": "#uzenet",
         "variant": "secondary"
       },
       "ctas": [
         {
+          "text": "Nachricht schreiben",
+          "href": "#uzenet",
+          "variant": "secondary"
+        },
+        {
           "text": "Fragebogen ausfüllen",
           "href": "angebot.html",
           "variant": "primary"
-        },
-        {
-          "text": "Ich möchte lieber nur fragen",
-          "href": "#uzenet",
-          "variant": "secondary"
         }
       ],
       "forms": [
@@ -2380,15 +5210,17 @@
         }
       ],
       "images": [],
-      "internalLinkCount": 3,
+      "internalLinkCount": 7,
       "internalLinks": [
         "index.html",
         "angebot.html",
-        "datenschutz.html"
+        "datenschutz.html",
+        "leistungen.html",
+        "projekte.html",
+        "ueber-uns.html",
+        "impact-programm.html"
       ],
-      "faults": [
-        "heading order skips h1 -> h3"
-      ]
+      "faults": []
     },
     {
       "route": "/arajanlat.html",
@@ -2398,7 +5230,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Weboldal igényfelmérő kérdőív | Stratos",
       "metaDescription": "Töltsd ki a kérdőívet pár perc alatt, és a válaszaid alapján személyre szabott árajánlattal keresünk.",
-      "canonical": "https://media-stratos.com/arajanlat.html",
+      "canonical": "https://stratosweb.hu/arajanlat.html",
       "hreflang": [
         "hu",
         "en",
@@ -2406,27 +5238,32 @@
         "x-default"
       ],
       "ogTitle": "Weboldal igényfelmérő kérdőív | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": false,
-      "h1": [],
-      "h1Count": 0,
-      "headingLevels": [],
+      "h1": [
+        "Weboldal igényfelmérő kérdőív"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1
+      ],
       "sectionCount": 1,
       "sectionClasses": [
         "quiz"
       ],
-      "meaningfulWords": 2,
+      "meaningfulWords": 77,
       "primaryCta": null,
       "secondaryCta": null,
       "ctas": [],
       "forms": [],
       "images": [],
-      "internalLinkCount": 0,
-      "internalLinks": [],
+      "internalLinkCount": 1,
+      "internalLinks": [
+        "ugyfelszolgalat.html"
+      ],
       "faults": [
-        "no H1 in the served document",
-        "thin page (2 words)",
+        "thin page (77 words)",
         "no primary CTA"
       ]
     },
@@ -2438,7 +5275,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Website requirements questionnaire | Stratos",
       "metaDescription": "Fill in the questionnaire in a few minutes and we'll come back with a quote tailored to your answers.",
-      "canonical": "https://media-stratos.com/en/quote.html",
+      "canonical": "https://stratosweb.hu/en/quote.html",
       "hreflang": [
         "hu",
         "en",
@@ -2446,27 +5283,32 @@
         "x-default"
       ],
       "ogTitle": "Website requirements questionnaire | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": false,
-      "h1": [],
-      "h1Count": 0,
-      "headingLevels": [],
+      "h1": [
+        "Website requirements questionnaire"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1
+      ],
       "sectionCount": 1,
       "sectionClasses": [
         "quiz"
       ],
-      "meaningfulWords": 2,
+      "meaningfulWords": 92,
       "primaryCta": null,
       "secondaryCta": null,
       "ctas": [],
       "forms": [],
       "images": [],
-      "internalLinkCount": 0,
-      "internalLinks": [],
+      "internalLinkCount": 1,
+      "internalLinks": [
+        "contact.html"
+      ],
       "faults": [
-        "no H1 in the served document",
-        "thin page (2 words)",
+        "thin page (92 words)",
         "no primary CTA"
       ]
     },
@@ -2478,7 +5320,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Fragebogen zur Website-Anforderung | Stratos",
       "metaDescription": "Füll den Fragebogen in wenigen Minuten aus, und wir melden uns mit einem auf deine Antworten zugeschnittenen Angebot.",
-      "canonical": "https://media-stratos.com/de/angebot.html",
+      "canonical": "https://stratosweb.hu/de/angebot.html",
       "hreflang": [
         "hu",
         "en",
@@ -2486,27 +5328,32 @@
         "x-default"
       ],
       "ogTitle": "Fragebogen zur Website-Anforderung | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": false,
-      "h1": [],
-      "h1Count": 0,
-      "headingLevels": [],
+      "h1": [
+        "Website- Bedarfs- fragebogen"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1
+      ],
       "sectionCount": 1,
       "sectionClasses": [
         "quiz"
       ],
-      "meaningfulWords": 2,
+      "meaningfulWords": 85,
       "primaryCta": null,
       "secondaryCta": null,
       "ctas": [],
       "forms": [],
       "images": [],
-      "internalLinkCount": 0,
-      "internalLinks": [],
+      "internalLinkCount": 1,
+      "internalLinks": [
+        "kontakt.html"
+      ],
       "faults": [
-        "no H1 in the served document",
-        "thin page (2 words)",
+        "thin page (85 words)",
         "no primary CTA"
       ]
     },
@@ -2518,7 +5365,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Adatkezelési tájékoztató | Stratos",
       "metaDescription": "Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR szerint — és milyen jogaid vannak.",
-      "canonical": "https://media-stratos.com/adatkezelesi-tajekoztato.html",
+      "canonical": "https://stratosweb.hu/adatkezelesi-tajekoztato.html",
       "hreflang": [
         "hu",
         "en",
@@ -2526,7 +5373,7 @@
         "x-default"
       ],
       "ogTitle": "Adatkezelési tájékoztató | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -2559,7 +5406,7 @@
       ],
       "sectionCount": 2,
       "sectionClasses": [
-        "phead",
+        "phead phead--quiet",
         "band band--tight"
       ],
       "meaningfulWords": 971,
@@ -2582,7 +5429,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Privacy policy | Stratos",
       "metaDescription": "How we collect, use and process personal data under the GDPR — and what rights you have.",
-      "canonical": "https://media-stratos.com/en/privacy-policy.html",
+      "canonical": "https://stratosweb.hu/en/privacy-policy.html",
       "hreflang": [
         "hu",
         "en",
@@ -2590,7 +5437,7 @@
         "x-default"
       ],
       "ogTitle": "Privacy policy | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -2623,7 +5470,7 @@
       ],
       "sectionCount": 2,
       "sectionClasses": [
-        "phead",
+        "phead phead--quiet",
         "band band--tight"
       ],
       "meaningfulWords": 1125,
@@ -2647,7 +5494,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Datenschutzerklärung | Stratos",
       "metaDescription": "Wie wir personenbezogene Daten nach DSGVO erheben, nutzen und verarbeiten — und welche Rechte du hast.",
-      "canonical": "https://media-stratos.com/de/datenschutz.html",
+      "canonical": "https://stratosweb.hu/de/datenschutz.html",
       "hreflang": [
         "hu",
         "en",
@@ -2655,7 +5502,7 @@
         "x-default"
       ],
       "ogTitle": "Datenschutzerklärung | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -2688,7 +5535,7 @@
       ],
       "sectionCount": 2,
       "sectionClasses": [
-        "phead",
+        "phead phead--quiet",
         "band band--tight"
       ],
       "meaningfulWords": 1006,
@@ -2712,7 +5559,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Impresszum | Stratos",
       "metaDescription": "A Stratos Media üzemeltetőjének adatai, elérhetőségek és tárhelyszolgáltató.",
-      "canonical": "https://media-stratos.com/impresszum.html",
+      "canonical": "https://stratosweb.hu/impresszum.html",
       "hreflang": [
         "hu",
         "en",
@@ -2720,7 +5567,7 @@
         "x-default"
       ],
       "ogTitle": "Impresszum | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -2734,7 +5581,7 @@
       ],
       "sectionCount": 2,
       "sectionClasses": [
-        "phead",
+        "phead phead--quiet",
         "band band--tight"
       ],
       "meaningfulWords": 66,
@@ -2760,7 +5607,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Imprint | Stratos",
       "metaDescription": "Details of the operator of Stratos Media, contact information and hosting provider.",
-      "canonical": "https://media-stratos.com/en/imprint.html",
+      "canonical": "https://stratosweb.hu/en/imprint.html",
       "hreflang": [
         "hu",
         "en",
@@ -2768,7 +5615,7 @@
         "x-default"
       ],
       "ogTitle": "Imprint | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -2782,7 +5629,7 @@
       ],
       "sectionCount": 2,
       "sectionClasses": [
-        "phead",
+        "phead phead--quiet",
         "band band--tight"
       ],
       "meaningfulWords": 93,
@@ -2809,7 +5656,7 @@
       "template": "_build/build.py SHELL + _build/pages/*.html",
       "title": "Impressum | Stratos",
       "metaDescription": "Angaben zum Betreiber von Stratos Media, Kontaktdaten und Hosting-Anbieter.",
-      "canonical": "https://media-stratos.com/de/impressum.html",
+      "canonical": "https://stratosweb.hu/de/impressum.html",
       "hreflang": [
         "hu",
         "en",
@@ -2817,7 +5664,7 @@
         "x-default"
       ],
       "ogTitle": "Impressum | Stratos",
-      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "ogImage": "https://stratosweb.hu/assets/img/hero.jpg",
       "structuredData": false,
       "breadcrumb": true,
       "h1": [
@@ -2831,7 +5678,7 @@
       ],
       "sectionCount": 2,
       "sectionClasses": [
-        "phead",
+        "phead phead--quiet",
         "band band--tight"
       ],
       "meaningfulWords": 80,

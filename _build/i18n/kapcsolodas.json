@@ -78,10 +78,6 @@
   "The closing CTA used to be labelled 'Felszállás' on every route,",
   "including About and the blog. These are the per-route replacements."
  ],
- "Kezdés": [
-  "Getting started",
-  "Loslegen"
- ],
  "Első lépés": [
   "First step",
   "Erster Schritt"
@@ -167,5 +163,10 @@
  "Három projekt, három szerkezet": [
   "Three projects, three structures",
   "Drei Projekte, drei Strukturen"
- ]
+ ],
+ "Kezdjük el": [
+  "Let's begin",
+  "Legen wir los"
+ ],
+ "_collision": "'Kezdés' lives in arajanlat.json as the questionnaire's Start button. The dictionary is one flat namespace merged in filename order, so a short common word redefined here silently changes it everywhere — which is exactly what happened."
 }
