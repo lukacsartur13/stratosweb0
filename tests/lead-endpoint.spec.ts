@@ -823,3 +823,57 @@ test.describe('mixed-version rollout — the old client still works', () => {
     }
   });
 });
+
+/* --------------------------------------------- the store cannot be reached */
+/**
+ * Production answered a real submission with this:
+ *
+ *   {"errorType":"Error","errorMessage":"Cannot find package
+ *    '@supabase/supabase-js' imported from /var/task/submit-lead.mjs",
+ *    "trace":["Error [ERR_MODULE_NOT_FOUND]: …", …]}
+ *
+ * Two defects in one response. The SDK was declared in portal/package.json
+ * while Netlify bundles functions against the root manifest, so it was never
+ * installed for the function — and the unhandled throw let the platform answer
+ * with a stack trace, publicly, on a form endpoint.
+ *
+ * The dependency is the fix. This is the guard: whatever stops the store being
+ * reachable, the visitor gets the same clean 503 every other outage gives them.
+ */
+test.describe('POST /api/lead — the store cannot be reached', () => {
+  const real = (handlerModule as any).__store.create;
+  test.afterEach(() => { (handlerModule as any).__store.create = real; });
+
+  test('an SDK that will not load is a clean 503, not a stack trace', async () => {
+    (handlerModule as any).__store.create = async () => {
+      // Precisely what a failed dynamic import does.
+      throw Object.assign(
+        new Error("Cannot find package '@supabase/supabase-js' imported from /var/task/submit-lead.mjs"),
+        { code: 'ERR_MODULE_NOT_FOUND' },
+      );
+    };
+
+    let res: Response;
+    try {
+      res = await request(envelopes.contact());
+    } catch {
+      throw new Error('the handler threw instead of answering — the platform would leak a trace');
+    }
+
+    expect(res.status).toBe(503);
+    const body = await res.json();
+    expect(body.code).toBe('SERVICE_UNAVAILABLE');
+
+    const text = JSON.stringify(body);
+    expect(text).not.toMatch(/ERR_MODULE_NOT_FOUND|var\/task|supabase-js|errorType|trace|at /);
+    // And it still tells the visitor something they can act on.
+    expect(text).toMatch(/lukacs\.artur@media-stratos\.com/);
+  });
+
+  test('a store that returns null is the same clean 503', async () => {
+    (handlerModule as any).__store.create = async () => null;
+    const res = await request(envelopes.newsletter());
+    expect(res.status).toBe(503);
+    expect((await res.json()).code).toBe('SERVICE_UNAVAILABLE');
+  });
+});

@@ -41,6 +41,12 @@
     "draco:sync": "node scripts/sync-draco.mjs",
     "draco:check": "node scripts/sync-draco.mjs --check"
   },
+  "comments": {
+    "dependencies": "Runtime dependencies of the NETLIFY FUNCTIONS, and nothing else. The public site ships no third-party JavaScript and the portal has its own manifest; this block exists because Netlify bundles netlify/functions/* against the ROOT package.json, not against portal/. Omitting @supabase/supabase-js here is what made every lead submission crash with ERR_MODULE_NOT_FOUND at the store step — the SDK was installed under portal/node_modules, where the function cannot reach it."
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.47.10"
+  },
   "devDependencies": {
     "@playwright/test": "^1.49.1"
   }

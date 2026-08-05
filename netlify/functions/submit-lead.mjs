@@ -130,7 +130,28 @@ export const __store = {
     // Imported here rather than at module scope: every rejection above returns
     // without paying for the SDK, and the validation stays importable — and
     // therefore testable — in a process that has no Supabase client installed.
-    const { createClient } = await import('@supabase/supabase-js');
+    //
+    // The try/catch is not defensive padding. A dynamic import that cannot
+    // resolve throws ERR_MODULE_NOT_FOUND *out of the handler*, and an
+    // unhandled throw in a Netlify function is answered by the platform with
+    // its own body: `{ errorType, errorMessage, trace: [...] }`, a full stack
+    // trace, to the public, on a form endpoint.
+    //
+    // That is exactly what production was doing. The SDK lives in
+    // portal/package.json; Netlify bundles functions against the ROOT
+    // package.json, so it was never installed for this function and every
+    // submission that reached the store step crashed here and leaked the
+    // trace. The real fix is the `dependencies` block in package.json — this
+    // makes the failure mode a clean 503 rather than a disclosure, whatever
+    // the cause.
+    let createClient;
+    try {
+      ({ createClient } = await import('@supabase/supabase-js'));
+    } catch (error) {
+      console.error('submit-lead: the Supabase SDK failed to load:', error.message);
+      return null;
+    }
+
     const supabase = createClient(SUPABASE_URL, SERVICE_KEY, {
       auth: { persistSession: false, autoRefreshToken: false },
     });
@@ -290,7 +311,16 @@ export default async (request) => {
   const { envelope } = result;
 
   // ---- 10. store ------------------------------------------------------------
-  const store = await __store.create();
+  // `create()` returns null for every reason the store is unreachable: no
+  // credentials, or an SDK that would not load. Both are our fault, not the
+  // visitor's, and both must answer the same way rather than throwing — see
+  // the note on __store.
+  let store = null;
+  try {
+    store = await __store.create();
+  } catch (error) {
+    console.error('submit-lead: could not reach the store:', error.message);
+  }
   if (!store) {
     // Misconfiguration is ours, not the visitor's. Log loudly, and tell them
     // something true and useful rather than "500".
