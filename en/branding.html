@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-brand.css">
 <script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -136,7 +137,11 @@
 <section class="phead">
     <div class="wrap">
       <p class="crumbs"><a href="index.html">Stratos</a> / Services / <b>Branding</b></p>
-      <h1 class="display h-xl">One colour.<br>One line.<br><span class="sig">And they think of you.</span></h1>
+      <!-- Az arculat maga a demonstráció: ugyanaz a mondat, ahogy a betűk
+           szélessége és vastagsága a görgetéssel a pontos felől a határozott
+           felé mozdul. A tengelyek a változó betűtípus valódi tengelyei, nem
+           torzítás — csökkentett mozgásnál egyszerűen a végállapotában áll. -->
+      <h1 class="display h-xl" data-kinetic data-kinetic-from="118 560 0.01" data-kinetic-to="88 780 -0.018">One colour.<br>One line.<br><span class="sig">And they think of you.</span></h1>
       <div class="grid g-split" style="align-items:end">
         <p class="lede">Brand building from A to Z. You don't get a logo, you get a system: logo, colour world, typefaces, image style and the tone you speak in.</p>
         <div>

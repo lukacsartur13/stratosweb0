@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-build.css">
 <script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -180,33 +181,34 @@
         </div>
       </div>
 
-      <div class="grid g-3" data-stagger>
-        <article class="card" data-reveal>
+      <!-- A rendszer rétegei. A mélység a sorrendet mutatja, nem díszít. -->
+      <div class="grid g-3 stack" data-depth data-stagger>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Plattform</span>
           <h3>Individuelle Plattformen und Web-Apps</h3>
           <p>Kundenportale, interne Werkzeuge, SaaS-Oberflächen. In Code gebaut und auf eure Prozesse zugeschnitten — nicht aus einer Vorlage, nicht aus einem Baukasten.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Integration</span>
           <h3>System­integration</h3>
           <p>Verbindung von ERP, CRM, Zahlungs- und Logistiksystemen. APIs, Datensynchronisation und ein einheitlicher Datenfluss mit eurer bestehenden Infrastruktur.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Design</span>
           <h3>Designsystem und Erscheinungsbild</h3>
           <p>Eine skalierbare Komponentenbibliothek und ein einheitliches Erscheinungsbild auf allen Flächen — damit eure Marke über Märkte und Produkte hinweg konsistent bleibt.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Sicherheit</span>
           <h3>Sicherheit und Compliance</h3>
           <p>DSGVO, Zugriffsverwaltung, Auditierbarkeit, Penetrationstests. Sicherheit auf Unternehmensniveau von der Konzeption bis zum Betrieb.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Team</span>
           <h3>Dediziertes Entwicklungsteam</h3>
           <p>Ein skalierbares Team an eurer Seite: Entwickler, Designer, Projektleitung. Flexible Kapazität, an die Auslastung angepasst.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Betrieb</span>
           <h3>Betrieb und SLA</h3>
           <p>Monitoring, Störungsbehebung, Versionierung, Backups und Skalierung. Garantierte Verfügbarkeit und definierte Reaktionszeiten.</p>
@@ -226,19 +228,78 @@
         <p class="prose" style="align-self:end">Ein Prozess auf Konzernniveau, vollständig transparent.</p>
       </div>
 
-      <div class="steps">
-        <article class="step" data-reveal>
-          <h3>Analyse und Strategie</h3>
-          <p>Wir erfassen eure Prozesse, bestehenden Systeme und Ziele. Architektur, Zeitplan und messbare KPIs — noch vor der Entwicklung.</p>
-        </article>
-        <article class="step" data-reveal>
-          <h3>Entwicklung mit dediziertem Team</h3>
-          <p>Wir arbeiten in Sprints mit sichtbarem Ergebnis alle zwei Wochen. Designsystem, Entwicklung, Integrationen und laufende Abstimmung mit euren Stakeholdern.</p>
-        </article>
-        <article class="step" data-reveal>
-          <h3>Go-live und Weiterentwicklung</h3>
-          <p>Ein kontrollierter Rollout, Schulung und Übergabe. Ab dann betreiben wir unter SLA und entwickeln laufend weiter — gemeinsam mit euch.</p>
-        </article>
+    </div>
+
+    <!-- Ugyanaz a rendszerábra három állapotban: különálló rendszerek,
+         integráció, majd élő üzemeltetés. Csökkentett mozgásnál és 860 px
+         alatt a rögzítés feloldódik, és a három lépés egymás alatti szakasz. -->
+    <div class="build" data-stage style="height:340vh">
+      <div class="stage__pin">
+        <div class="wrap build__grid">
+
+          <div class="build__text">
+            <p class="build__prog"><span class="build__fill" data-stage-fill></span></p>
+            <div class="build__stages">
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">01 — Analyse</p>
+                <h3 class="display h-sm">Analyse und Strategie</h3>
+                <p class="prose">Wir erfassen eure Prozesse, bestehenden Systeme und Ziele. Architektur, Zeitplan und messbare KPIs — noch vor der Entwicklung.</p>
+              </article>
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">02 — Entwicklung</p>
+                <h3 class="display h-sm">Entwicklung mit dediziertem Team</h3>
+                <p class="prose">Wir arbeiten in Sprints mit sichtbarem Ergebnis alle zwei Wochen. Designsystem, Entwicklung, Integrationen und laufende Abstimmung mit euren Stakeholdern.</p>
+              </article>
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">03 — Rollout</p>
+                <h3 class="display h-sm">Go-live und Weiterentwicklung</h3>
+                <p class="prose">Ein kontrollierter Rollout, Schulung und Übergabe. Ab dann betreiben wir unter SLA und entwickeln laufend weiter — gemeinsam mit euch.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="build__ui" aria-hidden="true">
+            <svg viewBox="0 0 420 300" class="build__frame build__frame--sys" focusable="false">
+              <!-- 01 · különálló rendszerek -->
+              <g class="ui__l ui__l--apart">
+                <rect x="20" y="34" width="112" height="64" rx="3"/>
+                <rect x="288" y="52" width="112" height="64" rx="3"/>
+                <rect x="52" y="184" width="112" height="64" rx="3"/>
+                <rect x="270" y="200" width="112" height="64" rx="3"/>
+                <rect x="160" y="112" width="100" height="58" rx="3"/>
+              </g>
+
+              <!-- 02 · integráció -->
+              <g class="ui__l ui__l--wired">
+                <path class="ui__link" d="M132 66 C 180 66 180 132 210 132"/>
+                <path class="ui__link" d="M288 84 C 244 84 240 132 210 132"/>
+                <path class="ui__link" d="M164 216 C 196 216 196 170 210 170"/>
+                <path class="ui__link" d="M270 232 C 232 232 226 170 210 170"/>
+                <rect x="20" y="34" width="112" height="64" rx="3"/>
+                <rect x="288" y="52" width="112" height="64" rx="3"/>
+                <rect x="52" y="184" width="112" height="64" rx="3"/>
+                <rect x="270" y="200" width="112" height="64" rx="3"/>
+                <rect class="ui__hub" x="160" y="112" width="100" height="58" rx="3"/>
+              </g>
+
+              <!-- 03 · élő üzemeltetés -->
+              <g class="ui__l ui__l--running">
+                <path class="ui__link ui__link--on" d="M132 66 C 180 66 180 132 210 132"/>
+                <path class="ui__link ui__link--on" d="M288 84 C 244 84 240 132 210 132"/>
+                <path class="ui__link ui__link--on" d="M164 216 C 196 216 196 170 210 170"/>
+                <path class="ui__link ui__link--on" d="M270 232 C 232 232 226 170 210 170"/>
+                <rect x="20" y="34" width="112" height="64" rx="3"/>
+                <rect x="288" y="52" width="112" height="64" rx="3"/>
+                <rect x="52" y="184" width="112" height="64" rx="3"/>
+                <rect x="270" y="200" width="112" height="64" rx="3"/>
+                <rect class="ui__hub" x="160" y="112" width="100" height="58" rx="3"/>
+                <circle class="ui__live" cx="210" cy="141" r="5"/>
+                <rect class="ui__lit" x="176" y="152" width="68" height="6" rx="1"/>
+              </g>
+            </svg>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>

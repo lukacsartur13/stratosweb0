@@ -1,0 +1,52 @@
+/* ==========================================================================
+   STRATOS — branding (§14). Loaded by `css: brand`.
+
+   This is the one page where the typography is allowed to be the argument, so
+   the headline moves along the real axes of the variable font — width and
+   weight — from precise towards emphatic as you read it. It never uses a
+   transform to stretch a glyph: a scaled letterform is a broken letterform,
+   and on a fallback font with no axes this degrades to a static weight rather
+   than to a distortion.
+
+   Body copy is never given this treatment. A sentence that reflows while you
+   are reading it is not expressive, it is hostile.
+   ========================================================================== */
+
+[data-kinetic] {
+  /* The driver writes `font-variation-settings` every frame while in range, so
+     there is deliberately no transition here — a transition on a value that
+     changes each frame is just lag. */
+  will-change: font-variation-settings;
+}
+
+/* --------------------------------------------------------- the artboard wall */
+
+/* Deliberately not equal cells. The palette is a system with a hierarchy —
+   the void and the signal carry it, the rest support — and a row of identical
+   squares says the opposite. */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(.6rem, 1.6vw, 1rem);
+  align-items: stretch;
+}
+
+.swatches .swatch { min-height: clamp(7rem, 13vw, 11rem); }
+.swatches .swatch:nth-child(1) { grid-column: span 2; }
+.swatches .swatch:nth-child(2) { grid-column: span 2; }
+
+/* A small vertical offset on alternating cells is what stops the row reading
+   as a chart of five equal things. It is a couple of rems, not a collage. */
+.swatches .swatch:nth-child(3) { transform: translateY(clamp(.5rem, 1.4vw, 1.1rem)); }
+.swatches .swatch:nth-child(5) { transform: translateY(clamp(-1.1rem, -1.4vw, -.5rem)); }
+
+@media (max-width: 860px) {
+  .swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .swatches .swatch:nth-child(1),
+  .swatches .swatch:nth-child(2) { grid-column: span 1; }
+  .swatches .swatch { transform: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swatches .swatch { transform: none !important; }
+}

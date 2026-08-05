@@ -67,5 +67,42 @@
  "A kettő nem egymás helyettesítője, hanem kiegészítője. A hirdetés azonnal hoz forgalmat: bekapcsolod, jönnek az érdeklődők — de amint elzárod a csapot, elapad. A SEO lassabban épül, hónapok munkája, viszont utána tartósan, hirdetési költség nélkül hozza az ügyfeleket. A kettő együtt a legerősebb.": ["They don't replace each other, they complement each other. Advertising brings traffic immediately: switch it on and enquiries arrive — but the moment you close the tap it dries up. SEO builds more slowly, taking months of work, but afterwards it brings clients steadily without ad spend. Together they're strongest.", "Sie ersetzen einander nicht, sie ergänzen sich. Werbung bringt sofort Traffic: einschalten, Anfragen kommen — aber sobald du den Hahn zudrehst, versiegt es. SEO baut sich langsamer auf, kostet Monate Arbeit, bringt danach aber dauerhaft Kunden ohne Werbebudget. Zusammen sind beide am stärksten."],
 
  "Nézzük meg, hol vannak az <span class=\"sig\">ügyfeleid.</span>": ["Let's find out where <span class=\"sig\">your clients are.</span>", "Finden wir heraus, wo <span class=\"sig\">deine Kunden sind.</span>"],
- "Egy egyeztetésen kiderül, melyik csatorna való hozzád, mekkora kerettel érdemes indulni, és mit várhatsz az első hónapokban.": ["One call will tell you which channel suits you, what budget to start with, and what to expect in the first months.", "Ein Gespräch zeigt dir, welcher Kanal zu dir passt, mit welchem Budget du starten solltest und was du in den ersten Monaten erwarten kannst."]
+ "Egy egyeztetésen kiderül, melyik csatorna való hozzád, mekkora kerettel érdemes indulni, és mit várhatsz az első hónapokban.": ["One call will tell you which channel suits you, what budget to start with, and what to expect in the first months.", "Ein Gespräch zeigt dir, welcher Kanal zu dir passt, mit welchem Budget du starten solltest und was du in den ersten Monaten erwarten kannst."],
+
+ "_p85": ["Phase 8.5 — the six-station signal path (brief §13). Process only:",
+          "no chart and no dashboard, because no verified campaign data exists",
+          "to put in one."],
+
+ "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">A jel útja</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">The signal path</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Der Weg des Signals</span>"
+ ],
+ "A hirdetéstől a megkeresésig <span class=\"sig\">hat állomás van.</span>": [
+  "From the ad to the enquiry there are <span class=\"sig\">six stations.</span>",
+  "Von der Anzeige bis zur Anfrage liegen <span class=\"sig\">sechs Stationen.</span>"
+ ],
+ "<span class=\"signal__n\">01</span><span class=\"signal__t\">Szándék</span><span class=\"signal__w\">Valaki keres valamit, vagy olyan helyzetben van, amiben a szolgáltatásod megoldás.</span>": [
+  "<span class=\"signal__n\">01</span><span class=\"signal__t\">Intent</span><span class=\"signal__w\">Someone is searching for something, or is in a situation your service answers.</span>",
+  "<span class=\"signal__n\">01</span><span class=\"signal__t\">Absicht</span><span class=\"signal__w\">Jemand sucht etwas oder ist in einer Lage, auf die deine Leistung antwortet.</span>"
+ ],
+ "<span class=\"signal__n\">02</span><span class=\"signal__t\">Üzenet</span><span class=\"signal__w\">A hirdetés arra a helyzetre válaszol, nem általánosságban dicsér.</span>": [
+  "<span class=\"signal__n\">02</span><span class=\"signal__t\">Message</span><span class=\"signal__w\">The ad answers that situation instead of praising you in general.</span>",
+  "<span class=\"signal__n\">02</span><span class=\"signal__t\">Botschaft</span><span class=\"signal__w\">Die Anzeige antwortet auf diese Lage, statt allgemein zu loben.</span>"
+ ],
+ "<span class=\"signal__n\">03</span><span class=\"signal__t\">Kattintás</span><span class=\"signal__w\">Csak akkor ér valamit, ha az érkezik, akinek tényleg szól.</span>": [
+  "<span class=\"signal__n\">03</span><span class=\"signal__t\">Click</span><span class=\"signal__w\">It is only worth anything if the person who arrives is the one it was for.</span>",
+  "<span class=\"signal__n\">03</span><span class=\"signal__t\">Klick</span><span class=\"signal__w\">Er ist nur etwas wert, wenn die Person ankommt, für die er gedacht war.</span>"
+ ],
+ "<span class=\"signal__n\">04</span><span class=\"signal__t\">Landoló oldal</span><span class=\"signal__w\">Az oldalnak ugyanazt kell folytatnia, amit a hirdetés elkezdett.</span>": [
+  "<span class=\"signal__n\">04</span><span class=\"signal__t\">Landing page</span><span class=\"signal__w\">The page has to continue what the ad started.</span>",
+  "<span class=\"signal__n\">04</span><span class=\"signal__t\">Landingpage</span><span class=\"signal__w\">Die Seite muss fortsetzen, was die Anzeige begonnen hat.</span>"
+ ],
+ "<span class=\"signal__n\">05</span><span class=\"signal__t\">Megkeresés</span><span class=\"signal__w\">Az űrlap vagy a hívás — ez az egyetlen szám, ami üzletileg számít.</span>": [
+  "<span class=\"signal__n\">05</span><span class=\"signal__t\">Enquiry</span><span class=\"signal__w\">The form or the phone call — the one number that matters commercially.</span>",
+  "<span class=\"signal__n\">05</span><span class=\"signal__t\">Anfrage</span><span class=\"signal__w\">Das Formular oder der Anruf — die einzige Zahl, die geschäftlich zählt.</span>"
+ ],
+ "<span class=\"signal__n\">06</span><span class=\"signal__t\">Visszacsatolás</span><span class=\"signal__w\">Amit a mérés megmutat, az a következő kör kiindulópontja.</span>": [
+  "<span class=\"signal__n\">06</span><span class=\"signal__t\">Feedback</span><span class=\"signal__w\">What the measurement shows is where the next round starts.</span>",
+  "<span class=\"signal__n\">06</span><span class=\"signal__t\">Rückkopplung</span><span class=\"signal__w\">Was die Messung zeigt, ist der Ausgangspunkt der nächsten Runde.</span>"
+ ]
 }

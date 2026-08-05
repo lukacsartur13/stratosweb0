@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-signal.css">
 <script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -151,6 +152,37 @@
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ a jel útja -->
+  <!-- A Meridian Trace itt jel: darabokban indul, és egyetlen úttá áll össze.
+       A hat állomás valódi lépés, nem illusztráció — ez az, ami a kampány és a
+       megkeresés között történik. A vonal dekoráció, a címkék szöveg. -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <p class="smark"><span class="smark__n" aria-hidden="true">01</span><span class="smark__t">The signal path</span></p>
+      <h2 class="display h-md" style="max-width:20ch;margin-bottom:clamp(2rem,5vw,3rem)">From the ad to the enquiry there are <span class="sig">six stations.</span></h2>
+
+      <div class="signal">
+        <svg class="signal__trace" data-trace data-trace-stagger="0.5" viewBox="0 0 1200 60"
+             preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M0 30 H150"/>
+          <path d="M200 30 H350"/>
+          <path d="M400 30 H550"/>
+          <path d="M600 30 H750"/>
+          <path d="M800 30 H950"/>
+          <path d="M1000 30 H1200"/>
+        </svg>
+        <ol class="signal__list">
+          <li><span class="signal__n">01</span><span class="signal__t">Intent</span><span class="signal__w">Someone is searching for something, or is in a situation your service answers.</span></li>
+          <li><span class="signal__n">02</span><span class="signal__t">Message</span><span class="signal__w">The ad answers that situation instead of praising you in general.</span></li>
+          <li><span class="signal__n">03</span><span class="signal__t">Click</span><span class="signal__w">It is only worth anything if the person who arrives is the one it was for.</span></li>
+          <li><span class="signal__n">04</span><span class="signal__t">Landing page</span><span class="signal__w">The page has to continue what the ad started.</span></li>
+          <li><span class="signal__n">05</span><span class="signal__t">Enquiry</span><span class="signal__w">The form or the phone call — the one number that matters commercially.</span></li>
+          <li><span class="signal__n">06</span><span class="signal__t">Feedback</span><span class="signal__w">What the measurement shows is where the next round starts.</span></li>
+        </ol>
       </div>
     </div>
   </section>

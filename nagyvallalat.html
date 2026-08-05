@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/motion.css">
 <link rel="stylesheet" href="assets/css/transitions.css">
+<link rel="stylesheet" href="assets/css/page-build.css">
 <script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -188,33 +189,34 @@
         </div>
       </div>
 
-      <div class="grid g-3" data-stagger>
-        <article class="card" data-reveal>
+      <!-- A rendszer rétegei. A mélység a sorrendet mutatja, nem díszít. -->
+      <div class="grid g-3 stack" data-depth data-stagger>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Platform</span>
           <h3>Egyedi platformok és web appok</h3>
           <p>Ügyfélportálok, belső eszközök, SaaS felületek. Kódból építve, a folyamataitokra szabva — nem sablonból, nem oldalépítőből.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Integráció</span>
           <h3>Rendszer­integráció</h3>
           <p>ERP, CRM, fizetési és logisztikai rendszerek összekötése. API-k, adatszinkron és egységes adatfolyam a meglévő infrastruktúrátokkal.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Dizájn</span>
           <h3>Design system és arculat</h3>
           <p>Skálázható komponenskönyvtár és egységes arculat minden felületen — hogy a márkátok minden piacon és terméken konzisztens legyen.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Biztonság</span>
           <h3>Biztonság és megfelelőség</h3>
           <p>GDPR, hozzáférés-kezelés, auditálhatóság, penetrációs tesztek. Vállalati szintű biztonság a tervezéstől az üzemeltetésig.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Csapat</span>
           <h3>Dedikált fejlesztőcsapat</h3>
           <p>Nálatok dolgozó, felskálázható csapat: fejlesztők, dizájner, projektvezető. Rugalmas kapacitás a terheléshez igazítva.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Üzemeltetés</span>
           <h3>Üzemeltetés és SLA</h3>
           <p>Monitoring, hibakezelés, verziózás, mentések és skálázás. Garantált rendelkezésre állás és definiált reakcióidők.</p>
@@ -236,19 +238,78 @@
         </p>
       </div>
 
-      <div class="steps">
-        <article class="step" data-reveal>
-          <h3>Felmérés és stratégia</h3>
-          <p>Feltérképezzük a folyamataitokat, a meglévő rendszereket és a célokat. Architektúra, ütemterv és mérhető KPI-ok — még a fejlesztés előtt.</p>
-        </article>
-        <article class="step" data-reveal>
-          <h3>Fejlesztés dedikált csapattal</h3>
-          <p>Sprintekben dolgozunk, kéthetente látható eredménnyel. Design system, fejlesztés, integrációk és folyamatos egyeztetés a ti stakeholdereitekkel.</p>
-        </article>
-        <article class="step" data-reveal>
-          <h3>Élesítés és folyamatos fejlesztés</h3>
-          <p>Kontrollált bevezetés, betanítás és átadás. Onnantól SLA mellett üzemeltetünk és folyamatosan fejlesztünk tovább — veletek együtt.</p>
-        </article>
+    </div>
+
+    <!-- Ugyanaz a rendszerábra három állapotban: különálló rendszerek,
+         integráció, majd élő üzemeltetés. Csökkentett mozgásnál és 860 px
+         alatt a rögzítés feloldódik, és a három lépés egymás alatti szakasz. -->
+    <div class="build" data-stage style="height:340vh">
+      <div class="stage__pin">
+        <div class="wrap build__grid">
+
+          <div class="build__text">
+            <p class="build__prog"><span class="build__fill" data-stage-fill></span></p>
+            <div class="build__stages">
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">01 — Felmérés</p>
+                <h3 class="display h-sm">Felmérés és stratégia</h3>
+                <p class="prose">Feltérképezzük a folyamataitokat, a meglévő rendszereket és a célokat. Architektúra, ütemterv és mérhető KPI-ok — még a fejlesztés előtt.</p>
+              </article>
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">02 — Fejlesztés</p>
+                <h3 class="display h-sm">Fejlesztés dedikált csapattal</h3>
+                <p class="prose">Sprintekben dolgozunk, kéthetente látható eredménnyel. Design system, fejlesztés, integrációk és folyamatos egyeztetés a ti stakeholdereitekkel.</p>
+              </article>
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">03 — Bevezetés</p>
+                <h3 class="display h-sm">Élesítés és folyamatos fejlesztés</h3>
+                <p class="prose">Kontrollált bevezetés, betanítás és átadás. Onnantól SLA mellett üzemeltetünk és folyamatosan fejlesztünk tovább — veletek együtt.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="build__ui" aria-hidden="true">
+            <svg viewBox="0 0 420 300" class="build__frame build__frame--sys" focusable="false">
+              <!-- 01 · különálló rendszerek -->
+              <g class="ui__l ui__l--apart">
+                <rect x="20" y="34" width="112" height="64" rx="3"/>
+                <rect x="288" y="52" width="112" height="64" rx="3"/>
+                <rect x="52" y="184" width="112" height="64" rx="3"/>
+                <rect x="270" y="200" width="112" height="64" rx="3"/>
+                <rect x="160" y="112" width="100" height="58" rx="3"/>
+              </g>
+
+              <!-- 02 · integráció -->
+              <g class="ui__l ui__l--wired">
+                <path class="ui__link" d="M132 66 C 180 66 180 132 210 132"/>
+                <path class="ui__link" d="M288 84 C 244 84 240 132 210 132"/>
+                <path class="ui__link" d="M164 216 C 196 216 196 170 210 170"/>
+                <path class="ui__link" d="M270 232 C 232 232 226 170 210 170"/>
+                <rect x="20" y="34" width="112" height="64" rx="3"/>
+                <rect x="288" y="52" width="112" height="64" rx="3"/>
+                <rect x="52" y="184" width="112" height="64" rx="3"/>
+                <rect x="270" y="200" width="112" height="64" rx="3"/>
+                <rect class="ui__hub" x="160" y="112" width="100" height="58" rx="3"/>
+              </g>
+
+              <!-- 03 · élő üzemeltetés -->
+              <g class="ui__l ui__l--running">
+                <path class="ui__link ui__link--on" d="M132 66 C 180 66 180 132 210 132"/>
+                <path class="ui__link ui__link--on" d="M288 84 C 244 84 240 132 210 132"/>
+                <path class="ui__link ui__link--on" d="M164 216 C 196 216 196 170 210 170"/>
+                <path class="ui__link ui__link--on" d="M270 232 C 232 232 226 170 210 170"/>
+                <rect x="20" y="34" width="112" height="64" rx="3"/>
+                <rect x="288" y="52" width="112" height="64" rx="3"/>
+                <rect x="52" y="184" width="112" height="64" rx="3"/>
+                <rect x="270" y="200" width="112" height="64" rx="3"/>
+                <rect class="ui__hub" x="160" y="112" width="100" height="58" rx="3"/>
+                <circle class="ui__live" cx="210" cy="141" r="5"/>
+                <rect class="ui__lit" x="176" y="152" width="68" height="6" rx="1"/>
+              </g>
+            </svg>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>

@@ -1,0 +1,83 @@
+/* ==========================================================================
+   STRATOS — advertising (§13). Loaded by `css: signal`.
+
+   The Meridian Trace is a signal here: it arrives in pieces and resolves into
+   one path. The six stations are the real steps between a campaign and an
+   enquiry, so the drawing is an argument about causality rather than a
+   decoration that happens to point rightwards.
+
+   There is no chart on this page and no dashboard. Brief §13 allows measurement
+   visuals only where verified data exists; none does, so what is shown is the
+   process and the decision logic. An invented conversion curve would be the one
+   thing on this page nobody could check.
+   ========================================================================== */
+
+.signal { display: grid; gap: clamp(1rem, 2.5vw, 1.6rem); }
+
+/* The trace sits on its own row above the stations and is stretched to the
+   grid's width, with the gaps in the path landing between the labels. The
+   stroke stays hairline at any width via `non-scaling-stroke` in motion.css. */
+.signal__trace {
+  width: 100%;
+  height: clamp(28px, 4vw, 44px);
+}
+
+.signal__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(.8rem, 2vw, 1.8rem);
+}
+
+.signal__list li {
+  display: grid;
+  align-content: start;
+  gap: .5rem;
+  padding-top: clamp(.8rem, 2vw, 1.2rem);
+  border-top: 1px solid var(--hair);
+}
+
+/* Where the trace is drawn it IS the rule over these columns, and the border
+   as well gave every station two parallel lines a few pixels apart — which
+   reads as a rendering fault, not as a diagram. The border stays below 1100px,
+   where the trace is gone and the columns need something to sit under. */
+@media (min-width: 1101px) {
+  .signal__list li { border-top: 0; padding-top: 0; }
+  .signal { gap: 0; }
+}
+
+.signal__n {
+  font: 500 var(--step--1) / 1 var(--data);
+  letter-spacing: .14em;
+  color: var(--signal);
+}
+
+.signal__t {
+  font-family: var(--display);
+  font-size: var(--step-0);
+  font-variation-settings: "wdth" 94, "wght" 640;
+  text-transform: uppercase;
+}
+
+.signal__w {
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--haze);
+}
+
+/* Six columns stop being six columns well before phone width — the labels
+   collapse to two or three words a line and the path stops being readable as
+   a path. Three, then two, then one, and the trace goes when it no longer
+   spans anything meaningful. */
+@media (max-width: 1100px) {
+  .signal__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .signal__trace { display: none; }
+}
+@media (max-width: 700px) {
+  .signal__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 460px) {
+  .signal__list { grid-template-columns: 1fr; }
+}
