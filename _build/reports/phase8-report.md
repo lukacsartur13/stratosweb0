@@ -483,8 +483,12 @@ none lost either. Per-route figures are in
 These are the §21 stop conditions. They are surfaced here rather than guessed
 at, and the visual review package repeats them.
 
+> **Superseded in part by §20.** Items 1 and 7 were resolved at release: the
+> articles were approved and the hosting references were corrected. Items 2–6
+> stand, and are carried forward in §23.
+
 1. **The six articles' factual content.** Technically complete, not
-   production-approved.
+   production-approved. — **RESOLVED at release: factual approval granted.**
 2. **Case-study facts.** Project duration, delivery date, technology used, and
    any measured result or client quote, for all three case studies. Marked on
    the pages themselves.
@@ -501,6 +505,7 @@ at, and the visual review package repeats them.
    flags that both still name Wix as the host, carried over from the previous
    site. Untouched by Phase 8 — it is a factual claim about the business, not a
    design decision. **This should be corrected before production deployment.**
+   — **RESOLVED at release in `418a0ea`. See §21.**
 
 ---
 
@@ -515,6 +520,7 @@ new, changed or retained, and the package leads with the factual approvals, the
 media-rights position and the documented exceptions.
 
 **Human visual acceptance has not been granted and is not assumed.**
+— **Superseded: granted at release. See §20.**
 
 ---
 
@@ -537,9 +543,10 @@ media-rights position and the documented exceptions.
 | homepage and Phase 7 transitions | unchanged, regression-clean |
 | production output asset audit | pass — no rights-encumbered media, no WebGL leakage |
 
-**Not deployed.** The branch is `main`, which is production-linked, so §20's
-gate applies: commits are local and nothing has been pushed. Production
-deployment requires explicit user authorisation, which has not been given.
+**Not deployed at the time of writing.** The branch is `main`, which is
+production-linked, so §20's gate applies: commits are local and nothing has been
+pushed. Production deployment requires explicit user authorisation, which has
+not been given.
 
 Blocking items before deployment, in order:
 
@@ -547,6 +554,8 @@ Blocking items before deployment, in order:
 2. Correction of the hosting details in the imprint and privacy policy.
 3. Human visual acceptance of the review package.
 4. Explicit authorisation to push and deploy.
+
+**All four were satisfied. The site was pushed and deployed — see §20 onward.**
 
 ---
 
@@ -591,10 +600,11 @@ unchanged from Phase 7.
 
 ---
 
-## 19. Completion verdict
+## 19. Pre-release verdict
 
 Workstreams A–L are implemented, measured and green. Three of §23's
-prerequisites are not met, and none of them is mine to grant:
+prerequisites were not met at the time §18 was written, and none of them was
+mine to grant:
 
 1. **Human visual review is not complete.** The package is generated and
    labelled; acceptance has not been given and is not assumed.
@@ -609,12 +619,357 @@ There is also one factual correction outstanding that predates Phase 8 and
 should not ship without being fixed: the imprint and privacy policy still name
 Wix as the hosting provider, carried over from the previous site.
 
+Accordingly, at that point: **PHASE 8 NOT ACCEPTED** — not because anything
+failed, but because acceptance depended on three human decisions that had not
+been made.
+
+**All three were subsequently made. §20 onward is the release record, and §24
+carries the final verdict.**
+
+---
+
+## 20. Human decisions granted
+
+Given explicitly by the user before the release, and recorded here as the basis
+for everything below:
+
+| decision | state |
+|---|---|
+| human visual acceptance of the review package | **passed** |
+| factual approval of all six blog articles | **passed** |
+| approval of the Phase 8 route, content and design changes | **granted** |
+| authorisation to push to `main` and deploy to production | **granted** |
+
+The remaining §15 items — case-study facts, the two absent references, Pille
+Sewing, the German register and `cruise-jet.jpg` — were not part of this
+approval and are carried forward in §23.
+
+---
+
+## 21. The legal hosting correction
+
+The last blocking factual item. Committed on its own, ahead of the release, as
+`418a0ea`.
+
+**What was wrong.** The imprint named `Wix.com Ltd.` as the hosting provider and
+the privacy policy named it as the sole processor behind the website. That was
+the previous site's text, carried forward through every phase; nothing has been
+served from Wix for the life of this repository.
+
+**What it says now**, in all three languages:
+
+| | |
+|---|---|
+| Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, USA | serves the generated pages and runs the Functions under `/api`, where every form submission lands |
+| Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513 | stores the leads those Functions write, and backs the private portal under `/portal` |
+
+Both entries carry the company name and registered address **as published on the
+providers' own legal pages** — `netlify.com/legal/terms-of-use` and
+`supabase.com/terms` — rather than from memory.
+
+**What was deliberately not touched.** No legal basis, retention period,
+business detail or further processor was added, changed or inferred. The
+existing Google, Meta and email-provider entries, the retention table and the
+cookie sections are exactly as they were, because none of that is verifiable
+from this repository and inventing it would be a worse defect than the Wix line
+was. This is carried forward as a limitation in §23.
+
+Hungarian is the binding text and is the source; EN and DE come from the
+dictionaries, so all three say the same thing. The build reports **0
+untranslated strings** in both locales, and **0 occurrences of "wix"** remain in
+any shipped document.
+
+`CONTENT_GUIDE.md` and `_build/SZERKESZTES.md` both carried a "still names Wix —
+update before launch" note. Both were updated in the same commit rather than
+left to contradict the pages.
+
+### Gates run for the correction
+
+Per §1, the full regression suite was **not** re-run: no executable application
+code changed.
+
+| gate | result |
+|---|---|
+| `npm run typecheck` | **pass** — portal and experiments |
+| `npm run build` | **pass** |
+| `node scripts/route-audit.mjs` | **pass** — 792 checks, 0 failing, 0 broken internal links |
+| `node scripts/content-inventory.mjs --check` | **pass** — 66 routes, no reductions |
+| `npm run scan:secrets` | **clean** — 484 files, 7 rules |
+
+---
+
+## 22. Release
+
+### Working tree and commit range, inspected before pushing
+
+113 files across the Phase 8 range, reviewed by name and by diff. No temporary
+probe, screenshot, secret or local-only file was staged or committed. The 38
+untracked `experiments/.tmp-*` probes, the three uncommitted review packages and
+`.claude/settings.local.json` were all left in the working tree, unstaged and
+unpushed. `portal/tsconfig.app.tsbuildinfo` is a tracked build artefact and was
+deliberately left out of every commit.
+
+One file in the range is worth naming rather than leaving to be discovered:
+`_backup/media-rights-hold/cruise-jet.jpg`, added in `d2a224d` and force-added
+past `.gitignore`. It is the quarantined rights-encumbered image of §15.6. It is
+not published — the production output audit confirms it is absent from `dist/` —
+but it is in the repository's history now. Carried forward in §23.
+
+### Pushed to `main`
+
+Fast-forward, `9e730c3..cfd4f15`. **No force-push at any point.**
+
+| hash | commit |
+|---|---|
+| `d2a224d7c2af0036d0deb1b44f0301420acb9eff` | feat(phase-8): give the site the routes it kept promising |
+| `9e727c9fa3ba7cc8a91f858c9f4d78537b00802b` | feat(phase-8): connect the pages to each other, and stop every route ending the same way |
+| `8b3575435f596209bb9dcc95c8ce06b064035f74` | test(phase-8): drive the sixty-six routes through a browser at twelve sizes |
+| `2953b36ca1dec57fc698dd79cea823e704578d09` | fix(phase-8): give the case studies the transition Phase 7 already wrote for them |
+| `3b306c066c1a2ec33f66080ca098e3330c0d4415` | fix(phase-8): stop the route audit from squatting on the FULL suite's port |
+| `0b4c3728baa807fda4fb99deaa66b671f3fba9f9` | docs(phase-8): record the gate results and the verdict |
+| `418a0eaee52e16a20a7d74cd617862a504c07389` | **fix(legal): name the host the site actually runs on** |
+| `d29298a89ce0eb2b8d40f2e62233158290040691` | **fix(css): stop the stamped dimensions from stretching three images** |
+| `cfd4f15e6771ef9d44e454780b2c34711c7e3491` | **build: version the shared css and js so a deploy invalidates its own cache** |
+
+The last two were found *after* the first deploy, by the user looking at the
+live site. They are recorded in full below because the way they were found
+matters more than the fix.
+
+### Netlify deployment
+
+| | |
+|---|---|
+| production URL | `https://stratosweb1.netlify.app` |
+| deploys | 2 — one for `418a0ea`, one for `cfd4f15` |
+| result | **both succeeded** |
+| second deploy time | live ~45 s after the push |
+| build integrity | Netlify's `main.css` fingerprint is `859118bf`, byte-identical to the local build |
+
+**`stratosweb.hu` is not this site.** The apex 301s to `www.stratosweb.hu`, which
+is still served by Wix (`server: Pepyaka`, `wixstatic` preconnects). Production
+is the `netlify.app` address, and the generated canonicals point there because
+`site-origin.mjs` resolves Netlify's `URL`, exactly as designed. Carried forward
+in §23.
+
+---
+
+## 23. Live verification on production
+
+### Routes — 66 generated routes, all three languages
+
+`0 failing`. Status, `lang`, single `H1`, canonical, four `hreflang` links,
+`<main>`, and **0 occurrences of "wix"** in any live document.
+
+The three homepages report `0 h1` to a raw-HTML check because they are a Vite
+bundle that builds its DOM client-side; driven in a browser each reports exactly
+one `H1`, as §14 of the route audit already documents.
+
+### Browser verification — 48 checks, 0 failing
+
+Every route the brief names, at **desktop 1440×900, mobile portrait 390×844 and
+mobile landscape 844×390**: `/`, `/en/`, `/de/`, services overview, one service
+detail, work index, all three case studies, contact, questionnaire, Impact
+Program, blog listing, one article, imprint and privacy. No console errors, no
+failed requests, no horizontal overflow at any of the three.
+
+### Phase 7 homepage and transitions — 13/13
+
+The homepage renders its full scroll-driven ascent in all three languages: 11
+panels, WebGL 2.0 active, ~20,500 px of document, no console errors.
+
+Transitions took three attempts to measure honestly. The `.stratos-veil` in
+`transitions.js` is the **fallback**; Chromium takes the cross-document View
+Transitions path and returns before the veil is ever built, so checking for the
+veil proved nothing. Instrumenting `pagereveal` then disagreed with itself
+between runs — an init script races that event, and the disagreement was the
+measurement, not the site.
+
+What settles it is the animations the transition *runs*, which live for the
+whole fade: **13/13 navigations produced the full pseudo-element tree**,
+including `::view-transition-group(site-nav)` and `(site-foot)` holding the
+chrome still — across work index → case study, case study → case study, case
+study → work index, services → detail, blog → article, contact → questionnaire,
+imprint → privacy, homepage → subpage, and the EN and DE equivalents.
+
+### Production forms — all four types
+
+Real submissions through the real controller on the deployed site. Every one
+answered `200` with a `leadId`, which is the function's proof that the row
+reached Supabase.
+
+| form | leadId |
+|---|---|
+| newsletter | `7be64832-db78-4942-94a9-d93fe8173aef` |
+| contact | `84c57c19-b1b8-4ede-92c5-626f3e2374fe` |
+| impact | `1e52e186-eec2-48a9-87ce-aaa435a6d3b8` |
+| questionnaire | `5ebdc6cd-a669-46fd-9416-0a8c3cc09481` |
+| contact (visible-state re-check) | `13961095-00f8-4b4b-8895-ac0e26e0e24a` |
+
+The visitor-facing success state was confirmed on the contact form:
+`data-state="success"`, the submit button relabelled and disabled, and the live
+region announcing *"Köszönjük — hamarosan válaszolunk a megadott címre."*
+
+**Leads in the Portal: confirmed by the user.** This is the one check not
+performed by me — it needs an authenticated session, and entering a password is
+not something I do. The Portal was verified as far as it can be without one: the
+SPA boots, a deep link to `/portal/leads` puts an unauthenticated visitor on
+`/portal/login` rather than showing lead data, and `X-Robots-Tag: noindex` and
+`Cache-Control: no-store` are present.
+
+The five leads above are real production rows, tagged `PHASE8-DEPLOY-CHECK` with
+`@example.com` addresses. **They should be deleted.**
+
+---
+
+## 24. Two defects found on the live site, after the first deploy
+
+Both were found by the user looking at the deployed site, not by any gate here.
+That is the useful fact about them, and each closed the hole it came through.
+
+### The stale-stylesheet defect — `cfd4f15`
+
+**Reported as:** new page sections rendering with no grid, no rules and no
+spacing, while everything older looked correct.
+
+`netlify.toml` serves `/assets/*` with `max-age=604800` — seven days — and the
+shared files had fixed names. The HTML has no such rule, so it always
+revalidates. Phase 8 took `main.css` from 52,410 to 72,931 bytes, adding
+`.smark`, `.choice` and the rest of the subpage vocabulary, **at the same URL**.
+Every returning visitor therefore received new markup against a cached old
+stylesheet, for up to a week, with nothing wrong on the server and nothing
+visible from a cold browser. Reproduced exactly by serving the current page with
+the previous stylesheet.
+
+Every shared CSS and JS reference now carries `?v=<content hash>` — 408
+references across 69 pages, 9 assets, stamped by `scripts/fingerprint-assets.mjs`
+as the last step of `npm run build`. It runs last because Vite writes the three
+homepage shells *after* `assemble.mjs`, so a pass inside the assembler would have
+missed the three routes carrying the most JavaScript.
+
+This repairs already-poisoned caches rather than only preventing new ones: the
+HTML revalidates, the fresh HTML names a URL the browser has never seen, and the
+stale copy is bypassed on the next visit rather than waited out.
+
+### The stretched-image defect — `d29298a`
+
+**Reported as:** "the logo is stretched."
+
+`stamp_images` in `build.py` writes each file's intrinsic size onto every `<img>`
+so the browser reserves the box early. A width/height attribute is a
+presentational hint, beaten by an author rule and by nothing else — so a CSS rule
+constraining **one** axis stopped taking the other from the aspect ratio and
+started taking the stamped pixel value.
+
+| rule | rendered | should be |
+|---|---|---|
+| `.brand img` — header and footer, all 66 routes | 26×96 | 26×26 |
+| `.rail__mark` — altimeter | 18×96 | 18×18 |
+| `.foot__bottom img` — GDPR badge | 1252×30 | 30×30 |
+
+The paper plane shipped stretched to between four and five times its height for
+the life of Phase 8.
+
+The audit had demanded width and height on every image — `imagesWithoutDims` —
+without ever measuring what those dimensions then did: it enforced the cause and
+was blind to the effect. `route-audit.mjs` now carries `distortedImages`,
+comparing the laid-out box against the file's real proportions.
+
+Only `object-fit: fill` counts. Every card photo sits in a deliberately
+different-shaped box under `object-fit: cover` — cropped, not squashed, and
+correct; counting those made the first version of the check report 204 failures,
+all of them fine. `fill` is the default, so the images nobody gave a fit rule to
+are exactly the ones that get stretched.
+
+### Re-verified after both fixes
+
+| gate | result |
+|---|---|
+| `npm run typecheck` | **pass** |
+| `npm run build` | **pass** |
+| `npm run fingerprint:check` | **pass** — 69 pages, 9 assets, 0 unstamped |
+| `node scripts/route-audit.mjs` | **pass** — 792 checks, 0 failing, 0 broken links, distortion check active |
+| live verification, 7 routes × 3 viewports | **21/21 clean** — 0 distorted images, every asset reference stamped, 0 console errors |
+
+---
+
+## 25. Remaining documented limitations
+
+None of these is a failed check. They are true statements about the site as
+deployed, recorded so they are not rediscovered as surprises.
+
+**Requiring a decision or an action from the user**
+
+1. **Five test leads are live in production** — the `PHASE8-DEPLOY-CHECK` rows
+   in §23. They should be deleted.
+2. **`stratosweb.hu` still serves the old Wix site.** Production is
+   `stratosweb1.netlify.app`, and every canonical, `og:url` and sitemap entry
+   points there. Attaching the custom domain is a Netlify-side action; nothing
+   in the repository needs to change, because `site-origin.mjs` resolves it.
+3. **`_backup/media-rights-hold/cruise-jet.jpg` is in the repository history**,
+   force-added past `.gitignore`. Not published. Removing it now needs a history
+   rewrite, so it is a decision rather than a fix.
+
+**Known defects, not fixed here**
+
+4. **The portal violates its own CSP.** `portal/index.html` requests webfonts
+   from `fonts.googleapis.com`; the policy is `style-src 'self'` and `font-src
+   'self'`, so the request is blocked and the portal renders in fallback fonts,
+   logging a console error on every load. Predates Phase 8 — that file was last
+   touched in `7434c9e`. Cosmetic, not functional.
+5. **The portal's footer link reads "Back to media-stratos.com"**, a domain this
+   site does not use.
+
+**Content and legal, deliberately untouched**
+
+6. **The privacy policy's Google, Meta and cookie sections are unchanged.** They
+   describe analytics and advertising processors and several cookie categories.
+   The public site ships **no third-party JavaScript at all** — the CSP is
+   `script-src 'self'` and there is no analytics or pixel in any page — so those
+   sections may describe the business's off-site marketing rather than this
+   website. Which of the two is true is not determinable from this repository,
+   and rewriting them would mean inventing legal text. **This needs a human
+   decision, and probably legal input.**
+7. **§15 items 2–6 stand unchanged**: case-study facts, Uncensored Society and
+   Brickness Community, Pille Sewing, the German register, and the disposition
+   of `cruise-jet.jpg`.
+
+**Measurement**
+
+8. **Transition verification is by running animation, not by event.** The
+   `pagereveal` event races an automation init script and cannot be observed
+   reliably; §23 explains what was measured instead. The conclusion is sound —
+   the pseudo-element tree only exists if the transition ran — but it is not the
+   same instrument as catching the event.
+
+---
+
+## 26. Completion verdict
+
+Workstreams A–L are implemented, measured and green. The four human decisions
+§20 records were granted. The last blocking factual item — the Wix hosting
+references — was corrected in all three languages, from the providers' own legal
+pages, without inventing anything that could not be verified.
+
+The nine commits are pushed to `main`, no force-push. Both Netlify production
+deployments succeeded. Every live check the brief names passes: 66 routes in
+three languages, 48 browser checks across desktop and mobile portrait and
+landscape, the Phase 7 homepage and 13/13 transitions, all four production form
+types storing to Supabase, and the leads confirmed in the Portal by the user.
+
+Two defects were found on the live site after the first deploy — a seven-day
+stale-stylesheet window and three images stretched by their own stamped
+dimensions. Both are fixed, deployed and re-verified, and each one closed the
+gap in the audit that had let it through: the build now versions its own assets,
+and the route audit now measures what the dimensions it demands actually do.
+
+Neither of them was caught by 792 route checks, 370 tests and a twelve-viewport
+sweep. Both were caught by a person looking at the site. That is the honest
+lesson of this release and it belongs in the record.
+
+The limitations in §25 are documented, not silent, and none is a failed check.
+
 Accordingly:
 
-**PHASE 8 NOT ACCEPTED**
-
-Not because anything failed — every gate passes and every measured number moved
-the right way — but because acceptance depends on three human decisions that
-have not been made. The work is ready for those decisions.
+**PHASE 8 ACCEPTED**
 
 Phase 9 has not been started.
