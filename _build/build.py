@@ -116,6 +116,34 @@ UI = {
         "f_rights": "© 2026 Stratos Media Agency — Minden jog fenntartva.",
         "f_privacy": "Adatkezelési tájékoztató",
         "f_imprint": "Impresszum",
+        # ---- Phase 8.5: flight-deck header, full-screen menu, Arrival footer.
+        # Every factual line here is quoted from copy that already ships. The
+        # response expectation is the Contact page's own wording; the location
+        # is the one in the site description. Nothing in this block is new fact.
+        "p85": {
+            "alt": "MAG",
+            "menu": "MENÜ",
+            "close": "Bezárás",
+            "menu_aria_full": "Teljes navigáció",
+            "start": "Projekt indítása",
+            "explore": "Kiemelt munkáink",
+            "nav_group": "Navigáció",
+            "cap_group": "Amit csinálunk",
+            "status_group": "Állapot",
+            "st_reply": "Válasz jellemzően egy munkanapon belül",
+            "st_where": "Győr és Budapest",
+            "st_langs": "Magyarul, angolul és németül dolgozunk",
+            "to_top": "VISSZA 0 MÉTERRE",
+            "converge_state": "KALIBRÁCIÓ KÉSZ",
+            "converge_lede": "Hova vigyük innen a vállalkozásodat?",
+            "cta_head": "A következő szint innen indul.",
+            # Archetype-specific closing lines (brief §8.5).
+            "cta_service": "Hasonló feladatod van?",
+            "cta_work": "Építsük meg a következő projektet.",
+            "cta_about": "Nézzük meg, mit tudunk együtt felépíteni.",
+            "cta_article": "Váltsd működő rendszerré, amit most olvastál.",
+            "collab": "Kiválasztott együttműködések",
+        },
         "js": {
             "sending": "Küldés…",
             "sent": "Elküldve",
@@ -172,6 +200,29 @@ UI = {
         "f_rights": "© 2026 Stratos Media Agency — All rights reserved.",
         "f_privacy": "Privacy policy",
         "f_imprint": "Imprint",
+        "p85": {
+            "alt": "ALT",
+            "menu": "MENU",
+            "close": "Close",
+            "menu_aria_full": "Full navigation",
+            "start": "Start a project",
+            "explore": "Explore selected work",
+            "nav_group": "Navigate",
+            "cap_group": "Capabilities",
+            "status_group": "Status",
+            "st_reply": "A reply usually within one working day",
+            "st_where": "Győr and Budapest",
+            "st_langs": "We work in Hungarian, English and German",
+            "to_top": "RETURN TO 0 M",
+            "converge_state": "CALIBRATION COMPLETE",
+            "converge_lede": "Where should we take your business next?",
+            "cta_head": "Your next altitude starts here.",
+            "cta_service": "Have a similar challenge?",
+            "cta_work": "Build the next project with us.",
+            "cta_about": "Let's see what we can build together.",
+            "cta_article": "Turn this insight into a working system.",
+            "collab": "Selected collaborations",
+        },
         "js": {
             "sending": "Sending…",
             "sent": "Sent",
@@ -228,6 +279,29 @@ UI = {
         "f_rights": "© 2026 Stratos Media Agency — Alle Rechte vorbehalten.",
         "f_privacy": "Datenschutzerklärung",
         "f_imprint": "Impressum",
+        "p85": {
+            "alt": "HÖHE",
+            "menu": "MENÜ",
+            "close": "Schließen",
+            "menu_aria_full": "Vollständige Navigation",
+            "start": "Projekt starten",
+            "explore": "Ausgewählte Arbeiten",
+            "nav_group": "Navigation",
+            "cap_group": "Leistungen",
+            "status_group": "Status",
+            "st_reply": "Antwort in der Regel innerhalb eines Werktags",
+            "st_where": "Győr und Budapest",
+            "st_langs": "Wir arbeiten auf Ungarisch, Englisch und Deutsch",
+            "to_top": "ZURÜCK AUF 0 M",
+            "converge_state": "KALIBRIERUNG ABGESCHLOSSEN",
+            "converge_lede": "Wohin soll es mit deinem Unternehmen als Nächstes gehen?",
+            "cta_head": "Die nächste Höhe beginnt hier.",
+            "cta_service": "Eine ähnliche Aufgabe?",
+            "cta_work": "Lass uns das nächste Projekt bauen.",
+            "cta_about": "Sehen wir, was wir gemeinsam aufbauen können.",
+            "cta_article": "Mach aus dieser Erkenntnis ein funktionierendes System.",
+            "collab": "Ausgewählte Kooperationen",
+        },
         "js": {
             "sending": "Wird gesendet…",
             "sent": "Gesendet",
@@ -324,12 +398,39 @@ def build_langs(lang, key):
             f'{items}</div>')
 
 
+# The full-screen menu's primary column. Six destinations, numbered, large.
+# The services are a second column rather than six more numbered lines, and the
+# case studies are in neither: under the `summary` status they do not get public
+# case-study navigation, so the Work index is the one route that leads to them.
+MENU_PRIMARY = ("index", "about", "services", "work", "blog", "contact")
+
+
 def build_menu(lang, key):
+    """The §7.4 editorial navigation layer.
+
+    Two columns. The left is the six primary destinations at display size,
+    numbered — the number is the Meridian's station marker, not decoration, so
+    it is `aria-hidden` and the link text stands alone. The right is the service
+    architecture, which is a list of five and reads better as one.
+    """
     u = UI[lang]
-    return "".join(
-        '\n  <a href="%s"%s><b>%02d</b> %s</a>'
-        % (href(lang, k), ' aria-current="page"' if k == key else "", i, u["menu"][k])
-        for i, k in enumerate(MENU))
+    primary = "".join(
+        '\n        <li><a href="%s"%s><b aria-hidden="true">%02d</b><span>%s</span></a></li>'
+        % (href(lang, k), ' aria-current="page"' if k == key else "", i + 1, u["menu"][k])
+        for i, k in enumerate(MENU_PRIMARY))
+    svc = "".join(
+        '\n        <li><a href="%s"%s>%s<em>%s</em></a></li>'
+        % (href(lang, k), ' aria-current="page"' if k == key else "",
+           u["svc"][k][0], u["svc"][k][1])
+        for k in SERVICES)
+    return f"""
+    <ul class="menu__primary">{primary}
+    </ul>
+    <div class="menu__svc">
+      <h2 class="menu__h">{u['services']}</h2>
+      <ul>{svc}
+      </ul>
+    </div>"""
 
 
 def build_font_preload(lang, base):
@@ -446,6 +547,7 @@ SHELL = """<!DOCTYPE html>
 {{fontpreload}}
 <link rel="stylesheet" href="{{base}}assets/css/type.css">
 <link rel="stylesheet" href="{{base}}assets/css/main.css">
+<link rel="stylesheet" href="{{base}}assets/css/motion.css">
 <link rel="stylesheet" href="{{base}}assets/css/transitions.css">{{extra_css}}
 <script id="i18n" type="application/json">{{i18n}}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
@@ -464,22 +566,43 @@ SHELL = """<!DOCTYPE html>
 <div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt=""></div>
 {{instruments}}
 
-<header class="nav">
+<!-- Flight deck. Three deterministic states — opening, journey, destination —
+     written to `data-state` by assets/js/header.js from one number: how far
+     down the document you are. The old direction-based hide/show is gone; a
+     header that vanishes because you nudged the wheel upward is jitter, not
+     navigation. -->
+<header class="nav" data-state="opening">
   <a class="brand" href="{{home}}" aria-label="{{brand_aria}}">
-    <img src="{{base}}assets/img/plane-cursor.png" alt=""><span>Stratos</span>
+    <img src="{{base}}assets/img/plane-cursor.png" alt="">
+    <span class="brand__wm"><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
   </a>
+  <p class="nav__alt" aria-hidden="true"><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></p>
   <nav class="nav__links" aria-label="{{nav_aria}}">{{nav}}
   </nav>
-  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="{{burger_aria}}"><i></i><i></i></button>
+  <a class="nav__cta" href="{{quote_href}}">{{start}}</a>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="{{burger_aria}}"><span class="burger__t" aria-hidden="true"><span class="burger__open">{{menu_label}}</span><span class="burger__shut">{{close}}</span></span><span class="burger__bars" aria-hidden="true"><i></i><i></i></span></button>
 </header>
 
-<nav class="menu" id="menu" aria-label="{{menu_aria}}">{{menu}}
-  {{langs}}
-  <div class="menu__foot">
-    <span>lukacs.artur@media-stratos.com</span>
-    <span>+36 30 584 8024</span>
-  </div>
-</nav>
+<!-- Full-viewport editorial navigation (§7.4). Still a plain list of anchors:
+     no router, no interception, so middle-click, ctrl-click, back and the
+     browser's own history all behave exactly as they did. -->
+<div class="menu" id="menu" hidden>
+  <div class="menu__veil" data-menu-dismiss></div>
+  <nav class="menu__panel" aria-label="{{menu_aria_full}}">
+    <svg class="menu__trace" data-trace viewBox="0 0 120 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M8 0 V600"/>
+    </svg>
+    {{menu}}
+    <div class="menu__aside">
+      {{langs}}
+      <a class="btn menu__cta" href="{{quote_href}}">{{start}}</a>
+      <div class="menu__foot">
+        <a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a>
+        <a href="tel:+36305848024">+36 30 584 8024</a>
+      </div>
+    </div>
+  </nav>
+</div>
 
 <div class="shell">
 <main id="main">
@@ -489,6 +612,15 @@ SHELL = """<!DOCTYPE html>
 </div>
 
 <script src="{{base}}assets/js/main.js"></script>
+<!-- The flight deck. Not deferred: the header's opening state is above the
+     fold on every route, and a header that snaps into place one frame after
+     paint is a layout shift the user watches happen. -->
+<script src="{{base}}assets/js/header.js"></script>
+<!-- The Meridian Trace motion primitives. `defer` because every primitive
+     measures layout at boot — an SVG path's length is wrong until the web fonts
+     have settled the box around it — and because nothing on the page depends on
+     it having run. See assets/js/motion.js. -->
+<script src="{{base}}assets/js/motion.js" defer></script>
 <!-- Page transitions. First-party, so the policy stays `script-src 'self'`, and
      `defer` rather than `async` so it runs after parsing. It is not ordered
      before `pagereveal` and does not need to be — see assets/js/transitions.js. -->
@@ -515,7 +647,40 @@ RAIL = """
 # anything of their own.
 # The HUD chrome was the old homepage's flight instrument. Removed with it.
 
-FOOTER = """<footer class="foot">
+# ARRIVAL / GROUND CONTROL — the §8 footer.
+#
+# The old footer was a rule followed by four columns of links, which is the one
+# thing §8.1 names as not good enough: it ended the page without concluding it.
+# This one has three movements.
+#
+#   1. Convergence. The page's own Meridian Trace runs out of the content and
+#      meets itself. A system state, then one question.
+#   2. The hero CTA the whole page has been walking towards. Its headline is
+#      archetype-specific — a service page asks a service question, an article
+#      asks an article question — so it reads as this page's conclusion rather
+#      than as the same block stamped 66 times.
+#   3. The information grid, and only then the utility line.
+#
+# The homepage gets the full cinematic version of movement 1; every other route
+# gets a short one, per §8.5.
+FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
+  <div class="wrap">
+    <svg class="arrival__trace" data-trace data-trace-stagger="0.5" viewBox="0 0 1200 240" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M0 12 C 300 12, 420 120, 600 120"/>
+      <path d="M1200 12 C 900 12, 780 120, 600 120"/>
+      <path d="M600 120 V 228" class="trace__lit"/>
+      <circle class="trace__node" cx="600" cy="120" r="4"/>
+    </svg>
+    <p class="arrival__state" aria-hidden="true"><span>{{ceiling_label}}</span><span>{{converge_state}}</span></p>
+    <p class="arrival__lede">{{converge_lede}}</p>
+    <h2 class="arrival__h display" data-kinetic data-kinetic-from="104 700 0" data-kinetic-to="88 780 -.015">{{cta_head}}</h2>
+    <p class="arrival__cta converge__cta">
+      <a class="btn" href="{{quote}}" data-magnet><span>{{start}}</span>{{arrow}}</a>
+      <a class="btn btn--ghost" href="{{work}}"><span>{{explore}}</span></a>
+    </p>
+  </div>
+</section>
+<footer class="foot">
   <div class="wrap">
     <div class="foot__grid">
       <div>
@@ -555,12 +720,27 @@ FOOTER = """<footer class="foot">
           <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
         </ul>
       </div>
+      <!-- Status. Three statements, every one of them already published
+           elsewhere on this site: the reply expectation is the Contact page's
+           own sentence, the location is the one in the site description, and
+           the languages are the three locales this build emits. Nothing here
+           is an availability claim the site cannot support. -->
+      <div>
+        <h4>{{f_status}}</h4>
+        <ul class="foot__status">
+          <li>{{st_reply}}</li>
+          <li>{{st_where}}</li>
+          <li>{{st_langs}}</li>
+        </ul>
+      </div>
     </div>
     <div class="foot__bottom">
       <span>{{f_rights}}</span>
-      <span style="display:flex;gap:1.4rem;align-items:center">
+      <span class="foot__utility">
         <a href="{{privacy}}">{{f_privacy}}</a>
         <a href="{{imprint}}">{{f_imprint}}</a>
+        {{f_langs}}
+        <button class="foot__top" type="button" data-to-top>{{to_top}}</button>
         <img src="{{base}}assets/img/gdpr.png" alt="GDPR Ready">
       </span>
     </div>
@@ -572,8 +752,31 @@ def render(tpl, ctx):
     return re.sub(r"\{\{(\w+)\}\}", lambda m: str(ctx[m.group(1)]), tpl)
 
 
+# Which closing question a route asks. §8.5: the same core system, archetype-
+# specific language — so a service page's footer concludes a service argument
+# and an article's concludes the article, instead of 66 routes repeating one
+# sentence. Anything not listed gets the general line.
+ARCHETYPE_CTA = {
+    **{k: "cta_service" for k in SERVICES},
+    "services": "cta_service",
+    "work": "cta_work",
+    **{k: "cta_work" for k in CASES},
+    "about": "cta_about",
+    "impact": "cta_about",
+    **{k: "cta_article" for k in POSTS},
+    "blog": "cta_article",
+}
+
+# The altitude the convergence reports. It is the page's own ceiling — the same
+# number the altimeter rail has been climbing towards all the way down — so the
+# footer closes the instrument rather than announcing an unrelated figure.
+CEILINGS = {"impact": 30000, "ads": 17000, "enterprise": 9400,
+            "branding": 4800, "sme": 1200}
+
+
 def build_footer(lang, key):
     u = UI[lang]
+    p = u["p85"]
     pages = "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["menu"][k]}</a></li>'
         for k in ("about", "work", "contact", "blog", "quote"))
@@ -581,6 +784,11 @@ def build_footer(lang, key):
     svc += "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
         for k in SERVICES)
+
+    ceiling = CEILINGS.get(key, 30000)
+    # Thin space between the thousands, which is how the altimeter reads it.
+    ceiling_label = f"{ceiling:,}".replace(",", " ") + " " + u["unit_short"]
+
     return render(FOOTER, dict(
         home=href(lang, "index"), base="" if lang == "hu" else "../",
         nl_lede=u["nl_lede"], nl_label=u["nl_label"],
@@ -589,6 +797,17 @@ def build_footer(lang, key):
         f_contact=u["f_contact"], f_social=u["f_social"], f_rights=u["f_rights"],
         privacy=href(lang, "privacy"), f_privacy=u["f_privacy"],
         imprint=href(lang, "imprint"), f_imprint=u["f_imprint"],
+        # ---- Phase 8.5
+        arrival_mod=" arrival--home" if key == "index" else "",
+        ceiling_label=ceiling_label,
+        converge_state=p["converge_state"], converge_lede=p["converge_lede"],
+        cta_head=p[ARCHETYPE_CTA.get(key, "cta_head")] if key in ARCHETYPE_CTA else p["cta_head"],
+        quote=href(lang, "quote"), start=p["start"],
+        work=href(lang, "work"), explore=p["explore"],
+        arrow=ARROW,
+        f_status=p["status_group"], st_reply=p["st_reply"],
+        st_where=p["st_where"], st_langs=p["st_langs"],
+        f_langs=build_langs(lang, key), to_top=p["to_top"],
     ))
 
 
@@ -855,6 +1074,11 @@ def main():
                 burger_aria=u["burger_aria"],
                 nav=build_nav(lang, key), menu=build_menu(lang, key),
                 langs=build_langs(lang, key),
+                # ---- Phase 8.5 flight deck
+                alt_k=u["p85"]["alt"], unit_short=u["unit_short"],
+                quote_href=href(lang, "quote"), start=u["p85"]["start"],
+                menu_label=u["p85"]["menu"], close=u["p85"]["close"],
+                menu_aria_full=u["p85"]["menu_aria_full"],
                 body=body,
                 footer=build_footer(lang, key) if show_footer else "",
             ))

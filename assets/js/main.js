@@ -94,40 +94,13 @@
     };
   })();
 
-  /* ---------------------------------------------------------- nav */
-  const nav = $('.nav');
-  let lastY = 0;
-
-  function navState(y) {
-    if (!nav) return;
-    nav.classList.toggle('is-solid', y > 40);
-    const menuOpen = document.body.classList.contains('menu-open');
-    nav.classList.toggle('is-hidden', !menuOpen && y > 400 && y > lastY);
-    lastY = y;
-  }
-
-  const burger = $('.burger');
-  const menu = $('.menu');
-  if (burger && menu) {
-    burger.addEventListener('click', () => {
-      const open = burger.getAttribute('aria-expanded') === 'true';
-      burger.setAttribute('aria-expanded', String(!open));
-      menu.classList.toggle('is-open', !open);
-      document.body.classList.toggle('menu-open', !open);
-      document.body.style.overflow = !open ? 'hidden' : '';
-    });
-    menu.addEventListener('click', e => {
-      if (e.target.closest('a')) {
-        burger.setAttribute('aria-expanded', 'false');
-        menu.classList.remove('is-open');
-        document.body.classList.remove('menu-open');
-        document.body.style.overflow = '';
-      }
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && menu.classList.contains('is-open')) burger.click();
-    });
-  }
+  /* ---------------------------------------------------------- nav
+     Moved out. The header's three states, the full-screen navigation layer,
+     its focus trap and the return-to-0 m control all live in
+     assets/js/header.js now — including the `is-solid` toggle, so that class
+     has exactly one owner. What used to be here also set `.is-hidden` from the
+     sign of the scroll delta, which is the jitter the Phase 8.5 brief asks to
+     be rid of, and it is gone rather than relocated. */
 
   /* ---------------------------------------------------------- reveal */
   const io = new IntersectionObserver((entries) => {
@@ -224,7 +197,6 @@
       : (max > 0 ? clamp(y / max, 0, 1) : 0);
 
     Altimeter.tick(progress);
-    navState(y);
     scrubPaths();
 
     paras.forEach(el => {

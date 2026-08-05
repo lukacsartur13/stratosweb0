@@ -256,28 +256,93 @@ section { position: relative; }
 .rule { border: 0; border-top: 1px solid var(--hair); }
 
 /* --------------------------------------------------------- nav */
+/* ------------------------------------------------------- flight deck (§7)
+   Three states on one element, switched by `data-state` from
+   assets/js/header.js. The header never hides: it changes what it is showing.
+
+     opening      wordmark + full navigation, transparent, no panel
+     journey      compact mark + altitude + menu trigger, ~48 px
+     destination  navigation returns, Start Project comes forward
+
+   Everything that moves between states is a transition on a property that does
+   not force layout — opacity, transform, max-width — so a state change costs a
+   composite and not a reflow of the whole document. */
 .nav {
   /* must sit above .menu so the close button stays reachable while it is open */
   position: fixed; top: 0; left: var(--rail); right: 0; z-index: 890;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 1rem; padding: 1.1rem var(--gut);
-  transition: background .4s, backdrop-filter .4s, transform .4s var(--ease);
+  display: flex; align-items: center;
+  gap: clamp(.8rem, 2vw, 1.8rem); padding: 1.1rem var(--gut);
+  transition: background .4s, backdrop-filter .4s, padding .45s var(--ease);
 }
 .nav.is-solid {
   background: rgba(0,0,0,.72); backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--hair);
 }
-.nav.is-hidden { transform: translateY(-110%); }
 
-.brand { display: flex; align-items: center; gap: .6rem; }
+.brand { display: flex; align-items: center; gap: .6rem; margin-right: auto; }
+.nav .brand { margin-right: auto; }
 /* height: auto — see the note on .rail__mark. Same image, same stamped
    height="96", same stretch: this one rendered 26×96 in the header of all 66
    routes. */
-.brand img { width: 26px; height: auto; }
+.brand img { width: 26px; height: auto; transition: width .45s var(--ease); }
 .brand span {
   font-family: var(--display); font-size: 1.05rem;
   letter-spacing: .34em; text-transform: uppercase;
+  white-space: nowrap;
 }
+/* The two wordmarks share one grid cell and cross-fade, so the brand's width is
+   whatever the wider of them is and nothing after it jumps at the state change.
+   The footer's .brand has no second mark, so the grid collapses to one child
+   and it is unaffected. */
+.nav .brand__wm { display: grid; align-items: center; }
+.brand__full, .brand__mark { grid-area: 1 / 1; transition: opacity .35s var(--ease); }
+.brand__mark { opacity: 0; letter-spacing: .18em; }
+
+/* The altitude readout. Monospaced and zero-padded so the digits tick without
+   the surrounding chrome moving — the same discipline as the rail. */
+.nav__alt {
+  display: none; align-items: baseline; gap: .5rem; margin: 0;
+  font-family: var(--data); font-size: var(--step--1);
+  letter-spacing: .16em; color: var(--haze);
+  opacity: 0; transition: opacity .4s var(--ease);
+}
+.nav__alt-k { color: rgba(244,244,244,.4); }
+.nav__alt-v { color: var(--signal); font-weight: 500; font-variant-numeric: tabular-nums; }
+.nav__alt-u { font-size: 9px; }
+
+.nav__cta {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .13em;
+  padding: .55rem 1.1rem; border: 1px solid var(--hair);
+  color: var(--paper); white-space: nowrap;
+  max-width: 0; overflow: hidden; opacity: 0; padding-inline: 0; border-width: 0;
+  transition: max-width .5s var(--ease), opacity .35s var(--ease),
+              padding .5s var(--ease), background .25s, color .25s;
+}
+.nav__cta:hover { background: var(--signal); color: var(--void); border-color: var(--signal); }
+
+/* ---- journey: compress to the 40–52 px band the brief specifies. The height
+   is set by the tallest child, so the wordmark and the mark shrink with the
+   padding rather than the padding fighting a fixed line box. */
+.nav[data-state="journey"] { padding-block: .4rem; }
+.nav[data-state="journey"] .brand img { width: 18px; }
+.nav[data-state="journey"] .brand span { font-size: .82rem; }
+.nav[data-state="journey"] .burger { height: 34px; }
+.nav[data-state="journey"] .burger__t { font-size: 10px; }
+.nav[data-state="journey"] .brand__full { opacity: 0; }
+.nav[data-state="journey"] .brand__mark { opacity: 1; }
+.nav[data-state="journey"] .nav__alt { display: flex; opacity: 1; }
+@media (min-width: 1081px) {
+  /* The main navigation collapses into the menu trigger, which is the point of
+     the journey state — the ascent is the page, and the chrome gets out of it. */
+  .nav[data-state="journey"] .nav__links { display: none; }
+}
+
+/* ---- destination: the navigation returns and the CTA arrives. */
+.nav[data-state="destination"] .nav__cta {
+  max-width: 22ch; opacity: 1; padding-inline: 1.1rem; border-width: 1px;
+}
+.nav[data-state="destination"] { padding-block: 1.1rem; }
 
 .nav__links { display: flex; align-items: center; gap: clamp(1rem, 2.2vw, 2.2rem); }
 .nav__links > * { position: relative; }
@@ -318,46 +383,155 @@ section { position: relative; }
   letter-spacing: .16em; color: var(--haze);
 }
 
+/* Always present, at every width and in every state. The opening state shows
+   the primary navigation as well, and the trigger sits beside it: the layer is
+   the full index — services, work, contact, locale, project start — and making
+   it reachable only after you had scrolled would hide the site's own map behind
+   an interaction nobody is told about. In the journey state the navigation
+   collapses and this becomes the only control, which is the point of it. */
 .burger {
-  display: none; background: none; border: 0; cursor: pointer;
-  width: 42px; height: 42px; padding: 0; position: relative; z-index: 890;
+  display: flex; background: none; border: 0; cursor: pointer;
+  height: 42px; padding: 0 0 0 .8rem; position: relative; z-index: 890;
+  align-items: center; gap: .7rem; color: var(--paper);
 }
+.burger__t {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em;
+}
+/* The two bars live in one 22×12 box: the first sits at the top of it, the
+   second at the bottom, and both rotate about the centre to form an X. Because
+   the box never resizes, opening the layer does not shift the header. */
+.burger__bars { position: relative; width: 22px; height: 12px; flex: none; }
 .burger i {
-  position: absolute; left: 9px; right: 9px; height: 1.5px; background: var(--paper);
-  transition: .35s var(--ease);
+  position: absolute; left: 0; right: 0; height: 1.5px;
+  background: var(--paper); transition: transform .35s var(--ease), top .35s var(--ease);
 }
-.burger i:nth-child(1) { top: 16px; }
-.burger i:nth-child(2) { bottom: 16px; }
-.burger[aria-expanded="true"] i:nth-child(1) { top: 20px; transform: rotate(45deg); }
-.burger[aria-expanded="true"] i:nth-child(2) { bottom: 20px; transform: rotate(-45deg); }
+.burger i:nth-child(1) { top: 0; }
+.burger i:nth-child(2) { top: 10.5px; }
+.burger[aria-expanded="true"] i:nth-child(1) { top: 5.25px; transform: rotate(45deg); }
+.burger[aria-expanded="true"] i:nth-child(2) { top: 5.25px; transform: rotate(-45deg); }
 
+/* ------------------------------------------- full-screen navigation (§7.4)
+   A layer, not a route. Every destination in it is a plain anchor, so
+   middle-click, ctrl-click, the back button and "open in new tab" behave the
+   way they do everywhere else on the web. The focus trap, the scroll lock and
+   focus restoration are in assets/js/header.js. */
 .menu {
-  position: fixed; inset: 0; z-index: 880; background: var(--void);
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 5rem var(--gut) 4rem; gap: .2rem;
+  position: fixed; inset: 0; z-index: 880;
+}
+.menu[hidden] { display: none; }
+
+.menu__veil {
+  position: absolute; inset: 0; background: rgba(0,0,0,.6);
+  opacity: 0; transition: opacity .4s var(--ease);
+}
+.menu.is-open .menu__veil { opacity: 1; }
+
+.menu__panel {
+  position: absolute; inset: 0; background: var(--void);
+  display: grid; align-content: center;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(4.5rem, 9vh, 7rem) var(--gut) clamp(2.5rem, 6vh, 4rem);
+  overflow-y: auto; overscroll-behavior: contain;
   clip-path: inset(0 0 100% 0); transition: clip-path .7s var(--ease);
-  overflow-y: auto;
 }
-.menu.is-open { clip-path: inset(0 0 0 0); }
-body.menu-open .nav {
-  background: transparent; backdrop-filter: none; border-bottom: 0;
+.menu.is-open .menu__panel { clip-path: inset(0 0 0 0); }
+
+/* The Meridian reaching the active destination. Decorative: the current page is
+   already announced by aria-current on the link itself. */
+.menu__trace {
+  position: absolute; left: var(--gut); top: 0; bottom: 0;
+  width: 40px; height: 100%;
 }
-.menu a[aria-current="page"] { color: var(--signal); }
-.menu a {
-  font-family: var(--display); font-size: clamp(1.5rem, 7vw, 2.6rem);
-  text-transform: uppercase; letter-spacing: .04em;
-  /* German compounds are long — never let one push the sheet sideways */
+
+/* There is no separate close button in the layer. The header sits above it and
+   its trigger is already the close control: it morphs to an X, it owns
+   `aria-expanded` and `aria-controls`, and its label swaps to the close word.
+   A second dismiss control landed on exactly the same coordinates as the first,
+   which is worse than either alone. ESC and the veil close it too. */
+.burger__t { display: grid; }
+.burger__open, .burger__shut { grid-area: 1 / 1; transition: opacity .25s; }
+.burger__shut { opacity: 0; }
+.burger[aria-expanded="true"] .burger__open { opacity: 0; }
+.burger[aria-expanded="true"] .burger__shut { opacity: 1; }
+
+/* While the layer is open the header keeps only its identity and its toggle.
+   Everything else it shows is already in the layer, larger and better set. */
+.menu-open .nav__links,
+.menu-open .nav__cta { opacity: 0; pointer-events: none; }
+.nav__links { transition: opacity .3s var(--ease); }
+
+.menu__primary { list-style: none; margin: 0; padding: 0; }
+.menu__primary a {
+  font-family: var(--display); font-size: clamp(1.6rem, 4.4vw, 3.2rem);
+  font-variation-settings: "wdth" 96, "wght" 640;
+  text-transform: uppercase; letter-spacing: .02em; line-height: 1.05;
+  /* German compounds are long — never let one push the layer sideways */
   overflow-wrap: anywhere;
-  padding: .35rem 0; border-bottom: 1px solid var(--hair);
+  padding: .4rem 0 .4rem 3.4rem; border-bottom: 1px solid var(--hair);
   display: flex; align-items: baseline; gap: 1rem;
+  transition: color .25s, padding-left .35s var(--ease);
 }
-.menu a b {
+.menu__primary a:hover, .menu__primary a:focus-visible { color: var(--signal); padding-left: 4.2rem; }
+.menu__primary a[aria-current="page"] { color: var(--signal); }
+.menu__primary b {
+  position: absolute; margin-left: -3.4rem;
   font-family: var(--data); font-size: 10px; font-weight: 400;
   color: var(--haze); letter-spacing: .2em;
 }
+
+.menu__h {
+  font-family: var(--data); font-size: var(--step--1); font-weight: 400;
+  text-transform: uppercase; letter-spacing: .24em; color: var(--haze);
+  margin: 0 0 1.2rem;
+}
+.menu__svc ul { list-style: none; margin: 0; padding: 0; }
+.menu__svc a {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding: .75rem 0; border-bottom: 1px solid rgba(244,244,244,.07);
+  font-size: var(--step-0); overflow-wrap: anywhere;
+  transition: color .25s, padding-left .3s var(--ease);
+}
+.menu__svc a:hover, .menu__svc a:focus-visible { color: var(--signal); padding-left: .5rem; }
+.menu__svc a[aria-current="page"] { color: var(--signal); }
+.menu__svc em {
+  font-family: var(--data); font-style: normal; font-size: 9px;
+  letter-spacing: .16em; color: var(--haze); flex: none;
+}
+
+.menu__aside {
+  grid-column: 2; display: flex; flex-direction: column;
+  align-items: flex-start; gap: 1.4rem; margin-top: 2.2rem;
+}
+.menu__cta { align-self: stretch; justify-content: center; }
 .menu__foot {
-  margin-top: 2rem; font-family: var(--data); font-size: var(--step--1);
+  font-family: var(--data); font-size: var(--step--1);
   color: var(--haze); display: grid; gap: .4rem;
+}
+.menu__foot a:hover { color: var(--paper); }
+
+/* The header stays legible on top of the layer, and drops its own panel so
+   there are not two blurred surfaces stacked. */
+.menu-open .nav { background: transparent; backdrop-filter: none; border-bottom: 0; }
+
+@media (max-width: 860px) {
+  .menu__panel {
+    grid-template-columns: 1fr; align-content: start;
+    gap: 2.2rem;
+  }
+  .menu__aside { grid-column: 1; margin-top: 0; }
+  .menu__trace { display: none; }
+}
+/* Landscape phones have ~390 px of height: the layer must scroll from the top
+   rather than centring content it cannot fit. */
+@media (max-height: 560px) {
+  .menu__panel { align-content: start; }
+  .menu__primary a { font-size: clamp(1.15rem, 3.4vh, 1.7rem); padding-block: .25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu__panel, .menu__veil { transition: none; clip-path: none; }
 }
 
 /* --------------------------------------------------------- language switch */
@@ -387,7 +561,15 @@ body.menu-open .nav {
 
 @media (max-width: 1080px) {
   .nav__links { display: none; }
-  .burger { display: block; }
+}
+/* §7.5 — the mobile header is `STRATOS  MENU` at the opening and
+   `S/  08 420 M  MENU` during the journey. Desktop navigation links are never
+   put into it: six uppercase destinations in 390 px is not a navigation. */
+@media (max-width: 640px) {
+  .nav { padding-inline: var(--gut); gap: .8rem; }
+  .nav__cta { display: none; }
+  .burger__t { font-size: 10px; letter-spacing: .12em; }
+  .nav[data-state="journey"] .nav__alt { font-size: 10px; letter-spacing: .1em; }
 }
 
 /* --------------------------------------------------------- type helpers */
@@ -1267,10 +1449,93 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 .launch > * { position: relative; }
 
 /* --------------------------------------------------------- footer */
+/* ------------------------------------------------- ARRIVAL / GROUND CONTROL
+   The §8 finale. Three movements: the trace converges, the page asks its own
+   closing question, then — and only then — the information grid.
+
+   There is no border-top between the convergence and the content above it. The
+   old footer opened with a rule, which is exactly what made it read as "the
+   links start here" instead of as the end of an argument. */
+.arrival {
+  position: relative;
+  padding-block: clamp(5rem, 14vh, 10rem) clamp(3rem, 7vh, 5rem);
+  text-align: center;
+  overflow: clip;
+}
+.arrival .wrap { position: relative; }
+
+/* In flow, not absolute. The trace has to reserve the band it draws in: taken
+   out of flow it drew its descender straight through the lede underneath it,
+   and every fix from that position is a magic offset that breaks at the next
+   viewport. Here the converging curves and the descender own a block, and the
+   state line begins exactly where the descender ends. */
+.arrival__trace {
+  position: relative; display: block;
+  width: 100%; height: clamp(90px, 16vh, 190px);
+  margin-bottom: clamp(1rem, 3vh, 2rem);
+}
+
+.arrival__state {
+  display: flex; justify-content: center; gap: 1.4rem; flex-wrap: wrap;
+  margin: 0;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .24em; color: var(--haze);
+}
+.arrival__state span:first-child { color: var(--signal); }
+
+.arrival__lede {
+  margin: 1.6rem auto 0; max-width: 26ch;
+  color: rgba(244,244,244,.72); font-size: var(--step-1);
+}
+
+.arrival__h {
+  margin: clamp(1rem, 3vh, 2rem) auto 0; max-width: 16ch;
+  font-size: var(--step-4); line-height: 1.02;
+  text-wrap: balance;
+}
+
+.arrival__cta {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 1rem; margin-top: clamp(2rem, 5vh, 3.4rem);
+}
+
+/* The homepage gets the long version — §8.5 is explicit that the full
+   cinematic finale must not be repeated on every route. */
+.arrival--home { padding-block: clamp(8rem, 24vh, 16rem) clamp(4rem, 9vh, 7rem); }
+.arrival--home .arrival__trace { height: clamp(140px, 26vh, 300px); }
+
+@media (max-width: 640px) {
+  .arrival__state { gap: .6rem; }
+  .arrival__trace { height: clamp(70px, 12vh, 110px); }
+  .arrival__cta .btn { width: 100%; justify-content: center; }
+}
+
 .foot { border-top: 1px solid var(--hair); padding-block: clamp(3rem, 6vw, 5rem) 8rem; }
+.foot__status { color: var(--haze); font-size: var(--step--1); line-height: 1.5; }
+.foot__status li { max-width: 26ch; }
+.foot__utility { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
+.foot__top {
+  background: none; border: 0; cursor: pointer; padding: 0;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em; color: var(--haze);
+  transition: color .25s;
+}
+.foot__top:hover { color: var(--signal); }
+/* Newsletter + the four §8.3 groups: Navigate, Capabilities, Contact, Status.
+   The newsletter keeps its extra width; the four groups share the rest evenly.
+   At 1080 it becomes two rows of the same columns rather than a squeeze, and
+   below 640 it is one column, because five columns of link lists on a phone is
+   a sitemap printed sideways. */
 .foot__grid {
   display: grid; gap: clamp(2rem, 4vw, 3rem);
-  grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1.5fr repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 1180px) {
+  .foot__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .foot__grid > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .foot__grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 900px) { .foot__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .foot__grid { grid-template-columns: 1fr; } }
