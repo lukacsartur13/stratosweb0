@@ -17,6 +17,7 @@ Nothing at runtime depends on this script; the result is a plain static site.
 """
 import json
 import re
+import struct
 import sys
 from pathlib import Path
 
@@ -340,6 +341,60 @@ def build_alternates(key):
     return tags + f'\n<link rel="alternate" hreflang="x-default" href="{absolute("hu", key)}">'
 
 
+# The origin every absolute URL in <head> is built from. The homepage bundle
+# hard-codes the same value; changing it means changing both.
+SITE = "https://media-stratos.com"
+
+# Open Graph needs an absolute image URL, and a page that names none still has
+# to preview as something rather than as a blank card. This is the homepage
+# hero, which is ours and is already the site's most representative image; a
+# fragment overrides it with an `og_image:` line in its front matter.
+DEFAULT_OG_IMAGE = ("assets/img/hero.jpg", 1800, 1012)
+
+OG_LOCALE = {"hu": "hu_HU", "en": "en_GB", "de": "de_DE"}
+
+
+def build_social(lang, key, title, desc, meta):
+    """Canonical, Open Graph and Twitter tags.
+
+    Before Phase 8 none of the 33 generated routes carried any of this — only
+    the React homepage did — so a link to any subpage shared as a bare URL with
+    no title, no description and no image. The hreflang set was already correct
+    and is built separately, above.
+
+    Everything here is derived from what the page already declares. There is no
+    second copy of the title to keep in step.
+    """
+    image, width, height = DEFAULT_OG_IMAGE
+    if meta.get("og_image"):
+        image = meta["og_image"]
+        width = meta.get("og_image_width", "")
+        height = meta.get("og_image_height", "")
+
+    alt_locales = "".join(
+        f'\n<meta property="og:locale:alternate" content="{OG_LOCALE[l]}">'
+        for l in LANGS if l != lang)
+
+    dims = ""
+    if width and height:
+        dims = (f'\n<meta property="og:image:width" content="{width}">'
+                f'\n<meta property="og:image:height" content="{height}">')
+
+    return f"""
+<link rel="canonical" href="{SITE}{absolute(lang, key)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stratos">
+<meta property="og:locale" content="{OG_LOCALE[lang]}">{alt_locales}
+<meta property="og:url" content="{SITE}{absolute(lang, key)}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{SITE}/{image}">{dims}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{SITE}/{image}">"""
+
+
 SHELL = """<!DOCTYPE html>
 <html lang="{{lang}}">
 <head>
@@ -347,7 +402,7 @@ SHELL = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{desc}}">
-<link rel="icon" href="{{base}}assets/img/favicon.png">{{alternates}}
+<link rel="icon" href="{{base}}assets/img/favicon.png">{{alternates}}{{social}}
 {{fontpreload}}
 <link rel="stylesheet" href="{{base}}assets/css/type.css">
 <link rel="stylesheet" href="{{base}}assets/css/main.css">
@@ -496,6 +551,81 @@ def build_footer(lang, key):
     ))
 
 
+
+# ------------------------------------------------------------------- images
+# Every <img> is stamped with the intrinsic size of the file it points at, so
+# the browser reserves the right box before the bytes arrive.
+#
+# Done here rather than in the fragments for two reasons. It cannot drift — a
+# replaced image is a re-measured image on the next build, where a hand-written
+# attribute would quietly start lying. And it is 51 images across 11 fragments
+# and three languages, which is not a thing to maintain by hand.
+#
+# A tag that already declares width or height is left exactly as it is: an
+# author who wrote one meant it.
+IMG_RE = re.compile(r'<img\b((?:"[^"]*"|\'[^\']*\'|[^>"\'])*)>')
+SRC_RE = re.compile(r'\bsrc="([^"]+)"')
+
+_dim_cache = {}
+
+
+def image_size(src):
+    """(width, height) of a local image, or None. PNG and JPEG headers only —
+    those are the only formats in assets/img, and a dependency for this would
+    be a dependency for the whole build."""
+    if src in _dim_cache:
+        return _dim_cache[src]
+
+    rel = src.lstrip("/")
+    while rel.startswith("../"):
+        rel = rel[3:]
+    path = ROOT / rel
+    size = None
+    try:
+        data = path.read_bytes()
+        if data[:8] == b"\x89PNG\r\n\x1a\n":
+            size = struct.unpack(">II", data[16:24])
+        elif data[:2] == b"\xff\xd8":
+            i = 2
+            while i < len(data) - 9:
+                if data[i] != 0xFF:
+                    i += 1
+                    continue
+                marker = data[i + 1]
+                # SOFn carries the dimensions. SOF4/SOF8/SOFC are not frame
+                # headers and must not be read as one.
+                if marker in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
+                              0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+                    h, w = struct.unpack(">HH", data[i + 5:i + 9])
+                    size = (w, h)
+                    break
+                if marker in (0xD8, 0xD9) or 0xD0 <= marker <= 0xD7:
+                    i += 2
+                    continue
+                i += 2 + struct.unpack(">H", data[i + 2:i + 4])[0]
+    except (OSError, struct.error, IndexError):
+        size = None
+
+    _dim_cache[src] = size
+    return size
+
+
+def stamp_images(html):
+    def stamp(m):
+        attrs = m.group(1)
+        if re.search(r"\bwidth=", attrs) or re.search(r"\bheight=", attrs):
+            return m.group(0)
+        src = SRC_RE.search(attrs)
+        if not src:
+            return m.group(0)
+        size = image_size(src.group(1))
+        if not size:
+            return m.group(0)
+        return f'<img{attrs} width="{size[0]}" height="{size[1]}">'
+
+    return IMG_RE.sub(stamp, html)
+
+
 # --------------------------------------------------------------------- links
 LINK_RE = re.compile(r'(href|src)="([^"#?]+\.html)((?:[#?][^"]*)?)"')
 ASSET_RE = re.compile(r'(href|src)="(assets/)')
@@ -636,6 +766,7 @@ def main():
                 lang=lang, title=title, desc=desc,
                 base=base,
                 alternates=build_alternates(key),
+                social=build_social(lang, key, title, desc, meta),
                 fontpreload=build_font_preload(lang, base),
                 i18n=json.dumps(js, ensure_ascii=False),
                 ceiling=meta.get("ceiling", "20000"),
@@ -653,6 +784,7 @@ def main():
                 footer=build_footer(lang, key) if show_footer else "",
             ))
             html, script = externalise_js(relink(html, lang), key, lang, base)
+            html = stamp_images(html)
             if script:
                 scripts.append(script)
             (outdir / SLUGS[key][lang]).write_text(html, encoding="utf-8")

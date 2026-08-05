@@ -1,0 +1,2854 @@
+{
+  "generatedAt": "2026-08-05T07:40:22.601Z",
+  "summary": {
+    "routes": 33,
+    "locales": 3,
+    "keys": 12,
+    "missingRoutes": [
+      "/index.html",
+      "/en/index.html",
+      "/de/index.html"
+    ],
+    "archetypes": {
+      "about": 3,
+      "service detail": 12,
+      "Impact Program": 3,
+      "blog / editorial": 3,
+      "contact": 3,
+      "questionnaire": 3,
+      "legal / utility": 6
+    },
+    "routesWithForms": 9,
+    "formsOnCanonicalController": 9,
+    "routesWithoutPrimaryCta": 9,
+    "routesWithoutCanonical": 0,
+    "routesWithoutOg": 0,
+    "routesWithStructuredData": 0,
+    "clientRenderedRoutes": []
+  },
+  "archetypes": {
+    "about": [
+      "/rolunk.html",
+      "/en/about.html",
+      "/de/ueber-uns.html"
+    ],
+    "service detail": [
+      "/kkv.html",
+      "/en/web-design-sme.html",
+      "/de/webdesign-kmu.html",
+      "/nagyvallalat.html",
+      "/en/web-design-enterprise.html",
+      "/de/webdesign-grossunternehmen.html",
+      "/branding.html",
+      "/en/branding.html",
+      "/de/branding.html",
+      "/hirdeteskezeles.html",
+      "/en/ads-management.html",
+      "/de/werbeanzeigen.html"
+    ],
+    "Impact Program": [
+      "/impact-program.html",
+      "/en/impact-program.html",
+      "/de/impact-programm.html"
+    ],
+    "blog / editorial": [
+      "/blog.html",
+      "/en/blog.html",
+      "/de/blog.html"
+    ],
+    "contact": [
+      "/ugyfelszolgalat.html",
+      "/en/contact.html",
+      "/de/kontakt.html"
+    ],
+    "questionnaire": [
+      "/arajanlat.html",
+      "/en/quote.html",
+      "/de/angebot.html"
+    ],
+    "legal / utility": [
+      "/adatkezelesi-tajekoztato.html",
+      "/en/privacy-policy.html",
+      "/de/datenschutz.html",
+      "/impresszum.html",
+      "/en/imprint.html",
+      "/de/impressum.html"
+    ]
+  },
+  "duplicates": [],
+  "orphans": [
+    "/rolunk.html",
+    "/kkv.html",
+    "/nagyvallalat.html",
+    "/branding.html",
+    "/hirdeteskezeles.html",
+    "/impact-program.html",
+    "/impresszum.html"
+  ],
+  "routes": [
+    {
+      "route": "/rolunk.html",
+      "key": "about",
+      "locale": "hu",
+      "archetype": "about",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Rólunk — A Stratos története | Stratos Media",
+      "metaDescription": "A Stratos név a sztratoszférából ered. Megmutatjuk, kik vagyunk, hogyan gondolkodunk, és miért nem elégszünk meg a hétköznapi szinttel.",
+      "canonical": "https://media-stratos.com/rolunk.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Rólunk — A Stratos története | Stratos Media",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "A Stratos története"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 8,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band band--tight",
+        "band",
+        "band",
+        "band band--pale band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 709,
+      "primaryCta": {
+        "text": "Ingyenes konzultáció",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Árajánlatot kérek",
+        "href": "arajanlat.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Ingyenes konzultáció",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Árajánlatot kérek",
+          "href": "arajanlat.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/hero.jpg",
+          "alt": "",
+          "loading": null,
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/team-artur.jpg",
+          "alt": "Lukács Artúr, alapító",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/team-richard.png",
+          "alt": "Tímár Richárd, partner",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/client-rapidkert.png",
+          "alt": "Rapidkert Kft.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/client-barbershop.png",
+          "alt": "Barbershop Győr",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/client-pille.png",
+          "alt": "Pille Sewing",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 4,
+      "internalLinks": [
+        "index.html",
+        "ugyfelszolgalat.html",
+        "arajanlat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/about.html",
+      "key": "about",
+      "locale": "en",
+      "archetype": "about",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "About us — the Stratos story | Stratos Media",
+      "metaDescription": "The name Stratos comes from the stratosphere. Here's who we are, how we think, and why the everyday altitude is never enough for us.",
+      "canonical": "https://media-stratos.com/en/about.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "About us — the Stratos story | Stratos Media",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "The Stratos story"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 8,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band band--tight",
+        "band",
+        "band",
+        "band band--pale band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 789,
+      "primaryCta": {
+        "text": "Free consultation",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Get a quote",
+        "href": "quote.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Free consultation",
+          "href": "contact.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Get a quote",
+          "href": "quote.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/hero.jpg",
+          "alt": "",
+          "loading": null,
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/team-artur.jpg",
+          "alt": "Artúr Lukács, founder",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/team-richard.png",
+          "alt": "Richárd Tímár, partner",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-rapidkert.png",
+          "alt": "Rapidkert Kft.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-barbershop.png",
+          "alt": "Barbershop Győr",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-pille.png",
+          "alt": "Pille Sewing",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 4,
+      "internalLinks": [
+        "index.html",
+        "contact.html",
+        "quote.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/ueber-uns.html",
+      "key": "about",
+      "locale": "de",
+      "archetype": "about",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Über uns — die Geschichte von Stratos | Stratos Media",
+      "metaDescription": "Der Name Stratos stammt aus der Stratosphäre. Hier erfährst du, wer wir sind, wie wir denken und warum uns die alltägliche Höhe nie reicht.",
+      "canonical": "https://media-stratos.com/de/ueber-uns.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Über uns — die Geschichte von Stratos | Stratos Media",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Die Geschichte von Stratos"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 8,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band band--tight",
+        "band",
+        "band",
+        "band band--pale band--tight",
+        "band",
+        "band band--tight"
+      ],
+      "meaningfulWords": 709,
+      "primaryCta": {
+        "text": "Kostenlose Beratung",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Angebot anfordern",
+        "href": "angebot.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Kostenlose Beratung",
+          "href": "kontakt.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Angebot anfordern",
+          "href": "angebot.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/hero.jpg",
+          "alt": "",
+          "loading": null,
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/team-artur.jpg",
+          "alt": "Artúr Lukács, Gründer",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/team-richard.png",
+          "alt": "Richárd Tímár, Partner",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-rapidkert.png",
+          "alt": "Rapidkert Kft.",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-barbershop.png",
+          "alt": "Barbershop Győr",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/client-pille.png",
+          "alt": "Pille Sewing",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 4,
+      "internalLinks": [
+        "index.html",
+        "kontakt.html",
+        "angebot.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/kkv.html",
+      "key": "sme",
+      "locale": "hu",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
+      "metaDescription": "Tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban. Weboldal egyéni és kisvállalkozóknak, nagy egyszeri költség nélkül.",
+      "canonical": "https://media-stratos.com/kkv.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Weboldal, nagy egyszeri költség nélkül."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 8,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 750,
+      "primaryCta": {
+        "text": "Kérek ajánlatot",
+        "href": "arajanlat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Előbb kérdeznék",
+        "href": "ugyfelszolgalat.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Kérek ajánlatot",
+          "href": "arajanlat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Kitöltöm a kérdőívet",
+          "href": "arajanlat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Előbb kérdeznék",
+          "href": "ugyfelszolgalat.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/work-1.jpg",
+          "alt": "Barbershop Győr weboldal",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/work-2.jpg",
+          "alt": "mentaltrening.com weboldal",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/work-3.jpg",
+          "alt": "Rapidkert kertépítés weboldal",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "arajanlat.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/web-design-sme.html",
+      "key": "sme",
+      "locale": "en",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Web design for SMEs — a website on a monthly fee | Stratos",
+      "metaDescription": "Design, development, hosting and ongoing maintenance in one fixed monthly fee. A website for sole traders and small businesses, without a large upfront cost.",
+      "canonical": "https://media-stratos.com/en/web-design-sme.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Web design for SMEs — a website on a monthly fee | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "A website without the big upfront cost."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 8,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 910,
+      "primaryCta": {
+        "text": "Request a quote",
+        "href": "quote.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "I'd rather ask first",
+        "href": "contact.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Request a quote",
+          "href": "quote.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Fill in the questionnaire",
+          "href": "quote.html",
+          "variant": "primary"
+        },
+        {
+          "text": "I'd rather ask first",
+          "href": "contact.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-1.jpg",
+          "alt": "Barbershop Győr website",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/work-2.jpg",
+          "alt": "mentaltrening.com website",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/work-3.jpg",
+          "alt": "Rapidkert landscaping website",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "quote.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/webdesign-kmu.html",
+      "key": "sme",
+      "locale": "de",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Webdesign für KMU — Website zur Monatsgebühr | Stratos",
+      "metaDescription": "Konzeption, Entwicklung, Hosting und laufende Wartung in einer festen Monatsgebühr. Eine Website für Selbstständige und kleine Unternehmen — ohne hohe Einmalkosten.",
+      "canonical": "https://media-stratos.com/de/webdesign-kmu.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Webdesign für KMU — Website zur Monatsgebühr | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Eine Website ohne hohe Einmalkosten."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 8,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 806,
+      "primaryCta": {
+        "text": "Angebot anfragen",
+        "href": "angebot.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Erst eine Frage stellen",
+        "href": "kontakt.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Angebot anfragen",
+          "href": "angebot.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Fragebogen ausfüllen",
+          "href": "angebot.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Erst eine Frage stellen",
+          "href": "kontakt.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/work-1.jpg",
+          "alt": "Website von Barbershop Győr",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/work-2.jpg",
+          "alt": "Website von mentaltrening.com",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/work-3.jpg",
+          "alt": "Website von Rapidkert Gartenbau",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "angebot.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/nagyvallalat.html",
+      "key": "enterprise",
+      "locale": "hu",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Webdesign nagyvállalatoknak — dedikált fejlesztőcsapat | Stratos",
+      "metaDescription": "Egyedi platformok, belső rendszerek, integrációk és üzemeltetés. Nagyvállalati szintű minőség, SLA és biztonság — a stratégiától az élesítésig.",
+      "canonical": "https://media-stratos.com/nagyvallalat.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Webdesign nagyvállalatoknak — dedikált fejlesztőcsapat | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Minden fejlesztés, egy partnerrel."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 792,
+      "primaryCta": {
+        "text": "Egyeztetést kérek",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Árajánlat kérése",
+        "href": "arajanlat.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Egyeztetést kérek",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Egyeztetést kérek",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Árajánlat kérése",
+          "href": "arajanlat.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/kivitelezes.jpg",
+          "alt": "",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "ugyfelszolgalat.html",
+        "arajanlat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/web-design-enterprise.html",
+      "key": "enterprise",
+      "locale": "en",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Web design for enterprises — a dedicated development team | Stratos",
+      "metaDescription": "Bespoke platforms, internal systems, integrations and operations. Enterprise-grade quality, SLA and security — from strategy to launch.",
+      "canonical": "https://media-stratos.com/en/web-design-enterprise.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Web design for enterprises — a dedicated development team | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Every build, one partner."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 949,
+      "primaryCta": {
+        "text": "Book a call",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Request a quote",
+        "href": "quote.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Book a call",
+          "href": "contact.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Book a call",
+          "href": "contact.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Request a quote",
+          "href": "quote.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/kivitelezes.jpg",
+          "alt": "",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "contact.html",
+        "quote.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/webdesign-grossunternehmen.html",
+      "key": "enterprise",
+      "locale": "de",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Webdesign für Großunternehmen — dediziertes Entwicklungsteam | Stratos",
+      "metaDescription": "Individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live.",
+      "canonical": "https://media-stratos.com/de/webdesign-grossunternehmen.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Webdesign für Großunternehmen — dediziertes Entwicklungsteam | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Jede Entwicklung, ein Partner."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 835,
+      "primaryCta": {
+        "text": "Gespräch vereinbaren",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Angebot anfragen",
+        "href": "angebot.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Gespräch vereinbaren",
+          "href": "kontakt.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Gespräch vereinbaren",
+          "href": "kontakt.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Angebot anfragen",
+          "href": "angebot.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/kivitelezes.jpg",
+          "alt": "",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "kontakt.html",
+        "angebot.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/branding.html",
+      "key": "branding",
+      "locale": "hu",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Branding és arculattervezés | Stratos",
+      "metaDescription": "Logó, színvilág, tipográfia, képi stílus és hangnem — egy rendszerben. Építs olyan márkát, ami egy színről is eszébe jut az embereknek.",
+      "canonical": "https://media-stratos.com/branding.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Branding és arculattervezés | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Egy szín. Egy szlogen. És te jutsz eszükbe."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 6,
+      "sectionClasses": [
+        "phead",
+        "band",
+        "band band--tight",
+        "band band--pale",
+        "band",
+        "band"
+      ],
+      "meaningfulWords": 819,
+      "primaryCta": {
+        "text": "Konzultáció",
+        "href": "ugyfelszolgalat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Árajánlatot kérek",
+        "href": "arajanlat.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Konzultáció",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Konzultációt kérek",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Árajánlatot kérek",
+          "href": "arajanlat.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "ugyfelszolgalat.html",
+        "arajanlat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/branding.html",
+      "key": "branding",
+      "locale": "en",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Branding and visual identity design | Stratos",
+      "metaDescription": "Logo, colour system, typography, image style and tone of voice — in one system. Build a brand people recall from a single colour.",
+      "canonical": "https://media-stratos.com/en/branding.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Branding and visual identity design | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "One colour. One line. And they think of you."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 6,
+      "sectionClasses": [
+        "phead",
+        "band",
+        "band band--tight",
+        "band band--pale",
+        "band",
+        "band"
+      ],
+      "meaningfulWords": 1016,
+      "primaryCta": {
+        "text": "Consultation",
+        "href": "contact.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Get a quote",
+        "href": "quote.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Consultation",
+          "href": "contact.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Book a consultation",
+          "href": "contact.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Get a quote",
+          "href": "quote.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "contact.html",
+        "quote.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/branding.html",
+      "key": "branding",
+      "locale": "de",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Branding und Corporate Design | Stratos",
+      "metaDescription": "Logo, Farbwelt, Typografie, Bildsprache und Tonalität — in einem System. Bau eine Marke, an die man schon bei einer Farbe denkt.",
+      "canonical": "https://media-stratos.com/de/branding.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Branding und Corporate Design | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Eine Farbe. Ein Satz. Und man denkt an dich."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 6,
+      "sectionClasses": [
+        "phead",
+        "band",
+        "band band--tight",
+        "band band--pale",
+        "band",
+        "band"
+      ],
+      "meaningfulWords": 891,
+      "primaryCta": {
+        "text": "Beratung",
+        "href": "kontakt.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Angebot anfordern",
+        "href": "angebot.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Beratung",
+          "href": "kontakt.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Beratung anfragen",
+          "href": "kontakt.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Angebot anfordern",
+          "href": "angebot.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "kontakt.html",
+        "angebot.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/hirdeteskezeles.html",
+      "key": "ads",
+      "locale": "hu",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Hirdetéskezelés — Google & Meta Ads | Stratos",
+      "metaDescription": "Google és Meta kampányok, amelyek nem elérést, hanem ügyfeleket hoznak. Célközönség-kutatás, kreatív, licitstratégia, konverziómérés és havi riport.",
+      "canonical": "https://media-stratos.com/hirdeteskezeles.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Hirdetéskezelés — Google &amp; Meta Ads | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Nem elérést veszel. Ügyfelet."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 1013,
+      "primaryCta": {
+        "text": "Árajánlat",
+        "href": "arajanlat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Árajánlatot kérek",
+        "href": "arajanlat.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Árajánlat",
+          "href": "arajanlat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Ingyenes konzultáció",
+          "href": "ugyfelszolgalat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Árajánlatot kérek",
+          "href": "arajanlat.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "assets/img/struktura.jpg",
+          "alt": "",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "arajanlat.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/ads-management.html",
+      "key": "ads",
+      "locale": "en",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Ads management — Google & Meta Ads | Stratos",
+      "metaDescription": "Google and Meta campaigns that bring clients, not reach. Audience research, creative, bidding strategy, conversion tracking and a monthly report.",
+      "canonical": "https://media-stratos.com/en/ads-management.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Ads management — Google &amp; Meta Ads | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "You're not buying reach. You're buying clients."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 1145,
+      "primaryCta": {
+        "text": "Get a quote",
+        "href": "quote.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Get a quote",
+        "href": "quote.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Get a quote",
+          "href": "quote.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Free consultation",
+          "href": "contact.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Get a quote",
+          "href": "quote.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/struktura.jpg",
+          "alt": "",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "quote.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/werbeanzeigen.html",
+      "key": "ads",
+      "locale": "de",
+      "archetype": "service detail",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Werbebetreuung — Google & Meta Ads | Stratos",
+      "metaDescription": "Google- und Meta-Kampagnen, die Kunden bringen statt Reichweite. Zielgruppenrecherche, Kreation, Gebotsstrategie, Conversion-Tracking und Monatsreport.",
+      "canonical": "https://media-stratos.com/de/werbeanzeigen.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Werbebetreuung — Google &amp; Meta Ads | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Du kaufst keine Reichweite. Du kaufst Kunden."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 7,
+      "sectionClasses": [
+        "phead",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band band--pale",
+        "band"
+      ],
+      "meaningfulWords": 1033,
+      "primaryCta": {
+        "text": "Angebot",
+        "href": "angebot.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Angebot anfordern",
+        "href": "angebot.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Angebot",
+          "href": "angebot.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Kostenlose Beratung",
+          "href": "kontakt.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Angebot anfordern",
+          "href": "angebot.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [],
+      "images": [
+        {
+          "src": "../assets/img/struktura.jpg",
+          "alt": "",
+          "loading": null,
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 5,
+      "internalLinks": [
+        "index.html",
+        "angebot.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/impact-program.html",
+      "key": "impact",
+      "locale": "hu",
+      "archetype": "Impact Program",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Stratos Impact Program — ingyenes weboldal nonprofitoknak | Stratos",
+      "metaDescription": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
+      "canonical": "https://media-stratos.com/impact-program.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Stratos Impact Program — ingyenes weboldal nonprofitoknak | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Prémium weboldalak azoknak, akik életeket változtatnak meg."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 9,
+      "sectionClasses": [
+        "phead",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band",
+        "band band--pale"
+      ],
+      "meaningfulWords": 672,
+      "primaryCta": {
+        "text": "Jelentkezem",
+        "href": "#jelentkezes",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Jelentkezem",
+          "href": "#jelentkezes",
+          "variant": "primary"
+        }
+      ],
+      "forms": [
+        {
+          "dataLead": "impact",
+          "action": null
+        }
+      ],
+      "images": [],
+      "internalLinkCount": 2,
+      "internalLinks": [
+        "index.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/impact-program.html",
+      "key": "impact",
+      "locale": "en",
+      "archetype": "Impact Program",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Stratos Impact Program — free websites for nonprofits | Stratos",
+      "metaDescription": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
+      "canonical": "https://media-stratos.com/en/impact-program.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Stratos Impact Program — free websites for nonprofits | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Premium websites for the people who change lives."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 9,
+      "sectionClasses": [
+        "phead",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band",
+        "band band--pale"
+      ],
+      "meaningfulWords": 757,
+      "primaryCta": {
+        "text": "Apply now",
+        "href": "#jelentkezes",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Apply now",
+          "href": "#jelentkezes",
+          "variant": "primary"
+        }
+      ],
+      "forms": [
+        {
+          "dataLead": "impact",
+          "action": null
+        }
+      ],
+      "images": [],
+      "internalLinkCount": 2,
+      "internalLinks": [
+        "index.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/impact-programm.html",
+      "key": "impact",
+      "locale": "de",
+      "archetype": "Impact Program",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Stratos Impact-Programm — kostenlose Websites für Non-Profits | Stratos",
+      "metaDescription": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
+      "canonical": "https://media-stratos.com/de/impact-programm.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Stratos Impact-Programm — kostenlose Websites für Non-Profits | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Erstklassige Websites für die Menschen, die Leben verändern."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 9,
+      "sectionClasses": [
+        "phead",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--pale",
+        "band",
+        "band band--tight",
+        "band",
+        "band band--pale"
+      ],
+      "meaningfulWords": 706,
+      "primaryCta": {
+        "text": "Jetzt bewerben",
+        "href": "#jelentkezes",
+        "variant": "primary"
+      },
+      "secondaryCta": null,
+      "ctas": [
+        {
+          "text": "Jetzt bewerben",
+          "href": "#jelentkezes",
+          "variant": "primary"
+        }
+      ],
+      "forms": [
+        {
+          "dataLead": "impact",
+          "action": null
+        }
+      ],
+      "images": [],
+      "internalLinkCount": 2,
+      "internalLinks": [
+        "index.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/blog.html",
+      "key": "blog",
+      "locale": "hu",
+      "archetype": "blog / editorial",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Blog — webdesign és online marketing tippek | Stratos",
+      "metaDescription": "Érthető, szakzsargon nélküli útmutatók vállalkozóknak: SEO, weboldal árak, Google Cégprofil, hirdetések és a leggyakoribb weboldal-hibák.",
+      "canonical": "https://media-stratos.com/blog.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Blog — webdesign és online marketing tippek | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Amit tudnod kell, érthetően."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band band--tight",
+        "band"
+      ],
+      "meaningfulWords": 252,
+      "primaryCta": {
+        "text": "Árajánlatot kérek",
+        "href": "arajanlat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Kérdésem van",
+        "href": "ugyfelszolgalat.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Árajánlatot kérek",
+          "href": "arajanlat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Kérdésem van",
+          "href": "ugyfelszolgalat.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [
+        {
+          "dataLead": "newsletter",
+          "action": null
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/img/blog-1.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/blog-2.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/blog-3.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/blog-4.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/blog-5.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "assets/img/blog-6.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 9,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "arajanlat.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/blog.html",
+      "key": "blog",
+      "locale": "en",
+      "archetype": "blog / editorial",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Blog — web design and online marketing tips | Stratos",
+      "metaDescription": "Clear, jargon-free guides for business owners: SEO, website pricing, Google Business Profile, advertising and the most common website mistakes.",
+      "canonical": "https://media-stratos.com/en/blog.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Blog — web design and online marketing tips | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "What you need to know, in plain words."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band band--tight",
+        "band"
+      ],
+      "meaningfulWords": 306,
+      "primaryCta": {
+        "text": "Get a quote",
+        "href": "quote.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "I have a question",
+        "href": "contact.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Get a quote",
+          "href": "quote.html",
+          "variant": "primary"
+        },
+        {
+          "text": "I have a question",
+          "href": "contact.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [
+        {
+          "dataLead": "newsletter",
+          "action": null
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/blog-1.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-2.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-3.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-4.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-5.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-6.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 9,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "quote.html",
+        "contact.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/blog.html",
+      "key": "blog",
+      "locale": "de",
+      "archetype": "blog / editorial",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Blog — Tipps zu Webdesign und Online-Marketing | Stratos",
+      "metaDescription": "Verständliche Leitfäden ohne Fachjargon für Unternehmer: SEO, Website-Preise, Google-Unternehmensprofil, Werbung und die häufigsten Website-Fehler.",
+      "canonical": "https://media-stratos.com/de/blog.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Blog — Tipps zu Webdesign und Online-Marketing | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Was du wissen musst, verständlich."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band band--tight",
+        "band"
+      ],
+      "meaningfulWords": 275,
+      "primaryCta": {
+        "text": "Angebot anfordern",
+        "href": "angebot.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Ich habe eine Frage",
+        "href": "kontakt.html",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Angebot anfordern",
+          "href": "angebot.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Ich habe eine Frage",
+          "href": "kontakt.html",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [
+        {
+          "dataLead": "newsletter",
+          "action": null
+        }
+      ],
+      "images": [
+        {
+          "src": "../assets/img/blog-1.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-2.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-3.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-4.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-5.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        },
+        {
+          "src": "../assets/img/blog-6.jpg",
+          "alt": "",
+          "loading": "lazy",
+          "hasDimensions": true
+        }
+      ],
+      "internalLinkCount": 9,
+      "internalLinks": [
+        "index.html",
+        "blog.html",
+        "angebot.html",
+        "kontakt.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/ugyfelszolgalat.html",
+      "key": "contact",
+      "locale": "hu",
+      "archetype": "contact",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Ügyfélszolgálat és kapcsolat | Stratos",
+      "metaDescription": "Kérdésed van, vagy ingyenes konzultációt kérnél? Írj e-mailt, hívj minket, vagy töltsd ki az űrlapot — minden megkeresésre a lehető leghamarabb válaszolunk.",
+      "canonical": "https://media-stratos.com/ugyfelszolgalat.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Ügyfélszolgálat és kapcsolat | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Vedd fel a kapcsolatot."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band band--tight",
+        "band band--pale"
+      ],
+      "meaningfulWords": 179,
+      "primaryCta": {
+        "text": "Kitöltöm a kérdőívet",
+        "href": "arajanlat.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Inkább csak kérdeznék",
+        "href": "#uzenet",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Kitöltöm a kérdőívet",
+          "href": "arajanlat.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Inkább csak kérdeznék",
+          "href": "#uzenet",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [
+        {
+          "dataLead": "contact",
+          "action": null
+        }
+      ],
+      "images": [],
+      "internalLinkCount": 3,
+      "internalLinks": [
+        "index.html",
+        "arajanlat.html",
+        "adatkezelesi-tajekoztato.html"
+      ],
+      "faults": [
+        "heading order skips h1 -> h3"
+      ]
+    },
+    {
+      "route": "/en/contact.html",
+      "key": "contact",
+      "locale": "en",
+      "archetype": "contact",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Contact and support | Stratos",
+      "metaDescription": "Got a question, or want a free consultation? Send an email, call us, or fill in the form — we answer every enquiry as soon as we can.",
+      "canonical": "https://media-stratos.com/en/contact.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Contact and support | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Get in touch."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band band--tight",
+        "band band--pale"
+      ],
+      "meaningfulWords": 208,
+      "primaryCta": {
+        "text": "Fill in the questionnaire",
+        "href": "quote.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "I'd rather just ask",
+        "href": "#uzenet",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Fill in the questionnaire",
+          "href": "quote.html",
+          "variant": "primary"
+        },
+        {
+          "text": "I'd rather just ask",
+          "href": "#uzenet",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [
+        {
+          "dataLead": "contact",
+          "action": null
+        }
+      ],
+      "images": [],
+      "internalLinkCount": 3,
+      "internalLinks": [
+        "index.html",
+        "quote.html",
+        "privacy-policy.html"
+      ],
+      "faults": [
+        "heading order skips h1 -> h3"
+      ]
+    },
+    {
+      "route": "/de/kontakt.html",
+      "key": "contact",
+      "locale": "de",
+      "archetype": "contact",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Kontakt und Support | Stratos",
+      "metaDescription": "Eine Frage oder Interesse an einer kostenlosen Beratung? Schreib eine E-Mail, ruf an oder füll das Formular aus — wir antworten auf jede Anfrage so schnell wie möglich.",
+      "canonical": "https://media-stratos.com/de/kontakt.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Kontakt und Support | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Nimm Kontakt auf."
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "sectionCount": 4,
+      "sectionClasses": [
+        "phead",
+        "band band--tight",
+        "band band--tight",
+        "band band--pale"
+      ],
+      "meaningfulWords": 200,
+      "primaryCta": {
+        "text": "Fragebogen ausfüllen",
+        "href": "angebot.html",
+        "variant": "primary"
+      },
+      "secondaryCta": {
+        "text": "Ich möchte lieber nur fragen",
+        "href": "#uzenet",
+        "variant": "secondary"
+      },
+      "ctas": [
+        {
+          "text": "Fragebogen ausfüllen",
+          "href": "angebot.html",
+          "variant": "primary"
+        },
+        {
+          "text": "Ich möchte lieber nur fragen",
+          "href": "#uzenet",
+          "variant": "secondary"
+        }
+      ],
+      "forms": [
+        {
+          "dataLead": "contact",
+          "action": null
+        }
+      ],
+      "images": [],
+      "internalLinkCount": 3,
+      "internalLinks": [
+        "index.html",
+        "angebot.html",
+        "datenschutz.html"
+      ],
+      "faults": [
+        "heading order skips h1 -> h3"
+      ]
+    },
+    {
+      "route": "/arajanlat.html",
+      "key": "quote",
+      "locale": "hu",
+      "archetype": "questionnaire",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Weboldal igényfelmérő kérdőív | Stratos",
+      "metaDescription": "Töltsd ki a kérdőívet pár perc alatt, és a válaszaid alapján személyre szabott árajánlattal keresünk.",
+      "canonical": "https://media-stratos.com/arajanlat.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Weboldal igényfelmérő kérdőív | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": false,
+      "h1": [],
+      "h1Count": 0,
+      "headingLevels": [],
+      "sectionCount": 1,
+      "sectionClasses": [
+        "quiz"
+      ],
+      "meaningfulWords": 2,
+      "primaryCta": null,
+      "secondaryCta": null,
+      "ctas": [],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 0,
+      "internalLinks": [],
+      "faults": [
+        "no H1 in the served document",
+        "thin page (2 words)",
+        "no primary CTA"
+      ]
+    },
+    {
+      "route": "/en/quote.html",
+      "key": "quote",
+      "locale": "en",
+      "archetype": "questionnaire",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Website requirements questionnaire | Stratos",
+      "metaDescription": "Fill in the questionnaire in a few minutes and we'll come back with a quote tailored to your answers.",
+      "canonical": "https://media-stratos.com/en/quote.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Website requirements questionnaire | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": false,
+      "h1": [],
+      "h1Count": 0,
+      "headingLevels": [],
+      "sectionCount": 1,
+      "sectionClasses": [
+        "quiz"
+      ],
+      "meaningfulWords": 2,
+      "primaryCta": null,
+      "secondaryCta": null,
+      "ctas": [],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 0,
+      "internalLinks": [],
+      "faults": [
+        "no H1 in the served document",
+        "thin page (2 words)",
+        "no primary CTA"
+      ]
+    },
+    {
+      "route": "/de/angebot.html",
+      "key": "quote",
+      "locale": "de",
+      "archetype": "questionnaire",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Fragebogen zur Website-Anforderung | Stratos",
+      "metaDescription": "Füll den Fragebogen in wenigen Minuten aus, und wir melden uns mit einem auf deine Antworten zugeschnittenen Angebot.",
+      "canonical": "https://media-stratos.com/de/angebot.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Fragebogen zur Website-Anforderung | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": false,
+      "h1": [],
+      "h1Count": 0,
+      "headingLevels": [],
+      "sectionCount": 1,
+      "sectionClasses": [
+        "quiz"
+      ],
+      "meaningfulWords": 2,
+      "primaryCta": null,
+      "secondaryCta": null,
+      "ctas": [],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 0,
+      "internalLinks": [],
+      "faults": [
+        "no H1 in the served document",
+        "thin page (2 words)",
+        "no primary CTA"
+      ]
+    },
+    {
+      "route": "/adatkezelesi-tajekoztato.html",
+      "key": "privacy",
+      "locale": "hu",
+      "archetype": "legal / utility",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Adatkezelési tájékoztató | Stratos",
+      "metaDescription": "Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR szerint — és milyen jogaid vannak.",
+      "canonical": "https://media-stratos.com/adatkezelesi-tajekoztato.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Adatkezelési tájékoztató | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Adatkezelési tájékoztató"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 2,
+      "sectionClasses": [
+        "phead",
+        "band band--tight"
+      ],
+      "meaningfulWords": 971,
+      "primaryCta": null,
+      "secondaryCta": null,
+      "ctas": [],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 1,
+      "internalLinks": [
+        "index.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/en/privacy-policy.html",
+      "key": "privacy",
+      "locale": "en",
+      "archetype": "legal / utility",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Privacy policy | Stratos",
+      "metaDescription": "How we collect, use and process personal data under the GDPR — and what rights you have.",
+      "canonical": "https://media-stratos.com/en/privacy-policy.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Privacy policy | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Privacy policy"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 2,
+      "sectionClasses": [
+        "phead",
+        "band band--tight"
+      ],
+      "meaningfulWords": 1125,
+      "primaryCta": null,
+      "secondaryCta": null,
+      "ctas": [],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 2,
+      "internalLinks": [
+        "index.html",
+        "../adatkezelesi-tajekoztato.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/de/datenschutz.html",
+      "key": "privacy",
+      "locale": "de",
+      "archetype": "legal / utility",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Datenschutzerklärung | Stratos",
+      "metaDescription": "Wie wir personenbezogene Daten nach DSGVO erheben, nutzen und verarbeiten — und welche Rechte du hast.",
+      "canonical": "https://media-stratos.com/de/datenschutz.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Datenschutzerklärung | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Datenschutz­ erklärung"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sectionCount": 2,
+      "sectionClasses": [
+        "phead",
+        "band band--tight"
+      ],
+      "meaningfulWords": 1006,
+      "primaryCta": null,
+      "secondaryCta": null,
+      "ctas": [],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 2,
+      "internalLinks": [
+        "index.html",
+        "../adatkezelesi-tajekoztato.html"
+      ],
+      "faults": []
+    },
+    {
+      "route": "/impresszum.html",
+      "key": "imprint",
+      "locale": "hu",
+      "archetype": "legal / utility",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Impresszum | Stratos",
+      "metaDescription": "A Stratos Media üzemeltetőjének adatai, elérhetőségek és tárhelyszolgáltató.",
+      "canonical": "https://media-stratos.com/impresszum.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Impresszum | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Impresszum"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2
+      ],
+      "sectionCount": 2,
+      "sectionClasses": [
+        "phead",
+        "band band--tight"
+      ],
+      "meaningfulWords": 66,
+      "primaryCta": null,
+      "secondaryCta": null,
+      "ctas": [],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 2,
+      "internalLinks": [
+        "index.html",
+        "ugyfelszolgalat.html"
+      ],
+      "faults": [
+        "thin page (66 words)"
+      ]
+    },
+    {
+      "route": "/en/imprint.html",
+      "key": "imprint",
+      "locale": "en",
+      "archetype": "legal / utility",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Imprint | Stratos",
+      "metaDescription": "Details of the operator of Stratos Media, contact information and hosting provider.",
+      "canonical": "https://media-stratos.com/en/imprint.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Imprint | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Imprint"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2
+      ],
+      "sectionCount": 2,
+      "sectionClasses": [
+        "phead",
+        "band band--tight"
+      ],
+      "meaningfulWords": 93,
+      "primaryCta": null,
+      "secondaryCta": null,
+      "ctas": [],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 3,
+      "internalLinks": [
+        "index.html",
+        "../impresszum.html",
+        "contact.html"
+      ],
+      "faults": [
+        "thin page (93 words)"
+      ]
+    },
+    {
+      "route": "/de/impressum.html",
+      "key": "imprint",
+      "locale": "de",
+      "archetype": "legal / utility",
+      "template": "_build/build.py SHELL + _build/pages/*.html",
+      "title": "Impressum | Stratos",
+      "metaDescription": "Angaben zum Betreiber von Stratos Media, Kontaktdaten und Hosting-Anbieter.",
+      "canonical": "https://media-stratos.com/de/impressum.html",
+      "hreflang": [
+        "hu",
+        "en",
+        "de",
+        "x-default"
+      ],
+      "ogTitle": "Impressum | Stratos",
+      "ogImage": "https://media-stratos.com/assets/img/hero.jpg",
+      "structuredData": false,
+      "breadcrumb": true,
+      "h1": [
+        "Impressum"
+      ],
+      "h1Count": 1,
+      "headingLevels": [
+        1,
+        2,
+        2
+      ],
+      "sectionCount": 2,
+      "sectionClasses": [
+        "phead",
+        "band band--tight"
+      ],
+      "meaningfulWords": 80,
+      "primaryCta": null,
+      "secondaryCta": null,
+      "ctas": [],
+      "forms": [],
+      "images": [],
+      "internalLinkCount": 3,
+      "internalLinks": [
+        "index.html",
+        "../impresszum.html",
+        "kontakt.html"
+      ],
+      "faults": [
+        "thin page (80 words)"
+      ]
+    }
+  ]
+}

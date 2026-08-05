@@ -1326,3 +1326,198 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
   .grain { display: none; }
   .plane-cursor, .contrail { display: none; }
 }
+
+/* ===========================================================================
+   PHASE 8 — the shared subpage system.
+
+   Everything above this line is the accepted Phase 6/7 language. Nothing here
+   replaces any of it; these are the primitives §7 asks for that the fragments
+   did not have, and they are built from the same three ideas the rest of the
+   sheet is built from: a hairline rule, a technical label, and space.
+
+   Deliberately NOT here: rounded cards, glass panels, icon boxes, pills. §9.
+   `.card` already exists for the one job cards are honest at — a short row of
+   independent, comparable units — and everything below is what to reach for
+   instead of adding a fifth of them.
+   =========================================================================== */
+
+/* ------------------------------------------------------------ section marker
+   A page-level index: the section's number and its name, set against the rule
+   that opens the section. It replaces the "eyebrow floating above a heading"
+   rhythm on pages long enough that a reader needs to know where they are.
+
+   `aria-hidden` on the number in the markup, not here: the count is a visual
+   aid and reading "zero four" before every heading is noise, but the *name*
+   is real content and stays in the accessibility tree. */
+.smark {
+  display: flex; align-items: baseline; gap: 1rem;
+  padding-top: .9rem; margin-bottom: clamp(1.6rem, 4vw, 2.8rem);
+  border-top: 1px solid var(--hair);
+}
+.smark__n {
+  font-family: var(--data); font-size: var(--step--1);
+  color: var(--signal); letter-spacing: .08em; flex: none;
+}
+.smark__t {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .18em;
+  color: rgba(244, 244, 244, .6);
+}
+.band--pale .smark { border-color: rgba(0, 0, 0, .16); }
+.band--pale .smark__t { color: rgba(0, 0, 0, .55); }
+
+/* ------------------------------------------------------------- metric block
+   A figure and what it means. Rules between, not boxes around: a metric is a
+   reading off an instrument, and instruments are ruled, not boxed.
+
+   There is no `.metric` anywhere in the shipped content yet and that is
+   correct — §23 forbids inventing counters. This exists so that a *verified*
+   figure has somewhere to go without a new one-off section being invented for
+   it, and it is used only where the source is recorded. */
+.metrics {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0; border-top: 1px solid var(--hair);
+}
+.metric {
+  padding: clamp(1.4rem, 3vw, 2.2rem) clamp(1rem, 2vw, 2rem) clamp(1.4rem, 3vw, 2.2rem) 0;
+  border-bottom: 1px solid var(--hair);
+}
+.metric__v {
+  display: block; font-family: var(--display); font-size: var(--step-3);
+  font-variation-settings: 'wdth' var(--wd), 'wght' var(--wt);
+  line-height: .9; color: var(--signal);
+}
+.metric__l {
+  display: block; margin-top: .7rem; max-width: 26ch;
+  font-size: var(--step--1); color: rgba(244, 244, 244, .7);
+}
+/* Where a figure came from. Never decorative — §16 requires a source, and a
+   figure with nowhere to put one is a figure that should not ship. */
+.metric__src {
+  display: block; margin-top: .5rem;
+  font-family: var(--data); font-size: var(--step--1);
+  color: var(--haze); letter-spacing: .04em;
+}
+.band--pale .metrics, .band--pale .metric { border-color: rgba(0, 0, 0, .16); }
+.band--pale .metric__v { color: var(--void); }
+.band--pale .metric__l { color: rgba(0, 0, 0, .7); }
+
+/* ---------------------------------------------------------- capability list
+   What a service actually covers. A ruled two-column list — term and gloss —
+   rather than four cards, because capabilities are not comparable units, they
+   are one list of things that are true. Reads as a definition list because
+   that is what it is. */
+.caps { border-top: 1px solid var(--hair); margin: 0; }
+.caps > div {
+  display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(1rem, 2.4vw, 1.6rem) 0;
+  border-bottom: 1px solid var(--hair);
+}
+.caps dt {
+  font-family: var(--display); font-size: var(--step-1);
+  text-transform: uppercase; line-height: 1.1;
+}
+.caps dd { margin: 0; color: rgba(244, 244, 244, .72); font-size: var(--step-0); }
+.band--pale .caps, .band--pale .caps > div { border-color: rgba(0, 0, 0, .16); }
+.band--pale .caps dd { color: rgba(0, 0, 0, .72); }
+@media (max-width: 760px) {
+  .caps > div { grid-template-columns: 1fr; gap: .5rem; }
+}
+
+/* -------------------------------------------------------- case-study preview
+   One project, as an editorial row: image on one side, the four things a
+   reader wants on the other. Not a card — no border, no radius, no shadow —
+   because a project is not a comparable unit, it is a story with a picture.
+
+   Alternating sides is the whole layout system here; `:nth-child(even)` does
+   it rather than a modifier class, so a fragment cannot get it wrong. */
+.cases { display: grid; gap: clamp(3rem, 8vw, 6rem); }
+.case {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center;
+}
+.cases > .case:nth-child(even) .case__media { order: 2; }
+.case__media {
+  position: relative; overflow: hidden; background: var(--ink);
+  aspect-ratio: 4 / 3;
+}
+.case__media img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  transition: transform .8s var(--ease), filter .8s var(--ease);
+}
+.case:hover .case__media img { transform: scale(1.03); filter: grayscale(0) contrast(1); }
+.case__k {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .18em; color: var(--signal);
+}
+.case h3 {
+  font-family: var(--display); font-size: var(--step-2);
+  text-transform: uppercase; margin: .8rem 0 1rem;
+}
+.case p { color: rgba(244, 244, 244, .74); max-width: 46ch; }
+.case__meta {
+  display: flex; flex-wrap: wrap; gap: .4rem 1.4rem;
+  margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--hair);
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .1em; color: var(--haze);
+}
+@media (max-width: 860px) {
+  .case { grid-template-columns: 1fr; }
+  /* On one column the alternation is meaningless and the reorder would put a
+     picture below its own heading. */
+  .cases > .case:nth-child(even) .case__media { order: 0; }
+}
+
+/* ------------------------------------------------------- related-content block
+   Where to go next, as a ruled list of destinations with a reason attached.
+   §22: a route's next action should be specific to that route, which means
+   this is a list of named places rather than one repeated button. */
+.related { border-top: 1px solid var(--hair); }
+.related a {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline; gap: 1rem;
+  padding: clamp(.9rem, 2vw, 1.4rem) 0;
+  border-bottom: 1px solid var(--hair);
+  transition: color .3s var(--ease), padding-left .3s var(--ease);
+}
+.related a:hover, .related a:focus-visible { color: var(--signal); padding-left: .6rem; }
+.related__t { font-family: var(--display); font-size: var(--step-1); text-transform: uppercase; }
+.related__w { display: block; margin-top: .35rem; font-size: var(--step--1); color: rgba(244, 244, 244, .66); }
+.related__a {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .14em; color: var(--haze);
+}
+.related a:hover .related__a { color: var(--signal); }
+.band--pale .related, .band--pale .related a { border-color: rgba(0, 0, 0, .16); }
+.band--pale .related__w { color: rgba(0, 0, 0, .68); }
+@media (max-width: 620px) {
+  .related a { grid-template-columns: 1fr; }
+  .related__a { display: none; }
+}
+
+/* --------------------------------------------------------- technical note
+   A margin annotation: a fact about the page that is worth stating and is not
+   part of the argument. Deliberately quiet, and deliberately real text — this
+   is not a decorative label, so it is not aria-hidden. */
+.note {
+  padding-left: 1rem; border-left: 1px solid var(--hair);
+  font-family: var(--data); font-size: var(--step--1);
+  line-height: 1.7; color: var(--haze); max-width: 34ch;
+}
+.band--pale .note { border-color: rgba(0, 0, 0, .2); }
+
+/* -------------------------------------------------------------- media frame
+   `.shot` above is the existing framed screenshot. This is the un-cropped
+   variant for a picture that has to be seen whole, and it carries the
+   intrinsic-ratio box so an image with width/height attributes reserves its
+   space before it loads. §24: every image gets dimensions; this makes that
+   cost nothing visually. */
+.frame { position: relative; overflow: hidden; background: var(--ink); }
+.frame img { width: 100%; height: auto; display: block; }
+.frame figcaption {
+  margin-top: .8rem;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .12em; color: var(--haze);
+}
