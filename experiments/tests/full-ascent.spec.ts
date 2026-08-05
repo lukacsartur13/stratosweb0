@@ -340,7 +340,14 @@ test.describe('the content survives without the canvas', () => {
     }
 
     // The case studies carry the five-part structure, with prose in each part.
-    for (const id of ['rapidkert', 'barbershop', 'mentaltrening', 'pille']) {
+    //
+    // Three, not the four this asserted through Phase 8. Phase 8.5 §9.2 caps the
+    // homepage Selected Work at three project summaries, and §10.2's approved
+    // organisation list does not include Pille Sewing — two independent reasons
+    // for the same removal. The count is asserted BOTH ways on purpose: a
+    // fourth case study reappearing is as much a regression as one of these
+    // three going missing, and a loop over a list can only catch the second.
+    for (const id of ['rapidkert', 'barbershop', 'mentaltrening']) {
       const c = page.getByTestId(`case-${id}`);
       await expect(c, `case ${id} is missing`).toHaveCount(1);
       await expect(c.locator('dt')).toHaveCount(5);
@@ -348,6 +355,10 @@ test.describe('the content survives without the canvas', () => {
         expect((await dd.innerText()).trim().length).toBeGreaterThan(20);
       }
     }
+    await expect(
+      page.locator('[data-testid^="case-"]'),
+      'the homepage shows exactly three project summaries (§9.2)',
+    ).toHaveCount(3);
 
     // Seven process checkpoints, each with all four columns answered.
     for (let i = 1; i <= 7; i++) {
