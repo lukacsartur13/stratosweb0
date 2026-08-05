@@ -2,6 +2,7 @@ import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
 import { siteAssets } from './vite-site-assets';
+import { siteOrigin } from '../scripts/site-origin.mjs';
 
 /**
  * The homepage build: the Altimeter Meridian ascent, served at `/`, `/en/` and
@@ -38,6 +39,29 @@ import { siteAssets } from './vite-site-assets';
  * with no rewrite rules — the same reason `vite.full.config.ts` renames its
  * single entry, and what Netlify and the Playwright configs actually serve.
  */
+/**
+ * Substitute `%SITE_ORIGIN%` in the three homepage shells.
+ *
+ * The shells carry canonical, hreflang, og:url and og:image, all of which have
+ * to be absolute. They used to hardcode `https://media-stratos.com` — a Wix
+ * site that 301s elsewhere and was never this project's address. Resolving it
+ * at build time means the homepage and the other 33 routes agree on one origin
+ * without either of them stating it. See scripts/site-origin.mjs.
+ */
+function substituteOrigin(): Plugin {
+  const origin = siteOrigin();
+  return {
+    name: 'stratos-site-origin',
+    enforce: 'pre',
+    transformIndexHtml(html) {
+      if (html.includes('%SITE_ORIGIN%')) return html.split('%SITE_ORIGIN%').join(origin);
+      // A shell that lost its placeholder would silently ship a relative
+      // canonical, which is worse than a wrong one because nothing looks broken.
+      throw new Error('a homepage shell has no %SITE_ORIGIN% placeholder');
+    },
+  };
+}
+
 function emitLocaleIndexes(): Plugin {
   const ROUTES: Record<string, string> = {
     'home/hu.html': 'index.html',
@@ -73,7 +97,7 @@ export default defineConfig({
   // step and no second asset to keep in sync.
   publicDir: resolve(__dirname, '../public'),
 
-  plugins: [react(), emitLocaleIndexes(), siteAssets(resolve(__dirname, '../assets'))],
+  plugins: [react(), substituteOrigin(), emitLocaleIndexes(), siteAssets(resolve(__dirname, '../assets'))],
   resolve: {
     alias: { '@': resolve(__dirname, 'src') },
   },

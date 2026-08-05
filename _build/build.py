@@ -16,6 +16,7 @@ Output:
 Nothing at runtime depends on this script; the result is a plain static site.
 """
 import json
+import os
 import re
 import struct
 import sys
@@ -341,9 +342,20 @@ def build_alternates(key):
     return tags + f'\n<link rel="alternate" hreflang="x-default" href="{absolute("hu", key)}">'
 
 
-# The origin every absolute URL in <head> is built from. The homepage bundle
-# hard-codes the same value; changing it means changing both.
-SITE = "https://media-stratos.com"
+# The origin every absolute URL in <head> is built from.
+#
+# Resolved, not written down, and the resolution order is the same one
+# scripts/site-origin.mjs documents at length: SITE_URL, then Netlify's URL —
+# which is the site's PRIMARY address, so whichever of stratosweb.hu or
+# www.stratosweb.hu is marked primary is the one that appears here — then the
+# intended main domain as a fallback for local builds.
+#
+# This used to say https://media-stratos.com, which is a Wix site that 301s
+# somewhere else and was never this project's address.
+SITE = (os.environ.get("SITE_URL")
+        or os.environ.get("VITE_SITE_URL")
+        or os.environ.get("URL")
+        or "https://stratosweb.hu").strip().rstrip("/")
 
 # Open Graph needs an absolute image URL, and a page that names none still has
 # to preview as something rather than as a blank card. This is the homepage

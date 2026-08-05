@@ -14,11 +14,15 @@ import { cp, mkdir, rm, writeFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { siteOrigin, isPreviewOrigin } from './site-origin.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
 
-const SITE_URL = process.env.VITE_SITE_URL || process.env.URL || 'https://media-stratos.com';
+// Resolved, never written down — see scripts/site-origin.mjs for why, and for
+// why nothing here has to choose between the apex and the www host.
+const SITE_URL = siteOrigin();
+const PREVIEW = isPreviewOrigin();
 
 // Everything the browser is allowed to fetch. Anything not named here — the
 // Python generator, its page fragments, the translation JSON, the backups — is
@@ -76,6 +80,20 @@ function robots() {
   // stays out of search results. It is not access control — see the RLS
   // migration for that — and it deliberately does not name anything that is not
   // already discoverable.
+  // A preview must not be crawlable. Until the custom domain is attached this
+  // site is served from a netlify.app subdomain, and a second indexable copy of
+  // the same pages competes with the real one for the same queries — with the
+  // subdomain usually losing, but not always, which is worse. `isPreviewOrigin`
+  // covers deploy previews and branch deploys too.
+  if (PREVIEW) {
+    return [
+      '# Preview deploy — not the canonical site. See scripts/site-origin.mjs.',
+      'User-agent: *',
+      'Disallow: /',
+      '',
+    ].join('\n');
+  }
+
   return [
     'User-agent: *',
     'Allow: /',

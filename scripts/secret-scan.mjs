@@ -77,6 +77,14 @@ const DESCRIBES_THE_RULE = new Set([
   'ARCHITECTURE.md',
   'netlify/functions/submit-lead.mjs',
   'supabase/migrations/20260801000200_rls.sql',
+  // Read-only diagnostics run by hand against the live database. They name the
+  // four default Postgres roles — including service_role — while explaining
+  // which grants the new columns inherit and why `anon` holding them is not a
+  // hole. Mentions, in prose, in files that contain no value of any kind.
+  'supabase/checks/lead-envelope-preflight.sql',
+  'supabase/checks/lead-envelope-preflight-quick.sql',
+  'supabase/checks/lead-envelope-verify.sql',
+  'supabase/checks/lead-envelope-rollback.sql',
 ]);
 
 // iCloud Drive writes "thing 2.ext" next to "thing.ext" when the folder syncs

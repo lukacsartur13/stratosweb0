@@ -40,6 +40,27 @@ async function interceptLead(page: Page, reply: Reply = {}) {
   return sent;
 }
 
+/**
+ * Every test in this file is slow by construction, and it is worth saying why
+ * rather than papering over it with retries.
+ *
+ * The controller deliberately waits out the server's three-second minimum fill
+ * time instead of being silently dropped by it, so no submission here can
+ * complete in under three seconds. Several tests then hold the reply open for
+ * another 1.5–2.5s to observe the in-flight state, and two of them submit
+ * twice. Against a `fullyParallel` project that is a lot of concurrent browser
+ * contexts all sleeping at once, and on a loaded machine the default timeout
+ * runs out before the assertion is wrong — which showed up as a different test
+ * failing on each run.
+ *
+ * `test.slow()` triples the timeout for the whole file. It changes no
+ * assertion and hides no failure: a submission that genuinely never completes
+ * still fails, just later.
+ */
+test.beforeEach(() => {
+  test.slow();
+});
+
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 /** Every envelope must satisfy the contract, whatever form produced it. */
