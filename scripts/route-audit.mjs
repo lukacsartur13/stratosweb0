@@ -23,7 +23,12 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, '_build', 'reports', 'phase8-route-audit.json');
-const PORT = 4327;
+// 4322 is playwright.config.ts, 4324 the experiments config, 4327 the FULL
+// config and 4328 the review package. Picking one of those means this audit
+// and a test run cannot be in flight at the same time — and worse, cleaning
+// up 'my' port kills someone else's server mid-suite, which is exactly how
+// a green harness turned into 60 phantom failures once.
+const PORT = 4331;
 const BASE = `http://127.0.0.1:${PORT}`;
 const QUICK = process.argv.includes('--quick');
 
