@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/motion.css">
 <link rel="stylesheet" href="assets/css/transitions.css">
+<link rel="stylesheet" href="assets/css/page-build.css">
 <script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -182,23 +183,25 @@
         </div>
       </div>
 
-      <div class="grid g-4" data-stagger>
-        <article class="card" data-reveal>
+      <!-- A csomag négy rétege. A mélység a sorrendet mutatja, nem díszít:
+           mindig az van elöl, ahol a görgetés éppen tart. -->
+      <div class="grid g-4 stack" data-depth data-stagger>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Tervezés</span>
           <h3>Egyedi dizájn</h3>
           <p>Nem sablonból dolgozunk. A vállalkozásodra szabott megjelenést tervezünk, ami megkülönböztet a konkurenciától.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Fejlesztés</span>
           <h3>Gyors, modern weboldal</h3>
           <p>Mobilra optimalizált, villámgyors oldal, ami a keresőkben is jól teljesít. Kód, nem oldalépítő.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Üzemeltetés</span>
           <h3>Tárhely és karbantartás</h3>
           <p>Domain, tárhely, biztonsági mentés, frissítések. Az oldal működéséről mi gondoskodunk, neked nincs vele dolgod.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Támogatás</span>
           <h3>Módosítások</h3>
           <p>Új árlista, új szolgáltatás, friss képek? Írj egy e-mailt, és mi átvezetjük. A kisebb módosítások a havidíj részei.</p>
@@ -220,19 +223,88 @@
         </p>
       </div>
 
-      <div class="steps">
-        <article class="step" data-reveal>
-          <h3>Beszélgetünk</h3>
-          <p>Egy rövid online vagy telefonos egyeztetésen átbeszéljük, mire van szüksége a vállalkozásodnak.</p>
-        </article>
-        <article class="step" data-reveal>
-          <h3>Megtervezzük és megépítjük</h3>
-          <p>Elkészítjük a dizájntervet, majd jóváhagyás után a kész weboldalt. Menet közben mindent látsz és véleményezhetsz.</p>
-        </article>
-        <article class="step" data-reveal>
-          <h3>Élesítünk és karbantartunk</h3>
-          <p>Az oldal elindul, és onnantól folyamatosan gondozzuk. Te a vállalkozásoddal foglalkozol, a weboldal a mi dolgunk.</p>
-        </article>
+    </div>
+
+    <!-- A folyamat mint kirajzolódó felület: egy böngészőablak, ami végigmegy
+         a három valódi lépésen — vázlat, megépített oldal, élő oldal. A szöveg
+         helyben marad és lépésenként vált, nem folyamatosan úszik. Csökkentett
+         mozgásnál a rögzítés feloldódik, és mindhárom lépés egyszerű,
+         egymás alatti szakasz lesz. -->
+    <div class="build" data-stage style="height:340vh">
+      <div class="stage__pin">
+        <div class="wrap build__grid">
+
+          <div class="build__text">
+            <p class="build__prog"><span class="build__fill" data-stage-fill></span></p>
+            <div class="build__stages">
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">01 — Egyeztetés</p>
+                <h3 class="display h-sm">Beszélgetünk</h3>
+                <p class="prose">Egy rövid online vagy telefonos egyeztetésen átbeszéljük, mire van szüksége a vállalkozásodnak.</p>
+              </article>
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">02 — Terv és fejlesztés</p>
+                <h3 class="display h-sm">Megtervezzük és megépítjük</h3>
+                <p class="prose">Elkészítjük a dizájntervet, majd jóváhagyás után a kész weboldalt. Menet közben mindent látsz és véleményezhetsz.</p>
+              </article>
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">03 — Élesítés</p>
+                <h3 class="display h-sm">Élesítünk és karbantartunk</h3>
+                <p class="prose">Az oldal elindul, és onnantól folyamatosan gondozzuk. Te a vállalkozásoddal foglalkozol, a weboldal a mi dolgunk.</p>
+              </article>
+            </div>
+          </div>
+
+          <!-- Ugyanaz az objektum mindhárom állapotban, nem három külön kép. -->
+          <div class="build__ui" aria-hidden="true">
+            <svg viewBox="0 0 420 300" class="build__frame" focusable="false">
+              <rect class="ui__chrome" x="1" y="1" width="418" height="30" rx="3"/>
+              <circle class="ui__dot" cx="18" cy="16" r="3.5"/>
+              <circle class="ui__dot" cx="31" cy="16" r="3.5"/>
+              <circle class="ui__dot" cx="44" cy="16" r="3.5"/>
+              <rect class="ui__bar" x="62" y="10" width="180" height="12" rx="2"/>
+              <rect class="ui__body" x="1" y="31" width="418" height="268"/>
+
+              <!-- 01 · vázlat -->
+              <g class="ui__l ui__l--wire">
+                <rect x="26" y="54" width="120" height="12" rx="1"/>
+                <rect x="26" y="76" width="220" height="8" rx="1"/>
+                <rect x="26" y="90" width="180" height="8" rx="1"/>
+                <rect x="26" y="120" width="112" height="76" rx="2"/>
+                <rect x="152" y="120" width="112" height="76" rx="2"/>
+                <rect x="278" y="120" width="112" height="76" rx="2"/>
+                <rect x="26" y="216" width="90" height="22" rx="2"/>
+              </g>
+
+              <!-- 02 · megtervezett felület -->
+              <g class="ui__l ui__l--design">
+                <rect class="ui__hero" x="26" y="52" width="364" height="94" rx="2"/>
+                <rect class="ui__lit" x="40" y="70" width="150" height="16" rx="1"/>
+                <rect x="40" y="94" width="210" height="7" rx="1"/>
+                <rect x="40" y="106" width="176" height="7" rx="1"/>
+                <rect class="ui__cta" x="40" y="122" width="76" height="16" rx="1"/>
+                <rect x="26" y="162" width="112" height="58" rx="2"/>
+                <rect x="152" y="162" width="112" height="58" rx="2"/>
+                <rect x="278" y="162" width="112" height="58" rx="2"/>
+                <rect x="26" y="236" width="364" height="6" rx="1"/>
+              </g>
+
+              <!-- 03 · élő oldal -->
+              <g class="ui__l ui__l--live">
+                <rect class="ui__hero" x="26" y="52" width="364" height="94" rx="2"/>
+                <rect class="ui__lit" x="40" y="70" width="150" height="16" rx="1"/>
+                <rect x="40" y="94" width="210" height="7" rx="1"/>
+                <rect class="ui__cta" x="40" y="112" width="76" height="16" rx="1"/>
+                <rect x="26" y="162" width="112" height="58" rx="2"/>
+                <rect x="152" y="162" width="112" height="58" rx="2"/>
+                <rect x="278" y="162" width="112" height="58" rx="2"/>
+                <circle class="ui__live" cx="374" cy="16" r="4.5"/>
+                <rect class="ui__lit" x="26" y="236" width="364" height="6" rx="1"/>
+              </g>
+            </svg>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -241,19 +313,19 @@
   <section class="band">
     <div class="wrap">
       <p class="eyebrow" style="margin-bottom:2rem">Élő oldalak</p>
-      <div class="grid g-3" data-stagger>
-        <a class="shot" href="munka-barbershop.html" data-reveal style="aspect-ratio:4/5">
-          <img src="assets/img/work-1.jpg" alt="Barbershop Győr weboldal" loading="lazy" width="1346" height="1800">
-          <span class="shot__tag">Barbershop Győr</span>
-        </a>
-        <a class="shot" href="munka-mentaltrening.html" data-reveal style="aspect-ratio:4/5">
-          <img src="assets/img/work-2.jpg" alt="mentaltrening.com weboldal" loading="lazy" width="1500" height="1800">
-          <span class="shot__tag">mentaltrening.com</span>
-        </a>
-        <a class="shot" href="munka-rapidkert.html" data-reveal style="aspect-ratio:4/5">
-          <img src="assets/img/work-3.jpg" alt="Rapidkert kertépítés weboldal" loading="lazy" width="1493" height="1800">
-          <span class="shot__tag">Rapidkert Kft.</span>
-        </a>
+      <!-- Szöveg vezeti, nem képernyőfotó. A három projekt teljes bemutatása a
+           Munkáink oldalon van; itt csak annyi kell, hogy ez a szolgáltatás
+           valódi, működő oldalakat eredményezett. Egyetlen visszafogott
+           képkivágás támasztja alá, nem három egész képernyős. -->
+      <div class="proofidx">
+        <ul class="proofidx__list">
+          <li><a href="munka-barbershop.html"><span class="proofidx__n">Barbershop Győr</span><span class="proofidx__s">Foglalás-vezérelt weboldal</span></a></li>
+          <li><a href="munka-mentaltrening.html"><span class="proofidx__n">mentaltrening.com</span><span class="proofidx__s">Személyes márka, egy döntés</span></a></li>
+          <li><a href="munka-rapidkert.html"><span class="proofidx__n">Rapidkert Kft.</span><span class="proofidx__s">Szolgáltatás-bemutató weboldal</span></a></li>
+        </ul>
+        <figure class="proofidx__fig" data-mask>
+          <img class="proofshot" src="assets/img/work-3.jpg" alt="A Rapidkert Kft. weboldalának nyitóképernyője: esti kertfotó, „Automata öntözőrendszerek telepítése és kertépítés” címsorral." loading="lazy" width="1493" height="1800">
+        </figure>
       </div>
     </div>
   </section>

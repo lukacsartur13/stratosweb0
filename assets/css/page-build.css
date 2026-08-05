@@ -1,0 +1,219 @@
+/* ==========================================================================
+   STRATOS — the build pages (§12): webdesign for an SME and for a large
+   company. Loaded by `css: build` in those fragments and nowhere else.
+
+   The signature interaction is one interface object that becomes the thing it
+   is describing: a wireframe, then a designed page, then a live site. It is
+   one object in three states rather than three pictures of three objects,
+   which is the difference between showing a process and illustrating one.
+   ========================================================================== */
+
+/* ------------------------------------------------------- the pinned build */
+
+.build .stage__pin { align-content: center; }
+
+.build__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+/* The text column is a fixed slot the stages take turns occupying — they are
+   stacked in one grid cell by motion.css, so the column cannot resize as the
+   copy changes and the interface beside it cannot drift up and down. The
+   min-height is the tallest stage; without it the pin jumps at every step. */
+.build__stages {
+  display: grid;
+  min-height: clamp(16rem, 26vh, 20rem);
+  align-content: start;
+}
+.build__stage { grid-area: 1 / 1; }
+
+.build__k {
+  font: 500 var(--step--1) / 1 var(--data);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: .9rem;
+}
+.build__stage h3 { margin-bottom: 1rem; }
+.build__stage .prose { max-width: 42ch; }
+
+/* Progress. A rule that fills, not a percentage badge: the sequence is short
+   and the reader can see how much of it is left without being told a number. */
+.build__prog {
+  height: 1px;
+  background: var(--hair);
+  margin-bottom: clamp(1.6rem, 4vw, 2.4rem);
+  overflow: hidden;
+}
+.build__fill {
+  display: block;
+  height: 100%;
+  background: var(--signal);
+}
+
+/* ------------------------------------------------------ the interface object */
+
+.build__ui { display: grid; }
+
+.build__frame {
+  width: 100%;
+  height: auto;
+  max-height: 58svh;
+}
+
+/* Everything in the frame is `currentColor` at a fill-opacity, never a literal
+   rgba. This section is `band--pale`, which flips `color` to the void and the
+   background to paper — light shapes hard-coded for the dark theme rendered as
+   white on white and the whole object vanished. Tying it to the text colour
+   means it is correct in whichever band it is placed in, and `fill-opacity`
+   rather than `opacity` because the layer groups already own `opacity` for the
+   cross-fade and the two would multiply into mud. */
+.build__frame .ui__chrome,
+.build__frame .ui__body,
+.build__frame .ui__dot,
+.build__frame .ui__bar,
+.build__frame .ui__l rect,
+.build__frame .ui__l circle { fill: currentColor; }
+
+.build__frame .ui__chrome { fill-opacity: .07; stroke: currentColor; stroke-opacity: .22; }
+.build__frame .ui__body   { fill-opacity: .025; stroke: currentColor; stroke-opacity: .22; }
+.build__frame .ui__dot    { fill-opacity: .26; }
+.build__frame .ui__bar    { fill-opacity: .12; }
+
+/* Every layer's shapes share one resting treatment, so what distinguishes the
+   three states is their COMPOSITION — how the blocks are arranged — rather
+   than a change of palette pretending to be a change of design. */
+.build__frame .ui__l rect,
+.build__frame .ui__l circle { fill-opacity: .16; }
+.build__frame .ui__l--wire rect {
+  fill: none;
+  stroke: currentColor;
+  stroke-opacity: .42;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;          /* it is a sketch, and says so */
+}
+.build__frame .ui__hero { fill-opacity: .06; }
+.build__frame .ui__lit  { fill-opacity: .62; }
+
+/* The two accents. Signal yellow carries on the void but disappears on paper,
+   so on a pale band the emphasis is carried by weight instead of hue — which
+   is what a light interface would do anyway. */
+.build__frame .ui__cta,
+.build__frame .ui__live { fill: var(--signal); fill-opacity: 1; }
+.band--pale .build__frame .ui__cta,
+.band--pale .build__frame .ui__live { fill: currentColor; fill-opacity: .82; }
+
+/* One layer at a time. The cross-fade is short because this is a step change,
+   not a dissolve — the reader should register that it BECAME the next thing. */
+.build__frame .ui__l {
+  opacity: 0;
+  transition: opacity .45s var(--trace-ease);
+}
+.build[data-stage-at="0"] .ui__l--wire,
+.build[data-stage-at="1"] .ui__l--design,
+.build[data-stage-at="2"] .ui__l--live { opacity: 1; }
+
+/* Before the driver has written a stage index — first paint, or no JS at all —
+   the finished state is the one to show. An empty browser frame is worse than
+   no frame. */
+.build:not([data-stage-at]) .ui__l--live { opacity: 1; }
+
+/* ---- reduced motion and no-JS: the pin releases and the three stages become
+   ordinary stacked sections. The interface object shows its finished state
+   once, at the top, rather than repeating three times down the page. */
+.build.is-static .build__grid { grid-template-columns: 1fr; }
+.build.is-static .build__stages { min-height: 0; display: block; }
+.build.is-static .build__stage { grid-area: auto; }
+.build.is-static .build__ui { order: -1; margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+.build.is-static .ui__l--wire,
+.build.is-static .ui__l--design { opacity: 0; }
+.build.is-static .ui__l--live { opacity: 1; }
+.build.is-static .build__prog { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .build .ui__l { transition: none; }
+}
+
+/* Under 860 the two columns become one. The interface object leads, because
+   it is the subject; the stages follow it as text. */
+@media (max-width: 860px) {
+  .build[data-stage] { height: auto !important; }
+  .build .stage__pin { position: static; min-height: 0; display: block; }
+  .build__grid { grid-template-columns: 1fr; }
+  .build__stages { min-height: 0; display: block; }
+  .build__stage {
+    grid-area: auto;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto;
+    margin-bottom: clamp(2rem, 7vw, 3rem);
+  }
+  .build__ui { order: -1; margin-bottom: clamp(1.5rem, 5vw, 2.5rem); }
+  .build .ui__l--wire, .build .ui__l--design { opacity: 0; }
+  .build .ui__l--live { opacity: 1; }
+  .build__prog { display: none; }
+  .build__frame { max-height: none; }
+}
+
+/* --------------------------------------------------------- layered package */
+
+/* Depth here is ordinal, not decorative: the card the scroll has reached comes
+   forward and the others sit back a little. The Z range is small on purpose —
+   90px of translate at 1600px of perspective is a suggestion of a stack, not
+   a carousel in a tunnel. */
+.stack[data-depth] { transform-style: preserve-3d; }
+.stack[data-depth] .card { will-change: transform; }
+
+/* ------------------------------------------------------------- proof index */
+
+.proofidx {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .82fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.proofidx__list { list-style: none; margin: 0; padding: 0; }
+.proofidx__list li { border-top: 1px solid var(--hair); }
+.proofidx__list li:last-child { border-bottom: 1px solid var(--hair); }
+
+.proofidx__list a {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .4rem 1.4rem;
+  padding-block: clamp(1rem, 2.6vw, 1.5rem);
+  text-decoration: none;
+  color: inherit;
+}
+
+.proofidx__n {
+  font-family: var(--display);
+  font-size: var(--step-1);
+  font-variation-settings: "wdth" 96, "wght" 620;
+  text-transform: uppercase;
+  transition: color .35s var(--trace-ease);
+}
+.proofidx__list a:hover .proofidx__n,
+.proofidx__list a:focus-visible .proofidx__n { color: var(--signal); }
+
+.proofidx__s {
+  font: 500 var(--step--1) / 1 var(--data);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+/* One crop, and `.proofshot` in motion.css is what bounds it: 38vw and 52svh
+   on desktop, 88vw on a phone. Brief §9.4 — a project image on a service page
+   is a footnote to the service, not the subject of the page. */
+.proofidx__fig { margin: 0; display: grid; justify-items: end; }
+
+@media (max-width: 860px) {
+  .proofidx { grid-template-columns: 1fr; }
+  .proofidx__fig { justify-items: start; }
+}

@@ -61,5 +61,26 @@
  "Meglévő oldalt is átveszünk. Átnézzük, mi menthető belőle, és vagy megújítjuk, vagy újat építünk helyette; a tartalmaid és a domained természetesen megmaradnak.": ["We take over existing sites too. We review what's worth keeping and either refresh it or build a new one in its place; your content and your domain stay with you.", "Bestehende Seiten übernehmen wir ebenfalls. Wir prüfen, was erhaltenswert ist, und erneuern sie entweder oder bauen eine neue; Inhalte und Domain bleiben selbstverständlich bei dir."],
 
  "Kezdjük el a <span class=\"sig\">weboldalad.</span>": ["Let's start <span class=\"sig\">your website.</span>", "Starten wir <span class=\"sig\">deine Website.</span>"],
- "Minden nap, amíg nincs profi oldalad, egy ügyfél a versenytársadnál köt ki. Töltsd ki a kérdőívet, és pár napon belül ott lehetsz, ahol keresnek.": ["Every day you go without a professional site, a client ends up at your competitor's. Fill in the questionnaire and within days you can be where people are looking for you.", "Jeden Tag ohne professionelle Website landet ein Kunde bei deiner Konkurrenz. Füll den Fragebogen aus, und in wenigen Tagen bist du dort, wo man nach dir sucht."]
+ "Minden nap, amíg nincs profi oldalad, egy ügyfél a versenytársadnál köt ki. Töltsd ki a kérdőívet, és pár napon belül ott lehetsz, ahol keresnek.": ["Every day you go without a professional site, a client ends up at your competitor's. Fill in the questionnaire and within days you can be where people are looking for you.", "Jeden Tag ohne professionelle Website landet ein Kunde bei deiner Konkurrenz. Füll den Fragebogen aus, und in wenigen Tagen bist du dort, wo man nach dir sucht."],
+
+ "_p85": ["Phase 8.5 — the pinned build sequence's stage keys and the text-led",
+          "project index that replaced three full-height screenshots (brief",
+          "§9.1, §12). The index entries are whole anchors because the",
+          "extractor takes a leaf with text as one unit; the Hungarian href",
+          "stays put so relink() can map it per locale."],
+ "01 — Egyeztetés": ["01 — Conversation", "01 — Gespräch"],
+ "02 — Terv és fejlesztés": ["02 — Design and build", "02 — Entwurf und Umsetzung"],
+ "03 — Élesítés": ["03 — Launch", "03 — Livegang"],
+ "<a href=\"munka-barbershop.html\"><span class=\"proofidx__n\">Barbershop Győr</span><span class=\"proofidx__s\">Foglalás-vezérelt weboldal</span></a>": [
+  "<a href=\"munka-barbershop.html\"><span class=\"proofidx__n\">Barbershop Győr</span><span class=\"proofidx__s\">Booking-led website</span></a>",
+  "<a href=\"munka-barbershop.html\"><span class=\"proofidx__n\">Barbershop Győr</span><span class=\"proofidx__s\">Buchungsgesteuerte Website</span></a>"
+ ],
+ "<a href=\"munka-mentaltrening.html\"><span class=\"proofidx__n\">mentaltrening.com</span><span class=\"proofidx__s\">Személyes márka, egy döntés</span></a>": [
+  "<a href=\"munka-mentaltrening.html\"><span class=\"proofidx__n\">mentaltrening.com</span><span class=\"proofidx__s\">Personal brand, one decision</span></a>",
+  "<a href=\"munka-mentaltrening.html\"><span class=\"proofidx__n\">mentaltrening.com</span><span class=\"proofidx__s\">Persönliche Marke, eine Entscheidung</span></a>"
+ ],
+ "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Szolgáltatás-bemutató weboldal</span></a>": [
+  "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Service presentation website</span></a>",
+  "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Website zur Leistungsdarstellung</span></a>"
+ ]
 }

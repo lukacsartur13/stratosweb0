@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-build.css">
 <script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -173,23 +174,25 @@
         </div>
       </div>
 
-      <div class="grid g-4" data-stagger>
-        <article class="card" data-reveal>
+      <!-- A csomag négy rétege. A mélység a sorrendet mutatja, nem díszít:
+           mindig az van elöl, ahol a görgetés éppen tart. -->
+      <div class="grid g-4 stack" data-depth data-stagger>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Konzeption</span>
           <h3>Individuelles Design</h3>
           <p>Wir arbeiten nicht mit Vorlagen. Wir gestalten einen Auftritt, der auf dein Unternehmen zugeschnitten ist und dich von der Konkurrenz abhebt.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Entwicklung</span>
           <h3>Eine schnelle, moderne Website</h3>
           <p>Eine mobiloptimierte, blitzschnelle Seite, die auch in Suchmaschinen gut abschneidet. In Code gebaut, nicht im Baukasten zusammengeklickt.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Betrieb</span>
           <h3>Hosting und Wartung</h3>
           <p>Domain, Hosting, Backups, Updates. Den Betrieb der Seite übernehmen wir — du musst dich um nichts kümmern.</p>
         </article>
-        <article class="card" data-reveal>
+        <article class="card" data-depth-item data-reveal>
           <span class="card__k">Support</span>
           <h3>Änderungen</h3>
           <p>Neue Preisliste, neue Leistung, frische Fotos? Schreib eine E-Mail, und wir pflegen es ein. Kleinere Änderungen sind in der Monatsgebühr enthalten.</p>
@@ -209,19 +212,88 @@
         <p class="prose" style="align-self:end">Nur das, was ein kleines Unternehmen wirklich braucht — nicht mehr und nicht weniger.</p>
       </div>
 
-      <div class="steps">
-        <article class="step" data-reveal>
-          <h3>Wir sprechen</h3>
-          <p>In einem kurzen Online- oder Telefongespräch klären wir, was dein Unternehmen braucht.</p>
-        </article>
-        <article class="step" data-reveal>
-          <h3>Wir gestalten und bauen</h3>
-          <p>Wir erstellen den Designentwurf und nach deiner Freigabe die fertige Website. Du siehst unterwegs alles und kannst Feedback geben.</p>
-        </article>
-        <article class="step" data-reveal>
-          <h3>Wir starten und warten</h3>
-          <p>Die Seite geht live, und ab dann kümmern wir uns weiter darum. Du machst dein Geschäft, die Website ist unsere Sache.</p>
-        </article>
+    </div>
+
+    <!-- A folyamat mint kirajzolódó felület: egy böngészőablak, ami végigmegy
+         a három valódi lépésen — vázlat, megépített oldal, élő oldal. A szöveg
+         helyben marad és lépésenként vált, nem folyamatosan úszik. Csökkentett
+         mozgásnál a rögzítés feloldódik, és mindhárom lépés egyszerű,
+         egymás alatti szakasz lesz. -->
+    <div class="build" data-stage style="height:340vh">
+      <div class="stage__pin">
+        <div class="wrap build__grid">
+
+          <div class="build__text">
+            <p class="build__prog"><span class="build__fill" data-stage-fill></span></p>
+            <div class="build__stages">
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">01 — Gespräch</p>
+                <h3 class="display h-sm">Wir sprechen</h3>
+                <p class="prose">In einem kurzen Online- oder Telefongespräch klären wir, was dein Unternehmen braucht.</p>
+              </article>
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">02 — Entwurf und Umsetzung</p>
+                <h3 class="display h-sm">Wir gestalten und bauen</h3>
+                <p class="prose">Wir erstellen den Designentwurf und nach deiner Freigabe die fertige Website. Du siehst unterwegs alles und kannst Feedback geben.</p>
+              </article>
+              <article class="build__stage" data-stage-item>
+                <p class="build__k">03 — Livegang</p>
+                <h3 class="display h-sm">Wir starten und warten</h3>
+                <p class="prose">Die Seite geht live, und ab dann kümmern wir uns weiter darum. Du machst dein Geschäft, die Website ist unsere Sache.</p>
+              </article>
+            </div>
+          </div>
+
+          <!-- Ugyanaz az objektum mindhárom állapotban, nem három külön kép. -->
+          <div class="build__ui" aria-hidden="true">
+            <svg viewBox="0 0 420 300" class="build__frame" focusable="false">
+              <rect class="ui__chrome" x="1" y="1" width="418" height="30" rx="3"/>
+              <circle class="ui__dot" cx="18" cy="16" r="3.5"/>
+              <circle class="ui__dot" cx="31" cy="16" r="3.5"/>
+              <circle class="ui__dot" cx="44" cy="16" r="3.5"/>
+              <rect class="ui__bar" x="62" y="10" width="180" height="12" rx="2"/>
+              <rect class="ui__body" x="1" y="31" width="418" height="268"/>
+
+              <!-- 01 · vázlat -->
+              <g class="ui__l ui__l--wire">
+                <rect x="26" y="54" width="120" height="12" rx="1"/>
+                <rect x="26" y="76" width="220" height="8" rx="1"/>
+                <rect x="26" y="90" width="180" height="8" rx="1"/>
+                <rect x="26" y="120" width="112" height="76" rx="2"/>
+                <rect x="152" y="120" width="112" height="76" rx="2"/>
+                <rect x="278" y="120" width="112" height="76" rx="2"/>
+                <rect x="26" y="216" width="90" height="22" rx="2"/>
+              </g>
+
+              <!-- 02 · megtervezett felület -->
+              <g class="ui__l ui__l--design">
+                <rect class="ui__hero" x="26" y="52" width="364" height="94" rx="2"/>
+                <rect class="ui__lit" x="40" y="70" width="150" height="16" rx="1"/>
+                <rect x="40" y="94" width="210" height="7" rx="1"/>
+                <rect x="40" y="106" width="176" height="7" rx="1"/>
+                <rect class="ui__cta" x="40" y="122" width="76" height="16" rx="1"/>
+                <rect x="26" y="162" width="112" height="58" rx="2"/>
+                <rect x="152" y="162" width="112" height="58" rx="2"/>
+                <rect x="278" y="162" width="112" height="58" rx="2"/>
+                <rect x="26" y="236" width="364" height="6" rx="1"/>
+              </g>
+
+              <!-- 03 · élő oldal -->
+              <g class="ui__l ui__l--live">
+                <rect class="ui__hero" x="26" y="52" width="364" height="94" rx="2"/>
+                <rect class="ui__lit" x="40" y="70" width="150" height="16" rx="1"/>
+                <rect x="40" y="94" width="210" height="7" rx="1"/>
+                <rect class="ui__cta" x="40" y="112" width="76" height="16" rx="1"/>
+                <rect x="26" y="162" width="112" height="58" rx="2"/>
+                <rect x="152" y="162" width="112" height="58" rx="2"/>
+                <rect x="278" y="162" width="112" height="58" rx="2"/>
+                <circle class="ui__live" cx="374" cy="16" r="4.5"/>
+                <rect class="ui__lit" x="26" y="236" width="364" height="6" rx="1"/>
+              </g>
+            </svg>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -230,19 +302,19 @@
   <section class="band">
     <div class="wrap">
       <p class="eyebrow" style="margin-bottom:2rem">Live-Websites</p>
-      <div class="grid g-3" data-stagger>
-        <a class="shot" href="projekt-barbershop.html" data-reveal style="aspect-ratio:4/5">
-          <img src="../assets/img/work-1.jpg" alt="Website von Barbershop Győr" loading="lazy" width="1346" height="1800">
-          <span class="shot__tag">Barbershop Győr</span>
-        </a>
-        <a class="shot" href="projekt-mentaltrening.html" data-reveal style="aspect-ratio:4/5">
-          <img src="../assets/img/work-2.jpg" alt="Website von mentaltrening.com" loading="lazy" width="1500" height="1800">
-          <span class="shot__tag">mentaltrening.com</span>
-        </a>
-        <a class="shot" href="projekt-rapidkert.html" data-reveal style="aspect-ratio:4/5">
-          <img src="../assets/img/work-3.jpg" alt="Website von Rapidkert Gartenbau" loading="lazy" width="1493" height="1800">
-          <span class="shot__tag">Rapidkert Kft.</span>
-        </a>
+      <!-- Szöveg vezeti, nem képernyőfotó. A három projekt teljes bemutatása a
+           Munkáink oldalon van; itt csak annyi kell, hogy ez a szolgáltatás
+           valódi, működő oldalakat eredményezett. Egyetlen visszafogott
+           képkivágás támasztja alá, nem három egész képernyős. -->
+      <div class="proofidx">
+        <ul class="proofidx__list">
+          <li><a href="projekt-barbershop.html"><span class="proofidx__n">Barbershop Győr</span><span class="proofidx__s">Buchungsgesteuerte Website</span></a></li>
+          <li><a href="projekt-mentaltrening.html"><span class="proofidx__n">mentaltrening.com</span><span class="proofidx__s">Persönliche Marke, eine Entscheidung</span></a></li>
+          <li><a href="projekt-rapidkert.html"><span class="proofidx__n">Rapidkert Kft.</span><span class="proofidx__s">Website zur Leistungsdarstellung</span></a></li>
+        </ul>
+        <figure class="proofidx__fig" data-mask>
+          <img class="proofshot" src="../assets/img/work-3.jpg" alt="Der Startbildschirm der Website von Rapidkert Kft.: ein abendliches Gartenfoto mit der Überschrift „Installation automatischer Bewässerungssysteme und Gartenbau“." loading="lazy" width="1493" height="1800">
+        </figure>
       </div>
     </div>
   </section>
