@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-quiz.css">
 <script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -133,7 +134,15 @@
 
 <div class="shell">
 <main id="main">
-<div class="quiz__progress" aria-hidden="true"><div class="quiz__barfill" id="bar"></div></div>
+<!-- A haladás nem sáv, hanem útvonal: minden látható kérdés egy állomás,
+       és a repült szakasz kigyullad mögötted. A csomópontokat ugyanaz a két
+       szám rajzolja, amit a wizard amúgy is kiszámol (hányadik kérdés, hányból),
+       úgyhogy nem lett új állapot, amit külön szinkronban kellene tartani.
+       aria-hidden, mert a valódi haladást a kérdésszám mondja el szövegesen. -->
+  <div class="quiz__progress" aria-hidden="true">
+    <div class="quiz__barfill" id="bar"></div>
+    <div class="quiz__path" id="path"></div>
+  </div>
 
   <section class="quiz">
     <div class="wrap">

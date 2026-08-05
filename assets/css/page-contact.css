@@ -1,0 +1,30 @@
+/* ==========================================================================
+   STRATOS — contact (§20). Loaded by `css: contact`.
+
+   The page is a decision, so the trace makes the decision visible: one line
+   arrives, divides once, and both branches end at a path. Nothing here changes
+   the lead pipeline — the two routes are the same two routes, and the form is
+   the same form posting to the same canonical endpoint.
+   ========================================================================== */
+
+.split {
+  width: 100%;
+  height: clamp(46px, 6vw, 86px);
+  margin-bottom: clamp(.4rem, 1.5vw, 1rem);
+}
+
+/* Below the two-column breakpoint the choices stack, so a line that divides
+   left and right is describing a layout that is no longer there. */
+@media (max-width: 860px) {
+  .split { display: none; }
+}
+
+/* The anchored form section takes focus from the "write a message" choice.
+   It must not therefore draw a focus ring around half the page when it is
+   merely clicked — but it must still show one for a keyboard user arriving
+   from the link, which is exactly what :focus-visible distinguishes. */
+#uzenet:focus { outline: none; }
+#uzenet:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: -4px;
+}

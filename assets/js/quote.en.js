@@ -120,6 +120,23 @@ const answers = {};
 let step = -1; // -1 = intro
 const app = document.getElementById('app');
 const bar = document.getElementById('bar');
+const pathEl = document.getElementById('path');
+// The stations are rebuilt only when the number of them changes. A conditional
+// question appearing or disappearing changes `total`; moving between questions
+// does not, and rewriting the DOM on every step would throw away the CSS
+// transition that makes a station light up.
+let pathTotal = -1;
+function drawPath(pos, total){
+  if(!pathEl) return;
+  if(total !== pathTotal){
+    pathTotal = total;
+    pathEl.innerHTML = Array.from({length: total}, () => '<i></i>').join('');
+  }
+  const nodes = pathEl.children;
+  for(let i=0;i<nodes.length;i++){
+    nodes[i].className = i < pos ? 'is-past' : (i === pos ? 'is-at' : '');
+  }
+}
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 const visibleIdx = () => Q.map((d,i)=>i).filter(i=>!Q[i].cond || Q[i].cond());
@@ -140,6 +157,7 @@ function render(){
   const pos = vis.indexOf(step);
   bar.style.width = (pos/vis.length*100)+'%';
   setAltitude(pos/vis.length);
+  drawPath(pos, vis.length);
 
   let f = '';
   const saved = answers[step] || {};
@@ -255,6 +273,7 @@ function next(){
 
 function renderIntro(){
   bar.style.width='0';
+  if(pathTotal>0) drawPath(-1, pathTotal);
   setAltitude(0);
   app.innerHTML = `<div class="quiz__step quiz__intro">
     <div class="quiz__num">Stratos · Requirements</div>
@@ -368,6 +387,7 @@ async function renderDone(){
   sending = true;
 
   bar.style.width='100%';
+  if(pathTotal>0) drawPath(pathTotal, pathTotal);
   setAltitude(1);
   finish('submitting');
 

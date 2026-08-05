@@ -1,0 +1,53 @@
+/* ==========================================================================
+   STRATOS — the questionnaire (§21). Loaded by `css: quiz`.
+
+   A percentage bar tells you how much is left as a fraction. A path tells you
+   how many questions are left as questions, which is the thing an anxious
+   person filling in a brief actually wants to know. Same two numbers, driven
+   by the wizard's existing `pos` and `total` — no new state to keep in sync,
+   and nothing here touches an answer or the payload.
+   ========================================================================== */
+
+.quiz__progress { position: relative; }
+
+.quiz__path {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: clamp(.75rem, 3vw, 2rem);
+  pointer-events: none;
+}
+
+.quiz__path i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--hair);
+  flex: 0 0 auto;
+  transition: background .35s var(--trace-ease), transform .35s var(--trace-ease);
+}
+
+.quiz__path i.is-past { background: var(--signal); }
+
+/* The station you are standing on is the only one that grows, and by 1.6x of
+   five pixels — enough to find at a glance, not enough to be a bouncing dot. */
+.quiz__path i.is-at {
+  background: var(--signal);
+  transform: scale(1.6);
+}
+
+/* The questionnaire's longest branch is 33 questions, so this path is 33
+   stations wide. Measured, they stay clear of each other all the way down:
+   42px apart at 1440, 27px at 861, 17.8px at 561 against an 8px dot. Below
+   that the phone's own width is what runs out, and 33 dots across 320px would
+   read as a dashed rule — which is worse than the plain bar it replaced. So
+   the path stops there and the fill does the job alone. */
+@media (max-width: 560px) {
+  .quiz__path { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz__path i { transition: none; }
+}

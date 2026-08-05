@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-contact.css">
 <script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -176,6 +177,15 @@
         <p class="prose" style="align-self:end">Both lead to the same conversation. The only difference is how much we already know about your project when we first talk.</p>
       </div>
 
+      <!-- A Trace itt kettéválik: egy döntés, két út, ugyanaz a beszélgetés a
+           végén. A vonal dekoráció; a két útvonal maga szöveg és link. -->
+      <svg class="split" data-trace data-trace-stagger="0.3" viewBox="0 0 1200 90"
+           preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M600 0 V26"/>
+        <path d="M600 26 C 600 62 320 54 300 90"/>
+        <path d="M600 26 C 600 62 880 54 900 90"/>
+      </svg>
+
       <div class="choice">
         <div>
           <span class="choice__k">Short enquiry</span>
@@ -230,7 +240,11 @@
   </section>
 
   <!-- ============================================ űrlap -->
-  <section class="band" id="uzenet">
+  <!-- tabindex="-1" azért, hogy a „Írok egy üzenetet" horgony ne csak
+       odagörgessen, hanem a fókuszt is ide hozza — billentyűzettel és
+       képernyőolvasóval ez a különbség a működő és a látszólag működő
+       választás között. -->
+  <section class="band" id="uzenet" tabindex="-1">
     <div class="wrap">
       <p class="smark"><span class="smark__n" aria-hidden="true">04</span><span class="smark__t">Short enquiry</span></p>
       <div class="grid g-sticky">

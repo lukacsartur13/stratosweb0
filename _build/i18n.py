@@ -66,6 +66,12 @@ SKIP_EXACT = {
     'Kontyos.hu', 'Grantool Kft.', 'Synergy Digital Hungary Kft.', 'HAIO',
     'FICE', 'Duna Hajók', 'Duna Enterior', 'Rapidkert Kft.',
     'Barbershop Győr',
+    # Identifiers from the questionnaire's inline wizard, not copy. The
+    # extractor deliberately reads <script> because the wizard's buttons and
+    # labels live there and do need translating; an element id and two class
+    # names do not, and a German "is-at" would simply stop the progress path
+    # lighting up.
+    'path', 'is-past', 'is-at',
     # The locale-invariant branch identifier the questionnaire sends as
     # `fields.agazat`. It is compared by the server against a fixed enum (see
     # FORMS.questionnaire in netlify/functions/lead-contract.mjs) and is never

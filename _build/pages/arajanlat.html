@@ -2,8 +2,17 @@ title: Weboldal igényfelmérő kérdőív | Stratos
 desc: Töltsd ki a kérdőívet pár perc alatt, és a válaszaid alapján személyre szabott árajánlattal keresünk.
 ceiling: 30000
 footer: no
+css: quiz
 ---
-  <div class="quiz__progress" aria-hidden="true"><div class="quiz__barfill" id="bar"></div></div>
+  <!-- A haladás nem sáv, hanem útvonal: minden látható kérdés egy állomás,
+       és a repült szakasz kigyullad mögötted. A csomópontokat ugyanaz a két
+       szám rajzolja, amit a wizard amúgy is kiszámol (hányadik kérdés, hányból),
+       úgyhogy nem lett új állapot, amit külön szinkronban kellene tartani.
+       aria-hidden, mert a valódi haladást a kérdésszám mondja el szövegesen. -->
+  <div class="quiz__progress" aria-hidden="true">
+    <div class="quiz__barfill" id="bar"></div>
+    <div class="quiz__path" id="path"></div>
+  </div>
 
   <section class="quiz">
     <div class="wrap">
@@ -153,6 +162,23 @@ const answers = {};
 let step = -1; // -1 = intro
 const app = document.getElementById('app');
 const bar = document.getElementById('bar');
+const pathEl = document.getElementById('path');
+// The stations are rebuilt only when the number of them changes. A conditional
+// question appearing or disappearing changes `total`; moving between questions
+// does not, and rewriting the DOM on every step would throw away the CSS
+// transition that makes a station light up.
+let pathTotal = -1;
+function drawPath(pos, total){
+  if(!pathEl) return;
+  if(total !== pathTotal){
+    pathTotal = total;
+    pathEl.innerHTML = Array.from({length: total}, () => '<i></i>').join('');
+  }
+  const nodes = pathEl.children;
+  for(let i=0;i<nodes.length;i++){
+    nodes[i].className = i < pos ? 'is-past' : (i === pos ? 'is-at' : '');
+  }
+}
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 const visibleIdx = () => Q.map((d,i)=>i).filter(i=>!Q[i].cond || Q[i].cond());
@@ -173,6 +199,7 @@ function render(){
   const pos = vis.indexOf(step);
   bar.style.width = (pos/vis.length*100)+'%';
   setAltitude(pos/vis.length);
+  drawPath(pos, vis.length);
 
   let f = '';
   const saved = answers[step] || {};
@@ -288,6 +315,7 @@ function next(){
 
 function renderIntro(){
   bar.style.width='0';
+  if(pathTotal>0) drawPath(-1, pathTotal);
   setAltitude(0);
   app.innerHTML = `<div class="quiz__step quiz__intro">
     <div class="quiz__num">Stratos · Igényfelmérő</div>
@@ -402,6 +430,7 @@ async function renderDone(){
   sending = true;
 
   bar.style.width='100%';
+  if(pathTotal>0) drawPath(pathTotal, pathTotal);
   setAltitude(1);
   finish('submitting');
 

@@ -1,6 +1,7 @@
 title: Kapcsolat és projektindítás | Stratos
 desc: Így indul egy Stratos projekt: rövid megkeresés vagy részletes igényfelmérő, díjmentes konzultáció, majd egyedi ajánlat. Írj, hívj, vagy töltsd ki az űrlapot.
 ceiling: 6000
+css: contact
 ---
   <section class="phead phead--index">
     <div class="wrap">
@@ -70,6 +71,15 @@ ceiling: 6000
         </p>
       </div>
 
+      <!-- A Trace itt kettéválik: egy döntés, két út, ugyanaz a beszélgetés a
+           végén. A vonal dekoráció; a két útvonal maga szöveg és link. -->
+      <svg class="split" data-trace data-trace-stagger="0.3" viewBox="0 0 1200 90"
+           preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M600 0 V26"/>
+        <path d="M600 26 C 600 62 320 54 300 90"/>
+        <path d="M600 26 C 600 62 880 54 900 90"/>
+      </svg>
+
       <div class="choice">
         <div>
           <span class="choice__k">Rövid megkeresés</span>
@@ -134,7 +144,11 @@ ceiling: 6000
   </section>
 
   <!-- ============================================ űrlap -->
-  <section class="band" id="uzenet">
+  <!-- tabindex="-1" azért, hogy a „Írok egy üzenetet" horgony ne csak
+       odagörgessen, hanem a fókuszt is ide hozza — billentyűzettel és
+       képernyőolvasóval ez a különbség a működő és a látszólag működő
+       választás között. -->
+  <section class="band" id="uzenet" tabindex="-1">
     <div class="wrap">
       <p class="smark"><span class="smark__n" aria-hidden="true">04</span><span class="smark__t">Rövid megkeresés</span></p>
       <div class="grid g-sticky">
