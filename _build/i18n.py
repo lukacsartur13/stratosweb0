@@ -123,6 +123,23 @@ def _gaps(length, spans):
     return out
 
 
+def _attr_safe(text):
+    """A translation is dropped into `attr="..."`, so a straight double quote in
+    it closes the attribute early and the rest of the sentence becomes stray
+    tag soup.
+
+    This is not hypothetical: the English alt text for the Rapidkert screenshot
+    quoted the client's own headline, which silently produced a malformed
+    <img> — the browser recovered, the page looked fine, and the generator's
+    image-dimension stamper simply stopped matching that tag, so the one route
+    that needed intrinsic sizes most lost them without a single error.
+
+    Escaping here rather than asking every translator to remember: the
+    dictionaries are prose, and prose contains quotation marks.
+    """
+    return text.replace('"', '&quot;')
+
+
 def _walk_markup(src, on_unit):
     """Rewrite `src`, handing every translatable unit to on_unit(text) -> text."""
     spans = _leaf_spans(src)
@@ -135,7 +152,8 @@ def _walk_markup(src, on_unit):
 
         def sub_attr(m):
             raw = m.group(2)
-            return f'{m.group(1)}="{on_unit(raw)}"' if translatable(raw) else m.group(0)
+            return (f'{m.group(1)}="{_attr_safe(on_unit(raw))}"'
+                    if translatable(raw) else m.group(0))
 
         return ATTR_RE.sub(sub_attr, TEXT_RUN.sub(sub_run, chunk))
 
@@ -164,7 +182,7 @@ def _markup_chunk(chunk, on_unit):
         lambda t: '>' + on_unit(t.group(1)) + '<'
         if translatable(t.group(1)) else t.group(0), chunk)
     return ATTR_RE.sub(
-        lambda a: '%s="%s"' % (a.group(1), on_unit(a.group(2)))
+        lambda a: '%s="%s"' % (a.group(1), _attr_safe(on_unit(a.group(2))))
         if translatable(a.group(2)) else a.group(0), chunk)
 
 

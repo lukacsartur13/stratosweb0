@@ -294,6 +294,8 @@ if (process.argv.includes('--check')) {
   const baseline = JSON.parse(await readFile(OUT, 'utf8'));
   const problems = [];
 
+  const imageStem = (src) => String(src).replace(/\.[a-z0-9]+$/i, '');
+
   for (const base of baseline.routes) {
     const now = rows.find((r) => r.route === base.route);
     if (!now) {
@@ -304,8 +306,16 @@ if (process.argv.includes('--check')) {
       problems.push(`${base.route}: sections ${base.sectionCount} -> ${now.sectionCount}`);
     if (now.meaningfulWordCount < base.meaningfulWordCount)
       problems.push(`${base.route}: words ${base.meaningfulWordCount} -> ${now.meaningfulWordCount}`);
+    // Compared by stem, not by full src: re-encoding an asset — the 2.2 MB
+    // team-richard.png that §H required be optimised became a 234 KB .jpg of
+    // the same photograph — is not a removal, and failing the content gate for
+    // it would make the gate argue against its own brief. The count, the alt
+    // text and the route are all still asserted, so an image that genuinely
+    // disappears still fails here; only the container format is allowed to
+    // move.
     for (const img of base.images)
-      if (img.src && !now.images.some((i) => i.src === img.src)) problems.push(`${base.route}: image removed ${img.src}`);
+      if (img.src && !now.images.some((i) => imageStem(i.src) === imageStem(img.src)))
+        problems.push(`${base.route}: image removed ${img.src}`);
     for (const cta of base.ctas)
       if (cta.href && !now.ctas.some((c) => c.href === cta.href)) problems.push(`${base.route}: CTA removed ${cta.href}`);
     for (const f of base.forms) {

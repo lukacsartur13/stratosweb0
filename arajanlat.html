@@ -110,7 +110,22 @@
 
   <section class="quiz">
     <div class="wrap">
-      <div id="app" aria-live="polite"></div>
+      <!-- The wizard replaces this on load. Until Phase 8 it was an empty
+           div, which meant the highest-intent route on the site served no H1,
+           two words of body text and nothing at all without JavaScript — the
+           skip link landed on an empty <main>. This is the same content the
+           wizard's own intro screen shows, so nothing flashes and nothing is
+           duplicated once it boots. -->
+      <div id="app" aria-live="polite">
+        <div class="quiz__step quiz__intro">
+          <div class="quiz__num">Stratos · Igényfelmérő</div>
+          <h1>Weboldal<br>igényfelmérő<br>kérdőív</h1>
+          <p>Minden kérdés külön oldalon jelenik meg. A csillaggal (<span class="quiz__req">*</span>) jelölt kérdések kötelezőek.</p>
+          <p>A kitöltés alapján pár órán belül keresni fogunk a további információkkal és a személyre szabott árajánlattal.</p>
+          <p>Becsült kitöltési idő: 8 perc.</p>
+          <p>Ha ez most sok, egy rövid üzenet is elég: <a href="ugyfelszolgalat.html">írj nekünk a kapcsolati oldalon</a>, és ugyanoda jutunk.</p>
+        </div>
+      </div>
       <div class="hp" aria-hidden="true">
         <label for="hp-quiz">Company website</label>
         <input id="hp-quiz" type="text" name="company_website" tabindex="-1" autocomplete="off">

@@ -109,7 +109,22 @@
 
   <section class="quiz">
     <div class="wrap">
-      <div id="app" aria-live="polite"></div>
+      <!-- The wizard replaces this on load. Until Phase 8 it was an empty
+           div, which meant the highest-intent route on the site served no H1,
+           two words of body text and nothing at all without JavaScript — the
+           skip link landed on an empty <main>. This is the same content the
+           wizard's own intro screen shows, so nothing flashes and nothing is
+           duplicated once it boots. -->
+      <div id="app" aria-live="polite">
+        <div class="quiz__step quiz__intro">
+          <div class="quiz__num">Stratos · Anforderungen</div>
+          <h1>Website-<br>Bedarfs-<br>fragebogen</h1>
+          <p>Jede Frage erscheint auf einem eigenen Bildschirm. Mit einem Stern (<span class="quiz__req">*</span>) markierte Fragen sind Pflichtfragen.</p>
+          <p>Auf Basis deiner Antworten melden wir uns innerhalb weniger Stunden mit weiteren Informationen und einem individuellen Angebot.</p>
+          <p>Geschätzte Bearbeitungszeit: 8 Minuten.</p>
+          <p>Wenn dir das gerade zu viel ist, reicht auch eine kurze Nachricht: <a href="kontakt.html">schreib uns auf der Kontaktseite</a>, wir kommen zum selben Ergebnis.</p>
+        </div>
+      </div>
       <div class="hp" aria-hidden="true">
         <label for="hp-quiz">Company website</label>
         <input id="hp-quiz" type="text" name="company_website" tabindex="-1" autocomplete="off">

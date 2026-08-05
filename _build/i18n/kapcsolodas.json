@@ -1,0 +1,171 @@
+{
+ "_comment": [
+  "Phase 8 — the related-content blocks added to the four service",
+  "routes, the blog listing, About and Impact, the page-specific",
+  "closing CTA labels that replaced the one repeated 'Felszállás',",
+  "and the Impact Program's boundaries section."
+ ],
+ "_related": "Shared heading and the per-route destination reasons.",
+ "Kapcsolódó oldalak és cikkek.": [
+  "Related pages and articles.",
+  "Verwandte Seiten und Artikel."
+ ],
+ "Minden szolgáltatás": [
+  "All services",
+  "Alle Leistungen"
+ ],
+ "Hogyan kapcsolódik a weboldal az arculathoz és a hirdetéshez, és mire van szükséged tényleg.": [
+  "How the website relates to identity and advertising, and what you actually need.",
+  "Wie die Website mit Erscheinungsbild und Werbung zusammenhängt und was du wirklich brauchst."
+ ],
+ "Egy élő oldal ugyanebből a szolgáltatásból, kertépítő vállalkozásnak.": [
+  "A live site from this same service, for a landscaping business.",
+  "Eine Live-Website aus derselben Leistung, für einen Gartenbaubetrieb."
+ ],
+ "Ha nincs kialakult megjelenésed, ezt érdemes a weboldal előtt rendezni.": [
+  "If you don't have a settled look, this is worth sorting out before the website.",
+  "Wenn du kein festes Erscheinungsbild hast, klärst du das besser vor der Website."
+ ],
+ "Mi hajtja fel a költséget, és mi nincs benne az ajánlatokban.": [
+  "What drives the cost, and what proposals leave out.",
+  "Was die Kosten treibt und was in Angeboten fehlt."
+ ],
+ "Ha kisebb a szervezet és nincs szükség jóváhagyási körökre, ez a gyorsabb út.": [
+  "If the organisation is smaller and there are no approval rounds, this is the faster route.",
+  "Wenn die Organisation kleiner ist und keine Freigabeschleifen nötig sind, ist das der schnellere Weg."
+ ],
+ "Ha az oldal mellé forgalom is kell, méréssel és riporttal.": [
+  "If the site also needs traffic, with measurement and reporting.",
+  "Wenn zur Website auch Traffic gehört, mit Messung und Reporting."
+ ],
+ "Hogyan kapcsolódik az arculat a weboldalhoz és a hirdetéshez, és milyen sorrendben éri meg.": [
+  "How identity relates to the website and to advertising, and in what order it pays off.",
+  "Wie das Erscheinungsbild mit Website und Werbung zusammenhängt und in welcher Reihenfolge sich das lohnt."
+ ],
+ "Az arculat után jellemzően ez a következő lépés.": [
+  "This is usually the next step after the identity.",
+  "Das ist meist der nächste Schritt nach dem Erscheinungsbild."
+ ],
+ "Személyes márka, ahol a hangvétel és a képi világ vitte a projektet.": [
+  "A personal brand where tone of voice and imagery carried the project.",
+  "Eine persönliche Marke, bei der Tonfall und Bildwelt das Projekt getragen haben."
+ ],
+ "Hogyan kapcsolódik a hirdetés a weboldalhoz, és mikor van értelme önmagában.": [
+  "How advertising relates to the website, and when it makes sense on its own.",
+  "Wie Werbung mit der Website zusammenhängt und wann sie allein sinnvoll ist."
+ ],
+ "Melyik platform mire való, és mikor melyiket érdemes választani.": [
+  "What each platform is for, and when to choose which.",
+  "Wofür welche Plattform gut ist und wann sich welche lohnt."
+ ],
+ "A hirdetés forgalmat vesz. Ha az oldal nem győz meg, a költés a hibákat skálázza.": [
+  "Advertising buys traffic. If the site doesn't convince, the spending scales up the faults.",
+  "Werbung kauft Traffic. Überzeugt die Website nicht, skalieren die Ausgaben nur die Schwächen."
+ ],
+ "Ha inkább megkérdeznéd, mint elolvasnád.": [
+  "If you'd rather ask than read.",
+  "Wenn du lieber fragst als liest."
+ ],
+ "Kik vagyunk, hogyan dolgozunk, és miért létezik ez a program.": [
+  "Who we are, how we work, and why this programme exists.",
+  "Wer wir sind, wie wir arbeiten und warum es dieses Programm gibt."
+ ],
+ "Ha a szervezeted nem a programon keresztül dolgozna velünk.": [
+  "If your organisation would work with us outside the programme.",
+  "Wenn deine Organisation außerhalb des Programms mit uns arbeiten würde."
+ ],
+ "_cta_labels": [
+  "The closing CTA used to be labelled 'Felszállás' on every route,",
+  "including About and the blog. These are the per-route replacements."
+ ],
+ "Kezdés": [
+  "Getting started",
+  "Loslegen"
+ ],
+ "Első lépés": [
+  "First step",
+  "Erster Schritt"
+ ],
+ "Indulás": [
+  "Starting out",
+  "Start"
+ ],
+ "Ha nem magad csinálnád": [
+  "If you'd rather not do it yourself",
+  "Wenn du es nicht selbst machen willst"
+ ],
+ "Munkakezdés": [
+  "Starting work",
+  "Arbeitsbeginn"
+ ],
+ "_impact_bounds": "The Impact Program's stated limits — §I requires 'what is not included'.",
+ "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">A határok</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">The limits</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Die Grenzen</span>"
+ ],
+ "Amit a program nem tartalmaz": [
+  "What the programme does not include",
+  "Was das Programm nicht umfasst"
+ ],
+ "Ezt előre leírjuk, mert a csalódás rosszabb, mint az elutasítás. Ha bármelyik pont kizáró a szervezetednél, jobb most tudni.": [
+  "We state this in advance, because disappointment is worse than rejection. If any of these rules your organisation out, it's better to know now.",
+  "Wir schreiben das vorab, weil Enttäuschung schlimmer ist als eine Absage. Wenn einer dieser Punkte für deine Organisation ein Ausschluss ist, ist es besser, das jetzt zu wissen."
+ ],
+ "Nem garantált kiválasztás": [
+  "Selection is not guaranteed",
+  "Keine garantierte Auswahl"
+ ],
+ "A jelentkezés nem jelenti azt, hogy a szervezet bekerül a programba. Egyszerre néhány szervezettel tudunk dolgozni, tehát több jó jelentkezést is el kell utasítanunk.": [
+  "Applying does not mean the organisation joins the programme. We can work with only a few organisations at a time, so we have to turn down good applications as well.",
+  "Eine Bewerbung bedeutet nicht, dass die Organisation ins Programm aufgenommen wird. Wir können gleichzeitig nur mit wenigen Organisationen arbeiten und müssen deshalb auch gute Bewerbungen absagen."
+ ],
+ "Nem pénzügyi támogatás": [
+  "Not financial support",
+  "Keine finanzielle Unterstützung"
+ ],
+ "A program munkát ad, nem forrást. Adományt, működési támogatást vagy pályázati önrészt nem tudunk biztosítani.": [
+  "The programme provides work, not funding. We cannot provide donations, operating support or matching funds for grant applications.",
+  "Das Programm stellt Arbeit bereit, keine Mittel. Spenden, Betriebskostenzuschüsse oder Eigenanteile für Förderanträge können wir nicht bereitstellen."
+ ],
+ "Nem korlátlan terjedelem": [
+  "Not unlimited scope",
+  "Kein unbegrenzter Umfang"
+ ],
+ "Egy meghatározott terjedelmű weboldalról van szó, amit a jelentkezés után közösen rögzítünk. Ami ezen kívül esik, arról külön kell megállapodni.": [
+  "This is a website of a defined scope, which we agree together after the application. Anything beyond that has to be agreed separately.",
+  "Es handelt sich um eine Website mit definiertem Umfang, den wir nach der Bewerbung gemeinsam festlegen. Alles darüber hinaus muss gesondert vereinbart werden."
+ ],
+ "Nem helyettesíti a szervezet munkáját": [
+  "It doesn't replace the organisation's own work",
+  "Es ersetzt nicht die Arbeit der Organisation"
+ ],
+ "A tartalomhoz — szövegek, fotók, adatok — a szervezet közreműködése kell. Enélkül a legjobb weboldal is üres marad.": [
+  "The content — text, photographs, figures — needs the organisation's involvement. Without it, even the best website stays empty.",
+  "Für die Inhalte — Texte, Fotos, Daten — braucht es die Mitwirkung der Organisation. Ohne sie bleibt auch die beste Website leer."
+ ],
+ "Nem azonnali": [
+  "Not immediate",
+  "Nicht sofort"
+ ],
+ "Az elbírálás és a kivitelezés is időt vesz igénybe. Ha a szervezetnek határidőre kell egy weboldal, azt jelezze a jelentkezésben.": [
+  "Both assessment and delivery take time. If the organisation needs a website by a fixed date, it should say so in the application.",
+  "Sowohl die Prüfung als auch die Umsetzung brauchen Zeit. Wenn die Organisation eine Website zu einem festen Termin braucht, sollte sie das in der Bewerbung angeben."
+ ],
+ "_shell": "The questionnaire's server-rendered intro shell.",
+ "Weboldal<br>igényfelmérő<br>kérdőív": [
+  "Website<br>requirements<br>questionnaire",
+  "Website-<br>Bedarfs-<br>fragebogen"
+ ],
+ "Minden kérdés külön oldalon jelenik meg. A csillaggal (<span class=\"quiz__req\">*</span>) jelölt kérdések kötelezőek.": [
+  "Each question appears on its own screen. Questions marked with a star (<span class=\"quiz__req\">*</span>) are required.",
+  "Jede Frage erscheint auf einem eigenen Bildschirm. Mit einem Stern (<span class=\"quiz__req\">*</span>) markierte Fragen sind Pflichtfragen."
+ ],
+ "Ha ez most sok, egy rövid üzenet is elég: <a href=\"ugyfelszolgalat.html\">írj nekünk a kapcsolati oldalon</a>, és ugyanoda jutunk.": [
+  "If that’s too much right now, a short message is enough: <a href=\"ugyfelszolgalat.html\">write to us on the contact page</a> and we get to the same place.",
+  "Wenn dir das gerade zu viel ist, reicht auch eine kurze Nachricht: <a href=\"ugyfelszolgalat.html\">schreib uns auf der Kontaktseite</a>, wir kommen zum selben Ergebnis."
+ ],
+ "Három projekt, három szerkezet": [
+  "Three projects, three structures",
+  "Drei Projekte, drei Strukturen"
+ ]
+}
