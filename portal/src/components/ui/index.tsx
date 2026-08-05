@@ -167,6 +167,6 @@ export function Row({ children }: { children: ReactNode }) {
   return <tr className="border-b border-hair/60 last:border-0 hover:bg-white/[0.03]">{children}</tr>;
 }
 
-export function Cell({ children, className }: { children: ReactNode; className?: string }) {
-  return <td className={cn('px-5 py-3 align-middle', className)}>{children}</td>;
+export function Cell({ children, className, colSpan }: { children: ReactNode; className?: string; colSpan?: number }) {
+  return <td colSpan={colSpan} className={cn('px-5 py-3 align-middle', className)}>{children}</td>;
 }

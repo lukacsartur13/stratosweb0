@@ -16,19 +16,46 @@ const DIST = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 
 type Reply = { status?: number; body?: unknown; delayMs?: number };
 
-/** Intercept /api/lead, record what was posted, answer with `reply`. */
+/**
+ * Intercept /api/lead, record every envelope posted, answer with `reply`.
+ *
+ * The default reply is the real success contract — `{ ok, submissionId,
+ * leadId }` — because a page that only works against `{ ok: true }` is a page
+ * that has not been tested against the endpoint it actually talks to.
+ */
 async function interceptLead(page: Page, reply: Reply = {}) {
   const sent: any[] = [];
   await page.route('**/api/lead', async (route) => {
-    sent.push(JSON.parse(route.request().postData() || '{}'));
+    const envelope = JSON.parse(route.request().postData() || '{}');
+    sent.push(envelope);
     if (reply.delayMs) await new Promise((r) => setTimeout(r, reply.delayMs));
     await route.fulfill({
       status: reply.status ?? 200,
       contentType: 'application/json',
-      body: JSON.stringify(reply.body ?? { ok: true }),
+      body: JSON.stringify(reply.body ?? {
+        ok: true, submissionId: envelope.submissionId, leadId: 'test-lead-id',
+      }),
     });
   });
   return sent;
+}
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+/** Every envelope must satisfy the contract, whatever form produced it. */
+function expectWellFormed(envelope: any, formType: string, route: string, locale = 'hu') {
+  expect(envelope.submissionId).toMatch(UUID_RE);
+  expect(envelope.formType).toBe(formType);
+  expect(envelope.locale).toBe(locale);
+  expect(envelope.route).toBe(route);
+  expect(typeof envelope.fields).toBe('object');
+  expect(Array.isArray(envelope.fields)).toBe(false);
+  // The honeypot travels in meta, never in fields, so no schema can declare it.
+  expect(envelope.fields).not.toHaveProperty('company_website');
+  expect(envelope.meta).toHaveProperty('botField');
+  expect(envelope.meta.elapsedMs).toBeGreaterThanOrEqual(3000);
+  // Nothing that used to be sent to a third party goes out any more.
+  expect(JSON.stringify(envelope)).not.toMatch(/access_key|web3forms/i);
 }
 
 async function fillContact(page: Page) {
@@ -57,27 +84,25 @@ test.describe('contact form', () => {
     await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
     expect(sent).toHaveLength(1);
 
-    const lead = sent[0];
-    expect(lead.name).toBe('Kovács János');
-    expect(lead.email).toBe('janos@example.com');
-    expect(lead.phone).toBe('+36 30 000 0000');
-    expect(lead.company).toBe('Példa Kft.');
-    expect(lead.source).toBe('contact');
-    expect(lead.locale).toBe('hu');
+    const envelope = sent[0];
+    expectWellFormed(envelope, 'contact', '/ugyfelszolgalat.html');
 
-    // Fields the leads table has no column for still travel, labelled, in the
-    // message — nothing the visitor filled in is dropped on the floor.
-    expect(lead.message).toContain('Szeretnék árajánlatot kérni');
-    expect(lead.message).toContain('Adatvédelmi nyilatkozat elfogadva: Igen');
-    expect(lead.message).toContain('Hírlevelet kér: Nem');
-
-    // The honeypot always travels, empty, so the server decides what a filled
-    // one means; and the timing gate is satisfied rather than tripped.
-    expect(lead.company_website).toBe('');
-    expect(lead.elapsed_ms).toBeGreaterThanOrEqual(3000);
-
-    // Nothing that used to be sent to a third party goes out any more.
-    expect(JSON.stringify(lead)).not.toMatch(/access_key|web3forms/i);
+    // Field names travel as they are in the markup. Mapping them to lead
+    // columns is the server's job and is asserted in lead-endpoint.spec.ts —
+    // the page's job is to send every answer, under the name the schema knows.
+    expect(envelope.fields).toMatchObject({
+      vezeteknev: 'Kovács',
+      keresztnev: 'János',
+      email: 'janos@example.com',
+      telefon: '+36 30 000 0000',
+      ceg: 'Példa Kft.',
+      megjegyzes: 'Szeretnék árajánlatot kérni egy új weboldalra.',
+      adatvedelem_elfogadva: 'Igen',
+    });
+    // An unchecked optional consent posts nothing at all, which the server's
+    // `consent` rule reads as "not given".
+    expect(envelope.fields.hirlevel).toBeUndefined();
+    expect(envelope.meta.botField).toBe('');
   });
 
   test('shows the success state and clears the form', async ({ page }) => {
@@ -102,7 +127,10 @@ test.describe('contact form', () => {
   });
 
   test('shows the rate-limited state on 429 and lets the visitor retry', async ({ page }) => {
-    await interceptLead(page, { status: 429, body: { ok: false, error: 'Too many submissions.' } });
+    await interceptLead(page, {
+      status: 429,
+      body: { ok: false, code: 'RATE_LIMITED', message: 'Túl sok beküldés egymás után. Kérlek, várj egy percet.' },
+    });
     await fillContact(page);
     await page.getByRole('button', { name: 'Küldés' }).click();
 
@@ -112,7 +140,10 @@ test.describe('contact form', () => {
   });
 
   test('shows a generic server-error state on 500', async ({ page }) => {
-    await interceptLead(page, { status: 500, body: { ok: false, error: 'We could not save that.' } });
+    await interceptLead(page, {
+      status: 500,
+      body: { ok: false, code: 'STORE_FAILED', message: 'We could not save that.' },
+    });
     await fillContact(page);
     await page.getByRole('button', { name: 'Küldés' }).click();
 
@@ -125,7 +156,12 @@ test.describe('contact form', () => {
   test("surfaces the server's own validation message on 422", async ({ page }) => {
     await interceptLead(page, {
       status: 422,
-      body: { ok: false, errors: { email: 'That email address does not look right.' } },
+      body: {
+        ok: false,
+        code: 'VALIDATION_FAILED',
+        message: 'Please check the highlighted fields.',
+        errors: { email: 'That email address does not look right.' },
+      },
     });
     await fillContact(page);
     await page.getByRole('button', { name: 'Küldés' }).click();
@@ -183,7 +219,98 @@ test.describe('contact form', () => {
     await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
     // The page must not decide this locally — the endpoint answers a filled
     // honeypot with a success no bot can tell from the real thing.
-    expect(sent[0].company_website).toBe('https://spam.example');
+    expect(sent[0].meta.botField).toBe('https://spam.example');
+    expect(sent[0].fields).not.toHaveProperty('company_website');
+  });
+
+  test('a double click produces exactly one request', async ({ page }) => {
+    // A slow reply keeps the first request in flight while the second click
+    // lands — which is the only arrangement in which the guard can be wrong.
+    const sent = await interceptLead(page, { delayMs: 2500 });
+    await fillContact(page);
+
+    const button = page.getByRole('button', { name: 'Küldés' });
+    await button.click();
+    await button.click({ force: true, noWaitAfter: true }).catch(() => {});
+
+    await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 20_000 });
+    expect(sent, 'a second click must not create a second lead').toHaveLength(1);
+  });
+
+  test('Enter in a text field cannot slip a second request past the disabled button', async ({ page }) => {
+    const sent = await interceptLead(page, { delayMs: 2500 });
+    await fillContact(page);
+    await page.getByRole('button', { name: 'Küldés' }).click();
+
+    // A disabled submit button does not stop an implicit submit from a text
+    // input, so the guard has to be on the form, not on the button.
+    await page.evaluate(() => {
+      document.querySelector('form[data-lead="contact"]')!
+        .dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    });
+
+    await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 20_000 });
+    expect(sent).toHaveLength(1);
+  });
+
+  test('a network failure shows the failure state and keeps everything typed', async ({ page }) => {
+    await page.route('**/api/lead', (route) => route.abort('failed'));
+    await fillContact(page);
+    await page.getByRole('button', { name: 'Küldés' }).click();
+
+    await expect(status(page)).toHaveAttribute('data-state', 'error', { timeout: 15_000 });
+    // Nothing the visitor typed may be lost by a failure they did not cause.
+    await expect(page.locator('#em')).toHaveValue('janos@example.com');
+    await expect(page.locator('#mj')).toHaveValue('Szeretnék árajánlatot kérni egy új weboldalra.');
+    await expect(page.getByRole('button', { name: 'Küldés' })).toBeEnabled();
+  });
+
+  test('a retry after a failure re-sends the same submission id', async ({ page }) => {
+    let fail = true;
+    const sent: any[] = [];
+    await page.route('**/api/lead', async (route) => {
+      const envelope = JSON.parse(route.request().postData() || '{}');
+      sent.push(envelope);
+      if (fail) { fail = false; return route.abort('failed'); }
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ ok: true, submissionId: envelope.submissionId, leadId: 'x' }),
+      });
+    });
+
+    await fillContact(page);
+    await page.getByRole('button', { name: 'Küldés' }).click();
+    await expect(status(page)).toHaveAttribute('data-state', 'error', { timeout: 15_000 });
+
+    await page.getByRole('button', { name: 'Küldés' }).click();
+    await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
+
+    expect(sent).toHaveLength(2);
+    // The idempotency key is what stops a retry becoming a second lead, so it
+    // has to be the *same* key — and the attempt counter has to say it is a retry.
+    expect(sent[1].submissionId).toBe(sent[0].submissionId);
+    expect(sent[0].meta.attempt).toBe(1);
+    expect(sent[1].meta.attempt).toBe(2);
+  });
+
+  test('a fresh enquiry after a success gets a new submission id', async ({ page }) => {
+    const sent = await interceptLead(page);
+    await fillContact(page);
+    await page.getByRole('button', { name: 'Küldés' }).click();
+    await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
+
+    // The button stays disabled after a success, so a second enquiry means a
+    // fresh page — but the id must not be reused even if it did not.
+    await page.evaluate(() => {
+      const form = document.querySelector('form[data-lead="contact"]') as HTMLFormElement;
+      form.querySelectorAll('button').forEach((b) => { b.disabled = false; });
+    });
+    await fillContact(page);
+    await page.getByRole('button', { name: /Elküldve|Küldés/ }).click();
+    await expect.poll(() => sent.length, { timeout: 15_000 }).toBe(2);
+
+    expect(sent[1].submissionId).not.toBe(sent[0].submissionId);
   });
 
   test('the honeypot is hidden from sight and from the tab order', async ({ page }) => {
@@ -204,10 +331,10 @@ test.describe('newsletter', () => {
 
     await expect(page.locator('.form__note[data-state="success"]')).toBeVisible({ timeout: 15_000 });
     expect(sent).toHaveLength(1);
-    expect(sent[0]).toMatchObject({ email: 'reader@example.com', source: 'newsletter' });
+    expectWellFormed(sent[0], 'newsletter', '/rolunk.html');
+    expect(sent[0].fields).toEqual({ email: 'reader@example.com' });
     // No name to give, and none invented in the page: the endpoint owns that.
-    expect(sent[0].name).toBeUndefined();
-    expect(sent[0].elapsed_ms).toBeGreaterThanOrEqual(3000);
+    expect(sent[0].fields.name).toBeUndefined();
   });
 
   test('the blog signup posts to the same endpoint', async ({ page }) => {
@@ -220,7 +347,7 @@ test.describe('newsletter', () => {
 
     await expect(page.locator('.form__note[data-state="success"]').first())
       .toBeVisible({ timeout: 15_000 });
-    expect(sent[0].source).toBe('newsletter');
+    expectWellFormed(sent[0], 'newsletter', '/blog.html');
   });
 });
 
@@ -243,17 +370,20 @@ test.describe('Impact Program application', () => {
 
     await expect(page.locator('.form__status')).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
 
-    const lead = sent[0];
-    expect(lead).toMatchObject({
-      name: 'Nagy Anna',
-      company: 'Példa Alapítvány',
-      email: 'anna@example.org',
-      website: 'https://pelda.hu',
-      service_interest: 'Impact Program',
-      source: 'impact',
+    const envelope = sent[0];
+    expectWellFormed(envelope, 'impact', '/impact-program.html');
+    expect(envelope.fields).toMatchObject({
+      org: 'Példa Alapítvány',
+      kapcs: 'Nagy Anna',
+      mail: 'anna@example.org',
+      tel: '+36 30 111 2222',
+      web: 'https://pelda.hu',
+      mivel: 'Függőséggel élőket segítünk.',
+      hatas: 'Eddig 400 embert értünk el.',
+      miert: 'A jelenlegi oldal nem mobilbarát.',
+      adatkezeles_elfogadva: 'Igen',
     });
-    expect(lead.message).toContain('Eddig 400 embert értünk el.');
-    expect(lead.message).toContain('Adatkezelés elfogadva: Igen');
+    expect(envelope.fields.terulet).toBeTruthy();
   });
 });
 
@@ -291,22 +421,29 @@ test.describe('questionnaire', () => {
     await expect(page.getByText(/Köszönjük a kitöltést/)).toBeVisible();
 
     expect(sent).toHaveLength(1);
-    const lead = sent[0];
-    expect(lead.source).toBe('questionnaire');
-    expect(lead.email).toBe('teszt@example.com');
-    expect(lead.company).toBe('Teszt válasz');
-    expect(lead.name.length).toBeGreaterThanOrEqual(2);
-    expect(lead.service_interest).toContain('Igényfelmérő');
-    // Every visible answer, labelled, in one field.
-    expect(lead.message).toContain('Mi a vállalkozás neve?');
-    expect(lead.message.length).toBeLessThanOrEqual(8000);
-    expect(lead.company_website).toBe('');
-    expect(JSON.stringify(lead)).not.toMatch(/access_key|web3forms/i);
+    const envelope = sent[0];
+    expectWellFormed(envelope, 'questionnaire', '/arajanlat.html');
+    expect(envelope.fields.email).toBe('teszt@example.com');
+    expect(envelope.fields.cegnev).toBe('Teszt válasz');
+    // The locale-invariant branch identifier, not the translated option label.
+    expect(['kkv', 'nagyvallalat']).toContain(envelope.fields.agazat);
+
+    // Every visible answer travels as structure, not as one prose blob. The
+    // transcript that used to be built here is now built by the server from
+    // exactly this array — see LEAD_MAPPERS.questionnaire.
+    expect(Array.isArray(envelope.fields.answers)).toBe(true);
+    expect(envelope.fields.answers.length).toBeGreaterThan(5);
+    expect(envelope.fields.answers[0]).toHaveProperty('q');
+    expect(envelope.fields.answers[0]).toHaveProperty('a');
+    expect(envelope.fields.answers.map((x: any) => x.q)).toContain('Mi a vállalkozás neve?');
   });
 
   test('shows the rate-limited screen when the endpoint says 429', async ({ page }) => {
     await page.goto('/arajanlat.html');
-    await interceptLead(page, { status: 429, body: { ok: false, error: 'Too many submissions.' } });
+    await interceptLead(page, {
+      status: 429,
+      body: { ok: false, code: 'RATE_LIMITED', message: 'Too many submissions.' },
+    });
 
     await page.locator('#start').click();
     for (let i = 0; i < 90; i += 1) {

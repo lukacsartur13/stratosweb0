@@ -268,66 +268,55 @@ function renderIntro(){
 }
 
 // --------------------------------------------------------------- beküldés
-// A kérdőív ugyanarra a védett végpontra megy, mint a többi űrlap. A mezők
-// leképezése a lead sémára itt, egy helyen történik; a teljes kitöltés
-// szövegesen a message mezőbe kerül.
-const LEAD_ENDPOINT = '/api/lead';
+// A kérdőív ugyanazt a közös beküldő vezérlőt használja, mint minden más
+// űrlap: assets/js/lead.js építi a borítékot, küldi az egyetlen kérést és
+// dönti el, mit jelent a válasz. Itt már csak a válaszok összeállítása marad.
+//
+// A borítékba nem szöveges átirat kerül, hanem szerkezet: a `fields.answers`
+// tömb minden látható kérdést kérdés/válasz párként visz át. Az átiratot a
+// szerver írja belőle (lásd LEAD_MAPPERS.questionnaire), így a `message` mező
+// tartalma egy helyen dől el, nem háromszor, nyelvenként egyszer.
 const STARTED = Date.now();
-const LIMIT = {name:120, company:160, email:254, phone:40, website:300,
-               service_interest:80, budget_range:60, timeframe:60, message:8000};
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
-const cut = (v,n) => String(v==null?'':v).replace(/[\u0000-\u001F\u007F]/g,'').trim().slice(0,n);
+/** Egy azonosított kérdés válasza szövegként. */
 const val = id => { const a = ans(id); return Array.isArray(a.value) ? a.value.join(', ') : (a.value || ''); };
 
-// A látható ágtól függ, melyik kérdés adja a keretet és a határidőt.
-const budget = () => isNagy() ? val('koltsegkeret_nagy') : (val('koltsegkeret') || val('havidij'));
-const timeframe = () => isNagy() ? val('hatarido_nagy') : val('hatarido');
-
-const CUT_NOTE = '[…the answers were cut off here]';
-
-/** A teljes kitöltés címkézett szövegként — ez megy a message mezőbe. */
-function transcript(){
+/** Minden látható kérdés, kérdés/válasz párként, a kitöltés sorrendjében. */
+function collectAnswers(){
   const out = [];
-  let n = 0;
   Q.forEach((d,i)=>{
     if(d.cond && !d.cond()) return;
-    n++;
     const a = answers[i] || {};
     let v = Array.isArray(a.value) ? a.value.join(', ') : (a.value ?? '');
     if(d.t==='consent') v = a.value ? 'Accepted' : 'Not accepted';
     if(a.other) v += (v?' | ':'') + 'Other:' + a.other;
-    out.push(String(n).padStart(2,'0') + '. ' + d.q + '\n' + (v || '—'));
+    out.push({ q: d.q, a: String(v || '—') });
   });
-  const text = out.join('\n\n');
-  // The note is its own literal so the translator sees prose, not prose glued
-  // to two newline escapes.
-  return text.length > LIMIT.message
-    ? text.slice(0, LIMIT.message - 40) + '\n\n' + CUT_NOTE
-    : text;
+  return out;
 }
 
-function buildLead(){
-  const hp = document.getElementById('hp-quiz');
-  const lead = {
-    source: 'questionnaire',
-    locale: document.documentElement.lang || 'hu',
-    // A kapcsolattartó neve nem kötelező, és csak akkor lép a cégnév helyébe,
-    // ha önmagában is elfogadható. Egy `||` itt egy egykarakteres választ is
-    // igaznak vett, eldobta a jó cégnevet, és a beküldést a végén utasította el.
-    name: cut(val('kitolto').length >= 2 ? val('kitolto') : val('cegnev'), LIMIT.name),
-    company: cut(val('cegnev'), LIMIT.company),
-    email: cut(val('email'), LIMIT.email),
-    phone: cut(val('telefon'), LIMIT.phone),
-    website: cut(val('weboldal') || val('weboldal_nagy'), LIMIT.website),
-    service_interest: cut(isNagy() ? 'Igényfelmérő – nagyvállalat' : 'Igényfelmérő – KKV', LIMIT.service_interest),
-    budget_range: cut(budget(), LIMIT.budget_range),
-    timeframe: cut(timeframe(), LIMIT.timeframe),
-    message: transcript(),
-    company_website: cut(hp ? hp.value : '', 200),
-    elapsed_ms: Date.now() - STARTED,
+/** A séma által ismert mezők. Amit nem sorolunk fel, azt a szerver eldobja. */
+function collectFields(){
+  return {
+    cegnev: val('cegnev'),
+    kitolto: val('kitolto'),
+    email: val('email'),
+    telefon: val('telefon'),
+    weboldal: val('weboldal'),
+    weboldal_nagy: val('weboldal_nagy'),
+    szegmens: val('szegmens'),
+    // A `szegmens` válaszszövege nyelvenként más; ez a nyelvfüggetlen ág.
+    agazat: isNagy() ? 'nagyvallalat' : 'kkv',
+    koltsegkeret: val('koltsegkeret'),
+    koltsegkeret_nagy: val('koltsegkeret_nagy'),
+    havidij: val('havidij'),
+    hatarido: val('hatarido'),
+    hatarido_nagy: val('hatarido_nagy'),
+    konstrukcio: val('konstrukcio'),
+    konzultacio: val('konzultacio'),
+    funkciok: val('funkciok'),
+    answers: collectAnswers(),
   };
-  return lead;
 }
 
 const DONE_HTML = {
@@ -365,34 +354,50 @@ function finish(state, msg){
   if(fix) fix.onclick = ()=>{ step = visibleIdx()[0]; render(); };
 }
 
+// Egy beküldési kísérletsorozat azonosítója. Újrapróbálásnál ugyanaz marad, így
+// a szerver felismeri, hogy ez nem egy második érdeklődés — sikeres beküldés
+// után viszont nincs mit újraküldeni, mert a képernyő már nem ad rá gombot.
+let submissionId = window.Stratos.lead.uuid();
+let attempt = 0;
+let sending = false;
+
 async function renderDone(){
+  // Kettős kattintás: a hibaképernyők „Újrapróbálás" gombja elvben újra
+  // meghívhatná ezt, miközben az előző kérés még fut.
+  if(sending) return;
+  sending = true;
+
   bar.style.width='100%';
   setAltitude(1);
   finish('submitting');
 
-  const lead = buildLead();
+  const fields = collectFields();
+  const hp = document.getElementById('hp-quiz');
 
   // Ugyanaz az ellenőrzés, mint a szerveren — csak itt hamarabb megmondjuk.
-  if(lead.name.length < 2){ finish('invalid', 'Please give the business or contact name.'); return; }
-  if(!EMAIL_RE.test(lead.email)){ finish('invalid', 'That email address does not look right.'); return; }
-
-  let res = null, body = {};
-  try{
-    res = await fetch(LEAD_ENDPOINT, {
-      method:'POST',
-      headers:{'Content-Type':'application/json', 'Accept':'application/json'},
-      body: JSON.stringify(lead)
-    });
-    body = await res.json();
-  }catch(e){ /* hálózati hiba, vagy nem JSON válasz */ }
-
-  if(res && res.ok && body.ok){ finish('success'); return; }
-  if(res && res.status === 429){ finish('limited'); return; }
-  if(res && res.status === 422){
-    const first = body.errors && Object.values(body.errors)[0];
-    finish('invalid', first || 'Please check the details you entered.');
+  const name = fields.kitolto.length >= 2 ? fields.kitolto : fields.cegnev;
+  if(name.length < 2){
+    sending = false;
+    finish('invalid', 'Please give the business or contact name.');
     return;
   }
+  const problem = window.Stratos.lead.validate('questionnaire', fields);
+  if(problem){ sending = false; finish('invalid', problem); return; }
+
+  attempt += 1;
+  const result = await window.Stratos.lead.send({
+    submissionId,
+    formType: 'questionnaire',
+    fields,
+    botField: hp ? hp.value : '',
+    elapsedMs: Date.now() - STARTED,
+    attempt,
+  });
+  sending = false;
+
+  if(result.state === 'success'){ finish('success'); return; }
+  if(result.state === 'limited'){ finish('limited'); return; }
+  if(result.state === 'invalid'){ finish('invalid', result.message); return; }
   finish('error');
 }
 

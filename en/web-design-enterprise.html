@@ -16,6 +16,13 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
 <script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
+<!-- The canonical lead submission controller. In <head> with `defer` on
+     purpose: deferred scripts run in document order after parsing, so this is
+     guaranteed to have defined `window.Stratos.lead` before any per-page
+     script in <body> runs — including the generated questionnaire wizard,
+     which is a separate file and cannot import it. It also reads the i18n
+     block above, which parsing has already delivered by then. -->
+<script src="../assets/js/lead.js" defer></script>
 </head>
 <body data-ceiling="21000">
 

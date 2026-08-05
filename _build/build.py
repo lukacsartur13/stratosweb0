@@ -353,6 +353,13 @@ SHELL = """<!DOCTYPE html>
 <link rel="stylesheet" href="{{base}}assets/css/main.css">
 <link rel="stylesheet" href="{{base}}assets/css/transitions.css">{{extra_css}}
 <script id="i18n" type="application/json">{{i18n}}</script>
+<!-- The canonical lead submission controller. In <head> with `defer` on
+     purpose: deferred scripts run in document order after parsing, so this is
+     guaranteed to have defined `window.Stratos.lead` before any per-page
+     script in <body> runs — including the generated questionnaire wizard,
+     which is a separate file and cannot import it. It also reads the i18n
+     block above, which parsing has already delivered by then. -->
+<script src="{{base}}assets/js/lead.js" defer></script>
 </head>
 <body data-ceiling="{{ceiling}}"{{body_class}}>
 

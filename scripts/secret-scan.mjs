@@ -79,10 +79,22 @@ const DESCRIBES_THE_RULE = new Set([
   'supabase/migrations/20260801000200_rls.sql',
 ]);
 
+// iCloud Drive writes "thing 2.ext" next to "thing.ext" when the folder syncs
+// from two machines. .gitignore already refuses to commit them and
+// scripts/assemble.mjs already keeps them out of dist/, so they are neither
+// authored source nor deployed output — but this scan was still reading them,
+// and three stale copies of the test suite were enough to fail the gate on
+// every run. A gate that is always red is a gate nobody reads.
+//
+// Same rule as `isDuplicate` in scripts/assemble.mjs and the "* [0-9].*" line
+// in .gitignore. Also catches directories, which have no extension to strip.
+const isDuplicate = (name) => / \d+$/.test(name.replace(/\.[^.]+$/, ''));
+
 async function walk(dir, out = []) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     if (entry.name.startsWith('.') && entry.name !== '.env.example') continue;
     if (SKIP_DIRS.has(entry.name)) continue;
+    if (isDuplicate(entry.name)) continue;
     const path = join(dir, entry.name);
     if (entry.isDirectory()) await walk(path, out);
     else if (TEXT.test(entry.name)) out.push(path);

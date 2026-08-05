@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { Fragment, useState, type ReactNode } from 'react';
 import { useRows, useSearch, formatDate, type LoadState } from '@/lib/useRows';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { ROLE_LABELS, type Role } from '@/lib/permissions';
@@ -142,13 +142,101 @@ function LeadStatus({ status }: { status: string }) {
 /* ------------------------------------------------------------------ leads */
 interface FullLead extends Lead {
   email: string; service_interest: string | null; budget_range: string | null;
+  // Written by the canonical envelope — see netlify/functions/lead-contract.mjs.
+  // Every one is nullable because rows created before that migration have none.
+  form_type: string | null;
+  locale: string | null;
+  source_route: string | null;
+  submission_id: string | null;
+  payload: Record<string, unknown> | null;
+}
+
+/** Human label for the four public forms, plus the pre-envelope fallback. */
+const FORM_LABEL: Record<string, string> = {
+  newsletter: 'Newsletter',
+  contact: 'Contact',
+  impact: 'Impact',
+  questionnaire: 'Questionnaire',
+  website: 'Website',
+};
+
+/**
+ * One submitted answer.
+ *
+ * The questionnaire's `answers` is an array of `{ q, a }`; everything else is a
+ * flat scalar. Both are rendered here rather than in two components, because
+ * the difference is one branch and a second component would drift.
+ */
+function PayloadEntry({ label, value }: { label: string; value: unknown }) {
+  const text =
+    typeof value === 'boolean' ? (value ? 'Yes' : 'No')
+      : Array.isArray(value) ? `${value.length} answers`
+        : String(value ?? '—');
+  return (
+    <div className="grid gap-0.5">
+      <span className="label">{label}</span>
+      <span className="whitespace-pre-wrap break-words text-xs text-paper">{text || '—'}</span>
+    </div>
+  );
+}
+
+function LeadDetail({ lead, columns }: { lead: FullLead; columns: number }) {
+  const payload = lead.payload && typeof lead.payload === 'object' ? lead.payload : {};
+  const answers = Array.isArray((payload as { answers?: unknown }).answers)
+    ? ((payload as { answers: { q: string; a: string }[] }).answers)
+    : [];
+  const scalars = Object.entries(payload).filter(([k]) => k !== 'answers');
+
+  return (
+    <tr className="border-b border-hair/60 bg-white/[0.02] last:border-0">
+      <Cell colSpan={columns} className="px-5 py-4">
+        <div className="grid gap-4">
+          <div className="grid gap-3 sm:grid-cols-3">
+            <PayloadEntry label="Locale" value={lead.locale} />
+            <PayloadEntry label="Submitted from" value={lead.source_route} />
+            <PayloadEntry label="Submission id" value={lead.submission_id} />
+          </div>
+
+          {scalars.length > 0 && (
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {scalars.map(([k, v]) => <PayloadEntry key={k} label={k} value={v} />)}
+            </div>
+          )}
+
+          {answers.length > 0 && (
+            <div className="grid gap-2">
+              <span className="label">{answers.length} questionnaire answers</span>
+              <ol className="grid gap-2">
+                {answers.map((entry, i) => (
+                  <li key={`${i}-${entry.q}`} className="border-l border-hair pl-3">
+                    <p className="text-xs text-haze">{entry.q}</p>
+                    <p className="whitespace-pre-wrap break-words text-xs text-paper">{entry.a || '—'}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+
+          {scalars.length === 0 && answers.length === 0 && (
+            <p className="text-xs text-haze">
+              This lead predates the structured payload. Its answers are in the message field.
+            </p>
+          )}
+        </div>
+      </Cell>
+    </tr>
+  );
 }
 
 export function LeadsScreen() {
   const { rows, state, message, reload } = useRows<FullLead>(
-    'leads', 'id, name, company, email, service_interest, budget_range, status, created_at',
+    'leads',
+    'id, name, company, email, service_interest, budget_range, status, created_at, form_type, locale, source_route, submission_id, payload',
   );
   const { query, setQuery, filtered } = useSearch(rows, ['name', 'company', 'email']);
+  const [open, setOpen] = useState<string | null>(null);
+
+  const head = ['Name', 'Form', 'Company', 'Email', 'Interest', 'Budget', 'Status', 'Received', ''];
 
   return (
     <>
@@ -161,22 +249,36 @@ export function LeadsScreen() {
           title: rows.length ? 'Nothing matches' : 'No leads yet',
           body: rows.length
             ? 'Try a shorter search term.'
-            : 'The contact form and the quote questionnaire both write here through the Netlify function.',
+            : 'The newsletter, contact form, Impact application and quote questionnaire all write here through the Netlify function.',
         }}
       >
-        <Table head={['Name', 'Company', 'Email', 'Interest', 'Budget', 'Status', 'Received']}>
+        <Table head={head}>
           {filtered.map((l) => (
-            <Row key={l.id}>
-              <Cell>{l.name}</Cell>
-              <Cell className="text-haze">{l.company || '—'}</Cell>
-              <Cell className="text-haze">
-                <a className="underline underline-offset-4 hover:text-paper" href={`mailto:${l.email}`}>{l.email}</a>
-              </Cell>
-              <Cell className="text-haze">{l.service_interest || '—'}</Cell>
-              <Cell className="num text-xs text-haze">{l.budget_range || '—'}</Cell>
-              <Cell><LeadStatus status={l.status} /></Cell>
-              <Cell className="num text-xs text-haze">{formatDate(l.created_at)}</Cell>
-            </Row>
+            <Fragment key={l.id}>
+              <Row>
+                <Cell>{l.name}</Cell>
+                <Cell><Badge>{FORM_LABEL[l.form_type ?? ''] ?? l.form_type ?? '—'}</Badge></Cell>
+                <Cell className="text-haze">{l.company || '—'}</Cell>
+                <Cell className="text-haze">
+                  <a className="underline underline-offset-4 hover:text-paper" href={`mailto:${l.email}`}>{l.email}</a>
+                </Cell>
+                <Cell className="text-haze">{l.service_interest || '—'}</Cell>
+                <Cell className="num text-xs text-haze">{l.budget_range || '—'}</Cell>
+                <Cell><LeadStatus status={l.status} /></Cell>
+                <Cell className="num text-xs text-haze">{formatDate(l.created_at)}</Cell>
+                <Cell>
+                  <button
+                    type="button"
+                    className="label underline underline-offset-4 hover:text-paper"
+                    aria-expanded={open === l.id}
+                    onClick={() => setOpen(open === l.id ? null : l.id)}
+                  >
+                    {open === l.id ? 'Hide' : 'Details'}
+                  </button>
+                </Cell>
+              </Row>
+              {open === l.id && <LeadDetail lead={l} columns={head.length} />}
+            </Fragment>
           ))}
         </Table>
       </DataPanel>

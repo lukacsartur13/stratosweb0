@@ -57,6 +57,13 @@ SKIP_EXACT = {
     'SAP', 'HubSpot', 'Salesforce', 'LinkedIn', 'Instagram', 'Facebook',
     'TikTok', 'Google', 'Meta', 'B2B', 'B2C', 'ISO', 'WCAG', 'NDA', 'API',
     'SLA', 'SSO', 'BI', 'IT',
+    # The locale-invariant branch identifier the questionnaire sends as
+    # `fields.agazat`. It is compared by the server against a fixed enum (see
+    # FORMS.questionnaire in netlify/functions/lead-contract.mjs) and is never
+    # shown to anyone; translating it would make the German questionnaire fail
+    # validation. The visitor-facing branch label is `szegmens`, which *is*
+    # translated.
+    'kkv', 'nagyvallalat',
     # questionnaire state keys — these are looked up by ans('…'), never shown
     'szegmens', 'cegnev', 'funkciok', 'konstrukcio', 'konzultacio',
     'kitolto', 'telefon', 'weboldal', 'weboldal_nagy', 'hatarido',
