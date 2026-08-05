@@ -1712,13 +1712,39 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
    it rather than a modifier class, so a fragment cannot get it wrong. */
 .cases { display: grid; gap: clamp(3rem, 8vw, 6rem); }
 .case {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* The media column is deliberately the narrower one. Two equal columns put
+     the screenshot at ~44vw, and brief §9.4 caps a project image at 34-42vw
+     precisely because a screenshot that wide starts arguing with the words
+     next to it for which one is the proof. 0.85fr lands it at ~40vw at 1440
+     and ~32vw at 1920; the text column gets the difference, which is the right
+     way round while these projects are summaries rather than case studies. */
+  display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center;
 }
 .cases > .case:nth-child(even) .case__media { order: 2; }
+/* `order` moves the media across but the track sizes stay where they are, so
+   without this the alternation also alternates the image width — one row's
+   screenshot 37vw, the next 41vw, for no reason a reader could name. Mirror
+   the template on the same rows that mirror the content and the narrow track
+   follows the media to whichever side it is on.
+
+   Bounded by `min-width` rather than left to the single-column override below,
+   because this selector is a class more specific than that one: order would
+   not save it, and the even card would keep two columns on a phone at 45vw
+   while its neighbours went full width. */
+@media (min-width: 861px) {
+  .cases > .case:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, .85fr);
+  }
+}
 .case__media {
   position: relative; overflow: hidden; background: var(--ink);
   aspect-ratio: 4 / 3;
+  /* A second guard, on the other axis. The column width already bounds this at
+     ordinary desktop sizes, but a short landscape window (844x390) turns 4/3
+     into an image taller than the useful viewport, which §9.4 rules out. The
+     cap only ever bites there. */
+  max-height: 55vh;
 }
 .case__media img {
   width: 100%; height: 100%; object-fit: cover;

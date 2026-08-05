@@ -122,21 +122,6 @@ const WORK_HU: CaseStudy[] = [
     ongoing: 'Folyamatos tartalmi gondozás és technikai karbantartás.',
     image: { src: '/assets/img/work-2.jpg', alt: 'A mentaltrening.com weboldala' },
   },
-  {
-    id: 'pille',
-    name: 'Pille Sewing',
-    sector: 'Kézműves gyártás',
-    altitude: 16_100,
-    challenge:
-      'Kézzel készülő termékeknél a minőség fényképen múlik. Egy gyenge vizuális megjelenés azt sugallja, hogy a termék is az.',
-    intervention:
-      'A megjelenést a termék köré építettük: kevesebb elem, több hely, a képek kapják a hangsúlyt.',
-    implementation: 'Arculati elemek és a hozzájuk illeszkedő online megjelenés.',
-    result: 'Egységes, felismerhető megjelenés a márka minden felületén.',
-    metric: null,
-    ongoing: 'Arculati konzultáció és a megjelenés karbantartása.',
-    logo: { src: '/assets/img/client-pille.png', alt: 'Pille Sewing' },
-  },
 ];
 
 // -----------------------------------------------------------------------------

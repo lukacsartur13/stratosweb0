@@ -385,7 +385,7 @@ export function CaseStudiesScreen() {
         search={{ value: query, onChange: setQuery, placeholder: 'Title or client…' }}
         empty={{
           title: 'No case studies',
-          body: 'Rapidkert, Barbershop Győr, Pille Design, Uncensored Society and Brickness Community are the references to start from.',
+          body: 'Rapidkert, Barbershop Győr and mentáliserő.hu are the references to start from.',
         }}
       >
         <Table head={['Title', 'Client', 'State', 'Order', 'Updated']}>

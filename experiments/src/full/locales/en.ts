@@ -164,7 +164,7 @@ export const EN: Record<string, string> = {
    * The company names, the sector wording and the screenshot alt text follow
    * the decisions the rest of the site has already made rather than being
    * translated again: `_build/i18n/_common.json` keeps "Rapidkert Kft.",
-   * "Barbershop Győr", "Pille Sewing" and "mentaltrening.com" unchanged in all
+   * "Barbershop Győr" and "mentaltrening.com" unchanged in all
    * three languages, and `kkv.json` already renders the screenshots as
    * "Rapidkert landscaping website" and "Barbershop Győr website". A visitor
    * who moves between this page and kkv.html should not meet two names for one
@@ -224,10 +224,6 @@ export const EN: Record<string, string> = {
   'Folyamatos tartalmi gondozás és technikai karbantartás.':
     'Continuous editorial care and technical maintenance.',
   'A mentaltrening.com weboldala': 'The mentaltrening.com website',
-
-  // 4 · Pille Sewing — 16 100 m. No screenshot in the repository, so this entry
-  // carries a logo and no image alt text.
-  'Pille Sewing': 'Pille Sewing',
   'Kézműves gyártás': 'Handmade production',
   'Kézzel készülő termékeknél a minőség fényképen múlik. Egy gyenge vizuális megjelenés azt sugallja, hogy a termék is az.':
     'With handmade products, quality comes down to the photograph. A weak visual presence suggests the product is weak too.',

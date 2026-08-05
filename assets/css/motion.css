@@ -244,7 +244,12 @@
 }
 
 .logoset [data-logo] img {
-  height: var(--mark-h);
+  /* `--optical` is per-asset, set from the logo table. A stacked lockup needs
+     a taller box than a horizontal wordmark to read at the same weight; that
+     is a property of the artwork, so it is recorded with the artwork rather
+     than guessed here. Width stays `auto` either way — the ratio is never
+     touched. */
+  height: calc(var(--mark-h) * var(--optical, 1));
   width: auto;              /* aspect ratio is never touched */
   max-width: 190px;
   object-fit: contain;      /* and never cropped */

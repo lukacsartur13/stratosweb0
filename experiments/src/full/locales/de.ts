@@ -172,7 +172,7 @@ export const DE: Record<string, string> = {
    * Firmennamen, Branchenbezeichnung und Alt-Text der Screenshots folgen den
    * Entscheidungen, die der Rest der Website bereits getroffen hat, statt neu
    * übersetzt zu werden: `_build/i18n/_common.json` lässt "Rapidkert Kft.",
-   * "Barbershop Győr", "Pille Sewing" und "mentaltrening.com" in allen drei
+   * "Barbershop Győr" und "mentaltrening.com" in allen drei
    * Sprachen unverändert, und `kkv.json` schreibt die Screenshots bereits als
    * "Website von Rapidkert Gartenbau" und "Website von Barbershop Győr".
    *
@@ -231,10 +231,6 @@ export const DE: Record<string, string> = {
   'Folyamatos tartalmi gondozás és technikai karbantartás.':
     'Laufende inhaltliche Pflege und technische Wartung.',
   'A mentaltrening.com weboldala': 'Die Website von mentaltrening.com',
-
-  // 4 · Pille Sewing — 16 100 m. Im Repository liegt kein Screenshot; dieser
-  // Eintrag hat daher ein Logo und keinen Bild-Alt-Text.
-  'Pille Sewing': 'Pille Sewing',
   'Kézműves gyártás': 'Handwerkliche Fertigung',
   'Kézzel készülő termékeknél a minőség fényképen múlik. Egy gyenge vizuális megjelenés azt sugallja, hogy a termék is az.':
     'Bei handgefertigten Produkten hängt die Qualität am Foto. Ein schwacher visueller Auftritt legt nahe, dass auch das Produkt schwach ist.',

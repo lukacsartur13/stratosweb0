@@ -68,8 +68,188 @@ SERVICES = ("sme", "enterprise", "branding", "ads", "impact")
 MENU = ("index", "about", "services", "sme", "enterprise", "branding", "ads",
         "impact", "work", "blog", "contact", "quote")
 CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening")
+
+# ---------------------------------------------------------- case-study status
+#
+# Three states, and the difference between them is what a route is ALLOWED to
+# claim — not how much text it has.
+#
+#   draft    not linked, not in the sitemap, not indexable.
+#   summary  reachable and linked from the Work index and the homepage, but not
+#            promoted as a case study: no sitemap entry, `noindex, follow`, and
+#            no "read the full case study" call to action anywhere.
+#   full     the works — public case-study navigation, sitemap, indexable
+#            metadata, homepage full-case CTA, the Work -> Case transition.
+#
+# `full` is earned, not assumed. It requires professional media, a documented
+# challenge and strategy, design rationale, a technical account and verified
+# results. The three current projects have none of that yet — each one says so
+# on its own page, in a section headed "result figures are deliberately absent"
+# — so publishing them under `full` route rules was the site claiming a maturity
+# its own copy denies. They are `summary` until the real case studies exist.
+#
+# Note what this does NOT do: it does not delete a route or a word. All nine
+# routes stay live and reachable, keep their content, keep their hreflang set.
+# Promoting one later is a one-word edit here.
+CASE_STATUS = {
+    "case-rapidkert": "summary",
+    "case-barbershop": "summary",
+    "case-mentaltrening": "summary",
+}
+
+
+def case_status(key):
+    return CASE_STATUS.get(key, "full")
+
+
+def indexable(key):
+    return case_status(key) == "full"
+
+
 POSTS = ("post-seo", "post-arak", "post-cegprofil", "post-hirdetes",
          "post-elavult", "post-konverzio")
+
+# ------------------------------------------------- organisations and their marks
+#
+# One table, and it is the only place an organisation's name, its mark and what
+# may be said about it are written down. Nothing renders a logo that is not
+# here, and nothing here renders unless `ready` is true.
+#
+# WHY `ready` EXISTS
+# ------------------
+# Because "we have a logo for them" and "we have a logo we can publish" are
+# different claims, and the gap between them is where a stretched, keylined,
+# white-boxed or reconstructed mark gets shipped. `ready` is false unless the
+# supplied file is the official artwork, at a usable size, with real
+# transparency, legible on the Stratos void. A false here is a production
+# blocker to be reported, never a placeholder to be drawn.
+#
+# WHY THE WORDING IS NEUTRAL
+# --------------------------
+# `relationship` is deliberately the same value for every entry. Nothing in this
+# repository establishes which of these are clients, which are collaborations
+# and which are organisations Stratos supported, and inventing per-organisation
+# claims is exactly the kind of thing that is checked. Until the real
+# relationships are confirmed, all of them sit under one honest heading —
+# "Selected collaborations" — which claims association and nothing more. It
+# specifically does not claim partnership, endorsement, sponsorship or a
+# commercial engagement.
+ORGS = {
+    "kontyos": {
+        "name": "Kontyos.hu",
+        "asset": "assets/img/logo-kontyos.webp",
+        "on": "dark",            # artwork is legible on the void as supplied
+        "optical": 1.0,          # horizontal wordmark — the reference height
+        "ready": True,
+        "relationship": "collab",
+    },
+    "grantool": {
+        "name": "Grantool Kft.",
+        "asset": "assets/img/logo-grantool.png",
+        "on": "dark",
+        # A stacked lockup: mark above wordmark, 1.6:1 against Kontyos's 4:1.
+        # Set to the same box height it renders half the visual size of the
+        # marks beside it. Optical alignment means matching perceived weight,
+        # not matching a number — so the stacked lockup gets more box.
+        "optical": 1.75,
+        "ready": True,
+        "relationship": "collab",
+    },
+    # ---- supplied but not publishable. See _build/reports/phase8-5-report.md.
+    "synergy": {
+        "name": "Synergy Digital Hungary Kft.",
+        "asset": None,
+        "on": None,
+        "ready": False,
+        "relationship": "collab",
+        "blocker": "Two files exist and neither is publishable. The raster export "
+                   "has a baked white background (0% alpha) behind a white "
+                   "wordmark — a white box on the void, invisible on white. The "
+                   "vector at ../Synergy Digital/img/logo.svg is transparent and "
+                   "correctly coloured, but its wordmark is 14 live <text> "
+                   "elements set in 'Yu Gothic UI', Segoe UI Light, Avenir Next, "
+                   "Helvetica Neue, Arial — the letterforms are resolved by "
+                   "whatever font the reader's machine happens to have, so the "
+                   "mark changes shape between visitors. That is a logo "
+                   "reconstructed from text, which §10.4 forbids. Needs the "
+                   "official artwork with the wordmark converted to outlines.",
+    },
+    "duna-hajok": {
+        "name": "Duna Hajók",
+        "asset": None,
+        "on": None,
+        "ready": False,
+        "relationship": "collab",
+        "blocker": "Supplied file is 225x225 with a baked white background and "
+                   "no transparency; the mark itself is roughly 150 px wide, "
+                   "which is below the size the rail renders at on a 2x screen.",
+    },
+    "duna-enterior": {
+        # The mark reads "Duna ENTERIOR". Kept as the asset spells it.
+        "name": "Duna Enterior",
+        "asset": None,
+        "on": None,
+        "ready": False,
+        "relationship": "collab",
+        "blocker": "Artwork is transparent but entirely black (mean luminance "
+                   "13/255), so it is invisible on the void. Needs a reversed "
+                   "or single-colour light variant.",
+    },
+    "haio": {
+        "name": "HAIO",
+        "asset": None,
+        "on": None,
+        "ready": False,
+        "relationship": "unverified",
+        "blocker": "No asset supplied, and nothing in this repository "
+                   "establishes Stratos's role in the ELTE AI competition. The "
+                   "brief requires that role to be described accurately, so it "
+                   "cannot appear at all until it is confirmed.",
+    },
+    "fice": {
+        "name": "FICE",
+        "asset": None,
+        "on": None,
+        "ready": False,
+        "relationship": "unverified",
+        "blocker": "No asset supplied and no relationship evidence in the "
+                   "repository.",
+    },
+}
+
+# Clients with a live project route. Separate from ORGS because these are
+# evidenced by the work itself — there is a page about each — and they carry a
+# scope label the collaborations cannot honestly carry.
+CLIENTS = ("rapidkert", "barbershop")
+CLIENT_MARKS = {
+    "rapidkert": ("Rapidkert Kft.", "assets/img/client-rapidkert.png"),
+    "barbershop": ("Barbershop Győr", "assets/img/client-barbershop.png"),
+}
+
+
+def logoset(lang, kind="rail", keys=None, base=""):
+    """Render a LogoSignalRail / LogoConstellation / LogoIndex.
+
+    Only `ready` marks are emitted. An organisation whose artwork is missing or
+    unpublishable produces no markup at all — not a box, not a name in a border,
+    not a grey rectangle where a logo should be. A placeholder that ships is a
+    placeholder that gets screenshotted.
+    """
+    keys = keys or [k for k, v in ORGS.items() if v["ready"]]
+    items = []
+    for k in keys:
+        o = ORGS.get(k)
+        if not o or not o["ready"] or not o["asset"]:
+            continue
+        items.append(
+            f'\n        <li data-logo data-on="{o["on"]}"'
+            f' style="--optical:{o.get("optical", 1.0)}">'
+            f'<img src="{base}{o["asset"]}" alt="{o["name"]}" loading="lazy">'
+            f'</li>')
+    if not items:
+        return ""
+    return (f'<ul class="logoset logoset--{kind}" data-logo-group>'
+            + "".join(items) + '\n      </ul>')
 
 UI = {
     "hu": {
@@ -543,7 +723,7 @@ SHELL = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{desc}}">
-<link rel="icon" href="{{base}}assets/img/favicon.png">{{alternates}}{{social}}
+<link rel="icon" href="{{base}}assets/img/favicon.png">{{robots}}{{alternates}}{{social}}
 {{fontpreload}}
 <link rel="stylesheet" href="{{base}}assets/css/type.css">
 <link rel="stylesheet" href="{{base}}assets/css/main.css">
@@ -830,9 +1010,15 @@ _dim_cache = {}
 
 
 def image_size(src):
-    """(width, height) of a local image, or None. PNG and JPEG headers only —
-    those are the only formats in assets/img, and a dependency for this would
-    be a dependency for the whole build."""
+    """(width, height) of a local image, or None. PNG, JPEG and WebP headers,
+    read directly — a dependency for this would be a dependency for the whole
+    build.
+
+    WebP arrived with the first approved collaboration mark. Without it the tag
+    went out with no width and no height, the route audit failed six routes on
+    exactly that, and the logo rail reflowed when the bytes landed. All three
+    WebP flavours are read because which one you get is a property of whoever
+    exported the file, not a choice this build makes."""
     if src in _dim_cache:
         return _dim_cache[src]
 
@@ -863,6 +1049,26 @@ def image_size(src):
                     i += 2
                     continue
                 i += 2 + struct.unpack(">H", data[i + 2:i + 4])[0]
+        elif data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+            chunk = data[12:16]
+            if chunk == b"VP8X":
+                # Extended format. The canvas size is two 24-bit little-endian
+                # values, each stored one less than the real dimension.
+                w = int.from_bytes(data[24:27], "little") + 1
+                h = int.from_bytes(data[27:30], "little") + 1
+                size = (w, h)
+            elif chunk == b"VP8L":
+                # Lossless. 14 bits of width then 14 of height, both minus one,
+                # packed into the 32 bits after the 0x2f signature byte.
+                bits = int.from_bytes(data[21:25], "little")
+                size = ((bits & 0x3FFF) + 1, ((bits >> 14) & 0x3FFF) + 1)
+            elif chunk == b"VP8 " and data[23:26] == b"\x9d\x01\x2a":
+                # Lossy. The sync code is checked because the two bytes before
+                # it are a frame tag, and reading those as a dimension gives a
+                # plausible-looking wrong answer rather than an error.
+                w = int.from_bytes(data[26:28], "little") & 0x3FFF
+                h = int.from_bytes(data[28:30], "little") & 0x3FFF
+                size = (w, h)
     except (OSError, struct.error, IndexError):
         size = None
 
@@ -889,6 +1095,41 @@ def stamp_images(html):
 # --------------------------------------------------------------------- links
 LINK_RE = re.compile(r'(href|src)="([^"#?]+\.html)((?:[#?][^"]*)?)"')
 ASSET_RE = re.compile(r'(href|src)="(assets/)')
+
+
+LOGOSET_RE = re.compile(r"\{\{logoset:(\w+)\}\}")
+
+
+def expand_logosets(html, lang, base):
+    """Replace `{{logoset:rail}}` / `{{logoset:constellation}}` in a fragment.
+
+    The fragments are the editorial source and they should name what they want —
+    a credibility rail, a capability constellation — not carry a hand-written
+    copy of an <img> list that goes stale the moment an asset is approved or
+    withdrawn. One table, one renderer, every appearance.
+    """
+    return LOGOSET_RE.sub(lambda m: logoset(lang, m.group(1), base=base), html)
+
+
+CASELINK_RE = re.compile(r'\sdata-case="([\w-]+)"')
+
+
+def gate_case_links(html):
+    """Turn `data-case="case-x"` into the shared Work -> Case transition, but
+    only where that project is `full`.
+
+    Brief §9.5 reserves the shared transition for a finished case study, and a
+    `summary` project is not one — the flourish would promise a destination the
+    route does not yet deliver. Doing it here rather than by deleting the
+    attribute from the fragment is the point: the link, its markup and its
+    place in the index are untouched, and promoting a project later is the same
+    one-word edit in CASE_STATUS that flips its sitemap entry and its robots
+    tag. The activation path stays wired up while it is switched off.
+    """
+    def swap(m):
+        return (' data-transition="work-to-case"' if indexable(m.group(1))
+                else '')
+    return CASELINK_RE.sub(swap, html)
 
 
 def relink(html, lang):
@@ -1003,7 +1244,9 @@ def write_route_manifest():
     here instead, by the one place that actually owns the mapping.
     """
     (Path(__file__).resolve().parent / "routes.json").write_text(
-        json.dumps({"langs": list(LANGS), "slugs": SLUGS}, ensure_ascii=False, indent=1),
+        json.dumps({"langs": list(LANGS), "slugs": SLUGS,
+                    "status": {k: case_status(k) for k in SLUGS}},
+                   ensure_ascii=False, indent=1),
         encoding="utf-8")
 
 
@@ -1037,6 +1280,12 @@ def main():
             key = BY_HU[stem + ".html"]
             title = meta.get("title", "Stratos")
             desc = meta.get("desc", "")
+            # Logo sets are expanded before translation. The token itself is
+            # not a sentence, and what it produces is organisation names and
+            # asset paths — feed either to the translator and they arrive in
+            # missing-en.json as strings nobody can translate.
+            body = expand_logosets(body, lang, "" if lang == "hu" else "../")
+            body = gate_case_links(body)
             if table:
                 title = table.get(tr.normalise(title), title)
                 desc = table.get(tr.normalise(desc), desc)
@@ -1064,6 +1313,12 @@ def main():
                 fontpreload=build_font_preload(lang, base),
                 i18n=json.dumps(js, ensure_ascii=False),
                 ceiling=meta.get("ceiling", "20000"),
+                # A `summary` or `draft` case study is reachable and its links
+                # are worth following; it is simply not a page to rank as a case
+                # study. `follow` keeps the outbound equity, `noindex` keeps the
+                # claim honest.
+                robots="" if indexable(key)
+                       else '\n<meta name="robots" content="noindex, follow">',
                 body_class="",
                 instruments=chrome,
                 extra_css="",

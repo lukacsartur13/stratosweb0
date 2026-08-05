@@ -1,60 +1,223 @@
 {
- "_comment": ["Phase 8 — the work index route, which did not exist before.", ""],
-
- "Munkáink — élő weboldalak és ügyfélprojektek | Stratos": ["Work — live websites and client projects | Stratos", "Projekte — Live-Websites und Kundenprojekte | Stratos"],
- "Kertépítés, borbélyüzlet, mentáltréning — élő weboldalak, amiket építettünk. Mit kapott az ügyfél, milyen szerkezettel, és milyen vizuális irányban.": ["Landscaping, a barbershop, mental coaching — live websites we built. What the client got, with what structure, and in what visual direction.", "Gartenbau, Barbershop, Mentaltraining — Live-Websites, die wir gebaut haben. Was der Kunde bekommen hat, mit welcher Struktur und in welcher visuellen Richtung."],
- "<a href=\"index.html\">Stratos</a> / <b>Munkáink</b>": ["<a href=\"index.html\">Stratos</a> / <b>Work</b>", "<a href=\"index.html\">Stratos</a> / <b>Projekte</b>"],
- "Élő oldalak,<br>nem <span class=\"sig\">portfólió-képek.</span>": ["Live sites,<br>not <span class=\"sig\">portfolio pictures.</span>", "Live-Websites,<br>keine <span class=\"sig\">Portfoliobilder.</span>"],
- "Mindegyik oldal működik, mindegyiknek van dolga, és mindegyiket meg lehet nézni saját domainen. Ez a lista rövid — pontosan annyi projekt van rajta, amennyit be tudunk mutatni.": ["Every one of these sites works, every one has a job, and every one can be visited on its own domain. The list is short — it holds exactly as many projects as we can actually show.", "Jede dieser Websites funktioniert, jede hat eine Aufgabe, und jede lässt sich unter ihrer eigenen Domain aufrufen. Die Liste ist kurz — sie enthält genau so viele Projekte, wie wir wirklich zeigen können."],
- "Számokat nem közlünk. Amíg egy ügyfél nem ad hozzá ellenőrizhető adatot, addig azt írjuk le, ami látható és igazolható.": ["We publish no figures. Until a client supplies verifiable data, we describe what is visible and provable.", "Wir veröffentlichen keine Zahlen. Solange ein Kunde keine überprüfbaren Daten liefert, beschreiben wir nur, was sichtbar und belegbar ist."],
- "<span><b>Esettanulmány</b> 3</span> <span><b>Szektorok</b> kertépítés, szolgáltatás, coaching</span> <span><b>Nyelvek</b> magyar, angol</span>": ["<span><b>Case studies</b> 3</span> <span><b>Sectors</b> landscaping, services, coaching</span> <span><b>Languages</b> Hungarian, English</span>", "<span><b>Fallstudien</b> 3</span> <span><b>Branchen</b> Gartenbau, Dienstleistung, Coaching</span> <span><b>Sprachen</b> Ungarisch, Englisch</span>"],
- "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Projektek</span>": ["<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Projects</span>", "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Projekte</span>"],
- "A Rapidkert Kft. weboldalának nyitóképernyője: esti kertfotó, „Automata öntözőrendszerek telepítése és kertépítés” címsorral.": ["The opening screen of the Rapidkert Kft. website: an evening garden photograph with the headline \"Automatic irrigation system installation and landscaping\".", "Der Startbildschirm der Website von Rapidkert Kft.: ein abendliches Gartenfoto mit der Überschrift „Installation automatischer Bewässerungssysteme und Gartenbau“."],
- "Rapidkert Kft. — kertépítés": ["Rapidkert Kft. — landscaping", "Rapidkert Kft. — Gartenbau"],
- "Egy kert, amit este is meg akarsz nézni": ["A garden you want to look at after dark", "Ein Garten, den man auch abends ansehen will"],
- "Automata öntözőrendszer és kertépítés. Az egész nyitóképernyő egyetlen esti kertfotó, a szolgáltatás a címsorban van kimondva, és a nyitóképernyő egyetlen gombja egy díjmentes konzultáció.": ["Automatic irrigation and landscaping. The whole opening screen is a single evening garden photograph, the service is named in the headline, and the one button on that screen offers a free consultation.", "Automatische Bewässerung und Gartenbau. Der gesamte Startbildschirm besteht aus einem einzigen abendlichen Gartenfoto, die Leistung steht in der Überschrift, und der einzige Button dort führt zu einer kostenlosen Beratung."],
- "<span>Weboldal</span><span>Szolgáltatás-bemutatás</span><span>rapidkert.com</span>": ["<span>Website</span><span>Service presentation</span><span>rapidkert.com</span>", "<span>Website</span><span>Leistungsdarstellung</span><span>rapidkert.com</span>"],
- "A Barbershop Győr weboldalának nyitóképernyője: monokróm háttér, középen a logó, alatta arany „Időpontfoglalás” gomb és a menüpontok.": ["The opening screen of the Barbershop Győr website: a monochrome background, the logo in the centre, a gold \"Book an appointment\" button beneath it and the menu items.", "Der Startbildschirm der Website von Barbershop Győr: monochromer Hintergrund, das Logo in der Mitte, darunter ein goldener Button „Termin buchen“ und die Menüpunkte."],
- "Barbershop Győr — borbélyüzlet": ["Barbershop Győr — barbershop", "Barbershop Győr — Barbershop"],
- "Egy oldal, aminek egyetlen dolga az időpont": ["A site whose only job is the appointment", "Eine Seite, deren einzige Aufgabe der Termin ist"],
- "Az egész nyitóképernyő az időpontfoglalás köré épül: egy arany gomb, a menü alatta, és a valódi Google-értékelések ott, ahol a látogató amúgy is a bizonyítékot keresi.": ["The whole opening screen is built around booking: one gold button, the menu below it, and real Google reviews exactly where a visitor looks for proof anyway.", "Der gesamte Startbildschirm ist um die Terminbuchung herum gebaut: ein goldener Button, darunter das Menü, und echte Google-Bewertungen genau dort, wo Besucher ohnehin nach Belegen suchen."],
- "<span>Weboldal</span><span>Foglalás-vezérelt</span><span>Magyar és angol</span>": ["<span>Website</span><span>Booking-led</span><span>Hungarian and English</span>", "<span>Website</span><span>Buchungsgesteuert</span><span>Ungarisch und Englisch</span>"],
- "A mentaltrening.com weboldalának nyitóképernyője: felülnézeti salakos teniszpálya, „Légy nyitott a változásra és szárnyakra lelsz!” címsorral.": ["The opening screen of the mentaltrening.com website: an overhead view of a clay tennis court with the headline \"Be open to change and you'll find your wings!\"", "Der Startbildschirm der Website mentaltrening.com: ein Sandplatz aus der Vogelperspektive mit der Überschrift „Sei offen für Veränderung, und du bekommst Flügel!“"],
- "mentáliserő.hu — mentáltréning": ["mentáliserő.hu — mental coaching", "mentáliserő.hu — Mentaltraining"],
- "Egy szakember, egy ígéret, egy gomb": ["One practitioner, one promise, one button", "Ein Experte, ein Versprechen, ein Button"],
- "Sportolóknak szóló mentáltréning. Egyszemélyes szolgáltatás, ezért az oldal is egyes szám első személyben beszél, és a nyitóképernyő nem szolgáltatáslistát mutat, hanem egyetlen döntést kér.": ["Mental coaching for athletes. It is a one-person practice, so the site speaks in the first person singular, and the opening screen doesn't list services — it asks for a single decision.", "Mentaltraining für Sportlerinnen und Sportler. Es ist eine Ein-Personen-Praxis, deshalb spricht die Seite in der ersten Person Singular, und der Startbildschirm listet keine Leistungen auf, sondern verlangt eine einzige Entscheidung."],
- "<span>Weboldal</span><span>Személyes márka</span><span>mentaltrening.com</span>": ["<span>Website</span><span>Personal brand</span><span>mentaltrening.com</span>", "<span>Website</span><span>Persönliche Marke</span><span>mentaltrening.com</span>"],
- "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">További ügyfelek</span>": ["<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Other clients</span>", "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Weitere Kunden</span>"],
- "Akikkel dolgoztunk, de nincs róluk esettanulmány": ["Clients we worked with who have no case study yet", "Kunden, mit denen wir gearbeitet haben, ohne Fallstudie"],
- "Nem minden projektről lehet oldalnyi anyagot írni. Ezek itt maradnak megnevezve, esettanulmány nélkül — így nem kell kitalálnunk hozzájuk semmit.": ["Not every project supports a page of material. These stay named, without a case study — so nothing has to be invented for them.", "Nicht jedes Projekt gibt eine ganze Seite her. Diese bleiben genannt, ohne Fallstudie — so muss dazu nichts erfunden werden."],
- "Varrás és textilmunka. Az arculati anyag megvan; a projektről szóló esettanulmány anyaggyűjtése folyamatban.": ["Sewing and textile work. The identity material exists; gathering the material for a case study is in progress.", "Näh- und Textilarbeiten. Das Material zum Erscheinungsbild liegt vor; die Materialsammlung für eine Fallstudie läuft."],
- "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Ami mindegyikben közös</span>": ["<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">What they share</span>", "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Was sie gemeinsam haben</span>"],
- "Nem a stílus közös bennük, hanem a <span class=\"sig\">munkamódszer.</span>": ["What they share isn't a style, it's the <span class=\"sig\">method.</span>", "Gemeinsam ist ihnen nicht der Stil, sondern die <span class=\"sig\">Arbeitsweise.</span>"],
- "A három oldal szándékosan nem hasonlít egymásra. Egy borbélyüzletnek időpontot kell foglaltatnia, egy kertépítőnek bizalmat kell építenie egy nagy értékű beruházás előtt, egy mentáltrénernek pedig személyes kapcsolatot kell teremtenie. Ugyanaz a sablon mindháromnak rossz lenne.": ["The three sites deliberately don't resemble each other. A barbershop needs bookings, a landscaper needs to build trust ahead of a high-value investment, and a mental coach needs to establish a personal connection. The same template would be wrong for all three.", "Die drei Websites ähneln sich bewusst nicht. Ein Barbershop braucht Terminbuchungen, ein Gartenbauer muss vor einer hochwertigen Investition Vertrauen aufbauen, und ein Mentaltrainer muss eine persönliche Verbindung herstellen. Dieselbe Vorlage wäre für alle drei falsch."],
- "Minden oldal egyedi tervezés — nem témasablon átszínezése.": ["Every site is designed from scratch — not a theme recoloured.", "Jede Website ist eigens gestaltet — kein umgefärbtes Theme."],
- "A nyitóképernyőnek egy dolga van, és az mérhető.": ["The opening screen has one job, and it's measurable.", "Der Startbildschirm hat eine Aufgabe, und sie ist messbar."],
- "A tartalom a vállalkozás nyelvén szól, nem marketinges nyelven.": ["The content speaks the business's language, not marketing language.", "Die Inhalte sprechen die Sprache des Unternehmens, nicht die des Marketings."],
- "Reszponzív kialakítás, mobilon és asztali gépen egyaránt tesztelve.": ["Responsive layout, tested on both phone and desktop.", "Responsives Layout, getestet auf Smartphone und Desktop."],
- "A tiéd lenne a <span class=\"sig\">negyedik.</span>": ["Yours would be the <span class=\"sig\">fourth.</span>", "Deins wäre das <span class=\"sig\">vierte.</span>"],
- "Mondd el, mit csinál a vállalkozásod és mit vársz az oldaltól. A többi onnantól a mi dolgunk.": ["Tell us what your business does and what you expect from the site. From there it's our job.", "Sag uns, was dein Unternehmen macht und was du von der Website erwartest. Ab da ist es unsere Aufgabe."],
- "Beszéljünk a projektről": ["Let's talk about the project", "Sprechen wir über das Projekt"],
- "Megnézem a szolgáltatásokat": ["See the services", "Leistungen ansehen"],
-
- "_runs": ["Loose text runs. The translation engine extracts the inside of each",
-           "<span> in a meta strip separately from the line it sits on, so the",
-           "individual terms need their own entries — the composite line above",
-           "never matches on its own."],
- "Munkáink": ["Work", "Projekte"],
- "mentáliserő.hu": ["mentáliserő.hu", "mentáliserő.hu"],
- "Esettanulmány": ["Case study", "Fallstudie"],
- "Szolgáltatás-bemutatás": ["Service presentation", "Leistungsdarstellung"],
- "rapidkert.com": ["rapidkert.com", "rapidkert.com"],
- "Foglalás-vezérelt": ["Booking-led", "Buchungsgesteuert"],
- "Magyar és angol": ["Hungarian and English", "Ungarisch und Englisch"],
- "Személyes márka": ["Personal brand", "Persönliche Marke"],
- "Nyelvek": ["Languages", "Sprachen"],
- "Esettanulmány 3": ["Case studies 3", "Fallstudien 3"],
- "Szektorok": ["Sectors", "Branchen"],
- "kertépítés, szolgáltatás, coaching": ["landscaping, services, coaching", "Gartenbau, Dienstleistung, Coaching"],
- "magyar, angol": ["Hungarian, English", "Ungarisch, Englisch"]
+ "_comment": [
+  "Phase 8 — the work index route, which did not exist before.",
+  ""
+ ],
+ "Munkáink — élő weboldalak és ügyfélprojektek | Stratos": [
+  "Work — live websites and client projects | Stratos",
+  "Projekte — Live-Websites und Kundenprojekte | Stratos"
+ ],
+ "Kertépítés, borbélyüzlet, mentáltréning — élő weboldalak, amiket építettünk. Mit kapott az ügyfél, milyen szerkezettel, és milyen vizuális irányban.": [
+  "Landscaping, a barbershop, mental coaching — live websites we built. What the client got, with what structure, and in what visual direction.",
+  "Gartenbau, Barbershop, Mentaltraining — Live-Websites, die wir gebaut haben. Was der Kunde bekommen hat, mit welcher Struktur und in welcher visuellen Richtung."
+ ],
+ "<a href=\"index.html\">Stratos</a> / <b>Munkáink</b>": [
+  "<a href=\"index.html\">Stratos</a> / <b>Work</b>",
+  "<a href=\"index.html\">Stratos</a> / <b>Projekte</b>"
+ ],
+ "Élő oldalak,<br>nem <span class=\"sig\">portfólió-képek.</span>": [
+  "Live sites,<br>not <span class=\"sig\">portfolio pictures.</span>",
+  "Live-Websites,<br>keine <span class=\"sig\">Portfoliobilder.</span>"
+ ],
+ "Mindegyik oldal működik, mindegyiknek van dolga, és mindegyiket meg lehet nézni saját domainen. Ez a lista rövid — pontosan annyi projekt van rajta, amennyit be tudunk mutatni.": [
+  "Every one of these sites works, every one has a job, and every one can be visited on its own domain. The list is short — it holds exactly as many projects as we can actually show.",
+  "Jede dieser Websites funktioniert, jede hat eine Aufgabe, und jede lässt sich unter ihrer eigenen Domain aufrufen. Die Liste ist kurz — sie enthält genau so viele Projekte, wie wir wirklich zeigen können."
+ ],
+ "Számokat nem közlünk. Amíg egy ügyfél nem ad hozzá ellenőrizhető adatot, addig azt írjuk le, ami látható és igazolható.": [
+  "We publish no figures. Until a client supplies verifiable data, we describe what is visible and provable.",
+  "Wir veröffentlichen keine Zahlen. Solange ein Kunde keine überprüfbaren Daten liefert, beschreiben wir nur, was sichtbar und belegbar ist."
+ ],
+ "<span><b>Projekt</b> 3</span> <span><b>Szektorok</b> kertépítés, szolgáltatás, coaching</span> <span><b>Nyelvek</b> magyar, angol</span>": [
+  "<span><b>Projects</b> 3</span> <span><b>Sectors</b> landscaping, services, coaching</span> <span><b>Languages</b> Hungarian, English</span>",
+  "<span><b>Projekte</b> 3</span> <span><b>Branchen</b> Gartenbau, Dienstleistung, Coaching</span> <span><b>Sprachen</b> Ungarisch, Englisch</span>"
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Projektek</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Projects</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Projekte</span>"
+ ],
+ "A Rapidkert Kft. weboldalának nyitóképernyője: esti kertfotó, „Automata öntözőrendszerek telepítése és kertépítés” címsorral.": [
+  "The opening screen of the Rapidkert Kft. website: an evening garden photograph with the headline \"Automatic irrigation system installation and landscaping\".",
+  "Der Startbildschirm der Website von Rapidkert Kft.: ein abendliches Gartenfoto mit der Überschrift „Installation automatischer Bewässerungssysteme und Gartenbau“."
+ ],
+ "Rapidkert Kft. — kertépítés": [
+  "Rapidkert Kft. — landscaping",
+  "Rapidkert Kft. — Gartenbau"
+ ],
+ "Egy kert, amit este is meg akarsz nézni": [
+  "A garden you want to look at after dark",
+  "Ein Garten, den man auch abends ansehen will"
+ ],
+ "Automata öntözőrendszer és kertépítés. Az egész nyitóképernyő egyetlen esti kertfotó, a szolgáltatás a címsorban van kimondva, és a nyitóképernyő egyetlen gombja egy díjmentes konzultáció.": [
+  "Automatic irrigation and landscaping. The whole opening screen is a single evening garden photograph, the service is named in the headline, and the one button on that screen offers a free consultation.",
+  "Automatische Bewässerung und Gartenbau. Der gesamte Startbildschirm besteht aus einem einzigen abendlichen Gartenfoto, die Leistung steht in der Überschrift, und der einzige Button dort führt zu einer kostenlosen Beratung."
+ ],
+ "<span>Weboldal</span><span>Szolgáltatás-bemutatás</span><span>rapidkert.com</span>": [
+  "<span>Website</span><span>Service presentation</span><span>rapidkert.com</span>",
+  "<span>Website</span><span>Leistungsdarstellung</span><span>rapidkert.com</span>"
+ ],
+ "A Barbershop Győr weboldalának nyitóképernyője: monokróm háttér, középen a logó, alatta arany „Időpontfoglalás” gomb és a menüpontok.": [
+  "The opening screen of the Barbershop Győr website: a monochrome background, the logo in the centre, a gold \"Book an appointment\" button beneath it and the menu items.",
+  "Der Startbildschirm der Website von Barbershop Győr: monochromer Hintergrund, das Logo in der Mitte, darunter ein goldener Button „Termin buchen“ und die Menüpunkte."
+ ],
+ "Barbershop Győr — borbélyüzlet": [
+  "Barbershop Győr — barbershop",
+  "Barbershop Győr — Barbershop"
+ ],
+ "Egy oldal, aminek egyetlen dolga az időpont": [
+  "A site whose only job is the appointment",
+  "Eine Seite, deren einzige Aufgabe der Termin ist"
+ ],
+ "Az egész nyitóképernyő az időpontfoglalás köré épül: egy arany gomb, a menü alatta, és a valódi Google-értékelések ott, ahol a látogató amúgy is a bizonyítékot keresi.": [
+  "The whole opening screen is built around booking: one gold button, the menu below it, and real Google reviews exactly where a visitor looks for proof anyway.",
+  "Der gesamte Startbildschirm ist um die Terminbuchung herum gebaut: ein goldener Button, darunter das Menü, und echte Google-Bewertungen genau dort, wo Besucher ohnehin nach Belegen suchen."
+ ],
+ "<span>Weboldal</span><span>Foglalás-vezérelt</span><span>Magyar és angol</span>": [
+  "<span>Website</span><span>Booking-led</span><span>Hungarian and English</span>",
+  "<span>Website</span><span>Buchungsgesteuert</span><span>Ungarisch und Englisch</span>"
+ ],
+ "A mentaltrening.com weboldalának nyitóképernyője: felülnézeti salakos teniszpálya, „Légy nyitott a változásra és szárnyakra lelsz!” címsorral.": [
+  "The opening screen of the mentaltrening.com website: an overhead view of a clay tennis court with the headline \"Be open to change and you'll find your wings!\"",
+  "Der Startbildschirm der Website mentaltrening.com: ein Sandplatz aus der Vogelperspektive mit der Überschrift „Sei offen für Veränderung, und du bekommst Flügel!“"
+ ],
+ "mentáliserő.hu — mentáltréning": [
+  "mentáliserő.hu — mental coaching",
+  "mentáliserő.hu — Mentaltraining"
+ ],
+ "Egy szakember, egy ígéret, egy gomb": [
+  "One practitioner, one promise, one button",
+  "Ein Experte, ein Versprechen, ein Button"
+ ],
+ "Sportolóknak szóló mentáltréning. Egyszemélyes szolgáltatás, ezért az oldal is egyes szám első személyben beszél, és a nyitóképernyő nem szolgáltatáslistát mutat, hanem egyetlen döntést kér.": [
+  "Mental coaching for athletes. It is a one-person practice, so the site speaks in the first person singular, and the opening screen doesn't list services — it asks for a single decision.",
+  "Mentaltraining für Sportlerinnen und Sportler. Es ist eine Ein-Personen-Praxis, deshalb spricht die Seite in der ersten Person Singular, und der Startbildschirm listet keine Leistungen auf, sondern verlangt eine einzige Entscheidung."
+ ],
+ "<span>Weboldal</span><span>Személyes márka</span><span>mentaltrening.com</span>": [
+  "<span>Website</span><span>Personal brand</span><span>mentaltrening.com</span>",
+  "<span>Website</span><span>Persönliche Marke</span><span>mentaltrening.com</span>"
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">További ügyfelek</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Other clients</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Weitere Kunden</span>"
+ ],
+ "Akikkel dolgoztunk, de nincs róluk esettanulmány": [
+  "Clients we worked with who have no case study yet",
+  "Kunden, mit denen wir gearbeitet haben, ohne Fallstudie"
+ ],
+ "Nem minden projektről lehet oldalnyi anyagot írni. Ezek itt maradnak megnevezve, esettanulmány nélkül — így nem kell kitalálnunk hozzájuk semmit.": [
+  "Not every project supports a page of material. These stay named, without a case study — so nothing has to be invented for them.",
+  "Nicht jedes Projekt gibt eine ganze Seite her. Diese bleiben genannt, ohne Fallstudie — so muss dazu nichts erfunden werden."
+ ],
+ "Varrás és textilmunka. Az arculati anyag megvan; a projektről szóló esettanulmány anyaggyűjtése folyamatban.": [
+  "Sewing and textile work. The identity material exists; gathering the material for a case study is in progress.",
+  "Näh- und Textilarbeiten. Das Material zum Erscheinungsbild liegt vor; die Materialsammlung für eine Fallstudie läuft."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Ami mindegyikben közös</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">What they share</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Was sie gemeinsam haben</span>"
+ ],
+ "Nem a stílus közös bennük, hanem a <span class=\"sig\">munkamódszer.</span>": [
+  "What they share isn't a style, it's the <span class=\"sig\">method.</span>",
+  "Gemeinsam ist ihnen nicht der Stil, sondern die <span class=\"sig\">Arbeitsweise.</span>"
+ ],
+ "A három oldal szándékosan nem hasonlít egymásra. Egy borbélyüzletnek időpontot kell foglaltatnia, egy kertépítőnek bizalmat kell építenie egy nagy értékű beruházás előtt, egy mentáltrénernek pedig személyes kapcsolatot kell teremtenie. Ugyanaz a sablon mindháromnak rossz lenne.": [
+  "The three sites deliberately don't resemble each other. A barbershop needs bookings, a landscaper needs to build trust ahead of a high-value investment, and a mental coach needs to establish a personal connection. The same template would be wrong for all three.",
+  "Die drei Websites ähneln sich bewusst nicht. Ein Barbershop braucht Terminbuchungen, ein Gartenbauer muss vor einer hochwertigen Investition Vertrauen aufbauen, und ein Mentaltrainer muss eine persönliche Verbindung herstellen. Dieselbe Vorlage wäre für alle drei falsch."
+ ],
+ "Minden oldal egyedi tervezés — nem témasablon átszínezése.": [
+  "Every site is designed from scratch — not a theme recoloured.",
+  "Jede Website ist eigens gestaltet — kein umgefärbtes Theme."
+ ],
+ "A nyitóképernyőnek egy dolga van, és az mérhető.": [
+  "The opening screen has one job, and it's measurable.",
+  "Der Startbildschirm hat eine Aufgabe, und sie ist messbar."
+ ],
+ "A tartalom a vállalkozás nyelvén szól, nem marketinges nyelven.": [
+  "The content speaks the business's language, not marketing language.",
+  "Die Inhalte sprechen die Sprache des Unternehmens, nicht die des Marketings."
+ ],
+ "Reszponzív kialakítás, mobilon és asztali gépen egyaránt tesztelve.": [
+  "Responsive layout, tested on both phone and desktop.",
+  "Responsives Layout, getestet auf Smartphone und Desktop."
+ ],
+ "A tiéd lenne a <span class=\"sig\">negyedik.</span>": [
+  "Yours would be the <span class=\"sig\">fourth.</span>",
+  "Deins wäre das <span class=\"sig\">vierte.</span>"
+ ],
+ "Mondd el, mit csinál a vállalkozásod és mit vársz az oldaltól. A többi onnantól a mi dolgunk.": [
+  "Tell us what your business does and what you expect from the site. From there it's our job.",
+  "Sag uns, was dein Unternehmen macht und was du von der Website erwartest. Ab da ist es unsere Aufgabe."
+ ],
+ "Beszéljünk a projektről": [
+  "Let's talk about the project",
+  "Sprechen wir über das Projekt"
+ ],
+ "Megnézem a szolgáltatásokat": [
+  "See the services",
+  "Leistungen ansehen"
+ ],
+ "_runs": [
+  "Loose text runs. The translation engine extracts the inside of each",
+  "<span> in a meta strip separately from the line it sits on, so the",
+  "individual terms need their own entries — the composite line above",
+  "never matches on its own."
+ ],
+ "Munkáink": [
+  "Work",
+  "Projekte"
+ ],
+ "mentáliserő.hu": [
+  "mentáliserő.hu",
+  "mentáliserő.hu"
+ ],
+ "_chip": ["Also the related-link category chip on the service and project routes,",
+           "which used to read 'Esettanulmány'. A summary route is not a case",
+           "study and should not be labelled as one; see CASE_STATUS in build.py."],
+ "Projekt": [
+  "Project",
+  "Projekt"
+ ],
+ "Szolgáltatás-bemutatás": [
+  "Service presentation",
+  "Leistungsdarstellung"
+ ],
+ "rapidkert.com": [
+  "rapidkert.com",
+  "rapidkert.com"
+ ],
+ "Foglalás-vezérelt": [
+  "Booking-led",
+  "Buchungsgesteuert"
+ ],
+ "Magyar és angol": [
+  "Hungarian and English",
+  "Ungarisch und Englisch"
+ ],
+ "Személyes márka": [
+  "Personal brand",
+  "Persönliche Marke"
+ ],
+ "Nyelvek": [
+  "Languages",
+  "Sprachen"
+ ],
+ "Projekt 3": [
+  "Projects 3",
+  "Projekte 3"
+ ],
+ "Szektorok": [
+  "Sectors",
+  "Branchen"
+ ],
+ "kertépítés, szolgáltatás, coaching": [
+  "landscaping, services, coaching",
+  "Gartenbau, Dienstleistung, Coaching"
+ ],
+ "magyar, angol": [
+  "Hungarian, English",
+  "Ungarisch, Englisch"
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Együttműködések</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Collaborations</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Kooperationen</span>"
+ ]
 }

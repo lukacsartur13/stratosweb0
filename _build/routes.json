@@ -120,5 +120,30 @@
    "en": "imprint.html",
    "de": "impressum.html"
   }
+ },
+ "status": {
+  "index": "full",
+  "about": "full",
+  "services": "full",
+  "sme": "full",
+  "enterprise": "full",
+  "branding": "full",
+  "ads": "full",
+  "impact": "full",
+  "work": "full",
+  "case-rapidkert": "summary",
+  "case-barbershop": "summary",
+  "case-mentaltrening": "summary",
+  "blog": "full",
+  "post-seo": "full",
+  "post-arak": "full",
+  "post-cegprofil": "full",
+  "post-hirdetes": "full",
+  "post-elavult": "full",
+  "post-konverzio": "full",
+  "contact": "full",
+  "quote": "full",
+  "privacy": "full",
+  "imprint": "full"
  }
 }

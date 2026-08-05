@@ -30,6 +30,9 @@ BLOCK_TAGS = ('h1|h2|h3|h4|h5|h6|p|li|figcaption|blockquote|button|label'
 CONTAINER = (BLOCK_TAGS + '|div|section|article|aside|header|footer|nav|main'
              '|ul|ol|dl|table|thead|tbody|tr|form|figure|svg|script|style|details')
 
+# Any tag, for asking whether a chunk has text of its own.
+_TAGS = re.compile(r'<[^>]*>')
+
 BLOCK_RE = re.compile(r'<(' + BLOCK_TAGS + r')\b[^>]*>(.*?)</\1\s*>', re.S | re.I)
 HAS_BLOCK = re.compile(r'</?(' + CONTAINER + r')\b', re.S | re.I)
 TEXT_RUN = re.compile(r'>([^<>]+)<')
@@ -57,6 +60,12 @@ SKIP_EXACT = {
     'SAP', 'HubSpot', 'Salesforce', 'LinkedIn', 'Instagram', 'Facebook',
     'TikTok', 'Google', 'Meta', 'B2B', 'B2C', 'ISO', 'WCAG', 'NDA', 'API',
     'SLA', 'SSO', 'BI', 'IT',
+    # Organisation names carried by logo alt text. A company's name is not
+    # translated into German, and the alt text has to match the mark it
+    # describes in every locale.
+    'Kontyos.hu', 'Grantool Kft.', 'Synergy Digital Hungary Kft.', 'HAIO',
+    'FICE', 'Duna Hajók', 'Duna Enterior', 'Rapidkert Kft.',
+    'Barbershop Győr',
     # The locale-invariant branch identifier the questionnaire sends as
     # `fields.agazat`. It is compared by the server against a fixed enum (see
     # FORMS.questionnaire in netlify/functions/lead-contract.mjs) and is never
@@ -106,8 +115,15 @@ def _leaf_spans(src, base=0, out=None):
         inner = m.group(2)
         if HAS_BLOCK.search(inner):
             _leaf_spans(inner, base + m.start(2), out)
-        elif normalise(inner):
+        elif normalise(_TAGS.sub('', inner)):
+            # A leaf with actual text is one unit, so a sentence broken across
+            # <b> and <em> is translated whole rather than in fragments.
             out.append((base + m.start(2), base + m.end(2)))
+        # A leaf holding only markup — a logo <li> that is one <img>, a figure
+        # that is one <svg> — has no sentence in it. Claiming it as a unit put
+        # the whole `<img src=... alt="Kontyos.hu">` tag into missing-en.json as
+        # a string to translate. Left alone here it falls through to the gap
+        # path, which translates the alt attribute on its own, correctly.
     return out
 
 

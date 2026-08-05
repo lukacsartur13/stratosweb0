@@ -40,7 +40,15 @@ const VOID = new Set([
 // Furniture and non-prose. Repeated identically across every page, or not text.
 const SKIP_TAGS = new Set(['script', 'style', 'noscript', 'svg', 'head', 'header', 'footer', 'nav', 'template']);
 // Repeated furniture that is a <div>/<aside> rather than a landmark element.
-const SKIP_CLASSES = [/\brail\b/, /\bmenu\b/, /\bdrop\b/, /\blang\b/, /\bgrain\b/, /\bcurtain\b/, /\bplane-cursor\b/, /\bsr-only\b/, /\bskip\b/];
+//
+// The altimeter entry is anchored to the start of a class token rather than
+// written as `\brail\b`. A `-` is a non-word character, so the loose form also
+// matched `logoset--rail` — the collaboration rail on the Work index — and
+// silently dropped two real content images from the count. An audit that
+// under-reports is worse than one that over-reports, because the number still
+// looks plausible. `rail`, `rail__tape` and the rest of the altimeter are still
+// skipped; a modifier that merely ends in the word is not.
+const SKIP_CLASSES = [/(^|\s)rail(__[\w-]+)?(\s|$)/, /\bmenu\b/, /\bdrop\b/, /\blang\b/, /\bgrain\b/, /\bcurtain\b/, /\bplane-cursor\b/, /\bsr-only\b/, /\bskip\b/];
 
 function decode(s) {
   return s

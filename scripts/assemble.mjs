@@ -116,7 +116,7 @@ if (!existsSync(MANIFEST)) {
   console.error(`assemble: missing ${MANIFEST} — run \`npm run generate\` first.`);
   process.exit(1);
 }
-const { langs: LANGS, slugs: RAW } = JSON.parse(await readFile(MANIFEST, 'utf8'));
+const { langs: LANGS, slugs: RAW, status: STATUS = {} } = JSON.parse(await readFile(MANIFEST, 'utf8'));
 const SLUGS = Object.fromEntries(
   Object.entries(RAW).map(([key, byLang]) => [
     key,
@@ -134,6 +134,13 @@ async function sitemap() {
   const urls = [];
 
   for (const [key, paths] of Object.entries(SLUGS)) {
+    // Only a `full` route is offered to search engines. A case study still
+    // gathering its material is reachable, linked and translated — it is just
+    // not something to rank as a case study, and the generated page says so
+    // itself with `noindex, follow`. A sitemap entry for a noindex URL is a
+    // contradiction the crawler has to resolve, so it is not emitted at all.
+    // The status comes from _build/build.py, which owns it.
+    if ((STATUS[key] ?? 'full') !== 'full') continue;
     paths.forEach((path, i) => {
       // Every URL carries the full hreflang set, including x-default pointing at
       // Hungarian — the same contract the generated <head> already states.
