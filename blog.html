@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/motion.css">
 <link rel="stylesheet" href="assets/css/transitions.css">
+<link rel="stylesheet" href="assets/css/page-blog.css">
 <script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -168,43 +169,73 @@
   <!-- ============================================ lista -->
   <section class="band band--tight">
     <div class="wrap">
-      <div class="grid g-3" data-stagger>
+      <!-- Szerkesztői index: a cím a főszereplő, a kép a lábjegyzet. A képek
+           egy közös, ragadós felületen ülnek, és az éppen olvasott sorhoz
+           tartozó gyullad ki — egérrel és billentyűzettel egyaránt (:hover és
+           :focus-within). Nincs kurzort követő mozgás és nincs JavaScript. -->
+      <div class="idx">
+        <ol class="idx__list">
+        <li class="idx__row">
+          <a href="blog-weboldal-arak.html">
+            <span class="idx__n" aria-hidden="true">01</span>
+            <span class="idx__body">
+              <span class="idx__meta">Árak</span>
+              <h3 class="idx__t">Mennyibe kerül egy weboldal 2026-ban?</h3>
+              <span class="idx__w">Nulla forinttól több millióig terjednek a weboldal árak. Megmutatjuk, mitől függ a költség, és hogyan számold ki, mennyit ér egy weboldal a vállalkozásodnak.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-google-cegprofil.html">
+            <span class="idx__n" aria-hidden="true">02</span>
+            <span class="idx__body">
+              <span class="idx__meta">Helyi keresés</span>
+              <h3 class="idx__t">Google Cégprofil beállítása lépésről lépésre</h3>
+              <span class="idx__w">A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Állítsd be 8 lépésben, és jelenj meg a térképes találatok között!</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-google-vagy-facebook.html">
+            <span class="idx__n" aria-hidden="true">03</span>
+            <span class="idx__body">
+              <span class="idx__meta">Hirdetés</span>
+              <h3 class="idx__t">Google vagy Facebook hirdetés? Melyik éri meg 2026-ban</h3>
+              <span class="idx__w">Rossz a kérdés. Megmutatjuk, melyik platform mire való, és miért a rendszer hozza az ügyfeleket, nem a platform.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-elavult-weboldal.html">
+            <span class="idx__n" aria-hidden="true">04</span>
+            <span class="idx__body">
+              <span class="idx__meta">Számolás</span>
+              <h3 class="idx__t">Mennyi ügyfelet veszítesz egy elavult weboldal miatt?</h3>
+              <span class="idx__w">Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Számold ki, mennyibe kerül havonta egy elavult weboldal — és mennyit nyernél.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-miert-nem-hoz-ugyfelet.html">
+            <span class="idx__n" aria-hidden="true">05</span>
+            <span class="idx__body">
+              <span class="idx__meta">Konverzió</span>
+              <h3 class="idx__t">Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba</h3>
+              <span class="idx__w">Van weboldalad, mégsem jönnek az ügyfelek? A 7 leggyakoribb hiba, amit a vállalkozások többsége elkövet — és hogyan javítsd ki mindegyiket.</span>
+            </span>
+          </a>
+        </li>
+        </ol>
+        <div class="idx__stage" aria-hidden="true">
+          <span class="idx__img"><img src="assets/img/blog-2.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="assets/img/blog-3.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="assets/img/blog-4.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="assets/img/blog-5.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="assets/img/blog-6.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+        </div>
+      </div>
 
-        <a class="post" href="blog-weboldal-arak.html" data-reveal>
-          <span class="post__img"><img src="assets/img/blog-2.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Árak</span>
-          <h3>Mennyibe kerül egy weboldal 2026-ban?</h3>
-          <p>Nulla forinttól több millióig terjednek a weboldal árak. Megmutatjuk, mitől függ a költség, és hogyan számold ki, mennyit ér egy weboldal a vállalkozásodnak.</p>
-        </a>
-
-        <a class="post" href="blog-google-cegprofil.html" data-reveal>
-          <span class="post__img"><img src="assets/img/blog-3.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Helyi keresés</span>
-          <h3>Google Cégprofil beállítása lépésről lépésre</h3>
-          <p>A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Állítsd be 8 lépésben, és jelenj meg a térképes találatok között!</p>
-        </a>
-
-        <a class="post" href="blog-google-vagy-facebook.html" data-reveal>
-          <span class="post__img"><img src="assets/img/blog-4.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Hirdetés</span>
-          <h3>Google vagy Facebook hirdetés? Melyik éri meg 2026-ban</h3>
-          <p>Rossz a kérdés. Megmutatjuk, melyik platform mire való, és miért a rendszer hozza az ügyfeleket, nem a platform.</p>
-        </a>
-
-        <a class="post" href="blog-elavult-weboldal.html" data-reveal>
-          <span class="post__img"><img src="assets/img/blog-5.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Számolás</span>
-          <h3>Mennyi ügyfelet veszítesz egy elavult weboldal miatt?</h3>
-          <p>Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Számold ki, mennyibe kerül havonta egy elavult weboldal — és mennyit nyernél.</p>
-        </a>
-
-        <a class="post" href="blog-miert-nem-hoz-ugyfelet.html" data-reveal>
-          <span class="post__img"><img src="assets/img/blog-6.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Konverzió</span>
-          <h3>Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba</h3>
-          <p>Van weboldalad, mégsem jönnek az ügyfelek? A 7 leggyakoribb hiba, amit a vállalkozások többsége elkövet — és hogyan javítsd ki mindegyiket.</p>
-        </a>
-
+      <div class="grid g-3" style="margin-top:clamp(2.5rem,6vw,4rem)">
         <div class="post" data-reveal style="border-color:var(--signal)">
           <span class="post__meta sig">Hírlevél</span>
           <h3>Félsz, hogy kimaradsz?</h3>

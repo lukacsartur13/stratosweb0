@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-blog.css">
 <script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -161,43 +162,73 @@
   <!-- ============================================ lista -->
   <section class="band band--tight">
     <div class="wrap">
-      <div class="grid g-3" data-stagger>
+      <!-- Szerkesztői index: a cím a főszereplő, a kép a lábjegyzet. A képek
+           egy közös, ragadós felületen ülnek, és az éppen olvasott sorhoz
+           tartozó gyullad ki — egérrel és billentyűzettel egyaránt (:hover és
+           :focus-within). Nincs kurzort követő mozgás és nincs JavaScript. -->
+      <div class="idx">
+        <ol class="idx__list">
+        <li class="idx__row">
+          <a href="blog-website-kosten.html">
+            <span class="idx__n" aria-hidden="true">01</span>
+            <span class="idx__body">
+              <span class="idx__meta">Preise</span>
+              <h3 class="idx__t">Was kostet eine Website 2026?</h3>
+              <span class="idx__w">Website-Preise reichen von null bis zu mehreren Zehntausend. Wir zeigen, wovon die Kosten abhängen und wie du berechnest, was dir eine Website wert ist.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-google-unternehmensprofil.html">
+            <span class="idx__n" aria-hidden="true">02</span>
+            <span class="idx__body">
+              <span class="idx__meta">Lokale Suche</span>
+              <h3 class="idx__t">Google-Unternehmensprofil Schritt für Schritt einrichten</h3>
+              <span class="idx__w">Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Richte es in acht Schritten ein und erscheine in den Kartenergebnissen.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-google-oder-facebook.html">
+            <span class="idx__n" aria-hidden="true">03</span>
+            <span class="idx__body">
+              <span class="idx__meta">Werbung</span>
+              <h3 class="idx__t">Google- oder Facebook-Werbung? Was lohnt sich 2026?</h3>
+              <span class="idx__w">Falsche Frage. Wir zeigen, wofür welche Plattform gut ist — und warum die Kunden vom System kommen, nicht von der Plattform.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-veraltete-website.html">
+            <span class="idx__n" aria-hidden="true">04</span>
+            <span class="idx__body">
+              <span class="idx__meta">Rechnen</span>
+              <h3 class="idx__t">Wie viele Kunden kostet dich eine veraltete Website?</h3>
+              <span class="idx__w">Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Rechne aus, was dich eine veraltete Website monatlich kostet — und was du gewinnen würdest.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-keine-anfragen.html">
+            <span class="idx__n" aria-hidden="true">05</span>
+            <span class="idx__body">
+              <span class="idx__meta">Conversion</span>
+              <h3 class="idx__t">Warum bringt deine Website keine Kunden? 7 häufige Fehler</h3>
+              <span class="idx__w">Du hast eine Website, aber die Kunden bleiben aus? Die sieben häufigsten Fehler der meisten Unternehmen — und wie du jeden behebst.</span>
+            </span>
+          </a>
+        </li>
+        </ol>
+        <div class="idx__stage" aria-hidden="true">
+          <span class="idx__img"><img src="../assets/img/blog-2.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="../assets/img/blog-3.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="../assets/img/blog-4.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="../assets/img/blog-5.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="../assets/img/blog-6.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+        </div>
+      </div>
 
-        <a class="post" href="blog-website-kosten.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-2.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Preise</span>
-          <h3>Was kostet eine Website 2026?</h3>
-          <p>Website-Preise reichen von null bis zu mehreren Zehntausend. Wir zeigen, wovon die Kosten abhängen und wie du berechnest, was dir eine Website wert ist.</p>
-        </a>
-
-        <a class="post" href="blog-google-unternehmensprofil.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-3.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Lokale Suche</span>
-          <h3>Google-Unternehmensprofil Schritt für Schritt einrichten</h3>
-          <p>Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Richte es in acht Schritten ein und erscheine in den Kartenergebnissen.</p>
-        </a>
-
-        <a class="post" href="blog-google-oder-facebook.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-4.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Werbung</span>
-          <h3>Google- oder Facebook-Werbung? Was lohnt sich 2026?</h3>
-          <p>Falsche Frage. Wir zeigen, wofür welche Plattform gut ist — und warum die Kunden vom System kommen, nicht von der Plattform.</p>
-        </a>
-
-        <a class="post" href="blog-veraltete-website.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-5.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Rechnen</span>
-          <h3>Wie viele Kunden kostet dich eine veraltete Website?</h3>
-          <p>Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Rechne aus, was dich eine veraltete Website monatlich kostet — und was du gewinnen würdest.</p>
-        </a>
-
-        <a class="post" href="blog-keine-anfragen.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-6.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Conversion</span>
-          <h3>Warum bringt deine Website keine Kunden? 7 häufige Fehler</h3>
-          <p>Du hast eine Website, aber die Kunden bleiben aus? Die sieben häufigsten Fehler der meisten Unternehmen — und wie du jeden behebst.</p>
-        </a>
-
+      <div class="grid g-3" style="margin-top:clamp(2.5rem,6vw,4rem)">
         <div class="post" data-reveal style="border-color:var(--signal)">
           <span class="post__meta sig">Newsletter</span>
           <h3>Angst, etwas zu verpassen?</h3>

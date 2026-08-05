@@ -1,0 +1,161 @@
+/* ==========================================================================
+   STRATOS — the blog index (§22). Loaded by `css: blog`.
+
+   Six equal cards with six equal thumbnails told a reader nothing about which
+   article to read. This is an editorial index: the title carries it, the image
+   is the footnote, and the image only appears for the row you are actually on.
+
+   No JavaScript and no cursor-following. The images sit in one sticky panel
+   and the row's own `:hover` / `:focus-within` raises the matching one, so a
+   keyboard user tabbing the list gets exactly what a mouse user gets — which
+   is the part a cursor-tracking version cannot do at all.
+   ========================================================================== */
+
+.idx {
+  /* The image column is a PERCENTAGE, not a fraction, and that is the whole
+     trick: a percentage resolves against this element's content box, so the
+     absolutely-positioned images can be given the identical value and land
+     exactly on the sticky panel. With `.58fr` the column width depends on how
+     the gap is distributed, and the images sat 300px to the left of the panel
+     they were supposed to fill. */
+  --idx-img: 36%;
+  --idx-gap: clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--idx-img);
+  gap: var(--idx-gap);
+  align-items: start;
+}
+
+.idx__list { list-style: none; margin: 0; padding: 0; }
+
+/* Deliberately NOT `position: relative`. The row is the nearer ancestor, so
+   making it a containing block is what pinned each image inside its own row
+   instead of against the index — a row at the bottom of the list could then
+   never light a panel at the top of the screen, which is the entire idea. */
+.idx__row { border-top: 1px solid var(--hair); }
+.idx__row:last-child { border-bottom: 1px solid var(--hair); }
+
+.idx__row > a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.2rem);
+  padding-block: clamp(1.4rem, 3.4vw, 2.4rem);
+  align-items: baseline;
+}
+
+.idx__n {
+  font: 500 var(--step--1) / 1 var(--data);
+  letter-spacing: .12em;
+  color: var(--haze);
+  transition: color .35s var(--trace-ease);
+}
+
+.idx__meta {
+  display: block;
+  font: 500 var(--step--1) / 1 var(--data);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--haze);
+  margin-bottom: .7rem;
+}
+
+/* The title is the largest thing in the row on purpose. It shifts a little on
+   hover — a few pixels of travel, not a jump — so the row acknowledges the
+   pointer without the list reflowing around it. */
+.idx__t {
+  font-family: var(--display);
+  font-size: var(--step-2);
+  font-variation-settings: "wdth" 96, "wght" 640;
+  text-transform: uppercase;
+  line-height: 1.05;
+  max-width: 24ch;
+  transition: color .35s var(--trace-ease), transform .45s var(--trace-ease);
+}
+
+.idx__w {
+  display: block;
+  margin-top: .9rem;
+  max-width: 52ch;
+  color: rgba(244, 244, 244, .72);
+  font-size: var(--step--1);
+  line-height: 1.55;
+}
+
+.idx__row:hover .idx__t,
+.idx__row:focus-within .idx__t {
+  color: var(--signal);
+  transform: translateX(clamp(.25rem, .8vw, .6rem));
+}
+.idx__row:hover .idx__n,
+.idx__row:focus-within .idx__n { color: var(--signal); }
+
+/* ---- the shared image panel */
+
+.idx__stage {
+  position: sticky;
+  top: clamp(5rem, 12vh, 8rem);
+  /* 16/9 because that is the shape the artwork was made in. At 4/3 `cover`
+     cropped the sides, and these particular illustrations carry their own
+     headline text — so the crop was cutting a word in half. Matching the asset
+     is cheaper than fighting it. */
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--hair);
+  background: var(--ink);
+}
+
+/* The images live INSIDE the sticky panel, not in the rows, and this is the
+   second attempt. The first put them in the rows and positioned them absolutely
+   against the index — which looks right at scroll zero and then slides off the
+   top, because an absolutely-positioned box cannot be sticky and was anchored
+   to the top of a list two thousand pixels tall.
+
+   In the panel they are sticky by construction. What has to travel instead is
+   the KNOWLEDGE of which row is hovered, and `:has()` carries it: the index
+   asks whether its nth row is being pointed at and lights the nth image. */
+.idx__img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .5s var(--trace-ease);
+  pointer-events: none;
+}
+.idx__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.idx:has(.idx__row:nth-child(1):hover)        .idx__img:nth-child(1),
+.idx:has(.idx__row:nth-child(1):focus-within) .idx__img:nth-child(1),
+.idx:has(.idx__row:nth-child(2):hover)        .idx__img:nth-child(2),
+.idx:has(.idx__row:nth-child(2):focus-within) .idx__img:nth-child(2),
+.idx:has(.idx__row:nth-child(3):hover)        .idx__img:nth-child(3),
+.idx:has(.idx__row:nth-child(3):focus-within) .idx__img:nth-child(3),
+.idx:has(.idx__row:nth-child(4):hover)        .idx__img:nth-child(4),
+.idx:has(.idx__row:nth-child(4):focus-within) .idx__img:nth-child(4),
+.idx:has(.idx__row:nth-child(5):hover)        .idx__img:nth-child(5),
+.idx:has(.idx__row:nth-child(5):focus-within) .idx__img:nth-child(5) { opacity: 1; }
+
+/* Below the two-column breakpoint there is no panel to point at, so each row
+   simply carries its own image inline. The hover reveal would be a tap target
+   that shows something and then navigates away from it. */
+/* Below the two-column breakpoint there is no second column to point at, and a
+   hover panel on a touchscreen is a thing you reveal and then immediately
+   navigate away from. The index becomes text-led: number, category, title,
+   summary. The images are decorative — `alt=""`, `aria-hidden` — so nothing a
+   reader needs goes with them, and the page stops fetching five photographs a
+   phone was never going to show. */
+@media (max-width: 900px) {
+  .idx { grid-template-columns: 1fr; }
+  .idx__stage { display: none; }
+  .idx__row > a { padding-bottom: clamp(1rem, 3vw, 1.4rem); }
+  .idx__t { font-size: var(--step-1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .idx__t, .idx__n, .idx__img { transition: none; }
+  .idx__row:hover .idx__t,
+  .idx__row:focus-within .idx__t { transform: none; }
+}

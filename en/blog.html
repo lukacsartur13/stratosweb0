@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-blog.css">
 <script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -161,43 +162,73 @@
   <!-- ============================================ lista -->
   <section class="band band--tight">
     <div class="wrap">
-      <div class="grid g-3" data-stagger>
+      <!-- Szerkesztői index: a cím a főszereplő, a kép a lábjegyzet. A képek
+           egy közös, ragadós felületen ülnek, és az éppen olvasott sorhoz
+           tartozó gyullad ki — egérrel és billentyűzettel egyaránt (:hover és
+           :focus-within). Nincs kurzort követő mozgás és nincs JavaScript. -->
+      <div class="idx">
+        <ol class="idx__list">
+        <li class="idx__row">
+          <a href="blog-website-cost.html">
+            <span class="idx__n" aria-hidden="true">01</span>
+            <span class="idx__body">
+              <span class="idx__meta">Pricing</span>
+              <h3 class="idx__t">How much does a website cost in 2026?</h3>
+              <span class="idx__w">Website prices run from nothing to tens of thousands. We show what drives the cost and how to work out what a website is worth to your business.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-google-business-profile.html">
+            <span class="idx__n" aria-hidden="true">02</span>
+            <span class="idx__body">
+              <span class="idx__meta">Local search</span>
+              <h3 class="idx__t">Setting up a Google Business Profile, step by step</h3>
+              <span class="idx__w">A Google Business Profile is the most powerful free client acquisition tool for local businesses. Set it up in eight steps and show up in the map results.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-google-or-facebook.html">
+            <span class="idx__n" aria-hidden="true">03</span>
+            <span class="idx__body">
+              <span class="idx__meta">Advertising</span>
+              <h3 class="idx__t">Google or Facebook ads — which is worth it in 2026?</h3>
+              <span class="idx__w">It's the wrong question. We show what each platform is for, and why clients come from the system, not the platform.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-outdated-website.html">
+            <span class="idx__n" aria-hidden="true">04</span>
+            <span class="idx__body">
+              <span class="idx__meta">Doing the maths</span>
+              <h3 class="idx__t">How many clients is an outdated website costing you?</h3>
+              <span class="idx__w">There's one number no business owner ever sees: the clients they lost. Work out what an outdated website costs you monthly — and what you'd gain.</span>
+            </span>
+          </a>
+        </li>
+        <li class="idx__row">
+          <a href="blog-no-enquiries.html">
+            <span class="idx__n" aria-hidden="true">05</span>
+            <span class="idx__body">
+              <span class="idx__meta">Conversion</span>
+              <h3 class="idx__t">Why isn't your website bringing clients? 7 common mistakes</h3>
+              <span class="idx__w">You have a website but the clients aren't coming? The seven most common mistakes most businesses make — and how to fix each one.</span>
+            </span>
+          </a>
+        </li>
+        </ol>
+        <div class="idx__stage" aria-hidden="true">
+          <span class="idx__img"><img src="../assets/img/blog-2.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="../assets/img/blog-3.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="../assets/img/blog-4.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="../assets/img/blog-5.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+          <span class="idx__img"><img src="../assets/img/blog-6.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
+        </div>
+      </div>
 
-        <a class="post" href="blog-website-cost.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-2.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Pricing</span>
-          <h3>How much does a website cost in 2026?</h3>
-          <p>Website prices run from nothing to tens of thousands. We show what drives the cost and how to work out what a website is worth to your business.</p>
-        </a>
-
-        <a class="post" href="blog-google-business-profile.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-3.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Local search</span>
-          <h3>Setting up a Google Business Profile, step by step</h3>
-          <p>A Google Business Profile is the most powerful free client acquisition tool for local businesses. Set it up in eight steps and show up in the map results.</p>
-        </a>
-
-        <a class="post" href="blog-google-or-facebook.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-4.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Advertising</span>
-          <h3>Google or Facebook ads — which is worth it in 2026?</h3>
-          <p>It's the wrong question. We show what each platform is for, and why clients come from the system, not the platform.</p>
-        </a>
-
-        <a class="post" href="blog-outdated-website.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-5.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Doing the maths</span>
-          <h3>How many clients is an outdated website costing you?</h3>
-          <p>There's one number no business owner ever sees: the clients they lost. Work out what an outdated website costs you monthly — and what you'd gain.</p>
-        </a>
-
-        <a class="post" href="blog-no-enquiries.html" data-reveal>
-          <span class="post__img"><img src="../assets/img/blog-6.jpg" alt="" loading="lazy" width="1800" height="1012"></span>
-          <span class="post__meta">Conversion</span>
-          <h3>Why isn't your website bringing clients? 7 common mistakes</h3>
-          <p>You have a website but the clients aren't coming? The seven most common mistakes most businesses make — and how to fix each one.</p>
-        </a>
-
+      <div class="grid g-3" style="margin-top:clamp(2.5rem,6vw,4rem)">
         <div class="post" data-reveal style="border-color:var(--signal)">
           <span class="post__meta sig">Newsletter</span>
           <h3>Afraid of missing out?</h3>
