@@ -1,0 +1,360 @@
+/* ==========================================================================
+   STRATOS — Meridian Trace motion layer.
+
+   Companion to assets/js/motion.js. The division is strict: JavaScript owns
+   one number per element and writes it to a custom property or a class; this
+   file owns every pixel that number turns into. Nothing here animates on its
+   own — there are no keyframes, no infinite loops, no transitions on scroll-
+   driven properties (a transition on a value that changes every frame is just
+   lag). Hover and focus states transition, because those are events.
+
+   THE TRACE
+   ---------
+   One hairline, one weight, one colour, everywhere: the Meridian is a measuring
+   instrument, and instruments do not change their line weight per page. What
+   changes per page is the path — a branch on Services, a network on Work, a
+   single descending line on an article. That geometry lives in each page's
+   markup.
+   ========================================================================== */
+
+:root {
+  --trace-w: 1.25px;
+  --trace-c: rgba(203, 220, 233, .32);      /* --chrome, held back */
+  --trace-lit: var(--signal);
+  --trace-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* -------------------------------------------------------------- TraceLine */
+
+[data-trace] {
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+}
+
+[data-trace] path,
+[data-trace] line,
+[data-trace] polyline {
+  fill: none;
+  stroke: var(--trace-c);
+  stroke-width: var(--trace-w);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-trace] .trace__lit { stroke: var(--trace-lit); }
+
+/* A node is a station on the trace: where it meets a label, a logo or a stage. */
+[data-trace] .trace__node {
+  fill: var(--void);
+  stroke: var(--trace-c);
+  stroke-width: var(--trace-w);
+}
+[data-trace].is-drawn .trace__node { stroke: var(--trace-lit); }
+
+/* The decorative trace is furniture, not content. Every page that carries one
+   states its argument in text as well, so this is safe to remove wholesale
+   from the accessibility tree. */
+[data-trace] { }
+
+/* ------------------------------------------------------------ StickyStage */
+
+[data-stage] {
+  position: relative;
+  /* Height is authored per page — it is the duration of the sequence and
+     therefore an editorial decision, not a component default. */
+}
+
+[data-stage] .stage__pin {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  overflow: clip;
+}
+
+[data-stage] [data-stage-item] {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(1.1rem);
+  transition: opacity .5s var(--trace-ease), transform .5s var(--trace-ease);
+  pointer-events: none;
+}
+[data-stage] [data-stage-item].is-on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+/* A stage that has already happened recedes rather than disappearing, so the
+   sequence reads as progression and not as a slideshow. */
+[data-stage] [data-stage-item].is-past { transform: translateY(-1.1rem); }
+
+[data-stage] [data-stage-fill] {
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+/* Reduced motion: the pin releases and every stage becomes an ordinary
+   stacked editorial block, in source order, all visible. */
+[data-stage].is-static { height: auto !important; }
+[data-stage].is-static .stage__pin {
+  position: static;
+  min-height: 0;
+  display: block;
+  overflow: visible;
+}
+[data-stage].is-static [data-stage-item] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  pointer-events: auto;
+  margin-block: clamp(2rem, 6vw, 4.5rem);
+}
+
+/* --------------------------------------------------------- HorizontalRail */
+
+[data-rail] {
+  position: relative;
+  height: calc(100svh + var(--rail-travel, 0px));
+}
+
+[data-rail] .rail__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: clip;
+}
+
+[data-rail] [data-rail-track] {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-inline: var(--gut);
+  will-change: transform;
+}
+
+[data-rail] [data-rail-panel] {
+  flex: 0 0 auto;
+  width: min(72vw, 900px);
+  opacity: .5;
+  transition: opacity .55s var(--trace-ease);
+}
+[data-rail] [data-rail-panel].is-on { opacity: 1; }
+
+/* Portrait mobile and reduced motion both get the same answer: the rail is not
+   a rail, it is a vertical narrative in the order the markup already states.
+   No pin, no travel, no viewport-height trap. */
+@media (max-width: 860px) and (orientation: portrait) {
+  [data-rail] { height: auto; }
+  [data-rail] .rail__pin { position: static; height: auto; overflow: visible; }
+  [data-rail] [data-rail-track] {
+    flex-direction: column;
+    transform: none !important;
+    padding-inline: 0;
+  }
+  [data-rail] [data-rail-panel] { width: 100%; opacity: 1; }
+}
+
+[data-rail].is-static { height: auto; }
+[data-rail].is-static .rail__pin { position: static; height: auto; overflow: visible; }
+[data-rail].is-static [data-rail-track] {
+  flex-direction: column;
+  transform: none !important;
+  padding-inline: 0;
+}
+[data-rail].is-static [data-rail-panel] { width: 100%; opacity: 1; }
+
+/* ----------------------------------------------------------- DepthGallery */
+
+[data-depth] { perspective: 1600px; }
+
+[data-depth] [data-depth-item] {
+  --depth: 0;
+  transform:
+    translateZ(calc((var(--depth) - 1) * 90px))
+    scale(calc(.94 + var(--depth) * .06));
+  opacity: calc(.42 + var(--depth) * .58);
+  transition: none;
+}
+[data-depth].is-static [data-depth-item] { transform: none; opacity: 1; }
+
+/* ------------------------------------------------------------- MaskReveal */
+
+[data-mask] {
+  --mask: 0%;
+  clip-path: inset(0 calc(100% - var(--mask)) 0 0);
+}
+[data-mask="y"] { clip-path: inset(calc(100% - var(--mask)) 0 0 0); }
+
+/* ------------------------------------------------------------- KineticType */
+
+[data-kinetic] {
+  font-variation-settings: "wdth" var(--wd), "wght" var(--wt);
+  /* No transition: the driver writes this every frame while in range. */
+}
+
+/* ------------------------------------------------------------- MetricTrace */
+
+[data-metric] .metric__row { display: grid; gap: .35rem; }
+[data-metric] [data-metric-value] { font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------- CTAConvergence */
+
+[data-converge] {
+  --converge: 0;
+  position: relative;
+}
+[data-converge] .converge__cta {
+  transform: translateY(calc((1 - var(--converge)) * 1.4rem));
+  opacity: calc(.25 + var(--converge) * .75);
+}
+[data-converge].is-arrived .converge__cta { transform: none; opacity: 1; }
+
+/* ------------------------------------------- LogoSignalRail / Constellation
+   / Index. Three arrangements of one idea. Normalisation is done by optical
+   height and padding, never by forcing a width or stretching a mark: aspect
+   ratio is preserved by `width:auto`, and the box that varies is the box, not
+   the logo. */
+
+.logoset {
+  --mark-h: clamp(22px, 2.4vw, 34px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logoset [data-logo] {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  opacity: .55;
+  filter: grayscale(1) contrast(.9);
+  transition: opacity .55s var(--trace-ease), filter .55s var(--trace-ease);
+}
+.logoset [data-logo].is-lit,
+.logoset [data-logo]:hover,
+.logoset [data-logo]:focus-within {
+  opacity: 1;
+  filter: none;
+}
+
+.logoset [data-logo] img {
+  height: var(--mark-h);
+  width: auto;              /* aspect ratio is never touched */
+  max-width: 190px;
+  object-fit: contain;      /* and never cropped */
+  display: block;
+}
+
+/* A mark whose artwork is dark needs a light chip to sit on; a mark that is
+   already light sits on the void directly. Which one applies is a property of
+   the asset, recorded in the logo manifest, not a guess made in CSS. */
+.logoset [data-logo][data-on="light"] img {
+  background: var(--paper);
+  padding: .5rem .7rem;
+  border-radius: 2px;
+}
+
+.logoset .logo__scope {
+  font: 500 var(--step--1) / 1 var(--data);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--haze);
+  opacity: 0;
+  transform: translateX(-.3rem);
+  transition: opacity .5s var(--trace-ease), transform .5s var(--trace-ease);
+}
+.logoset [data-logo].is-lit .logo__scope { opacity: 1; transform: none; }
+
+/* 5.9 — a compact horizontal credibility row. */
+.logoset--rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(1.6rem, 4vw, 3.4rem);
+}
+.logoset--rail .logo__scope { display: none; }
+
+/* 5.10 — an asymmetric capability network. Deliberately not a grid of equal
+   cells: the offsets are what stop it reading as a logo wall. */
+.logoset--constellation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+.logoset--constellation [data-logo]:nth-child(2n) { transform: translateY(clamp(.8rem, 2vw, 1.8rem)); }
+.logoset--constellation [data-logo]:nth-child(3n) { transform: translateY(clamp(-1.6rem, -2.4vw, -.7rem)); }
+.logoset--constellation [data-logo] { flex-direction: column; align-items: flex-start; gap: .7rem; }
+
+/* 5.11 — text-led. The name carries it and the mark is the footnote. */
+.logoset--index { display: grid; gap: 0; }
+.logoset--index [data-logo] {
+  justify-content: space-between;
+  padding-block: clamp(1rem, 2.4vw, 1.6rem);
+  border-top: 1px solid var(--hair);
+  opacity: 1;
+  filter: none;
+}
+.logoset--index [data-logo]:last-child { border-bottom: 1px solid var(--hair); }
+.logoset--index .logo__name {
+  font: 500 var(--step-1) / 1.1 var(--display);
+  font-variation-settings: "wdth" 96, "wght" 620;
+}
+.logoset--index img { height: calc(var(--mark-h) * .8); opacity: .6; }
+.logoset--index [data-logo].is-lit img { opacity: 1; }
+.logoset--index .logo__scope { opacity: 1; transform: none; }
+
+@media (max-width: 640px) {
+  .logoset--index [data-logo] { flex-wrap: wrap; gap: .5rem 1rem; }
+  .logoset--constellation [data-logo] { transform: none !important; }
+}
+
+/* --------------------------------------------------------------- project
+   image restraint (brief §9.4). These are the ceilings, not the sizes: a
+   project image is proof, and proof does not need the whole viewport. */
+
+.proofshot {
+  max-width: clamp(300px, 38vw, 620px);
+  max-height: 52svh;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+@media (max-width: 860px) {
+  .proofshot { max-width: 88vw; max-height: none; }
+}
+
+/* ----------------------------------------------------- global safety net */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Belt and braces: the driver already commits end states, but a primitive
+     whose JavaScript failed to boot must still not hide its content. */
+  [data-stage] [data-stage-item],
+  [data-mask],
+  [data-converge] .converge__cta,
+  .logoset [data-logo] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  [data-rail], [data-stage] { height: auto !important; }
+  [data-rail] .rail__pin, [data-stage] .stage__pin { position: static !important; min-height: 0; height: auto; }
+  [data-rail] [data-rail-track] { flex-direction: column; transform: none !important; }
+}
+
+/* If motion.js never runs — blocked, errored, ancient browser — nothing may be
+   left hidden. `.motion-ready` is set by the script at boot, so these rules
+   apply exactly when it did not. */
+html:not(.motion-ready) [data-stage] [data-stage-item] { opacity: 1; transform: none; }
+html:not(.motion-ready) [data-mask] { clip-path: none; }
+html:not(.motion-ready) [data-converge] .converge__cta { opacity: 1; transform: none; }
+html:not(.motion-ready) .logoset [data-logo] { opacity: 1; filter: none; }
+html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
