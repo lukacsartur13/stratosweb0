@@ -144,6 +144,39 @@ async function main() {
           imagesWithoutDims: imgs.filter((i) => !i.getAttribute('width') || !i.getAttribute('height')).length,
           imagesWithoutAlt: imgs.filter((i) => i.getAttribute('alt') === null).length,
           brokenImages: imgs.filter((i) => i.complete && i.naturalWidth === 0).length,
+          // The other half of `imagesWithoutDims`, and the reason it is here.
+          //
+          // Requiring width and height on every <img> made build.py stamp the
+          // file's intrinsic size onto all of them. A stamped dimension is a
+          // presentational hint, so a CSS rule that constrains ONE axis no
+          // longer gets the other from the aspect ratio — it gets the stamped
+          // pixel value. Three rules did exactly that, and the logo shipped to
+          // production 26×96 instead of 26×26 for the life of Phase 8.
+          //
+          // Measured, not read off the markup: this compares the box the
+          // browser actually laid out against the file's real proportions, so
+          // it catches the defect whatever caused it. 5% tolerance absorbs
+          // sub-pixel rounding; the failures it is looking for are 3× and up.
+          //
+          // Only `object-fit: fill` counts, and that restriction is the whole
+          // difference between a useful check and a noisy one. Every card photo
+          // on the site sits in a box of a deliberately different shape under
+          // `object-fit: cover` — cropped, not squashed, and correct. `fill` is
+          // the default, so it is exactly the images nobody gave a fit rule to
+          // that get stretched, which is the defect.
+          distortedImages: imgs
+            .filter((i) => i.naturalWidth > 0 && i.naturalHeight > 0)
+            .filter((i) => getComputedStyle(i).objectFit === 'fill')
+            .map((i) => {
+              const r = i.getBoundingClientRect();
+              if (r.width < 1 || r.height < 1) return null;
+              const natural = i.naturalWidth / i.naturalHeight;
+              const rendered = r.width / r.height;
+              if (Math.abs(natural - rendered) / natural <= 0.05) return null;
+              return `${i.currentSrc.split('/').pop()} ${Math.round(r.width)}x${Math.round(r.height)}`
+                + ` (natural ${i.naturalWidth}x${i.naturalHeight})`;
+            })
+            .filter(Boolean),
           overflow,
           widest,
         };
@@ -165,6 +198,7 @@ async function main() {
       if (facts.imagesWithoutAlt) problems.push(`${facts.imagesWithoutAlt} images with no alt attribute`);
       if (facts.imagesWithoutDims) problems.push(`${facts.imagesWithoutDims} images with no width/height`);
       if (facts.brokenImages) problems.push(`${facts.brokenImages} images failed to load`);
+      if (facts.distortedImages.length) problems.push(`distorted images: ${facts.distortedImages.slice(0, 3).join('; ')}`);
       if (consoleErrors.length) problems.push(`console errors: ${consoleErrors.slice(0, 2).join(' | ')}`);
       if (failedRequests.length) problems.push(`failed first-party requests: ${failedRequests.slice(0, 2).join(' | ')}`);
 
