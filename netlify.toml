@@ -13,7 +13,20 @@
   functions = "netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # 22, not 20, and this is load-bearing rather than housekeeping.
+  #
+  # `@supabase/supabase-js` builds a realtime client inside `createClient()`
+  # even when nothing subscribes to anything, and that client requires a global
+  # `WebSocket`. Node did not have one until 22. On 20 the call threw
+  #
+  #     Node.js detected but native WebSocket not found.
+  #
+  # out of the function, so POST /api/lead answered 503 for every submission
+  # while the credentials were present and correct the whole time.
+  #
+  # Netlify also warns on every invocation that "Node.js 20 and below are
+  # deprecated", so this was due regardless.
+  NODE_VERSION = "22"
 
 #------------------------------------------------------------------ redirects
 # The portal is a single-page app: a direct hit on /portal/leads must return the

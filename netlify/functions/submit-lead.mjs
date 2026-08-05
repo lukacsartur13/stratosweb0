@@ -119,9 +119,38 @@ async function hashIp(ip) {
  * Postgres, so there is no way to exercise them without either a live database
  * in CI or a way to stand in for one. This is the smaller of the two.
  *
- * `create()` returns null when the function is not configured, which is what
- * the 503 branch reads. Everything else about the store step goes through the
- * returned object, so a test replaces exactly the I/O and nothing else.
+ * The contract of `create()` is narrow on purpose:
+ *
+ *   returns null   no credentials. The one fault the caller can name exactly.
+ *   throws         anything else. The caller logs the real message rather than
+ *                  guessing at a cause.
+ *
+ * That split is not academic. Both faults used to return null, so the handler
+ * reported "SUPABASE_URL or the Supabase secret key is missing" for every store
+ * failure — and production spent an outage pointed at the environment variables
+ * panel while the credentials were correct and the actual fault was the Node
+ * version. A wrong diagnosis is worse than none.
+ *
+ * Two real failures found here, both in production, neither catchable locally
+ * because this file resolves and runs fine from the repo:
+ *
+ *   1. `@supabase/supabase-js` was declared in portal/package.json. Netlify
+ *      bundles functions against the ROOT package.json, so the import threw
+ *      ERR_MODULE_NOT_FOUND — and an unhandled throw in a Netlify function is
+ *      answered by the platform with `{ errorType, errorMessage, trace }`, a
+ *      full stack trace, publicly, on a form endpoint. Fixed by the
+ *      `dependencies` block in package.json; the handler's try/catch is what
+ *      keeps any future variant a clean 503 instead of a disclosure.
+ *
+ *   2. `createClient()` builds a realtime client that needs a global
+ *      `WebSocket`, whether or not anything ever subscribes. Node gained one in
+ *      22; netlify.toml pinned 20, so the call threw on every request. See the
+ *      NODE_VERSION note in netlify.toml before lowering it.
+ *
+ * Worth revisiting: this function performs exactly two operations, an insert
+ * and a lookup by submission_id, both plain PostgREST calls. The full SDK — and
+ * the realtime client that caused (2) — is a large dependency for that, and
+ * dropping to `fetch` would remove the Node floor entirely.
  */
 export const __store = {
   async create() {
@@ -130,28 +159,12 @@ export const __store = {
     // Imported here rather than at module scope: every rejection above returns
     // without paying for the SDK, and the validation stays importable — and
     // therefore testable — in a process that has no Supabase client installed.
-    //
-    // The try/catch is not defensive padding. A dynamic import that cannot
-    // resolve throws ERR_MODULE_NOT_FOUND *out of the handler*, and an
-    // unhandled throw in a Netlify function is answered by the platform with
-    // its own body: `{ errorType, errorMessage, trace: [...] }`, a full stack
-    // trace, to the public, on a form endpoint.
-    //
-    // That is exactly what production was doing. The SDK lives in
-    // portal/package.json; Netlify bundles functions against the ROOT
-    // package.json, so it was never installed for this function and every
-    // submission that reached the store step crashed here and leaked the
-    // trace. The real fix is the `dependencies` block in package.json — this
-    // makes the failure mode a clean 503 rather than a disclosure, whatever
-    // the cause.
-    let createClient;
-    try {
-      ({ createClient } = await import('@supabase/supabase-js'));
-    } catch (error) {
-      console.error('submit-lead: the Supabase SDK failed to load:', error.message);
-      return null;
-    }
+    const { createClient } = await import('@supabase/supabase-js');
 
+    // Throws on Node < 22: createClient builds a realtime client that needs a
+    // global WebSocket, whether or not anything subscribes. NODE_VERSION in
+    // netlify.toml is pinned to 22 for exactly this reason — see the note
+    // there before lowering it.
     const supabase = createClient(SUPABASE_URL, SERVICE_KEY, {
       auth: { persistSession: false, autoRefreshToken: false },
     });
@@ -311,22 +324,27 @@ export default async (request) => {
   const { envelope } = result;
 
   // ---- 10. store ------------------------------------------------------------
-  // `create()` returns null for every reason the store is unreachable: no
-  // credentials, or an SDK that would not load. Both are our fault, not the
-  // visitor's, and both must answer the same way rather than throwing — see
-  // the note on __store.
+  // Two distinct faults, two distinct log lines, and the same 503 for the
+  // visitor either way. Keeping them apart matters: an outage that reports the
+  // wrong cause costs more time than one that reports nothing at all. The
+  // first version of this logged "SUPABASE_URL or the Supabase secret key is
+  // missing" for *any* store failure, and sent us to the environment variables
+  // panel while the real fault was the Node version.
   let store = null;
   try {
     store = await __store.create();
+    if (!store) {
+      console.error('submit-lead: no Supabase credentials. Set SUPABASE_URL and '
+        + 'SUPABASE_SECRET_KEY (or SUPABASE_SERVICE_ROLE_KEY) in the Netlify '
+        + 'environment, scoped to Functions.');
+    }
   } catch (error) {
-    console.error('submit-lead: could not reach the store:', error.message);
+    // Credentials are present; something else broke. The commonest cause is a
+    // Node version below 22, where createClient throws on the missing global
+    // WebSocket. Its own message says so, so it is logged verbatim.
+    console.error('submit-lead: the Supabase client could not be created:', error.message);
   }
-  if (!store) {
-    // Misconfiguration is ours, not the visitor's. Log loudly, and tell them
-    // something true and useful rather than "500".
-    console.error('submit-lead: SUPABASE_URL or the Supabase secret key is missing.');
-    return fail(503, 'SERVICE_UNAVAILABLE', t.unavailable);
-  }
+  if (!store) return fail(503, 'SERVICE_UNAVAILABLE', t.unavailable);
 
   const row = {
     ...toLeadRow(envelope),
