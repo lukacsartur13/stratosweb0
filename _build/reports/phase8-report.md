@@ -552,8 +552,69 @@ Blocking items before deployment, in order:
 
 ## 18. Final gate results
 
-Run on the frozen Phase 8 source. Raw output in the session log.
+Run on frozen source at commit `3b306c0`. Nothing was edited between the freeze
+and the run; an earlier attempt was discarded because the source moved
+mid-suite, and a second because a port collision I introduced killed the
+experiments harness from underneath itself.
 
-*(Filled in from the final run — see §19 of the brief. The gate sequence is
-`npm run typecheck`, `npm run build`, `npx playwright test --workers=1`,
-`npm run validate:full`.)*
+| gate | command | result |
+|---|---|---|
+| typecheck | `npm run typecheck` | **pass** — portal and experiments, no errors |
+| production build | `npm run build` | **pass** — generate 22×3, assemble 22 + assets, build:home, build:portal |
+| test suite | `npx playwright test --workers=1` | **370 passed, 10 skipped, 0 failed** (14.2 min) |
+| full validation | `npm run validate:full` | **88 passed, 97 skipped, 0 failed** (15.6 min) |
+| route audit | `node scripts/route-audit.mjs` | **792 checks, 0 failing, 0 broken links** |
+| content comparison | `node scripts/content-inventory.mjs --check` | **pass** — 66 routes, no reductions |
+
+The main suite total is identical to the continuation baseline — **370 passed,
+10 skipped, 0 failed, before and after**. Thirty-three new routes, a rebuilt
+contact page, a rewritten generator path and two new audit scripts did not move
+it by one test.
+
+No assertion was altered and no timeout was raised to reach this.
+
+The 97 skips in `validate:full` are the experiments harness's own
+project-conditional skips (reduced-motion variants and WebGL-dependent stills),
+unchanged from Phase 7.
+
+### Additional audits, all clean
+
+* lead/form regression — 46 tests across desktop and mobile;
+* locale audit — 0 untranslated strings, 0 Hungarian leaks in 44 localized documents;
+* internal-link audit — 0 broken across all 66 routes;
+* metadata audit — canonical, Open Graph and 4 hreflang links on all 66;
+* horizontal-overflow audit — clean at all 12 viewports including 200% zoom;
+* accessibility smoke — landmarks, single H1, no heading skips, visible focus, live regions;
+* Phase 7 transition regression — clean, and the case-study types are now correctly wired;
+* homepage regression — the Phase 6/7 source is untouched since the continuation began (`git diff` over `experiments/`, `transitions.css`, `transitions.js`, `main.js` is empty);
+* production-output asset audit — no rights-encumbered media in `dist/`, no homepage WebGL bundle referenced by any subpage.
+
+---
+
+## 19. Completion verdict
+
+Workstreams A–L are implemented, measured and green. Three of §23's
+prerequisites are not met, and none of them is mine to grant:
+
+1. **Human visual review is not complete.** The package is generated and
+   labelled; acceptance has not been given and is not assumed.
+2. **The six articles' factual content has not been reviewed by the user.** §12
+   permits them to ship technically complete with review pending, and they are
+   marked as such — but §23 requires that review to be completed or explicitly
+   documented as pending. It is documented as pending.
+3. **Production deployment is not authorised and therefore not verified.** The
+   branch is `main`; commits are local and nothing has been pushed.
+
+There is also one factual correction outstanding that predates Phase 8 and
+should not ship without being fixed: the imprint and privacy policy still name
+Wix as the hosting provider, carried over from the previous site.
+
+Accordingly:
+
+**PHASE 8 NOT ACCEPTED**
+
+Not because anything failed — every gate passes and every measured number moved
+the right way — but because acceptance depends on three human decisions that
+have not been made. The work is ready for those decisions.
+
+Phase 9 has not been started.
