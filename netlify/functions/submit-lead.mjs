@@ -33,10 +33,27 @@
 //   4. rate limit        429   per-IP, per-instance
 //   5. actual size       413   measured after reading, before parsing
 //   6. JSON parse        400   malformed
+//  6b. format            400   neither contract — see below
 //   7. envelope shape    400   bad submissionId / formType / locale / route
 //   8. spam gates        200   honeypot or impossible fill time — see below
 //   9. field schema      422   with per-field messages
 //  10. store            200/500
+//
+//
+// TWO CONTRACTS, FOR NOW
+// ----------------------
+// A deploy is atomic on the server and is not atomic in the browser. A visitor
+// with the previous assets/js/main.js open in a tab — or holding a cached copy,
+// which netlify.toml keeps valid for seven days — posts the pre-envelope flat
+// body. Refusing those would silently lose real enquiries from real people who
+// did nothing wrong.
+//
+// So gate 6b decides which contract a body is written in, explicitly and by
+// what the body HAS rather than by what it lacks, and a legacy body is
+// normalised by the adapter in lead-contract.mjs. Canonical bodies stay on the
+// strict per-form schemas; nothing about them is relaxed to make room.
+//
+// The adapter is dated and self-contained. REMOVE ON OR AFTER 2026-09-05.
 //
 // The spam gates answer 200 with a well-formed success body. That is
 // deliberate: a bot that can tell "rejected as spam" from "accepted" can tune
@@ -50,7 +67,9 @@ import {
   MAX_BODY_BYTES,
   MIN_FILL_MS,
   clean,
+  detectFormat,
   messagesFor,
+  normaliseLegacy,
   toLeadRow,
   validateEnvelope,
 } from './lead-contract.mjs';
@@ -215,30 +234,47 @@ export default async (request) => {
   }
 
   // Chosen from the untrusted body only to pick a language for the error text.
-  // `validateEnvelope` re-checks it against the allow-list before it is stored.
+  // Both contracts re-check it against the allow-list before it is stored.
   const t = messagesFor(clean(body?.locale, 5));
 
+  // ---- 6b. which contract is this written in? -------------------------------
+  // Decided explicitly, by what the body HAS, never by what it lacks. See the
+  // dated banner on the adapter in lead-contract.mjs: a deploy is atomic on the
+  // server and is not atomic in the browser, so for a while both are real.
+  const format = detectFormat(body);
+  if (format === 'unknown') {
+    return fail(400, 'MALFORMED_JSON', t.malformed);
+  }
+  const legacy = format === 'legacy';
+
   // ---- 7. envelope shape, 9. field schema ----------------------------------
-  const result = validateEnvelope(body, t);
+  // Canonical bodies are held to the strict per-form schemas. Legacy bodies
+  // are held to the rules the OLD server applied, because the client that sent
+  // them cannot be updated and never knew the new ones.
+  const result = legacy ? normaliseLegacy(body, t) : validateEnvelope(body, t);
 
   // ---- 8. spam gates --------------------------------------------------------
   // Run against the raw body, before the schema verdict, so a bot that also
   // fills a required field wrong still gets the indistinguishable 200 rather
   // than a 422 that tells it which field to fix.
   //
-  // The honeypot is a field hidden from humans by CSS. It lives in `meta`, not
-  // in `fields`, so it can never be declared by a schema and can never reach a
-  // column even by accident.
-  const submissionId = clean(body?.submissionId, 64).toLowerCase() || crypto.randomUUID();
+  // The honeypot is a field hidden from humans by CSS. In the canonical
+  // contract it lives in `meta`, so no schema can declare it and it can never
+  // reach a column. The old client posted it at the top level under its markup
+  // name; both are read here and neither is ever stored.
+  const submissionId = legacy
+    ? crypto.randomUUID()
+    : (clean(body?.submissionId, 64).toLowerCase() || crypto.randomUUID());
 
-  if (clean(body?.meta?.botField, 200)) {
-    audit('drop.honeypot', null, { submissionId });
+  const botField = legacy ? body?.company_website : body?.meta?.botField;
+  if (clean(botField, 200)) {
+    audit('drop.honeypot', null, { submissionId, format });
     return dropSilently(submissionId);
   }
 
-  const elapsed = Number(body?.meta?.elapsedMs);
+  const elapsed = Number(legacy ? body?.elapsed_ms : body?.meta?.elapsedMs);
   if (Number.isFinite(elapsed) && elapsed >= 0 && elapsed < MIN_FILL_MS) {
-    audit('drop.tooFast', null, { submissionId, elapsedMs: Math.round(elapsed) });
+    audit('drop.tooFast', null, { submissionId, format, elapsedMs: Math.round(elapsed) });
     return dropSilently(submissionId);
   }
 
@@ -247,7 +283,7 @@ export default async (request) => {
     const status = code === 'VALIDATION_FAILED' ? 422
       : code === 'UNSUPPORTED_FORM_TYPE' ? 422
         : 400;
-    audit('reject', null, { submissionId, code });
+    audit('reject', null, { submissionId, format, code });
     return fail(status, code, message, errors ? { errors } : undefined);
   }
 
@@ -269,13 +305,13 @@ export default async (request) => {
   };
 
   if (envelope.dropped.length) {
-    audit('fields.dropped', envelope, { dropped: envelope.dropped });
+    audit('fields.dropped', envelope, { format, dropped: envelope.dropped });
   }
 
   const { data, error } = await store.insert(row);
 
   if (!error) {
-    audit('stored', envelope, { leadId: data.id });
+    audit('stored', envelope, { leadId: data.id, format });
     return json(200, { ok: true, submissionId: envelope.submissionId, leadId: data.id });
   }
 

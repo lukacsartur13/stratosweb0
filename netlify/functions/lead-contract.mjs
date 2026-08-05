@@ -449,7 +449,12 @@ export const LEAD_MAPPERS = {
  * mapper can concatenate two valid fields into one that is over the limit.
  */
 export function toLeadRow(envelope) {
-  const mapped = LEAD_MAPPERS[envelope.formType](envelope.fields);
+  // A legacy body is already column-shaped and already allow-listed by
+  // LEGACY_FIELDS; running it through a per-form mapper would map it twice.
+  // Remove this branch with the adapter — see its dated banner above.
+  const mapped = envelope.legacy
+    ? envelope.fields
+    : LEAD_MAPPERS[envelope.formType](envelope.fields);
   const row = {
     submission_id: envelope.submissionId,
     form_type: envelope.formType,
@@ -469,6 +474,170 @@ export function toLeadRow(envelope) {
   // let an empty required field through. Belt and braces.
   if (!row.name) row.name = 'Ismeretlen';
   return row;
+}
+
+// =============================================================================
+// LEGACY COMPATIBILITY ADAPTER
+//
+//                REMOVE ON OR AFTER 2026-09-05.
+//
+// Why it exists
+// -------------
+// A deploy is atomic on the server and is not atomic in the browser. When the
+// new function goes live there will be visitors holding the previous
+// assets/js/main.js — in an open tab, and from cache: netlify.toml serves
+// /assets/* with `max-age=604800`, so a seven-day-old copy of the old client
+// is a correct cache hit, not a stale one. Those clients post the pre-envelope
+// flat body. Without this adapter every one of them gets a 400 and loses their
+// submission, and neither they nor we would see why.
+//
+// What the old client sent
+// ------------------------
+//     { source, locale, name, company, email, phone, website,
+//       service_interest, budget_range, timeframe, message,
+//       company_website, elapsed_ms }
+//
+// The keys are already database column names. That was the original defect,
+// and it is exactly why this adapter does NOT pass the body through: it reads
+// only the names in LEGACY_FIELDS below and drops everything else, so a legacy
+// request has no more reach into the table than a canonical one.
+//
+// Removal
+// -------
+// The window is seven days of asset cache plus a margin for long-lived tabs.
+// On or after 2026-09-05, delete: LEGACY_FIELDS, normaliseLegacy, the 'legacy'
+// branch of detectFormat and toLeadRow, and the legacy describe block in
+// tests/lead-endpoint.spec.ts. Nothing else depends on any of it. After
+// removal a legacy body falls through to MALFORMED_JSON, which by then is the
+// correct answer.
+// =============================================================================
+
+/**
+ * The only legacy keys that may reach a column, and their caps.
+ *
+ * These are column names, so the list is closed and is checked against
+ * COLUMN_MAX — a legacy key that is not here cannot be written, and nothing
+ * iterates the request body.
+ *
+ * Values are TRUNCATED rather than rejected when over-long, because that is
+ * what the old server did (`clean(value, limit)` sliced). An old client that
+ * was succeeding before the deploy must not start failing because of it.
+ */
+export const LEGACY_FIELDS = {
+  name:             { max: COLUMN_MAX.name },
+  company:          { max: COLUMN_MAX.company },
+  email:            { max: COLUMN_MAX.email, type: 'email', required: true },
+  phone:            { max: COLUMN_MAX.phone },
+  website:          { max: COLUMN_MAX.website },
+  service_interest: { max: COLUMN_MAX.service_interest },
+  budget_range:     { max: COLUMN_MAX.budget_range },
+  timeframe:        { max: COLUMN_MAX.timeframe },
+  message:          { max: COLUMN_MAX.message },
+};
+
+/**
+ * Which contract a body is written in.
+ *
+ * This routes; it does not validate. A body that shows any canonical marker is
+ * *claiming* to be canonical and is sent to `validateEnvelope`, which can say
+ * precisely what is wrong with it — answering "malformed JSON" to an envelope
+ * whose `fields` is a string would be true but useless. Only a body with no
+ * marker from either contract is unknown.
+ *
+ * Both sides are recognised positively, by names only that contract uses:
+ * `formType`/`fields` exist solely in the envelope, and the old client sent
+ * `source` on every form including the one-field newsletter (see `toLead` in
+ * the pre-Phase-8 main.js). Nothing is inferred from absence alone.
+ */
+export function detectFormat(body) {
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return 'unknown';
+
+  const claimsEnvelope = body.formType !== undefined || body.fields !== undefined;
+  if (claimsEnvelope) return 'canonical';
+
+  if (typeof body.source === 'string') return 'legacy';
+
+  return 'unknown';
+}
+
+/**
+ * Turn a legacy flat body into the canonical internal envelope.
+ *
+ * The result is marked `legacy: true`, which makes `toLeadRow` skip the
+ * per-form mappers: a legacy body arrives already mapped to columns, so
+ * running it through a mapper would map it twice.
+ *
+ * Validation deliberately reproduces the OLD server's rules, not the new
+ * per-form schemas. The new schemas require fields the old client never sent
+ * — a contact submission carries `name`, not `vezeteknev` and `keresztnev` —
+ * so holding a legacy request to them would reject every one of them.
+ * Canonical requests are unaffected and stay strict.
+ */
+export function normaliseLegacy(body, messages = MESSAGES.en) {
+  const t = messages;
+
+  const formType = FORM_TYPES.includes(clean(body.source, 40))
+    ? clean(body.source, 40)
+    : 'website';
+  const locale = LOCALES.includes(clean(body.locale, 5)) ? clean(body.locale, 5) : 'hu';
+
+  const fields = {};
+  for (const [name, spec] of Object.entries(LEGACY_FIELDS)) {
+    const value = clean(body[name], spec.max);      // truncates, never rejects
+    if (value) fields[name] = value;
+  }
+
+  const errors = {};
+  // The old server's two rules, kept verbatim so behaviour does not change
+  // under a client that cannot be updated.
+  if (formType === 'newsletter') {
+    if (!fields.name) fields.name = 'Newsletter subscriber';
+  } else if ((fields.name || '').length < 2) {
+    errors.name = t.required;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(fields.email || '')) errors.email = t.email;
+
+  if (Object.keys(errors).length) {
+    return { ok: false, code: 'VALIDATION_FAILED', message: t.invalid, errors };
+  }
+
+  const elapsed = Number(body.elapsed_ms);
+
+  return {
+    ok: true,
+    envelope: {
+      // Server-generated, because the old client has no concept of one. See
+      // the idempotency note below — this is NOT an idempotency key.
+      submissionId: crypto.randomUUID(),
+      formType,
+      locale,
+      route: null,                    // the old client did not report one
+      fields,
+      meta: {
+        ...normaliseMeta({ elapsedMs: Number.isFinite(elapsed) ? elapsed : undefined }),
+        // Set here, after normaliseMeta, and never accepted from a request:
+        // normaliseMeta copies only the keys META declares, so a canonical
+        // client cannot mislabel itself as legacy. `meta.legacyClient === true`
+        // is therefore a reliable marker of a row this adapter produced.
+        legacyClient: true,
+        // IDEMPOTENCY LIMITATION, recorded on the row itself.
+        //
+        // The id above is minted per REQUEST, not per submission. A legacy
+        // client that retries after a timeout sends no id and gets a new one,
+        // so the retry becomes a second lead. There is no fix that does not
+        // guess: deriving an id from the content would silently merge two
+        // genuine enquiries that happen to look alike, which is a worse
+        // failure than a visible duplicate. Duplicates from legacy clients are
+        // findable with `where meta->>'submissionIdSource' = 'server'`.
+        submissionIdSource: 'server',
+      },
+      legacy: true,
+      dropped: Object.keys(body).filter(
+        (k) => !(k in LEGACY_FIELDS) &&
+               !['source', 'locale', 'company_website', 'elapsed_ms'].includes(k),
+      ),
+    },
+  };
 }
 
 // ------------------------------------------------------------------ messages

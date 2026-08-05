@@ -364,6 +364,123 @@ column, table or address.
 
 ---
 
+## 11a. Mixed-version rollout
+
+**REMOVE THE ADAPTER ON OR AFTER 2026-09-05.**
+
+A deploy is atomic on the server and is not atomic in the browser. Two things
+keep the old client alive after the new function goes live:
+
+* an open tab holding the previous `assets/js/main.js`;
+* cache. `netlify.toml` serves `/assets/*` with `max-age=604800`, so a
+  seven-day-old copy of the old client is a **correct** cache hit, not a stale
+  one, and no revalidation happens until it expires.
+
+Those clients post the pre-envelope flat body. Refusing them would silently
+lose real enquiries from people who did nothing wrong, and neither they nor we
+would see why: the old client renders "sending failed" and the lead is gone.
+
+### Strategy — accept both, normalise one way
+
+Gate 6b in the handler decides which contract a body is written in, then routes
+it. Canonical bodies are unchanged and stay on the strict per-form schemas;
+nothing about them is relaxed to make room.
+
+```
+detectFormat(body)
+  formType or fields present  ->  'canonical'  ->  validateEnvelope   (strict)
+  source is a string          ->  'legacy'     ->  normaliseLegacy    (old rules)
+  neither                     ->  'unknown'    ->  400 MALFORMED_JSON
+```
+
+Detection **routes; it does not validate**. A body carrying either canonical
+marker is claiming to be canonical and gets the canonical validator's precise
+answer — replying "malformed JSON" to an envelope whose `fields` is a string
+would be true and useless. Both contracts are recognised by names only they
+use, never by what the other lacks.
+
+### What the adapter does and does not do
+
+The legacy keys **are column names** — that was the original defect. So the
+adapter reads only the nine names in `LEGACY_FIELDS`, checked against
+`COLUMN_MAX`, and never iterates the request body. A legacy request has no more
+reach into the table than a canonical one: `status`, `ip_hash`, `id`,
+`created_at` and `submission_id` in a legacy body are all ignored. Asserted.
+
+Legacy validation reproduces the **old** server's rules, not the new schemas:
+
+* newsletter with no name gets the `Newsletter subscriber` stand-in;
+* every other form needs a name of at least two characters;
+* the address must parse;
+* over-long values are **truncated, not rejected**, because the old server's
+  `clean()` sliced — an old client that was succeeding before the deploy must
+  not start failing because of it.
+
+Holding a legacy body to the new schemas would reject every one of them: a
+legacy contact request carries `name`, never the
+`vezeteknev`/`keresztnev`/`telefon`/`ceg`/`megjegyzes`/consent set the canonical
+contact schema requires. There is a test named for exactly that case.
+
+The honeypot and the timer move too: the old client posted them as top-level
+`company_website` and `elapsed_ms`. Both are read, neither is ever stored.
+
+### Marking, and the idempotency limitation
+
+A legacy client has no concept of a submission id, so the server mints one **per
+request**. Every legacy row is marked:
+
+```json
+"meta": { "legacyClient": true, "submissionIdSource": "server", "elapsedMs": 42000 }
+```
+
+`normaliseMeta` copies only the keys `META` declares, and neither marker is one
+of them, so a canonical client cannot mislabel itself. `meta->>'submissionIdSource'
+= 'server'` therefore reliably finds every row the adapter produced.
+
+**Full retry idempotency cannot be guaranteed for legacy clients.** A legacy
+retry after a timeout sends no id, gets a new one, and becomes a second lead.
+There is no fix that does not guess: deriving an id from the content would
+silently merge two genuine enquiries that happen to look alike, which is a worse
+failure than a visible duplicate. The limitation is pinned by a test rather than
+only written down here, and duplicates are findable with the query above.
+
+Canonical idempotency is unaffected and is asserted while the adapter is in
+place.
+
+### Removal plan
+
+| | |
+|---|---|
+| earliest safe removal | **2026-09-05** — 7 days of asset cache plus margin for long-lived tabs |
+| what to delete | `LEGACY_FIELDS`, `normaliseLegacy`, the `'legacy'` branch of `detectFormat`, the `envelope.legacy` branch of `toLeadRow`, gate 6b's legacy path, and the `mixed-version rollout` describe block |
+| how to confirm it is safe | `select count(*) from leads where meta->>'submissionIdSource' = 'server' and created_at > now() - interval '7 days';` — zero means no legacy client has been seen in a week |
+| after removal | a legacy body falls through to `MALFORMED_JSON`, which by then is the correct answer |
+
+Nothing else in the codebase depends on any of it. The banner in
+`lead-contract.mjs` carries the same date.
+
+### Tests
+
+17 added, all in `tests/lead-endpoint.spec.ts`, in-process against the real
+handler. **63 endpoint tests total, up from 46.**
+
+| requested case | test |
+|---|---|
+| 1. legacy newsletter | `a legacy newsletter request is accepted and stored` + the stand-in name |
+| 2. legacy contact | `a legacy contact request is accepted and stored` |
+| 3. legacy Impact | `a legacy impact request is accepted and stored` |
+| 4. legacy questionnaire | `a legacy questionnaire request is accepted and stored` |
+| 5. canonical, all form types | `canonical requests are unaffected by the adapter` (all four, plus a strictness check) |
+| 6. matches neither format | `a body matching neither contract is refused` (7 shapes) |
+| 7. unknown fields | `an unknown legacy key cannot reach a column` and `an unknown *canonical* field is dropped without losing the submission` |
+| 8. duplicate canonical submissionId | `canonical idempotency still holds while the adapter is in place` |
+
+Also: legacy truncation, legacy error shape (the old client renders
+`Object.values(body.errors)[0]`, so `errors` must be present and keyed),
+legacy spam gates reading the old field names, the honeypot reaching no column
+in either contract, the half-built-envelope routing case, and the documented
+two-leads-from-two-legacy-requests limitation.
+
 ## 12. Production verification
 
 **Not done.** It cannot be: it requires a deploy, and §36 of the Phase 8 brief

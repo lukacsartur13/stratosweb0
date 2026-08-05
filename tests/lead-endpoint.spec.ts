@@ -551,3 +551,275 @@ test.describe('POST /api/lead — the store', () => {
     expect(JSON.stringify(json)).not.toMatch(/leads|relation|null value|23502/i);
   });
 });
+
+/* ============================================================================
+   MIXED-VERSION ROLLOUT
+   Remove with the adapter, on or after 2026-09-05.
+
+   The deploy is atomic on the server and is not atomic in the browser: a
+   visitor can be holding the previous assets/js/main.js in an open tab, or a
+   cached copy, which netlify.toml keeps valid for seven days. These assert
+   that such a client keeps working, that it cannot reach further into the
+   table than a current one, and that nothing about the canonical contract is
+   relaxed to accommodate it.
+
+   The bodies below are the real pre-Phase-8 shape, taken from `toLead` in
+   main.js and `buildLead` in quote.hu.js at commit dc219e2.
+   ========================================================================== */
+
+const legacy = {
+  newsletter: () => ({
+    source: 'newsletter', locale: 'hu',
+    email: 'reader@example.com',
+    company_website: '', elapsed_ms: 9_000,
+  }),
+
+  contact: () => ({
+    source: 'contact', locale: 'hu',
+    name: 'Kovács János', company: 'Példa Kft.',
+    email: 'janos@example.com', phone: '+36 30 000 0000',
+    message: 'Üzenet: szeretnék árajánlatot kérni.\nAdatvédelmi nyilatkozat elfogadva: Igen',
+    company_website: '', elapsed_ms: 42_000,
+  }),
+
+  impact: () => ({
+    source: 'impact', locale: 'en',
+    name: 'Nagy Anna', company: 'Példa Alapítvány',
+    email: 'anna@example.org', phone: '+36 30 111 2222',
+    website: 'https://pelda.hu', service_interest: 'Impact Program',
+    message: 'Tevékenységi terület: Gyermekvédelem\nElért hatás: 400 ember',
+    company_website: '', elapsed_ms: 120_000,
+  }),
+
+  questionnaire: () => ({
+    source: 'questionnaire', locale: 'de',
+    name: 'Anna Muster', company: 'Beispiel GmbH',
+    email: 'anna@beispiel.de', phone: '+49 30 000000',
+    website: 'https://beispiel.de',
+    service_interest: 'Igényfelmérő – KKV',
+    budget_range: '800 €', timeframe: '3 Monate',
+    message: '01. Wie heißt das Unternehmen?\nBeispiel GmbH',
+    company_website: '', elapsed_ms: 300_000,
+  }),
+} as const;
+
+test.describe('mixed-version rollout — the old client still works', () => {
+  const real = (handlerModule as any).__store.create;
+  test.afterEach(() => { (handlerModule as any).__store.create = real; });
+
+  for (const form of FORMS) {
+    test(`a legacy ${form} request is accepted and stored`, async () => {
+      const fake = fakeStore({ onInsert: () => ({ data: { id: `legacy-${form}` } }) });
+      (handlerModule as any).__store.create = fake.store.create;
+
+      const res = await request(legacy[form]());
+      expect(res.status).toBe(200);
+
+      const json = await res.json();
+      expect(json.ok).toBe(true);
+      expect(json.leadId).toBe(`legacy-${form}`);
+      // The old client reads `body.ok` and the status only, so the extra keys
+      // are invisible to it — but they must still be the real contract.
+      expect(json.submissionId).toMatch(
+        /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
+      );
+
+      const row = fake.inserted[0] as Record<string, any>;
+      expect(row.form_type).toBe(form);
+      expect(row.source).toBe(form);
+      expect(row.email).toBe(legacy[form]().email);
+      // Server-minted and marked as such, so a legacy row is identifiable.
+      expect(row.meta.legacyClient).toBe(true);
+      expect(row.meta.submissionIdSource).toBe('server');
+      expect(row.submission_id).toBe(json.submissionId);
+      // The old client reported no page, and none is invented for it.
+      expect(row.source_route).toBeNull();
+    });
+  }
+
+  test('a legacy newsletter gets the stand-in name, exactly as the old server did', async () => {
+    const fake = fakeStore({ onInsert: () => ({ data: { id: 'x' } }) });
+    (handlerModule as any).__store.create = fake.store.create;
+
+    await request(legacy.newsletter());
+    expect((fake.inserted[0] as Record<string, any>).name).toBe('Newsletter subscriber');
+  });
+
+  test('a legacy body is not held to the new per-form schemas', async () => {
+    // The decisive case. A legacy contact body carries `name`, never the
+    // `vezeteknev`/`keresztnev`/`telefon`/`ceg`/`megjegyzes`/consent set the
+    // canonical contact schema requires. Holding it to that schema would
+    // reject every real submission from every un-updated tab.
+    const fake = fakeStore({ onInsert: () => ({ data: { id: 'x' } }) });
+    (handlerModule as any).__store.create = fake.store.create;
+
+    const res = await request(legacy.contact());
+    expect(res.status).toBe(200);
+  });
+
+  test('legacy over-long values are truncated, not rejected', async () => {
+    // The old server sliced. An old client that was succeeding before the
+    // deploy must not start failing because of it.
+    const fake = fakeStore({ onInsert: () => ({ data: { id: 'x' } }) });
+    (handlerModule as any).__store.create = fake.store.create;
+
+    const res = await request({ ...legacy.contact(), company: 'x'.repeat(500) });
+    expect(res.status).toBe(200);
+    expect((fake.inserted[0] as Record<string, any>).company).toHaveLength(160);
+  });
+
+  test('legacy validation reproduces the old rules, and the old error shape', async () => {
+    const noName = await request({ ...legacy.contact(), name: '' });
+    expect(noName.status).toBe(422);
+    const a = await noName.json();
+    // The old client renders `Object.values(body.errors)[0]`, so `errors` has
+    // to be present and keyed by something meaningful.
+    expect(a.errors).toHaveProperty('name');
+    expect(Object.values(a.errors)[0]).toBeTruthy();
+
+    const badEmail = await request({ ...legacy.contact(), email: 'nope' });
+    expect(badEmail.status).toBe(422);
+    expect((await badEmail.json()).errors).toHaveProperty('email');
+  });
+
+  test('legacy spam gates read the old field names', async () => {
+    // The honeypot was top-level `company_website` and the timer was
+    // `elapsed_ms`; neither exists in the canonical contract.
+    const hp = await request({ ...legacy.contact(), company_website: 'https://spam.example' });
+    expect(hp.status).toBe(200);
+    expect((await hp.json()).ok).toBe(true);
+
+    const fast = await request({ ...legacy.contact(), elapsed_ms: 800 });
+    expect(fast.status).toBe(200);
+  });
+
+  test('the honeypot never reaches a column, in either contract', async () => {
+    const fake = fakeStore({ onInsert: () => ({ data: { id: 'x' } }) });
+    (handlerModule as any).__store.create = fake.store.create;
+
+    await request(legacy.contact());
+    const row = JSON.stringify(fake.inserted[0]);
+    expect(row).not.toContain('company_website');
+    expect(row).not.toContain('elapsed_ms');
+  });
+
+  test('an unknown legacy key cannot reach a column', async () => {
+    // The legacy keys ARE column names — that was the original defect. The
+    // adapter reads only LEGACY_FIELDS, so a body naming a column outside that
+    // list writes nothing, whether the column exists or not.
+    const fake = fakeStore({ onInsert: () => ({ data: { id: 'x' } }) });
+    (handlerModule as any).__store.create = fake.store.create;
+
+    const res = await request({
+      ...legacy.contact(),
+      status: 'won',            // a real column, and not the client's to set
+      ip_hash: 'forged',        // a real column, computed server-side only
+      id: '00000000-0000-4000-8000-00000000dead',
+      created_at: '1999-01-01',
+      submission_id: '00000000-0000-4000-8000-000000000002',
+      nonsense: 'x',
+    });
+    expect(res.status).toBe(200);
+
+    const row = fake.inserted[0] as Record<string, any>;
+    expect(row.status).toBeUndefined();          // the column default decides
+    expect(row.ip_hash).toBeNull();              // server-computed, no salt in tests
+    expect(row.id).toBeUndefined();              // the database decides
+    expect(row.created_at).toBeUndefined();
+    expect(row.submission_id).not.toBe('00000000-0000-4000-8000-000000000002');
+  });
+
+  test('an unknown *canonical* field is dropped without losing the submission', async () => {
+    const fake = fakeStore({ onInsert: () => ({ data: { id: 'x' } }) });
+    (handlerModule as any).__store.create = fake.store.create;
+
+    const body = envelopes.contact();
+    const res = await request({
+      ...body,
+      fields: { ...body.fields, status: 'won', surprise: 'x' },
+    });
+    expect(res.status).toBe(200);
+    const row = fake.inserted[0] as Record<string, any>;
+    expect(row.status).toBeUndefined();
+    expect(row.payload.status).toBeUndefined();
+    expect(row.payload.surprise).toBeUndefined();
+  });
+
+  test('a body matching neither contract is refused', async () => {
+    // No marker from either contract, so there is nothing to route it to.
+    for (const body of [
+      { hello: 'world' },
+      { source: 42, email: 'a@b.co' },               // source is not a string
+      { email: 'a@b.co', name: 'X' },                // column names, no source
+      [],
+      'a string',
+      42,
+      null,
+    ]) {
+      const res = await request(body);
+      expect(res.status, `${JSON.stringify(body)} must be refused`).toBe(400);
+      expect((await res.json()).code).toBe('MALFORMED_JSON');
+    }
+  });
+
+  test('a half-built envelope is answered as an envelope, not as gibberish', async () => {
+    // Detection routes, it does not validate. A body carrying either canonical
+    // marker is claiming to be canonical, so it gets the canonical validator's
+    // precise answer rather than a flat "malformed".
+    const noFields = await request({ formType: 'contact', submissionId: uuid(), locale: 'hu' });
+    expect(noFields.status).toBe(422);
+    expect((await noFields.json()).code).toBe('VALIDATION_FAILED');
+
+    const noType = await request({ submissionId: uuid(), locale: 'hu', fields: { email: 'a@b.co' } });
+    expect(noType.status).toBe(422);
+    expect((await noType.json()).code).toBe('UNSUPPORTED_FORM_TYPE');
+  });
+
+  test('canonical requests are unaffected by the adapter', async () => {
+    test.skip(hasKey(), NEEDS_NO_KEY);
+    for (const form of FORMS) {
+      const res = await request(envelopes[form]());
+      expect(res.status, `${form} must still reach the store step`).toBe(503);
+    }
+    // And still strictly validated.
+    const body = envelopes.contact();
+    const strict = await request({ ...body, fields: { ...body.fields, ceg: '' } });
+    expect(strict.status).toBe(422);
+  });
+
+  test('canonical idempotency still holds while the adapter is in place', async () => {
+    const fake = fakeStore({
+      onInsert: () => ({ error: { code: '23505', message: 'duplicate key' } }),
+      existing: { id: 'lead-original' },
+    });
+    (handlerModule as any).__store.create = fake.store.create;
+
+    const body = envelopes.contact();
+    const res = await request(body);
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({
+      ok: true, submissionId: body.submissionId, leadId: 'lead-original', duplicate: true,
+    });
+  });
+
+  test('two legacy requests are two leads — the documented limitation', async () => {
+    // Not a bug being asserted as correct: it is the limitation being pinned
+    // so it cannot be forgotten. A legacy client sends no submissionId, so a
+    // retry is indistinguishable from a second enquiry and becomes a second
+    // lead. Deriving an id from the content would instead silently merge two
+    // genuine enquiries that happen to look alike, which is worse.
+    const fake = fakeStore({ onInsert: () => ({ data: { id: 'x' } }) });
+    (handlerModule as any).__store.create = fake.store.create;
+
+    await request(legacy.contact());
+    await request(legacy.contact());
+
+    const ids = fake.inserted.map((r) => (r as Record<string, any>).submission_id);
+    expect(ids).toHaveLength(2);
+    expect(ids[0]).not.toBe(ids[1]);
+    // Both are findable as server-minted, which is how a duplicate is spotted.
+    for (const row of fake.inserted) {
+      expect((row as Record<string, any>).meta.submissionIdSource).toBe('server');
+    }
+  });
+});
