@@ -1,0 +1,43 @@
+/* ==========================================================================
+   STRATOS — about (§18). Loaded by `css: about`.
+
+   Four capabilities that run separately and are braided together on a project.
+   The line says the same thing the sentence beside it says; neither depends on
+   the other, which is why the drawing can be hidden from assistive technology
+   without anything being lost.
+   ========================================================================== */
+
+.braid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(.6rem, 2vw, 1.2rem);
+}
+
+.braid__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(.6rem, 2vw, 1.6rem);
+}
+
+.braid__list li {
+  font: 500 var(--step--1) / 1 var(--data);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+.braid__trace { width: 100%; height: clamp(90px, 13vw, 170px); }
+
+.braid__w { max-width: 52ch; color: var(--haze); }
+
+/* Four strands crossing needs width to read as a braid rather than as a knot.
+   Below 760 the labels wrap to two lines each and the crossing point lands on
+   top of them, so the drawing goes and the sentence carries it — which it was
+   already doing. */
+@media (max-width: 760px) {
+  .braid__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .braid__trace { display: none; }
+}

@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-impact.css">
 <script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -283,6 +284,22 @@
         </div>
         <p class="prose" style="align-self:end">Four steps from application to a new website.</p>
       </div>
+
+      <!-- A négy lépés egy útvonal, nem négy különálló doboz: a vonal
+           összeköti őket, és a jelentkezéstől a kész oldalig tart. Csökkentett
+           mozgásnál kirajzolva áll, 760 px alatt pedig egyszerűen nincs — a
+           lépések sorszáma amúgy is elmondja a sorrendet. -->
+      <svg class="netpath" data-trace data-trace-stagger="0.4" viewBox="0 0 1200 40"
+           preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M40 20 H340"/>
+        <path d="M340 20 H640"/>
+        <path d="M640 20 H940"/>
+        <path d="M940 20 H1160"/>
+        <circle class="trace__node" cx="40" cy="20" r="4"/>
+        <circle class="trace__node" cx="340" cy="20" r="4"/>
+        <circle class="trace__node" cx="640" cy="20" r="4"/>
+        <circle class="trace__node" cx="940" cy="20" r="4"/>
+      </svg>
 
       <div class="steps">
         <article class="step" data-reveal>

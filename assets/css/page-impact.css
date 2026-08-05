@@ -1,0 +1,22 @@
+/* ==========================================================================
+   STRATOS — Impact Program (§19). Loaded by `css: impact`.
+
+   The selection process is a route with four stations, not four cards that
+   happen to be adjacent. That is the only motion on this page, deliberately:
+   the subject is organisations asking for help, and a page that performs at
+   them is a page that has misread the room. §19 asks for dignity and factual
+   clarity, which here means restraint rather than an effect.
+   ========================================================================== */
+
+.netpath {
+  width: 100%;
+  height: clamp(28px, 3.4vw, 44px);
+  margin-bottom: clamp(.6rem, 2vw, 1.2rem);
+}
+
+/* Four stations across a phone are 80px apart and land between the stacked
+   steps rather than above them. The steps are numbered; the order is not in
+   doubt without a line to carry it. */
+@media (max-width: 760px) {
+  .netpath { display: none; }
+}

@@ -1,6 +1,7 @@
 title: Stratos Impact Program — ingyenes weboldal nonprofitoknak | Stratos
 desc: Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.
 ceiling: 34000
+css: impact
 ---
   <section class="phead">
     <div class="wrap">
@@ -167,6 +168,22 @@ ceiling: 34000
         </div>
         <p class="prose" style="align-self:end">Négy lépés a jelentkezéstől az új weboldalig.</p>
       </div>
+
+      <!-- A négy lépés egy útvonal, nem négy különálló doboz: a vonal
+           összeköti őket, és a jelentkezéstől a kész oldalig tart. Csökkentett
+           mozgásnál kirajzolva áll, 760 px alatt pedig egyszerűen nincs — a
+           lépések sorszáma amúgy is elmondja a sorrendet. -->
+      <svg class="netpath" data-trace data-trace-stagger="0.4" viewBox="0 0 1200 40"
+           preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M40 20 H340"/>
+        <path d="M340 20 H640"/>
+        <path d="M640 20 H940"/>
+        <path d="M940 20 H1160"/>
+        <circle class="trace__node" cx="40" cy="20" r="4"/>
+        <circle class="trace__node" cx="340" cy="20" r="4"/>
+        <circle class="trace__node" cx="640" cy="20" r="4"/>
+        <circle class="trace__node" cx="940" cy="20" r="4"/>
+      </svg>
 
       <div class="steps">
         <article class="step" data-reveal>

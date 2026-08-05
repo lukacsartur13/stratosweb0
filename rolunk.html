@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/motion.css">
 <link rel="stylesheet" href="assets/css/transitions.css">
+<link rel="stylesheet" href="assets/css/page-about.css">
 <script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -176,6 +177,32 @@
     </div>
   </section>
 
+  <!-- ============================================ fonat -->
+  <!-- Négy szál, egy fonat. A négy képesség külön indul, de a projektekben
+       együtt fut — ezt mondja el a vonal is. Dekoráció, ezért rejtve marad a
+       képernyőolvasó elől; a címkék valódi szövegek. -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <p class="smark"><span class="smark__n" aria-hidden="true">03</span><span class="smark__t">Ahogy dolgozunk</span></p>
+      <div class="braid">
+        <ul class="braid__list">
+          <li>Tervezés</li>
+          <li>Fejlesztés</li>
+          <li>Hirdetés</li>
+          <li>Szöveg és kereső</li>
+        </ul>
+        <svg class="braid__trace" data-trace data-trace-stagger="0.4" viewBox="0 0 1200 200"
+             preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M0 25 C 380 25 420 100 600 100 C 780 100 820 25 1200 25"/>
+          <path d="M0 75 C 380 75 420 100 600 100 C 780 100 820 75 1200 75"/>
+          <path d="M0 125 C 380 125 420 100 600 100 C 780 100 820 125 1200 125"/>
+          <path d="M0 175 C 380 175 420 100 600 100 C 780 100 820 175 1200 175"/>
+        </svg>
+        <p class="braid__w">A négy szál külön is megáll, de egy projektben ugyanaz a kéz fogja össze őket. Ezért nem kell négy beszállítót egyeztetned.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================================ csapat -->
   <section class="band">
     <div class="wrap">
@@ -201,7 +228,7 @@
 
         <article class="grid" style="gap:1.6rem">
           <figure class="portrait">
-            <img src="assets/img/team-richard.jpg" alt="Tímár Richárd, partner" loading="lazy" width="1800" height="1004">
+            <img src="assets/img/team-richard.jpg" alt="Tímár Richárd, partner" loading="lazy" width="1250" height="697">
             <figcaption>
               <span class="card__k">Partner / Hirdetéskezelés</span>
               <h3 class="display h-sm" style="margin-top:.3rem">Tímár Richárd</h3>

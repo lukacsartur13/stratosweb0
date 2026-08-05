@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-impact.css">
 <script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -283,6 +284,22 @@
         </div>
         <p class="prose" style="align-self:end">Vier Schritte von der Bewerbung bis zur neuen Website.</p>
       </div>
+
+      <!-- A négy lépés egy útvonal, nem négy különálló doboz: a vonal
+           összeköti őket, és a jelentkezéstől a kész oldalig tart. Csökkentett
+           mozgásnál kirajzolva áll, 760 px alatt pedig egyszerűen nincs — a
+           lépések sorszáma amúgy is elmondja a sorrendet. -->
+      <svg class="netpath" data-trace data-trace-stagger="0.4" viewBox="0 0 1200 40"
+           preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M40 20 H340"/>
+        <path d="M340 20 H640"/>
+        <path d="M640 20 H940"/>
+        <path d="M940 20 H1160"/>
+        <circle class="trace__node" cx="40" cy="20" r="4"/>
+        <circle class="trace__node" cx="340" cy="20" r="4"/>
+        <circle class="trace__node" cx="640" cy="20" r="4"/>
+        <circle class="trace__node" cx="940" cy="20" r="4"/>
+      </svg>
 
       <div class="steps">
         <article class="step" data-reveal>
