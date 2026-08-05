@@ -316,6 +316,11 @@ section { position: relative; }
   padding: .55rem 1.1rem; border: 1px solid var(--hair);
   color: var(--paper); white-space: nowrap;
   max-width: 0; overflow: hidden; opacity: 0; padding-inline: 0; border-width: 0;
+  /* The nav is a flex row and this is the item with the most give, so without
+     this it is the one that absorbs a full row — it was squeezed to 96px and
+     cut its own label in half. It opens from zero or it is not there; it is
+     never a partial word. */
+  flex: 0 0 auto;
   transition: max-width .5s var(--ease), opacity .35s var(--ease),
               padding .5s var(--ease), background .25s, color .25s;
 }
@@ -338,9 +343,18 @@ section { position: relative; }
   .nav[data-state="journey"] .nav__links { display: none; }
 }
 
-/* ---- destination: the navigation returns and the CTA arrives. */
+/* ---- destination: the navigation returns and the CTA arrives.
+
+   The open width has to clear the longest label in any locale, measured with
+   this font at this tracking: "Projekt indítása" needs 187px, "Start a project"
+   and "Projekt starten" 178px. 22ch resolved to 169px and clipped all three —
+   `ch` is the width of a zero, and .13em of letter-spacing on every character
+   is not in that number. 26ch leaves room for a fallback mono, which is wider
+   than the webfont, without leaving a gap when the label is short: the box
+   still shrink-wraps its text, and this only sets the ceiling the transition
+   opens to. */
 .nav[data-state="destination"] .nav__cta {
-  max-width: 22ch; opacity: 1; padding-inline: 1.1rem; border-width: 1px;
+  max-width: 26ch; opacity: 1; padding-inline: 1.1rem; border-width: 1px;
 }
 .nav[data-state="destination"] { padding-block: 1.1rem; }
 

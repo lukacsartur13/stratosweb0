@@ -1,0 +1,193 @@
+/* ==========================================================================
+   STRATOS — services overview (§11).
+
+   Loaded by this route alone, via `css: services` in the fragment's front
+   matter. The shared layer carries the vocabulary every page speaks; the
+   geometry of one page's argument belongs to that page.
+
+   Two moments and one resolution: the service system branches into view, the
+   four services are travelled through horizontally, and the branches converge
+   again above the call to action. Everything between those is quiet.
+   ========================================================================== */
+
+/* ------------------------------------------------- the branching map */
+/* One trunk, four services. The SVG is stretched to the box with
+   `preserveAspectRatio: none` and its stroke is held at a constant weight by
+   `vector-effect: non-scaling-stroke` in motion.css — so the drawing follows
+   the labels at any width instead of the labels being pinned to drawing
+   coordinates that stop matching at the first breakpoint. */
+
+.branch {
+  display: grid;
+  grid-template-columns: minmax(0, 26%) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.4rem);
+  margin-top: clamp(2.6rem, 7vw, 5rem);
+}
+
+.branch__trace {
+  width: 100%;
+  height: clamp(180px, 22vw, 260px);
+}
+
+.branch__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  /* Four equal rows, matched to the four branch endpoints in the SVG box. */
+  grid-template-rows: repeat(4, 1fr);
+  height: clamp(180px, 22vw, 260px);
+}
+
+.branch__list li { display: flex; align-items: center; }
+
+.branch__list a {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(.6rem, 1.6vw, 1.2rem);
+  text-decoration: none;
+  color: inherit;
+  padding-block: .2rem;
+}
+
+.branch__k {
+  font: 500 var(--step--1) / 1 var(--data);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--haze);
+  white-space: nowrap;
+}
+
+.branch__t {
+  font-family: var(--display);
+  font-size: var(--step-1);
+  font-variation-settings: "wdth" 96, "wght" 600;
+  text-transform: uppercase;
+  transition: color .4s var(--trace-ease);
+}
+
+.branch__list a:hover .branch__t,
+.branch__list a:focus-visible .branch__t { color: var(--signal); }
+
+/* Under 760 the trunk-and-branch drawing is wider than it is tall and stops
+   reading as a branch at all. The labels become an ordinary list — the
+   relationship is stated in the prose beside them either way. */
+@media (max-width: 760px) {
+  .branch { grid-template-columns: 1fr; }
+  .branch__trace { display: none; }
+  .branch__list { height: auto; gap: .9rem; grid-template-rows: none; }
+  .branch__list a { flex-direction: column; align-items: flex-start; gap: .25rem; }
+}
+
+/* -------------------------------------------------- the service journey */
+
+.svc { position: relative; }
+
+.svc__track { align-items: center; }
+
+/* Panel width sets two things at once, which is why it is the number worth
+   getting right. It sets the sequence's DURATION — the pinned section is one
+   viewport plus the horizontal distance, so motion.css's default 72vw ran this
+   to 381vh, well past the range the brief allows. And it sets the COMPOSITION:
+   at 900px the panel was twice the text measure inside it, so each one carried
+   a column of empty void on its right that read as a mistake rather than as
+   space.
+
+   50vw with a 720px ceiling gives ~290vh at 1440 and 1280, ~260vh at 1024 —
+   the range asked for at the sizes most people are on. Wider than about 1600
+   it drops below that, and correctly so: more of the sequence is on screen at
+   once, so less scrolling is needed to cross it.
+
+   Written with the `[data-rail]` ancestor because that is what motion.css uses
+   for the default, and a bare class loses to it on specificity however late it
+   loads. */
+.svc[data-rail] .svc__panel {
+  width: min(50vw, 720px);
+}
+
+.svc__panel {
+  display: grid;
+  align-content: center;
+  gap: clamp(.5rem, 1.4vw, .9rem);
+  padding-right: clamp(1rem, 3vw, 2.5rem);
+  border-left: 1px solid var(--hair);
+  padding-left: clamp(1.2rem, 3vw, 2.4rem);
+}
+
+.svc__k {
+  font: 500 var(--step--1) / 1 var(--data);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.svc__p { color: rgba(244, 244, 244, .78); max-width: 48ch; }
+.svc__side { color: var(--haze); max-width: 40ch; font-size: var(--step--1); }
+
+/* The connector. Each panel says what follows it, which is what makes this a
+   journey rather than four cards that happen to be side by side. */
+.svc__next {
+  margin-top: clamp(.6rem, 1.6vw, 1rem);
+  padding-top: clamp(.6rem, 1.6vw, 1rem);
+  border-top: 1px solid var(--hair);
+  color: var(--haze);
+  font-size: var(--step--1);
+  max-width: 42ch;
+}
+.svc__next b { color: rgba(244, 244, 244, .88); font-weight: 500; }
+
+.svc__panel .btn { justify-self: start; margin-top: clamp(.8rem, 2vw, 1.4rem); }
+
+/* Vertical fallback — portrait phones and reduced motion, via the rules in
+   motion.css. The panels stop being a row, so the left rule that separated
+   them becomes a stack of full-width blocks with ordinary spacing. */
+@media (max-width: 860px) and (orientation: portrait) {
+  .svc__panel {
+    width: 100%;
+    padding-right: 0;
+    padding-block: clamp(1.6rem, 5vw, 2.6rem);
+  }
+}
+.svc[data-rail].is-static .svc__panel {
+  width: 100%;
+  padding-right: 0;
+  padding-block: clamp(1.6rem, 5vw, 2.6rem);
+}
+
+/* Short landscape windows: 100svh of pin leaves very little room for a panel
+   with five paragraphs in it, so the type steps down rather than the panel
+   scrolling inside its own pin. */
+@media (max-height: 520px) and (orientation: landscape) {
+  .svc[data-rail] .svc__panel { width: min(64vw, 620px); }
+  .svc__panel { gap: .35rem; }
+  .svc__panel .svc__side { display: none; }
+}
+
+/* ------------------------------------------------ capability constellation */
+
+.svc__caps {
+  margin-top: clamp(3rem, 8vw, 5.5rem);
+  padding-top: clamp(2rem, 5vw, 3rem);
+  border-top: 1px solid var(--hair);
+}
+.svc__caps .eyebrow { margin-bottom: clamp(1.6rem, 4vw, 2.4rem); }
+
+/* -------------------------------------------------------- CTA convergence */
+
+.launch[data-converge] { position: relative; }
+
+.converge__trace {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 100%;
+  width: 100%;
+  height: clamp(70px, 9vw, 120px);
+  /* Sits above the block it belongs to, so it cannot push the CTA off its own
+     baseline grid or overlap the copy inside it. */
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .converge__trace { display: none; }
+}

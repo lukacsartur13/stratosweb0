@@ -75,5 +75,51 @@
  "Nem tudod, melyik <span class=\"sig\">kell?</span>": ["Not sure which one <span class=\"sig\">you need?</span>", "Du weißt nicht, welche du <span class=\"sig\">brauchst?</span>"],
  "Ez a leggyakoribb kiindulópont, és pont ezért van a díjmentes konzultáció. Egy beszélgetés után tudni fogod, mi az, amire tényleg költened érdemes — akkor is, ha az kevesebb, mint amire számítottál.": ["That's the most common starting point, and it's exactly what the free consultation is for. After one conversation you'll know what is genuinely worth spending on — even if that turns out to be less than you expected.", "Das ist der häufigste Ausgangspunkt, und genau dafür gibt es die kostenlose Beratung. Nach einem Gespräch weißt du, wofür sich Ausgaben wirklich lohnen — auch wenn das weniger ist, als du erwartet hast."],
  "Beszéljünk róla": ["Let's talk about it", "Sprechen wir darüber"],
- "Előbb megnézem a munkáinkat": ["Show me your work first", "Erst eure Projekte ansehen"]
+ "Előbb megnézem a munkáinkat": ["Show me your work first", "Erst eure Projekte ansehen"],
+
+ "_p85": ["Phase 8.5 — the branching service map in the hero, the label on the",
+          "horizontal service journey, and the connector line each panel ends on.",
+          "",
+          "The four map entries are whole anchors rather than loose runs because",
+          "the extractor takes a leaf with text in it as one unit. The Hungarian",
+          "href stays in the translated value on purpose: relink() runs after",
+          "translation and maps kkv.html to web-design-sme.html itself, so an",
+          "English filename written here would be looked up, missed and left as a",
+          "dead link."],
+
+ "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Webdesign</span><span class=\"branch__t\">Weboldal KKV-nak</span></a>": [
+  "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Web design</span><span class=\"branch__t\">Website for an SME</span></a>",
+  "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Webdesign</span><span class=\"branch__t\">Website für KMU</span></a>"
+ ],
+ "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Webdesign</span><span class=\"branch__t\">Weboldal nagyvállalatnak</span></a>": [
+  "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Web design</span><span class=\"branch__t\">Website for a large company</span></a>",
+  "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Webdesign</span><span class=\"branch__t\">Website für Großunternehmen</span></a>"
+ ],
+ "<a href=\"branding.html\"><span class=\"branch__k\">03 — Arculat</span><span class=\"branch__t\">Branding és szövegezés</span></a>": [
+  "<a href=\"branding.html\"><span class=\"branch__k\">03 — Identity</span><span class=\"branch__t\">Branding and copywriting</span></a>",
+  "<a href=\"branding.html\"><span class=\"branch__k\">03 — Erscheinungsbild</span><span class=\"branch__t\">Branding und Text</span></a>"
+ ],
+ "<a href=\"hirdeteskezeles.html\"><span class=\"branch__k\">04 — Hirdetés</span><span class=\"branch__t\">Google és Meta hirdetéskezelés</span></a>": [
+  "<a href=\"hirdeteskezeles.html\"><span class=\"branch__k\">04 — Advertising</span><span class=\"branch__t\">Google and Meta ad management</span></a>",
+  "<a href=\"hirdeteskezeles.html\"><span class=\"branch__k\">04 — Werbung</span><span class=\"branch__t\">Google- und Meta-Werbung</span></a>"
+ ],
+
+ "A négy szolgáltatás": ["The four services", "Die vier Leistungen"],
+
+ "<b>Innen tovább:</b> ha a megjelenés még nincs eldöntve, az arculat előbbre való.": [
+  "<b>What follows:</b> if the look isn't settled yet, the identity comes first.",
+  "<b>Und danach:</b> steht das Erscheinungsbild noch nicht fest, kommt es zuerst."
+ ],
+ "<b>Innen tovább:</b> a dokumentált átadás után a mérés mondja meg, mi térült meg.": [
+  "<b>What follows:</b> after a documented handover, measurement is what tells you it paid off.",
+  "<b>Und danach:</b> nach der dokumentierten Übergabe zeigt erst die Messung, was sich gelohnt hat."
+ ],
+ "<b>Innen tovább:</b> a kész arculat az az alap, amire az oldal ráépülhet.": [
+  "<b>What follows:</b> a finished identity is the ground the website is built on.",
+  "<b>Und danach:</b> ein fertiges Erscheinungsbild ist das Fundament der Website."
+ ],
+ "<b>Innen tovább:</b> amit a mérés megmutat, az visszamegy az oldalba.": [
+  "<b>What follows:</b> what the measurement shows goes back into the site.",
+  "<b>Und danach:</b> was die Messung zeigt, fließt zurück in die Website."
+ ]
 }

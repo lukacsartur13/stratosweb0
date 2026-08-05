@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
+<link rel="stylesheet" href="../assets/css/page-services.css">
 <script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
@@ -144,6 +145,26 @@
         </div>
       </div>
       <p class="phead__meta"><span><b>Custom</b> HTML, CSS, JavaScript</span> <span><b>Three languages</b> Hungarian, English, German</span> <span><b>Project-based</b> not an agency hourly rate</span></p>
+
+      <!-- A szolgáltatás-rendszer térképe. A Meridian Trace itt ágazik szét:
+           egy törzs, négy szolgáltatás. A vonal dekoráció, a címkék valódi
+           linkek — ugyanaz a négy útvonal, amit a 02-es szakasz részletez. -->
+      <div class="branch">
+        <svg class="branch__trace" data-trace data-trace-stagger="0.45" viewBox="0 0 400 320"
+             preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M0 160 H96"/>
+          <path d="M96 160 C 200 160 208 40 400 40"/>
+          <path d="M96 160 C 200 160 208 120 400 120"/>
+          <path d="M96 160 C 200 160 208 200 400 200"/>
+          <path d="M96 160 C 200 160 208 280 400 280"/>
+        </svg>
+        <ul class="branch__list">
+          <li><a href="web-design-sme.html"><span class="branch__k">01 — Web design</span><span class="branch__t">Website for an SME</span></a></li>
+          <li><a href="web-design-enterprise.html"><span class="branch__k">02 — Web design</span><span class="branch__t">Website for a large company</span></a></li>
+          <li><a href="branding.html"><span class="branch__k">03 — Identity</span><span class="branch__t">Branding and copywriting</span></a></li>
+          <li><a href="ads-management.html"><span class="branch__k">04 — Advertising</span><span class="branch__t">Google and Meta ad management</span></a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -162,47 +183,57 @@
   </section>
 
   <!-- ============================================ a szolgáltatások -->
-  <section class="band">
+  <section class="band band--tight">
     <div class="wrap">
       <p class="smark"><span class="smark__n" aria-hidden="true">02</span><span class="smark__t">The services</span></p>
-      <h2 class="display h-md" style="max-width:18ch;margin-bottom:clamp(1.6rem,4vw,2.6rem)">Which business problem does it answer?</h2>
+      <h2 class="display h-md" style="max-width:18ch">Which business problem does it answer?</h2>
+    </div>
+  </section>
 
-      <div class="rows">
-        <a class="row" href="web-design-sme.html">
-          <span class="row__k">01 — Web design</span>
-          <span>
-            <h3>A website for SMEs</h3>
-            <p>You don't have a website, or you have one you'd rather not show anyone. You don't want to pay a large sum up front for something that still needs looking after afterwards. Design, development, hosting and maintenance in one fixed monthly fee.</p>
-          </span>
-          <span class="row__side">For sole traders and small to medium businesses. Custom design, built from code, not with a page builder.</span>
-        </a>
+  <!-- A függőleges görgetés vízszintes utat hajt: négy szolgáltatás-világ,
+       mindegyik egy üzleti problémával kezdődik, és megmondja, mi következik
+       utána. Álló módú mobilon és csökkentett mozgásnál ugyanez a négy panel
+       egyszerű függőleges lista — a sorrend és a tartalom változatlan. -->
+  <section class="svc" data-rail aria-label="The four services">
+    <div class="rail__pin">
+      <div class="svc__track" data-rail-track>
 
-        <a class="row" href="web-design-enterprise.html">
-          <span class="row__k">02 — Web design</span>
-          <span>
-            <h3>A website for enterprises</h3>
-            <p>Several decision-makers, existing systems, approval rounds and requirements a template can't meet. Custom development, integrations and a documented handover.</p>
-          </span>
-          <span class="row__side">For marketing teams and larger organisations. An agreed schedule and a written proposal.</span>
-        </a>
+        <article class="svc__panel" data-rail-panel>
+          <p class="svc__k">01 — Web design</p>
+          <h3 class="display h-sm">A website for SMEs</h3>
+          <p class="svc__p">You don't have a website, or you have one you'd rather not show anyone. You don't want to pay a large sum up front for something that still needs looking after afterwards. Design, development, hosting and maintenance in one fixed monthly fee.</p>
+          <p class="svc__side">For sole traders and small to medium businesses. Custom design, built from code, not with a page builder.</p>
+          <p class="svc__next"><b>What follows:</b> if the look isn't settled yet, the identity comes first.</p>
+          <a class="btn btn--ghost" href="web-design-sme.html" data-magnet><span>A website for SMEs</span></a>
+        </article>
 
-        <a class="row" href="branding.html">
-          <span class="row__k">03 — Identity</span>
-          <span>
-            <h3>Branding and copywriting</h3>
-            <p>Your business is good but doesn't look it. Logo, colours, typography and the words that say the same thing on every surface — from the website to the invoice.</p>
-          </span>
-          <span class="row__side">For new brands and businesses being refreshed. Often worth doing before the website.</span>
-        </a>
+        <article class="svc__panel" data-rail-panel>
+          <p class="svc__k">02 — Web design</p>
+          <h3 class="display h-sm">A website for enterprises</h3>
+          <p class="svc__p">Several decision-makers, existing systems, approval rounds and requirements a template can't meet. Custom development, integrations and a documented handover.</p>
+          <p class="svc__side">For marketing teams and larger organisations. An agreed schedule and a written proposal.</p>
+          <p class="svc__next"><b>What follows:</b> after a documented handover, measurement is what tells you it paid off.</p>
+          <a class="btn btn--ghost" href="web-design-enterprise.html" data-magnet><span>A website for enterprises</span></a>
+        </article>
 
-        <a class="row" href="ads-management.html">
-          <span class="row__k">04 — Advertising</span>
-          <span>
-            <h3>Google and Meta ads management</h3>
-            <p>You have a site but nobody finds it, or you advertise but don't know where the money went. Campaign management with measurement and a report you can read — not monthly screenshots.</p>
-          </span>
-          <span class="row__side">Worth it once the site is already convincing. The goal first, the spending second.</span>
-        </a>
+        <article class="svc__panel" data-rail-panel>
+          <p class="svc__k">03 — Identity</p>
+          <h3 class="display h-sm">Branding and copywriting</h3>
+          <p class="svc__p">Your business is good but doesn't look it. Logo, colours, typography and the words that say the same thing on every surface — from the website to the invoice.</p>
+          <p class="svc__side">For new brands and businesses being refreshed. Often worth doing before the website.</p>
+          <p class="svc__next"><b>What follows:</b> a finished identity is the ground the website is built on.</p>
+          <a class="btn btn--ghost" href="branding.html" data-magnet><span>Branding and copywriting</span></a>
+        </article>
+
+        <article class="svc__panel" data-rail-panel>
+          <p class="svc__k">04 — Advertising</p>
+          <h3 class="display h-sm">Google and Meta ads management</h3>
+          <p class="svc__p">You have a site but nobody finds it, or you advertise but don't know where the money went. Campaign management with measurement and a report you can read — not monthly screenshots.</p>
+          <p class="svc__side">Worth it once the site is already convincing. The goal first, the spending second.</p>
+          <p class="svc__next"><b>What follows:</b> what the measurement shows goes back into the site.</p>
+          <a class="btn btn--ghost" href="ads-management.html" data-magnet><span>Google and Meta ads management</span></a>
+        </article>
+
       </div>
     </div>
   </section>
@@ -238,6 +269,17 @@
           <dd>It happens: the site works, but the brand hasn't kept up with the business. Then the identity is a complete project on its own.</dd>
         </div>
       </dl>
+
+      <!-- Az ágak itt kapcsolódnak vissza: a szolgáltatások mögött ugyanaz a
+           néhány szervezet áll, akikkel dolgoztunk. A megnevezés szándékosan
+           semleges — lásd _build/build.py ORGS. -->
+      <div class="svc__caps">
+        <p class="eyebrow">Selected collaborations</p>
+        <ul class="logoset logoset--constellation" data-logo-group>
+        <li data-logo data-on="dark" style="--optical:1.0"><img src="../assets/img/logo-kontyos.webp" alt="Kontyos.hu" loading="lazy" width="436" height="107"></li>
+        <li data-logo data-on="dark" style="--optical:1.75"><img src="../assets/img/logo-grantool.png" alt="Grantool Kft." loading="lazy" width="800" height="500"></li>
+      </ul>
+      </div>
     </div>
   </section>
 
@@ -319,11 +361,19 @@
   <!-- ============================================ CTA -->
   <section class="band">
     <div class="wrap">
-      <div class="launch">
+      <div class="launch" data-converge>
+        <!-- A négy ág itt fut össze egy pontba, közvetlenül a döntés fölött. -->
+        <svg class="converge__trace" data-trace viewBox="0 0 400 120" preserveAspectRatio="none"
+             aria-hidden="true" focusable="false">
+          <path d="M0 8 C 160 8 180 112 400 112"/>
+          <path d="M0 44 C 180 44 200 112 400 112"/>
+          <path d="M0 76 C 180 76 200 112 400 112"/>
+          <path d="M0 112 H400"/>
+        </svg>
         <p class="eyebrow">Next step</p>
         <h2 class="display h-lg" style="margin:1.4rem 0 1.6rem;max-width:15ch">Not sure which one <span class="sig">you need?</span></h2>
         <p class="lede" style="max-width:54ch;margin-bottom:2.2rem">That's the most common starting point, and it's exactly what the free consultation is for. After one conversation you'll know what is genuinely worth spending on — even if that turns out to be less than you expected.</p>
-        <div class="btn-row">
+        <div class="btn-row converge__cta">
           <a class="btn" href="contact.html" data-magnet><span>Let's talk about it</span>
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>

@@ -1097,6 +1097,25 @@ LINK_RE = re.compile(r'(href|src)="([^"#?]+\.html)((?:[#?][^"]*)?)"')
 ASSET_RE = re.compile(r'(href|src)="(assets/)')
 
 
+def page_css(meta, base):
+    """Per-archetype stylesheets, named by the fragment's own front matter.
+
+    `css: services` in a fragment loads assets/css/page-services.css and only
+    there. The signature interactions the brief asks for are page-shaped —
+    a branching service map, a pinned process, an artboard wall — and putting
+    their rules in main.css would bill all 66 routes for geometry one route
+    uses. The shared layer stays the vocabulary every page speaks; this is the
+    sentence one page says with it.
+
+    Fingerprinting needs no change: scripts/fingerprint-assets.mjs rewrites any
+    CSS or JS reference it finds, by content hash, whatever the filename.
+    """
+    names = [n.strip() for n in str(meta.get("css", "")).split(",") if n.strip()]
+    return "".join(
+        f'\n<link rel="stylesheet" href="{base}assets/css/page-{n}.css">'
+        for n in names)
+
+
 LOGOSET_RE = re.compile(r"\{\{logoset:(\w+)\}\}")
 
 
@@ -1321,7 +1340,7 @@ def main():
                        else '\n<meta name="robots" content="noindex, follow">',
                 body_class="",
                 instruments=chrome,
-                extra_css="",
+                extra_css=page_css(meta, base),
                 extra_js="",
                 skip=u["skip"], unit=u["unit"], layer0=u["layers"][0],
                 home=href(lang, "index"), brand_aria=u["brand_aria"],
