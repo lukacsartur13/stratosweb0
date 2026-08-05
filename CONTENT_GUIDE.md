@@ -182,6 +182,10 @@ what was measured. A percentage with no denominator is decoration.
   EN and DE carry a notice saying so.
 - Hosting, company registration and contact details live in
   `_build/pages/impresszum.html` and
-  `_build/pages/adatkezelesi-tajekoztato.html`. Both still name Wix as the host,
-  carried over from the previous site — **update them before launch.**
+  `_build/pages/adatkezelesi-tajekoztato.html`. Both used to name Wix, carried
+  over from the previous site; they now name what actually runs the site —
+  **Netlify** for the pages and the Functions, **Supabase** for the lead data
+  and the private portal. Company addresses come from the two providers' own
+  legal pages, not from memory. If the stack moves, these two files are the only
+  places to change.
 - No claim about GDPR, accessibility or certification that has not been checked.

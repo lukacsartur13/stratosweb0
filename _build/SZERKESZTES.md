@@ -146,9 +146,12 @@ mézesbödön, ember soha nem látja. Ne töröld, és ne tedd láthatóvá.
 
 ## Élesítés előtt nézd át
 
-1. **Impresszum / adatkezelési tájékoztató** — a tárhelyszolgáltatónál most még a
-   Wix szerepel (a régi oldal szövege). Ha máshová kerül az oldal, ezt a két helyen
-   írd át: `_build/pages/impresszum.html` és `_build/pages/adatkezelesi-tajekoztato.html`.
+1. **Impresszum / adatkezelési tájékoztató** — a tárhelyszolgáltatónál korábban a
+   Wix szerepelt (a régi oldal szövege). Most a tényleges felállás áll bennük:
+   a **Netlify** szolgálja ki az oldalt és a kiszolgálói funkciókat, a **Supabase**
+   tárolja az űrlapokon beérkező adatokat és szolgálja ki a zárt Portált. Ha
+   máshová kerül az oldal, ezt a két helyen írd át:
+   `_build/pages/impresszum.html` és `_build/pages/adatkezelesi-tajekoztato.html`.
 2. **Közösségi linkek** — a lábléc `linkedin.com` / `instagram.com` / `facebook.com`
    gyökérre mutat, mert a régi oldalon nem volt kiolvasható a konkrét profil URL.
    Ezt a `_build/build.py` láblécében cseréld.
