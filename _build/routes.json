@@ -1,0 +1,124 @@
+{
+ "langs": [
+  "hu",
+  "en",
+  "de"
+ ],
+ "slugs": {
+  "index": {
+   "hu": "index.html",
+   "en": "index.html",
+   "de": "index.html"
+  },
+  "about": {
+   "hu": "rolunk.html",
+   "en": "about.html",
+   "de": "ueber-uns.html"
+  },
+  "services": {
+   "hu": "szolgaltatasok.html",
+   "en": "services.html",
+   "de": "leistungen.html"
+  },
+  "sme": {
+   "hu": "kkv.html",
+   "en": "web-design-sme.html",
+   "de": "webdesign-kmu.html"
+  },
+  "enterprise": {
+   "hu": "nagyvallalat.html",
+   "en": "web-design-enterprise.html",
+   "de": "webdesign-grossunternehmen.html"
+  },
+  "branding": {
+   "hu": "branding.html",
+   "en": "branding.html",
+   "de": "branding.html"
+  },
+  "ads": {
+   "hu": "hirdeteskezeles.html",
+   "en": "ads-management.html",
+   "de": "werbeanzeigen.html"
+  },
+  "impact": {
+   "hu": "impact-program.html",
+   "en": "impact-program.html",
+   "de": "impact-programm.html"
+  },
+  "work": {
+   "hu": "munkaink.html",
+   "en": "work.html",
+   "de": "projekte.html"
+  },
+  "case-rapidkert": {
+   "hu": "munka-rapidkert.html",
+   "en": "work-rapidkert.html",
+   "de": "projekt-rapidkert.html"
+  },
+  "case-barbershop": {
+   "hu": "munka-barbershop.html",
+   "en": "work-barbershop.html",
+   "de": "projekt-barbershop.html"
+  },
+  "case-mentaltrening": {
+   "hu": "munka-mentaltrening.html",
+   "en": "work-mentaltrening.html",
+   "de": "projekt-mentaltrening.html"
+  },
+  "blog": {
+   "hu": "blog.html",
+   "en": "blog.html",
+   "de": "blog.html"
+  },
+  "post-seo": {
+   "hu": "blog-google-elso-oldal.html",
+   "en": "blog-google-first-page.html",
+   "de": "blog-google-erste-seite.html"
+  },
+  "post-arak": {
+   "hu": "blog-weboldal-arak.html",
+   "en": "blog-website-cost.html",
+   "de": "blog-website-kosten.html"
+  },
+  "post-cegprofil": {
+   "hu": "blog-google-cegprofil.html",
+   "en": "blog-google-business-profile.html",
+   "de": "blog-google-unternehmensprofil.html"
+  },
+  "post-hirdetes": {
+   "hu": "blog-google-vagy-facebook.html",
+   "en": "blog-google-or-facebook.html",
+   "de": "blog-google-oder-facebook.html"
+  },
+  "post-elavult": {
+   "hu": "blog-elavult-weboldal.html",
+   "en": "blog-outdated-website.html",
+   "de": "blog-veraltete-website.html"
+  },
+  "post-konverzio": {
+   "hu": "blog-miert-nem-hoz-ugyfelet.html",
+   "en": "blog-no-enquiries.html",
+   "de": "blog-keine-anfragen.html"
+  },
+  "contact": {
+   "hu": "ugyfelszolgalat.html",
+   "en": "contact.html",
+   "de": "kontakt.html"
+  },
+  "quote": {
+   "hu": "arajanlat.html",
+   "en": "quote.html",
+   "de": "angebot.html"
+  },
+  "privacy": {
+   "hu": "adatkezelesi-tajekoztato.html",
+   "en": "privacy-policy.html",
+   "de": "datenschutz.html"
+  },
+  "imprint": {
+   "hu": "impresszum.html",
+   "en": "imprint.html",
+   "de": "impressum.html"
+  }
+ }
+}

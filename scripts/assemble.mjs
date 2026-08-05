@@ -10,7 +10,7 @@
 // build:portal (vite, which writes dist/portal itself).
 // =============================================================================
 
-import { cp, mkdir, rm, writeFile, readdir } from 'node:fs/promises';
+import { cp, mkdir, rm, writeFile, readdir, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -105,25 +105,29 @@ function robots() {
   ].join('\n');
 }
 
-// The three languages are the same twelve pages under different names. The
-// generator owns that mapping, so it is mirrored here rather than guessed.
-const SLUGS = {
-  index:      ['index.html', 'en/index.html', 'de/index.html'],
-  about:      ['rolunk.html', 'en/about.html', 'de/ueber-uns.html'],
-  sme:        ['kkv.html', 'en/web-design-sme.html', 'de/webdesign-kmu.html'],
-  enterprise: ['nagyvallalat.html', 'en/web-design-enterprise.html', 'de/webdesign-grossunternehmen.html'],
-  branding:   ['branding.html', 'en/branding.html', 'de/branding.html'],
-  ads:        ['hirdeteskezeles.html', 'en/ads-management.html', 'de/werbeanzeigen.html'],
-  impact:     ['impact-program.html', 'en/impact-program.html', 'de/impact-programm.html'],
-  blog:       ['blog.html', 'en/blog.html', 'de/blog.html'],
-  contact:    ['ugyfelszolgalat.html', 'en/contact.html', 'de/kontakt.html'],
-  quote:      ['arajanlat.html', 'en/quote.html', 'de/angebot.html'],
-  privacy:    ['adatkezelesi-tajekoztato.html', 'en/privacy-policy.html', 'de/datenschutz.html'],
-  imprint:    ['impresszum.html', 'en/imprint.html', 'de/impressum.html'],
-};
+// The three languages are the same pages under different names, and the
+// generator owns that mapping. It used to be mirrored here by hand; Phase 8
+// took the route count from twelve keys to twenty-three, at which point a
+// hand-mirrored copy is a sitemap that goes stale without anyone noticing. It
+// is now read from the manifest _build/build.py writes, which runs immediately
+// before this script inside `npm run build`.
+const MANIFEST = join(ROOT, '_build', 'routes.json');
+if (!existsSync(MANIFEST)) {
+  console.error(`assemble: missing ${MANIFEST} — run \`npm run generate\` first.`);
+  process.exit(1);
+}
+const { langs: LANGS, slugs: RAW } = JSON.parse(await readFile(MANIFEST, 'utf8'));
+const SLUGS = Object.fromEntries(
+  Object.entries(RAW).map(([key, byLang]) => [
+    key,
+    LANGS.map((l) => (l === 'hu' ? byLang[l] : `${l}/${byLang[l]}`)),
+  ]),
+);
 
-const LANGS = ['hu', 'en', 'de'];
-const PRIORITY = { index: '1.0', quote: '0.9', contact: '0.8', privacy: '0.3', imprint: '0.3' };
+const PRIORITY = {
+  index: '1.0', quote: '0.9', contact: '0.8', services: '0.8', work: '0.7',
+  privacy: '0.3', imprint: '0.3',
+};
 
 async function sitemap() {
   const today = new Date().toISOString().slice(0, 10);

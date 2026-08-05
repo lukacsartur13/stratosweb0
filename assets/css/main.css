@@ -1521,3 +1521,247 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
   font-family: var(--data); font-size: var(--step--1);
   text-transform: uppercase; letter-spacing: .12em; color: var(--haze);
 }
+
+/* ===========================================================================
+   PHASE 8 — continuation. Hero and CTA variants, proof, article, choice.
+
+   The audit's finding was not that the hero and the closing CTA are bad; it is
+   that there is exactly ONE of each and every route wears it, so a legal page
+   opens like a service page and About closes with the same "Felszállás" panel
+   as the blog. §12 and §22 ask for controlled variation, and the cheapest
+   honest way to get it is a small set of modifiers on the two compositions
+   that already exist — not a second hero component per archetype.
+   =========================================================================== */
+
+/* ------------------------------------------------------------- hero variants
+   `.phead` unmodified stays exactly as it is: it is the service/marketing
+   opening and four pages already depend on its measurements. */
+
+/* An index or overview route. The job of the first screen is orientation, not
+   persuasion, so the wash is dropped and the title is answered on the same
+   line by a short standfirst rather than by a CTA. */
+.phead--index { padding-bottom: clamp(2rem, 5vh, 3.5rem); }
+.phead--index::after { background: linear-gradient(180deg, rgba(0,0,0,.55), var(--void)); }
+.phead__meta {
+  display: flex; flex-wrap: wrap; gap: .6rem 2.2rem;
+  margin-top: clamp(1.4rem, 3vw, 2rem); padding-top: 1rem;
+  border-top: 1px solid var(--hair);
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .14em; color: var(--haze);
+}
+.phead__meta b { color: var(--paper); font-weight: 400; }
+
+/* A legal, utility or support route. §31: do not put a cinematic opening on a
+   privacy policy. No gradient, no atmosphere, less air above — the reader came
+   here to find a clause, and the page should let them. */
+.phead--quiet {
+  padding-top: clamp(6rem, 12vh, 8rem);
+  padding-bottom: clamp(1.5rem, 4vh, 2.5rem);
+}
+.phead--quiet::after { background: none; }
+.phead--quiet h1 { font-size: var(--step-3); }
+
+/* A case study. The client is the eyebrow, the outcome is the title, and the
+   facts of the engagement sit under a rule where they can be scanned without
+   reading the page. */
+.phead--case::after {
+  background: linear-gradient(180deg, rgba(0,0,0,.86), rgba(0,0,0,.55) 50%, var(--void));
+}
+.phead--case h1 { font-size: var(--step-4); max-width: 18ch; }
+
+/* An article. One column, body measure, and the display face stepped down —
+   an article headline is read, not looked at. */
+.phead--article { padding-bottom: clamp(1.5rem, 4vh, 2.5rem); }
+.phead--article::after { background: linear-gradient(180deg, rgba(0,0,0,.6), var(--void)); }
+.phead--article h1 {
+  font-size: var(--step-3); max-width: 20ch; text-wrap: balance;
+}
+
+/* -------------------------------------------------------------- CTA variants
+   `.launch` unmodified stays the marketing close. */
+
+/* Two genuinely different next steps, side by side, each with its own reason.
+   Replaces the "two buttons in a row where the ghost one is the consolation
+   prize" pattern: on a decision page the visitor is choosing between routes,
+   not being upsold. */
+.launch--split {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem); align-items: start;
+}
+.launch--split > * { position: relative; }
+@media (max-width: 860px) { .launch--split { grid-template-columns: 1fr; } }
+
+/* The quiet close. A rule, a sentence and a link — for routes where a panel
+   with a yellow glow would be tonally wrong: legal, imprint, support. */
+.launch--quiet {
+  border: 0; border-top: 1px solid var(--hair); background: none;
+  padding: clamp(1.6rem, 4vw, 2.4rem) 0 0;
+}
+.launch--quiet::before { display: none; }
+.band--pale .launch--quiet { border-color: rgba(0, 0, 0, .16); }
+
+/* ------------------------------------------------------------------- choice
+   Two routes into the same outcome, presented as a decision rather than as a
+   primary and a fallback. Used on the contact page for "short enquiry" versus
+   "detailed questionnaire", which are not a big button and a small one — they
+   are two different amounts of work with two different response times, and the
+   visitor is the only one who knows which they want.
+
+   Ruled, not carded: the divider between them is the point. */
+.choice {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0; border-top: 1px solid var(--hair);
+}
+.choice > * {
+  padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.4rem, 3vw, 2.6rem) clamp(1.8rem, 4vw, 2.8rem) 0;
+  border-bottom: 1px solid var(--hair);
+  display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;
+}
+.choice > * + * {
+  border-left: 1px solid var(--hair);
+  padding-left: clamp(1.4rem, 3vw, 2.6rem);
+}
+.choice__k {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .18em; color: var(--signal);
+}
+.choice h3 {
+  font-family: var(--display); font-size: var(--step-2);
+  text-transform: uppercase; line-height: 1.05;
+}
+.choice p { color: rgba(244, 244, 244, .74); max-width: 40ch; }
+/* What it costs the visitor, in their currency: time and questions. */
+.choice__cost {
+  margin-top: auto; padding-top: 1rem;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .12em; color: var(--haze);
+}
+.choice .btn { margin-top: .4rem; }
+.band--pale .choice, .band--pale .choice > *, .band--pale .choice > * + * {
+  border-color: rgba(0, 0, 0, .16);
+}
+.band--pale .choice p { color: rgba(0, 0, 0, .74); }
+@media (max-width: 760px) {
+  .choice { grid-template-columns: 1fr; }
+  .choice > * { padding-right: 0; }
+  .choice > * + * { border-left: 0; padding-left: 0; }
+}
+
+/* -------------------------------------------------------------------- proof
+   What is actually true about the work, with where each item comes from. This
+   is the §14 "proof" primitive, and its shape is a deliberate refusal: there
+   is no slot for a big number, because no verified figure exists for any
+   Stratos project (baseline §8). What it holds instead is a claim and its
+   evidence — a live site, a delivered scope, a documented process step.
+
+   If a client later supplies verified figures, `.metrics` above is where they
+   go, with `.metric__src` naming the source. Neither block has a mode where a
+   number appears without provenance. */
+.proof { display: grid; gap: 0; border-top: 1px solid var(--hair); }
+.proof__row {
+  display: grid; grid-template-columns: minmax(0, .55fr) minmax(0, 1.45fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding-block: clamp(1.1rem, 2.6vw, 1.8rem);
+  border-bottom: 1px solid var(--hair);
+}
+.proof__k {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em; color: var(--haze);
+}
+.proof__v { color: rgba(244, 244, 244, .84); }
+.proof__v a { color: var(--signal); text-decoration: underline; text-underline-offset: 3px; }
+.band--pale .proof, .band--pale .proof__row { border-color: rgba(0, 0, 0, .16); }
+.band--pale .proof__v { color: rgba(0, 0, 0, .8); }
+@media (max-width: 700px) {
+  .proof__row { grid-template-columns: 1fr; gap: .4rem; }
+}
+
+/* ------------------------------------------------------------------ article
+   Long-form editorial. `.legal` above is the other long-form measure and they
+   are deliberately different: `.legal` is a document you search, this is a
+   piece you read. Wider leading, real heading hierarchy, and a measure that
+   stops at the length a paragraph stays readable. */
+.article { max-width: 68ch; font-size: var(--step-1); line-height: 1.65; }
+.article > * + * { margin-top: 1.1em; }
+.article h2 {
+  font-family: var(--display); text-transform: uppercase;
+  font-size: var(--step-2); line-height: 1.1;
+  margin-top: 2.2em; margin-bottom: .1em;
+}
+.article h3 {
+  font-family: var(--display); text-transform: uppercase;
+  font-size: var(--step-1); margin-top: 1.8em; margin-bottom: .1em;
+}
+.article p { color: rgba(244, 244, 244, .82); }
+.article strong { color: var(--paper); font-weight: 600; }
+.article a { color: var(--signal); text-decoration: underline; text-underline-offset: 3px; }
+.article ul, .article ol { padding-left: 1.2rem; display: grid; gap: .5rem; }
+.article li { color: rgba(244, 244, 244, .82); }
+.article li::marker { color: var(--signal); }
+/* A pulled-out statement. Not a quote — nobody said it — so it is not a
+   blockquote; it is the article's own sentence, given a rule and some air. */
+.article__key {
+  border-left: 2px solid var(--signal); padding-left: clamp(1rem, 3vw, 1.6rem);
+  font-family: var(--display); text-transform: uppercase;
+  font-size: var(--step-2); line-height: 1.15; color: var(--paper);
+  margin-block: 1.8em;
+}
+/* An honest aside: this is what we do about it, said once, in the middle of a
+   piece that is otherwise not about us. §32 asks for a restrained CTA. */
+.article__aside {
+  border: 1px solid var(--hair); padding: clamp(1.2rem, 3vw, 1.8rem);
+  font-size: var(--step-0); color: rgba(244, 244, 244, .74);
+  margin-block: 2em;
+}
+.article__aside b {
+  display: block; margin-bottom: .5rem; color: var(--paper);
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em; font-weight: 400;
+}
+.band--pale .article p, .band--pale .article li { color: rgba(0, 0, 0, .82); }
+.band--pale .article__key { color: var(--void); }
+
+/* Byline / publication strip. Only carries fields that are actually known —
+   there is no invented author photo and no invented reading time. */
+.article__by {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.6rem;
+  padding-top: .9rem; border-top: 1px solid var(--hair);
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .14em; color: var(--haze);
+}
+.article__by b { color: var(--paper); font-weight: 400; }
+
+/* ------------------------------------------------------- editorial index rows
+   The work index and the article index. Not an equal-card grid (§15): one row
+   per project, the first one given more room because it is the strongest, and
+   the rest ruled beneath it. Emphasis is a modifier, not a different block. */
+.rows { border-top: 1px solid var(--hair); }
+.row {
+  display: grid; grid-template-columns: minmax(0, 7rem) minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem); align-items: start;
+  padding-block: clamp(1.4rem, 3vw, 2.2rem);
+  border-bottom: 1px solid var(--hair);
+  transition: background .4s var(--ease), padding-left .35s var(--ease);
+}
+a.row:hover, a.row:focus-visible { background: rgba(255, 238, 37, .04); padding-left: .8rem; }
+.row__k {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .14em; color: var(--haze);
+}
+.row h3 {
+  font-family: var(--display); font-size: var(--step-2);
+  text-transform: uppercase; line-height: 1.05;
+}
+.row p { margin-top: .7rem; color: rgba(244, 244, 244, .72); max-width: 52ch; }
+.row__side { color: rgba(244, 244, 244, .6); font-size: var(--step--1); }
+a.row:hover h3 { color: var(--signal); }
+.band--pale .rows, .band--pale .row { border-color: rgba(0, 0, 0, .16); }
+.band--pale .row p, .band--pale .row__side { color: rgba(0, 0, 0, .72); }
+@media (max-width: 900px) {
+  .row { grid-template-columns: minmax(0, 5rem) minmax(0, 1fr); }
+  .row__side { grid-column: 2; }
+}
+@media (max-width: 560px) {
+  .row { grid-template-columns: 1fr; gap: .5rem; }
+  .row__side { grid-column: 1; }
+}

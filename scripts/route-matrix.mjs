@@ -28,38 +28,47 @@ import { fileURLToPath } from 'node:url';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, '_build', 'reports', 'phase8-route-matrix.json');
 
-// Canonical key -> per-locale filename. Mirrors SLUGS in _build/build.py; the
-// generator owns the mapping and this file states it rather than guessing it.
-const SLUGS = {
-  index:      { hu: 'index.html',                    en: 'index.html',                 de: 'index.html' },
-  about:      { hu: 'rolunk.html',                   en: 'about.html',                 de: 'ueber-uns.html' },
-  sme:        { hu: 'kkv.html',                      en: 'web-design-sme.html',        de: 'webdesign-kmu.html' },
-  enterprise: { hu: 'nagyvallalat.html',             en: 'web-design-enterprise.html', de: 'webdesign-grossunternehmen.html' },
-  branding:   { hu: 'branding.html',                 en: 'branding.html',              de: 'branding.html' },
-  ads:        { hu: 'hirdeteskezeles.html',          en: 'ads-management.html',        de: 'werbeanzeigen.html' },
-  impact:     { hu: 'impact-program.html',           en: 'impact-program.html',        de: 'impact-programm.html' },
-  blog:       { hu: 'blog.html',                     en: 'blog.html',                  de: 'blog.html' },
-  contact:    { hu: 'ugyfelszolgalat.html',          en: 'contact.html',               de: 'kontakt.html' },
-  quote:      { hu: 'arajanlat.html',                en: 'quote.html',                 de: 'angebot.html' },
-  privacy:    { hu: 'adatkezelesi-tajekoztato.html', en: 'privacy-policy.html',        de: 'datenschutz.html' },
-  imprint:    { hu: 'impresszum.html',               en: 'imprint.html',               de: 'impressum.html' },
-};
+// Canonical key -> per-locale filename, read from the manifest _build/build.py
+// writes. This file used to carry a hand-copied duplicate of SLUGS; Phase 8
+// added eleven keys, and the copy went stale silently — every new route was
+// simply absent from the matrix, which meant their in-body links were never
+// counted and four service pages kept being reported as orphans after the
+// services overview had linked all of them.
+const MANIFEST = join(ROOT, '_build', 'routes.json');
+if (!existsSync(MANIFEST)) {
+  console.error(`route-matrix: missing ${MANIFEST} — run \`npm run generate\` first.`);
+  process.exit(1);
+}
+const SLUGS = JSON.parse(await readFile(MANIFEST, 'utf8')).slugs;
 
 // The archetype vocabulary from the Phase 8 brief, §3.
-const ARCHETYPE = {
+const ARCHETYPE_BY_KEY = {
   index:      'home',
   about:      'about',
+  services:   'service overview',
   sme:        'service detail',
   enterprise: 'service detail',
   branding:   'service detail',
   ads:        'service detail',
   impact:     'Impact Program',
+  work:       'work index',
   blog:       'blog / editorial',
   contact:    'contact',
   quote:      'questionnaire',
   privacy:    'legal / utility',
   imprint:    'legal / utility',
 };
+
+// The case studies and the articles are families rather than one-off keys, so
+// they are classified by prefix — adding a seventh article should not require
+// editing this table.
+const ARCHETYPE = new Proxy(ARCHETYPE_BY_KEY, {
+  get: (t, k) =>
+    t[k] ??
+    (String(k).startsWith('case-') ? 'case study'
+      : String(k).startsWith('post-') ? 'article'
+      : 'uncategorised'),
+});
 
 // Which build produced the document. The homepage is a Vite/React bundle; every
 // other route is a Python-generated fragment in the shared SHELL.

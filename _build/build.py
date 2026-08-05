@@ -36,12 +36,23 @@ LANGS = ("hu", "en", "de")
 SLUGS = {
     "index":       {"hu": "index.html",                    "en": "index.html",                 "de": "index.html"},
     "about":       {"hu": "rolunk.html",                   "en": "about.html",                 "de": "ueber-uns.html"},
+    "services":    {"hu": "szolgaltatasok.html",           "en": "services.html",              "de": "leistungen.html"},
     "sme":         {"hu": "kkv.html",                      "en": "web-design-sme.html",        "de": "webdesign-kmu.html"},
     "enterprise":  {"hu": "nagyvallalat.html",             "en": "web-design-enterprise.html", "de": "webdesign-grossunternehmen.html"},
     "branding":    {"hu": "branding.html",                 "en": "branding.html",              "de": "branding.html"},
     "ads":         {"hu": "hirdeteskezeles.html",          "en": "ads-management.html",        "de": "werbeanzeigen.html"},
     "impact":      {"hu": "impact-program.html",           "en": "impact-program.html",        "de": "impact-programm.html"},
+    "work":        {"hu": "munkaink.html",                 "en": "work.html",                  "de": "projekte.html"},
+    "case-rapidkert":    {"hu": "munka-rapidkert.html",    "en": "work-rapidkert.html",        "de": "projekt-rapidkert.html"},
+    "case-barbershop":   {"hu": "munka-barbershop.html",   "en": "work-barbershop.html",       "de": "projekt-barbershop.html"},
+    "case-mentaltrening": {"hu": "munka-mentaltrening.html", "en": "work-mentaltrening.html",  "de": "projekt-mentaltrening.html"},
     "blog":        {"hu": "blog.html",                     "en": "blog.html",                  "de": "blog.html"},
+    "post-seo":       {"hu": "blog-google-elso-oldal.html",     "en": "blog-google-first-page.html",       "de": "blog-google-erste-seite.html"},
+    "post-arak":      {"hu": "blog-weboldal-arak.html",         "en": "blog-website-cost.html",            "de": "blog-website-kosten.html"},
+    "post-cegprofil": {"hu": "blog-google-cegprofil.html",      "en": "blog-google-business-profile.html", "de": "blog-google-unternehmensprofil.html"},
+    "post-hirdetes":  {"hu": "blog-google-vagy-facebook.html",  "en": "blog-google-or-facebook.html",      "de": "blog-google-oder-facebook.html"},
+    "post-elavult":   {"hu": "blog-elavult-weboldal.html",      "en": "blog-outdated-website.html",        "de": "blog-veraltete-website.html"},
+    "post-konverzio": {"hu": "blog-miert-nem-hoz-ugyfelet.html", "en": "blog-no-enquiries.html",           "de": "blog-keine-anfragen.html"},
     "contact":     {"hu": "ugyfelszolgalat.html",          "en": "contact.html",               "de": "kontakt.html"},
     "quote":       {"hu": "arajanlat.html",                "en": "quote.html",                 "de": "angebot.html"},
     "privacy":     {"hu": "adatkezelesi-tajekoztato.html", "en": "privacy-policy.html",        "de": "datenschutz.html"},
@@ -49,10 +60,16 @@ SLUGS = {
 }
 BY_HU = {v["hu"]: k for k, v in SLUGS.items()}
 
-NAV = ("about", "blog", "contact")
+NAV = ("about", "work", "blog", "contact")
 SERVICES = ("sme", "enterprise", "branding", "ads", "impact")
-MENU = ("index", "about", "sme", "enterprise", "branding", "ads", "impact",
-        "blog", "contact", "quote")
+# The case studies and the six articles are reachable from their index routes
+# and from the pages they belong to, not from the global menu — a nav that
+# lists every leaf is a sitemap, not a navigation.
+MENU = ("index", "about", "services", "sme", "enterprise", "branding", "ads",
+        "impact", "work", "blog", "contact", "quote")
+CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening")
+POSTS = ("post-seo", "post-arak", "post-cegprofil", "post-hirdetes",
+         "post-elavult", "post-konverzio")
 
 UI = {
     "hu": {
@@ -73,7 +90,9 @@ UI = {
         "hud": ["MAGASSÁG M", "OXIGÉN %", "HŐMÉRSÉKLET °C", "EMELKEDÉS M/S", "RÉTEG"],
         "rail_aria": "Az emelkedés szakaszai",
         "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"],
-        "nav": {"about": "Rólunk", "blog": "Blog", "contact": "Ügyfélszolgálat"},
+        "nav": {"about": "Rólunk", "work": "Munkáink", "blog": "Blog",
+                "contact": "Kapcsolat"},
+        "svc_all": "Minden szolgáltatás",
         "svc": {
             "sme": ("Webdesign KKV-nak", "1 200 M"),
             "enterprise": ("Webdesign nagyvállalatoknak", "9 400 M"),
@@ -82,10 +101,10 @@ UI = {
             "impact": ("Impact Program", "30 000 M"),
         },
         "menu": {
-            "index": "Főoldal", "about": "Rólunk", "sme": "KKV",
-            "enterprise": "Nagyvállalat", "branding": "Branding",
-            "ads": "Hirdetés", "impact": "Impact", "blog": "Blog",
-            "contact": "Kapcsolat", "quote": "Árajánlat",
+            "index": "Főoldal", "about": "Rólunk", "services": "Szolgáltatások",
+            "sme": "KKV", "enterprise": "Nagyvállalat", "branding": "Branding",
+            "ads": "Hirdetés", "impact": "Impact", "work": "Munkáink",
+            "blog": "Blog", "contact": "Kapcsolat", "quote": "Árajánlat",
         },
         "nl_lede": "Félsz, hogy kimaradsz? Többé nem kell — iratkozz fel a hírlevelünkre.",
         "nl_label": "E-mail cím",
@@ -127,7 +146,9 @@ UI = {
         "hud": ["ALTITUDE M", "OXYGEN %", "TEMPERATURE °C", "CLIMB M/S", "LAYER"],
         "rail_aria": "Stages of the ascent",
         "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"],
-        "nav": {"about": "About", "blog": "Blog", "contact": "Contact"},
+        "nav": {"about": "About", "work": "Work", "blog": "Blog",
+                "contact": "Contact"},
+        "svc_all": "All services",
         "svc": {
             "sme": ("Web design for SMEs", "1,200 M"),
             "enterprise": ("Web design for enterprises", "9,400 M"),
@@ -136,9 +157,9 @@ UI = {
             "impact": ("Impact Program", "30,000 M"),
         },
         "menu": {
-            "index": "Home", "about": "About", "sme": "SME",
-            "enterprise": "Enterprise", "branding": "Branding",
-            "ads": "Ads", "impact": "Impact", "blog": "Blog",
+            "index": "Home", "about": "About", "services": "Services",
+            "sme": "SME", "enterprise": "Enterprise", "branding": "Branding",
+            "ads": "Ads", "impact": "Impact", "work": "Work", "blog": "Blog",
             "contact": "Contact", "quote": "Get a quote",
         },
         "nl_lede": "Afraid of missing out? Not any more — subscribe to our newsletter.",
@@ -181,7 +202,9 @@ UI = {
         "hud": ["HÖHE M", "SAUERSTOFF %", "TEMPERATUR °C", "STEIGEN M/S", "SCHICHT"],
         "rail_aria": "Etappen des Aufstiegs",
         "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"],
-        "nav": {"about": "Über uns", "blog": "Blog", "contact": "Kontakt"},
+        "nav": {"about": "Über uns", "work": "Projekte", "blog": "Blog",
+                "contact": "Kontakt"},
+        "svc_all": "Alle Leistungen",
         "svc": {
             "sme": ("Webdesign für KMU", "1.200 M"),
             "enterprise": ("Webdesign für Großunternehmen", "9.400 M"),
@@ -190,10 +213,10 @@ UI = {
             "impact": ("Impact-Programm", "30.000 M"),
         },
         "menu": {
-            "index": "Start", "about": "Über uns", "sme": "KMU",
-            "enterprise": "Konzerne", "branding": "Branding",
-            "ads": "Werbung", "impact": "Impact", "blog": "Blog",
-            "contact": "Kontakt", "quote": "Angebot",
+            "index": "Start", "about": "Über uns", "services": "Leistungen",
+            "sme": "KMU", "enterprise": "Konzerne", "branding": "Branding",
+            "ads": "Werbung", "impact": "Impact", "work": "Projekte",
+            "blog": "Blog", "contact": "Kontakt", "quote": "Angebot",
         },
         "nl_lede": "Angst, etwas zu verpassen? Ab jetzt nicht mehr — abonniere unseren Newsletter.",
         "nl_label": "E-Mail-Adresse",
@@ -266,16 +289,21 @@ def build_nav(lang, key):
 
     first = (f'\n    <a class="navlink" href="{href(lang, "about")}"{cur("about")}>'
              f'{u["nav"]["about"]}</a>')
-    drop = "".join(
+    # The overview route heads its own dropdown. Before Phase 8 the dropdown's
+    # trigger pointed at /kkv.html, so "Services" meant "the SME page" and there
+    # was no way to see the services as a set at all.
+    drop = (f'\n        <a href="{href(lang, "services")}"{cur("services")}>'
+            f'{u["svc_all"]} <em>—</em></a>')
+    drop += "".join(
         f'\n        <a href="{href(lang, k)}"{cur(k)}>{u["svc"][k][0]} '
         f'<em>{u["svc"][k][1]}</em></a>' for k in SERVICES)
-    in_svc = ' aria-current="true"' if key in SERVICES else ""
+    in_svc = ' aria-current="true"' if key in SERVICES or key == "services" else ""
     rest = "".join(
         f'\n    <a class="navlink" href="{href(lang, k)}"{cur(k)}>{u["nav"][k]}</a>'
         for k in NAV[1:])
     return f"""{first}
     <div class="drop">
-      <a class="navlink" href="{href(lang, 'sme')}" aria-haspopup="true"{in_svc}>{u['services']}</a>
+      <a class="navlink" href="{href(lang, 'services')}" aria-haspopup="true"{in_svc}>{u['services']}</a>
       <div class="drop__panel">{drop}
       </div>
     </div>{rest}
@@ -548,8 +576,9 @@ def build_footer(lang, key):
     u = UI[lang]
     pages = "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["menu"][k]}</a></li>'
-        for k in ("about", "contact", "blog", "quote"))
-    svc = "".join(
+        for k in ("about", "work", "contact", "blog", "quote"))
+    svc = f'\n          <li><a href="{href(lang, "services")}">{u["svc_all"]}</a></li>'
+    svc += "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
         for k in SERVICES)
     return render(FOOTER, dict(
@@ -733,6 +762,20 @@ def load_dict(lang):
     return table
 
 
+def write_route_manifest():
+    """The slug table, as data, for the tools downstream of this script.
+
+    scripts/assemble.mjs used to carry a hand-copied duplicate of SLUGS to build
+    the sitemap from, with a comment admitting it was mirrored rather than
+    guessed. Phase 8 more than doubles the route count, and a hand-mirrored copy
+    of a 23-entry table is a sitemap that silently goes stale. It is emitted
+    here instead, by the one place that actually owns the mapping.
+    """
+    (Path(__file__).resolve().parent / "routes.json").write_text(
+        json.dumps({"langs": list(LANGS), "slugs": SLUGS}, ensure_ascii=False, indent=1),
+        encoding="utf-8")
+
+
 def main():
     if not PAGES.is_dir():
         sys.exit(f"missing {PAGES}")
@@ -741,6 +784,14 @@ def main():
     unknown = set(frags) - {v["hu"][:-5] for v in SLUGS.values()}
     if unknown:
         sys.exit(f"fragments with no slug entry: {', '.join(sorted(unknown))}")
+    # The reverse is just as much a bug: a slug with no fragment produces a
+    # nav link, a sitemap entry and an hreflang set pointing at a 404.
+    missing_frag = {k for k, v in SLUGS.items()
+                    if k != "index" and v["hu"][:-5] not in frags}
+    if missing_frag:
+        sys.exit(f"slug entries with no fragment: {', '.join(sorted(missing_frag))}")
+
+    write_route_manifest()
 
     for lang in LANGS:
         table = load_dict(lang)

@@ -14,6 +14,21 @@ udvariassági kérdés, nem jogi kötelezettség.
 
 ## Figyelem: nem tisztázott jogállás
 
-| Fájl | Probléma |
-|---|---|
-| `cruise-jet.jpg` | Gulfstream G700 (N702GD) sajtófotó. A Gulfstream Aerospace szerzői joga alá tartozik — éles oldalon való használatához engedély kell. Vagy le kell cserélni, vagy be kell szerezni a felhasználási jogot. |
+| Fájl | Probléma | Állapot |
+|---|---|---|
+| `cruise-jet.jpg` | Gulfstream G700 (N702GD) sajtófotó. A Gulfstream Aerospace szerzői joga alá tartozik — éles oldalon való használatához engedély kell. | **Karanténban.** A Phase 8 során átkerült ide: `_backup/media-rights-hold/cruise-jet.jpg`. |
+
+### Miért karantén, és nem csere
+
+A fájlra a Phase 8 kezdetén **egyetlen oldal sem hivatkozott** — sem fragment,
+sem CSS, sem JS. Csak azért került volna ki élesbe, mert a
+`scripts/assemble.mjs` az egész `assets/` könyvtárat átmásolja a `dist/`-be,
+így a kép egy kitalálható URL-en letölthető lett volna a publikált oldalról.
+
+Ezért nincs szükség helyettesítő képre: nem volt kompozíció, amiből hiányozna.
+A fájl kikerült a publikált fába, és `_backup/media-rights-hold/` alatt marad,
+amíg vagy megvan a felhasználási engedély, vagy véglegesen törlik.
+
+**Amíg a jogállás nem tisztázott, ezt a fájlt nem szabad visszatenni az
+`assets/img/` könyvtárba** — a publikálás nem a hivatkozáson múlik, hanem azon,
+hogy a fájl a másolt könyvtárban van-e.
