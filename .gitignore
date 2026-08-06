@@ -40,3 +40,20 @@ _backup/
 # Sharded output from `validate-meridian.mjs`, joined into
 # meridian-visibility.json by `merge-meridian.mjs`. Intermediate, per-run.
 _build/reports/shards/
+
+# Review imagery under _build/reports/. The written reports are the deliverable
+# and are kept; the stills they cite are regenerable output, and by Phase 9 they
+# had reached 246 MB in the working tree. _build/reports/ is otherwise a tracked
+# directory, so without this a single `git add -A` commits all of it.
+#
+# Findings belong in the .md; a screenshot is the evidence you looked at, not
+# the record. Anything genuinely worth keeping can be force-added.
+_build/reports/**/*.png
+_build/reports/*-shots/
+_build/reports/*-review/
+_build/reports/phase7-review/
+_build/reports/phase8-review/
+
+# TypeScript incremental build cache. Machine-specific, rewritten on every
+# typecheck, and meaningless to anyone else's checkout.
+*.tsbuildinfo

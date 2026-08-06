@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T18:16:03.472Z",
+  "generatedAt": "2026-08-05T22:28:28.329Z",
   "summary": {
     "routes": 66,
     "locales": 3,
@@ -214,26 +214,20 @@
           "hasDimensions": true
         },
         {
-          "src": "assets/img/team-richard.png",
+          "src": "assets/img/team-richard.jpg",
           "alt": "Tímár Richárd, partner",
           "loading": "lazy",
           "hasDimensions": true
         },
         {
-          "src": "assets/img/client-rapidkert.png",
-          "alt": "Rapidkert Kft.",
+          "src": "assets/img/logo-kontyos.webp",
+          "alt": "Kontyos.hu",
           "loading": "lazy",
           "hasDimensions": true
         },
         {
-          "src": "assets/img/client-barbershop.png",
-          "alt": "Barbershop Győr",
-          "loading": "lazy",
-          "hasDimensions": true
-        },
-        {
-          "src": "assets/img/client-pille.png",
-          "alt": "Pille Sewing",
+          "src": "assets/img/logo-grantool.png",
+          "alt": "Grantool Kft.",
           "loading": "lazy",
           "hasDimensions": true
         }
@@ -338,26 +332,20 @@
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/team-richard.png",
+          "src": "../assets/img/team-richard.jpg",
           "alt": "Richárd Tímár, partner",
           "loading": "lazy",
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/client-rapidkert.png",
-          "alt": "Rapidkert Kft.",
+          "src": "../assets/img/logo-kontyos.webp",
+          "alt": "Kontyos.hu",
           "loading": "lazy",
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/client-barbershop.png",
-          "alt": "Barbershop Győr",
-          "loading": "lazy",
-          "hasDimensions": true
-        },
-        {
-          "src": "../assets/img/client-pille.png",
-          "alt": "Pille Sewing",
+          "src": "../assets/img/logo-grantool.png",
+          "alt": "Grantool Kft.",
           "loading": "lazy",
           "hasDimensions": true
         }
@@ -462,26 +450,20 @@
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/team-richard.png",
+          "src": "../assets/img/team-richard.jpg",
           "alt": "Richárd Tímár, Partner",
           "loading": "lazy",
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/client-rapidkert.png",
-          "alt": "Rapidkert Kft.",
+          "src": "../assets/img/logo-kontyos.webp",
+          "alt": "Kontyos.hu",
           "loading": "lazy",
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/client-barbershop.png",
-          "alt": "Barbershop Győr",
-          "loading": "lazy",
-          "hasDimensions": true
-        },
-        {
-          "src": "../assets/img/client-pille.png",
-          "alt": "Pille Sewing",
+          "src": "../assets/img/logo-grantool.png",
+          "alt": "Grantool Kft.",
           "loading": "lazy",
           "hasDimensions": true
         }
@@ -830,7 +812,7 @@
         "band band--tight",
         "band"
       ],
-      "meaningfulWords": 814,
+      "meaningfulWords": 815,
       "primaryCta": {
         "text": "Kérek ajánlatot",
         "href": "arajanlat.html",
@@ -944,7 +926,7 @@
         "band band--tight",
         "band"
       ],
-      "meaningfulWords": 984,
+      "meaningfulWords": 983,
       "primaryCta": {
         "text": "Request a quote",
         "href": "quote.html",
@@ -1058,7 +1040,7 @@
         "band band--tight",
         "band"
       ],
-      "meaningfulWords": 872,
+      "meaningfulWords": 874,
       "primaryCta": {
         "text": "Angebot anfragen",
         "href": "angebot.html",
@@ -1556,7 +1538,7 @@
         "band band--tight",
         "band"
       ],
-      "meaningfulWords": 1085,
+      "meaningfulWords": 1084,
       "primaryCta": {
         "text": "Consultation",
         "href": "contact.html",
@@ -2280,7 +2262,7 @@
         "band band--pale",
         "band"
       ],
-      "meaningfulWords": 333,
+      "meaningfulWords": 317,
       "primaryCta": {
         "text": "Beszéljünk a projektről",
         "href": "ugyfelszolgalat.html",
@@ -2324,20 +2306,14 @@
           "hasDimensions": true
         },
         {
-          "src": "assets/img/client-rapidkert.png",
-          "alt": "Rapidkert Kft.",
+          "src": "assets/img/logo-kontyos.webp",
+          "alt": "Kontyos.hu",
           "loading": "lazy",
           "hasDimensions": true
         },
         {
-          "src": "assets/img/client-barbershop.png",
-          "alt": "Barbershop Győr",
-          "loading": "lazy",
-          "hasDimensions": true
-        },
-        {
-          "src": "assets/img/client-pille.png",
-          "alt": "Pille Sewing",
+          "src": "assets/img/logo-grantool.png",
+          "alt": "Grantool Kft.",
           "loading": "lazy",
           "hasDimensions": true
         }
@@ -2393,7 +2369,7 @@
         "band band--pale",
         "band"
       ],
-      "meaningfulWords": 391,
+      "meaningfulWords": 369,
       "primaryCta": {
         "text": "Let's talk about the project",
         "href": "contact.html",
@@ -2437,20 +2413,14 @@
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/client-rapidkert.png",
-          "alt": "Rapidkert Kft.",
+          "src": "../assets/img/logo-kontyos.webp",
+          "alt": "Kontyos.hu",
           "loading": "lazy",
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/client-barbershop.png",
-          "alt": "Barbershop Győr",
-          "loading": "lazy",
-          "hasDimensions": true
-        },
-        {
-          "src": "../assets/img/client-pille.png",
-          "alt": "Pille Sewing",
+          "src": "../assets/img/logo-grantool.png",
+          "alt": "Grantool Kft.",
           "loading": "lazy",
           "hasDimensions": true
         }
@@ -2506,7 +2476,7 @@
         "band band--pale",
         "band"
       ],
-      "meaningfulWords": 361,
+      "meaningfulWords": 343,
       "primaryCta": {
         "text": "Sprechen wir über das Projekt",
         "href": "kontakt.html",
@@ -2550,20 +2520,14 @@
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/client-rapidkert.png",
-          "alt": "Rapidkert Kft.",
+          "src": "../assets/img/logo-kontyos.webp",
+          "alt": "Kontyos.hu",
           "loading": "lazy",
           "hasDimensions": true
         },
         {
-          "src": "../assets/img/client-barbershop.png",
-          "alt": "Barbershop Győr",
-          "loading": "lazy",
-          "hasDimensions": true
-        },
-        {
-          "src": "../assets/img/client-pille.png",
-          "alt": "Pille Sewing",
+          "src": "../assets/img/logo-grantool.png",
+          "alt": "Grantool Kft.",
           "loading": "lazy",
           "hasDimensions": true
         }
@@ -2692,7 +2656,7 @@
         "band band--tight",
         "band band--tight"
       ],
-      "meaningfulWords": 495,
+      "meaningfulWords": 494,
       "primaryCta": {
         "text": "Let's talk about your project",
         "href": "contact.html",
@@ -2911,7 +2875,7 @@
         "band band--tight",
         "band band--tight"
       ],
-      "meaningfulWords": 477,
+      "meaningfulWords": 476,
       "primaryCta": {
         "text": "Let's talk about your project",
         "href": "contact.html",
@@ -3130,7 +3094,7 @@
         "band band--tight",
         "band band--tight"
       ],
-      "meaningfulWords": 461,
+      "meaningfulWords": 460,
       "primaryCta": {
         "text": "Let's talk about your project",
         "href": "contact.html",
@@ -5409,7 +5373,7 @@
         "phead phead--quiet",
         "band band--tight"
       ],
-      "meaningfulWords": 971,
+      "meaningfulWords": 1011,
       "primaryCta": null,
       "secondaryCta": null,
       "ctas": [],
@@ -5473,7 +5437,7 @@
         "phead phead--quiet",
         "band band--tight"
       ],
-      "meaningfulWords": 1125,
+      "meaningfulWords": 1167,
       "primaryCta": null,
       "secondaryCta": null,
       "ctas": [],
@@ -5538,7 +5502,7 @@
         "phead phead--quiet",
         "band band--tight"
       ],
-      "meaningfulWords": 1006,
+      "meaningfulWords": 1046,
       "primaryCta": null,
       "secondaryCta": null,
       "ctas": [],
@@ -5577,6 +5541,7 @@
       "headingLevels": [
         1,
         2,
+        2,
         2
       ],
       "sectionCount": 2,
@@ -5584,7 +5549,7 @@
         "phead phead--quiet",
         "band band--tight"
       ],
-      "meaningfulWords": 66,
+      "meaningfulWords": 111,
       "primaryCta": null,
       "secondaryCta": null,
       "ctas": [],
@@ -5596,7 +5561,7 @@
         "ugyfelszolgalat.html"
       ],
       "faults": [
-        "thin page (66 words)"
+        "thin page (111 words)"
       ]
     },
     {
@@ -5625,6 +5590,7 @@
       "headingLevels": [
         1,
         2,
+        2,
         2
       ],
       "sectionCount": 2,
@@ -5632,7 +5598,7 @@
         "phead phead--quiet",
         "band band--tight"
       ],
-      "meaningfulWords": 93,
+      "meaningfulWords": 140,
       "primaryCta": null,
       "secondaryCta": null,
       "ctas": [],
@@ -5645,7 +5611,7 @@
         "contact.html"
       ],
       "faults": [
-        "thin page (93 words)"
+        "thin page (140 words)"
       ]
     },
     {
@@ -5674,6 +5640,7 @@
       "headingLevels": [
         1,
         2,
+        2,
         2
       ],
       "sectionCount": 2,
@@ -5681,7 +5648,7 @@
         "phead phead--quiet",
         "band band--tight"
       ],
-      "meaningfulWords": 80,
+      "meaningfulWords": 127,
       "primaryCta": null,
       "secondaryCta": null,
       "ctas": [],
@@ -5694,7 +5661,7 @@
         "kontakt.html"
       ],
       "faults": [
-        "thin page (80 words)"
+        "thin page (127 words)"
       ]
     }
   ]
