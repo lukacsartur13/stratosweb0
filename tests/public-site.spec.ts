@@ -324,9 +324,51 @@ test.describe('deploy artefacts', () => {
     expect(res.status()).toBe(200);
     const body = await res.text();
     expect(body).toContain('<urlset');
-    expect(body).toContain('/en/index.html');
-    expect(body).toContain('/de/index.html');
+    // The three homepages are `/`, `/en/` and `/de/`, NOT `/index.html`. This
+    // assertion used to name the filenames, which is how the sitemap came to
+    // offer three URLs that each carried a canonical pointing somewhere else —
+    // the test agreed with the generator and both were wrong about the site.
+    // See `absolute()` in _build/build.py.
+    expect(body).toMatch(/<loc>https?:\/\/[^/]+\/en\/<\/loc>/);
+    expect(body).toMatch(/<loc>https?:\/\/[^/]+\/de\/<\/loc>/);
+    expect(body).not.toContain('index.html');
     expect(body).toContain('hreflang="x-default"');
+  });
+
+  /**
+   * Every URL offered to a crawler must be the URL that page claims for itself.
+   *
+   * A sitemap entry whose page canonicalises elsewhere is not an error anyone
+   * sees: the page is fine, the sitemap is well-formed, and the only symptom is
+   * crawl budget spent proving two URLs are the same page. It is exactly the
+   * kind of thing that stays wrong for a year, so it is asserted rather than
+   * reviewed.
+   *
+   * Also the one place `<lastmod>` is checked for absence — see the note in
+   * scripts/assemble.mjs. A build-clock lastmod tells every crawler that all 60
+   * pages changed on every deploy, and a signal that always says "everything
+   * changed" carries the same information as one that never changes.
+   */
+  test('every sitemap URL is the canonical of the page it points at', async ({ request }) => {
+    const body = await (await request.get('/sitemap.xml')).text();
+    const locs = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    expect(locs.length).toBeGreaterThan(50);
+    expect(body).not.toContain('<lastmod>');
+
+    for (const loc of locs) {
+      const path = new URL(loc).pathname;
+      const res = await request.get(path);
+      expect(res.status(), `${path} must be served`).toBe(200);
+
+      const html = await res.text();
+      const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+      expect(canonical, `${path} must declare a canonical`).toBeTruthy();
+      expect(new URL(canonical!).pathname, `${path} canonical`).toBe(path);
+
+      // And nothing in the sitemap may be noindex — the two statements
+      // contradict each other and the crawler has to resolve it.
+      expect(html, `${path} must not be noindex`).not.toMatch(/name="robots"[^>]*noindex/);
+    }
   });
 
   /**

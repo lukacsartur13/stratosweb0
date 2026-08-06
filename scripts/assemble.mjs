@@ -116,11 +116,30 @@ if (!existsSync(MANIFEST)) {
   console.error(`assemble: missing ${MANIFEST} — run \`npm run generate\` first.`);
   process.exit(1);
 }
-const { langs: LANGS, slugs: RAW, status: STATUS = {} } = JSON.parse(await readFile(MANIFEST, 'utf8'));
+const {
+  langs: LANGS, slugs: RAW, canonical: CANONICAL, status: STATUS = {},
+} = JSON.parse(await readFile(MANIFEST, 'utf8'));
+
+if (!CANONICAL) {
+  console.error('assemble: routes.json has no `canonical` table — run `npm run generate` first.');
+  process.exit(1);
+}
+
+// The CANONICAL URL of each route, per language, as a path with no leading
+// slash — ready to be appended to the origin.
+//
+// Built from the manifest's `canonical` table rather than from its filenames.
+// For 21 of the 22 keys the two are the same; for the homepage they are not,
+// and that difference is the whole reason this table exists. The homepage
+// shells are built by Vite and their own `<link rel="canonical">` says `/`,
+// `/en/` and `/de/`. This file used to derive `index.html`, `en/index.html`
+// and `de/index.html` from the filenames instead — so the sitemap offered three
+// URLs that each carried a canonical pointing at a fourth. A crawler resolves
+// that eventually and at its own pace; there is no reason to make it.
 const SLUGS = Object.fromEntries(
-  Object.entries(RAW).map(([key, byLang]) => [
+  Object.entries(RAW).map(([key]) => [
     key,
-    LANGS.map((l) => (l === 'hu' ? byLang[l] : `${l}/${byLang[l]}`)),
+    LANGS.map((l) => CANONICAL[key][l].replace(/^\//, '')),
   ]),
 );
 
@@ -129,8 +148,30 @@ const PRIORITY = {
   privacy: '0.3', imprint: '0.3',
 };
 
+// -----------------------------------------------------------------------------
+// WHY THERE IS NO <lastmod>
+//
+// There used to be, and it was `new Date()` — every URL stamped with the day the
+// build ran. That is not a modification date, it is a build date, and emitting
+// it told every crawler that all 60 pages changed simultaneously on every
+// deploy, including deploys that changed one CSS file. A signal that is always
+// "everything just changed" is indistinguishable from one that is always
+// "nothing just changed", and Google's own guidance is that it will ignore a
+// lastmod it finds inconsistent — after having been given a reason to distrust
+// the rest of the file.
+//
+// The honest alternatives were: omit it, or derive it from the git history of
+// each page's fragment and translation dictionary. The second is a real date
+// and is also a build-time git dependency, a shallow-clone failure mode and a
+// second thing to keep correct as the source layout moves. `lastmod` is
+// optional in the sitemap protocol and is a hint rather than an instruction, so
+// omitting it costs a hint we could not give truthfully anyway.
+//
+// If it is wanted later, the derivation is `git log -1 --format=%cs` over
+// `_build/pages/<stem>.html` and `_build/i18n/<stem>.json`, taking the later of
+// the two, with the whole block skipped when git is unavailable.
+// -----------------------------------------------------------------------------
 async function sitemap() {
-  const today = new Date().toISOString().slice(0, 10);
   const urls = [];
 
   for (const [key, paths] of Object.entries(SLUGS)) {
@@ -150,7 +191,6 @@ async function sitemap() {
       urls.push(
         `  <url>\n` +
         `    <loc>${SITE_URL}/${path}</loc>\n` +
-        `    <lastmod>${today}</lastmod>\n` +
         `    <changefreq>monthly</changefreq>\n` +
         `    <priority>${i === 0 ? (PRIORITY[key] ?? '0.6') : '0.5'}</priority>\n` +
         alts + '\n' +

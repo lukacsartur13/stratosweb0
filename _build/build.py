@@ -15,6 +15,7 @@ Output:
 
 Nothing at runtime depends on this script; the result is a plain static site.
 """
+import html as html_mod
 import json
 import os
 import re
@@ -583,6 +584,11 @@ def href(lang, key):
     """Link to page `key` from any page of the same language."""
     if _ROOT_LINKS:
         return root_href(lang, key)
+    # The homepage is the one route whose canonical URL is not its filename —
+    # see `absolute` below. Linking to `index.html` from 66 pages tells a
+    # crawler the homepage is a URL the homepage itself disclaims.
+    if key == "index":
+        return HOME_PATH[lang]
     return SLUGS[key][lang]
 
 
@@ -590,6 +596,8 @@ def cross(lang_from, lang_to, key):
     """Link to page `key` in another language."""
     if _ROOT_LINKS:
         return root_href(lang_to, key)
+    if key == "index":
+        return HOME_PATH[lang_to]
     if lang_from == lang_to:
         return SLUGS[key][lang_to]
     up = "" if lang_from == "hu" else "../"
@@ -598,7 +606,23 @@ def cross(lang_from, lang_to, key):
 
 
 def absolute(lang, key):
-    """Root-relative URL — used for hreflang."""
+    """The route's CANONICAL root-relative URL — hreflang, og:url, sitemap.
+
+    Everything except the homepage is its filename. The homepage is `/`, `/en/`
+    and `/de/`, because that is what the three homepage shells' own
+    `<link rel="canonical">` says — they are built by Vite, not by this script,
+    and this function has to agree with them rather than with the filename on
+    disk.
+
+    Phase 9 fixed the disagreement. Before it, this returned `/index.html` and
+    the shells said `/`, so the sitemap offered three URLs that each carried a
+    canonical pointing somewhere else — the one arrangement guaranteed to spend
+    crawl budget proving the two are the same page. `HOME_PATH` is now the only
+    statement of the homepage's address, and `tests/public-site.spec.ts` fails
+    if a sitemap entry and its page's canonical ever disagree again.
+    """
+    if key == "index":
+        return HOME_PATH[lang]
     return "/" + ("" if lang == "hu" else lang + "/") + SLUGS[key][lang]
 
 
@@ -988,6 +1012,265 @@ DECK = """<!-- Flight deck. Three deterministic states — opening, journey, des
 </div>"""
 
 
+# ============================================================ structured data
+#
+# Phase 9, Workstream G. One generator for all 69 routes, including the three
+# homepage shells, which receive it through home-chrome.json like the rest of
+# their <head>.
+#
+# THE RULE THAT SHAPED EVERY DECISION BELOW
+# -----------------------------------------
+# Structured data is a set of machine-readable CLAIMS, published under our name,
+# to parties who cannot check them. So nothing is emitted that the page does not
+# already say to a human being. Not "nothing false" — nothing UNSUPPORTED, which
+# is a stricter and much easier rule to hold, because it can be checked by
+# looking at the page.
+#
+# What that ruled out, and each of these was available and tempting:
+#
+#   legalName, taxID, vatID, address, PostalAddress, foundingDate,
+#   numberOfEmployees, award, review, aggregateRating, Offer, price,
+#   priceRange, openingHours, areaServed, geo, founder, employee,
+#   SearchAction, and datePublished / dateModified on the six articles.
+#
+# The last one is the interesting case. Article rich results are eligible only
+# with a publication date, and the six blog fragments carry none — the front
+# matter is title, desc, og_image and ceiling, and that is all it has ever been.
+# A plausible date could be invented from the git history or from the build
+# clock and nobody would catch it. Both would be a fabricated fact about when
+# something was written, published in a format designed to be trusted without
+# verification. So the Article node ships without dates and is not eligible for
+# the rich result, which is the correct outcome: the remedy is to write the real
+# dates into the fragments, not to generate them.
+#
+# Similarly there is no `SearchAction`, because the site has no search. A
+# sitelinks searchbox declaration on a site with no search is a claim that
+# resolves to a 404.
+#
+# WHAT IS EMITTED, AND WHY EACH IS SUPPORTED
+# ------------------------------------------
+#   Organization   name, url, logo, contact — all four are in the footer of
+#                  every page, and the three sameAs profiles are the three the
+#                  footer links to.
+#   WebSite        the site itself, publisher -> Organization.
+#   WebPage and its subtypes, one per route, from the page's own title,
+#                  description, language and canonical URL.
+#   BreadcrumbList only where the page RENDERS a breadcrumb trail, and built
+#                  from the labels it actually renders. See breadcrumb().
+#   Service        the four service-detail pages, name and description from the
+#                  page, provider -> Organization. No offers, no price.
+#   Article        the six blog posts. No dates — see above.
+#
+# A `summary` or `draft` case study gets a plain WebPage and nothing else. It
+# must not carry structured data that presents it as a finished case study,
+# which is the same reason it carries `noindex, follow` and has no sitemap entry.
+
+# The three profiles the footer links to, and no others.
+SOCIAL_PROFILES = [
+    "https://www.linkedin.com/company/stratos-media-agency",
+    "https://www.instagram.com/stratosweb/",
+    "https://www.facebook.com/profile.php?id=61590329356257",
+]
+
+# Published in the footer of every page, in every language.
+CONTACT_EMAIL = "lukacs.artur@media-stratos.com"
+CONTACT_PHONE = "+36305848024"
+
+# schema.org type per route. Anything unlisted is a plain WebPage, which is the
+# safe answer rather than the lazy one: a wrong subtype is a wrong claim.
+PAGE_TYPE_SCHEMA = {
+    "about": "AboutPage",
+    "contact": "ContactPage",
+    "services": "CollectionPage",
+    "work": "CollectionPage",
+    "blog": "CollectionPage",
+}
+
+# The route above each route, for breadcrumbs. Mirrors the trail the pages
+# already render; `breadcrumb()` refuses to emit anything if the two disagree.
+BREADCRUMB_PARENT = {
+    "sme": "services", "enterprise": "services",
+    "branding": "services", "ads": "services",
+}
+
+SCHEMA_LANG = {"hu": "hu-HU", "en": "en-GB", "de": "de-DE"}
+
+CRUMBS_RE = re.compile(r'<p class="crumbs">(.*?)</p>', re.S)
+TAG_RE = re.compile(r"<[^>]+>")
+
+
+def crumb_chain(key):
+    """The route keys from the homepage down to `key`, inclusive."""
+    if key == "index":
+        return ["index"]
+    if key.startswith("case-"):
+        return ["index", "work", key]
+    if key.startswith("post-"):
+        return ["index", "blog", key]
+    parent = BREADCRUMB_PARENT.get(key)
+    return ["index", parent, key] if parent else ["index", key]
+
+
+def crumb_labels(body):
+    """The visible breadcrumb labels of a rendered page, in order, or None.
+
+    Read from the markup rather than from a table, because a BreadcrumbList is
+    only allowed to describe the trail the page actually shows. A second,
+    independently maintained list of labels would be a second thing to keep in
+    step with the translations, and its failure mode is publishing a trail no
+    visitor can see.
+    """
+    match = CRUMBS_RE.search(body)
+    if not match:
+        return None
+    # Tags come out BEFORE the split, not after. The separator is `/` and so is
+    # the one in every closing tag, so splitting first turns
+    # `<a href="x">Stratos</a> / <b>Rólunk</b>` into four fragments of broken
+    # markup that strip down to two labels and two stray letters — a four-step
+    # trail on a two-step page, which `breadcrumb()` then correctly refuses to
+    # emit. Silent, and it cost a build to notice.
+    parts = [html_mod.unescape(p).strip()
+             for p in TAG_RE.sub("", match.group(1)).split("/")]
+    parts = [p for p in parts if p]
+    return parts or None
+
+
+def breadcrumb(lang, key, body, page_url):
+    """A BreadcrumbList for one page, or None.
+
+    Returns None whenever the rendered trail and the route hierarchy disagree
+    about how many steps there are. That is a deliberate refusal rather than a
+    best guess: an itemListElement whose `name` and `item` came from different
+    ideas of the page's position is worse than no breadcrumb at all.
+    """
+    labels = crumb_labels(body)
+    if not labels:
+        return None
+    chain = crumb_chain(key)
+    if len(labels) != len(chain) or None in chain:
+        return None
+
+    items = []
+    for i, (label, step) in enumerate(zip(labels, chain), start=1):
+        url = page_url if step == key else SITE + absolute(lang, step)
+        items.append({
+            "@type": "ListItem",
+            "position": i,
+            "name": label,
+            "item": url,
+        })
+    return {
+        "@type": "BreadcrumbList",
+        "@id": page_url + "#breadcrumb",
+        "itemListElement": items,
+    }
+
+
+def build_structured_data(lang, key, title, desc, meta, body):
+    """The JSON-LD block for one route.
+
+    `body` is the rendered, translated page body — the breadcrumb is read from
+    it, so this must be called after translation and before nothing in
+    particular; it does not modify what it is given.
+    """
+    page_url = SITE + absolute(lang, key)
+    image = meta.get("og_image") or DEFAULT_OG_IMAGE[0]
+
+    # Titles and descriptions arrive HTML-escaped, because their other two
+    # destinations — <title> and <meta content> — are HTML. JSON-LD is not, and
+    # a consumer reading `Google &amp; Meta Ads` out of it has no reason to
+    # decode anything: it renders the ampersand entity literally, in a search
+    # result, under our name. Decoded once, here, at the boundary.
+    title = html_mod.unescape(title)
+    desc = html_mod.unescape(desc)
+
+    organisation = {
+        "@type": "Organization",
+        "@id": SITE + "/#organization",
+        "name": "Stratos",
+        "url": SITE + "/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": SITE + "/assets/img/logo.png",
+            "width": 512,
+            "height": 512,
+        },
+        "email": CONTACT_EMAIL,
+        "telephone": "+36 30 584 8024",
+        "sameAs": SOCIAL_PROFILES,
+    }
+
+    website = {
+        "@type": "WebSite",
+        "@id": SITE + "/#website",
+        "url": SITE + "/",
+        "name": "Stratos",
+        "publisher": {"@id": SITE + "/#organization"},
+        "inLanguage": [SCHEMA_LANG[l] for l in LANGS],
+    }
+
+    webpage = {
+        "@type": PAGE_TYPE_SCHEMA.get(key, "WebPage"),
+        "@id": page_url + "#webpage",
+        "url": page_url,
+        "name": title,
+        "description": desc,
+        "inLanguage": SCHEMA_LANG[lang],
+        "isPartOf": {"@id": SITE + "/#website"},
+        "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": SITE + "/" + image,
+        },
+    }
+
+    graph = [organisation, website, webpage]
+
+    trail = breadcrumb(lang, key, body, page_url)
+    if trail:
+        webpage["breadcrumb"] = {"@id": trail["@id"]}
+        graph.append(trail)
+
+    if key in ("sme", "enterprise", "branding", "ads"):
+        # No `offers`, no `priceRange`, no `areaServed`. The site publishes no
+        # price for any of the four, and a Service node without an Offer is a
+        # complete and valid description of a service that is quoted rather
+        # than listed.
+        graph.append({
+            "@type": "Service",
+            "@id": page_url + "#service",
+            "name": title.split("|")[0].strip(),
+            "description": desc,
+            "provider": {"@id": SITE + "/#organization"},
+            "mainEntityOfPage": {"@id": page_url + "#webpage"},
+        })
+
+    if key.startswith("post-"):
+        # datePublished and dateModified are deliberately absent — see the note
+        # at the head of this section. Author and publisher are the same
+        # organisation, which is what the site says: the posts carry no byline.
+        graph.append({
+            "@type": "Article",
+            "@id": page_url + "#article",
+            "headline": title.split("|")[0].strip(),
+            "description": desc,
+            "image": SITE + "/" + image,
+            "inLanguage": SCHEMA_LANG[lang],
+            "author": {"@id": SITE + "/#organization"},
+            "publisher": {"@id": SITE + "/#organization"},
+            "mainEntityOfPage": {"@id": page_url + "#webpage"},
+        })
+
+    payload = json.dumps(
+        {"@context": "https://schema.org", "@graph": graph},
+        ensure_ascii=False, separators=(",", ":"))
+    # `</` cannot appear literally inside a <script>, whatever its type — the
+    # HTML parser ends the element at it. Escaping it keeps the JSON valid and
+    # the document well-formed.
+    payload = payload.replace("</", "<\\/")
+    return ('\n<script type="application/ld+json">'
+            + payload + "</script>")
+
+
 def build_deck(lang, key, base, home):
     """Render the flight deck for one route. `home` is the wordmark's href —
     relative on the generated routes, root-absolute on the homepage."""
@@ -1013,7 +1296,7 @@ SHELL = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{desc}}">
-<link rel="icon" href="{{base}}assets/img/favicon.png">{{robots}}{{alternates}}{{social}}
+<link rel="icon" href="{{base}}assets/img/favicon.png">{{robots}}{{alternates}}{{social}}{{jsonld}}
 {{fontpreload}}
 <link rel="stylesheet" href="{{base}}assets/css/type.css">
 <!-- The site chrome — tokens, flight deck, full-screen menu, Arrival, footer.
@@ -1611,15 +1894,50 @@ HOME_SCRIPTS = """<script src="/assets/js/header.js"></script>
     <script src="/assets/js/motion.js" defer></script>"""
 
 
+HOME_SHELLS = Path(__file__).resolve().parent.parent / "experiments" / "home"
+_TITLE_RE = re.compile(r"<title>(.*?)</title>", re.S)
+_DESC_RE = re.compile(r'<meta name="description" content="(.*?)"', re.S)
+
+
+def home_meta(lang):
+    """The homepage's own title and description, READ from its shell.
+
+    The three shells are the homepage's <head> and they state these two facts;
+    the structured data has to agree with them. Copying them into this file
+    would be a second copy that drifts silently, and the drift would only ever
+    show up as a Search Console warning months later. So it is read, and a shell
+    that stops stating either one fails the build here rather than shipping a
+    JSON-LD `name` that no longer matches the `<title>` beside it.
+    """
+    path = HOME_SHELLS / f"{lang}.html"
+    html = path.read_text(encoding="utf-8")
+    title = _TITLE_RE.search(html)
+    desc = _DESC_RE.search(html)
+    if not title or not desc:
+        sys.exit(f"{path}: homepage shell has no <title> or no meta description")
+    unescape = lambda s: (s.replace("&amp;", "&").replace("&lt;", "<")
+                          .replace("&gt;", ">").replace("&quot;", '"'))
+    return unescape(title.group(1).strip()), unescape(desc.group(1).strip())
+
+
 def build_home_chrome(lang):
     """The four chrome strings for one homepage locale."""
+    home_title, home_desc = home_meta(lang)
     u = UI[lang]
     js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
     with root_links():
         return {
             "head": render(HOME_HEAD, dict(
                 i18n=json.dumps(js, ensure_ascii=False),
-                analytics=analytics_head("/"))),
+                analytics=analytics_head("/"))) + build_structured_data(
+                    # The homepage renders no breadcrumb trail — it is the root
+                    # of every trail — so an empty body is the honest input and
+                    # `breadcrumb()` correctly returns None for it. Title and
+                    # description come from the shells' own <head>, which is
+                    # where the homepage states them; they are repeated here
+                    # rather than re-derived, and asserted equal by
+                    # tests/structured-data.spec.ts.
+                    lang, "index", home_title, home_desc, {}, ""),
             # `base="/"` so the wordmark's plane resolves from `/`, `/en/` and
             # `/de/` alike, and from the dev server's `/home/hu.html`.
             "deck": build_deck(lang, "index", "/", HOME_PATH[lang]),
@@ -1646,6 +1964,14 @@ def write_route_manifest():
     """
     (Path(__file__).resolve().parent / "routes.json").write_text(
         json.dumps({"langs": list(LANGS), "slugs": SLUGS,
+                    # The canonical URL of each route, per language, as
+                    # `absolute()` decides it. The sitemap is built from THIS
+                    # and not from `slugs`, because for the homepage the two
+                    # differ: the file is `index.html` and the canonical is `/`.
+                    # Deriving the sitemap from filenames is what put three
+                    # self-disclaiming URLs in it before Phase 9.
+                    "canonical": {k: {l: absolute(l, k) for l in LANGS}
+                                  for k in SLUGS},
                     "status": {k: case_status(k) for k in SLUGS}},
                    ensure_ascii=False, indent=1),
         encoding="utf-8")
@@ -1712,6 +2038,9 @@ def main():
                 base=base,
                 alternates=build_alternates(key),
                 social=build_social(lang, key, title, desc, meta),
+                # After translation and after the legal note, so the breadcrumb
+                # it reads is the one this page will actually render.
+                jsonld=build_structured_data(lang, key, title, desc, meta, body),
                 fontpreload=build_font_preload(lang, base),
                 i18n=json.dumps(js, ensure_ascii=False),
                 analytics=analytics_head(base),

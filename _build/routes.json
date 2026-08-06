@@ -121,6 +121,123 @@
    "de": "impressum.html"
   }
  },
+ "canonical": {
+  "index": {
+   "hu": "/",
+   "en": "/en/",
+   "de": "/de/"
+  },
+  "about": {
+   "hu": "/rolunk.html",
+   "en": "/en/about.html",
+   "de": "/de/ueber-uns.html"
+  },
+  "services": {
+   "hu": "/szolgaltatasok.html",
+   "en": "/en/services.html",
+   "de": "/de/leistungen.html"
+  },
+  "sme": {
+   "hu": "/kkv.html",
+   "en": "/en/web-design-sme.html",
+   "de": "/de/webdesign-kmu.html"
+  },
+  "enterprise": {
+   "hu": "/nagyvallalat.html",
+   "en": "/en/web-design-enterprise.html",
+   "de": "/de/webdesign-grossunternehmen.html"
+  },
+  "branding": {
+   "hu": "/branding.html",
+   "en": "/en/branding.html",
+   "de": "/de/branding.html"
+  },
+  "ads": {
+   "hu": "/hirdeteskezeles.html",
+   "en": "/en/ads-management.html",
+   "de": "/de/werbeanzeigen.html"
+  },
+  "impact": {
+   "hu": "/impact-program.html",
+   "en": "/en/impact-program.html",
+   "de": "/de/impact-programm.html"
+  },
+  "work": {
+   "hu": "/munkaink.html",
+   "en": "/en/work.html",
+   "de": "/de/projekte.html"
+  },
+  "case-rapidkert": {
+   "hu": "/munka-rapidkert.html",
+   "en": "/en/work-rapidkert.html",
+   "de": "/de/projekt-rapidkert.html"
+  },
+  "case-barbershop": {
+   "hu": "/munka-barbershop.html",
+   "en": "/en/work-barbershop.html",
+   "de": "/de/projekt-barbershop.html"
+  },
+  "case-mentaltrening": {
+   "hu": "/munka-mentaltrening.html",
+   "en": "/en/work-mentaltrening.html",
+   "de": "/de/projekt-mentaltrening.html"
+  },
+  "blog": {
+   "hu": "/blog.html",
+   "en": "/en/blog.html",
+   "de": "/de/blog.html"
+  },
+  "post-seo": {
+   "hu": "/blog-google-elso-oldal.html",
+   "en": "/en/blog-google-first-page.html",
+   "de": "/de/blog-google-erste-seite.html"
+  },
+  "post-arak": {
+   "hu": "/blog-weboldal-arak.html",
+   "en": "/en/blog-website-cost.html",
+   "de": "/de/blog-website-kosten.html"
+  },
+  "post-cegprofil": {
+   "hu": "/blog-google-cegprofil.html",
+   "en": "/en/blog-google-business-profile.html",
+   "de": "/de/blog-google-unternehmensprofil.html"
+  },
+  "post-hirdetes": {
+   "hu": "/blog-google-vagy-facebook.html",
+   "en": "/en/blog-google-or-facebook.html",
+   "de": "/de/blog-google-oder-facebook.html"
+  },
+  "post-elavult": {
+   "hu": "/blog-elavult-weboldal.html",
+   "en": "/en/blog-outdated-website.html",
+   "de": "/de/blog-veraltete-website.html"
+  },
+  "post-konverzio": {
+   "hu": "/blog-miert-nem-hoz-ugyfelet.html",
+   "en": "/en/blog-no-enquiries.html",
+   "de": "/de/blog-keine-anfragen.html"
+  },
+  "contact": {
+   "hu": "/ugyfelszolgalat.html",
+   "en": "/en/contact.html",
+   "de": "/de/kontakt.html"
+  },
+  "quote": {
+   "hu": "/arajanlat.html",
+   "en": "/en/quote.html",
+   "de": "/de/angebot.html"
+  },
+  "privacy": {
+   "hu": "/adatkezelesi-tajekoztato.html",
+   "en": "/en/privacy-policy.html",
+   "de": "/de/datenschutz.html"
+  },
+  "imprint": {
+   "hu": "/impresszum.html",
+   "en": "/en/imprint.html",
+   "de": "/de/impressum.html"
+  }
+ },
  "status": {
   "index": "full",
   "about": "full",
