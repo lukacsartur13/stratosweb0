@@ -118,6 +118,17 @@ const FRAGMENT = /* glsl */ `
   uniform float uCrestGain;
   uniform float uValleyDarken;
 
+  uniform vec3  uZoneValley;
+  uniform vec3  uZoneRock;
+  uniform vec3  uZoneRidge;
+  uniform vec3  uZoneSnow;
+  uniform vec2  uZoneCross;    // valley→rock, rock→ridge, in model metres
+  uniform float uZoneBlend;
+  uniform vec3  uSnow;         // from, fade, slope
+  uniform float uSnowAmount;
+  uniform float uZoneAmount;
+  uniform float uZoneJitter;
+
   uniform vec3  uFogColor;
   uniform float uFogDensity;
   uniform float uValleyDensity;
@@ -143,10 +154,44 @@ const FRAGMENT = /* glsl */ `
     float wMid = clamp( d * 2.0, 0.0, 1.0 );
     float wFar = clamp( d * 2.0 - 1.0, 0.0, 1.0 );
 
-    vec3  base     = mix( mix( uBaseNear * uLevel.x, uBaseMid * uLevel.y, wMid ), uBaseFar * uLevel.z, wFar );
+    // Albedo and level are kept apart here, where they used to be
+    // premultiplied. The depth ramp's *level* is aerial perspective and has to
+    // survive the zoning below untouched — it is what makes the background
+    // recede — while its *albedo* is the thing the zoning replaces.
+    vec3  baseCol  = mix( mix( uBaseNear, uBaseMid, wMid ), uBaseFar, wFar );
+    float level    = mix( mix( uLevel.x,  uLevel.y,  wMid ), uLevel.z,  wFar );
     float contrast = mix( mix( uContrast.x, uContrast.y, wMid ), uContrast.z, wFar );
     float floorLit = mix( mix( uFloor.x,    uFloor.y,    wMid ), uFloor.z,    wFar );
     float fogScale = mix( mix( uFogScale.x, uFogScale.y, wMid ), uFogScale.z, wFar );
+
+    // --- what this rock is made of ------------------------------------------
+    // Four substances on two free masks: height for the bands, slope for the
+    // snow. vHeight is already here for the crest ramp and N is already here
+    // for the key, so the whole of §14's zoning costs a few smoothsteps and no
+    // texture fetch. See the zone block in mountainLook.ts.
+
+    // The crossings are broken up per face so they never draw a contour line
+    // across the range. One sin() of the normal, which on flat-shaded terrain
+    // is constant across a facet — the boundary wanders along the geometry that
+    // is already there rather than along a noise field that is not.
+    float jitter = uZoneJitter * sin( vNormalW.x * 11.3 + vNormalW.z * 7.7 );
+    float h      = vHeight + jitter;
+
+    float toRock  = smoothstep( uZoneCross.x - uZoneBlend, uZoneCross.x + uZoneBlend, h );
+    float toRidge = smoothstep( uZoneCross.y - uZoneBlend, uZoneCross.y + uZoneBlend, h );
+    vec3  zone    = mix( mix( uZoneValley, uZoneRock, toRock ), uZoneRidge, toRidge );
+
+    // Snow needs height *and* a surface that can hold it. Steep faces shed it,
+    // which is what keeps the accent on shoulders and ledges instead of
+    // painting it across the silhouette the composition depends on.
+    float snowH = smoothstep( uSnow.x, uSnow.x + uSnow.y, h );
+    float snowS = smoothstep( uSnow.z, 1.0, N.y );
+    zone = mix( zone, uZoneSnow, uSnowAmount * snowH * snowS );
+
+    // uZoneAmount is the whole restraint budget in one number: at 0 this
+    // resolves to the accepted monochrome palette exactly, so the zoning can be
+    // reviewed against the look it replaces rather than argued about.
+    vec3 base = mix( baseCol, zone, uZoneAmount ) * level;
 
     // --- the key ------------------------------------------------------------
     // Wrapped, so the terminator is a curve rather than a clip. A hard Lambert
@@ -246,6 +291,17 @@ function build(look: MountainLook, rangeScale: number): Uniforms {
     uCrestTo: { value: look.crestTo },
     uCrestGain: { value: look.crestGain },
     uValleyDarken: { value: look.valleyDarken },
+
+    uZoneValley: { value: linear(look.zone.valley) },
+    uZoneRock: { value: linear(look.zone.rock) },
+    uZoneRidge: { value: linear(look.zone.ridge) },
+    uZoneSnow: { value: linear(look.zone.snow) },
+    uZoneCross: { value: new THREE.Vector2(look.zone.valleyTo, look.zone.ridgeFrom) },
+    uZoneBlend: { value: look.zone.blend },
+    uSnow: { value: new THREE.Vector3(look.zone.snowFrom, look.zone.snowFade, look.zone.snowSlope) },
+    uSnowAmount: { value: look.zone.snowAmount },
+    uZoneAmount: { value: look.zone.amount },
+    uZoneJitter: { value: look.zone.jitter },
 
     uFogColor: { value: linear(look.fogColor) },
     uFogDensity: { value: look.fogDensity },
@@ -387,6 +443,23 @@ export function applyLook(
     (u.uFloor.value as THREE.Vector3).set(...look.floor);
     (u.uFogScale.value as THREE.Vector3).set(...look.fogScale);
     (u.uDepthSpan.value as THREE.Vector2).set(...look.depthSpan);
+
+    // --- material zoning ----------------------------------------------------
+    // The route is the one non-rock element in the scene — a drawn line on the
+    // ground — so it opts out entirely rather than being zoned by the altitude
+    // it happens to be crossing. Zoning it would fade it into the valley at the
+    // bottom and frost it at the top, which is a line that disappears where it
+    // matters most.
+    (u.uZoneValley.value as THREE.Color).set(look.zone.valley);
+    (u.uZoneRock.value as THREE.Color).set(look.zone.rock);
+    (u.uZoneRidge.value as THREE.Color).set(look.zone.ridge);
+    (u.uZoneSnow.value as THREE.Color).set(look.zone.snow);
+    (u.uZoneCross.value as THREE.Vector2).set(look.zone.valleyTo, look.zone.ridgeFrom);
+    u.uZoneBlend.value = look.zone.blend;
+    (u.uSnow.value as THREE.Vector3).set(look.zone.snowFrom, look.zone.snowFade, look.zone.snowSlope);
+    u.uSnowAmount.value = isRoute ? 0 : look.zone.snowAmount;
+    u.uZoneAmount.value = isRoute ? 0 : look.zone.amount;
+    u.uZoneJitter.value = look.zone.jitter;
 
     // --- form ---------------------------------------------------------------
     u.uCrestFrom.value = look.crestFrom;

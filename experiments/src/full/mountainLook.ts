@@ -158,6 +158,86 @@ export type MountainLook = {
   valleyFogTop: number;
   valleyFogFalloff: number;
 
+  /**
+   * Environmental material zoning: what the rock is *made of* at each altitude.
+   *
+   * ## Why this is separate from `base`
+   *
+   * `base` is a *depth* palette — three albedos interpolated on distance from
+   * the camera, which is aerial perspective. It answers "how far away is this",
+   * and its three values are deliberately almost the same colour (0x6d7784,
+   * 0x77808d, 0x7d8794 on desktop) because a hue shift with distance would read
+   * as a filter rather than as air.
+   *
+   * Nothing in the material answered "what is this", and that is the whole of
+   * the flat-monochrome-blockout complaint. A range whose only albedo variation
+   * is a two-step drift with distance is one material at one colour, and no
+   * amount of lighting rescues it: `crestGain` and `valleyDarken` modulate the
+   * *light*, so a lit crest and a lit valley floor are the same substance at
+   * two brightnesses. Real terrain changes substance with altitude — soil and
+   * scrub in the valley, exposed rock on the flanks, colder mineral on the
+   * ridges, snow only where it can hold.
+   *
+   * ## Height and slope, not textures
+   *
+   * Both masks are already free. `vHeight` is a varying the crest ramp needs
+   * anyway, and the world normal is the one the key light needs anyway, so the
+   * whole system is a handful of `smoothstep`s on values the fragment stage has
+   * in hand. No texture is fetched, no second UV set is needed, and the mobile
+   * GLB does not grow by a byte. §15's preferred strategy, taken literally.
+   *
+   * ## Restraint is a constant here, not a discipline
+   *
+   * `amount` caps how far the zoning may pull the albedo away from the accepted
+   * depth palette, and `snowAmount` caps snow coverage below 1 by construction —
+   * so "restrained" is enforced by the range of a number rather than by whoever
+   * edits the colours next. Turning `amount` to 0 returns the accepted
+   * monochrome look exactly, which is what makes this reviewable.
+   */
+  zone: {
+    /** §14.1 — lower valley: dark earth-grey with a muted organic cast. */
+    valley: number;
+    /** §14.2 — the rocky middle band, and the dominant structural region. */
+    rock: number;
+    /** §14.3 — upper ridges and exposed peaks: lighter cold stone. */
+    ridge: number;
+    /** §14.4 — snow and frost. Cold off-white, never paper. */
+    snow: number;
+
+    /** Model metres, relative to the camera, of the valley→rock crossing. */
+    valleyTo: number;
+    /** …and of the rock→ridge crossing. */
+    ridgeFrom: number;
+    /** How wide each crossing is, so a band edge is never a contour line. */
+    blend: number;
+
+    /** Height at which snow may begin, and the distance over which it arrives. */
+    snowFrom: number;
+    snowFade: number;
+    /**
+     * How up-facing a surface has to be to hold snow, as `N.y`. A steep face
+     * sheds it, which is what puts snow on ledges and shoulders rather than
+     * painting it over the silhouette.
+     */
+    snowSlope: number;
+    /** Peak snow coverage, 0..1. Well below 1: an accent, not a covering. */
+    snowAmount: number;
+
+    /** How far the zoning may pull the albedo off the depth palette, 0..1. */
+    amount: number;
+    /**
+     * Per-face break-up of the two height crossings, in model metres.
+     *
+     * A pure height threshold on faceted terrain draws a horizontal line across
+     * the range — a contour, which is the one thing that would make this read as
+     * a game asset. Jittering the threshold by a function of the surface normal
+     * costs one `sin` and, because the geometry is flat-shaded, resolves to a
+     * constant per face: the boundary breaks up along the facets that are
+     * already there instead of along a noise field that is not.
+     */
+    jitter: number;
+  };
+
   /** The ascent route. Its own albedo, since it is the one non-rock element. */
   routeColor: number;
   routeLevel: number;
@@ -283,6 +363,49 @@ const DESKTOP: MountainLook = {
   valleyFogTop: -250,
   valleyFogFalloff: 300,
 
+  // The masses run from −620 (their skirts) to +985 (`MNT_BACKGROUND_R`'s
+  // peak) in metres relative to the camera at 0 m, which is the same space
+  // `crestFrom`/`crestTo` are authored in — so the crossings are placed against
+  // known geometry rather than guessed. The valley band ends at −250, which is
+  // where `valleyFogTop` already says the valley stops; the ridge band starts
+  // at 300, roughly the shoulder height of the mid masses; snow begins at 600,
+  // which only `MNT_BACKGROUND_R` and the taller foreground crests reach.
+  zone: {
+    // Muted green-grey rather than green: this is the *cast* of ground that has
+    // soil and scrub on it, seen at a kilometre through haze, not grass. Its
+    // saturation is 8% and its value sits below the rock band, so the valley
+    // stays the darkest part of the picture — which is what `valleyDarken` is
+    // also protecting, and the two must not fight.
+    valley: 0x4b5340,
+    // The dominant region, and deliberately close to the accepted `base` — the
+    // middle band is most of the visible rock, so this is where the change has
+    // to be smallest for the range to still look like itself.
+    rock: 0x6a7381,
+    ridge: 0x9ba6b5,
+    // Cold off-white. Never 0xffffff: the brightest thing in this frame is the
+    // yellow of the typography and the instrument's lit arc, and §14.4 is
+    // explicit that snow must not compete with them.
+    snow: 0xc8d4e4,
+
+    valleyTo: -230,
+    ridgeFrom: 300,
+    blend: 170,
+
+    snowFrom: 520,
+    snowFade: 220,
+    // 0.38 keeps snow off anything steeper than about 68°. Measured at 0.62 —
+    // a 52° limit, which reads as the right restraint on paper — the accent
+    // never appeared: the peaks that clear the snow line are the sharp ones,
+    // almost none of their faces are that flat, and the p99 luminance of the
+    // whole frame moved by 1.2. A limit has to be loose enough for the geometry
+    // it is applied to before `snowAmount` can do the restraining.
+    snowSlope: 0.38,
+    snowAmount: 0.6,
+
+    amount: 0.8,
+    jitter: 130,
+  },
+
   routeColor: 0x6f8299,
   routeLevel: 1.0,
 };
@@ -379,6 +502,42 @@ const MOBILE: MountainLook = {
   valleyDensity: 0.00011,
   valleyFogTop: -250,
   valleyFogFalloff: 280,
+
+  // The same four substances as desktop — §14 asks the two variants to share
+  // one environmental language — placed against the portrait geometry rather
+  // than the landscape one. The mobile masses are shorter and the camera runs a
+  // different path (900 m forward against 2 050), so the crossings move with
+  // `crestTo`, which is 470 here against the desktop's 520.
+  //
+  // Two deliberate differences, both portrait consequences rather than taste:
+  //
+  //   * **`amount` is lower.** The portrait frame puts copy over the terrain
+  //     rather than beside it, so every extra step of albedo separation is
+  //     contrast competing with body text. §15's "no dense detail behind text".
+  //   * **snow starts lower and covers less.** Portrait crops the peaks hard,
+  //     so a snow line placed at the desktop's 600 would put the accent above
+  //     the frame at most altitudes — visible in the Blender previews as snow
+  //     that only appears at the bottom of the journey. 520 puts it on the
+  //     crests that actually survive the crop, and 0.48 keeps it from becoming
+  //     the brightest thing next to the instrument.
+  zone: {
+    valley: 0x4d5542,
+    rock: 0x6f7886,
+    ridge: 0x9ca7b6,
+    snow: 0xc8d4e4,
+
+    valleyTo: -230,
+    ridgeFrom: 265,
+    blend: 160,
+
+    snowFrom: 470,
+    snowFade: 200,
+    snowSlope: 0.38,
+    snowAmount: 0.52,
+
+    amount: 0.7,
+    jitter: 115,
+  },
 
   routeColor: 0x6f8299,
   routeLevel: 1.1,

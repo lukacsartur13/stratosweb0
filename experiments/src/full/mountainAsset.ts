@@ -89,13 +89,40 @@ export function readSignals(): DeviceSignals {
  * Positive is mobile. Zero is genuinely undecided rather than "desktop by
  * default", which is what makes the hysteresis band below meaningful.
  */
+/**
+ * The aspect past which the portrait composition is simply wrong.
+ *
+ * A veto rather than a weight, and the difference is a real defect. Aspect was
+ * weighted highest — three of the eleven weight units — and it was still
+ * outvoted, because on a phone the other four terms all agree with each other:
+ * a landscape iPhone at 750×342 scored −3 for aspect and +2 for the coarse
+ * pointer, +0.6 for a high DPR at a narrowish width and +0.5 for the reduced
+ * tier, netting +0.1 and loading the portrait GLB into a 2.19:1 frame. Every
+ * signal except aspect describes the *device*; only aspect describes the
+ * *frame*, and the two compositions differ on the frame. No amount of
+ * phone-ness makes a landscape window want a composition authored for 9:19.5.
+ *
+ * Only the landscape direction is a veto. A portrait *desktop window* — 700×1000
+ * — is genuinely ambiguous and is exactly what the weighted vote below is for,
+ * so a portrait aspect still argues for the mobile composition rather than
+ * deciding it.
+ */
+const LANDSCAPE_VETO = 1.2;
+
 export function mobileScore(s: DeviceSignals): number {
   const aspect = s.width / Math.max(s.height, 1);
 
+  // Full confidence, so it clears the hysteresis band in one step: a device
+  // rotated into landscape switches to the landscape composition immediately
+  // rather than drifting towards it. A browser toolbar collapsing changes
+  // height by ~60px and cannot take a portrait phone across 1.2, so this
+  // introduces no new thrash — see `shouldSwitch`.
+  if (aspect > LANDSCAPE_VETO) return -1;
+
   // Aspect is the dominant term, because it is the one the compositions differ
-  // on. Portrait (< 0.8) pushes hard to mobile; clearly landscape (> 1.2) pushes
-  // hard to desktop; the band between is left near zero rather than forced.
-  const aspectScore = aspect < 0.8 ? 1 : aspect > 1.2 ? -1 : (1.0 - aspect) / 0.2;
+  // on. Portrait (< 0.8) pushes hard to mobile; the band up to the veto is left
+  // near zero rather than forced.
+  const aspectScore = aspect < 0.8 ? 1 : (1.0 - aspect) / 0.2;
 
   // A coarse pointer is the single most reliable phone/tablet signal, and the
   // only one a resized desktop window cannot fake.
