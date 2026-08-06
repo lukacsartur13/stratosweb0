@@ -161,7 +161,10 @@
   </section>
 
   <!-- ============================================ projektek -->
-  <section class="band">
+  <!-- The id is locale-invariant on purpose, like #jelentkezes on Impact: the
+       slug around it is translated, the anchor is not, so the closing CTA can
+       point here from all three languages without a per-locale table. -->
+  <section class="band" id="projektek">
     <div class="wrap">
       <p class="smark"><span class="smark__n" aria-hidden="true">01</span><span class="smark__t">Projekte</span></p>
       <h2 class="display h-md" style="max-width:18ch;margin-bottom:clamp(1.6rem,4vw,2.6rem)">Drei Projekte, drei Strukturen</h2>
@@ -212,6 +215,21 @@
     </div>
   </section>
 
+  <!-- Mid-page conversion path, same reasoning as About: 8.8 screens on mobile
+       with nothing to act on until screen 5.9. Placed directly after the three
+       projects, which is where a visitor who came to judge the work has judged
+       it. -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="launch launch--quiet">
+        <p class="lede" style="max-width:46ch;margin-bottom:1.4rem">Hast du ein Projekt, das neben diesen stehen könnte? Erzähl es uns, und wir sehen es uns gemeinsam an.</p>
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="kontakt.html" data-magnet><span>Sprechen wir darüber</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================================ további -->
   <section class="band band--tight">
     <div class="wrap">
@@ -256,11 +274,16 @@
         <p class="eyebrow">Nächster Schritt</p>
         <h2 class="display h-lg" style="margin:1.4rem 0 1.6rem;max-width:16ch">Deins wäre das <span class="sig">nächste.</span></h2>
         <p class="lede" style="max-width:52ch;margin-bottom:2.2rem">Sag uns, was dein Unternehmen macht und was du von der Website erwartest. Ab da ist es unsere Aufgabe.</p>
+        <!-- Primary says "start a project" and lands on Contact, not on the
+             questionnaire. Contact is the page that offers the choice between a
+             short enquiry and the detailed brief; sending someone straight into
+             an eight-minute wizard makes that choice for them. Secondary keeps
+             them exploring the work rather than offering a second conversion. -->
         <div class="btn-row">
-          <a class="btn" href="kontakt.html" data-magnet><span>Sprechen wir über das Projekt</span>
+          <a class="btn" href="kontakt.html" data-magnet><span>Projekt starten</span>
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
-          <a class="btn btn--ghost" href="leistungen.html" data-magnet><span>Leistungen ansehen</span></a>
+          <a class="btn btn--ghost" href="#projektek" data-magnet><span>Die Projekte ansehen</span></a>
         </div>
       </div>
     </div>

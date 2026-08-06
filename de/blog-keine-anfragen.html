@@ -172,6 +172,18 @@
         <h2 data-reveal>4. Auf dem Smartphone unbrauchbar</h2>
         <p>Es reicht nicht, dass sie auf dem Smartphone „angezeigt“ wird. Wenn man zum Lesen zoomen muss, wenn der Button zu klein für einen Finger ist, wenn bei Formularfeldern die falsche Tastatur erscheint — jedes davon ist eine verlorene Anfrage.</p>
 
+        <!-- Mid-article conversion path. Phase 9 measured the gap this closes:
+             at 375x812 these articles run about nine screens and the first CTA
+             sat on screen seven, with no header CTA on mobile because it folds
+             into the burger. This is the existing article__aside primitive and
+             a ghost button — no new component, nothing sticky, and deliberately
+             quieter than the service CTA that closes the piece. -->
+        <div class="article__aside">
+          <b>Wie sieht das bei dir aus?</b>Du musst nicht bis zum Ende lesen, um zu fragen. Beschreib deine Situation, und du bekommst eine konkrete Antwort.<div class="btn-row" style="margin-top:1.1rem">
+            <a class="btn btn--ghost" href="kontakt.html" data-magnet><span>Sprechen wir darüber</span></a>
+          </div>
+        </div>
+
         <h2 data-reveal>5. Es fehlt der Beleg</h2>
         <p>Besucher misstrauen nicht dir, sondern dem Internet. Was hilft: echte Bewertungen, echte Fotos deiner eigenen Arbeit, namentlich genannte Kunden, konkrete Beispiele. Was nicht hilft: „langjährige Erfahrung“, „verlässlicher Partner“, ein Stockfoto von einem Büro, das nicht deins ist.</p>
 
@@ -213,9 +225,15 @@
       </nav>
       <div class="launch launch--quiet" style="margin-top:clamp(2rem,5vw,3rem)">
         <div class="btn-row">
-          <a class="btn" href="kontakt.html" data-magnet><span>Ich habe dazu eine Frage</span>
+          <!-- Primary is the service this article argues for, not the contact
+               page. An article that spends 2,000 words explaining a problem and
+               then offers only "ask us about it" makes the reader do the
+               translation from topic to offer themselves. Ghost, not a second
+               btn, so the two never read as equal actions. -->
+          <a class="btn" href="webdesign-kmu.html" data-magnet><span>Website für KMU</span>
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
+          <a class="btn btn--ghost" href="kontakt.html" data-magnet><span>Ich habe dazu eine Frage</span></a>
         </div>
       </div>
     </div>

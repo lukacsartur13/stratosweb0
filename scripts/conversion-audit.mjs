@@ -102,6 +102,7 @@ function textBetween(html, from, to) {
 function ctasOf(html) {
   const stack = [];
   const found = [];
+  let groups = 0;   // one id per .btn-row, so CTAs offered side by side are comparable
   let m;
   TAG.lastIndex = 0;
 
@@ -133,12 +134,17 @@ function ctasOf(html) {
           offset: m.index,
           zone: zoneOf(stack, cls),
           section: sectionOf(stack),
+          emphasis: emphasisOf(cls),
+          group: groupOf(stack),
         });
       }
       continue;
     }
 
-    if (!VOID.has(name) && !selfClose) stack.push({ name, cls });
+    if (!VOID.has(name) && !selfClose) {
+      if (/\bbtn-row\b/.test(cls)) stack.push({ name, cls, group: ++groups });
+      else stack.push({ name, cls });
+    }
   }
 
   return found;
@@ -154,6 +160,27 @@ function zoneOf(stack, ownClass) {
   // outside <nav>, so it is caught by its class rather than its ancestry.
   if (/\bnav__cta\b/.test(ownClass) || /\bmenu__cta\b/.test(ownClass)) return 'chrome';
   return 'body';
+}
+
+/**
+ * Emphasis is carried entirely by the class: `btn--ghost` is the outlined
+ * secondary, a bare `btn` is the solid primary. Without this, an audit can
+ * count CTAs but cannot see hierarchy — and "one clear primary action per page"
+ * is a statement about hierarchy, not about counts.
+ */
+function emphasisOf(cls) {
+  return /\bbtn--ghost\b/.test(cls) ? 'secondary' : 'primary';
+}
+
+/**
+ * The `.btn-row` a CTA belongs to. Two CTAs offered side by side in one row are
+ * a *choice presented to the visitor*; the same CTA repeated in the hero and
+ * again in the closing band is reinforcement. Only the first can conflict, so
+ * the conflict test is scoped to the row rather than to the page.
+ */
+function groupOf(stack) {
+  for (let i = stack.length - 1; i >= 0; i--) if (stack[i].group) return stack[i].group;
+  return null;
 }
 
 function sectionOf(stack) {
@@ -232,6 +259,8 @@ for (const file of files.sort()) {
       href: c.href,
       zone: c.zone,
       section: c.section,
+      emphasis: c.emphasis,
+      group: c.group,
       target,
       external,
       // Rough scroll proxy: how far into the document the CTA sits. Not pixels
@@ -265,7 +294,36 @@ for (const file of files.sort()) {
 
 const flat = routes.flatMap((r) => r.ctas.map((c) => ({ ...c, route: r.route, locale: r.locale })));
 
+/**
+ * Conflicting primaries — the §5.2 result that was previously asserted in prose.
+ *
+ * The defect this catches is real and was shipped: the ads service page offered
+ * "Árajánlat" and "Árajánlatot kérek" side by side, both solid, both landing on
+ * the same questionnaire. That is a choice that is not a choice. Two solid
+ * buttons in one row with the same destination is the machine-detectable shape
+ * of it, in any language.
+ */
+const conflictingPrimary = [];
+for (const r of routes) {
+  const rows = new Map();
+  for (const c of r.ctas) {
+    if (c.group === null || c.emphasis !== 'primary') continue;
+    const key = `${c.group}|${c.target ?? c.href ?? ''}`;
+    rows.set(key, [...(rows.get(key) ?? []), c]);
+  }
+  for (const [, group] of rows) {
+    if (group.length > 1) {
+      conflictingPrimary.push({
+        route: r.route,
+        target: group[0].target ?? group[0].href,
+        texts: group.map((c) => c.text),
+      });
+    }
+  }
+}
+
 const failures = {
+  conflictingPrimary,
   brokenDestination: flat.filter((c) => !c.resolves),
   wrongLocaleDestination: flat.filter((c) => !c.localeConsistent),
   unlabelled: flat.filter((c) => !c.hasLabel),
@@ -285,6 +343,11 @@ const report = {
       arrival: flat.filter((c) => c.zone === 'arrival').length,
       body: flat.filter((c) => c.zone === 'body').length,
     },
+    byEmphasis: {
+      primary: flat.filter((c) => c.emphasis === 'primary').length,
+      secondary: flat.filter((c) => c.emphasis === 'secondary').length,
+    },
+    conflictingPrimary: conflictingPrimary.length,
     brokenDestination: failures.brokenDestination.length,
     wrongLocaleDestination: failures.wrongLocaleDestination.length,
     unlabelled: failures.unlabelled.length,
@@ -301,6 +364,8 @@ await writeFile(OUT, JSON.stringify(report, null, 2) + '\n');
 const s = report.summary;
 console.log(`routes ${report.routesAudited}  ctas ${report.ctasAudited}`);
 console.log(`  zones: chrome ${s.byZone.chrome}  arrival ${s.byZone.arrival}  body ${s.byZone.body}`);
+console.log(`  emphasis: primary ${s.byEmphasis.primary}  secondary ${s.byEmphasis.secondary}`);
+console.log(`  conflicting primaries   ${s.conflictingPrimary}`);
 console.log(`  broken destination      ${s.brokenDestination}`);
 console.log(`  wrong-locale destination ${s.wrongLocaleDestination}`);
 console.log(`  unlabelled CTA          ${s.unlabelled}`);
@@ -310,11 +375,15 @@ console.log(`  CTAs into case studies  ${s.ctasIntoCaseStudies}`);
 console.log(`-> ${relative(ROOT, OUT)}`);
 
 if (CHECK) {
-  const hard = s.brokenDestination + s.wrongLocaleDestination + s.unlabelled + s.fullCasePromise;
+  const hard = s.brokenDestination + s.wrongLocaleDestination + s.unlabelled
+    + s.fullCasePromise + s.conflictingPrimary;
   if (hard > 0) {
     console.error(`\nFAIL: ${hard} CTA integrity failure(s).`);
+    for (const c of conflictingPrimary) {
+      console.error(`  conflictingPrimary: ${c.route} -> ${c.target} (${c.texts.join(' / ')})`);
+    }
     for (const [k, v] of Object.entries(failures)) {
-      if (k === 'noBodyCta' || !v.length) continue;
+      if (k === 'noBodyCta' || k === 'conflictingPrimary' || !v.length) continue;
       for (const c of v.slice(0, 20)) console.error(`  ${k}: ${c.route} -> ${c.href} (${c.text})`);
     }
     process.exit(1);

@@ -233,6 +233,24 @@
     </div>
   </section>
 
+  <!-- Mid-page conversion path. About was the worst gap measured on the site:
+       at 375x812 it runs 13.8 screens and offered nothing to act on until
+       screen 10.9, because the header CTA is not sticky and scrolls away. This
+       sits after the team and before the six reasons — the point where a
+       reader who came to find out who we are has their answer. Same band +
+       launch--quiet primitives as the service pages, one ghost button, nothing
+       sticky and no new component. -->
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="launch launch--quiet">
+        <p class="lede" style="max-width:46ch;margin-bottom:1.4rem">If you've read this far, you probably have something in mind. Tell us, and we'll look at it together.</p>
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="contact.html" data-magnet><span>Let's talk about it</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================================ miért a Stratos — hat ok -->
   <section class="band" aria-labelledby="miert">
     <div class="wrap">
@@ -583,7 +601,11 @@
           <a class="btn" href="contact.html" data-magnet><span>Free consultation</span>
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
-          <a class="btn btn--ghost" href="quote.html" data-magnet><span>Get a quote</span></a>
+          <!-- Exploration, not a second conversion. Consultation and
+               questionnaire side by side asked a visitor who has just read the
+               company's story to pick between two ways of committing; the
+               honest secondary here is the work itself. -->
+          <a class="btn btn--ghost" href="work.html" data-magnet><span>See our work</span></a>
         </div>
       </div>
     </div>

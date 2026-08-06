@@ -175,6 +175,18 @@
         <p>Das ist der häufigere Fall, und schon das ist ein Ergebnis. Wenn du nicht weißt, wie viele Besucher du hast und wie viele Anfragen daraus entstanden sind, ist die erste Aufgabe nicht die neue Website, sondern die Messung. Ohne sie ist jede Verbesserung Glaubenssache.</p>
         <p>Das Minimum, das du sehen solltest: woher die Besucher kommen, auf welcher Seite sie aussteigen und wie viele Formulareingänge oder Anrufe die Website erzeugt.</p>
 
+        <!-- Mid-article conversion path. Phase 9 measured the gap this closes:
+             at 375x812 these articles run about nine screens and the first CTA
+             sat on screen seven, with no header CTA on mobile because it folds
+             into the burger. This is the existing article__aside primitive and
+             a ghost button — no new component, nothing sticky, and deliberately
+             quieter than the service CTA that closes the piece. -->
+        <div class="article__aside">
+          <b>Wie sieht das bei dir aus?</b>Du musst nicht bis zum Ende lesen, um zu fragen. Beschreib deine Situation, und du bekommst eine konkrete Antwort.<div class="btn-row" style="margin-top:1.1rem">
+            <a class="btn btn--ghost" href="kontakt.html" data-magnet><span>Sprechen wir darüber</span></a>
+          </div>
+        </div>
+
         <h2 data-reveal>Was macht eine Website „veraltet“?</h2>
         <p>Nicht das Alter. Eine schnelle, gut strukturierte Website von vor sieben Jahren kann besser abschneiden als eine letztjährige, die alles gleichzeitig will. Das sind die echten Anzeichen:</p>
         <ul>
@@ -224,9 +236,15 @@
       </nav>
       <div class="launch launch--quiet" style="margin-top:clamp(2rem,5vw,3rem)">
         <div class="btn-row">
-          <a class="btn" href="kontakt.html" data-magnet><span>Ich habe dazu eine Frage</span>
+          <!-- Primary is the service this article argues for, not the contact
+               page. An article that spends 2,000 words explaining a problem and
+               then offers only "ask us about it" makes the reader do the
+               translation from topic to offer themselves. Ghost, not a second
+               btn, so the two never read as equal actions. -->
+          <a class="btn" href="webdesign-kmu.html" data-magnet><span>Website für KMU</span>
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
+          <a class="btn btn--ghost" href="kontakt.html" data-magnet><span>Ich habe dazu eine Frage</span></a>
         </div>
       </div>
     </div>
