@@ -519,6 +519,26 @@ placeholder assets are committed.
 5. **Landscape phone composition** now correctly loads the desktop terrain, but
    the landscape *layout* on a 844×390 phone was not otherwise reworked.
 
+6. **A few pixels of slack at the window/flow boundary.** The fit decision asks
+   whether `entry + leadH` fits the band **at a stage's midpoint altitude**;
+   the layout uses the band the instrument is at right now. Where the exclusion
+   zone is still moving the two differ slightly, so a panel sitting exactly on
+   the boundary can resolve either way between loads — and in the `window` case
+   its eyebrow can sit a few pixels above the entry floor. Observed once, at
+   /en/ on 360×800: a 7 px overlap with the instrument strip, which did not
+   reproduce on the next load of the same page.
+
+   A structural floor was attempted — reserving the entry budget as
+   `padding-top` inside the lead band — and **made it worse**, because
+   `measureComposition` measures that same band to *take* the decision, so the
+   padding fed back into `leadH` and flipped panels across all three locales.
+   It was reverted. The correct fix is to sample the exclusion zone across a
+   stage rather than at its midpoint, which is real machinery for a rounding
+   difference and is not worth doing without a case that reproduces.
+
+   Verified after reverting: zero overlap across `hu`, `en`, `de` × 390×844 and
+   360×800.
+
 ---
 
 ## 14. Push readiness
