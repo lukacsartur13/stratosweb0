@@ -77,6 +77,52 @@ img { max-width: 100%; height: auto; }
   white-space: nowrap;
 }
 
+/* ================================================================ the layers ==
+   Every stacking decision on this route, in one place and in narrative order.
+
+   §11 asks for this because the alternative is what was here: seven z-index
+   values in six rules, each individually reasonable and none of them stating
+   what it was above or below. That is how the instrument strip ended up
+   painting under the copy plates — `.hud` at 3 looks higher than
+   `.journey__content` at 2 until you notice they are in different stacking
+   contexts, and nothing in either declaration says so.
+
+   The order below is the composition, read from the back of the frame forward:
+
+     atmosphere   the sky and its gradients, behind everything
+     terrain      the mountain range
+     stage        the WebGL surface as a whole — the altimeter lives here, and
+                  it is the object the whole page is about
+     hud          the instrument strip, inside the stage's context
+     content      the editorial plates
+     header       the shared flight deck
+     overlay      the full-screen navigation and the skip link
+
+   `header` and `overlay` are quoted from `assets/css/chrome.css` rather than
+   owned here: the header is shared with 66 other routes and this file does not
+   get to renumber it. They are written down so that a change there is visibly a
+   change to this order too.
+
+   ## The one rule that is not a number
+
+   The altimeter is at `stage`, and every content plate is above it. That is
+   correct — the copy has to be readable — and it is exactly why §11.1 cannot be
+   enforced by ordering. A plate that is above the instrument must not be
+   *opaque across it*, which is a painting rule rather than a stacking rule, and
+   it is enforced where the plates are painted: the portrait window opens a
+   clear band through its wash, and the flow fallback softens its top edge. See
+   both in the portrait composition below. */
+:root {
+  --layer-atmosphere: 0;
+  --layer-terrain: 1;
+  --layer-stage: 0;
+  --layer-hud: 3;
+  --layer-content: 2;
+  /* Quoted from chrome.css. Not ours to set — ours to not collide with. */
+  --layer-header: 890;
+  --layer-overlay: 900;
+}
+
 .skip {
   position: absolute;
   top: -100px; left: 1rem;
@@ -134,7 +180,7 @@ img { max-width: 100%; height: auto; }
   position: sticky;
   top: 0;
   height: 100svh;
-  z-index: 0;
+  z-index: var(--layer-stage);
 }
 
 .stage__surface,
@@ -161,7 +207,7 @@ img { max-width: 100%; height: auto; }
    parallax; only the panel plates take events back. */
 .journey__content {
   position: relative;
-  z-index: 2;
+  z-index: var(--layer-content);
   margin-top: -100svh;
   pointer-events: none;
 }
@@ -169,7 +215,7 @@ img { max-width: 100%; height: auto; }
 /* ================================================================= the HUD == */
 .hud {
   position: absolute;
-  z-index: 3;
+  z-index: var(--layer-hud);
   left: clamp(1.25rem, 4vw, 3.5rem);
   /* The design inset, unless the instrument's travel reaches this corner.
 
@@ -599,6 +645,38 @@ img { max-width: 100%; height: auto; }
   }
   .panel[data-fit='window']:first-of-type:last-of-type {
     height: calc(var(--share, 1) * 100svh);
+  }
+
+  /* --- §11.1, for the plates the window rules do not reach -----------------
+
+     The window composition cannot put an opaque background across the
+     instrument: its wash has a clear band cut through the middle, sized from
+     the measured exclusion zone, and a 121-sample sweep of the whole track at
+     390×844 finds no scroll position where it does. That is not the case a
+     regression can come back through.
+
+     The flow fallback is. A flow plate is a *card* — as tall as its copy, as
+     opaque as it needs to be to carry text — and it appears exactly where the
+     window's measurements say the bands cannot hold the copy: 200% zoom,
+     increased text spacing, German at the narrow widths, the small phones. Those
+     are the compositions nobody looks at while tuning, and dropping a solid
+     rectangle across a live instrument is the §2.3 defect by construction.
+
+     So a flow plate in portrait gets a soft leading edge instead of a hard one.
+     It is not an attempt to keep the plate off the instrument — in flow the
+     copy genuinely does run over the scene, and that is the accessible answer
+     the fallback exists to give. It is §11.2's requirement that the panel must
+     not visibly *cut* through it: a 72px fade means the instrument's silhouette
+     dissolves under the copy rather than being sliced by a horizontal line
+     across the middle of the dial.
+
+     `mask-image` rather than a gradient background, because the plate's own
+     background is set in four other places for four other reasons and this has
+     to hold whichever of them applies. The `-webkit-` pair is not legacy
+     padding: iOS Safari is the platform this composition is for. */
+  .panel[data-fit='flow'] .panel__inner {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 72px);
+    mask-image: linear-gradient(180deg, transparent 0, #000 72px);
   }
 
   /* --- the closing panel, when it falls back to flow ----------------------
@@ -1932,7 +2010,7 @@ img { max-width: 100%; height: auto; }
    either. One thing does belong here, because it is about this page and not
    about the chrome: the skip link has to clear a header that did not exist when
    it was given `z-index: 60`. */
-.journey-home .skip { z-index: 900; }
+.journey-home .skip { z-index: var(--layer-overlay); }
 
 /* ================================================================ fallback == */
 .fallback {
