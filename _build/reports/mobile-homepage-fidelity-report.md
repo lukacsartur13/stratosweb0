@@ -256,10 +256,18 @@ Two values were tuned by measurement, and the first pass had both wrong:
 
 | Frame | Band separation before | after |
 |---|---|---|
-| desktop 0 m | Δlum 13.1 | Δlum 16.9 |
-| desktop 3 000 m | Δlum 9.9 | Δlum 13.4 |
-| mobile 0 m | Δlum 26.5 | Δlum 35.2 |
-| mobile 3 000 m | Δlum 27.7 | Δlum 35.9 |
+| desktop 0 m | Δlum 13.1, Δhue 1.2° | Δlum 16.9, Δhue 1.3° |
+| desktop 3 000 m | Δlum 9.9, Δhue 1.0° | Δlum 13.6, Δhue 2.1° |
+| mobile 0 m | Δlum 26.5, Δhue 0.1° | Δlum 35.2, Δhue 1.9° |
+| mobile 3 000 m | Δlum 27.7, Δhue 0.2° | Δlum 35.9, Δhue 1.8° |
+
+Measured as the mean colour of the ridge, slope and valley thirds of the terrain
+in each frame, sky and plate excluded by luminance. The hue figures are small in
+absolute terms because the whole palette is deliberately one narrow band of
+blue-grey; what matters is that the *relationship* between the three zones
+changed from "identical hue at three brightnesses" to a measurable separation on
+both axes, which is what makes the bands read as different substances. The
+visual check is `terrain/mobile-after-3000m.png` against its `before`.
 
 Desktop geometry and framing are unchanged. §16 is satisfied by the material
 hierarchy applying to both variants from one shader and one preset shape.
@@ -283,15 +291,39 @@ Unchanged by this pass — no geometry was regenerated. The mobile terrain is
 already lighter than the desktop one on every axis §20 lists, carries no unused
 or hidden geometry, no animation and no textures at all.
 
+**Nothing unpublished leaks.** `dist/` contains the three GLBs and no `.blend`,
+no generation script and no source texture.
+
+**The terrain fails gracefully.** With `stratos-mountains-mobile.glb` blocked at
+the network, the page still renders its `h1`, its canvas, all eleven panels and
+the portrait composition; the altitude readout still climbs with scroll
+(0 → 18 040 m); and there are **zero** page errors. §23's requirement.
+
 **Runtime cost of the zoning**: four `smoothstep`s, one `sin` and two `mix`es
 per fragment, on varyings already present. No new uniform per frame beyond the
 ten the preset writes, no allocation, no second program — terrain and route
 still share one shader source.
 
-**No new permanent loop.** `watchDeck` adds one `ResizeObserver` on two elements
-that change on a header state transition, a rotation and a font swap. The
-composition still rides `JourneyHUD`'s single tick; no React render per scroll
-frame; no new scroll listener. DPR and MSAA policy untouched.
+**No new permanent loop.** Instrumented on the built page at 390×844:
+
+| Counter | Value | Note |
+|---|---|---|
+| Peak concurrent `requestAnimationFrame` | 8 | unchanged — the journey still has one clock |
+| `ResizeObserver` instances | 7 | **+1**, `watchDeck`, observing two elements |
+| `scroll` listeners | 9 | unchanged |
+| `resize` listeners | 11 | unchanged |
+| JS heap after a 40-step full-track sweep | 14 MB | — |
+
+The one addition fires on a header state transition, a rotation and a font swap,
+and only calls back when a quantised boundary actually moved. The composition
+still rides `JourneyHUD`'s single tick; no React render per scroll frame; no new
+scroll listener; DPR and MSAA policy untouched.
+
+Long-task counts were captured but are **not reported as a result**: this is
+headless Chromium on a software rasteriser, where a WebGL page produces long
+tasks at a rate that has no relationship to a phone's. Comparing that number
+across builds would be measuring the rasteriser. The structural counters above
+are the meaningful evidence, and §19's requirements are structural.
 
 ---
 
@@ -407,11 +439,38 @@ Three of these caught defects introduced *by this pass* — the deck collision a
 390×664, the 4 px self-scroll, and the removed altitude readout — which is the
 main argument for their existence.
 
-**Full production suite**: see §13 for the final run.
+**Full production suite: 795 passed, 0 failed** (`npx playwright test`, six
+projects — node, desktop-1440, desktop-1920, mobile-390, mobile-430,
+reduced-motion). That is the baseline's 755 plus this file's 40 runs.
 
 Existing suites unchanged and passing: `public-site`, `homepage-chrome`,
 `analytics`, `attribution`, `structured-data`, `lead-endpoint`, `lead-forms`,
 `portal`, `not-found`.
+
+One existing assertion had to be understood rather than changed.
+`public-site.spec.ts` requires the altitude readout to be visible, and it broke
+when this pass first hid the strip's readout. The assertion is right; what it
+could not see is that the element it was passing on had been *occluded* by an
+opaque plate for the whole journey, because `toBeVisible()` checks the box model
+and not what is painted over it. Fixing the stacking context made the assertion
+true for the first time rather than merely passing.
+
+### §18 lifecycle
+
+| Transition | Composition | `--stage-entry-px` vs `--deck-content` | Scroll |
+|---|---|---|---|
+| Load | portrait | 144 / 144 | — |
+| Toolbar collapses (+60 px) | portrait | 144 / 144 | held |
+| Toolbar expands | portrait | 144 / 144 | held |
+| Mid-page (journey header) | portrait | 112 / 112 | held |
+| Rotate to landscape | landscape | 120 / 120 | held |
+| Rotate back to portrait | portrait | 112 / 112 | held |
+| Reload mid-page | portrait | 112 / 112 | restored |
+| History back | portrait | 112 / 112 | restored |
+| Forward, then back | portrait | 112 / 112 | restored |
+
+No terrain re-fetch on any of them. The toolbar-sized height change is asserted
+in the suite as well as measured here.
 
 No timeout was raised anywhere. Where a test waits, it waits for a named
 condition — the composition having been measured, the veil having landed, the
@@ -430,6 +489,8 @@ All local. Nothing pushed, nothing deployed.
 | `f8f14b4` | feat: add zoned terrain materials across homepage |
 | `1fc1c5d` | fix: give the homepage one layer order and stop flow plates cutting the dial |
 | `5d61dd0` | fix: stop the page scrolling itself, and put the instrument back in front |
+| `cf04189` | test: add mobile homepage fidelity regressions |
+| `c2d148b` | fix: remeasure the composition when the deck moves |
 
 No `git add .` was used. No screenshots, recordings, render files, Blender
 cache, local settings, secrets, unrelated Phase 9 files, source textures or
