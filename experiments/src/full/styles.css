@@ -509,6 +509,17 @@ img { max-width: 100%; height: auto; }
      the first publication lands. */
   .panel .panel__inner {
     --band: max(0px, calc((100svh - var(--meridian-gap, 34svh)) / 2));
+
+    /* How far below the top of the plate a stage's first meaningful content may
+       begin. §6's budget is 8–14svh, with ~18svh allowed only where a
+       transition visibly earns it; 10svh sits in the middle of that and leaves
+       room for the eyebrow's own leading above the headline.
+
+       Bounded in pixels at both ends rather than left as a bare percentage: on a
+       small phone 10svh is 56px, which is less than the header it has to clear,
+       and on a tall one it runs to 93px, which is a gap wide enough to read as
+       another void. */
+    --stage-entry: clamp(64px, 10svh, 96px);
   }
 
   /* --- natural flow: the fallback, and the state before measurement --------
@@ -637,6 +648,18 @@ img { max-width: 100%; height: auto; }
        an invisible plate cannot swallow a click meant for the one behind it. */
     opacity: var(--panel-veil, 1);
     pointer-events: var(--panel-events, auto);
+
+    /* How far the lead pair is lifted out of row 1's surplus, and how far down
+       the plate stays opaque behind it. Declared together because they are the
+       same measurement read twice, and a gradient stop that disagreed with the
+       margin would put a wash edge through the headline.
+
+       `--lead-h` is unset only before `measureComposition` has run, and that is
+       the same function that writes `data-fit="window"` — so inside this
+       selector the `0px` fallback is unreachable and the lift is always a real
+       number. */
+    --lead-lift: max(0px, calc(var(--band) - var(--lead-h, 0px) - var(--stage-entry)));
+    --lead-wash: calc(var(--band) - var(--lead-lift));
   }
   /* The lead band's own rhythm, tighter than the page's.
      ----------------------------------------------------
@@ -675,6 +698,47 @@ img { max-width: 100%; height: auto; }
     align-self: end;
     min-height: 0;
     margin-top: 0;
+
+    /* …but never lower than the entry budget, and this is the fix for the
+       defect §2.1 reports.
+
+       Bottom-aligning the lead spends *all* of row 1's surplus above the
+       headline. That is right while the band is close to the headline's own
+       height — the pair sits on the dial, which is the composition — and it
+       stops being right the moment the band grows past it, because the surplus
+       then becomes a void between the header and the first word on the screen.
+
+       And the band grows exactly where it hurts most. `--band` is
+       `(100svh − gap)/2`, so it is *inversely* proportional to the instrument's
+       exclusion zone, and the three stages the brief names — Our Work, the
+       system, the process — are the dense ones, the ones at which the
+       instrument recedes to make room for their copy. Receding takes the gap
+       from ~25svh to 14svh, which takes the band from 37svh to 43svh, which
+       drops the bottom-aligned headline to 35–39svh. Measured on a 390×844: 256
+       px of unbroken plate above `Nine areas in three layers.` The mechanism
+       that gets the instrument out of the copy's way was pushing the copy down
+       the screen.
+
+       So the surplus is capped rather than spent. `margin-bottom` on an
+       `align-self: end` item lifts it, and the amount is whatever row 1 has
+       over and above the entry budget plus the headline itself: zero while the
+       band is tight, growing only once there is genuine surplus. The two
+       compositions are the same one — at a generous gap this resolves to `0px`
+       and the accepted bottom-aligned frame is unchanged to the pixel.
+
+       `--lead-h` is the measured height of this band, published per panel by
+       `measureComposition` alongside `--copy-room` and for the same reason: it
+       is a per-stage constant that changes only when the fonts or the viewport
+       do, so it costs one style recalculation per resize rather than one per
+       frame. Its `0px` fallback makes the whole term collapse to zero, which is
+       the accepted composition — the frames before the first measurement lands
+       are the old ones, not a broken new one.
+
+       The fit decision needs no change. The lift is only ever active when
+       `entry + leadH < band`, which is a strictly stronger condition than the
+       `leadH <= band` the window/flow test already applies, so a panel that
+       qualifies for the window still fits inside it. */
+    margin-bottom: var(--lead-lift);
   }
   .panel[data-fit='window'] .panel__band--flow {
     display: block;
@@ -727,11 +791,31 @@ img { max-width: 100%; height: auto; }
   .panel[data-fit='window'].panel--wide .panel__inner,
   .panel[data-fit='window'].panel--centre .panel__inner,
   .panel[data-fit='window'].panel--destination .panel__inner {
+    /* The top stop is `--lead-wash`, not `--band`, and that is the second half
+       of the §2.1 fix.
+
+       Lifting the lead to the entry budget moves the surplus from above the
+       headline to below it. That alone is already the better frame — the
+       visitor reads the section marker and the headline immediately instead of
+       scrolling a quarter of a screen to reach them — but a wash that still ran
+       to `--band` would leave the surplus as an opaque black rectangle between
+       the headline and the instrument. A void is a void wherever it is put.
+
+       The wash exists to make text legible over the scene, so it should end
+       where the text does. Ending it at the lead's own bottom edge turns that
+       space back into what is actually behind it: the mountains, the sky and
+       the instrument standing in them. The plate becomes a caption at the top
+       of a frame rather than a rectangle with a hole cut in it, the open region
+       runs continuously from the headline down to the copy, and the
+       instrument's silhouette gains the room §11.1 asks it to keep.
+
+       Softened over the same 10px as the lower edge, and floored at 0 so a
+       measurement that has not landed cannot produce a negative stop. */
     background: linear-gradient(
       180deg,
       rgba(4, 8, 14, 0.92) 0,
-      rgba(4, 8, 14, 0.92) max(0px, calc(var(--band) - 10px)),
-      rgba(4, 8, 14, 0) var(--band),
+      rgba(4, 8, 14, 0.92) max(0px, calc(var(--lead-wash, var(--band)) - 10px)),
+      rgba(4, 8, 14, 0) var(--lead-wash, var(--band)),
       rgba(4, 8, 14, 0) calc(100% - var(--band)),
       rgba(4, 8, 14, 0.92) calc(100% - var(--band) + 10px),
       rgba(4, 8, 14, 0.92) 100%

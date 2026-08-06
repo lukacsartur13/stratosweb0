@@ -1007,6 +1007,37 @@ function windowOf(id: StageId) {
     to: isLast ? 1 : 1 - out,
     /** Progress at which the fade-out completes: the midpoint of the window. */
     gone: isLast ? Infinity : 1 - out / 2,
+    /**
+     * Progress at which the copy starts *travelling*, as opposed to appearing.
+     *
+     * Zero, and it is deliberately not `from`.
+     *
+     * The two used to be the same number, and that is the defect §9 reports as
+     * "checkpoint 01 is not visible when the section begins". `--stage-flow` was
+     * normalised across `from..to` — the range over which the plate is legible —
+     * which starts half a handover *before* the stage does. So at the instant a
+     * stage began, its own copy had already been walked out of the window by
+     * `(from / (from - to))` of its travel: 8.6% for Our Work, 19.3% for the
+     * process, 25.8% for the system. On a seven-item list 19% is the first
+     * checkpoint; on a three-layer diagram 26% is the first layer. Measured on a
+     * 390×844, the process stage opened on checkpoint `02` with a clipped empty
+     * box where `01` had been, and the ascent stage opened on a sentence cut in
+     * half at the band's top edge.
+     *
+     * Fading and travelling genuinely want different ranges. A plate *should*
+     * start appearing before its stage — that is the cross-fade, and it is why
+     * `from` is negative. Its copy should *not* have moved when the visitor
+     * arrives, because the top of the copy is where reading starts. One
+     * normalisation was doing both jobs and could only be right for one of them.
+     *
+     * So the travel is measured from the stage's own start and the fade is not.
+     * Nothing about the hand-over changes: `from`, `to` and `gone` are the
+     * values they were, the cross-fade is the same cross-fade, and the copy
+     * still stops walking at `to` so that the tail of a dense panel is never
+     * presented at declining opacity. The only difference is that the walk now
+     * begins at zero, where the stage does.
+     */
+    walkFrom: 0,
   };
 }
 
@@ -1066,7 +1097,12 @@ function adoptBandScroll(band: HTMLElement) {
   const documentTravel = (track?.offsetHeight ?? document.documentElement.scrollHeight) - window.innerHeight;
   if (travel <= 0 || documentTravel <= 0) return;
 
-  const perPixel = ((w.to - w.from) * (bounds.end - bounds.start) * documentTravel) / travel;
+  // `walkFrom`, not `from`, and it has to be whichever range `--stage-flow` is
+  // actually normalised over — this converts a band scroll back into the
+  // document scroll that produces it, so a different range here means a
+  // keyboard visitor's copy lands somewhere the scroll position does not agree
+  // with, permanently.
+  const perPixel = ((w.to - w.walkFrom) * (bounds.end - bounds.start) * documentTravel) / travel;
   window.scrollBy({ top: delta * perPixel, behavior: 'instant' });
 }
 
@@ -1347,6 +1383,19 @@ export function measureComposition(root: HTMLElement = document.documentElement)
     panel.dataset.copy = railLimit > 0 ? copySideOf(stage) : 'flow';
     if (room > 0) panel.style.setProperty('--copy-room', `${Math.floor(room)}px`);
     else panel.style.removeProperty('--copy-room');
+
+    // The lead band's own measured height, for the entry cap in the portrait
+    // window — see the note on `.panel__band--lead` in styles.css. Published
+    // here rather than derived in CSS because CSS cannot read the height of a
+    // box in order to position it, and published *per panel* because every
+    // stage's headline is a different number of lines in every locale.
+    //
+    // Same lifecycle as `--copy-room` above: a per-stage constant, rewritten
+    // only when this function runs, which is after the fonts settle and on
+    // every resize. Rounded up so a subpixel measurement can never leave the
+    // pair a fraction of a pixel lower than the budget it was capped to.
+    if (fits && leadH > 0) panel.style.setProperty('--lead-h', `${Math.ceil(leadH)}px`);
+    else panel.style.removeProperty('--lead-h');
     decisions[stage] = {
       band: Math.round(band),
       leadH: Math.round(leadH),
@@ -1443,12 +1492,32 @@ export function publishComposition(root: HTMLElement = document.documentElement)
     // Unclamped, because the plate is stuck for a screen either side of its own
     // stage and both of those are outside 0..1. `stageProgress` clamps, which
     // is right for everything else that reads it and wrong here.
-    const p = rawProgress(journey.current, stage);
+    //
+    // Two progress values, and the split is §4.1's.
+    //
+    //   `pRaw`  is the scroll position, undamped. It drives where the copy
+    //           *is*, because the copy is document content and document content
+    //           belongs to the finger.
+    //   `pEased` is the damped journey clock. It drives the cross-fade, because
+    //           a fade is a visual transition and wants to arrive rather than
+    //           to snap.
+    //
+    // They were the same value — the damped one — and that is the defect §2.4
+    // reports as scrolling that feels delayed and keeps going after the finger
+    // stops. It is not a feeling: measured on a 390×844, a 600px flick left the
+    // body copy travelling for a further 336px over 400ms *after* `scrollY` had
+    // stopped changing. Text sliding under a stationary reader is the most
+    // literal form of the "detached from the finger" complaint there is, and the
+    // damper was the only thing producing it — this route hijacks no scroll,
+    // intercepts no wheel, snaps to nothing and ships no smooth-scroll library.
+    const pRaw = rawProgress(journey.target, stage);
+    const pEased = rawProgress(journey.current, stage);
 
-    // The flow window walks the copy through the band over exactly the range in
-    // which the plate is legible: from the first frame it starts appearing to
-    // the last frame before it starts leaving.
-    put(panel, '--stage-flow', clamp((p - w.from) / (w.to - w.from || 1)).toFixed(3));
+    // The flow window walks the copy through the band from the stage's own
+    // start — see `walkFrom` — to the last frame before the plate starts
+    // leaving, so the tail of a dense panel is never presented at declining
+    // opacity.
+    put(panel, '--stage-flow', clamp((pRaw - w.walkFrom) / (w.to - w.walkFrom || 1)).toFixed(3));
 
     // The hand-off. In over the second half of the previous boundary's window,
     // out over the first half of this one's, so the two plates meet at the
@@ -1457,8 +1526,8 @@ export function publishComposition(root: HTMLElement = document.documentElement)
     // The last stage never fades out — there is no plate behind it to reveal,
     // and fading the closing call to action away as the visitor reaches it
     // would be the page withdrawing its own conclusion.
-    const arrive = w.from < 0 ? ease(span(p, w.from, 0)) : 1;
-    const leave = Number.isFinite(w.gone) ? 1 - ease(span(p, w.to, w.gone)) : 1;
+    const arrive = w.from < 0 ? ease(span(pEased, w.from, 0)) : 1;
+    const leave = Number.isFinite(w.gone) ? 1 - ease(span(pEased, w.to, w.gone)) : 1;
     const veil = arrive * leave;
     put(panel, '--panel-veil', veil.toFixed(3));
     // A plate nobody can see must not be able to take a click from the one
@@ -1486,6 +1555,7 @@ export function clearComposition(root: HTMLElement = document.documentElement) {
     panel.style.removeProperty('--panel-veil');
     panel.style.removeProperty('--panel-events');
     panel.style.removeProperty('--copy-room');
+    panel.style.removeProperty('--lead-h');
     delete panel.dataset.fit;
     delete panel.dataset.dense;
     delete panel.dataset.copy;
