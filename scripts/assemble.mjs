@@ -35,6 +35,17 @@ const COPY_DIRS = ['assets', 'en', 'de'];
 // the workshop nobody asked for.
 const SKIP = [join('assets', 'blender')];
 
+// Documentation that lives beside the assets it describes, and must not be
+// served with them.
+//
+// `assets/img/FORRASOK.md` is the media-rights audit: it names every image's
+// source and licence, and it names the one file whose rights are unresolved and
+// where it is quarantined. `assets/fonts/MANIFEST.json` is the font inventory.
+// Both belong next to what they document — that is what keeps them accurate —
+// and neither is something to publish at a guessable URL. `assets/` is copied
+// wholesale, so absent this rule they shipped, and they did.
+const isDoc = (name) => /\.md$/i.test(name) || name === 'MANIFEST.json';
+
 // iCloud Drive writes "thing 2.ext" next to "thing.ext" when the folder syncs
 // from two machines. .gitignore already refuses to commit them, so Netlify —
 // which builds from the repository — has never seen one. A local build did:
@@ -45,7 +56,9 @@ const SKIP = [join('assets', 'blender')];
 const isDuplicate = (name) => / \d+$/.test(name.replace(/\.[^.]+$/, ''));
 
 const isSkipped = (path) =>
-  SKIP.some((s) => path === join(ROOT, s)) || isDuplicate(basename(path));
+  SKIP.some((s) => path === join(ROOT, s)) ||
+  isDuplicate(basename(path)) ||
+  isDoc(basename(path));
 
 async function main() {
   // dist/portal is written by Vite in a later step, so only clear what we own.
