@@ -68,7 +68,7 @@ ceiling: 3000
         <ul>
           <li>kapcsolatfelvétel biztosítása</li>
           <li>ajánlatkészítés és ügyfélkommunikáció</li>
-          <li>hírlevél és marketing üzenetek küldése</li>
+          <li>hírlevél-kérések fogadása és nyilvántartása</li>
           <li>szolgáltatások teljesítése</li>
           <li>weboldal működtetése és fejlesztése</li>
           <li>statisztikai és elemzési célok</li>
@@ -80,11 +80,60 @@ ceiling: 3000
           <li>név</li><li>e-mail cím</li><li>telefonszám</li>
           <li>cégnév (ha megadásra kerül)</li>
           <li>üzenetben megadott egyéb információk</li>
-          <li>IP-cím</li><li>böngésző és eszköz információk</li>
+          <li>böngésző által küldött eszközazonosító szöveg (user agent)</li>
+          <li>az IP-cím sózott, visszafejthetetlen lenyomata — magát az IP-címet nem tároljuk</li>
         </ul>
+        <h3>Igényfelmérő kérdőív kitöltése esetén</h3>
+        <ul>
+          <li>a fentiek, valamint a kérdőívre adott válaszok</li>
+        </ul>
+        <h3>Minden beküldés esetén</h3>
+        <ul>
+          <li>melyik oldalról érkezett a beküldés, és melyik oldalra érkezett először</li>
+          <li>a hivatkozó webhely domainneve (a teljes hivatkozó cím nélkül)</li>
+          <li>a linkben szereplő kampányazonosítók (<code>utm_source</code>, <code>utm_medium</code>,
+              <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>), ha vannak</li>
+          <li>a kitöltés hossza másodpercben és a képernyő tájolása</li>
+        </ul>
+        <p class="note">
+          A kampányazonosítók kizárólag a fenti öt paraméterből származnak: a linkben
+          szereplő minden más adatot figyelmen kívül hagyunk. Hirdetési kattintásazonosítót
+          (például <code>gclid</code> vagy <code>fbclid</code>) nem olvasunk ki és nem tárolunk.
+          Ezek az adatok a böngésző munkamenet-tárolójában maradnak a lap bezárásáig, és csak
+          akkor kerülnek hozzánk, ha Ön ténylegesen beküld egy űrlapot.
+        </p>
         <h3>Hírlevél-feliratkozás esetén</h3>
-        <ul><li>név (opcionális)</li><li>e-mail cím</li></ul>
+        <ul><li>e-mail cím</li></ul>
+        <p class="note">
+          A hírlevél-kéréseket rögzítjük, hírlevélküldő rendszer azonban jelenleg nem
+          működik: feliratkozás után nem érkezik automatikus visszaigazoló levél, és a
+          rendszer nem küld hírlevelet. A kérése addig marad nyilvántartva, amíg annak
+          törlését nem kéri.
+        </p>
 
+        <!-- REQUIRES LEGAL REVIEW — two gaps a lawyer has to close, both of them
+             Article 13 requirements that cannot be written by guessing:
+
+             1. THE LEGAL BASIS PER PURPOSE. This document names six purposes and
+                no legal basis for any of them. Consent, contract and legitimate
+                interest are each defensible for different rows, and choosing
+                wrongly is worse than the omission because it becomes the basis
+                we are held to. There is no `legal basis` section, deliberately,
+                rather than an invented one.
+
+             2. THE THIRD-COUNTRY TRANSFER MECHANISM. Netlify is in the United
+                States and Supabase Pte. Ltd. is in Singapore. Both are named as
+                processors, and neither transfer names its Article 46 mechanism
+                (standard contractual clauses, an adequacy decision, or the
+                Data Privacy Framework). Which applies is a fact about the
+                contracts, not about the code.
+
+             The retention periods below are a COMMITMENT, not an enforced
+             mechanism: nothing deletes a lead automatically, by design — see
+             `phase9-lead-operations.md`, which documents the manual procedure
+             instead. Automatic destructive retention is explicitly out of scope
+             for Phase 9. Either the manual review has to happen on a schedule,
+             or these numbers have to change to match what is actually done. -->
         <h2>Az adatkezelés időtartama</h2>
         <ul>
           <li>kapcsolatfelvételi adatok: legfeljebb 5 év</li>
@@ -101,7 +150,16 @@ ceiling: 3000
         <ul>
           <li><b>Tárhelyszolgáltató:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, Amerikai Egyesült Államok. Szolgáltatás: a weboldal kiszolgálása és a kiszolgálói funkciók (Netlify Functions) futtatása, amelyek az űrlapok beküldését fogadják.</li>
           <li><b>Adatbázis-szolgáltató:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513. Szolgáltatás: az űrlapokon beérkező érdeklődések tárolása és a zárt Portál kiszolgálása.</li>
-          <li><b>E-mail szolgáltató:</b> a levelezőrendszer szolgáltatója (pl. Google Workspace vagy más e-mail szolgáltató)</li>
+          <!-- REQUIRES USER FACTUAL INPUT — the email provider is not named because
+               nobody has stated which one it is. The previous wording said
+               "e.g. Google Workspace or another email provider", which names a
+               processor by guess in a document whose whole purpose is to be
+               exact. Removed rather than replaced with a different guess. When
+               the provider is known, add it here with its legal entity and
+               address, in the same shape as the two above. -->
+          <li><b>E-mail szolgáltató:</b> az Adatkezelő levelezőrendszerének szolgáltatója.
+              A weboldal rendszere önmagában nem küld e-mailt; az érdeklődésekre az
+              Adatkezelő a saját e-mail fiókjából válaszol.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Analytics 4 látogatottságmérés, kizárólag a látogató kifejezett hozzájárulása esetén. Hozzájárulás hiányában a Google Analytics nem töltődik be, és semmilyen adat nem kerül a Google-höz.</li>
         </ul>
         <p class="note">

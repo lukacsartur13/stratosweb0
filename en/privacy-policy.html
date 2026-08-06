@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
-<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "consent_title": "Measurement and cookies", "consent_body": "We would use Google Analytics to see how the site is used. It loads, and sets cookies, only if you agree. We never send names, email addresses, phone numbers or anything typed into a form.", "consent_accept": "Accept", "consent_decline": "Decline", "consent_more": "Privacy policy", "consent_settings": "Cookie settings", "consent_state_granted": "Measurement is currently enabled.", "consent_state_denied": "Measurement is currently disabled.", "consent_privacy_href": "privacy-policy.html", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
+<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "thanks_newsletter": "We have your address. There is no newsletter yet — the first one arrives when it launches.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "consent_title": "Measurement and cookies", "consent_body": "We would use Google Analytics to see how the site is used. It loads, and sets cookies, only if you agree. We never send names, email addresses, phone numbers or anything typed into a form.", "consent_accept": "Accept", "consent_decline": "Decline", "consent_more": "Privacy policy", "consent_settings": "Cookie settings", "consent_state_granted": "Measurement is currently enabled.", "consent_state_denied": "Measurement is currently disabled.", "consent_privacy_href": "privacy-policy.html", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
      guaranteed to have defined `window.Stratos.lead` before any per-page
@@ -197,7 +197,7 @@
         <ul>
           <li>enabling contact</li>
           <li>preparing quotes and client communication</li>
-          <li>sending newsletters and marketing messages</li>
+          <li>receiving and recording newsletter requests</li>
           <li>performing services</li>
           <li>operating and developing the website</li>
           <li>statistical and analytical purposes</li>
@@ -209,11 +209,48 @@
           <li>name</li><li>email address</li><li>phone number</li>
           <li>company name (if provided)</li>
           <li>any other information given in the message</li>
-          <li>IP address</li><li>browser and device information</li>
+          <li>the device identification string your browser sends (user agent)</li>
+          <li>a salted, irreversible fingerprint of the IP address — the IP address itself is not stored</li>
         </ul>
+        <h3>When the project questionnaire is completed</h3>
+        <ul>
+          <li>the above, and the answers given in the questionnaire</li>
+        </ul>
+        <h3>With every submission</h3>
+        <ul>
+          <li>which page the submission was sent from, and which page was landed on first</li>
+          <li>the domain name of the referring website (without the full referring address)</li>
+          <li>the campaign labels in the link (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>), if there are any</li>
+          <li>how long the form took to fill in, and the screen orientation</li>
+        </ul>
+        <p class="note">The campaign labels come only from the five parameters above: every other value in the link is ignored. We do not read or store advertising click identifiers (such as <code>gclid</code> or <code>fbclid</code>). These values stay in your browser's session storage until you close the tab, and reach us only if you actually submit a form.</p>
         <h3>When subscribing to the newsletter</h3>
-        <ul><li>name (optional)</li><li>email address</li></ul>
+        <ul><li>email address</li></ul>
+        <p class="note">We record newsletter requests, but no newsletter system is running at present: signing up does not trigger a confirmation email, and no newsletter is sent. Your request stays on record until you ask us to delete it.</p>
 
+        <!-- REQUIRES LEGAL REVIEW — two gaps a lawyer has to close, both of them
+             Article 13 requirements that cannot be written by guessing:
+
+             1. THE LEGAL BASIS PER PURPOSE. This document names six purposes and
+                no legal basis for any of them. Consent, contract and legitimate
+                interest are each defensible for different rows, and choosing
+                wrongly is worse than the omission because it becomes the basis
+                we are held to. There is no `legal basis` section, deliberately,
+                rather than an invented one.
+
+             2. THE THIRD-COUNTRY TRANSFER MECHANISM. Netlify is in the United
+                States and Supabase Pte. Ltd. is in Singapore. Both are named as
+                processors, and neither transfer names its Article 46 mechanism
+                (standard contractual clauses, an adequacy decision, or the
+                Data Privacy Framework). Which applies is a fact about the
+                contracts, not about the code.
+
+             The retention periods below are a COMMITMENT, not an enforced
+             mechanism: nothing deletes a lead automatically, by design — see
+             `phase9-lead-operations.md`, which documents the manual procedure
+             instead. Automatic destructive retention is explicitly out of scope
+             for Phase 9. Either the manual review has to happen on a schedule,
+             or these numbers have to change to match what is actually done. -->
         <h2>Retention periods</h2>
         <ul>
           <li>contact data: no more than 5 years</li>
@@ -227,7 +264,14 @@
         <ul>
           <li><b>Hosting provider:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, United States. Service: serving the website and running the server-side functions (Netlify Functions) that receive form submissions.</li>
           <li><b>Database provider:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513. Service: storing the enquiries received through the forms and supporting the private Portal.</li>
-          <li><b>Email provider:</b> the provider of the mail system (e.g. Google Workspace or another email provider)</li>
+          <!-- REQUIRES USER FACTUAL INPUT — the email provider is not named because
+               nobody has stated which one it is. The previous wording said
+               "e.g. Google Workspace or another email provider", which names a
+               processor by guess in a document whose whole purpose is to be
+               exact. Removed rather than replaced with a different guess. When
+               the provider is known, add it here with its legal entity and
+               address, in the same shape as the two above. -->
+          <li><b>Email provider:</b> the provider of the Controller's own mail system. The website itself sends no email; the Controller replies to enquiries from their own mailbox.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Analytics 4 audience measurement, only where the visitor has explicitly consented. Without consent Google Analytics is not loaded and no data reaches Google.</li>
         </ul>
         <p class="note">Google Search Console is not audience measurement and not a data processor: it reports how our own site appears in search, and does not track visitors. The website uses no Meta Pixel and no other social-media tracking code. The social icons in the footer are ordinary links and load nothing.</p>
@@ -308,7 +352,7 @@
     <div class="foot__grid">
       <div>
         <a class="brand" href="/en/" style="margin-bottom:1.4rem"><img src="../assets/img/plane-cursor.png" alt="" width="96" height="96"><span>Stratos</span></a>
-        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Afraid of missing out? Not any more — subscribe to our newsletter.</p>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Our newsletter is still being built. Leave your address and we'll tell you when it starts.</p>
         <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
           <label class="vh" for="nl">Email address</label>
           <input id="nl" type="email" name="email" placeholder="email address" required>
@@ -316,7 +360,7 @@
             <label for="hp-foot">Company website</label>
             <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
           </div>
-          <button type="submit">Subscribe</button>
+          <button type="submit">Tell me</button>
         </form>
         <p class="form__note" style="margin-top:.6rem" role="status"></p>
       </div>

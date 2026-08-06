@@ -91,6 +91,12 @@
     sending: 'Küldés…',
     sent: 'Elküldve',
     thanks: 'Köszönjük — hamarosan válaszolunk a megadott címre.',
+    /* The newsletter gets its own confirmation, because the general one
+       promises a reply and a newsletter request does not produce one. There is
+       no newsletter system: the address is stored and nothing is sent. Saying
+       "we will reply shortly" to that is a promise the software cannot keep.
+       See _build/reports/phase9-email-operations.md. */
+    thanks_newsletter: 'Megjegyeztük a címed. Hírlevelet még nem küldünk — az első levél akkor érkezik, amikor a hírlevél elindul.',
     fail: 'A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com',
     invalid: 'Kérjük, ellenőrizd a kiemelt mezőket.',
     need_name: 'Kérjük, add meg a nevedet.',
@@ -535,7 +541,8 @@
         }).then(function (result) {
           if (result.state === 'success') {
             setLabel(T.sent);
-            setState('success', T.thanks);
+            setState('success',
+              (formType === 'newsletter' && T.thanks_newsletter) || T.thanks);
             form.reset();
             /* The button stays disabled: it went through, and the next enquiry
                is a new submission with a new id. */

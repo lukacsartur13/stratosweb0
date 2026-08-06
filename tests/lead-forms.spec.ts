@@ -348,14 +348,22 @@ test.describe('newsletter', () => {
     const sent = await interceptLead(page);
 
     await page.fill('#nl', 'reader@example.com');
-    await page.getByRole('button', { name: 'Feliratkozom' }).click();
+    await page.getByRole('button', { name: 'Szóljatok' }).click();
 
-    await expect(page.locator('.form__note[data-state="success"]')).toBeVisible({ timeout: 15_000 });
+    const note = page.locator('.form__note[data-state="success"]');
+    await expect(note).toBeVisible({ timeout: 15_000 });
     expect(sent).toHaveLength(1);
     expectWellFormed(sent[0], 'newsletter', '/rolunk.html');
     expect(sent[0].fields).toEqual({ email: 'reader@example.com' });
     // No name to give, and none invented in the page: the endpoint owns that.
     expect(sent[0].fields.name).toBeUndefined();
+
+    // What the visitor is told must be what happens. There is no newsletter
+    // system: the address is stored and nothing is sent. The general success
+    // message promises a reply, so the newsletter has its own — and the
+    // assertion is that the reply promise is NOT what appears here.
+    await expect(note).not.toContainText(/válaszolunk/i);
+    await expect(note).toContainText(/hírlevelet még nem küldünk/i);
   });
 
   test('the blog signup posts to the same endpoint', async ({ page }) => {
@@ -364,7 +372,7 @@ test.describe('newsletter', () => {
 
     await page.fill('#nl2', 'reader@example.com');
     await page.locator('form[data-lead="newsletter"]').first()
-      .getByRole('button', { name: 'Feliratkozom' }).click();
+      .getByRole('button', { name: 'Szóljatok' }).click();
 
     await expect(page.locator('.form__note[data-state="success"]').first())
       .toBeVisible({ timeout: 15_000 });
@@ -522,4 +530,57 @@ test.describe('the deployed bundle', () => {
     expect(withForms.length, 'no forms found — the scan is looking in the wrong place')
       .toBeGreaterThan(30);
   });
+});
+
+/* ==========================================================================
+   Phase 9, Workstreams K and S — the public copy must match what happens.
+
+   The newsletter is the case where the two had drifted furthest apart. Three
+   places promised email that no system sends: the footer signup ("subscribe to
+   our newsletter", "Subscribe"), the blog signup, which additionally promised a
+   FREQUENCY ("rarely, but with substance"), and the success message every form
+   shares, which promises a reply.
+
+   Nothing was broken. A visitor gave an address, the address was stored, and
+   they were told they had subscribed to something. That is the kind of claim
+   that costs nothing until someone asks why no newsletter ever arrived.
+
+   These assertions are on the built pages in all three languages, because the
+   promise has to be absent in each of them and a translation is exactly where
+   one would survive.
+   ========================================================================== */
+test.describe('the newsletter does not claim to send anything', () => {
+  const PAGES = [
+    { route: '/rolunk.html', field: '#nl' },
+    { route: '/en/about.html', field: '#nl' },
+    { route: '/de/ueber-uns.html', field: '#nl' },
+    { route: '/blog.html', field: '#nl2' },
+    { route: '/en/blog.html', field: '#nl2' },
+    { route: '/de/blog.html', field: '#nl2' },
+  ];
+
+  for (const { route, field } of PAGES) {
+    test(`${route} offers the form without promising delivery`, async ({ page }) => {
+      await page.goto(route);
+      await expect(page.locator(field)).toBeVisible();
+
+      const text = await page.locator('body').innerText();
+
+      // Words that assert a subscription exists, or that mail will arrive, or
+      // how often. Each of these was on the page before Phase 9.
+      for (const claim of [
+        /subscribe to our newsletter/i,
+        /iratkozz fel a hírlevelünkre/i,
+        /abonniere unseren newsletter/i,
+        /elküldjük e-mailben/i,
+        /we['’]ll send you .* by email/i,
+        /senden wir .* per e-mail/i,
+        /\britkán\b/i,          // a frequency claim
+        /\brarely\b/i,
+        /\bselten\b/i,
+      ]) {
+        expect(text, `${route} still claims: ${claim}`).not.toMatch(claim);
+      }
+    });
+  }
 });

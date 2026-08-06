@@ -422,5 +422,57 @@
  "A hozzájárulás megtagadása a weboldal használatát semmilyen módon nem korlátozza: az oldal mérés nélkül is teljes egészében működik.": [
   "Refusing consent does not restrict use of the website in any way: the site works in full without measurement.",
   "Die Ablehnung schränkt die Nutzung der Website in keiner Weise ein: Die Seite funktioniert auch ohne Messung vollständig."
+ ],
+ "hírlevél-kérések fogadása és nyilvántartása": [
+  "receiving and recording newsletter requests",
+  "Newsletter-Anfragen entgegennehmen und erfassen"
+ ],
+ "böngésző által küldött eszközazonosító szöveg (user agent)": [
+  "the device identification string your browser sends (user agent)",
+  "die vom Browser gesendete Geräte-Kennung (User Agent)"
+ ],
+ "az IP-cím sózott, visszafejthetetlen lenyomata — magát az IP-címet nem tároljuk": [
+  "a salted, irreversible fingerprint of the IP address — the IP address itself is not stored",
+  "ein gesalzener, nicht umkehrbarer Fingerabdruck der IP-Adresse — die IP-Adresse selbst wird nicht gespeichert"
+ ],
+ "Igényfelmérő kérdőív kitöltése esetén": [
+  "When the project questionnaire is completed",
+  "Beim Ausfüllen des Bedarfsfragebogens"
+ ],
+ "a fentiek, valamint a kérdőívre adott válaszok": [
+  "the above, and the answers given in the questionnaire",
+  "die oben genannten Daten sowie die Antworten im Fragebogen"
+ ],
+ "Minden beküldés esetén": [
+  "With every submission",
+  "Bei jeder Übermittlung"
+ ],
+ "melyik oldalról érkezett a beküldés, és melyik oldalra érkezett először": [
+  "which page the submission was sent from, and which page was landed on first",
+  "von welcher Seite die Übermittlung gesendet wurde und auf welcher Seite der Besuch begann"
+ ],
+ "a hivatkozó webhely domainneve (a teljes hivatkozó cím nélkül)": [
+  "the domain name of the referring website (without the full referring address)",
+  "der Domainname der verweisenden Website (ohne die vollständige verweisende Adresse)"
+ ],
+ "a linkben szereplő kampányazonosítók (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>), ha vannak": [
+  "the campaign labels in the link (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>), if there are any",
+  "die Kampagnen-Kennungen im Link (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>), sofern vorhanden"
+ ],
+ "a kitöltés hossza másodpercben és a képernyő tájolása": [
+  "how long the form took to fill in, and the screen orientation",
+  "wie lange das Ausfüllen gedauert hat, und die Bildschirmausrichtung"
+ ],
+ "A kampányazonosítók kizárólag a fenti öt paraméterből származnak: a linkben szereplő minden más adatot figyelmen kívül hagyunk. Hirdetési kattintásazonosítót (például <code>gclid</code> vagy <code>fbclid</code>) nem olvasunk ki és nem tárolunk. Ezek az adatok a böngésző munkamenet-tárolójában maradnak a lap bezárásáig, és csak akkor kerülnek hozzánk, ha Ön ténylegesen beküld egy űrlapot.": [
+  "The campaign labels come only from the five parameters above: every other value in the link is ignored. We do not read or store advertising click identifiers (such as <code>gclid</code> or <code>fbclid</code>). These values stay in your browser's session storage until you close the tab, and reach us only if you actually submit a form.",
+  "Die Kampagnen-Kennungen stammen ausschließlich aus den fünf oben genannten Parametern: jeder andere Wert im Link wird ignoriert. Werbe-Klick-Kennungen (etwa <code>gclid</code> oder <code>fbclid</code>) lesen und speichern wir nicht. Diese Werte bleiben bis zum Schließen des Tabs im Sitzungsspeicher des Browsers und erreichen uns nur, wenn Sie tatsächlich ein Formular absenden."
+ ],
+ "A hírlevél-kéréseket rögzítjük, hírlevélküldő rendszer azonban jelenleg nem működik: feliratkozás után nem érkezik automatikus visszaigazoló levél, és a rendszer nem küld hírlevelet. A kérése addig marad nyilvántartva, amíg annak törlését nem kéri.": [
+  "We record newsletter requests, but no newsletter system is running at present: signing up does not trigger a confirmation email, and no newsletter is sent. Your request stays on record until you ask us to delete it.",
+  "Wir erfassen Newsletter-Anfragen, ein Newsletter-System ist derzeit jedoch nicht in Betrieb: Nach der Anmeldung folgt keine automatische Bestätigungs-E-Mail, und es wird kein Newsletter versendet. Ihre Anfrage bleibt erfasst, bis Sie deren Löschung verlangen."
+ ],
+ "<b>E-mail szolgáltató:</b> az Adatkezelő levelezőrendszerének szolgáltatója. A weboldal rendszere önmagában nem küld e-mailt; az érdeklődésekre az Adatkezelő a saját e-mail fiókjából válaszol.": [
+  "<b>Email provider:</b> the provider of the Controller's own mail system. The website itself sends no email; the Controller replies to enquiries from their own mailbox.",
+  "<b>E-Mail-Anbieter:</b> der Anbieter des E-Mail-Systems des Verantwortlichen. Die Website selbst versendet keine E-Mails; der Verantwortliche antwortet auf Anfragen aus dem eigenen Postfach."
  ]
 }

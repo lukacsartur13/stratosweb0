@@ -1,81 +1,318 @@
 {
- "_comment": ["Blog, contact and imprint pages.", ""],
-
- "Blog — webdesign és online marketing tippek | Stratos": ["Blog — web design and online marketing tips | Stratos", "Blog — Tipps zu Webdesign und Online-Marketing | Stratos"],
- "Érthető, szakzsargon nélküli útmutatók vállalkozóknak: SEO, weboldal árak, Google Cégprofil, hirdetések és a leggyakoribb weboldal-hibák.": ["Clear, jargon-free guides for business owners: SEO, website pricing, Google Business Profile, advertising and the most common website mistakes.", "Verständliche Leitfäden ohne Fachjargon für Unternehmer: SEO, Website-Preise, Google-Unternehmensprofil, Werbung und die häufigsten Website-Fehler."],
- "<a href=\"index.html\">Stratos</a> / <b>Blog</b>": ["<a href=\"index.html\">Stratos</a> / <b>Blog</b>", "<a href=\"index.html\">Stratos</a> / <b>Blog</b>"],
- "Amit tudnod<br>kell, <span class=\"sig\">érthetően.</span>": ["What you need<br>to know, <span class=\"sig\">in plain words.</span>", "Was du wissen<br>musst, <span class=\"sig\">verständlich.</span>"],
- "Nem varázslat kell az online növekedéshez, hanem rendszer. Ezeket az útmutatókat azért írjuk, hogy a döntéseidet ne a marketinges zsargon hozza meg helyetted.": ["Online growth doesn't take magic, it takes a system. We write these guides so that marketing jargon doesn't make your decisions for you.", "Online-Wachstum braucht keine Magie, sondern ein System. Wir schreiben diese Leitfäden, damit nicht der Marketingjargon deine Entscheidungen trifft."],
- "Kiemelt · SEO": ["Featured · SEO", "Empfohlen · SEO"],
- "Hogyan kerülj a Google első oldalára? 7 lépés": ["How to reach Google's first page — 7 steps", "Wie kommst du auf Googles erste Seite? 7 Schritte"],
- "Nem varázslat kell a Google első oldalához, hanem rendszer. 7 lépéses keresőoptimalizálási útmutató kisvállalkozásoknak, érthetően, szakzsargon nélkül.": ["Getting onto Google's first page doesn't take magic, it takes a system. A seven-step SEO guide for small businesses, in plain language.", "Auf Googles erste Seite zu kommen braucht keine Magie, sondern ein System. Ein SEO-Leitfaden in sieben Schritten für kleine Unternehmen, verständlich und ohne Fachjargon."],
- "Árak": ["Pricing", "Preise"],
- "Mennyibe kerül egy weboldal 2026-ban?": ["How much does a website cost in 2026?", "Was kostet eine Website 2026?"],
- "Nulla forinttól több millióig terjednek a weboldal árak. Megmutatjuk, mitől függ a költség, és hogyan számold ki, mennyit ér egy weboldal a vállalkozásodnak.": ["Website prices run from nothing to tens of thousands. We show what drives the cost and how to work out what a website is worth to your business.", "Website-Preise reichen von null bis zu mehreren Zehntausend. Wir zeigen, wovon die Kosten abhängen und wie du berechnest, was dir eine Website wert ist."],
- "Helyi keresés": ["Local search", "Lokale Suche"],
- "Google Cégprofil beállítása lépésről lépésre": ["Setting up a Google Business Profile, step by step", "Google-Unternehmensprofil Schritt für Schritt einrichten"],
- "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Állítsd be 8 lépésben, és jelenj meg a térképes találatok között!": ["A Google Business Profile is the most powerful free client acquisition tool for local businesses. Set it up in eight steps and show up in the map results.", "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Richte es in acht Schritten ein und erscheine in den Kartenergebnissen."],
- "Hirdetés": ["Advertising", "Werbung"],
- "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban": ["Google or Facebook ads — which is worth it in 2026?", "Google- oder Facebook-Werbung? Was lohnt sich 2026?"],
- "Rossz a kérdés. Megmutatjuk, melyik platform mire való, és miért a rendszer hozza az ügyfeleket, nem a platform.": ["It's the wrong question. We show what each platform is for, and why clients come from the system, not the platform.", "Falsche Frage. Wir zeigen, wofür welche Plattform gut ist — und warum die Kunden vom System kommen, nicht von der Plattform."],
- "Számolás": ["Doing the maths", "Rechnen"],
- "Mennyi ügyfelet veszítesz egy elavult weboldal miatt?": ["How many clients is an outdated website costing you?", "Wie viele Kunden kostet dich eine veraltete Website?"],
- "Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Számold ki, mennyibe kerül havonta egy elavult weboldal — és mennyit nyernél.": ["There's one number no business owner ever sees: the clients they lost. Work out what an outdated website costs you monthly — and what you'd gain.", "Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Rechne aus, was dich eine veraltete Website monatlich kostet — und was du gewinnen würdest."],
- "Konverzió": ["Conversion", "Conversion"],
- "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba": ["Why isn't your website bringing clients? 7 common mistakes", "Warum bringt deine Website keine Kunden? 7 häufige Fehler"],
- "Van weboldalad, mégsem jönnek az ügyfelek? A 7 leggyakoribb hiba, amit a vállalkozások többsége elkövet — és hogyan javítsd ki mindegyiket.": ["You have a website but the clients aren't coming? The seven most common mistakes most businesses make — and how to fix each one.", "Du hast eine Website, aber die Kunden bleiben aus? Die sieben häufigsten Fehler der meisten Unternehmen — und wie du jeden behebst."],
- "Félsz, hogy kimaradsz?": ["Afraid of missing out?", "Angst, etwas zu verpassen?"],
- "Többé nem kell. Az új cikkeket és a gyakorlatban működő tippeket elküldjük e-mailben — ritkán, de akkor tartalommal.": ["Not any more. We'll email you new articles and tips that actually work — rarely, but with substance.", "Ab jetzt nicht mehr. Wir schicken dir neue Artikel und praxistaugliche Tipps per E-Mail — selten, aber mit Substanz."],
- "Hírlevél feliratkozás (blog)": ["Newsletter signup (blog)", "Newsletter-Anmeldung (Blog)"],
- "Az olvasás jó. A <span class=\"sig\">rendszer</span> jobb.": ["Reading is good. A <span class=\"sig\">system</span> is better.", "Lesen ist gut. Ein <span class=\"sig\">System</span> ist besser."],
- "Ha nem akarod magad összerakni, mi megcsináljuk helyetted — weboldal, arculat és hirdetés egy kézben.": ["If you'd rather not assemble it yourself, we'll do it for you — website, identity and advertising from one team.", "Wenn du es nicht selbst zusammenbauen willst, machen wir es für dich — Website, Erscheinungsbild und Werbung aus einer Hand."],
-
- "Ügyfélszolgálat és kapcsolat | Stratos": ["Contact and support | Stratos", "Kontakt und Support | Stratos"],
- "Kérdésed van, vagy ingyenes konzultációt kérnél? Írj e-mailt, hívj minket, vagy töltsd ki az űrlapot — minden megkeresésre a lehető leghamarabb válaszolunk.": ["Got a question, or want a free consultation? Send an email, call us, or fill in the form — we answer every enquiry as soon as we can.", "Eine Frage oder Interesse an einer kostenlosen Beratung? Schreib eine E-Mail, ruf an oder füll das Formular aus — wir antworten auf jede Anfrage so schnell wie möglich."],
- "<a href=\"index.html\">Stratos</a> / <b>Ügyfélszolgálat</b>": ["<a href=\"index.html\">Stratos</a> / <b>Contact</b>", "<a href=\"index.html\">Stratos</a> / <b>Kontakt</b>"],
- "Vedd fel<br>a <span class=\"sig\">kapcsolatot.</span>": ["Get in<br><span class=\"sig\">touch.</span>", "Nimm<br><span class=\"sig\">Kontakt auf.</span>"],
- "Kérdésed van, érdeklődnél a szolgáltatásaink iránt, vagy csak szeretnél többet megtudni rólunk? Ne habozz — írj vagy hívj minket. Minden megkeresésre a lehető leghamarabb válaszolunk.": ["Got a question, interested in our services, or just want to know more about us? Don't hesitate — write or call. We answer every enquiry as soon as we can.", "Eine Frage, Interesse an unseren Leistungen oder einfach neugierig auf uns? Zögere nicht — schreib oder ruf an. Wir antworten auf jede Anfrage so schnell wie möglich."],
- "Írásban a legegyszerűbb — általában egy munkanapon belül válaszolunk.": ["Writing is easiest — we usually reply within one working day.", "Schriftlich ist am einfachsten — wir antworten meist innerhalb eines Werktags."],
- "Ha gyorsan kell egy válasz, hívj minket munkaidőben.": ["If you need an answer quickly, call us during business hours.", "Wenn es schnell gehen muss, ruf uns während der Geschäftszeiten an."],
- "Hol vagyunk": ["Where we are", "Wo wir sind"],
- "Győr &amp; Budapest": ["Győr &amp; Budapest", "Győr &amp; Budapest"],
- "Országszerte dolgozunk — az egyeztetések nagy része online zajlik, így nem a földrajz dönt.": ["We work nationwide — most meetings happen online, so geography isn't the deciding factor.", "Wir arbeiten landesweit — die meisten Termine laufen online, Geografie ist also nicht entscheidend."],
- "Egy beszélgetés, ami után <span class=\"sig\">tudni fogod, mi kell.</span>": ["One conversation and <span class=\"sig\">you'll know what you need.</span>", "Ein Gespräch, und <span class=\"sig\">du weißt, was du brauchst.</span>"],
- "Ha már közölnéd az igényeidet, a kérdőívünkön részletesen le tudod adni őket, és egy ingyenes online megbeszélés keretében átbeszélünk mindent az áraktól a kész projektig. Nincs kötelezettség, nincs értékesítési nyomás.": ["If you're ready to share your requirements, the questionnaire lets you set them out in detail, and in a free online meeting we go through everything from pricing to the finished project. No obligation, no sales pressure.", "Wenn du deine Anforderungen schon nennen willst, kannst du sie im Fragebogen ausführlich hinterlegen, und in einem kostenlosen Online-Termin besprechen wir alles von den Preisen bis zum fertigen Projekt. Keine Verpflichtung, kein Verkaufsdruck."],
- "Kérdezz,<br>vagy kérj<br>árajánlatot": ["Ask, or<br>request<br>a quote", "Frag nach<br>oder fordere<br>ein Angebot an"],
- "Írd le pár mondatban, mire lenne szükséged. Ha nem tudod pontosan, az sem baj — pont ezért van a beszélgetés.": ["Describe in a few sentences what you'd need. If you're not sure yet, that's fine — that's exactly what the conversation is for.", "Beschreib in ein paar Sätzen, was du brauchst. Wenn du es noch nicht genau weißt, ist das kein Problem — genau dafür ist das Gespräch da."],
- "Kapcsolatfelvétel a weboldalról": ["Contact request from the website", "Kontaktanfrage über die Website"],
- "Vezetéknév *": ["Last name *", "Nachname *"],
- "Keresztnév *": ["First name *", "Vorname *"],
- "E-mail *": ["Email *", "E-Mail *"],
- "Telefonszám *": ["Phone number *", "Telefonnummer *"],
- "Vállalkozás neve *": ["Company name *", "Firmenname *"],
- "Megjegyzés *": ["Message *", "Nachricht *"],
- "Mire lenne szükséged?": ["What would you need?", "Was brauchst du?"],
- "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Igen\" required> <span>A továbblépéssel kijelentem, hogy elfogadtam az <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Adatvédelmi nyilatkozatban</a> foglaltakat és annak feltételeit. *</span>": ["<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Yes\" required> <span>By continuing I confirm that I accept the terms set out in the <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">privacy policy</a>. *</span>", "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Ja\" required> <span>Mit dem Fortfahren bestätige ich, dass ich die Bestimmungen der <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Datenschutzerklärung</a> akzeptiere. *</span>"],
- "<input type=\"checkbox\" name=\"hirlevel\" value=\"Igen\"> <span>Hozzájárulok, hogy a Stratos Media e-mailben értesítsen az újdonságokról és frissítésekről.</span>": ["<input type=\"checkbox\" name=\"hirlevel\" value=\"Yes\"> <span>I agree that Stratos Media may email me about news and updates.</span>", "<input type=\"checkbox\" name=\"hirlevel\" value=\"Ja\"> <span>Ich bin einverstanden, dass Stratos Media mich per E-Mail über Neuigkeiten und Updates informiert.</span>"],
- "A *-gal jelölt mezők kitöltése kötelező.": ["Fields marked with * are required.", "Mit * markierte Felder sind Pflichtfelder."],
-
- "Impresszum | Stratos": ["Imprint | Stratos", "Impressum | Stratos"],
- "A Stratos Media üzemeltetőjének adatai, elérhetőségek és tárhelyszolgáltató.": ["Details of the operator of Stratos Media, contact information and hosting provider.", "Angaben zum Betreiber von Stratos Media, Kontaktdaten und Hosting-Anbieter."],
- "<a href=\"index.html\">Stratos</a> / <b>Impresszum</b>": ["<a href=\"index.html\">Stratos</a> / <b>Imprint</b>", "<a href=\"index.html\">Stratos</a> / <b>Impressum</b>"],
- "Impresszum": ["Imprint", "Impressum"],
- "Cégnév / név": ["Company / name", "Firma / Name"],
- "Lukács Artúr e.v.": ["Artúr Lukács, sole trader", "Artúr Lukács, Einzelunternehmer"],
- "Székhely": ["Registered address", "Sitz"],
- "9151 Abda, Arany János utca 13.": ["Arany János utca 13, 9151 Abda, Hungary", "Arany János utca 13, 9151 Abda, Ungarn"],
- "Webcím": ["Website", "Website"],
- "Adószám": ["Tax number", "Steuernummer"],
- "A vállalkozást bejegyző hatóság": ["Registering authority", "Registrierende Behörde"],
- "Nemzeti Adó- és Vámhivatal": ["Hungarian National Tax and Customs Administration", "Ungarische Steuer- und Zollverwaltung"],
- "Kamara": ["Chamber of commerce", "Kammer"],
- "Győr-Moson-Sopron Vármegyei Kereskedelmi és Iparkamara": ["Chamber of Commerce and Industry of Győr-Moson-Sopron County", "Industrie- und Handelskammer des Komitats Győr-Moson-Sopron"],
- "Tárhelyszolgáltató": ["Hosting provider", "Hosting-Anbieter"],
- "A weboldalt és a hozzá tartozó kiszolgálói funkciókat (Netlify Functions) a Netlify szolgálja ki.": ["The website and its server-side functions (Netlify Functions) are served by Netlify.", "Die Website und ihre serverseitigen Funktionen (Netlify Functions) werden von Netlify ausgeliefert."],
- "Netlify, Inc.<br> 101 2nd Street, San Francisco, CA 94105, Amerikai Egyesült Államok<br> <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>": ["Netlify, Inc.<br> 101 2nd Street, San Francisco, CA 94105, United States<br> <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>", "Netlify, Inc.<br> 101 2nd Street, San Francisco, CA 94105, Vereinigte Staaten<br> <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>"],
- "Adatbázis-szolgáltató": ["Database provider", "Datenbank-Anbieter"],
- "Az űrlapokon beérkező érdeklődések adatait, valamint a zárt Portál működéséhez szükséges adatokat a Supabase tárolja.": ["The enquiries received through the forms, and the data the private Portal needs to operate, are stored by Supabase.", "Die über die Formulare eingehenden Anfragen sowie die für den Betrieb des internen Portals erforderlichen Daten werden von Supabase gespeichert."],
- "Supabase Pte. Ltd.<br> 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513<br> <a href=\"https://supabase.com/\">https://supabase.com/</a>": ["Supabase Pte. Ltd.<br> 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513<br> <a href=\"https://supabase.com/\">https://supabase.com/</a>", "Supabase Pte. Ltd.<br> 65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513<br> <a href=\"https://supabase.com/\">https://supabase.com/</a>"],
- "Kapcsolat": ["Contact", "Kontakt"],
- "Bármilyen kérdés esetén írj a <a href=\"mailto:lukacs.artur@media-stratos.com\">lukacs.artur@media-stratos.com</a> címre, vagy hívj a <a href=\"tel:+36305848024\">+36 30 584 8024</a> számon.": ["For any question, write to <a href=\"mailto:lukacs.artur@media-stratos.com\">lukacs.artur@media-stratos.com</a> or call <a href=\"tel:+36305848024\">+36 30 584 8024</a>.", "Bei Fragen schreib an <a href=\"mailto:lukacs.artur@media-stratos.com\">lukacs.artur@media-stratos.com</a> oder ruf an unter <a href=\"tel:+36305848024\">+36 30 584 8024</a>."]
+ "_comment": [
+  "Blog, contact and imprint pages.",
+  ""
+ ],
+ "Blog — webdesign és online marketing tippek | Stratos": [
+  "Blog — web design and online marketing tips | Stratos",
+  "Blog — Tipps zu Webdesign und Online-Marketing | Stratos"
+ ],
+ "Érthető, szakzsargon nélküli útmutatók vállalkozóknak: SEO, weboldal árak, Google Cégprofil, hirdetések és a leggyakoribb weboldal-hibák.": [
+  "Clear, jargon-free guides for business owners: SEO, website pricing, Google Business Profile, advertising and the most common website mistakes.",
+  "Verständliche Leitfäden ohne Fachjargon für Unternehmer: SEO, Website-Preise, Google-Unternehmensprofil, Werbung und die häufigsten Website-Fehler."
+ ],
+ "<a href=\"index.html\">Stratos</a> / <b>Blog</b>": [
+  "<a href=\"index.html\">Stratos</a> / <b>Blog</b>",
+  "<a href=\"index.html\">Stratos</a> / <b>Blog</b>"
+ ],
+ "Amit tudnod<br>kell, <span class=\"sig\">érthetően.</span>": [
+  "What you need<br>to know, <span class=\"sig\">in plain words.</span>",
+  "Was du wissen<br>musst, <span class=\"sig\">verständlich.</span>"
+ ],
+ "Nem varázslat kell az online növekedéshez, hanem rendszer. Ezeket az útmutatókat azért írjuk, hogy a döntéseidet ne a marketinges zsargon hozza meg helyetted.": [
+  "Online growth doesn't take magic, it takes a system. We write these guides so that marketing jargon doesn't make your decisions for you.",
+  "Online-Wachstum braucht keine Magie, sondern ein System. Wir schreiben diese Leitfäden, damit nicht der Marketingjargon deine Entscheidungen trifft."
+ ],
+ "Kiemelt · SEO": [
+  "Featured · SEO",
+  "Empfohlen · SEO"
+ ],
+ "Hogyan kerülj a Google első oldalára? 7 lépés": [
+  "How to reach Google's first page — 7 steps",
+  "Wie kommst du auf Googles erste Seite? 7 Schritte"
+ ],
+ "Nem varázslat kell a Google első oldalához, hanem rendszer. 7 lépéses keresőoptimalizálási útmutató kisvállalkozásoknak, érthetően, szakzsargon nélkül.": [
+  "Getting onto Google's first page doesn't take magic, it takes a system. A seven-step SEO guide for small businesses, in plain language.",
+  "Auf Googles erste Seite zu kommen braucht keine Magie, sondern ein System. Ein SEO-Leitfaden in sieben Schritten für kleine Unternehmen, verständlich und ohne Fachjargon."
+ ],
+ "Árak": [
+  "Pricing",
+  "Preise"
+ ],
+ "Mennyibe kerül egy weboldal 2026-ban?": [
+  "How much does a website cost in 2026?",
+  "Was kostet eine Website 2026?"
+ ],
+ "Nulla forinttól több millióig terjednek a weboldal árak. Megmutatjuk, mitől függ a költség, és hogyan számold ki, mennyit ér egy weboldal a vállalkozásodnak.": [
+  "Website prices run from nothing to tens of thousands. We show what drives the cost and how to work out what a website is worth to your business.",
+  "Website-Preise reichen von null bis zu mehreren Zehntausend. Wir zeigen, wovon die Kosten abhängen und wie du berechnest, was dir eine Website wert ist."
+ ],
+ "Helyi keresés": [
+  "Local search",
+  "Lokale Suche"
+ ],
+ "Google Cégprofil beállítása lépésről lépésre": [
+  "Setting up a Google Business Profile, step by step",
+  "Google-Unternehmensprofil Schritt für Schritt einrichten"
+ ],
+ "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Állítsd be 8 lépésben, és jelenj meg a térképes találatok között!": [
+  "A Google Business Profile is the most powerful free client acquisition tool for local businesses. Set it up in eight steps and show up in the map results.",
+  "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Richte es in acht Schritten ein und erscheine in den Kartenergebnissen."
+ ],
+ "Hirdetés": [
+  "Advertising",
+  "Werbung"
+ ],
+ "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban": [
+  "Google or Facebook ads — which is worth it in 2026?",
+  "Google- oder Facebook-Werbung? Was lohnt sich 2026?"
+ ],
+ "Rossz a kérdés. Megmutatjuk, melyik platform mire való, és miért a rendszer hozza az ügyfeleket, nem a platform.": [
+  "It's the wrong question. We show what each platform is for, and why clients come from the system, not the platform.",
+  "Falsche Frage. Wir zeigen, wofür welche Plattform gut ist — und warum die Kunden vom System kommen, nicht von der Plattform."
+ ],
+ "Számolás": [
+  "Doing the maths",
+  "Rechnen"
+ ],
+ "Mennyi ügyfelet veszítesz egy elavult weboldal miatt?": [
+  "How many clients is an outdated website costing you?",
+  "Wie viele Kunden kostet dich eine veraltete Website?"
+ ],
+ "Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Számold ki, mennyibe kerül havonta egy elavult weboldal — és mennyit nyernél.": [
+  "There's one number no business owner ever sees: the clients they lost. Work out what an outdated website costs you monthly — and what you'd gain.",
+  "Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Rechne aus, was dich eine veraltete Website monatlich kostet — und was du gewinnen würdest."
+ ],
+ "Konverzió": [
+  "Conversion",
+  "Conversion"
+ ],
+ "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba": [
+  "Why isn't your website bringing clients? 7 common mistakes",
+  "Warum bringt deine Website keine Kunden? 7 häufige Fehler"
+ ],
+ "Van weboldalad, mégsem jönnek az ügyfelek? A 7 leggyakoribb hiba, amit a vállalkozások többsége elkövet — és hogyan javítsd ki mindegyiket.": [
+  "You have a website but the clients aren't coming? The seven most common mistakes most businesses make — and how to fix each one.",
+  "Du hast eine Website, aber die Kunden bleiben aus? Die sieben häufigsten Fehler der meisten Unternehmen — und wie du jeden behebst."
+ ],
+ "Félsz, hogy kimaradsz?": [
+  "Afraid of missing out?",
+  "Angst, etwas zu verpassen?"
+ ],
+ "Többé nem kell. Az új cikkeket és a gyakorlatban működő tippeket elküldjük e-mailben — ritkán, de akkor tartalommal.": [
+  "Not any more. We'll email you new articles and tips that actually work — rarely, but with substance.",
+  "Ab jetzt nicht mehr. Wir schicken dir neue Artikel und praxistaugliche Tipps per E-Mail — selten, aber mit Substanz."
+ ],
+ "Hírlevél feliratkozás (blog)": [
+  "Newsletter signup (blog)",
+  "Newsletter-Anmeldung (Blog)"
+ ],
+ "Az olvasás jó. A <span class=\"sig\">rendszer</span> jobb.": [
+  "Reading is good. A <span class=\"sig\">system</span> is better.",
+  "Lesen ist gut. Ein <span class=\"sig\">System</span> ist besser."
+ ],
+ "Ha nem akarod magad összerakni, mi megcsináljuk helyetted — weboldal, arculat és hirdetés egy kézben.": [
+  "If you'd rather not assemble it yourself, we'll do it for you — website, identity and advertising from one team.",
+  "Wenn du es nicht selbst zusammenbauen willst, machen wir es für dich — Website, Erscheinungsbild und Werbung aus einer Hand."
+ ],
+ "Ügyfélszolgálat és kapcsolat | Stratos": [
+  "Contact and support | Stratos",
+  "Kontakt und Support | Stratos"
+ ],
+ "Kérdésed van, vagy ingyenes konzultációt kérnél? Írj e-mailt, hívj minket, vagy töltsd ki az űrlapot — minden megkeresésre a lehető leghamarabb válaszolunk.": [
+  "Got a question, or want a free consultation? Send an email, call us, or fill in the form — we answer every enquiry as soon as we can.",
+  "Eine Frage oder Interesse an einer kostenlosen Beratung? Schreib eine E-Mail, ruf an oder füll das Formular aus — wir antworten auf jede Anfrage so schnell wie möglich."
+ ],
+ "<a href=\"index.html\">Stratos</a> / <b>Ügyfélszolgálat</b>": [
+  "<a href=\"index.html\">Stratos</a> / <b>Contact</b>",
+  "<a href=\"index.html\">Stratos</a> / <b>Kontakt</b>"
+ ],
+ "Vedd fel<br>a <span class=\"sig\">kapcsolatot.</span>": [
+  "Get in<br><span class=\"sig\">touch.</span>",
+  "Nimm<br><span class=\"sig\">Kontakt auf.</span>"
+ ],
+ "Kérdésed van, érdeklődnél a szolgáltatásaink iránt, vagy csak szeretnél többet megtudni rólunk? Ne habozz — írj vagy hívj minket. Minden megkeresésre a lehető leghamarabb válaszolunk.": [
+  "Got a question, interested in our services, or just want to know more about us? Don't hesitate — write or call. We answer every enquiry as soon as we can.",
+  "Eine Frage, Interesse an unseren Leistungen oder einfach neugierig auf uns? Zögere nicht — schreib oder ruf an. Wir antworten auf jede Anfrage so schnell wie möglich."
+ ],
+ "Írásban a legegyszerűbb — általában egy munkanapon belül válaszolunk.": [
+  "Writing is easiest — we usually reply within one working day.",
+  "Schriftlich ist am einfachsten — wir antworten meist innerhalb eines Werktags."
+ ],
+ "Ha gyorsan kell egy válasz, hívj minket munkaidőben.": [
+  "If you need an answer quickly, call us during business hours.",
+  "Wenn es schnell gehen muss, ruf uns während der Geschäftszeiten an."
+ ],
+ "Hol vagyunk": [
+  "Where we are",
+  "Wo wir sind"
+ ],
+ "Győr &amp; Budapest": [
+  "Győr &amp; Budapest",
+  "Győr &amp; Budapest"
+ ],
+ "Országszerte dolgozunk — az egyeztetések nagy része online zajlik, így nem a földrajz dönt.": [
+  "We work nationwide — most meetings happen online, so geography isn't the deciding factor.",
+  "Wir arbeiten landesweit — die meisten Termine laufen online, Geografie ist also nicht entscheidend."
+ ],
+ "Egy beszélgetés, ami után <span class=\"sig\">tudni fogod, mi kell.</span>": [
+  "One conversation and <span class=\"sig\">you'll know what you need.</span>",
+  "Ein Gespräch, und <span class=\"sig\">du weißt, was du brauchst.</span>"
+ ],
+ "Ha már közölnéd az igényeidet, a kérdőívünkön részletesen le tudod adni őket, és egy ingyenes online megbeszélés keretében átbeszélünk mindent az áraktól a kész projektig. Nincs kötelezettség, nincs értékesítési nyomás.": [
+  "If you're ready to share your requirements, the questionnaire lets you set them out in detail, and in a free online meeting we go through everything from pricing to the finished project. No obligation, no sales pressure.",
+  "Wenn du deine Anforderungen schon nennen willst, kannst du sie im Fragebogen ausführlich hinterlegen, und in einem kostenlosen Online-Termin besprechen wir alles von den Preisen bis zum fertigen Projekt. Keine Verpflichtung, kein Verkaufsdruck."
+ ],
+ "Kérdezz,<br>vagy kérj<br>árajánlatot": [
+  "Ask, or<br>request<br>a quote",
+  "Frag nach<br>oder fordere<br>ein Angebot an"
+ ],
+ "Írd le pár mondatban, mire lenne szükséged. Ha nem tudod pontosan, az sem baj — pont ezért van a beszélgetés.": [
+  "Describe in a few sentences what you'd need. If you're not sure yet, that's fine — that's exactly what the conversation is for.",
+  "Beschreib in ein paar Sätzen, was du brauchst. Wenn du es noch nicht genau weißt, ist das kein Problem — genau dafür ist das Gespräch da."
+ ],
+ "Kapcsolatfelvétel a weboldalról": [
+  "Contact request from the website",
+  "Kontaktanfrage über die Website"
+ ],
+ "Vezetéknév *": [
+  "Last name *",
+  "Nachname *"
+ ],
+ "Keresztnév *": [
+  "First name *",
+  "Vorname *"
+ ],
+ "E-mail *": [
+  "Email *",
+  "E-Mail *"
+ ],
+ "Telefonszám *": [
+  "Phone number *",
+  "Telefonnummer *"
+ ],
+ "Vállalkozás neve *": [
+  "Company name *",
+  "Firmenname *"
+ ],
+ "Megjegyzés *": [
+  "Message *",
+  "Nachricht *"
+ ],
+ "Mire lenne szükséged?": [
+  "What would you need?",
+  "Was brauchst du?"
+ ],
+ "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Igen\" required> <span>A továbblépéssel kijelentem, hogy elfogadtam az <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Adatvédelmi nyilatkozatban</a> foglaltakat és annak feltételeit. *</span>": [
+  "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Yes\" required> <span>By continuing I confirm that I accept the terms set out in the <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">privacy policy</a>. *</span>",
+  "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Ja\" required> <span>Mit dem Fortfahren bestätige ich, dass ich die Bestimmungen der <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Datenschutzerklärung</a> akzeptiere. *</span>"
+ ],
+ "<input type=\"checkbox\" name=\"hirlevel\" value=\"Igen\"> <span>Hozzájárulok, hogy a Stratos Media e-mailben értesítsen az újdonságokról és frissítésekről.</span>": [
+  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Yes\"> <span>I agree that Stratos Media may email me about news and updates.</span>",
+  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Ja\"> <span>Ich bin einverstanden, dass Stratos Media mich per E-Mail über Neuigkeiten und Updates informiert.</span>"
+ ],
+ "A *-gal jelölt mezők kitöltése kötelező.": [
+  "Fields marked with * are required.",
+  "Mit * markierte Felder sind Pflichtfelder."
+ ],
+ "Impresszum | Stratos": [
+  "Imprint | Stratos",
+  "Impressum | Stratos"
+ ],
+ "A Stratos Media üzemeltetőjének adatai, elérhetőségek és tárhelyszolgáltató.": [
+  "Details of the operator of Stratos Media, contact information and hosting provider.",
+  "Angaben zum Betreiber von Stratos Media, Kontaktdaten und Hosting-Anbieter."
+ ],
+ "<a href=\"index.html\">Stratos</a> / <b>Impresszum</b>": [
+  "<a href=\"index.html\">Stratos</a> / <b>Imprint</b>",
+  "<a href=\"index.html\">Stratos</a> / <b>Impressum</b>"
+ ],
+ "Impresszum": [
+  "Imprint",
+  "Impressum"
+ ],
+ "Cégnév / név": [
+  "Company / name",
+  "Firma / Name"
+ ],
+ "Lukács Artúr e.v.": [
+  "Artúr Lukács, sole trader",
+  "Artúr Lukács, Einzelunternehmer"
+ ],
+ "Székhely": [
+  "Registered address",
+  "Sitz"
+ ],
+ "9151 Abda, Arany János utca 13.": [
+  "Arany János utca 13, 9151 Abda, Hungary",
+  "Arany János utca 13, 9151 Abda, Ungarn"
+ ],
+ "Webcím": [
+  "Website",
+  "Website"
+ ],
+ "Adószám": [
+  "Tax number",
+  "Steuernummer"
+ ],
+ "A vállalkozást bejegyző hatóság": [
+  "Registering authority",
+  "Registrierende Behörde"
+ ],
+ "Nemzeti Adó- és Vámhivatal": [
+  "Hungarian National Tax and Customs Administration",
+  "Ungarische Steuer- und Zollverwaltung"
+ ],
+ "Kamara": [
+  "Chamber of commerce",
+  "Kammer"
+ ],
+ "Győr-Moson-Sopron Vármegyei Kereskedelmi és Iparkamara": [
+  "Chamber of Commerce and Industry of Győr-Moson-Sopron County",
+  "Industrie- und Handelskammer des Komitats Győr-Moson-Sopron"
+ ],
+ "Tárhelyszolgáltató": [
+  "Hosting provider",
+  "Hosting-Anbieter"
+ ],
+ "A weboldalt és a hozzá tartozó kiszolgálói funkciókat (Netlify Functions) a Netlify szolgálja ki.": [
+  "The website and its server-side functions (Netlify Functions) are served by Netlify.",
+  "Die Website und ihre serverseitigen Funktionen (Netlify Functions) werden von Netlify ausgeliefert."
+ ],
+ "Netlify, Inc.<br> 101 2nd Street, San Francisco, CA 94105, Amerikai Egyesült Államok<br> <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>": [
+  "Netlify, Inc.<br> 101 2nd Street, San Francisco, CA 94105, United States<br> <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>",
+  "Netlify, Inc.<br> 101 2nd Street, San Francisco, CA 94105, Vereinigte Staaten<br> <a href=\"https://www.netlify.com/\">https://www.netlify.com/</a>"
+ ],
+ "Adatbázis-szolgáltató": [
+  "Database provider",
+  "Datenbank-Anbieter"
+ ],
+ "Az űrlapokon beérkező érdeklődések adatait, valamint a zárt Portál működéséhez szükséges adatokat a Supabase tárolja.": [
+  "The enquiries received through the forms, and the data the private Portal needs to operate, are stored by Supabase.",
+  "Die über die Formulare eingehenden Anfragen sowie die für den Betrieb des internen Portals erforderlichen Daten werden von Supabase gespeichert."
+ ],
+ "Supabase Pte. Ltd.<br> 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513<br> <a href=\"https://supabase.com/\">https://supabase.com/</a>": [
+  "Supabase Pte. Ltd.<br> 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513<br> <a href=\"https://supabase.com/\">https://supabase.com/</a>",
+  "Supabase Pte. Ltd.<br> 65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513<br> <a href=\"https://supabase.com/\">https://supabase.com/</a>"
+ ],
+ "Kapcsolat": [
+  "Contact",
+  "Kontakt"
+ ],
+ "Bármilyen kérdés esetén írj a <a href=\"mailto:lukacs.artur@media-stratos.com\">lukacs.artur@media-stratos.com</a> címre, vagy hívj a <a href=\"tel:+36305848024\">+36 30 584 8024</a> számon.": [
+  "For any question, write to <a href=\"mailto:lukacs.artur@media-stratos.com\">lukacs.artur@media-stratos.com</a> or call <a href=\"tel:+36305848024\">+36 30 584 8024</a>.",
+  "Bei Fragen schreib an <a href=\"mailto:lukacs.artur@media-stratos.com\">lukacs.artur@media-stratos.com</a> oder ruf an unter <a href=\"tel:+36305848024\">+36 30 584 8024</a>."
+ ],
+ "A hírlevelünk még készül.": [
+  "Our newsletter is still being built.",
+  "Unser Newsletter entsteht gerade."
+ ],
+ "Add meg a címed, és szólunk, amint elindul. Addig nem küldünk semmit.": [
+  "Leave your address and we'll tell you when it starts. Until then we send nothing.",
+  "Hinterlasse deine Adresse, dann sagen wir Bescheid, sobald er startet. Bis dahin senden wir nichts."
+ ],
+ "Szóljatok": [
+  "Tell me",
+  "Bescheid geben"
+ ]
 }

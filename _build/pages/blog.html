@@ -106,8 +106,11 @@ css: blog
       <div class="grid g-3" style="margin-top:clamp(2.5rem,6vw,4rem)">
         <div class="post" data-reveal style="border-color:var(--signal)">
           <span class="post__meta sig">Hírlevél</span>
-          <h3>Félsz, hogy kimaradsz?</h3>
-          <p>Többé nem kell. Az új cikkeket és a gyakorlatban működő tippeket elküldjük e-mailben — ritkán, de akkor tartalommal.</p>
+          <h3>A hírlevelünk még készül.</h3>
+          <!-- Az előző szöveg e-mailben küldött cikkeket ígért, sőt gyakoriságot
+               is ("ritkán") — hírlevélküldő rendszer viszont nincs, és egyetlen
+               levél sem ment ki soha. Lásd phase9-email-operations.md. -->
+          <p>Add meg a címed, és szólunk, amint elindul. Addig nem küldünk semmit.</p>
           <form class="newsletter" data-lead="newsletter" style="margin-top:auto">
             <label class="vh" for="nl2">E-mail cím</label>
             <input id="nl2" type="email" name="email" placeholder="e-mail cím" required>
@@ -115,7 +118,7 @@ css: blog
               <label for="hp-nl2">Company website</label>
               <input id="hp-nl2" type="text" name="company_website" tabindex="-1" autocomplete="off">
             </div>
-            <button type="submit">Feliratkozom</button>
+            <button type="submit">Szóljatok</button>
           </form>
           <p class="form__note" style="margin-top:.6rem" role="status"></p>
         </div>

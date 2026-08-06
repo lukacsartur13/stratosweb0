@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
-<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "consent_title": "Measurement and cookies", "consent_body": "We would use Google Analytics to see how the site is used. It loads, and sets cookies, only if you agree. We never send names, email addresses, phone numbers or anything typed into a form.", "consent_accept": "Accept", "consent_decline": "Decline", "consent_more": "Privacy policy", "consent_settings": "Cookie settings", "consent_state_granted": "Measurement is currently enabled.", "consent_state_denied": "Measurement is currently disabled.", "consent_privacy_href": "privacy-policy.html", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
+<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "thanks_newsletter": "We have your address. There is no newsletter yet — the first one arrives when it launches.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "consent_title": "Measurement and cookies", "consent_body": "We would use Google Analytics to see how the site is used. It loads, and sets cookies, only if you agree. We never send names, email addresses, phone numbers or anything typed into a form.", "consent_accept": "Accept", "consent_decline": "Decline", "consent_more": "Privacy policy", "consent_settings": "Cookie settings", "consent_state_granted": "Measurement is currently enabled.", "consent_state_denied": "Measurement is currently disabled.", "consent_privacy_href": "privacy-policy.html", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
      guaranteed to have defined `window.Stratos.lead` before any per-page
@@ -165,7 +165,7 @@
     <div class="foot__grid">
       <div>
         <a class="brand" href="/en/" style="margin-bottom:1.4rem"><img src="../assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
-        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Afraid of missing out? Not any more — subscribe to our newsletter.</p>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Our newsletter is still being built. Leave your address and we'll tell you when it starts.</p>
         <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
           <label class="vh" for="nl">Email address</label>
           <input id="nl" type="email" name="email" placeholder="email address" required>
@@ -173,7 +173,7 @@
             <label for="hp-foot">Company website</label>
             <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
           </div>
-          <button type="submit">Subscribe</button>
+          <button type="submit">Tell me</button>
         </form>
         <p class="form__note" style="margin-top:.6rem" role="status"></p>
       </div>

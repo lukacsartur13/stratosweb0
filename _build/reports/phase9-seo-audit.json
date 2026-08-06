@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-06T16:53:11.092Z",
+ "generated": "2026-08-06T17:08:30.201Z",
  "origin": "https://stratosweb.hu",
  "previewOrigin": false,
  "counts": {
@@ -240,7 +240,7 @@
   {
    "route": "/404.html",
    "file": "dist/404.html",
-   "bytes": 15996,
+   "bytes": 16139,
    "is404": true,
    "lang": "hu",
    "title": "Az oldal nem található | Stratos",
@@ -269,7 +269,7 @@
   {
    "route": "/adatkezelesi-tajekoztato.html",
    "file": "dist/adatkezelesi-tajekoztato.html",
-   "bytes": 31332,
+   "bytes": 35340,
    "is404": false,
    "lang": "hu",
    "title": "Adatkezelési tájékoztató | Stratos",
@@ -316,7 +316,7 @@
   {
    "route": "/arajanlat.html",
    "file": "dist/arajanlat.html",
-   "bytes": 15157,
+   "bytes": 15301,
    "is404": false,
    "lang": "hu",
    "title": "Weboldal igényfelmérő kérdőív | Stratos",
@@ -363,7 +363,7 @@
   {
    "route": "/blog-elavult-weboldal.html",
    "file": "dist/blog-elavult-weboldal.html",
-   "bytes": 27580,
+   "bytes": 27723,
    "is404": false,
    "lang": "hu",
    "title": "Mennyi ügyfelet veszítesz egy elavult weboldal miatt? | Stratos",
@@ -410,7 +410,7 @@
   {
    "route": "/blog-google-cegprofil.html",
    "file": "dist/blog-google-cegprofil.html",
-   "bytes": 28079,
+   "bytes": 28222,
    "is404": false,
    "lang": "hu",
    "title": "Google Cégprofil beállítása lépésről lépésre | Stratos",
@@ -457,7 +457,7 @@
   {
    "route": "/blog-google-elso-oldal.html",
    "file": "dist/blog-google-elso-oldal.html",
-   "bytes": 28406,
+   "bytes": 28549,
    "is404": false,
    "lang": "hu",
    "title": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
@@ -504,7 +504,7 @@
   {
    "route": "/blog-google-vagy-facebook.html",
    "file": "dist/blog-google-vagy-facebook.html",
-   "bytes": 27311,
+   "bytes": 27454,
    "is404": false,
    "lang": "hu",
    "title": "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban | Stratos",
@@ -551,7 +551,7 @@
   {
    "route": "/blog-miert-nem-hoz-ugyfelet.html",
    "file": "dist/blog-miert-nem-hoz-ugyfelet.html",
-   "bytes": 27443,
+   "bytes": 27586,
    "is404": false,
    "lang": "hu",
    "title": "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba | Stratos",
@@ -598,7 +598,7 @@
   {
    "route": "/blog-weboldal-arak.html",
    "file": "dist/blog-weboldal-arak.html",
-   "bytes": 27969,
+   "bytes": 28112,
    "is404": false,
    "lang": "hu",
    "title": "Mennyibe kerül egy weboldal 2026-ban? | Stratos",
@@ -645,7 +645,7 @@
   {
    "route": "/blog.html",
    "file": "dist/blog.html",
-   "bytes": 27596,
+   "bytes": 27739,
    "is404": false,
    "lang": "hu",
    "title": "Blog — webdesign és online marketing tippek | Stratos",
@@ -692,7 +692,7 @@
   {
    "route": "/branding.html",
    "file": "dist/branding.html",
-   "bytes": 34396,
+   "bytes": 34539,
    "is404": false,
    "lang": "hu",
    "title": "Branding és arculattervezés | Stratos",
@@ -739,7 +739,7 @@
   {
    "route": "/de/404.html",
    "file": "dist/de/404.html",
-   "bytes": 15867,
+   "bytes": 16028,
    "is404": true,
    "lang": "de",
    "title": "Seite nicht gefunden | Stratos",
@@ -768,7 +768,7 @@
   {
    "route": "/de/angebot.html",
    "file": "dist/de/angebot.html",
-   "bytes": 15093,
+   "bytes": 15226,
    "is404": false,
    "lang": "de",
    "title": "Fragebogen zur Website-Anforderung | Stratos",
@@ -815,7 +815,7 @@
   {
    "route": "/de/blog-google-erste-seite.html",
    "file": "dist/de/blog-google-erste-seite.html",
-   "bytes": 27865,
+   "bytes": 28026,
    "is404": false,
    "lang": "de",
    "title": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
@@ -862,7 +862,7 @@
   {
    "route": "/de/blog-google-oder-facebook.html",
    "file": "dist/de/blog-google-oder-facebook.html",
-   "bytes": 26871,
+   "bytes": 27032,
    "is404": false,
    "lang": "de",
    "title": "Google- oder Facebook-Werbung? Was lohnt sich 2026? | Stratos",
@@ -909,7 +909,7 @@
   {
    "route": "/de/blog-google-unternehmensprofil.html",
    "file": "dist/de/blog-google-unternehmensprofil.html",
-   "bytes": 27701,
+   "bytes": 27862,
    "is404": false,
    "lang": "de",
    "title": "Google-Unternehmensprofil Schritt für Schritt einrichten | Stratos",
@@ -956,7 +956,7 @@
   {
    "route": "/de/blog-keine-anfragen.html",
    "file": "dist/de/blog-keine-anfragen.html",
-   "bytes": 27039,
+   "bytes": 27200,
    "is404": false,
    "lang": "de",
    "title": "Warum bringt deine Website keine Kunden? 7 häufige Fehler | Stratos",
@@ -1003,7 +1003,7 @@
   {
    "route": "/de/blog-veraltete-website.html",
    "file": "dist/de/blog-veraltete-website.html",
-   "bytes": 27135,
+   "bytes": 27296,
    "is404": false,
    "lang": "de",
    "title": "Wie viele Kunden kostet dich eine veraltete Website? | Stratos",
@@ -1050,7 +1050,7 @@
   {
    "route": "/de/blog-website-kosten.html",
    "file": "dist/de/blog-website-kosten.html",
-   "bytes": 27536,
+   "bytes": 27697,
    "is404": false,
    "lang": "de",
    "title": "Was kostet eine Website 2026? | Stratos",
@@ -1097,7 +1097,7 @@
   {
    "route": "/de/blog.html",
    "file": "dist/de/blog.html",
-   "bytes": 27422,
+   "bytes": 27583,
    "is404": false,
    "lang": "de",
    "title": "Blog — Tipps zu Webdesign und Online-Marketing | Stratos",
@@ -1144,7 +1144,7 @@
   {
    "route": "/de/branding.html",
    "file": "dist/de/branding.html",
-   "bytes": 34158,
+   "bytes": 34319,
    "is404": false,
    "lang": "de",
    "title": "Branding und Corporate Design | Stratos",
@@ -1191,7 +1191,7 @@
   {
    "route": "/de/datenschutz.html",
    "file": "dist/de/datenschutz.html",
-   "bytes": 30596,
+   "bytes": 34435,
    "is404": false,
    "lang": "de",
    "title": "Datenschutzerklärung | Stratos",
@@ -1238,7 +1238,7 @@
   {
    "route": "/de/impact-programm.html",
    "file": "dist/de/impact-programm.html",
-   "bytes": 40625,
+   "bytes": 40786,
    "is404": false,
    "lang": "de",
    "title": "Stratos Impact-Programm — kostenlose Websites für Non-Profits | Stratos",
@@ -1285,7 +1285,7 @@
   {
    "route": "/de/impressum.html",
    "file": "dist/de/impressum.html",
-   "bytes": 20465,
+   "bytes": 20626,
    "is404": false,
    "lang": "de",
    "title": "Impressum | Stratos",
@@ -1332,7 +1332,7 @@
   {
    "route": "/de/index.html",
    "file": "dist/de/index.html",
-   "bytes": 18996,
+   "bytes": 19157,
    "is404": false,
    "lang": "de",
    "title": "Stratos — Digitale Systeme, die Wachstum bringen | Győr & Budapest",
@@ -1378,7 +1378,7 @@
   {
    "route": "/de/kontakt.html",
    "file": "dist/de/kontakt.html",
-   "bytes": 32249,
+   "bytes": 32410,
    "is404": false,
    "lang": "de",
    "title": "Kontakt und Projektstart | Stratos",
@@ -1425,7 +1425,7 @@
   {
    "route": "/de/leistungen.html",
    "file": "dist/de/leistungen.html",
-   "bytes": 35227,
+   "bytes": 35388,
    "is404": false,
    "lang": "de",
    "title": "Leistungen — Webdesign, Entwicklung, Branding, Werbung | Stratos",
@@ -1472,7 +1472,7 @@
   {
    "route": "/de/projekt-barbershop.html",
    "file": "dist/de/projekt-barbershop.html",
-   "bytes": 26444,
+   "bytes": 26605,
    "is404": false,
    "lang": "de",
    "title": "Barbershop Győr — buchungsgesteuerte Website | Stratos",
@@ -1518,7 +1518,7 @@
   {
    "route": "/de/projekt-mentaltrening.html",
    "file": "dist/de/projekt-mentaltrening.html",
-   "bytes": 26378,
+   "bytes": 26539,
    "is404": false,
    "lang": "de",
    "title": "mentáliserő.hu — Website für Mentaltraining | Stratos",
@@ -1564,7 +1564,7 @@
   {
    "route": "/de/projekt-rapidkert.html",
    "file": "dist/de/projekt-rapidkert.html",
-   "bytes": 26980,
+   "bytes": 27141,
    "is404": false,
    "lang": "de",
    "title": "Rapidkert Kft. — Website für Gartenbau | Stratos",
@@ -1610,7 +1610,7 @@
   {
    "route": "/de/projekte.html",
    "file": "dist/de/projekte.html",
-   "bytes": 28629,
+   "bytes": 28790,
    "is404": false,
    "lang": "de",
    "title": "Projekte — Live-Websites und Kundenprojekte | Stratos",
@@ -1657,7 +1657,7 @@
   {
    "route": "/de/ueber-uns.html",
    "file": "dist/de/ueber-uns.html",
-   "bytes": 47764,
+   "bytes": 47925,
    "is404": false,
    "lang": "de",
    "title": "Über uns — die Geschichte von Stratos | Stratos Media",
@@ -1704,7 +1704,7 @@
   {
    "route": "/de/webdesign-grossunternehmen.html",
    "file": "dist/de/webdesign-grossunternehmen.html",
-   "bytes": 39288,
+   "bytes": 39449,
    "is404": false,
    "lang": "de",
    "title": "Webdesign für Großunternehmen — dediziertes Entwicklungsteam | Stratos",
@@ -1751,7 +1751,7 @@
   {
    "route": "/de/webdesign-kmu.html",
    "file": "dist/de/webdesign-kmu.html",
-   "bytes": 39280,
+   "bytes": 39441,
    "is404": false,
    "lang": "de",
    "title": "Webdesign für KMU — Website zur Monatsgebühr | Stratos",
@@ -1798,7 +1798,7 @@
   {
    "route": "/de/werbeanzeigen.html",
    "file": "dist/de/werbeanzeigen.html",
-   "bytes": 39760,
+   "bytes": 39921,
    "is404": false,
    "lang": "de",
    "title": "Werbebetreuung — Google & Meta Ads | Stratos",
@@ -1845,7 +1845,7 @@
   {
    "route": "/en/404.html",
    "file": "dist/en/404.html",
-   "bytes": 15537,
+   "bytes": 15674,
    "is404": true,
    "lang": "en",
    "title": "Page not found | Stratos",
@@ -1874,7 +1874,7 @@
   {
    "route": "/en/about.html",
    "file": "dist/en/about.html",
-   "bytes": 46881,
+   "bytes": 47018,
    "is404": false,
    "lang": "en",
    "title": "About us — the Stratos story | Stratos Media",
@@ -1921,7 +1921,7 @@
   {
    "route": "/en/ads-management.html",
    "file": "dist/en/ads-management.html",
-   "bytes": 38817,
+   "bytes": 38954,
    "is404": false,
    "lang": "en",
    "title": "Ads management — Google & Meta Ads | Stratos",
@@ -1968,7 +1968,7 @@
   {
    "route": "/en/blog-google-business-profile.html",
    "file": "dist/en/blog-google-business-profile.html",
-   "bytes": 26823,
+   "bytes": 26960,
    "is404": false,
    "lang": "en",
    "title": "Setting up a Google Business Profile, step by step | Stratos",
@@ -2015,7 +2015,7 @@
   {
    "route": "/en/blog-google-first-page.html",
    "file": "dist/en/blog-google-first-page.html",
-   "bytes": 26951,
+   "bytes": 27088,
    "is404": false,
    "lang": "en",
    "title": "How to reach Google's first page — 7 steps | Stratos",
@@ -2062,7 +2062,7 @@
   {
    "route": "/en/blog-google-or-facebook.html",
    "file": "dist/en/blog-google-or-facebook.html",
-   "bytes": 26248,
+   "bytes": 26385,
    "is404": false,
    "lang": "en",
    "title": "Google or Facebook ads — which is worth it in 2026? | Stratos",
@@ -2109,7 +2109,7 @@
   {
    "route": "/en/blog-no-enquiries.html",
    "file": "dist/en/blog-no-enquiries.html",
-   "bytes": 26128,
+   "bytes": 26265,
    "is404": false,
    "lang": "en",
    "title": "Why isn't your website bringing clients? 7 common mistakes | Stratos",
@@ -2156,7 +2156,7 @@
   {
    "route": "/en/blog-outdated-website.html",
    "file": "dist/en/blog-outdated-website.html",
-   "bytes": 26483,
+   "bytes": 26620,
    "is404": false,
    "lang": "en",
    "title": "How many clients is an outdated website costing you? | Stratos",
@@ -2203,7 +2203,7 @@
   {
    "route": "/en/blog-website-cost.html",
    "file": "dist/en/blog-website-cost.html",
-   "bytes": 26908,
+   "bytes": 27045,
    "is404": false,
    "lang": "en",
    "title": "How much does a website cost in 2026? | Stratos",
@@ -2250,7 +2250,7 @@
   {
    "route": "/en/blog.html",
    "file": "dist/en/blog.html",
-   "bytes": 26843,
+   "bytes": 26980,
    "is404": false,
    "lang": "en",
    "title": "Blog — web design and online marketing tips | Stratos",
@@ -2297,7 +2297,7 @@
   {
    "route": "/en/branding.html",
    "file": "dist/en/branding.html",
-   "bytes": 33372,
+   "bytes": 33509,
    "is404": false,
    "lang": "en",
    "title": "Branding and visual identity design | Stratos",
@@ -2344,7 +2344,7 @@
   {
    "route": "/en/contact.html",
    "file": "dist/en/contact.html",
-   "bytes": 31356,
+   "bytes": 31493,
    "is404": false,
    "lang": "en",
    "title": "Contact and starting a project | Stratos",
@@ -2391,7 +2391,7 @@
   {
    "route": "/en/impact-program.html",
    "file": "dist/en/impact-program.html",
-   "bytes": 39400,
+   "bytes": 39537,
    "is404": false,
    "lang": "en",
    "title": "Stratos Impact Program — free websites for nonprofits | Stratos",
@@ -2438,7 +2438,7 @@
   {
    "route": "/en/imprint.html",
    "file": "dist/en/imprint.html",
-   "bytes": 20154,
+   "bytes": 20291,
    "is404": false,
    "lang": "en",
    "title": "Imprint | Stratos",
@@ -2485,7 +2485,7 @@
   {
    "route": "/en/index.html",
    "file": "dist/en/index.html",
-   "bytes": 18649,
+   "bytes": 18786,
    "is404": false,
    "lang": "en",
    "title": "Stratos — Digital systems that drive growth | Győr & Budapest",
@@ -2531,7 +2531,7 @@
   {
    "route": "/en/privacy-policy.html",
    "file": "dist/en/privacy-policy.html",
-   "bytes": 29211,
+   "bytes": 32881,
    "is404": false,
    "lang": "en",
    "title": "Privacy policy | Stratos",
@@ -2578,7 +2578,7 @@
   {
    "route": "/en/quote.html",
    "file": "dist/en/quote.html",
-   "bytes": 14792,
+   "bytes": 14909,
    "is404": false,
    "lang": "en",
    "title": "Website requirements questionnaire | Stratos",
@@ -2625,7 +2625,7 @@
   {
    "route": "/en/services.html",
    "file": "dist/en/services.html",
-   "bytes": 34349,
+   "bytes": 34486,
    "is404": false,
    "lang": "en",
    "title": "Services — web design, development, branding, advertising | Stratos",
@@ -2672,7 +2672,7 @@
   {
    "route": "/en/web-design-enterprise.html",
    "file": "dist/en/web-design-enterprise.html",
-   "bytes": 38175,
+   "bytes": 38312,
    "is404": false,
    "lang": "en",
    "title": "Web design for enterprises — a dedicated development team | Stratos",
@@ -2719,7 +2719,7 @@
   {
    "route": "/en/web-design-sme.html",
    "file": "dist/en/web-design-sme.html",
-   "bytes": 38316,
+   "bytes": 38453,
    "is404": false,
    "lang": "en",
    "title": "Web design for SMEs — a website on a monthly fee | Stratos",
@@ -2766,7 +2766,7 @@
   {
    "route": "/en/work-barbershop.html",
    "file": "dist/en/work-barbershop.html",
-   "bytes": 25636,
+   "bytes": 25773,
    "is404": false,
    "lang": "en",
    "title": "Barbershop Győr — a booking-led website | Stratos",
@@ -2812,7 +2812,7 @@
   {
    "route": "/en/work-mentaltrening.html",
    "file": "dist/en/work-mentaltrening.html",
-   "bytes": 25684,
+   "bytes": 25821,
    "is404": false,
    "lang": "en",
    "title": "mentáliserő.hu — mental coaching website | Stratos",
@@ -2858,7 +2858,7 @@
   {
    "route": "/en/work-rapidkert.html",
    "file": "dist/en/work-rapidkert.html",
-   "bytes": 26327,
+   "bytes": 26464,
    "is404": false,
    "lang": "en",
    "title": "Rapidkert Kft. — landscaping website | Stratos",
@@ -2904,7 +2904,7 @@
   {
    "route": "/en/work.html",
    "file": "dist/en/work.html",
-   "bytes": 27909,
+   "bytes": 28046,
    "is404": false,
    "lang": "en",
    "title": "Work — live websites and client projects | Stratos",
@@ -2951,7 +2951,7 @@
   {
    "route": "/hirdeteskezeles.html",
    "file": "dist/hirdeteskezeles.html",
-   "bytes": 40620,
+   "bytes": 40763,
    "is404": false,
    "lang": "hu",
    "title": "Hirdetéskezelés — Google & Meta Ads | Stratos",
@@ -2998,7 +2998,7 @@
   {
    "route": "/impact-program.html",
    "file": "dist/impact-program.html",
-   "bytes": 41173,
+   "bytes": 41316,
    "is404": false,
    "lang": "hu",
    "title": "Stratos Impact Program — ingyenes weboldal nonprofitoknak | Stratos",
@@ -3045,7 +3045,7 @@
   {
    "route": "/impresszum.html",
    "file": "dist/impresszum.html",
-   "bytes": 20569,
+   "bytes": 20712,
    "is404": false,
    "lang": "hu",
    "title": "Impresszum | Stratos",
@@ -3092,7 +3092,7 @@
   {
    "route": "/index.html",
    "file": "dist/index.html",
-   "bytes": 19776,
+   "bytes": 19919,
    "is404": false,
    "lang": "hu",
    "title": "Stratos — Digitális rendszerek, amik növekedést hoznak | Győr & Budapest",
@@ -3138,7 +3138,7 @@
   {
    "route": "/kkv.html",
    "file": "dist/kkv.html",
-   "bytes": 39673,
+   "bytes": 39816,
    "is404": false,
    "lang": "hu",
    "title": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
@@ -3185,7 +3185,7 @@
   {
    "route": "/munka-barbershop.html",
    "file": "dist/munka-barbershop.html",
-   "bytes": 26801,
+   "bytes": 26944,
    "is404": false,
    "lang": "hu",
    "title": "Barbershop Győr — foglalásvezérelt weboldal | Stratos",
@@ -3231,7 +3231,7 @@
   {
    "route": "/munka-mentaltrening.html",
    "file": "dist/munka-mentaltrening.html",
-   "bytes": 26820,
+   "bytes": 26963,
    "is404": false,
    "lang": "hu",
    "title": "mentáliserő.hu — mentáltréning weboldal | Stratos",
@@ -3277,7 +3277,7 @@
   {
    "route": "/munka-rapidkert.html",
    "file": "dist/munka-rapidkert.html",
-   "bytes": 27512,
+   "bytes": 27655,
    "is404": false,
    "lang": "hu",
    "title": "Rapidkert Kft. — kertépítés weboldal | Stratos",
@@ -3323,7 +3323,7 @@
   {
    "route": "/munkaink.html",
    "file": "dist/munkaink.html",
-   "bytes": 29125,
+   "bytes": 29268,
    "is404": false,
    "lang": "hu",
    "title": "Munkáink — élő weboldalak és ügyfélprojektek | Stratos",
@@ -3370,7 +3370,7 @@
   {
    "route": "/nagyvallalat.html",
    "file": "dist/nagyvallalat.html",
-   "bytes": 39659,
+   "bytes": 39802,
    "is404": false,
    "lang": "hu",
    "title": "Webdesign nagyvállalatoknak — dedikált fejlesztőcsapat | Stratos",
@@ -3417,7 +3417,7 @@
   {
    "route": "/rolunk.html",
    "file": "dist/rolunk.html",
-   "bytes": 48742,
+   "bytes": 48885,
    "is404": false,
    "lang": "hu",
    "title": "Rólunk — A Stratos története | Stratos Media",
@@ -3464,7 +3464,7 @@
   {
    "route": "/szolgaltatasok.html",
    "file": "dist/szolgaltatasok.html",
-   "bytes": 35842,
+   "bytes": 35985,
    "is404": false,
    "lang": "hu",
    "title": "Szolgáltatások — webdesign, fejlesztés, branding, hirdetés | Stratos",
@@ -3511,7 +3511,7 @@
   {
    "route": "/ugyfelszolgalat.html",
    "file": "dist/ugyfelszolgalat.html",
-   "bytes": 32929,
+   "bytes": 33072,
    "is404": false,
    "lang": "hu",
    "title": "Kapcsolat és projektindítás | Stratos",

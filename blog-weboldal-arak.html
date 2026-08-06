@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/motion.css">
 <link rel="stylesheet" href="assets/css/transitions.css">
-<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "consent_title": "Mérés és sütik", "consent_body": "A Google Analytics segítségével néznénk meg, hogyan használják az oldalt. Csak akkor tölt be és csak akkor helyez el sütit, ha ehhez hozzájárulsz. Nevet, e-mail címet, telefonszámot és űrlapokba írt szöveget soha nem küldünk el.", "consent_accept": "Elfogadom", "consent_decline": "Nem járulok hozzá", "consent_more": "Adatkezelési tájékoztató", "consent_settings": "Süti-beállítások", "consent_state_granted": "A mérés jelenleg engedélyezve van.", "consent_state_denied": "A mérés jelenleg le van tiltva.", "consent_privacy_href": "adatkezelesi-tajekoztato.html", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
+<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "thanks_newsletter": "Megjegyeztük a címed. Hírlevelet még nem küldünk — az első levél akkor érkezik, amikor a hírlevél elindul.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "consent_title": "Mérés és sütik", "consent_body": "A Google Analytics segítségével néznénk meg, hogyan használják az oldalt. Csak akkor tölt be és csak akkor helyez el sütit, ha ehhez hozzájárulsz. Nevet, e-mail címet, telefonszámot és űrlapokba írt szöveget soha nem küldünk el.", "consent_accept": "Elfogadom", "consent_decline": "Nem járulok hozzá", "consent_more": "Adatkezelési tájékoztató", "consent_settings": "Süti-beállítások", "consent_state_granted": "A mérés jelenleg engedélyezve van.", "consent_state_denied": "A mérés jelenleg le van tiltva.", "consent_privacy_href": "adatkezelesi-tajekoztato.html", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
      guaranteed to have defined `window.Stratos.lead` before any per-page
@@ -336,7 +336,7 @@
     <div class="foot__grid">
       <div>
         <a class="brand" href="/" style="margin-bottom:1.4rem"><img src="assets/img/plane-cursor.png" alt="" width="96" height="96"><span>Stratos</span></a>
-        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Félsz, hogy kimaradsz? Többé nem kell — iratkozz fel a hírlevelünkre.</p>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">A hírlevelünk még készül. Add meg a címed, és szólunk, amint elindul.</p>
         <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
           <label class="vh" for="nl">E-mail cím</label>
           <input id="nl" type="email" name="email" placeholder="e-mail cím" required>
@@ -344,7 +344,7 @@
             <label for="hp-foot">Company website</label>
             <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
           </div>
-          <button type="submit">Feliratkozom</button>
+          <button type="submit">Szóljatok</button>
         </form>
         <p class="form__note" style="margin-top:.6rem" role="status"></p>
       </div>

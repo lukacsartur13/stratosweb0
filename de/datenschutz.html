@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
-<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "consent_title": "Messung und Cookies", "consent_body": "Mit Google Analytics würden wir sehen, wie die Website genutzt wird. Es lädt und setzt Cookies nur, wenn du zustimmst. Namen, E-Mail-Adressen, Telefonnummern und Formularinhalte senden wir nie.", "consent_accept": "Einverstanden", "consent_decline": "Nicht zustimmen", "consent_more": "Datenschutzerklärung", "consent_settings": "Cookie-Einstellungen", "consent_state_granted": "Die Messung ist derzeit aktiviert.", "consent_state_denied": "Die Messung ist derzeit deaktiviert.", "consent_privacy_href": "datenschutz.html", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
+<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "thanks_newsletter": "Wir haben deine Adresse. Einen Newsletter gibt es noch nicht — die erste Ausgabe kommt, sobald er startet.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "consent_title": "Messung und Cookies", "consent_body": "Mit Google Analytics würden wir sehen, wie die Website genutzt wird. Es lädt und setzt Cookies nur, wenn du zustimmst. Namen, E-Mail-Adressen, Telefonnummern und Formularinhalte senden wir nie.", "consent_accept": "Einverstanden", "consent_decline": "Nicht zustimmen", "consent_more": "Datenschutzerklärung", "consent_settings": "Cookie-Einstellungen", "consent_state_granted": "Die Messung ist derzeit aktiviert.", "consent_state_denied": "Die Messung ist derzeit deaktiviert.", "consent_privacy_href": "datenschutz.html", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
      guaranteed to have defined `window.Stratos.lead` before any per-page
@@ -197,7 +197,7 @@
         <ul>
           <li>Ermöglichung der Kontaktaufnahme</li>
           <li>Angebotserstellung und Kundenkommunikation</li>
-          <li>Versand von Newslettern und Marketingnachrichten</li>
+          <li>Newsletter-Anfragen entgegennehmen und erfassen</li>
           <li>Erbringung der Leistungen</li>
           <li>Betrieb und Weiterentwicklung der Website</li>
           <li>Statistik- und Analysezwecke</li>
@@ -209,11 +209,48 @@
           <li>Name</li><li>E-Mail-Adresse</li><li>Telefonnummer</li>
           <li>Firmenname (sofern angegeben)</li>
           <li>sonstige in der Nachricht angegebene Informationen</li>
-          <li>IP-Adresse</li><li>Browser- und Geräteinformationen</li>
+          <li>die vom Browser gesendete Geräte-Kennung (User Agent)</li>
+          <li>ein gesalzener, nicht umkehrbarer Fingerabdruck der IP-Adresse — die IP-Adresse selbst wird nicht gespeichert</li>
         </ul>
+        <h3>Beim Ausfüllen des Bedarfsfragebogens</h3>
+        <ul>
+          <li>die oben genannten Daten sowie die Antworten im Fragebogen</li>
+        </ul>
+        <h3>Bei jeder Übermittlung</h3>
+        <ul>
+          <li>von welcher Seite die Übermittlung gesendet wurde und auf welcher Seite der Besuch begann</li>
+          <li>der Domainname der verweisenden Website (ohne die vollständige verweisende Adresse)</li>
+          <li>die Kampagnen-Kennungen im Link (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>), sofern vorhanden</li>
+          <li>wie lange das Ausfüllen gedauert hat, und die Bildschirmausrichtung</li>
+        </ul>
+        <p class="note">Die Kampagnen-Kennungen stammen ausschließlich aus den fünf oben genannten Parametern: jeder andere Wert im Link wird ignoriert. Werbe-Klick-Kennungen (etwa <code>gclid</code> oder <code>fbclid</code>) lesen und speichern wir nicht. Diese Werte bleiben bis zum Schließen des Tabs im Sitzungsspeicher des Browsers und erreichen uns nur, wenn Sie tatsächlich ein Formular absenden.</p>
         <h3>Bei Newsletter-Anmeldung</h3>
-        <ul><li>Name (optional)</li><li>E-Mail-Adresse</li></ul>
+        <ul><li>E-Mail-Adresse</li></ul>
+        <p class="note">Wir erfassen Newsletter-Anfragen, ein Newsletter-System ist derzeit jedoch nicht in Betrieb: Nach der Anmeldung folgt keine automatische Bestätigungs-E-Mail, und es wird kein Newsletter versendet. Ihre Anfrage bleibt erfasst, bis Sie deren Löschung verlangen.</p>
 
+        <!-- REQUIRES LEGAL REVIEW — two gaps a lawyer has to close, both of them
+             Article 13 requirements that cannot be written by guessing:
+
+             1. THE LEGAL BASIS PER PURPOSE. This document names six purposes and
+                no legal basis for any of them. Consent, contract and legitimate
+                interest are each defensible for different rows, and choosing
+                wrongly is worse than the omission because it becomes the basis
+                we are held to. There is no `legal basis` section, deliberately,
+                rather than an invented one.
+
+             2. THE THIRD-COUNTRY TRANSFER MECHANISM. Netlify is in the United
+                States and Supabase Pte. Ltd. is in Singapore. Both are named as
+                processors, and neither transfer names its Article 46 mechanism
+                (standard contractual clauses, an adequacy decision, or the
+                Data Privacy Framework). Which applies is a fact about the
+                contracts, not about the code.
+
+             The retention periods below are a COMMITMENT, not an enforced
+             mechanism: nothing deletes a lead automatically, by design — see
+             `phase9-lead-operations.md`, which documents the manual procedure
+             instead. Automatic destructive retention is explicitly out of scope
+             for Phase 9. Either the manual review has to happen on a schedule,
+             or these numbers have to change to match what is actually done. -->
         <h2>Dauer der Verarbeitung</h2>
         <ul>
           <li>Kontaktdaten: höchstens 5 Jahre</li>
@@ -227,7 +264,14 @@
         <ul>
           <li><b>Hosting-Anbieter:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, Vereinigte Staaten. Dienst: Auslieferung der Website und Ausführung der serverseitigen Funktionen (Netlify Functions), die Formularübermittlungen entgegennehmen.</li>
           <li><b>Datenbank-Anbieter:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513. Dienst: Speicherung der über die Formulare eingehenden Anfragen und Betrieb des internen Portals.</li>
-          <li><b>E-Mail-Anbieter:</b> der Anbieter des Mailsystems (z. B. Google Workspace oder ein anderer E-Mail-Anbieter)</li>
+          <!-- REQUIRES USER FACTUAL INPUT — the email provider is not named because
+               nobody has stated which one it is. The previous wording said
+               "e.g. Google Workspace or another email provider", which names a
+               processor by guess in a document whose whole purpose is to be
+               exact. Removed rather than replaced with a different guess. When
+               the provider is known, add it here with its legal entity and
+               address, in the same shape as the two above. -->
+          <li><b>E-Mail-Anbieter:</b> der Anbieter des E-Mail-Systems des Verantwortlichen. Die Website selbst versendet keine E-Mails; der Verantwortliche antwortet auf Anfragen aus dem eigenen Postfach.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Irland. Dienst: Google-Analytics-4-Reichweitenmessung, ausschließlich bei ausdrücklicher Einwilligung der Besucherin oder des Besuchers. Ohne Einwilligung wird Google Analytics nicht geladen, und es gelangen keinerlei Daten zu Google.</li>
         </ul>
         <p class="note">Die Google Search Console ist keine Reichweitenmessung und kein Auftragsverarbeiter: Sie zeigt, wie unsere eigene Website in der Suche erscheint, und verfolgt keine Besucher. Die Website verwendet weder ein Meta-Pixel noch anderen Social-Media-Trackingcode. Die Social-Icons im Fußbereich sind gewöhnliche Links und laden nichts.</p>
@@ -308,7 +352,7 @@
     <div class="foot__grid">
       <div>
         <a class="brand" href="/de/" style="margin-bottom:1.4rem"><img src="../assets/img/plane-cursor.png" alt="" width="96" height="96"><span>Stratos</span></a>
-        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Angst, etwas zu verpassen? Ab jetzt nicht mehr — abonniere unseren Newsletter.</p>
+        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">Unser Newsletter entsteht gerade. Hinterlasse deine Adresse, dann sagen wir Bescheid, sobald er startet.</p>
         <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
           <label class="vh" for="nl">E-Mail-Adresse</label>
           <input id="nl" type="email" name="email" placeholder="E-Mail-Adresse" required>
@@ -316,7 +360,7 @@
             <label for="hp-foot">Company website</label>
             <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
           </div>
-          <button type="submit">Abonnieren</button>
+          <button type="submit">Bescheid geben</button>
         </form>
         <p class="form__note" style="margin-top:.6rem" role="status"></p>
       </div>
