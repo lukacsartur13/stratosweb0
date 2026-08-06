@@ -39,6 +39,16 @@
 // dist/portal is skipped: Vite already content-hashes the portal's filenames,
 // and netlify.toml caches /portal/assets/* immutable on that basis.
 //
+// dist/experiments is skipped for a different reason, and it is worth stating
+// because its absence made `--check` disagree with itself. That route is not
+// deployed: `npm run build` does not create it and, through assemble.mjs, wipes
+// it — only `npm run build:full` emits it, for the benchmark suite. So this
+// pass stamps a tree that does not contain it, and `--check` then walked a tree
+// that did (because `validate:full` runs `build:full` afterwards) and reported
+// one unstamped reference that no deploy will ever serve. Same shape as the two
+// scope defects in _build/reports/phase9-test-reconciliation.md §6: a check
+// whose answer depends on which npm script ran last.
+//
 // SCOPE
 // -----
 // CSS and JS only. A stale stylesheet or script silently renders the wrong
@@ -111,9 +121,10 @@ async function main() {
   }
 
   // ------------------------------------------------------------- the rewrite
+  const NOT_DEPLOYED = new Set(['portal', 'experiments']);
   const pages = (await walk(DIST))
     .filter((f) => f.endsWith('.html'))
-    .filter((f) => !relative(DIST, f).split(sep).includes('portal'));
+    .filter((f) => !relative(DIST, f).split(sep).some((part) => NOT_DEPLOYED.has(part)));
 
   let stamped = 0;
   const unresolved = new Set();
