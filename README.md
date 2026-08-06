@@ -71,10 +71,25 @@ Copy `.env.example` to `.env`. In production these go in the Netlify UI under
 | `VITE_SUPABASE_URL` | browser bundle | Public. |
 | `VITE_SUPABASE_ANON_KEY` | browser bundle | Public by design — RLS decides what it can do. |
 | `VITE_SITE_URL` | browser + build | Canonical origin, used for the sitemap. |
-| `VITE_ANALYTICS_ID` | browser bundle | Optional. Empty means no analytics loads. |
+| `ANALYTICS_ENDPOINT` | build only | Optional. Empty — the default — ships **no** measurement at all. Must be same-origin. |
+| `ANALYTICS_SITE` | build only | Optional. Property identifier. |
+| `ANALYTICS_CONSENT` | build only | Optional. `1` holds events until consent is granted. |
+| `ANALYTICS_DEBUG` | build only | Optional. `1` logs dropped events. |
 | `SUPABASE_URL` | functions only | |
 | `SUPABASE_SERVICE_ROLE_KEY` | **functions only** | Bypasses RLS entirely. |
 | `IP_HASH_SALT` | functions only | Any long random string. |
+
+Measurement is off unless `ANALYTICS_ENDPOINT` is set: an unconfigured build
+emits no config block and no adapter script, so the site sets no cookie, writes
+no storage and needs no consent banner. The endpoint must be same-origin —
+`connect-src 'self'` in the CSP means a third-party analytics URL cannot
+transmit, and widening that policy is a deliberate decision rather than a
+configuration detail. No provider is chosen; the adapter posts a neutral
+envelope. The event model is `_build/reports/phase9-event-taxonomy.md`.
+
+`VITE_ANALYTICS_ID` used to be listed here. It never had an implementation, and
+could not have worked: `VITE_*` variables are compiled into the *portal's*
+bundle, and the public site is static output from `_build/build.py`.
 
 > Anything prefixed `VITE_` is compiled into JavaScript that ships to browsers.
 > **Never** prefix the service role key. A Playwright test asserts it is absent
@@ -167,13 +182,22 @@ figure without those two things as unverified.
 
 | Command | Projects | Result |
 |---|---|---|
-| `npm test` | 6 | 289 passed, 10 skipped, 0 failed |
+| `npm test` | 6 | 567 passed, 40 skipped, 4 failed — see the note below |
 | `npm run validate:full` | 5 | see below |
 | `npm run test:experiments` | 1 | the 0–8 000 m prototype, run on demand |
 
-**Baseline date: 3 August 2026**, against the build produced by `npm run build`
+**Baseline date: 6 August 2026**, against the build produced by `npm run build`
 on the same day. Re-record both numbers and the date together; a count without
 its command and date goes stale silently, which is how the previous one did.
+
+> **The 4 failures are a known, load-dependent flake, not a regression.** They
+> are `homepage-chrome.spec.ts` "opens from every header state" and "focus is
+> trapped inside the layer while it is open", on the two desktop projects. Each
+> passes in isolation, every time, but takes anywhere from 2.4 s to 10.7 s: the
+> homepage drives a ~1 MB WebGL bundle, and under full parallel load these
+> cross the 30 s test timeout. Verified pre-existing on 6 August 2026 by
+> stashing all working changes, rebuilding, and reproducing the same failures at
+> `HEAD`. If you need a clean signal, run that spec on its own.
 
 #### `npm test` — the production regression suite
 

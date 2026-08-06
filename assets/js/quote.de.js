@@ -184,7 +184,13 @@ function render(){
   }
 
   const isLast = nextVisible(step,1) === undefined;
-  app.innerHTML = `<div class="quiz__step">
+  /* The step's identity, as data rather than as copy. The wizard has no <form>
+     and no route change, so this is the only signal that a step advanced —
+     Phase 9 Workstream C observes #app and reads these three attributes. Parsing
+     the "01 / 12" label instead would tie measurement to presentation.
+     `d.id` is a field *name* (cegnev, szegmens), never an answer; the event
+     taxonomy permits names and forbids values. */
+  app.innerHTML = `<div class="quiz__step" data-step="${pos+1}" data-steps="${vis.length}" data-step-key="${esc(d.id||'')}">
     <div class="quiz__num">${String(pos+1).padStart(2,'0')}<span class="quiz__total"> / ${String(vis.length).padStart(2,'0')}</span></div>
     <h1 class="quiz__q">${esc(d.q)}${d.req?' <span class="quiz__req">*</span>':''}</h1>
     ${d.hint?`<p class="quiz__hint">${esc(d.hint)}</p>`:''}

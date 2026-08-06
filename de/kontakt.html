@@ -47,7 +47,11 @@
      block above, which parsing has already delivered by then. -->
 <script src="../assets/js/lead.js" defer></script>
 </head>
-<body data-ceiling="6000">
+<!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
+     is translated, so /en/web-design-sme.html and /de/webdesign-kmu.html are
+     both `sme`. Anything that needs to know what a page *is* should read this
+     rather than parse the URL. -->
+<body data-ceiling="6000" data-page-key="contact">
 
 <a class="skip" href="#main">Zum Inhalt springen</a>
 <div class="grain" aria-hidden="true"></div>

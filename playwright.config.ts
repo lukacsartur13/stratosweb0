@@ -9,6 +9,17 @@ const BASE = `http://127.0.0.1:${PORT}`;
 // Runs in node, not in a page — see tests/lead-endpoint.spec.ts.
 const ENDPOINT = /lead-endpoint\.spec\.ts/;
 
+// The analytics adapter is viewport-independent: it reads data attributes and
+// class names, and renders nothing. What it *is* sensitive to is the engine —
+// WebKit does not expose a Blob beacon's body to Playwright, which is why the
+// suite captures payloads in the page. So it runs once on Chromium
+// (desktop-1440) and once on WebKit (mobile-390) and is skipped elsewhere.
+//
+// This is not only about redundancy. The homepage specs drive a ~1 MB WebGL
+// bundle and sit close to the 30 s timeout under parallel load; running these
+// 13 tests five times over pushed them past it.
+const ANALYTICS = /analytics\.spec\.ts/;
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -29,11 +40,11 @@ export default defineConfig({
     { name: 'endpoint', testMatch: ENDPOINT },
 
     { name: 'desktop-1440', testIgnore: ENDPOINT, use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },
-    { name: 'desktop-1920', testIgnore: ENDPOINT, use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 } } },
+    { name: 'desktop-1920', testIgnore: [ENDPOINT, ANALYTICS], use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 } } },
     { name: 'mobile-390',   testIgnore: ENDPOINT, use: { ...devices['iPhone 13'] } },
-    { name: 'mobile-430',   testIgnore: ENDPOINT, use: { ...devices['iPhone 14 Pro Max'] } },
+    { name: 'mobile-430',   testIgnore: [ENDPOINT, ANALYTICS], use: { ...devices['iPhone 14 Pro Max'] } },
     {
-      testIgnore: ENDPOINT,
+      testIgnore: [ENDPOINT, ANALYTICS],
       // The site promises a readable document without animation, and this
       // project is where that promise is asserted.
       //

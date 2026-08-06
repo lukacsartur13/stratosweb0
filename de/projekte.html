@@ -46,7 +46,11 @@
      block above, which parsing has already delivered by then. -->
 <script src="../assets/js/lead.js" defer></script>
 </head>
-<body data-ceiling="11000">
+<!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
+     is translated, so /en/web-design-sme.html and /de/webdesign-kmu.html are
+     both `sme`. Anything that needs to know what a page *is* should read this
+     rather than parse the URL. -->
+<body data-ceiling="11000" data-page-key="work">
 
 <a class="skip" href="#main">Zum Inhalt springen</a>
 <div class="grain" aria-hidden="true"></div>
@@ -219,7 +223,7 @@
        with nothing to act on until screen 5.9. Placed directly after the three
        projects, which is where a visitor who came to judge the work has judged
        it. -->
-  <section class="band band--tight">
+  <section class="band band--tight" data-cta-placement="mid">
     <div class="wrap">
       <div class="launch launch--quiet">
         <p class="lede" style="max-width:46ch;margin-bottom:1.4rem">Hast du ein Projekt, das neben diesen stehen könnte? Erzähl es uns, und wir sehen es uns gemeinsam an.</p>

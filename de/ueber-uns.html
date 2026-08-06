@@ -47,7 +47,11 @@
      block above, which parsing has already delivered by then. -->
 <script src="../assets/js/lead.js" defer></script>
 </head>
-<body data-ceiling="24000">
+<!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
+     is translated, so /en/web-design-sme.html and /de/webdesign-kmu.html are
+     both `sme`. Anything that needs to know what a page *is* should read this
+     rather than parse the URL. -->
+<body data-ceiling="24000" data-page-key="about">
 
 <a class="skip" href="#main">Zum Inhalt springen</a>
 <div class="grain" aria-hidden="true"></div>
@@ -240,7 +244,7 @@
        reader who came to find out who we are has their answer. Same band +
        launch--quiet primitives as the service pages, one ghost button, nothing
        sticky and no new component. -->
-  <section class="band band--tight">
+  <section class="band band--tight" data-cta-placement="mid">
     <div class="wrap">
       <div class="launch launch--quiet">
         <p class="lede" style="max-width:46ch;margin-bottom:1.4rem">Wenn du bis hierhin gelesen hast, hast du wahrscheinlich schon eine Vorstellung. Erzähl sie uns, und wir sehen sie uns gemeinsam an.</p>
