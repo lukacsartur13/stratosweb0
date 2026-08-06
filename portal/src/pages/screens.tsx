@@ -149,6 +149,10 @@ interface FullLead extends Lead {
   source_route: string | null;
   submission_id: string | null;
   payload: Record<string, unknown> | null;
+  // Timing, coarse context and campaign attribution. Never user-entered text —
+  // the server copies only the keys META declares in lead-contract.mjs, so
+  // whatever a browser sent, only those can be here.
+  meta: Record<string, unknown> | null;
 }
 
 /** Human label for the four public forms, plus the pre-envelope fallback. */
@@ -159,6 +163,37 @@ const FORM_LABEL: Record<string, string> = {
   questionnaire: 'Questionnaire',
   website: 'Website',
 };
+
+/**
+ * A stored web address, as an href — or null, if it must not become one.
+ *
+ * This exists because `href={value}` on a value that came out of the database
+ * is how a `javascript:` URL gets executed by a click. The path is real rather
+ * than theoretical: `organizations.website` is populated from a client's own
+ * answer, and the public form's URL check (`URL_RE` in lead-contract.mjs) is
+ * deliberately permissive about formatting — it refuses text, not schemes. A
+ * value of `javascript:alert(1).co` satisfies it.
+ *
+ * So the scheme is decided HERE, at the point of use, and only two are allowed.
+ * A bare `example.com` is upgraded to https rather than rejected, because a
+ * client typing their address without a scheme is the normal case and a link
+ * that silently stops working is the wrong lesson to teach.
+ *
+ * Anything else renders as plain text: the value is still visible, still
+ * copyable, and not clickable. Losing a link is a shrug; running someone else's
+ * script inside an authenticated admin session is not.
+ */
+function safeUrl(value: string | null | undefined): string | null {
+  const raw = (value ?? '').trim();
+  if (!raw) return null;
+  const candidate = /^[a-z][a-z0-9+.-]*:/i.test(raw) ? raw : `https://${raw}`;
+  try {
+    const url = new URL(candidate);
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
+  } catch {
+    return null;
+  }
+}
 
 /**
  * One submitted answer.
@@ -180,12 +215,48 @@ function PayloadEntry({ label, value }: { label: string; value: unknown }) {
   );
 }
 
+/**
+ * Readable names for the `meta` keys, in the order they are worth reading.
+ *
+ * Anything not listed still renders, under its raw key — a lead stored by an
+ * older or newer client must not become invisible because this table has not
+ * caught up with it, which is the failure mode of rendering an allow-list.
+ */
+const META_LABEL: Record<string, string> = {
+  utmSource: 'Campaign source',
+  utmMedium: 'Campaign medium',
+  utmCampaign: 'Campaign',
+  utmContent: 'Campaign content',
+  utmTerm: 'Campaign term',
+  landingRoute: 'Landed on',
+  landingReferrerHost: 'Came from',
+  referrerOrigin: 'Referrer at submit',
+  host: 'Served by',
+  viewport: 'Device',
+  elapsedMs: 'Time to fill (ms)',
+  attempt: 'Attempts',
+  legacyClient: 'Legacy client',
+  submissionIdSource: 'Submission id source',
+};
+
+const META_ORDER = Object.keys(META_LABEL);
+
 function LeadDetail({ lead, columns }: { lead: FullLead; columns: number }) {
   const payload = lead.payload && typeof lead.payload === 'object' ? lead.payload : {};
   const answers = Array.isArray((payload as { answers?: unknown }).answers)
     ? ((payload as { answers: { q: string; a: string }[] }).answers)
     : [];
   const scalars = Object.entries(payload).filter(([k]) => k !== 'answers');
+
+  // Where the enquiry came from. Known keys first, in a deliberate order;
+  // anything unrecognised follows rather than being dropped.
+  const meta = lead.meta && typeof lead.meta === 'object' ? lead.meta : {};
+  const metaEntries = Object.entries(meta).sort(([a], [b]) => {
+    const ai = META_ORDER.indexOf(a);
+    const bi = META_ORDER.indexOf(b);
+    return (ai === -1 ? META_ORDER.length : ai) - (bi === -1 ? META_ORDER.length : bi)
+      || a.localeCompare(b);
+  });
 
   return (
     <tr className="border-b border-hair/60 bg-white/[0.02] last:border-0">
@@ -217,6 +288,14 @@ function LeadDetail({ lead, columns }: { lead: FullLead; columns: number }) {
             </div>
           )}
 
+          {metaEntries.length > 0 && (
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {metaEntries.map(([k, v]) => (
+                <PayloadEntry key={k} label={META_LABEL[k] ?? k} value={v} />
+              ))}
+            </div>
+          )}
+
           {scalars.length === 0 && answers.length === 0 && (
             <p className="text-xs text-haze">
               This lead predates the structured payload. Its answers are in the message field.
@@ -231,7 +310,7 @@ function LeadDetail({ lead, columns }: { lead: FullLead; columns: number }) {
 export function LeadsScreen() {
   const { rows, state, message, reload } = useRows<FullLead>(
     'leads',
-    'id, name, company, email, service_interest, budget_range, status, created_at, form_type, locale, source_route, submission_id, payload',
+    'id, name, company, email, service_interest, budget_range, status, created_at, form_type, locale, source_route, submission_id, payload, meta',
   );
   const { query, setQuery, filtered } = useSearch(rows, ['name', 'company', 'email']);
   const [open, setOpen] = useState<string | null>(null);
@@ -346,10 +425,10 @@ export function ClientsScreen() {
             <Row key={o.id}>
               <Cell>{o.name}</Cell>
               <Cell className="text-haze">
-                {o.website ? (
-                  <a href={o.website} target="_blank" rel="noreferrer noopener"
+                {safeUrl(o.website) ? (
+                  <a href={safeUrl(o.website)!} target="_blank" rel="noreferrer noopener"
                      className="underline underline-offset-4 hover:text-paper">{o.website}</a>
-                ) : '—'}
+                ) : (o.website || '—')}
               </Cell>
               <Cell><Badge tone={o.status === 'active' ? 'good' : 'neutral'}>{o.status}</Badge></Cell>
               <Cell className="num text-xs text-haze">{formatDate(o.created_at)}</Cell>
