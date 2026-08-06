@@ -1046,6 +1046,49 @@ let panels: HTMLElement[] = [];
 /** The smallest flow band worth compositing into. Below it, the panel flows. */
 const MIN_FLOW_BAND = 120;
 
+/**
+ * How far below the top of the plate a stage's first meaningful content begins.
+ *
+ * §6's budget is 8-14svh, with headroom to ~18svh where a transition visibly
+ * earns it - the instrument line under the header is such an element, and it is
+ * what the headroom is spent on. Bounded in pixels at both ends because 10svh is
+ * 56px on a small phone, which is less than the header it has to clear, and 93px
+ * on a tall one, which is wide enough to read as another void.
+ *
+ * Floored at `--deck-content`, published by `watchDeck` from the header's and
+ * the strip's measured boxes. That floor is how §10's single top-layout
+ * calculation reaches the panels: the narrative cannot begin inside the deck,
+ * whatever the header state or the safe-area inset happens to be.
+ *
+ * ## Why this is computed here and not in CSS
+ *
+ * It was in CSS, as `max(clamp(64px, 10svh, 96px), var(--deck-content))`, which
+ * is a perfectly good declaration the layout still uses. What it cannot do is
+ * take part in the *decision* below. `measureComposition` has to know whether
+ * the lead band still fits above the instrument once the entry budget is
+ * subtracted, and a custom property does not resolve to a length script can read
+ * - `getPropertyValue` hands back the token stream, not pixels. Two expressions
+ * of one number is exactly the drift this file warns about elsewhere, so the
+ * number is computed once here and published for the stylesheet to consume.
+ *
+ * ## Quantised, because it decides rather than describes
+ *
+ * `--deck-content` is already quantised to 8px at source (see DECK_STEP in
+ * siteHeader.ts) and this rounds again for the same reason: the value feeds a
+ * *decision*, and a decision that changes with a pixel of measurement noise
+ * flips a panel between two compositions whose boxes differ by a screen. Both
+ * guards are cheap and either alone would do; keeping both means neither file
+ * has to know the other is careful.
+ */
+function entryBudget(vh: number): number {
+  const design = Math.max(64, Math.min(0.1 * vh, 96));
+  const deck = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--deck-content')
+  );
+  const raw = Math.max(design, Number.isFinite(deck) ? deck : 0);
+  return Math.ceil(raw / 8) * 8;
+}
+
 // =============================================================================
 // Keyboard focus inside the flow window.
 // =============================================================================
@@ -1356,6 +1399,10 @@ export function measureComposition(root: HTMLElement = document.documentElement)
     if (fit.portrait && flowH > bandAt(mid, 0)) dense.add(stage);
   }
 
+  // The entry budget, published for the stylesheet so the layout and the
+  // decision below read one number rather than two expressions of it.
+  put(root, '--stage-entry-px', `${entryBudget(fit.vh)}px`);
+
   // Pass two — window or flow, per panel, against the band it will actually be
   // composed at.
   const decisions: Record<string, unknown> = {};
@@ -1364,10 +1411,28 @@ export function measureComposition(root: HTMLElement = document.documentElement)
     const mid = midOf(stage);
     if (!stage || mid === null) continue;
     const band = bandAt(mid, fit.strength);
-    // The windowed composition needs the headline band to hold the headline and
-    // the flow band to be worth reading. Either failing is the fallback
-    // condition, and the fallback is not a failure.
-    const fits = fit.portrait && band >= MIN_FLOW_BAND && leadH > 0 && leadH <= band;
+    // The windowed composition needs the headline band to hold the headline
+    // *below the deck* and the flow band to be worth reading. Either failing is
+    // the fallback condition, and the fallback is not a failure.
+    //
+    // `entry + leadH`, not `leadH`, and the difference is a defect the mobile
+    // fidelity suite caught. The lead pair is bottom-aligned against the
+    // instrument and lifted out of row 1's surplus only when there *is* surplus
+    // - so on a panel whose headline is nearly as tall as the band, the lift
+    // came out zero and the pair sat at `band - leadH`, which can be *above* the
+    // entry floor. Measured on a 390x664: the calibration headline runs to three
+    // lines, the lift was zero, and the eyebrow landed at 114px under an
+    // instrument strip ending at 130 - the collision this pass exists to remove,
+    // reintroduced by the fix for it.
+    //
+    // Requiring the entry budget to fit makes the two consistent: a panel in the
+    // window always has surplus for the lift, so its lead can never rise into
+    // the deck, and a panel that has not goes to natural flow - where the copy
+    // runs over the scene under a softened edge, which is §6's answer and is a
+    // composition rather than a collision.
+    const entry = entryBudget(fit.vh);
+    const fits =
+      fit.portrait && band >= MIN_FLOW_BAND && leadH > 0 && entry + leadH <= band;
     panel.dataset.fit = fits ? 'window' : 'flow';
     panel.dataset.dense = dense.has(stage) ? '1' : '0';
     // The side this stage's copy takes, and the room it has there. Written as

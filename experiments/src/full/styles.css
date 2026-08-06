@@ -89,12 +89,11 @@ img { max-width: 100%; height: auto; }
 
    The order below is the composition, read from the back of the frame forward:
 
-     atmosphere   the sky and its gradients, behind everything
-     terrain      the mountain range
-     stage        the WebGL surface as a whole — the altimeter lives here, and
-                  it is the object the whole page is about
-     hud          the instrument strip, inside the stage's context
+     scene        the WebGL surface — atmosphere, terrain and the altimeter,
+                  whose order *within* the frame is the renderer's to decide and
+                  is not expressible in CSS
      content      the editorial plates
+     hud          the instrument strip, above the copy because it is an overlay
      header       the shared flight deck
      overlay      the full-screen navigation and the skip link
 
@@ -113,11 +112,10 @@ img { max-width: 100%; height: auto; }
    clear band through its wash, and the flow fallback softens its top edge. See
    both in the portrait composition below. */
 :root {
-  --layer-atmosphere: 0;
-  --layer-terrain: 1;
-  --layer-stage: 0;
-  --layer-hud: 3;
+  /* `auto` is load-bearing — see the note on `.journey__stage`. */
+  --layer-scene: auto;
   --layer-content: 2;
+  --layer-hud: 3;
   /* Quoted from chrome.css. Not ours to set — ours to not collide with. */
   --layer-header: 890;
   --layer-overlay: 900;
@@ -180,7 +178,28 @@ img { max-width: 100%; height: auto; }
   position: sticky;
   top: 0;
   height: 100svh;
-  z-index: var(--layer-stage);
+  /* `auto`, and the single word is what makes the layer order above real.
+     ------------------------------------------------------------------
+     This was `z-index: 0`. A sticky element with a numeric z-index creates a
+     stacking context, which sealed everything inside it — including the
+     instrument strip at `--layer-hud` — underneath `.journey__content` at
+     `--layer-content`, because the content is a *sibling* of this element
+     rather than a child. So the strip's altitude readout painted behind the
+     copy plates for the whole journey: present in the DOM, non-zero in size,
+     reported visible by anything that checks the box model, and invisible to a
+     person. `toBeVisible()` cannot see occlusion, which is why an existing
+     assertion had been passing on it.
+
+     With `auto` this element opens no stacking context, so the declared order
+     applies as written: the canvas and the fallback inside are positioned at
+     `z-index: auto` and paint below any positive index, the content plates
+     paint at 2, and the strip paints at 3 — above the copy, where an instrument
+     overlay belongs and where the token always claimed it was.
+
+     Nothing in here wants the isolation. The canvas is already behind the copy
+     by virtue of the copy's own index, and the dev-only debug panel coming
+     forward is an improvement. */
+  z-index: var(--layer-scene);
 }
 
 .stage__surface,
@@ -544,10 +563,40 @@ img { max-width: 100%; height: auto; }
   }
   .panel { flex-shrink: 0; }
 
+  /* How far below the top of the plate a stage's first meaningful content may
+     begin, and the floor under every panel's composition.
+
+     §6's budget is 8-14svh, with headroom to ~18svh where a transition visibly
+     earns it - the instrument line under the header is such an element, and it
+     is what the headroom is spent on. It is also floored at `--deck-content`,
+     the bottom of the header plus the bottom of that strip, so the narrative
+     can never begin inside the deck. That floor is the whole of §10's "one
+     authoritative top-layout calculation" reaching the panels: the header
+     measures itself, the strip measures itself, and every stage's first word is
+     placed below both, instead of the three deciding independently and
+     colliding.
+
+     Both terms are resolved in `entryBudget` and published from there rather
+     than written out here as `max(clamp(64px, 10svh, 96px),
+     var(--deck-content))`. That declaration worked, and it could not take part
+     in the *decision*: `measureComposition` has to know whether the lead band
+     still fits above the instrument once this is subtracted, and a custom
+     property does not resolve to a length script can read. Two expressions of
+     one number is the drift this file warns about elsewhere.
+
+     Declared on `.panel` rather than on `.panel__inner`, because the panel's own
+     padding reads it too - see the first-panel flow rule further down. The
+     fallback is what the header and strip resolve to at the design inset, so the
+     frames before the first measurement lands are composed rather than
+     overlapped. */
+  .panel {
+    --stage-entry: var(--stage-entry-px, 120px);
+  }
+
   /* The two clear bands, from the measured exclusion zone.
 
      `--meridian-gap` is published in pixels and already carries everything the
-     collision test adds to the raw silhouette — the 1.5vmin visual safety
+     collision test adds to the raw silhouette - the 1.5vmin visual safety
      margin and an allowance for the residual centre drift the pointer parallax
      produces. Budgeting to the bare projected bounds passes geometry and fails
      the check, which is the mistake §9.1 records the landscape copy budget
@@ -555,27 +604,6 @@ img { max-width: 100%; height: auto; }
      the first publication lands. */
   .panel .panel__inner {
     --band: max(0px, calc((100svh - var(--meridian-gap, 34svh)) / 2));
-
-    /* How far below the top of the plate a stage's first meaningful content may
-       begin. §6's budget is 8–14svh, with ~18svh allowed only where a
-       transition visibly earns it; 10svh sits in the middle of that and leaves
-       room for the eyebrow's own leading above the headline.
-
-       Bounded in pixels at both ends rather than left as a bare percentage: on a
-       small phone 10svh is 56px, which is less than the header it has to clear,
-       and on a tall one it runs to 93px, which is a gap wide enough to read as
-       another void.
-
-       Floored at `--deck-content` — the bottom of the header plus the bottom of
-       the instrument line under it — so the narrative can never start inside
-       the deck. That floor is the whole of §10's "one authoritative top-layout
-       calculation" reaching the panels: the header measures itself, the strip
-       measures itself, and every stage's first word is placed below both
-       instead of each of the three deciding independently and colliding. The
-       fallback is the value the header and strip resolve to at the design
-       inset, so a frame before the first measurement lands is composed, not
-       overlapped. */
-    --stage-entry: max(clamp(64px, 10svh, 96px), var(--deck-content, 115px));
   }
 
   /* --- natural flow: the fallback, and the state before measurement --------
@@ -645,6 +673,38 @@ img { max-width: 100%; height: auto; }
   }
   .panel[data-fit='window']:first-of-type:last-of-type {
     height: calc(var(--share, 1) * 100svh);
+  }
+
+  /* §10.3's opening viewport, whichever composition the first panel gets.
+     -------------------------------------------------------------------
+     The entry budget reaches window panels through `--lead-lift`, which is a
+     property of the band grid. A flow panel has no band grid - it is a card in
+     natural flow - so it took no clearance at all, and on a short viewport that
+     is exactly where the first panel ends up: at 390x664 the calibration
+     headline runs to three lines, `entry + leadH` exceeds the band, and the
+     panel correctly falls to flow. Its card then started at 78px with its
+     eyebrow at 98, inside an instrument strip spanning 83..130.
+
+     Falling to flow there is right and is not the thing to fix: there genuinely
+     is not room for a three-line headline above the instrument on a 664px
+     screen once the deck has taken its share. What has to hold either way is
+     the opening order - safe area, header, gap, status, hero - because it is
+     the first thing anyone sees.
+
+     Scoped to the first panel on purpose. Every later panel *travels*, and copy
+     scrolling under the deck is ordinary document behaviour rather than a
+     collision - the same thing content does under any fixed header. Only the
+     opening frame is a composition that has to be right at rest.
+
+     `box-sizing: border-box` is global here, so this padding comes out of the
+     panel's `min-height` rather than adding to it. That matters more than it
+     looks: the entry budget is measured, and a measured value that changed the
+     track's height would resize the track, refresh ScrollTrigger and move the
+     scroll position - which is how a layout value turns into a page that
+     scrolls itself. */
+  .panel:first-of-type[data-fit='flow'] {
+    align-items: flex-start;
+    padding-top: var(--stage-entry);
   }
 
   /* --- §11.1, for the plates the window rules do not reach -----------------
@@ -2133,9 +2193,13 @@ img { max-width: 100%; height: auto; }
        its content's min-content width and will push the strip past the
        viewport rather than shrink. At 200% zoom on a 320×568 the stage label
        measured 90px in a 160px viewport and took the document with it. */
-    grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+    /* Four columns, one row. It was three columns and four children, so the
+       sound control wrapped to a second row and the strip stood 92px tall - and
+       the strip's height is the floor under every panel's entry budget, so those
+       wrapped pixels were §6's allowance spent on a line break. */
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, auto) auto;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.55rem;
     /* No safe-area inset here any more, and its removal is the fix rather than
        a simplification. The strip used to sit above the header, so insetting it
        by the notch moved it *onto* the wordmark instead of above it — the one
@@ -2143,46 +2207,45 @@ img { max-width: 100%; height: auto; }
        devices it was there to protect. The notch is the header's to clear, the
        header clears it, and `--deck-top` carries the result down to here. */
     padding: 0.45rem 1rem 0.5rem;
-    background: linear-gradient(rgba(4, 8, 14, 0.96) 62%, rgba(4, 8, 14, 0.78) 88%, rgba(4, 8, 14, 0));
+    /* No wash, now that the strip paints above the copy rather than behind it.
+       A full-width gradient under the header read as an unexplained second bar,
+       and over a content plate it would be a band of dark across the top of the
+       copy. The text carries its own legibility instead — the digits and the
+       stage name keep the shadows the corner layout has always given them. */
+    background: none;
     transition: opacity 0.5s var(--ease);
   }
 
-  /* One altitude, one place — §10.2, and this is the Option B half of it.
-     -------------------------------------------------------------------
-     The shared header already carries the altitude *and* the stage name in its
-     `journey` state: `.nav__alt-v` is the metres and `.nav__alt-k` is the phase,
-     rendering as `ASCENT — 08 420 M`. The strip's digits and stage label are
-     the same two facts, twice, a few pixels apart.
+  /* One altitude, one place — §10.2, and Option B is what the evidence chose.
+     ----------------------------------------------------------------------
+     The shared header publishes the same two facts in its `journey` state:
+     `.nav__alt-v` the metres, `.nav__alt-k` the phase. Two live readouts a few
+     pixels apart is what §10.2 rules out.
 
-     They are the ones that go, and the reason is that they were never doing the
-     job. `.hud` lives inside `.journey__stage` at z-index 0; the narrative is
-     `.journey__content` at z-index 2. The panel plates therefore paint *over*
-     the strip, and a window plate is opaque from its top edge down. So through
-     the whole journey the readout was a ghost showing through a 0.92-alpha
-     plate — which is precisely the "faint technical rail" the brief reports
-     seeing behind the navigation. It was not a rail behind the header. It was
-     the altitude readout behind the copy.
+     The first attempt suppressed the *strip's* readout, on the evidence that it
+     was a ghost showing through a 0.92-alpha plate and therefore not the one
+     doing the job. That evidence was right about the occlusion and wrong about
+     the remedy. The occlusion was a stacking-context bug — `.journey__stage`
+     carried a numeric `z-index`, which sealed the strip underneath the copy;
+     see the note there — and removing the readout instead left a mobile visitor
+     at calibration with no live altitude at all, on a page whose entire premise
+     is an altimeter, and in the one header state that publishes no altitude of
+     its own. It also broke a standing assertion that the readout is visible —
+     an assertion that had itself been passing on an occluded element for as
+     long as the bug existed, because `toBeVisible()` cannot see occlusion.
 
-     What remains is what the header cannot carry: the scale bar, which shows
-     the whole track at a glance rather than one number from it, and the sound
-     control, which is an interactive element and belongs to the instrument.
-     Both fit on one short row under the header, and `--deck-content` floors
-     every panel's entry budget below it so the two never share a band again. */
-  .hud__readout,
-  .hud__stage {
-    display: none;
-  }
+     So the stacking context is fixed, the strip keeps its readout, its scale
+     bar and its sound control, and the *header* stands its altitude down on
+     this route.
 
-  .hud {
-    /* One row, as short as its tallest child, because its height is the floor
-       under the stage-entry budget — see `--deck-content` in siteHeader.ts. */
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.6rem;
-    /* No wash. The strip is two small controls now, not a band of text that
-       needs to be legible over a mountain, and a full-width gradient under the
-       header is the thing that read as an unexplained second bar. */
-    background: none;
-  }
+     Written against `[data-state]` to match the specificity of the rule it has
+     to beat: chrome.css turns the readout on with
+     `.nav[data-state="journey"] .nav__alt`, which is (0,3,0), and a plain
+     `.journey-home .nav__alt` is (0,2,0) and loses whatever the load order.
+     Scoped to `.journey-home`, so the 66 static routes keep the header readout
+     they were designed around. */
+  .journey-home .nav[data-state] .nav__alt { display: none; }
+
 
   .hud__scale { align-self: center; }
 
@@ -2200,15 +2263,29 @@ img { max-width: 100%; height: auto; }
   }
 
   .hud__readout { gap: 0.2em; }
-  .hud__digits { font-size: 1.45rem; text-shadow: none; }
-  .hud__unit { font-size: 0.7rem; }
-  .hud__scale { width: auto; margin: 0; }
+  /* Smaller than the corner stack, and both keep their shadows: the strip has
+     no background of its own now, and these cross the whole altitude palette
+     from valley rock to bright cloud. */
+  .hud__digits { font-size: 1.2rem; }
+  .hud__unit { font-size: 0.68rem; }
+  .hud__scale { width: auto; margin: 0; align-self: center; }
   .hud__stage {
     font-size: 0.6rem;
-    text-shadow: none;
+    /* Never wraps here, and that is a layout constraint rather than a
+       typographic preference. A second line grows the strip, the strip's height
+       is the floor under the stage-entry budget, and the budget takes part in
+       the window/flow decision - so a long German phase name would push every
+       headline on the page down and could flip a panel's whole composition. The
+       name runs out of room instead; the panel's own eyebrow below names the
+       same state in full. */
     min-width: 0;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+  /* The 0.6rem lifted the control off the readout it used to sit under, which
+     is now beside it. Keeps its 2rem box - §10.1's touch target. */
+  .hud__sound { margin-top: 0; }
 
   /* Tightened so the plate has a chance of fitting the viewport. At the default
      spacing the lower-atmosphere panel came to 987px inside a 740px screen,

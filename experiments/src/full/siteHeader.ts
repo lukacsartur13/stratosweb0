@@ -155,15 +155,38 @@ export function publishHeader(): void {
  */
 const DECK_GAP = 6;
 
+/**
+ * The step both boundaries are quantised to.
+ *
+ * Not cosmetic and not a performance tweak. `--deck-content` is the floor under
+ * `entryBudget`, and `entryBudget` takes part in the window/flow *decision* — so
+ * a boundary that moves by one pixel can flip a panel sitting on it, and a panel
+ * flipping between the two compositions changes its own box by a whole screen.
+ * That resizes the track, which refreshes ScrollTrigger, which nudges the scroll
+ * position, which moves the altitude, which moves the instrument's exclusion
+ * band, which flips the panel back.
+ *
+ * Measured before this existed: a steady 4px oscillation of `window.scrollY`,
+ * reversing every ~250ms, indefinitely, with nobody touching the page. A page
+ * that scrolls itself is the one thing §4 rules out, and it was arriving through
+ * the layout rather than through any scroll handler — which is why it survived
+ * a source audit that found no hijacking.
+ *
+ * 8px is far below anything anyone can see in a gap and far above the sub-pixel
+ * chatter of a text box remeasuring as the stage name changes, so the loop
+ * cannot start.
+ */
+const DECK_STEP = 8;
+
+/** Round up to the step, so a boundary never lands under its own content. */
+const quantise = (px: number) => Math.ceil(px / DECK_STEP) * DECK_STEP;
+
 let deckObserver: ResizeObserver | undefined;
 let publishedTop = -1;
 let publishedContent = -1;
 
 function publishDeck(nav: Element, hud: Element | null) {
-  // Quantised to the pixel: a subpixel change during the padding transition is
-  // not a change anyone can see, and it would otherwise write a custom property
-  // — and invalidate the strip's position — on every frame of it.
-  const top = Math.round(nav.getBoundingClientRect().height) + DECK_GAP;
+  const top = quantise(nav.getBoundingClientRect().height + DECK_GAP);
   if (top !== publishedTop) {
     publishedTop = top;
     document.documentElement.style.setProperty('--deck-top', `${top}px`);
@@ -174,8 +197,8 @@ function publishDeck(nav: Element, hud: Element | null) {
   // different questions — the strip is positioned from the first, the panels'
   // entry budget is floored at the second — and because the strip is not on
   // every composition, so the second is not always the first plus something.
-  const strip = hud ? Math.round(hud.getBoundingClientRect().height) : 0;
-  const content = top + (strip > 0 ? strip + DECK_GAP : 0);
+  const strip = hud ? hud.getBoundingClientRect().height : 0;
+  const content = quantise(top + (strip > 0 ? strip + DECK_GAP : 0));
   if (content !== publishedContent) {
     publishedContent = content;
     document.documentElement.style.setProperty('--deck-content', `${content}px`);
