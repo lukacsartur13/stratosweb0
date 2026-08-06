@@ -5,6 +5,7 @@ import { publishKinetic, reserveKinetic } from '../kineticDom';
 import { clearComposition, measureComposition, publishComposition } from '../composition';
 import { advanceMeridian, meridianStageAt, type MeridianStageId } from '../meridian';
 import { meridianSound } from '../meridianSound';
+import { publishHeader, releaseHeader } from '../siteHeader';
 
 /**
  * The persistent readout, and the owner of both clocks.
@@ -66,6 +67,10 @@ export function JourneyHUD() {
       // even while muted, or switching sound on halfway up replays every event
       // below the visitor at once.
       meridianSound.update(journey.altitude);
+      // The shared flight deck rides this tick too, and for the same reason
+      // everything else does: it is the one place the altitude is known to be
+      // current. It de-duplicates internally — see siteHeader.ts.
+      publishHeader();
 
       // Rounded to 10 m: at 30 000 m over eleven screens the raw value changes
       // every frame, and rewriting the DOM sixty times a second for a digit
@@ -103,7 +108,12 @@ export function JourneyHUD() {
     };
 
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      // The clock is the header's source. When it stops, the header goes back
+      // to document scroll rather than holding the last altitude it was given.
+      releaseHeader();
+    };
   }, []);
 
   // Space reservation for the kinetic anchors. Separate effect because it is

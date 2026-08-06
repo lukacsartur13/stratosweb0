@@ -17,47 +17,6 @@
    markup.
    ========================================================================== */
 
-:root {
-  --trace-w: 1.25px;
-  --trace-c: rgba(203, 220, 233, .32);      /* --chrome, held back */
-  --trace-lit: var(--signal);
-  --trace-ease: cubic-bezier(.22, 1, .36, 1);
-}
-
-/* -------------------------------------------------------------- TraceLine */
-
-[data-trace] {
-  display: block;
-  overflow: visible;
-  pointer-events: none;
-}
-
-[data-trace] path,
-[data-trace] line,
-[data-trace] polyline {
-  fill: none;
-  stroke: var(--trace-c);
-  stroke-width: var(--trace-w);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-}
-
-[data-trace] .trace__lit { stroke: var(--trace-lit); }
-
-/* A node is a station on the trace: where it meets a label, a logo or a stage. */
-[data-trace] .trace__node {
-  fill: var(--void);
-  stroke: var(--trace-c);
-  stroke-width: var(--trace-w);
-}
-[data-trace].is-drawn .trace__node { stroke: var(--trace-lit); }
-
-/* The decorative trace is furniture, not content. Every page that carries one
-   states its argument in text as well, so this is safe to remove wholesale
-   from the accessibility tree. */
-[data-trace] { }
-
 /* ------------------------------------------------------------ StickyStage */
 
 [data-stage] {
@@ -202,18 +161,6 @@
 
 [data-metric] .metric__row { display: grid; gap: .35rem; }
 [data-metric] [data-metric-value] { font-variant-numeric: tabular-nums; }
-
-/* ---------------------------------------------------------- CTAConvergence */
-
-[data-converge] {
-  --converge: 0;
-  position: relative;
-}
-[data-converge] .converge__cta {
-  transform: translateY(calc((1 - var(--converge)) * 1.4rem));
-  opacity: calc(.25 + var(--converge) * .75);
-}
-[data-converge].is-arrived .converge__cta { transform: none; opacity: 1; }
 
 /* ------------------------------------------- LogoSignalRail / Constellation
    / Index. Three arrangements of one idea. Normalisation is done by giving
@@ -388,7 +335,6 @@
      whose JavaScript failed to boot must still not hide its content. */
   [data-stage] [data-stage-item],
   [data-mask],
-  [data-converge] .converge__cta,
   .logoset [data-logo] {
     opacity: 1 !important;
     transform: none !important;
@@ -406,6 +352,4 @@
    apply exactly when it did not. */
 html:not(.motion-ready) [data-stage] [data-stage-item] { opacity: 1; transform: none; }
 html:not(.motion-ready) [data-mask] { clip-path: none; }
-html:not(.motion-ready) [data-converge] .converge__cta { opacity: 1; transform: none; }
 html:not(.motion-ready) .logoset [data-logo] { opacity: 1; filter: none; }
-html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }

@@ -25,9 +25,23 @@
    ------------
    The homepage is a separate React/WebGL bundle with its own canonical journey
    progress, and document scroll position is not that progress. So this file
-   does not guess: `Stratos.header.drive(fn)` lets the homepage supply the real
+   does not guess: `Stratos.header.push()` lets the homepage supply the real
    number, and until something does, document position is used. One header, one
    state machine, two sources.
+
+   It is a PUSH and not a poll, and that is the whole design. The first version
+   of this hook took a getter and then read it from a `requestAnimationFrame`
+   loop of its own — which is a second permanent animation loop on the one page
+   that already runs a renderer, a damped altitude clock, a cloud system and a
+   kinetic type driver at 60 Hz. The homepage already has a frame; the header
+   rides it. `JourneyHUD`'s tick calls `publishHeader()`, which calls this, and
+   this file schedules nothing at all while it is being driven.
+
+   The homepage also supplies its own altitude, its own stage label and its own
+   state boundaries, because all three are things it knows and this file would
+   have to guess: the altitude curve is piecewise, not linear in scroll, and the
+   destination state has to begin where the closing panels begin rather than at
+   an 0.88 that happens to be near them. See experiments/src/full/siteHeader.ts.
    ========================================================================== */
 (() => {
   'use strict';
@@ -39,64 +53,110 @@
   /* -------------------------------------------------------------- states */
 
   const altV = nav.querySelector('.nav__alt-v');
+  const altK = nav.querySelector('.nav__alt-k');
   const CEIL = Number(document.body.dataset.ceiling || 30000);
   const FLOOR = 420;
 
   // Hysteresis: a boundary you have crossed sits further away than the one you
   // have not, so a header cannot chatter between two states while you hover on
   // the line between them.
-  const EDGES = [[0.06, 0.045], [0.88, 0.855]];
+  //
+  // Mutable because the homepage replaces both pairs with boundaries derived
+  // from its own stage map — see `push` below. Nothing else writes them.
+  let EDGES = [[0.06, 0.045], [0.88, 0.855]];
   let state = 'opening';
 
+  /* Settle on a state, rather than step one towards it.
+
+     One call used to move at most one state. While the visitor is scrolling
+     that is invisible and even correct — you really do pass through `journey`
+     on the way from `opening` to `destination`, one frame at a time. It is
+     wrong for every *jump*, and the page is full of them: Return to 0 m under
+     reduced motion, a bfcache entry restored deep in the document, a fragment
+     link, a browser restoring the scroll position on reload. All of those
+     arrive in a single paint, so the header would land one state short and stay
+     there — `paint` is gated on the progress having moved, and after a jump it
+     does not move again until the visitor scrolls far enough to cross the gate.
+     A page opened at the bottom sat in `journey` over its own footer.
+
+     Iterating to a fixed point crosses exactly the same boundaries in exactly
+     the same order and honours the same hysteresis. It just does not need a
+     second event to finish. Two transitions is the most the three states can
+     need; the guard is there so that a future edge table that disagreed with
+     itself would stop rather than spin. */
   function resolve(p) {
-    const i = state === 'opening' ? 0 : state === 'journey' ? 1 : 2;
-    if (i < 2 && p > EDGES[i][0]) return i === 0 ? 'journey' : 'destination';
-    if (i > 0 && p < EDGES[i - 1][1]) return i === 1 ? 'opening' : 'journey';
-    return state;
+    let s = state;
+    for (let guard = 0; guard < 3; guard++) {
+      const i = s === 'opening' ? 0 : s === 'journey' ? 1 : 2;
+      let next = s;
+      if (i < 2 && p > EDGES[i][0]) next = i === 0 ? 'journey' : 'destination';
+      else if (i > 0 && p < EDGES[i - 1][1]) next = i === 1 ? 'opening' : 'journey';
+      if (next === s) return s;
+      s = next;
+    }
+    return s;
   }
 
+  const pad = (m) =>
+    String(m).padStart(5, '0').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
   let shownAlt = -1;
-  function paint(p) {
+  let shownKey = null;
+
+  /** `alt` in metres and `key` the readout's label, or null to derive/keep. */
+  function paint(p, alt, key) {
     const next = resolve(p);
     if (next !== state) { state = next; nav.dataset.state = state; }
     nav.classList.toggle('is-solid', p > 0.012);
 
     if (altV) {
-      const m = Math.round(FLOOR + p * (CEIL - FLOOR));
+      // Linear in document position on the generated routes, where the ceiling
+      // is the only altitude the page declares. The homepage passes the real
+      // metres, because its altitude curve is piecewise and re-derived here it
+      // would disagree with its own instrument.
+      const m = Math.round(alt === null || alt === undefined
+        ? FLOOR + p * (CEIL - FLOOR)
+        : alt);
       if (m !== shownAlt) {
         shownAlt = m;
         // Zero-padded to five so the readout never changes width and the
         // header never reflows around a number ticking over.
-        altV.textContent = String(m).padStart(5, '0').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        altV.textContent = pad(m);
       }
+    }
+
+    if (altK && key != null && key !== shownKey) {
+      shownKey = key;
+      altK.textContent = key;
     }
   }
 
   /* ------------------------------------------------------------- the loop */
 
-  let external = null;      // set by the homepage
+  let external = false;     // true once the homepage has pushed once
   let frame = 0;
   let last = -1;
 
   function progress() {
-    if (external) return Math.min(1, Math.max(0, external()));
     const h = document.documentElement.scrollHeight - innerHeight;
     return h > 0 ? Math.min(1, Math.max(0, scrollY / h)) : 0;
   }
 
   function tick() {
     frame = 0;
+    // A page being driven from outside has an owner for its progress; this
+    // listener is here for the other 66 routes and must not fight it.
+    if (external) return;
     const p = progress();
     // Sub-pixel scroll noise must not cost a repaint.
-    if (Math.abs(p - last) > 0.0004) { last = p; paint(p); }
-    if (external) frame = requestAnimationFrame(tick);
+    if (Math.abs(p - last) > 0.0004) { last = p; paint(p, null, null); }
   }
 
   function schedule() { if (!frame) frame = requestAnimationFrame(tick); }
 
   addEventListener('scroll', schedule, { passive: true });
   addEventListener('resize', schedule, { passive: true });
-  paint(progress());
+  paint(progress(), null, null);
 
   /* ------------------------------------------------------- the menu layer */
 
@@ -116,8 +176,20 @@
     const focusables = () => [burger, ...menu.querySelectorAll(FOCUSABLE)]
       .filter(el => el.offsetParent !== null || el === document.activeElement);
 
+    /* The scroll lock below is position-fixed body, which collapses the
+       document to one viewport and puts `scrollY` at 0 for as long as the layer
+       is open. On the 66 generated routes nothing reads that. On the homepage
+       ScrollTrigger does, and it would drive the whole ascent back down to 0 m
+       behind the menu and ease it back up again on close — the visitor opens
+       the navigation at 24 000 m and closes it somewhere over the mountains.
+       So the lock announces itself, and the journey's scroll driver stands down
+       for the duration. See useJourneyScroll.ts. */
+    const announce = (open) =>
+      dispatchEvent(new CustomEvent('stratos:menu', { detail: { open } }));
+
     function open() {
       restoreTo = document.activeElement;
+      announce(true);
       scrollLock = scrollY;
       menu.hidden = false;
       // Force a frame so the transition has a "from" to animate out of. Under
@@ -147,6 +219,9 @@
       document.body.style.right = '';
       document.body.style.width = '';
       scrollTo(0, scrollLock);
+      // After the restore, never before it: the driver re-reads the scroll
+      // position when it comes back, and it has to read the restored one.
+      announce(false);
       const done = () => { menu.hidden = true; };
       if (RM) done();
       else setTimeout(done, 420);
@@ -191,8 +266,21 @@
 
   /* --------------------------------------------------------- return to 0 m */
 
+  /* Smooth is a promise the browser can only keep over a reasonable distance.
+     A generated route is two or three screens tall and native smooth scrolling
+     is exactly right for it. The homepage's track is twenty-two screens — over
+     40 000 px on a laptop — and `behavior: 'smooth'` across that is a slow
+     unskippable animation that also has to drag a WebGL scene, an altitude
+     clock and eleven pinned panels through every intermediate state on the way.
+     Past six screens the honest answer is to arrive.
+
+     No history entry either way: `scrollTo` does not create one, which is why
+     this is a button and not an `<a href="#top">`. */
+  const TOP_SMOOTH_LIMIT = 6;
+
   document.querySelector('[data-to-top]')?.addEventListener('click', () => {
-    scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' });
+    const far = scrollY > innerHeight * TOP_SMOOTH_LIMIT;
+    scrollTo({ top: 0, behavior: RM || far ? 'auto' : 'smooth' });
     // Send focus to the top of the document as well, or a keyboard user is
     // returned visually and left where they were logically.
     document.querySelector('.skip, .brand')?.focus({ preventScroll: true });
@@ -202,9 +290,31 @@
 
   window.Stratos = window.Stratos || {};
   window.Stratos.header = {
-    /** Hand the header a canonical progress source. The homepage's journey
-     *  scroll is not document scroll, so it calls this with its own. */
-    drive(fn) { external = fn; schedule(); },
+    /**
+     * Drive the header from a canonical external progress source.
+     *
+     * Called from the driver's own frame — never from a loop of this file's —
+     * so the homepage pays for one header update per frame it was already
+     * having. See the note at the top of this file.
+     *
+     * @param {number} p     progress through the journey, 0..1
+     * @param {object} [meta]
+     * @param {number} [meta.alt]   real altitude in metres, if the caller has one
+     * @param {string} [meta.key]   label for the readout, e.g. the stage name
+     * @param {Array}  [meta.edges] [[toJourney, backToOpening],
+     *                               [toDestination, backToJourney]]
+     */
+    push(p, meta) {
+      external = true;
+      if (meta && meta.edges) EDGES = meta.edges;
+      const v = Math.min(1, Math.max(0, p));
+      if (Math.abs(v - last) <= 0.0004) return;
+      last = v;
+      paint(v, meta ? meta.alt : null, meta ? meta.key : null);
+    },
+    /** Hand the header back to document scroll. Called when the journey's
+     *  clock stops — an unmount, or a fall back to the reduced-motion path. */
+    release() { external = false; last = -1; schedule(); },
     get state() { return state; },
   };
 })();

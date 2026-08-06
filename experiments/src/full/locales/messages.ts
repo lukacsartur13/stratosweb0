@@ -520,31 +520,19 @@ export const MESSAGES = {
   /*
    * --- footer -------------------------------------------------------------
    *
-   * The English and German here are the labels the other eleven pages already
-   * ship, lifted from their own footers rather than translated again: "Ads
-   * management" / "Werbeanzeigen", "Get a quote" / "Angebot", "Privacy policy"
-   * / "Datenschutzerklärung". A visitor moving between the homepage and a
-   * subpage should see the same word for the same destination.
+   * Gone, with the footer it named.
    *
-   * Where the approved Hungarian homepage footer is shorter than the site's
-   * ("KKV", not "Webdesign KKV-nak"), the other two are shortened to match —
-   * this row is `·`-separated and the long forms wrap it onto three lines on a
-   * phone.
+   * The homepage used to end in a line of seven links and a locale switch,
+   * built in this bundle because this route began life as a prototype with no
+   * site around it. It now renders the site's own Arrival and ground-control
+   * footer — the same markup, from the same `_build/build.py`, in the same
+   * three locales as the other 66 routes — so those ten strings are the
+   * generator's again, in `_build/i18n/`, and there is one copy of each
+   * instead of two that had to be kept saying the same thing.
+   *
+   * `common.languageSwitch` above stays. It is the accessible name of the
+   * locale switcher and it is the generator's `lang_aria`, word for word.
    */
-  'footer.nav.label': { hu: 'Lábléc', en: 'Footer', de: 'Fußzeile' },
-  'footer.sme': { hu: 'KKV', en: 'SMEs', de: 'KMU' },
-  'footer.enterprise': { hu: 'Nagyvállalat', en: 'Enterprise', de: 'Großunternehmen' },
-  'footer.branding': { hu: 'Arculat', en: 'Branding', de: 'Branding' },
-  'footer.ads': { hu: 'Hirdetéskezelés', en: 'Ads management', de: 'Werbeanzeigen' },
-  'footer.about': { hu: 'Rólunk', en: 'About', de: 'Über uns' },
-  'footer.quote': { hu: 'Árajánlat', en: 'Get a quote', de: 'Angebot' },
-  'footer.contact': { hu: 'Ügyfélszolgálat', en: 'Contact', de: 'Kontakt' },
-  'footer.imprint': { hu: 'Impresszum', en: 'Imprint', de: 'Impressum' },
-  'footer.privacy': {
-    hu: 'Adatkezelési tájékoztató',
-    en: 'Privacy policy',
-    de: 'Datenschutzerklärung',
-  },
 
   /*
    * --- the eleven journey stages ------------------------------------------

@@ -1828,18 +1828,17 @@ img { max-width: 100%; height: auto; }
 .panel__stages a:hover { border-bottom-color: var(--hair); }
 .panel__stages i { font: 400 0.75rem/1.6 var(--data); font-style: normal; color: var(--haze); }
 
-/* =================================================================== footer == */
-.journey__footer {
-  position: relative;
-  z-index: 2;
-  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 5vw, 4rem);
-  background: var(--void);
-  border-top: 1px solid var(--hair);
-  font-size: 0.82rem;
-  color: var(--haze);
-}
-.journey__footer p { margin: 0 0 0.5rem; }
-.journey__footer a { color: var(--chrome); }
+/* =================================================================== footer ==
+   Not here. `.journey__footer` was this route's own invention, from when it was
+   a prototype with no site around it; the homepage now ends in the site's own
+   Arrival and ground-control footer, rendered into the locale shell outside
+   this component and styled by assets/css/chrome.css. See FullAscent.tsx.
+
+   The header is the same story, and it is why this stylesheet has no `.nav`
+   either. One thing does belong here, because it is about this page and not
+   about the chrome: the skip link has to clear a header that did not exist when
+   it was given `z-index: 60`. */
+.journey-home .skip { z-index: 900; }
 
 /* ================================================================ fallback == */
 .fallback {

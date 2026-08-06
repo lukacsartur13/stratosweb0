@@ -1,6 +1,5 @@
 import { Children, Suspense, isValidElement, lazy, useCallback, useEffect, useRef, useState } from 'react';
 import { JourneyHUD } from './components/JourneyHUD';
-import { LanguageSwitch } from './components/LanguageSwitch';
 import { m, pageHref } from './i18n';
 import { JourneyFallback } from './components/JourneyFallback';
 import { SceneBoundary } from './components/SceneBoundary';
@@ -165,37 +164,24 @@ export function FullAscent() {
       </div>
 
       {/*
-        This was a prototype footer — "nem publikus oldal, nem indexelt, és nem
-        része az éles buildnek". All three clauses stopped being true when this
-        route became the homepage, so it is a real footer now: the site's own
-        links, in the visitor's own language, and the same HU/EN/DE switcher the
-        other eleven pages carry.
+        No footer here any more.
+
+        There was one — a line of links and a locale switch, invented for this
+        route because at the time this route was a prototype with nothing else
+        to reach for. It has been replaced by the site's own: the Arrival
+        convergence and the ground-control footer that the other 66 routes
+        carry, rendered by `_build/build.py` into the locale shell around this
+        component, outside `<main>` and after it.
+
+        That is the whole point of the change. This page had a footer with seven
+        links and no contact details, no service architecture, no legal group
+        and no back-to-top, sitting under a page that had no header at all — so
+        the homepage was the one route on the site you could not navigate from.
+        The answer was not a better homepage-only footer.
+
+        See experiments/home/hu.html for the four chrome slots, and
+        experiments/vite.home.config.ts for how they are filled.
       */}
-      <footer className="journey__footer">
-        <nav className="journey__nav" aria-label={m('footer.nav.label')}>
-          <a href={pageHref('sme')}>{m('footer.sme')}</a>
-          <span aria-hidden="true"> · </span>
-          <a href={pageHref('enterprise')}>{m('footer.enterprise')}</a>
-          <span aria-hidden="true"> · </span>
-          <a href={pageHref('branding')}>{m('footer.branding')}</a>
-          <span aria-hidden="true"> · </span>
-          <a href={pageHref('ads')}>{m('footer.ads')}</a>
-          <span aria-hidden="true"> · </span>
-          <a href={pageHref('about')}>{m('footer.about')}</a>
-          <span aria-hidden="true"> · </span>
-          <a href={pageHref('quote')}>{m('footer.quote')}</a>
-          <span aria-hidden="true"> · </span>
-          <a href={pageHref('contact')}>{m('footer.contact')}</a>
-        </nav>
-
-        <LanguageSwitch />
-
-        <p>
-          <a href={pageHref('imprint')}>{m('footer.imprint')}</a>
-          <span aria-hidden="true"> · </span>
-          <a href={pageHref('privacy')}>{m('footer.privacy')}</a>
-        </p>
-      </footer>
     </>
   );
 }

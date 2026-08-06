@@ -40,20 +40,39 @@
          preconnects that used to sit here pointed at a Google Fonts stylesheet
          this route never actually requested. See assets/css/type.css. -->
     <link rel="preload" href="/assets/fonts/archivo/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/aboreto/aboreto-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/assets/css/type.css" />
+    <!-- The site chrome's stylesheet, i18n block and lead controller, generated
+         by _build/build.py into _build/home-chrome.json and substituted here by
+         experiments/vite.home.config.ts. The homepage renders byte-identical
+         header, menu, Arrival and footer markup to the other 66 routes; there
+         is no second navigation system for this one page. A shell that loses a
+         slot is a build error, not a page that quietly ships without a footer. -->
+    <!--stratos:head-->
     <!-- Phase 7 page transitions. The homepage opts in from CSS like every
          other document; the script only assigns the transition category and
          is never required for a link to work. See assets/css/transitions.css. -->
     <link rel="stylesheet" href="/assets/css/transitions.css" />
     <script src="/assets/js/transitions.js" defer></script>
   </head>
-  <body>
+  <body class="journey-home" data-ceiling="30000">
     <a class="skip" href="#main">Zum Inhalt springen</a>
+    <!--stratos:deck-->
+
     <!-- The React mount host *is* the main landmark — see home/hu.html for why.
          In short: React renders into a container and never replaces it, so a
          landmark that is the container exists in the parsed shell before any
          module is fetched and survives every mount underneath it. -->
-    <main class="journey" id="main" tabindex="-1"></main>
+    <!-- `data-motion-external`: everything inside this element belongs to the
+         journey's own clock. assets/js/motion.js registers no primitive in
+         here, which matters because the eleven panels carry `data-stage` and
+         `data-kinetic` — two of that file's own primitive hooks. -->
+    <main class="journey" id="main" tabindex="-1" data-motion-external></main>
+
+    <!-- Arrival, then the shared ground-control footer. Outside <main>, after
+         it, so the landmark React owns stays exactly one element. -->
+    <!--stratos:footer-->
     <script type="module" src="/src/full/main.tsx"></script>
+    <!--stratos:scripts-->
   </body>
 </html>

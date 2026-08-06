@@ -20,6 +20,7 @@ import os
 import re
 import struct
 import sys
+from contextlib import contextmanager
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -319,11 +320,14 @@ UI = {
             "nav_group": "Navigáció",
             "cap_group": "Amit csinálunk",
             "status_group": "Állapot",
-            "st_reply": "Válasz jellemzően egy munkanapon belül",
+            "st_reply": "Válasz jellemzően pár órán belül",
             "st_where": "Győr és Budapest",
             "st_langs": "Magyarul, angolul és németül dolgozunk",
             "to_top": "VISSZA 0 MÉTERRE",
             "converge_state": "KALIBRÁCIÓ KÉSZ",
+            # The homepage is the one route that actually flies the ascent, so
+            # its convergence reports the ascent rather than the calibration.
+            "converge_state_home": "EMELKEDÉS BEFEJEZVE",
             "converge_lede": "Hova vigyük innen a vállalkozásodat?",
             "cta_head": "A következő szint innen indul.",
             # Archetype-specific closing lines (brief §8.5).
@@ -399,11 +403,12 @@ UI = {
             "nav_group": "Navigate",
             "cap_group": "Capabilities",
             "status_group": "Status",
-            "st_reply": "A reply usually within one working day",
+            "st_reply": "A reply usually within a few hours",
             "st_where": "Győr and Budapest",
             "st_langs": "We work in Hungarian, English and German",
             "to_top": "RETURN TO 0 M",
             "converge_state": "CALIBRATION COMPLETE",
+            "converge_state_home": "ASCENT COMPLETE",
             "converge_lede": "Where should we take your business next?",
             "cta_head": "Your next altitude starts here.",
             "cta_service": "Have a similar challenge?",
@@ -478,11 +483,12 @@ UI = {
             "nav_group": "Navigation",
             "cap_group": "Leistungen",
             "status_group": "Status",
-            "st_reply": "Antwort in der Regel innerhalb eines Werktags",
+            "st_reply": "Antwort in der Regel innerhalb weniger Stunden",
             "st_where": "Győr und Budapest",
             "st_langs": "Wir arbeiten auf Ungarisch, Englisch und Deutsch",
             "to_top": "ZURÜCK AUF 0 M",
             "converge_state": "KALIBRIERUNG ABGESCHLOSSEN",
+            "converge_state_home": "AUFSTIEG ABGESCHLOSSEN",
             "converge_lede": "Wohin soll es mit deinem Unternehmen als Nächstes gehen?",
             "cta_head": "Die nächste Höhe beginnt hier.",
             "cta_service": "Eine ähnliche Aufgabe?",
@@ -524,13 +530,39 @@ ARROW = ('<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">'
 
 
 # --------------------------------------------------------------------- paths
+# Link mode.
+#
+# The 66 generated routes link relatively — `rolunk.html` from `/`,
+# `about.html` from `/en/` — which is what they have always done. The React
+# homepage cannot: see `root_href` below for the three reasons. `href` and
+# `cross` are the only two places any chrome link is built, so one switch here
+# covers the nav, the menu, the language switch and the whole footer, and it is
+# a context manager so it cannot be left on by a later edit.
+_ROOT_LINKS = False
+
+
+@contextmanager
+def root_links():
+    """Build links root-absolutely for the duration of the block."""
+    global _ROOT_LINKS
+    _ROOT_LINKS = True
+    try:
+        yield
+    finally:
+        _ROOT_LINKS = False
+
+
 def href(lang, key):
     """Link to page `key` from any page of the same language."""
+    if _ROOT_LINKS:
+        return root_href(lang, key)
     return SLUGS[key][lang]
 
 
 def cross(lang_from, lang_to, key):
     """Link to page `key` in another language."""
+    if _ROOT_LINKS:
+        return root_href(lang_to, key)
     if lang_from == lang_to:
         return SLUGS[key][lang_to]
     up = "" if lang_from == "hu" else "../"
@@ -541,6 +573,26 @@ def cross(lang_from, lang_to, key):
 def absolute(lang, key):
     """Root-relative URL — used for hreflang."""
     return "/" + ("" if lang == "hu" else lang + "/") + SLUGS[key][lang]
+
+
+# The three homepage routes, as the homepage itself spells them. Kept in step
+# with HOME_PATH in experiments/src/full/i18n.ts, which is the React side of the
+# same three URLs.
+HOME_PATH = {"hu": "/", "en": "/en/", "de": "/de/"}
+
+
+def root_href(lang, key):
+    """Link to page `key` from the React homepage.
+
+    The homepage is one application served at three URLs, and every link it
+    already renders is root-absolute (`pageHref` in i18n.ts). Its chrome has to
+    match: a relative `rolunk.html` is correct from `/` and wrong from
+    `/en/index.html`, and the Vite dev server serves the shells from
+    `/home/hu.html`, where a relative link resolves to `/home/rolunk.html` and
+    404s. The index is `/` rather than `/index.html` because that is what the
+    homepage's own canonical says it is.
+    """
+    return HOME_PATH[lang] if key == "index" else absolute(lang, key)
 
 
 # --------------------------------------------------------------------- chrome
@@ -572,7 +624,7 @@ def build_nav(lang, key):
     </div>{rest}
     {build_langs(lang, key)}
     <a class="btn" href="{href(lang, 'quote')}" data-magnet><span>{u['quote_cta']}</span>
-      {ARROW}
+      {"" if _ROOT_LINKS else ARROW}
     </a>"""
 
 
@@ -735,37 +787,14 @@ def build_social(lang, key, title, desc, meta):
 <meta name="twitter:image" content="{SITE}/{image}">"""
 
 
-SHELL = """<!DOCTYPE html>
-<html lang="{{lang}}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{title}}</title>
-<meta name="description" content="{{desc}}">
-<link rel="icon" href="{{base}}assets/img/favicon.png">{{robots}}{{alternates}}{{social}}
-{{fontpreload}}
-<link rel="stylesheet" href="{{base}}assets/css/type.css">
-<link rel="stylesheet" href="{{base}}assets/css/main.css">
-<link rel="stylesheet" href="{{base}}assets/css/motion.css">
-<link rel="stylesheet" href="{{base}}assets/css/transitions.css">{{extra_css}}
-<script id="i18n" type="application/json">{{i18n}}</script>
-<!-- The canonical lead submission controller. In <head> with `defer` on
-     purpose: deferred scripts run in document order after parsing, so this is
-     guaranteed to have defined `window.Stratos.lead` before any per-page
-     script in <body> runs — including the generated questionnaire wizard,
-     which is a separate file and cannot import it. It also reads the i18n
-     block above, which parsing has already delivered by then. -->
-<script src="{{base}}assets/js/lead.js" defer></script>
-</head>
-<body data-ceiling="{{ceiling}}"{{body_class}}>
-
-<a class="skip" href="#main">{{skip}}</a>
-<div class="grain" aria-hidden="true"></div>
-<canvas class="contrail" aria-hidden="true"></canvas>
-<div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt=""></div>
-{{instruments}}
-
-<!-- Flight deck. Three deterministic states — opening, journey, destination —
+# The flight deck and the full-screen navigation layer, as one template.
+#
+# Extracted from SHELL because there are two surfaces now. The 66 generated
+# routes get it through SHELL; the React homepage gets the same rendered
+# string through `write_home_chrome()`, which its Vite build substitutes into
+# the three locale shells. One copy of the markup, one copy of the CSS in
+# assets/css/chrome.css, one copy of the behaviour in assets/js/header.js.
+DECK = """<!-- Flight deck. Three deterministic states — opening, journey, destination —
      written to `data-state` by assets/js/header.js from one number: how far
      down the document you are. The old direction-based hide/show is gone; a
      header that vanishes because you nudged the wheel upward is jitter, not
@@ -801,7 +830,62 @@ SHELL = """<!DOCTYPE html>
       </div>
     </div>
   </nav>
-</div>
+</div>"""
+
+
+def build_deck(lang, key, base, home):
+    """Render the flight deck for one route. `home` is the wordmark's href —
+    relative on the generated routes, root-absolute on the homepage."""
+    u = UI[lang]
+    quote = root_href(lang, "quote") if base == "/" else href(lang, "quote")
+    return render(DECK, dict(
+        base=base, home=home,
+        brand_aria=u["brand_aria"], nav_aria=u["nav_aria"],
+        burger_aria=u["burger_aria"],
+        alt_k=u["p85"]["alt"], unit_short=u["unit_short"],
+        quote_href=quote, start=u["p85"]["start"],
+        menu_label=u["p85"]["menu"], close=u["p85"]["close"],
+        menu_aria_full=u["p85"]["menu_aria_full"],
+        nav=build_nav(lang, key), menu=build_menu(lang, key),
+        langs=build_langs(lang, key),
+    ))
+
+
+SHELL = """<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{desc}}">
+<link rel="icon" href="{{base}}assets/img/favicon.png">{{robots}}{{alternates}}{{social}}
+{{fontpreload}}
+<link rel="stylesheet" href="{{base}}assets/css/type.css">
+<!-- The site chrome — tokens, flight deck, full-screen menu, Arrival, footer.
+     Before main.css because it carries the token block main.css reads, and
+     because the homepage links this file and not main.css. See chrome.css. -->
+<link rel="stylesheet" href="{{base}}assets/css/chrome.css">
+<link rel="stylesheet" href="{{base}}assets/css/main.css">
+<link rel="stylesheet" href="{{base}}assets/css/motion.css">
+<link rel="stylesheet" href="{{base}}assets/css/transitions.css">{{extra_css}}
+<script id="i18n" type="application/json">{{i18n}}</script>
+<!-- The canonical lead submission controller. In <head> with `defer` on
+     purpose: deferred scripts run in document order after parsing, so this is
+     guaranteed to have defined `window.Stratos.lead` before any per-page
+     script in <body> runs — including the generated questionnaire wizard,
+     which is a separate file and cannot import it. It also reads the i18n
+     block above, which parsing has already delivered by then. -->
+<script src="{{base}}assets/js/lead.js" defer></script>
+</head>
+<body data-ceiling="{{ceiling}}"{{body_class}}>
+
+<a class="skip" href="#main">{{skip}}</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="contrail" aria-hidden="true"></canvas>
+<div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt=""></div>
+{{instruments}}
+
+{{deck}}
 
 <div class="shell">
 <main id="main">
@@ -914,9 +998,9 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
         </ul>
         <h4 style="margin-top:1.6rem">{{f_social}}</h4>
         <ul>
-          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.linkedin.com/company/stratos-media-agency" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/stratosweb/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61590329356257" target="_blank" rel="noopener">Facebook</a></li>
         </ul>
       </div>
       <!-- Status. Three statements, every one of them already published
@@ -988,8 +1072,13 @@ def build_footer(lang, key):
     # Thin space between the thousands, which is how the altimeter reads it.
     ceiling_label = f"{ceiling:,}".replace(",", " ") + " " + u["unit_short"]
 
+    home = key == "index"
+
     return render(FOOTER, dict(
-        home=href(lang, "index"), base="" if lang == "hu" else "../",
+        home=href(lang, "index"),
+        # Root-absolute on the homepage, for the reason root_href gives: one
+        # application, three URLs, and a dev server that serves it from a fourth.
+        base="/" if _ROOT_LINKS else ("" if lang == "hu" else "../"),
         nl_lede=u["nl_lede"], nl_label=u["nl_label"],
         nl_placeholder=u["nl_placeholder"], nl_button=u["nl_button"],
         f_links=u["f_links"], f_pages=pages, f_services=u["services"], f_svc=svc,
@@ -997,13 +1086,22 @@ def build_footer(lang, key):
         privacy=href(lang, "privacy"), f_privacy=u["f_privacy"],
         imprint=href(lang, "imprint"), f_imprint=u["f_imprint"],
         # ---- Phase 8.5
-        arrival_mod=" arrival--home" if key == "index" else "",
+        arrival_mod=" arrival--home" if home else "",
         ceiling_label=ceiling_label,
-        converge_state=p["converge_state"], converge_lede=p["converge_lede"],
+        # The homepage has actually flown the 30 000 m the label reports, so it
+        # says so. Every other route is reporting its own ceiling as a position
+        # on the instrument, which is what "calibration complete" means there.
+        converge_state=p["converge_state_home"] if home else p["converge_state"],
+        converge_lede=p["converge_lede"],
         cta_head=p[ARCHETYPE_CTA.get(key, "cta_head")] if key in ARCHETYPE_CTA else p["cta_head"],
         quote=href(lang, "quote"), start=p["start"],
         work=href(lang, "work"), explore=p["explore"],
-        arrow=ARROW,
+        # No arrow glyph on the homepage — the same rule `build_nav` applies to
+        # the header's own button. `.btn svg` is sized in main.css, which the
+        # homepage does not link: its buttons are the journey's, and an inline
+        # SVG with a viewBox and no dimensions collapsed to 0×0 inside one.
+        # An invisible glyph in the markup is worse than no glyph.
+        arrow="" if home else ARROW,
         f_status=p["status_group"], st_reply=p["st_reply"],
         st_where=p["st_where"], st_langs=p["st_langs"],
         f_langs=build_langs(lang, key), to_top=p["to_top"],
@@ -1301,6 +1399,71 @@ def load_dict(lang):
     return table
 
 
+# --------------------------------------------------------------- the homepage
+#
+# The homepage is the one route this script does not generate. It is a React and
+# WebGL bundle built by experiments/vite.home.config.ts from three hand-written
+# locale shells, and it stays that way — see ARCHITECTURE.md for why rebuilding
+# the ascent as a generated page was never on the table.
+#
+# What it was missing was the site: it had no header, no menu, and a footer of
+# its own invention. The answer is not a second navigation system for one route.
+# It is this: the chrome is rendered here, by the one place that owns the slug
+# table, the six destinations, the five services and all three locales, and
+# handed to the Vite build as four strings per language. The homepage then
+# carries byte-identical header, menu, Arrival and footer markup to the other 66
+# routes, styled by the same assets/css/chrome.css and driven by the same
+# assets/js/header.js.
+#
+# The four slots are ordinary HTML comments in the shells, so a shell is still a
+# valid document to open, and a shell that loses one is a build error rather
+# than a page that quietly ships without a footer.
+HOME_HEAD = """<!-- The site chrome, generated by _build/build.py. Same stylesheet as the
+         other 66 routes; main.css is deliberately NOT linked, because it
+         carries the page-level resets the journey's own stylesheet contradicts.
+         See the note at the top of assets/css/chrome.css. -->
+    <link rel="stylesheet" href="/assets/css/chrome.css">
+    <!-- motion.css is deliberately absent, and so is main.css. The journey's
+         eleven panels carry `data-stage` and `data-kinetic`, which are two of
+         that file's own primitives, driven here by the journey's clock instead.
+         The two primitives the chrome actually needs — TraceLine and
+         CTAConvergence — live in chrome.css above. assets/js/motion.js keeps out
+         of the journey subtree for the same reason; see `data-motion-external`. -->
+    <script id="i18n" type="application/json">{{i18n}}</script>
+    <!-- The canonical lead controller, for the footer newsletter. Event-bound
+         only: it starts no loop and reads no layout. -->
+    <script src="/assets/js/lead.js" defer></script>"""
+
+# Not deferred, for the reason SHELL gives: the header's opening state is above
+# the fold and a header that snaps into place a frame after paint is a layout
+# shift the visitor watches happen. It is at the end of <body>, after the header
+# markup it binds to.
+HOME_SCRIPTS = """<script src="/assets/js/header.js"></script>
+    <script src="/assets/js/motion.js" defer></script>"""
+
+
+def build_home_chrome(lang):
+    """The four chrome strings for one homepage locale."""
+    u = UI[lang]
+    js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
+    with root_links():
+        return {
+            "head": render(HOME_HEAD, dict(i18n=json.dumps(js, ensure_ascii=False))),
+            # `base="/"` so the wordmark's plane resolves from `/`, `/en/` and
+            # `/de/` alike, and from the dev server's `/home/hu.html`.
+            "deck": build_deck(lang, "index", "/", HOME_PATH[lang]),
+            "footer": build_footer(lang, "index"),
+            "scripts": HOME_SCRIPTS,
+        }
+
+
+def write_home_chrome():
+    (Path(__file__).resolve().parent / "home-chrome.json").write_text(
+        json.dumps({l: build_home_chrome(l) for l in LANGS},
+                   ensure_ascii=False, indent=1),
+        encoding="utf-8")
+
+
 def write_route_manifest():
     """The slug table, as data, for the tools downstream of this script.
 
@@ -1333,6 +1496,7 @@ def main():
         sys.exit(f"slug entries with no fragment: {', '.join(sorted(missing_frag))}")
 
     write_route_manifest()
+    write_home_chrome()
 
     for lang in LANGS:
         table = load_dict(lang)
@@ -1391,16 +1555,9 @@ def main():
                 extra_css=page_css(meta, base),
                 extra_js="",
                 skip=u["skip"], unit=u["unit"], layer0=u["layers"][0],
-                home=href(lang, "index"), brand_aria=u["brand_aria"],
-                nav_aria=u["nav_aria"], menu_aria=u["menu_aria"],
                 burger_aria=u["burger_aria"],
-                nav=build_nav(lang, key), menu=build_menu(lang, key),
-                langs=build_langs(lang, key),
-                # ---- Phase 8.5 flight deck
-                alt_k=u["p85"]["alt"], unit_short=u["unit_short"],
-                quote_href=href(lang, "quote"), start=u["p85"]["start"],
-                menu_label=u["p85"]["menu"], close=u["p85"]["close"],
-                menu_aria_full=u["p85"]["menu_aria_full"],
+                # ---- Phase 8.5 flight deck, shared with the React homepage
+                deck=build_deck(lang, key, base, href(lang, "index")),
                 body=body,
                 footer=build_footer(lang, key) if show_footer else "",
             ))

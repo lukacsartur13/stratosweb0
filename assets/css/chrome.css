@@ -1,0 +1,711 @@
+/* ==========================================================================
+   STRATOS — the site chrome: tokens, flight deck, full-screen navigation,
+   Arrival and the ground-control footer.
+
+   WHY THIS FILE EXISTS
+   --------------------
+   Two surfaces render the same chrome. The eleven static routes are generated
+   by `_build/build.py` and styled by `assets/css/main.css`; the homepage is a
+   React/WebGL bundle with a stylesheet of its own (`experiments/src/full/
+   styles.css`). Until now the header, the menu, the Arrival and the footer
+   existed only on the first of those, because they were written inside
+   main.css — 2 100 lines of *page* styling whose global resets (`* { margin:0 }`,
+   `h1..h4 { line-height:.95 }`, `img, svg { display:block }`) would restyle the
+   journey's eleven panels the moment the homepage linked it.
+
+   So the chrome moved out rather than being copied. Every rule below was cut
+   from main.css, not duplicated from it: there is exactly one `.nav`, one
+   `.menu`, one `.arrival` and one `.foot` in the codebase, and both surfaces
+   link this file. A change to the header is a change to the header everywhere.
+
+   LOAD ORDER
+   ----------
+     static routes   type.css → chrome.css → main.css → motion.css → transitions.css
+     homepage        type.css → chrome.css → motion.css → transitions.css → the journey bundle
+
+   The homepage links this *before* its own stylesheet, so where the two name
+   the same thing — `.btn`, `.skip`, the palette — the journey's accepted
+   version wins. That is deliberate: the chrome adapts to the page it is on, the
+   page does not adapt to the chrome.
+   ========================================================================== */
+
+/* --------------------------------------------------------- tokens */
+:root {
+  /* Palette pulled from the existing brand + the chrome plane in the logo */
+  --void:    #000000;   /* upper atmosphere */
+  --ink:     #101010;   /* panel black */
+  --slate:   #232322;   /* brand near-black */
+  --signal:  #FFEE25;   /* brand yellow — the beacon */
+  --chrome:  #CBDCE9;   /* highlight sampled from the logo's chrome */
+  --paper:   #F4F4F4;   /* brand off-white */
+  --haze:    #757575;   /* brand grey */
+
+  --fg:      var(--paper);
+  --bg:      var(--void);
+
+  /* Type. The families, the fallback stacks and every semantic role live in
+     assets/css/type.css, which every surface links immediately before this
+     file. These names are the local aliases the rest of the system spells.
+
+     Archivo is a variable font with a width axis as well as a weight axis; both
+     ranges are verified against the binaries by `node scripts/font-metadata.mjs`
+     (wght 100–900, wdth 62–125), so 112/680 are inside the design space rather
+     than being silently clamped. */
+  --display: var(--font-display);
+  --body:    var(--font-body);
+  --data:    var(--font-mono);
+  /* The logo wordmark is always Aboreto. One consumer, `.brand` — see
+     assets/css/type.css for why it is a role of its own and not a display
+     alternative that a headline could reach for. */
+  --mark:    var(--font-mark);
+  --wd: 112;
+  --wt: 680;
+
+  /* scale */
+  --step--1: clamp(.72rem, .68rem + .2vw, .8rem);
+  --step-0:  clamp(.95rem, .9rem + .25vw, 1.06rem);
+  --step-1:  clamp(1.15rem, 1rem + .7vw, 1.5rem);
+  --step-2:  clamp(1.5rem, 1.2rem + 1.5vw, 2.4rem);
+  --step-3:  clamp(2rem, 1.4rem + 3vw, 4rem);
+  --step-4:  clamp(2.1rem, 1rem + 5.2vw, 6.2rem);
+  --step-5:  clamp(2rem, .3rem + 6vw, 8rem);
+
+  /* geometry */
+  --rail: 78px;
+  --gut: clamp(1.25rem, 4vw, 5rem);
+  --maxw: 1560px;
+  --hair: rgba(244, 244, 244, .14);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+
+  /* the Meridian Trace */
+  --trace-w: 1.25px;
+  --trace-c: rgba(203, 220, 233, .32);      /* --chrome, held back */
+  --trace-lit: var(--signal);
+  --trace-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* The homepage carries no altimeter rail — the climb *is* the page there, and
+   the instrument is the whole canvas. So the header spans the full width
+   instead of being inset by a rail that is not on screen. One custom property,
+   inherited by everything that reads it, rather than a second `.nav` rule. */
+.journey-home { --rail: 0px; }
+
+a { color: inherit; text-decoration: none; }
+
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+.wrap {
+  width: 100%; max-width: var(--maxw);
+  margin-inline: auto; padding-inline: var(--gut);
+}
+
+/* The chrome resets its own block margins.
+   On the eleven static routes this is redundant — main.css carries a global
+   `* { margin: 0 }`. The homepage's stylesheet does not, and cannot be given
+   one: it was written against the user-agent margins its own eleven panels
+   still rely on. Scoped to the four chrome roots so it can never reach the
+   journey, and `:where()` so it carries no specificity and every rule below
+   overrides it in the ordinary way. */
+.nav :where(p),
+.menu :where(h1, h2, h3, h4, p, ul, ol),
+.arrival :where(h1, h2, h3, h4, p, ul, ol, figure),
+.foot :where(h1, h2, h3, h4, p, ul, ol, figure) { margin: 0; }
+
+/* ------------------------------------------------------- flight deck (§7)
+   Three states on one element, switched by `data-state` from
+   assets/js/header.js. The header never hides: it changes what it is showing.
+
+     opening      wordmark + full navigation, transparent, no panel
+     journey      compact mark + altitude + menu trigger, ~48 px
+     destination  navigation returns, Start Project comes forward
+
+   Everything that moves between states is a transition on a property that does
+   not force layout — opacity, transform, max-width — so a state change costs a
+   composite and not a reflow of the whole document. */
+.nav {
+  /* must sit above .menu so the close button stays reachable while it is open */
+  position: fixed; top: 0; left: var(--rail); right: 0; z-index: 890;
+  display: flex; align-items: center;
+  gap: clamp(.8rem, 2vw, 1.8rem); padding: 1.1rem var(--gut);
+  transition: background .4s, backdrop-filter .4s, padding .45s var(--ease);
+}
+.nav.is-solid {
+  background: rgba(0,0,0,.72); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--hair);
+}
+
+.brand { display: flex; align-items: center; gap: .6rem; margin-right: auto; }
+.nav .brand { margin-right: auto; }
+/* height: auto — see the note on .rail__mark. Same image, same stamped
+   height="96", same stretch: this one rendered 26×96 in the header of all 66
+   routes. */
+.brand img { width: 26px; height: auto; transition: width .45s var(--ease); }
+/* The wordmark, in every place it appears: the header, the full-screen menu and
+   the footer. One selector, because the rule is one rule — the mark is always
+   Aboreto. The uppercase and the tracking below are not a treatment applied to
+   it, they are how the mark is drawn. */
+.brand span {
+  font-family: var(--mark); font-size: 1.05rem;
+  letter-spacing: .34em; text-transform: uppercase;
+  white-space: nowrap;
+}
+/* The two wordmarks share one grid cell and cross-fade, so the brand's width is
+   whatever the wider of them is and nothing after it jumps at the state change.
+   The footer's .brand has no second mark, so the grid collapses to one child
+   and it is unaffected. */
+.nav .brand__wm { display: grid; align-items: center; }
+.brand__full, .brand__mark { grid-area: 1 / 1; transition: opacity .35s var(--ease); }
+.brand__mark { opacity: 0; letter-spacing: .18em; }
+
+/* The altitude readout. Monospaced and zero-padded so the digits tick without
+   the surrounding chrome moving — the same discipline as the rail.
+
+   On the homepage the key is not a static "ALT": the journey publishes its own
+   stage name there, so the readout reads `ASCENT — 08 420 M`. Same three
+   elements, same widths, one extra string. See assets/js/header.js. */
+.nav__alt {
+  display: none; align-items: baseline; gap: .5rem; margin: 0;
+  font-family: var(--data); font-size: var(--step--1);
+  letter-spacing: .16em; color: var(--haze);
+  opacity: 0; transition: opacity .4s var(--ease);
+}
+.nav__alt-k { color: rgba(244,244,244,.4); }
+.nav__alt-v { color: var(--signal); font-weight: 500; font-variant-numeric: tabular-nums; }
+.nav__alt-u { font-size: 9px; }
+
+.nav__cta {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .13em;
+  padding: .55rem 1.1rem; border: 1px solid var(--hair);
+  color: var(--paper); white-space: nowrap;
+  max-width: 0; overflow: hidden; opacity: 0; padding-inline: 0; border-width: 0;
+  /* The nav is a flex row and this is the item with the most give, so without
+     this it is the one that absorbs a full row — it was squeezed to 96px and
+     cut its own label in half. It opens from zero or it is not there; it is
+     never a partial word. */
+  flex: 0 0 auto;
+  transition: max-width .5s var(--ease), opacity .35s var(--ease),
+              padding .5s var(--ease), background .25s, color .25s;
+}
+.nav__cta:hover { background: var(--signal); color: var(--void); border-color: var(--signal); }
+
+/* ---- journey: compress to the 40–52 px band the brief specifies. The height
+   is set by the tallest child, so the wordmark and the mark shrink with the
+   padding rather than the padding fighting a fixed line box. */
+.nav[data-state="journey"] { padding-block: .4rem; }
+.nav[data-state="journey"] .brand img { width: 18px; }
+.nav[data-state="journey"] .brand span { font-size: .82rem; }
+.nav[data-state="journey"] .burger { height: 34px; }
+.nav[data-state="journey"] .burger__t { font-size: 10px; }
+.nav[data-state="journey"] .brand__full { opacity: 0; }
+.nav[data-state="journey"] .brand__mark { opacity: 1; }
+.nav[data-state="journey"] .nav__alt { display: flex; opacity: 1; }
+@media (min-width: 1081px) {
+  /* The main navigation collapses into the menu trigger, which is the point of
+     the journey state — the ascent is the page, and the chrome gets out of it. */
+  .nav[data-state="journey"] .nav__links { display: none; }
+}
+
+/* ---- destination: the navigation returns and the CTA arrives.
+
+   The open width has to clear the longest label in any locale, measured with
+   this font at this tracking: "Projekt indítása" needs 187px, "Start a project"
+   and "Projekt starten" 178px. 22ch resolved to 169px and clipped all three —
+   `ch` is the width of a zero, and .13em of letter-spacing on every character
+   is not in that number. 26ch leaves room for a fallback mono, which is wider
+   than the webfont, without leaving a gap when the label is short: the box
+   still shrink-wraps its text, and this only sets the ceiling the transition
+   opens to. */
+.nav[data-state="destination"] .nav__cta {
+  max-width: 26ch; opacity: 1; padding-inline: 1.1rem; border-width: 1px;
+}
+.nav[data-state="destination"] { padding-block: 1.1rem; }
+
+.nav__links { display: flex; align-items: center; gap: clamp(1rem, 2.2vw, 2.2rem); }
+.nav__links > * { position: relative; }
+
+.navlink {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .13em;
+  padding: .4rem 0; display: inline-block;
+  color: rgba(244,244,244,.72);
+  transition: color .25s;
+}
+.navlink:hover, .navlink[aria-current="page"] { color: var(--paper); }
+.navlink[aria-current="page"]::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1px; background: var(--signal);
+}
+
+.drop { position: relative; }
+.drop__panel {
+  position: absolute; top: calc(100% + .8rem); left: -1rem;
+  min-width: 264px; background: var(--ink);
+  border: 1px solid var(--hair);
+  padding: .5rem; opacity: 0; visibility: hidden;
+  transform: translateY(-6px); transition: .25s var(--ease);
+}
+.drop:hover .drop__panel,
+.drop:focus-within .drop__panel { opacity: 1; visibility: visible; transform: none; }
+.drop__panel a {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding: .7rem .8rem; font-size: var(--step--1);
+  border-bottom: 1px solid rgba(244,244,244,.07);
+  transition: background .2s, color .2s, padding-left .25s var(--ease);
+}
+.drop__panel a:last-child { border-bottom: 0; }
+.drop__panel a:hover { background: rgba(255,238,37,.08); color: var(--signal); padding-left: 1.2rem; }
+.drop__panel em {
+  font-family: var(--data); font-style: normal; font-size: 9px;
+  letter-spacing: .16em; color: var(--haze);
+}
+
+/* Always present, at every width and in every state. The opening state shows
+   the primary navigation as well, and the trigger sits beside it: the layer is
+   the full index — services, work, contact, locale, project start — and making
+   it reachable only after you had scrolled would hide the site's own map behind
+   an interaction nobody is told about. In the journey state the navigation
+   collapses and this becomes the only control, which is the point of it. */
+.burger {
+  display: flex; background: none; border: 0; cursor: pointer;
+  height: 42px; padding: 0 0 0 .8rem; position: relative; z-index: 890;
+  align-items: center; gap: .7rem; color: var(--paper);
+}
+.burger__t {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em;
+}
+/* The two bars live in one 22×12 box: the first sits at the top of it, the
+   second at the bottom, and both rotate about the centre to form an X. Because
+   the box never resizes, opening the layer does not shift the header. */
+.burger__bars { position: relative; width: 22px; height: 12px; flex: none; }
+.burger i {
+  position: absolute; left: 0; right: 0; height: 1.5px;
+  background: var(--paper); transition: transform .35s var(--ease), top .35s var(--ease);
+}
+.burger i:nth-child(1) { top: 0; }
+.burger i:nth-child(2) { top: 10.5px; }
+.burger[aria-expanded="true"] i:nth-child(1) { top: 5.25px; transform: rotate(45deg); }
+.burger[aria-expanded="true"] i:nth-child(2) { top: 5.25px; transform: rotate(-45deg); }
+
+/* ------------------------------------------- full-screen navigation (§7.4)
+   A layer, not a route. Every destination in it is a plain anchor, so
+   middle-click, ctrl-click, the back button and "open in new tab" behave the
+   way they do everywhere else on the web. The focus trap, the scroll lock and
+   focus restoration are in assets/js/header.js. */
+.menu {
+  position: fixed; inset: 0; z-index: 880;
+}
+.menu[hidden] { display: none; }
+
+.menu__veil {
+  position: absolute; inset: 0; background: rgba(0,0,0,.6);
+  opacity: 0; transition: opacity .4s var(--ease);
+}
+.menu.is-open .menu__veil { opacity: 1; }
+
+.menu__panel {
+  position: absolute; inset: 0; background: var(--void);
+  display: grid; align-content: center;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(4.5rem, 9vh, 7rem) var(--gut) clamp(2.5rem, 6vh, 4rem);
+  overflow-y: auto; overscroll-behavior: contain;
+  clip-path: inset(0 0 100% 0); transition: clip-path .7s var(--ease);
+}
+.menu.is-open .menu__panel { clip-path: inset(0 0 0 0); }
+
+/* The Meridian reaching the active destination. Decorative: the current page is
+   already announced by aria-current on the link itself. */
+.menu__trace {
+  position: absolute; left: var(--gut); top: 0; bottom: 0;
+  width: 40px; height: 100%;
+}
+
+/* There is no separate close button in the layer. The header sits above it and
+   its trigger is already the close control: it morphs to an X, it owns
+   `aria-expanded` and `aria-controls`, and its label swaps to the close word.
+   A second dismiss control landed on exactly the same coordinates as the first,
+   which is worse than either alone. ESC and the veil close it too. */
+.burger__t { display: grid; }
+.burger__open, .burger__shut { grid-area: 1 / 1; transition: opacity .25s; }
+.burger__shut { opacity: 0; }
+.burger[aria-expanded="true"] .burger__open { opacity: 0; }
+.burger[aria-expanded="true"] .burger__shut { opacity: 1; }
+
+/* While the layer is open the header keeps only its identity and its toggle.
+   Everything else it shows is already in the layer, larger and better set. */
+.menu-open .nav__links,
+.menu-open .nav__cta { opacity: 0; pointer-events: none; }
+.nav__links { transition: opacity .3s var(--ease); }
+
+/* The layer covers the viewport, so what is behind it must not stay in the tab
+   order. `inert` is the modern answer and the header still needs to be
+   reachable, so this is scoped to the two things the homepage puts behind the
+   layer that the static routes do not have: the journey's own skip link and its
+   in-canvas controls. It costs nothing where neither exists. */
+.menu-open .journey .skip,
+.menu-open .hud { visibility: hidden; }
+
+.menu__primary { list-style: none; margin: 0; padding: 0; }
+.menu__primary a {
+  font-family: var(--display); font-size: clamp(1.6rem, 4.4vw, 3.2rem);
+  font-variation-settings: "wdth" 96, "wght" 640;
+  text-transform: uppercase; letter-spacing: .02em; line-height: 1.05;
+  /* German compounds are long — never let one push the layer sideways */
+  overflow-wrap: anywhere;
+  padding: .4rem 0 .4rem 3.4rem; border-bottom: 1px solid var(--hair);
+  display: flex; align-items: baseline; gap: 1rem;
+  transition: color .25s, padding-left .35s var(--ease);
+}
+.menu__primary a:hover, .menu__primary a:focus-visible { color: var(--signal); padding-left: 4.2rem; }
+.menu__primary a[aria-current="page"] { color: var(--signal); }
+.menu__primary b {
+  position: absolute; margin-left: -3.4rem;
+  font-family: var(--data); font-size: 10px; font-weight: 400;
+  color: var(--haze); letter-spacing: .2em;
+}
+
+.menu__h {
+  font-family: var(--data); font-size: var(--step--1); font-weight: 400;
+  text-transform: uppercase; letter-spacing: .24em; color: var(--haze);
+  margin: 0 0 1.2rem;
+}
+.menu__svc ul { list-style: none; margin: 0; padding: 0; }
+.menu__svc a {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding: .75rem 0; border-bottom: 1px solid rgba(244,244,244,.07);
+  font-size: var(--step-0); overflow-wrap: anywhere;
+  transition: color .25s, padding-left .3s var(--ease);
+}
+.menu__svc a:hover, .menu__svc a:focus-visible { color: var(--signal); padding-left: .5rem; }
+.menu__svc a[aria-current="page"] { color: var(--signal); }
+.menu__svc em {
+  font-family: var(--data); font-style: normal; font-size: 9px;
+  letter-spacing: .16em; color: var(--haze); flex: none;
+}
+
+.menu__aside {
+  grid-column: 2; display: flex; flex-direction: column;
+  align-items: flex-start; gap: 1.4rem; margin-top: 2.2rem;
+}
+.menu__cta { align-self: stretch; justify-content: center; }
+.menu__foot {
+  font-family: var(--data); font-size: var(--step--1);
+  color: var(--haze); display: grid; gap: .4rem;
+}
+.menu__foot a:hover { color: var(--paper); }
+
+/* The header stays legible on top of the layer, and drops its own panel so
+   there are not two blurred surfaces stacked. */
+.menu-open .nav { background: transparent; backdrop-filter: none; border-bottom: 0; }
+
+@media (max-width: 860px) {
+  .menu__panel {
+    grid-template-columns: 1fr; align-content: start;
+    gap: 2.2rem;
+  }
+  .menu__aside { grid-column: 1; margin-top: 0; }
+  .menu__trace { display: none; }
+}
+/* Landscape phones have ~390 px of height: the layer must scroll from the top
+   rather than centring content it cannot fit. */
+@media (max-height: 560px) {
+  .menu__panel { align-content: start; }
+  .menu__primary a { font-size: clamp(1.15rem, 3.4vh, 1.7rem); padding-block: .25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu__panel, .menu__veil { transition: none; clip-path: none; }
+}
+
+/* --------------------------------------------------------- language switch */
+.lang {
+  display: flex; align-items: center;
+  border: 1px solid var(--hair); padding: 2px;
+}
+.lang a {
+  font-family: var(--data); font-size: 10px; font-weight: 500;
+  letter-spacing: .14em; line-height: 1;
+  padding: .45rem .5rem; color: var(--haze);
+  transition: color .2s, background .2s;
+}
+.lang a:hover { color: var(--paper); }
+.lang a[aria-current="true"] { color: var(--void); background: var(--signal); }
+
+/* inside the mobile sheet it must not inherit the giant display links */
+.menu .lang {
+  align-self: start; margin-top: 1.6rem; border-color: rgba(244,244,244,.24);
+}
+.menu .lang a {
+  font-family: var(--data); font-size: 11px; text-transform: none;
+  letter-spacing: .14em; border-bottom: 0; padding: .55rem .8rem;
+  display: block;
+}
+.menu .lang a[aria-current="true"] { color: var(--void); }
+
+@media (max-width: 1080px) {
+  .nav__links { display: none; }
+}
+/* §7.5 — the mobile header is `STRATOS  MENU` at the opening and
+   `S/  08 420 M  MENU` during the journey. Desktop navigation links are never
+   put into it: six uppercase destinations in 390 px is not a navigation. */
+@media (max-width: 640px) {
+  .nav { padding-inline: var(--gut); gap: .8rem; }
+  .nav__cta { display: none; }
+  .burger__t { font-size: 10px; letter-spacing: .12em; }
+  .nav[data-state="journey"] .nav__alt { font-size: 10px; letter-spacing: .1em; }
+}
+
+/* The homepage's opening state on a phone is `STRATOS   MENU` and nothing else.
+   The stage label is a second string in a row that has 390 px to give, and at
+   the opening there is no ascent to report yet — 0 m under a headline that has
+   not been read is instrumentation for its own sake. It arrives with the
+   journey state, which is where the altitude means something. */
+@media (max-width: 640px) {
+  .nav[data-state="journey"] .nav__alt-k { display: none; }
+}
+
+/* The display face, used by the Arrival headline. */
+.display {
+  font-family: var(--display); text-transform: uppercase;
+  font-weight: 400;
+  font-variation-settings: 'wdth' var(--wd), 'wght' var(--wt);
+  letter-spacing: -.018em; line-height: .88;
+}
+
+.muted { color: var(--haze); }
+
+/* --------------------------------------------------------- form furniture
+   Here rather than in main.css because the footer newsletter is chrome: it is
+   on all 67 routes, it is bound by the one controller in assets/js/lead.js, and
+   the homepage now carries it too. The contact form and the questionnaire on
+   the static routes use the same classes, which is the point. */
+.form__note, .form__status {
+  font-family: var(--data); font-size: var(--step--1); color: var(--haze);
+}
+
+/* The honeypot. Off-canvas rather than display:none, because a bot that reads
+   the computed style skips hidden fields — and a field nothing skips is the
+   whole point. Never focusable, never announced, never autofilled. */
+.hp {
+  position: absolute; left: -9999px; top: auto;
+  width: 1px; height: 1px; overflow: hidden;
+}
+
+/* Submission states. The text is the message; colour only reinforces it, so
+   nothing here is the sole carrier of meaning. */
+.form__status:empty { display: none; }
+.form__status[data-state="submitting"] { color: var(--haze); }
+.form__status[data-state="success"],
+.form__note[data-state="success"] { color: var(--signal); }
+.form__status[data-state="invalid"],
+.form__status[data-state="limited"],
+.form__status[data-state="error"],
+.form__note[data-state="invalid"],
+.form__note[data-state="limited"],
+.form__note[data-state="error"] { color: #ff8f6b; }
+.band--pale .form__status[data-state="invalid"],
+.band--pale .form__status[data-state="limited"],
+.band--pale .form__status[data-state="error"] { color: #b8341a; }
+.band--pale .form__status[data-state="success"] { color: #1d6b3f; }
+
+/* -------------------------------------------------------------- TraceLine
+   Moved here from assets/css/motion.css. The menu carries a trace and the
+   Arrival *is* a convergence, so both primitives are chrome — on all 67 routes,
+   the homepage included, and the homepage does not link motion.css. The other
+   seven primitives stayed there: they are page composition and the homepage has
+   its own. See the note at the top of motion.css. */
+
+[data-trace] {
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+}
+
+[data-trace] path,
+[data-trace] line,
+[data-trace] polyline {
+  fill: none;
+  stroke: var(--trace-c);
+  stroke-width: var(--trace-w);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-trace] .trace__lit { stroke: var(--trace-lit); }
+
+/* A node is a station on the trace: where it meets a label, a logo or a stage. */
+[data-trace] .trace__node {
+  fill: var(--void);
+  stroke: var(--trace-c);
+  stroke-width: var(--trace-w);
+}
+[data-trace].is-drawn .trace__node { stroke: var(--trace-lit); }
+
+/* ---------------------------------------------------------- CTAConvergence */
+
+[data-converge] {
+  --converge: 0;
+  position: relative;
+}
+[data-converge] .converge__cta {
+  transform: translateY(calc((1 - var(--converge)) * 1.4rem));
+  opacity: calc(.25 + var(--converge) * .75);
+}
+[data-converge].is-arrived .converge__cta { transform: none; opacity: 1; }
+
+/* Belt and braces, both of them moved with the primitives they name. The
+   driver already commits end states under reduced motion, and `.motion-ready`
+   is set by motion.js at boot — so the second block applies exactly when the
+   script did not run at all. Neither may ever leave the call to action hidden. */
+@media (prefers-reduced-motion: reduce) {
+  [data-converge] .converge__cta {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+html:not(.motion-ready) [data-converge] .converge__cta { opacity: 1; transform: none; }
+html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
+
+/* ------------------------------------------------- ARRIVAL / GROUND CONTROL
+   The §8 finale. Three movements: the trace converges, the page asks its own
+   closing question, then — and only then — the information grid.
+
+   There is no border-top between the convergence and the content above it. The
+   old footer opened with a rule, which is exactly what made it read as "the
+   links start here" instead of as the end of an argument. */
+.arrival {
+  position: relative;
+  padding-block: clamp(5rem, 14vh, 10rem) clamp(3rem, 7vh, 5rem);
+  text-align: center;
+  overflow: clip;
+}
+.arrival .wrap { position: relative; }
+
+/* In flow, not absolute. The trace has to reserve the band it draws in: taken
+   out of flow it drew its descender straight through the lede underneath it,
+   and every fix from that position is a magic offset that breaks at the next
+   viewport. Here the converging curves and the descender own a block, and the
+   state line begins exactly where the descender ends. */
+.arrival__trace {
+  position: relative; display: block;
+  width: 100%; height: clamp(90px, 16vh, 190px);
+  margin-bottom: clamp(1rem, 3vh, 2rem);
+}
+
+.arrival__state {
+  display: flex; justify-content: center; gap: 1.4rem; flex-wrap: wrap;
+  margin: 0;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .24em; color: var(--haze);
+}
+.arrival__state span:first-child { color: var(--signal); }
+
+.arrival__lede {
+  margin: 1.6rem auto 0; max-width: 26ch;
+  color: rgba(244,244,244,.72); font-size: var(--step-1);
+}
+
+.arrival__h {
+  margin: clamp(1rem, 3vh, 2rem) auto 0; max-width: 16ch;
+  font-size: var(--step-4); line-height: 1.02;
+  text-wrap: balance;
+}
+
+.arrival__cta {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 1rem; margin-top: clamp(2rem, 5vh, 3.4rem);
+}
+
+/* The homepage gets the long version — §8.5 is explicit that the full
+   cinematic finale must not be repeated on every route. */
+.arrival--home { padding-block: clamp(8rem, 24vh, 16rem) clamp(4rem, 9vh, 7rem); }
+.arrival--home .arrival__trace { height: clamp(140px, 26vh, 300px); }
+
+/* The homepage's Arrival is the first thing that is *not* the sticky journey,
+   and it opens against the last frame the canvas held. A background of its own
+   is what makes the release readable as an arrival rather than as the scene
+   having ended: the void closes over the ascent, and the trace draws into it.
+   Everything else about the section is the shared one. */
+.arrival--home {
+  background: var(--void);
+  border-top: 1px solid var(--hair);
+}
+
+@media (max-width: 640px) {
+  .arrival__state { gap: .6rem; }
+  .arrival__trace { height: clamp(70px, 12vh, 110px); }
+  .arrival__cta .btn { width: 100%; justify-content: center; }
+}
+
+/* --------------------------------------------------------- footer */
+.foot { border-top: 1px solid var(--hair); padding-block: clamp(3rem, 6vw, 5rem) 8rem; }
+.foot__status { color: var(--haze); font-size: var(--step--1); line-height: 1.5; }
+.foot__status li { max-width: 26ch; }
+.foot__utility { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
+.foot__top {
+  background: none; border: 0; cursor: pointer; padding: 0;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em; color: var(--haze);
+  transition: color .25s;
+}
+.foot__top:hover { color: var(--signal); }
+/* Newsletter + the four §8.3 groups: Navigate, Capabilities, Contact, Status.
+   The newsletter keeps its extra width; the four groups share the rest evenly.
+   At 1080 it becomes two rows of the same columns rather than a squeeze, and
+   below 640 it is one column, because five columns of link lists on a phone is
+   a sitemap printed sideways. */
+.foot__grid {
+  display: grid; gap: clamp(2rem, 4vw, 3rem);
+  grid-template-columns: 1.5fr repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 1180px) {
+  .foot__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .foot__grid > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .foot__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) { .foot__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .foot__grid { grid-template-columns: 1fr; } }
+
+.foot h4 {
+  font-family: var(--data); font-size: 10px; font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase; color: var(--haze); margin-bottom: 1.1rem;
+}
+.foot ul { list-style: none; padding: 0; display: grid; gap: .55rem; }
+.foot ul a {
+  font-size: var(--step-0); color: rgba(244,244,244,.72);
+  transition: color .25s, padding-left .3s var(--ease);
+  display: inline-block;
+}
+.foot ul a:hover { color: var(--signal); padding-left: .4rem; }
+.foot__bottom {
+  margin-top: clamp(2.5rem, 5vw, 4rem); padding-top: 1.4rem;
+  border-top: 1px solid var(--hair);
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
+  font-family: var(--data); font-size: var(--step--1); color: var(--haze);
+}
+/* The same defect mirrored: this one constrains height, so the stamped
+   width="1800" survived and the GDPR badge laid out as an 1800px-wide box that
+   flex then squashed to a 1252×30 smear. See the note on .rail__mark. */
+.foot__bottom img { height: 30px; width: auto; opacity: .5; }
+
+.newsletter { display: flex; gap: 0; border-bottom: 1px solid var(--hair); max-width: 380px; }
+/* `font: inherit` is main.css's global control reset, restated for the one
+   control that is chrome. The homepage does not link main.css, and an input
+   left on the user-agent font is the one place in the footer where that shows. */
+.newsletter input { flex: 1; background: none; border: 0; padding: .8rem 0; font: inherit; color: inherit; }
+.newsletter input:focus { outline: none; }
+.newsletter button {
+  background: none; border: 0; cursor: pointer; color: var(--signal);
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .14em; padding: 0 0 0 1rem;
+}

@@ -581,14 +581,25 @@ test.describe('the sticky handoff into the final CTA', () => {
       const r = (s: string) => document.querySelector(s)?.getBoundingClientRect() ?? null;
       const cta = r('[data-testid="stage-destination"]');
       const stage = r('.journey__stage');
-      const footer = r('.journey__footer');
+      // The end of the sticky track, not "the top of the footer".
+      //
+      // The footer used to be `.journey__footer`, a homepage-only line of links
+      // invented for this route. It is gone: the production homepage now
+      // renders the site's own Arrival and ground-control footer, from
+      // `_build/build.py`, in the locale shell *outside* this component — and
+      // this baseline route, which is not the homepage, has nothing after the
+      // track at all. A selector that is absent on one of the two routes makes
+      // the assertion below silently vanish there, which is worse than not
+      // having it. The track's own bottom edge is the invariant either way: the
+      // closing panel must end exactly where the track does, with no gap.
+      const track = r('[data-testid="journey-track"]');
       const canvas = r('canvas');
       return {
         ctaTop: cta?.top ?? null,
         ctaBottom: cta?.bottom ?? null,
         stageTop: stage?.top ?? null,
         stageBottom: stage?.bottom ?? null,
-        footerTop: footer?.top ?? null,
+        trackBottom: track?.bottom ?? null,
         canvasVisible: !!canvas && canvas.height > 0,
         viewport: innerHeight,
       };
@@ -599,10 +610,10 @@ test.describe('the sticky handoff into the final CTA', () => {
     expect(geometry.canvasVisible).toBe(true);
     expect(geometry.stageBottom, 'the sticky scene released before the CTA').toBeGreaterThan(0);
 
-    // No blank gap between the end of the CTA panel and the footer.
-    if (geometry.ctaBottom !== null && geometry.footerTop !== null) {
-      expect(Math.abs(geometry.footerTop - geometry.ctaBottom)).toBeLessThanOrEqual(2);
-    }
+    // No blank gap between the end of the CTA panel and the end of the track.
+    expect(geometry.ctaBottom, 'no closing panel').not.toBeNull();
+    expect(geometry.trackBottom, 'no journey track').not.toBeNull();
+    expect(Math.abs(geometry.trackBottom! - geometry.ctaBottom!)).toBeLessThanOrEqual(2);
 
     // The CTA is on screen and the primary action is tappable, not under the
     // footer and not under the HUD.

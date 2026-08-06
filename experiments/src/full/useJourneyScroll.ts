@@ -73,12 +73,41 @@ export function useDebugOverride<T>(read: () => T, fallback: T): T {
  * and ends when its bottom reaches the bottom, which is what the fixed-share
  * version approximated.
  */
+/**
+ * Is the full-screen navigation layer open?
+ *
+ * While it is, `assets/js/header.js` holds the body at `position: fixed` with a
+ * negative `top` — the only scroll lock iOS Safari actually honours. That
+ * collapses the document to one viewport and pins `scrollY` at 0 for as long as
+ * the layer is up, which makes every scroll-derived measurement on this page
+ * wrong in the same way: the track appears to start at the top of the document
+ * and ScrollTrigger reports a progress of 0.
+ *
+ * Left alone, opening the menu at 24 000 m walked the whole ascent back to the
+ * valley floor behind the layer and eased it up again on close. Both readers of
+ * scroll position stand down for the duration and re-read once it is restored;
+ * `header.js` announces both edges on `stratos:menu`, and announces the close
+ * *after* the scroll position has been put back.
+ */
+const menuOpen = () =>
+  typeof document !== 'undefined' &&
+  document.documentElement.classList.contains('menu-open');
+
+/** Subscribe to the layer's open/close edges. Returns an unsubscribe. */
+function onMenu(handler: (open: boolean) => void): () => void {
+  const listener = (event: Event) => handler(!!(event as CustomEvent<{ open: boolean }>).detail?.open);
+  addEventListener('stratos:menu', listener);
+  return () => removeEventListener('stratos:menu', listener);
+}
+
 export function useStageCalibration(trackRef: React.RefObject<HTMLElement>, enabled: boolean) {
   useEffect(() => {
     if (!enabled || !trackRef.current) return;
     const track = trackRef.current;
 
     const measure = () => {
+      // Every line below reads `scrollY`. See `menuOpen`.
+      if (menuOpen()) return;
       const travel = track.offsetHeight - innerHeight;
       if (travel <= 0) return;
       const trackTop = track.getBoundingClientRect().top + scrollY;
@@ -122,11 +151,16 @@ export function useStageCalibration(trackRef: React.RefObject<HTMLElement>, enab
     addEventListener('resize', measure);
     // Fonts and images settling change panel heights after the first pass.
     addEventListener('load', measure);
+    // The layer's close edge fires after the scroll position is restored, so
+    // this catches up on whatever the lock suppressed — the scrollbar coming
+    // and going resizes the track, and that is a real remeasure.
+    const offMenu = onMenu((open) => { if (!open) measure(); });
 
     return () => {
       ro.disconnect();
       removeEventListener('resize', measure);
       removeEventListener('load', measure);
+      offMenu();
     };
   }, [trackRef, enabled]);
 }
@@ -183,18 +217,32 @@ export function useJourneyScroll(trackRef: React.RefObject<HTMLElement>, enabled
       // Images and fonts settling change the track height after first measure;
       // without this the mapping is a few hundred pixels out, and on an eleven
       // screen track that is a whole stage boundary.
-      const onLoad = () => ScrollTrigger.refresh();
+      // Both of these read scroll position, and both must stand down while the
+      // navigation layer holds the body fixed. See `menuOpen`.
+      const refresh = () => { if (!menuOpen()) ScrollTrigger.refresh(); };
+
+      const onLoad = () => refresh();
       addEventListener('load', onLoad);
 
       // Late-loading case-study images are the main source of reflow here, and
       // they are below the fold by definition, so a resize observer on the
       // track catches what the load event misses.
-      const ro = new ResizeObserver(() => ScrollTrigger.refresh());
+      const ro = new ResizeObserver(refresh);
       ro.observe(track);
+
+      // `disable(false)` — do not revert. The trigger stops updating and keeps
+      // everything exactly where it is; `enable()` re-reads the scroll position,
+      // which by then is the restored one, so the journey resumes at the
+      // altitude the visitor opened the menu at rather than easing back up to it.
+      const offMenu = onMenu((open) => {
+        if (open) trigger.disable(false);
+        else { trigger.enable(); refresh(); }
+      });
 
       dispose = () => {
         removeEventListener('load', onLoad);
         ro.disconnect();
+        offMenu();
         trigger.kill();
       };
     })();
@@ -232,6 +280,8 @@ export function useNativeScrollDriver(trackRef: React.RefObject<HTMLElement>, en
     let queued = false;
     const measure = () => {
       queued = false;
+      // The navigation layer's scroll lock, again. See `menuOpen`.
+      if (menuOpen()) return;
       const travel = track.offsetHeight - innerHeight;
       if (travel <= 0) return;
       // Distance scrolled past the top of the track, over the track's travel.

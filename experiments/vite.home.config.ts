@@ -1,5 +1,6 @@
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { siteAssets } from './vite-site-assets';
 import { siteOrigin } from '../scripts/site-origin.mjs';
@@ -62,6 +63,68 @@ function substituteOrigin(): Plugin {
   };
 }
 
+/**
+ * Substitute the site chrome into the three homepage shells.
+ *
+ * WHY THE CHROME IS GENERATED AND NOT WRITTEN HERE
+ * ------------------------------------------------
+ * The header, the full-screen menu, the Arrival and the ground-control footer
+ * exist on 66 other routes. `_build/build.py` owns the slug table they link
+ * against, the six primary destinations, the five services, the case-study
+ * status gate and all three locales — so it renders them here too, into
+ * `_build/home-chrome.json`, and this plugin drops the strings into the four
+ * `<!--stratos:*-->` slots.
+ *
+ * The alternative was a React header component, and it is the wrong one: it
+ * would be a second implementation of the same navigation, in a different
+ * language, reading a second copy of the slug table, and the two would diverge
+ * on the first route that was renamed. There is exactly one `.nav` in this
+ * codebase and one `.foot`, and both of them are in build.py.
+ *
+ * `npm run build` runs `generate` (build.py) before `build:home`, so the file
+ * is always current in a full build. It is committed for the same reason
+ * `_build/routes.json` is: `npm run dev:home` must work without a Python run
+ * first, and a diff on it is a readable record of what the homepage's chrome
+ * actually is.
+ */
+function injectChrome(): Plugin {
+  const SLOTS = ['head', 'deck', 'footer', 'scripts'] as const;
+  const source = resolve(__dirname, '../_build/home-chrome.json');
+  let chrome: Record<string, Record<string, string>> | null = null;
+
+  return {
+    name: 'stratos-home-chrome',
+    enforce: 'pre',
+
+    // Re-read on every transform rather than once at config time: in `dev:home`
+    // the generator is a separate process, and a shell that still showed the
+    // header from before a `npm run generate` would be a stale page nobody
+    // could explain.
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, ctx) {
+        chrome = JSON.parse(readFileSync(source, 'utf8'));
+        const lang = /home\/(hu|en|de)\.html$/.exec(ctx.filename.replace(/\\/g, '/'))?.[1];
+        if (!lang || !chrome?.[lang]) {
+          throw new Error(
+            `no chrome for ${ctx.filename} — the homepage shells are home/{hu,en,de}.html`,
+          );
+        }
+        for (const slot of SLOTS) {
+          const token = `<!--stratos:${slot}-->`;
+          // A shell that lost a slot would ship without a header or without a
+          // footer and look, at a glance, exactly like one that never had them.
+          if (!html.includes(token)) {
+            throw new Error(`${ctx.filename} has no ${token} — the homepage shell lost a chrome slot`);
+          }
+          html = html.split(token).join(chrome[lang][slot]);
+        }
+        return html;
+      },
+    },
+  };
+}
+
 function emitLocaleIndexes(): Plugin {
   const ROUTES: Record<string, string> = {
     'home/hu.html': 'index.html',
@@ -97,7 +160,7 @@ export default defineConfig({
   // step and no second asset to keep in sync.
   publicDir: resolve(__dirname, '../public'),
 
-  plugins: [react(), substituteOrigin(), emitLocaleIndexes(), siteAssets(resolve(__dirname, '../assets'))],
+  plugins: [react(), injectChrome(), substituteOrigin(), emitLocaleIndexes(), siteAssets(resolve(__dirname, '../assets'))],
   resolve: {
     alias: { '@': resolve(__dirname, 'src') },
   },

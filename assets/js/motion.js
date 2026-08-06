@@ -378,10 +378,28 @@
     ['[data-logo-group]', logoGroup],
   ];
 
+  /* Subtrees this file must not touch.
+     ----------------------------------
+     The homepage runs its own motion system: an eleven-stage pinned narrative
+     with a damped altitude clock, kinetic typography driven from that clock,
+     and panels that carry `data-stage` and `data-kinetic` of their own. Those
+     two attribute names are also two of the primitives below, so a wire-up that
+     swept the whole document would find eleven journey panels, register them
+     with a second driver and animate them against a second, unrelated
+     progress — while the header and the Arrival footer, which genuinely are
+     this file's, are in the same document.
+
+     The homepage marks its React mount host `data-motion-external`: everything
+     inside it belongs to the journey, everything outside it is the site chrome.
+     On the 66 generated routes there is no such element and this costs one
+     `closest()` per registered node, once, at boot. */
+  const external = (el) => el.closest('[data-motion-external]') !== null;
+
   function boot() {
     document.documentElement.classList.add('motion-ready');
     for (const [sel, fn] of PRIMITIVES) {
       for (const el of $$(sel)) {
+        if (external(el)) continue;
         try { fn(el); } catch (_) { /* one bad node must not take the page down */ }
       }
     }
