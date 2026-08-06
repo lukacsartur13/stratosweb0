@@ -44,6 +44,32 @@
   to = "/portal/index.html"
   status = 200
 
+# The homepage has exactly one address per language, and it is not the file
+# name. The three shells' own canonical says `/`, `/en/` and `/de/`; before
+# Phase 9 the sitemap and 66 pages' worth of internal links said
+# `/index.html`, and both URLs answered 200. They are the same document, so
+# whichever a crawler reaches first is the one it may keep.
+#
+# 301 rather than 302: this is permanent, and a temporary redirect asks every
+# crawler to keep checking the old one forever. Query strings are preserved by
+# Netlify by default, so a campaign link to /index.html?utm_source=… still
+# lands with its parameters intact — which matters, because attribution is read
+# from them on arrival.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/en/index.html"
+  to = "/en/"
+  status = 301
+
+[[redirects]]
+  from = "/de/index.html"
+  to = "/de/"
+  status = 301
+
 [[redirects]]
   from = "/login"
   to = "/portal/login"

@@ -23,7 +23,7 @@ const NODE_ONLY = [/lead-endpoint\.spec\.ts/, /structured-data\.spec\.ts/];
 // This is not only about redundancy. The homepage specs drive a ~1 MB WebGL
 // bundle and sit close to the 30 s timeout under parallel load; running these
 // tests five times over pushed them past it.
-const ENGINE_ONLY = [/analytics\.spec\.ts/, /attribution\.spec\.ts/];
+const ENGINE_ONLY = [/analytics\.spec\.ts/, /attribution\.spec\.ts/, /not-found\.spec\.ts/];
 
 export default defineConfig({
   testDir: './tests',

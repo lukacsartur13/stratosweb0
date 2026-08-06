@@ -40,7 +40,10 @@ async function publicPages(): Promise<string[]> {
       if (entry.isDirectory()) {
         if (entry.name === 'portal' || entry.name === 'assets') continue;
         await walk(path);
-      } else if (entry.name.endsWith('.html')) {
+      } else if (entry.name.endsWith('.html') && entry.name !== '404.html') {
+        // A 404 carries no structured data on purpose — see the note in
+        // _build/build.py. It is asserted to carry none, below, rather than
+        // quietly skipped here.
         out.push(path);
       }
     }
@@ -83,6 +86,20 @@ function strings(node: unknown, out: string[] = []): string[] {
   else if (node && typeof node === 'object') Object.values(node).forEach((v) => strings(v, out));
   return out;
 }
+
+test('a 404 publishes no structured data at all', async () => {
+  for (const path of ['404.html', 'en/404.html', 'de/404.html']) {
+    const html = await readFile(join(DIST, path), 'utf8');
+    // Every schema.org node is a statement about a page, and there is no page.
+    expect([...html.matchAll(LD_RE)], `${path}`).toHaveLength(0);
+    expect(html, `${path} canonical`).not.toContain('rel="canonical"');
+    // The <link rel="alternate"> set, not the `hreflang` attribute — the
+    // language switcher in the chrome carries that on visible <a> links, and
+    // it is a hint to the visitor rather than a claim to a crawler.
+    expect(html, `${path} alternates`).not.toContain('rel="alternate"');
+    expect(html, `${path} open graph`).not.toContain('property="og:');
+  }
+});
 
 test('every public page carries exactly one parseable JSON-LD block', () => {
   expect(docs.length).toBeGreaterThan(60);

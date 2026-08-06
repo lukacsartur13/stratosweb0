@@ -1953,6 +1953,122 @@ def write_home_chrome():
         encoding="utf-8")
 
 
+# ===================================================================== 404
+#
+# Phase 9, Workstream I. A real not-found page, one per locale.
+#
+# WHY THIS IS A PAGE AND NOT A REDIRECT
+# Sending every missing URL to the homepage answers 200 for a page that does not
+# exist. A crawler then indexes the homepage under a dozen dead addresses, and a
+# visitor who mistyped is told nothing at all — they simply arrive somewhere
+# else and have to work out that they did. Netlify serves `404.html` from the
+# publish root with a real 404 status, and serves `<dir>/404.html` for paths
+# under that directory, which is what makes the localised version possible.
+#
+# WHAT IT DELIBERATELY DOES NOT DO
+#   * no automatic redirect, of any delay;
+#   * no search field. The site has no search, and a box that does nothing when
+#     you type in it is worse than the absence of a box;
+#   * no WebGL. The journey is the homepage's, and a 3D scene is not the right
+#     answer to "the thing you asked for is not here";
+#   * no canonical, no hreflang, no Open Graph and no structured data. All four
+#     are statements about a page, and there is no page. `noindex, follow` is
+#     the whole of what it has to say to a crawler.
+#
+# It carries the site chrome, so the four routes below are reachable and so it
+# keeps looking like the site without a second stylesheet to maintain.
+
+NOT_FOUND = {
+    "hu": {
+        "title": "Az oldal nem található | Stratos",
+        "eyebrow": "404 — nincs ilyen oldal",
+        "head": "Ez az oldal nincs meg.",
+        "lede": "Vagy elírás történt a címben, vagy azóta átkerült máshova. "
+                "Innen a négy leggyakoribb célpont egy kattintás:",
+        "links": [("index", "Kezdőlap"), ("services", "Szolgáltatások"),
+                  ("work", "Munkáink"), ("contact", "Kapcsolat")],
+    },
+    "en": {
+        "title": "Page not found | Stratos",
+        "eyebrow": "404 — no such page",
+        "head": "This page isn’t here.",
+        "lede": "Either the address has a typo in it, or the page has moved "
+                "since you last saw it. The four most likely destinations:",
+        "links": [("index", "Home"), ("services", "Services"),
+                  ("work", "Work"), ("contact", "Contact")],
+    },
+    "de": {
+        "title": "Seite nicht gefunden | Stratos",
+        "eyebrow": "404 — keine solche Seite",
+        "head": "Diese Seite gibt es nicht.",
+        "lede": "Entweder ist ein Tippfehler in der Adresse, oder die Seite ist "
+                "inzwischen umgezogen. Die vier wahrscheinlichsten Ziele:",
+        "links": [("index", "Startseite"), ("services", "Leistungen"),
+                  ("work", "Projekte"), ("contact", "Kontakt")],
+    },
+}
+
+NOT_FOUND_BODY = """
+  <section class="phead phead--article">
+    <div class="wrap">
+      <p class="crumbs">{{eyebrow}}</p>
+      <h1 class="display h-md">{{head}}</h1>
+      <p class="lede" style="max-width:56ch">{{lede}}</p>
+      <nav class="related" aria-label="{{nav_aria}}">
+        <ul>{{links}}
+        </ul>
+      </nav>
+    </div>
+  </section>"""
+
+
+def build_not_found(lang):
+    """The 404 document for one locale."""
+    u = UI[lang]
+    t = NOT_FOUND[lang]
+    base = "" if lang == "hu" else "../"
+
+    links = "".join(
+        f'\n          <li><a href="{href(lang, key)}">{label}</a></li>'
+        for key, label in t["links"])
+
+    js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
+    chrome = render(RAIL, dict(
+        base=base, unit=u["unit"], unit_short=u["unit_short"],
+        layer0=u["layers"][0], boot=u["boot"], skip_top=u["skip_top"],
+        rail_aria=u["rail_aria"],
+        **{f"hud{i}": v for i, v in enumerate(u["hud"])}))
+
+    return render(SHELL, dict(
+        lang=lang, title=t["title"], desc=t["lede"], base=base,
+        # No alternates, no canonical, no Open Graph, no JSON-LD. See above.
+        alternates="", social="", jsonld="",
+        robots='\n<meta name="robots" content="noindex, follow">',
+        fontpreload=build_font_preload(lang, base),
+        i18n=json.dumps(js, ensure_ascii=False),
+        analytics=analytics_head(base),
+        # Not a route key, and deliberately not one of the real ones: an event
+        # reported as `contact` from a 404 is worse than one reported as `404`.
+        pagekey="404", ceiling="0",
+        body_class="", instruments=chrome, extra_css="", extra_js="",
+        skip=u["skip"], unit=u["unit"], layer0=u["layers"][0],
+        burger_aria=u["burger_aria"],
+        deck=build_deck(lang, "index", base, href(lang, "index")),
+        body=render(NOT_FOUND_BODY, dict(
+            eyebrow=t["eyebrow"], head=t["head"], lede=t["lede"],
+            nav_aria=u["nav_aria"], links=links)),
+        footer=build_footer(lang, "index"),
+    ))
+
+
+def write_not_found():
+    for lang in LANGS:
+        outdir = ROOT if lang == "hu" else ROOT / lang
+        outdir.mkdir(exist_ok=True)
+        (outdir / "404.html").write_text(build_not_found(lang), encoding="utf-8")
+    print(f"404: {len(LANGS)} pages")
+
+
 def write_route_manifest():
     """The slug table, as data, for the tools downstream of this script.
 
@@ -1994,6 +2110,7 @@ def main():
 
     write_route_manifest()
     write_home_chrome()
+    write_not_found()
 
     for lang in LANGS:
         table = load_dict(lang)
