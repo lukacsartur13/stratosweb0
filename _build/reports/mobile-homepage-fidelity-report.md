@@ -439,9 +439,10 @@ Three of these caught defects introduced *by this pass* — the deck collision a
 390×664, the 4 px self-scroll, and the removed altitude readout — which is the
 main argument for their existence.
 
-**Full production suite: 795 passed, 0 failed** (`npx playwright test`, six
-projects — node, desktop-1440, desktop-1920, mobile-390, mobile-430,
-reduced-motion). That is the baseline's 755 plus this file's 40 runs.
+**Full production suite: 795 passed, 89 skipped, 0 failed** (`npx playwright
+test`, 11.4 min, six projects — node, desktop-1440, desktop-1920, mobile-390,
+mobile-430, reduced-motion), run against the committed build. The skips are this
+file's portrait-gated assertions on the desktop and node projects.
 
 Existing suites unchanged and passing: `public-site`, `homepage-chrome`,
 `analytics`, `attribution`, `structured-data`, `lead-endpoint`, `lead-forms`,
