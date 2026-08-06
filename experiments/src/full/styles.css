@@ -518,8 +518,18 @@ img { max-width: 100%; height: auto; }
        Bounded in pixels at both ends rather than left as a bare percentage: on a
        small phone 10svh is 56px, which is less than the header it has to clear,
        and on a tall one it runs to 93px, which is a gap wide enough to read as
-       another void. */
-    --stage-entry: clamp(64px, 10svh, 96px);
+       another void.
+
+       Floored at `--deck-content` — the bottom of the header plus the bottom of
+       the instrument line under it — so the narrative can never start inside
+       the deck. That floor is the whole of §10's "one authoritative top-layout
+       calculation" reaching the panels: the header measures itself, the strip
+       measures itself, and every stage's first word is placed below both
+       instead of each of the three deciding independently and colliding. The
+       fallback is the value the header and strip resolve to at the design
+       inset, so a frame before the first measurement lands is composed, not
+       overlapped. */
+    --stage-entry: max(clamp(64px, 10svh, 96px), var(--deck-content, 115px));
   }
 
   /* --- natural flow: the fallback, and the state before measurement --------
@@ -2024,7 +2034,19 @@ img { max-width: 100%; height: auto; }
      a fixed header behaves and how a real instrument strip reads. It also
      recovers the vertical space the stacked corner layout was spending. */
   .hud {
-    top: 0;
+    /* Below the header, not inside it. This is §10.2's Option A: the
+       calibration status belongs to the homepage and begins under the effective
+       header, and `--deck-top` is the one place that boundary is decided —
+       measured off the shared header's real box, which already carries the
+       safe-area inset. See `watchDeck` in siteHeader.ts.
+
+       The fallback is the header's own resolved height at the design inset plus
+       the same gap, so a browser without `ResizeObserver`, or a frame before the
+       first measurement lands, gets the right answer rather than a collision.
+
+       `top: 0` is what was here, and it is what put the strip's readout at
+       7..31px across a wordmark at 25..52px inside a header occupying 0..77px. */
+    top: var(--deck-top, 87px);
     right: 0;
     bottom: auto;
     left: 0;
@@ -2036,10 +2058,61 @@ img { max-width: 100%; height: auto; }
     grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
     align-items: center;
     gap: 0.75rem;
-    padding: max(0.45rem, env(safe-area-inset-top)) 1rem 0.5rem;
+    /* No safe-area inset here any more, and its removal is the fix rather than
+       a simplification. The strip used to sit above the header, so insetting it
+       by the notch moved it *onto* the wordmark instead of above it — the one
+       `env()` on this page was making the collision worse on exactly the
+       devices it was there to protect. The notch is the header's to clear, the
+       header clears it, and `--deck-top` carries the result down to here. */
+    padding: 0.45rem 1rem 0.5rem;
     background: linear-gradient(rgba(4, 8, 14, 0.96) 62%, rgba(4, 8, 14, 0.78) 88%, rgba(4, 8, 14, 0));
     transition: opacity 0.5s var(--ease);
   }
+
+  /* One altitude, one place — §10.2, and this is the Option B half of it.
+     -------------------------------------------------------------------
+     The shared header already carries the altitude *and* the stage name in its
+     `journey` state: `.nav__alt-v` is the metres and `.nav__alt-k` is the phase,
+     rendering as `ASCENT — 08 420 M`. The strip's digits and stage label are
+     the same two facts, twice, a few pixels apart.
+
+     They are the ones that go, and the reason is that they were never doing the
+     job. `.hud` lives inside `.journey__stage` at z-index 0; the narrative is
+     `.journey__content` at z-index 2. The panel plates therefore paint *over*
+     the strip, and a window plate is opaque from its top edge down. So through
+     the whole journey the readout was a ghost showing through a 0.92-alpha
+     plate — which is precisely the "faint technical rail" the brief reports
+     seeing behind the navigation. It was not a rail behind the header. It was
+     the altitude readout behind the copy.
+
+     What remains is what the header cannot carry: the scale bar, which shows
+     the whole track at a glance rather than one number from it, and the sound
+     control, which is an interactive element and belongs to the instrument.
+     Both fit on one short row under the header, and `--deck-content` floors
+     every panel's entry budget below it so the two never share a band again. */
+  .hud__readout,
+  .hud__stage {
+    display: none;
+  }
+
+  .hud {
+    /* One row, as short as its tallest child, because its height is the floor
+       under the stage-entry budget — see `--deck-content` in siteHeader.ts. */
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.6rem;
+    /* No wash. The strip is two small controls now, not a band of text that
+       needs to be legible over a mountain, and a full-width gradient under the
+       header is the thing that read as an unexplained second bar. */
+    background: none;
+  }
+
+  .hud__scale { align-self: center; }
+
+  /* The 0.6rem lifted the control off the readout it used to sit under. There
+     is no readout above it any more, and the margin is now 10px of the entry
+     budget spent on nothing. The control keeps its 2rem box — §10.1's touch
+     target — so this shortens the strip without shrinking the target. */
+  .hud__sound { margin-top: 0; }
 
   /* …and stands down entirely over the closing panel. It has finished its job
      by then — the panel's own eyebrow reads 30 000 m — so the strip is only in

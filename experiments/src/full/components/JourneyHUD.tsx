@@ -5,7 +5,7 @@ import { publishKinetic, reserveKinetic } from '../kineticDom';
 import { clearComposition, measureComposition, publishComposition } from '../composition';
 import { advanceMeridian, meridianStageAt, type MeridianStageId } from '../meridian';
 import { meridianSound } from '../meridianSound';
-import { publishHeader, releaseHeader } from '../siteHeader';
+import { publishHeader, releaseHeader, watchDeck } from '../siteHeader';
 
 /**
  * The persistent readout, and the owner of both clocks.
@@ -108,8 +108,13 @@ export function JourneyHUD() {
     };
 
     raf = requestAnimationFrame(tick);
+    // Where homepage content may begin, measured off the shared header. Not on
+    // the tick — it changes on a state transition, a rotation and a font swap,
+    // and a ResizeObserver fires on exactly those. See siteHeader.ts.
+    const unwatchDeck = watchDeck();
     return () => {
       cancelAnimationFrame(raf);
+      unwatchDeck();
       // The clock is the header's source. When it stops, the header goes back
       // to document scroll rather than holding the last altitude it was given.
       releaseHeader();

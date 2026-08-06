@@ -102,6 +102,123 @@ export function publishHeader(): void {
   });
 }
 
+// =============================================================================
+// The one mobile top-layout calculation.
+// =============================================================================
+
+/**
+ * Publish where homepage content may begin, as `--deck-top` on the root.
+ *
+ * §10 asks for a single authoritative value for this and the page had three
+ * that did not know about each other. The header is `position: fixed` at the
+ * top with its own padding; the instrument strip is `position: absolute` at
+ * `top: 0` with an `env(safe-area-inset-top)` of its own; and neither consults
+ * the other. Measured on a 390×844 they resolved into the same band — the
+ * header occupying 0..77px and the strip 0..92px, with the altitude readout at
+ * 7..31 drawn across the wordmark at 25..52 and the sound toggle at 52..84
+ * poking out below the header's lower edge. In the opening state `.nav` has no
+ * background at all, so the strip showed straight through it, which is the
+ * "faint technical rail behind the navigation" the brief reports.
+ *
+ * The strip's own safe-area inset made it worse rather than better on a real
+ * device, and that is worth stating because it looks like the fix: the strip
+ * sat *above* the header, so insetting it by the notch moved the readout from
+ * 7..31 down to 47..71 — onto the wordmark instead of above it.
+ *
+ * ## Why this is measured rather than composed from parts
+ *
+ * `safeAreaTop + headerHeight + gap` is the formula, and only the middle term
+ * is hard. The header's height is not a constant: it carries three states with
+ * different block padding, a wordmark that changes size with them, and a
+ * transition between them — and on top of that it is the *shared* header, free
+ * to change on 67 other routes without this file being told. Any number written
+ * down here is a number that goes stale silently.
+ *
+ * So the header is asked. Its measured border box already includes its own
+ * safe-area padding — see the note in chrome.css — which is what collapses the
+ * three-term formula to two and removes the double-count that an addition here
+ * would produce on a notched device.
+ *
+ * ## Why a ResizeObserver and not the tick
+ *
+ * `publishHeader` runs sixty times a second and reading `offsetHeight` there
+ * would be a forced layout per frame next to a WebGL renderer. The header's box
+ * changes on a state transition, a rotation and a font swap, and a
+ * `ResizeObserver` fires on exactly those and on nothing else. The strip then
+ * follows the header down and up through the 0.45s state transition rather than
+ * jumping at the end of it, so the two read as one deck.
+ */
+/**
+ * Breathing room between the deck's layers. Small on purpose: it is the
+ * difference between "under the header" and "floating below it", and every
+ * pixel spent here is a pixel of the stage-entry budget §6 sets.
+ */
+const DECK_GAP = 6;
+
+let deckObserver: ResizeObserver | undefined;
+let publishedTop = -1;
+let publishedContent = -1;
+
+function publishDeck(nav: Element, hud: Element | null) {
+  // Quantised to the pixel: a subpixel change during the padding transition is
+  // not a change anyone can see, and it would otherwise write a custom property
+  // — and invalidate the strip's position — on every frame of it.
+  const top = Math.round(nav.getBoundingClientRect().height) + DECK_GAP;
+  if (top !== publishedTop) {
+    publishedTop = top;
+    document.documentElement.style.setProperty('--deck-top', `${top}px`);
+  }
+
+  // Where the narrative may start: below the header *and* below the instrument
+  // line under it. Published separately because the two boundaries answer
+  // different questions — the strip is positioned from the first, the panels'
+  // entry budget is floored at the second — and because the strip is not on
+  // every composition, so the second is not always the first plus something.
+  const strip = hud ? Math.round(hud.getBoundingClientRect().height) : 0;
+  const content = top + (strip > 0 ? strip + DECK_GAP : 0);
+  if (content !== publishedContent) {
+    publishedContent = content;
+    document.documentElement.style.setProperty('--deck-content', `${content}px`);
+  }
+}
+
+/**
+ * Start publishing `--deck-top` and `--deck-content`. Idempotent, and a no-op
+ * where the shared header is not on the page — the stylesheet's fallbacks cover
+ * that, and they are the values the header resolves to at the design inset.
+ */
+export function watchDeck(): () => void {
+  const nav = document.querySelector('.nav');
+  if (!nav || typeof ResizeObserver !== 'function') return () => {};
+  const hud = document.querySelector('.hud');
+  deckObserver?.disconnect();
+  publishDeck(nav, hud);
+  deckObserver = new ResizeObserver(() => publishDeck(nav, hud));
+  // `border-box`, and it is not a detail.
+  //
+  // The header's three states differ mostly in *padding*, and padding is what
+  // it transitions over 0.45s. A default `content-box` observation watches the
+  // flex line instead, which finishes changing early — the wordmark reaches its
+  // compact size well before the padding reaches its compact value — so the
+  // last callback fires mid-transition and the final height is never seen.
+  // Measured: the journey header settles at 48px and `--deck-top` was left
+  // describing a 70px one, which put 22px of dead space under a header that had
+  // already finished compressing.
+  deckObserver.observe(nav, { box: 'border-box' });
+  // The strip's height changes with the sound control's focus ring and with a
+  // font swap, and it is the floor under every panel's entry budget, so it is
+  // observed rather than assumed.
+  if (hud) deckObserver.observe(hud, { box: 'border-box' });
+  return () => {
+    deckObserver?.disconnect();
+    deckObserver = undefined;
+    publishedTop = -1;
+    publishedContent = -1;
+    document.documentElement.style.removeProperty('--deck-top');
+    document.documentElement.style.removeProperty('--deck-content');
+  };
+}
+
 /**
  * Hand the header back to document scroll.
  *

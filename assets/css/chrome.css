@@ -125,11 +125,27 @@ a { color: inherit; text-decoration: none; }
    Everything that moves between states is a transition on a property that does
    not force layout — opacity, transform, max-width — so a state change costs a
    composite and not a reflow of the whole document. */
+/* The safe area is the header's, because the header is the thing pinned to the
+   top of the screen.
+
+   It had no inset at all, on all 67 routes. On a notched iPhone that put the
+   wordmark and the menu trigger under the status bar, and on the homepage it
+   was worse than cosmetic: the journey's instrument strip is placed relative to
+   this element, so an unpadded header meant the strip and the header resolved
+   into the same 77px band and the altitude rail was drawn across the wordmark.
+   See the note on `--deck-top` in the homepage stylesheet.
+
+   `max()` rather than an addition: `--gut`'s block value is already the design
+   inset, and adding the notch to it would push the header down by the notch on
+   top of padding that was never a status-bar allowance. Where the inset is 0 —
+   every desktop, every Android without a cutout, every browser that does not
+   support `env()` — this resolves to exactly the 1.1rem it always was. */
 .nav {
   /* must sit above .menu so the close button stays reachable while it is open */
   position: fixed; top: 0; left: var(--rail); right: 0; z-index: 890;
   display: flex; align-items: center;
-  gap: clamp(.8rem, 2vw, 1.8rem); padding: 1.1rem var(--gut);
+  gap: clamp(.8rem, 2vw, 1.8rem);
+  padding: max(1.1rem, env(safe-area-inset-top)) var(--gut) 1.1rem;
   transition: background .4s, backdrop-filter .4s, padding .45s var(--ease);
 }
 .nav.is-solid {
@@ -195,7 +211,13 @@ a { color: inherit; text-decoration: none; }
 /* ---- journey: compress to the 40–52 px band the brief specifies. The height
    is set by the tallest child, so the wordmark and the mark shrink with the
    padding rather than the padding fighting a fixed line box. */
-.nav[data-state="journey"] { padding-block: .4rem; }
+/* The safe-area top survives every state change, which is why these two are
+   longhand pairs rather than the single value they read as. `padding-block:
+   .4rem` sets the top as well, and it is declared later and more specifically
+   than the base rule — so the compressed journey header silently dropped the
+   notch allowance and slid back under the status bar the moment the visitor
+   started scrolling, which is the one state they spend the whole page in. */
+.nav[data-state="journey"] { padding-block: max(.4rem, env(safe-area-inset-top)) .4rem; }
 .nav[data-state="journey"] .brand img { width: 18px; }
 .nav[data-state="journey"] .brand span { font-size: .82rem; }
 .nav[data-state="journey"] .burger { height: 34px; }
@@ -222,7 +244,7 @@ a { color: inherit; text-decoration: none; }
 .nav[data-state="destination"] .nav__cta {
   max-width: 26ch; opacity: 1; padding-inline: 1.1rem; border-width: 1px;
 }
-.nav[data-state="destination"] { padding-block: 1.1rem; }
+.nav[data-state="destination"] { padding-block: max(1.1rem, env(safe-area-inset-top)) 1.1rem; }
 
 .nav__links { display: flex; align-items: center; gap: clamp(1rem, 2.2vw, 2.2rem); }
 .nav__links > * { position: relative; }
