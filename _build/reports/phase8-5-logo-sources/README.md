@@ -17,6 +17,11 @@ Duna Hajók's wordmark rendering about a sixth the size of Kontyos.
 | `synergy-digital--v2-transparent.png` | `assets/img/logo-synergy.png` | 382×600 |
 | `duna-hajok--v2-transparent.png` | `assets/img/logo-duna-hajok.png` | 600×195 |
 | `duna-enterior--v2-transparent.png` | `assets/img/logo-duna-enterior.png` | 600×196 |
+| `haio--knockout-transparent.png` | `assets/img/logo-haio.png` | 600×146 |
+| `fice--knockout-transparent.png` | `assets/img/logo-fice.png` | 600×211 |
+
+The two support masters arrived on a 2000×2000 canvas that was 97.4% and 91%
+empty, which is why the trim matters more for them than for anything above.
 
 ## Why they sit on a plate
 
@@ -37,9 +42,30 @@ Synergy, a vector whose wordmark was live `<text>` in a font stack, so the
 letterforms changed by machine). Those files are not kept: they have no further
 use and the masters above replace them.
 
-## Still missing
+## The two support marks are the other polarity
 
-**HAIO** and **FICE** have no artwork at all. Both relationships are confirmed —
-Stratos is an official sponsor of HAIO and runs its advertising; Stratos is
-building FICE's website through the Impact Program — but a relationship with no
-mark has nothing to render, and neither ships a placeholder.
+HAIO and FICE arrived after the five above and are the opposite case in every
+way that matters here.
+
+They are **knockout artwork**. Every opaque pixel in the FICE master reads
+luminance 255 — it is pure white — and HAIO's `HAIO` wordmark and
+`HUNGARIAN AI OLYMPIAD` subline are white beside a navy boat. On the `#DCE4EA`
+plate FICE disappears completely and HAIO's subline is unreadable; on the void
+with no plate, both are crisp. So they carry `ink: "light"` in `ORGS`, which
+renders `data-ink="light"` and switches the plate off.
+
+The consequence is a placement rule, not a preference: a light mark cannot sit
+on a `band--pale` section, because white on `#F4F4F4` is invisible with or
+without a plate — and invisible is exactly what an assertion that only counts
+`<img>` elements cannot catch. `expand_logosets()` refuses to build one there.
+
+They are also **support relationships, not collaborations**: Stratos sponsors
+HAIO and runs its advertising, and builds FICE's website for nothing through
+the Impact Program. Neither may appear under "Selected collaborations", so
+`logoset()` defaults to collaborations only and these two must be asked for by
+name — `{{logoset:rail:haio}}` on the ads page, `{{logoset:rail:fice}}` on the
+Impact page, which are the pages where each is the subject.
+
+Each is alone in its rail, and a rail of one has nothing to normalise against,
+so `[data-logo]:only-child` gets a wider box. Without it HAIO — a 4.1:1 lockup —
+drew 34px high beside a 96px headline.

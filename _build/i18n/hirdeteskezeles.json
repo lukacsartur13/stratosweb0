@@ -104,5 +104,8 @@
  "<span class=\"signal__n\">06</span><span class=\"signal__t\">Visszacsatolás</span><span class=\"signal__w\">Amit a mérés megmutat, az a következő kör kiindulópontja.</span>": [
   "<span class=\"signal__n\">06</span><span class=\"signal__t\">Feedback</span><span class=\"signal__w\">What the measurement shows is where the next round starts.</span>",
   "<span class=\"signal__n\">06</span><span class=\"signal__t\">Rückkopplung</span><span class=\"signal__w\">Was die Messung zeigt, ist der Ausgangspunkt der nächsten Runde.</span>"
- ]
+ ],
+
+ "Egy kampány,<br>amit nem<br>számlázunk ki": ["A campaign<br>we don't<br>invoice for", "Eine Kampagne,<br>die wir nicht<br>in Rechnung stellen"],
+ "Hivatalos szponzorai vagyunk a HAIO-nak — az ELTE által szervezett Hungarian AI Olympiadnak —, és a verseny hirdetéseit is mi visszük. Ugyanaz a munka, mint fentebb; itt csak nem ügyfél a másik oldal.": ["We are an official sponsor of HAIO — the Hungarian AI Olympiad organised by ELTE — and we run the competition's advertising as well. The same work as above; the other side simply isn't a client here.", "Wir sind offizieller Sponsor der HAIO — der von der ELTE organisierten Hungarian AI Olympiad — und betreuen auch die Werbung des Wettbewerbs. Dieselbe Arbeit wie oben; die andere Seite ist hier nur kein Kunde."]
 }

@@ -126,14 +126,19 @@ POSTS = ("post-seo", "post-arak", "post-cegprofil", "post-hirdetes",
 #
 # WHY THE WORDING IS NEUTRAL
 # --------------------------
-# `relationship` is deliberately the same value for every entry. Nothing in this
-# repository establishes which of these are clients, which are collaborations
-# and which are organisations Stratos supported, and inventing per-organisation
-# claims is exactly the kind of thing that is checked. Until the real
-# relationships are confirmed, all of them sit under one honest heading —
-# "Selected collaborations" — which claims association and nothing more. It
-# specifically does not claim partnership, endorsement, sponsorship or a
-# commercial engagement.
+# Five of these carry `collab`, and that is deliberate: nothing in this
+# repository establishes which of them are clients and which are collaborations,
+# and inventing per-organisation claims is exactly the kind of thing that is
+# checked. They sit under one honest heading — "Selected collaborations" —
+# which claims association and nothing more. It specifically does not claim
+# partnership, endorsement, sponsorship or a commercial engagement.
+#
+# `sponsor` and `impact` are the two exceptions, and they were not invented
+# here: both were stated directly by the owner of the relationship. They are
+# also the two claims the neutral heading would get *wrong* rather than merely
+# leave vague — Stratos pays HAIO and works for FICE for nothing, so filing
+# either as a collaboration would overstate one and understate the other. They
+# are named on the single page where each is the subject, and nowhere else.
 ORGS = {
     "kontyos": {
         "name": "Kontyos.hu",
@@ -166,29 +171,39 @@ ORGS = {
         "ready": True,
         "relationship": "collab",
     },
-    # ---- relationship confirmed, artwork still missing.
+    # ---- support relationships. Artwork arrived; neither is a collaboration.
+    #
+    # These two are the reason `relationship` exists as a field rather than a
+    # comment. Stratos sponsors one and gives the other its work for free, which
+    # runs the opposite way from a client, so neither may appear under
+    # "Selected collaborations" with the five above. `logoset()` renders the
+    # rail from collaborations only and these are addressed by name, on the one
+    # page where each is the subject.
+    #
+    # Both were supplied as knockout artwork — see `ink` — which is also the
+    # opposite of the five. That is a coincidence, but a convenient one: their
+    # placements are dark bands anyway.
     "haio": {
         "name": "HAIO",
-        "asset": None,
-        "ready": False,
+        "asset": "assets/img/logo-haio.png",
+        "ready": True,
         "relationship": "sponsor",
-        "blocker": "No artwork supplied. The relationship is confirmed — Stratos "
-                   "is an official sponsor of HAIO, the AI competition organised "
-                   "by ELTE, and runs its advertising — but a sponsor with no "
-                   "mark has nothing to render. HAIO is not a company and is not "
-                   "described as one.",
+        "ink": "light",
     },
     "fice": {
         "name": "FICE",
-        "asset": None,
-        "ready": False,
+        "asset": "assets/img/logo-fice.png",
+        "ready": True,
         "relationship": "impact",
-        "blocker": "No artwork supplied. The relationship is confirmed — Stratos "
-                   "is building FICE's website through the Impact Program — so "
-                   "when a mark arrives it belongs on the Impact page, where it "
-                   "is directly relevant, rather than in a general rail.",
+        "ink": "light",
     },
 }
+
+# Marks whose own ink is light. They are given no plate and may only be placed
+# on a dark band; `logoset()` raises rather than render one on paper, because a
+# white mark on #F4F4F4 is not a subtle regression, it is a blank rectangle that
+# passes every test that only counts <img> elements.
+LIGHT_INK = {k for k, v in ORGS.items() if v.get("ink") == "light"}
 
 
 # Clients with a live project route. Separate from ORGS because these are
@@ -220,15 +235,24 @@ def logoset(lang, kind="rail", keys=None, base=""):
     `object-fit: contain` makes the box the constant and lets each mark find its
     own size inside it, which is what optical alignment wanted in the first
     place. Nothing is stretched, cropped or recoloured.
+
+    The default set is the collaborations, not everything that happens to be
+    ready. HAIO and FICE are support relationships and must be asked for by
+    name; letting them fall into an unqualified rail is the one mistake this
+    function is in a position to prevent.
     """
-    keys = keys or [k for k, v in ORGS.items() if v["ready"]]
+    keys = keys or [k for k, v in ORGS.items()
+                    if v["ready"] and v["relationship"] == "collab"]
     items = []
     for k in keys:
         o = ORGS.get(k)
         if not o or not o["ready"] or not o["asset"]:
             continue
+        # A light mark has no plate, so the band under it is the only thing it
+        # is legible against. See LIGHT_INK.
+        ink = f' data-ink="{o["ink"]}"' if o.get("ink") else ""
         items.append(
-            f'\n        <li data-logo>'
+            f'\n        <li data-logo{ink}>'
             f'<img src="{base}{o["asset"]}" alt="{o["name"]}" loading="lazy">'
             f'</li>')
     if not items:
@@ -1101,18 +1125,47 @@ def page_css(meta, base):
         for n in names)
 
 
-LOGOSET_RE = re.compile(r"\{\{logoset:(\w+)\}\}")
+LOGOSET_RE = re.compile(r"\{\{logoset:(\w+)(?::([\w,-]+))?\}\}")
+
+# The opening <section> a placeholder sits inside, found by scanning backwards.
+SECTION_RE = re.compile(r'<section\b[^>]*>')
 
 
 def expand_logosets(html, lang, base):
-    """Replace `{{logoset:rail}}` / `{{logoset:constellation}}` in a fragment.
+    """Replace `{{logoset:rail}}` / `{{logoset:index:haio}}` in a fragment.
 
     The fragments are the editorial source and they should name what they want —
     a credibility rail, a capability constellation — not carry a hand-written
     copy of an <img> list that goes stale the moment an asset is approved or
     withdrawn. One table, one renderer, every appearance.
+
+    An optional comma-separated key list after the kind names the marks. Without
+    it the set is the collaborations; `{{logoset:index:fice}}` is how a page
+    asks for one specific organisation because that page is about it.
+
+    A light-ink mark is refused on a pale band. It has no plate — that is the
+    whole point of it — so on #F4F4F4 it renders as nothing at all, and nothing
+    at all is precisely what an <img> assertion cannot see. Better to fail the
+    build than to ship a section whose subject is an invisible rectangle.
     """
-    return LOGOSET_RE.sub(lambda m: logoset(lang, m.group(1), base=base), html)
+    def render(m):
+        kind, keylist = m.group(1), m.group(2)
+        keys = [k.strip() for k in keylist.split(",")] if keylist else None
+        if keys:
+            unknown = [k for k in keys if k not in ORGS]
+            if unknown:
+                raise SystemExit(f"logoset names no such organisation: {unknown}")
+            lit = [k for k in keys if k in LIGHT_INK]
+            if lit:
+                opens = SECTION_RE.findall(html[:m.start()])
+                if opens and "band--pale" in opens[-1]:
+                    raise SystemExit(
+                        f"logoset: {lit} is light-ink artwork and cannot sit on "
+                        f"a band--pale section — it would render invisible. "
+                        f"Move the placeholder to a dark band.")
+        return logoset(lang, kind, keys=keys, base=base)
+
+    return LOGOSET_RE.sub(render, html)
 
 
 CASELINK_RE = re.compile(r'\sdata-case="([\w-]+)"')

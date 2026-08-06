@@ -121,5 +121,9 @@
  "Mit szeretnétek, ha az új weboldal tudna?": ["What would you like the new website to do?", "Was soll die neue Website können?"],
  "<input type=\"checkbox\" name=\"adatkezeles_elfogadva\" value=\"Igen\" required> <span>Hozzájárulok, hogy a megadott adatokat a jelentkezésem elbírálása céljából kezeljétek. *</span>": ["<input type=\"checkbox\" name=\"adatkezeles_elfogadva\" value=\"Yes\" required> <span>I consent to my data being processed for the purpose of assessing my application. *</span>", "<input type=\"checkbox\" name=\"adatkezeles_elfogadva\" value=\"Ja\" required> <span>Ich willige ein, dass meine Daten zur Prüfung meiner Bewerbung verarbeitet werden. *</span>"],
  "Jelentkezés beküldése": ["Submit application", "Bewerbung absenden"],
- "Minden jelentkezést személyesen olvasunk el.": ["We read every application personally.", "Wir lesen jede Bewerbung persönlich."]
+ "Minden jelentkezést személyesen olvasunk el.": ["We read every application personally.", "Wir lesen jede Bewerbung persönlich."],
+
+ "A programból": ["From the programme", "Aus dem Programm"],
+ "Amin most<br>dolgozunk": ["What we're<br>building now", "Woran wir<br>gerade bauen"],
+ "A FICE weboldala jelenleg az Impact Programon keresztül épül. Ugyanaz a munka és ugyanaz a mérce, mint bármelyik másik projektnél — csak nincs számla a végén.": ["FICE's website is being built through the Impact Program right now. The same work and the same standard as any other project — there just isn't an invoice at the end.", "Die Website von FICE entsteht gerade über das Impact-Programm. Dieselbe Arbeit und derselbe Maßstab wie bei jedem anderen Projekt — am Ende steht nur keine Rechnung."]
 }

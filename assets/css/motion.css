@@ -271,6 +271,22 @@
    goes. */
 .band--pale .logoset [data-logo] img { --plate: transparent; }
 
+/* The two support marks are the opposite polarity from the five collaborations.
+   FICE was supplied as pure white artwork — every opaque pixel reads luminance
+   255 — and HAIO's wordmark and "HUNGARIAN AI OLYMPIAD" subline are white
+   beside a navy boat. On the #DCE4EA plate FICE disappears completely and
+   HAIO's subline is unreadable; on the void, with no plate, both are crisp.
+
+   So the plate is not a constant of the system, the *reason* for it is: a mark
+   is given a background only when its own ink would otherwise be lost. Dark
+   artwork gets the plate, light artwork gets the void. The box still exists in
+   both cases, which is what keeps differently-shaped marks optically equal.
+
+   The consequence is that a knockout mark cannot appear in a `band--pale`
+   section — white on #F4F4F4 is invisible with or without a plate. Both are
+   placed on dark bands, and build.py refuses to render one anywhere else. */
+.logoset [data-logo][data-ink="light"] img { --plate: transparent; }
+
 /* The trace reaching a mark lifts it very slightly off the page. That is the
    whole of §10.7's motion: no marquee, no carousel, no rotation, no scaling. */
 .logoset [data-logo].is-lit,
@@ -298,6 +314,22 @@
   gap: clamp(1.6rem, 4vw, 3.4rem);
 }
 .logoset--rail .logo__scope { display: none; }
+
+/* A rail holding one mark has nothing to normalise it against, and the box
+   stops being a fairness device and becomes a cage. Both support marks are wide
+   lockups — HAIO is 4.1:1 — so inside the shared 138x66 content area they fit
+   by width and leave a third of the height unused, which the five-mark rail
+   only tolerates because Synergy's tall mark is spending it. Alone, HAIO drew
+   34px high next to a 96px headline and read as a thumbnail of a logo rather
+   than a logo.
+
+   So a solo mark gets a wider box. The rule is still that the box is the
+   constant and the mark finds its own size inside it — this is a second, larger
+   constant for the case where there is nothing to be constant *with*. */
+.logoset--rail [data-logo]:only-child img {
+  width: clamp(190px, 19vw, 250px);
+  height: clamp(76px, 7.2vw, 96px);
+}
 
 /* 5.10 — an asymmetric capability network. Deliberately not a grid of equal
    cells: the offsets are what stop it reading as a logo wall. */
