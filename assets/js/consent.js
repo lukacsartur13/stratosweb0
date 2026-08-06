@@ -41,10 +41,12 @@
     consent_accept: 'Elfogadom',
     consent_decline: 'Nem járulok hozzá',
     consent_more: 'Adatkezelési tájékoztató',
-    consent_settings: 'Süti-beállítások',
     consent_state_granted: 'A mérés jelenleg engedélyezve van.',
     consent_state_denied: 'A mérés jelenleg le van tiltva.',
-    consent_withdraw: 'Visszavonom',
+    /* `consent_settings` is deliberately absent: the footer control's label is
+       generated markup (build_footer in _build/build.py), not something this
+       file renders, so a fallback here would be a second copy that is never
+       read. Every key above IS read below — see the Workstream E inventory. */
     consent_privacy_href: 'adatkezelesi-tajekoztato.html',
   };
   try {
