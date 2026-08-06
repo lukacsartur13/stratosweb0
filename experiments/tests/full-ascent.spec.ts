@@ -420,9 +420,14 @@ test.describe('reduced motion', () => {
     // And the document still reads, in full — not a stripped-down variant.
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.getByTestId('stage-destination')).toBeVisible();
-    for (const id of ['rapidkert', 'barbershop', 'mentaltrening', 'pille']) {
+    // Three, per §9.2 — see the note on the same list in "the content survives
+    // without the canvas". Reduced motion must show the SAME three, which is
+    // what makes the count worth asserting here too: this is the path where a
+    // stripped-down variant would be easiest to ship by accident.
+    for (const id of ['rapidkert', 'barbershop', 'mentaltrening']) {
       await expect(page.getByTestId(`case-${id}`)).toBeVisible();
     }
+    await expect(page.locator('[data-testid^="case-"]')).toHaveCount(3);
   });
 
   test('hides no essential content and keeps every CTA usable', async ({ page }) => {

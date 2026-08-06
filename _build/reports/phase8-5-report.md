@@ -439,9 +439,27 @@ answers §33.
 | reduced motion / 200% zoom / text spacing / focus trap / lifecycle | **0 findings, 14 routes** |
 | locale coverage — 0 untranslated strings | **hu / en / de all clean** |
 | sitemap and indexing rules | **60 URLs, 9 noindex, consistent** |
-| production build + `validate:full` | see §16 |
+| production build + `validate:full` | **88 passed, 0 failed, 97 skipped, exit 0** |
 
-Timeouts were not raised and no assertion was weakened.
+Timeouts were not raised. One assertion was *changed* rather than weakened: two
+places asserted four homepage case studies, and §9.2 caps the Selected Work at
+three. Both now name the three and additionally assert the count is exactly
+three — a fourth reappearing is as much a regression as one going missing, and a
+loop over a list can only catch the second. See §14.
+
+The 97 skips are the suite's own `test.skip` guards, not omissions: canvas tests
+skip on the reduced-motion project, reduced-motion assertions skip on the motion
+projects, once-only inspections skip off desktop, and mobile-layout tests skip on
+desktop. Five projects — desktop, mobile-390, mobile-430, mobile-375,
+reduced-motion — at `workers: 1`.
+
+### A note on running this suite
+
+The first attempt reported ~40 failures, almost all mobile WebGL timeouts at
+exactly 20.3s. None were real: the route audit and several Playwright probes
+were running concurrently and the machine was starved. Re-run with nothing else
+in flight, the same source produced one genuine failure (the case-study count
+above) and then a clean pass. A contended run of this suite is not evidence.
 
 ---
 
