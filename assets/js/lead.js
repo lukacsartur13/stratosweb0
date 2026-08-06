@@ -156,6 +156,142 @@
     } catch (e) { return ''; }
   }
 
+  /* ============================================================ attribution
+
+     Phase 9, Workstream D. Where an enquiry came from, recorded only when the
+     visitor sends us one — and only as facts we named in advance.
+
+     THREE RULES, ALL STRUCTURAL RATHER THAN INTENDED
+
+     1. An ALLOW-LIST, not a filter. `PARAMS` below is the complete set of query
+        parameters that can ever be read. Everything else in the URL is not
+        sanitised, not truncated, not hashed — it is never looked at. That is
+        what stops someone else's tracking parameters, a password reset token
+        pasted into a shared link, or a stray `?email=` from arriving in our
+        table because nobody thought to exclude it.
+
+     2. SESSION-SCOPED, never cross-session. `sessionStorage`, so it dies with
+        the tab. There is no visitor id, no fingerprint, and nothing that
+        survives to recognise the same person on a later visit — which is the
+        line between "which campaign produced this enquiry" and tracking.
+
+     3. WRITTEN ONLY WHEN THERE IS SOMETHING TO WRITE. A visitor who arrives by
+        typing the address, or from a search engine with no campaign tags on the
+        link, causes exactly zero bytes of device storage. Most visitors are
+        that visitor.
+
+     No advertising click identifier is read. `gclid`, `fbclid`, `msclkid` and
+     the rest are per-click identifiers that a vendor can join back to a person,
+     and nothing here runs advertising — see _build/reports/phase9-attribution-
+     design.md §4 for the decision and what would have to be true to revisit it.
+
+     This is not consent-gated because it is not analytics: nothing is sent
+     anywhere until the visitor fills in a form and presses send, and at that
+     moment they are deliberately sending us their name, their address and their
+     message. Which link brought them is the least of what that request carries.
+     It is also not read by assets/js/analytics.js, in either direction. */
+
+  var ATTR_KEY = 'stratos.attribution';
+
+  /* The five UTM parameters, and nothing else. Mapped to the meta names the
+     server declares in META — one rename, in one place. */
+  var PARAMS = {
+    utm_source: 'utmSource',
+    utm_medium: 'utmMedium',
+    utm_campaign: 'utmCampaign',
+    utm_content: 'utmContent',
+    utm_term: 'utmTerm',
+  };
+
+  var ATTR_MAX = 100;
+
+  /**
+   * A campaign value, or ''.
+   *
+   * Campaign tags are machine-authored labels: letters, digits, and the four
+   * separators every campaign builder emits. Anything else is dropped rather
+   * than escaped, because a UTM value that needs escaping is not a campaign
+   * label — it is someone using the field for something else, and this is not
+   * a free-text channel into the database.
+   */
+  function attrValue(raw) {
+    return String(raw == null ? '' : raw)
+      .replace(/[^A-Za-z0-9 ._+-]/g, '')
+      .trim()
+      .slice(0, ATTR_MAX);
+  }
+
+  /** The referring host, without scheme, port, path or query. */
+  function referrerHost() {
+    try {
+      if (!document.referrer) return '';
+      var h = new URL(document.referrer).hostname.toLowerCase();
+      return h === location.hostname.toLowerCase() ? '' : h.slice(0, 120);
+    } catch (e) { return ''; }
+  }
+
+  /**
+   * What this page view says about where the visitor came from, or null.
+   *
+   * Reads `location.search` through the allow-list. An external referrer counts
+   * on its own — arriving from a search engine with no campaign tags is still
+   * an answer to "where did this come from", and it is the commonest one.
+   */
+  function readAttribution() {
+    var found = {};
+    var any = false;
+
+    try {
+      var q = new URLSearchParams(location.search);
+      for (var name in PARAMS) {
+        if (!Object.prototype.hasOwnProperty.call(PARAMS, name)) continue;
+        if (!q.has(name)) continue;
+        var v = attrValue(q.get(name));
+        if (!v) continue;
+        found[PARAMS[name]] = v;
+        any = true;
+      }
+    } catch (e) { /* no URLSearchParams; attribution is optional by design */ }
+
+    var host = referrerHost();
+    if (host) { found.landingReferrerHost = host; any = true; }
+
+    if (!any) return null;
+    /* The path only. `location.href` would carry the whole query string back
+       in through the door the allow-list above exists to close. */
+    found.landingRoute = route();
+    return found;
+  }
+
+  /**
+   * The session's attribution, captured on the first page view that has any.
+   *
+   * First write wins: a visitor who lands on a campaign URL and then navigates
+   * to the contact page keeps the campaign, rather than overwriting it with the
+   * internal referrer of the last hop.
+   */
+  function attribution() {
+    var stored = null;
+    try {
+      var raw = window.sessionStorage.getItem(ATTR_KEY);
+      if (raw) stored = JSON.parse(raw);
+    } catch (e) { /* private mode, or a value we did not write */ }
+
+    if (stored && typeof stored === 'object' && !Array.isArray(stored)) return stored;
+
+    var fresh = readAttribution();
+    if (!fresh) return null;
+    try {
+      window.sessionStorage.setItem(ATTR_KEY, JSON.stringify(fresh));
+    } catch (e) { /* the value still applies to this page view */ }
+    return fresh;
+  }
+
+  /* Captured at load rather than at submit, because by the time a visitor
+     reaches the form the campaign parameters are several navigations behind
+     them. Storing nothing is the normal outcome. */
+  try { attribution(); } catch (e) { /* never break the page over measurement */ }
+
   /* ---------------------------------------------------------------- sending */
 
   /**
@@ -171,19 +307,37 @@
    *   { state: 'error',    message }
    */
   function send(options) {
+    var meta = {
+      elapsedMs: options.elapsedMs,
+      referrerOrigin: referrerOrigin(),
+      viewport: viewportClass(),
+      attempt: options.attempt || 1,
+      botField: options.botField || '',
+      /* Which host served the page this was sent from. One fact rather than
+         two: staging and production are decided from it in the report, so
+         there is no second copy of the production-host list to drift out of
+         step with the one in the analytics config. */
+      host: String(location.hostname || '').toLowerCase().slice(0, 120),
+    };
+
+    /* Session attribution, if this session has any. Merged rather than
+       assigned, so a key the server does not declare cannot displace one it
+       does — and `normaliseMeta` drops anything undeclared regardless. */
+    var attr = null;
+    try { attr = attribution(); } catch (e) { /* optional by design */ }
+    if (attr) {
+      for (var a in attr) {
+        if (Object.prototype.hasOwnProperty.call(attr, a) && !(a in meta)) meta[a] = attr[a];
+      }
+    }
+
     var envelope = {
       submissionId: options.submissionId || uuid(),
       formType: options.formType,
       locale: locale(),
       route: route(),
       fields: options.fields || {},
-      meta: {
-        elapsedMs: options.elapsedMs,
-        referrerOrigin: referrerOrigin(),
-        viewport: viewportClass(),
-        attempt: options.attempt || 1,
-        botField: options.botField || '',
-      },
+      meta: meta,
     };
 
     return fetch(ENDPOINT, {
@@ -449,5 +603,10 @@
     endpoint: ENDPOINT,
     minFillMs: MIN_FILL_MS,
     strings: T,
+    /* Exposed for tests, which assert the allow-list rather than trusting it. */
+    attribution: attribution,
+    _attrParams: PARAMS,
+    _attrValue: attrValue,
+    _attrKey: ATTR_KEY,
   };
 })();

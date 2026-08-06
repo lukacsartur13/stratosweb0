@@ -180,6 +180,43 @@ export const META = {
   // How many attempts this submissionId has made. A retry is normal; ten is
   // worth seeing.
   attempt: { type: 'int', max: 100 },
+
+  // -------------------------------------------------------------- attribution
+  //
+  // Phase 9, Workstream D. Design and the decisions behind it:
+  // _build/reports/phase9-attribution-design.md.
+  //
+  // These are stored in `meta`, which is jsonb, so nothing here needed a
+  // migration and the leads table is unchanged. They are declared HERE and
+  // nowhere else — `normaliseMeta` copies only keys in this object, so a
+  // request that invents `utm_id`, `gclid`, `email` or any other name has
+  // exactly no route into the row, whatever the browser was asked to send.
+  //
+  // The client's allow-list in assets/js/lead.js is the first of the two, and
+  // this one is the one that holds: a hand-written POST never passed through
+  // it. Both lists are asserted against each other by tests/attribution.spec.ts.
+  //
+  // NO ADVERTISING CLICK IDENTIFIER IS DECLARED, deliberately. `gclid`,
+  // `fbclid`, `msclkid` and their relatives are per-click identifiers a vendor
+  // can join back to a person; the five UTM parameters are campaign labels that
+  // cannot. Nothing on this site runs advertising, so storing one would be
+  // collecting an identifier for a purpose that does not exist.
+  utmSource: { type: 'text', max: 100 },
+  utmMedium: { type: 'text', max: 100 },
+  utmCampaign: { type: 'text', max: 100 },
+  utmContent: { type: 'text', max: 100 },
+  utmTerm: { type: 'text', max: 100 },
+  // Path only, checked by `normaliseRoute` rather than by `clean` — it is
+  // rendered in the portal, so it is held to the same rule as `source_route`
+  // and cannot carry a scheme, a host or a query string.
+  landingRoute: { type: 'route', max: 300 },
+  // Host only. A full referrer URL can carry someone else's query string, and
+  // a search referrer can carry the query someone typed; neither belongs in
+  // our table. Lower-cased so `Google.com` and `google.com` group.
+  landingReferrerHost: { type: 'host', max: 120 },
+  // Which of our own hosts served the page. Not visitor data: it is how a
+  // pre-cutover netlify.app submission is told from a real one afterwards.
+  host: { type: 'host', max: 120 },
 };
 
 // ------------------------------------------------------------------- helpers
@@ -270,6 +307,21 @@ function validateAnswers(raw, t) {
   return { value: out };
 }
 
+/**
+ * A hostname, or ''.
+ *
+ * Refuses anything that is not a bare host: no scheme, no port, no path, no
+ * credentials, no spaces. These values are rendered in the portal, so they are
+ * treated as hostile input rather than as a fact about who linked to us.
+ */
+export function normaliseHost(value) {
+  const raw = clean(value, 120).toLowerCase();
+  if (!raw) return '';
+  if (!/^[a-z0-9.-]+$/.test(raw)) return '';
+  if (raw.startsWith('.') || raw.endsWith('.') || raw.includes('..')) return '';
+  return raw;
+}
+
 /** Keep only the declared meta keys, coerced to their declared type. */
 export function normaliseMeta(meta) {
   const out = {};
@@ -280,6 +332,15 @@ export function normaliseMeta(meta) {
     if (spec.type === 'int') {
       const n = Number(raw);
       if (Number.isFinite(n) && n >= 0) out[key] = Math.min(Math.round(n), spec.max);
+    } else if (spec.type === 'host') {
+      const v = normaliseHost(raw);
+      if (v) out[key] = v;
+    } else if (spec.type === 'route') {
+      // Dropped rather than rejected: a malformed landing route is a fact we
+      // would like to have and can do without, and it must never be the reason
+      // a real enquiry fails.
+      const v = normaliseRoute(raw);
+      if (v) out[key] = v.slice(0, spec.max);
     } else {
       const v = clean(raw, spec.max);
       if (v) out[key] = v;
