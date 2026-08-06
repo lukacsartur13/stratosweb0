@@ -53,15 +53,57 @@
     var cfg;
     try { cfg = JSON.parse(node.textContent || '{}'); } catch (e) { return null; }
     if (!cfg || cfg.enabled !== true) return null;
-    /* An endpoint is what makes the configuration *valid*. A truthy `enabled`
-       with nowhere to send is a misconfiguration, not a reason to start
-       collecting into the void. */
-    if (typeof cfg.endpoint !== 'string' || !cfg.endpoint) return null;
+
+    /* A sink is what makes the configuration *valid*. Enabled with nowhere to
+       send is a misconfiguration, not a reason to start collecting into the
+       void. There are two possible sinks and at least one must be real. */
+    var hasEndpoint = typeof cfg.endpoint === 'string' && cfg.endpoint;
+    var hasGa4 = cfg.ga4 && typeof cfg.ga4.measurementId === 'string' && cfg.ga4.measurementId;
+    if (!hasEndpoint && !hasGa4) return null;
+
+    /* THE HOST ALLOWLIST.
+
+       Checked in the browser against the real hostname rather than at build
+       time, so it holds however the build is served — a local copy, a deploy
+       preview, a branch deploy, someone's fork. A host that is not on the list
+       gets no tag, no consent interface and no cookies.
+
+       This is what makes shipping a real Measurement ID in the page safe. */
+    if (hasGa4) {
+      var allowed = cfg.ga4.allowHosts || [];
+      var host = location.hostname.toLowerCase();
+      var permitted = false;
+      for (var h = 0; h < allowed.length; h++) {
+        if (String(allowed[h]).toLowerCase() === host) { permitted = true; break; }
+      }
+      if (!permitted) {
+        delete cfg.ga4;
+        if (!hasEndpoint) return null;
+      }
+    }
     return cfg;
   }
 
   var cfg = readConfig();
   if (!cfg) return;
+
+  var GA4 = cfg.ga4 || null;
+
+  /* Staging or production, decided from the hostname the visitor is actually
+     on. Sent on every event so that pre-cutover integration traffic on the
+     netlify.app address never mixes with real visitors after the domain moves,
+     and set as GA4's own `traffic_type` so its internal-traffic filter can
+     exclude it without anyone rebuilding the site. */
+  var ENVIRONMENT = 'staging';
+  if (GA4) {
+    var prod = GA4.productionHosts || [];
+    for (var p = 0; p < prod.length; p++) {
+      if (String(prod[p]).toLowerCase() === location.hostname.toLowerCase()) {
+        ENVIRONMENT = 'production';
+        break;
+      }
+    }
+  }
 
   /* --------------------------------------------------------------- the guard
 
@@ -158,16 +200,134 @@
      state is `not_required` and events flow. A build that sets requireConsent
      starts denied and holds events until consent() says otherwise — which is
      the state to use the day anything here starts needing storage. */
-  var consentState = cfg.requireConsent ? 'denied' : 'not_required';
+  /* Where the visitor's choice is remembered.
+
+     This is the one piece of device storage the site uses, and it exists only
+     to honour a refusal — remembering "no" is what stops the interface asking
+     again on every page. Storage strictly necessary to carry out a choice the
+     visitor made does not itself require consent; if it did, a consent banner
+     could never remember anything. */
+  var CONSENT_KEY = 'stratos.consent';
+
+  function storedConsent() {
+    try {
+      var raw = window.localStorage.getItem(CONSENT_KEY);
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      return parsed && (parsed.state === 'granted' || parsed.state === 'denied')
+        ? parsed.state : null;
+    } catch (e) { return null; }
+  }
+
+  function rememberConsent(state) {
+    try {
+      window.localStorage.setItem(CONSENT_KEY,
+        JSON.stringify({ state: state, at: new Date().toISOString() }));
+    } catch (e) { /* private mode; the choice holds for this page view only */ }
+  }
+
+  /* `denied` until told otherwise, whenever consent is required. Basic Consent
+     Mode: nothing is loaded and nothing is sent until the visitor says yes. */
+  var consentState = cfg.requireConsent ? (storedConsent() || 'denied') : 'not_required';
+  var consentAnswered = !cfg.requireConsent || storedConsent() !== null;
   var held = [];
 
   function allowed() {
     return consentState === 'granted' || consentState === 'not_required';
   }
 
+  /* ----------------------------------------------------------- GA4 sink
+
+     Basic Consent Mode, implemented the strict way: gtag.js is not injected
+     until consent is granted. This is stronger than the advanced mode, where
+     the tag loads immediately and sends cookieless pings while storage is
+     denied — here, a visitor who refuses causes no contact with Google at all,
+     which is the only version that matches what the privacy policy is able to
+     say plainly.
+
+     The tag is injected as an external script; nothing here is inline, so
+     `script-src` needs the googletagmanager host and nothing weaker. */
+  var ga4Loaded = false;
+
+  function gtag() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(arguments);
+  }
+
+  function loadGa4() {
+    if (ga4Loaded || !GA4) return;
+    ga4Loaded = true;
+
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4.measurementId);
+    document.head.appendChild(s);
+
+    gtag('js', new Date());
+    /* Consent API, set before config so the first hit carries it. Only
+       analytics storage is ever granted: ad storage and personalisation stay
+       denied permanently, because this property is not used for advertising
+       and no ad host is on the CSP. */
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'granted',
+    });
+    gtag('config', GA4.measurementId, {
+      anonymize_ip: true,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      /* Page views are sent by this adapter, from the taxonomy, so GA4's own
+         automatic one would double count. */
+      send_page_view: false,
+      traffic_type: ENVIRONMENT,
+      environment: ENVIRONMENT,
+    });
+  }
+
+  /** Stop sending, and remove what GA4 already stored. */
+  function unloadGa4() {
+    if (!GA4) return;
+    gtag('consent', 'update', { analytics_storage: 'denied' });
+
+    /* Withdrawal has to mean the cookies go too, otherwise "you can withdraw
+       consent" is only half true. _ga is the client id; _ga_<container> is the
+       session. Both are first-party, so the page can clear them. */
+    var names = document.cookie.split(';');
+    for (var i = 0; i < names.length; i++) {
+      var name = names[i].split('=')[0].trim();
+      if (name.indexOf('_ga') !== 0) continue;
+      var base = '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+      document.cookie = name + base;
+      document.cookie = name + base + '; domain=' + location.hostname;
+      document.cookie = name + base + '; domain=.' + location.hostname;
+    }
+  }
+
+  function toGa4(payload) {
+    if (!GA4 || !ga4Loaded) return;
+    var params = {};
+    for (var k in payload) {
+      if (!Object.prototype.hasOwnProperty.call(payload, k)) continue;
+      if (k === 'event' || k === 'type') continue;
+      params[k] = payload[k];
+    }
+    gtag('event', payload.event, params);
+  }
+
   /* ------------------------------------------------------------ transport */
 
   function dispatch(payload) {
+    toGa4(payload);
+    /* The first-party sink is optional and is not the production solution; it
+       is the seam that keeps this adapter provider-neutral. Without a
+       configured endpoint, GA4 above is the only destination. */
+    if (!cfg.endpoint) return;
+    dispatchFirstParty(payload);
+  }
+
+  function dispatchFirstParty(payload) {
     var json = JSON.stringify(payload);
     /* sendBeacon survives the pagehide that a CTA click causes; a fetch does
        not reliably. Same-origin, so no preflight and no CSP widening. */
@@ -206,6 +366,10 @@
       route: context.route,
       page_type: context.page_type,
       consent_state: consentState,
+      /* On every event, not only in the GA4 config: it must be possible to
+         separate pre-cutover integration traffic from real visitors in a
+         report, not only in a filter that someone has to remember to apply. */
+      environment: ENVIRONMENT,
       ts: Date.now(),
     };
     if (params) {
@@ -229,13 +393,40 @@
 
   function consent(state) {
     if (state !== 'granted' && state !== 'denied' && state !== 'not_required') return;
+
+    var changed = state !== consentState;
     consentState = state;
-    if (!allowed()) { held.length = 0; return; }
+    if (cfg.requireConsent && (state === 'granted' || state === 'denied')) {
+      rememberConsent(state);
+      consentAnswered = true;
+    }
+
+    if (!allowed()) {
+      /* Refusal, or withdrawal after having granted. Anything queued is
+         discarded rather than kept for later — a queue that survives a refusal
+         is a refusal that was not honoured. */
+      held.length = 0;
+      if (changed) unloadGa4();
+      notify();
+      return;
+    }
+
+    loadGa4();
     var pending = held.slice();
     held.length = 0;
     for (var i = 0; i < pending.length; i++) {
       pending[i].consent_state = state;
       dispatch(pending[i]);
+    }
+    notify();
+  }
+
+  /* The consent interface asks the adapter what to render; this lets it
+     re-render when the answer changes from anywhere, including the console. */
+  var listeners = [];
+  function notify() {
+    for (var i = 0; i < listeners.length; i++) {
+      try { listeners[i](consentState); } catch (e) { /* never break the page */ }
     }
   }
 
@@ -535,6 +726,10 @@
   /* ------------------------------------------------------------------ start */
 
   function start() {
+    /* A returning visitor who already said yes: bring GA4 up before the first
+       event, so the page view is not queued behind the tag. */
+    if (allowed()) loadGa4();
+
     page({ page_key: context.page_key });
 
     if (context.page_type === 'service detail') {
@@ -567,6 +762,13 @@
     page: page,
     consent: consent,
     context: context,
+    /* What the consent interface needs, and nothing more. */
+    consentRequired: Boolean(cfg.requireConsent),
+    consentState: function () { return consentState; },
+    consentAnswered: function () { return consentAnswered; },
+    onConsentChange: function (fn) { if (typeof fn === 'function') listeners.push(fn); },
+    environment: ENVIRONMENT,
+    provider: GA4 ? 'ga4' : (cfg.endpoint ? 'first-party' : 'none'),
     /* Exposed for tests, which assert the guard rather than trusting it. */
     _prohibited: PROHIBITED,
     _offendingKey: offendingKey,

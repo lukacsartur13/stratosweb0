@@ -35,7 +35,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
-<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
+<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "consent_title": "Measurement and cookies", "consent_body": "We would use Google Analytics to see how the site is used. It loads, and sets cookies, only if you agree. We never send names, email addresses, phone numbers or anything typed into a form.", "consent_accept": "Accept", "consent_decline": "Decline", "consent_more": "Privacy policy", "consent_settings": "Cookie settings", "consent_state_granted": "Measurement is currently enabled.", "consent_state_denied": "Measurement is currently disabled.", "consent_privacy_href": "privacy-policy.html", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
      guaranteed to have defined `window.Stratos.lead` before any per-page
@@ -43,6 +43,9 @@
      which is a separate file and cannot import it. It also reads the i18n
      block above, which parsing has already delivered by then. -->
 <script src="../assets/js/lead.js" defer></script>
+<script id="analytics-config" type="application/json">{"enabled": true, "ga4": {"measurementId": "G-JZD43PHJ41", "allowHosts": ["stratosweb.hu", "www.stratosweb.hu", "stratosweb1.netlify.app"], "productionHosts": ["stratosweb.hu", "www.stratosweb.hu"]}, "requireConsent": true}</script>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/consent.js" defer></script>
 </head>
 <!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
      is translated, so /en/web-design-sme.html and /de/webdesign-kmu.html are
@@ -336,6 +339,7 @@
       <span class="foot__utility">
         <a href="privacy-policy.html">Privacy policy</a>
         <a href="imprint.html">Imprint</a>
+        <button class="foot__consent" type="button" data-consent-settings hidden>Cookie settings</button>
         <div class="lang" role="group" aria-label="Choose language"><a href="../blog-google-vagy-facebook.html" hreflang="hu" lang="hu">HU</a><a href="blog-google-or-facebook.html" hreflang="en" lang="en" aria-current="true">EN</a><a href="../de/blog-google-oder-facebook.html" hreflang="de" lang="de">DE</a></div>
         <button class="foot__top" type="button" data-to-top>RETURN TO 0 M</button>
         <img src="../assets/img/gdpr.png" alt="GDPR Ready" width="1800" height="1800">

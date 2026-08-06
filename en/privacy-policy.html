@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
-<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
+<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "consent_title": "Measurement and cookies", "consent_body": "We would use Google Analytics to see how the site is used. It loads, and sets cookies, only if you agree. We never send names, email addresses, phone numbers or anything typed into a form.", "consent_accept": "Accept", "consent_decline": "Decline", "consent_more": "Privacy policy", "consent_settings": "Cookie settings", "consent_state_granted": "Measurement is currently enabled.", "consent_state_denied": "Measurement is currently disabled.", "consent_privacy_href": "privacy-policy.html", "locale": "en-GB", "unit": "METRES", "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
      guaranteed to have defined `window.Stratos.lead` before any per-page
@@ -45,6 +45,9 @@
      which is a separate file and cannot import it. It also reads the i18n
      block above, which parsing has already delivered by then. -->
 <script src="../assets/js/lead.js" defer></script>
+<script id="analytics-config" type="application/json">{"enabled": true, "ga4": {"measurementId": "G-JZD43PHJ41", "allowHosts": ["stratosweb.hu", "www.stratosweb.hu", "stratosweb1.netlify.app"], "productionHosts": ["stratosweb.hu", "www.stratosweb.hu"]}, "requireConsent": true}</script>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/consent.js" defer></script>
 </head>
 <!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
      is translated, so /en/web-design-sme.html and /de/webdesign-kmu.html are
@@ -153,6 +156,26 @@
   <section class="band band--tight">
     <div class="wrap">
       <div class="legal">
+        <!-- ================================================================
+             PHASE 9 — REQUIRES FINAL LEGAL REVIEW BEFORE PRODUCTION LAUNCH.
+
+             The processor list and the whole cookie section were rewritten in
+             Phase 9 to describe the system as it actually behaves. What they
+             replaced was inherited from the pre-rework Wix site and was simply
+             untrue of this one: it declared Google Analytics and a Meta Pixel
+             that did not exist, named Search Console as a visitor-analytics
+             processor, and described a marketing-cookie taxonomy for a site
+             that set no cookies at all.
+
+             The current text is accurate as of the Phase 9 implementation:
+             GA4 only after explicit consent, no advertising cookies, consent
+             withdrawable from the footer. It is written by an engineer against
+             observed behaviour, and it has NOT been reviewed by a lawyer.
+
+             Before launch: have this and its EN/DE translations reviewed, and
+             re-check it against the deployed state — in particular whether
+             GA4 is actually switched on at that point.
+             ================================================================ -->
         <p class="legal__note" role="note"><b>Please note:</b> this is a courtesy translation. In any question of interpretation the <a href="../adatkezelesi-tajekoztato.html" hreflang="hu" lang="hu">Hungarian version</a> is the legally binding one.</p>
         <p>Please read this privacy policy (hereinafter the Policy) carefully. It describes our practices regarding the processing of your personal data under the General Data Protection Regulation (GDPR — Regulation (EU) 2016/679 of the European Parliament and of the Council).</p>
         <p>This Policy applies to persons using the Controller's services (you). It sets out how the Controller collects, uses and processes your personal data and provides information about data subject rights. The Controller is committed to the protection and security of personal data. Personal data is always processed lawfully, fairly and transparently.</p>
@@ -204,41 +227,26 @@
           <li><b>Hosting provider:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, United States. Service: serving the website and running the server-side functions (Netlify Functions) that receive form submissions.</li>
           <li><b>Database provider:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513. Service: storing the enquiries received through the forms and supporting the private Portal.</li>
           <li><b>Email provider:</b> the provider of the mail system (e.g. Google Workspace or another email provider)</li>
-          <li><b>Google LLC</b> — 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Services: Google Analytics, Search Console, advertising and analytics systems</li>
-          <li><b>Meta Platforms Ireland Ltd.</b> — 4 Grand Canal Square, Dublin 2, Ireland. Services: Facebook, Instagram, Meta Pixel</li>
+          <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Analytics 4 audience measurement, only where the visitor has explicitly consented. Without consent Google Analytics is not loaded and no data reaches Google.</li>
         </ul>
+        <p class="note">Google Search Console is not audience measurement and not a data processor: it reports how our own site appears in search, and does not track visitors. The website uses no Meta Pixel and no other social-media tracking code. The social icons in the footer are ordinary links and load nothing.</p>
 
         <h2>Use of cookies</h2>
-        <p>The website uses cookies to improve the user experience, produce statistical analysis and for marketing purposes. Cookies may be session, analytical, functional or marketing cookies. Users may consent to the use of cookies and can delete or block them in their browser at any time.</p>
+        <p>By default the website sets no cookies. Cookies are set only by audience measurement, and only where the visitor has explicitly consented in the bar shown at the bottom of the page. Without consent, measurement does not start, no cookie is placed on the device, and no data whatsoever is transmitted to Google.</p>
+        <p>The website uses no advertising, marketing or profiling cookies. Google Analytics advertising features (Google Signals, ad personalisation) are switched off.</p>
 
-        <h3>Types of cookie</h3>
+        <h3>Which cookies may be on your device</h3>
         <ul>
-          <li><b>Session cookies</b> — stay on your device only until you leave the website.</li>
-          <li><b>Persistent cookies</b> — depending on browser settings, stay on your device for longer, or until you delete them.</li>
-          <li><b>Third-party cookies</b> — placed in your browser by a third party (e.g. Google Analytics).</li>
+          <li><b>Analytics cookies (Google Analytics 4)</b> — only after consent. The cookies named <code>_ga</code> and <code>_ga_&lt;identifier&gt;</code> distinguish returning visits and sessions. They contain no name, email address or phone number.</li>
+          <li><b>Remembering your choice</b> — the decision is kept in the browser’s local storage (<code>stratos.consent</code>). This is not a cookie and never reaches the server; it exists solely so that, after a refusal, you are not asked again on every page.</li>
         </ul>
 
-        <h3>Strictly necessary session cookies</h3>
-        <p>These are essential for navigating the site and for its functions to work. Without accepting them the site, or parts of it, may not display at all or may display incorrectly.</p>
+        <h3>What we measure, and what we do not</h3>
+        <p>Measurement covers which pages are read, how far into them visitors get, and which buttons they click. The data sent for measurement <b>never</b> includes a name, email address, phone number, company name, text typed into a form, questionnaire answers, or the identifier of an enquiry or submission. This is not merely policy: before sending, the measurement code checks the field names and discards, in its entirety, any event containing a prohibited field.</p>
 
-        <h3>Analytical or performance cookies</h3>
-        <p>These help distinguish visitors and collect data on how visitors behave on the site. They do not collect information capable of identifying you; data is stored in aggregated, anonymous form (e.g. Google Analytics).</p>
-
-        <h3>Functional cookies</h3>
-        <p>These cookies exist to improve the user experience. They detect and store, for example, which device you opened the site with, or data you previously entered and asked to be saved: automatic sign-in, chosen language, text size, typeface or other customisable elements. These cookies do not track your activity on other websites.</p>
-
-        <h3>Targeting or advertising cookies</h3>
-        <p>These let websites present the information most relevant to your interests. They require your explicit consent. These cookies collect detailed information about your browsing habits.</p>
-
-        <h3>Do cookies contain personal data?</h3>
-        <p>Most cookies contain no personal information and cannot be used to identify users. The stored data serves more convenient browsing and is stored so that unauthorised persons cannot access it.</p>
-
-        <h3>Security considerations</h3>
-        <p>Cookies are not viruses or spyware. Being plain text files they cannot be executed and are therefore not programs. It is possible, however, for information to be hidden in them maliciously, in which case they can act as spyware. For that reason antivirus programs may continually flag cookies for deletion.</p>
-        <p>Because the device you browse with and the web servers communicate constantly, an attacker who intervenes in that process can extract the information stored in cookies. One cause of this can be, for example, an inadequately encrypted Wi-Fi configuration.</p>
-
-        <h3>Managing and deleting cookies</h3>
-        <p>Cookies can be deleted or blocked in the browser you use. Browsers allow cookies to be set by default; this can be disabled in the browser settings and existing cookies deleted. You can also set the browser to notify you when a cookie is sent to your device. Note that blocking or restricting these files degrades the browsing experience and may cause faults in the website's functionality. The settings are usually found in the browser's “Options” or “Settings” menu.</p>
+        <h3>Withdrawing consent</h3>
+        <p>Consent can be withdrawn at any time, exactly as easily as it was given: the <b>Cookie settings</b> button in the footer reopens the choice so it can be changed. On withdrawal, measurement stops immediately and the website deletes any <code>_ga</code> cookies already set. Cookies can also be deleted or blocked at any time in the browser’s own settings.</p>
+        <p>Refusing consent does not restrict use of the website in any way: the site works in full without measurement.</p>
 
         <h2>Data subject rights</h2>
         <p>The data subject has the right:</p>
@@ -364,6 +372,7 @@
       <span class="foot__utility">
         <a href="privacy-policy.html">Privacy policy</a>
         <a href="imprint.html">Imprint</a>
+        <button class="foot__consent" type="button" data-consent-settings hidden>Cookie settings</button>
         <div class="lang" role="group" aria-label="Choose language"><a href="../adatkezelesi-tajekoztato.html" hreflang="hu" lang="hu">HU</a><a href="privacy-policy.html" hreflang="en" lang="en" aria-current="true">EN</a><a href="../de/datenschutz.html" hreflang="de" lang="de">DE</a></div>
         <button class="foot__top" type="button" data-to-top>RETURN TO 0 M</button>
         <img src="../assets/img/gdpr.png" alt="GDPR Ready" width="1800" height="1800">

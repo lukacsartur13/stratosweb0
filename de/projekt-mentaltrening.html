@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/transitions.css">
-<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
+<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "fail": "Das Senden ist fehlgeschlagen. Schreib uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfe die markierten Felder.", "need_name": "Bitte gib deinen Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürze es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.", "consent_title": "Messung und Cookies", "consent_body": "Mit Google Analytics würden wir sehen, wie die Website genutzt wird. Es lädt und setzt Cookies nur, wenn du zustimmst. Namen, E-Mail-Adressen, Telefonnummern und Formularinhalte senden wir nie.", "consent_accept": "Einverstanden", "consent_decline": "Nicht zustimmen", "consent_more": "Datenschutzerklärung", "consent_settings": "Cookie-Einstellungen", "consent_state_granted": "Die Messung ist derzeit aktiviert.", "consent_state_denied": "Die Messung ist derzeit deaktiviert.", "consent_privacy_href": "datenschutz.html", "locale": "de-DE", "unit": "METER", "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
      guaranteed to have defined `window.Stratos.lead` before any per-page
@@ -44,6 +44,9 @@
      which is a separate file and cannot import it. It also reads the i18n
      block above, which parsing has already delivered by then. -->
 <script src="../assets/js/lead.js" defer></script>
+<script id="analytics-config" type="application/json">{"enabled": true, "ga4": {"measurementId": "G-JZD43PHJ41", "allowHosts": ["stratosweb.hu", "www.stratosweb.hu", "stratosweb1.netlify.app"], "productionHosts": ["stratosweb.hu", "www.stratosweb.hu"]}, "requireConsent": true}</script>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/consent.js" defer></script>
 </head>
 <!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
      is translated, so /en/web-design-sme.html and /de/webdesign-kmu.html are
@@ -351,6 +354,7 @@
       <span class="foot__utility">
         <a href="datenschutz.html">Datenschutzerklärung</a>
         <a href="impressum.html">Impressum</a>
+        <button class="foot__consent" type="button" data-consent-settings hidden>Cookie-Einstellungen</button>
         <div class="lang" role="group" aria-label="Sprache wählen"><a href="../munka-mentaltrening.html" hreflang="hu" lang="hu">HU</a><a href="../en/work-mentaltrening.html" hreflang="en" lang="en">EN</a><a href="projekt-mentaltrening.html" hreflang="de" lang="de" aria-current="true">DE</a></div>
         <button class="foot__top" type="button" data-to-top>ZURÜCK AUF 0 M</button>
         <img src="../assets/img/gdpr.png" alt="GDPR Ready" width="1800" height="1800">

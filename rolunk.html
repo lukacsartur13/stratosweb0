@@ -39,7 +39,7 @@
 <link rel="stylesheet" href="assets/css/motion.css">
 <link rel="stylesheet" href="assets/css/transitions.css">
 <link rel="stylesheet" href="assets/css/page-about.css">
-<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
+<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "consent_title": "Mérés és sütik", "consent_body": "A Google Analytics segítségével néznénk meg, hogyan használják az oldalt. Csak akkor tölt be és csak akkor helyez el sütit, ha ehhez hozzájárulsz. Nevet, e-mail címet, telefonszámot és űrlapokba írt szöveget soha nem küldünk el.", "consent_accept": "Elfogadom", "consent_decline": "Nem járulok hozzá", "consent_more": "Adatkezelési tájékoztató", "consent_settings": "Süti-beállítások", "consent_state_granted": "A mérés jelenleg engedélyezve van.", "consent_state_denied": "A mérés jelenleg le van tiltva.", "consent_privacy_href": "adatkezelesi-tajekoztato.html", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
      guaranteed to have defined `window.Stratos.lead` before any per-page
@@ -47,6 +47,9 @@
      which is a separate file and cannot import it. It also reads the i18n
      block above, which parsing has already delivered by then. -->
 <script src="assets/js/lead.js" defer></script>
+<script id="analytics-config" type="application/json">{"enabled": true, "ga4": {"measurementId": "G-JZD43PHJ41", "allowHosts": ["stratosweb.hu", "www.stratosweb.hu", "stratosweb1.netlify.app"], "productionHosts": ["stratosweb.hu", "www.stratosweb.hu"]}, "requireConsent": true}</script>
+<script src="assets/js/analytics.js" defer></script>
+<script src="assets/js/consent.js" defer></script>
 </head>
 <!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
      is translated, so /en/web-design-sme.html and /de/webdesign-kmu.html are
@@ -731,6 +734,7 @@
       <span class="foot__utility">
         <a href="adatkezelesi-tajekoztato.html">Adatkezelési tájékoztató</a>
         <a href="impresszum.html">Impresszum</a>
+        <button class="foot__consent" type="button" data-consent-settings hidden>Süti-beállítások</button>
         <div class="lang" role="group" aria-label="Nyelvválasztás"><a href="rolunk.html" hreflang="hu" lang="hu" aria-current="true">HU</a><a href="en/about.html" hreflang="en" lang="en">EN</a><a href="de/ueber-uns.html" hreflang="de" lang="de">DE</a></div>
         <button class="foot__top" type="button" data-to-top>VISSZA 0 MÉTERRE</button>
         <img src="assets/img/gdpr.png" alt="GDPR Ready" width="1800" height="1800">

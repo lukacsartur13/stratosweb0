@@ -4,9 +4,16 @@ A provider-neutral event model, written **before** any analytics implementation
 so that the measurement design is a decision rather than a by-product of a
 vendor's SDK.
 
-Nothing in this document names a vendor. Every event and parameter here can be
-carried by any provider, or by none — see Workstream C for the adapter that
-stays inert until it is configured.
+The model was written before a provider was chosen, and deliberately names none
+in its event vocabulary — every event and parameter here can be carried by any
+provider, or by none.
+
+**Google Analytics 4 was subsequently approved as the provider** (Measurement ID
+`G-JZD43PHJ41`). It is implemented *through* the adapter rather than in place of
+it, so nothing in §2–§8 changed when it was adopted. §1 and §9 record what the
+decision did change: consent became mandatory, and the CSP was widened. Both are
+marked where they supersede the original text rather than being rewritten over
+it.
 
 ---
 
@@ -15,21 +22,42 @@ stays inert until it is configured.
 These are not preferences. They are facts about the system as it exists today,
 recorded in `phase9-baseline.md` and re-verified during Workstream A.
 
-**1. The site sets zero cookies and uses zero device storage.**
-Confirmed by source audit and by a live probe returning no `Set-Cookie` at all.
-That means **no consent banner is legally required today**. Any event in this
-taxonomy that would require a cookie or a `localStorage` write changes that
-answer and drags consent infrastructure into scope. So the model below is
-designed to be **cookieless and stateless per page view**, and every event that
-would need cross-page identity is either dropped or explicitly marked as
-requiring a decision first.
+**1. The site set zero cookies — and that changed, deliberately.**
+
+When this taxonomy was written the site set no cookies at all, so no consent
+banner was required. **Google Analytics 4 has since been approved as the
+measurement provider**, which changes that answer: GA4 sets cookies, so consent
+became mandatory rather than optional.
+
+What was kept from the original position, rather than discarded:
+
+- **Nothing loads before consent.** Basic Consent Mode, implemented strictly:
+  gtag.js is not injected at all until the visitor agrees, so a visitor who
+  refuses causes no contact with Google whatsoever. This is stronger than the
+  advanced mode, where the tag loads immediately and sends cookieless pings.
+- **A refusal is remembered and costs nothing else.** One `localStorage` key
+  holds the answer. That is the only storage a refusing visitor ever gets.
+- **The events below did not change.** They were designed page-view scoped and
+  cookieless, and that is why adopting a cookie-setting provider needed no
+  redesign of the model — only a gate in front of it.
+
+> Superseded: the original text here recommended staying cookieless
+> indefinitely. That recommendation was overtaken by an explicit decision, and
+> is recorded rather than deleted so the reasoning is not lost if the question
+> is reopened.
 
 **2. The Content-Security-Policy is `script-src 'self'` with
 `connect-src 'self' https://*.supabase.co`.**
-No third-party analytics can load or transmit without widening it. The taxonomy
-therefore assumes a **first-party, same-origin sink**. This is a constraint on
-transport, not on meaning: the events below are provider-neutral and could be
-forwarded server-side to any provider later.
+No third-party analytics could load or transmit without widening it, and
+adopting GA4 meant widening it — deliberately, and narrowly. `netlify.toml`
+now permits `www.googletagmanager.com` on `script-src` and the Google Analytics
+endpoints on `connect-src`, and **nothing from the advertising side**: no
+doubleclick host, no ad services, and no `'unsafe-inline'`. A test asserts those
+absences rather than trusting them.
+
+The events below remain provider-neutral. The adapter still has a first-party
+sink behind the same interface; it is the seam that keeps the model portable,
+not the production solution.
 
 **3. The questionnaire wizard contains no `<form>` element at any step.**
 Verified in a browser during Workstream A. Each step is a `div` holding one
@@ -311,13 +339,39 @@ personal data field.
 
 ---
 
-## 9. Open decisions — not made here
+## 9. Decisions taken, and what remains open
 
-1. **Provider.** None is configured, and the brief forbids selecting one without
-   approval. Workstream C delivers the adapter and leaves the sink unconfigured.
-2. **Cross-page-view sessions.** Every event above is page-view scoped. Session
-   stitching would need a cookie or storage, which would require a consent
-   banner. Recommendation: stay cookieless, and accept that "sessions" are not
-   measurable, until there is a business reason worth a consent banner.
-3. **Retention.** Cannot be set before a sink exists; it becomes a Workstream D
-   privacy-policy statement the moment it does.
+**Provider: Google Analytics 4.** Approved, with Measurement ID `G-JZD43PHJ41`.
+Implemented through the adapter rather than in place of it, so the taxonomy
+above is what is emitted and the model would survive a change of provider.
+
+Constraints applied with it:
+
+| | |
+|---|---|
+| Consent | Required. Basic Consent Mode — the tag is not loaded before consent. |
+| Advertising | `ad_storage`, `ad_user_data` and `ad_personalization` are permanently denied; Google Signals and ad personalisation are off. |
+| Host allowlist | `stratosweb.hu`, `www.stratosweb.hu`, `stratosweb1.netlify.app`. Anywhere else — a local build, a deploy preview, a fork — gets no tag, no banner and no cookies. |
+| Staging separation | Only the two real domains count as production. Everything else is marked `staging`, on every event and as GA4's own `traffic_type`, so pre-cutover integration traffic never mixes with real visitors. |
+| Withdrawal | From the footer, on every page. Withdrawal deletes the `_ga` cookies, not only stops new ones. |
+| Personal data | Unchanged and unchangeable: the payload guard refuses every field the lead schema declares. |
+
+**The Portal's reporting is a separate integration.** Website measurement uses
+the *Measurement ID*; Portal reporting uses the numeric **Property ID
+`15392224433`** with server-side credentials through the Analytics Data API.
+They are deliberately not connected, and the Property ID is deliberately absent
+from `_build/build.py` and from anything that reaches a browser — conflating the
+two is how a server-side credential ends up in a client bundle.
+
+### Still open
+
+1. **The Portal's Analytics Data API integration** is not built. Only the
+   separation of identifiers is settled here.
+2. **Retention** in the GA4 property is a console setting, not a code one. It
+   should be set to the shortest period that supports the reporting actually
+   wanted, and the privacy policy should then state it.
+3. **Legal review.** The rewritten HU/EN/DE privacy wording is accurate against
+   observed behaviour and has not been reviewed by a lawyer. Marked in the
+   source and asserted by a test; it is a launch prerequisite.
+4. **Cross-page-view sessions.** GA4 does this natively now that it has a
+   cookie, so the original open question is closed by the provider decision.

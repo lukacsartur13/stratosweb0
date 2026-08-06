@@ -121,14 +121,43 @@
     # blob: on worker-src is a small allowance in this policy specifically:
     # script-src stays 'self' with no unsafe-inline and no eval, so there is no
     # route by which injected script could author the blob in the first place.
+    # GOOGLE ANALYTICS 4 — the one deliberate widening of this policy
+    # -------------------------------------------------------------
+    # Added in Phase 9 because GA4 was approved as the measurement provider. It
+    # is recorded here rather than absorbed silently, because until this change
+    # `script-src` was `'self'` with no exceptions at all, and that was worth
+    # something.
+    #
+    # What was added, and nothing beyond it:
+    #
+    #   script-src   www.googletagmanager.com   gtag.js itself.
+    #   connect-src  *.google-analytics.com     where events are sent. The
+    #                *.analytics.google.com     wildcards cover the regional
+    #                www.googletagmanager.com   endpoints GA4 picks at runtime.
+    #   img-src      www.google-analytics.com   the pixel fallback used when
+    #                www.googletagmanager.com   sendBeacon/fetch are unavailable.
+    #
+    # What was deliberately NOT added:
+    #
+    #   * `stats.g.doubleclick.net` and the other advertising hosts. Google
+    #     Signals and ads personalisation are off; adding those hosts is what
+    #     turns analytics into ad tracking, and nothing here asks for that.
+    #   * `'unsafe-inline'` on script-src. gtag is loaded as an external script
+    #     and configured from assets/js/analytics.js, so no inline block is
+    #     needed and the strongest part of this policy is untouched.
+    #
+    # Nothing above loads before the visitor consents — the tag is not injected
+    # at all until then (Basic Consent Mode). A CSP entry is permission, not an
+    # instruction: these hosts being allowed does not mean anything contacts
+    # them. See assets/js/analytics.js.
     Content-Security-Policy = """
       default-src 'self';
-      script-src 'self';
+      script-src 'self' https://www.googletagmanager.com;
       worker-src 'self' blob:;
       style-src 'self' 'unsafe-inline';
       font-src 'self';
-      img-src 'self' data: blob: https://*.supabase.co;
-      connect-src 'self' https://*.supabase.co wss://*.supabase.co;
+      img-src 'self' data: blob: https://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com;
+      connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com;
       form-action 'self';
       frame-ancestors 'none';
       base-uri 'self';

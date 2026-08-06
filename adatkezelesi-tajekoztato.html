@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/motion.css">
 <link rel="stylesheet" href="assets/css/transitions.css">
-<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
+<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "consent_title": "Mérés és sütik", "consent_body": "A Google Analytics segítségével néznénk meg, hogyan használják az oldalt. Csak akkor tölt be és csak akkor helyez el sütit, ha ehhez hozzájárulsz. Nevet, e-mail címet, telefonszámot és űrlapokba írt szöveget soha nem küldünk el.", "consent_accept": "Elfogadom", "consent_decline": "Nem járulok hozzá", "consent_more": "Adatkezelési tájékoztató", "consent_settings": "Süti-beállítások", "consent_state_granted": "A mérés jelenleg engedélyezve van.", "consent_state_denied": "A mérés jelenleg le van tiltva.", "consent_privacy_href": "adatkezelesi-tajekoztato.html", "locale": "hu-HU", "unit": "MÉTER", "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"]}</script>
 <!-- The canonical lead submission controller. In <head> with `defer` on
      purpose: deferred scripts run in document order after parsing, so this is
      guaranteed to have defined `window.Stratos.lead` before any per-page
@@ -46,6 +46,9 @@
      which is a separate file and cannot import it. It also reads the i18n
      block above, which parsing has already delivered by then. -->
 <script src="assets/js/lead.js" defer></script>
+<script id="analytics-config" type="application/json">{"enabled": true, "ga4": {"measurementId": "G-JZD43PHJ41", "allowHosts": ["stratosweb.hu", "www.stratosweb.hu", "stratosweb1.netlify.app"], "productionHosts": ["stratosweb.hu", "www.stratosweb.hu"]}, "requireConsent": true}</script>
+<script src="assets/js/analytics.js" defer></script>
+<script src="assets/js/consent.js" defer></script>
 </head>
 <!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
      is translated, so /en/web-design-sme.html and /de/webdesign-kmu.html are
@@ -157,6 +160,26 @@
   <section class="band band--tight">
     <div class="wrap">
       <div class="legal">
+        <!-- ================================================================
+             PHASE 9 — REQUIRES FINAL LEGAL REVIEW BEFORE PRODUCTION LAUNCH.
+
+             The processor list and the whole cookie section were rewritten in
+             Phase 9 to describe the system as it actually behaves. What they
+             replaced was inherited from the pre-rework Wix site and was simply
+             untrue of this one: it declared Google Analytics and a Meta Pixel
+             that did not exist, named Search Console as a visitor-analytics
+             processor, and described a marketing-cookie taxonomy for a site
+             that set no cookies at all.
+
+             The current text is accurate as of the Phase 9 implementation:
+             GA4 only after explicit consent, no advertising cookies, consent
+             withdrawable from the footer. It is written by an engineer against
+             observed behaviour, and it has NOT been reviewed by a lawyer.
+
+             Before launch: have this and its EN/DE translations reviewed, and
+             re-check it against the deployed state — in particular whether
+             GA4 is actually switched on at that point.
+             ================================================================ -->
         
         <p>
           Kérjük, figyelmesen olvassa el jelen adatkezelési tájékoztatónkat (a továbbiakban:
@@ -223,85 +246,63 @@
           <li><b>Tárhelyszolgáltató:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, Amerikai Egyesült Államok. Szolgáltatás: a weboldal kiszolgálása és a kiszolgálói funkciók (Netlify Functions) futtatása, amelyek az űrlapok beküldését fogadják.</li>
           <li><b>Adatbázis-szolgáltató:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513. Szolgáltatás: az űrlapokon beérkező érdeklődések tárolása és a zárt Portál kiszolgálása.</li>
           <li><b>E-mail szolgáltató:</b> a levelezőrendszer szolgáltatója (pl. Google Workspace vagy más e-mail szolgáltató)</li>
-          <li><b>Google LLC</b> — 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Szolgáltatások: Google Analytics, Search Console, hirdetési és analitikai rendszerek</li>
-          <li><b>Meta Platforms Ireland Ltd.</b> — 4 Grand Canal Square, Dublin 2, Írország. Szolgáltatások: Facebook, Instagram, Meta Pixel</li>
+          <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Analytics 4 látogatottságmérés, kizárólag a látogató kifejezett hozzájárulása esetén. Hozzájárulás hiányában a Google Analytics nem töltődik be, és semmilyen adat nem kerül a Google-höz.</li>
         </ul>
+        <p class="note">
+          A Google Search Console nem látogatottságmérő és nem adatfeldolgozó: a saját
+          weboldalunk keresési megjelenését mutatja, és nem követi a látogatókat.
+          Meta Pixelt vagy más közösségimédia-követőkódot a weboldal nem használ.
+          A láblécben található közösségi ikonok egyszerű hivatkozások, nem töltenek be
+          követőkódot.
+        </p>
 
         <h2>Cookie-k (sütik) használata</h2>
         <p>
-          A weboldal cookie-kat használ a felhasználói élmény javítása, statisztikai elemzések
-          készítése és marketing célok érdekében. A sütik lehetnek munkamenet, analitikai,
-          funkcionális és marketing sütik. A felhasználó a sütik használatához hozzájárulhat,
-          illetve azokat böngészőjében bármikor törölheti vagy letilthatja.
+          A weboldal alapállapotban nem használ sütiket. Sütit kizárólag a
+          látogatottságmérés helyez el, és csak akkor, ha ehhez a látogató a weboldal
+          alján megjelenő sávban kifejezetten hozzájárult. Hozzájárulás nélkül a mérés
+          nem indul el, süti nem kerül az eszközre, és a Google felé semmilyen adat nem
+          továbbítódik.
+        </p>
+        <p>
+          Hirdetési, marketing- és profilalkotási sütiket a weboldal nem használ.
+          A Google Analytics hirdetési funkciói (Google Signals, hirdetési
+          személyre szabás) ki vannak kapcsolva.
         </p>
 
-        <h3>A sütik típusai</h3>
+        <h3>Milyen sütik lehetnek az eszközön</h3>
         <ul>
-          <li><b>Ideiglenes sütik</b> — addig maradnak az eszközén, amíg el nem hagyja a weboldalt.</li>
-          <li><b>Állandó sütik</b> — a böngésző beállításától függően hosszabb ideig, vagy addig maradnak az eszközén, amíg Ön nem törli azokat.</li>
-          <li><b>Harmadik féltől származó sütik</b> — melyeket harmadik fél helyez el a böngészőjében (pl. Google Analytics).</li>
+          <li><b>Analitikai sütik (Google Analytics 4)</b> — csak hozzájárulás után.
+            A <code>_ga</code> és <code>_ga_&lt;azonosító&gt;</code> nevű sütik a
+            visszatérő látogatások és a munkamenetek megkülönböztetésére szolgálnak.
+            Nevet, e-mail címet és telefonszámot nem tartalmaznak.</li>
+          <li><b>A hozzájárulás megjegyzése</b> — a döntést a böngésző helyi tárolójában
+            (<code>stratos.consent</code>) tároljuk. Ez nem süti, és nem kerül át a
+            szerverre; kizárólag azért létezik, hogy egy elutasítás után ne kérdezzünk
+            rá újra minden oldalon.</li>
         </ul>
 
-        <h3>Elengedhetetlen munkamenet (session-id) sütik</h3>
+        <h3>Mit mérünk, és mit nem</h3>
         <p>
-          Használatuk elengedhetetlen a weboldalon történő navigáláshoz és a weboldal
-          funkcióinak működéséhez. Ezek elfogadása nélkül a honlap, illetve annak egyes részei
-          nem, vagy hibásan jelenhetnek meg.
+          A mérés arra irányul, hogy mely oldalakat olvassák, meddig jutnak el bennük,
+          és melyik gombra kattintanak. A méréshez küldött adatok között
+          <b>soha</b> nem szerepel név, e-mail cím, telefonszám, cégnév, űrlapba írt
+          szöveg, a kérdőív válaszai, valamint az érdeklődés vagy a beküldés azonosítója.
+          Ezt nem csupán szabályzat rögzíti: a mérőkód a küldés előtt ellenőrzi a
+          mezőneveket, és a tiltott mezőt tartalmazó eseményt egészében eldobja.
         </p>
 
-        <h3>Analitikai vagy teljesítményfigyelő sütik</h3>
+        <h3>A hozzájárulás visszavonása</h3>
         <p>
-          Ezek segítenek megkülönböztetni a weboldal látogatóit, és adatokat gyűjteni arról,
-          hogyan viselkednek a látogatók a weboldalon. Nem gyűjtenek Önt azonosítani képes
-          információkat; az adatokat összesítve és névtelenül tárolják (pl. Google Analytics).
-        </p>
-
-        <h3>Funkcionális sütik</h3>
-        <p>
-          E sütik feladata a felhasználói élmény javítása. Észlelik és tárolják például, hogy
-          milyen eszközzel nyitotta meg a honlapot, vagy az Ön által korábban megadott, és
-          tárolni kért adatait: automatikus bejelentkezés, választott nyelv, szövegméret,
-          betűtípus vagy a honlap egyéb testre szabható eleme. Ezek a sütik nem követik nyomon
-          az Ön más weboldalakon folytatott tevékenységét.
-        </p>
-
-        <h3>Célzott vagy reklám sütik</h3>
-        <p>
-          Ezek segítségével a weboldalak az Ön érdeklődési körének leginkább megfelelő
-          információt tudnak nyújtani. Ehhez az Ön kifejezett beleegyezése szükséges.
-          Ezek a sütik részletes információkat gyűjtenek böngészési szokásairól.
-        </p>
-
-        <h3>Tartalmaznak a sütik személyes adatokat?</h3>
-        <p>
-          A legtöbb süti nem tartalmaz személyes információkat, segítségükkel nem azonosíthatók
-          a felhasználók. A tárolt adatok a kényelmesebb böngészésért szükségesek, tárolásuk
-          olyan módon történik, hogy jogosulatlan személy nem férhet hozzájuk.
-        </p>
-
-        <h3>Biztonsággal kapcsolatos tényezők</h3>
-        <p>
-          A sütik nem vírusok és nem kémprogramok. Mivel egyszerű szöveg típusú fájlok, ezért
-          nem futtathatók, tehát nem tekinthetők programoknak. Előfordulhat azonban, hogy
-          rosszindulattal rejtenek el bennük információkat, így azok spyware-ként működhetnek.
-          Emiatt a víruskereső programok a sütiket folyamatosan törlésre ítélhetik.
+          A hozzájárulás bármikor, ugyanolyan egyszerűen visszavonható, mint ahogy
+          megadható volt: a lábléc <b>Süti-beállítások</b> gombjára kattintva a döntés
+          újra megnyitható és megváltoztatható. Visszavonáskor a mérés azonnal leáll,
+          és a már elhelyezett <code>_ga</code> sütiket a weboldal törli. A sütik ezen
+          felül a böngésző beállításaiban is bármikor törölhetők vagy letilthatók.
         </p>
         <p>
-          Mivel a böngészésre használt eszköz és a webszerverek folyamatosan kommunikálnak,
-          ezért ha egy támadó beavatkozik a folyamatba, kinyerheti a sütik által tárolt
-          információkat. Ennek egyik oka lehet például a nem megfelelő módon titkosított
-          WiFi-beállítás.
-        </p>
-
-        <h3>A sütik kezelése, törlése</h3>
-        <p>
-          A sütiket a használt böngészőprogramokban lehet törölni vagy letiltani. A böngészők
-          alapértelmezett módon engedélyezik a sütik elhelyezését; ez a böngésző beállításainál
-          letiltható, a meglévők pedig törölhetők. Beállítható az is, hogy a böngésző értesítést
-          küldjön, amikor sütit küld az eszközre. Fontos hangsúlyozni, hogy ezen fájlok letiltása
-          vagy korlátozása rontja a böngészési élményt, valamint hiba jelentkezhet a weboldal
-          funkciójában is. A beállítási lehetőségek általában a böngésző „Opciók" vagy
-          „Beállítások" menüpontjában találhatók.
+          A hozzájárulás megtagadása a weboldal használatát semmilyen módon nem
+          korlátozza: az oldal mérés nélkül is teljes egészében működik.
         </p>
 
         <h2>Érintetti jogok</h2>
@@ -439,6 +440,7 @@
       <span class="foot__utility">
         <a href="adatkezelesi-tajekoztato.html">Adatkezelési tájékoztató</a>
         <a href="impresszum.html">Impresszum</a>
+        <button class="foot__consent" type="button" data-consent-settings hidden>Süti-beállítások</button>
         <div class="lang" role="group" aria-label="Nyelvválasztás"><a href="adatkezelesi-tajekoztato.html" hreflang="hu" lang="hu" aria-current="true">HU</a><a href="en/privacy-policy.html" hreflang="en" lang="en">EN</a><a href="de/datenschutz.html" hreflang="de" lang="de">DE</a></div>
         <button class="foot__top" type="button" data-to-top>VISSZA 0 MÉTERRE</button>
         <img src="assets/img/gdpr.png" alt="GDPR Ready" width="1800" height="1800">

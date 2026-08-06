@@ -347,6 +347,15 @@ UI = {
             "need_email": "Ez az e-mail cím nem tűnik helyesnek.",
             "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.",
             "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.",
+            "consent_title": "Mérés és sütik",
+            "consent_body": "A Google Analytics segítségével néznénk meg, hogyan használják az oldalt. Csak akkor tölt be és csak akkor helyez el sütit, ha ehhez hozzájárulsz. Nevet, e-mail címet, telefonszámot és űrlapokba írt szöveget soha nem küldünk el.",
+            "consent_accept": "Elfogadom",
+            "consent_decline": "Nem járulok hozzá",
+            "consent_more": "Adatkezelési tájékoztató",
+            "consent_settings": "Süti-beállítások",
+            "consent_state_granted": "A mérés jelenleg engedélyezve van.",
+            "consent_state_denied": "A mérés jelenleg le van tiltva.",
+            "consent_privacy_href": "adatkezelesi-tajekoztato.html",
         },
     },
     "en": {
@@ -427,6 +436,15 @@ UI = {
             "need_email": "That email address does not look right.",
             "too_long": "One of the fields is too long — please shorten it.",
             "limited": "Too many submissions in a row. Please wait a minute.",
+            "consent_title": "Measurement and cookies",
+            "consent_body": "We would use Google Analytics to see how the site is used. It loads, and sets cookies, only if you agree. We never send names, email addresses, phone numbers or anything typed into a form.",
+            "consent_accept": "Accept",
+            "consent_decline": "Decline",
+            "consent_more": "Privacy policy",
+            "consent_settings": "Cookie settings",
+            "consent_state_granted": "Measurement is currently enabled.",
+            "consent_state_denied": "Measurement is currently disabled.",
+            "consent_privacy_href": "privacy-policy.html",
         },
     },
     "de": {
@@ -507,6 +525,15 @@ UI = {
             "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.",
             "too_long": "Eines der Felder ist zu lang — bitte kürze es.",
             "limited": "Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.",
+            "consent_title": "Messung und Cookies",
+            "consent_body": "Mit Google Analytics würden wir sehen, wie die Website genutzt wird. Es lädt und setzt Cookies nur, wenn du zustimmst. Namen, E-Mail-Adressen, Telefonnummern und Formularinhalte senden wir nie.",
+            "consent_accept": "Einverstanden",
+            "consent_decline": "Nicht zustimmen",
+            "consent_more": "Datenschutzerklärung",
+            "consent_settings": "Cookie-Einstellungen",
+            "consent_state_granted": "Die Messung ist derzeit aktiviert.",
+            "consent_state_denied": "Die Messung ist derzeit deaktiviert.",
+            "consent_privacy_href": "datenschutz.html",
         },
     },
 }
@@ -811,12 +838,77 @@ def build_social(lang, key, title, desc, meta):
 # No provider is named here, and none is chosen: the adapter posts a neutral
 # envelope to a first-party endpoint. Selecting a vendor is an explicit decision
 # and is out of scope for Phase 9. See _build/reports/phase9-event-taxonomy.md.
+# The approved measurement provider is Google Analytics 4.
+#
+# The Measurement ID is a public identifier — it ships in client JavaScript by
+# definition and identifies a property, not a person — so it lives here rather
+# than in the environment, and `GA4_MEASUREMENT_ID` overrides it for anyone
+# testing against their own property.
+#
+# The numeric GA4 *Property ID* (15392224433) is deliberately NOT here. That one
+# belongs to the Portal's server-side Analytics Data API integration, with its
+# own credentials. Website measurement and Portal reporting use different
+# identifiers and different trust levels, and conflating them is how a
+# server-side credential ends up in a browser bundle.
+GA4_MEASUREMENT_ID = "G-JZD43PHJ41"
+
+# Where GA4 is allowed to run at all. A host that is not on this list gets no
+# tag, no consent interface and no cookies, however the build is configured.
+#
+# This is the reason a local build, a deploy preview, a branch deploy or a
+# forked copy cannot pollute the property: the allowlist is checked in the
+# browser against the real hostname, so it holds even if a configured build is
+# served from somewhere unexpected.
+#
+#   stratosweb1.netlify.app   the current address. Until the domain cutover
+#                             this is where integration testing happens, and
+#                             its traffic is marked `staging` so it can be
+#                             separated from real visitors.
+#   stratosweb.hu             the intended production domain, and its www form.
+#   www.stratosweb.hu         Live only after the cutover; today these still
+#                             serve the old Wix site. Listing them now means the
+#                             cutover needs no code change.
+#
+# `media-stratos.com` is deliberately absent: it is the known-bad origin that
+# 301s elsewhere. localhost is absent so that local work is never measured.
+GA4_ALLOWED_HOSTS = [
+    "stratosweb.hu",
+    "www.stratosweb.hu",
+    "stratosweb1.netlify.app",
+]
+
+# Which of those hosts is the real site. Everything else on the allowlist is
+# staging, and is tagged as such on every event so that pre-cutover integration
+# traffic never mixes with production reporting.
+GA4_PRODUCTION_HOSTS = ["stratosweb.hu", "www.stratosweb.hu"]
+
+
 def analytics_config():
     """The config dict, or None when the build is not configured to measure."""
+    measurement_id = os.environ.get("GA4_MEASUREMENT_ID", GA4_MEASUREMENT_ID).strip()
     endpoint = os.environ.get("ANALYTICS_ENDPOINT", "").strip()
-    if not endpoint:
+
+    # Nothing configured at all: emit nothing. Note that the first-party
+    # `ANALYTICS_ENDPOINT` sink is NOT the production measurement solution — it
+    # is the provider-neutral seam the adapter is built around, and it has no
+    # endpoint implementation behind it. GA4 is what production uses.
+    if not measurement_id and not endpoint:
         return None
-    cfg = {"enabled": True, "endpoint": endpoint}
+
+    cfg = {"enabled": True}
+    if endpoint:
+        cfg["endpoint"] = endpoint
+    if measurement_id:
+        cfg["ga4"] = {
+            "measurementId": measurement_id,
+            "allowHosts": GA4_ALLOWED_HOSTS,
+            "productionHosts": GA4_PRODUCTION_HOSTS,
+        }
+        # GA4 sets cookies, so consent is not optional and is not a build
+        # decision. Basic Consent Mode: the tag is not loaded until the visitor
+        # has said yes.
+        cfg["requireConsent"] = True
+
     site = os.environ.get("ANALYTICS_SITE", "").strip()
     if site:
         cfg["site"] = site
@@ -837,11 +929,16 @@ def analytics_head(base):
     cfg = analytics_config()
     if cfg is None:
         return ""
+    consent = (
+        f'\n<script src="{base}assets/js/consent.js" defer></script>'
+        if cfg.get("requireConsent") else ""
+    )
     return (
         '\n<script id="analytics-config" type="application/json">'
         + json.dumps(cfg, ensure_ascii=False)
         + "</script>"
         + f'\n<script src="{base}assets/js/analytics.js" defer></script>'
+        + consent
     )
 
 
@@ -1083,7 +1180,7 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
       <span>{{f_rights}}</span>
       <span class="foot__utility">
         <a href="{{privacy}}">{{f_privacy}}</a>
-        <a href="{{imprint}}">{{f_imprint}}</a>
+        <a href="{{imprint}}">{{f_imprint}}</a>{{f_consent}}
         {{f_langs}}
         <button class="foot__top" type="button" data-to-top>{{to_top}}</button>
         <img src="{{base}}assets/img/gdpr.png" alt="GDPR Ready">
@@ -1167,6 +1264,16 @@ def build_footer(lang, key):
         f_status=p["status_group"], st_reply=p["st_reply"],
         st_where=p["st_where"], st_langs=p["st_langs"],
         f_langs=build_langs(lang, key), to_top=p["to_top"],
+        # The consent withdrawal path, on every page. Emitted only when the
+        # build actually requires consent, so a site with measurement off does
+        # not offer to change a setting that does not exist. Ships `hidden` and
+        # is revealed by assets/js/consent.js, so it never appears as a dead
+        # control if scripting is unavailable.
+        f_consent=(
+            f'\n        <button class="foot__consent" type="button" '
+            f'data-consent-settings hidden>{u["js"]["consent_settings"]}</button>'
+            if (analytics_config() or {}).get("requireConsent") else ""
+        ),
     ))
 
 

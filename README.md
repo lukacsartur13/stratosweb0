@@ -71,21 +71,45 @@ Copy `.env.example` to `.env`. In production these go in the Netlify UI under
 | `VITE_SUPABASE_URL` | browser bundle | Public. |
 | `VITE_SUPABASE_ANON_KEY` | browser bundle | Public by design — RLS decides what it can do. |
 | `VITE_SITE_URL` | browser + build | Canonical origin, used for the sitemap. |
-| `ANALYTICS_ENDPOINT` | build only | Optional. Empty — the default — ships **no** measurement at all. Must be same-origin. |
-| `ANALYTICS_SITE` | build only | Optional. Property identifier. |
-| `ANALYTICS_CONSENT` | build only | Optional. `1` holds events until consent is granted. |
+| `GA4_MEASUREMENT_ID` | build only | Optional override. The real ID lives in `_build/build.py`; set this only to point a build at another property. |
+| `ANALYTICS_ENDPOINT` | build only | Optional first-party sink. Not the production solution. Must be same-origin. |
+| `ANALYTICS_SITE` | build only | Optional. Property identifier echoed on events. |
+| `ANALYTICS_CONSENT` | build only | Optional. Redundant under GA4, which forces consent on. |
 | `ANALYTICS_DEBUG` | build only | Optional. `1` logs dropped events. |
 | `SUPABASE_URL` | functions only | |
 | `SUPABASE_SERVICE_ROLE_KEY` | **functions only** | Bypasses RLS entirely. |
 | `IP_HASH_SALT` | functions only | Any long random string. |
 
-Measurement is off unless `ANALYTICS_ENDPOINT` is set: an unconfigured build
-emits no config block and no adapter script, so the site sets no cookie, writes
-no storage and needs no consent banner. The endpoint must be same-origin —
-`connect-src 'self'` in the CSP means a third-party analytics URL cannot
-transmit, and widening that policy is a deliberate decision rather than a
-configuration detail. No provider is chosen; the adapter posts a neutral
-envelope. The event model is `_build/reports/phase9-event-taxonomy.md`.
+### Measurement
+
+**Google Analytics 4**, Measurement ID `G-JZD43PHJ41`, through the
+provider-neutral adapter in `assets/js/analytics.js`. Three independent gates
+have to open before a single byte reaches Google:
+
+1. **Consent.** Basic Consent Mode, strictly: `gtag.js` is not injected until
+   the visitor agrees. Refuse, and nothing is loaded and nothing is contacted.
+2. **The host allowlist** (`GA4_ALLOWED_HOSTS` in `_build/build.py`) — the two
+   real domains and the current Netlify address. A local build, a deploy
+   preview or a fork measures nothing, however it is configured.
+3. **A Measurement ID.** Removing it disables GA4 everywhere.
+
+Advertising is off and stays off: `ad_storage`, `ad_user_data` and
+`ad_personalization` are permanently denied, Google Signals is disabled, and no
+advertising host is on the CSP. Traffic from anything other than the two
+production domains is marked `staging`, so pre-cutover testing never mixes with
+real visitors.
+
+Consent is withdrawable from the footer of every page, and withdrawing deletes
+the `_ga` cookies rather than only stopping new ones.
+
+No personal data is ever sent — names, emails, phones, form contents,
+questionnaire answers and submission IDs are refused as parameter keys, and the
+test suite derives that list from the lead schema so a new form field fails the
+build until it is refused too.
+
+The event model is `_build/reports/phase9-event-taxonomy.md`. The Portal's
+reporting integration is separate and uses the numeric Property ID with
+server-side credentials; that ID must never appear in a browser bundle.
 
 `VITE_ANALYTICS_ID` used to be listed here. It never had an implementation, and
 could not have worked: `VITE_*` variables are compiled into the *portal's*

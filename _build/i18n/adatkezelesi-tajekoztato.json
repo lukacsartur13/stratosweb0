@@ -1,107 +1,426 @@
 {
- "_comment": ["The English and German privacy policy is a courtesy translation; the Hungarian text is the legally binding one. The page itself says so — see the note added to the fragment.", ""],
-
- "Adatkezelési tájékoztató | Stratos": ["Privacy policy | Stratos", "Datenschutzerklärung | Stratos"],
- "Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR szerint — és milyen jogaid vannak.": ["How we collect, use and process personal data under the GDPR — and what rights you have.", "Wie wir personenbezogene Daten nach DSGVO erheben, nutzen und verarbeiten — und welche Rechte du hast."],
- "<a href=\"index.html\">Stratos</a> / <b>Adatkezelési tájékoztató</b>": ["<a href=\"index.html\">Stratos</a> / <b>Privacy policy</b>", "<a href=\"index.html\">Stratos</a> / <b>Datenschutzerklärung</b>"],
- "Adatkezelési<br>tájékoztató": ["Privacy<br>policy", "Datenschutz­<br>erklärung"],
-
- "Az Ön által megadott személyes adatokat <b>Lukács Artúr egyéni vállalkozó</b> (9151 Abda, Arany János utca 13., adószám: 91381611-2-28) kezeli — a továbbiakban: Adatkezelő.": ["The personal data you provide is processed by <b>Artúr Lukács, sole trader</b> (Arany János utca 13, 9151 Abda, Hungary; tax number 91381611-2-28) — hereinafter the Controller.", "Die von Ihnen angegebenen personenbezogenen Daten verarbeitet <b>Artúr Lukács, Einzelunternehmer</b> (Arany János utca 13, 9151 Abda, Ungarn; Steuernummer 91381611-2-28) — nachfolgend: Verantwortlicher."],
- "Kérjük, figyelmesen olvassa el jelen adatkezelési tájékoztatónkat (a továbbiakban: Tájékoztató), melyben személyes adatai kezelését érintő gyakorlatunkat ismertetjük az Általános Adatvédelmi Rendelet (GDPR — az Európai Parlament és a Tanács 2016/679 rendelete) szerint.": ["Please read this privacy policy (hereinafter the Policy) carefully. It describes our practices regarding the processing of your personal data under the General Data Protection Regulation (GDPR — Regulation (EU) 2016/679 of the European Parliament and of the Council).", "Bitte lesen Sie diese Datenschutzerklärung (nachfolgend: Erklärung) aufmerksam. Sie beschreibt unsere Praxis bei der Verarbeitung Ihrer personenbezogenen Daten gemäß der Datenschutz-Grundverordnung (DSGVO — Verordnung (EU) 2016/679 des Europäischen Parlaments und des Rates)."],
- "Jelen Tájékoztató az Adatkezelő szolgáltatásait igénybe vevő személyekre (Ön) vonatkozik, és bemutatja, hogy az Adatkezelő hogyan gyűjti, használja fel és kezeli az Ön személyes adatait, továbbá információt nyújt az érintetti jogokról. Az Adatkezelő elkötelezett a személyes adatok védelme és biztonsága iránt. A személyes adatok kezelése minden esetben jogszerűen, tisztességesen és átlátható módon történik.": ["This Policy applies to persons using the Controller's services (you). It sets out how the Controller collects, uses and processes your personal data and provides information about data subject rights. The Controller is committed to the protection and security of personal data. Personal data is always processed lawfully, fairly and transparently.", "Diese Erklärung gilt für Personen, die die Leistungen des Verantwortlichen nutzen (Sie). Sie beschreibt, wie der Verantwortliche Ihre personenbezogenen Daten erhebt, nutzt und verarbeitet, und informiert über die Betroffenenrechte. Der Verantwortliche ist dem Schutz und der Sicherheit personenbezogener Daten verpflichtet. Die Verarbeitung erfolgt stets rechtmäßig, nach Treu und Glauben und transparent."],
- "Az Adatkezelő felelőssége és elérhetősége": ["The Controller's responsibility and contact details", "Verantwortlichkeit und Kontaktdaten des Verantwortlichen"],
- "<b>Adatkezelő:</b> Lukács Artúr egyéni vállalkozó": ["<b>Controller:</b> Artúr Lukács, sole trader", "<b>Verantwortlicher:</b> Artúr Lukács, Einzelunternehmer"],
- "<b>Székhely:</b> 9151 Abda, Arany János utca 13.": ["<b>Registered address:</b> Arany János utca 13, 9151 Abda, Hungary", "<b>Sitz:</b> Arany János utca 13, 9151 Abda, Ungarn"],
- "<b>Telefon:</b> <a href=\"tel:+36305848024\">+36 30 584 8024</a>": ["<b>Phone:</b> <a href=\"tel:+36305848024\">+36 30 584 8024</a>", "<b>Telefon:</b> <a href=\"tel:+36305848024\">+36 30 584 8024</a>"],
- "<b>E-mail:</b> <a href=\"mailto:info@media-stratos.com\">info@media-stratos.com</a>": ["<b>Email:</b> <a href=\"mailto:info@media-stratos.com\">info@media-stratos.com</a>", "<b>E-Mail:</b> <a href=\"mailto:info@media-stratos.com\">info@media-stratos.com</a>"],
- "<b>Weboldal:</b> <a href=\"https://stratosweb.hu\">https://stratosweb.hu</a>": ["<b>Website:</b> <a href=\"https://stratosweb.hu\">https://stratosweb.hu</a>", "<b>Website:</b> <a href=\"https://stratosweb.hu\">https://stratosweb.hu</a>"],
- "<b>Adószám:</b> 91381611-2-28": ["<b>Tax number:</b> 91381611-2-28", "<b>Steuernummer:</b> 91381611-2-28"],
- "<b>Tevékenység:</b> weboldal-készítés, webdesign, online marketing és digitális szolgáltatások": ["<b>Activity:</b> website production, web design, online marketing and digital services", "<b>Tätigkeit:</b> Website-Erstellung, Webdesign, Online-Marketing und digitale Dienstleistungen"],
-
- "Az adatkezelés célja": ["Purposes of processing", "Zwecke der Verarbeitung"],
- "Az Adatkezelő az alábbi célokból kezeli a személyes adatokat:": ["The Controller processes personal data for the following purposes:", "Der Verantwortliche verarbeitet personenbezogene Daten zu folgenden Zwecken:"],
- "kapcsolatfelvétel biztosítása": ["enabling contact", "Ermöglichung der Kontaktaufnahme"],
- "ajánlatkészítés és ügyfélkommunikáció": ["preparing quotes and client communication", "Angebotserstellung und Kundenkommunikation"],
- "hírlevél és marketing üzenetek küldése": ["sending newsletters and marketing messages", "Versand von Newslettern und Marketingnachrichten"],
- "szolgáltatások teljesítése": ["performing services", "Erbringung der Leistungen"],
- "weboldal működtetése és fejlesztése": ["operating and developing the website", "Betrieb und Weiterentwicklung der Website"],
- "statisztikai és elemzési célok": ["statistical and analytical purposes", "Statistik- und Analysezwecke"],
-
- "Kezelt személyes adatok köre": ["Categories of personal data processed", "Kategorien verarbeiteter Daten"],
- "Kapcsolatfelvétel vagy ajánlatkérés esetén": ["When contacting us or requesting a quote", "Bei Kontaktaufnahme oder Angebotsanfrage"],
- "név": ["name", "Name"],
- "e-mail cím": ["email address", "E-Mail-Adresse"],
- "telefonszám": ["phone number", "Telefonnummer"],
- "cégnév (ha megadásra kerül)": ["company name (if provided)", "Firmenname (sofern angegeben)"],
- "üzenetben megadott egyéb információk": ["any other information given in the message", "sonstige in der Nachricht angegebene Informationen"],
- "IP-cím": ["IP address", "IP-Adresse"],
- "böngésző és eszköz információk": ["browser and device information", "Browser- und Geräteinformationen"],
- "Hírlevél-feliratkozás esetén": ["When subscribing to the newsletter", "Bei Newsletter-Anmeldung"],
- "név (opcionális)": ["name (optional)", "Name (optional)"],
-
- "Az adatkezelés időtartama": ["Retention periods", "Dauer der Verarbeitung"],
- "kapcsolatfelvételi adatok: legfeljebb 5 év": ["contact data: no more than 5 years", "Kontaktdaten: höchstens 5 Jahre"],
- "hírlevél adatok: a hozzájárulás visszavonásáig": ["newsletter data: until consent is withdrawn", "Newsletter-Daten: bis zum Widerruf der Einwilligung"],
- "számlázási adatok: 8 év (a számviteli törvény alapján)": ["invoicing data: 8 years (under the Hungarian Accounting Act)", "Rechnungsdaten: 8 Jahre (nach ungarischem Rechnungslegungsgesetz)"],
-
- "Adattovábbítás és adatfeldolgozók": ["Data transfers and processors", "Datenübermittlung und Auftragsverarbeiter"],
- "Az Adatkezelő a személyes adatokat kizárólag a szolgáltatás nyújtásához szükséges mértékben, jogszabályi kötelezettség alapján vagy hozzájárulással továbbítja.": ["The Controller transfers personal data only to the extent necessary to provide the service, on the basis of a legal obligation, or with consent.", "Der Verantwortliche übermittelt personenbezogene Daten nur im zur Leistungserbringung erforderlichen Umfang, aufgrund einer gesetzlichen Pflicht oder mit Einwilligung."],
- "Adatfeldolgozók": ["Processors", "Auftragsverarbeiter"],
- "<b>Tárhelyszolgáltató:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, Amerikai Egyesült Államok. Szolgáltatás: a weboldal kiszolgálása és a kiszolgálói funkciók (Netlify Functions) futtatása, amelyek az űrlapok beküldését fogadják.": ["<b>Hosting provider:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, United States. Service: serving the website and running the server-side functions (Netlify Functions) that receive form submissions.", "<b>Hosting-Anbieter:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, Vereinigte Staaten. Dienst: Auslieferung der Website und Ausführung der serverseitigen Funktionen (Netlify Functions), die Formularübermittlungen entgegennehmen."],
- "<b>Adatbázis-szolgáltató:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513. Szolgáltatás: az űrlapokon beérkező érdeklődések tárolása és a zárt Portál kiszolgálása.": ["<b>Database provider:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513. Service: storing the enquiries received through the forms and supporting the private Portal.", "<b>Datenbank-Anbieter:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513. Dienst: Speicherung der über die Formulare eingehenden Anfragen und Betrieb des internen Portals."],
- "<b>E-mail szolgáltató:</b> a levelezőrendszer szolgáltatója (pl. Google Workspace vagy más e-mail szolgáltató)": ["<b>Email provider:</b> the provider of the mail system (e.g. Google Workspace or another email provider)", "<b>E-Mail-Anbieter:</b> der Anbieter des Mailsystems (z. B. Google Workspace oder ein anderer E-Mail-Anbieter)"],
- "<b>Google LLC</b> — 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Szolgáltatások: Google Analytics, Search Console, hirdetési és analitikai rendszerek": ["<b>Google LLC</b> — 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Services: Google Analytics, Search Console, advertising and analytics systems", "<b>Google LLC</b> — 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Dienste: Google Analytics, Search Console, Werbe- und Analysesysteme"],
- "<b>Meta Platforms Ireland Ltd.</b> — 4 Grand Canal Square, Dublin 2, Írország. Szolgáltatások: Facebook, Instagram, Meta Pixel": ["<b>Meta Platforms Ireland Ltd.</b> — 4 Grand Canal Square, Dublin 2, Ireland. Services: Facebook, Instagram, Meta Pixel", "<b>Meta Platforms Ireland Ltd.</b> — 4 Grand Canal Square, Dublin 2, Irland. Dienste: Facebook, Instagram, Meta Pixel"],
-
- "Cookie-k (sütik) használata": ["Use of cookies", "Verwendung von Cookies"],
- "A weboldal cookie-kat használ a felhasználói élmény javítása, statisztikai elemzések készítése és marketing célok érdekében. A sütik lehetnek munkamenet, analitikai, funkcionális és marketing sütik. A felhasználó a sütik használatához hozzájárulhat, illetve azokat böngészőjében bármikor törölheti vagy letilthatja.": ["The website uses cookies to improve the user experience, produce statistical analysis and for marketing purposes. Cookies may be session, analytical, functional or marketing cookies. Users may consent to the use of cookies and can delete or block them in their browser at any time.", "Die Website verwendet Cookies, um die Nutzererfahrung zu verbessern, statistische Auswertungen zu erstellen und zu Marketingzwecken. Cookies können Sitzungs-, Analyse-, Funktions- und Marketing-Cookies sein. Nutzer können der Verwendung zustimmen und Cookies jederzeit im Browser löschen oder blockieren."],
- "A sütik típusai": ["Types of cookie", "Cookie-Typen"],
- "<b>Ideiglenes sütik</b> — addig maradnak az eszközén, amíg el nem hagyja a weboldalt.": ["<b>Session cookies</b> — stay on your device only until you leave the website.", "<b>Temporäre Cookies</b> — bleiben nur auf Ihrem Gerät, bis Sie die Website verlassen."],
- "<b>Állandó sütik</b> — a böngésző beállításától függően hosszabb ideig, vagy addig maradnak az eszközén, amíg Ön nem törli azokat.": ["<b>Persistent cookies</b> — depending on browser settings, stay on your device for longer, or until you delete them.", "<b>Dauerhafte Cookies</b> — bleiben je nach Browsereinstellung länger auf Ihrem Gerät oder bis Sie sie löschen."],
- "<b>Harmadik féltől származó sütik</b> — melyeket harmadik fél helyez el a böngészőjében (pl. Google Analytics).": ["<b>Third-party cookies</b> — placed in your browser by a third party (e.g. Google Analytics).", "<b>Cookies von Dritten</b> — werden von Dritten in Ihrem Browser gesetzt (z. B. Google Analytics)."],
- "Elengedhetetlen munkamenet (session-id) sütik": ["Strictly necessary session cookies", "Unbedingt erforderliche Sitzungs-Cookies"],
- "Használatuk elengedhetetlen a weboldalon történő navigáláshoz és a weboldal funkcióinak működéséhez. Ezek elfogadása nélkül a honlap, illetve annak egyes részei nem, vagy hibásan jelenhetnek meg.": ["These are essential for navigating the site and for its functions to work. Without accepting them the site, or parts of it, may not display at all or may display incorrectly.", "Sie sind für die Navigation und die Funktionen der Website unerlässlich. Ohne ihre Annahme kann die Website oder Teile davon nicht oder fehlerhaft angezeigt werden."],
- "Analitikai vagy teljesítményfigyelő sütik": ["Analytical or performance cookies", "Analyse- oder Performance-Cookies"],
- "Ezek segítenek megkülönböztetni a weboldal látogatóit, és adatokat gyűjteni arról, hogyan viselkednek a látogatók a weboldalon. Nem gyűjtenek Önt azonosítani képes információkat; az adatokat összesítve és névtelenül tárolják (pl. Google Analytics).": ["These help distinguish visitors and collect data on how visitors behave on the site. They do not collect information capable of identifying you; data is stored in aggregated, anonymous form (e.g. Google Analytics).", "Sie helfen, Besucher zu unterscheiden, und sammeln Daten darüber, wie Besucher sich auf der Website verhalten. Sie erfassen keine Informationen, die Sie identifizieren könnten; die Daten werden aggregiert und anonym gespeichert (z. B. Google Analytics)."],
- "Funkcionális sütik": ["Functional cookies", "Funktions-Cookies"],
- "E sütik feladata a felhasználói élmény javítása. Észlelik és tárolják például, hogy milyen eszközzel nyitotta meg a honlapot, vagy az Ön által korábban megadott, és tárolni kért adatait: automatikus bejelentkezés, választott nyelv, szövegméret, betűtípus vagy a honlap egyéb testre szabható eleme. Ezek a sütik nem követik nyomon az Ön más weboldalakon folytatott tevékenységét.": ["These cookies exist to improve the user experience. They detect and store, for example, which device you opened the site with, or data you previously entered and asked to be saved: automatic sign-in, chosen language, text size, typeface or other customisable elements. These cookies do not track your activity on other websites.", "Diese Cookies verbessern die Nutzererfahrung. Sie erkennen und speichern zum Beispiel, mit welchem Gerät Sie die Seite geöffnet haben, oder Daten, die Sie zuvor eingegeben und zur Speicherung freigegeben haben: automatische Anmeldung, gewählte Sprache, Schriftgröße, Schriftart oder andere anpassbare Elemente. Sie verfolgen Ihre Aktivität auf anderen Websites nicht."],
- "Célzott vagy reklám sütik": ["Targeting or advertising cookies", "Targeting- oder Werbe-Cookies"],
- "Ezek segítségével a weboldalak az Ön érdeklődési körének leginkább megfelelő információt tudnak nyújtani. Ehhez az Ön kifejezett beleegyezése szükséges. Ezek a sütik részletes információkat gyűjtenek böngészési szokásairól.": ["These let websites present the information most relevant to your interests. They require your explicit consent. These cookies collect detailed information about your browsing habits.", "Mit ihnen können Websites die für Ihre Interessen relevantesten Informationen anzeigen. Dafür ist Ihre ausdrückliche Einwilligung erforderlich. Diese Cookies sammeln detaillierte Informationen über Ihr Surfverhalten."],
- "Tartalmaznak a sütik személyes adatokat?": ["Do cookies contain personal data?", "Enthalten Cookies personenbezogene Daten?"],
- "A legtöbb süti nem tartalmaz személyes információkat, segítségükkel nem azonosíthatók a felhasználók. A tárolt adatok a kényelmesebb böngészésért szükségesek, tárolásuk olyan módon történik, hogy jogosulatlan személy nem férhet hozzájuk.": ["Most cookies contain no personal information and cannot be used to identify users. The stored data serves more convenient browsing and is stored so that unauthorised persons cannot access it.", "Die meisten Cookies enthalten keine personenbezogenen Informationen und erlauben keine Identifizierung von Nutzern. Die gespeicherten Daten dienen dem bequemeren Surfen und werden so gespeichert, dass Unbefugte keinen Zugriff haben."],
- "Biztonsággal kapcsolatos tényezők": ["Security considerations", "Sicherheitsaspekte"],
- "A sütik nem vírusok és nem kémprogramok. Mivel egyszerű szöveg típusú fájlok, ezért nem futtathatók, tehát nem tekinthetők programoknak. Előfordulhat azonban, hogy rosszindulattal rejtenek el bennük információkat, így azok spyware-ként működhetnek. Emiatt a víruskereső programok a sütiket folyamatosan törlésre ítélhetik.": ["Cookies are not viruses or spyware. Being plain text files they cannot be executed and are therefore not programs. It is possible, however, for information to be hidden in them maliciously, in which case they can act as spyware. For that reason antivirus programs may continually flag cookies for deletion.", "Cookies sind keine Viren und keine Spyware. Als einfache Textdateien sind sie nicht ausführbar und damit keine Programme. Es ist jedoch möglich, dass darin böswillig Informationen versteckt werden, sodass sie wie Spyware wirken. Deshalb können Virenscanner Cookies laufend zum Löschen vormerken."],
- "Mivel a böngészésre használt eszköz és a webszerverek folyamatosan kommunikálnak, ezért ha egy támadó beavatkozik a folyamatba, kinyerheti a sütik által tárolt információkat. Ennek egyik oka lehet például a nem megfelelő módon titkosított WiFi-beállítás.": ["Because the device you browse with and the web servers communicate constantly, an attacker who intervenes in that process can extract the information stored in cookies. One cause of this can be, for example, an inadequately encrypted Wi-Fi configuration.", "Da das Gerät, mit dem Sie surfen, und die Webserver ständig kommunizieren, kann ein Angreifer, der in diesen Vorgang eingreift, die in Cookies gespeicherten Informationen auslesen. Ein Grund dafür kann etwa eine unzureichend verschlüsselte WLAN-Konfiguration sein."],
- "A sütik kezelése, törlése": ["Managing and deleting cookies", "Cookies verwalten und löschen"],
- "A sütiket a használt böngészőprogramokban lehet törölni vagy letiltani. A böngészők alapértelmezett módon engedélyezik a sütik elhelyezését; ez a böngésző beállításainál letiltható, a meglévők pedig törölhetők. Beállítható az is, hogy a böngésző értesítést küldjön, amikor sütit küld az eszközre. Fontos hangsúlyozni, hogy ezen fájlok letiltása vagy korlátozása rontja a böngészési élményt, valamint hiba jelentkezhet a weboldal funkciójában is. A beállítási lehetőségek általában a böngésző „Opciók\" vagy „Beállítások\" menüpontjában találhatók.": ["Cookies can be deleted or blocked in the browser you use. Browsers allow cookies to be set by default; this can be disabled in the browser settings and existing cookies deleted. You can also set the browser to notify you when a cookie is sent to your device. Note that blocking or restricting these files degrades the browsing experience and may cause faults in the website's functionality. The settings are usually found in the browser's “Options” or “Settings” menu.", "Cookies lassen sich im verwendeten Browser löschen oder blockieren. Browser erlauben das Setzen von Cookies standardmäßig; das kann in den Browsereinstellungen deaktiviert und vorhandene Cookies können gelöscht werden. Sie können den Browser auch so einstellen, dass er Sie benachrichtigt, wenn ein Cookie an Ihr Gerät gesendet wird. Beachten Sie: Das Blockieren oder Einschränken dieser Dateien verschlechtert das Surferlebnis und kann zu Fehlfunktionen der Website führen. Die Einstellungen finden sich meist im Menü „Optionen“ oder „Einstellungen“ des Browsers."],
-
- "Érintetti jogok": ["Data subject rights", "Betroffenenrechte"],
- "Az érintett jogosult:": ["The data subject has the right:", "Die betroffene Person hat das Recht:"],
- "tájékoztatást kérni az adatkezelésről": ["to request information about the processing", "Auskunft über die Verarbeitung zu verlangen"],
- "hozzáférni a saját adataihoz": ["to access their own data", "auf ihre eigenen Daten zuzugreifen"],
- "kérni azok helyesbítését": ["to request their rectification", "deren Berichtigung zu verlangen"],
- "kérni azok törlését („elfeledtetéshez való jog\")": ["to request their erasure (“right to be forgotten”)", "deren Löschung zu verlangen („Recht auf Vergessenwerden“)"],
- "kérni az adatkezelés korlátozását": ["to request restriction of processing", "die Einschränkung der Verarbeitung zu verlangen"],
- "tiltakozni az adatkezelés ellen": ["to object to the processing", "der Verarbeitung zu widersprechen"],
- "az adathordozhatósághoz való jog gyakorlására": ["to exercise the right to data portability", "das Recht auf Datenübertragbarkeit auszuüben"],
-
- "Jogorvoslat": ["Legal remedies", "Rechtsbehelf"],
- "Panasz esetén az érintett jogosult a Nemzeti Adatvédelmi és Információszabadság Hatósághoz fordulni:": ["In case of a complaint, the data subject may turn to the Hungarian National Authority for Data Protection and Freedom of Information:", "Im Beschwerdefall kann sich die betroffene Person an die ungarische Nationale Behörde für Datenschutz und Informationsfreiheit wenden:"],
- "NAIH<br> 1055 Budapest, Falk Miksa utca 9–11.<br> <a href=\"https://naih.hu\">https://naih.hu</a><br> <a href=\"mailto:ugyfelszolgalat@naih.hu\">ugyfelszolgalat@naih.hu</a>": ["NAIH<br> Falk Miksa utca 9–11, 1055 Budapest, Hungary<br> <a href=\"https://naih.hu\">https://naih.hu</a><br> <a href=\"mailto:ugyfelszolgalat@naih.hu\">ugyfelszolgalat@naih.hu</a>", "NAIH<br> Falk Miksa utca 9–11, 1055 Budapest, Ungarn<br> <a href=\"https://naih.hu\">https://naih.hu</a><br> <a href=\"mailto:ugyfelszolgalat@naih.hu\">ugyfelszolgalat@naih.hu</a>"],
-
- "Fogalmak": ["Definitions", "Begriffe"],
- "<b>Adatfeldolgozó:</b> természetes vagy jogi személy, közhatalmi szerv, ügynökség vagy bármely egyéb szerv, amely az adatkezelő nevében személyes adatokat kezel.": ["<b>Processor:</b> a natural or legal person, public authority, agency or other body which processes personal data on behalf of the controller.", "<b>Auftragsverarbeiter:</b> eine natürliche oder juristische Person, Behörde, Einrichtung oder andere Stelle, die personenbezogene Daten im Auftrag des Verantwortlichen verarbeitet."],
- "<b>Adatkezelés:</b> a személyes adatokon vagy adatállományokon automatizált vagy nem automatizált módon végzett bármely művelet vagy műveletek összessége — például gyűjtés, rögzítés, rendszerezés, tárolás, átalakítás, lekérdezés, felhasználás, továbbítás, korlátozás, törlés, megsemmisítés.": ["<b>Processing:</b> any operation or set of operations performed on personal data or sets of personal data, whether or not by automated means — for example collection, recording, organisation, storage, adaptation, retrieval, use, disclosure, restriction, erasure or destruction.", "<b>Verarbeitung:</b> jeder mit oder ohne Hilfe automatisierter Verfahren ausgeführte Vorgang im Zusammenhang mit personenbezogenen Daten — etwa Erheben, Erfassen, Organisieren, Speichern, Anpassen, Auslesen, Verwenden, Offenlegen, Einschränken, Löschen oder Vernichten."],
- "<b>Adattovábbítás:</b> az Adatkezelő által kezelt személyes adatok harmadik személyek számára történő hozzáférhetővé tétele.": ["<b>Transfer:</b> making personal data processed by the Controller accessible to third parties.", "<b>Übermittlung:</b> das Zugänglichmachen der vom Verantwortlichen verarbeiteten personenbezogenen Daten gegenüber Dritten."],
- "<b>Adatvédelmi incidens:</b> a biztonság sérülése, amely a kezelt személyes adatok véletlen vagy jogellenes megsemmisítését, elvesztését, megváltoztatását, jogosulatlan közlését vagy az azokhoz való jogosulatlan hozzáférést eredményezi.": ["<b>Personal data breach:</b> a breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorised disclosure of, or access to, personal data processed.", "<b>Datenschutzverletzung:</b> eine Verletzung der Sicherheit, die zur unbeabsichtigten oder unrechtmäßigen Vernichtung, zum Verlust, zur Veränderung oder zur unbefugten Offenlegung von bzw. zum unbefugten Zugang zu verarbeiteten personenbezogenen Daten führt."],
- "<b>Azonosítható természetes személy:</b> aki közvetlen vagy közvetett módon, valamely azonosító alapján azonosítható.": ["<b>Identifiable natural person:</b> one who can be identified, directly or indirectly, by reference to an identifier.", "<b>Identifizierbare natürliche Person:</b> eine Person, die direkt oder indirekt anhand einer Kennung identifiziert werden kann."],
- "<b>Címzett:</b> természetes vagy jogi személy, közhatalmi szerv, ügynökség vagy bármely egyéb szerv, amellyel a személyes adatot közlik.": ["<b>Recipient:</b> a natural or legal person, public authority, agency or other body to which personal data is disclosed.", "<b>Empfänger:</b> eine natürliche oder juristische Person, Behörde, Einrichtung oder andere Stelle, der personenbezogene Daten offengelegt werden."],
- "<b>Érintett hozzájárulása:</b> az érintett akaratának önkéntes, konkrét, megfelelő tájékoztatáson alapuló, egyértelmű kinyilvánítása.": ["<b>Consent of the data subject:</b> a freely given, specific, informed and unambiguous indication of the data subject's wishes.", "<b>Einwilligung der betroffenen Person:</b> eine freiwillige, für den bestimmten Fall, in informierter Weise und unmissverständlich abgegebene Willensbekundung."],
- "<b>Érintett:</b> bármely információ alapján azonosított vagy azonosítható természetes személy.": ["<b>Data subject:</b> a natural person identified or identifiable on the basis of any information.", "<b>Betroffene Person:</b> eine anhand beliebiger Informationen identifizierte oder identifizierbare natürliche Person."],
- "<b>Felhasználók:</b> az Adatkezelő által üzemeltetett weboldalak látogatói.": ["<b>Users:</b> visitors to the websites operated by the Controller.", "<b>Nutzer:</b> Besucher der vom Verantwortlichen betriebenen Websites."],
- "<b>Harmadik fél:</b> aki nem azonos az érintettel, az adatkezelővel vagy az adatfeldolgozóval.": ["<b>Third party:</b> anyone other than the data subject, the controller or the processor.", "<b>Dritter:</b> jede Person außer der betroffenen Person, dem Verantwortlichen und dem Auftragsverarbeiter."],
- "<b>Személyes adat:</b> az érintettre vonatkozó bármely információ.": ["<b>Personal data:</b> any information relating to the data subject.", "<b>Personenbezogene Daten:</b> alle Informationen, die sich auf die betroffene Person beziehen."],
-
- "Záró rendelkezések": ["Final provisions", "Schlussbestimmungen"],
- "Az Adatkezelő fenntartja a jogot a jelen Tájékoztató módosítására. A módosítások a weboldalon történő közzététellel lépnek hatályba.": ["The Controller reserves the right to amend this Policy. Amendments take effect on publication on the website.", "Der Verantwortliche behält sich das Recht vor, diese Erklärung zu ändern. Änderungen treten mit der Veröffentlichung auf der Website in Kraft."]
+ "_comment": [
+  "The English and German privacy policy is a courtesy translation; the Hungarian text is the legally binding one. The page itself says so — see the note added to the fragment.",
+  ""
+ ],
+ "Adatkezelési tájékoztató | Stratos": [
+  "Privacy policy | Stratos",
+  "Datenschutzerklärung | Stratos"
+ ],
+ "Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR szerint — és milyen jogaid vannak.": [
+  "How we collect, use and process personal data under the GDPR — and what rights you have.",
+  "Wie wir personenbezogene Daten nach DSGVO erheben, nutzen und verarbeiten — und welche Rechte du hast."
+ ],
+ "<a href=\"index.html\">Stratos</a> / <b>Adatkezelési tájékoztató</b>": [
+  "<a href=\"index.html\">Stratos</a> / <b>Privacy policy</b>",
+  "<a href=\"index.html\">Stratos</a> / <b>Datenschutzerklärung</b>"
+ ],
+ "Adatkezelési<br>tájékoztató": [
+  "Privacy<br>policy",
+  "Datenschutz­<br>erklärung"
+ ],
+ "Az Ön által megadott személyes adatokat <b>Lukács Artúr egyéni vállalkozó</b> (9151 Abda, Arany János utca 13., adószám: 91381611-2-28) kezeli — a továbbiakban: Adatkezelő.": [
+  "The personal data you provide is processed by <b>Artúr Lukács, sole trader</b> (Arany János utca 13, 9151 Abda, Hungary; tax number 91381611-2-28) — hereinafter the Controller.",
+  "Die von Ihnen angegebenen personenbezogenen Daten verarbeitet <b>Artúr Lukács, Einzelunternehmer</b> (Arany János utca 13, 9151 Abda, Ungarn; Steuernummer 91381611-2-28) — nachfolgend: Verantwortlicher."
+ ],
+ "Kérjük, figyelmesen olvassa el jelen adatkezelési tájékoztatónkat (a továbbiakban: Tájékoztató), melyben személyes adatai kezelését érintő gyakorlatunkat ismertetjük az Általános Adatvédelmi Rendelet (GDPR — az Európai Parlament és a Tanács 2016/679 rendelete) szerint.": [
+  "Please read this privacy policy (hereinafter the Policy) carefully. It describes our practices regarding the processing of your personal data under the General Data Protection Regulation (GDPR — Regulation (EU) 2016/679 of the European Parliament and of the Council).",
+  "Bitte lesen Sie diese Datenschutzerklärung (nachfolgend: Erklärung) aufmerksam. Sie beschreibt unsere Praxis bei der Verarbeitung Ihrer personenbezogenen Daten gemäß der Datenschutz-Grundverordnung (DSGVO — Verordnung (EU) 2016/679 des Europäischen Parlaments und des Rates)."
+ ],
+ "Jelen Tájékoztató az Adatkezelő szolgáltatásait igénybe vevő személyekre (Ön) vonatkozik, és bemutatja, hogy az Adatkezelő hogyan gyűjti, használja fel és kezeli az Ön személyes adatait, továbbá információt nyújt az érintetti jogokról. Az Adatkezelő elkötelezett a személyes adatok védelme és biztonsága iránt. A személyes adatok kezelése minden esetben jogszerűen, tisztességesen és átlátható módon történik.": [
+  "This Policy applies to persons using the Controller's services (you). It sets out how the Controller collects, uses and processes your personal data and provides information about data subject rights. The Controller is committed to the protection and security of personal data. Personal data is always processed lawfully, fairly and transparently.",
+  "Diese Erklärung gilt für Personen, die die Leistungen des Verantwortlichen nutzen (Sie). Sie beschreibt, wie der Verantwortliche Ihre personenbezogenen Daten erhebt, nutzt und verarbeitet, und informiert über die Betroffenenrechte. Der Verantwortliche ist dem Schutz und der Sicherheit personenbezogener Daten verpflichtet. Die Verarbeitung erfolgt stets rechtmäßig, nach Treu und Glauben und transparent."
+ ],
+ "Az Adatkezelő felelőssége és elérhetősége": [
+  "The Controller's responsibility and contact details",
+  "Verantwortlichkeit und Kontaktdaten des Verantwortlichen"
+ ],
+ "<b>Adatkezelő:</b> Lukács Artúr egyéni vállalkozó": [
+  "<b>Controller:</b> Artúr Lukács, sole trader",
+  "<b>Verantwortlicher:</b> Artúr Lukács, Einzelunternehmer"
+ ],
+ "<b>Székhely:</b> 9151 Abda, Arany János utca 13.": [
+  "<b>Registered address:</b> Arany János utca 13, 9151 Abda, Hungary",
+  "<b>Sitz:</b> Arany János utca 13, 9151 Abda, Ungarn"
+ ],
+ "<b>Telefon:</b> <a href=\"tel:+36305848024\">+36 30 584 8024</a>": [
+  "<b>Phone:</b> <a href=\"tel:+36305848024\">+36 30 584 8024</a>",
+  "<b>Telefon:</b> <a href=\"tel:+36305848024\">+36 30 584 8024</a>"
+ ],
+ "<b>E-mail:</b> <a href=\"mailto:info@media-stratos.com\">info@media-stratos.com</a>": [
+  "<b>Email:</b> <a href=\"mailto:info@media-stratos.com\">info@media-stratos.com</a>",
+  "<b>E-Mail:</b> <a href=\"mailto:info@media-stratos.com\">info@media-stratos.com</a>"
+ ],
+ "<b>Weboldal:</b> <a href=\"https://stratosweb.hu\">https://stratosweb.hu</a>": [
+  "<b>Website:</b> <a href=\"https://stratosweb.hu\">https://stratosweb.hu</a>",
+  "<b>Website:</b> <a href=\"https://stratosweb.hu\">https://stratosweb.hu</a>"
+ ],
+ "<b>Adószám:</b> 91381611-2-28": [
+  "<b>Tax number:</b> 91381611-2-28",
+  "<b>Steuernummer:</b> 91381611-2-28"
+ ],
+ "<b>Tevékenység:</b> weboldal-készítés, webdesign, online marketing és digitális szolgáltatások": [
+  "<b>Activity:</b> website production, web design, online marketing and digital services",
+  "<b>Tätigkeit:</b> Website-Erstellung, Webdesign, Online-Marketing und digitale Dienstleistungen"
+ ],
+ "Az adatkezelés célja": [
+  "Purposes of processing",
+  "Zwecke der Verarbeitung"
+ ],
+ "Az Adatkezelő az alábbi célokból kezeli a személyes adatokat:": [
+  "The Controller processes personal data for the following purposes:",
+  "Der Verantwortliche verarbeitet personenbezogene Daten zu folgenden Zwecken:"
+ ],
+ "kapcsolatfelvétel biztosítása": [
+  "enabling contact",
+  "Ermöglichung der Kontaktaufnahme"
+ ],
+ "ajánlatkészítés és ügyfélkommunikáció": [
+  "preparing quotes and client communication",
+  "Angebotserstellung und Kundenkommunikation"
+ ],
+ "hírlevél és marketing üzenetek küldése": [
+  "sending newsletters and marketing messages",
+  "Versand von Newslettern und Marketingnachrichten"
+ ],
+ "szolgáltatások teljesítése": [
+  "performing services",
+  "Erbringung der Leistungen"
+ ],
+ "weboldal működtetése és fejlesztése": [
+  "operating and developing the website",
+  "Betrieb und Weiterentwicklung der Website"
+ ],
+ "statisztikai és elemzési célok": [
+  "statistical and analytical purposes",
+  "Statistik- und Analysezwecke"
+ ],
+ "Kezelt személyes adatok köre": [
+  "Categories of personal data processed",
+  "Kategorien verarbeiteter Daten"
+ ],
+ "Kapcsolatfelvétel vagy ajánlatkérés esetén": [
+  "When contacting us or requesting a quote",
+  "Bei Kontaktaufnahme oder Angebotsanfrage"
+ ],
+ "név": [
+  "name",
+  "Name"
+ ],
+ "e-mail cím": [
+  "email address",
+  "E-Mail-Adresse"
+ ],
+ "telefonszám": [
+  "phone number",
+  "Telefonnummer"
+ ],
+ "cégnév (ha megadásra kerül)": [
+  "company name (if provided)",
+  "Firmenname (sofern angegeben)"
+ ],
+ "üzenetben megadott egyéb információk": [
+  "any other information given in the message",
+  "sonstige in der Nachricht angegebene Informationen"
+ ],
+ "IP-cím": [
+  "IP address",
+  "IP-Adresse"
+ ],
+ "böngésző és eszköz információk": [
+  "browser and device information",
+  "Browser- und Geräteinformationen"
+ ],
+ "Hírlevél-feliratkozás esetén": [
+  "When subscribing to the newsletter",
+  "Bei Newsletter-Anmeldung"
+ ],
+ "név (opcionális)": [
+  "name (optional)",
+  "Name (optional)"
+ ],
+ "Az adatkezelés időtartama": [
+  "Retention periods",
+  "Dauer der Verarbeitung"
+ ],
+ "kapcsolatfelvételi adatok: legfeljebb 5 év": [
+  "contact data: no more than 5 years",
+  "Kontaktdaten: höchstens 5 Jahre"
+ ],
+ "hírlevél adatok: a hozzájárulás visszavonásáig": [
+  "newsletter data: until consent is withdrawn",
+  "Newsletter-Daten: bis zum Widerruf der Einwilligung"
+ ],
+ "számlázási adatok: 8 év (a számviteli törvény alapján)": [
+  "invoicing data: 8 years (under the Hungarian Accounting Act)",
+  "Rechnungsdaten: 8 Jahre (nach ungarischem Rechnungslegungsgesetz)"
+ ],
+ "Adattovábbítás és adatfeldolgozók": [
+  "Data transfers and processors",
+  "Datenübermittlung und Auftragsverarbeiter"
+ ],
+ "Az Adatkezelő a személyes adatokat kizárólag a szolgáltatás nyújtásához szükséges mértékben, jogszabályi kötelezettség alapján vagy hozzájárulással továbbítja.": [
+  "The Controller transfers personal data only to the extent necessary to provide the service, on the basis of a legal obligation, or with consent.",
+  "Der Verantwortliche übermittelt personenbezogene Daten nur im zur Leistungserbringung erforderlichen Umfang, aufgrund einer gesetzlichen Pflicht oder mit Einwilligung."
+ ],
+ "Adatfeldolgozók": [
+  "Processors",
+  "Auftragsverarbeiter"
+ ],
+ "<b>Tárhelyszolgáltató:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, Amerikai Egyesült Államok. Szolgáltatás: a weboldal kiszolgálása és a kiszolgálói funkciók (Netlify Functions) futtatása, amelyek az űrlapok beküldését fogadják.": [
+  "<b>Hosting provider:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, United States. Service: serving the website and running the server-side functions (Netlify Functions) that receive form submissions.",
+  "<b>Hosting-Anbieter:</b> Netlify, Inc. — 101 2nd Street, San Francisco, CA 94105, Vereinigte Staaten. Dienst: Auslieferung der Website und Ausführung der serverseitigen Funktionen (Netlify Functions), die Formularübermittlungen entgegennehmen."
+ ],
+ "<b>Adatbázis-szolgáltató:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513. Szolgáltatás: az űrlapokon beérkező érdeklődések tárolása és a zárt Portál kiszolgálása.": [
+  "<b>Database provider:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapore 049513. Service: storing the enquiries received through the forms and supporting the private Portal.",
+  "<b>Datenbank-Anbieter:</b> Supabase Pte. Ltd. — 65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513. Dienst: Speicherung der über die Formulare eingehenden Anfragen und Betrieb des internen Portals."
+ ],
+ "<b>E-mail szolgáltató:</b> a levelezőrendszer szolgáltatója (pl. Google Workspace vagy más e-mail szolgáltató)": [
+  "<b>Email provider:</b> the provider of the mail system (e.g. Google Workspace or another email provider)",
+  "<b>E-Mail-Anbieter:</b> der Anbieter des Mailsystems (z. B. Google Workspace oder ein anderer E-Mail-Anbieter)"
+ ],
+ "<b>Google LLC</b> — 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Szolgáltatások: Google Analytics, Search Console, hirdetési és analitikai rendszerek": [
+  "<b>Google LLC</b> — 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Services: Google Analytics, Search Console, advertising and analytics systems",
+  "<b>Google LLC</b> — 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Dienste: Google Analytics, Search Console, Werbe- und Analysesysteme"
+ ],
+ "<b>Meta Platforms Ireland Ltd.</b> — 4 Grand Canal Square, Dublin 2, Írország. Szolgáltatások: Facebook, Instagram, Meta Pixel": [
+  "<b>Meta Platforms Ireland Ltd.</b> — 4 Grand Canal Square, Dublin 2, Ireland. Services: Facebook, Instagram, Meta Pixel",
+  "<b>Meta Platforms Ireland Ltd.</b> — 4 Grand Canal Square, Dublin 2, Irland. Dienste: Facebook, Instagram, Meta Pixel"
+ ],
+ "Cookie-k (sütik) használata": [
+  "Use of cookies",
+  "Verwendung von Cookies"
+ ],
+ "A weboldal cookie-kat használ a felhasználói élmény javítása, statisztikai elemzések készítése és marketing célok érdekében. A sütik lehetnek munkamenet, analitikai, funkcionális és marketing sütik. A felhasználó a sütik használatához hozzájárulhat, illetve azokat böngészőjében bármikor törölheti vagy letilthatja.": [
+  "The website uses cookies to improve the user experience, produce statistical analysis and for marketing purposes. Cookies may be session, analytical, functional or marketing cookies. Users may consent to the use of cookies and can delete or block them in their browser at any time.",
+  "Die Website verwendet Cookies, um die Nutzererfahrung zu verbessern, statistische Auswertungen zu erstellen und zu Marketingzwecken. Cookies können Sitzungs-, Analyse-, Funktions- und Marketing-Cookies sein. Nutzer können der Verwendung zustimmen und Cookies jederzeit im Browser löschen oder blockieren."
+ ],
+ "A sütik típusai": [
+  "Types of cookie",
+  "Cookie-Typen"
+ ],
+ "<b>Ideiglenes sütik</b> — addig maradnak az eszközén, amíg el nem hagyja a weboldalt.": [
+  "<b>Session cookies</b> — stay on your device only until you leave the website.",
+  "<b>Temporäre Cookies</b> — bleiben nur auf Ihrem Gerät, bis Sie die Website verlassen."
+ ],
+ "<b>Állandó sütik</b> — a böngésző beállításától függően hosszabb ideig, vagy addig maradnak az eszközén, amíg Ön nem törli azokat.": [
+  "<b>Persistent cookies</b> — depending on browser settings, stay on your device for longer, or until you delete them.",
+  "<b>Dauerhafte Cookies</b> — bleiben je nach Browsereinstellung länger auf Ihrem Gerät oder bis Sie sie löschen."
+ ],
+ "<b>Harmadik féltől származó sütik</b> — melyeket harmadik fél helyez el a böngészőjében (pl. Google Analytics).": [
+  "<b>Third-party cookies</b> — placed in your browser by a third party (e.g. Google Analytics).",
+  "<b>Cookies von Dritten</b> — werden von Dritten in Ihrem Browser gesetzt (z. B. Google Analytics)."
+ ],
+ "Elengedhetetlen munkamenet (session-id) sütik": [
+  "Strictly necessary session cookies",
+  "Unbedingt erforderliche Sitzungs-Cookies"
+ ],
+ "Használatuk elengedhetetlen a weboldalon történő navigáláshoz és a weboldal funkcióinak működéséhez. Ezek elfogadása nélkül a honlap, illetve annak egyes részei nem, vagy hibásan jelenhetnek meg.": [
+  "These are essential for navigating the site and for its functions to work. Without accepting them the site, or parts of it, may not display at all or may display incorrectly.",
+  "Sie sind für die Navigation und die Funktionen der Website unerlässlich. Ohne ihre Annahme kann die Website oder Teile davon nicht oder fehlerhaft angezeigt werden."
+ ],
+ "Analitikai vagy teljesítményfigyelő sütik": [
+  "Analytical or performance cookies",
+  "Analyse- oder Performance-Cookies"
+ ],
+ "Ezek segítenek megkülönböztetni a weboldal látogatóit, és adatokat gyűjteni arról, hogyan viselkednek a látogatók a weboldalon. Nem gyűjtenek Önt azonosítani képes információkat; az adatokat összesítve és névtelenül tárolják (pl. Google Analytics).": [
+  "These help distinguish visitors and collect data on how visitors behave on the site. They do not collect information capable of identifying you; data is stored in aggregated, anonymous form (e.g. Google Analytics).",
+  "Sie helfen, Besucher zu unterscheiden, und sammeln Daten darüber, wie Besucher sich auf der Website verhalten. Sie erfassen keine Informationen, die Sie identifizieren könnten; die Daten werden aggregiert und anonym gespeichert (z. B. Google Analytics)."
+ ],
+ "Funkcionális sütik": [
+  "Functional cookies",
+  "Funktions-Cookies"
+ ],
+ "E sütik feladata a felhasználói élmény javítása. Észlelik és tárolják például, hogy milyen eszközzel nyitotta meg a honlapot, vagy az Ön által korábban megadott, és tárolni kért adatait: automatikus bejelentkezés, választott nyelv, szövegméret, betűtípus vagy a honlap egyéb testre szabható eleme. Ezek a sütik nem követik nyomon az Ön más weboldalakon folytatott tevékenységét.": [
+  "These cookies exist to improve the user experience. They detect and store, for example, which device you opened the site with, or data you previously entered and asked to be saved: automatic sign-in, chosen language, text size, typeface or other customisable elements. These cookies do not track your activity on other websites.",
+  "Diese Cookies verbessern die Nutzererfahrung. Sie erkennen und speichern zum Beispiel, mit welchem Gerät Sie die Seite geöffnet haben, oder Daten, die Sie zuvor eingegeben und zur Speicherung freigegeben haben: automatische Anmeldung, gewählte Sprache, Schriftgröße, Schriftart oder andere anpassbare Elemente. Sie verfolgen Ihre Aktivität auf anderen Websites nicht."
+ ],
+ "Célzott vagy reklám sütik": [
+  "Targeting or advertising cookies",
+  "Targeting- oder Werbe-Cookies"
+ ],
+ "Ezek segítségével a weboldalak az Ön érdeklődési körének leginkább megfelelő információt tudnak nyújtani. Ehhez az Ön kifejezett beleegyezése szükséges. Ezek a sütik részletes információkat gyűjtenek böngészési szokásairól.": [
+  "These let websites present the information most relevant to your interests. They require your explicit consent. These cookies collect detailed information about your browsing habits.",
+  "Mit ihnen können Websites die für Ihre Interessen relevantesten Informationen anzeigen. Dafür ist Ihre ausdrückliche Einwilligung erforderlich. Diese Cookies sammeln detaillierte Informationen über Ihr Surfverhalten."
+ ],
+ "Tartalmaznak a sütik személyes adatokat?": [
+  "Do cookies contain personal data?",
+  "Enthalten Cookies personenbezogene Daten?"
+ ],
+ "A legtöbb süti nem tartalmaz személyes információkat, segítségükkel nem azonosíthatók a felhasználók. A tárolt adatok a kényelmesebb böngészésért szükségesek, tárolásuk olyan módon történik, hogy jogosulatlan személy nem férhet hozzájuk.": [
+  "Most cookies contain no personal information and cannot be used to identify users. The stored data serves more convenient browsing and is stored so that unauthorised persons cannot access it.",
+  "Die meisten Cookies enthalten keine personenbezogenen Informationen und erlauben keine Identifizierung von Nutzern. Die gespeicherten Daten dienen dem bequemeren Surfen und werden so gespeichert, dass Unbefugte keinen Zugriff haben."
+ ],
+ "Biztonsággal kapcsolatos tényezők": [
+  "Security considerations",
+  "Sicherheitsaspekte"
+ ],
+ "A sütik nem vírusok és nem kémprogramok. Mivel egyszerű szöveg típusú fájlok, ezért nem futtathatók, tehát nem tekinthetők programoknak. Előfordulhat azonban, hogy rosszindulattal rejtenek el bennük információkat, így azok spyware-ként működhetnek. Emiatt a víruskereső programok a sütiket folyamatosan törlésre ítélhetik.": [
+  "Cookies are not viruses or spyware. Being plain text files they cannot be executed and are therefore not programs. It is possible, however, for information to be hidden in them maliciously, in which case they can act as spyware. For that reason antivirus programs may continually flag cookies for deletion.",
+  "Cookies sind keine Viren und keine Spyware. Als einfache Textdateien sind sie nicht ausführbar und damit keine Programme. Es ist jedoch möglich, dass darin böswillig Informationen versteckt werden, sodass sie wie Spyware wirken. Deshalb können Virenscanner Cookies laufend zum Löschen vormerken."
+ ],
+ "Mivel a böngészésre használt eszköz és a webszerverek folyamatosan kommunikálnak, ezért ha egy támadó beavatkozik a folyamatba, kinyerheti a sütik által tárolt információkat. Ennek egyik oka lehet például a nem megfelelő módon titkosított WiFi-beállítás.": [
+  "Because the device you browse with and the web servers communicate constantly, an attacker who intervenes in that process can extract the information stored in cookies. One cause of this can be, for example, an inadequately encrypted Wi-Fi configuration.",
+  "Da das Gerät, mit dem Sie surfen, und die Webserver ständig kommunizieren, kann ein Angreifer, der in diesen Vorgang eingreift, die in Cookies gespeicherten Informationen auslesen. Ein Grund dafür kann etwa eine unzureichend verschlüsselte WLAN-Konfiguration sein."
+ ],
+ "A sütik kezelése, törlése": [
+  "Managing and deleting cookies",
+  "Cookies verwalten und löschen"
+ ],
+ "A sütiket a használt böngészőprogramokban lehet törölni vagy letiltani. A böngészők alapértelmezett módon engedélyezik a sütik elhelyezését; ez a böngésző beállításainál letiltható, a meglévők pedig törölhetők. Beállítható az is, hogy a böngésző értesítést küldjön, amikor sütit küld az eszközre. Fontos hangsúlyozni, hogy ezen fájlok letiltása vagy korlátozása rontja a böngészési élményt, valamint hiba jelentkezhet a weboldal funkciójában is. A beállítási lehetőségek általában a böngésző „Opciók\" vagy „Beállítások\" menüpontjában találhatók.": [
+  "Cookies can be deleted or blocked in the browser you use. Browsers allow cookies to be set by default; this can be disabled in the browser settings and existing cookies deleted. You can also set the browser to notify you when a cookie is sent to your device. Note that blocking or restricting these files degrades the browsing experience and may cause faults in the website's functionality. The settings are usually found in the browser's “Options” or “Settings” menu.",
+  "Cookies lassen sich im verwendeten Browser löschen oder blockieren. Browser erlauben das Setzen von Cookies standardmäßig; das kann in den Browsereinstellungen deaktiviert und vorhandene Cookies können gelöscht werden. Sie können den Browser auch so einstellen, dass er Sie benachrichtigt, wenn ein Cookie an Ihr Gerät gesendet wird. Beachten Sie: Das Blockieren oder Einschränken dieser Dateien verschlechtert das Surferlebnis und kann zu Fehlfunktionen der Website führen. Die Einstellungen finden sich meist im Menü „Optionen“ oder „Einstellungen“ des Browsers."
+ ],
+ "Érintetti jogok": [
+  "Data subject rights",
+  "Betroffenenrechte"
+ ],
+ "Az érintett jogosult:": [
+  "The data subject has the right:",
+  "Die betroffene Person hat das Recht:"
+ ],
+ "tájékoztatást kérni az adatkezelésről": [
+  "to request information about the processing",
+  "Auskunft über die Verarbeitung zu verlangen"
+ ],
+ "hozzáférni a saját adataihoz": [
+  "to access their own data",
+  "auf ihre eigenen Daten zuzugreifen"
+ ],
+ "kérni azok helyesbítését": [
+  "to request their rectification",
+  "deren Berichtigung zu verlangen"
+ ],
+ "kérni azok törlését („elfeledtetéshez való jog\")": [
+  "to request their erasure (“right to be forgotten”)",
+  "deren Löschung zu verlangen („Recht auf Vergessenwerden“)"
+ ],
+ "kérni az adatkezelés korlátozását": [
+  "to request restriction of processing",
+  "die Einschränkung der Verarbeitung zu verlangen"
+ ],
+ "tiltakozni az adatkezelés ellen": [
+  "to object to the processing",
+  "der Verarbeitung zu widersprechen"
+ ],
+ "az adathordozhatósághoz való jog gyakorlására": [
+  "to exercise the right to data portability",
+  "das Recht auf Datenübertragbarkeit auszuüben"
+ ],
+ "Jogorvoslat": [
+  "Legal remedies",
+  "Rechtsbehelf"
+ ],
+ "Panasz esetén az érintett jogosult a Nemzeti Adatvédelmi és Információszabadság Hatósághoz fordulni:": [
+  "In case of a complaint, the data subject may turn to the Hungarian National Authority for Data Protection and Freedom of Information:",
+  "Im Beschwerdefall kann sich die betroffene Person an die ungarische Nationale Behörde für Datenschutz und Informationsfreiheit wenden:"
+ ],
+ "NAIH<br> 1055 Budapest, Falk Miksa utca 9–11.<br> <a href=\"https://naih.hu\">https://naih.hu</a><br> <a href=\"mailto:ugyfelszolgalat@naih.hu\">ugyfelszolgalat@naih.hu</a>": [
+  "NAIH<br> Falk Miksa utca 9–11, 1055 Budapest, Hungary<br> <a href=\"https://naih.hu\">https://naih.hu</a><br> <a href=\"mailto:ugyfelszolgalat@naih.hu\">ugyfelszolgalat@naih.hu</a>",
+  "NAIH<br> Falk Miksa utca 9–11, 1055 Budapest, Ungarn<br> <a href=\"https://naih.hu\">https://naih.hu</a><br> <a href=\"mailto:ugyfelszolgalat@naih.hu\">ugyfelszolgalat@naih.hu</a>"
+ ],
+ "Fogalmak": [
+  "Definitions",
+  "Begriffe"
+ ],
+ "<b>Adatfeldolgozó:</b> természetes vagy jogi személy, közhatalmi szerv, ügynökség vagy bármely egyéb szerv, amely az adatkezelő nevében személyes adatokat kezel.": [
+  "<b>Processor:</b> a natural or legal person, public authority, agency or other body which processes personal data on behalf of the controller.",
+  "<b>Auftragsverarbeiter:</b> eine natürliche oder juristische Person, Behörde, Einrichtung oder andere Stelle, die personenbezogene Daten im Auftrag des Verantwortlichen verarbeitet."
+ ],
+ "<b>Adatkezelés:</b> a személyes adatokon vagy adatállományokon automatizált vagy nem automatizált módon végzett bármely művelet vagy műveletek összessége — például gyűjtés, rögzítés, rendszerezés, tárolás, átalakítás, lekérdezés, felhasználás, továbbítás, korlátozás, törlés, megsemmisítés.": [
+  "<b>Processing:</b> any operation or set of operations performed on personal data or sets of personal data, whether or not by automated means — for example collection, recording, organisation, storage, adaptation, retrieval, use, disclosure, restriction, erasure or destruction.",
+  "<b>Verarbeitung:</b> jeder mit oder ohne Hilfe automatisierter Verfahren ausgeführte Vorgang im Zusammenhang mit personenbezogenen Daten — etwa Erheben, Erfassen, Organisieren, Speichern, Anpassen, Auslesen, Verwenden, Offenlegen, Einschränken, Löschen oder Vernichten."
+ ],
+ "<b>Adattovábbítás:</b> az Adatkezelő által kezelt személyes adatok harmadik személyek számára történő hozzáférhetővé tétele.": [
+  "<b>Transfer:</b> making personal data processed by the Controller accessible to third parties.",
+  "<b>Übermittlung:</b> das Zugänglichmachen der vom Verantwortlichen verarbeiteten personenbezogenen Daten gegenüber Dritten."
+ ],
+ "<b>Adatvédelmi incidens:</b> a biztonság sérülése, amely a kezelt személyes adatok véletlen vagy jogellenes megsemmisítését, elvesztését, megváltoztatását, jogosulatlan közlését vagy az azokhoz való jogosulatlan hozzáférést eredményezi.": [
+  "<b>Personal data breach:</b> a breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorised disclosure of, or access to, personal data processed.",
+  "<b>Datenschutzverletzung:</b> eine Verletzung der Sicherheit, die zur unbeabsichtigten oder unrechtmäßigen Vernichtung, zum Verlust, zur Veränderung oder zur unbefugten Offenlegung von bzw. zum unbefugten Zugang zu verarbeiteten personenbezogenen Daten führt."
+ ],
+ "<b>Azonosítható természetes személy:</b> aki közvetlen vagy közvetett módon, valamely azonosító alapján azonosítható.": [
+  "<b>Identifiable natural person:</b> one who can be identified, directly or indirectly, by reference to an identifier.",
+  "<b>Identifizierbare natürliche Person:</b> eine Person, die direkt oder indirekt anhand einer Kennung identifiziert werden kann."
+ ],
+ "<b>Címzett:</b> természetes vagy jogi személy, közhatalmi szerv, ügynökség vagy bármely egyéb szerv, amellyel a személyes adatot közlik.": [
+  "<b>Recipient:</b> a natural or legal person, public authority, agency or other body to which personal data is disclosed.",
+  "<b>Empfänger:</b> eine natürliche oder juristische Person, Behörde, Einrichtung oder andere Stelle, der personenbezogene Daten offengelegt werden."
+ ],
+ "<b>Érintett hozzájárulása:</b> az érintett akaratának önkéntes, konkrét, megfelelő tájékoztatáson alapuló, egyértelmű kinyilvánítása.": [
+  "<b>Consent of the data subject:</b> a freely given, specific, informed and unambiguous indication of the data subject's wishes.",
+  "<b>Einwilligung der betroffenen Person:</b> eine freiwillige, für den bestimmten Fall, in informierter Weise und unmissverständlich abgegebene Willensbekundung."
+ ],
+ "<b>Érintett:</b> bármely információ alapján azonosított vagy azonosítható természetes személy.": [
+  "<b>Data subject:</b> a natural person identified or identifiable on the basis of any information.",
+  "<b>Betroffene Person:</b> eine anhand beliebiger Informationen identifizierte oder identifizierbare natürliche Person."
+ ],
+ "<b>Felhasználók:</b> az Adatkezelő által üzemeltetett weboldalak látogatói.": [
+  "<b>Users:</b> visitors to the websites operated by the Controller.",
+  "<b>Nutzer:</b> Besucher der vom Verantwortlichen betriebenen Websites."
+ ],
+ "<b>Harmadik fél:</b> aki nem azonos az érintettel, az adatkezelővel vagy az adatfeldolgozóval.": [
+  "<b>Third party:</b> anyone other than the data subject, the controller or the processor.",
+  "<b>Dritter:</b> jede Person außer der betroffenen Person, dem Verantwortlichen und dem Auftragsverarbeiter."
+ ],
+ "<b>Személyes adat:</b> az érintettre vonatkozó bármely információ.": [
+  "<b>Personal data:</b> any information relating to the data subject.",
+  "<b>Personenbezogene Daten:</b> alle Informationen, die sich auf die betroffene Person beziehen."
+ ],
+ "Záró rendelkezések": [
+  "Final provisions",
+  "Schlussbestimmungen"
+ ],
+ "Az Adatkezelő fenntartja a jogot a jelen Tájékoztató módosítására. A módosítások a weboldalon történő közzététellel lépnek hatályba.": [
+  "The Controller reserves the right to amend this Policy. Amendments take effect on publication on the website.",
+  "Der Verantwortliche behält sich das Recht vor, diese Erklärung zu ändern. Änderungen treten mit der Veröffentlichung auf der Website in Kraft."
+ ],
+ "<b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Analytics 4 látogatottságmérés, kizárólag a látogató kifejezett hozzájárulása esetén. Hozzájárulás hiányában a Google Analytics nem töltődik be, és semmilyen adat nem kerül a Google-höz.": [
+  "<b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Analytics 4 audience measurement, only where the visitor has explicitly consented. Without consent Google Analytics is not loaded and no data reaches Google.",
+  "<b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Irland. Dienst: Google-Analytics-4-Reichweitenmessung, ausschließlich bei ausdrücklicher Einwilligung der Besucherin oder des Besuchers. Ohne Einwilligung wird Google Analytics nicht geladen, und es gelangen keinerlei Daten zu Google."
+ ],
+ "A Google Search Console nem látogatottságmérő és nem adatfeldolgozó: a saját weboldalunk keresési megjelenését mutatja, és nem követi a látogatókat. Meta Pixelt vagy más közösségimédia-követőkódot a weboldal nem használ. A láblécben található közösségi ikonok egyszerű hivatkozások, nem töltenek be követőkódot.": [
+  "Google Search Console is not audience measurement and not a data processor: it reports how our own site appears in search, and does not track visitors. The website uses no Meta Pixel and no other social-media tracking code. The social icons in the footer are ordinary links and load nothing.",
+  "Die Google Search Console ist keine Reichweitenmessung und kein Auftragsverarbeiter: Sie zeigt, wie unsere eigene Website in der Suche erscheint, und verfolgt keine Besucher. Die Website verwendet weder ein Meta-Pixel noch anderen Social-Media-Trackingcode. Die Social-Icons im Fußbereich sind gewöhnliche Links und laden nichts."
+ ],
+ "A weboldal alapállapotban nem használ sütiket. Sütit kizárólag a látogatottságmérés helyez el, és csak akkor, ha ehhez a látogató a weboldal alján megjelenő sávban kifejezetten hozzájárult. Hozzájárulás nélkül a mérés nem indul el, süti nem kerül az eszközre, és a Google felé semmilyen adat nem továbbítódik.": [
+  "By default the website sets no cookies. Cookies are set only by audience measurement, and only where the visitor has explicitly consented in the bar shown at the bottom of the page. Without consent, measurement does not start, no cookie is placed on the device, and no data whatsoever is transmitted to Google.",
+  "Standardmäßig setzt die Website keine Cookies. Cookies werden ausschließlich durch die Reichweitenmessung gesetzt, und nur dann, wenn die Besucherin oder der Besucher in der Leiste am unteren Seitenrand ausdrücklich eingewilligt hat. Ohne Einwilligung startet die Messung nicht, es wird kein Cookie auf dem Gerät abgelegt, und es werden keinerlei Daten an Google übermittelt."
+ ],
+ "Hirdetési, marketing- és profilalkotási sütiket a weboldal nem használ. A Google Analytics hirdetési funkciói (Google Signals, hirdetési személyre szabás) ki vannak kapcsolva.": [
+  "The website uses no advertising, marketing or profiling cookies. Google Analytics advertising features (Google Signals, ad personalisation) are switched off.",
+  "Die Website verwendet keine Werbe-, Marketing- oder Profiling-Cookies. Die Werbefunktionen von Google Analytics (Google Signals, Personalisierung von Werbung) sind deaktiviert."
+ ],
+ "Milyen sütik lehetnek az eszközön": [
+  "Which cookies may be on your device",
+  "Welche Cookies auf dem Gerät liegen können"
+ ],
+ "<b>Analitikai sütik (Google Analytics 4)</b> — csak hozzájárulás után. A <code>_ga</code> és <code>_ga_&lt;azonosító&gt;</code> nevű sütik a visszatérő látogatások és a munkamenetek megkülönböztetésére szolgálnak. Nevet, e-mail címet és telefonszámot nem tartalmaznak.": [
+  "<b>Analytics cookies (Google Analytics 4)</b> — only after consent. The cookies named <code>_ga</code> and <code>_ga_&lt;identifier&gt;</code> distinguish returning visits and sessions. They contain no name, email address or phone number.",
+  "<b>Analyse-Cookies (Google Analytics 4)</b> — erst nach Einwilligung. Die Cookies <code>_ga</code> und <code>_ga_&lt;Kennung&gt;</code> unterscheiden wiederkehrende Besuche und Sitzungen. Sie enthalten weder Namen noch E-Mail-Adresse oder Telefonnummer."
+ ],
+ "<b>A hozzájárulás megjegyzése</b> — a döntést a böngésző helyi tárolójában (<code>stratos.consent</code>) tároljuk. Ez nem süti, és nem kerül át a szerverre; kizárólag azért létezik, hogy egy elutasítás után ne kérdezzünk rá újra minden oldalon.": [
+  "<b>Remembering your choice</b> — the decision is kept in the browser’s local storage (<code>stratos.consent</code>). This is not a cookie and never reaches the server; it exists solely so that, after a refusal, you are not asked again on every page.",
+  "<b>Speicherung der Entscheidung</b> — die Entscheidung wird im lokalen Speicher des Browsers abgelegt (<code>stratos.consent</code>). Das ist kein Cookie und gelangt nie an den Server; es existiert allein dafür, dass nach einer Ablehnung nicht auf jeder Seite erneut gefragt wird."
+ ],
+ "Mit mérünk, és mit nem": [
+  "What we measure, and what we do not",
+  "Was wir messen — und was nicht"
+ ],
+ "A mérés arra irányul, hogy mely oldalakat olvassák, meddig jutnak el bennük, és melyik gombra kattintanak. A méréshez küldött adatok között <b>soha</b> nem szerepel név, e-mail cím, telefonszám, cégnév, űrlapba írt szöveg, a kérdőív válaszai, valamint az érdeklődés vagy a beküldés azonosítója. Ezt nem csupán szabályzat rögzíti: a mérőkód a küldés előtt ellenőrzi a mezőneveket, és a tiltott mezőt tartalmazó eseményt egészében eldobja.": [
+  "Measurement covers which pages are read, how far into them visitors get, and which buttons they click. The data sent for measurement <b>never</b> includes a name, email address, phone number, company name, text typed into a form, questionnaire answers, or the identifier of an enquiry or submission. This is not merely policy: before sending, the measurement code checks the field names and discards, in its entirety, any event containing a prohibited field.",
+  "Gemessen wird, welche Seiten gelesen werden, wie weit Besucher darin gelangen und welche Schaltflächen sie anklicken. Die zur Messung gesendeten Daten enthalten <b>niemals</b> Namen, E-Mail-Adresse, Telefonnummer, Firmennamen, in Formulare eingegebenen Text, Antworten aus dem Fragebogen oder die Kennung einer Anfrage oder Übermittlung. Das ist nicht nur eine Richtlinie: Der Messcode prüft vor dem Senden die Feldnamen und verwirft ein Ereignis mit einem unzulässigen Feld vollständig."
+ ],
+ "A hozzájárulás visszavonása": [
+  "Withdrawing consent",
+  "Widerruf der Einwilligung"
+ ],
+ "A hozzájárulás bármikor, ugyanolyan egyszerűen visszavonható, mint ahogy megadható volt: a lábléc <b>Süti-beállítások</b> gombjára kattintva a döntés újra megnyitható és megváltoztatható. Visszavonáskor a mérés azonnal leáll, és a már elhelyezett <code>_ga</code> sütiket a weboldal törli. A sütik ezen felül a böngésző beállításaiban is bármikor törölhetők vagy letilthatók.": [
+  "Consent can be withdrawn at any time, exactly as easily as it was given: the <b>Cookie settings</b> button in the footer reopens the choice so it can be changed. On withdrawal, measurement stops immediately and the website deletes any <code>_ga</code> cookies already set. Cookies can also be deleted or blocked at any time in the browser’s own settings.",
+  "Die Einwilligung kann jederzeit und genauso einfach widerrufen werden, wie sie erteilt wurde: Über die Schaltfläche <b>Cookie-Einstellungen</b> im Fußbereich lässt sich die Entscheidung erneut öffnen und ändern. Beim Widerruf endet die Messung sofort, und die Website löscht bereits gesetzte <code>_ga</code>-Cookies. Cookies lassen sich darüber hinaus jederzeit in den Browsereinstellungen löschen oder blockieren."
+ ],
+ "A hozzájárulás megtagadása a weboldal használatát semmilyen módon nem korlátozza: az oldal mérés nélkül is teljes egészében működik.": [
+  "Refusing consent does not restrict use of the website in any way: the site works in full without measurement.",
+  "Die Ablehnung schränkt die Nutzung der Website in keiner Weise ein: Die Seite funktioniert auch ohne Messung vollständig."
+ ]
 }
