@@ -62,6 +62,45 @@ const RULES = [
     re: /\bAKIA[0-9A-Z]{16}\b/,
     note: 'An AWS access key id.',
   },
+
+  // ---- Phase 9, Workstream O -------------------------------------------------
+  // Four credential shapes this project can now plausibly acquire, added
+  // BEFORE it acquires them. A scanner written after the leak is a scanner that
+  // certifies the leak as clean on its first run.
+  {
+    id: 'google-service-account',
+    // The Analytics Data API integration the Portal will need is authenticated
+    // by a service-account JSON file, and its private key is a real secret —
+    // unlike the GA4 Measurement ID, which is public by design and ships in
+    // every page. The PEM block is caught by `private-key` above; this catches
+    // the JSON wrapper, which is how the key actually arrives from Google.
+    re: /"type"\s*:\s*"service_account"|"private_key_id"\s*:\s*"/,
+    note: 'A Google service-account credential. Server-side only, never in the repository.',
+  },
+  {
+    id: 'supabase-secret-key',
+    // The current Supabase secret-key model. Not a JWT, so the `jwt` rule
+    // above does not see it.
+    re: /\bsb_secret_[A-Za-z0-9_-]{16,}/,
+    note: 'A Supabase secret key. Netlify function environment only.',
+  },
+  {
+    id: 'netlify-token',
+    re: /\bnfp_[A-Za-z0-9]{20,}/,
+    note: 'A Netlify personal access token.',
+  },
+  {
+    id: 'database-url',
+    // A connection string with credentials in it. The user:password@host shape
+    // is what makes this a finding — a bare postgres://host is not a secret.
+    re: /\b(?:postgres|postgresql|mysql|mongodb(?:\+srv)?):\/\/[^\s:@/]+:[^\s@/]+@/i,
+    note: 'A database URL with credentials in it.',
+  },
+  {
+    id: 'vcs-token',
+    re: /\b(?:ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|glpat-[A-Za-z0-9_-]{16,})\b/,
+    note: 'A version-control access token.',
+  },
 ];
 
 // Lines that name a rule in order to forbid it: this scanner, the tests that
