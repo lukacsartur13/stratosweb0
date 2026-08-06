@@ -1,0 +1,1132 @@
+{
+  "phase": 9,
+  "generated": "2026-08-06",
+  "frozenCommit": "a3af8b7",
+  "branch": "phase-9-conversion-seo-production-finalisation",
+  "legend": {
+    "status": {
+      "pass": "Implemented and verified by something that fails if it stops being true.",
+      "warning": "Correct today, with a named condition that could change that, or a judgement left to a human.",
+      "blocked": "Cannot be closed from inside this repository. Needs a person, a credential, a dashboard setting or the domain cutover. Never marked pass.",
+      "not-applicable": "The thing being asked about does not exist here."
+    },
+    "owner": {
+      "repository": "Closed by code in this repository.",
+      "site-owner": "Needs a factual answer or a decision only the site owner can give.",
+      "counsel": "Needs legal review.",
+      "phase-10": "Depends on the domain cutover."
+    }
+  },
+  "conversion": [
+    {
+      "item": "Every CTA audited and the page's own separated from the chrome's",
+      "status": "pass",
+      "evidence": "scripts/conversion-audit.mjs, `npm run audit:conversion:check` exits 0; _build/reports/phase9-conversion-map.md",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Mid-page conversion path added to 36 routes and separately measurable",
+      "status": "pass",
+      "evidence": "data-cta-placement, asserted by `mid-page and closing CTAs are distinguishable`",
+      "routes": "36",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    }
+  ],
+  "analytics": [
+    {
+      "item": "GA4 behind consent, provider-neutral adapter, no vendor named in the taxonomy",
+      "status": "pass",
+      "evidence": "assets/js/analytics.js; 62 assertions in tests/analytics.spec.ts on Chromium and WebKit",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Hostname allow-list — localhost, previews and forks measure nothing",
+      "status": "pass",
+      "evidence": "`the adapter refuses to run on a host that is not allowlisted`",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "PII guard derived from the lead schema",
+      "status": "pass",
+      "evidence": "`every field the lead schema declares is refused as a parameter key` reads FORMS from lead-contract.mjs, so a new form field fails the build until it is listed",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Staging events labelled — `traffic_type` and `environment` on every event",
+      "status": "pass",
+      "evidence": "`staging traffic is distinguishable from production`",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none",
+      "note": "Labelling is implemented in code. It does NOT by itself prove staging traffic is excluded from production reports — see the two blocked items below."
+    },
+    {
+      "item": "GA4 data-retention period configured",
+      "status": "blocked",
+      "evidence": "Not knowable from the repository. Deliberately absent from the public privacy policy.",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Set the retention period in the GA4 Console, then decide whether to state it in the privacy policy.",
+      "productionImpact": "A GDPR transparency gap if a period is stated before it is configured, which is why none is stated."
+    },
+    {
+      "item": "GA4 property filter for staging / internal / developer traffic — CONFIGURED",
+      "status": "blocked",
+      "evidence": "none — a property setting",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "GA4 Admin -> Data Streams -> Configure tag settings -> Define internal traffic, matching `traffic_type = staging`. Then Data Filters -> Internal Traffic -> Active.",
+      "productionImpact": "Pre-cutover integration traffic mixes with real visitors in every report."
+    },
+    {
+      "item": "GA4 property filter — TESTED",
+      "status": "blocked",
+      "evidence": "none",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "After configuring: submit an event from the netlify.app host and confirm it does not appear in the production view.",
+      "productionImpact": "A filter that was configured but never tested is not evidence of anything."
+    },
+    {
+      "item": "Portal production-host filter — TESTED",
+      "status": "not-applicable",
+      "evidence": "The Portal Analytics screen does not exist.",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Becomes a requirement when the screen is built.",
+      "productionImpact": "none today"
+    },
+    {
+      "item": "Analytics Data API enabled and a service account granted Viewer",
+      "status": "blocked",
+      "evidence": "No credential exists anywhere; the secret scan now looks for one.",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Enable the Analytics Data API and create a service account with Viewer on property 15392224433. Prerequisite for building the Portal Analytics screen.",
+      "productionImpact": "none today"
+    },
+    {
+      "item": "Portal metrics compared against the GA4 interface",
+      "status": "not-applicable",
+      "evidence": "No Portal reporting exists to compare.",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Becomes a requirement when the screen is built.",
+      "productionImpact": "none today"
+    }
+  ],
+  "consent": [
+    {
+      "item": "No tracker loads before consent; refusal contacts Google not at all",
+      "status": "pass",
+      "evidence": "`nothing is contacted, stored or sent before an answer is given`, `refusing loads nothing, and is remembered`",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Accept and refuse have equivalent visual weight; refusal is one click",
+      "status": "pass",
+      "evidence": "`offers accept and refuse with equal weight` compares computed styles, not classes",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Withdrawal reopenable from every page, and deletes the _ga cookies",
+      "status": "pass",
+      "evidence": "`the choice can be reopened and reversed from the footer`, `withdrawal stops sending and clears the cookies`",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Cannot be dismissed into implied consent; does not reappear after a valid decision",
+      "status": "pass",
+      "evidence": "`cannot be dismissed into implied consent`, `a remembered answer is not asked again`",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Complete in HU, EN and DE",
+      "status": "pass",
+      "evidence": "All nine strings verified in the built dictionaries of all three locales; the privacy link resolves within the locale",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Storage inventory complete — 2 cookies, 2 localStorage keys, 1 sessionStorage key, 2 third-party origins",
+      "status": "pass",
+      "evidence": "_build/reports/phase9-consent-inventory.md, counted from dist/ and from grep across every shipped script",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    }
+  ],
+  "attribution": [
+    {
+      "item": "Allow-list of five UTM parameters; nothing else in the URL is read",
+      "status": "pass",
+      "evidence": "PARAMS in assets/js/lead.js and META in lead-contract.mjs; `reads nothing else in the query string`",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No advertising click identifier is read, stored or declared",
+      "status": "pass",
+      "evidence": "`reads no advertising click identifier` and `declares the five UTM parameters and no click identifier`, both by name against 8 identifiers",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Session-scoped, no cross-session storage, nothing written without attribution",
+      "status": "pass",
+      "evidence": "`nothing survives the session`, `writes nothing for a visitor with no campaign and no referrer`",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No Supabase schema change",
+      "status": "pass",
+      "evidence": "`meta` is an existing jsonb column; no migration was written or needed",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Legal reading of the session-scoped attribution storage",
+      "status": "blocked",
+      "evidence": "_build/reports/phase9-attribution-design.md §5",
+      "routes": "all 69",
+      "owner": "counsel",
+      "requiredAction": "Decide whether campaign labels held for one tab, identifying nobody, may be stored without prior consent. The submission-time-only fallback is one function and costs one attribution per multi-page session.",
+      "productionImpact": "If consent is required and not obtained, the storage is non-compliant. It holds no identifier, so the exposure is low."
+    }
+  ],
+  "technical-seo": [
+    {
+      "item": "Canonical, hreflang, title, description, H1, lang, social metadata on every route",
+      "status": "pass",
+      "evidence": "npm run audit:seo:check exits 0 — 72 documents, 0 failures",
+      "routes": "all 72",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "The homepage's canonical URL — `/`, `/en/`, `/de/` — agreed on everywhere",
+      "status": "pass",
+      "evidence": "absolute() in _build/build.py is the single statement; `every sitemap URL is the canonical of the page it points at`",
+      "routes": "3, and the 66 that link to them",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "Was: crawl budget spent proving two URLs are one page. Now closed."
+    },
+    {
+      "item": "60 distinct titles and 60 distinct descriptions for 60 indexable routes",
+      "status": "pass",
+      "evidence": "seo-audit duplicate check",
+      "routes": "60",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No orphans — every indexable route has inbound links",
+      "status": "pass",
+      "evidence": "0 orphans; the least-linked indexable route has 5 inbound links",
+      "routes": "60",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "The homepage's H1 exists only after JavaScript runs",
+      "status": "warning",
+      "evidence": "Covered by `has one h1 and a skip link`, which drives a browser",
+      "routes": "3",
+      "owner": "repository",
+      "requiredAction": "None in Phase 9. Verify rendering in Search Console's Test Live URL after cutover.",
+      "productionImpact": "A crawler that does not execute JavaScript sees the head and the chrome only. Inherent to the homepage's design."
+    },
+    {
+      "item": "11 titles over 65 characters, 5 descriptions over 165",
+      "status": "warning",
+      "evidence": "seo-audit warnings, listed per route in phase9-seo-audit.json",
+      "routes": "16",
+      "owner": "site-owner",
+      "requiredAction": "Optional. All read correctly when truncated; the brand suffix is what is lost.",
+      "productionImpact": "Cosmetic in the search result."
+    },
+    {
+      "item": "Live validation on the final domain",
+      "status": "blocked",
+      "evidence": "stratosweb.hu is still served by Wix",
+      "routes": "all",
+      "owner": "phase-10",
+      "requiredAction": "Run the four curls in phase9-seo-audit.md §6 after cutover.",
+      "productionImpact": "Statically validated; live behaviour unproven."
+    }
+  ],
+  "structured-data": [
+    {
+      "item": "One JSON-LD block on all 69 content routes, parseable, from one generator",
+      "status": "pass",
+      "evidence": "15 assertions in tests/structured-data.spec.ts, over the built output",
+      "routes": "69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No rating, review, price, award, address, founding date or employee count claimed",
+      "status": "pass",
+      "evidence": "`nothing claims a rating, a review, a price or an award` — 22 forbidden keys",
+      "routes": "69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No fabricated publication dates on the six articles",
+      "status": "pass",
+      "evidence": "`an article carries no invented publication date`",
+      "routes": "18",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "Article rich results are not eligible without a date. Correct: the fix is to write real dates into the fragments."
+    },
+    {
+      "item": "Summary case studies carry no case-study structured data",
+      "status": "pass",
+      "evidence": "`a draft or summary case study is never presented as a full case study`",
+      "routes": "9",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "One organisation identity, byte-identical on every page; no duplicate @id",
+      "status": "pass",
+      "evidence": "`organisation identity is one entity, identical on every page`, `no duplicate @id inside a page, and no conflicting entity across pages`",
+      "routes": "69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Real publication dates for the six articles",
+      "status": "blocked",
+      "evidence": "The fragments carry no date in their front matter",
+      "routes": "18",
+      "owner": "site-owner",
+      "requiredAction": "Supply the real publication date for each of the six posts; add it to the front matter and to the Article node.",
+      "productionImpact": "No Article rich result until then."
+    }
+  ],
+  "sitemap": [
+    {
+      "item": "60 indexable routes, 60 sitemap entries, consistent in both directions",
+      "status": "pass",
+      "evidence": "seo-audit checks indexable-but-absent and noindex-but-present",
+      "routes": "60",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No fabricated `lastmod`",
+      "status": "pass",
+      "evidence": "Removed. It was `new Date()` on every URL on every build. `every sitemap URL is the canonical of the page it points at` asserts its absence.",
+      "routes": "60",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "Was: telling every crawler that all 60 pages changed on every deploy."
+    },
+    {
+      "item": "Portal, API, drafts, previews and 404s excluded",
+      "status": "pass",
+      "evidence": "robots.txt, routes.json status table, seo-audit",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Preview deploys are not indexable",
+      "status": "pass",
+      "evidence": "isPreviewOrigin() emits `Disallow: /` for any netlify.app host or non-production context",
+      "routes": "all",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "robots.txt stops being `Disallow: /` at cutover",
+      "status": "blocked",
+      "evidence": "Depends on the custom domain becoming Netlify's PRIMARY address",
+      "routes": "all",
+      "owner": "phase-10",
+      "requiredAction": "Attach the domain AND mark it primary. Then `curl -s https://stratosweb.hu/robots.txt`.",
+      "productionImpact": "Attach without marking primary and the site stays uncrawlable, silently, with nothing on any page to say so. The single highest-impact cutover mistake available."
+    }
+  ],
+  "redirects": [
+    {
+      "item": "Seven rules, no loops, no chains, locale preserved, query strings preserved",
+      "status": "pass",
+      "evidence": "_build/reports/phase9-redirect-map.md §1, by inspection of netlify.toml",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No catch-all redirect to the homepage",
+      "status": "pass",
+      "evidence": "netlify.toml contains none",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "A real 404 in three languages, HTTP 404 by Netlify's 404.html convention",
+      "status": "warning",
+      "evidence": "36 assertions in tests/not-found.spec.ts. The STATUS CODE is not asserted — python's http.server has never heard of 404.html, so an assertion would pass for the wrong reason.",
+      "routes": "3",
+      "owner": "phase-10",
+      "requiredAction": "`curl -sI https://stratosweb.hu/no-such-page` must return 404.",
+      "productionImpact": "Document verified; status unproven until deployed."
+    },
+    {
+      "item": "Netlify 'Pretty URLs' setting",
+      "status": "blocked",
+      "evidence": "A dashboard setting, invisible from the repository",
+      "routes": "all 60 indexable",
+      "owner": "site-owner",
+      "requiredAction": "Confirm it is OFF. If on, every canonical this build emits points at a 301.",
+      "productionImpact": "Canonical-to-redirect on all 60 indexable routes at once."
+    },
+    {
+      "item": "Old Wix URL inventory",
+      "status": "blocked",
+      "evidence": "Not in this repository",
+      "routes": "unknown",
+      "owner": "site-owner",
+      "requiredAction": "Export from Search Console's Pages report on the media-stratos.com property, or from the Wix sitemap. TIME-SENSITIVE: unreadable after DNS moves.",
+      "productionImpact": "Every old inbound link lands on the 404 instead of the equivalent page. Unrecoverable if not collected before cutover."
+    }
+  ],
+  "legal-facts": [
+    {
+      "item": "The privacy policy describes the system that exists",
+      "status": "pass",
+      "evidence": "4 assertions in tests/analytics.spec.ts, checked against the pre-fix file from git so they catch the original defect",
+      "routes": "3",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Salted IP hashing described accurately; the raw IP is not stored",
+      "status": "pass",
+      "evidence": "hashIp() in submit-lead.mjs; the policy previously said 'IP address'",
+      "routes": "3",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Attribution collection disclosed in all three languages",
+      "status": "pass",
+      "evidence": "New in this phase, alongside the collection it describes",
+      "routes": "3",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Questionnaire answers listed as processed data",
+      "status": "pass",
+      "evidence": "Added — it was absent from a list that included name, email and phone",
+      "routes": "3",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Legal basis per purpose (GDPR Art. 6)",
+      "status": "blocked",
+      "evidence": "REQUIRES LEGAL REVIEW, marked in the source",
+      "routes": "3",
+      "owner": "counsel",
+      "requiredAction": "Assign a basis to each of the six stated purposes.",
+      "productionImpact": "An Article 13 transparency gap. An invented basis would be worse — it becomes the one the Controller is held to."
+    },
+    {
+      "item": "Third-country transfer mechanism (GDPR Art. 46) for Netlify (US) and Supabase (SG)",
+      "status": "blocked",
+      "evidence": "REQUIRES LEGAL REVIEW, marked in the source",
+      "routes": "3",
+      "owner": "counsel",
+      "requiredAction": "Name the mechanism — SCCs, adequacy, or the Data Privacy Framework — for each processor.",
+      "productionImpact": "An Article 13(1)(f) gap."
+    },
+    {
+      "item": "The email provider's legal entity",
+      "status": "blocked",
+      "evidence": "Was named by guess ('e.g. Google Workspace'); removed rather than replaced with a different guess",
+      "routes": "3",
+      "owner": "site-owner",
+      "requiredAction": "Supply the provider's legal entity and address.",
+      "productionImpact": "An incomplete processor list."
+    },
+    {
+      "item": "Retention is a commitment, not a mechanism",
+      "status": "warning",
+      "evidence": "Nothing deletes a lead automatically, by design. The manual procedure is in phase9-lead-operations.md §4.3.",
+      "routes": "3",
+      "owner": "site-owner",
+      "requiredAction": "Either keep the review on a schedule, or change the stated period to match what is done.",
+      "productionImpact": "The policy states 5 years; nothing enforces it."
+    },
+    {
+      "item": "Legal translation review, HU / EN / DE",
+      "status": "blocked",
+      "evidence": "REQUIRES HUMAN LEGAL TRANSLATION REVIEW, asserted by `is flagged for legal review before launch`",
+      "routes": "3",
+      "owner": "counsel",
+      "requiredAction": "A lawyer reads all three.",
+      "productionImpact": "Launch prerequisite."
+    }
+  ],
+  "forms": [
+    {
+      "item": "One controller, one envelope, one endpoint for all five form types",
+      "status": "pass",
+      "evidence": "tests/lead-forms.spec.ts and tests/lead-endpoint.spec.ts",
+      "routes": "all with a form",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "The newsletter no longer claims to send anything",
+      "status": "pass",
+      "evidence": "`the newsletter does not claim to send anything` — 6 built pages, 3 languages, 9 forbidden phrasings",
+      "routes": "6",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "Was: telling a visitor they had subscribed to something that does not exist, including a frequency claim."
+    },
+    {
+      "item": "Lead notification of any kind",
+      "status": "blocked",
+      "evidence": "None exists. The Portal is the only place a new enquiry appears.",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Choose one of the three options in phase9-email-operations.md §4. No vendor added without approval.",
+      "productionImpact": "An enquiry can sit unread. Interacts with the footer's 'reply usually within a few hours'. The most consequential operational gap in Phase 9."
+    },
+    {
+      "item": "'A reply usually within a few hours'",
+      "status": "warning",
+      "evidence": "Unverifiable from the repository; deliberately unchanged",
+      "routes": "all 69",
+      "owner": "site-owner",
+      "requiredAction": "Confirm it holds in practice, including at weekends, or soften it.",
+      "productionImpact": "The only unverified promise left on the site, and it is on every page."
+    },
+    {
+      "item": "The legacy compatibility adapter",
+      "status": "warning",
+      "evidence": "phase9-legacy-lead-adapter-removal.md — removal date not reached, telemetry never read",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Run the §2 query on or after 2026-09-05.",
+      "productionImpact": "None while kept. Removing it early loses a real enquiry, silently."
+    },
+    {
+      "item": "Supabase point-in-time recovery window",
+      "status": "blocked",
+      "evidence": "Plan-dependent, not knowable here",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Confirm the window before the first deletion, not after.",
+      "productionImpact": "Without it, 'restore from backup' is not an available remedy in the deletion procedure."
+    }
+  ],
+  "portal": [
+    {
+      "item": "A javascript: URL could execute from a stored client website field",
+      "status": "pass",
+      "evidence": "FIXED. safeUrl() allows only http and https; asserted against 8 hostile schemes on the built bundle.",
+      "routes": "/portal/clients",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "Was: script execution inside an authenticated admin session that can read every lead."
+    },
+    {
+      "item": "Authentication, unauthenticated redirect, deep links, no lead data before auth",
+      "status": "pass",
+      "evidence": "tests/portal.spec.ts; RLS enabled on 9 tables and forced on `leads`",
+      "routes": "/portal/*",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No service-role key in the frontend",
+      "status": "pass",
+      "evidence": "`the bundle contains no service role key` fetches and greps every script",
+      "routes": "/portal/*",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Not publicly cached; noindex; excluded from the sitemap",
+      "status": "pass",
+      "evidence": "netlify.toml no-store + X-Robots-Tag; meta robots; robots.txt; seo-audit",
+      "routes": "/portal/*",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Safe rendering — no HTML injection, no script execution, no layout destruction, unknown fields survive",
+      "status": "pass",
+      "evidence": "4 source-level assertions over every file in portal/src, so they hold for files written later",
+      "routes": "/portal/*",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Sign-out, browser-back after logout, RLS against a hand-made request",
+      "status": "blocked",
+      "evidence": "The suite runs with no Supabase credentials, deliberately",
+      "routes": "/portal/*",
+      "owner": "site-owner",
+      "requiredAction": "Seed a staging user so these three become automated. Until then, the manual checklist in phase9-portal-api-security.md §1.5.",
+      "productionImpact": "Unverified, though RLS makes the data unreachable regardless of the guard."
+    },
+    {
+      "item": "The Portal Analytics screen",
+      "status": "not-applicable",
+      "evidence": "Does not exist. No screen, no function, no credential. Property ID verified absent from dist/.",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Its six requirements become live when it is built.",
+      "productionImpact": "none"
+    }
+  ],
+  "api-security": [
+    {
+      "item": "Method, content type, body size (twice), malformed JSON, strict schema, field allow-lists and length limits",
+      "status": "pass",
+      "evidence": "tests/lead-endpoint.spec.ts, gate by gate",
+      "routes": "/api/lead",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Honeypot and timing gate answer with a byte-identical success",
+      "status": "pass",
+      "evidence": "A bot that can tell rejection from acceptance can tune against the filter",
+      "routes": "/api/lead",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Idempotency by unique index on submission_id",
+      "status": "pass",
+      "evidence": "The guarantee is Postgres's, not the function's",
+      "routes": "/api/lead",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Generic errors, no stack trace, no raw Supabase error, no secret leakage, no full payload logging",
+      "status": "pass",
+      "evidence": "audit() logs ids, type, locale, route, field COUNT and outcome",
+      "routes": "/api/lead",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No wildcard CORS",
+      "status": "pass",
+      "evidence": "No CORS headers at all — the correct answer for a same-origin form endpoint",
+      "routes": "/api/lead",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Durable rate limiting",
+      "status": "blocked",
+      "evidence": "The in-memory limiter does not survive a cold start and does not coordinate across instances. Documented as such and NOT claimed to be a production rate limit.",
+      "routes": "/api/lead",
+      "owner": "site-owner",
+      "requiredAction": "Confirm whether Cloudflare is proxying this site. If not, add Netlify rate limiting on /api/* or a Supabase-backed counter keyed on ip_hash.",
+      "productionImpact": "A rotating-IP flood reaches the function and the database."
+    },
+    {
+      "item": "Timeout on the Supabase insert",
+      "status": "warning",
+      "evidence": "None is set. Not observed as a problem; the fix needs latency data this project does not have.",
+      "routes": "/api/lead",
+      "owner": "repository",
+      "requiredAction": "Collect insert latency from the function logs, then set the timeout at a large multiple of the observed p99.",
+      "productionImpact": "A slow Supabase means the visitor sees a browser failure instead of the contract's 503."
+    },
+    {
+      "item": "Node runtime",
+      "status": "pass",
+      "evidence": "NODE_VERSION = 22, load-bearing and documented",
+      "routes": "/api/lead",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    }
+  ],
+  "security-headers": [
+    {
+      "item": "nosniff, Referrer-Policy, Permissions-Policy, frame restrictions, COOP, HTTPS upgrade",
+      "status": "pass",
+      "evidence": "netlify.toml, one source of truth. No _headers file anywhere.",
+      "routes": "all",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "CSP — no advertising origin, no unsafe-eval, no unsafe-inline on script-src, no scheme wildcards",
+      "status": "pass",
+      "evidence": "`the CSP permits gtag and nothing from the advertising side` asserts presence AND absence",
+      "routes": "all",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No page carries an executable inline script",
+      "status": "pass",
+      "evidence": "`no built page carries an executable inline script` walks every built page. A CSP refusal is not a JS error — the quote wizard shipped inline and rendered empty in production.",
+      "routes": "all 72",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "HSTS `preload` token",
+      "status": "warning",
+      "evidence": "Pre-dates Phase 9; NOT enabled here. Submission to the preload list is effectively irreversible.",
+      "routes": "all",
+      "owner": "site-owner",
+      "requiredAction": "Decide before cutover. Recommendation: drop the token until the domain has been live and stable on HTTPS for a few weeks, then submit deliberately if wanted.",
+      "productionImpact": "If submitted, every current and future subdomain must serve valid HTTPS indefinitely."
+    },
+    {
+      "item": "'unsafe-inline' on style-src",
+      "status": "warning",
+      "evidence": "Required by per-frame custom properties on style attributes. Accepted knowingly.",
+      "routes": "all",
+      "owner": "repository",
+      "requiredAction": "Removing it means a nonce or hash per animated element on every page.",
+      "productionImpact": "Presentational injection only; inline style cannot execute script."
+    },
+    {
+      "item": "Live header emission",
+      "status": "blocked",
+      "evidence": "Observable only on a deploy",
+      "routes": "all",
+      "owner": "phase-10",
+      "requiredAction": "One curl, in phase9-security-headers.md §3.3.",
+      "productionImpact": "The policy is already enforced and the site has been running under it; the Phase 9 change is a narrow widening."
+    },
+    {
+      "item": "CLOUDFLARE.md is written for media-stratos.com, the Wix apex",
+      "status": "warning",
+      "evidence": "A runbook nobody has executed",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Rewrite with the real DNS at cutover, or delete it.",
+      "productionImpact": "A document, not a control."
+    }
+  ],
+  "dependencies": [
+    {
+      "item": "18 production and 16 dev dependencies across three manifests; 0 unused, 0 deprecated, 0 genuine duplicates",
+      "status": "pass",
+      "evidence": "_build/reports/phase9-dependency-audit.md §1",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Root and experiments: 0 vulnerabilities",
+      "status": "pass",
+      "evidence": "npm audit",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "3 moderate react-router advisories in the portal",
+      "status": "warning",
+      "evidence": "Analysed per advisory. Two need attacker-controlled navigation targets; every target in this portal is a literal string, listed in full. One needs SSR; the portal is client-only.",
+      "routes": "/portal/*",
+      "owner": "repository",
+      "requiredAction": "Schedule react-router 6 -> 7 as its own change with its own test run. Not urgent, not free. `npm audit fix --force` was NOT run.",
+      "productionImpact": "None — the application is not exposed to any of the three."
+    },
+    {
+      "item": "Secret scan — 553 files, 12 rules, clean",
+      "status": "pass",
+      "evidence": "npm run scan:secrets exits 0. Five rules added this phase, BEFORE the credentials they look for exist.",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Lockfiles committed, current, npm ci-installed",
+      "status": "pass",
+      "evidence": "Three package-lock.json files; postinstall runs npm ci for both sub-projects",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    }
+  ],
+  "media-rights": [
+    {
+      "item": "FORRASOK.md and MANIFEST.json were being published",
+      "status": "pass",
+      "evidence": "FIXED. assemble.mjs excludes .md and MANIFEST.json from the asset copy. Same mechanism that nearly published cruise-jet.jpg.",
+      "routes": "/assets/*",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "Was: the media-rights audit, naming the quarantined asset, downloadable at a guessable URL."
+    },
+    {
+      "item": "cruise-jet.jpg absent from public output",
+      "status": "pass",
+      "evidence": "Verified absent from dist/; quarantined in _backup/media-rights-hold/",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "No placeholders, no recreations, no assets with unknown permission in dist/",
+      "status": "pass",
+      "evidence": "The `ready` gate in ORGS renders nothing rather than a placeholder; 32 image files all accounted for",
+      "routes": "all",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Seven approved organisations, neutral wording, Uncensored Society absent",
+      "status": "pass",
+      "evidence": "ORGS is the only place a name, a mark and what may be said about it are written down. Zero matches for 'uncensored' repository-wide.",
+      "routes": "all",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "cruise-jet.jpg permission",
+      "status": "blocked",
+      "evidence": "Gulfstream Aerospace press photograph",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Obtain permission or delete permanently. It cannot return to assets/img/ either way until settled.",
+      "productionImpact": "None while quarantined."
+    },
+    {
+      "item": "Written permission for the seven marks, and for the two team photographs",
+      "status": "blocked",
+      "evidence": "Artwork was supplied, which strongly implies consent. Whether it is written down is not knowable here.",
+      "routes": "all",
+      "owner": "site-owner",
+      "requiredAction": "Confirm before public launch.",
+      "productionImpact": "Trademark display and personal-image rights."
+    }
+  ],
+  "search-readiness": [
+    {
+      "item": "No fake verification token anywhere",
+      "status": "pass",
+      "evidence": "None was added. A fake token makes a property look configured and fails silently.",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Search Console and Bing property setup",
+      "status": "blocked",
+      "evidence": "stratosweb.hu is still served by Wix. Verifying against a site we do not control verifies the wrong site.",
+      "routes": "n/a",
+      "owner": "phase-10",
+      "requiredAction": "The 8-step sequence in phase9-search-platform-setup.md §4. DNS TXT domain property recommended.",
+      "productionImpact": "No coverage, indexing or rendering data until then."
+    },
+    {
+      "item": "The old Wix URL export",
+      "status": "blocked",
+      "evidence": "TIME-SENSITIVE",
+      "routes": "n/a",
+      "owner": "site-owner",
+      "requiredAction": "Export before DNS moves. Afterwards the Wix site is unreadable and its URL structure is gone.",
+      "productionImpact": "Blocks the redirect map permanently if missed."
+    }
+  ],
+  "localisation": [
+    {
+      "item": "Mixed-language UI: 0",
+      "status": "pass",
+      "evidence": "The build writes missing-<lang>.json and prints a count on any untranslated string; both are absent",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "The Impact Program description shipped in Hungarian on the EN and DE pages",
+      "status": "pass",
+      "evidence": "FIXED. Found by the SEO audit's duplicate-description check, not by reading.",
+      "routes": "3",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "Was: a description in the wrong language AND byte-identical to another page."
+    },
+    {
+      "item": "Untranslated consent controls: 0; wrong-locale legal links: 0; untranslated 404: 0; broken hreflang pairs: 0",
+      "status": "pass",
+      "evidence": "Verified in the built dictionaries; tests/not-found.spec.ts per locale; hreflang reciprocity asserted on 69/69",
+      "routes": "all 69",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "Legal translation review",
+      "status": "blocked",
+      "evidence": "REQUIRES HUMAN LEGAL TRANSLATION REVIEW",
+      "routes": "3",
+      "owner": "counsel",
+      "requiredAction": "A lawyer reads the privacy policy in all three languages.",
+      "productionImpact": "Launch prerequisite."
+    }
+  ],
+  "tests": [
+    {
+      "item": "The contradictory totals resolved",
+      "status": "pass",
+      "evidence": "_build/reports/phase9-test-reconciliation.md. Both reports measured 607 executed tests; the totals never disagreed.",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "The portal race fixed at its cause",
+      "status": "pass",
+      "evidence": "A missing precondition added — the one its sibling ten lines above always had. No timeout raised, nothing skipped, no assertion relaxed.",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "npm test on the frozen commit",
+      "status": "pass",
+      "evidence": "795 collected, 40 skipped, 755 executed, 755 passed, 0 failed. Exit 0.",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "none"
+    },
+    {
+      "item": "The homepage focus-trap test can time out on a saturated machine",
+      "status": "warning",
+      "evidence": "30 Tab presses on the WebGL homepage against a 30 s file timeout. Deliberately NOT given more time, marked slow, shortened or skipped — every one of those is obtaining green output by weakening the test.",
+      "routes": "n/a",
+      "owner": "repository",
+      "requiredAction": "If it recurs, address the load, not the assertion.",
+      "productionImpact": "None. It is a test environment property, not a site property."
+    },
+    {
+      "item": "Two gates whose answer depended on which script ran last",
+      "status": "pass",
+      "evidence": "FIXED in 8fcc7da. The SEO audit and the structured-data suite walked dist/ without excluding dist/experiments/ — a noindex benchmark route that `npm run build` deletes and `build:full` creates. 0 failures then 8, and 755 passed then 751, on byte-identical source. Both now exclude it AND record the exclusion; a new assertion checks the excluded route really is noindex and absent from the sitemap.",
+      "routes": "/experiments/*",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "None — no defect in the site. The defect was in the scope of the check, and it made two gates' answers depend on the order of the commands before them."
+    },
+    {
+      "item": "A third check with the same order-dependence, pre-dating this phase",
+      "status": "pass",
+      "evidence": "FIXED in a3af8b7. `fingerprint:check` walked dist/ skipping only `portal`, so after validate:full it reported one unstamped reference inside dist/experiments/ — a route no deploy serves, because `npm run build` does not create it and assemble.mjs wipes it. 0 unstamped then 1, exit 0 then 1, on identical source.",
+      "routes": "/experiments/*",
+      "owner": "repository",
+      "requiredAction": null,
+      "productionImpact": "None — the route is not deployed. The defect was in the scope of the check."
+    }
+  ],
+  "human-approvals": [
+    {
+      "item": "Legal review of the privacy policy in three languages",
+      "status": "blocked",
+      "owner": "counsel",
+      "evidence": "Marked in source, asserted by a test",
+      "routes": "3",
+      "requiredAction": "Launch prerequisite.",
+      "productionImpact": "high"
+    },
+    {
+      "item": "Newsletter copy — the honest replacement wording",
+      "status": "warning",
+      "owner": "site-owner",
+      "evidence": "Rewritten by an implementer in three languages",
+      "routes": "6",
+      "requiredAction": "Read and approve, or replace with preferred wording. The constraint is only that it must not claim delivery.",
+      "productionImpact": "low"
+    },
+    {
+      "item": "Response-time claim",
+      "status": "warning",
+      "owner": "site-owner",
+      "evidence": "Deliberately unchanged",
+      "routes": "all 69",
+      "requiredAction": "Confirm or soften.",
+      "productionImpact": "medium"
+    },
+    {
+      "item": "Choice of lead-notification mechanism",
+      "status": "blocked",
+      "owner": "site-owner",
+      "evidence": "Three options costed",
+      "routes": "n/a",
+      "requiredAction": "Choose one. No vendor added without approval.",
+      "productionImpact": "high"
+    }
+  ],
+  "deployment-blockers": [
+    {
+      "item": "Legal review of the privacy policy",
+      "status": "blocked",
+      "owner": "counsel",
+      "evidence": "REQUIRES LEGAL REVIEW / REQUIRES HUMAN LEGAL TRANSLATION REVIEW",
+      "routes": "3",
+      "requiredAction": "Complete before public launch.",
+      "productionImpact": "Regulatory"
+    },
+    {
+      "item": "Legal basis and transfer mechanism absent from the privacy policy",
+      "status": "blocked",
+      "owner": "counsel",
+      "evidence": "Two Article 13 requirements",
+      "routes": "3",
+      "requiredAction": "Supply both.",
+      "productionImpact": "Regulatory"
+    },
+    {
+      "item": "Old Wix URL export — TIME-SENSITIVE, before DNS moves",
+      "status": "blocked",
+      "owner": "site-owner",
+      "evidence": "phase9-search-platform-setup.md §6",
+      "routes": "unknown",
+      "requiredAction": "Export now.",
+      "productionImpact": "Unrecoverable if missed."
+    },
+    {
+      "item": "Netlify 'Pretty URLs' confirmed OFF",
+      "status": "blocked",
+      "owner": "site-owner",
+      "evidence": "A dashboard setting",
+      "routes": "all 60 indexable",
+      "requiredAction": "Confirm before cutover.",
+      "productionImpact": "Canonical-to-redirect on every indexable route."
+    },
+    {
+      "item": "robots.txt must stop being Disallow: / at cutover",
+      "status": "blocked",
+      "owner": "phase-10",
+      "evidence": "Depends on the custom domain being Netlify's PRIMARY address",
+      "routes": "all",
+      "requiredAction": "Attach AND mark primary, then curl robots.txt.",
+      "productionImpact": "The site stays uncrawlable, silently."
+    },
+    {
+      "item": "HSTS preload decision",
+      "status": "blocked",
+      "owner": "site-owner",
+      "evidence": "Effectively irreversible if acted on",
+      "routes": "all",
+      "requiredAction": "Decide before cutover.",
+      "productionImpact": "Every current and future subdomain must serve HTTPS indefinitely."
+    },
+    {
+      "item": "Lead notification",
+      "status": "blocked",
+      "owner": "site-owner",
+      "evidence": "None exists",
+      "routes": "n/a",
+      "requiredAction": "Choose a mechanism.",
+      "productionImpact": "An enquiry can sit unread against a few-hours promise."
+    },
+    {
+      "item": "Durable rate limiting on /api/lead",
+      "status": "blocked",
+      "owner": "site-owner",
+      "evidence": "The in-memory limiter is not one, and is not claimed to be",
+      "routes": "/api/lead",
+      "requiredAction": "Confirm Cloudflare, or add Netlify rate limiting.",
+      "productionImpact": "A rotating-IP flood reaches the function and the database."
+    }
+  ]
+}

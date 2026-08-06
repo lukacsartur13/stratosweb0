@@ -1,7 +1,11 @@
 {
- "generated": "2026-08-06T17:08:30.201Z",
+ "generated": "2026-08-06T18:22:22.921Z",
  "origin": "https://stratosweb.hu",
  "previewOrigin": false,
+ "excludedFromAudit": [
+  "/experiments/",
+  "/portal/"
+ ],
  "counts": {
   "documents": 72,
   "indexable": 60,
@@ -645,7 +649,7 @@
   {
    "route": "/blog.html",
    "file": "dist/blog.html",
-   "bytes": 27739,
+   "bytes": 27948,
    "is404": false,
    "lang": "hu",
    "title": "Blog — webdesign és online marketing tippek | Stratos",
@@ -1097,7 +1101,7 @@
   {
    "route": "/de/blog.html",
    "file": "dist/de/blog.html",
-   "bytes": 27583,
+   "bytes": 27833,
    "is404": false,
    "lang": "de",
    "title": "Blog — Tipps zu Webdesign und Online-Marketing | Stratos",
@@ -2250,7 +2254,7 @@
   {
    "route": "/en/blog.html",
    "file": "dist/en/blog.html",
-   "bytes": 26980,
+   "bytes": 27229,
    "is404": false,
    "lang": "en",
    "title": "Blog — web design and online marketing tips | Stratos",
