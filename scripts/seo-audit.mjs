@@ -52,15 +52,39 @@ const decode = (s) =>
     .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"').replace(/&#39;/g, "'");
 
+/**
+ * Directories under dist/ that are not the public site.
+ *
+ * `experiments` is the one that matters, and the reason is worth writing down
+ * because it made this audit's result depend on which npm script ran last.
+ *
+ * `dist/experiments/stratos-ascent-full/` is the fixed comparison baseline the
+ * benchmarks are written against. It is `noindex, nofollow`, it is absent from
+ * the sitemap and from every internal link, and `npm run build` DELETES it —
+ * only `npm run build:full` creates it. So this audit reported 0 failures after
+ * a plain build and 8 after `validate:full`, on identical source, purely
+ * because the second one had put the route back. A gate whose answer depends on
+ * the order of the commands before it is not a gate.
+ *
+ * It is excluded and COUNTED, in `excludedFromAudit` below, rather than
+ * silently skipped — the point is that it is known about, not that it is
+ * invisible.
+ */
+const NOT_PUBLIC = new Set(['portal', 'assets', 'experiments']);
+
 /** Every public HTML document in dist/, as a route path. */
 async function routes() {
   const out = [];
+  const excluded = [];
   async function walk(dir) {
     for (const entry of await readdir(dir, { withFileTypes: true })) {
       if (isDuplicate(entry.name)) continue;
       const path = join(dir, entry.name);
       if (entry.isDirectory()) {
-        if (entry.name === 'portal' || entry.name === 'assets') continue;
+        if (NOT_PUBLIC.has(entry.name)) {
+          if (entry.name !== 'assets') excluded.push('/' + entry.name + '/');
+          continue;
+        }
         await walk(path);
       } else if (entry.name.endsWith('.html')) {
         out.push(path);
@@ -68,7 +92,7 @@ async function routes() {
     }
   }
   await walk(DIST);
-  return out.sort();
+  return { files: out.sort(), excluded: excluded.sort() };
 }
 
 /** The route path a crawler would use, from a file path in dist/. */
@@ -80,7 +104,7 @@ async function main() {
     process.exit(1);
   }
 
-  const files = await routes();
+  const { files, excluded } = await routes();
   const sitemap = existsSync(join(DIST, 'sitemap.xml'))
     ? await readFile(join(DIST, 'sitemap.xml'), 'utf8') : '';
   const sitemapPaths = new Set(
@@ -347,6 +371,10 @@ async function main() {
     generated: new Date().toISOString(),
     origin: ORIGIN,
     previewOrigin: PREVIEW,
+    // Named, not hidden. These are deliberately outside the public site: the
+    // portal is private and authenticated, and /experiments/ is noindex
+    // development output that `npm run build` removes.
+    excludedFromAudit: excluded,
     counts: {
       documents: pages.length,
       indexable: pages.filter((p) => p.indexable && !p.is404).length,

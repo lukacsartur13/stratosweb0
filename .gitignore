@@ -50,7 +50,21 @@ _build/reports/shards/
 # the record. Anything genuinely worth keeping can be force-added.
 _build/reports/**/*.png
 _build/reports/*-shots/
-_build/reports/*-review/
+
+# Review packages: the imagery is ignored, the writing is not.
+#
+# Phase 7's and Phase 8's packages ARE imagery — a few hundred screenshots each
+# — so they stay ignored wholesale by the two explicit lines below. Phase 9's is
+# text: §23 of its brief asks for a written review package and §24 forbids
+# committing review MEDIA, which is a different thing. The three lines here
+# ignore everything inside a review directory except directories and markdown,
+# so a .md deliverable is tracked and a .png dropped beside it still is not.
+#
+# The directory itself is deliberately not ignored — git does not descend into
+# an ignored directory, so a negation inside one never takes effect.
+_build/reports/*-review/**
+!_build/reports/*-review/**/
+!_build/reports/*-review/**/*.md
 _build/reports/phase7-review/
 _build/reports/phase8-review/
 

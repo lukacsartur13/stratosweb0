@@ -38,7 +38,16 @@ async function publicPages(): Promise<string[]> {
       if (isDuplicate(entry.name)) continue;
       const path = join(dir, entry.name);
       if (entry.isDirectory()) {
-        if (entry.name === 'portal' || entry.name === 'assets') continue;
+        // `experiments` is the one worth naming. dist/experiments/ is the
+        // fixed benchmark baseline: noindex, absent from the sitemap and from
+        // every internal link, and DELETED by `npm run build` — only
+        // `npm run build:full` creates it. Walking it made this suite pass
+        // after a plain build and fail after `validate:full`, on identical
+        // source, purely because of which script ran last. A suite whose
+        // answer depends on the order of the commands before it is not a
+        // suite. Asserted separately below, as an exclusion rather than an
+        // oversight.
+        if (['portal', 'assets', 'experiments'].includes(entry.name)) continue;
         await walk(path);
       } else if (entry.name.endsWith('.html') && entry.name !== '404.html') {
         // A 404 carries no structured data on purpose — see the note in
@@ -99,6 +108,26 @@ test('a 404 publishes no structured data at all', async () => {
     expect(html, `${path} alternates`).not.toContain('rel="alternate"');
     expect(html, `${path} open graph`).not.toContain('property="og:');
   }
+});
+
+test('the experiment route is excluded on purpose, and is noindex', async () => {
+  // The exclusion above is only defensible if the thing excluded really is
+  // outside the public site. Asserted here rather than trusted, and skipped
+  // when the route is absent — `npm run build` deletes it, so its absence is
+  // the normal state and is not a failure.
+  const path = join(DIST, 'experiments', 'stratos-ascent-full', 'index.html');
+  let html: string;
+  try {
+    html = await readFile(path, 'utf8');
+  } catch {
+    test.skip(true, 'dist/experiments is absent — only `npm run build:full` creates it');
+    return;
+  }
+  expect(html, 'the experiment route must be noindex').toMatch(/name="robots"[^>]*noindex/);
+
+  // And it must not have leaked into anything that offers pages to a crawler.
+  const sitemap = await readFile(join(DIST, 'sitemap.xml'), 'utf8');
+  expect(sitemap).not.toContain('/experiments/');
 });
 
 test('every public page carries exactly one parseable JSON-LD block', () => {
