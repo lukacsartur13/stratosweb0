@@ -38,6 +38,8 @@
     "scan:secrets": "node scripts/secret-scan.mjs",
     "audit:conversion": "node scripts/conversion-audit.mjs",
     "audit:conversion:check": "node scripts/conversion-audit.mjs --check",
+    "audit:seo": "node scripts/seo-audit.mjs",
+    "audit:seo:check": "node scripts/seo-audit.mjs --check",
     "serve:dist": "python3 -m http.server 4322 --directory dist",
     "build:home": "npm --prefix experiments run build:home",
     "dev:home": "npm --prefix experiments run dev:home",
