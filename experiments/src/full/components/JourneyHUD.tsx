@@ -108,13 +108,8 @@ export function JourneyHUD() {
     };
 
     raf = requestAnimationFrame(tick);
-    // Where homepage content may begin, measured off the shared header. Not on
-    // the tick — it changes on a state transition, a rotation and a font swap,
-    // and a ResizeObserver fires on exactly those. See siteHeader.ts.
-    const unwatchDeck = watchDeck();
     return () => {
       cancelAnimationFrame(raf);
-      unwatchDeck();
       // The clock is the header's source. When it stops, the header goes back
       // to document scroll rather than holding the last altitude it was given.
       releaseHeader();
@@ -147,6 +142,20 @@ export function JourneyHUD() {
     if ('fonts' in document) document.fonts.ready.then(schedule).catch(schedule);
     else schedule();
 
+    // Where homepage content may begin, measured off the shared header — and
+    // remeasured *here* rather than on the tick, because the deck's boundaries
+    // and the composition are one decision taken in two places.
+    //
+    // `entryBudget` reads `--deck-content`, so a deck that moves without the
+    // composition being told leaves the entry budget describing the previous
+    // header state. Observed on a history restore: `--deck-content` republished
+    // at 144px while `--stage-entry-px` still said 128, which is a budget
+    // *smaller* than the deck it is supposed to clear. It self-corrected on the
+    // next resize, and "self-corrects eventually" is not the same as "is never
+    // wrong" when what it is wrong about is whether copy sits under the
+    // instrument strip.
+    const unwatchDeck = watchDeck(schedule);
+
     addEventListener('resize', schedule);
     addEventListener('orientationchange', schedule);
     visualViewport?.addEventListener('resize', schedule);
@@ -160,6 +169,7 @@ export function JourneyHUD() {
       removeEventListener('orientationchange', schedule);
       visualViewport?.removeEventListener('resize', schedule);
       observer?.disconnect();
+      unwatchDeck();
       clearComposition();
     };
   }, []);

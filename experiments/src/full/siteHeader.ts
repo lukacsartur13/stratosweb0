@@ -185,10 +185,13 @@ let deckObserver: ResizeObserver | undefined;
 let publishedTop = -1;
 let publishedContent = -1;
 
-function publishDeck(nav: Element, hud: Element | null) {
+/** Returns true when either boundary moved. */
+function publishDeck(nav: Element, hud: Element | null): boolean {
+  let moved = false;
   const top = quantise(nav.getBoundingClientRect().height + DECK_GAP);
   if (top !== publishedTop) {
     publishedTop = top;
+    moved = true;
     document.documentElement.style.setProperty('--deck-top', `${top}px`);
   }
 
@@ -201,8 +204,10 @@ function publishDeck(nav: Element, hud: Element | null) {
   const content = quantise(top + (strip > 0 ? strip + DECK_GAP : 0));
   if (content !== publishedContent) {
     publishedContent = content;
+    moved = true;
     document.documentElement.style.setProperty('--deck-content', `${content}px`);
   }
+  return moved;
 }
 
 /**
@@ -210,13 +215,20 @@ function publishDeck(nav: Element, hud: Element | null) {
  * where the shared header is not on the page — the stylesheet's fallbacks cover
  * that, and they are the values the header resolves to at the design inset.
  */
-export function watchDeck(): () => void {
+export function watchDeck(onChange?: () => void): () => void {
   const nav = document.querySelector('.nav');
   if (!nav || typeof ResizeObserver !== 'function') return () => {};
   const hud = document.querySelector('.hud');
   deckObserver?.disconnect();
   publishDeck(nav, hud);
-  deckObserver = new ResizeObserver(() => publishDeck(nav, hud));
+  // `onChange` is only called when a boundary actually moved — `publishDeck`
+  // returns false on the frames where the quantised values are unchanged, which
+  // is every frame of a padding transition except the two that cross a step. A
+  // remeasure is a layout pass over eleven panels; it is not something to do on
+  // a ResizeObserver callback that changed nothing.
+  deckObserver = new ResizeObserver(() => {
+    if (publishDeck(nav, hud)) onChange?.();
+  });
   // `border-box`, and it is not a detail.
   //
   // The header's three states differ mostly in *padding*, and padding is what
