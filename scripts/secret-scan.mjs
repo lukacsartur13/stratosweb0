@@ -124,6 +124,13 @@ const DESCRIBES_THE_RULE = new Set([
   'supabase/checks/lead-envelope-preflight-quick.sql',
   'supabase/checks/lead-envelope-verify.sql',
   'supabase/checks/lead-envelope-rollback.sql',
+  // The Phase 9 dependency and secret audit. It lists this scanner's own rules
+  // in a table — what each looks for and why it was added — which is precisely
+  // the mention-not-value case this set exists for. Listed individually rather
+  // than by exempting `_build/reports/**`: a report that pasted a real key
+  // would be a genuine finding, and a directory-wide exemption is how that
+  // stops being caught.
+  '_build/reports/phase9-dependency-audit.md',
 ]);
 
 // iCloud Drive writes "thing 2.ext" next to "thing.ext" when the folder syncs
