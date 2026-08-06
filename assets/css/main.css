@@ -37,6 +37,10 @@
   --display: var(--font-display);
   --body:    var(--font-body);
   --data:    var(--font-mono);
+  /* The logo wordmark is always Aboreto. One consumer, `.brand` — see
+     assets/css/type.css for why it is a role of its own and not a display
+     alternative that a headline could reach for. */
+  --mark:    var(--font-mark);
   --wd: 112;
   --wt: 680;
 
@@ -293,8 +297,12 @@ section { position: relative; }
    height="96", same stretch: this one rendered 26×96 in the header of all 66
    routes. */
 .brand img { width: 26px; height: auto; transition: width .45s var(--ease); }
+/* The wordmark, in every place it appears: the header, the full-screen menu and
+   the footer. One selector, because the rule is one rule — the mark is always
+   Aboreto. The uppercase and the tracking below are not a treatment applied to
+   it, they are how the mark is drawn. */
 .brand span {
-  font-family: var(--display); font-size: 1.05rem;
+  font-family: var(--mark); font-size: 1.05rem;
   letter-spacing: .34em; text-transform: uppercase;
   white-space: nowrap;
 }
@@ -1017,9 +1025,27 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
   text-transform: uppercase; padding: .5rem .9rem;
 }
 
-.portrait { position: relative; overflow: hidden; background: var(--ink); }
+/* The two portraits are one box, and it is the box that decides the size — not
+   the photograph inside it. `object-fit: cover` was always here to make that
+   true, and it never got the chance: `stamp_images()` writes the intrinsic
+   `height` onto every <img>, that presentational hint is a real declaration,
+   and `aspect-ratio` only applies when one axis is auto. So the images rendered
+   at their natural heights — Artúr's 1350×1800 master at 602×1800, Richárd's
+   1250×697 at 602×697 — and the founder's portrait was two and a half times
+   the height of his partner's for no reason anyone chose. This is the same
+   mistake `.rail__mark` above documents: a rule that sizes an image on one
+   axis must free the other.
+
+   The cap is on the figure rather than the image so the caption, which is
+   absolutely positioned against the figure, stays the width of the photograph
+   it labels. It is a max, so a narrow column still gets the full width. */
+.portrait {
+  position: relative; overflow: hidden; background: var(--ink);
+  max-width: 470px;
+}
 .portrait img {
-  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 20%;
+  width: 100%; height: auto;
+  aspect-ratio: 3 / 4; object-fit: cover; object-position: center 20%;
   filter: grayscale(1) contrast(1.1) brightness(.9);
   transition: filter .6s var(--ease), transform 1s var(--ease);
 }

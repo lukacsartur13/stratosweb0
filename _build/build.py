@@ -636,6 +636,16 @@ def build_font_preload(lang, base):
     Hungarian headlines to be first-screen text, and English and German never
     touch that file at all.
 
+    Aboreto joins it, and only its `latin` subset. It sets the logo wordmark,
+    which is in the header of every page in every language and is therefore
+    first-screen text by definition. It is also the one face where the `swap` is
+    visible as a *shape* change rather than a weight change — Aboreto's letter
+    widths are nothing like Archivo's, so an unpreloaded wordmark reflows the
+    whole left end of the nav a moment after paint. 10.6 kB buys that away.
+    `latin-ext` is not preloaded for it: "Stratos" has no character outside
+    `latin` in any of the three languages, so that file is never requested by
+    the wordmark at all.
+
     JetBrains Mono is deliberately not preloaded. It sets the altimeter rail and
     the small technical labels, none of which is the LCP element, and it arrives
     in time through the normal stylesheet path.
@@ -644,7 +654,7 @@ def build_font_preload(lang, base):
     are always made in CORS mode, and a preload without it is a second, wasted
     request rather than a warm cache entry.
     """
-    faces = ["archivo/archivo-normal-latin.woff2"]
+    faces = ["archivo/archivo-normal-latin.woff2", "aboreto/aboreto-normal-latin.woff2"]
     if lang == "hu":
         faces.append("archivo/archivo-normal-latin-ext.woff2")
     return "".join(

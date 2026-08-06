@@ -19,18 +19,6 @@
   "Live sites,<br>not <span class=\"sig\">portfolio pictures.</span>",
   "Live-Websites,<br>keine <span class=\"sig\">Portfoliobilder.</span>"
  ],
- "Mindegyik oldal működik, mindegyiknek van dolga, és mindegyiket meg lehet nézni saját domainen. Ez a lista rövid — pontosan annyi projekt van rajta, amennyit be tudunk mutatni.": [
-  "Every one of these sites works, every one has a job, and every one can be visited on its own domain. The list is short — it holds exactly as many projects as we can actually show.",
-  "Jede dieser Websites funktioniert, jede hat eine Aufgabe, und jede lässt sich unter ihrer eigenen Domain aufrufen. Die Liste ist kurz — sie enthält genau so viele Projekte, wie wir wirklich zeigen können."
- ],
- "Számokat nem közlünk. Amíg egy ügyfél nem ad hozzá ellenőrizhető adatot, addig azt írjuk le, ami látható és igazolható.": [
-  "We publish no figures. Until a client supplies verifiable data, we describe what is visible and provable.",
-  "Wir veröffentlichen keine Zahlen. Solange ein Kunde keine überprüfbaren Daten liefert, beschreiben wir nur, was sichtbar und belegbar ist."
- ],
- "<span><b>Projekt</b> 3</span> <span><b>Szektorok</b> kertépítés, szolgáltatás, coaching</span> <span><b>Nyelvek</b> magyar, angol</span>": [
-  "<span><b>Projects</b> 3</span> <span><b>Sectors</b> landscaping, services, coaching</span> <span><b>Languages</b> Hungarian, English</span>",
-  "<span><b>Projekte</b> 3</span> <span><b>Branchen</b> Gartenbau, Dienstleistung, Coaching</span> <span><b>Sprachen</b> Ungarisch, Englisch</span>"
- ],
  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Projektek</span>": [
   "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Projects</span>",
   "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Projekte</span>"
@@ -139,10 +127,6 @@
   "Responsive layout, tested on both phone and desktop.",
   "Responsives Layout, getestet auf Smartphone und Desktop."
  ],
- "A tiéd lenne a <span class=\"sig\">negyedik.</span>": [
-  "Yours would be the <span class=\"sig\">fourth.</span>",
-  "Deins wäre das <span class=\"sig\">vierte.</span>"
- ],
  "Mondd el, mit csinál a vállalkozásod és mit vársz az oldaltól. A többi onnantól a mi dolgunk.": [
   "Tell us what your business does and what you expect from the site. From there it's our job.",
   "Sag uns, was dein Unternehmen macht und was du von der Website erwartest. Ab da ist es unsere Aufgabe."
@@ -169,9 +153,11 @@
   "mentáliserő.hu",
   "mentáliserő.hu"
  ],
- "_chip": ["Also the related-link category chip on the service and project routes,",
-           "which used to read 'Esettanulmány'. A summary route is not a case",
-           "study and should not be labelled as one; see CASE_STATUS in build.py."],
+ "_chip": [
+  "Also the related-link category chip on the service and project routes,",
+  "which used to read 'Esettanulmány'. A summary route is not a case",
+  "study and should not be labelled as one; see CASE_STATUS in build.py."
+ ],
  "Projekt": [
   "Project",
   "Projekt"
@@ -200,10 +186,6 @@
   "Languages",
   "Sprachen"
  ],
- "Projekt 3": [
-  "Projects 3",
-  "Projekte 3"
- ],
  "Szektorok": [
   "Sectors",
   "Branchen"
@@ -219,5 +201,25 @@
  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Együttműködések</span>": [
   "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Collaborations</span>",
   "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Kooperationen</span>"
+ ],
+ "Mindegyik oldal működik, mindegyiknek van dolga, és mindegyiket meg lehet nézni saját domainen. Ez a lista válogatás — annyi projekt van rajta, amennyit nyilvánosan be tudunk mutatni.": [
+  "Every one of these sites works, every one has a job, and every one can be visited on its own domain. This list is a selection — it holds as many projects as we can show publicly.",
+  "Jede dieser Websites funktioniert, jede hat eine Aufgabe, und jede lässt sich unter ihrer eigenen Domain aufrufen. Diese Liste ist eine Auswahl — sie enthält so viele Projekte, wie wir öffentlich zeigen können."
+ ],
+ "Eredményszámokat nem közlünk. Amíg egy ügyfél nem ad hozzá ellenőrizhető adatot, addig azt írjuk le, ami látható és igazolható.": [
+  "We publish no performance figures. Until a client supplies verifiable data, we describe what is visible and provable.",
+  "Wir veröffentlichen keine Ergebniszahlen. Solange ein Kunde keine überprüfbaren Daten liefert, beschreiben wir nur, was sichtbar und belegbar ist."
+ ],
+ "<span><b>Projekt</b> 20+</span> <span><b>Szektorok</b> kertépítés, szolgáltatás, coaching</span> <span><b>Nyelvek</b> magyar, angol</span>": [
+  "<span><b>Projects</b> 20+</span> <span><b>Sectors</b> landscaping, services, coaching</span> <span><b>Languages</b> Hungarian, English</span>",
+  "<span><b>Projekte</b> 20+</span> <span><b>Branchen</b> Gartenbau, Dienstleistung, Coaching</span> <span><b>Sprachen</b> Ungarisch, Englisch</span>"
+ ],
+ "Projekt 20+": [
+  "Projects 20+",
+  "Projekte 20+"
+ ],
+ "A tiéd lenne a <span class=\"sig\">következő.</span>": [
+  "Yours would be the <span class=\"sig\">next one.</span>",
+  "Deins wäre das <span class=\"sig\">nächste.</span>"
  ]
 }

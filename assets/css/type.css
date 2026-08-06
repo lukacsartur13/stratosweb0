@@ -136,6 +136,40 @@
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* Aboreto — the logo wordmark, and only that.
+
+   The brand's mark is always set in Aboreto. It is not a display alternative
+   and it is not available for headlines: it has one weight, no italic and no
+   axes, so it cannot do what the kinetic typography asks of Archivo, and it is
+   a high-contrast display face that stops being legible somewhere above a
+   headline's size and below a label's.
+
+   `swap` rather than `block`. The wordmark also exists as the plane mark beside
+   it, so the brand is recognisable during the swap, and a blocked wordmark in
+   the header would leave a hole in the first paint of every page. 15 kB for
+   both subsets. */
+@font-face {
+  font-family: 'Aboreto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/aboreto/aboreto-normal-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Aboreto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/aboreto/aboreto-normal-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 /* ------------------------------------------------- metric-matched shims */
 /* `local()` only: these never cause a network request. If none of the named
    faces exists the rule contributes nothing and the next family in the stack
@@ -172,6 +206,14 @@
     'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace,
     'SF Mono', Menlo, monospace;
+
+  /* The mark. A fourth role, not a fourth option: this token has exactly one
+     consumer — the "Stratos" wordmark in the header, the menu and the footer —
+     and it exists so that rule is stated once and cannot drift into a headline.
+     There is no Aboreto fallback shim below; it degrades to the display stack,
+     which is the same thing every other unloaded face does. */
+  --font-mark: 'Aboreto', 'Archivo', 'Archivo Fallback', -apple-system,
+    BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 
   /* The stacks the brief asked to have written down explicitly, for the case
      where no webfont loads at all. These are what the families above degrade

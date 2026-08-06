@@ -12,8 +12,8 @@
 // `font-src`/`style-src` in netlify.toml drop `fonts.googleapis.com` and
 // `fonts.gstatic.com` altogether.
 //
-// Why these two faces
-// -------------------
+// Why these faces
+// ---------------
 // The Phase 6 brief specifies ABC Arizona, ABC Diatype and ABC Diatype Mono.
 // None of the three is present in this repository, there is no licence for any
 // of them, and they are commercial Dinamo releases that cannot be obtained from
@@ -26,9 +26,16 @@
 // §6.7/6.8 actually needs. A system-font fallback stack has no axes at all and
 // would have left the signature behaviour unimplementable.
 //
-// Both are SIL Open Font License 1.1, which permits redistribution including
-// self-hosting. The licence text is downloaded alongside the binaries and is
-// committed with them, because OFL §2 requires it to travel with the fonts.
+// Aboreto is the third, and it is not part of that tier at all: it sets the
+// Stratos wordmark and nothing else. That is a brand rule, not a typographic
+// preference — the mark is always Aboreto — so it is fetched here rather than
+// left to a CDN or, as it was until now, simply named in CONTENT_GUIDE.md while
+// the wordmark actually rendered in Archivo. One weight, no italic, no axes,
+// two subsets, 15 kB.
+//
+// All three are SIL Open Font License 1.1, which permits redistribution
+// including self-hosting. The licence text is downloaded alongside the binaries
+// and is committed with them, because OFL §2 requires it to travel with them.
 //
 // Subsetting
 // ----------
@@ -68,6 +75,16 @@ const FAMILIES = [
     query: 'Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900',
     licence: 'https://raw.githubusercontent.com/google/fonts/main/ofl/archivo/OFL.txt',
     role: 'display + body',
+  },
+  {
+    dir: 'aboreto',
+    family: 'Aboreto',
+    // One weight, no italic, no axes — Aboreto ships a single 400 upright and
+    // that is all it is asked for. It sets the logo wordmark and nothing else,
+    // so there is no second weight to fall back to and nothing to interpolate.
+    query: 'Aboreto',
+    licence: 'https://raw.githubusercontent.com/google/fonts/main/ofl/aboreto/OFL.txt',
+    role: 'logo wordmark',
   },
   {
     dir: 'jetbrains-mono',
