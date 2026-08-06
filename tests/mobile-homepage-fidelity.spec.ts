@@ -84,6 +84,28 @@ async function goToStage(page: Page, stage: string) {
     stage,
     { timeout: 15_000 }
   );
+
+  // Then land on the stage again, because it may have moved while we waited.
+  //
+  // A late image, a font swap or a composition remeasure resizes the track, and
+  // ScrollTrigger's refresh re-maps scroll position to progress under us — so
+  // the position that *was* this stage's start is a few pixels past it by the
+  // time the veil has settled. Re-reading the panel's flow position and
+  // scrolling to it again converges in one pass and costs nothing when nothing
+  // moved. Widening the assertion's tolerance instead would have hidden the
+  // defect the assertion exists to catch, which is copy that has already been
+  // walked before the visitor arrives.
+  const settled = await page.evaluate((id) => {
+    const panel = document.querySelector<HTMLElement>(`.panel[data-stage="${id}"]`)!;
+    const lead = parseFloat(getComputedStyle(panel).marginTop) || 0;
+    const y = Math.round(panel.getBoundingClientRect().top + window.scrollY - lead);
+    window.scrollTo({ top: y, behavior: 'instant' });
+    return y;
+  }, stage);
+  if (Math.abs(settled - top!) > 1) {
+    // It moved, so the clock has to settle onto the new position too.
+    await page.waitForTimeout(400);
+  }
 }
 
 // =============================================================================
