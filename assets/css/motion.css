@@ -216,53 +216,67 @@
 [data-converge].is-arrived .converge__cta { transform: none; opacity: 1; }
 
 /* ------------------------------------------- LogoSignalRail / Constellation
-   / Index. Three arrangements of one idea. Normalisation is done by optical
-   height and padding, never by forcing a width or stretching a mark: aspect
-   ratio is preserved by `width:auto`, and the box that varies is the box, not
-   the logo. */
+   / Index. Three arrangements of one idea. Normalisation is done by giving
+   every mark the same plate and letting it find its own size inside it —
+   never by forcing a width or stretching a mark. */
 
 .logoset {
-  --mark-h: clamp(22px, 2.4vw, 34px);
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+/* Every mark sits on an identical plate.
+
+   Three of the five approved marks are dark artwork — Synergy's wordmark is
+   pure black, Duna Enterior is black throughout — and this site's background is
+   near-black. They needed something to sit on. Plating only those three was
+   tried first and it is worse than either extreme: two marks floating free
+   beside three in boxes reads as three broken assets in bandages. Five
+   identical plates reads as a deliberate index of reference plates.
+
+   The plate is the site's own chrome tone rather than pure paper. #F4F4F4
+   rectangles punch holes in the void; this sits in the palette.
+
+   The mark is never touched: `object-fit: contain` inside a fixed box means the
+   box is the constant and each mark finds its own size within it. Nothing is
+   stretched, nothing is cropped, nothing is recoloured, and a mark that is
+   wordmark-only ends up optically matched to one that is a stacked lockup
+   without either being given a magic number. */
+
 .logoset [data-logo] {
   display: flex;
   align-items: center;
   gap: .9rem;
-  opacity: .55;
-  filter: grayscale(1) contrast(.9);
-  transition: opacity .55s var(--trace-ease), filter .55s var(--trace-ease);
-}
-.logoset [data-logo].is-lit,
-.logoset [data-logo]:hover,
-.logoset [data-logo]:focus-within {
-  opacity: 1;
-  filter: none;
+  /* No greyscale and no dimming. These are other people's identities, shown in
+     their own colours or not at all. */
+  transition: transform .5s var(--trace-ease), box-shadow .5s var(--trace-ease);
 }
 
 .logoset [data-logo] img {
-  /* `--optical` is per-asset, set from the logo table. A stacked lockup needs
-     a taller box than a horizontal wordmark to read at the same weight; that
-     is a property of the artwork, so it is recorded with the artwork rather
-     than guessed here. Width stays `auto` either way — the ratio is never
-     touched. */
-  height: calc(var(--mark-h) * var(--optical, 1));
-  width: auto;              /* aspect ratio is never touched */
-  max-width: 190px;
-  object-fit: contain;      /* and never cropped */
+  --plate: #DCE4EA;
+  background: var(--plate);
+  border-radius: 2px;
+  width: clamp(140px, 13vw, 176px);
+  height: clamp(78px, 7.2vw, 96px);
+  padding: clamp(10px, 1.1vw, 15px) clamp(13px, 1.4vw, 19px);
+  object-fit: contain;      /* the mark is never cropped and never stretched */
   display: block;
 }
 
-/* A mark whose artwork is dark needs a light chip to sit on; a mark that is
-   already light sits on the void directly. Which one applies is a property of
-   the asset, recorded in the logo manifest, not a guess made in CSS. */
-.logoset [data-logo][data-on="light"] img {
-  background: var(--paper);
-  padding: .5rem .7rem;
-  border-radius: 2px;
+/* On a pale band the plate has nothing to do. Dark artwork is already legible
+   on paper, and a #DCE4EA rectangle on a #F4F4F4 background is not a plate, it
+   is a stray grey box two shades off its surroundings. The BOX stays — it is
+   what keeps five differently-shaped marks optically equal — and only its fill
+   goes. */
+.band--pale .logoset [data-logo] img { --plate: transparent; }
+
+/* The trace reaching a mark lifts it very slightly off the page. That is the
+   whole of §10.7's motion: no marquee, no carousel, no rotation, no scaling. */
+.logoset [data-logo].is-lit,
+.logoset [data-logo]:hover,
+.logoset [data-logo]:focus-within {
+  transform: translateY(-3px);
 }
 
 .logoset .logo__scope {
@@ -311,8 +325,8 @@
   font: 500 var(--step-1) / 1.1 var(--display);
   font-variation-settings: "wdth" 96, "wght" 620;
 }
-.logoset--index img { height: calc(var(--mark-h) * .8); opacity: .6; }
-.logoset--index [data-logo].is-lit img { opacity: 1; }
+.logoset--index img { width: clamp(112px, 10vw, 132px); height: clamp(62px, 5.6vw, 72px); }
+
 .logoset--index .logo__scope { opacity: 1; transform: none; }
 
 @media (max-width: 640px) {

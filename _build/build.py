@@ -138,84 +138,58 @@ ORGS = {
     "kontyos": {
         "name": "Kontyos.hu",
         "asset": "assets/img/logo-kontyos.webp",
-        "on": "dark",            # artwork is legible on the void as supplied
-        "optical": 1.0,          # horizontal wordmark — the reference height
         "ready": True,
         "relationship": "collab",
     },
     "grantool": {
         "name": "Grantool Kft.",
         "asset": "assets/img/logo-grantool.png",
-        "on": "dark",
-        # A stacked lockup: mark above wordmark, 1.6:1 against Kontyos's 4:1.
-        # Set to the same box height it renders half the visual size of the
-        # marks beside it. Optical alignment means matching perceived weight,
-        # not matching a number — so the stacked lockup gets more box.
-        "optical": 1.75,
         "ready": True,
         "relationship": "collab",
     },
-    # ---- supplied but not publishable. See _build/reports/phase8-5-report.md.
     "synergy": {
         "name": "Synergy Digital Hungary Kft.",
-        "asset": None,
-        "on": None,
-        "ready": False,
+        "asset": "assets/img/logo-synergy.png",
+        "ready": True,
         "relationship": "collab",
-        "blocker": "Two files exist and neither is publishable. The raster export "
-                   "has a baked white background (0% alpha) behind a white "
-                   "wordmark — a white box on the void, invisible on white. The "
-                   "vector at ../Synergy Digital/img/logo.svg is transparent and "
-                   "correctly coloured, but its wordmark is 14 live <text> "
-                   "elements set in 'Yu Gothic UI', Segoe UI Light, Avenir Next, "
-                   "Helvetica Neue, Arial — the letterforms are resolved by "
-                   "whatever font the reader's machine happens to have, so the "
-                   "mark changes shape between visitors. That is a logo "
-                   "reconstructed from text, which §10.4 forbids. Needs the "
-                   "official artwork with the wordmark converted to outlines.",
     },
     "duna-hajok": {
         "name": "Duna Hajók",
-        "asset": None,
-        "on": None,
-        "ready": False,
+        "asset": "assets/img/logo-duna-hajok.png",
+        "ready": True,
         "relationship": "collab",
-        "blocker": "Supplied file is 225x225 with a baked white background and "
-                   "no transparency; the mark itself is roughly 150 px wide, "
-                   "which is below the size the rail renders at on a 2x screen.",
     },
     "duna-enterior": {
         # The mark reads "Duna ENTERIOR". Kept as the asset spells it.
         "name": "Duna Enterior",
-        "asset": None,
-        "on": None,
-        "ready": False,
+        "asset": "assets/img/logo-duna-enterior.png",
+        "ready": True,
         "relationship": "collab",
-        "blocker": "Artwork is transparent but entirely black (mean luminance "
-                   "13/255), so it is invisible on the void. Needs a reversed "
-                   "or single-colour light variant.",
     },
+    # ---- relationship confirmed, artwork still missing.
     "haio": {
         "name": "HAIO",
         "asset": None,
-        "on": None,
         "ready": False,
-        "relationship": "unverified",
-        "blocker": "No asset supplied, and nothing in this repository "
-                   "establishes Stratos's role in the ELTE AI competition. The "
-                   "brief requires that role to be described accurately, so it "
-                   "cannot appear at all until it is confirmed.",
+        "relationship": "sponsor",
+        "blocker": "No artwork supplied. The relationship is confirmed — Stratos "
+                   "is an official sponsor of HAIO, the AI competition organised "
+                   "by ELTE, and runs its advertising — but a sponsor with no "
+                   "mark has nothing to render. HAIO is not a company and is not "
+                   "described as one.",
     },
     "fice": {
         "name": "FICE",
         "asset": None,
-        "on": None,
         "ready": False,
-        "relationship": "unverified",
-        "blocker": "No asset supplied and no relationship evidence in the "
-                   "repository.",
+        "relationship": "impact",
+        "blocker": "No artwork supplied. The relationship is confirmed — Stratos "
+                   "is building FICE's website through the Impact Program — so "
+                   "when a mark arrives it belongs on the Impact page, where it "
+                   "is directly relevant, rather than in a general rail.",
     },
 }
+
 
 # Clients with a live project route. Separate from ORGS because these are
 # evidenced by the work itself — there is a page about each — and they carry a
@@ -230,10 +204,22 @@ CLIENT_MARKS = {
 def logoset(lang, kind="rail", keys=None, base=""):
     """Render a LogoSignalRail / LogoConstellation / LogoIndex.
 
-    Only `ready` marks are emitted. An organisation whose artwork is missing or
-    unpublishable produces no markup at all — not a box, not a name in a border,
-    not a grey rectangle where a logo should be. A placeholder that ships is a
-    placeholder that gets screenshotted.
+    Only `ready` marks are emitted. An organisation whose artwork is missing
+    produces no markup at all — not a box, not a name in a border, not a grey
+    rectangle where a logo should be. A placeholder that ships is a placeholder
+    that gets screenshotted.
+
+    Every mark sits on the same plate. Three of the five are dark artwork and
+    this site's background is near-black, so they had to be given something to
+    sit on — and once three are plated, plating only those three is the thing
+    that looks wrong: two marks floating free beside three in boxes reads as a
+    patch for broken assets. Five identical plates reads as a system.
+
+    No `data-on` and no `--optical` any more. Both existed to compensate for
+    marks being different shapes on a shared background; a fixed plate with
+    `object-fit: contain` makes the box the constant and lets each mark find its
+    own size inside it, which is what optical alignment wanted in the first
+    place. Nothing is stretched, cropped or recoloured.
     """
     keys = keys or [k for k, v in ORGS.items() if v["ready"]]
     items = []
@@ -242,8 +228,7 @@ def logoset(lang, kind="rail", keys=None, base=""):
         if not o or not o["ready"] or not o["asset"]:
             continue
         items.append(
-            f'\n        <li data-logo data-on="{o["on"]}"'
-            f' style="--optical:{o.get("optical", 1.0)}">'
+            f'\n        <li data-logo>'
             f'<img src="{base}{o["asset"]}" alt="{o["name"]}" loading="lazy">'
             f'</li>')
     if not items:

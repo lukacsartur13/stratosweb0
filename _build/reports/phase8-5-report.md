@@ -121,7 +121,7 @@ a shipped route:
 | LogoSignalRail | work index |
 | LogoConstellation | about, services overview |
 | MetricTrace | **nowhere** — no verified metric exists to reveal |
-| LogoIndex | **nowhere** — only two marks are publishable |
+| LogoIndex | **nowhere** — the Work index uses the rail arrangement |
 
 MetricTrace shipping unused is deliberate and is the mechanism working: it can
 only reveal a number an author wrote into the markup, and no verified number
@@ -227,33 +227,66 @@ and what may be said about it. Nothing renders unless `ready` is true. A missing
 or unpublishable mark produces **no markup at all** — not a box, not a name in a
 border, not a grey rectangle.
 
-### Publishable: 2 of 7
+### Publishable: 5 of 7
 
-| organisation | asset | where it appears | why there |
-|---|---|---|---|
-| Kontyos.hu | `assets/img/logo-kontyos.webp` (436×107, WebP VP8X, transparent) | Work index rail, About constellation, Services constellation | §10.6: a collaboration signal on the two reference destinations and the capability map |
-| Grantool Kft. | `assets/img/logo-grantool.png` (800×500, stacked lockup, `--optical: 1.75`) | same three | same |
+| organisation | asset | intrinsic |
+|---|---|---|
+| Kontyos.hu | `logo-kontyos.webp` | 436×107 |
+| Grantool Kft. | `logo-grantool.png` | 600×401 |
+| Synergy Digital Hungary Kft. | `logo-synergy.png` | 382×600 |
+| Duna Hajók | `logo-duna-hajok.png` | 600×195 |
+| Duna Enterior | `logo-duna-enterior.png` | 600×196 |
 
-Relationship wording is **"Kiválasztott együttműködések" / "Selected
-collaborations" / "Ausgewählte Kooperationen"** — identical for both, claiming
-association and nothing more. It specifically does not claim partnership,
-endorsement, sponsorship or a commercial engagement, because nothing in this
-repository establishes which of these are clients and which are not.
+All five appear in the same three places — the Work index rail, the About
+constellation and the Services capability map — under one heading, **"Selected
+collaborations" / "Kiválasztott együttműködések" / "Ausgewählte Kooperationen"**,
+which claims association and nothing more.
 
-Normalisation is by optical height and padding only: `width: auto`,
-`object-fit: contain`, no stretching, no cropping, no forced identical widths.
+### How the three blocked marks were unblocked
 
-### Blocked: 5 of 7 — production blockers
+Second versions arrived with real transparency and large canvases, which fixed
+the baked white backgrounds and Duna Hajók's size. Measured composited on the
+void they were still unusable: Synergy's wordmark bands measured luminance **0
+and 1** (pure black), Duna Hajók had 36% of its ink below the visible threshold,
+and Duna Enterior 87.5%, at a mean luminance of 13.8.
 
-| organisation | blocker |
-|---|---|
-| **Synergy Digital Hungary Kft.** | Two files, neither publishable. The raster export has a baked white background (0% alpha) behind a white wordmark — a white box on the void, invisible on white. The vector at `../Synergy Digital/img/logo.svg` is transparent and correctly coloured, **but its wordmark is 14 live `<text>` elements** set in `'Yu Gothic UI', Segoe UI Light, Avenir Next, Helvetica Neue, Arial`. The letterforms are resolved by whatever font the reader's machine has, so the mark changes shape between visitors. That is a logo reconstructed from text, which §10.4 forbids. **Needs the official artwork with the wordmark converted to outlines.** |
-| **Duna Hajók** | Supplied file is 225×225 with a baked white background and no transparency; the mark itself is ~150px wide, below what the rail renders at on a 2× screen. |
-| **Duna Enterior** | Artwork is transparent but entirely black (mean luminance 13/255), invisible on the void. Needs a reversed or single-colour light variant. |
-| **HAIO** | No asset, and nothing in this repository establishes Stratos's role in the ELTE AI competition. §10.3 requires that role described accurately, so it cannot appear at all until confirmed. **HAIO is not presented as a company anywhere.** |
-| **FICE** | No asset and no relationship evidence. |
+Rather than ask for reversed variants, every mark now sits on **one identical
+plate**. Nothing is recoloured, stretched or cropped — `object-fit: contain`
+inside a fixed box makes the box the constant and lets each mark find its own
+size within it.
 
-**No placeholder ships for any of the five.**
+Plating only the three dark ones was tried first and is worse than either
+extreme: two marks floating free beside three in boxes reads as three broken
+assets in bandages. Five identical plates reads as an index of reference plates.
+The plate is `#DCE4EA`, the site's own chrome tone — `#F4F4F4` rectangles punch
+holes in the void. On a `band--pale` section the fill drops to transparent and
+the marks sit directly on the paper: the box stays, because it is what keeps
+five differently-shaped marks optically equal, but a grey rectangle two shades
+off a light background is not a plate, it is a mistake.
+
+`data-on` and `--optical` are both gone. They existed to compensate for
+differently-shaped marks sharing a background; a uniform plate does that job
+without per-asset magic numbers.
+
+Every file was trimmed to its ink bounds first — 60–85% of each supplied canvas
+was empty transparent margin, so at a fixed box height Duna Hajók's wordmark was
+rendering about a sixth the size of Kontyos. Trimming removes empty pixels and
+does not touch the mark. All five were then resampled to 600px on the long edge,
+which is 2× what the largest plate needs: 208 KB for the complete set.
+
+### Still blocked: 2 of 7 — artwork missing
+
+| organisation | relationship | blocker |
+|---|---|---|
+| **HAIO** | **confirmed** — Stratos is an official sponsor of HAIO, the AI competition organised by ELTE, and runs its advertising | No artwork supplied. A sponsor with no mark has nothing to render. HAIO is not a company and is not described as one. |
+| **FICE** | **confirmed** — Stratos is building FICE's website through the Impact Program | No artwork supplied. When a mark arrives it belongs on the Impact page, where it is directly relevant, rather than in a general rail. |
+
+Both relationships were confirmed by the user during the phase; only the files
+are outstanding. Neither ships a placeholder.
+
+Note that both are **support** relationships rather than commercial ones, which
+runs the opposite way from a client. Neither should sit under the same heading
+as the other five once artwork exists.
 
 ### Uncensored Society (§10.1)
 
@@ -474,7 +507,7 @@ above) and then a clean pass. A contended run of this suite is not evidence.
 | Oversized project-image regressions | **0** (58vw → 38vw) |
 | Uncensored Society current-partner appearances | **0** |
 | Unverified "partner" claims | **0** — wording is "selected collaborations" |
-| Missing official-logo placeholders shipped | **0** |
+| Missing official-logo placeholders shipped | **0** — 5 of 7 marks ship, 2 render nothing |
 | Broken CTAs | **0** |
 | Broken internal links | **0** |
 | Lead-flow regressions | **0** — `lead.js`, the functions, the Supabase schema and the questionnaire payload are byte-identical |
@@ -505,7 +538,7 @@ and should be revisited at the same time.
 
 Outstanding before Phase 8.5 can be accepted:
 
-1. **Five of seven approved logos are production blockers** (§7). Two ship.
+1. **Two of seven approved logos still have no artwork** (§7) — HAIO and FICE. Five ship.
 2. **Pille Sewing removal is unapproved** (§7).
 3. **Human visual review has not happened.** No review package was produced —
    §32 asks for four viewports across header, footer, services, work, logos,
