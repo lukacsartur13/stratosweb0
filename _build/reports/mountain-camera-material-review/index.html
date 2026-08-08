@@ -1,0 +1,160 @@
+<!doctype html><meta charset="utf-8"><title>Mountain camera and material — review</title>
+<style>
+ body{background:#0b0d10;color:#d7dce3;font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;padding:32px;max-width:1500px}
+ h1{font-weight:500;letter-spacing:.02em}
+ h2{margin-top:56px;border-bottom:1px solid #262b33;padding-bottom:8px;font-weight:500}
+ h3{font-weight:500;color:#f2c200;margin-bottom:8px}
+ .pair{display:flex;gap:16px;align-items:flex-start;overflow-x:auto}
+ figure{margin:0}
+ figure img{max-height:620px;border:1px solid #262b33;display:block}
+ figcaption{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8b95a3;padding-top:6px}
+ table{border-collapse:collapse;margin:12px 0 0;font-size:13px}
+ th,td{border:1px solid #262b33;padding:4px 12px;text-align:left}
+ th{color:#8b95a3;font-weight:500}
+ .bad{color:#e2685f}.good{color:#7fc98a}
+ .note{color:#8b95a3;max-width:70ch}
+ .grid{display:flex;gap:16px;flex-wrap:wrap}
+</style>
+<h1>Mountain camera and material — review package</h1>
+<p class="note">Left is the committed build before this pass, right is after. Every number
+is measured by <code>experiments/valley-metrics.mjs</code>, the same module the regression
+suite gates on. <strong>Vertical run</strong> is the fraction of an inner mountain face that
+runs parallel to the screen edge — the curtain defect, stated as a number.</p>
+
+<h2>§20 — portrait, CURRENT vs NEW</h2>
+<p class="note">The 2 500 m comparison is the one the brief calls mandatory: it is the
+altitude the real-device recording makes the defect most obvious at.</p>
+
+  <section>
+    <h3>portrait 390×844 — 0 m</h3>
+    <div class="pair">
+      <figure><img src="baseline/current-p390x844-00000.png" alt=""><figcaption>CURRENT</figcaption></figure>
+      <figure><img src="new-p390x844-00000.png" alt=""><figcaption>NEW</figcaption></figure>
+    </div>
+    <table>
+      <tr><th></th><th>valley opening</th><th>taper</th><th>inner slope L / R</th><th>vertical run L / R</th><th>floor</th></tr>
+      <tr><td>current</td><td>66.3%</td><td>31.9%</td><td>0.57 / 0.38</td><td class="bad">83.8% / 52.9%</td><td>33.9%</td></tr>
+      <tr><td>new</td><td>49.6%</td><td>37.1%</td><td>0.48 / 0.59</td><td class="good">0.0% / 13.6%</td><td>33.9%</td></tr>
+    </table>
+  </section>
+  <section>
+    <h3>portrait 390×844 — 1,500 m</h3>
+    <div class="pair">
+      <figure><img src="baseline/current-p390x844-01500.png" alt=""><figcaption>CURRENT</figcaption></figure>
+      <figure><img src="new-p390x844-01500.png" alt=""><figcaption>NEW</figcaption></figure>
+    </div>
+    <table>
+      <tr><th></th><th>valley opening</th><th>taper</th><th>inner slope L / R</th><th>vertical run L / R</th><th>floor</th></tr>
+      <tr><td>current</td><td>67.5%</td><td>27.3%</td><td>0.51 / 0.28</td><td class="bad">84.9% / 81.8%</td><td>34.4%</td></tr>
+      <tr><td>new</td><td>48.8%</td><td>39.1%</td><td>0.48 / 1.26</td><td class="good">0.0% / 9.4%</td><td>34.4%</td></tr>
+    </table>
+  </section>
+  <section>
+    <h3>portrait 390×844 — 2,500 m</h3>
+    <div class="pair">
+      <figure><img src="baseline/current-p390x844-02500.png" alt=""><figcaption>CURRENT</figcaption></figure>
+      <figure><img src="new-p390x844-02500.png" alt=""><figcaption>NEW</figcaption></figure>
+    </div>
+    <table>
+      <tr><th></th><th>valley opening</th><th>taper</th><th>inner slope L / R</th><th>vertical run L / R</th><th>floor</th></tr>
+      <tr><td>current</td><td>68.3%</td><td>25.1%</td><td>0.44 / 0.29</td><td class="bad">87.7% / 81.3%</td><td>33.9%</td></tr>
+      <tr><td>new</td><td>47.9%</td><td>44.1%</td><td>0.56 / 1.21</td><td class="good">0.0% / 5.6%</td><td>33.9%</td></tr>
+    </table>
+  </section>
+  <section>
+    <h3>portrait 390×844 — 3,000 m</h3>
+    <div class="pair">
+      <figure><img src="baseline/current-p390x844-03000.png" alt=""><figcaption>CURRENT</figcaption></figure>
+      <figure><img src="new-p390x844-03000.png" alt=""><figcaption>NEW</figcaption></figure>
+    </div>
+    <table>
+      <tr><th></th><th>valley opening</th><th>taper</th><th>inner slope L / R</th><th>vertical run L / R</th><th>floor</th></tr>
+      <tr><td>current</td><td>69.2%</td><td>17.8%</td><td>0.37 / 0.18</td><td class="bad">88.9% / 79.4%</td><td>35.0%</td></tr>
+      <tr><td>new</td><td>48.3%</td><td>43.2%</td><td>0.54 / 1.20</td><td class="good">0.0% / 5.9%</td><td>35.0%</td></tr>
+    </table>
+  </section>
+  <section>
+    <h3>portrait 390×844 — 6,000 m</h3>
+    <div class="pair">
+      <figure><img src="baseline/current-p390x844-06000.png" alt=""><figcaption>CURRENT</figcaption></figure>
+      <figure><img src="new-p390x844-06000.png" alt=""><figcaption>NEW</figcaption></figure>
+    </div>
+    <table>
+      <tr><th></th><th>valley opening</th><th>taper</th><th>inner slope L / R</th><th>vertical run L / R</th><th>floor</th></tr>
+      <tr><td>current</td><td>72.5%</td><td>13.6%</td><td>0.27 / 0.17</td><td class="bad">91.7% / 76.7%</td><td>34.4%</td></tr>
+      <tr><td>new</td><td>72.9%</td><td>37.3%</td><td>0.49 / 1.65</td><td class="good">0.0% / 9.5%</td><td>34.4%</td></tr>
+    </table>
+  </section>
+  <section>
+    <h3>portrait 390×844 — 8,500 m</h3>
+    <div class="pair">
+      <figure><img src="baseline/current-p390x844-08500.png" alt=""><figcaption>CURRENT</figcaption></figure>
+      <figure><img src="new-p390x844-08500.png" alt=""><figcaption>NEW</figcaption></figure>
+    </div>
+    <table>
+      <tr><th></th><th>valley opening</th><th>taper</th><th>inner slope L / R</th><th>vertical run L / R</th><th>floor</th></tr>
+      <tr><td>current</td><td>75.0%</td><td>14.9%</td><td>0.29 / 0.16</td><td class="bad">89.8% / 81.4%</td><td>33.9%</td></tr>
+      <tr><td>new</td><td>77.5%</td><td>31.0%</td><td>0.49 / 0.58</td><td class="good">0.0% / 20.0%</td><td>32.2%</td></tr>
+    </table>
+  </section>
+
+<h2>§19 — desktop, CURRENT vs NEW</h2>
+<p class="note">The desktop camera composition is unchanged. What differs is the material:
+capped haze, zoned albedo, procedural break-up and micro-relief.</p>
+
+  <section>
+    <h3>desktop 1440×900 — 0 m</h3>
+    <div class="pair">
+      <figure><img src="baseline/current-desktop-00000.png" alt=""><figcaption>CURRENT</figcaption></figure>
+      <figure><img src="new-desktop-00000.png" alt=""><figcaption>NEW</figcaption></figure>
+    </div>
+    <table>
+      <tr><th></th><th>valley opening</th><th>taper</th><th>inner slope L / R</th><th>vertical run L / R</th><th>floor</th></tr>
+      <tr><td>current</td><td>37.5%</td><td>54.4%</td><td>0.57 / 0.63</td><td class="bad">23.0% / 4.6%</td><td>9.4%</td></tr>
+      <tr><td>new</td><td>37.5%</td><td>54.4%</td><td>0.57 / 0.63</td><td class="good">23.0% / 4.6%</td><td>9.4%</td></tr>
+    </table>
+  </section>
+  <section>
+    <h3>desktop 1440×900 — 1,500 m</h3>
+    <div class="pair">
+      <figure><img src="baseline/current-desktop-01500.png" alt=""><figcaption>CURRENT</figcaption></figure>
+      <figure><img src="new-desktop-01500.png" alt=""><figcaption>NEW</figcaption></figure>
+    </div>
+    <table>
+      <tr><th></th><th>valley opening</th><th>taper</th><th>inner slope L / R</th><th>vertical run L / R</th><th>floor</th></tr>
+      <tr><td>current</td><td>39.6%</td><td>58.5%</td><td>0.59 / 0.65</td><td class="bad">17.8% / 2.3%</td><td>11.1%</td></tr>
+      <tr><td>new</td><td>39.6%</td><td>58.5%</td><td>0.59 / 0.65</td><td class="good">17.8% / 2.3%</td><td>10.6%</td></tr>
+    </table>
+  </section>
+  <section>
+    <h3>desktop 1440×900 — 3,000 m</h3>
+    <div class="pair">
+      <figure><img src="baseline/current-desktop-03000.png" alt=""><figcaption>CURRENT</figcaption></figure>
+      <figure><img src="new-desktop-03000.png" alt=""><figcaption>NEW</figcaption></figure>
+    </div>
+    <table>
+      <tr><th></th><th>valley opening</th><th>taper</th><th>inner slope L / R</th><th>vertical run L / R</th><th>floor</th></tr>
+      <tr><td>current</td><td>41.3%</td><td>62.5%</td><td>0.61 / 0.68</td><td class="bad">17.2% / 2.2%</td><td>9.4%</td></tr>
+      <tr><td>new</td><td>41.3%</td><td>62.5%</td><td>0.61 / 0.68</td><td class="good">17.2% / 2.2%</td><td>9.4%</td></tr>
+    </table>
+  </section>
+
+<h2>§19 — can the four substances be told apart?</h2>
+<p class="note">Left: the terrain in isolation, final lighting and atmosphere — what a
+visitor sees. Right: the same fragments with the material's zone classification written
+out. Red = organic valley, green = rock, blue = cold exposed ridge, yellow = frost.
+The debug view is never shipped; nothing in the application writes that uniform.</p>
+<div class="grid">
+  <figure><img src="material-final-p390x844-00000.png" alt=""><figcaption>portrait 0 m — final</figcaption></figure>
+  <figure><img src="material-zones-p390x844-00000.png" alt=""><figcaption>portrait 0 m — zones</figcaption></figure>
+  <figure><img src="material-final-p390x844-02500.png" alt=""><figcaption>portrait 2 500 m — final</figcaption></figure>
+  <figure><img src="material-zones-p390x844-02500.png" alt=""><figcaption>portrait 2 500 m — zones</figcaption></figure>
+  <figure><img src="material-final-desktop-01500.png" alt=""><figcaption>desktop 1 500 m — final</figcaption></figure>
+  <figure><img src="material-zones-desktop-01500.png" alt=""><figcaption>desktop 1 500 m — zones</figcaption></figure>
+</div>
+
+<h2>§19 — the transition toward the cloud deck</h2>
+<div class="grid">
+  <figure><img src="new-p390x844-06000.png" alt=""><figcaption>portrait 6 000 m</figcaption></figure>
+  <figure><img src="new-p390x844-08500.png" alt=""><figcaption>portrait 8 500 m</figcaption></figure>
+</div>
