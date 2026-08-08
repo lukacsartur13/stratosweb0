@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { enableReducedMotion, matchesReducedMotion } from './helpers/reduced-motion';
+import { altitudeMetres, homepageReady, stageReadout } from './helpers/homepage';
 
 /**
  * The homepage's site chrome: the flight deck, the full-screen navigation, the
@@ -177,9 +178,15 @@ async function expectState(page: Page, want: string) {
 const headerAltitude = (page: Page) =>
   page.locator('.nav__alt-v').textContent().then((t) => Number((t ?? '').replace(/[^\d]/g, '')));
 
-/** The altitude the journey's own instrument is printing, in metres. */
-const hudAltitude = (page: Page) =>
-  page.getByTestId('altitude-value').textContent().then((t) => Number((t ?? '').replace(/[^\d]/g, '')));
+/**
+ * The altitude the page's own instrument is printing, in metres.
+ *
+ * `altitudeMetres` resolves to whichever readout the composition on screen
+ * mounted — the desktop HUD's digits or the mobile telemetry strip's. The
+ * assertion below it is the same either way: the header must print what the
+ * page prints, on the one page where both are on screen at once.
+ */
+const hudAltitude = (page: Page) => altitudeMetres(page);
 
 /**
  * The instrument's reading once the clock has caught up with the scroll.
@@ -252,7 +259,7 @@ test.describe('the homepage flight deck', () => {
   test('the journey state compacts the wordmark and keeps the header short', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'reduced-motion', 'that path is a plain document with no journey to compact into');
     await page.goto('/index.html');
-    await expect(page.getByTestId('altitude-hud')).toBeVisible();
+    await homepageReady(page);
 
     const opening = (await deck(page).boundingBox())!.height;
 
@@ -341,7 +348,7 @@ test.describe('the homepage flight deck', () => {
   test('the header does not chatter when the visitor hovers on a boundary', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'reduced-motion', 'no scroll-driven state machine on that path');
     await page.goto('/index.html');
-    await expect(page.getByTestId('altitude-hud')).toBeVisible();
+    await homepageReady(page);
 
     // Park on the opening→journey boundary and jitter across it the way a
     // trackpad does. Hysteresis means the state may change once; what it must
@@ -363,7 +370,7 @@ test.describe('the homepage flight deck', () => {
   test('the header prints the journey altitude, not an altitude of its own', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'reduced-motion', 'no clock on that path, so nothing is being published');
     await page.goto('/index.html');
-    await expect(page.getByTestId('altitude-hud')).toBeVisible();
+    await homepageReady(page);
 
     await scrollToFraction(page, 0.55);
     await expectState(page, 'journey');
@@ -386,7 +393,7 @@ test.describe('the homepage flight deck', () => {
   test('the readout names the stage the journey reports', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'reduced-motion', 'no clock on that path');
     await page.goto('/index.html');
-    await expect(page.getByTestId('altitude-hud')).toBeVisible();
+    await homepageReady(page);
 
     await scrollToFraction(page, 0.6);
     await expectState(page, 'journey');
@@ -395,7 +402,7 @@ test.describe('the homepage flight deck', () => {
     // The label the header shows is the stage label the HUD's live region is
     // announcing — one source, two surfaces.
     const key = (await page.locator('.nav__alt-k').textContent())!.trim();
-    const stage = (await page.getByTestId('altitude-stage').textContent())!.trim();
+    const stage = (await (await stageReadout(page)).textContent())!.trim();
     expect(key.length, 'the header stage label is empty').toBeGreaterThan(0);
     expect(key.toLowerCase()).toBe(stage.toLowerCase());
   });
@@ -551,7 +558,7 @@ test.describe('the full-screen menu on the homepage', () => {
   test('opening the menu does not walk the journey back down the mountain', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'reduced-motion', 'no journey clock on that path');
     await page.goto('/index.html');
-    await expect(page.getByTestId('altitude-hud')).toBeVisible();
+    await homepageReady(page);
 
     await scrollToFraction(page, 0.6);
     await expectState(page, 'journey');
@@ -952,7 +959,7 @@ test.describe('lifecycle', () => {
   test('the header binds exactly one scroll listener and no permanent loop', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'reduced-motion', 'the driven path is the one with a loop to avoid');
     await page.goto('/index.html');
-    await expect(page.getByTestId('altitude-hud')).toBeVisible();
+    await homepageReady(page);
 
     // The header rides the journey's clock rather than starting one. Counting
     // `requestAnimationFrame` callers is not possible from here, so this asserts

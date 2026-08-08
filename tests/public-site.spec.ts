@@ -2,6 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
 import { enableReducedMotion, matchesReducedMotion } from './helpers/reduced-motion';
+import { altitudeReadout, homepageReady, isMobileHomepage, stageReadout } from './helpers/homepage';
 
 /**
  * Console noise that is not the site's fault and must not fail a run:
@@ -64,8 +65,16 @@ function collectErrors(page: Page) {
 // is a test that prevents the work it was written to protect.
 // =============================================================================
 test.describe('homepage', () => {
-  /** The live readout, and the two ways the page is allowed not to have one. */
-  const readout = (page: Page) => page.getByTestId('altitude-value');
+  /**
+   * The live readout, and the two ways the page is allowed not to have one.
+   *
+   * Resolved per composition. The homepage is two pages now — the desktop
+   * cinematic journey and the simplified portrait one — and they mount
+   * different instruments. What every assertion below is actually about is the
+   * page reporting a live altitude, which both do; `altitudeReadout` is the one
+   * place that knows which element is carrying it.
+   */
+  const readout = (page: Page) => altitudeReadout(page);
 
   test('loads with the hero, the altimeter and no console errors', async ({ page }, testInfo) => {
     const errors = collectErrors(page);
@@ -80,13 +89,21 @@ test.describe('homepage', () => {
       // the readable document, not a live number. Asserting the readout under
       // reduced motion would be asserting a thing the page is deliberately not
       // building.
-      await expect(page.getByTestId('journey-fallback')).toBeVisible();
-      await expect(readout(page)).toHaveCount(0);
+      // The portrait composition has no renderer to decline, so it has no
+      // fallback either: under reduced motion it is the same document with the
+      // travel taken out of it, and its telemetry keeps reading. §24.
+      if (await isMobileHomepage(page)) {
+        await expect(page.getByTestId('mobile-altimeter')).toBeVisible();
+        await expect(await readout(page)).toHaveText(/\d/);
+      } else {
+        await expect(page.getByTestId('journey-fallback')).toBeVisible();
+        await expect(await readout(page)).toHaveCount(0);
+      }
     } else {
       // The altitude readout is the spine of the whole page; if it is missing,
       // the ascent has silently degraded to a plain document.
-      await expect(page.getByTestId('altitude-hud')).toBeVisible();
-      await expect(readout(page)).toHaveText(/\d/);
+      await homepageReady(page);
+      await expect(await readout(page)).toHaveText(/\d/);
     }
 
     expect(errors, `console errors:\n${errors.join('\n')}`).toEqual([]);
@@ -95,14 +112,16 @@ test.describe('homepage', () => {
   test('altitude climbs as the visitor scrolls', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'reduced-motion', 'no scroll-driven clock on that path');
     await page.goto('/index.html');
-    await expect(readout(page)).toBeVisible();
+    await homepageReady(page);
+    const live = await readout(page);
+    await expect(live).toBeVisible();
 
-    const read = async () => Number((await readout(page).innerText()).replace(/[^\d]/g, ''));
+    const read = async () => Number((await live.innerText()).replace(/[^\d]/g, ''));
 
     // The journey begins on the ground. The previous homepage seeded its
     // decorative readout at 420 m; this one starts the ascent at zero and says
     // so, and the damped clock needs a moment to settle onto it after boot.
-    await expect(readout(page)).toHaveText('0', { timeout: 10_000 });
+    await expect(live).toHaveText('0', { timeout: 10_000 });
     const atTop = await read();
 
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight * 0.6));
@@ -157,7 +176,12 @@ test.describe('homepage', () => {
     // journey ends on a call to action. This is the assertion the old
     // "the altimeter is present" test was reaching for, made against the thing
     // the page is actually promising.
-    await expect(page.getByTestId('journey-track')).toBeAttached();
+    // The container, whichever composition built it. The desktop journey's is
+    // its sticky track; the portrait one has no track at all, and its absence
+    // there is the point rather than a regression.
+    await expect(
+      page.locator('[data-testid="journey-track"], [data-testid="mobile-home"]').first(),
+    ).toBeAttached();
     await expect(page.locator('[data-testid^="stage-"]')).toHaveCount(11);
     await expect(page.getByTestId('stage-destination')).toBeAttached();
     await expect(page.getByTestId('cta-primary')).toHaveAttribute('href', /arajanlat\.html$/);
@@ -167,25 +191,44 @@ test.describe('homepage', () => {
   test('the stage the visitor is in is exposed to assistive technology', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'reduced-motion', 'that path announces its own discrete states');
     await page.goto('/index.html');
-    await expect(page.getByTestId('altitude-hud')).toBeVisible();
+    await homepageReady(page);
 
-    // Two live regions and they say different things: where the *page* is, and
-    // what the *instrument* has done. Both are announced, both start at the
-    // ground state, and both change as the journey progresses — which is the
-    // accessible equivalent of the altitude readout the old test watched.
-    const stage = page.getByTestId('altitude-stage');
-    const instrument = page.getByTestId('meridian-description');
+    const stage = await stageReadout(page);
     await expect(stage).toHaveText(/\S/);
-    await expect(instrument).toHaveText(/\d/);
-    await expect(page.locator('.hud__stage')).toHaveAttribute('aria-live', 'polite');
 
-    const before = { stage: await stage.innerText(), instrument: await instrument.innerText() };
+    // The readout is *inside* a polite live region, which is not the same as
+    // carrying the attribute itself: the desktop composition puts `aria-live`
+    // on the paragraph and the name in a span within it, the portrait one puts
+    // both on the same element. What has to be true either way is that a
+    // screen reader is told when the stage changes, and `closest` is the
+    // question that asks that rather than asking about the markup.
+    expect(
+      await stage.evaluate((el) => !!el.closest('[aria-live="polite"]')),
+      'the stage name is not inside a polite live region',
+    ).toBe(true);
+
+    // The desktop composition has a second live region — what the *instrument*
+    // has done, as distinct from where the *page* is — because it has an
+    // instrument that restructures itself six times behind the copy. The
+    // portrait composition's altimeter carries its state in the drawing's own
+    // `role="img"` label instead, which is announced on focus rather than
+    // interrupting, and one polite region on a page is the right number when
+    // there is only one thing changing.
+    const instrument = page.getByTestId('meridian-description');
+    const twoRegions = (await instrument.count()) > 0;
+    if (twoRegions) await expect(instrument).toHaveText(/\d/);
+
+    const before = {
+      stage: await stage.innerText(),
+      instrument: twoRegions ? await instrument.innerText() : '',
+    };
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight * 0.75));
     await page.waitForTimeout(2_200);
 
     expect(
-      (await stage.innerText()) !== before.stage || (await instrument.innerText()) !== before.instrument,
-      'neither live region changed after three quarters of the journey',
+      (await stage.innerText()) !== before.stage ||
+        (twoRegions && (await instrument.innerText()) !== before.instrument),
+      'the stage live region did not change after three quarters of the journey',
     ).toBe(true);
   });
 
@@ -204,7 +247,8 @@ test.describe('homepage', () => {
       await expect(page.locator('html')).toHaveAttribute('lang', locale);
       await expect(page.locator('h1')).toBeVisible();
       await expect(page.getByTestId('cta-primary-hero')).toHaveAttribute('href', new RegExp(`${quote}$`));
-      await expect(page.getByTestId('altitude-value')).toHaveText(/\d/);
+      await homepageReady(page);
+      await expect(await altitudeReadout(page)).toHaveText(/\d/);
     });
   }
 });
