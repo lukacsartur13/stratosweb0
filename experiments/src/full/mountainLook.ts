@@ -601,22 +601,117 @@ export const MOUNTAIN_LOOK: Record<MountainVariant, MountainLook> = {
  */
 export type StationOffset = { forward: number; rise: number };
 
+/**
+ * Desktop's offset, which is a constant and stays one.
+ *
+ * Landscape has the horizontal room to hold both framing walls and a passage
+ * between them, so it can afford the pull-back, and its composition is accepted
+ * — §15 is explicit that the desktop camera is not to be altered unless the
+ * material system required it, and it did not.
+ */
+const DESKTOP_OFFSET: StationOffset = { forward: -600, rise: 150 };
+
+/**
+ * The portrait camera path. §3 and §6.
+ *
+ * ## Why this is a curve now and was a constant before
+ *
+ * Portrait used to carry a fixed `{ forward: -280, rise: 0 }` on top of the
+ * authored linear advance, so the only thing that changed with altitude was
+ * 900 m of forward travel and 780 m of rise over the whole 30 000 — which at
+ * the altitudes the range is actually visible over (0–12 000 m) is 360 m and
+ * 200 m. The camera essentially did not move. §3's objection is exactly that:
+ * "the mobile camera should not simply rise vertically through the terrain".
+ *
+ * ## The three legs, and what each is for
+ *
+ * Each key below is a station *offset* in model metres on top of the authored
+ * path, and consecutive keys are joined with a smoothstep so the camera always
+ * arrives rather than stopping and no join has a velocity discontinuity — the
+ * same construction `dollyK` uses for the instrument's own dolly, for the same
+ * reason.
+ *
+ *   approach  §6's low altitude: "closer terrain presence, lower camera,
+ *             visible valley floor, broad framing". Positive `forward` puts the
+ *             station *into* the valley mouth so the framing masses subtend
+ *             more of the frame, and a small negative `rise` keeps the eye down
+ *             near the floor.
+ *
+ *   frame     §6's mid ascent: "dolly backward … preserve valley width". This
+ *             is where the mountain stages sit and where the brief measures, so
+ *             it is the leg tuned hardest against the projected result rather
+ *             than against world numbers. Pulling back opens the space around
+ *             the instrument without touching the shared field of view.
+ *
+ *   open      the valley opening as altitude rises, which §6 asks for
+ *             explicitly. The pull-back relaxes while the rise takes over, so
+ *             the masses splay outward and the centre clears.
+ *
+ *   depart    §6's upper stage: "terrain begins to fall away … transition
+ *             toward atmosphere feels like leaving terrain behind". Forward and
+ *             up together, so the range drops below the frame as the cloud deck
+ *             takes it — which is the handoff `mountainStateAt` is already
+ *             fading on.
+ *
+ * ## Why the field of view is not part of this
+ *
+ * §3 allows "possibly slight FOV evolution" and it is deliberately not taken.
+ * `camera.fov` is shared with the instrument: `fitDistance` in composition.ts
+ * solves the dolly against it, and the portrait copy bands are laid out against
+ * that same solve. Animating it would move the dial's projected size and the
+ * band geometry at every altitude — reopening the accepted mobile spacing that
+ * §21 freezes. Every effect the brief wants from a FOV change is available from
+ * the station instead, and the station touches nothing else.
+ */
+type StationKey = { at: number; forward: number; rise: number };
+
+const PORTRAIT_PATH: StationKey[] = [
+  { at: 0, forward: 220, rise: -50 },
+  { at: 2_600, forward: -340, rise: 30 },
+  { at: 7_000, forward: -140, rise: 240 },
+  { at: 12_000, forward: 480, rise: 600 },
+];
+
+const smoothstep01 = (t: number) => {
+  const c = t < 0 ? 0 : t > 1 ? 1 : t;
+  return c * c * (3 - 2 * c);
+};
+
+/**
+ * The portrait station offset at an altitude. A pure function, so the reverse
+ * traversal reconstructs it exactly — see the note on determinism in
+ * `mountains.ts`.
+ */
+export function portraitStation(altitude: number): StationOffset {
+  const keys = PORTRAIT_PATH;
+  if (altitude <= keys[0].at) return { forward: keys[0].forward, rise: keys[0].rise };
+  for (let i = 1; i < keys.length; i++) {
+    const a = keys[i - 1];
+    const b = keys[i];
+    if (altitude > b.at) continue;
+    const k = smoothstep01((altitude - a.at) / (b.at - a.at));
+    return {
+      forward: a.forward + (b.forward - a.forward) * k,
+      rise: a.rise + (b.rise - a.rise) * k,
+    };
+  }
+  const last = keys[keys.length - 1];
+  return { forward: last.forward, rise: last.rise };
+}
+
+/** The station offset for a variant at an altitude. */
+export function stationOffset(variant: MountainVariant, altitude: number): StationOffset {
+  return variant === 'mobile' ? portraitStation(altitude) : DESKTOP_OFFSET;
+}
+
+/**
+ * Kept for the tests and tools that ask "what is the offset for this variant"
+ * without an altitude. Desktop is exact; mobile reports its 0 m station, which
+ * is the one the Blender previews are rendered at.
+ */
 export const STATION_OFFSET: Record<MountainVariant, StationOffset> = {
-  // Landscape has the horizontal room to hold both framing walls and a
-  // passage between them, so it can afford the larger pull-back.
-  desktop: { forward: -600, rise: 150 },
-  // Portrait gets less, and takes no `rise` at all. The sweep's −600 row put
-  // more foreground in frame (0.318 against 0.203) but also more valley floor
-  // (0.436 against 0.393), and floor area is the thing a portrait frame has
-  // least room for. −280 is the net of the old +120 and the −400 the sweep
-  // chose; the old −150 `rise` cancels against the +150 it chose, which is why
-  // this reads 0 rather than being untouched.
-  //
-  // Whether a larger pull-back eventually closes the central passage was not
-  // measured — the sweep stopped at −600 and every row in it kept the Meridian
-  // clear (0/29 occluded). Treat −600 as the edge of what has been checked, not
-  // as a proven limit.
-  mobile: { forward: -280, rise: 0 },
+  desktop: DESKTOP_OFFSET,
+  mobile: portraitStation(0),
 };
 
 /** Degrees to a unit direction in world space. See `Direction`. */

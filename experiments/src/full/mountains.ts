@@ -53,7 +53,7 @@
 import { ALTITUDE_STOPS } from './meridian';
 import type { MountainMode } from './journey';
 import type { MountainVariant } from './mountainAsset';
-import { STATION_OFFSET } from './mountainLook';
+import { stationOffset } from './mountainLook';
 
 /** Journey progress the Blender camera path is parameterised on. */
 const CEILING = 30_000;
@@ -112,8 +112,12 @@ export function cameraStation(altitude: number, variant: MountainVariant): [numb
   const power = variant === 'mobile' ? 1.5 : 1.6;
 
   // The web renderer's own framing adjustment, on top of the authored path.
-  // Zero on desktop; see STATION_OFFSET for why it is not zero on mobile.
-  const offset = STATION_OFFSET[variant];
+  //
+  // Constant on desktop, and a curve on mobile — the art-directed portrait
+  // trajectory §3 asks for. It stays a pure function of altitude, which is what
+  // the reverse-traversal check depends on: the same altitude has to reconstruct
+  // the same station whether it was reached from below or from above.
+  const offset = stationOffset(variant, altitude);
 
   const depth = -150 + advance * t + offset.forward; // Blender +Y
   const height = 200 + rise * Math.pow(t, power) + offset.rise; // Blender +Z

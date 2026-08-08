@@ -420,11 +420,61 @@ and `max_sky_above_horizon` now fails the build if that regresses.
 """
 
 
+MOBILE_STATION_PATH = (
+    (0.0, 220.0, -50.0),
+    (2600.0, -340.0, 30.0),
+    (7000.0, -140.0, 240.0),
+    (12000.0, 480.0, 600.0),
+)
+"""
+The web renderer's art-directed portrait station offset, keyed on altitude in
+metres as (altitude, forward, rise).
+
+THIS IS A MIRROR, NOT A SOURCE
+------------------------------
+The authority is `PORTRAIT_PATH` in `experiments/src/full/mountainLook.ts`, and
+the two must be kept in step by hand. It is duplicated here rather than left out
+because the alternative is worse: every check in this file — the safe-zone cone,
+the silhouette gates, the per-mass visibility census, the preview renders — is
+made through `mobile_camera_at`, and if that camera is not the camera the
+browser uses then all of them are measuring a picture nobody sees. That is
+precisely the failure the previous pass shipped: the source validated a
+composition at the authored station while the web renderer drew it from 280 m
+further back, and the curtain defect lived entirely in the difference.
+
+The offsets are in the same model metres as everything else here, and the sign
+convention matches `cameraStation` in mountains.ts: positive `forward` moves the
+station along +Y, toward the range.
+"""
+
+
+def mobile_station_offset(altitude: float):
+    """Smoothstep-joined offset at an altitude. Mirrors `portraitStation`."""
+    keys = MOBILE_STATION_PATH
+    if altitude <= keys[0][0]:
+        return keys[0][1], keys[0][2]
+    for i in range(1, len(keys)):
+        a0, af, ar = keys[i - 1]
+        b0, bf, br = keys[i]
+        if altitude > b0:
+            continue
+        k = smoothstep(a0, b0, altitude)
+        return af + (bf - af) * k, ar + (br - ar) * k
+    return keys[-1][1], keys[-1][2]
+
+
 def mobile_camera_at(t: float):
-    """Mobile camera station at normalised journey progress `t`."""
+    """
+    Mobile camera station at normalised journey progress `t`.
+
+    The authored linear advance plus the art-directed station offset, so this is
+    the station the browser actually renders from. `t` is altitude / 30 000 — see
+    the note above `cameraStation` in mountains.ts.
+    """
+    forward, rise = mobile_station_offset(t * 30000.0)
     return (0.0,
-            CAMERA_ANCHOR[1] + MOBILE_CAMERA_ADVANCE * t,
-            CAMERA_ANCHOR[2] + MOBILE_CAMERA_RISE * (t ** MOBILE_CAMERA_RISE_POWER))
+            CAMERA_ANCHOR[1] + MOBILE_CAMERA_ADVANCE * t + forward,
+            CAMERA_ANCHOR[2] + MOBILE_CAMERA_RISE * (t ** MOBILE_CAMERA_RISE_POWER) + rise)
 
 
 def desktop_camera_at(t: float):

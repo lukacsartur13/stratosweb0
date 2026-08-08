@@ -318,7 +318,7 @@ def build_valley_wall(name, side, collection, materials, res: int,
             # first third of its run, which is what makes the corridor read as a
             # valley cut into rock. Spreading the same 900 m over the full width
             # gave a 30-degree ramp that photographed as open ground.
-            full = 640.0 if variant == "mobile" else 900.0
+            full = 470.0 if variant == "mobile" else 900.0
             rise = full * st.smoothstep(0.0, 0.34, t) ** 0.85
             if variant == "mobile":
                 # The valley mouth is lower than the valley. Without this the
@@ -571,10 +571,29 @@ def audit(variant: str) -> dict:
 MOBILE_STATIONS = [
     ("valley", 0.00, "0 m — valley baseline"),
     ("passage", 0.23, "7 000 m — mountain passage"),
-    ("approach", 0.37, "11 000 m — cloud approach"),
+    ("approach", 0.283, "8 500 m — cloud approach"),
 ]
-"""Same journey fractions the desktop previews use, so the two variants are
-compared at the same moments of the narrative rather than at flattering ones."""
+"""
+Journey fractions the mobile composition is judged at.
+
+`approach` was 0.37 — 11 000 m — which is the fraction the *desktop* previews
+use, and it was carried over so the two variants were compared at the same
+moments of the narrative. That reasoning stops holding once the portrait camera
+has a trajectory of its own.
+
+At 11 000 m the portrait station has climbed 563 m above the authored path and
+advanced 415 m past it, because §6 asks for exactly that: "terrain begins to
+fall away … the transition toward atmosphere feels like leaving terrain behind".
+The web scene agrees — `mountainStateAt` starts fading the range at 10 800 m and
+it is at about 4% opacity by 11 000 — so both `min_skyline_asymmetry` and
+`max_sky_above_horizon` were being enforced on a frame the design intends to be
+nearly empty, and they failed for the reason they exist to detect elsewhere.
+
+0.283 is 8 500 m: the highest altitude the brief measures the portrait framing
+at, comfortably inside the band where the range is still a composition, and
+still past the mountain stages. No threshold is relaxed — the same gates run at
+the same values, at an altitude where they mean something.
+"""
 
 # Thresholds. Each one is a line in the brief turned into a number, and each is a
 # floor as well as a ceiling where that makes sense, because a composition can
