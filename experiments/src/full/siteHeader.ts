@@ -83,6 +83,32 @@ function currentEdges(): number[][] {
 let shownStage = '';
 let label = '';
 
+/**
+ * Publish one frame of *any* composition's state to the shared header.
+ *
+ * Split out from `publishHeader` when the portrait homepage stopped having a
+ * `journey` to read. That page has no damped clock, no calibrated track and no
+ * `journey.current` — but it has the same shared header on it, with the same
+ * altitude readout, and a header left un-pushed falls back to deriving an
+ * altitude from raw document scroll. On a page that also prints its own
+ * altitude in the telemetry strip, that is two readouts disagreeing, which §11
+ * of the mobile brief rules out in as many words.
+ *
+ * So the header takes whatever the composition on screen actually knows. The
+ * desktop wrapper below is unchanged in behaviour: same values, same
+ * de-duplication, same call site in `JourneyHUD`'s tick.
+ */
+export function publishHeaderState(
+  progress: number,
+  altitude: number,
+  stageLabel: string,
+  bounds: number[][],
+): void {
+  const deck = header();
+  if (!deck) return;
+  deck.push(progress, { alt: altitude, key: stageLabel, edges: bounds });
+}
+
 /** Publish one frame of journey state to the shared header. */
 export function publishHeader(): void {
   const deck = header();

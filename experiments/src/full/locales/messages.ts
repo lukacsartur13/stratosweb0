@@ -115,6 +115,25 @@ export const MESSAGES = {
     en: 'The instrument on the left is a custom model — not a cockpit clock taken from a catalogue. Scroll: the altimeter follows your scrolling.',
     de: 'Das Instrument links ist ein eigenes Modell — keine Cockpit-Uhr aus dem Katalog. Scrollen Sie: Der Höhenmesser folgt dem Scrollen.',
   },
+  /**
+   * The same sentence without the position.
+   *
+   * `calibration.meta` says "the instrument **on the left**", which is true of
+   * the desktop composition and false on a phone, where the dial sits under the
+   * headline in ordinary flow. Copy that points at a screen position is copy
+   * that is wrong on half the devices that read it — the panel above the system
+   * rings already carries that note, and this is the same mistake caught in the
+   * other direction.
+   *
+   * A separate key rather than a conditional inside one string: the two
+   * compositions genuinely say different things, and a translator editing the
+   * German should be able to see which surface they are editing.
+   */
+  'calibration.meta.mobile': {
+    hu: 'A műszer egyedi modell — nem katalógusból vett pilótafülke-óra. Görgess: a magasságmérő a görgetést követi.',
+    en: 'The instrument is a custom model — not a cockpit clock taken from a catalogue. Scroll: the altimeter follows your scrolling.',
+    de: 'Das Instrument ist ein eigenes Modell — keine Cockpit-Uhr aus dem Katalog. Scrollen Sie: Der Höhenmesser folgt dem Scrollen.',
+  },
 
   // --- II · 150–3 000 m — initial ascent -----------------------------------
   'initialAscent.eyebrow': {

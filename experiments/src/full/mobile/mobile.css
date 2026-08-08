@@ -1,0 +1,963 @@
+/* ==========================================================================
+   Stratos — portrait mobile homepage.
+
+   A separate composition, not a set of overrides on the desktop one. Nothing
+   in this file is reachable unless `MobileHome` mounted, because every rule is
+   scoped under `.mv` or the `.mv-on` root class it adds. The desktop
+   stylesheet is not touched and not referenced.
+
+   §00  units, spacing and easing
+   §01  the continuous background
+   §02  section rhythm
+   §03  typography
+   §04  the five motion roles
+   §05  the Altimeter
+   §06  the Meridian spine (capabilities, layers, checkpoints)
+   §07  selected work
+   §08  actions, contact, index
+   §09  telemetry
+   §10  reduced motion
+   ========================================================================== */
+
+/* ============================================================ §00 — units ==
+   EVERY VIEWPORT-RELATIVE HEIGHT IN THIS FILE IS `svh`, AND THAT IS THE FIX
+   FOR SAFARI'S TOOLBAR.
+
+   `svh` is the *small* viewport height: the size with the browser chrome
+   expanded. Laying out against it means the layout is already computed for the
+   smaller of the two states, so when the toolbar collapses nothing resizes and
+   nothing reflows. `dvh` resizes continuously through the toolbar transition —
+   which is a layout animation nobody asked for, running on the exact gesture
+   that triggers it — and `vh` is the large viewport, so content sits under the
+   toolbar until it hides.
+
+   This is the single rule behind §26's "no layout jump when browser controls
+   collapse/expand", and it is also why this file has almost no viewport-height
+   units at all: sections are as tall as their content. */
+
+.mv {
+  /* §19's spacing scale. Three steps, and no section is allowed a fourth.
+     The clamps are read at 360–430px, which is the whole portrait matrix. */
+  --mv-gap-small: clamp(48px, 13vw, 64px);
+  --mv-gap: clamp(80px, 22vw, 112px);
+  --mv-gap-chapter: clamp(120px, 32vw, 160px);
+
+  --mv-pad: clamp(20px, 5.5vw, 28px);
+  /* Copy measure. Long enough to avoid ragged two-word lines in German,
+     short enough to keep a comfortable line length at 430px. */
+  --mv-measure: 34ch;
+
+  /* Rapidkert's signature curve, measured out of its stylesheet rather than
+     guessed — see §3 of _build/reports/rapidkert-mobile-motion-reference.md.
+     It lands harder and settles flatter than the brief's suggested
+     cubic-bezier(.22,1,.36,1), and on a phone that difference is the whole
+     character of the motion. */
+  --mv-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* The proven durations, by role. */
+  --mv-dur-line: 1.05s; /* masked headline line */
+  --mv-dur-text: 0.8s;  /* general rise */
+  --mv-dur-copy: 0.52s; /* body copy — subtler and quicker, §6 */
+  --mv-dur-label: 0.42s;
+  --mv-dur-rule: 0.9s;
+
+  position: relative;
+  /* The one containing block for the whole page. Nothing inside is fixed
+     except the telemetry, which is deliberately outside this stacking
+     context — see §09. */
+  isolation: isolate;
+}
+
+/* ======================================================= §01 — background ==
+   ONE background for the document, not one per section.
+
+   §18: sections blend rather than collide. They can only do that if no section
+   paints a backdrop of its own, so there is exactly one painted surface on this
+   page and it is behind everything.
+
+   Four layers, all cheap:
+     1  a near-black base on <body>, already there
+     2  one fixed radial depth gradient
+     3  a static grain, drawn once as a data URI and tiled
+     4  the altitude tint, driven by nothing — it is a fixed gradient, and the
+        sense of ascent comes from the copy and the instrument, not from a
+        colour that has to be recomputed
+
+   NO blurred blobs, NO filters on full-viewport elements, NO particles, and
+   nothing animated. §17 forbids all four, and each of them is a compositor
+   cost that is paid on every frame whether or not anyone is scrolling. */
+
+.mv-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--ink);
+}
+
+.mv-sky__depth {
+  position: absolute;
+  inset: 0;
+  background:
+    /* the high, cold light the ascent is heading towards */
+    radial-gradient(120% 62% at 50% -12%, rgba(120, 156, 196, 0.17) 0%, rgba(10, 16, 26, 0) 62%),
+    /* a single warm signal trace, low and off-centre, so the frame is not
+       symmetrical — the one thing keeping this from reading as a vignette */
+    radial-gradient(88% 48% at 12% 104%, rgba(255, 238, 37, 0.05) 0%, rgba(4, 6, 10, 0) 58%),
+    linear-gradient(180deg, #060a12 0%, #04060a 46%, #020306 100%);
+}
+
+/* Grain, as a tiled data URI rather than an SVG filter.
+   `filter: url(#noise)` on a full-viewport element is re-rasterised whenever
+   anything above it changes and was measured as the single most expensive
+   thing on the old mobile page. A 64px PNG tile costs one texture upload and
+   then nothing at all, forever. */
+.mv-sky__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='64' height='64' filter='url(%23n)' opacity='0.5'/></svg>");
+  background-size: 128px 128px;
+  /* Rasterised once. Without this the tile is re-decoded on some scroll
+     boundaries in WebKit. */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ========================================================== §02 — sections ==
+   Ordinary block flow. No sticky, no spacer, no track, no viewport-height
+   section. A section is as tall as what is in it — §5. */
+
+.mv-flow {
+  position: relative;
+  z-index: 1;
+  padding-inline: var(--mv-pad);
+  /* Clear of the fixed telemetry strip, which is the one thing on this page
+     that overlaps the document. Measured rather than guessed: the strip is a
+     1px rule, 0.5rem, a 0.86rem line and 0.35rem, over the safe-area inset.
+     Without this the last paragraph of the closing panel reads under it.
+
+     Everything that follows the homepage — the site's Arrival and the ground
+     control footer — is outside this element and unaffected. */
+  padding-bottom: calc(var(--mv-gap) + 3.25rem + env(safe-area-inset-bottom));
+}
+
+.mv-sec {
+  margin-block-start: var(--mv-gap);
+  /* Isolated from its neighbours for paint, but NOT `contain: layout`: that
+     would make each section a containing block and is not needed when nothing
+     is positioned against them. */
+  contain: paint style;
+}
+
+/* The two statement beats and the closing panel get chapter spacing. Nothing
+   else does — §19 is explicit that the big gap is a chapter boundary, not a
+   default. */
+.mv-sec--centre { margin-block-start: var(--mv-gap-chapter); }
+
+/*
+  THE OPENING.
+
+  A CONSTANT, AND NOT `--deck-content`. THIS IS LOAD-BEARING.
+
+  `--deck-content` is the shared header's published floor, and using it here is
+  the obvious thing to do — it is what the desktop composition does, and it is
+  what this rule did first. It is wrong on this page, for a reason that only
+  shows up in a measurement.
+
+  The header has three states and compacts between them as the visitor scrolls.
+  `--deck-content` is quantised to 8px, so crossing a state boundary changes it
+  by one step. That step lands on this padding, which is on the FIRST section in
+  the document — so every section below it moves 8px, mid-scroll, as a direct
+  consequence of having scrolled. Measured with the drift probe: 8px of movement
+  arriving 420ms after the scroll had stopped, which is exactly the "copy
+  continues travelling after the page stops" that §3 rules out, arriving through
+  the layout rather than through any scroll handler.
+
+  A constant cannot do that. The header is `position: fixed` and overlays the
+  page, so this padding does not have to track it — it only has to clear its
+  tallest state, and 104px clears the opening header with the navigation wrapped
+  to two lines in German at 360px.
+
+  `--deck-content` is still used for `scroll-padding-top` further down, where it
+  belongs: that property changes where an anchor link lands and has no effect on
+  layout at all, so it can follow the header freely.
+*/
+.mv-sec--lead {
+  margin-block-start: 0;
+  padding-block-start: calc(clamp(72px, 24vw, 104px) + var(--mv-gap-small));
+}
+
+.mv-sec--centre { text-align: center; }
+.mv-sec--centre .mv-eyebrow { justify-content: center; }
+.mv-sec--centre .mv-copy,
+.mv-sec--centre .mv-title { margin-inline: auto; }
+
+/* ======================================================== §03 — typography ==
+   Tuned for portrait independently of desktop — §20. The families and the
+   weight hierarchy are the accepted ones; the sizes, leading, tracking and
+   measure are not shared with any desktop rule. */
+
+.mv-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.75rem;
+  margin: 0 0 0.85rem;
+  font: 500 0.7rem/1.4 var(--data);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--haze);
+  overflow-wrap: anywhere;
+}
+
+.mv-eyebrow__at {
+  color: var(--signal);
+  letter-spacing: 0.1em;
+}
+
+.mv-title {
+  margin: 0 0 1.1rem;
+  max-width: 18ch;
+  font-family: var(--display);
+  font-weight: 300;
+  /* 1.9rem at 360px, 2.35rem at 430px. Deliberately below the desktop hero
+     ramp: §20 warns against headings so large they produce one-word lines, and
+     German is the case that breaks first. */
+  font-size: clamp(1.85rem, 1.1rem + 4.2vw, 2.45rem);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  color: var(--paper);
+}
+
+/*
+  NO AUTOMATIC HYPHENATION IN A DISPLAY HEADLINE.
+
+  Inherited, not asked for. `assets/css/type.css` sets `hyphens: auto` on
+  `[lang='hu'] h1, [lang='hu'] h2` (and the German pair), which is the right
+  answer for a section heading in a narrow column — it stops a long German
+  compound overflowing. Applied to a mobile display headline it broke the
+  centred statement three times in one sentence at 360px: "A tisztaság ott kez-/
+  dődik" and "ugyanabba az irány-/ba mozdul". Both are valid Hungarian syllable
+  breaks and both are still wrong: at this size the headline is read as an image
+  before it is read as words, and a hyphen in it looks like a bug.
+
+  ## The selector, which is the whole point
+
+  `[lang] .mv-title` is (0,2,0). A bare `.mv-title` is (0,1,0) and loses to the
+  `[lang='hu'] h2` above it at (0,1,1) no matter where it sits in the cascade —
+  which is exactly what happened, silently, and why the first attempt at this
+  rule changed nothing at all. type.css already solved the same problem for the
+  desktop hero with the same trick and left the reasoning next to it.
+
+  The overflow protection stays: `overflow-wrap: break-word` is inherited and
+  untouched, so a word that genuinely cannot fit still wraps — it just does it
+  without inserting a hyphen.
+*/
+[lang] .mv-title {
+  -webkit-hyphens: manual;
+  hyphens: manual;
+}
+
+.mv-title em {
+  font-style: normal;
+  color: var(--signal);
+}
+
+.mv-title--hero { font-size: clamp(2rem, 1.1rem + 5vw, 2.7rem); }
+.mv-title--statement {
+  max-width: 15ch;
+  font-size: clamp(1.9rem, 1.1rem + 4.6vw, 2.55rem);
+}
+
+.mv-copy {
+  margin: 0 0 1rem;
+  max-width: var(--mv-measure);
+  font-size: 1rem;
+  line-height: 1.66;
+  color: rgba(244, 244, 244, 0.82);
+}
+
+.mv-copy--lead {
+  font-size: 1.06rem;
+  line-height: 1.6;
+  color: var(--paper);
+}
+
+.mv-meta {
+  margin: 1.2rem 0 0;
+  font: 500 0.68rem/1.5 var(--data);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+/* ============================================================ §04 — motion ==
+   Five roles, five rules, and no JavaScript after the class lands.
+
+   `reveal.ts` adds `.is-in` once and unobserves. Everything below is a CSS
+   transition that was already declared, so the animation runs on the
+   compositor and the main thread is free for the scroll it is competing with.
+
+   Only `opacity` and `transform` are animated. Nothing here transitions a
+   property that costs layout.
+
+   `--mv-delay` is written once at registration, never per frame. */
+
+.mv-text,
+.mv-copy,
+.mv-label,
+.mv-lines,
+.mv-rule { --mv-delay: 0s; }
+
+/* TextReveal — the general-purpose rise. 18px, 0.8s, Rapidkert's measured
+   body figure. */
+.mv-text {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity var(--mv-dur-text) var(--mv-ease) var(--mv-delay),
+    transform var(--mv-dur-text) var(--mv-ease) var(--mv-delay);
+}
+.mv-text.is-in { opacity: 1; transform: none; }
+
+/* LineReveal — a masked line box. The travel is the full line height rather
+   than a pixel figure, so it is correct at every heading size and in every
+   locale without a second rule. */
+.mv-lines {
+  display: block;
+  overflow: hidden;
+  /* A descender-safe mask. `overflow:hidden` on a line box clips the tail of a
+     g or a j at the resting position; the padding gives it room and the equal
+     negative margin gives the space back to the layout. */
+  padding-block-end: 0.14em;
+  margin-block-end: -0.14em;
+}
+.mv-lines__in {
+  display: block;
+  transform: translate3d(0, 105%, 0);
+  transition: transform var(--mv-dur-line) var(--mv-ease) var(--mv-delay);
+}
+.mv-lines.is-in .mv-lines__in { transform: none; }
+
+/* CopyReveal — much subtler, and quicker. §6: 10–18px, 350–550ms. */
+.mv-copy {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition:
+    opacity var(--mv-dur-copy) var(--mv-ease) var(--mv-delay),
+    transform var(--mv-dur-copy) var(--mv-ease) var(--mv-delay);
+}
+.mv-copy.is-in { opacity: 1; transform: none; }
+
+/* LabelReveal — a technical eyebrow. Tiny horizontal offset, quick response:
+   a label is an annotation and should already be there when the eye arrives. */
+.mv-label {
+  opacity: 0;
+  transform: translate3d(-8px, 0, 0);
+  transition:
+    opacity var(--mv-dur-label) var(--mv-ease) var(--mv-delay),
+    transform var(--mv-dur-label) var(--mv-ease) var(--mv-delay);
+}
+.mv-label.is-in { opacity: 1; transform: none; }
+
+/* RuleDraw — a Meridian line drawing itself. `scaleY` on a 1px element, which
+   is a compositor transform and not a layout change. */
+.mv-rule {
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+  transition: transform var(--mv-dur-rule) var(--mv-ease) var(--mv-delay);
+}
+.mv-rule.is-in { transform: scaleY(1); }
+
+/* ========================================================= §05 — altimeter ==
+   §9 and §10, together: the instrument is an independent visual element that
+   determines nothing about the layout, and it is either visible or
+   intentionally gone — never half-covered.
+
+   It is sticky within the opening section only. Sticky here is not a stage: it
+   pins nothing, holds no progress, and has no spacer. It simply keeps the
+   instrument in frame while the opening copy scrolls past it, and then leaves
+   with its section like any other element.
+
+   NOTHING ON THIS PAGE HAS AN OPAQUE BACKGROUND, so there is no plate that
+   could cross it. That is the enforcement of §10 — a painting rule made
+   impossible to break by removing every painted plate from the page. */
+
+/*
+  The dial is constrained; the block around it is not.
+
+  These were one element, and the caption inherited the dial's width — seven
+  lines of fifteen monospaced characters, which reads as a column of debris
+  beside the instrument rather than as an annotation of it. The caption wants
+  the section's measure and the dial wants its own, so they get one each.
+*/
+.mv-alt {
+  position: relative;
+  display: block;
+  margin: clamp(20px, 6vw, 32px) 0 clamp(26px, 7vw, 36px);
+}
+
+.mv-alt__dial {
+  display: block;
+  /*
+    Bounded by the viewport's HEIGHT as well as its width.
+    At 844x390 — a phone in landscape, which §23 puts on this composition — a
+    260px dial is two thirds of the screen's height, so it arrives already
+    running off the bottom edge and under the telemetry wash. `42svh` is the
+    term that fixes it and costs nothing in portrait, where 42svh at 844px tall
+    is 354px and the width term wins anyway.
+  */
+  width: min(62vw, 42svh, 260px);
+  height: auto;
+  /* Off the left rail rather than centred: a centred dial under a left-aligned
+     headline reads as an illustration, and off-axis it reads as an instrument
+     mounted on the page. */
+  margin-inline-start: clamp(-8px, -2vw, 0px);
+  /* The one filter on the page, on a small element, and static. */
+  filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.55));
+  /* The six structural states swap SVG subtrees. Fading the whole drawing
+     across the swap would fade the numerals too; instead the swap is
+     instantaneous and the *scale* carries the transition, which is what makes a
+     ring locking read as mechanical rather than as a cross-dissolve. */
+  transition: transform 0.5s var(--mv-ease);
+}
+
+/* The instrument gains presence as it opens. Four values over six states — the
+   two ring states that share a scale share it on purpose, because the change
+   between them is the ring, not the size. */
+.mv-alt[data-state='baseline'] .mv-alt__dial { transform: scale(0.94); }
+.mv-alt[data-state='first-ring'] .mv-alt__dial,
+.mv-alt[data-state='aperture-open'] .mv-alt__dial { transform: scale(0.97); }
+.mv-alt[data-state='second-ring'] .mv-alt__dial,
+.mv-alt[data-state='third-ring'] .mv-alt__dial { transform: scale(1); }
+.mv-alt[data-state='meridian'] .mv-alt__dial { transform: scale(1.02); }
+
+.mv-alt__label {
+  margin: 0.95rem 0 0;
+  /* The section's measure, not the dial's. `ch` in the mono face at this size
+     is about 7.6px including the tracking, so 44ch is ~335px — the full width
+     at 360 and comfortably inside it at 430. */
+  max-width: 44ch;
+  font: 500 0.66rem/1.6 var(--data);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+.mv-sec--centre .mv-alt__dial { margin-inline: auto; }
+.mv-sec--centre .mv-alt__label { margin-inline: auto; }
+
+/* ============================================================= §06 — spine ==
+   One vertical Meridian line, used by three sections. The capabilities ladder,
+   the three layers and the seven checkpoints are the same device at three
+   densities rather than three graphic systems. */
+
+.mv-spine {
+  position: relative;
+  list-style: none;
+  margin: clamp(28px, 8vw, 40px) 0 0;
+  padding: 0 0 0 clamp(22px, 6vw, 30px);
+}
+
+.mv-spine__rule {
+  position: absolute;
+  inset-block: 0.4em 0.6em;
+  inset-inline-start: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 238, 37, 0.5) 0%,
+    rgba(203, 220, 233, 0.22) 18%,
+    rgba(203, 220, 233, 0.22) 82%,
+    rgba(203, 220, 233, 0) 100%
+  );
+}
+
+.mv-spine__item {
+  position: relative;
+  padding-block: 0 clamp(22px, 6vw, 30px);
+}
+
+/* The station marker. A 5px dot on the rule, drawn on the item so a section
+   with no items has no orphaned markers. */
+.mv-spine__item::before,
+.mv-check::before,
+.mv-layer::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: calc(clamp(22px, 6vw, 30px) * -1 - 2px);
+  inset-block-start: 0.55em;
+  width: 5px;
+  height: 5px;
+  background: var(--signal);
+  border-radius: 50%;
+}
+
+.mv-spine__at {
+  display: block;
+  margin-bottom: 0.3rem;
+  font: 500 0.66rem/1.4 var(--data);
+  letter-spacing: 0.12em;
+  color: var(--signal);
+}
+
+.mv-spine__name {
+  margin: 0 0 0.2rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.16rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+
+.mv-spine__line {
+  margin: 0;
+  max-width: var(--mv-measure);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: rgba(244, 244, 244, 0.74);
+}
+
+/* ---- nine areas in three layers ---------------------------------------- */
+
+.mv-layer {
+  position: relative;
+  padding-block: 0 clamp(26px, 7vw, 36px);
+}
+
+.mv-layer__name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0 0 0.35rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  color: var(--paper);
+}
+
+.mv-layer__index {
+  font: 500 0.68rem/1 var(--data);
+  letter-spacing: 0.1em;
+  color: var(--signal);
+}
+
+.mv-layer__note {
+  margin: 0 0 0.8rem;
+  max-width: var(--mv-measure);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(244, 244, 244, 0.66);
+}
+
+.mv-layer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.mv-layer__list li {
+  display: grid;
+  gap: 0.1rem;
+  max-width: var(--mv-measure);
+  padding-inline-start: 0.9rem;
+  border-inline-start: 1px solid var(--hair);
+}
+
+.mv-layer__list b {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--chrome);
+}
+
+.mv-layer__list span {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(244, 244, 244, 0.7);
+}
+
+/* ---- seven checkpoints -------------------------------------------------- */
+
+.mv-check {
+  position: relative;
+  padding-block: 0 clamp(26px, 7vw, 34px);
+}
+
+.mv-check__head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 0 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.mv-check__index {
+  font: 600 0.72rem/1.4 var(--data);
+  letter-spacing: 0.1em;
+  color: var(--signal);
+}
+
+.mv-check__name {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.18rem;
+  line-height: 1.25;
+  color: var(--paper);
+}
+
+.mv-check__at {
+  grid-column: 2;
+  font: 500 0.64rem/1.4 var(--data);
+  letter-spacing: 0.12em;
+  color: var(--haze);
+}
+
+.mv-check__grid {
+  margin: 0;
+  max-width: var(--mv-measure);
+}
+
+.mv-check__grid dt {
+  margin-top: 0.55rem;
+  font: 500 0.62rem/1.4 var(--data);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+.mv-check__grid dd {
+  margin: 0.1rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.58;
+  color: rgba(244, 244, 244, 0.78);
+}
+
+/* ============================================================== §07 — work ==
+   A project index. §16: no giant imagery, no horizontal gallery. Name, logo,
+   scope, then one small crop. */
+
+.mv-work {
+  display: grid;
+  gap: clamp(40px, 11vw, 56px);
+  margin-top: clamp(30px, 8vw, 40px);
+}
+
+.mv-case {
+  display: grid;
+  gap: 0.9rem;
+  /* A hairline, not a plate. The only thing separating one project from the
+     next, so the page background runs continuously behind all of them. */
+  padding-block-start: clamp(24px, 7vw, 32px);
+  border-block-start: 1px solid var(--hair);
+}
+
+.mv-case__head { display: grid; gap: 0.2rem; }
+
+.mv-case__at {
+  font: 500 0.66rem/1.4 var(--data);
+  letter-spacing: 0.12em;
+  color: var(--signal);
+}
+
+.mv-case__name {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--paper);
+}
+
+.mv-case__sector {
+  margin: 0;
+  font: 500 0.68rem/1.5 var(--data);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+/*
+  THE CLIENT LOGOS ARE BLACK MARKS ON TRANSPARENCY.
+
+  Measured, not assumed: `client-rapidkert.png` is 95% transparent and 5% dark
+  pixels, `client-barbershop.png` 85% and 14%, and neither has a single light
+  pixel in it. They are artwork drawn for a white page, and dropped onto this
+  one unmodified they are a black mark on a near-black background — which is
+  what they were, invisible except as a faint smudge.
+
+  `brightness(0) invert(1)` flattens whatever colour the mark is to black and
+  then to white, leaving the alpha channel alone. It is the one filter that is
+  correct for every one of these files regardless of what colour it was drawn
+  in, and it stays correct when a fifth client is added.
+
+  Small, static, and on two elements — not a full-viewport filter. §17's ban is
+  on the expensive kind.
+*/
+.mv-case__logo {
+  width: auto;
+  max-width: 130px;
+  max-height: 34px;
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(0) invert(1);
+  opacity: 0.72;
+}
+
+.mv-case__figure {
+  margin: 0;
+  /* A crop, not a poster. A 5:4 window onto a portrait photograph is the
+     smallest presentation that still reads as the project rather than as
+     decoration. */
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border: 1px solid var(--hair);
+}
+
+.mv-case__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 34%;
+  display: block;
+}
+
+.mv-case__body { margin: 0; max-width: var(--mv-measure); }
+
+.mv-case__body dt {
+  margin-top: 0.6rem;
+  font: 500 0.62rem/1.4 var(--data);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+.mv-case__body dd {
+  margin: 0.1rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.58;
+  color: rgba(244, 244, 244, 0.78);
+}
+
+.mv-case__metric {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.mv-case__metric strong {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.7rem;
+  color: var(--signal);
+}
+.mv-case__metric span {
+  font: 500 0.66rem/1.4 var(--data);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+.mv-case__quote {
+  margin: 0;
+  padding-inline-start: 0.95rem;
+  border-inline-start: 1px solid rgba(255, 238, 37, 0.4);
+}
+.mv-case__quote p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--chrome);
+}
+.mv-case__quote footer {
+  margin-top: 0.4rem;
+  font: 500 0.64rem/1.4 var(--data);
+  letter-spacing: 0.1em;
+  color: var(--haze);
+}
+
+/* =========================================================== §08 — actions ==
+   44px minimum target, and the label wraps rather than the target shrinking —
+   the same contract the desktop buttons already keep. */
+
+.mv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 1.4rem 0 0;
+}
+
+.mv-sec--centre .mv-actions { justify-content: center; }
+
+.mv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.85rem 1.4rem;
+  background: var(--signal);
+  color: var(--void);
+  font: 600 0.85rem/1.2 var(--body);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: 1px solid var(--signal);
+  transition: opacity 0.22s var(--mv-ease);
+}
+
+.mv-btn:active { opacity: 0.82; }
+
+.mv-btn--ghost {
+  background: transparent;
+  color: var(--paper);
+  border-color: rgba(244, 244, 244, 0.34);
+}
+
+.mv-btn--lg { min-height: 52px; padding-inline: 1.6rem; }
+
+.mv-contact {
+  margin-top: 1.6rem;
+  font-size: 0.95rem;
+  color: rgba(244, 244, 244, 0.74);
+}
+.mv-contact a { color: var(--signal); }
+
+.mv-index {
+  list-style: none;
+  margin: clamp(34px, 9vw, 44px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  text-align: start;
+}
+
+.mv-index li { border-block-start: 1px solid var(--hair); }
+.mv-index li:last-child { border-block-end: 1px solid var(--hair); }
+
+.mv-index a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 48px;
+  padding-block: 0.7rem;
+  text-decoration: none;
+  color: var(--chrome);
+  font-size: 0.94rem;
+}
+
+.mv-index i {
+  font: 500 0.64rem/1.4 var(--data);
+  font-style: normal;
+  letter-spacing: 0.1em;
+  color: var(--haze);
+}
+
+/* ========================================================= §09 — telemetry ==
+   §11: one compact component, above the background, and NOT sharing a stacking
+   context with section content.
+
+   It is a sibling of `.mv-flow`, not a descendant, and it is fixed — so it is
+   not inside `.mv`'s `isolation: isolate` subtree ordering at all. Nothing in
+   the document can paint over it and it can paint over nothing but the
+   background.
+
+   It sits at the bottom, at the opposite end of the viewport from both the
+   shared header and the Altimeter, which is the arrangement of §10 that a
+   later layout change cannot accidentally break. */
+
+.mv-telemetry {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 4;
+  pointer-events: none;
+  /* Deep enough that the copy passing behind it FADES rather than being cut in
+     half by an edge. A short gradient left a legible line of prose sitting
+     across the readout, which is the "half-covered" state §10 objects to —
+     stated there about the altimeter, and just as true of the one readout on
+     the page. Nothing here is opaque: this is still a wash over the continuous
+     background, not a plate. */
+  padding: 3.4rem var(--mv-pad) max(env(safe-area-inset-bottom), 10px);
+  background: linear-gradient(
+    180deg,
+    rgba(4, 6, 10, 0) 0%,
+    rgba(4, 6, 10, 0.62) 34%,
+    rgba(4, 6, 10, 0.93) 62%,
+    rgba(4, 6, 10, 0.97) 100%
+  );
+}
+
+.mv-telemetry__rule {
+  --mv-fill: 0;
+  position: relative;
+  height: 1px;
+  margin-bottom: 0.5rem;
+  background: var(--hair);
+}
+
+.mv-telemetry__rule i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 100%;
+  background: var(--signal);
+  transform: scaleX(var(--mv-fill));
+  transform-origin: 0 50%;
+}
+
+.mv-telemetry__read {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin: 0 0 0.35rem;
+  font: 500 0.68rem/1.4 var(--data);
+  letter-spacing: 0.1em;
+}
+
+.mv-telemetry__digits {
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--signal);
+}
+
+.mv-telemetry__unit { color: var(--haze); }
+
+/* The one stage label on the page. Pushed to the far end so the two readings
+   cannot be mistaken for one string. */
+.mv-telemetry__stage {
+  margin-inline-start: auto;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--chrome);
+}
+
+/* Anchor links land clear of the shared header. */
+.mv-on { scroll-padding-top: calc(var(--deck-content, 64px) + 12px); }
+
+/* ==================================================== §10 — reduced motion ==
+   §24: simpler still. Everything is visible, nothing travels, nothing
+   transitions, and the instrument keeps its six discrete states.
+
+   `!important` because these have to beat the role rules above regardless of
+   which class an element carries, and because a visitor with the preference set
+   must never depend on a script having run to see the page — `reveal.ts`
+   resolves the same classes, and this is the belt to its braces. */
+
+@media (prefers-reduced-motion: reduce) {
+  .mv-text,
+  .mv-copy,
+  .mv-label {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .mv-lines__in { transform: none !important; transition: none !important; }
+  .mv-rule { transform: scaleY(1) !important; transition: none !important; }
+  .mv-alt__dial { transition: none !important; }
+  .mv-btn { transition: none !important; }
+}

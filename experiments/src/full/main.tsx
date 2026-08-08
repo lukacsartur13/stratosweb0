@@ -1,6 +1,8 @@
-import { Component, StrictMode, type ErrorInfo, type ReactNode } from 'react';
+import { Component, StrictMode, useState, type ErrorInfo, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { FullAscent } from './FullAscent';
+import { MobileHome } from './mobile/MobileHome';
+import { isMobileHomepage } from './mobile/device';
 import { JourneyFallback } from './components/JourneyFallback';
 import './styles.css';
 
@@ -115,12 +117,38 @@ if (import.meta.env.DEV) {
  * available on the old structure was to poll until the landmark appeared, which
  * lands a focus change on a visitor who has already started reading.
  */
+/**
+ * The one fork between the two homepages.
+ *
+ * `if portrait mobile: simple mobile homepage / else: existing desktop
+ * cinematic homepage`, which is §4 of the mobile brief in its own words. The
+ * two are separate compositions rather than one component full of breakpoint
+ * conditionals: they share the content tables, the locale messages and the
+ * Meridian drawing, and nothing else. `FullAscent` is untouched.
+ *
+ * ## Why the decision is taken once and never revisited
+ *
+ * `useState` with an initialiser, not an effect and not a media-query
+ * subscription. The answer comes from `screen`'s short edge and the pointer
+ * type — see `mobile/device.ts` — neither of which can change while the page is
+ * open, so there is nothing to subscribe to. Re-deciding would mean unmounting
+ * a live React tree and mounting the other one underneath a finger that is
+ * still moving, which is precisely the Safari-toolbar thrash §23 forbids.
+ *
+ * A rotation therefore keeps the mobile composition, which is what §23 asks
+ * for: mobile landscape gets the simple editorial page, not the cinematic one.
+ */
+function Homepage() {
+  const [mobile] = useState(isMobileHomepage);
+  return mobile ? <MobileHome /> : <FullAscent />;
+}
+
 const host = document.getElementById('main');
 if (host) {
   createRoot(host).render(
     <StrictMode>
       <JourneyBoundary>
-        <FullAscent />
+        <Homepage />
       </JourneyBoundary>
     </StrictMode>,
   );
