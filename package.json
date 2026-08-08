@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Stratos Media — static trilingual public site plus the private React portal.",
+  "description": "Stratos Media \u2014 static trilingual public site plus the private React portal.",
   "scripts": {
     "postinstall": "npm ci --prefix portal && npm ci --prefix experiments",
     "generate": "python3 _build/build.py",
@@ -45,10 +45,11 @@
     "dev:home": "npm --prefix experiments run dev:home",
     "i18n:meridian": "node scripts/meridian-i18n.mjs",
     "draco:sync": "node scripts/sync-draco.mjs",
-    "draco:check": "node scripts/sync-draco.mjs --check"
+    "draco:check": "node scripts/sync-draco.mjs --check",
+    "test:mountains": "playwright test --config playwright.mountains.config.ts"
   },
   "comments": {
-    "dependencies": "Runtime dependencies of the NETLIFY FUNCTIONS, and nothing else. The public site ships no third-party JavaScript and the portal has its own manifest; this block exists because Netlify bundles netlify/functions/* against the ROOT package.json, not against portal/. Omitting @supabase/supabase-js here is what made every lead submission crash with ERR_MODULE_NOT_FOUND at the store step — the SDK was installed under portal/node_modules, where the function cannot reach it."
+    "dependencies": "Runtime dependencies of the NETLIFY FUNCTIONS, and nothing else. The public site ships no third-party JavaScript and the portal has its own manifest; this block exists because Netlify bundles netlify/functions/* against the ROOT package.json, not against portal/. Omitting @supabase/supabase-js here is what made every lead submission crash with ERR_MODULE_NOT_FOUND at the store step \u2014 the SDK was installed under portal/node_modules, where the function cannot reach it."
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.47.10"
