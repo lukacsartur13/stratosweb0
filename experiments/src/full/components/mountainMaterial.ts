@@ -371,15 +371,39 @@ const FRAGMENT = /* glsl */ `
     // Exponential rather than a near/far smoothstep: real aerial perspective is
     // an optical depth, and an exponential needs one density per band instead
     // of two distances that have to be re-tuned every time the camera moves
-    // along its 820 m of authored advance.
+    // along its authored advance.
     float density = uFogDensity
       + uValleyDensity * exp( -max( vHeight - uValleyFogTop, 0.0 ) / uValleyFogFalloff );
     float fog = 1.0 - exp( -vDepth * density * fogScale );
 
-    // The cloud deck's own approach, from mountains.ts. Taking the fog all the
-    // way to 1 before the opacity moves is what makes the range dissolve into
-    // the deck instead of being switched off.
-    fog = mix( clamp( fog, 0.0, 1.0 ), 1.0, uDissolve );
+    /*
+     * §13: why the measured material separation was not visible.
+     *
+     * This mix is the answer, and it was the last thing in the chain. Every
+     * term above it — the four zone albedos, the key, the crest lift, the
+     * valley darkening — writes into 'col', and then 'mix(col, uFogColor, fog)'
+     * interpolates all of it toward *one colour*. Whatever the rock was made
+     * of, at fog = 0.6 only 40% of that survives, and the remaining 60% is the
+     * same blue-grey for the valley, the slate, the ridge and the snow alike.
+     * That is exactly the "mostly one blue-grey mountain material" the
+     * real-device recordings show, and it is why raising the zone contrast kept
+     * measuring better and kept looking the same: the measurement was taken
+     * before this line and the eye sees what comes after it.
+     *
+     * The fix is a ceiling on the *aerial* term rather than less atmosphere.
+     * Haze is capped at 'uFogMax', so the furthest rock keeps a stated fraction
+     * of its own colour however deep the scene gets, and the depth cue it used
+     * to carry alone is now carried by 'uLevel' and 'uContrast' — value and
+     * local contrast, which are what actually make a plane recede and which do
+     * not destroy hue on the way.
+     *
+     * 'uDissolve' is deliberately *outside* the cap and still goes to 1. That
+     * is the cloud-deck handoff from mountains.ts — a deliberate disappearance
+     * rather than distance — and the range must still be able to vanish into
+     * the deck completely at 12 000 m.
+     */
+    fog = min( clamp( fog, 0.0, 1.0 ), uFogMax );
+    fog = mix( fog, 1.0, uDissolve );
     col = mix( col, uFogColor, fog );
 
     gl_FragColor = vec4( col, uOpacity );
