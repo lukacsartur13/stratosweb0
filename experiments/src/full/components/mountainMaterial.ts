@@ -26,12 +26,21 @@ import type { MountainDebug } from '../journey';
  *
  * ## What it is not
  *
- * No noise, no triplanar texture, no Fresnel term, no outline, no facet
- * exaggeration. Every term below is a low-frequency function of the surface
- * normal, the height or the camera distance, because the brief's line is that
- * the shading should reveal the geology rather than decorate it — and because
- * a per-fragment `sin()` chain over 50% of a 1170×2532 phone framebuffer is a
- * real cost for something the displaced geometry already provides.
+ * No texture fetch, no second UV set, no Fresnel term, no outline, no facet
+ * exaggeration, no image-based lighting. §12 asks for procedural material logic
+ * rather than photo textures, and this is that taken literally: the zoning, the
+ * erosion break-up and the micro-relief are all functions of the world position
+ * and the surface normal, so the GLB does not grow by a byte and there is no
+ * tiling to hide.
+ *
+ * There *is* now noise, which there was not before, and the note that used to
+ * stand here said there never would be. That was right for the composition it
+ * was written against and wrong for this one: with the terrain reframed the
+ * masses are two to five kilometres out rather than five hundred metres, and at
+ * that distance the flat-shaded facets that used to supply all the surface
+ * information subtend a few pixels each. What reached the phone was a smooth
+ * blockout. Two octaves of value noise — one on desktop — is what puts the rock
+ * back, and `DETAIL_OCTAVES` keeps the cost where §15 asks for it.
  *
  * ## Tone mapping
  *
@@ -64,6 +73,7 @@ const VERTEX = /* glsl */ `
   varying vec3  vNormalW;
   varying float vDepth;        // model metres from the camera
   varying float vHeight;       // model metres above the camera
+  varying vec3  vModel;        // model metres, terrain-local — the noise domain
 
   void main() {
     vec4 world = modelMatrix * vec4( position, 1.0 );
@@ -80,6 +90,14 @@ const VERTEX = /* glsl */ `
     // in mountainLook.ts readable: 4 200 is a background ridge, 640 is a crest.
     vDepth  = length( mv.xyz ) / uRangeScale;
     vHeight = ( world.y - cameraPosition.y ) / uRangeScale;
+
+    // The noise has to be evaluated in a frame that is nailed to the rock, not
+    // to the camera. 'position' is exactly that — the untransformed vertex, in
+    // Blender's own metres — so the erosion pattern is a property of the
+    // mountain and does not swim across it as the range is re-anchored to the
+    // camera every frame. Using vHeight or a view-space position here is the
+    // one mistake that turns procedural rock into crawling static.
+    vModel = position;
 
     gl_Position = projectionMatrix * mv;
   }
@@ -128,12 +146,17 @@ const FRAGMENT = /* glsl */ `
   uniform float uSnowAmount;
   uniform float uZoneAmount;
   uniform float uZoneJitter;
+  uniform vec2  uErosion;      // wavelength in model metres, amplitude in metres
+  uniform vec3  uRelief;       // wavelength, normal amplitude, roughness amount
+  uniform float uSlopeRock;    // how hard a steep face is pushed toward rock
+  uniform float uZoneDebug;    // 0 production, 1 writes the zone weights out
 
   uniform vec3  uFogColor;
   uniform float uFogDensity;
   uniform float uValleyDensity;
   uniform float uValleyFogTop;
   uniform float uValleyFogFalloff;
+  uniform float uFogMax;
   uniform float uDissolve;
 
   uniform float uOpacity;
@@ -141,9 +164,66 @@ const FRAGMENT = /* glsl */ `
   varying vec3  vNormalW;
   varying float vDepth;
   varying float vHeight;
+  varying vec3  vModel;
+
+  /*
+   * Value noise, hashed rather than sampled.
+   *
+   * §12 rules out photo textures and prefers procedural logic, and this is the
+   * cheapest thing that gives geological break-up: no fetch, no sampler, no
+   * tiling, nothing added to the GLB. One octave costs eight hashes; the second
+   * is compiled in only where DETAIL_OCTAVES says so, which is how §15's "less
+   * high-frequency detail on the small screen" is honoured without a branch.
+   */
+  float hash31( vec3 p ) {
+    p = fract( p * 0.3183099 + vec3( 0.1, 0.2, 0.3 ) );
+    p *= 17.0;
+    return fract( p.x * p.y * p.z * ( p.x + p.y + p.z ) );
+  }
+
+  float vnoise( vec3 x ) {
+    vec3 i = floor( x );
+    vec3 f = fract( x );
+    f = f * f * ( 3.0 - 2.0 * f );
+    return mix(
+      mix( mix( hash31( i + vec3( 0.0, 0.0, 0.0 ) ), hash31( i + vec3( 1.0, 0.0, 0.0 ) ), f.x ),
+           mix( hash31( i + vec3( 0.0, 1.0, 0.0 ) ), hash31( i + vec3( 1.0, 1.0, 0.0 ) ), f.x ), f.y ),
+      mix( mix( hash31( i + vec3( 0.0, 0.0, 1.0 ) ), hash31( i + vec3( 1.0, 0.0, 1.0 ) ), f.x ),
+           mix( hash31( i + vec3( 0.0, 1.0, 1.0 ) ), hash31( i + vec3( 1.0, 1.0, 1.0 ) ), f.x ), f.y ),
+      f.z );
+  }
+
+  /** Signed fBm, -1..1, at DETAIL_OCTAVES octaves. */
+  float fbm( vec3 p ) {
+    float v = vnoise( p ) * 2.0 - 1.0;
+    #if DETAIL_OCTAVES > 1
+      v += ( vnoise( p * 2.17 + 31.4 ) * 2.0 - 1.0 ) * 0.5;
+      v /= 1.5;
+    #endif
+    return v;
+  }
 
   void main() {
     vec3 N = normalize( vNormalW );
+
+    // --- micro-relief --------------------------------------------------------
+    // §11's "the terrain reads too much like smooth low-poly blockout".
+    //
+    // Perturbing the normal rather than displacing the surface, because the
+    // silhouette is the composition and the composition has just been signed
+    // off — a displacement would move the ridge lines this pass exists to
+    // establish. Three noise gradients built from one fBm evaluated at offset
+    // positions is the standard trick and it costs three fBm rather than a
+    // derivative chain.
+    //
+    // The amplitude is deliberately small. This is what turns a flat facet into
+    // a surface that catches the key differently across its width; it is not
+    // meant to read as rubble.
+    vec3 np = vModel / max( uRelief.x, 1.0 );
+    float n0 = fbm( np );
+    float nx = fbm( np + vec3( 0.35, 0.0, 0.0 ) );
+    float nz = fbm( np + vec3( 0.0, 0.0, 0.35 ) );
+    N = normalize( N + vec3( nx - n0, 0.0, nz - n0 ) * uRelief.y );
 
     // --- where this fragment sits on the depth ramp -------------------------
     // Per fragment rather than per mesh. Bucketing meshes into a foreground, a
@@ -170,28 +250,85 @@ const FRAGMENT = /* glsl */ `
     // for the key, so the whole of §14's zoning costs a few smoothsteps and no
     // texture fetch. See the zone block in mountainLook.ts.
 
-    // The crossings are broken up per face so they never draw a contour line
-    // across the range. One sin() of the normal, which on flat-shaded terrain
-    // is constant across a facet — the boundary wanders along the geometry that
-    // is already there rather than along a noise field that is not.
-    float jitter = uZoneJitter * sin( vNormalW.x * 11.3 + vNormalW.z * 7.7 );
-    float h      = vHeight + jitter;
+    /*
+     * §10: the crossings must not look like horizontal stripes.
+     *
+     * Three things move the boundary, and each answers a different way of
+     * failing:
+     *
+     *   erosion   low-frequency noise in the rock's own frame. This is what
+     *             makes a band edge wander up a gully and down a spur instead
+     *             of ruling a contour across the range. It replaces a per-face
+     *             'sin(normal)' jitter, which was constant across a flat-shaded
+     *             facet and therefore broke the line into *facets* — visibly
+     *             the geometry's grid rather than geology.
+     *
+     *   slope     a steep face sheds its soil, so it is rock however low it
+     *             sits. This is the term that puts stone in the valley walls
+     *             and keeps the organic band on the shallow ground, which is
+     *             the single strongest cue that the lower terrain is a
+     *             different substance rather than a darker one.
+     *
+     *   jitter    kept, at a much smaller amplitude, purely as a high-frequency
+     *             dither on top of the other two.
+     */
+    float ero = fbm( vModel / max( uErosion.x, 1.0 ) ) * uErosion.y;
+    float h   = vHeight + ero + uZoneJitter * sin( vNormalW.x * 11.3 + vNormalW.z * 7.7 );
 
     float toRock  = smoothstep( uZoneCross.x - uZoneBlend, uZoneCross.x + uZoneBlend, h );
+    // Steepness pushes toward rock independently of height. 'N.y' near zero is
+    // a vertical face; near one is a ledge.
+    toRock = clamp( toRock + uSlopeRock * ( 1.0 - smoothstep( 0.15, 0.72, N.y ) ), 0.0, 1.0 );
+
     float toRidge = smoothstep( uZoneCross.y - uZoneBlend, uZoneCross.y + uZoneBlend, h );
     vec3  zone    = mix( mix( uZoneValley, uZoneRock, toRock ), uZoneRidge, toRidge );
 
     // Snow needs height *and* a surface that can hold it. Steep faces shed it,
     // which is what keeps the accent on shoulders and ledges instead of
-    // painting it across the silhouette the composition depends on.
+    // painting it across the silhouette the composition depends on. The same
+    // erosion field breaks its lower edge, so the snow line is a drift rather
+    // than an altitude.
     float snowH = smoothstep( uSnow.x, uSnow.x + uSnow.y, h );
     float snowS = smoothstep( uSnow.z, 1.0, N.y );
-    zone = mix( zone, uZoneSnow, uSnowAmount * snowH * snowS );
+    float snow  = uSnowAmount * snowH * snowS;
+    zone = mix( zone, uZoneSnow, snow );
 
     // uZoneAmount is the whole restraint budget in one number: at 0 this
     // resolves to the accepted monochrome palette exactly, so the zoning can be
     // reviewed against the look it replaces rather than argued about.
     vec3 base = mix( baseCol, zone, uZoneAmount ) * level;
+
+    /*
+     * §19's material-debug view, and the reason it is a uniform rather than a
+     * second material.
+     *
+     * The review has to answer "can the four zones be told apart in the final
+     * frame", which means the *same* fragments have to be classified and then
+     * measured after lighting and atmosphere. A separate debug material would
+     * be a different program with its own interpolation and would classify
+     * different pixels. Writing the weights out of this one, on demand,
+     * guarantees the mask and the picture describe the same shader.
+     *
+     * uZoneDebug is 0 in every production frame and the branch is uniform, so
+     * it costs one scalar compare per fragment and no divergence. The view is
+     * never shipped: nothing in the application writes this uniform, only the
+     * capture script does.
+     */
+    // Hard categories in RGB rather than weights plus an alpha flag. The
+    // material is in the transparent pass, so anything written to alpha is
+    // consumed by the blend and never reaches a readback — the first version of
+    // this signalled snow in alpha and classified every pixel in the scene as
+    // snow.
+    //
+    //   valley (1,0,0)   rock (0,1,0)   ridge (0,0,1)   snow (1,1,0)
+    if ( uZoneDebug > 0.5 ) {
+      vec3 tag = ( toRidge > 0.5 ) ? vec3( 0.0, 0.0, 1.0 )
+               : ( toRock  > 0.5 ) ? vec3( 0.0, 1.0, 0.0 )
+                                   : vec3( 1.0, 0.0, 0.0 );
+      if ( snow > 0.28 ) tag = vec3( 1.0, 1.0, 0.0 );
+      gl_FragColor = vec4( tag, 1.0 );
+      return;
+    }
 
     // --- the key ------------------------------------------------------------
     // Wrapped, so the terminator is a curve rather than a clip. A hard Lambert
@@ -302,12 +439,17 @@ function build(look: MountainLook, rangeScale: number): Uniforms {
     uSnowAmount: { value: look.zone.snowAmount },
     uZoneAmount: { value: look.zone.amount },
     uZoneJitter: { value: look.zone.jitter },
+    uErosion: { value: new THREE.Vector2(look.zone.erosionScale, look.zone.erosionAmount) },
+    uSlopeRock: { value: look.zone.slopeRock },
+    uRelief: { value: new THREE.Vector3(look.relief.scale, look.relief.amount, 0) },
+    uZoneDebug: { value: 0 },
 
     uFogColor: { value: linear(look.fogColor) },
     uFogDensity: { value: look.fogDensity },
     uValleyDensity: { value: look.valleyDensity },
     uValleyFogTop: { value: look.valleyFogTop },
     uValleyFogFalloff: { value: look.valleyFogFalloff },
+    uFogMax: { value: look.fogMax },
     uDissolve: { value: 0 },
 
     uOpacity: { value: 1 },
@@ -331,6 +473,17 @@ export function createMountainMaterials(
   const make = (uniforms: Uniforms) =>
     new THREE.ShaderMaterial({
       uniforms,
+      /*
+       * §15: the same material language, less high-frequency detail on the
+       * small screen.
+       *
+       * A `#define` rather than a uniform, so the second octave is not compiled
+       * into the mobile program at all — a uniform-gated branch would still pay
+       * for the texture-free-but-not-free eight hashes on a phone GPU. Only one
+       * variant is ever loaded per page (see `variantFor`), so this is one
+       * program either way and not a permutation explosion.
+       */
+      defines: { DETAIL_OCTAVES: variant === 'mobile' ? 1 : 2 },
       vertexShader: VERTEX,
       fragmentShader: FRAGMENT,
       // Same as the material this replaces: the range fades out rather than
@@ -460,6 +613,11 @@ export function applyLook(
     u.uSnowAmount.value = isRoute ? 0 : look.zone.snowAmount;
     u.uZoneAmount.value = isRoute ? 0 : look.zone.amount;
     u.uZoneJitter.value = look.zone.jitter;
+    (u.uErosion.value as THREE.Vector2).set(look.zone.erosionScale, look.zone.erosionAmount);
+    u.uSlopeRock.value = isRoute ? 0 : look.zone.slopeRock;
+    // The route is a drawn line on the ground, so it keeps the flat surface a
+    // line needs — perturbing its normal would make it glitter along its length.
+    (u.uRelief.value as THREE.Vector3).set(look.relief.scale, isRoute ? 0 : look.relief.amount, 0);
 
     // --- form ---------------------------------------------------------------
     u.uCrestFrom.value = look.crestFrom;
@@ -472,6 +630,7 @@ export function applyLook(
     u.uValleyDensity.value = look.valleyDensity * inValley * (debug?.heightFog ?? 1);
     u.uValleyFogTop.value = look.valleyFogTop;
     u.uValleyFogFalloff.value = look.valleyFogFalloff;
+    u.uFogMax.value = look.fogMax;
 
     // The range dissolves *into* the deck, so the colour it dissolves into has
     // to become the deck. One lerp, on the same number that drives the fog.

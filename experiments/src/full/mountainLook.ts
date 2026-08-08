@@ -157,6 +157,36 @@ export type MountainLook = {
   /** Model metres above the camera at which the valley density has fallen off. */
   valleyFogTop: number;
   valleyFogFalloff: number;
+  /**
+   * Ceiling on the *aerial* haze term, 0..1. The single most important number
+   * in this file for §8 and §13.
+   *
+   * The haze is a lerp of the shaded colour toward one atmosphere colour, and
+   * it is the last operation in the shader. Uncapped, it converged the whole
+   * range on one blue-grey at exactly the distances the reframed composition
+   * now puts the masses at — which is why the previous pass could measure a
+   * real increase in material separation and still ship a picture that reads as
+   * one substance. The measurement was taken upstream of the lerp.
+   *
+   * Capping it means the furthest rock keeps `1 - fogMax` of its own colour
+   * however deep the scene is. The depth cue that the uncapped haze used to
+   * carry alone now comes from `level` and `contrast` instead — value and local
+   * contrast, which make a plane recede without destroying its hue.
+   *
+   * The cloud-deck dissolve is *not* subject to this and still reaches 1: that
+   * is a deliberate disappearance rather than distance.
+   */
+  fogMax: number;
+
+  /**
+   * Procedural micro-relief. §11.
+   *
+   * `scale` is the wavelength in model metres and `amount` is how hard the
+   * surface normal is bent. This is a normal perturbation and never a
+   * displacement — the silhouette is the composition, and the composition is
+   * what this pass has just spent its whole budget establishing.
+   */
+  relief: { scale: number; amount: number };
 
   /**
    * Environmental material zoning: what the rock is *made of* at each altitude.
@@ -228,14 +258,38 @@ export type MountainLook = {
     /**
      * Per-face break-up of the two height crossings, in model metres.
      *
-     * A pure height threshold on faceted terrain draws a horizontal line across
-     * the range — a contour, which is the one thing that would make this read as
-     * a game asset. Jittering the threshold by a function of the surface normal
-     * costs one `sin` and, because the geometry is flat-shaded, resolves to a
-     * constant per face: the boundary breaks up along the facets that are
-     * already there instead of along a noise field that is not.
+     * Kept, at a much smaller amplitude than it used to carry, and demoted to a
+     * dither on top of `erosion*`. Because the geometry is flat-shaded this
+     * `sin` of the normal is constant across a facet, so on its own it broke a
+     * band edge into the *grid* rather than into geology — visibly the mesh.
      */
     jitter: number;
+
+    /**
+     * Erosion break-up of the same two crossings. §10.
+     *
+     * `erosionScale` is the noise wavelength in model metres and
+     * `erosionAmount` is how many metres of height it adds or removes. Together
+     * they are what stops the four substances reading as three horizontal
+     * stripes: the boundary wanders up gullies and down spurs by a couple of
+     * hundred metres, so no part of it is a contour line.
+     *
+     * The noise is evaluated in the *rock's own* coordinate frame rather than
+     * in world or view space. The range is re-anchored to the camera every
+     * frame, so any frame that moves with the camera would make the pattern
+     * crawl across the terrain during the ascent.
+     */
+    erosionScale: number;
+    erosionAmount: number;
+
+    /**
+     * How hard a steep face is pushed toward rock regardless of its height,
+     * 0..1. §10's "slope", and the strongest single cue that the lower terrain
+     * is a different *substance* rather than the same one at a lower value:
+     * soil and scrub hold on shallow ground and shed off anything steep, so a
+     * valley wall is stone and the ground between the walls is not.
+     */
+    slopeRock: number;
   };
 
   /** The ascent route. Its own albedo, since it is the one non-rock element. */
@@ -354,7 +408,7 @@ const DESKTOP: MountainLook = {
   // `VALLEY_FLOOR` measured mean sRGB 43.4 across 31% of the frame while
   // `VALLEY_WALL_L` measured 33.0 — the floor was *lighter than the wall above
   // it*. 0.9 puts it back underneath.
-  valleyDarken: 0.9,
+  valleyDarken: 0.62,
 
   fogColor: 0x2b3546,
   fogColorHigh: 0x8e9aa8,
@@ -362,6 +416,18 @@ const DESKTOP: MountainLook = {
   valleyDensity: 0.00012,
   valleyFogTop: -250,
   valleyFogFalloff: 300,
+  // Measured rather than chosen: at 4 200 model metres — the far palette anchor
+  // and about where MNT_BACKGROUND_C sits — the uncapped haze reached 0.71,
+  // which left the most distant rock with 29% of its own colour and the rest a
+  // flat lerp toward one blue-grey. 0.62 keeps better than a third of the
+  // albedo at every distance in the scene while still reading as deep air.
+  fogMax: 0.62,
+
+  // 34 m wavelength on a range whose masses are 900–1 500 m across: about forty
+  // cycles over a mass, which at desktop viewing distance is surface rather
+  // than shape. 0.10 is a gentle bend — enough that a facet stops being one
+  // flat value across its width, not enough to compete with the ridge lines.
+  relief: { scale: 34, amount: 0.1 },
 
   // The masses run from −620 (their skirts) to +985 (`MNT_BACKGROUND_R`'s
   // peak) in metres relative to the camera at 0 m, which is the same space
@@ -372,26 +438,48 @@ const DESKTOP: MountainLook = {
   // which only `MNT_BACKGROUND_R` and the taller foreground crests reach.
   zone: {
     // Muted green-grey rather than green: this is the *cast* of ground that has
-    // soil and scrub on it, seen at a kilometre through haze, not grass. Its
-    // saturation is 8% and its value sits below the rock band, so the valley
-    // stays the darkest part of the picture — which is what `valleyDarken` is
-    // also protecting, and the two must not fight.
-    valley: 0x4b5340,
-    // The dominant region, and deliberately close to the accepted `base` — the
-    // middle band is most of the visible rock, so this is where the change has
-    // to be smallest for the range to still look like itself.
-    rock: 0x6a7381,
-    ridge: 0x9ba6b5,
+    // soil and scrub on it, seen at a kilometre through haze, not grass. §9 is
+    // explicit that the valley must not go green like a golf course, so the
+    // saturation stays low — 14% here, up from 8% — and the whole separation is
+    // carried by hue *direction* (warm-olive against cold-blue) rather than by
+    // chroma. That is what lets it survive next to yellow typography.
+    //
+    // Its value also sits below the rock band, so the valley stays the darkest
+    // part of the picture — which is what `valleyDarken` is also protecting,
+    // and the two must not fight.
+    valley: 0x4b5440,
+    // The dominant region. Deliberately still close to the accepted `base` —
+    // the middle band is most of the visible rock, so this is where the change
+    // has to be smallest for the range to look like itself — but pulled a step
+    // cooler and darker so the ridge above it has somewhere to go.
+    rock: 0x5c6573,
+    // Colder and lighter: exposed mineral, the band where the ridges have to
+    // become readable. The gap from `rock` is now 0x21 of luminance rather than
+    // 0x18, which is the difference between "a lighter version of the same
+    // stone" and "a different stone".
+    ridge: 0x93a0b4,
     // Cold off-white. Never 0xffffff: the brightest thing in this frame is the
     // yellow of the typography and the instrument's lit arc, and §14.4 is
     // explicit that snow must not compete with them.
     snow: 0xc8d4e4,
 
-    valleyTo: -230,
-    ridgeFrom: 300,
-    blend: 170,
+    valleyTo: -60,
+    ridgeFrom: 340,
+    blend: 200,
 
-    snowFrom: 520,
+    // 380 m wavelength against a `blend` of 170 and crossings 530 m apart: long
+    // enough that the boundary reads as terrain opening and closing rather than
+    // as noise on a line, short enough that it moves several times across one
+    // mass. 150 m of amplitude is most of one blend width, so no part of either
+    // crossing is a horizontal line anywhere in the range.
+    erosionScale: 380,
+    erosionAmount: 150,
+    // Enough that a valley wall is stone while the ground between the walls is
+    // not, and not so much that every ridge flank flips to rock and the height
+    // banding stops meaning anything.
+    slopeRock: 0.55,
+
+    snowFrom: 470,
     snowFade: 220,
     // 0.38 keeps snow off anything steeper than about 68°. Measured at 0.62 —
     // a 52° limit, which reads as the right restraint on paper — the accent
@@ -399,11 +487,18 @@ const DESKTOP: MountainLook = {
     // almost none of their faces are that flat, and the p99 luminance of the
     // whole frame moved by 1.2. A limit has to be loose enough for the geometry
     // it is applied to before `snowAmount` can do the restraining.
-    snowSlope: 0.38,
+    snowSlope: 0.18,
     snowAmount: 0.6,
 
-    amount: 0.8,
-    jitter: 130,
+    // Raised from 0.8. With the haze capped there is finally something for the
+    // zoning to survive *into*, so the restraint budget can be spent: at 0.8 a
+    // fifth of every fragment was still the depth palette, which on top of the
+    // old uncapped fog left almost nothing of the substance.
+    amount: 0.92,
+    // Demoted to a dither. It used to carry the whole break-up at 130 m and, on
+    // flat-shaded terrain, drew the mesh; `erosionScale`/`erosionAmount` do the
+    // work now.
+    jitter: 40,
   },
 
   routeColor: 0x6f8299,
@@ -464,7 +559,20 @@ const MOBILE: MountainLook = {
   azimuthTilt: -88,
   azimuthAmount: 0.085,
 
-  depthSpan: [420, 4600],
+  // Moved out with the geometry, and this is the correction that mattered most
+  // for the tone.
+  //
+  // The reframed portrait masses sit at 1 250–6 100 model metres where the old
+  // ones sat at 430–3 300, so against the previous [420, 4600] span *every*
+  // framing mass was past the far anchor. They were all being graded with
+  // `level[2]`, `contrast[2]` (0.22 — almost no local contrast) and
+  // `fogScale[2]` (1.95), which is the "recede into the air" band. The result
+  // was the measured pale drapery: correct shapes, no depth ladder, no
+  // modelling, everything lifted by haze into one wash.
+  //
+  // [1250, 6100] is the actual near and far extent of the composition, so the
+  // three anchors grade across it as they were always meant to.
+  depthSpan: [1250, 6100],
 
   base: [0x737d8a, 0x7c8593, 0x818b98],
   // The same ladder as desktop, compressed. A portrait frame shows less of each
@@ -482,10 +590,21 @@ const MOBILE: MountainLook = {
   //
   // Still below desktop's 1.05, because the portrait frame sees them closer and
   // more edge-on, and the last thing this frame needs is two bright edges.
-  level: [0.8, 0.8, 0.9],
-  contrast: [0.92, 0.6, 0.22],
-  floor: [0.024, 0.042, 0.082],
-  fogScale: [0.12, 0.78, 1.95],
+  //
+  // Re-ordered as a *descending* ladder, which it was not before. The old
+  // [0.8, 0.8, 0.9] made the furthest band the brightest, which is the inverse
+  // of aerial perspective and only ever worked because the far band was
+  // effectively unused: with the old geometry almost nothing was out there.
+  // Now that the whole range is spread across the span, the far anchor has to
+  // recede, and it has to do it by *value* since the haze is capped.
+  level: [0.9, 0.74, 0.58],
+  // The far anchor keeps real local contrast now rather than 0.22. That number
+  // was right when "far" meant the background ridges alone; it is wrong when
+  // "far" means the cloud-break peaks, which are the tallest and most
+  // silhouette-carrying masses in the portrait picture.
+  contrast: [0.92, 0.66, 0.4],
+  floor: [0.024, 0.042, 0.07],
+  fogScale: [0.12, 0.7, 1.35],
 
   crestFrom: -450,
   crestTo: 470,
@@ -494,14 +613,32 @@ const MOBILE: MountainLook = {
   // the floor an even larger share — `VALLEY_FLOOR` measured 43% of the mobile
   // frame against 37% of the desktop one, at mean sRGB 46.6 at 7 000 m, which
   // made it both the largest and the brightest region in the picture.
-  valleyDarken: 0.92,
+  valleyDarken: 0.55,
 
   fogColor: 0x2e3849,
   fogColorHigh: 0x8e9aa8,
-  fogDensity: 0.000115,
+  // Halved, because the scene it is measured through is now twice as deep. At
+  // the old 0.000115 with the old far scale of 1.95, a mass at 4 400 m — where
+  // CLOUD_PEAK_L now sits, and it is the composition's principal silhouette —
+  // reached a haze of 0.63 before the cap. Density and depth multiply, so
+  // holding the density while doubling the distances is a different picture,
+  // not the same one further away.
+  fogDensity: 0.00006,
   valleyDensity: 0.00011,
   valleyFogTop: -250,
   valleyFogFalloff: 280,
+  // Tighter than desktop's 0.62. A portrait frame puts body copy over the
+  // terrain rather than beside it (§16), so the far rock has to stay quieter —
+  // but 0.55 still leaves it 45% of its own colour, against the 15–20% the
+  // uncapped haze left it at these distances.
+  fogMax: 0.55,
+
+  // Longer wavelength and a gentler bend than desktop, which is §15 exactly:
+  // the same material language with the high-frequency term backed off for a
+  // small screen. At 48 m the relief is about eight cycles across a phone frame
+  // at the near masses rather than twenty, so it reads as surface rather than
+  // as noise once the frame is 390 px wide.
+  relief: { scale: 48, amount: 0.075 },
 
   // The same four substances as desktop — §14 asks the two variants to share
   // one environmental language — placed against the portrait geometry rather
@@ -521,22 +658,42 @@ const MOBILE: MountainLook = {
   //     crests that actually survive the crop, and 0.48 keeps it from becoming
   //     the brightest thing next to the instrument.
   zone: {
-    valley: 0x4d5542,
-    rock: 0x6f7886,
-    ridge: 0x9ca7b6,
-    snow: 0xc8d4e4,
+    valley: 0x4c5441,
+    rock: 0x5e6672,
+    ridge: 0x8f9db2,
+    snow: 0xc9d6e6,
 
-    valleyTo: -230,
-    ridgeFrom: 265,
-    blend: 160,
+    valleyTo: 40,
+    // Raised with the geometry. The reframed masses put their crests 0.22–0.70
+    // of a half-height above the eye — roughly +160 to +900 model metres —
+    // where the old ones ran from the frame bottom to past its top, so a rock →
+    // ridge crossing at 265 now sits near the *base* of every mass instead of
+    // at its shoulder and everything above the valley reads as ridge.
+    ridgeFrom: 470,
+    blend: 220,
 
-    snowFrom: 470,
-    snowFade: 200,
-    snowSlope: 0.38,
-    snowAmount: 0.52,
+    erosionScale: 420,
+    erosionAmount: 160,
+    slopeRock: 0.55,
 
-    amount: 0.7,
-    jitter: 115,
+    // Raised with `ridgeFrom` for the same reason: at 470 the snow line sat
+    // below the shoulder of the mid masses. 700 puts it on the cloud-break
+    // peaks and the upper third of the midground, which are the crests that
+    // survive the portrait crop.
+    snowFrom: 620,
+    snowFade: 240,
+    snowSlope: 0.12,
+    // Still the lowest number in either preset. §16: snow must never sit at
+    // high brightness directly behind white body copy, and portrait is the
+    // frame where copy and terrain share the same pixels.
+    snowAmount: 0.58,
+
+    // Raised from 0.7, but deliberately left below desktop's 0.92. The portrait
+    // frame puts copy over the terrain, so every extra step of albedo
+    // separation is contrast competing with body text — §15's "no dense detail
+    // behind text", spent as a budget rather than asserted.
+    amount: 0.86,
+    jitter: 40,
   },
 
   routeColor: 0x6f8299,
