@@ -326,19 +326,70 @@ background can still close behind the instrument the way the desktop cone's
 truncation exists to allow.
 """
 
-MOBILE_CORRIDOR_FRACTION = 0.72
+MOBILE_CORRIDOR_FRACTION = 0.70
 """
-Inner lip of the valley walls, as a fraction of the frame half-width.
+Inner lip of the valley walls at the valley mouth, as a fraction of the frame
+half-width.
 
-Between MOBILE_SAFE_ZONE_FRACTION (0.605) and the frame edge, so the walls hold
-the outer 28% of each side and leave a 0.115 half-width band of clear sky between
-the protected disc and the rock. Framing, not a tunnel: 72% of the frame width
-stays open between the lips.
+Between MOBILE_SAFE_ZONE_FRACTION (0.605) and the frame edge, so the walls leave
+a clear band between the protected disc and the rock. This is now the *near*
+value only — see MOBILE_CORRIDOR_FRACTION_FAR — and it is the one the safe-zone
+margin is set by, because the ramp above it only ever moves the lip outward.
+With MOBILE_CORRIDOR_WANDER at 0.05 the lip never comes inside 0.65.
 """
 
-MOBILE_CORRIDOR_WANDER = 0.07
-"""Amplitude of the corridor lip's depth wander, in half-width fractions. Keeps
-the lip in [0.65, 0.79] — outside the protected disc at 0.605 at every depth."""
+MOBILE_CORRIDOR_FRACTION_FAR = 0.92
+"""
+…and the lip at the far end of the walls' run.
+
+WHY THE LIP CAN NO LONGER HOLD ONE FRACTION
+-------------------------------------------
+Holding a constant screen fraction was the previous rule, and `corridor_half_width`
+described it as the thing that "makes the valley read as one deliberate corridor".
+Measured against the real-device portrait recording, it is instead the primary
+cause of the curtain defect, and the mechanism is exact rather than a matter of
+degree: a lip pinned to a constant fraction of the half-width projects to a
+perfectly vertical screen line at *every* depth, and because the walls are the
+outermost geometry on both sides, that vertical line is the boundary between the
+rock and the sky down the whole of both frame edges. There is no camera station
+that turns it into a diagonal — a vertical projected edge stays vertical under
+translation, which is all a level camera on rails can do.
+
+The per-object census on the committed build shows the consequence: on a 390x844
+frame at 2 500 m, every framing mass on the left occupies x 0.00–0.22 and every
+one on the right occupies x 0.78–1.00, each spanning 60–80% of the frame height.
+Six masses, two lateral bands, no lateral spread at all.
+
+Ramping the fraction with depth is the smallest change that breaks it. The lip
+still never comes inside the protected disc — the ramp only ever moves it
+*outward* — so the safe-zone guarantee that the constant fraction was protecting
+survives by the same construction argument. What changes is that the far rows of
+the wall, which project high in the frame near the horizon, now sit further out
+than the near rows, which project low. That is a diagonal, and it is the shape
+the accepted desktop composition already has: its opening profile measures
+0.79 -> 0.30 from the upper frame to the horizon, against portrait's 0.76 -> 0.68.
+
+1.06 rather than something larger because the outer edge is at
+MOBILE_WALL_OUTER_FRACTION = 1.34: the lip has to stay inside it with enough run
+left for the wall to gain its height in the picture rather than past the frame
+edge.
+"""
+
+MOBILE_CORRIDOR_RAMP = (150.0, 2600.0)
+"""
+Depths, in metres, over which the lip travels from the near fraction to the far
+one.
+
+Starts at the valley mouth and completes at MOBILE_SAFE_ZONE_MAX_Y, so the whole
+of the enforced region is inside the ramp and the geometry past it — where only
+the capped centreline masses remain — sits at the far value.
+"""
+
+MOBILE_CORRIDOR_WANDER = 0.05
+"""Amplitude of the corridor lip's depth wander, in half-width fractions. On top
+of the ramp between MOBILE_CORRIDOR_FRACTION and MOBILE_CORRIDOR_FRACTION_FAR,
+so the lip is never below 0.65 — outside the protected disc at 0.605 at every
+depth, which is the property the ramp had to preserve."""
 
 MOBILE_CORRIDOR_FLOOR = 60.0
 """
@@ -531,26 +582,29 @@ def corridor_half_width(y: float, variant: str = "desktop") -> float:
 
     Mobile expresses the same idea as a frame fraction rather than as the cone
     plus an absolute margin: at portrait FOV a fixed 90 m margin is 0.09 of the
-    half-width at 800 m and 0.02 of it at 3 km, so the walls would visibly splay
-    open with depth instead of holding their framing.
+    half-width at 800 m and 0.02 of it at 3 km, so the walls would splay open
+    with depth far faster than any composition intends.
+
+    What mobile no longer does is hold *one* fraction. That rule projected the
+    lip to a dead vertical line at every depth and is the measured cause of the
+    portrait curtain — see MOBILE_CORRIDOR_FRACTION_FAR for the census that
+    established it. The fraction now ramps outward with depth, which the safe
+    zone tolerates by construction because the ramp only ever moves the lip away
+    from the centreline.
     """
     if variant == "mobile":
         d = max(0.0, y - CAMERA_ANCHOR[1])
-        # The lip wanders with depth rather than holding one fraction exactly.
-        #
-        # A lip pinned to a constant screen fraction projects to a dead-straight
-        # vertical line, and since the wall is the outermost thing in frame on
-        # both sides, that line is the composition's longest edge — the ruled
-        # cliff the brief rules out, standing on end where the flat-run test
-        # cannot see it. `max_vertical_edge_run` measures it now.
-        #
-        # The wander is one octave at a 620 m wavelength, which is long enough to
-        # read as the valley opening and closing rather than as noise on an edge.
-        # Amplitude is bounded so the lip stays in [0.65, 0.79] of the half-width
-        # — never inside MOBILE_SAFE_ZONE_FRACTION (0.605), so the framing
-        # guarantee survives the irregularity.
-        f = MOBILE_CORRIDOR_FRACTION + MOBILE_CORRIDOR_WANDER * value_noise(
-            0.0, y / 620.0, SEED + 733)
+        r0, r1 = MOBILE_CORRIDOR_RAMP
+        ramp = smoothstep(r0, r1, y)
+        f = MOBILE_CORRIDOR_FRACTION + (
+            MOBILE_CORRIDOR_FRACTION_FAR - MOBILE_CORRIDOR_FRACTION) * ramp
+        # The lip still wanders on top of the ramp, so the diagonal it now draws
+        # is not itself a ruled line. One octave at a 620 m wavelength — long
+        # enough to read as the valley opening and closing rather than as noise
+        # on an edge — and the amplitude keeps the lip clear of
+        # MOBILE_SAFE_ZONE_FRACTION (0.605) at the near end, where the ramp has
+        # not yet lifted it.
+        f += MOBILE_CORRIDOR_WANDER * value_noise(0.0, y / 620.0, SEED + 733)
         return max(MOBILE_CORRIDOR_FLOOR, f * MOBILE_TAN_H * d)
     return max(190.0, safe_zone_radius(min(y, SAFE_ZONE_MAX_Y)) + SAFE_ZONE_MARGIN)
 
@@ -994,68 +1048,108 @@ def mobile_masses():
 
     return [
         # --- Near frame -------------------------------------------------------
-        # The left mass is the anchor of the whole picture: closest, innermost,
-        # steepest, and the only mass whose crest leaves the top of the frame at
-        # the valley station. That is what makes the valley read as monumental
-        # rather than as cropped scenery. It leaves the top over the outer part
-        # of its span only — its inner face descends across a fifth of the
-        # half-width and crosses the horizon well outside the protected disc, so
-        # it frames the instrument instead of becoming a lid over it.
+        # Both near masses are shoulders now, not walls, and the three numbers
+        # that changed say why.
+        #
+        #   depth     is the lever, and it is the one the first mobile pass had
+        #             backwards. Both near masses move from 400–1 700 m out to
+        #             1 100–2 800 m. On a 14.7-degree-wide frame, distance is the
+        #             only thing that buys a sloping inner face *and* a summit
+        #             inside the picture at the same time, and the arithmetic
+        #             says why. The screen slope of an inner face is
+        #
+        #                 (run / rise) x (tanV / tanH)
+        #
+        #             and tanV/tanH on this frame is 2.22. `run` is the inner
+        #             shoulder's world width, which is `shoulder_in` x the
+        #             footprint, and the footprint is authored in *frame
+        #             fractions* — so it grows in metres with depth while the
+        #             rise needed for a given crest height grows only in
+        #             proportion to the same depth. Push a mass out and its face
+        #             leans; leave it near and no footprint that keeps its crest
+        #             on screen is wide enough to matter. At 800 m the old
+        #             MNT_FOREGROUND_L had 19 m of inner run under 1 180 m of
+        #             rise: a 62:1 face, screen slope 0.036. At 1 950 m the same
+        #             mass has 141 m of run under 651 m of rise: 0.48, inside the
+        #             range the accepted desktop composition measures (0.57–0.68).
+        #
+        #   footprint 0.85 -> 1.56 half-widths, and `shoulder_in` 0.30 -> 0.36,
+        #             which is where that 141 m of run comes from.
+        #
+        #   peak      raised, not lowered, because the mass is further away. The
+        #             crest now sits about 0.52 of a half-height above the eye
+        #             instead of leaving the frame, and the visible silhouette is
+        #             a diagonal running from the valley floor up to the frame
+        #             edge — which is exactly what the accepted desktop left-hand
+        #             mass does.
+        #
+        # A note for anyone retuning these: `peak` is amplitude above BURIED_BASE
+        # (-420), not height above the valley floor, and the ridged noise tops out
+        # near h = 0.69 rather than 1. Crest height is therefore about
+        # `-420 + 0.69 x peak`. Reading `peak` as a height above the ground is
+        # what sank every framing mass below the sightline on the first attempt
+        # at this reframing.
         _mobile_mass("MNT_FOREGROUND_L", "FOREGROUND", G,
-                     f_inner=-0.61, f_inner_far=-0.73, f_outer=-1.46,
-                     f_outer_far=-1.60, y0=430, y1=1320,
-                     peak=1180, seed_offset=11, res=56, octaves=4,
-                     ridge_scale=620, erosion=0.13, ridge_power=1.30,
-                     ridge_aniso=2.2, shoulder=0.26, shoulder_in=0.30),
-        # Right: later, lower, and with its crest *inside* the frame. The two
-        # sides are built from different logic rather than mirrored numbers — a
-        # wall that exits the picture on the left, a summit with sky over it on
-        # the right — and that difference is what the silhouette-asymmetry
-        # measurement is actually reading.
+                     f_inner=-0.58, f_inner_far=-0.74, f_outer=-1.58,
+                     f_outer_far=-1.82, y0=1100, y1=2500,
+                     peak=1120, seed_offset=11, res=56, octaves=4,
+                     ridge_scale=340, erosion=0.20, ridge_power=1.18,
+                     ridge_aniso=2.2, shoulder=0.24, shoulder_in=0.40),
+        # Right: later, lower, wider-shouldered still. The two sides are built
+        # from different logic rather than mirrored numbers — a near shoulder
+        # rising out of frame-left, a longer and shallower bank on the right —
+        # and that difference is what the silhouette-asymmetry measurement reads.
         _mobile_mass("MNT_FOREGROUND_R", "FOREGROUND", G,
-                     f_inner=0.64, f_inner_far=0.77, f_outer=1.44,
-                     f_outer_far=1.58, y0=760, y1=1720,
-                     peak=1120, seed_offset=23, res=50, octaves=4,
-                     ridge_scale=700, erosion=0.15, ridge_power=1.26,
-                     ridge_aniso=2.0, shoulder=0.28, shoulder_in=0.28),
+                     f_inner=0.62, f_inner_far=0.78, f_outer=1.24,
+                     f_outer_far=1.44, y0=1350, y1=2800,
+                     peak=1250, seed_offset=23, res=50, octaves=4,
+                     ridge_scale=380, erosion=0.22, ridge_power=1.16,
+                     ridge_aniso=2.0, shoulder=0.24, shoulder_in=0.34),
 
         # --- Midground: the scale jump, one layer a side ----------------------
-        # Brought forward from the desktop layout's 950-1900 m, and on the right
-        # placed *inside* MNT_FOREGROUND_R rather than outside it. That reversal
-        # of layer order between the two sides is deliberate: on the left the
+        # On the right the midground is still placed *inside* MNT_FOREGROUND_R
+        # rather than outside it. That reversal of layer order between the two
+        # sides is deliberate and survives the reframing: on the left the
         # foreground is the innermost mass and the midground steps out behind it,
         # on the right the midground is the innermost and becomes the dominant
         # right-hand form. No horizontal flip maps one side onto the other.
         _mobile_mass("MNT_MID_R_01", "MIDGROUND", T,
-                     f_inner=0.66, f_inner_far=0.78, f_outer=1.42,
-                     f_outer_far=1.56, y0=1520, y1=2560,
-                     peak=1560, seed_offset=53, res=46, octaves=4,
-                     ridge_scale=860, erosion=0.18, ridge_power=1.24,
-                     ridge_aniso=1.9, shoulder=0.26, shoulder_in=0.26),
+                     f_inner=0.58, f_inner_far=0.74, f_outer=1.58,
+                     f_outer_far=1.82, y0=2400, y1=3800,
+                     peak=2966, seed_offset=53, res=46, octaves=4,
+                     ridge_scale=460, erosion=0.24, ridge_power=1.16,
+                     ridge_aniso=1.9, shoulder=0.24, shoulder_in=0.36),
         _mobile_mass("MNT_MID_L_01", "MIDGROUND", T,
-                     f_inner=-0.69, f_inner_far=-0.82, f_outer=-1.58,
-                     f_outer_far=-1.72, y0=1560, y1=2620,
-                     peak=1290, seed_offset=37, res=44, octaves=4,
-                     ridge_scale=900, erosion=0.19, ridge_power=1.22,
-                     ridge_aniso=1.9, shoulder=0.26, shoulder_in=0.26),
+                     f_inner=-0.66, f_inner_far=-0.84, f_outer=-1.68,
+                     f_outer_far=-1.94, y0=2600, y1=4000,
+                     peak=1380, seed_offset=37, res=44, octaves=4,
+                     ridge_scale=480, erosion=0.25, ridge_power=1.14,
+                     ridge_aniso=1.9, shoulder=0.24, shoulder_in=0.36),
 
         # --- Cloud-break peaks ------------------------------------------------
-        # The summits the ascent passes at 12 000 m. Deep enough that the mobile
-        # camera's 900 m of advance does not drive them off the sides, and the
-        # tallest things in the scene at the approach station once the near
-        # masses have dropped below the rising camera.
+        # The summits the ascent passes at 12 000 m, and now the tallest things
+        # in the picture *and* the furthest — which is the order a range is
+        # actually read in, and the inverse of what the previous layout did. The
+        # near left mass used to reach 1.95 half-heights above the eye at a
+        # kilometre of depth; CLOUD_PEAK_L now reaches 0.66 at four and a half,
+        # so it is a summit with sky around it rather than a column.
+        #
+        # Depth is capped here rather than pushed further. The scene's far plane
+        # is 60 units at MOUNTAIN_SCALE 0.01, which is 6 000 model metres from
+        # the camera station, and the background masses behind these still have
+        # to fit under it.
         _mobile_mass("CLOUD_PEAK_L", "CLOUD_BREAK", G,
-                     f_inner=-0.62, f_inner_far=-0.74, f_outer=-1.28,
-                     f_outer_far=-1.42, y0=2200, y1=3300,
-                     peak=1680, seed_offset=149, res=44, octaves=4,
-                     ridge_scale=780, erosion=0.12, ridge_power=1.34,
-                     ridge_aniso=2.1, shoulder=0.26, shoulder_in=0.26),
+                     f_inner=-0.20, f_inner_far=-0.32, f_outer=-1.30,
+                     f_outer_far=-1.52, y0=3600, y1=4900,
+                     peak=1974, seed_offset=149, res=44, octaves=4,
+                     ridge_scale=430, erosion=0.19, ridge_power=1.22,
+                     ridge_aniso=2.1, shoulder=0.24, shoulder_in=0.40),
         _mobile_mass("CLOUD_PEAK_R", "CLOUD_BREAK", G,
-                     f_inner=0.65, f_inner_far=0.77, f_outer=1.34,
-                     f_outer_far=1.48, y0=2000, y1=3150,
-                     peak=1450, seed_offset=163, res=44, octaves=4,
-                     ridge_scale=810, erosion=0.12, ridge_power=1.32,
-                     ridge_aniso=2.1, shoulder=0.26, shoulder_in=0.26),
+                     f_inner=0.26, f_inner_far=0.40, f_outer=1.34,
+                     f_outer_far=1.56, y0=3300, y1=4600,
+                     peak=1850, seed_offset=163, res=44, octaves=4,
+                     ridge_scale=450, erosion=0.19, ridge_power=1.20,
+                     ridge_aniso=2.1, shoulder=0.24, shoulder_in=0.40),
 
         # --- Background: the ridges that close the valley floor ----------------
         # Repositioned, not merely resized, and this is the clearest case of the
@@ -1074,13 +1168,19 @@ def mobile_masses():
         # depth layer between the pass and MNT_BACKGROUND_C instead of a flat
         # wash, and three octaves with a wide shoulder keeps them broad rather
         # than the thin distant ridges the brief rules out.
+        #
+        # Moved back with the cloud peaks. Those now run to 4 600–4 900 m, so
+        # ridges closing the floor at 3 700 would sit *in front* of them and
+        # break the depth order the reframing exists to establish. Widened too,
+        # because at five kilometres the old +/-1 500 m footprint subtends barely
+        # two thirds of the frame.
         Mass("MNT_BACKGROUND_L", "BACKGROUND", T,
-             x0=-1500, x1=-90, y0=3700, y1=4900, peak=690, base_z=BURIED_BASE,
+             x0=-1250, x1=40, y0=4400, y1=5300, peak=1080, base_z=BURIED_BASE,
              seed_offset=97, res=34, octaves=3, ridge_scale=1150, erosion=0.28,
              ridge_power=1.10, ridge_aniso=1.5, shoulder=0.30,
              warp_u=0.052, warp_v=0.062),
         Mass("MNT_BACKGROUND_R", "BACKGROUND", T,
-             x0=110, x1=1560, y0=3850, y1=5050, peak=740, base_z=BURIED_BASE,
+             x0=-40, x1=1300, y0=4500, y1=5400, peak=1140, base_z=BURIED_BASE,
              seed_offset=131, res=34, octaves=3, ridge_scale=1150, erosion=0.28,
              ridge_power=1.10, ridge_aniso=1.5, shoulder=0.30,
              warp_u=0.052, warp_v=0.062),
@@ -1095,7 +1195,7 @@ def mobile_masses():
         # diagnostic shows the world background straight through the middle of
         # the frame.
         Mass("CLOUD_PASS", "CLOUD_BREAK", G,
-             x0=-560, x1=560, y0=2600, y1=3600, peak=400, base_z=BURIED_BASE,
+             x0=-820, x1=820, y0=4200, y1=5200, peak=760, base_z=BURIED_BASE,
              seed_offset=181, res=40, octaves=3, ridge_scale=760, erosion=0.18,
              ridge_power=1.08, ridge_aniso=1.4, shoulder=0.30,
              warp_u=0.052, warp_v=0.062),
@@ -1109,7 +1209,7 @@ def mobile_masses():
         # under EYE_Z is 0.012 of the half-height at the valley station; at the
         # desktop's 3.5 km the same cap would leave eight times that gap.
         Mass("MNT_BACKGROUND_C", "BACKGROUND", T,
-             x0=-900, x1=900, y0=5200, y1=6600, peak=1110, base_z=BURIED_BASE,
+             x0=-1500, x1=1500, y0=5200, y1=6100, peak=1000, base_z=BURIED_BASE,
              seed_offset=113, res=40, octaves=3, ridge_scale=1000, erosion=0.32,
              ridge_power=1.05, ridge_aniso=1.3, shoulder=0.34,
              warp_u=0.052, warp_v=0.062),
