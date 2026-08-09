@@ -34,17 +34,31 @@ type Handler = {
   __cache: { clear: () => void; ttlMs: number };
 };
 
+/**
+ * Fixtures that are deliberately NOT shaped like the credentials they stand in
+ * for.
+ *
+ * The first version of this file used a real-looking PEM block and an
+ * `sb_secret_…` string, and `npm run scan:secrets` failed on both — correctly.
+ * The fix was these values rather than an exception in the scanner: a rule that
+ * skips test files is a rule that stops seeing the day a real key is pasted
+ * into one, and a fixture that looks exactly like a credential is what makes a
+ * real credential invisible next to it.
+ *
+ * Nothing here needs to be well-formed. The private key is never parsed except
+ * by the one test that requires an unparseable key to become a 502, and the
+ * Supabase key is only ever copied into a header that a mocked `identify`
+ * never reads.
+ */
 const CONFIGURED = {
   GA4_PROPERTY_ID: '15392224433',
   GOOGLE_SERVICE_ACCOUNT_EMAIL: 'reporting@example.iam.gserviceaccount.com',
-  // Not a key. Never a key: no test in this repository needs a real one, and a
-  // real one in a test file is a real one in the repository.
-  GOOGLE_PRIVATE_KEY: '-----BEGIN PRIVATE KEY-----\\nnot-a-key\\n-----END PRIVATE KEY-----',
+  GOOGLE_PRIVATE_KEY: 'not-a-key-and-not-shaped-like-one',
 };
 
 const SUPABASE = {
   SUPABASE_URL: 'https://project.supabase.co',
-  SUPABASE_SECRET_KEY: 'sb_secret_test_value_not_real',
+  SUPABASE_SECRET_KEY: 'test-server-key-not-shaped-like-one',
 };
 
 let serial = 0;
@@ -428,7 +442,7 @@ test.describe('when Google fails', () => {
     const res = await get(h);
     expect(res.status).toBe(502);
     const text = await res.text();
-    expect(text.toLowerCase()).not.toContain('private key');
+    expect(text.toLowerCase()).not.toContain('not-a-key');
     expect(text).not.toContain('at ');   // no stack frames
   });
 });
