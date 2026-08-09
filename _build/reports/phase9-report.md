@@ -425,4 +425,240 @@ the site owner, one time-sensitive export that must happen before the cutover,
 and one test that can time out on a saturated machine and was deliberately not
 given more time.
 
+Verdict at that point: **accepted with documented limitations** — recorded here
+as history and **superseded by §13**, which is the authoritative one. This
+document ends with exactly one verdict and it is the last line of the file.
+
+---
+
+# Part 2 — the continuation
+
+| | |
+|---|---|
+| Branch | `phase-9-continuation-portal-analytics` |
+| Branched from | `mobile-3d-altimeter` at `9ccbe05` |
+| Continuation commits | **5** |
+| Frozen for the gates at | `2154c77` |
+| Pushed | **no** |
+| Deployed | **no** |
+| Phase 10 started | **no** |
+
+Branched rather than committed onto `mobile-3d-altimeter` so that this work stays
+reviewable on its own: the base branch is an in-flight feature branch, and
+entangling a phase closure with it would make both harder to read.
+
+## 10. What was actually left
+
+Most of Workstreams D–U were already complete and committed. The continuation
+did not redo them. Three brief-mandated deliverables were genuinely absent:
+
+| Deliverable | Before | Now |
+|---|---|---|
+| `phase9-wix-url-export.csv` | missing — the phase's one unrecoverable item | **collected** |
+| `phase9-lead-notification.md` + adapter | missing; the gap was documented, not closed | **built, off by default** |
+| `phase9-portal-analytics.md` + Workstream M | recorded *not applicable — the screen does not exist* | **built** |
+
+## 11. The five commits
+
+| # | Commit | What |
+|---|---|---|
+| 20 | `d379eb8` | Capture the Wix inventory before the domain makes it unreadable |
+| 21 | `832915f` | Report GA4 from the server, because the browser cannot hold the key |
+| 22 | `0b324b5` | Ring a doorbell when a lead arrives, without reading the letter |
+| 23 | `194e07e` | The secret scan was right about the test fixtures |
+| 24 | `2154c77` | The portal asked Google for fonts its own CSP forbids |
+
+### 11.1 Workstream I — the Wix inventory
+
+**The previous report had the old site on the wrong host.** `media-stratos.com`
+301s to `https://www.stratosweb.hu`, and `www.stratosweb.hu` **is** the Wix site.
+The final production domain is the legacy domain, so the cutover changes what
+answers on one name rather than moving between two.
+
+20 URLs from the live Wix sitemap set, each fetched: status, title and language
+**observed**, not assumed. All 20 answered 200; all are Hungarian, so no locale
+is lost by any rule.
+
+**Only 8 get a redirect, and the 12 that do not are the finding.** Those twelve
+are extensionless paths this build already answers 200 for. `/kkv → /kkv.html`
+would read as the thorough thing to do and would compose with Netlify's **Pretty
+URLs** — which 301s the other way — into an **infinite redirect loop**. Today
+that setting being on costs a canonical pointing at a redirect: a real defect, a
+recoverable one. With those rules it would cost the page, at cutover, on the
+busiest routes. The canonical tag already resolves the duplicate.
+
+### 11.2 Workstream M — Portal Analytics
+
+GA4 → Data API → an authenticated Netlify function → the Portal. Reading a
+property needs a service account, which is a private RSA key, and there is no
+browser-safe way to hold one — any key the bundle could sign with is a key its
+readers can sign with.
+
+Asserted against the **built** artefact, not described: `dist/portal` carries no
+private key, no service-account address, no Property ID, and no reference to the
+Data API host. Authentication is checked before the *configured* answer, because
+which integrations a private admin has wired up is not public. The role is read
+from `profiles`, never from user metadata. `team_member` and `client` hold valid
+sessions and are refused.
+
+**No test ever contacts Google** — one replaces `globalThis.fetch` with a
+function that fails if called. A suite that queried the property would write test
+traffic into the numbers the property exists to report.
+
+Nothing is called "visitors". Lead events are counted by taxonomy name rather
+than through GA4's `keyEvents`, which counts whatever someone ticked in a console
+this repository cannot see. Zero sessions gives `null`, not `NaN`. The consent
+caveat renders **with** the numbers: Basic Consent Mode means every figure is a
+floor, not a count.
+
+### 11.3 Workstream K — notification
+
+A lead was stored and nobody was told. Nothing was broken, nothing logged an
+error, no lead was lost — which is why it survived a test suite.
+
+Provider-neutral, and **off by default**. A plain JSON POST is what Slack,
+Discord, Zapier, Make, a CRM intake and a self-hosted receiver all accept, so
+choosing one is setting a URL; setting the URL alone does not switch it on.
+
+It carries **no personal data at all**. The brief asks for the questionnaire
+payload to be kept out; everything is kept out, because the destination is an
+unknown third party with its own retention and its own breach surface. A doorbell
+does not need to read the letter — and it keeps the adapter out of the processor
+argument entirely.
+
+It cannot cost a lead: it runs only after the insert succeeded, cannot throw, and
+abandons a hang after 2 s. Asserted end-to-end through the real handler with the
+webhook down.
+
+### 11.4 Two defects found while auditing our own output
+
+**The portal asked Google for fonts its own CSP forbids.** `portal/index.html`
+carried two preconnects and a stylesheet link to Google Fonts. The CSP applies to
+`/*`, which includes `/portal/*`, and says `style-src 'self' 'unsafe-inline'`
+and `font-src 'self'`. So on every deploy the stylesheet was blocked, the portal
+rendered in system fallbacks — silently, with two CSP violations per load — while
+the preconnect still opened a connection to Google from a private staff tool and
+got nothing back. Fixed with the self-hosted stylesheet the public site already
+uses; verified in a browser: Archivo and JetBrains Mono resolve and the portal
+now makes **zero** cross-origin requests.
+
+**The secret scan was right about the test fixtures.** The new suite used a
+realistic PEM block and an `sb_secret_…` string and `scan:secrets` failed on
+both. Fixed by changing the fixtures, not by excepting the scanner: a rule that
+skips test files stops seeing the day a real key is pasted into one, and a
+fixture shaped exactly like a credential is what makes a real one invisible
+beside it.
+
+## 12. Gate results, and the 39 failures
+
+Frozen at `2154c77`. Nine gates green; both suites red.
+
+| Gate | Result |
+|---|---|
+| typecheck · build · fingerprint · draco · secrets · CTA · SEO · route audit | **all exit 0** |
+| `npm audit` ×3 | 4 advisories, **none applicable** |
+| `npm test` | 987 collected, 115 skipped, **864 passed, 8 failed** |
+| `npm run validate:full` | 185 collected, 97 skipped, **57 passed, 31 failed** |
+
+**Every Phase 9 suite is green**, including the two added here. **Every one of
+the 39 failures is in code this continuation did not touch** — the complete diff
+`9ccbe05..HEAD` is 18 files with nothing under `experiments/`, no `assets/`, no
+`_build/build.py` and not `tests/homepage-chrome.spec.ts`. The homepage, its
+header and their specs are byte-identical to the branch base.
+
+- **31 journey failures.** 30 are ten tests asserting the *old* portrait
+  architecture on the three portrait projects, which deliberately no longer has a
+  WebGL scene or a scroll-driven clock. The same file already skips those tests
+  on `reduced-motion` for that exact reason; the skips were never extended when
+  portrait was rewritten. The 31st names the chunk `JourneyScene*` where it means
+  "three.js is lazy" — it is now in a shared `Gltf` chunk because desktop and
+  mobile both need it, which is better.
+- **8 deterministic failures**, all `homepage-chrome.spec.ts` on `desktop-1920`
+  and `reduced-motion`: a stable core of three plus a load-proportional tail.
+  Same commit, same command: **56** failures on a saturated machine, **3** on a
+  quiet one, and the 41 tests behind 27 of those timeouts pass in **48 seconds**
+  when run alone.
+
+**The menu is not broken.** `click({force:true})` opens it and `aria-expanded`
+flips; `click({trial:true})` — every actionability check, no input — passes; the
+burger's box is identical across 90 frames with no animations running. What
+hangs is the non-forced input path at 1920, and the cause is recorded as
+unidentified rather than guessed at.
+
+**Nothing was made green.** Extending a `test.skip` to three more projects would
+have taken a minute. Six of the ten portrait tests are provably stale; four
+assert properties a portrait page arguably should still satisfy, and skipping
+those would convert an open question into a silent assumption. No timeout was
+raised, nothing was skipped and no assertion was weakened, in either direction.
+
+→ [`phase9-test-reconciliation.md`](phase9-test-reconciliation.md) Part 2
+
+## 13. What is still required, and from whom
+
+### Now blocked on nobody — resolved in this continuation
+
+The Wix export, the notification mechanism, and the Portal Analytics screen.
+
+### Still the site owner's
+
+1. **Confirm Netlify "Pretty URLs" is OFF.** Unchanged in importance and now
+   also the reason twelve redirect rules were deliberately not written.
+2. **Mark the custom domain PRIMARY**, not merely attached.
+3. **Decide on HSTS `preload`.**
+4. **Portal Analytics credentials** — enable the Data API, create the service
+   account, and **grant it Viewer on the GA4 property**, which happens in a
+   different product from where it is created and is the step that gets missed.
+5. **GA4 data retention** and the **staging traffic filter** — still
+   `REQUIRES USER FACTUAL INPUT`.
+6. **Choose a notification destination**, and decide whether it may ever carry
+   the enquirer's name. Currently it carries none.
+7. **`/book-online` and the Wix Bookings service page** — 301 to contact, or 404.
+8. **Confirm or soften "a reply usually within a few hours."**
+9. **Media permissions** — `cruise-jet.jpg`, the seven organisation marks, the
+   two team photographs.
+10. **The email provider's legal entity**, for the processor list.
+
+### Still a lawyer's
+
+11. **Legal review of the privacy policy in three languages**, and the two
+    Article 13 gaps: legal basis per purpose, and the transfer mechanism for
+    Netlify (US) and Supabase (SG).
+
+### Belonging to the mobile-3D-altimeter workstream, not to Phase 9
+
+12. **Re-point `full-ascent.spec.ts`** at the rebuilt portrait surface, deciding
+    per test which of the four "needs judgement" properties still apply.
+13. **Repair the `JourneyScene` chunk assertion** to name the property.
+14. **Diagnose the 1920 input path** behind the stable three.
+
+## 14. Phase 10 readiness
+
+Unchanged from §8 except that items 2 (Portal Analytics) and the lead
+notification are now built rather than carried forward, and the Wix export is
+collected. Added: the three items above, and the `react-router` 6 → 7 migration,
+which should absorb the `nanoid` patch rather than take them separately —
+`npm audit fix --force` would perform that major upgrade as a side effect of the
+patch, which is exactly what the brief forbids.
+
+## 15. Verdict
+
+The continuation closed the three deliverables that were genuinely outstanding,
+including the one that could not have been recovered after the domain moves. It
+found four defects along the way, two of them in its own new work and two in code
+that has been deploying for some time — a private admin quietly asking Google for
+fonts its own policy blocks, and a secret scanner that was right when it was
+inconvenient.
+
+Nine gates are green. Two suites are not, and every failure in them is
+attributable, by diff, to work that arrived before this branch existed and that
+this branch did not touch. The Phase 9 suites — every one of them, including the
+two written here — pass. The failures were measured rather than argued about,
+across three full runs and two isolation runs, and none of them was made to go
+away.
+
+The limitations are the same shape as before: they are things a repository
+cannot decide. Four dashboard settings, a DNS change, three Google Cloud steps, a
+notification destination, a lawyer — plus one inherited red suite that belongs to
+a different workstream and is documented precisely enough to be picked up.
+
 **PHASE 9 ACCEPTED WITH DOCUMENTED LIMITATIONS**

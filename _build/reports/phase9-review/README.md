@@ -197,8 +197,38 @@ read every lead.
 
 → [`phase9-portal-api-security.md`](../phase9-portal-api-security.md) §1.4
 
-**Not implemented:** the Portal Analytics screen does not exist. Its six
-requirements are `not-applicable` rather than passing.
+**Superseded:** the Portal Analytics screen now exists. See §15a.
+
+### 15a. Portal Analytics
+
+Built in the continuation. GA4 → Data API → an authenticated Netlify function →
+the Portal. **No Google credential is in the browser**, and that is asserted
+against the built bundle rather than described: no private key, no
+service-account address, no Property ID, and no reference to the Data API host
+anywhere in `dist/portal`.
+
+Reading a GA4 property needs a service account, which is a private RSA key.
+There is no browser-safe way to hold one — any key the portal could sign with is
+a key anyone who opens the bundle can sign with, against the same property,
+until somebody notices.
+
+- authentication before everything, including before the "is it configured"
+  answer, because which integrations a private admin has wired up is not public;
+- the role comes from `profiles`, never from user metadata, which is
+  user-writable — `team_member` and `client` hold valid sessions and are refused;
+- **no test ever contacts Google.** One test replaces `globalThis.fetch` with a
+  function that fails if anything calls it;
+- GA4's own words: active users, sessions, views. Nothing is called "visitors";
+- the consent caveat renders **with** the numbers — Basic Consent Mode means
+  every figure is a floor, not a count.
+
+**Nothing works until the site owner does four things**, and step 3 is the one
+that gets missed: the service account is *created* in Google Cloud and *granted
+access* in Google Analytics, which is a different product. Skip it and you get
+an account that authenticates perfectly and is refused by the property.
+
+→ [`phase9-portal-analytics.md`](../phase9-portal-analytics.md) ·
+49 assertions in `tests/portal-analytics.spec.ts`
 
 ## 16. API protections
 
@@ -261,6 +291,36 @@ Three places said otherwise and now do not.
 
 → [`phase9-email-operations.md`](../phase9-email-operations.md)
 
+### 20a. New-lead notification
+
+Was: a lead is stored and **nobody is told**, so an enquiry is seen when someone
+happens to open the Portal — against a footer promising a reply within a few
+hours. It is worth being clear about the kind of gap that was: nothing was
+broken, nothing logged an error, and no lead was ever lost. That is why it
+survived a test suite.
+
+Now: a provider-neutral adapter, wired and **off by default**.
+
+- **No vendor is chosen.** The payload is a plain JSON `POST`, which Slack,
+  Discord, Zapier, Make, a CRM intake and a self-hosted receiver all accept.
+  Choosing one is setting a URL. Setting the URL alone does not switch it on.
+- **It carries no personal data at all** — not the name, email, phone, message
+  or any questionnaire answer. The brief asks for the questionnaire payload to
+  be kept out; everything is kept out, because the destination is an unknown
+  third party with its own retention and its own breach surface. A doorbell does
+  not need to read the letter. It also keeps the adapter out of the processor
+  argument entirely.
+- **It cannot cost a lead.** It runs only after the insert succeeded, cannot
+  throw, and abandons a hang after 2 s. Asserted end-to-end through the real
+  handler with the webhook down: the submission still answers 200.
+
+**Still the owner's:** choose a destination, and decide whether the message may
+ever carry the enquirer's name. The adapter makes a few-hours reply *possible*
+to keep — it does not make the promise true.
+
+→ [`phase9-lead-notification.md`](../phase9-lead-notification.md) ·
+17 assertions in `tests/lead-notify.spec.ts`
+
 ## 21. GA4 Console settings still required
 
 Reported separately from what the code does, because
@@ -284,12 +344,41 @@ from production reports**:
 
 | # | Item | Why it cannot wait |
 |---|---|---|
-| 1 | **Export the old Wix URLs** | Unrecoverable after DNS moves |
+| 1 | ~~Export the old Wix URLs~~ | **DONE.** 20 URLs captured while the Wix site was still live; see §22a |
 | 2 | **Confirm Netlify 'Pretty URLs' is OFF** | If on, every canonical points at a 301, on all 60 routes |
 | 3 | **Mark the custom domain PRIMARY**, not merely attached | `robots.txt` stays `Disallow: /` otherwise — silently |
 | 4 | **Decide on HSTS preload** | Effectively irreversible once submitted |
 | 5 | Verify the four curls | `phase9-seo-audit.md` §6 |
 | 6 | Search Console and Bing property setup | Nothing to verify against until then |
+
+### 22a. The Wix migration — collected
+
+The phase's one unrecoverable item, and it is done.
+
+**The previous report had the old site on the wrong host.** `media-stratos.com`
+301s to `https://www.stratosweb.hu`, and **`www.stratosweb.hu` is the Wix site**.
+The final production domain *is* the legacy domain, so the cutover changes what
+answers on one name rather than moving between two.
+
+20 URLs, from the live Wix sitemap set, each fetched so the status, title and
+language are observed rather than assumed. **All 20 answered 200; all are
+Hungarian**, so no locale is lost by any rule.
+
+**Only 8 get a redirect, and the 12 that do not are the finding.** Those twelve
+are extensionless paths this build already answers 200 for. Writing
+`/kkv → /kkv.html` would look like the thorough thing to do and would compose
+with Netlify's **Pretty URLs** setting — which 301s the other way — into an
+**infinite redirect loop**. Today that setting being on costs a canonical
+pointing at a redirect: a real defect, a recoverable one. With those rules it
+would cost the page, at cutover, on the busiest routes. The duplication is
+already handled by the canonical tag.
+
+The 8 are the six Wix blog posts, whose slugs genuinely differ and which carry
+the link equity, and the two Wix Bookings pages — which go to contact, claim no
+appointment, and are flagged for a decision because a 404 is defensible.
+
+→ [`phase9-wix-url-export.csv`](../phase9-wix-url-export.csv) ·
+[`phase9-redirect-map.md`](../phase9-redirect-map.md) §5
 
 ## 23. Phase 10 prerequisites
 
@@ -335,3 +424,65 @@ gates written to close it. Fixed in `8fcc7da` and `a3af8b7`.
 **Every gate in the table above ran against the same `dist/`** — the state
 `validate:full` leaves behind, which is the harder of the two and is what
 exposed all three.
+
+---
+
+## Gate results, on the CONTINUATION's frozen commit `2154c77`
+
+The tree is not the one above. Nine commits of mobile-3D-altimeter work — 68
+files, ~17 000 insertions, almost all in `experiments/` — landed between the
+Phase 9 freeze and this branch's base.
+
+| Gate | Result |
+|---|---|
+| `npm run typecheck` | **0** |
+| `npm run build` | **0** |
+| `npm run fingerprint:check` | **0** — 72 pages, 24 assets, 0 unstamped |
+| `npm run draco:check` | **0** |
+| `npm run scan:secrets` | **0** — 640 files, 12 rules, clean |
+| `npm run audit:conversion:check` | **0** |
+| `npm run audit:seo:check` | **0** — 72 documents, 0 failures, 43 warnings |
+| `node scripts/route-audit.mjs --quick` | **0** — 132 checks, 0 failing, 0 broken links |
+| `npm audit` ×3 | 4 advisories, **none applicable** |
+| `npm test` | **987 collected, 115 skipped, 864 passed, 8 failed** |
+| `npm run validate:full` | **185 collected, 97 skipped, 57 passed, 31 failed** |
+
+### The 39 failures, and why they do not block this phase
+
+**Every Phase 9 suite is green** — analytics, attribution, consent, structured
+data, 404, forms, the lead endpoint, the portal, and the two new suites.
+
+**Every failure is in code this continuation did not touch.** The complete diff
+`9ccbe05..HEAD` is 18 files and contains nothing under `experiments/`, no
+`assets/`, no `_build/build.py`, and not `tests/homepage-chrome.spec.ts`. The
+homepage, its header, the journey and their specs are byte-identical to the
+branch base.
+
+- **31 journey failures** — 30 are ten tests asserting the *old* portrait
+  architecture on the three portrait projects. The portrait path deliberately
+  dropped the WebGL scene and the scroll-driven clock; the same file already
+  skips those tests on `reduced-motion` for that exact reason and the skips were
+  never extended. The 31st is a build assertion that names the chunk
+  `JourneyScene*` where it means "three.js is lazy" — three.js is now in a
+  shared `Gltf` chunk because desktop and mobile both need it, which is better,
+  not worse.
+- **8 deterministic failures** — all `homepage-chrome.spec.ts` on `desktop-1920`
+  and `reduced-motion`. A stable core of **three** (reproduced twice in
+  isolation) plus a tail that tracks machine load: the same command on the same
+  commit gave 56 failures on a saturated machine, 3 on a quiet one, and the 41
+  tests behind 27 of those timeouts pass in 48 seconds when run alone.
+
+**The menu is not broken.** On the stable three, `click({force:true})` opens it
+and `aria-expanded` flips to `true`; `click({trial:true})` — every actionability
+check, no input — passes; the burger's box is identical across 90 frames with no
+animations running. What hangs is Playwright's non-forced input path at 1920.
+The cause is not yet identified and is recorded as such rather than guessed at.
+
+**Nothing was made green.** Extending a `test.skip` to three more projects would
+have taken a minute. Six of the ten portrait tests are provably stale; four
+assert properties a portrait page arguably *should* still satisfy — real HTML
+content, a working skip link, no scroll trap, stages announced in order — and
+skipping those would convert an open question into a silent assumption. No
+timeout was raised and no assertion weakened, in either direction.
+
+→ [`phase9-test-reconciliation.md`](../phase9-test-reconciliation.md) Part 2
