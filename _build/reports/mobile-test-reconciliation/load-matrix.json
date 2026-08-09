@@ -1,0 +1,2083 @@
+{
+  "at": "2026-08-09T19:10:30.278Z",
+  "cores": 10,
+  "projects": [
+    "desktop-1920",
+    "reduced-motion"
+  ],
+  "arms": [
+    {
+      "arm": "isolated",
+      "workers": 1,
+      "scope": "the eight only",
+      "exitCode": 0,
+      "wallMs": 29540,
+      "load": {
+        "samples": [
+          6.07,
+          6.07,
+          6.07,
+          6.07,
+          6.46,
+          6.46,
+          6.46,
+          6.26,
+          6.26,
+          6.08,
+          6.08,
+          6.08,
+          5.75,
+          5.75
+        ],
+        "peak": 6.46,
+        "median": 6.08,
+        "cores": 10
+      },
+      "tests": [
+        {
+          "title": "the journey state compacts the wordmark and keeps the header short",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3651
+        },
+        {
+          "title": "a single jump lands on the right state, not one short of it",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6243
+        },
+        {
+          "title": "the journey state compacts the wordmark and keeps the header short",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 73
+        },
+        {
+          "title": "a single jump lands on the right state, not one short of it",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 531
+        },
+        {
+          "title": "focus is trapped inside the layer while it is open",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 1688
+        },
+        {
+          "title": "opening the menu does not walk the journey back down the mountain",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6982
+        },
+        {
+          "title": "focus is trapped inside the layer while it is open",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 2223
+        },
+        {
+          "title": "opening the menu does not walk the journey back down the mountain",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 45
+        },
+        {
+          "title": "a subpage reached from the homepage carries the same working header",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3595
+        },
+        {
+          "title": "a subpage reached from the homepage carries the same working header",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 3366
+        }
+      ],
+      "stderr": ""
+    },
+    {
+      "arm": "serial",
+      "workers": 1,
+      "scope": "the whole file",
+      "exitCode": 0,
+      "wallMs": 143843,
+      "load": {
+        "samples": [
+          5.53,
+          5.53,
+          5.41,
+          5.41,
+          5.06,
+          5.06,
+          5.06,
+          4.73,
+          4.73,
+          4.59,
+          4.59,
+          4.59,
+          5.27,
+          5.27,
+          5.56,
+          5.56,
+          5.56,
+          6.08,
+          6.08,
+          6.47,
+          6.47,
+          6.47,
+          6.19,
+          6.19,
+          6.5,
+          6.5,
+          6.5,
+          6.22,
+          6.22,
+          6.04,
+          6.04,
+          6.04,
+          6.6,
+          6.6,
+          6.95,
+          6.95,
+          6.95,
+          6.95,
+          6.95,
+          6.72,
+          6.72,
+          6.72,
+          6.42,
+          6.42,
+          6.07,
+          6.07,
+          6.07,
+          6.14,
+          6.14,
+          6.05,
+          6.05,
+          6.05,
+          6.52,
+          6.52,
+          6.24,
+          6.24,
+          6.24,
+          6.22,
+          6.22,
+          5.96,
+          5.96,
+          5.96,
+          5.65,
+          5.65,
+          5.43,
+          5.43,
+          5.43,
+          5.16,
+          5.16,
+          5.39,
+          5.39
+        ],
+        "peak": 6.95,
+        "median": 6.07,
+        "cores": 10
+      },
+      "tests": [
+        {
+          "title": "the opening state is the full wordmark over a transparent header",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 1871
+        },
+        {
+          "title": "desktop navigation is visible at the top and collapses into the trigger",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3301
+        },
+        {
+          "title": "the journey state compacts the wordmark and keeps the header short",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3562
+        },
+        {
+          "title": "the destination state resolves near the end and reveals the CTA",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 2565
+        },
+        {
+          "title": "the states are reversible and the top of the page is always the opening state",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6181
+        },
+        {
+          "title": "a single jump lands on the right state, not one short of it",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6592
+        },
+        {
+          "title": "the header does not chatter when the visitor hovers on a boundary",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6774
+        },
+        {
+          "title": "the header prints the journey altitude, not an altitude of its own",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 4453
+        },
+        {
+          "title": "the readout names the stage the journey reports",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 4880
+        },
+        {
+          "title": "the altitude readout is hidden from assistive technology",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 214
+        },
+        {
+          "title": "the opening state is the full wordmark over a transparent header",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 169
+        },
+        {
+          "title": "desktop navigation is visible at the top and collapses into the trigger",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 385
+        },
+        {
+          "title": "the journey state compacts the wordmark and keeps the header short",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 55
+        },
+        {
+          "title": "the destination state resolves near the end and reveals the CTA",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 545
+        },
+        {
+          "title": "the states are reversible and the top of the page is always the opening state",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1069
+        },
+        {
+          "title": "a single jump lands on the right state, not one short of it",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 535
+        },
+        {
+          "title": "the header does not chatter when the visitor hovers on a boundary",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 49
+        },
+        {
+          "title": "the header prints the journey altitude, not an altitude of its own",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 61
+        },
+        {
+          "title": "the readout names the stage the journey reports",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 62
+        },
+        {
+          "title": "the altitude readout is hidden from assistive technology",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 221
+        },
+        {
+          "title": "opens from every header state",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 9161
+        },
+        {
+          "title": "the trigger names itself and points at the layer it controls",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 1670
+        },
+        {
+          "title": "ESC closes it and focus goes back to the trigger",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 1730
+        },
+        {
+          "title": "focus is trapped inside the layer while it is open",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 2209
+        },
+        {
+          "title": "the close control closes it",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3612
+        },
+        {
+          "title": "body scroll is locked while open and fully released after",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6734
+        },
+        {
+          "title": "opening the menu does not walk the journey back down the mountain",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 7392
+        },
+        {
+          "title": "the destinations are ordinary links and they navigate",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3815
+        },
+        {
+          "title": "opens from every header state",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1173
+        },
+        {
+          "title": "the trigger names itself and points at the layer it controls",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1870
+        },
+        {
+          "title": "ESC closes it and focus goes back to the trigger",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1676
+        },
+        {
+          "title": "focus is trapped inside the layer while it is open",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1655
+        },
+        {
+          "title": "the close control closes it",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 3724
+        },
+        {
+          "title": "body scroll is locked while open and fully released after",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 5152
+        },
+        {
+          "title": "opening the menu does not walk the journey back down the mountain",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 54
+        },
+        {
+          "title": "the destinations are ordinary links and they navigate",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 3517
+        },
+        {
+          "title": "is a real control with an accessible name, and it returns the page",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 5039
+        },
+        {
+          "title": "focus is not lost on the way up",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 4018
+        },
+        {
+          "title": "under reduced motion it arrives immediately",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 696
+        },
+        {
+          "title": "is a real control with an accessible name, and it returns the page",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 591
+        },
+        {
+          "title": "focus is not lost on the way up",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 3147
+        },
+        {
+          "title": "under reduced motion it arrives immediately",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 690
+        },
+        {
+          "title": "Arrival closes the journey with the real ceiling and both actions",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 219
+        },
+        {
+          "title": "the footer is a landmark with headed groups, contact and legal links",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 203
+        },
+        {
+          "title": "it is the same footer the subpages carry, not a homepage copy",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 345
+        },
+        {
+          "title": "the homepage menu leads where the subpage menu leads",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 318
+        },
+        {
+          "title": "the homepage header row leads where the subpage header row leads",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 343
+        },
+        {
+          "title": "the homepage introduces no duplicate ids",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 191
+        },
+        {
+          "title": "every chrome link on the homepage resolves",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 195
+        },
+        {
+          "title": "Arrival closes the journey with the real ceiling and both actions",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 171
+        },
+        {
+          "title": "the footer is a landmark with headed groups, contact and legal links",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 187
+        },
+        {
+          "title": "it is the same footer the subpages carry, not a homepage copy",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 264
+        },
+        {
+          "title": "the homepage menu leads where the subpage menu leads",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 282
+        },
+        {
+          "title": "the homepage header row leads where the subpage header row leads",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 291
+        },
+        {
+          "title": "the homepage introduces no duplicate ids",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 218
+        },
+        {
+          "title": "every chrome link on the homepage resolves",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 213
+        },
+        {
+          "title": "hu: header, menu, Arrival and footer are all in hu",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 1647
+        },
+        {
+          "title": "en: header, menu, Arrival and footer are all in en",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 1734
+        },
+        {
+          "title": "de: header, menu, Arrival and footer are all in de",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 1697
+        },
+        {
+          "title": "hu: header, menu, Arrival and footer are all in hu",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1551
+        },
+        {
+          "title": "en: header, menu, Arrival and footer are all in en",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1634
+        },
+        {
+          "title": "de: header, menu, Arrival and footer are all in de",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1641
+        },
+        {
+          "title": "the chrome is complete and immediately usable without animation",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 237
+        },
+        {
+          "title": "the menu opens directly, with no spatial delay",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 333
+        },
+        {
+          "title": "the chrome is complete and immediately usable without animation",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 208
+        },
+        {
+          "title": "the menu opens directly, with no spatial delay",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 294
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3665
+        },
+        {
+          "title": "a subpage reached from the homepage carries the same working header",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3658
+        },
+        {
+          "title": "the header binds exactly one scroll listener and no permanent loop",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3141
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 733
+        },
+        {
+          "title": "a subpage reached from the homepage carries the same working header",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 3403
+        },
+        {
+          "title": "the header binds exactly one scroll listener and no permanent loop",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 33
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 1024x768",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 52
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 375x812",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 46
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 360x800",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 45
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 844x390 landscape",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 46
+        },
+        {
+          "title": "the chrome survives 200% zoom and increased text spacing",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 47
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 1024x768",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 37
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 375x812",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 30
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 360x800",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 33
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 844x390 landscape",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 66
+        },
+        {
+          "title": "the chrome survives 200% zoom and increased text spacing",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 46
+        }
+      ],
+      "stderr": ""
+    },
+    {
+      "arm": "moderate",
+      "workers": 2,
+      "scope": "the whole file",
+      "exitCode": 0,
+      "wallMs": 137433,
+      "load": {
+        "samples": [
+          5.27,
+          5.27,
+          5.27,
+          7.25,
+          7.25,
+          8.43,
+          8.43,
+          8.43,
+          8.96,
+          8.96,
+          10.16,
+          10.16,
+          10.16,
+          11.03,
+          11.03,
+          12.47,
+          12.47,
+          12.47,
+          14.35,
+          14.35,
+          15.05,
+          15.05,
+          15.05,
+          15.68,
+          15.68,
+          14.67,
+          14.67,
+          14.67,
+          13.89,
+          13.89,
+          13.26,
+          13.26,
+          13.26,
+          13.88,
+          13.88,
+          13.01,
+          13.01,
+          13.01,
+          13.17,
+          13.17,
+          12.99,
+          12.99,
+          12.99,
+          12.35,
+          12.35,
+          11.76,
+          11.76,
+          11.76,
+          10.98,
+          10.98,
+          10.82,
+          10.82,
+          10.82,
+          10.28,
+          10.28,
+          9.85,
+          9.85,
+          9.85,
+          9.22,
+          9.22,
+          9.37,
+          9.37,
+          9.37,
+          9.1,
+          9.1,
+          8.61,
+          8.61,
+          8.61
+        ],
+        "peak": 15.68,
+        "median": 11.03,
+        "cores": 10
+      },
+      "tests": [
+        {
+          "title": "the opening state is the full wordmark over a transparent header",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 259
+        },
+        {
+          "title": "desktop navigation is visible at the top and collapses into the trigger",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 5273
+        },
+        {
+          "title": "the journey state compacts the wordmark and keeps the header short",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 7994
+        },
+        {
+          "title": "the destination state resolves near the end and reveals the CTA",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6984
+        },
+        {
+          "title": "the states are reversible and the top of the page is always the opening state",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 10953
+        },
+        {
+          "title": "a single jump lands on the right state, not one short of it",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 9708
+        },
+        {
+          "title": "the header does not chatter when the visitor hovers on a boundary",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 11517
+        },
+        {
+          "title": "the header prints the journey altitude, not an altitude of its own",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 9497
+        },
+        {
+          "title": "the readout names the stage the journey reports",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 9616
+        },
+        {
+          "title": "the altitude readout is hidden from assistive technology",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 470
+        },
+        {
+          "title": "the opening state is the full wordmark over a transparent header",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 259
+        },
+        {
+          "title": "desktop navigation is visible at the top and collapses into the trigger",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 452
+        },
+        {
+          "title": "the journey state compacts the wordmark and keeps the header short",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 72
+        },
+        {
+          "title": "the destination state resolves near the end and reveals the CTA",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 556
+        },
+        {
+          "title": "the states are reversible and the top of the page is always the opening state",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1060
+        },
+        {
+          "title": "a single jump lands on the right state, not one short of it",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 646
+        },
+        {
+          "title": "the header does not chatter when the visitor hovers on a boundary",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 115
+        },
+        {
+          "title": "the header prints the journey altitude, not an altitude of its own",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 88
+        },
+        {
+          "title": "the readout names the stage the journey reports",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 94
+        },
+        {
+          "title": "the altitude readout is hidden from assistive technology",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 2897
+        },
+        {
+          "title": "opens from every header state",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 16521
+        },
+        {
+          "title": "the trigger names itself and points at the layer it controls",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 5558
+        },
+        {
+          "title": "ESC closes it and focus goes back to the trigger",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 3534
+        },
+        {
+          "title": "focus is trapped inside the layer while it is open",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 2879
+        },
+        {
+          "title": "the close control closes it",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6477
+        },
+        {
+          "title": "body scroll is locked while open and fully released after",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 9319
+        },
+        {
+          "title": "opening the menu does not walk the journey back down the mountain",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 14084
+        },
+        {
+          "title": "the destinations are ordinary links and they navigate",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 9508
+        },
+        {
+          "title": "opens from every header state",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1202
+        },
+        {
+          "title": "the trigger names itself and points at the layer it controls",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 2880
+        },
+        {
+          "title": "ESC closes it and focus goes back to the trigger",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 2619
+        },
+        {
+          "title": "focus is trapped inside the layer while it is open",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 3383
+        },
+        {
+          "title": "the close control closes it",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 5625
+        },
+        {
+          "title": "body scroll is locked while open and fully released after",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 9921
+        },
+        {
+          "title": "opening the menu does not walk the journey back down the mountain",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 66
+        },
+        {
+          "title": "the destinations are ordinary links and they navigate",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 8102
+        },
+        {
+          "title": "is a real control with an accessible name, and it returns the page",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 11901
+        },
+        {
+          "title": "focus is not lost on the way up",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 7342
+        },
+        {
+          "title": "under reduced motion it arrives immediately",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 810
+        },
+        {
+          "title": "is a real control with an accessible name, and it returns the page",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 664
+        },
+        {
+          "title": "focus is not lost on the way up",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 5483
+        },
+        {
+          "title": "under reduced motion it arrives immediately",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 711
+        },
+        {
+          "title": "Arrival closes the journey with the real ceiling and both actions",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 5089
+        },
+        {
+          "title": "the footer is a landmark with headed groups, contact and legal links",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 4299
+        },
+        {
+          "title": "it is the same footer the subpages carry, not a homepage copy",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 548
+        },
+        {
+          "title": "the homepage menu leads where the subpage menu leads",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 542
+        },
+        {
+          "title": "the homepage header row leads where the subpage header row leads",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 525
+        },
+        {
+          "title": "the homepage introduces no duplicate ids",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 351
+        },
+        {
+          "title": "every chrome link on the homepage resolves",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 2654
+        },
+        {
+          "title": "Arrival closes the journey with the real ceiling and both actions",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 201
+        },
+        {
+          "title": "the footer is a landmark with headed groups, contact and legal links",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 227
+        },
+        {
+          "title": "it is the same footer the subpages carry, not a homepage copy",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 361
+        },
+        {
+          "title": "the homepage menu leads where the subpage menu leads",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 448
+        },
+        {
+          "title": "the homepage header row leads where the subpage header row leads",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 465
+        },
+        {
+          "title": "the homepage introduces no duplicate ids",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 372
+        },
+        {
+          "title": "every chrome link on the homepage resolves",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 3297
+        },
+        {
+          "title": "hu: header, menu, Arrival and footer are all in hu",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 2611
+        },
+        {
+          "title": "en: header, menu, Arrival and footer are all in en",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 2772
+        },
+        {
+          "title": "de: header, menu, Arrival and footer are all in de",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 2848
+        },
+        {
+          "title": "hu: header, menu, Arrival and footer are all in hu",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 2498
+        },
+        {
+          "title": "en: header, menu, Arrival and footer are all in en",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 2497
+        },
+        {
+          "title": "de: header, menu, Arrival and footer are all in de",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 2552
+        },
+        {
+          "title": "the chrome is complete and immediately usable without animation",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 381
+        },
+        {
+          "title": "the menu opens directly, with no spatial delay",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 424
+        },
+        {
+          "title": "the chrome is complete and immediately usable without animation",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 300
+        },
+        {
+          "title": "the menu opens directly, with no spatial delay",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 388
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6620
+        },
+        {
+          "title": "a subpage reached from the homepage carries the same working header",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 7189
+        },
+        {
+          "title": "the header binds exactly one scroll listener and no permanent loop",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 4851
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 790
+        },
+        {
+          "title": "a subpage reached from the homepage carries the same working header",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 4285
+        },
+        {
+          "title": "the header binds exactly one scroll listener and no permanent loop",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 78
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 1024x768",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 50
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 375x812",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 56
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 360x800",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 51
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 844x390 landscape",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 56
+        },
+        {
+          "title": "the chrome survives 200% zoom and increased text spacing",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 48
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 1024x768",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 76
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 375x812",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 59
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 360x800",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 61
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 844x390 landscape",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 79
+        },
+        {
+          "title": "the chrome survives 200% zoom and increased text spacing",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 60
+        }
+      ],
+      "stderr": ""
+    },
+    {
+      "arm": "normal",
+      "workers": 5,
+      "scope": "the whole file",
+      "exitCode": 1,
+      "wallMs": 117349,
+      "load": {
+        "samples": [
+          8.24,
+          9.58,
+          9.58,
+          9.58,
+          10.17,
+          10.17,
+          11.2,
+          11.2,
+          11.2,
+          13.43,
+          13.43,
+          14.99,
+          14.99,
+          14.99,
+          16.52,
+          16.52,
+          18.32,
+          18.32,
+          18.32,
+          18.21,
+          18.21,
+          20.44,
+          20.44,
+          20.44,
+          22.4,
+          22.4,
+          23.49,
+          23.49,
+          23.49,
+          25.61,
+          25.61,
+          25.16,
+          25.16,
+          25.16,
+          27.31,
+          27.31,
+          28.25,
+          28.25,
+          28.25,
+          27.67,
+          27.67,
+          27.21,
+          27.21,
+          27.21,
+          26.24,
+          26.24,
+          25.34,
+          25.34,
+          25.34,
+          26.59,
+          26.59,
+          28.06,
+          28.06,
+          28.06,
+          28.54,
+          28.54,
+          27.77,
+          27.77
+        ],
+        "peak": 28.54,
+        "median": 25.16,
+        "cores": 10
+      },
+      "tests": [
+        {
+          "title": "the opening state is the full wordmark over a transparent header",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 5507
+        },
+        {
+          "title": "desktop navigation is visible at the top and collapses into the trigger",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 11831
+        },
+        {
+          "title": "the journey state compacts the wordmark and keeps the header short",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 15970
+        },
+        {
+          "title": "the destination state resolves near the end and reveals the CTA",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 15411
+        },
+        {
+          "title": "the states are reversible and the top of the page is always the opening state",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 23398
+        },
+        {
+          "title": "a single jump lands on the right state, not one short of it",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 17775
+        },
+        {
+          "title": "the header does not chatter when the visitor hovers on a boundary",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 25476
+        },
+        {
+          "title": "the header prints the journey altitude, not an altitude of its own",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 16765
+        },
+        {
+          "title": "the readout names the stage the journey reports",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 18808
+        },
+        {
+          "title": "the altitude readout is hidden from assistive technology",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 1049
+        },
+        {
+          "title": "the opening state is the full wordmark over a transparent header",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 385
+        },
+        {
+          "title": "desktop navigation is visible at the top and collapses into the trigger",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 658
+        },
+        {
+          "title": "the journey state compacts the wordmark and keeps the header short",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 102
+        },
+        {
+          "title": "the destination state resolves near the end and reveals the CTA",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 632
+        },
+        {
+          "title": "the states are reversible and the top of the page is always the opening state",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1166
+        },
+        {
+          "title": "a single jump lands on the right state, not one short of it",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 720
+        },
+        {
+          "title": "the header does not chatter when the visitor hovers on a boundary",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 103
+        },
+        {
+          "title": "the header prints the journey altitude, not an altitude of its own",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 90
+        },
+        {
+          "title": "the readout names the stage the journey reports",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 110
+        },
+        {
+          "title": "the altitude readout is hidden from assistive technology",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 5347
+        },
+        {
+          "title": "opens from every header state",
+          "project": "desktop-1920",
+          "ok": false,
+          "status": "failed",
+          "ms": 34603,
+          "error": "Error: header never reached \"journey\""
+        },
+        {
+          "title": "the trigger names itself and points at the layer it controls",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 8460
+        },
+        {
+          "title": "ESC closes it and focus goes back to the trigger",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 797
+        },
+        {
+          "title": "focus is trapped inside the layer while it is open",
+          "project": "desktop-1920",
+          "ok": false,
+          "status": "timedOut",
+          "ms": 40019,
+          "error": "Test timeout of 30000ms exceeded."
+        },
+        {
+          "title": "the close control closes it",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 19434
+        },
+        {
+          "title": "body scroll is locked while open and fully released after",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 24921
+        },
+        {
+          "title": "opening the menu does not walk the journey back down the mountain",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 30287
+        },
+        {
+          "title": "the destinations are ordinary links and they navigate",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 10296
+        },
+        {
+          "title": "opens from every header state",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1538
+        },
+        {
+          "title": "the trigger names itself and points at the layer it controls",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 5560
+        },
+        {
+          "title": "ESC closes it and focus goes back to the trigger",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 4762
+        },
+        {
+          "title": "focus is trapped inside the layer while it is open",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 25349
+        },
+        {
+          "title": "the close control closes it",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 13189
+        },
+        {
+          "title": "body scroll is locked while open and fully released after",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 18656
+        },
+        {
+          "title": "opening the menu does not walk the journey back down the mountain",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 215
+        },
+        {
+          "title": "the destinations are ordinary links and they navigate",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 15410
+        },
+        {
+          "title": "is a real control with an accessible name, and it returns the page",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 23393
+        },
+        {
+          "title": "focus is not lost on the way up",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 12539
+        },
+        {
+          "title": "under reduced motion it arrives immediately",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 835
+        },
+        {
+          "title": "is a real control with an accessible name, and it returns the page",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 748
+        },
+        {
+          "title": "focus is not lost on the way up",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 12465
+        },
+        {
+          "title": "under reduced motion it arrives immediately",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 918
+        },
+        {
+          "title": "Arrival closes the journey with the real ceiling and both actions",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 6545
+        },
+        {
+          "title": "the footer is a landmark with headed groups, contact and legal links",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 5898
+        },
+        {
+          "title": "it is the same footer the subpages carry, not a homepage copy",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 775
+        },
+        {
+          "title": "the homepage menu leads where the subpage menu leads",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 700
+        },
+        {
+          "title": "the homepage header row leads where the subpage header row leads",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 732
+        },
+        {
+          "title": "the homepage introduces no duplicate ids",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 1099
+        },
+        {
+          "title": "every chrome link on the homepage resolves",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 468
+        },
+        {
+          "title": "Arrival closes the journey with the real ceiling and both actions",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 347
+        },
+        {
+          "title": "the footer is a landmark with headed groups, contact and legal links",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 443
+        },
+        {
+          "title": "it is the same footer the subpages carry, not a homepage copy",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 621
+        },
+        {
+          "title": "the homepage menu leads where the subpage menu leads",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 692
+        },
+        {
+          "title": "the homepage header row leads where the subpage header row leads",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 938
+        },
+        {
+          "title": "the homepage introduces no duplicate ids",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 517
+        },
+        {
+          "title": "every chrome link on the homepage resolves",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 531
+        },
+        {
+          "title": "hu: header, menu, Arrival and footer are all in hu",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 506
+        },
+        {
+          "title": "en: header, menu, Arrival and footer are all in en",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 624
+        },
+        {
+          "title": "de: header, menu, Arrival and footer are all in de",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 5548
+        },
+        {
+          "title": "hu: header, menu, Arrival and footer are all in hu",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 686
+        },
+        {
+          "title": "en: header, menu, Arrival and footer are all in en",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 776
+        },
+        {
+          "title": "de: header, menu, Arrival and footer are all in de",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 685
+        },
+        {
+          "title": "the chrome is complete and immediately usable without animation",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 524
+        },
+        {
+          "title": "the menu opens directly, with no spatial delay",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 2062
+        },
+        {
+          "title": "the chrome is complete and immediately usable without animation",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 897
+        },
+        {
+          "title": "the menu opens directly, with no spatial delay",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 484
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 17705
+        },
+        {
+          "title": "a subpage reached from the homepage carries the same working header",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 17020
+        },
+        {
+          "title": "the header binds exactly one scroll listener and no permanent loop",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "passed",
+          "ms": 9512
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 1152
+        },
+        {
+          "title": "a subpage reached from the homepage carries the same working header",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "passed",
+          "ms": 7715
+        },
+        {
+          "title": "the header binds exactly one scroll listener and no permanent loop",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 110
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 1024x768",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 78
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 375x812",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 72
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 360x800",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 91
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 844x390 landscape",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 261
+        },
+        {
+          "title": "the chrome survives 200% zoom and increased text spacing",
+          "project": "desktop-1920",
+          "ok": true,
+          "status": "skipped",
+          "ms": 90
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 1024x768",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 110
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 375x812",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 104
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 360x800",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 126
+        },
+        {
+          "title": "the chrome fits and never scrolls sideways at 844x390 landscape",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 117
+        },
+        {
+          "title": "the chrome survives 200% zoom and increased text spacing",
+          "project": "reduced-motion",
+          "ok": true,
+          "status": "skipped",
+          "ms": 120
+        }
+      ],
+      "stderr": ""
+    }
+  ]
+}

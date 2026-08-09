@@ -1,0 +1,530 @@
+{
+  "origin": "http://127.0.0.1:4322",
+  "at": "2026-08-09T19:24:22.840Z",
+  "trials": 5,
+  "engines": [
+    {
+      "engine": "chromium",
+      "arms": [
+        {
+          "name": "home",
+          "url": "/index.html",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "js": true,
+          "runs": [
+            {
+              "left": 6468,
+              "landed": 13352,
+              "docHeight": 14129,
+              "docHeightAfter": 14197,
+              "travelAfter": 13353,
+              "fractionOfDocument": 1,
+              "error": 6884,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6468,
+              "landed": 6468,
+              "docHeight": 14129,
+              "docHeightAfter": 14197,
+              "travelAfter": 13353,
+              "fractionOfDocument": 0.484,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6468,
+              "landed": 13352,
+              "docHeight": 14129,
+              "docHeightAfter": 14197,
+              "travelAfter": 13353,
+              "fractionOfDocument": 1,
+              "error": 6884,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6468,
+              "landed": 6468,
+              "docHeight": 14129,
+              "docHeightAfter": 14197,
+              "travelAfter": 13353,
+              "fractionOfDocument": 0.484,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6468,
+              "landed": 6468,
+              "docHeight": 14129,
+              "docHeightAfter": 14197,
+              "travelAfter": 13353,
+              "fractionOfDocument": 0.484,
+              "error": 0,
+              "verdict": "restored"
+            }
+          ],
+          "verdicts": {
+            "landed at the bottom": 2,
+            "restored": 3
+          }
+        },
+        {
+          "name": "home-desktop",
+          "url": "/index.html",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "js": true,
+          "runs": [
+            {
+              "left": 6400,
+              "landed": 20569,
+              "docHeight": 21401,
+              "docHeightAfter": 21469,
+              "travelAfter": 20569,
+              "fractionOfDocument": 1,
+              "error": 14169,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6400,
+              "landed": 20569,
+              "docHeight": 21401,
+              "docHeightAfter": 21469,
+              "travelAfter": 20569,
+              "fractionOfDocument": 1,
+              "error": 14169,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6400,
+              "landed": 20569,
+              "docHeight": 21401,
+              "docHeightAfter": 21469,
+              "travelAfter": 20569,
+              "fractionOfDocument": 1,
+              "error": 14169,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6400,
+              "landed": 20569,
+              "docHeight": 21401,
+              "docHeightAfter": 21469,
+              "travelAfter": 20569,
+              "fractionOfDocument": 1,
+              "error": 14169,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6400,
+              "landed": 20569,
+              "docHeight": 21401,
+              "docHeightAfter": 21469,
+              "travelAfter": 20569,
+              "fractionOfDocument": 1,
+              "error": 14169,
+              "verdict": "landed at the bottom"
+            }
+          ],
+          "verdicts": {
+            "landed at the bottom": 5
+          }
+        },
+        {
+          "name": "static",
+          "url": "/rolunk.html",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "js": true,
+          "runs": [
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11574,
+              "docHeightAfter": 11574,
+              "travelAfter": 10730,
+              "fractionOfDocument": 0.596,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11574,
+              "docHeightAfter": 11574,
+              "travelAfter": 10730,
+              "fractionOfDocument": 0.596,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11574,
+              "docHeightAfter": 11574,
+              "travelAfter": 10730,
+              "fractionOfDocument": 0.596,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11574,
+              "docHeightAfter": 11574,
+              "travelAfter": 10730,
+              "fractionOfDocument": 0.596,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11574,
+              "docHeightAfter": 11574,
+              "travelAfter": 10730,
+              "fractionOfDocument": 0.596,
+              "error": 0,
+              "verdict": "restored"
+            }
+          ],
+          "verdicts": {
+            "restored": 5
+          }
+        },
+        {
+          "name": "static-nojs",
+          "url": "/rolunk.html",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "js": false,
+          "runs": [
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11611,
+              "docHeightAfter": 11611,
+              "travelAfter": 10767,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11611,
+              "docHeightAfter": 11611,
+              "travelAfter": 10767,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11611,
+              "docHeightAfter": 11611,
+              "travelAfter": 10767,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11611,
+              "docHeightAfter": 11611,
+              "travelAfter": 10767,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11611,
+              "docHeightAfter": 11611,
+              "travelAfter": 10767,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            }
+          ],
+          "verdicts": {
+            "restored": 5
+          }
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "arms": [
+        {
+          "name": "home",
+          "url": "/index.html",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "js": true,
+          "runs": [
+            {
+              "left": 6400,
+              "landed": 13349,
+              "docHeight": 14193,
+              "docHeightAfter": 14193,
+              "travelAfter": 13349,
+              "fractionOfDocument": 1,
+              "error": 6949,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6400,
+              "landed": 13349,
+              "docHeight": 14193,
+              "docHeightAfter": 14193,
+              "travelAfter": 13349,
+              "fractionOfDocument": 1,
+              "error": 6949,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6400,
+              "landed": 13349,
+              "docHeight": 14193,
+              "docHeightAfter": 14193,
+              "travelAfter": 13349,
+              "fractionOfDocument": 1,
+              "error": 6949,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6400,
+              "landed": 13349,
+              "docHeight": 14193,
+              "docHeightAfter": 14193,
+              "travelAfter": 13349,
+              "fractionOfDocument": 1,
+              "error": 6949,
+              "verdict": "landed at the bottom"
+            },
+            {
+              "left": 6400,
+              "landed": 13349,
+              "docHeight": 14193,
+              "docHeightAfter": 14193,
+              "travelAfter": 13349,
+              "fractionOfDocument": 1,
+              "error": 6949,
+              "verdict": "landed at the bottom"
+            }
+          ],
+          "verdicts": {
+            "landed at the bottom": 5
+          }
+        },
+        {
+          "name": "home-desktop",
+          "url": "/index.html",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "js": true,
+          "runs": [
+            {
+              "left": 6400,
+              "landed": 794,
+              "docHeight": 21467,
+              "docHeightAfter": 21467,
+              "travelAfter": 20567,
+              "fractionOfDocument": 0.039,
+              "error": 5606,
+              "verdict": "landed elsewhere"
+            },
+            {
+              "left": 6400,
+              "landed": 794,
+              "docHeight": 21467,
+              "docHeightAfter": 21467,
+              "travelAfter": 20567,
+              "fractionOfDocument": 0.039,
+              "error": 5606,
+              "verdict": "landed elsewhere"
+            },
+            {
+              "left": 6400,
+              "landed": 794,
+              "docHeight": 21467,
+              "docHeightAfter": 21467,
+              "travelAfter": 20567,
+              "fractionOfDocument": 0.039,
+              "error": 5606,
+              "verdict": "landed elsewhere"
+            },
+            {
+              "left": 6400,
+              "landed": 794,
+              "docHeight": 21467,
+              "docHeightAfter": 21467,
+              "travelAfter": 20567,
+              "fractionOfDocument": 0.039,
+              "error": 5606,
+              "verdict": "landed elsewhere"
+            },
+            {
+              "left": 6400,
+              "landed": 794,
+              "docHeight": 21467,
+              "docHeightAfter": 21467,
+              "travelAfter": 20567,
+              "fractionOfDocument": 0.039,
+              "error": 5606,
+              "verdict": "landed elsewhere"
+            }
+          ],
+          "verdicts": {
+            "landed elsewhere": 5
+          }
+        },
+        {
+          "name": "static",
+          "url": "/rolunk.html",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "js": true,
+          "runs": [
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11573,
+              "docHeightAfter": 11573,
+              "travelAfter": 10729,
+              "fractionOfDocument": 0.597,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11573,
+              "docHeightAfter": 11573,
+              "travelAfter": 10729,
+              "fractionOfDocument": 0.597,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11573,
+              "docHeightAfter": 11573,
+              "travelAfter": 10729,
+              "fractionOfDocument": 0.597,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11573,
+              "docHeightAfter": 11573,
+              "travelAfter": 10729,
+              "fractionOfDocument": 0.597,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11573,
+              "docHeightAfter": 11573,
+              "travelAfter": 10729,
+              "fractionOfDocument": 0.597,
+              "error": 0,
+              "verdict": "restored"
+            }
+          ],
+          "verdicts": {
+            "restored": 5
+          }
+        },
+        {
+          "name": "static-nojs",
+          "url": "/rolunk.html",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "js": false,
+          "runs": [
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11610,
+              "docHeightAfter": 11610,
+              "travelAfter": 10766,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11610,
+              "docHeightAfter": 11610,
+              "travelAfter": 10766,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11610,
+              "docHeightAfter": 11610,
+              "travelAfter": 10766,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11610,
+              "docHeightAfter": 11610,
+              "travelAfter": 10766,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "docHeight": 11610,
+              "docHeightAfter": 11610,
+              "travelAfter": 10766,
+              "fractionOfDocument": 0.594,
+              "error": 0,
+              "verdict": "restored"
+            }
+          ],
+          "verdicts": {
+            "restored": 5
+          }
+        }
+      ]
+    }
+  ]
+}

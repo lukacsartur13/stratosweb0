@@ -1,0 +1,517 @@
+{
+  "origin": "http://127.0.0.1:4322",
+  "backend": "swiftshader",
+  "runs": [
+    {
+      "viewport": "1440x900",
+      "states": [
+        {
+          "state": "opening",
+          "headerState": "opening",
+          "before": {
+            "present": true,
+            "box": [
+              1268.313,
+              18.594,
+              114.094,
+              42
+            ],
+            "pointerEvents": "auto",
+            "opacity": "1",
+            "visibility": "visible",
+            "display": "flex",
+            "zIndex": "890",
+            "stackingContexts": [
+              "button.burger: z=890 pos=relative tf=none",
+              "header.nav: z=890 pos=fixed tf=none"
+            ],
+            "topmostAtCentre": "span.burger__shut",
+            "topmostIsSelfOrChild": true,
+            "animations": 0,
+            "ariaExpanded": "false"
+          },
+          "stable": {
+            "stable": true,
+            "distinctBoxes": 1,
+            "frames": 90
+          },
+          "hover": {
+            "label": "hover",
+            "ok": true,
+            "ms": 1682
+          },
+          "trial": {
+            "label": "click{trial}",
+            "ok": true,
+            "ms": 2068
+          },
+          "click": {
+            "label": "click",
+            "ok": true,
+            "ms": 1963
+          },
+          "events": [
+            [
+              "pointerover",
+              23497
+            ],
+            [
+              "pointermove",
+              23498
+            ],
+            [
+              "pointermove",
+              25313
+            ],
+            [
+              "pointermove",
+              27326
+            ],
+            [
+              "pointerdown",
+              27327
+            ],
+            [
+              "mousedown",
+              27327
+            ],
+            [
+              "mouseup",
+              27328
+            ],
+            [
+              "click",
+              27328
+            ]
+          ],
+          "afterAriaExpanded": "true"
+        },
+        {
+          "state": "journey",
+          "headerState": "journey",
+          "before": {
+            "present": true,
+            "box": [
+              1283.219,
+              8.734,
+              99.188,
+              34
+            ],
+            "pointerEvents": "auto",
+            "opacity": "1",
+            "visibility": "visible",
+            "display": "flex",
+            "zIndex": "890",
+            "stackingContexts": [
+              "button.burger: z=890 pos=relative tf=none",
+              "header.nav: z=890 pos=fixed tf=none"
+            ],
+            "topmostAtCentre": "span.burger__shut",
+            "topmostIsSelfOrChild": true,
+            "animations": 0,
+            "ariaExpanded": "false"
+          },
+          "stable": {
+            "stable": true,
+            "distinctBoxes": 1,
+            "frames": 90
+          },
+          "hover": {
+            "label": "hover",
+            "ok": true,
+            "ms": 317
+          },
+          "trial": {
+            "label": "click{trial}",
+            "ok": true,
+            "ms": 347
+          },
+          "click": {
+            "label": "click",
+            "ok": true,
+            "ms": 362
+          },
+          "events": [
+            [
+              "pointerover",
+              34424
+            ],
+            [
+              "pointermove",
+              34424
+            ],
+            [
+              "pointermove",
+              34740
+            ],
+            [
+              "pointermove",
+              35099
+            ],
+            [
+              "pointerdown",
+              35099
+            ],
+            [
+              "mousedown",
+              35099
+            ],
+            [
+              "mouseup",
+              35099
+            ],
+            [
+              "click",
+              35099
+            ]
+          ],
+          "afterAriaExpanded": "true"
+        },
+        {
+          "state": "destination",
+          "headerState": "destination",
+          "before": {
+            "present": true,
+            "box": [
+              1268.313,
+              18.594,
+              114.094,
+              42
+            ],
+            "pointerEvents": "auto",
+            "opacity": "1",
+            "visibility": "visible",
+            "display": "flex",
+            "zIndex": "890",
+            "stackingContexts": [
+              "button.burger: z=890 pos=relative tf=none",
+              "header.nav: z=890 pos=fixed tf=none"
+            ],
+            "topmostAtCentre": "span.burger__shut",
+            "topmostIsSelfOrChild": true,
+            "animations": 0,
+            "ariaExpanded": "false"
+          },
+          "stable": {
+            "stable": true,
+            "distinctBoxes": 1,
+            "frames": 90
+          },
+          "hover": {
+            "label": "hover",
+            "ok": true,
+            "ms": 49
+          },
+          "trial": {
+            "label": "click{trial}",
+            "ok": true,
+            "ms": 37
+          },
+          "click": {
+            "label": "click",
+            "ok": true,
+            "ms": 38
+          },
+          "events": [
+            [
+              "pointerover",
+              39958
+            ],
+            [
+              "pointermove",
+              39958
+            ],
+            [
+              "pointermove",
+              39995
+            ],
+            [
+              "pointermove",
+              40028
+            ],
+            [
+              "pointerdown",
+              40029
+            ],
+            [
+              "mousedown",
+              40029
+            ],
+            [
+              "mouseup",
+              40029
+            ],
+            [
+              "click",
+              40029
+            ]
+          ],
+          "afterAriaExpanded": "true"
+        }
+      ],
+      "fps": 10,
+      "forced": {
+        "label": "click{force}",
+        "ok": true,
+        "ms": 54,
+        "ariaExpanded": "true"
+      }
+    },
+    {
+      "viewport": "1920x1080",
+      "states": [
+        {
+          "state": "opening",
+          "headerState": "opening",
+          "before": {
+            "present": true,
+            "box": [
+              1729.109,
+              18.594,
+              114.094,
+              42
+            ],
+            "pointerEvents": "auto",
+            "opacity": "1",
+            "visibility": "visible",
+            "display": "flex",
+            "zIndex": "890",
+            "stackingContexts": [
+              "button.burger: z=890 pos=relative tf=none",
+              "header.nav: z=890 pos=fixed tf=none"
+            ],
+            "topmostAtCentre": "span.burger__shut",
+            "topmostIsSelfOrChild": true,
+            "animations": 0,
+            "ariaExpanded": "false"
+          },
+          "stable": {
+            "stable": true,
+            "distinctBoxes": 1,
+            "frames": 90
+          },
+          "hover": {
+            "label": "hover",
+            "ok": true,
+            "ms": 2535
+          },
+          "trial": {
+            "label": "click{trial}",
+            "ok": true,
+            "ms": 2730
+          },
+          "click": {
+            "label": "click",
+            "ok": true,
+            "ms": 2742
+          },
+          "events": [
+            [
+              "pointerover",
+              31266
+            ],
+            [
+              "pointermove",
+              31266
+            ],
+            [
+              "pointermove",
+              33757
+            ],
+            [
+              "pointermove",
+              36469
+            ],
+            [
+              "pointerdown",
+              36469
+            ],
+            [
+              "mousedown",
+              36469
+            ],
+            [
+              "mouseup",
+              36469
+            ],
+            [
+              "click",
+              36469
+            ]
+          ],
+          "afterAriaExpanded": "true"
+        },
+        {
+          "state": "journey",
+          "headerState": "journey",
+          "before": {
+            "present": true,
+            "box": [
+              1744.016,
+              8.734,
+              99.188,
+              34
+            ],
+            "pointerEvents": "auto",
+            "opacity": "1",
+            "visibility": "visible",
+            "display": "flex",
+            "zIndex": "890",
+            "stackingContexts": [
+              "button.burger: z=890 pos=relative tf=none",
+              "header.nav: z=890 pos=fixed tf=none"
+            ],
+            "topmostAtCentre": "span.burger__shut",
+            "topmostIsSelfOrChild": true,
+            "animations": 0,
+            "ariaExpanded": "false"
+          },
+          "stable": {
+            "stable": true,
+            "distinctBoxes": 1,
+            "frames": 90
+          },
+          "hover": {
+            "label": "hover",
+            "ok": true,
+            "ms": 444
+          },
+          "trial": {
+            "label": "click{trial}",
+            "ok": true,
+            "ms": 487
+          },
+          "click": {
+            "label": "click",
+            "ok": true,
+            "ms": 490
+          },
+          "events": [
+            [
+              "pointerover",
+              45505
+            ],
+            [
+              "pointermove",
+              45505
+            ],
+            [
+              "pointermove",
+              45949
+            ],
+            [
+              "pointermove",
+              46437
+            ],
+            [
+              "pointerdown",
+              46437
+            ],
+            [
+              "mousedown",
+              46437
+            ],
+            [
+              "mouseup",
+              46437
+            ],
+            [
+              "click",
+              46437
+            ]
+          ],
+          "afterAriaExpanded": "true"
+        },
+        {
+          "state": "destination",
+          "headerState": "destination",
+          "before": {
+            "present": true,
+            "box": [
+              1729.109,
+              18.594,
+              114.094,
+              42
+            ],
+            "pointerEvents": "auto",
+            "opacity": "1",
+            "visibility": "visible",
+            "display": "flex",
+            "zIndex": "890",
+            "stackingContexts": [
+              "button.burger: z=890 pos=relative tf=none",
+              "header.nav: z=890 pos=fixed tf=none"
+            ],
+            "topmostAtCentre": "span.burger__shut",
+            "topmostIsSelfOrChild": true,
+            "animations": 0,
+            "ariaExpanded": "false"
+          },
+          "stable": {
+            "stable": true,
+            "distinctBoxes": 1,
+            "frames": 90
+          },
+          "hover": {
+            "label": "hover",
+            "ok": true,
+            "ms": 50
+          },
+          "trial": {
+            "label": "click{trial}",
+            "ok": true,
+            "ms": 37
+          },
+          "click": {
+            "label": "click",
+            "ok": true,
+            "ms": 41
+          },
+          "events": [
+            [
+              "pointerover",
+              51206
+            ],
+            [
+              "pointermove",
+              51206
+            ],
+            [
+              "pointermove",
+              51244
+            ],
+            [
+              "pointermove",
+              51276
+            ],
+            [
+              "pointerdown",
+              51276
+            ],
+            [
+              "mousedown",
+              51276
+            ],
+            [
+              "mouseup",
+              51277
+            ],
+            [
+              "click",
+              51277
+            ]
+          ],
+          "afterAriaExpanded": "true"
+        }
+      ],
+      "fps": 11,
+      "forced": {
+        "label": "click{force}",
+        "ok": true,
+        "ms": 208,
+        "ariaExpanded": "true"
+      }
+    }
+  ],
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+}

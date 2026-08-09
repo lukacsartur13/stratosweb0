@@ -1,0 +1,3384 @@
+{
+  "config": {
+    "argv": [
+      "/Users/arturlukacs/.local/node/bin/node",
+      "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/node_modules/.bin/playwright",
+      "test",
+      "tests/homepage-chrome.spec.ts",
+      "--project",
+      "desktop-1920",
+      "--project",
+      "reduced-motion",
+      "--workers",
+      "1",
+      "--reporter",
+      "json",
+      "--retries",
+      "0"
+    ],
+    "configFile": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/playwright.config.ts",
+    "rootDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "node",
+        "name": "node",
+        "testDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/lead-endpoint\\.spec\\.ts/",
+          "/structured-data\\.spec\\.ts/",
+          "/portal-analytics\\.spec\\.ts/",
+          "/lead-notify\\.spec\\.ts/"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-1440",
+        "name": "desktop-1440",
+        "testDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests",
+        "testIgnore": [
+          "/lead-endpoint\\.spec\\.ts/",
+          "/structured-data\\.spec\\.ts/",
+          "/portal-analytics\\.spec\\.ts/",
+          "/lead-notify\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-1920",
+        "name": "desktop-1920",
+        "testDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests",
+        "testIgnore": [
+          "/lead-endpoint\\.spec\\.ts/",
+          "/structured-data\\.spec\\.ts/",
+          "/portal-analytics\\.spec\\.ts/",
+          "/lead-notify\\.spec\\.ts/",
+          "/analytics\\.spec\\.ts/",
+          "/attribution\\.spec\\.ts/",
+          "/not-found\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-390",
+        "name": "mobile-390",
+        "testDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests",
+        "testIgnore": [
+          "/lead-endpoint\\.spec\\.ts/",
+          "/structured-data\\.spec\\.ts/",
+          "/portal-analytics\\.spec\\.ts/",
+          "/lead-notify\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-430",
+        "name": "mobile-430",
+        "testDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests",
+        "testIgnore": [
+          "/lead-endpoint\\.spec\\.ts/",
+          "/structured-data\\.spec\\.ts/",
+          "/portal-analytics\\.spec\\.ts/",
+          "/lead-notify\\.spec\\.ts/",
+          "/analytics\\.spec\\.ts/",
+          "/attribution\\.spec\\.ts/",
+          "/not-found\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "reduced-motion",
+        "name": "reduced-motion",
+        "testDir": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests",
+        "testIgnore": [
+          "/lead-endpoint\\.spec\\.ts/",
+          "/structured-data\\.spec\\.ts/",
+          "/portal-analytics\\.spec\\.ts/",
+          "/lead-notify\\.spec\\.ts/",
+          "/analytics\\.spec\\.ts/",
+          "/attribution\\.spec\\.ts/",
+          "/not-found\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.62.1",
+    "workers": 1,
+    "webServer": {
+      "command": "python3 -m http.server 4322 --directory dist",
+      "url": "http://127.0.0.1:4322",
+      "reuseExistingServer": true,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "homepage-chrome.spec.ts",
+      "file": "homepage-chrome.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "the homepage flight deck",
+          "file": "homepage-chrome.spec.ts",
+          "line": 216,
+          "column": 6,
+          "specs": [
+            {
+              "title": "the opening state is the full wordmark over a transparent header",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1871,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:00.479Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-33726ec359694c45a8e4",
+              "file": "homepage-chrome.spec.ts",
+              "line": 217,
+              "column": 3
+            },
+            {
+              "title": "desktop navigation is visible at the top and collapses into the trigger",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3301,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:02.434Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-2326d0e8fc838eec5c39",
+              "file": "homepage-chrome.spec.ts",
+              "line": 237,
+              "column": 3
+            },
+            {
+              "title": "the journey state compacts the wordmark and keeps the header short",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3562,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:05.741Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-181e0be463080f3fae25",
+              "file": "homepage-chrome.spec.ts",
+              "line": 259,
+              "column": 3
+            },
+            {
+              "title": "the destination state resolves near the end and reveals the CTA",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2565,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:09.311Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-7852a3c532ce9d7f477f",
+              "file": "homepage-chrome.spec.ts",
+              "line": 289,
+              "column": 3
+            },
+            {
+              "title": "the states are reversible and the top of the page is always the opening state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6181,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:11.882Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-7ed91046375e9d3526f0",
+              "file": "homepage-chrome.spec.ts",
+              "line": 309,
+              "column": 3
+            },
+            {
+              "title": "a single jump lands on the right state, not one short of it",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6592,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:18.067Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-cea7d12259be1c6b8cd1",
+              "file": "homepage-chrome.spec.ts",
+              "line": 326,
+              "column": 3
+            },
+            {
+              "title": "the header does not chatter when the visitor hovers on a boundary",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6774,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:24.664Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-7f9837f49382acf7e4d1",
+              "file": "homepage-chrome.spec.ts",
+              "line": 348,
+              "column": 3
+            },
+            {
+              "title": "the header prints the journey altitude, not an altitude of its own",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4453,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:31.445Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-1ecc382405541d40acf8",
+              "file": "homepage-chrome.spec.ts",
+              "line": 370,
+              "column": 3
+            },
+            {
+              "title": "the readout names the stage the journey reports",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4880,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:35.903Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-5d6b10ae5fa922e8850c",
+              "file": "homepage-chrome.spec.ts",
+              "line": 393,
+              "column": 3
+            },
+            {
+              "title": "the altitude readout is hidden from assistive technology",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 214,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:40.787Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-05e31118f10a3a6222c7",
+              "file": "homepage-chrome.spec.ts",
+              "line": 410,
+              "column": 3
+            },
+            {
+              "title": "the opening state is the full wordmark over a transparent header",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 169,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:45.616Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-01bd1485b547f46937e9",
+              "file": "homepage-chrome.spec.ts",
+              "line": 217,
+              "column": 3
+            },
+            {
+              "title": "desktop navigation is visible at the top and collapses into the trigger",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 385,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:45.879Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-5c8460600ffc0eaaecbb",
+              "file": "homepage-chrome.spec.ts",
+              "line": 237,
+              "column": 3
+            },
+            {
+              "title": "the journey state compacts the wordmark and keeps the header short",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "that path is a plain document with no journey to compact into",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 260,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 55,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:46.269Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "that path is a plain document with no journey to compact into",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 260,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-13121bb76cde773702d4",
+              "file": "homepage-chrome.spec.ts",
+              "line": 259,
+              "column": 3
+            },
+            {
+              "title": "the destination state resolves near the end and reveals the CTA",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 545,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:46.328Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-44bc0fff711da5935ad2",
+              "file": "homepage-chrome.spec.ts",
+              "line": 289,
+              "column": 3
+            },
+            {
+              "title": "the states are reversible and the top of the page is always the opening state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1069,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:46.878Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-565c0e215a938cd2c2f0",
+              "file": "homepage-chrome.spec.ts",
+              "line": 309,
+              "column": 3
+            },
+            {
+              "title": "a single jump lands on the right state, not one short of it",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 535,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:47.952Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-77b14f9a4fb4cb32e2ed",
+              "file": "homepage-chrome.spec.ts",
+              "line": 326,
+              "column": 3
+            },
+            {
+              "title": "the header does not chatter when the visitor hovers on a boundary",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "no scroll-driven state machine on that path",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 349,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 49,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:48.492Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "no scroll-driven state machine on that path",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 349,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-3296f956dd8b663d7c61",
+              "file": "homepage-chrome.spec.ts",
+              "line": 348,
+              "column": 3
+            },
+            {
+              "title": "the header prints the journey altitude, not an altitude of its own",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "no clock on that path, so nothing is being published",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 371,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 61,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:48.546Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "no clock on that path, so nothing is being published",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 371,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-6ba61760bbf911e40670",
+              "file": "homepage-chrome.spec.ts",
+              "line": 370,
+              "column": 3
+            },
+            {
+              "title": "the readout names the stage the journey reports",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "no clock on that path",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 394,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 62,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:48.611Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "no clock on that path",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 394,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-26f58e804fd7e64a55e8",
+              "file": "homepage-chrome.spec.ts",
+              "line": 393,
+              "column": 3
+            },
+            {
+              "title": "the altitude readout is hidden from assistive technology",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 221,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:48.678Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-2db8c99ddced1ce7ccb5",
+              "file": "homepage-chrome.spec.ts",
+              "line": 410,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "the full-screen menu on the homepage",
+          "file": "homepage-chrome.spec.ts",
+          "line": 421,
+          "column": 6,
+          "specs": [
+            {
+              "title": "opens from every header state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9161,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:41.005Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-7100f4cdc3beb5e1484e",
+              "file": "homepage-chrome.spec.ts",
+              "line": 422,
+              "column": 3
+            },
+            {
+              "title": "the trigger names itself and points at the layer it controls",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1670,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:50.171Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-67e02cb810b0dd4849b7",
+              "file": "homepage-chrome.spec.ts",
+              "line": 439,
+              "column": 3
+            },
+            {
+              "title": "ESC closes it and focus goes back to the trigger",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1730,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:51.845Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-2a41e437ac13f7b474b5",
+              "file": "homepage-chrome.spec.ts",
+              "line": 454,
+              "column": 3
+            },
+            {
+              "title": "focus is trapped inside the layer while it is open",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2209,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:53.580Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-452fa43ada1452deda6f",
+              "file": "homepage-chrome.spec.ts",
+              "line": 470,
+              "column": 3
+            },
+            {
+              "title": "the close control closes it",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3612,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:55.793Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-a78df0a93110c56266e3",
+              "file": "homepage-chrome.spec.ts",
+              "line": 520,
+              "column": 3
+            },
+            {
+              "title": "body scroll is locked while open and fully released after",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6734,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:11:59.411Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-e8f8e7d2d4860a303054",
+              "file": "homepage-chrome.spec.ts",
+              "line": 531,
+              "column": 3
+            },
+            {
+              "title": "opening the menu does not walk the journey back down the mountain",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7392,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:06.152Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-349ba817ff573ac8dd29",
+              "file": "homepage-chrome.spec.ts",
+              "line": 558,
+              "column": 3
+            },
+            {
+              "title": "the destinations are ordinary links and they navigate",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3815,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:13.551Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-1d5ca428f44ed3983993",
+              "file": "homepage-chrome.spec.ts",
+              "line": 594,
+              "column": 3
+            },
+            {
+              "title": "opens from every header state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1173,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:48.903Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-1c7027aa78b6896b30a5",
+              "file": "homepage-chrome.spec.ts",
+              "line": 422,
+              "column": 3
+            },
+            {
+              "title": "the trigger names itself and points at the layer it controls",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1870,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:50.081Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-700731cfd06e3fe23b1e",
+              "file": "homepage-chrome.spec.ts",
+              "line": 439,
+              "column": 3
+            },
+            {
+              "title": "ESC closes it and focus goes back to the trigger",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1676,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:51.956Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-a5de59d43041f6704841",
+              "file": "homepage-chrome.spec.ts",
+              "line": 454,
+              "column": 3
+            },
+            {
+              "title": "focus is trapped inside the layer while it is open",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1655,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:53.636Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-9957e0b359f3d99caff5",
+              "file": "homepage-chrome.spec.ts",
+              "line": 470,
+              "column": 3
+            },
+            {
+              "title": "the close control closes it",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3724,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:55.295Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-8124a71a0043241e7025",
+              "file": "homepage-chrome.spec.ts",
+              "line": 520,
+              "column": 3
+            },
+            {
+              "title": "body scroll is locked while open and fully released after",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5152,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:59.025Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-49f6f4abbb8ec05ae0e7",
+              "file": "homepage-chrome.spec.ts",
+              "line": 531,
+              "column": 3
+            },
+            {
+              "title": "opening the menu does not walk the journey back down the mountain",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "no journey clock on that path",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 559,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 54,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:04.184Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "no journey clock on that path",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 559,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-71dab0e33bce1f141d53",
+              "file": "homepage-chrome.spec.ts",
+              "line": 558,
+              "column": 3
+            },
+            {
+              "title": "the destinations are ordinary links and they navigate",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3517,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:04.244Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-cb478c4b9fba8c6168fd",
+              "file": "homepage-chrome.spec.ts",
+              "line": 594,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "return to 0 m",
+          "file": "homepage-chrome.spec.ts",
+          "line": 614,
+          "column": 6,
+          "specs": [
+            {
+              "title": "is a real control with an accessible name, and it returns the page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5039,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:17.371Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-bb1df0120f873f5ee4ee",
+              "file": "homepage-chrome.spec.ts",
+              "line": 615,
+              "column": 3
+            },
+            {
+              "title": "focus is not lost on the way up",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4018,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:22.414Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-fe8a5ec531df551c3456",
+              "file": "homepage-chrome.spec.ts",
+              "line": 640,
+              "column": 3
+            },
+            {
+              "title": "under reduced motion it arrives immediately",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 696,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:26.437Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-0df6c0092f9301b10cfd",
+              "file": "homepage-chrome.spec.ts",
+              "line": 656,
+              "column": 3
+            },
+            {
+              "title": "is a real control with an accessible name, and it returns the page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 591,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:07.767Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-4fa30c5664bbb75bba34",
+              "file": "homepage-chrome.spec.ts",
+              "line": 615,
+              "column": 3
+            },
+            {
+              "title": "focus is not lost on the way up",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3147,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:08.364Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-18359d1705ef09f916d4",
+              "file": "homepage-chrome.spec.ts",
+              "line": 640,
+              "column": 3
+            },
+            {
+              "title": "under reduced motion it arrives immediately",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 690,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:11.517Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-c14d7188a209f52d2717",
+              "file": "homepage-chrome.spec.ts",
+              "line": 656,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "the Arrival sequence and the ground-control footer",
+          "file": "homepage-chrome.spec.ts",
+          "line": 672,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Arrival closes the journey with the real ceiling and both actions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 219,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:27.138Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-978e0af44da637341e4a",
+              "file": "homepage-chrome.spec.ts",
+              "line": 673,
+              "column": 3
+            },
+            {
+              "title": "the footer is a landmark with headed groups, contact and legal links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 203,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:27.361Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-659a4d5952a788112829",
+              "file": "homepage-chrome.spec.ts",
+              "line": 701,
+              "column": 3
+            },
+            {
+              "title": "it is the same footer the subpages carry, not a homepage copy",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 345,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:27.568Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-d92e8b0b4b7024ff0061",
+              "file": "homepage-chrome.spec.ts",
+              "line": 773,
+              "column": 3
+            },
+            {
+              "title": "the homepage menu leads where the subpage menu leads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 318,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:27.916Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-b4e42e07fc6e30df95ce",
+              "file": "homepage-chrome.spec.ts",
+              "line": 786,
+              "column": 3
+            },
+            {
+              "title": "the homepage header row leads where the subpage header row leads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 343,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:28.239Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-2003d6f0e3ed7ee5dae0",
+              "file": "homepage-chrome.spec.ts",
+              "line": 796,
+              "column": 3
+            },
+            {
+              "title": "the homepage introduces no duplicate ids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 191,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:28.587Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-f87dfe4a8453420b598c",
+              "file": "homepage-chrome.spec.ts",
+              "line": 806,
+              "column": 3
+            },
+            {
+              "title": "every chrome link on the homepage resolves",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 195,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:28.781Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-47befb5bd022972f40c0",
+              "file": "homepage-chrome.spec.ts",
+              "line": 821,
+              "column": 3
+            },
+            {
+              "title": "Arrival closes the journey with the real ceiling and both actions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 171,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:12.212Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-8fc5618cb309d59a7967",
+              "file": "homepage-chrome.spec.ts",
+              "line": 673,
+              "column": 3
+            },
+            {
+              "title": "the footer is a landmark with headed groups, contact and legal links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 187,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:12.387Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-3c2c3a063675f00cc001",
+              "file": "homepage-chrome.spec.ts",
+              "line": 701,
+              "column": 3
+            },
+            {
+              "title": "it is the same footer the subpages carry, not a homepage copy",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 264,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:12.577Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-47bcfe6795b411f034ce",
+              "file": "homepage-chrome.spec.ts",
+              "line": 773,
+              "column": 3
+            },
+            {
+              "title": "the homepage menu leads where the subpage menu leads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 282,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:12.845Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-4a2f8e12ee570fb80a10",
+              "file": "homepage-chrome.spec.ts",
+              "line": 786,
+              "column": 3
+            },
+            {
+              "title": "the homepage header row leads where the subpage header row leads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 291,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:13.132Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-0589b8272ff0cc4958b8",
+              "file": "homepage-chrome.spec.ts",
+              "line": 796,
+              "column": 3
+            },
+            {
+              "title": "the homepage introduces no duplicate ids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 218,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:13.427Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-b378b6916c5651dafd22",
+              "file": "homepage-chrome.spec.ts",
+              "line": 806,
+              "column": 3
+            },
+            {
+              "title": "every chrome link on the homepage resolves",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 213,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:13.650Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-d91e02355727277c81d1",
+              "file": "homepage-chrome.spec.ts",
+              "line": 821,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "the chrome speaks the page’s language",
+          "file": "homepage-chrome.spec.ts",
+          "line": 840,
+          "column": 6,
+          "specs": [
+            {
+              "title": "hu: header, menu, Arrival and footer are all in hu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1647,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:28.980Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-b088d26496a1ba1dffc0",
+              "file": "homepage-chrome.spec.ts",
+              "line": 846,
+              "column": 5
+            },
+            {
+              "title": "en: header, menu, Arrival and footer are all in en",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1734,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:30.631Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-303bad1ec1a1b4ab0406",
+              "file": "homepage-chrome.spec.ts",
+              "line": 846,
+              "column": 5
+            },
+            {
+              "title": "de: header, menu, Arrival and footer are all in de",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1697,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:32.369Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-49967b06adfa9da73563",
+              "file": "homepage-chrome.spec.ts",
+              "line": 846,
+              "column": 5
+            },
+            {
+              "title": "hu: header, menu, Arrival and footer are all in hu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1551,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:13.867Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-ad9338058c55b4bee951",
+              "file": "homepage-chrome.spec.ts",
+              "line": 846,
+              "column": 5
+            },
+            {
+              "title": "en: header, menu, Arrival and footer are all in en",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1634,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:15.423Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-0ae75233f05dbb9212ab",
+              "file": "homepage-chrome.spec.ts",
+              "line": 846,
+              "column": 5
+            },
+            {
+              "title": "de: header, menu, Arrival and footer are all in de",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1641,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:17.061Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-adcf9e6d59238906177d",
+              "file": "homepage-chrome.spec.ts",
+              "line": 846,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "reduced motion",
+          "file": "homepage-chrome.spec.ts",
+          "line": 873,
+          "column": 6,
+          "specs": [
+            {
+              "title": "the chrome is complete and immediately usable without animation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 237,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:34.070Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-b35dc9fe4325830f6501",
+              "file": "homepage-chrome.spec.ts",
+              "line": 874,
+              "column": 3
+            },
+            {
+              "title": "the menu opens directly, with no spatial delay",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 333,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:34.311Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-1fc5933c9362e079d208",
+              "file": "homepage-chrome.spec.ts",
+              "line": 889,
+              "column": 3
+            },
+            {
+              "title": "the chrome is complete and immediately usable without animation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 208,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:18.706Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-fd7a05fd28cdf8d523e5",
+              "file": "homepage-chrome.spec.ts",
+              "line": 874,
+              "column": 3
+            },
+            {
+              "title": "the menu opens directly, with no spatial delay",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 294,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:18.918Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-9b09405e0b818fd87e5e",
+              "file": "homepage-chrome.spec.ts",
+              "line": 889,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "lifecycle",
+          "file": "homepage-chrome.spec.ts",
+          "line": 905,
+          "column": 6,
+          "specs": [
+            {
+              "title": "navigating away and back leaves nothing behind",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3665,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:34.648Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-0dff25d245b9e6d2652c",
+              "file": "homepage-chrome.spec.ts",
+              "line": 906,
+              "column": 3
+            },
+            {
+              "title": "a subpage reached from the homepage carries the same working header",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3658,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:38.317Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-8292acfcdd84fa714c17",
+              "file": "homepage-chrome.spec.ts",
+              "line": 945,
+              "column": 3
+            },
+            {
+              "title": "the header binds exactly one scroll listener and no permanent loop",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3141,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:41.978Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-572b5670cca2b313186e",
+              "file": "homepage-chrome.spec.ts",
+              "line": 959,
+              "column": 3
+            },
+            {
+              "title": "navigating away and back leaves nothing behind",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 733,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:19.216Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-40496db41b20fb784df8",
+              "file": "homepage-chrome.spec.ts",
+              "line": 906,
+              "column": 3
+            },
+            {
+              "title": "a subpage reached from the homepage carries the same working header",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3403,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:19.953Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "979b7eb08505607e4562-72504d88fcc5853ef3ad",
+              "file": "homepage-chrome.spec.ts",
+              "line": 945,
+              "column": 3
+            },
+            {
+              "title": "the header binds exactly one scroll listener and no permanent loop",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "the driven path is the one with a loop to avoid",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 960,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 33,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:23.360Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "the driven path is the one with a loop to avoid",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 960,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-9b8d3e56549f7e35cc1f",
+              "file": "homepage-chrome.spec.ts",
+              "line": 959,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "responsive smoke",
+          "file": "homepage-chrome.spec.ts",
+          "line": 986,
+          "column": 6,
+          "specs": [
+            {
+              "title": "the chrome fits and never scrolls sideways at 1024x768",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough for a resize",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 996,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 52,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:45.125Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough for a resize",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 996,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-11dd4d114d6b7b2f3de2",
+              "file": "homepage-chrome.spec.ts",
+              "line": 995,
+              "column": 5
+            },
+            {
+              "title": "the chrome fits and never scrolls sideways at 375x812",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough for a resize",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 996,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 46,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:45.182Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough for a resize",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 996,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-e7080d15be84e9110fba",
+              "file": "homepage-chrome.spec.ts",
+              "line": 995,
+              "column": 5
+            },
+            {
+              "title": "the chrome fits and never scrolls sideways at 360x800",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough for a resize",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 996,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 45,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:45.233Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough for a resize",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 996,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-cbd3086fab2c0d960e5e",
+              "file": "homepage-chrome.spec.ts",
+              "line": 995,
+              "column": 5
+            },
+            {
+              "title": "the chrome fits and never scrolls sideways at 844x390 landscape",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough for a resize",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 996,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 46,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:45.281Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough for a resize",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 996,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-6a8b5b84d47bc5a98f60",
+              "file": "homepage-chrome.spec.ts",
+              "line": 995,
+              "column": 5
+            },
+            {
+              "title": "the chrome survives 200% zoom and increased text spacing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 1022,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 47,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:12:45.331Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 1022,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-00eaf016c8bd606e3d17",
+              "file": "homepage-chrome.spec.ts",
+              "line": 1021,
+              "column": 3
+            },
+            {
+              "title": "the chrome fits and never scrolls sideways at 1024x768",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough for a resize",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 996,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 37,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:23.397Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough for a resize",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 996,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-f7fb1ef59b669d5d8207",
+              "file": "homepage-chrome.spec.ts",
+              "line": 995,
+              "column": 5
+            },
+            {
+              "title": "the chrome fits and never scrolls sideways at 375x812",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough for a resize",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 996,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 30,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:23.438Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough for a resize",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 996,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-7f9c3b854ca74ef42199",
+              "file": "homepage-chrome.spec.ts",
+              "line": 995,
+              "column": 5
+            },
+            {
+              "title": "the chrome fits and never scrolls sideways at 360x800",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough for a resize",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 996,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 33,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:23.471Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough for a resize",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 996,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-4c61c32ca35259f1b893",
+              "file": "homepage-chrome.spec.ts",
+              "line": 995,
+              "column": 5
+            },
+            {
+              "title": "the chrome fits and never scrolls sideways at 844x390 landscape",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough for a resize",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 996,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 66,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:23.508Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough for a resize",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 996,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-bc6cfe96885c70b73979",
+              "file": "homepage-chrome.spec.ts",
+              "line": 995,
+              "column": 5
+            },
+            {
+              "title": "the chrome survives 200% zoom and increased text spacing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "one project is enough",
+                      "location": {
+                        "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                        "line": 1022,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "reduced-motion",
+                  "projectName": "reduced-motion",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 46,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-09T19:13:23.577Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "one project is enough",
+                          "location": {
+                            "file": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/tests/homepage-chrome.spec.ts",
+                            "line": 1022,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "979b7eb08505607e4562-84cab0e982a9493a59aa",
+              "file": "homepage-chrome.spec.ts",
+              "line": 1021,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-09T19:11:00.285Z",
+    "duration": 143369.56999999998,
+    "expected": 66,
+    "skipped": 16,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
