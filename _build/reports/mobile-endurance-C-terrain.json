@@ -1,0 +1,25 @@
+{
+  "label": "C-terrain",
+  "origin": "http://localhost:4402",
+  "rasteriser": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+  "seconds": 60,
+  "viewport": "390x844",
+  "heapKbStart": 10531,
+  "heapKbEnd": 11809,
+  "heapKbGrowth": 1278,
+  "firstThird": {
+    "frames": 1207,
+    "medianMs": 16.7,
+    "p95Ms": 17.7,
+    "worstMs": 33.4,
+    "over32ms": 1
+  },
+  "lastThird": {
+    "frames": 1208,
+    "medianMs": 16.7,
+    "p95Ms": 18.6,
+    "worstMs": 18.8,
+    "over32ms": 0
+  },
+  "medianDriftMs": 0
+}

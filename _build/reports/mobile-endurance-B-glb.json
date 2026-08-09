@@ -1,0 +1,25 @@
+{
+  "label": "B-glb",
+  "origin": "http://localhost:4400",
+  "rasteriser": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+  "seconds": 60,
+  "viewport": "390x844",
+  "heapKbStart": 7419,
+  "heapKbEnd": 5981,
+  "heapKbGrowth": -1438,
+  "firstThird": {
+    "frames": 1201,
+    "medianMs": 16.7,
+    "p95Ms": 18.7,
+    "worstMs": 18.8,
+    "over32ms": 0
+  },
+  "lastThird": {
+    "frames": 1201,
+    "medianMs": 16.7,
+    "p95Ms": 18.6,
+    "worstMs": 18.8,
+    "over32ms": 0
+  },
+  "medianDriftMs": 0
+}

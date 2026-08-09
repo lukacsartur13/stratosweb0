@@ -1,0 +1,25 @@
+{
+  "label": "A-svg",
+  "origin": "http://localhost:4401",
+  "rasteriser": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+  "seconds": 60,
+  "viewport": "390x844",
+  "heapKbStart": 2452,
+  "heapKbEnd": 2985,
+  "heapKbGrowth": 533,
+  "firstThird": {
+    "frames": 1206,
+    "medianMs": 16.7,
+    "p95Ms": 17.7,
+    "worstMs": 33.1,
+    "over32ms": 1
+  },
+  "lastThird": {
+    "frames": 1208,
+    "medianMs": 16.7,
+    "p95Ms": 17.7,
+    "worstMs": 33.3,
+    "over32ms": 1
+  },
+  "medianDriftMs": 0
+}
