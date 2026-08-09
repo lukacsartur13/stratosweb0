@@ -76,6 +76,31 @@ async function revealed(page: Page) {
 const instrumentReady = (page: Page) =>
   page.waitForSelector('.mv-alt__stage[data-ready]', { timeout: 30_000 });
 
+/** The metres the page is currently showing the visitor. */
+const altitude = (page: Page) =>
+  page
+    .locator('[data-testid="mobile-altitude"]')
+    .innerText()
+    .then((t) => Number(t.replace(/\D/g, '')));
+
+/**
+ * Is the navigation's scroll lock fully engaged?
+ *
+ * Both halves, because either one alone is a state the page should never be in.
+ * `header.js` puts `.menu-open` on the root — which is what `ascent.ts` reads to
+ * stand its reader down — and separately holds the body at `position: fixed`
+ * with a negative `top`, which is the only lock iOS Safari actually honours.
+ * A class without the fixed body is a page that scrolls behind an open menu; a
+ * fixed body without the class is a page whose ascent reader is running against
+ * a document the lock has collapsed to one viewport.
+ */
+const locked = (page: Page) =>
+  page.evaluate(
+    () =>
+      document.documentElement.classList.contains('menu-open') &&
+      getComputedStyle(document.body).position === 'fixed',
+  );
+
 test.describe('portrait mobile — the composition that runs', () => {
   test('a phone gets the simple composition and exactly one canvas', async ({ page }) => {
     await page.goto('/');
@@ -517,7 +542,9 @@ test.describe('portrait mobile — the composition itself', () => {
 });
 
 test.describe('portrait mobile — lifecycle', () => {
-  test('the menu opens, closes and leaves the ascent where it was', async ({ page }) => {
+  test('the menu opens, locks only while it is open, and leaves the ascent where it was', async ({
+    page,
+  }) => {
     await page.goto('/');
     if (!(await mounted(page))) test.skip(true, 'desktop composition');
     await ready(page);
@@ -525,13 +552,53 @@ test.describe('portrait mobile — lifecycle', () => {
     await page.evaluate(() => scrollTo({ top: 5200, behavior: 'instant' }));
     await page.waitForTimeout(200);
     const before = await page.evaluate(() => scrollY);
+    const altitudeBefore = await altitude(page);
 
-    const toggle = page.locator('.nav__burger, [data-nav-toggle], button[aria-controls]').first();
-    if ((await toggle.count()) === 0) test.skip(true, 'no menu control on this build');
+    // `.burger` unconditionally, and no `test.skip` if it is missing.
+    //
+    // This asked for `.nav__burger, [data-nav-toggle], button[aria-controls]`
+    // and skipped itself when none matched. Only the third alternative has ever
+    // matched anything — the control is `.burger`, `aria-controls="menu"`, and
+    // `homepage-chrome.spec.ts` has addressed it that way throughout — so two
+    // thirds of that selector were guesses, and the `count() === 0` branch
+    // turned "the phone has no menu button" from the loudest possible
+    // regression into a green run with a skip note. A phone that cannot open
+    // the navigation has no navigation.
+    const toggle = page.locator('.burger');
+    await expect(toggle, 'a portrait viewport has no menu control').toHaveCount(1);
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+
+    // The lock is not on before it is asked for. Without this the two
+    // assertions after the open are satisfied by a page that is permanently
+    // fixed, which is a scroll trap rather than a scroll lock.
+    expect(await locked(page), 'the body was already scroll-locked with the menu shut').toBe(false);
+
     await toggle.click();
-    await page.waitForTimeout(400);
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+
+    // While open: the lock is on, and it is `position: fixed` on the body
+    // rather than `overflow: hidden`, because iOS Safari honours only the
+    // former. `ascent.ts` stands its reader down for exactly this window and
+    // names this class as the signal, so the class is the contract, not an
+    // implementation detail this test happened to find.
+    expect(await locked(page), 'the menu opened without locking the page behind it').toBe(true);
+
+    // Focus went into the layer. `header.js` sends it to the first link rather
+    // than the burger, so "inside #menu" is the property, not a named element.
+    expect(
+      await page.evaluate(() => !!document.getElementById('menu')?.contains(document.activeElement)),
+      'opening the menu left focus outside the layer',
+    ).toBe(true);
+
     await page.keyboard.press('Escape');
-    await page.waitForTimeout(500);
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+
+    // Escape returned focus to the control that opened it, or a keyboard user
+    // resumes from the top of the document.
+    await expect(toggle).toBeFocused();
+
+    // The lock came off with it.
+    expect(await locked(page), 'the menu closed but the page stayed locked').toBe(false);
 
     // The old page walked the whole ascent back to the valley floor behind the
     // menu, because the scroll lock pinned `scrollY` at 0 and the driver
@@ -546,6 +613,52 @@ test.describe('portrait mobile — lifecycle', () => {
     // number that would make this test look like a regression in the ascent
     // when what it is measuring is the rounding in someone else's scroll lock.
     expect(Math.abs((await page.evaluate(() => scrollY)) - before)).toBeLessThanOrEqual(2);
+
+    // And the readout agrees with the position it was put back to. This is the
+    // half the scroll assertion cannot make: `ascent.ts` suspends its reader for
+    // the duration of the lock and catches up on the close edge, so a restored
+    // scroll position with a stale readout is a real, reachable state — the
+    // visitor closes the menu and the instrument is reading 0 m at 23 000 m.
+    expect(Math.abs((await altitude(page)) - altitudeBefore)).toBeLessThanOrEqual(60);
+
+    // The document scrolls again. A lock that is released in the class but not
+    // in the body's style passes every assertion above and still leaves a page
+    // the visitor cannot move.
+    await page.evaluate(() => scrollTo({ top: 3000, behavior: 'instant' }));
+    await page.waitForTimeout(200);
+    expect(await page.evaluate(() => Math.round(scrollY)), 'the page will not scroll after the menu closed')
+      .toBeGreaterThan(2500);
+  });
+
+  test('the menu closes on the burger too, and traps Tab while it is open', async ({ page }) => {
+    await page.goto('/');
+    if (!(await mounted(page))) test.skip(true, 'desktop composition');
+    await ready(page);
+
+    const toggle = page.locator('.burger');
+    await expect(toggle).toHaveCount(1);
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+
+    // Tab has to come back round to something inside the layer rather than
+    // walking out into the document behind it. Ten presses is more than the
+    // layer holds, so a trap that is not closed shows up as focus escaping.
+    for (let i = 0; i < 10; i++) {
+      await page.keyboard.press('Tab');
+      expect(
+        await page.evaluate(() => {
+          const active = document.activeElement;
+          const menu = document.getElementById('menu');
+          return !!menu?.contains(active) || !!active?.classList.contains('burger');
+        }),
+        `Tab ${i + 1} left the open layer`,
+      ).toBe(true);
+    }
+
+    // Closing from the control itself, which is the path Escape does not cover.
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    expect(await locked(page)).toBe(false);
   });
 
   test('a back navigation comes back with a live, agreeing readout', async ({ page }) => {
