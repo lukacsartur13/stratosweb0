@@ -28,14 +28,18 @@ import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..');
-const OUT = resolve(ROOT, '_build/reports/mobile-homepage-simple-review/recordings');
-
 const args = process.argv.slice(2);
 const arg = (name, fallback) => {
   const at = args.indexOf(`--${name}`);
   return at >= 0 && args[at + 1] ? args[at + 1] : fallback;
 };
 const ORIGIN = arg('origin', 'http://localhost:4322');
+const OUT = resolve(
+  ROOT,
+  '_build/reports',
+  arg('into', 'mobile-homepage-simple-review'),
+  'recordings',
+);
 
 const VIEWPORT = { width: 390, height: 844 };
 
@@ -56,7 +60,15 @@ const PASSES = [
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 
-const browser = await chromium.launch();
+/**
+ * On the platform's GPU. A recording made on Chromium's software rasteriser is
+ * a recording of SwiftShader filling a 780x1688 buffer on the main thread —
+ * measured at 62 ms a frame, which no phone pays and which would make the
+ * videos evidence of the wrong thing entirely. See `probe-mobile-cost.mjs`.
+ */
+const browser = await chromium.launch({
+  args: ['--use-gl=angle', '--use-angle=default', '--enable-gpu', '--ignore-gpu-blocklist'],
+});
 
 for (const pass of PASSES) {
   const context = await browser.newContext({

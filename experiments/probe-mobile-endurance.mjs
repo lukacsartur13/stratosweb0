@@ -31,7 +31,17 @@ const LABEL = arg('label', 'after');
 
 const VIEWPORT = { width: 390, height: 844 };
 
-const browser = await chromium.launch();
+/**
+ * On the platform's own GPU, for the reason `probe-mobile-cost.mjs` sets out at
+ * length: Playwright's default Chromium rasterises WebGL on the CPU, and on a
+ * page with a live canvas that turns a frame-pacing measurement into a
+ * measurement of SwiftShader. `--software` restores the default.
+ */
+const browser = await chromium.launch(
+  args.includes('--software')
+    ? {}
+    : { args: ['--use-gl=angle', '--use-angle=default', '--enable-gpu', '--ignore-gpu-blocklist'] },
+);
 const context = await browser.newContext({
   viewport: VIEWPORT,
   deviceScaleFactor: 3,
@@ -43,6 +53,18 @@ const cdp = await context.newCDPSession(page);
 
 await page.goto(ORIGIN + '/', { waitUntil: 'networkidle' });
 await page.waitForTimeout(3000);
+
+const backend = await page.evaluate(() => {
+  try {
+    const gl = document.createElement('canvas').getContext('webgl2');
+    const info = gl?.getExtension('WEBGL_debug_renderer_info');
+    const name = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : 'unknown';
+    gl?.getExtension('WEBGL_lose_context')?.loseContext();
+    return name;
+  } catch {
+    return 'unavailable';
+  }
+});
 
 // Frame intervals, recorded in the page, from rAF. The gaps between callbacks
 // are what a visitor perceives as smoothness.
@@ -115,6 +137,7 @@ const last = stats(slice(third * 2));
 const report = {
   label: LABEL,
   origin: ORIGIN,
+  rasteriser: backend,
   seconds: SECONDS,
   viewport: `${VIEWPORT.width}x${VIEWPORT.height}`,
   heapKbStart: heapStart,
@@ -129,6 +152,7 @@ const out = resolve(ROOT, '_build/reports', `mobile-endurance-${LABEL}.json`);
 mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, JSON.stringify(report, null, 2));
 
+console.log(`rasteriser: ${backend}\n`);
 console.log(`first third  median ${first.medianMs}ms  p95 ${first.p95Ms}ms  worst ${first.worstMs}ms  >32ms: ${first.over32ms}`);
 console.log(`last third   median ${last.medianMs}ms  p95 ${last.p95Ms}ms  worst ${last.worstMs}ms  >32ms: ${last.over32ms}`);
 console.log(`median drift ${report.medianDriftMs}ms   heap ${heapStart} -> ${heapEnd} KB (+${report.heapKbGrowth})`);

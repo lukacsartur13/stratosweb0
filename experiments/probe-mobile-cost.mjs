@@ -24,6 +24,32 @@
  *   node experiments/probe-mobile-cost.mjs --label after
  *
  * Writes _build/reports/mobile-cost-<label>.json and prints a summary.
+ *
+ * WHY THE BROWSER IS LAUNCHED ONTO A REAL GPU
+ * -------------------------------------------
+ * Playwright's Chromium defaults to SwiftShader — a CPU rasteriser — and on
+ * this page that turns the measurement into a measurement of the harness.
+ * Measured at 390x844 with the 3D instrument on screen:
+ *
+ *   SwiftShader                 44 long tasks, 2 704 ms
+ *   ANGLE Metal (Apple M4)       0 long tasks,     0 ms
+ *   SwiftShader, quarter buffer  0 long tasks,     0 ms
+ *
+ * Same page, same build, same script. Every one of those long tasks was the
+ * software rasteriser filling a 694x694 buffer with 4x multisampling on the
+ * main thread — which is not a cost any phone pays and is not a property of
+ * anything in `src/`. The third row is the control: a quarter of the pixels
+ * removes the whole of the effect, which no main-thread JavaScript regression
+ * would do.
+ *
+ * So the flags below are not an optimisation of the harness, they are the
+ * difference between a number that describes the code and a number that
+ * describes SwiftShader. `--software` is kept for a machine that has no GPU to
+ * offer, and the backend is recorded in the output either way so a report can
+ * never quietly compare one against the other.
+ *
+ * It remains true that this is a desktop GPU pretending to be a phone. §22 is
+ * unchanged by any of it: the real-device gate is the real gate.
  */
 import { chromium } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -41,6 +67,10 @@ const arg = (name, fallback) => {
 
 const LABEL = arg('label', 'run');
 const ORIGIN = arg('origin', 'http://localhost:4322');
+const SOFTWARE = args.includes('--software');
+
+/** ANGLE onto the platform's own backend, rather than Chromium's CPU fallback. */
+const GPU_ARGS = ['--use-gl=angle', '--use-angle=default', '--enable-gpu', '--ignore-gpu-blocklist'];
 const PATHS = { hu: '/', en: '/en/', de: '/de/' };
 const LOCALE = arg('locale', 'hu');
 
@@ -208,6 +238,32 @@ const STOP_SCROLL = () => {
   /** @type {any} */ (window).__scrolling = false;
 };
 
+/**
+ * Open the idle window — the measurement §4 of the 3D brief turns on.
+ *
+ * "Render on demand" is a claim about what happens when *nothing* happens, and
+ * the scroll counters above cannot see it: a permanent 60 fps loop and a
+ * genuinely demand-driven renderer look identical while a finger is moving.
+ * This snapshots the counters, waits with the page untouched, and reports what
+ * accrued. A page whose GPU work stops reports zero draw calls; one that merely
+ * has a small scene reports sixty per second per draw.
+ */
+const START_IDLE = () => {
+  const w = /** @type {any} */ (window);
+  w.__beforeIdle = { ...w.__cost, longTasks: w.__longTasks.length };
+};
+
+const READ_IDLE = () => {
+  const w = /** @type {any} */ (window);
+  const before = w.__beforeIdle ?? {};
+  const out = {};
+  for (const k of ['raf', 'drawCalls', 'triangles', 'styleWrites', 'getBoundingClientRect']) {
+    out[k] = (w.__cost[k] ?? 0) - (before[k] ?? 0);
+  }
+  out.longTasks = w.__longTasks.length - (before.longTasks ?? 0);
+  return out;
+};
+
 async function measure(browser, viewport) {
   const context = await browser.newContext({
     viewport: { width: viewport.width, height: viewport.height },
@@ -235,6 +291,24 @@ async function measure(browser, viewport) {
   // to exist before deciding it does not.
   await page.waitForTimeout(2500);
 
+  // Which rasteriser actually served the page. Recorded rather than assumed:
+  // the flags above are a request, and a machine that cannot honour them falls
+  // back silently to exactly the backend whose numbers this probe exists to
+  // stop being mistaken for the architecture's.
+  const backend = await page.evaluate(() => {
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+      if (!gl) return 'none';
+      const info = gl.getExtension('WEBGL_debug_renderer_info');
+      const name = info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : 'unknown';
+      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      return String(name);
+    } catch {
+      return 'unavailable';
+    }
+  });
+
   const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
   const viewportHeight = await page.evaluate(() => innerHeight);
 
@@ -249,6 +323,37 @@ async function measure(browser, viewport) {
 
   const modelRequests = transfers.filter((t) => t.url.includes('/models/'));
   const jsRequests = transfers.filter((t) => t.url.endsWith('.js'));
+
+  /**
+   * What the page actually cost on the wire, by kind.
+   *
+   * `encodedBodySize` from the Resource Timing API rather than `content-length`
+   * from the response header: a chunk served compressed is counted at what it
+   * cost to transfer, which is the number §15 asks for and the number a phone
+   * on a train pays. The document itself is added from the navigation entry,
+   * which is not in the resource list.
+   */
+  const transfer = await page.evaluate(() => {
+    const kindOf = (url) => {
+      if (/\.glb($|\?)/.test(url)) return 'model';
+      if (/\.js($|\?)/.test(url)) return 'script';
+      if (/\.css($|\?)/.test(url)) return 'style';
+      if (/\.(woff2?|ttf|otf)($|\?)/.test(url)) return 'font';
+      if (/\.(png|jpe?g|webp|avif|svg|ico)($|\?)/.test(url)) return 'image';
+      return 'other';
+    };
+    const totals = { document: 0, script: 0, style: 0, font: 0, image: 0, model: 0, other: 0 };
+    for (const entry of performance.getEntriesByType('resource')) {
+      totals[kindOf(entry.name)] += entry.encodedBodySize || 0;
+    }
+    const nav = performance.getEntriesByType('navigation')[0];
+    totals.document += nav?.encodedBodySize || 0;
+    const kb = (n) => Math.round(n / 1024);
+    return {
+      totalKb: kb(Object.values(totals).reduce((a, b) => a + b, 0)),
+      byKindKb: Object.fromEntries(Object.entries(totals).map(([k, v]) => [k, kb(v)])),
+    };
+  });
 
   // ---- the scroll ---------------------------------------------------------
   // Twenty steps down the whole document, one frame apart, which is a fast
@@ -268,6 +373,19 @@ async function measure(browser, viewport) {
     cls: Number((/** @type {any} */ (window).__cls).toFixed(4)),
     atRest: /** @type {any} */ (window).__atRest,
   }));
+
+  // ---- the idle window ----------------------------------------------------
+  // Four seconds with the page left completely alone, at a position where the
+  // instrument is on screen and has finished settling. The 0.7 s lead-in is the
+  // settle itself: counting it would report the tail of the last scroll as idle
+  // cost, which is exactly the kind of number that makes a real regression
+  // unreadable later.
+  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  await page.waitForTimeout(1400);
+  await page.evaluate(START_IDLE);
+  await page.waitForTimeout(4000);
+  const idle = await page.evaluate(READ_IDLE);
+  idle.seconds = 4;
 
   // ---- the drift test (§3) ------------------------------------------------
   // Stop dead at a known position and sample what is still moving. A page that
@@ -297,33 +415,52 @@ async function measure(browser, viewport) {
 
   return {
     viewport: viewport.name,
+    backend,
     documentHeight,
     viewportHeight,
     screensOfScroll: Number((documentHeight / viewportHeight).toFixed(2)),
     canvases: scene.canvasCount,
-    modelBytesRequested: modelRequests.map((r) => r.url),
+    modelsRequested: modelRequests.map((r) => r.url),
     jsChunks: jsRequests.length,
+    ...transfer,
     ...cost,
+    idle,
     driftAfterStopPx: drift.maxDeltaPx,
     driftSamples: drift.samples,
   };
 }
 
-const browser = await chromium.launch();
+const browser = await chromium.launch(SOFTWARE ? {} : { args: GPU_ARGS });
 const results = [];
 for (const viewport of VIEWPORTS) {
   const row = await measure(browser, viewport);
   results.push(row);
+  if (results.length === 1) console.log(`rasteriser: ${row.backend}\n`);
   console.log(
     `${row.viewport.padEnd(8)} screens=${String(row.screensOfScroll).padEnd(6)} canvas=${row.canvases} ` +
       `draws=${row.drawCalls} tris=${Math.round(row.triangles)} raf=${row.rafDuringScroll} ` +
       `listeners=${row.atRest?.scrollListeners ?? '?'}+${row.scrollListeners} rects=${row.getBoundingClientRect} ` +
-      `styleWrites=${row.styleWrites} longTasks=${row.longTasks.length} drift=${row.driftAfterStopPx}px`,
+      `styleWrites=${row.styleWrites} longTasks=${row.longTasks.length} drift=${row.driftAfterStopPx}px ` +
+      `idle(4s)=${row.idle.drawCalls}draws/${row.idle.raf}raf transfer=${row.totalKb}KB`,
   );
 }
 await browser.close();
 
 const out = resolve(ROOT, '_build/reports', `mobile-cost-${LABEL}.json`);
 mkdirSync(dirname(out), { recursive: true });
-writeFileSync(out, JSON.stringify({ label: LABEL, locale: LOCALE, origin: ORIGIN, at: new Date().toISOString(), results }, null, 2));
+writeFileSync(
+  out,
+  JSON.stringify(
+    {
+      label: LABEL,
+      locale: LOCALE,
+      origin: ORIGIN,
+      rasteriser: results[0]?.backend ?? 'unknown',
+      at: new Date().toISOString(),
+      results,
+    },
+    null,
+    2,
+  ),
+);
 console.log(`\nwrote ${out}`);
