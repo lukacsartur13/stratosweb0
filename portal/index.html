@@ -9,12 +9,22 @@
     <meta name="robots" content="noindex, nofollow, noarchive" />
     <meta name="referrer" content="same-origin" />
     <link rel="icon" href="/assets/img/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- The site's own fonts, self-hosted, same as every public page.
+         =========================================================================
+         This used to be three links to Google Fonts, and in production not one of
+         them worked. The CSP in netlify.toml applies to `/*`, which includes
+         `/portal/*`, and it says `style-src 'self' 'unsafe-inline'` and
+         `font-src 'self'` — so the stylesheet was blocked and the font files
+         would have been blocked after it. The portal has therefore been
+         rendering in system fallbacks on every deploy, silently, with two CSP
+         violations per page load, while a `preconnect` still opened a
+         connection to Google's font servers from a private admin and got
+         nothing back for it.
+         Nothing here is a new dependency: /assets/css/type.css is the same
+         self-hosted stylesheet the public site uses, and it carries Aboreto,
+         Archivo and JetBrains Mono. Two of the three families this interface
+         asks for are in it. See FONTS.md and scripts/sync-fonts.mjs. -->
+    <link rel="stylesheet" href="/assets/css/type.css" />
     <title>Stratos — Portal</title>
   </head>
   <body class="bg-ink text-paper font-body antialiased">

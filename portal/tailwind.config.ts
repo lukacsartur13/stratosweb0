@@ -20,9 +20,18 @@ export default {
         danger: '#FF5A47',
         good: '#3ECf8E',
       },
+      // Aboreto and JetBrains Mono are self-hosted and are now actually loaded —
+      // see the note in index.html. `Instrument Sans` is replaced by Archivo,
+      // the site's own body face, for one reason: nothing could ever serve
+      // Instrument Sans here. It came only from the Google Fonts link the CSP
+      // blocks, so in production this stack has always resolved to `system-ui`.
+      // Archivo is therefore not a regression from what deploys look like today
+      // — it is the first time this line has meant anything — and it matches
+      // the public site. A self-hosted Instrument Sans via
+      // scripts/sync-fonts.mjs remains an option if the distinction is wanted.
       fontFamily: {
         display: ['Aboreto', 'serif'],
-        body: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+        body: ['Archivo', 'system-ui', 'sans-serif'],
         data: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       borderRadius: {

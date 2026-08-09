@@ -180,3 +180,77 @@ none.
 | Runtime compatibility | Node 22, pinned, load-bearing |
 | Secret scan | **clean** — 546 files, 12 rules |
 | Secrets in the repository | **none** |
+
+---
+
+## 5. Re-audited in the continuation — 2026-08-09
+
+The advisory database moved. Re-run at the continuation's frozen commit:
+
+| Manifest | Result |
+|---|---|
+| root (`--omit=dev`) | **0 vulnerabilities** |
+| `portal/` | 3 — 1 high, 2 moderate |
+| `experiments/` | 1 high |
+
+Nothing was upgraded, `npm audit fix` was not run, and no major version was
+touched. Each advisory is analysed below and the conclusion is unchanged: none
+of them is exploitable in this deployment.
+
+### 5.1 `nanoid` — high, GHSA-2v37-7h3g-55p8, CVSS 5.9
+
+*"Custom generators can loop indefinitely when size is zero."*
+
+**Not applicable, and not shipped.** The dependency path is the giveaway:
+
+```
+portal        postcss@8.5.25 -> nanoid@3.3.16
+experiments   vite@6.4.3 -> postcss@8.5.25 -> nanoid@3.3.16
+```
+
+It is a transitive dependency of **PostCSS**, which is a **build-time** tool. It
+is not a runtime dependency of either application, and `nanoid` does not appear
+in any file `dist/portal/assets` or `dist/assets` ships. Nothing in this
+repository calls `nanoid` at all, let alone with a custom generator and a size
+of zero — the two conditions the advisory requires together.
+
+The realistic worst case is a build that hangs on a machine the site owner
+controls, triggered by input the site owner wrote.
+
+### 5.2 `react-router` / `react-router-dom` — 2 moderate
+
+Two are new since §2 and one is a re-issue:
+
+| Advisory | Needs | Here |
+|---|---|---|
+| GHSA-wrjc-x8rr-h8h6 — open redirect via backslash in `<Link>` / `useNavigate` | an attacker-controlled navigation target | **every `to` in the portal is a literal string** — `/leads`, `/analytics`, `/users`. There is no `useNavigate` call taking external input, and no route target is built from a query parameter, a lead field or anything else a visitor can write |
+| GHSA-jjmj-jmhj-qwj2 — open redirect leading to XSS | the same | the same |
+| GHSA-337j-9hxr-rhxg — arbitrary constructor injection via `deserializeErrors()` | **SSR hydration** | the portal is a client-only SPA built by Vite and mounted with `BrowserRouter`. There is no server renderer, so `deserializeErrors()` never runs |
+
+This is the same analysis §2 reached, re-checked against the new advisory text
+and against the one route added in this continuation (`/analytics`, a literal).
+
+### 5.3 Recommendation, unchanged and now slightly stronger
+
+`react-router` 7.18+ closes all three and `nanoid` 3.3.17 closes the fourth, and
+both are `fixAvailable: true`. Neither was applied here, for the reason §1 gives
+about frozen source: a dependency change during a gate sequence invalidates the
+gates it has already passed.
+
+They belong together in **one** change, on their own branch, with their own full
+run — which is also the natural moment to do the react-router 6 → 7 migration
+that is already on the Phase 10 list rather than taking the patch and the major
+separately.
+
+**Do not run `npm audit fix --force`.** It would take react-router to 7.x as a
+side effect of a `nanoid` patch, which is exactly the uncontrolled major upgrade
+the brief forbids.
+
+### 5.4 Summary line, corrected
+
+The §4 table's "3 moderate, all react-router" is superseded by this section:
+**4 advisories — 2 high (both the same `nanoid`, build-time only, not shipped)
+and 2 moderate (`react-router`, needing attacker-controlled targets or SSR,
+neither of which exists here). None applicable. None fixed, deliberately.**
+
+Secret scan at the continuation's frozen commit: **clean — 640 files, 12 rules.**
