@@ -72,18 +72,33 @@ the promise depends on somebody opening the Portal.
 | Portal | **yes** — the lead appears in the Leads screen, newest first. This is the only notification that exists |
 | Slack | none |
 | CRM | none |
-| Webhook | none |
+| Webhook | **implemented in the continuation, disabled by default** |
 | SMS / push | none |
 
-**A submission is stored and nobody is told.** Whoever is on duty has to open
+**A submission was stored and nobody was told.** Whoever was on duty had to open
 the Portal to find out that an enquiry arrived. Given the footer's few-hours
-promise, this is the most consequential operational gap in Phase 9.
+promise, this was the most consequential operational gap in Phase 9.
 
-Three ways to close it, with trade-offs, are in `phase9-email-operations.md` §4.
-**None was implemented**, because the brief forbids adding a vendor without
-approval. Whichever is chosen, the lead must be stored *before* any notification
-is attempted and a notification failure must be logged and swallowed — an
-enquiry must never be lost because a mail server was slow.
+**Closed in the continuation, as far as a repository can close it.**
+`netlify/functions/lead-notify.mjs` is a provider-neutral adapter: a plain JSON
+`POST` to an https endpoint, which Slack, Discord, Zapier, Make, a CRM intake or
+a self-hosted receiver all accept. No vendor is chosen — choosing one is setting
+`LEAD_NOTIFY_TRANSPORT=webhook` and a URL, and the default is `none`, so nothing
+is sent until somebody decides.
+
+The constraints this section asked for are the ones it was built under, and are
+now asserted rather than intended: the lead is stored **before** anything is
+attempted, the module **cannot throw**, a failure is logged and swallowed, a
+hang is abandoned after 2 s, an idempotent replay does not notify twice, and the
+payload carries **no personal data at all** — not the name, the address, the
+message or any questionnaire answer.
+
+→ [`phase9-lead-notification.md`](phase9-lead-notification.md) · 17 assertions
+in `tests/lead-notify.spec.ts`
+
+What the adapter does **not** fix is the promise itself: it makes a few-hours
+reply *possible* to keep, not true. Until a destination is configured and
+somebody watches it, that wording is still either to be confirmed or softened.
 
 ---
 

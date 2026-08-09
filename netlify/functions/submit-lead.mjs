@@ -38,6 +38,12 @@
 //   8. spam gates        200   honeypot or impossible fill time — see below
 //   9. field schema      422   with per-field messages
 //  10. store            200/500
+//  11. notify            —     never changes the answer. See lead-notify.mjs:
+//                              it cannot throw, it is capped at 2 s, it sends
+//                              no personal data, and it runs only on a genuine
+//                              insert — an idempotent replay does not ring the
+//                              doorbell a second time for a lead that was
+//                              already announced.
 //
 //
 // TWO CONTRACTS, FOR NOW
@@ -63,6 +69,7 @@
 // Nothing downstream reads a leadId back, so nothing is misled but the bot.
 // =============================================================================
 
+import { notifyLeadCreated } from './lead-notify.mjs';
 import {
   MAX_BODY_BYTES,
   MIN_FILL_MS,
@@ -360,6 +367,33 @@ export default async (request) => {
 
   if (!error) {
     audit('stored', envelope, { leadId: data.id, format });
+
+    // ---- 11. tell someone ---------------------------------------------------
+    // AFTER the insert succeeded, and structurally incapable of undoing it:
+    // `notifyLeadCreated` never throws and never rejects, so there is no path
+    // from a failed notification back to a failed submission. The lead is the
+    // thing that matters and it is already safe.
+    //
+    // Awaited rather than fired and forgotten because a Netlify function stops
+    // executing when it returns — a floating promise here would be cancelled
+    // more often than it completed. It is capped at 2 s inside the module, and
+    // with no transport configured (the default) it returns immediately without
+    // touching the network.
+    //
+    // The result is logged, not returned. Whether the doorbell rang is our
+    // operational concern; the visitor's answer is about their enquiry, and it
+    // is the same either way.
+    const notified = await notifyLeadCreated({
+      leadId: data.id,
+      submissionId: envelope.submissionId,
+      formType: envelope.formType,
+      locale: envelope.locale,
+      route: envelope.route,
+    });
+    if (notified.reason !== 'disabled') {
+      audit('notify', envelope, { leadId: data.id, sent: notified.sent, reason: notified.reason });
+    }
+
     return json(200, { ok: true, submissionId: envelope.submissionId, leadId: data.id });
   }
 

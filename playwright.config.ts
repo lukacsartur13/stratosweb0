@@ -12,6 +12,7 @@ const BASE = `http://127.0.0.1:${PORT}`;
 // and running either five times over is five times the same answer.
 const NODE_ONLY = [
   /lead-endpoint\.spec\.ts/, /structured-data\.spec\.ts/, /portal-analytics\.spec\.ts/,
+  /lead-notify\.spec\.ts/,
 ];
 
 // Two suites are viewport-independent: they read data attributes, class names
