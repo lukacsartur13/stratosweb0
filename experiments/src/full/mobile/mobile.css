@@ -371,26 +371,71 @@
 .mv-rule.is-in { transform: scaleY(1); }
 
 /* ========================================================= §05 — altimeter ==
-   §9 and §10, together: the instrument is an independent visual element that
-   determines nothing about the layout, and it is either visible or
-   intentionally gone — never half-covered.
+   THE REAL 3D INSTRUMENT, IN A SLOT THAT CANNOT MEASURE ANYTHING.
 
-   It is sticky within the opening section only. Sticky here is not a stage: it
-   pins nothing, holds no progress, and has no spacer. It simply keeps the
-   instrument in frame while the opening copy scrolls past it, and then leaves
-   with its section like any other element.
+   The whole of the mobile 3D brief's §12 and §13 is enforced by two
+   declarations below, and it is worth naming which:
+
+     `width: min(100%, 86vw)`   the stage's box is a constant. Nothing about it
+                                is derived from the instrument, from a projected
+                                extent, or from content. The scene reads this
+                                box; the box never reads the scene.
+     `aspect-ratio`             and the height follows the width, so there is no
+                                second input to the box at all.
+
+   THERE IS NO VIEWPORT-HEIGHT UNIT IN THIS BOX, AND THAT IS DELIBERATE.
+
+   §13 states the slot's size as a range in `svh`, and the first version of this
+   rule said so literally: `aspect-ratio: 1/1` with `max-block-size: 46svh`. It
+   was wrong, and the suite caught it — 'browser chrome collapsing does not move
+   the composition' moved ten of eleven sections by 42px. On the reference
+   device the small viewport is 664px tall, `46svh` is 305px, and the square
+   height of 347px was therefore clipped by it; growing the viewport unclipped
+   it and everything below the opening section moved.
+
+   `svh` is genuinely the *small* viewport height and genuinely does not change
+   when Safari's toolbar collapses, so the rule was defensible in theory. It is
+   not defensible in practice: a height cap that binds makes the slot a function
+   of the viewport's height, and the moment anything else changes that height —
+   a rotation, a keyboard, a browser that measures `svh` differently, a test
+   harness — the whole document below reflows. The safe form of §00's toolbar
+   contract is not "use svh"; it is "do not let a layout height depend on the
+   viewport's height at all", and a width-driven box cannot.
+
+   The resulting share of the screen is measured rather than declared, and it
+   lands inside §13's range at every viewport in the matrix — 39-50% of the
+   small viewport, 38-41% of the large one. See the review package. */
+
+/* Landscape, where a square stage as wide as an 788px column would be the whole
+   screen. The cap is `vw` for exactly the reason above: it is the one axis that
+   a collapsing toolbar cannot touch. At 844x390 this is a 321x180 slot, 46% of
+   the screen's height, from the same two declarations reading a different
+   viewport.
+
+   `(orientation: landscape)` with no height term on purpose: a `max-height`
+   query is a viewport-height dependency wearing a media query, and it would
+   flip the rule mid-gesture as the toolbar moves. Every rule in this file is
+   scoped under `.mv`, which only exists on the portrait-mobile composition, so
+   "landscape" here already means "a phone, turned".
+
+   THE STAGE IS IN ORDINARY FLOW. Not sticky, not fixed, not pinned: headline,
+   then instrument, then supporting copy — the first of the two compositions
+   §12 sanctions. Sticky was considered and rejected on §14 grounds: a pinned
+   instrument with copy scrolling over it is half-covered by construction, and
+   there is no z-order that fixes it without putting a plate on the page.
 
    NOTHING ON THIS PAGE HAS AN OPAQUE BACKGROUND, so there is no plate that
-   could cross it. That is the enforcement of §10 — a painting rule made
-   impossible to break by removing every painted plate from the page. */
+   could cross the instrument at all. That is the enforcement of §14 — a
+   painting rule made impossible to break by removing every painted plate from
+   the page. */
 
 /*
-  The dial is constrained; the block around it is not.
+  The stage is constrained; the block around it is not.
 
   These were one element, and the caption inherited the dial's width — seven
   lines of fifteen monospaced characters, which reads as a column of debris
   beside the instrument rather than as an annotation of it. The caption wants
-  the section's measure and the dial wants its own, so they get one each.
+  the section's measure and the stage wants its own, so they get one each.
 */
 .mv-alt {
   position: relative;
@@ -398,23 +443,116 @@
   margin: clamp(20px, 6vw, 32px) 0 clamp(26px, 7vw, 36px);
 }
 
+.mv-alt__stage {
+  position: relative;
+  /*
+    Square, and as wide as the column allows up to 86% of the screen.
+
+    The `86vw` term is what stops the stage being the full copy measure at
+    430x932, where the column is 383px and a square that size crowds the
+    headline it sits under. In portrait it is the binding term at every viewport
+    in the matrix; the `100%` is what keeps it inside the column at 360.
+  */
+  width: min(100%, 86vw);
+  aspect-ratio: 1 / 1;
+
+  /* Off the left rail rather than centred: a centred instrument under a
+     left-aligned headline reads as an illustration, and off-axis it reads as an
+     instrument mounted on the page. */
+  margin-inline-start: clamp(-8px, -2vw, 0px);
+
+  /* The canvas is the only child that paints, and it is transparent. `contain`
+     rather than `overflow: hidden` so the browser also knows nothing inside can
+     affect the size of anything outside — which is the §12 guarantee stated to
+     the compositor as well as to the reader. */
+  contain: layout paint size style;
+}
+
+@media (orientation: landscape) {
+  .mv-alt__stage {
+    width: min(100%, 38vw);
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* react-three-fiber's own wrapper, named by the `className` on `<Canvas>`.
+   Faded in on the first *correct* frame, not on the frame the model finished
+   decoding — see `onReady` in MobileInstrument: that earlier frame has the
+   instrument in its entry pose with the needles at zero, and crossing into it
+   is the pop §17 rules out.
+
+   THE SELECTOR IS A CLASS AND NOT `> div`, AND THAT IS THE FIX FOR A REAL
+   DEFECT. `.mv-alt__stage > div` also matched `.mv-alt__svg`, the fallback
+   drawing's wrapper — and `data-ready` is set only by the render loop that does
+   not exist on that path, so a visitor with no WebGL got an empty slot with a
+   perfectly laid-out 315px SVG inside it at zero opacity. Playwright's
+   `toBeVisible` does not consider opacity, so the fallback test passed; the
+   review screenshot is what showed it. */
+.mv-alt__gl {
+  opacity: 0;
+  transition: opacity 0.7s var(--mv-ease);
+}
+.mv-alt__stage[data-ready] .mv-alt__gl { opacity: 1; }
+
+/*
+  The loading state — §17.
+
+  An atmospheric slot and a dial silhouette. Deliberately NOT the SVG
+  instrument: showing the drawing and then replacing it with the render is the
+  visible fallback-to-real flash the brief rules out, and the only way to be
+  certain it cannot happen is for the loading state to be incapable of being
+  mistaken for an instrument.
+
+  The ring is inset 8.5%, which is 83% of the box — exactly the fraction of the
+  frame `FILL` gives the bezel in `instrument.ts`. So the silhouette is where
+  the case lands, the crossfade has nothing to travel, and the composition is
+  stationary across it.
+*/
+.mv-alt__wait {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    58% 58% at 50% 48%,
+    rgba(120, 156, 196, 0.14) 0%,
+    rgba(10, 16, 26, 0) 72%
+  );
+  transition: opacity 0.55s var(--mv-ease);
+}
+
+.mv-alt__wait::before {
+  content: '';
+  position: absolute;
+  inset: 8.5%;
+  border-radius: 50%;
+  border: 1px solid rgba(203, 220, 233, 0.13);
+}
+
+.mv-alt__stage[data-ready] .mv-alt__wait { opacity: 0; }
+
+/* ---- the failure fallback ------------------------------------------------
+   §18: the drawing is reachable only when there is no WebGL, when the renderer
+   could not be created, or when the scene threw. It is not the portrait
+   experience and it is not what reduced motion gets — §20 keeps the real
+   instrument and stops it moving. */
+
+.mv-alt__svg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .mv-alt__dial {
   display: block;
-  /*
-    Bounded by the viewport's HEIGHT as well as its width.
-    At 844x390 — a phone in landscape, which §23 puts on this composition — a
-    260px dial is two thirds of the screen's height, so it arrives already
-    running off the bottom edge and under the telemetry wash. `42svh` is the
-    term that fixes it and costs nothing in portrait, where 42svh at 844px tall
-    is 354px and the width term wins anyway.
-  */
-  width: min(62vw, 42svh, 260px);
-  height: auto;
-  /* Off the left rail rather than centred: a centred dial under a left-aligned
-     headline reads as an illustration, and off-axis it reads as an instrument
-     mounted on the page. */
-  margin-inline-start: clamp(-8px, -2vw, 0px);
-  /* The one filter on the page, on a small element, and static. */
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  /* The one filter on this path, on a small element, and static. Never applied
+     to the canvas: a CSS filter on a WebGL surface forces the compositor to
+     read the drawing buffer back on every frame it changes. */
   filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.55));
   /* The six structural states swap SVG subtrees. Fading the whole drawing
      across the swap would fade the numerals too; instead the swap is
@@ -426,16 +564,16 @@
 /* The instrument gains presence as it opens. Four values over six states — the
    two ring states that share a scale share it on purpose, because the change
    between them is the ring, not the size. */
-.mv-alt[data-state='baseline'] .mv-alt__dial { transform: scale(0.94); }
-.mv-alt[data-state='first-ring'] .mv-alt__dial,
-.mv-alt[data-state='aperture-open'] .mv-alt__dial { transform: scale(0.97); }
-.mv-alt[data-state='second-ring'] .mv-alt__dial,
-.mv-alt[data-state='third-ring'] .mv-alt__dial { transform: scale(1); }
-.mv-alt[data-state='meridian'] .mv-alt__dial { transform: scale(1.02); }
+.mv-alt__svg[data-state='baseline'] .mv-alt__dial { transform: scale(0.94); }
+.mv-alt__svg[data-state='first-ring'] .mv-alt__dial,
+.mv-alt__svg[data-state='aperture-open'] .mv-alt__dial { transform: scale(0.97); }
+.mv-alt__svg[data-state='second-ring'] .mv-alt__dial,
+.mv-alt__svg[data-state='third-ring'] .mv-alt__dial { transform: scale(1); }
+.mv-alt__svg[data-state='meridian'] .mv-alt__dial { transform: scale(1.02); }
 
 .mv-alt__label {
   margin: 0.95rem 0 0;
-  /* The section's measure, not the dial's. `ch` in the mono face at this size
+  /* The section's measure, not the stage's. `ch` in the mono face at this size
      is about 7.6px including the tracking, so 44ch is ~335px — the full width
      at 360 and comfortably inside it at 430. */
   max-width: 44ch;
@@ -445,7 +583,7 @@
   color: var(--haze);
 }
 
-.mv-sec--centre .mv-alt__dial { margin-inline: auto; }
+.mv-sec--centre .mv-alt__stage { margin-inline: auto; }
 .mv-sec--centre .mv-alt__label { margin-inline: auto; }
 
 /* ============================================================= §06 — spine ==

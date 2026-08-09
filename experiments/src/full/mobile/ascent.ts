@@ -70,10 +70,43 @@ type Band = {
 const state: AscentState = { progress: 0, altitude: 0, stage: 'calibration' };
 
 const readers = new Set<Reader>();
+
+/**
+ * Things that also want to remeasure whenever the sections do.
+ *
+ * The 3D instrument's slot has to know its own document offset in order to work
+ * out where it is on screen, and that offset goes stale on exactly the same
+ * occasions a section's does: fonts settling, the address bar collapsing, a
+ * lazy image landing, a rotation, a bfcache restore. Every one of those already
+ * has a listener here.
+ *
+ * So the instrument gets to ride them rather than installing a second set. §15
+ * asks for *zero* new scroll listeners where the existing shared progress can
+ * be reused, and this is the other half of that: zero new resize, orientation,
+ * `visualViewport` and `pageshow` listeners either. A measurer is called after
+ * the bands are rebuilt and before the readers run, so a reader that depends on
+ * one is never a frame behind it.
+ */
+const measurers = new Set<() => void>();
+
 let bands: Band[] = [];
 let travel = 1;
 let ticking = false;
 let installed = false;
+
+/**
+ * The viewport height, cached at the same moments everything else is measured.
+ *
+ * `innerHeight` is not free. It is a property read that the browser is entitled
+ * to satisfy by flushing pending layout, and a subscriber that reads it on
+ * every scroll frame has quietly reintroduced the forced reflow this
+ * architecture exists to remove. It changes only when the viewport does, and
+ * every occasion on which it does already remeasures.
+ */
+let viewport = 0;
+
+/** The viewport height, from the cache. Never reads layout. */
+export const viewportHeight = () => viewport;
 
 /**
  * How far down the viewport the "you are here" line sits.
@@ -142,8 +175,30 @@ export function measureAscent() {
 
   next.sort((a, b) => a.top - b.top);
   bands = next;
-  travel = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  viewport = innerHeight;
+  travel = Math.max(1, document.documentElement.scrollHeight - viewport);
+  // Before `run`, so a reader that consumes a measurer's output never sees the
+  // new bands against the old slot geometry.
+  for (const measurer of measurers) measurer();
   run();
+}
+
+/**
+ * Remeasure alongside the sections. Returns an unsubscribe.
+ *
+ * Called once, synchronously, at registration — the same contract `onAscent`
+ * keeps, and for the same reason: a subscriber that only learns its geometry on
+ * the next resize renders one frame against zero.
+ */
+export function onMeasure(measurer: () => void): () => void {
+  measurers.add(measurer);
+  if (!menuOpen()) {
+    viewport = innerHeight;
+    measurer();
+  }
+  return () => {
+    measurers.delete(measurer);
+  };
 }
 
 /**
@@ -175,7 +230,10 @@ export function measureAscent() {
 function locate(y: number): { altitude: number; stage: StageId } {
   if (bands.length === 0) return { altitude: 0, stage: 'calibration' };
 
-  const lead = innerHeight * DATUM;
+  // The cached height, not `innerHeight`: this runs on a scroll frame, and it
+  // is set by the same pass that filled `bands`, so it can never be stale here
+  // without the bands being stale too.
+  const lead = viewport * DATUM;
   const anchorOf = (i: number) => {
     const raw = bands[i].top - lead;
     return raw < 0 ? 0 : raw > travel ? travel : raw;
