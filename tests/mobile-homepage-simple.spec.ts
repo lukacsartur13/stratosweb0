@@ -10,6 +10,7 @@ import { enableReducedMotion } from './helpers/reduced-motion';
  * architecture guarantees*:
  *
  *   * the terrain is not on this page — a request that is never made
+ *   * the instrument is the Altimeter GLB and nothing else is loaded with it
  *   * the document scrolls itself — no transform, no programmatic scroll
  *   * a section's copy starts near its top — a distance in svh, with room
  *   * nothing paints an opaque plate across the instrument — a painting rule
@@ -64,35 +65,133 @@ async function revealed(page: Page) {
   );
 }
 
+/**
+ * The instrument has drawn its first *correct* frame.
+ *
+ * `data-ready` is set from inside the render loop, on the first frame at which
+ * every channel is inside its motion threshold — not when the model finished
+ * decoding. It is therefore the exact event "the instrument is on screen and
+ * settled", which is what every assertion below actually needs.
+ */
+const instrumentReady = (page: Page) =>
+  page.waitForSelector('.mv-alt__stage[data-ready]', { timeout: 30_000 });
+
 test.describe('portrait mobile — the composition that runs', () => {
-  test('a phone gets the simple composition and no canvas', async ({ page }) => {
+  test('a phone gets the simple composition and exactly one canvas', async ({ page }) => {
     await page.goto('/');
     if (!(await mounted(page))) test.skip(true, 'desktop composition — see the desktop suite below');
     await ready(page);
 
-    expect(await page.locator('canvas').count()).toBe(0);
+    // One. The instrument's scene, and no second surface of any kind — §3 asks
+    // for a dedicated lightweight renderer rather than a share of the desktop
+    // scene graph, and two canvases would mean two WebGL contexts on a phone.
+    await expect(page.locator('canvas')).toHaveCount(1);
+    await expect(page.locator('[data-testid="mobile-instrument-canvas"]')).toBeAttached();
+
     // The desktop track is the thing this replaced. Its absence is the
     // clearest single statement that the two compositions are separate.
     expect(await page.locator('[data-testid="journey-track"]').count()).toBe(0);
     await expect(page.locator('[data-testid="mobile-altimeter"]')).toBeVisible();
     await expect(page.locator('[data-testid="mobile-telemetry"]')).toBeVisible();
+
+    // The SVG is a failure path now, not the portrait experience — §18.
+    expect(await page.locator('[data-testid="mobile-altimeter-svg"]').count()).toBe(0);
   });
 
-  test('no terrain, no renderer and no model is ever requested', async ({ page }) => {
+  test('the Altimeter GLB is loaded and nothing else from the old scene is', async ({ page }) => {
     const requested: string[] = [];
     page.on('request', (r) => requested.push(r.url()));
 
     await page.goto('/');
     if (!(await mounted(page))) test.skip(true, 'desktop composition');
     await ready(page);
+    await instrumentReady(page);
     // Scroll the whole document: a lazily-mounted scene would be requested on
     // arrival, not on load, and a check that only looks at the first screen
     // would miss exactly that.
     await revealed(page);
 
-    expect(requested.filter((u) => u.includes('.glb'))).toEqual([]);
+    // §25's checklist, as one assertion each.
+    const models = requested.filter((u) => u.includes('.glb'));
+    expect(models).toHaveLength(1);
+    expect(models[0]).toContain('stratos-altimeter.glb');
+
     expect(requested.filter((u) => /mountains/i.test(u))).toEqual([]);
     expect(requested.filter((u) => /JourneyScene|ScrollTrigger|draco/i.test(u))).toEqual([]);
+    // No HDR, no .env, no cube faces: §9's environment is prefiltered in the
+    // page from three flat emitters and costs nothing on the wire.
+    expect(requested.filter((u) => /\.(hdr|exr|env)($|\?)/i.test(u))).toEqual([]);
+  });
+
+  test('the renderer is not requested at all when there is no WebGL', async ({ page }) => {
+    // Denied the way a blocklisted driver denies it: the constructor is still
+    // there, context creation just fails.
+    await page.addInitScript(() => {
+      const original = HTMLCanvasElement.prototype.getContext;
+      HTMLCanvasElement.prototype.getContext = function (type: string, ...rest: unknown[]) {
+        if (typeof type === 'string' && type.includes('webgl')) return null;
+        // @ts-expect-error — passing through to the original signature
+        return original.call(this, type, ...rest);
+      };
+    });
+
+    const requested: string[] = [];
+    page.on('request', (r) => requested.push(r.url()));
+
+    await page.goto('/');
+    if (!(await mounted(page))) test.skip(true, 'desktop composition');
+    await ready(page);
+    await revealed(page);
+
+    // §19: the drawing, gracefully, and the page still reads.
+    await expect(page.locator('[data-testid="mobile-altimeter-svg"]')).toBeVisible();
+    await expect(page.locator('[data-testid="mobile-altimeter"]')).toHaveAttribute(
+      'data-mode',
+      'fallback',
+    );
+
+    /**
+     * And it is actually PAINTED.
+     *
+     * `toBeVisible` above is not enough and this is not a belt-and-braces
+     * assertion — it is the one that catches the defect that happened.
+     * Playwright's visibility check is `display`, `visibility` and a non-empty
+     * box; it does not consider opacity. The canvas crossfade was written as
+     * `.mv-alt__stage > div`, which also matched this wrapper and pinned it at
+     * zero opacity on a path where nothing ever sets `data-ready` — so the
+     * no-WebGL visitor got an empty slot containing a correctly laid-out,
+     * completely invisible 315px instrument, and this test passed.
+     */
+    const painted = await page.evaluate(() => {
+      const svg = document.querySelector('.mv-alt__dial');
+      if (!svg) return null;
+      const box = svg.getBoundingClientRect();
+      // Effective opacity: every ancestor multiplies in.
+      let opacity = 1;
+      for (let el: Element | null = svg; el; el = el.parentElement) {
+        opacity *= Number(getComputedStyle(el).opacity);
+      }
+      return { width: Math.round(box.width), height: Math.round(box.height), opacity };
+    });
+
+    expect(painted).not.toBeNull();
+    expect(painted!.width).toBeGreaterThan(120);
+    expect(painted!.height).toBeGreaterThan(120);
+    expect(painted!.opacity).toBeGreaterThan(0.9);
+    await expect(page.locator('h1')).toHaveCount(1);
+    await expect(page.locator('[data-testid="cta-primary-hero"]')).toBeVisible();
+
+    // The whole point of the lazy boundary: declining the renderer must also
+    // decline its download. This is the assertion that stops a stray top-level
+    // import quietly costing every no-WebGL visitor a megabyte.
+    //
+    // `MobileInstrument` is the chunk name Rollup derives from the module's own
+    // filename, and that module is the only import path to `three`, `@react-
+    // three/*` and the GLB on this page — so its absence is the absence of all
+    // of them. Asserted on the name rather than on a byte total, because a byte
+    // total is a number that has to be maintained and this is a fact.
+    expect(requested.filter((u) => /\.glb($|\?)/.test(u))).toEqual([]);
+    expect(requested.filter((u) => /MobileInstrument|JourneyScene/.test(u))).toEqual([]);
   });
 
   test('the document scrolls itself', async ({ page }) => {
@@ -289,9 +388,14 @@ test.describe('portrait mobile — the composition itself', () => {
     await ready(page);
 
     const covering = await page.evaluate(() => {
-      const dial = document.querySelector('.mv-alt__dial');
-      if (!dial) return ['no dial'];
-      const box = dial.getBoundingClientRect();
+      // The stage, not the dial. The instrument is a WebGL canvas now and the
+      // dial is a node inside a GLB, so the element that has a box on this page
+      // is the slot the canvas fills — and the slot is the right subject in any
+      // case: §14 forbids the *instrument* being covered, and the instrument
+      // occupies the whole slot.
+      const stage = document.querySelector('.mv-alt__stage');
+      if (!stage) return ['no instrument stage'];
+      const box = stage.getBoundingClientRect();
       const solid: string[] = [];
 
       for (const el of document.querySelectorAll<HTMLElement>('.mv-sec, .mv-sec *, .mv-flow')) {
@@ -535,8 +639,12 @@ test.describe('portrait mobile — lifecycle', () => {
     // never retaken. A rotation that swapped compositions would tear down a
     // live tree and rebuild the other underneath a moving finger.
     expect(await mounted(page)).toBe(true);
-    expect(await page.locator('canvas').count()).toBe(0);
     await expect(page.locator('[data-testid="mobile-altimeter"]')).toBeVisible();
+
+    // And the instrument survives the rotation as one context rather than
+    // being torn down and rebuilt: a remount would cost a GLB re-parse, a
+    // PMREM bake and a shader compile, in the middle of a gesture.
+    await expect(page.locator('canvas')).toHaveCount(1);
   });
 });
 
@@ -572,6 +680,206 @@ test.describe('portrait mobile — reduced motion', () => {
     await expect(page.locator('[data-testid="mobile-altimeter"]')).toBeVisible();
     await expect(page.locator('[data-testid="cta-primary-hero"]')).toBeVisible();
   });
+
+  test('the real instrument stays, and stops moving', async ({ page }) => {
+    await enableReducedMotion(page);
+    await page.goto('/');
+    if (!(await mounted(page))) test.skip(true, 'desktop composition');
+    await ready(page);
+
+    // §20, and it is a deliberate reversal of the obvious behaviour: reduced
+    // motion does NOT demote the visitor to the inferior drawing. The physical
+    // instrument is the content; the preference is about movement.
+    await expect(page.locator('canvas')).toHaveCount(1);
+    expect(await page.locator('[data-testid="mobile-altimeter-svg"]').count()).toBe(0);
+    await instrumentReady(page);
+
+    // And it holds still. The pose is scroll-driven for everyone else; here the
+    // instrument keeps the composed attitude and only the needles follow the
+    // altitude, so two frames a screen apart differ by the needle and nothing
+    // that could be called drift.
+    const canvas = page.locator('canvas');
+    const composed = await canvas.screenshot();
+    await page.evaluate(() => scrollTo({ top: 120, behavior: 'instant' }));
+    await page.waitForTimeout(900);
+    const later = await canvas.screenshot();
+
+    // Not asserted equal: the needles are allowed to have moved, and at 120px
+    // of scroll they will have. Asserted *present* — a canvas that had gone
+    // blank or been unmounted is the failure this catches.
+    expect(later.byteLength).toBeGreaterThan(1000);
+    expect(composed.byteLength).toBeGreaterThan(1000);
+  });
+});
+
+/**
+ * The instrument's own architecture — §4, §5, §12 and §15 of the 3D brief.
+ *
+ * These are the tests that would have caught the two defects this work actually
+ * had. The first version of the scene ran a permanent settle that never
+ * converged and kept drawing for 3.2 seconds after every gesture; the second
+ * kept drawing for the whole document because nothing told it the instrument
+ * had left the screen. Neither was visible on screen and both were obvious in a
+ * counter, which is why every assertion below counts something.
+ */
+test.describe('portrait mobile — the 3D instrument', () => {
+  /** Count WebGL draws from before the first module runs. */
+  const countDraws = (page: Page) =>
+    page.addInitScript(() => {
+      const w = window as unknown as { __draws: number };
+      w.__draws = 0;
+      for (const proto of [
+        (window as unknown as { WebGLRenderingContext?: { prototype: object } }).WebGLRenderingContext?.prototype,
+        (window as unknown as { WebGL2RenderingContext?: { prototype: object } }).WebGL2RenderingContext?.prototype,
+      ]) {
+        if (!proto) continue;
+        for (const name of ['drawElements', 'drawArrays', 'drawElementsInstanced', 'drawArraysInstanced']) {
+          const raw = (proto as Record<string, unknown>)[name];
+          if (typeof raw !== 'function') continue;
+          (proto as Record<string, unknown>)[name] = function (this: unknown, ...rest: unknown[]) {
+            w.__draws++;
+            return (raw as (...a: unknown[]) => unknown).apply(this, rest);
+          };
+        }
+      }
+    });
+
+  const draws = (page: Page) =>
+    page.evaluate(() => (window as unknown as { __draws: number }).__draws);
+
+  test('nothing renders while the page is idle', async ({ page }) => {
+    await countDraws(page);
+    await page.goto('/');
+    if (!(await mounted(page))) test.skip(true, 'desktop composition');
+    await ready(page);
+    await instrumentReady(page);
+
+    // Let the settle finish. `data-ready` is the first settled frame, and the
+    // margin is there so this measures an idle page rather than the tail of the
+    // one that just settled.
+    await page.waitForTimeout(1200);
+    const before = await draws(page);
+    await page.waitForTimeout(2500);
+    const after = await draws(page);
+
+    // §4, exactly: when the visitor is idle and the instrument is static, GPU
+    // rendering stops. Zero, not "few" — a permanent rAF loop is either there
+    // or it is not.
+    expect(after - before).toBe(0);
+  });
+
+  test('nothing renders while the instrument is off screen', async ({ page }) => {
+    await countDraws(page);
+    await page.goto('/');
+    if (!(await mounted(page))) test.skip(true, 'desktop composition');
+    await ready(page);
+    await instrumentReady(page);
+
+    // Two screens past the instrument, which is past its observer's margin.
+    await page.evaluate(() => scrollTo({ top: innerHeight * 4, behavior: 'instant' }));
+    await page.waitForTimeout(1400);
+
+    const before = await draws(page);
+    // Keep scrolling. This is the case that matters: the visitor is reading the
+    // rest of a seventeen-screen document, the ascent reader is firing on every
+    // frame, and there is nothing on screen to draw.
+    for (let i = 5; i <= 10; i++) {
+      await page.evaluate((n) => scrollTo({ top: innerHeight * n, behavior: 'instant' }), i);
+      await page.waitForTimeout(120);
+    }
+    await page.waitForTimeout(600);
+    const after = await draws(page);
+
+    expect(after - before).toBe(0);
+  });
+
+  test('the instrument adds no scroll listener of its own', async ({ page }) => {
+    await page.addInitScript(() => {
+      const w = window as unknown as { __scrollListeners: number };
+      w.__scrollListeners = 0;
+      for (const target of [window, document, document.documentElement].filter(Boolean)) {
+        const raw = target.addEventListener.bind(target);
+        (target as EventTarget).addEventListener = function (type: string, fn: never, opts: never) {
+          if (type === 'scroll') w.__scrollListeners++;
+          return raw(type, fn, opts);
+        };
+      }
+    });
+
+    await page.goto('/');
+    if (!(await mounted(page))) test.skip(true, 'desktop composition');
+    await ready(page);
+    await instrumentReady(page);
+
+    const atRest = await page.evaluate(
+      () => (window as unknown as { __scrollListeners: number }).__scrollListeners,
+    );
+    await page.evaluate(() => {
+      (window as unknown as { __scrollListeners: number }).__scrollListeners = 0;
+    });
+
+    for (let i = 1; i <= 8; i++) {
+      await page.evaluate((n) => scrollTo({ top: innerHeight * n * 0.7, behavior: 'instant' }), i);
+      await page.waitForTimeout(90);
+    }
+    const duringScroll = await page.evaluate(
+      () => (window as unknown as { __scrollListeners: number }).__scrollListeners,
+    );
+
+    // §15: zero new scroll listeners where the existing shared progress can be
+    // reused, and the instrument reuses it — `onAscent` and `onMeasure`, both
+    // already installed. The ceiling is generous because it counts the page's
+    // own header and transition controller as well; what it forbids is a number
+    // that grows with the scroll, which is the shape of the defect it catches.
+    expect(atRest).toBeLessThanOrEqual(4);
+    expect(duringScroll).toBe(0);
+  });
+
+  test('the slot has a fixed box that the instrument cannot change', async ({ page }) => {
+    await page.goto('/');
+    if (!(await mounted(page))) test.skip(true, 'desktop composition');
+    await ready(page);
+
+    // Measured before the renderer exists and after it has settled. §12: the
+    // canvas must not generate exclusion zones, dynamic stage heights or
+    // measured content offsets — so the arrival of a live instrument must move
+    // precisely nothing.
+    const boxOf = () =>
+      page.evaluate(() => {
+        const stage = document.querySelector('.mv-alt__stage');
+        const next = document.querySelector('[data-stage="initial-ascent"]');
+        const r = stage?.getBoundingClientRect();
+        const n = next?.getBoundingClientRect();
+        return {
+          stage: r ? [Math.round(r.width), Math.round(r.height)] : null,
+          nextSectionTop: n ? Math.round(n.top + scrollY) : null,
+          docHeight: document.documentElement.scrollHeight,
+        };
+      });
+
+    const before = await boxOf();
+    await instrumentReady(page);
+    await page.waitForTimeout(800);
+    const after = await boxOf();
+
+    expect(after.stage).toEqual(before.stage);
+    expect(after.nextSectionTop).toBe(before.nextSectionTop);
+    expect(after.docHeight).toBe(before.docHeight);
+
+    // And the slot is a slot, not an animation stage — §13's 38–52svh, with the
+    // landscape case allowed its own smaller box by the same two declarations.
+    const share = await page.evaluate(() => {
+      const r = document.querySelector('.mv-alt__stage')!.getBoundingClientRect();
+      return r.height / innerHeight;
+    });
+    expect(share).toBeGreaterThan(0.3);
+    expect(share).toBeLessThan(0.55);
+  });
+
+  // The painting rule §14 shares with the mobile reset's §10 is already
+  // asserted, once, in 'nothing paints an opaque plate across the altimeter'
+  // above — retargeted from the SVG dial to the instrument's slot. A second
+  // copy here would be a second thing to keep in step with the first.
 });
 
 test.describe('desktop — the composition that must not have changed', () => {
