@@ -680,13 +680,30 @@ test.describe('portrait mobile — lifecycle', () => {
 
     // NOT "the altitude is the one you left at".
     //
-    // Chromium's own scroll restoration does not put a mobile viewport back
-    // where it was on this site: measured on pristine `main`, a back navigation
-    // from 6 400 px landed at 19 932 px — the bottom of the document — on the
-    // mobile projects, while the desktop viewport restored to within 70 px.
-    // That predates this work, reproduces identically on the previous
-    // architecture, and is not this brief's to change. A test that asserted the
-    // restored position would be asserting a bug in something else.
+    // Scroll restoration does not work on this homepage, and it is not the
+    // portrait composition's doing. Measured with controls in
+    // `experiments/probe-back-navigation.mjs`, five trials per arm, leaving from
+    // 6 400 px:
+    //
+    //   arm                        chromium              webkit
+    //   home         390x844       2/5 bottom, 3/5 ok    5/5 bottom (13 349)
+    //   home-desktop 1440x900      5/5 bottom (20 569)   5/5 near top (794)
+    //   static       390x844       5/5 restored (6 400)  5/5 restored (6 400)
+    //   static-nojs  390x844       5/5 restored (6 400)  5/5 restored (6 400)
+    //
+    // A generated static page restores exactly, at the same phone viewport, on
+    // both engines — so neither the engine nor the mobile viewport is the
+    // cause. The homepage fails on *both* compositions and *both* engines, in
+    // different directions. What the failing arms share is a document whose
+    // height is produced by React after load, which is the mechanism
+    // `assets/js/transitions.js` already documents next to its
+    // `scrollRestoration` note.
+    //
+    // So this is a homepage-wide defect, it is not this brief's to change
+    // (§14), and it is recorded in
+    // `_build/reports/mobile-test-reconciliation/final-report.md` as a separate
+    // UX defect. A test that asserted the restored position would be asserting
+    // a bug in something else.
     //
     // What IS this page's promise is that it comes back *working*: the reader
     // is running, the readout agrees with wherever the browser actually put the
