@@ -75,13 +75,29 @@ async function scrollToStage(page: Page, id: string) {
 }
 
 // =============================================================================
-// The full 0–30 000 m journey.
+// The full 0–30 000 m journey, as the CINEMATIC composition renders it.
 //
 // These tests are written to answer the questions that decide whether this is a
 // production candidate — does the whole altitude range actually get reached,
 // does the content survive without the renderer, does the reduced-motion path
-// avoid downloading 970 KB it will not use, does the mobile sticky handoff hold
-// — rather than to assert that a canvas element exists.
+// avoid downloading 970 KB it will not use, does the sticky handoff into the
+// closing CTA hold — rather than to assert that a canvas element exists.
+//
+// WHICH PROJECTS RUN THIS FILE, AND WHY IT IS NOT ALL OF THEM
+// -----------------------------------------------------------
+// `desktop` and `reduced-motion`, by `testMatch` in playwright.full.config.ts.
+//
+// `src/full/main.tsx` forks once: a coarse-pointer device whose screen's short
+// edge is under 540 px gets `mobile/MobileHome.tsx` instead of `FullAscent`.
+// That composition has no canvas over the document, no `journey__track`, no
+// `.journey__stage`, no `altitude-hud` and no damped clock — it is eleven
+// block-flow sections that the browser scrolls. Every assertion in this file
+// names one of those things, so on a phone project every one of them was
+// asserting the absence of the composition rather than anything about the page.
+//
+// The portrait contract lives in `portrait-journey.spec.ts`, on the five phone
+// shapes. Splitting the two files by composition is what lets each of them be
+// unconditional: neither needs a `test.skip` about which page it is looking at.
 // =============================================================================
 
 const SHOTS = resolve(process.cwd(), 'experiments/screenshots/full');
@@ -130,7 +146,6 @@ test.beforeEach(async ({ page }, info) => {
 });
 
 const isMotion = (name: string) => name !== 'reduced-motion';
-const isMobile = (name: string) => name.startsWith('mobile');
 
 /**
  * Scroll to a fraction of *the track*, not of the document.
@@ -527,12 +542,26 @@ test.describe('the build keeps the renderer lazy', () => {
       expect(eager.includes(marker), `${marker} leaked into the eager chunk`).toBe(false);
     }
 
-    // 4. And the scene chunk must exist and actually contain it, so that a
-    //    passing test above cannot mean "three.js is nowhere at all".
-    const scene = files.find((f) => f.startsWith('JourneyScene'));
-    expect(scene, 'no scene chunk was emitted').toBeTruthy();
-    const sceneCode = await readFile(resolve(DIST, 'assets', scene!), 'utf8');
-    expect(sceneCode.includes('WebGLRenderer')).toBe(true);
+    // 4. And the renderer must exist in SOME chunk that the document does not
+    //    load eagerly — so that assertions 1–3 cannot pass by three.js being
+    //    nowhere at all.
+    //
+    //    Asked as a property, not as a filename. This named `JourneyScene*`,
+    //    and the property it was protecting stayed true while the assertion
+    //    went false: the portrait instrument and the desktop scene both need
+    //    three.js now, so Rollup hoisted it into their common ancestor and it
+    //    lives in `Gltf-*.js`. Duplicating 876 KB into two chunks to keep a
+    //    filename true would be the wrong repair, and a test that names a
+    //    chunk is a test that will be wrong again the next time the graph is
+    //    correct.
+    const lazyChunks = files.filter((f) => f.endsWith('.js') && f !== entry);
+    expect(lazyChunks.length, 'nothing was split out of the entry at all').toBeGreaterThan(0);
+    const carriers: string[] = [];
+    for (const f of lazyChunks) {
+      if ((await readFile(resolve(DIST, 'assets', f), 'utf8')).includes('WebGLRenderer')) carriers.push(f);
+    }
+    expect(carriers, 'no lazy chunk contains the renderer — is three.js in the build at all?').not
+      .toEqual([]);
 
     // 5. The dev-only debug panel is not in the production build at all.
     expect(files.some((f) => /DebugPanel/i.test(f)), 'debug panel chunk emitted').toBe(false);
@@ -564,11 +593,32 @@ test.describe('the build keeps the renderer lazy', () => {
 });
 
 // -----------------------------------------------------------------------------
-// The mobile sticky handoff. This is the specific defect the brief called out
-// in the prototype, and these are the assertions that say it is fixed.
+// The sticky handoff into the final CTA — the specific defect the brief called
+// out in the prototype, and the assertions that say it is fixed.
+//
+// WHY THIS NO LONGER RUNS ON THE PHONE PROJECTS
+// ---------------------------------------------
+// It was gated `test.skip(!isMobile(...), 'a mobile layout problem')`, and that
+// was right when there was one composition. There is no sticky container on a
+// phone now: `MobileHome` is eleven ordinary block-flow sections and the
+// closing action is the last of them, so `.journey__stage` and
+// `[data-testid="journey-track"]` are simply absent there and these three read
+// `null.offsetHeight`.
+//
+// The handoff itself has not gone anywhere — it is the desktop composition's,
+// and until now these assertions ran on no project that has one. Pointing them
+// at the composition they describe is what makes them assertions again rather
+// than three permanent skips. Reduced motion is excluded for the reason the
+// reduced-motion block below states in its own words: the track is un-stuck
+// there by design, which is asserted there.
+//
+// The portrait halves of what these protected — the closing action being
+// reachable at the end of the document, and the end of the document not being a
+// trap — are in `portrait-journey.spec.ts`, restated for a page that scrolls
+// itself.
 test.describe('the sticky handoff into the final CTA', () => {
   test.beforeEach(({}, info) => {
-    test.skip(!isMobile(info.project.name), 'a mobile layout problem');
+    test.skip(!isMotion(info.project.name), 'the track is un-stuck under reduced motion');
   });
 
   test('the CTA arrives over the scene, with no gap and no footer collision', async ({ page }) => {

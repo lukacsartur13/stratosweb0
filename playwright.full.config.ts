@@ -15,13 +15,57 @@ import { defineConfig, devices } from '@playwright/test';
 // Viewports are the ones the brief named, plus WebKit, because the sticky
 // handoff is exactly the kind of thing that behaves differently on iOS Safari
 // and "it works in Chrome" is not evidence about a phone.
+//
+// TWO SPECS, AND WHICH PROJECT COLLECTS WHICH
+// -------------------------------------------
+// This route is one application with two compositions. `src/full/main.tsx`
+// forks once, on `screen`'s short edge and the pointer type: a coarse-pointer
+// device with a short edge under 540px gets `mobile/MobileHome.tsx`, everything
+// else gets `FullAscent.tsx`. They are separate compositions, not one component
+// with breakpoints, and they share the content tables and nothing else.
+//
+// So the suite is split the same way, by `testMatch` rather than by a
+// `test.skip` inside a shared file:
+//
+//   full-ascent.spec.ts      the cinematic composition — canvas, sticky track,
+//                            damped altitude clock, the Meridian's six
+//                            structural states. Collected by `desktop` and
+//                            `reduced-motion`.
+//   portrait-journey.spec.ts the portrait composition — native document scroll,
+//                            eleven block-flow chapters, IntersectionObserver
+//                            reveals, the Altimeter GLB in a fixed CSS box.
+//                            Collected by the five phone projects.
+//
+// The alternative — one file, gated on the project name — is what this replaces.
+// It left the portrait projects asserting a canvas, a `journey__track` and a
+// `data-meridian` attribute that a phone has not had since the mobile reset,
+// and the repair on offer was to extend a `test.skip` to three more projects,
+// which converts an open question into a silent assumption. Splitting by the
+// composition each file describes means neither file needs a skip at all.
 // =============================================================================
 const PORT = 4327;
 const BASE = `http://127.0.0.1:${PORT}/experiments/stratos-ascent-full/`;
 
+/** The cinematic composition's spec, and the portrait composition's. */
+const CINEMATIC = /full-ascent\.spec\.ts/;
+const PORTRAIT = /portrait-journey\.spec\.ts/;
+
+/**
+ * Broad coverage everywhere, deep coverage twice.
+ *
+ * The brief asks for five viewports and, in the same breath, for the suite to
+ * stay runnable — "do not multiply every expensive test across every viewport".
+ * `@smoke` in a title is the line between the two: the cheap structural checks
+ * that a narrower or shorter screen can genuinely break — overflow, chapter
+ * order, the skip link, the reveals resolving, the no-WebGL fallback — run on
+ * all five, and the walks that scroll the whole document several times over run
+ * on the representative portrait size and on landscape.
+ */
+const SMOKE = /@smoke/;
+
 export default defineConfig({
   testDir: './experiments/tests',
-  testMatch: /full-ascent\.spec\.ts/,
+  testMatch: [CINEMATIC, PORTRAIT],
   fullyParallel: false, // one GPU, one canvas at a time — parallel WebGL is noise
   forbidOnly: !!process.env.CI,
   retries: 0,
@@ -41,25 +85,64 @@ export default defineConfig({
   projects: [
     {
       name: 'desktop',
+      testMatch: CINEMATIC,
       use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } },
     },
-    // The three phone sizes the brief called out. 390×844 and 430×932 are the
-    // common iPhone widths; 375×667 is the small one, and it is the one that
-    // actually breaks sticky layouts because the viewport is shorter than most
-    // panels' content.
+
+    // -------------------------------------------------------------------------
+    // The five phone shapes, and the two the deep walks run on.
+    //
+    // Heights are stated rather than taken from the device descriptor. A device
+    // descriptor's viewport is the *content* box a real browser leaves after
+    // its own chrome — 390×664 for an iPhone 13 — and the reconciliation brief
+    // names the panel sizes: 390×844, 430×932, 375×812, 360×800, and 844×390
+    // for landscape. Testing the panel is the stricter reading, because the
+    // composition is written against `svh` and the taller box is the one a
+    // collapsed toolbar produces.
+    //
+    // Engines are mixed on purpose. The iPhone descriptors run WebKit, which is
+    // where a `position: fixed` telemetry strip, `svh` and momentum scrolling
+    // actually differ; 360×800 runs Chromium as a Pixel, which is the other
+    // half of the phone population and the engine the reveals' transitions are
+    // cheapest on.
+    // -------------------------------------------------------------------------
     {
+      // The representative portrait size. Everything runs here.
       name: 'mobile-390',
-      use: { ...devices['iPhone 13'] },
+      testMatch: PORTRAIT,
+      use: { ...devices['iPhone 13'], viewport: { width: 390, height: 844 } },
+    },
+    {
+      // Landscape. The other shape with its own failure modes: the instrument
+      // gets a smaller box, the telemetry strip is a much larger share of the
+      // viewport, and a chapter that fits portrait can stop fitting here.
+      name: 'mobile-landscape',
+      testMatch: PORTRAIT,
+      use: { ...devices['iPhone 13 landscape'], viewport: { width: 844, height: 390 } },
     },
     {
       name: 'mobile-430',
-      use: { ...devices['iPhone 14 Pro Max'] },
+      testMatch: PORTRAIT,
+      grep: SMOKE,
+      use: { ...devices['iPhone 14 Pro Max'], viewport: { width: 430, height: 932 } },
     },
     {
       name: 'mobile-375',
-      use: { ...devices['iPhone SE'], viewport: { width: 375, height: 667 } },
+      testMatch: PORTRAIT,
+      grep: SMOKE,
+      use: { ...devices['iPhone SE'], viewport: { width: 375, height: 812 } },
     },
     {
+      // The narrowest shape in the matrix, and the one that finds horizontal
+      // overflow first.
+      name: 'mobile-360',
+      testMatch: PORTRAIT,
+      grep: SMOKE,
+      use: { ...devices['Pixel 5'], viewport: { width: 360, height: 800 } },
+    },
+
+    {
+      testMatch: CINEMATIC,
       // Reduced motion is *activated at runtime* by the spec, not by this
       // option — see tests/helpers/reduced-motion.ts. The option is here as the
       // project's declared intent and as the canary that fails if Playwright
