@@ -1,0 +1,25 @@
+# Legacy Wix URL inventory for stratosweb.hu, captured 2026-08-09 from the live Wix
+# sitemap set (sitemap.xml -> pages, blog-posts, blog-categories, booking-services)
+# while the final domain was still served by Wix. Every status below was observed,
+# not assumed. Source of record for _build/reports/phase9-redirect-map.md.
+old_url,http_status,title,locale,page_purpose,intended_new_route,redirect_confidence,manual_review,notes
+https://www.stratosweb.hu,200,Webdesign és online megoldások Győrben és Budapesten | Stratos,hu,Homepage,/,n/a — already the same address,none needed,Served by this build after cutover. No rule.
+https://www.stratosweb.hu/impact-program,200,Impact Program | Stratos,hu,Impact Program,/impact-program.html,high,none needed,Extensionless path already resolves 200.
+https://www.stratosweb.hu/kkv,200,Webdesign KKV-nak | Stratos,hu,Service — web design for SMEs,/kkv.html,high,none needed,Extensionless path already resolves 200.
+https://www.stratosweb.hu/hirdeteskezeles,200,Google & Meta Ads hirdetéskezelés | Stratos,hu,Service — Google and Meta ads,/hirdeteskezeles.html,high,none needed,Extensionless path already resolves 200.
+https://www.stratosweb.hu/adatkezelesi-tajekoztato,200,Adatkezelési Tájékoztató | Stratos,hu,Privacy policy,/adatkezelesi-tajekoztato.html,high,none needed,Extensionless path already resolves 200.
+https://www.stratosweb.hu/impresszum,200,Impresszum | Stratos,hu,Imprint,/impresszum.html,high,none needed,Extensionless path already resolves 200.
+https://www.stratosweb.hu/branding,200,Branding és arculattervezés vállalkozásoknak | Stratos,hu,Service — branding and identity,/branding.html,high,none needed,Extensionless path already resolves 200.
+https://www.stratosweb.hu/nagyvallalat,200,Webdesign Nagyvállalatoknak | Stratos,hu,Service — web design for enterprise,/nagyvallalat.html,high,none needed,Extensionless path already resolves 200.
+https://www.stratosweb.hu/rolunk,200,Rólunk – Stratos Media webügynökség | Győr & Budapest,hu,About the agency,/rolunk.html,high,none needed,Netlify already serves /rolunk from rolunk.html with 200; canonical names the .html form.
+https://www.stratosweb.hu/book-online,200,Foglalj ingyenes konzultációt | Stratos,hu,Wix Bookings — free consultation booking,/ugyfelszolgalat.html,medium,REQUIRES USER DECISION,No scheduling system exists on the new site. Contact is the nearest true destination; it claims no booking. Delete the rule if a 404 is preferred.
+https://www.stratosweb.hu/arajanlat,200,Árajánlati kérdőív | Stratos,hu,Quote questionnaire,/arajanlat.html,high,none needed,Extensionless path already resolves 200.
+https://www.stratosweb.hu/ugyfelszolgalat,200,Ügyfélszolgálat és kapcsolat | Stratos,hu,Contact and support,/ugyfelszolgalat.html,high,none needed,Extensionless path already resolves 200.
+https://www.stratosweb.hu/blog,200,Blog – webdesign és online marketing tippek | Stratos,hu,Blog index,/blog.html,high,none needed,Extensionless path already resolves 200. Also the only URL in blog-categories-sitemap.xml.
+https://www.stratosweb.hu/post/mennyibe-kerul-egy-weboldal-2026,200,Mennyibe kerül egy weboldal 2026-ban? Árak és buktatók | Stratos Media,hu,Article — what a website costs,/blog-weboldal-arak.html,high,done,Slug differs. 301 added.
+https://www.stratosweb.hu/post/google-vagy-facebook-hirdetes-2026,200,Google vagy Facebook hirdetés? Melyik éri meg 2026-ban,hu,Article — Google vs Facebook ads,/blog-google-vagy-facebook.html,high,done,Slug differs. 301 added.
+https://www.stratosweb.hu/post/google-cegprofil-beallitasa-lepesrol-lepesre,200,Google Cégprofil beállítása lépésről lépésre | Stratos Media,hu,Article — setting up a Google Business Profile,/blog-google-cegprofil.html,high,done,Slug differs. 301 added.
+https://www.stratosweb.hu/post/mennyi-ugyfelet-veszitesz-elavult-weboldal,200,Mennyi ügyfelet veszítesz egy elavult weboldal miatt?,hu,Article — the cost of an outdated site,/blog-elavult-weboldal.html,high,done,Slug differs. 301 added.
+https://www.stratosweb.hu/post/hogyan-kerulj-a-google-elso-oldalara,200,Hogyan kerülj a Google első oldalára? SEO 7 lépésben | Stratos Media,hu,Article — reaching the first page of Google,/blog-google-elso-oldal.html,high,done,Slug differs. 301 added.
+https://www.stratosweb.hu/post/miert-nem-hoz-ugyfeleket-a-weboldalad,200,Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba,hu,Article — why a site brings no enquiries,/blog-miert-nem-hoz-ugyfelet.html,high,done,Slug differs. 301 added.
+https://www.stratosweb.hu/service-page/ingyenes-konzultáció,200,Ingyenes konzultáció | Stratos,hu,Wix Bookings — free consultation service page,/ugyfelszolgalat.html,medium,REQUIRES USER DECISION,"As /book-online. Non-ASCII path: both literal and percent-encoded forms are declared, and this one must be re-verified live after cutover."

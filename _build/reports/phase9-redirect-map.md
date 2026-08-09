@@ -22,8 +22,17 @@ version-controlled.
 | 3 | `/index.html` | `/` | 301 | redirect | **new in Phase 9** |
 | 4 | `/en/index.html` | `/en/` | 301 | redirect | **new in Phase 9** |
 | 5 | `/de/index.html` | `/de/` | 301 | redirect | **new in Phase 9** |
-| 6 | `/login` | `/portal/login` | 302 | redirect | legacy guess |
-| 7 | `/dashboard/*` | `/portal/` | 302 | redirect | legacy guess |
+| 6 | `/post/mennyibe-kerul-egy-weboldal-2026` | `/blog-weboldal-arak.html` | 301 | redirect | **Wix post — continuation** |
+| 7 | `/post/google-vagy-facebook-hirdetes-2026` | `/blog-google-vagy-facebook.html` | 301 | redirect | **Wix post — continuation** |
+| 8 | `/post/google-cegprofil-beallitasa-lepesrol-lepesre` | `/blog-google-cegprofil.html` | 301 | redirect | **Wix post — continuation** |
+| 9 | `/post/mennyi-ugyfelet-veszitesz-elavult-weboldal` | `/blog-elavult-weboldal.html` | 301 | redirect | **Wix post — continuation** |
+| 10 | `/post/hogyan-kerulj-a-google-elso-oldalara` | `/blog-google-elso-oldal.html` | 301 | redirect | **Wix post — continuation** |
+| 11 | `/post/miert-nem-hoz-ugyfeleket-a-weboldalad` | `/blog-miert-nem-hoz-ugyfelet.html` | 301 | redirect | **Wix post — continuation** |
+| 12 | `/book-online` | `/ugyfelszolgalat.html` | 301 | redirect | **Wix Bookings — continuation** |
+| 13 | `/service-page/ingyenes-konzultáció` | `/ugyfelszolgalat.html` | 301 | redirect | **Wix Bookings — continuation** |
+| 14 | `/service-page/ingyenes-konzult%C3%A1ci%C3%B3` | `/ugyfelszolgalat.html` | 301 | redirect | encoded form of 13 |
+| 15 | `/login` | `/portal/login` | 302 | redirect | legacy guess |
+| 16 | `/dashboard/*` | `/portal/` | 302 | redirect | legacy guess |
 
 ### Loops and chains
 
@@ -63,7 +72,7 @@ thing these three rules exist to do.
 | **Old Work and Contact paths** | Same — new routes, not renames. | No action. |
 | **Draft case-study paths** | The three case studies are `summary`. They are live, reachable, `noindex, follow`, and absent from the sitemap. Redirecting them would be wrong twice over: they exist, and a redirect to `/munkaink.html` would imply the full case study lives there. | **No redirect, deliberately.** |
 | **Uppercase / lowercase conflicts** | Every generated filename is lower-case ASCII with hyphens. No route differs from another by case only. | No action. |
-| **Old Wix URLs** | **REQUIRES USER FACTUAL INPUT** — see §3, item 2. | Blocked. |
+| **Old Wix URLs** | **Resolved in the continuation.** The full inventory was captured from the live Wix sitemap set — 20 URLs, all 200. See §5 and `phase9-wix-url-export.csv`. | **Rules 6–14 added.** 12 of the 20 correctly get no rule; 2 need a decision. |
 
 ---
 
@@ -86,24 +95,9 @@ the repository, because it is a dashboard setting rather than a file.
 Verification once the site is reachable:
 `curl -sI https://<host>/kkv.html` must return `200`, not `301`.
 
-### 2. The Wix URL inventory
+### 2. The Wix URL inventory — **resolved**
 
-The pre-rework site is a Wix site on `media-stratos.com`, and its URL structure
-is not in this repository. Redirect rules cannot be written for URLs nobody has
-listed, and inventing plausible ones would produce redirects that either never
-fire or fire for the wrong thing.
-
-> **REQUIRES USER FACTUAL INPUT** — the list of old public URLs worth
-> preserving. The two practical sources are Google Search Console's *Pages*
-> report on the existing property, and the Wix sitemap
-> (`https://media-stratos.com/sitemap.xml`) taken before the DNS moves.
-> Once that list exists, each entry maps to one of: a 301 to the equivalent new
-> route, or nothing at all if the page has no equivalent — in which case the 404
-> below is the correct answer and is better than a redirect that lies.
-
-This is a **Phase 10 domain-cutover dependency**, and it has to be collected
-*before* the cutover, because the Wix site stops being readable at the moment
-DNS changes.
+No longer blocked. See §5.
 
 ### 3. Live status verification
 
@@ -131,10 +125,104 @@ status.
 | No fake search field | **pass** | Asserted absent. The site has no search, and a box that does nothing when you type in it costs the visitor an attempt before telling them so |
 | Says nothing to a crawler about a page that does not exist | **pass** | `noindex, follow`, and no canonical, no `rel="alternate"`, no Open Graph, no JSON-LD |
 
-### Why it is a page and not a redirect
+### Why it is a page and not a redirect (continued below in §5)
 
 A catch-all to the homepage answers **200 for a page that does not exist**. A
 crawler then indexes the homepage under every dead address it tries, and a
 visitor who mistyped is never told they mistyped — they simply arrive somewhere
 else and have to work out why. The 404 status is the useful half of the answer
 and a redirect throws it away.
+
+---
+
+## 5. The legacy Wix inventory — captured
+
+Status: **resolved.** This was the phase's one time-sensitive, unrecoverable
+item, and it is now collected rather than pending.
+
+### What the domain actually does today
+
+Worth stating first, because the previous report had it slightly wrong. The old
+site is **not** on `media-stratos.com` — that host `301`s to
+`https://www.stratosweb.hu`, and **`www.stratosweb.hu` is the Wix site**. So the
+final production domain is the legacy domain. There is no separate old host to
+migrate *from*; the cutover is a change of what answers on the same name.
+
+That makes the redirects below cheaper than a cross-domain migration and the
+Pretty URLs check in §3 item 1 more important, not less.
+
+### The capture
+
+Source: the live Wix sitemap index and all four child sitemaps —
+`pages` (13), `blog-posts` (6), `blog-categories` (1), `booking-services` (1).
+De-duplicated: **20 distinct URLs**. Each was then fetched: status, final URL,
+`<title>` and `<html lang>` were **observed**, not inferred.
+
+**All 20 answered 200.** Every one is Hungarian; the Wix site has no EN or DE
+version, so no locale is lost by any rule and there is no hreflang inheritance
+to preserve.
+
+Full record: [`phase9-wix-url-export.csv`](phase9-wix-url-export.csv) — URL,
+observed status, title, locale, purpose, intended new route, confidence and
+manual-review state, one row each.
+
+### How the 20 resolve
+
+| Class | Count | Rule | Why |
+|---|---|---|---|
+| Already resolves, no rule needed | **12** | none | `/kkv`, `/rolunk`, `/blog`, `/impresszum`, … Netlify already serves the extensionless path from the matching `.html` with a 200, and the canonical names the `.html` form |
+| Homepage | **1** | none | `/` is `/` |
+| Wix blog posts, different slug | **6** | 301 | rules 6–11 |
+| Wix Bookings | **2** | 301 → contact | rules 12–14, **pending a decision** |
+
+### The twelve that deliberately get no rule
+
+This is the finding worth keeping. Writing `/kkv → /kkv.html` for the twelve
+would consolidate a duplicate and read as the thorough thing to do. It would
+also compose with Netlify's **Pretty URLs** setting — which 301s `/kkv.html` to
+`/kkv` — into an **infinite redirect loop**.
+
+The cost of Pretty URLs being on is currently a canonical that points at a
+redirect: a real defect, a recoverable one. With those twelve rules added it
+would instead be twelve pages that never load, and the failure would appear at
+cutover, on the live domain, for the highest-traffic routes.
+
+The duplication those rules would fix is already fixed the safe way, by
+`<link rel="canonical">`. So they are not written. §3 item 1 stays a pre-cutover
+check and stays as written.
+
+### Loops and chains, re-checked with rules 6–14
+
+- **Loops: none.** Every target (`/blog-*.html`, `/ugyfelszolgalat.html`) is a
+  real file and matches no `from` in the table.
+- **Chains: none.** Each is a single hop to a 200.
+- **Locale: preserved.** All sources and all targets are Hungarian.
+- **Query strings: preserved**, so a Wix-era campaign link keeps its `utm_*`.
+- **No catch-all.** In particular no `/post/*` wildcard: all six posts are
+  named individually, because the sitemap named exactly six and a wildcard would
+  turn every mistyped `/post/…` into a 200 at the blog index.
+
+### Still open
+
+1. **`/book-online` and `/service-page/ingyenes-konzultáció`** —
+   **REQUIRES USER DECISION.** Both are Wix Bookings pages for a free
+   consultation, and this site has no scheduling system. They currently 301 to
+   the contact page, which claims no appointment. A 404 is the defensible
+   alternative. Delete rules 12–14 to choose it.
+2. **Live verification after cutover.** Statically these rules are correct;
+   their status codes are Netlify's to produce. The one to check by hand is the
+   non-ASCII service path, where the literal and percent-encoded forms are both
+   declared and only one will fire:
+
+   ```
+   curl -sI https://www.stratosweb.hu/post/hogyan-kerulj-a-google-elso-oldalara   # 301
+   curl -sI https://www.stratosweb.hu/service-page/ingyenes-konzultáció           # 301
+   curl -sI https://www.stratosweb.hu/kkv.html                                    # 200, NOT 301
+   ```
+
+   The third is the Pretty URLs check from §3 item 1.
+3. **Search Console cross-check.** The sitemap is what Wix chose to publish. If
+   the Search Console *Pages* report on the existing property lists a URL absent
+   from the CSV — an old campaign landing page, a since-unpublished post — it
+   should be added before cutover. This is a widening of an inventory that now
+   exists, not a blocker on one that does not.

@@ -70,6 +70,95 @@
   to = "/de/"
   status = 301
 
+# LEGACY WIX URLS
+# ---------------
+# The inventory these come from is `_build/reports/phase9-wix-url-export.csv`,
+# captured from the live Wix sitemap set on 2026-08-09 while stratosweb.hu was
+# still served by Wix. Twenty URLs, every status observed rather than assumed.
+#
+# Only EIGHT of the twenty get a rule, and the reason the other twelve do not is
+# the important part of this block.
+#
+# Twelve of them — /kkv, /rolunk, /branding, /blog, /impresszum and so on — are
+# extensionless paths that this build ALREADY answers 200 for, because Netlify
+# serves /kkv from kkv.html. Adding `/kkv -> /kkv.html` would look tidier and
+# would consolidate the duplicate, but it would also turn one dashboard setting
+# into an outage: Netlify's "Pretty URLs" 301s /kkv.html to /kkv, and the two
+# rules together are an infinite redirect loop. Today that setting being on
+# costs a canonical pointing at a redirect, which is a defect; with those rules
+# it would cost the page. The duplicate is already resolved the safe way, by
+# `<link rel="canonical">` naming the .html form, so the rules are not worth the
+# loop. See phase9-redirect-map.md §3 item 1 — that check is now load-bearing
+# for a different reason than it was.
+#
+# The eight below are the URLs whose paths genuinely do not exist here.
+
+# The six Wix blog posts. Wix used /post/<slug>; this site uses /blog-<slug>.html
+# and the slugs differ, so these are the only 301s in the set that carry real
+# accumulated link equity.
+[[redirects]]
+  from = "/post/mennyibe-kerul-egy-weboldal-2026"
+  to = "/blog-weboldal-arak.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/google-vagy-facebook-hirdetes-2026"
+  to = "/blog-google-vagy-facebook.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/google-cegprofil-beallitasa-lepesrol-lepesre"
+  to = "/blog-google-cegprofil.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/mennyi-ugyfelet-veszitesz-elavult-weboldal"
+  to = "/blog-elavult-weboldal.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/hogyan-kerulj-a-google-elso-oldalara"
+  to = "/blog-google-elso-oldal.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/miert-nem-hoz-ugyfeleket-a-weboldalad"
+  to = "/blog-miert-nem-hoz-ugyfelet.html"
+  status = 301
+
+# There is deliberately NO `/post/*` catch-all. All six posts are listed above
+# because the Wix sitemap listed exactly six; a wildcard would answer 200-after-
+# redirect for /post/anything-at-all and hide a real 404 behind the blog index.
+
+# Wix Bookings. This site has no scheduling system and Phase 9 forbids implying
+# one, so these do not go anywhere that says "booked" — they go to the contact
+# page, which is where getting in touch now happens.
+#
+# REQUIRES USER DECISION: contact, or a 404. Contact is the recommendation — a
+# bookmark that lands on the page you can actually reach us from beats a dead
+# end, and nothing on that page claims an appointment was made. If a 404 is
+# preferred instead, delete these three rules and nothing else changes.
+[[redirects]]
+  from = "/book-online"
+  to = "/ugyfelszolgalat.html"
+  status = 301
+
+# The Wix service slug contains a non-ASCII character. Netlify matches the
+# decoded path, so the literal form is the one that should fire; the encoded
+# form is declared as well because which of the two arrives depends on the
+# client, and a rule that never fires costs nothing. Both are on the post-
+# cutover verification list precisely because this is the one that could
+# silently miss.
+[[redirects]]
+  from = "/service-page/ingyenes-konzultáció"
+  to = "/ugyfelszolgalat.html"
+  status = 301
+
+[[redirects]]
+  from = "/service-page/ingyenes-konzult%C3%A1ci%C3%B3"
+  to = "/ugyfelszolgalat.html"
+  status = 301
+
 [[redirects]]
   from = "/login"
   to = "/portal/login"
