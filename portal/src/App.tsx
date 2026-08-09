@@ -8,6 +8,7 @@ import {
   ActivityScreen, CaseStudiesScreen, ClientsScreen, LeadsScreen, NotFoundScreen,
   OverviewScreen, ProjectsScreen, SettingsScreen, UsersScreen,
 } from '@/pages/screens';
+import { AnalyticsScreen } from '@/pages/analytics';
 
 /**
  * Nothing below this should ever show a visitor a stack trace. React unmounts
@@ -71,6 +72,8 @@ export default function App() {
                 <ProtectedRoute capability="view_clients"><ClientsScreen /></ProtectedRoute>} />
               <Route path="case-studies" element={
                 <ProtectedRoute capability="view_case_studies"><CaseStudiesScreen /></ProtectedRoute>} />
+              <Route path="analytics" element={
+                <ProtectedRoute capability="view_analytics"><AnalyticsScreen /></ProtectedRoute>} />
               <Route path="users" element={
                 <ProtectedRoute capability="manage_users"><UsersScreen /></ProtectedRoute>} />
               <Route path="activity" element={

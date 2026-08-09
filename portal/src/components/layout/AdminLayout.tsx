@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import {
-  Activity, Building2, FileText, FolderKanban, Image, LayoutDashboard, LogOut,
+  Activity, Building2, ChartLine, FileText, FolderKanban, Image, LayoutDashboard, LogOut,
   Menu, Settings, Users, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -14,6 +14,7 @@ const NAV: { to: string; label: string; icon: typeof LayoutDashboard; cap: Capab
   { to: '/projects',      label: 'Projects',     icon: FolderKanban,    cap: 'view_projects' },
   { to: '/clients',       label: 'Clients',      icon: Building2,       cap: 'view_clients' },
   { to: '/case-studies',  label: 'Case studies', icon: Image,           cap: 'view_case_studies' },
+  { to: '/analytics',     label: 'Analytics',    icon: ChartLine,       cap: 'view_analytics' },
   { to: '/users',         label: 'Users',        icon: Users,           cap: 'manage_users' },
   { to: '/activity',      label: 'Activity',     icon: Activity,        cap: 'view_activity' },
   { to: '/settings',      label: 'Settings',     icon: Settings,        cap: 'manage_settings' },

@@ -21,8 +21,15 @@ function AuthShell({ title, lede, children }: { title: string; lede: string; chi
           {children}
         </Panel>
         <p className="mt-5 text-center text-xs text-haze">
+          {/* The label names no domain, on purpose. It used to say
+              "media-stratos.com" — the Wix site this project replaces — while
+              the href was already the correct same-origin "/". So it was wrong
+              on the netlify.app address, wrong on stratosweb.hu after cutover,
+              and right on the one host this site will never be served from.
+              A relative link deserves a relative label; this one needs no
+              maintenance when the domain moves. */}
           <a href="/" className="underline underline-offset-4 hover:text-paper">
-            Back to media-stratos.com
+            Back to the website
           </a>
         </p>
       </div>

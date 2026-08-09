@@ -10,7 +10,9 @@ const BASE = `http://127.0.0.1:${PORT}`;
 // tests/lead-endpoint.spec.ts) and the structured-data suite reads dist/ off
 // the filesystem — neither opens a browser, so neither is a viewport question
 // and running either five times over is five times the same answer.
-const NODE_ONLY = [/lead-endpoint\.spec\.ts/, /structured-data\.spec\.ts/];
+const NODE_ONLY = [
+  /lead-endpoint\.spec\.ts/, /structured-data\.spec\.ts/, /portal-analytics\.spec\.ts/,
+];
 
 // Two suites are viewport-independent: they read data attributes, class names
 // and storage, and render nothing. What they *are* sensitive to is the engine —
