@@ -227,8 +227,25 @@
       else setTimeout(done, 420);
       // Focus goes back where it came from. Losing it to <body> is the bug
       // that makes a keyboard user restart from the top of the document.
-      (restoreTo && document.contains(restoreTo) ? restoreTo : burger)
-        .focus({ preventScroll: true });
+      //
+      // `document.contains()` alone did not prevent it, because <body> passes
+      // that test. WebKit does not focus a <button> when you click it — that is
+      // the specified behaviour, not a quirk — so on iOS Safari `restoreTo` is
+      // whatever held focus at the moment of the tap, and for a visitor who has
+      // not been tabbing that is <body>. `body.focus()` then does nothing at
+      // all: focus stays on the menu link, the layer is hidden 420ms later, and
+      // the link taking focus with it is exactly the drop to <body> this line
+      // exists to prevent. Chromium hid it completely, because there a click
+      // focuses the button and `restoreTo` is the burger.
+      //
+      // So the question is not "does the element still exist" but "is it
+      // somewhere focus can meaningfully go back to".
+      const restorable =
+        restoreTo &&
+        restoreTo !== document.body &&
+        restoreTo !== document.documentElement &&
+        document.contains(restoreTo);
+      (restorable ? restoreTo : burger).focus({ preventScroll: true });
     }
 
     const isOpen = () => burger.getAttribute('aria-expanded') === 'true';
