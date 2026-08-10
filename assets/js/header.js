@@ -168,6 +168,91 @@
     let restoreTo = null;
     let scrollLock = 0;
 
+    /* ------------------------------------------------- the background, inert
+
+       WHY THE KEYDOWN TRAP BELOW WAS NOT ENOUGH
+       -----------------------------------------
+       It wraps focus when `document.activeElement` is the first or the last
+       element of a list it builds itself. That is a correct description of
+       Chromium's tab order and a wrong one of WebKit's: on WebKit, links are
+       not in the sequential focus order unless the visitor has turned on "press
+       Tab to highlight each item on a webpage", which is off by default and is
+       the specified platform behaviour rather than a bug.
+
+       The layer is seventeen links and nothing else. So on WebKit the trap's
+       list is never the tab order at all — the *first* Tab out of the opening
+       link went straight past every one of them to the next form control in the
+       document, which is the newsletter field in the footer, and every
+       subsequent Tab and Shift+Tab stayed out there. Measured, all three
+       compositions, in experiments/probe-menu-modality.mjs:
+
+           chromium   0 escapes forward, 0 backward
+           webkit    15 escapes forward, 15 backward  (homepage)
+                     27 / 27                          (generated routes)
+
+       No list this file can build fixes that, because the defect is not in the
+       list: the elements behind the layer are still in the document's focus
+       order, and a trap can only ever react to focus having already left.
+
+       So the background is taken out of the focus order instead. `inert` is the
+       platform's own answer — it removes a subtree from sequential focus, from
+       hit testing and from the accessibility tree in one attribute, which is
+       three of §2's requirements and not three mechanisms.
+
+       WHAT IS *NOT* MADE INERT, AND WHY EACH ONE
+       ------------------------------------------
+       `<body>` itself is not, because the layer is inside it and would go with
+       it. Neither is the header, for the same reason: the trigger lives there
+       and is the close control. What is left interactive is exactly what is
+       still visible above the layer, measured rather than assumed —
+
+           .burger   the trigger, which is the close control while open
+           .brand    still at full opacity and still the topmost element at its
+                     own centre point on both compositions; a visible link that
+                     cannot be clicked would be a defect of its own
+           #menu     the layer
+
+       — and everything else in the header is `opacity: 0; pointer-events: none`
+       under `.menu-open` already (chrome.css), so making it inert takes away
+       nothing a visitor could reach.
+
+       The keydown trap stays. It is what makes Chromium cycle *within* the
+       layer rather than tab out to the browser's own chrome, and it is the only
+       barrier left on an engine too old for `inert` — which is why this is a
+       feature test and not an assumption. */
+    const SUPPORTS_INERT = 'inert' in HTMLElement.prototype;
+
+    /** Everything behind the layer, in one flat list. Rebuilt on each open:
+     *  the homepage's `<main>` is a React container and the deck is shared with
+     *  66 routes, so the body's children are not a constant. */
+    function background() {
+      const out = [];
+      for (const el of document.body.children) {
+        if (el === nav || el === menu) continue;
+        if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE' || el.tagName === 'TEMPLATE') continue;
+        out.push(el);
+      }
+      for (const el of nav.children) {
+        if (el !== burger && !el.classList.contains('brand')) out.push(el);
+      }
+      return out;
+    }
+
+    /* Only the elements this file actually set are cleared again, so an `inert`
+       that arrived from somewhere else survives a menu open/close cycle. */
+    let inerted = [];
+
+    function setBackgroundInert(on) {
+      if (!SUPPORTS_INERT) return;
+      if (on) {
+        inerted = background().filter((el) => !el.inert);
+        for (const el of inerted) el.inert = true;
+      } else {
+        for (const el of inerted) el.inert = false;
+        inerted = [];
+      }
+    }
+
     /* The trigger is part of the trap, not outside it. It lives in the header
        rather than in the layer, but while the layer is open it IS the close
        control — leaving it out would trap a keyboard user in a navigation whose
@@ -202,6 +287,12 @@
       // Position-fixed body rather than overflow:hidden — iOS Safari ignores
       // overflow on <body> and the page scrolls behind the layer regardless.
       document.body.style.cssText += `position:fixed;top:${-scrollLock}px;left:0;right:0;width:100%`;
+      // Before focus moves, not after: making a subtree inert blurs whatever it
+      // holds, and doing that *after* placing focus in the layer would be a
+      // second focus move the visitor did not ask for. `restoreTo` is already
+      // captured above, so a trigger that was itself in the background — a
+      // fragment link into the menu, say — is still restorable on close.
+      setBackgroundInert(true);
       // Focus opens on the first destination, not on the trigger the user just
       // pressed — landing back on the control you activated says nothing about
       // what opened.
@@ -209,6 +300,10 @@
     }
 
     function close() {
+      // First, and before the focus restore at the bottom of this function: the
+      // element focus is going back to is usually in the background, and
+      // `.focus()` on an inert element does nothing at all.
+      setBackgroundInert(false);
       menu.classList.remove('is-open');
       burger.setAttribute('aria-expanded', 'false');
       relabel();
