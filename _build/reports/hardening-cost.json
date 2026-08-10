@@ -1,0 +1,193 @@
+{
+  "origin": "http://127.0.0.1:4322",
+  "at": "2026-08-10T07:58:39.680Z",
+  "presses": 8,
+  "engines": [
+    {
+      "engine": "chromium",
+      "viewports": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "arms": [
+            {
+              "arm": "as shipped",
+              "openMs": 8.7,
+              "perPressMs": 340,
+              "worstPressMs": 493,
+              "scrollFrameMedianMs": 166.2,
+              "scrollFrameWorstMs": 871.8,
+              "scrollListeners": 13,
+              "resizeListeners": 12,
+              "longTasks": 66,
+              "longTaskMs": 15041
+            },
+            {
+              "arm": "menu fix off",
+              "openMs": 5.2,
+              "perPressMs": 293,
+              "worstPressMs": 303,
+              "scrollFrameMedianMs": 167.5,
+              "scrollFrameWorstMs": 812.1,
+              "scrollListeners": 13,
+              "resizeListeners": 12,
+              "longTasks": 65,
+              "longTaskMs": 14159
+            },
+            {
+              "arm": "history fix off",
+              "openMs": 7.2,
+              "perPressMs": 307,
+              "worstPressMs": 472,
+              "scrollFrameMedianMs": 175.5,
+              "scrollFrameWorstMs": 811.2,
+              "scrollListeners": 13,
+              "resizeListeners": 12,
+              "longTasks": 66,
+              "longTaskMs": 14592
+            }
+          ]
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "arms": [
+            {
+              "arm": "as shipped",
+              "openMs": 9.9,
+              "perPressMs": 1,
+              "worstPressMs": 4,
+              "scrollFrameMedianMs": 16.7,
+              "scrollFrameWorstMs": 33.6,
+              "scrollListeners": 3,
+              "resizeListeners": 5,
+              "longTasks": 2,
+              "longTaskMs": 208
+            },
+            {
+              "arm": "menu fix off",
+              "openMs": 5.8,
+              "perPressMs": 1,
+              "worstPressMs": 2,
+              "scrollFrameMedianMs": 16.7,
+              "scrollFrameWorstMs": 33.2,
+              "scrollListeners": 3,
+              "resizeListeners": 5,
+              "longTasks": 2,
+              "longTaskMs": 174
+            },
+            {
+              "arm": "history fix off",
+              "openMs": 10,
+              "perPressMs": 1,
+              "worstPressMs": 5,
+              "scrollFrameMedianMs": 16.7,
+              "scrollFrameWorstMs": 34,
+              "scrollListeners": 3,
+              "resizeListeners": 5,
+              "longTasks": 2,
+              "longTaskMs": 182
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "viewports": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "arms": [
+            {
+              "arm": "as shipped",
+              "openMs": 18,
+              "perPressMs": 1,
+              "worstPressMs": 4,
+              "scrollFrameMedianMs": 17,
+              "scrollFrameWorstMs": 61,
+              "scrollListeners": 11,
+              "resizeListeners": 12,
+              "longTasks": 0,
+              "longTaskMs": 0
+            },
+            {
+              "arm": "menu fix off",
+              "openMs": 11,
+              "perPressMs": 1,
+              "worstPressMs": 5,
+              "scrollFrameMedianMs": 17,
+              "scrollFrameWorstMs": 72,
+              "scrollListeners": 11,
+              "resizeListeners": 12,
+              "longTasks": 0,
+              "longTaskMs": 0
+            },
+            {
+              "arm": "history fix off",
+              "openMs": 16,
+              "perPressMs": 1,
+              "worstPressMs": 3,
+              "scrollFrameMedianMs": 17,
+              "scrollFrameWorstMs": 69,
+              "scrollListeners": 11,
+              "resizeListeners": 12,
+              "longTasks": 0,
+              "longTaskMs": 0
+            }
+          ]
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "arms": [
+            {
+              "arm": "as shipped",
+              "openMs": 21,
+              "perPressMs": 1,
+              "worstPressMs": 17,
+              "scrollFrameMedianMs": 17,
+              "scrollFrameWorstMs": 24,
+              "scrollListeners": 3,
+              "resizeListeners": 5,
+              "longTasks": 0,
+              "longTaskMs": 0
+            },
+            {
+              "arm": "menu fix off",
+              "openMs": 13,
+              "perPressMs": 1,
+              "worstPressMs": 3,
+              "scrollFrameMedianMs": 17,
+              "scrollFrameWorstMs": 28,
+              "scrollListeners": 3,
+              "resizeListeners": 5,
+              "longTasks": 0,
+              "longTaskMs": 0
+            },
+            {
+              "arm": "history fix off",
+              "openMs": 17,
+              "perPressMs": 1,
+              "worstPressMs": 20,
+              "scrollFrameMedianMs": 17,
+              "scrollFrameWorstMs": 29,
+              "scrollListeners": 3,
+              "resizeListeners": 5,
+              "longTasks": 0,
+              "longTaskMs": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
