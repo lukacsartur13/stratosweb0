@@ -90,6 +90,20 @@
    inherited by everything that reads it, rather than a second `.nav` rule. */
 .journey-home { --rail: 0px; }
 
+/* The height the homepage reserves for the browser's own scroll restoration.
+
+   `<main>` is a React container and is empty in the parsed HTML, so on a back
+   navigation the browser applies its restore to a two-thousand-pixel shell and
+   the visitor's place is clamped away before the application exists. This rule
+   is the whole of the remedy in CSS terms: `assets/js/home-history.js` sets the
+   property in <head> from the height it recorded on this history entry, and
+   removes it once the real content has grown past it.
+
+   `auto` unset, so on a first visit — and on every one of the 66 generated
+   routes, which parse their full height and never needed this — the declaration
+   resolves to the initial value and changes nothing. */
+body.journey-home { min-height: var(--home-reserve, auto); }
+
 a { color: inherit; text-decoration: none; }
 
 .vh {

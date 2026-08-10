@@ -50,6 +50,14 @@
          is no second navigation system for this one page. A shell that loses a
          slot is a build error, not a page that quietly ships without a footer. -->
     <!--stratos:head-->
+    <!-- Keeping the visitor's place across a history navigation. Synchronous
+         and in <head> on purpose: the browser applies its scroll restoration at
+         first layout, so the height this reserves has to be in the cascade
+         before the body is parsed. It is the only script on the site that is
+         neither `defer` nor at the end of <body>, and the reason is that a
+         deferred copy would run after the moment it exists to survive.
+         See assets/js/home-history.js. -->
+    <script src="/assets/js/home-history.js"></script>
     <!-- Phase 7 page transitions. The homepage opts in from CSS like every
          other document; the script only assigns the transition category and
          is never required for a link to work. See assets/css/transitions.css. -->
