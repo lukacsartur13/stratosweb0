@@ -197,38 +197,74 @@ async function scrollToAnchor(page: Page) {
   return place(page);
 }
 
-/* Four full homepage loads is what a back-navigation test costs, and on the
-   1920x1080 project each one boots a ~1 MB WebGL bundle on a software
-   rasteriser. Measured with the machine entirely to itself — no parallel
-   workers, nothing else running — the tests below take 19 s, 27 s and 12 s
-   against a 30 s default.
-
-   So the budget here is raised to match what the work actually costs, rather
-   than the tests being cut down until they fit it. This is scoped to this file
-   and changes no other suite's budget; it is not, and must not be read as, a
-   remedy for the load-dependent failures documented in
-   _build/reports/mobile-test-reconciliation/ — those are timeouts on tests that
-   complete in two seconds when they are not competing for a core. */
-test.describe.configure({ timeout: 90_000 });
+/* ONE test per journey, and the reason is measured rather than stylistic.
+ *
+ * Written as an assertion per test, this file and homepage-modality.spec.ts
+ * together added 36 tests to `npm test` and took the run from 8.8 minutes and
+ * 4 failures to 19.9 minutes and 64 failures. The extra failures were almost
+ * all timeouts in OTHER suites: every test here loads a ~1 MB WebGL homepage
+ * two to four times, that page renders at roughly 10 fps under a software
+ * rasteriser, and a worker held for half a minute is a worker the rest of the
+ * suite does not have. The product fixes cost nothing — the same suite without
+ * these two files ran in 9.1 minutes with 5 failures.
+ *
+ * So a back navigation is exercised once, and everything that has to be true
+ * about it is asserted on that one journey. The trade is that an early failure
+ * hides the assertions after it; the messages are written to be specific enough
+ * that the first one identifies itself.
+ *
+ * The budget is raised to match what four homepage loads actually cost — 19 s
+ * to 27 s on the 1920x1080 project with the machine to itself. Scoped to this
+ * file, and not a remedy for the load-dependent failures documented in
+ * _build/reports/mobile-test-reconciliation/. */
+test.describe.configure({ timeout: 120_000 });
 
 test.describe('the homepage keeps the visitor’s place across history navigation', () => {
-  test('back returns to the position and the chapter the visitor left, with the chrome agreeing', async ({
+  test('back and forward restore the position, the chapter and the chrome', async ({
     page,
-  }) => {
+  }, testInfo) => {
+    /* §11 and §17 — three claims kept apart, and recorded from the first byte
+     * of every document so the last one can be reported honestly:
+     *
+     *   1. the lifecycle HANDLERS exist and run          asserted below
+     *   2. observable back-navigation behaviour          asserted below
+     *   3. a genuine BFCache HIT                         recorded, not asserted
+     *
+     * `event.persisted` is the only honest way to tell (3) from (2), and under
+     * Playwright it is routinely false: a fresh context, a `python -m
+     * http.server` origin and an automation-driven traverse are between them
+     * enough to keep the page out of the cache. Asserting it would either be
+     * flaky or be a claim of coverage that does not exist. */
+    await page.addInitScript(() => {
+      const w = window as unknown as { __life: { name: string; persisted?: boolean }[] };
+      w.__life = [];
+      addEventListener('pageshow', (e) => w.__life.push({ name: 'pageshow', persisted: e.persisted }));
+      addEventListener('pagehide', (e) => w.__life.push({ name: 'pagehide', persisted: e.persisted }));
+    });
+
     await page.goto('/index.html');
     await settled(page);
 
+    /* A first visit reserves nothing. The reserve is read from the history
+       entry, so an entry that has never been measured must produce none at all
+       — otherwise a first visitor pays for a mechanism that exists for a
+       returning one. */
+    const fresh = await page.evaluate(() => ({
+      y: Math.round(scrollY),
+      reserve: document.documentElement.style.getPropertyValue('--home-reserve'),
+    }));
+    expect(fresh.y, 'a fresh load did not start at the top').toBeLessThanOrEqual(4);
+    expect(fresh.reserve, 'a fresh load left a height reservation up').toBe('');
+
     const before = await scrollToAnchor(page);
     // §14: restoring the scroll position and leaving the chrome describing a
-    // different altitude would be the same defect wearing a different coat, so
-    // the header state is captured here and asserted below rather than given a
-    // test of its own — a second test is two more homepage loads for two more
-    // attribute reads.
+    // different altitude would be the same defect wearing a different coat.
     expect(before.headerState, 'the header never left its opening state to begin with').not.toBe(
       'opening',
     );
 
-    await followInternalLink(page);
+    // ---- back ---------------------------------------------------------------
+    const href = await followInternalLink(page);
     await page.goBack();
     await settled(page);
 
@@ -241,66 +277,25 @@ test.describe('the homepage keeps the visitor’s place across history navigatio
     /* And no second jump. This one genuinely needs two readings separated by
        time — "did it stay put" is not a state any single sample can report — so
        the wait below is a stability window and not a settle wait. Everything
-       this test waits *for* is in `settled()` above. */
+       this test waits *for* is in `settled()`. */
     await page.waitForTimeout(500);
     const stillY = await page.evaluate(() => Math.round(scrollY));
     expect(Math.abs(stillY - after.y), 'the page moved again after it had settled').toBeLessThanOrEqual(4);
-  });
 
-  test('forward, then back again, both land where they should', async ({ page }) => {
+    // ---- forward, then back again -------------------------------------------
     // The fix writes to `history.state`, so the entry has to survive being
     // traversed in both directions rather than only backwards once.
-    await page.goto('/index.html');
-    await settled(page);
-
-    const before = await scrollToAnchor(page);
-
-    const href = await followInternalLink(page);
-    await page.goBack();
-    await settled(page);
-    expectRestored(await place(page), before);
-
     await page.goForward();
     await expect(page).toHaveURL(new RegExp(`${href.split('/').pop()!.replace('.', '\\.')}$`));
 
     await page.goBack();
     await settled(page);
     expectRestored(await place(page), before);
-  });
 
-  test('the lifecycle handlers run on a back navigation, and the layer is never left open', async ({
-    page,
-  }, testInfo) => {
-    /* §11 and §17 — three different claims, kept apart on purpose:
-     *
-     *   1. the lifecycle HANDLERS exist and run          asserted here
-     *   2. observable back-navigation behaviour          asserted above
-     *   3. a genuine BFCache HIT                         recorded, not asserted
-     *
-     * `event.persisted` is the only honest way to tell (3) from (2), and under
-     * Playwright it is routinely false: a fresh context, a `python -m
-     * http.server` origin and an automation-driven traverse are between them
-     * enough to keep the page out of the cache. So this test records what
-     * `persisted` actually was, annotates it on the result, and asserts only
-     * what it observed. A test that asserted `persisted === true` would either
-     * be flaky or be lying about which of the three it verified. */
-    await page.addInitScript(() => {
-      const w = window as unknown as { __life: { name: string; persisted?: boolean }[] };
-      w.__life = [];
-      addEventListener('pageshow', (e) => w.__life.push({ name: 'pageshow', persisted: e.persisted }));
-      addEventListener('pagehide', (e) => w.__life.push({ name: 'pagehide', persisted: e.persisted }));
-    });
-
-    await page.goto('/index.html');
-    await settled(page);
-    await followInternalLink(page);
-    await page.goBack();
-    await settled(page);
-
+    // ---- what the lifecycle actually did ------------------------------------
     const life = await page.evaluate(
       () => (window as unknown as { __life: { name: string; persisted?: boolean }[] }).__life,
     );
-
     const shows = life.filter((e) => e.name === 'pageshow');
     expect(shows.length, 'no pageshow on the restored document').toBeGreaterThanOrEqual(1);
 
@@ -309,11 +304,10 @@ test.describe('the homepage keeps the visitor’s place across history navigatio
       type: 'bfcache',
       description: bfcache
         ? 'genuine BFCache hit observed (pageshow.persisted === true)'
-        : 'no BFCache hit in this environment; observable back-navigation behaviour tested, BFCache-hit verification NOT claimed',
+        : 'no BFCache hit in this environment; lifecycle handlers and observable back-navigation behaviour tested, BFCache-hit verification NOT claimed',
     });
 
-    // Whichever path it came back on, it must come back settled: no menu left
-    // open, no scroll lock stranded, no transition veil over the document.
+    // ---- and it came back settled -------------------------------------------
     const state = await page.evaluate(() => ({
       expanded: document.querySelector('.burger')?.getAttribute('aria-expanded') ?? null,
       menuOpen: document.documentElement.classList.contains('menu-open'),
@@ -324,21 +318,5 @@ test.describe('the homepage keeps the visitor’s place across history navigatio
     expect(state.menuOpen, 'the scroll lock came back with the page').toBe(false);
     expect(state.bodyPosition, 'the body came back position-fixed').toBe('');
     expect(state.veils, 'a transition veil outlived the navigation').toBe(0);
-  });
-
-  test('a first visit reserves nothing and lands at the top', async ({ page }) => {
-    // The reserve is read from the history entry, so an entry that has never
-    // been measured must produce no reservation at all — otherwise a first
-    // visitor pays for a mechanism that exists for a returning one.
-    await page.goto('/index.html');
-    await settled(page);
-
-    const state = await page.evaluate(() => ({
-      y: Math.round(scrollY),
-      reserve: document.documentElement.style.getPropertyValue('--home-reserve'),
-    }));
-
-    expect(state.y, 'a fresh load did not start at the top').toBeLessThanOrEqual(4);
-    expect(state.reserve, 'a fresh load left a height reservation up').toBe('');
   });
 });

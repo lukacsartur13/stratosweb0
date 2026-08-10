@@ -37,6 +37,22 @@ import { homepageReady } from './helpers/homepage';
  * that makes it true is asserted directly — the background carries `inert`, the
  * newsletter refuses focus even when it is asked for it by name, and both are
  * given back on close.
+ *
+ * WHY TWO TESTS AND NOT SEVEN
+ * ---------------------------
+ * Because the shape of a suite has a measured cost here and it is not small.
+ * Written as one assertion per test, these two files added 36 tests to `npm
+ * test` and took the run from 8.8 minutes / 4 failures to 19.9 minutes / 64
+ * failures — the extra failures almost all timeouts in OTHER suites, starved of
+ * a core by long-running tests holding workers while a ~1 MB WebGL homepage
+ * rendered at ~10 fps under a software rasteriser. The product fixes themselves
+ * cost nothing; the same suite without these two files ran in 9.1 minutes with
+ * 5 failures.
+ *
+ * Each test below is therefore one page load walking one contract end to end,
+ * which is also how a visitor meets it. The trade is real and worth naming: an
+ * early failure hides the assertions after it. The messages are written to be
+ * specific enough that the first failure identifies itself without the rest.
  */
 
 const burger = (page: Page) => page.locator('.burger');
@@ -68,16 +84,31 @@ test.beforeEach(async ({ page }) => {
   await homepageReady(page);
 });
 
-/* The keyboard sweeps below cost 0.7–1.3 s per press on the 1920x1080 project
-   — measured serially, see the note on SWEEP — so the budget is raised to match
-   what the work costs rather than the tests being cut until they fit it. Scoped
-   to this file; no other suite's budget changes, and this is not a remedy for
-   the load-dependent failures documented elsewhere. */
+/* Sixteen key presses at 0.7–1.3 s each on the 1920x1080 project — measured
+   serially, see the note on SWEEP below — so the budget matches what the work
+   costs rather than the tests being cut until they fit it. Scoped to this file;
+   no other suite's budget changes, and this is not a remedy for the
+   load-dependent failures documented in
+   _build/reports/mobile-test-reconciliation/. */
 test.describe.configure({ timeout: 60_000 });
 
 test.describe('the full-screen navigation is a modal layer', () => {
-  test('the background is inert while it is open, and only the background', async ({ page }) => {
-    const inertness = async () =>
+  test('while it is open the page behind it cannot be reached, and afterwards it can', async ({
+    page,
+  }) => {
+    /* The newsletter field is brought on screen BEFORE the layer opens, and the
+       scroll lock then holds the viewport exactly where it is — so the
+       coordinates recorded here are still over the field when the click lands,
+       and nothing has to be forced.
+
+       It is the field and not `.nav__cta` because the header CTA is
+       `display: none` at the portrait viewports in this matrix and has no box
+       to aim at there. It is also the control §18 names. */
+    await page.locator('#nl').scrollIntoViewIfNeeded();
+    const box = await page.locator('#nl').boundingBox();
+    expect(box, 'the newsletter field is not on screen to test against').not.toBeNull();
+
+    const inertness = () =>
       page.evaluate(() => {
         const has = (sel: string) => {
           const el = document.querySelector(sel);
@@ -107,8 +138,7 @@ test.describe('the full-screen navigation is a modal layer', () => {
         };
       });
 
-    const closed = await inertness();
-    expect(closed.main, 'the page is inert before the menu was even opened').toBe(false);
+    expect((await inertness()).main, 'the page is inert before the menu was even opened').toBe(false);
 
     await openMenu(page);
     const open = await inertness();
@@ -124,25 +154,9 @@ test.describe('the full-screen navigation is a modal layer', () => {
     expect(open.burger, 'the close control made itself inert').toBe(false);
     expect(open.brand, 'the wordmark is visible above the layer but not interactive').toBe(false);
     expect(open.ariaHiddenAncestorOfFocus, 'focus is inside an aria-hidden subtree').toBe(false);
-  });
-
-  test('no control behind the layer can be reached, by focus or by pointer', async ({ page }) => {
-    /* The newsletter field is brought on screen BEFORE the layer opens, and the
-       scroll lock then holds the viewport exactly where it is — so the
-       coordinates recorded here are still over the field when the click lands
-       at the end of this test, and nothing has to be forced.
-
-       It is the field and not `.nav__cta` because the header CTA is
-       `display: none` at the portrait viewports in this matrix and has no box
-       to aim at there. It is also the control §18 names. */
-    await page.locator('#nl').scrollIntoViewIfNeeded();
-    const box = await page.locator('#nl').boundingBox();
-    expect(box, 'the newsletter field is not on screen to test against').not.toBeNull();
-
-    await openMenu(page);
 
     /* Stronger than a Tab test and independent of the engine's tab order: this
-       asks the element to focus itself and checks that it could not. An inert
+       asks each element to focus itself and checks that it could not. An inert
        subtree refuses; `tabindex` juggling and a keydown trap do not. */
     const refused = await page.evaluate(() => {
       const targets = ['#nl', '.nav__cta', '.foot a', '#main a'];
@@ -160,24 +174,24 @@ test.describe('the full-screen navigation is a modal layer', () => {
     });
 
     expect(refused['#nl'], 'the newsletter field took focus behind the open menu').toBe('refused');
-    expect(refused['.nav__cta']).toBe('refused');
-    expect(refused['.foot a']).toBe('refused');
+    expect(refused['.nav__cta'], 'the header CTA took focus behind the open menu').toBe('refused');
+    expect(refused['.foot a'], 'a footer link took focus behind the open menu').toBe('refused');
     // `#main a` is null on the desktop composition before its links exist; a
     // present link must refuse, an absent one asserts nothing.
-    if (refused['#main a'] !== null) expect(refused['#main a']).toBe('refused');
+    if (refused['#main a'] !== null) {
+      expect(refused['#main a'], 'a link in <main> took focus behind the open menu').toBe('refused');
+    }
 
     /* And the same field, through the pointer.
      *
      * The load-bearing assertion is the hit test: at the field's own
-     * coordinates the topmost element is the layer, which is what `inert` and
-     * the layer's own stacking together guarantee and what "cannot receive
-     * pointer interaction" actually means.
+     * coordinates the topmost element is the layer, which is what "cannot
+     * receive pointer interaction" actually means.
      *
-     * The click that follows confirms it end to end. It is not asserted to
-     * leave the URL alone, and that was a real mistake in an earlier draft of
-     * this test: the layer covers the whole viewport, so those coordinates can
-     * be over one of the layer's *own* destinations, and following it is
-     * correct behaviour. A navigation there is more proof that the click
+     * The click that follows confirms it end to end. It is deliberately not
+     * asserted to leave the URL alone: the layer covers the whole viewport, so
+     * those coordinates can be over one of the layer's *own* destinations, and
+     * following it is correct. A navigation there is more proof that the click
      * reached the layer, not less — what neither outcome may include is the
      * field behind it taking the click. */
     const point: [number, number] = [box!.x + box!.width / 2, box!.y + box!.height / 2];
@@ -196,85 +210,75 @@ test.describe('the full-screen navigation is a modal layer', () => {
     ).not.toBe('nl');
   });
 
-  /**
-   * Record every focus change in the page, rather than sampling after each key.
-   *
-   * `focusin` sees every element focus passes *through*, including any the
-   * browser visits between two samples, so it is both cheaper and stricter than
-   * asking `document.activeElement` thirty times.
-   */
-  async function recordFocus(page: Page) {
-    await page.evaluate(() => {
-      const w = window as unknown as { __trail: string[] };
-      w.__trail = [];
-      const where = () => {
-        const el = document.activeElement as HTMLElement | null;
-        if (!el || el === document.body || el === document.documentElement) return 'document';
-        if (el.closest('#menu')) return 'menu';
-        if (el.classList.contains('burger') || el.classList.contains('brand')) return 'deck';
-        return `ESCAPED:${el.tagName}#${el.id}.${String(el.className).slice(0, 24)}`;
-      };
-      w.__trail.push(where());
-      document.addEventListener('focusin', () => w.__trail.push(where()));
-    });
-  }
+  test('keyboard focus stays in the layer, Escape closes it, and the page comes back', async ({
+    page,
+  }) => {
+    /**
+     * Record every focus change in the page, rather than sampling after each
+     * key. `focusin` sees every element focus passes *through*, including any
+     * the browser visits between two samples.
+     */
+    const recordFocus = () =>
+      page.evaluate(() => {
+        const w = window as unknown as { __trail: string[] };
+        w.__trail = [];
+        const where = () => {
+          const el = document.activeElement as HTMLElement | null;
+          if (!el || el === document.body || el === document.documentElement) return 'document';
+          if (el.closest('#menu')) return 'menu';
+          if (el.classList.contains('burger') || el.classList.contains('brand')) return 'deck';
+          return `ESCAPED:${el.tagName}#${el.id}.${String(el.className).slice(0, 24)}`;
+        };
+        w.__trail.push(where());
+        document.addEventListener('focusin', () => w.__trail.push(where()), { once: false });
+      });
 
-  async function trailOf(page: Page) {
-    return page.evaluate(() => (window as unknown as { __trail: string[] }).__trail);
-  }
+    const trailOf = () => page.evaluate(() => (window as unknown as { __trail: string[] }).__trail);
 
-  /**
-   * Put focus on one end of the layer, so the very first key press is the one
-   * that crosses the boundary.
-   *
-   * This is what makes a short sweep a *stronger* test than a long one rather
-   * than a cheaper one. Walking forward from wherever `open()` left focus
-   * reaches the end of an eighteen-stop layer only after seventeen presses, and
-   * every press before that asserts nothing: the interesting moment is the
-   * transition out of the last element, which is where a trap either wraps or
-   * lets go. Starting at the end puts that moment first and leaves the rest of
-   * the sweep to catch anything downstream of it.
-   */
-  async function focusEdge(page: Page, edge: 'first' | 'last') {
-    await page.evaluate((which) => {
-      const links = [...document.querySelectorAll<HTMLElement>('#menu a[href]')];
-      (which === 'last' ? links[links.length - 1] : links[0])?.focus();
-    }, edge);
-  }
+    /**
+     * Put focus on one end of the layer, so the very first key press is the one
+     * that crosses the boundary.
+     *
+     * This is what makes a short sweep a *stronger* test than a long one rather
+     * than only a cheaper one. Walking forward from wherever `open()` left
+     * focus reaches the end of an eighteen-stop layer only after seventeen
+     * presses, and every press before that asserts nothing: the interesting
+     * moment is the transition out of the last element, which is where a trap
+     * either wraps or lets go. Starting at the end puts that moment first.
+     */
+    const focusEdge = (edge: 'first' | 'last') =>
+      page.evaluate((which) => {
+        const links = [...document.querySelectorAll<HTMLElement>('#menu a[href]')];
+        (which === 'last' ? links[links.length - 1] : links[0])?.focus();
+      }, edge);
 
-  /* Eight presses, from the edge, in each direction.
-   *
-   * The number is a harness-cost decision and it is worth being explicit about
-   * why, because the honest alternative would have been to raise a timeout
-   * until any number fit.
-   *
-   * A key press on this page at 1920x1080 costs 0.7–1.3 s. That is measured
-   * with the machine entirely to itself — `--workers=1`, nothing else running —
-   * so it is not contention: it is what moving focus costs on a document
-   * compositing a ~1 MB WebGL scene through a software rasteriser, and it is a
-   * property of the page rather than of this change (the thirty-press trap test
-   * in homepage-chrome.spec.ts is one of the seven load-dependent failures
-   * already documented in _build/reports/mobile-test-reconciliation/). At that
-   * rate twelve presses in each direction ran past the 30 s budget on
-   * `desktop-1920` while asserting nothing the first press had not.
-   *
-   * What compensates for the short sweep is `focusEdge` above plus the state
-   * assertions in this file: with the background inert, escaping is not
-   * something a trap has to prevent press by press — it is not reachable at
-   * all, and that is asserted directly rather than sampled. */
-  const SWEEP = 8;
+    /* Eight presses each way.
+     *
+     * A key press on this page at 1920x1080 costs 0.7–1.3 s, measured with the
+     * machine entirely to itself — that is what moving focus costs on a
+     * document compositing a ~1 MB WebGL scene through a software rasteriser,
+     * and it is a property of the page rather than of this change. Eight from
+     * the edge crosses the boundary on the first press and walks seven more. */
+    const SWEEP = 8;
 
-  test('Tab never reaches page content behind the layer', async ({ page }) => {
     await openMenu(page);
-    await focusEdge(page, 'last');
-    await recordFocus(page);
 
+    await focusEdge('last');
+    await recordFocus();
     for (let i = 0; i < SWEEP; i++) await page.keyboard.press('Tab');
-
-    const trail = await trailOf(page);
-    const escaped = trail.filter((t) => t.startsWith('ESCAPED'));
+    let trail = await trailOf();
+    let escaped = trail.filter((t) => t.startsWith('ESCAPED'));
     expect(trail[0], 'focus did not enter the layer on open').toBe('menu');
-    expect(escaped, `focus reached page content behind the layer: ${escaped.join(', ')}`).toEqual([]);
+    expect(escaped, `Tab reached page content behind the layer: ${escaped.join(', ')}`).toEqual([]);
+
+    await focusEdge('first');
+    await recordFocus();
+    for (let i = 0; i < SWEEP; i++) await page.keyboard.press('Shift+Tab');
+    trail = await trailOf();
+    escaped = trail.filter((t) => t.startsWith('ESCAPED'));
+    expect(escaped, `Shift+Tab reached page content behind the layer: ${escaped.join(', ')}`).toEqual(
+      [],
+    );
 
     /* Deliberately NOT `trail.length > SWEEP`.
      *
@@ -283,47 +287,28 @@ test.describe('the full-screen navigation is a modal layer', () => {
      * left — so focus correctly does not move at all, and the shipped keydown
      * trap has nothing to wrap. Requiring movement here would be requiring one
      * engine to behave like the other. What every engine must do is never
-     * leave, which is the assertion above; that the layer is not simply empty
-     * is asserted by the inert and focus tests in this file, and the cycling
-     * behaviour by homepage-chrome.spec.ts. */
-  });
+     * leave; that the layer is not simply empty is asserted by the inert and
+     * focus-refusal test above, and the cycling behaviour by
+     * homepage-chrome.spec.ts, which skips the engines that do not have it. */
 
-  test('Shift+Tab never reaches page content behind the layer', async ({ page }) => {
-    await openMenu(page);
-    await focusEdge(page, 'first');
-    await recordFocus(page);
-
-    for (let i = 0; i < SWEEP; i++) await page.keyboard.press('Shift+Tab');
-
-    const trail = await trailOf(page);
-    const escaped = trail.filter((t) => t.startsWith('ESCAPED'));
-    expect(trail[0], 'focus did not enter the layer on open').toBe('menu');
-    expect(escaped, `focus reached page content behind the layer: ${escaped.join(', ')}`).toEqual([]);
-  });
-
-
-  test('Escape closes it, focus returns to the trigger, and the page comes back', async ({ page }) => {
-    /* Two cycles in one page load, and the second one is the assertion that
-       matters: the release path only clears the elements it set, so a
-       bookkeeping error there is invisible on the first open and shows up on
-       the second. Merged into this test rather than given its own, because a
-       separate test is another load of a ~1 MB WebGL homepage for two
-       attribute reads — see the note on SWEEP above. */
+    /* Escape, focus restoration, and the background given back — then the whole
+       cycle again, because the release path only clears the elements it set and
+       a bookkeeping error there is invisible on the first close. */
     for (let cycle = 0; cycle < 2; cycle++) {
-      await burger(page).focus();
-      await burger(page).press('Enter');
-      await expect(menu(page)).toBeVisible();
-      expect(
-        await page.evaluate(() => document.querySelector('#main')!.hasAttribute('inert')),
-        `the background was not made inert on open ${cycle + 1}`,
-      ).toBe(true);
+      if (cycle > 0) {
+        await burger(page).focus();
+        await burger(page).press('Enter');
+        await expect(menu(page)).toBeVisible();
+        expect(
+          await page.evaluate(() => document.querySelector('#main')!.hasAttribute('inert')),
+          'the background was not made inert on the second open',
+        ).toBe(true);
+      }
 
       await page.keyboard.press('Escape');
       await expect(burger(page)).toHaveAttribute('aria-expanded', 'false');
       await expect(burger(page)).toBeFocused();
 
-      // The background is given back — not left inert, which would be the same
-      // defect with the opposite sign.
       const after = await page.evaluate(() => {
         const nl = document.querySelector<HTMLElement>('#nl');
         nl?.focus();
@@ -336,9 +321,12 @@ test.describe('the full-screen navigation is a modal layer', () => {
       });
 
       expect(after.main, `the page was left inert after close ${cycle + 1}`).toBe(false);
-      expect(after.footer).toBe(false);
-      expect(after.navLinks).toBe(false);
-      expect(after.newsletterFocusable, 'the newsletter never became focusable again').toBe(true);
+      expect(after.footer, `the footer was left inert after close ${cycle + 1}`).toBe(false);
+      expect(after.navLinks, `the header navigation was left inert after close ${cycle + 1}`).toBe(false);
+      expect(
+        after.newsletterFocusable,
+        `the newsletter never became focusable again after close ${cycle + 1}`,
+      ).toBe(true);
     }
   });
 });
