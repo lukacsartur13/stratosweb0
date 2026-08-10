@@ -15,6 +15,26 @@ const NODE_ONLY = [
   /lead-notify\.spec\.ts/,
 ];
 
+// The two interaction-hardening suites, and the four compositions they are
+// required to hold on.
+//
+// Both are about things the two ENGINES genuinely disagree about, so a matrix
+// chosen for viewports is the wrong one for them:
+//
+//   modality  WebKit does not put links in the sequential focus order unless
+//             the visitor asks it to. The trap that held on Chromium therefore
+//             never fired there, and the defect was invisible to a suite whose
+//             only WebKit projects skip Tab as "not a phone interaction".
+//   history   Chromium has scroll anchoring and WebKit does not, so the same
+//             clamped restore lands at the bottom on one and near the top on
+//             the other. Testing either alone tests half the failure.
+//
+// So they run on exactly four projects — desktop and portrait, Chromium and
+// WebKit — and are excluded from the rest rather than run seven times over.
+// `desktop-webkit` and `portrait-chromium` exist for these two files only and
+// carry no other tests; the suite's totals elsewhere are unchanged by them.
+const HARDENING = [/homepage-modality\.spec\.ts/, /homepage-history\.spec\.ts/];
+
 // Two suites are viewport-independent: they read data attributes, class names
 // and storage, and render nothing. What they *are* sensitive to is the engine —
 // WebKit does not expose a Blob beacon's body to Playwright, which is why the
@@ -47,12 +67,39 @@ export default defineConfig({
     // rather than five times over in every viewport.
     { name: 'node', testMatch: NODE_ONLY },
 
-    { name: 'desktop-1440', testIgnore: NODE_ONLY, use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },
+    { name: 'desktop-1440', testIgnore: [...NODE_ONLY, ...HARDENING], use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },
+    // Desktop Chromium at 1920x1080 is the hardening matrix's Chromium desktop
+    // arm, so `HARDENING` is deliberately NOT ignored here.
     { name: 'desktop-1920', testIgnore: [...NODE_ONLY, ...ENGINE_ONLY], use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 } } },
+    // Portrait WebKit, and the matrix's WebKit portrait arm for the same reason.
     { name: 'mobile-390',   testIgnore: NODE_ONLY, use: { ...devices['iPhone 13'] } },
-    { name: 'mobile-430',   testIgnore: [...NODE_ONLY, ...ENGINE_ONLY], use: { ...devices['iPhone 14 Pro Max'] } },
+    { name: 'mobile-430',   testIgnore: [...NODE_ONLY, ...ENGINE_ONLY, ...HARDENING], use: { ...devices['iPhone 14 Pro Max'] } },
+
+    // The two arms the matrix above did not already have. Both carry the
+    // hardening suites and nothing else — `testMatch`, not `testIgnore`, so a
+    // suite added later does not silently acquire two more projects.
     {
-      testIgnore: [...NODE_ONLY, ...ENGINE_ONLY],
+      name: 'desktop-webkit',
+      testMatch: HARDENING,
+      use: { ...devices['Desktop Safari'], viewport: { width: 1440, height: 900 } },
+    },
+    {
+      name: 'portrait-chromium',
+      testMatch: HARDENING,
+      // Chromium at the phone viewport, with the coarse pointer and touch that
+      // `main.tsx` forks the composition on. Spelled out rather than taken from
+      // a device preset because every preset at this size defaults to WebKit,
+      // which is the engine this project exists to NOT be.
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 390, height: 844 },
+        deviceScaleFactor: 3,
+        isMobile: true,
+        hasTouch: true,
+      },
+    },
+    {
+      testIgnore: [...NODE_ONLY, ...ENGINE_ONLY, ...HARDENING],
       // The site promises a readable document without animation, and this
       // project is where that promise is asserted.
       //

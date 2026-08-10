@@ -1,0 +1,595 @@
+{
+  "origin": "http://127.0.0.1:4322",
+  "label": "after",
+  "at": "2026-08-09T23:05:30.277Z",
+  "engines": [
+    {
+      "engine": "chromium",
+      "arms": [
+        {
+          "name": "home-desktop",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "audit": {
+            "bodyChildren": [
+              "A.skip",
+              "HEADER.nav",
+              "DIV#menu.menu",
+              "MAIN#main.journey",
+              "SECTION.arrival",
+              "FOOTER.foot",
+              "SCRIPT",
+              "SCRIPT"
+            ],
+            "bodyPosition": "fixed",
+            "menuBeforeBurger": false,
+            "burger": {
+              "tag": "BUTTON",
+              "cls": "burger",
+              "offsetParent": "HEADER.nav",
+              "visible": true
+            },
+            "menuCount": 17,
+            "menuVisibleByOffsetParent": 17,
+            "menuVisibleByRects": 17,
+            "firstThree": [
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              }
+            ],
+            "trapList": [
+              "BUTTON.burger",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.btn",
+              "A.",
+              "A."
+            ],
+            "supportsInert": true,
+            "backgroundFocusables": 65
+          },
+          "pointer": {
+            "newsletterPresent": true,
+            "newsletterTookFocus": false,
+            "elementAtNewsletterPoint": "NAV.menu__panel"
+          },
+          "forwardEscapes": [],
+          "backwardEscapes": [],
+          "forwardTrail": [
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu"
+          ],
+          "backwardTrail": [
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu"
+          ]
+        },
+        {
+          "name": "home-portrait",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "audit": {
+            "bodyChildren": [
+              "A.skip",
+              "HEADER.nav",
+              "DIV#menu.menu",
+              "MAIN#main.journey",
+              "SECTION.arrival",
+              "FOOTER.foot",
+              "SCRIPT",
+              "SCRIPT"
+            ],
+            "bodyPosition": "fixed",
+            "menuBeforeBurger": false,
+            "burger": {
+              "tag": "BUTTON",
+              "cls": "burger",
+              "offsetParent": "HEADER.nav",
+              "visible": true
+            },
+            "menuCount": 17,
+            "menuVisibleByOffsetParent": 17,
+            "menuVisibleByRects": 17,
+            "firstThree": [
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              }
+            ],
+            "trapList": [
+              "BUTTON.burger",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.btn",
+              "A.",
+              "A."
+            ],
+            "supportsInert": true,
+            "backgroundFocusables": 65
+          },
+          "pointer": {
+            "newsletterPresent": true,
+            "newsletterTookFocus": false,
+            "elementAtNewsletterPoint": "NAV.menu__panel"
+          },
+          "forwardEscapes": [],
+          "backwardEscapes": [],
+          "forwardTrail": [
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu"
+          ],
+          "backwardTrail": [
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu"
+          ]
+        },
+        {
+          "name": "static-desktop",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "audit": {
+            "bodyChildren": [
+              "A.skip",
+              "DIV.grain",
+              "CANVAS.contrail",
+              "DIV.plane-cursor",
+              "ASIDE.rail",
+              "HEADER.nav",
+              "DIV#menu.menu",
+              "DIV.shell",
+              "SCRIPT",
+              "SCRIPT",
+              "SCRIPT",
+              "SCRIPT"
+            ],
+            "bodyPosition": "fixed",
+            "menuBeforeBurger": false,
+            "burger": {
+              "tag": "BUTTON",
+              "cls": "burger",
+              "offsetParent": "HEADER.nav",
+              "visible": true
+            },
+            "menuCount": 17,
+            "menuVisibleByOffsetParent": 17,
+            "menuVisibleByRects": 17,
+            "firstThree": [
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              }
+            ],
+            "trapList": [
+              "BUTTON.burger",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.btn",
+              "A.",
+              "A."
+            ],
+            "supportsInert": true,
+            "backgroundFocusables": 55
+          },
+          "pointer": {
+            "newsletterPresent": true,
+            "newsletterTookFocus": false,
+            "elementAtNewsletterPoint": "DIV.menu__veil"
+          },
+          "forwardEscapes": [],
+          "backwardEscapes": [],
+          "forwardTrail": [
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu"
+          ],
+          "backwardTrail": [
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu",
+            "menu"
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "arms": [
+        {
+          "name": "home-desktop",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "audit": {
+            "bodyChildren": [
+              "A.skip",
+              "HEADER.nav",
+              "DIV#menu.menu",
+              "MAIN#main.journey",
+              "SECTION.arrival",
+              "FOOTER.foot",
+              "SCRIPT",
+              "SCRIPT"
+            ],
+            "bodyPosition": "fixed",
+            "menuBeforeBurger": false,
+            "burger": {
+              "tag": "BUTTON",
+              "cls": "burger",
+              "offsetParent": "HEADER.nav",
+              "visible": true
+            },
+            "menuCount": 17,
+            "menuVisibleByOffsetParent": 17,
+            "menuVisibleByRects": 17,
+            "firstThree": [
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              }
+            ],
+            "trapList": [
+              "BUTTON.burger",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.btn",
+              "A.",
+              "A."
+            ],
+            "supportsInert": true,
+            "backgroundFocusables": 65
+          },
+          "pointer": {
+            "newsletterPresent": true,
+            "newsletterTookFocus": false,
+            "elementAtNewsletterPoint": "DIV.menu__veil"
+          },
+          "forwardEscapes": [],
+          "backwardEscapes": [],
+          "forwardTrail": [
+            "menu"
+          ],
+          "backwardTrail": []
+        },
+        {
+          "name": "home-portrait",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "audit": {
+            "bodyChildren": [
+              "A.skip",
+              "HEADER.nav",
+              "DIV#menu.menu",
+              "MAIN#main.journey",
+              "SECTION.arrival",
+              "FOOTER.foot",
+              "SCRIPT",
+              "SCRIPT"
+            ],
+            "bodyPosition": "fixed",
+            "menuBeforeBurger": false,
+            "burger": {
+              "tag": "BUTTON",
+              "cls": "burger",
+              "offsetParent": "HEADER.nav",
+              "visible": true
+            },
+            "menuCount": 17,
+            "menuVisibleByOffsetParent": 17,
+            "menuVisibleByRects": 17,
+            "firstThree": [
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              }
+            ],
+            "trapList": [
+              "BUTTON.burger",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.btn",
+              "A.",
+              "A."
+            ],
+            "supportsInert": true,
+            "backgroundFocusables": 65
+          },
+          "pointer": {
+            "newsletterPresent": true,
+            "newsletterTookFocus": false,
+            "elementAtNewsletterPoint": "DIV.menu__veil"
+          },
+          "forwardEscapes": [],
+          "backwardEscapes": [],
+          "forwardTrail": [
+            "menu"
+          ],
+          "backwardTrail": []
+        },
+        {
+          "name": "static-desktop",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "audit": {
+            "bodyChildren": [
+              "A.skip",
+              "DIV.grain",
+              "CANVAS.contrail",
+              "DIV.plane-cursor",
+              "ASIDE.rail",
+              "HEADER.nav",
+              "DIV#menu.menu",
+              "DIV.shell",
+              "SCRIPT",
+              "SCRIPT",
+              "SCRIPT",
+              "SCRIPT"
+            ],
+            "bodyPosition": "fixed",
+            "menuBeforeBurger": false,
+            "burger": {
+              "tag": "BUTTON",
+              "cls": "burger",
+              "offsetParent": "HEADER.nav",
+              "visible": true
+            },
+            "menuCount": 17,
+            "menuVisibleByOffsetParent": 17,
+            "menuVisibleByRects": 17,
+            "firstThree": [
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              },
+              {
+                "tag": "A",
+                "cls": "",
+                "offsetParent": "NAV.menu__panel",
+                "visible": true
+              }
+            ],
+            "trapList": [
+              "BUTTON.burger",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.",
+              "A.btn",
+              "A.",
+              "A."
+            ],
+            "supportsInert": true,
+            "backgroundFocusables": 55
+          },
+          "pointer": {
+            "newsletterPresent": true,
+            "newsletterTookFocus": false,
+            "elementAtNewsletterPoint": "DIV.menu__veil"
+          },
+          "forwardEscapes": [],
+          "backwardEscapes": [],
+          "forwardTrail": [
+            "menu"
+          ],
+          "backwardTrail": []
+        }
+      ]
+    }
+  ]
+}
