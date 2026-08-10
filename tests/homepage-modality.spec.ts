@@ -204,6 +204,13 @@ test.describe('the full-screen navigation is a modal layer', () => {
     );
 
     await page.mouse.click(point[0], point[1]);
+    /* Settle first, whether or not that click navigated. Without this the
+       `evaluate` below races the commit of a document the click may have
+       started loading, and Playwright reports "Execution context was destroyed"
+       — which is this test being wrong about timing, not the page being wrong
+       about anything. `waitForLoadState` resolves immediately when nothing
+       navigated. */
+    await page.waitForLoadState('domcontentloaded');
     expect(
       await page.evaluate(() => document.activeElement?.id ?? ''),
       'the newsletter field took a click through the layer',

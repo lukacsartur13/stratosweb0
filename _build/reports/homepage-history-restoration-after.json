@@ -1,7 +1,7 @@
 {
   "origin": "http://127.0.0.1:4322",
   "label": "after",
-  "at": "2026-08-09T23:08:34.668Z",
+  "at": "2026-08-10T03:38:29.602Z",
   "trials": 3,
   "engines": [
     {
@@ -22,15 +22,15 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786316918458,
+                "t0": 1786333114024,
                 "scrollRestoration": [
                   {
-                    "t": 14,
+                    "t": 32,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 24,
+                    "t": 53,
                     "when": "load",
                     "value": "auto"
                   }
@@ -38,7 +38,7 @@
                 "calls": [],
                 "samples": [
                   {
-                    "t": 53,
+                    "t": 125,
                     "y": 6468,
                     "h": 14197,
                     "vh": 844
@@ -46,15 +46,15 @@
                 ],
                 "events": [
                   {
-                    "t": 24,
+                    "t": 53,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 24,
+                    "t": 53,
                     "name": "load"
                   },
                   {
-                    "t": 24,
+                    "t": 53,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -68,7 +68,7 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786316925159,
+                "t0": 1786333120760,
                 "scrollRestoration": [
                   {
                     "t": 21,
@@ -76,7 +76,7 @@
                     "value": "auto"
                   },
                   {
-                    "t": 32,
+                    "t": 30,
                     "when": "load",
                     "value": "auto"
                   }
@@ -84,7 +84,7 @@
                 "calls": [],
                 "samples": [
                   {
-                    "t": 79,
+                    "t": 55,
                     "y": 6468,
                     "h": 14197,
                     "vh": 844
@@ -92,15 +92,15 @@
                 ],
                 "events": [
                   {
-                    "t": 32,
+                    "t": 29,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 32,
+                    "t": 30,
                     "name": "load"
                   },
                   {
-                    "t": 32,
+                    "t": 30,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -114,15 +114,15 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786316931856,
+                "t0": 1786333127435,
                 "scrollRestoration": [
                   {
-                    "t": 19,
+                    "t": 24,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 31,
+                    "t": 34,
                     "when": "load",
                     "value": "auto"
                   }
@@ -130,7 +130,7 @@
                 "calls": [],
                 "samples": [
                   {
-                    "t": 65,
+                    "t": 60,
                     "y": 6468,
                     "h": 14197,
                     "vh": 844
@@ -138,15 +138,15 @@
                 ],
                 "events": [
                   {
-                    "t": 31,
+                    "t": 34,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 31,
+                    "t": 34,
                     "name": "load"
                   },
                   {
-                    "t": 32,
+                    "t": 34,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -173,36 +173,36 @@
               "error": 69,
               "verdict": "restored",
               "log": {
-                "t0": 1786316939302,
+                "t0": 1786333502580,
                 "scrollRestoration": [
                   {
-                    "t": 34,
+                    "t": 51,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 42,
+                    "t": 64,
                     "when": "load",
                     "value": "auto"
                   }
                 ],
                 "calls": [
                   {
-                    "t": 129,
+                    "t": 189,
                     "api": "scrollTo",
                     "detail": "[0,0]",
                     "from": 6400,
                     "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1295 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6807 |     at Array.forEach (<anonymous>)"
                   },
                   {
-                    "t": 129,
+                    "t": 189,
                     "api": "scrollTo",
                     "detail": "[0,0]",
                     "from": 0,
                     "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1099 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6807 |     at Array.forEach (<anonymous>)"
                   },
                   {
-                    "t": 129,
+                    "t": 189,
                     "api": "scrollTo",
                     "detail": "[0,6400]",
                     "from": 0,
@@ -211,19 +211,19 @@
                 ],
                 "samples": [
                   {
-                    "t": 112,
+                    "t": 161,
                     "y": 6400,
                     "h": 21795,
                     "vh": 900
                   },
                   {
-                    "t": 130,
+                    "t": 191,
                     "y": 6400,
                     "h": 21469,
                     "vh": 900
                   },
                   {
-                    "t": 145,
+                    "t": 203,
                     "y": 6469,
                     "h": 21469,
                     "vh": 900
@@ -231,95 +231,15 @@
                 ],
                 "events": [
                   {
-                    "t": 42,
+                    "t": 63,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 42,
+                    "t": 64,
                     "name": "load"
                   },
                   {
-                    "t": 42,
-                    "name": "pageshow",
-                    "persisted": false
-                  }
-                ]
-              }
-            },
-            {
-              "left": 6400,
-              "landed": 6469,
-              "travelAfter": 20569,
-              "error": 69,
-              "verdict": "restored",
-              "log": {
-                "t0": 1786316948182,
-                "scrollRestoration": [
-                  {
-                    "t": 26,
-                    "when": "script",
-                    "value": "auto"
-                  },
-                  {
-                    "t": 33,
-                    "when": "load",
-                    "value": "auto"
-                  }
-                ],
-                "calls": [
-                  {
-                    "t": 103,
-                    "api": "scrollTo",
-                    "detail": "[0,0]",
-                    "from": 6400,
-                    "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1295 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6807 |     at Array.forEach (<anonymous>)"
-                  },
-                  {
-                    "t": 103,
-                    "api": "scrollTo",
-                    "detail": "[0,0]",
-                    "from": 0,
-                    "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1099 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6807 |     at Array.forEach (<anonymous>)"
-                  },
-                  {
-                    "t": 103,
-                    "api": "scrollTo",
-                    "detail": "[0,6400]",
-                    "from": 0,
-                    "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1295 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:7454 |     at Array.forEach (<anonymous>)"
-                  }
-                ],
-                "samples": [
-                  {
-                    "t": 87,
-                    "y": 6400,
-                    "h": 21795,
-                    "vh": 900
-                  },
-                  {
-                    "t": 107,
-                    "y": 6400,
-                    "h": 21469,
-                    "vh": 900
-                  },
-                  {
-                    "t": 123,
-                    "y": 6469,
-                    "h": 21469,
-                    "vh": 900
-                  }
-                ],
-                "events": [
-                  {
-                    "t": 33,
-                    "name": "DOMContentLoaded"
-                  },
-                  {
-                    "t": 33,
-                    "name": "load"
-                  },
-                  {
-                    "t": 33,
+                    "t": 64,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -333,36 +253,36 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786316956711,
+                "t0": 1786333517377,
                 "scrollRestoration": [
                   {
-                    "t": 24,
+                    "t": 19,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 33,
+                    "t": 28,
                     "when": "load",
                     "value": "auto"
                   }
                 ],
                 "calls": [
                   {
-                    "t": 103,
+                    "t": 88,
                     "api": "scrollTo",
                     "detail": "[0,0]",
                     "from": 6400,
                     "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1295 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6807 |     at Array.forEach (<anonymous>)"
                   },
                   {
-                    "t": 103,
+                    "t": 89,
                     "api": "scrollTo",
                     "detail": "[0,0]",
                     "from": 0,
                     "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1099 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6807 |     at Array.forEach (<anonymous>)"
                   },
                   {
-                    "t": 104,
+                    "t": 89,
                     "api": "scrollTo",
                     "detail": "[0,6400]",
                     "from": 0,
@@ -371,19 +291,19 @@
                 ],
                 "samples": [
                   {
-                    "t": 33,
+                    "t": 29,
                     "y": 6400,
                     "h": 21469,
                     "vh": 900
                   },
                   {
-                    "t": 55,
+                    "t": 54,
                     "y": 6400,
                     "h": 21795,
                     "vh": 900
                   },
                   {
-                    "t": 75,
+                    "t": 77,
                     "y": 6400,
                     "h": 21469,
                     "vh": 900
@@ -391,15 +311,95 @@
                 ],
                 "events": [
                   {
-                    "t": 33,
+                    "t": 28,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 33,
+                    "t": 28,
                     "name": "load"
                   },
                   {
-                    "t": 33,
+                    "t": 28,
+                    "name": "pageshow",
+                    "persisted": false
+                  }
+                ]
+              }
+            },
+            {
+              "left": 6400,
+              "landed": 6469,
+              "travelAfter": 20569,
+              "error": 69,
+              "verdict": "restored",
+              "log": {
+                "t0": 1786334401233,
+                "scrollRestoration": [
+                  {
+                    "t": 31,
+                    "when": "script",
+                    "value": "auto"
+                  },
+                  {
+                    "t": 43,
+                    "when": "load",
+                    "value": "auto"
+                  }
+                ],
+                "calls": [
+                  {
+                    "t": 164,
+                    "api": "scrollTo",
+                    "detail": "[0,0]",
+                    "from": 6400,
+                    "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1295 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6807 |     at Array.forEach (<anonymous>)"
+                  },
+                  {
+                    "t": 164,
+                    "api": "scrollTo",
+                    "detail": "[0,0]",
+                    "from": 0,
+                    "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1099 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6807 |     at Array.forEach (<anonymous>)"
+                  },
+                  {
+                    "t": 164,
+                    "api": "scrollTo",
+                    "detail": "[0,6400]",
+                    "from": 0,
+                    "stack": "    at window.<computed> (<anonymous>:22:7) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:1295 |     at r (http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:825) |     at http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:7454 |     at Array.forEach (<anonymous>)"
+                  }
+                ],
+                "samples": [
+                  {
+                    "t": 139,
+                    "y": 6400,
+                    "h": 21795,
+                    "vh": 900
+                  },
+                  {
+                    "t": 166,
+                    "y": 6400,
+                    "h": 21469,
+                    "vh": 900
+                  },
+                  {
+                    "t": 179,
+                    "y": 6469,
+                    "h": 21469,
+                    "vh": 900
+                  }
+                ],
+                "events": [
+                  {
+                    "t": 43,
+                    "name": "DOMContentLoaded"
+                  },
+                  {
+                    "t": 43,
+                    "name": "load"
+                  },
+                  {
+                    "t": 44,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -426,15 +426,15 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786316964143,
+                "t0": 1786334409336,
                 "scrollRestoration": [
                   {
-                    "t": 19,
+                    "t": 26,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 37,
+                    "t": 42,
                     "when": "load",
                     "value": "auto"
                   }
@@ -442,59 +442,7 @@
                 "calls": [],
                 "samples": [
                   {
-                    "t": 60,
-                    "y": 6400,
-                    "h": 11611,
-                    "vh": 844
-                  },
-                  {
-                    "t": 74,
-                    "y": 6400,
-                    "h": 11574,
-                    "vh": 844
-                  }
-                ],
-                "events": [
-                  {
-                    "t": 36,
-                    "name": "DOMContentLoaded"
-                  },
-                  {
-                    "t": 37,
-                    "name": "load"
-                  },
-                  {
-                    "t": 38,
-                    "name": "pageshow",
-                    "persisted": false
-                  }
-                ]
-              }
-            },
-            {
-              "left": 6400,
-              "landed": 6400,
-              "travelAfter": 10730,
-              "error": 0,
-              "verdict": "restored",
-              "log": {
-                "t0": 1786316970784,
-                "scrollRestoration": [
-                  {
-                    "t": 16,
-                    "when": "script",
-                    "value": "auto"
-                  },
-                  {
-                    "t": 32,
-                    "when": "load",
-                    "value": "auto"
-                  }
-                ],
-                "calls": [],
-                "samples": [
-                  {
-                    "t": 65,
+                    "t": 66,
                     "y": 6400,
                     "h": 11611,
                     "vh": 844
@@ -508,15 +456,15 @@
                 ],
                 "events": [
                   {
-                    "t": 31,
+                    "t": 41,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 32,
+                    "t": 42,
                     "name": "load"
                   },
                   {
-                    "t": 33,
+                    "t": 43,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -530,15 +478,15 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786316977454,
+                "t0": 1786335481506,
                 "scrollRestoration": [
                   {
-                    "t": 16,
+                    "t": 23,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 26,
+                    "t": 36,
                     "when": "load",
                     "value": "auto"
                   }
@@ -546,13 +494,13 @@
                 "calls": [],
                 "samples": [
                   {
-                    "t": 29,
+                    "t": 61,
                     "y": 6400,
                     "h": 11611,
                     "vh": 844
                   },
                   {
-                    "t": 42,
+                    "t": 171,
                     "y": 6400,
                     "h": 11574,
                     "vh": 844
@@ -560,15 +508,67 @@
                 ],
                 "events": [
                   {
-                    "t": 26,
+                    "t": 36,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 26,
+                    "t": 36,
                     "name": "load"
                   },
                   {
-                    "t": 27,
+                    "t": 37,
+                    "name": "pageshow",
+                    "persisted": false
+                  }
+                ]
+              }
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "travelAfter": 10730,
+              "error": 0,
+              "verdict": "restored",
+              "log": {
+                "t0": 1786336433032,
+                "scrollRestoration": [
+                  {
+                    "t": 24,
+                    "when": "script",
+                    "value": "auto"
+                  },
+                  {
+                    "t": 38,
+                    "when": "load",
+                    "value": "auto"
+                  }
+                ],
+                "calls": [],
+                "samples": [
+                  {
+                    "t": 41,
+                    "y": 6400,
+                    "h": 11611,
+                    "vh": 844
+                  },
+                  {
+                    "t": 52,
+                    "y": 6400,
+                    "h": 11574,
+                    "vh": 844
+                  }
+                ],
+                "events": [
+                  {
+                    "t": 37,
+                    "name": "DOMContentLoaded"
+                  },
+                  {
+                    "t": 38,
+                    "name": "load"
+                  },
+                  {
+                    "t": 38,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -600,7 +600,7 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786316984802,
+                "t0": 1786336440108,
                 "scrollRestoration": [
                   {
                     "t": 20,
@@ -608,7 +608,7 @@
                     "value": "auto"
                   },
                   {
-                    "t": 45,
+                    "t": 44,
                     "when": "load",
                     "value": "auto"
                   }
@@ -616,99 +616,7 @@
                 "calls": [],
                 "samples": [
                   {
-                    "t": 38,
-                    "y": 6400,
-                    "h": 14193,
-                    "vh": 844
-                  }
-                ],
-                "events": [
-                  {
-                    "t": 45,
-                    "name": "DOMContentLoaded"
-                  },
-                  {
-                    "t": 45,
-                    "name": "load"
-                  },
-                  {
-                    "t": 46,
-                    "name": "pageshow",
-                    "persisted": false
-                  }
-                ]
-              }
-            },
-            {
-              "left": 6400,
-              "landed": 6400,
-              "travelAfter": 13349,
-              "error": 0,
-              "verdict": "restored",
-              "log": {
-                "t0": 1786316991645,
-                "scrollRestoration": [
-                  {
-                    "t": 18,
-                    "when": "script",
-                    "value": "auto"
-                  },
-                  {
-                    "t": 40,
-                    "when": "load",
-                    "value": "auto"
-                  }
-                ],
-                "calls": [],
-                "samples": [
-                  {
-                    "t": 49,
-                    "y": 6400,
-                    "h": 14193,
-                    "vh": 844
-                  }
-                ],
-                "events": [
-                  {
-                    "t": 40,
-                    "name": "DOMContentLoaded"
-                  },
-                  {
-                    "t": 40,
-                    "name": "load"
-                  },
-                  {
-                    "t": 41,
-                    "name": "pageshow",
-                    "persisted": false
-                  }
-                ]
-              }
-            },
-            {
-              "left": 6400,
-              "landed": 6400,
-              "travelAfter": 13349,
-              "error": 0,
-              "verdict": "restored",
-              "log": {
-                "t0": 1786316998454,
-                "scrollRestoration": [
-                  {
-                    "t": 17,
-                    "when": "script",
-                    "value": "auto"
-                  },
-                  {
-                    "t": 45,
-                    "when": "load",
-                    "value": "auto"
-                  }
-                ],
-                "calls": [],
-                "samples": [
-                  {
-                    "t": 37,
+                    "t": 39,
                     "y": 6400,
                     "h": 14193,
                     "vh": 844
@@ -720,11 +628,103 @@
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 45,
+                    "t": 44,
                     "name": "load"
                   },
                   {
                     "t": 45,
+                    "name": "pageshow",
+                    "persisted": false
+                  }
+                ]
+              }
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "travelAfter": 13349,
+              "error": 0,
+              "verdict": "restored",
+              "log": {
+                "t0": 1786336446930,
+                "scrollRestoration": [
+                  {
+                    "t": 22,
+                    "when": "script",
+                    "value": "auto"
+                  },
+                  {
+                    "t": 48,
+                    "when": "load",
+                    "value": "auto"
+                  }
+                ],
+                "calls": [],
+                "samples": [
+                  {
+                    "t": 42,
+                    "y": 6400,
+                    "h": 14193,
+                    "vh": 844
+                  }
+                ],
+                "events": [
+                  {
+                    "t": 48,
+                    "name": "DOMContentLoaded"
+                  },
+                  {
+                    "t": 48,
+                    "name": "load"
+                  },
+                  {
+                    "t": 49,
+                    "name": "pageshow",
+                    "persisted": false
+                  }
+                ]
+              }
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "travelAfter": 13349,
+              "error": 0,
+              "verdict": "restored",
+              "log": {
+                "t0": 1786336453750,
+                "scrollRestoration": [
+                  {
+                    "t": 22,
+                    "when": "script",
+                    "value": "auto"
+                  },
+                  {
+                    "t": 48,
+                    "when": "load",
+                    "value": "auto"
+                  }
+                ],
+                "calls": [],
+                "samples": [
+                  {
+                    "t": 42,
+                    "y": 6400,
+                    "h": 14193,
+                    "vh": 844
+                  }
+                ],
+                "events": [
+                  {
+                    "t": 48,
+                    "name": "DOMContentLoaded"
+                  },
+                  {
+                    "t": 48,
+                    "name": "load"
+                  },
+                  {
+                    "t": 49,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -751,36 +751,36 @@
               "error": 9,
               "verdict": "restored",
               "log": {
-                "t0": 1786317005273,
+                "t0": 1786336460532,
                 "scrollRestoration": [
                   {
-                    "t": 4,
+                    "t": 6,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 33,
+                    "t": 34,
                     "when": "load",
                     "value": "auto"
                   }
                 ],
                 "calls": [
                   {
-                    "t": 160,
+                    "t": 134,
                     "api": "scrollTo",
                     "detail": "[0,0]",
                     "from": 6391,
                     "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6808 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6737 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
                   },
                   {
-                    "t": 161,
+                    "t": 135,
                     "api": "scrollTo",
                     "detail": "[0,0]",
                     "from": 0,
                     "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6808 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6737 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
                   },
                   {
-                    "t": 161,
+                    "t": 135,
                     "api": "scrollTo",
                     "detail": "[0,6391]",
                     "from": 0,
@@ -789,19 +789,19 @@
                 ],
                 "samples": [
                   {
-                    "t": 24,
+                    "t": 27,
                     "y": 6400,
                     "h": 21467,
                     "vh": 900
                   },
                   {
-                    "t": 68,
+                    "t": 64,
                     "y": 6400,
                     "h": 21793,
                     "vh": 900
                   },
                   {
-                    "t": 138,
+                    "t": 118,
                     "y": 6391,
                     "h": 21467,
                     "vh": 900
@@ -809,11 +809,11 @@
                 ],
                 "events": [
                   {
-                    "t": 33,
+                    "t": 34,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 33,
+                    "t": 34,
                     "name": "load"
                   },
                   {
@@ -831,90 +831,10 @@
               "error": 9,
               "verdict": "restored",
               "log": {
-                "t0": 1786317012061,
+                "t0": 1786336467330,
                 "scrollRestoration": [
                   {
-                    "t": 3,
-                    "when": "script",
-                    "value": "auto"
-                  },
-                  {
-                    "t": 33,
-                    "when": "load",
-                    "value": "auto"
-                  }
-                ],
-                "calls": [
-                  {
-                    "t": 170,
-                    "api": "scrollTo",
-                    "detail": "[0,0]",
-                    "from": 6391,
-                    "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6808 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6737 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
-                  },
-                  {
-                    "t": 170,
-                    "api": "scrollTo",
-                    "detail": "[0,0]",
-                    "from": 0,
-                    "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6808 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6737 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
-                  },
-                  {
-                    "t": 170,
-                    "api": "scrollTo",
-                    "detail": "[0,6391]",
-                    "from": 0,
-                    "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:7455 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:7335 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
-                  }
-                ],
-                "samples": [
-                  {
-                    "t": 24,
-                    "y": 6400,
-                    "h": 21467,
-                    "vh": 900
-                  },
-                  {
-                    "t": 67,
-                    "y": 6400,
-                    "h": 21793,
-                    "vh": 900
-                  },
-                  {
-                    "t": 137,
-                    "y": 6391,
-                    "h": 21467,
-                    "vh": 900
-                  }
-                ],
-                "events": [
-                  {
-                    "t": 33,
-                    "name": "DOMContentLoaded"
-                  },
-                  {
-                    "t": 33,
-                    "name": "load"
-                  },
-                  {
-                    "t": 34,
-                    "name": "pageshow",
-                    "persisted": false
-                  }
-                ]
-              }
-            },
-            {
-              "left": 6400,
-              "landed": 6391,
-              "travelAfter": 20567,
-              "error": 9,
-              "verdict": "restored",
-              "log": {
-                "t0": 1786317018878,
-                "scrollRestoration": [
-                  {
-                    "t": 3,
+                    "t": 6,
                     "when": "script",
                     "value": "auto"
                   },
@@ -926,21 +846,21 @@
                 ],
                 "calls": [
                   {
-                    "t": 173,
+                    "t": 136,
                     "api": "scrollTo",
                     "detail": "[0,0]",
                     "from": 6391,
                     "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6808 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6737 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
                   },
                   {
-                    "t": 173,
+                    "t": 136,
                     "api": "scrollTo",
                     "detail": "[0,0]",
                     "from": 0,
                     "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6808 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6737 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
                   },
                   {
-                    "t": 174,
+                    "t": 136,
                     "api": "scrollTo",
                     "detail": "[0,6391]",
                     "from": 0,
@@ -949,19 +869,19 @@
                 ],
                 "samples": [
                   {
-                    "t": 25,
+                    "t": 27,
                     "y": 6400,
                     "h": 21467,
                     "vh": 900
                   },
                   {
-                    "t": 71,
+                    "t": 64,
                     "y": 6400,
                     "h": 21793,
                     "vh": 900
                   },
                   {
-                    "t": 141,
+                    "t": 119,
                     "y": 6391,
                     "h": 21467,
                     "vh": 900
@@ -978,6 +898,86 @@
                   },
                   {
                     "t": 35,
+                    "name": "pageshow",
+                    "persisted": false
+                  }
+                ]
+              }
+            },
+            {
+              "left": 6400,
+              "landed": 6400,
+              "travelAfter": 20567,
+              "error": 0,
+              "verdict": "restored",
+              "log": {
+                "t0": 1786336602437,
+                "scrollRestoration": [
+                  {
+                    "t": 4,
+                    "when": "script",
+                    "value": "auto"
+                  },
+                  {
+                    "t": 31,
+                    "when": "load",
+                    "value": "auto"
+                  }
+                ],
+                "calls": [
+                  {
+                    "t": 116,
+                    "api": "scrollTo",
+                    "detail": "[0,0]",
+                    "from": 6400,
+                    "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6808 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6737 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
+                  },
+                  {
+                    "t": 117,
+                    "api": "scrollTo",
+                    "detail": "[0,0]",
+                    "from": 0,
+                    "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6808 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:6737 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
+                  },
+                  {
+                    "t": 117,
+                    "api": "scrollTo",
+                    "detail": "[0,6400]",
+                    "from": 0,
+                    "stack": "r@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:8:826 | @http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:7455 | forEach@[native code] | Ht@http://127.0.0.1:4322/assets/home/ScrollTrigger-7Zy99s9Q.js:15:7335 | _@http://127.0.0.1:4322/assets/home/main-QRyV6EvA.js:41:147730"
+                  }
+                ],
+                "samples": [
+                  {
+                    "t": 24,
+                    "y": 6400,
+                    "h": 21467,
+                    "vh": 900
+                  },
+                  {
+                    "t": 63,
+                    "y": 6400,
+                    "h": 21793,
+                    "vh": 900
+                  },
+                  {
+                    "t": 102,
+                    "y": 6400,
+                    "h": 21467,
+                    "vh": 900
+                  }
+                ],
+                "events": [
+                  {
+                    "t": 31,
+                    "name": "DOMContentLoaded"
+                  },
+                  {
+                    "t": 31,
+                    "name": "load"
+                  },
+                  {
+                    "t": 31,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -1004,15 +1004,15 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786317025704,
+                "t0": 1786336609272,
                 "scrollRestoration": [
                   {
-                    "t": 16,
+                    "t": 23,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 53,
+                    "t": 59,
                     "when": "load",
                     "value": "auto"
                   }
@@ -1020,13 +1020,13 @@
                 "calls": [],
                 "samples": [
                   {
-                    "t": 46,
+                    "t": 53,
                     "y": 6400,
                     "h": 11610,
                     "vh": 844
                   },
                   {
-                    "t": 125,
+                    "t": 127,
                     "y": 6400,
                     "h": 11573,
                     "vh": 844
@@ -1034,15 +1034,15 @@
                 ],
                 "events": [
                   {
-                    "t": 48,
+                    "t": 54,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 53,
+                    "t": 59,
                     "name": "load"
                   },
                   {
-                    "t": 56,
+                    "t": 61,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -1056,15 +1056,15 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786317032533,
+                "t0": 1786337522455,
                 "scrollRestoration": [
                   {
-                    "t": 16,
+                    "t": 22,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 54,
+                    "t": 58,
                     "when": "load",
                     "value": "auto"
                   }
@@ -1072,13 +1072,13 @@
                 "calls": [],
                 "samples": [
                   {
-                    "t": 47,
+                    "t": 52,
                     "y": 6400,
                     "h": 11610,
                     "vh": 844
                   },
                   {
-                    "t": 131,
+                    "t": 126,
                     "y": 6400,
                     "h": 11573,
                     "vh": 844
@@ -1086,15 +1086,15 @@
                 ],
                 "events": [
                   {
-                    "t": 49,
+                    "t": 54,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 54,
+                    "t": 58,
                     "name": "load"
                   },
                   {
-                    "t": 57,
+                    "t": 61,
                     "name": "pageshow",
                     "persisted": false
                   }
@@ -1108,15 +1108,15 @@
               "error": 0,
               "verdict": "restored",
               "log": {
-                "t0": 1786317039378,
+                "t0": 1786338440104,
                 "scrollRestoration": [
                   {
-                    "t": 14,
+                    "t": 22,
                     "when": "script",
                     "value": "auto"
                   },
                   {
-                    "t": 51,
+                    "t": 58,
                     "when": "load",
                     "value": "auto"
                   }
@@ -1124,13 +1124,13 @@
                 "calls": [],
                 "samples": [
                   {
-                    "t": 43,
+                    "t": 52,
                     "y": 6400,
                     "h": 11610,
                     "vh": 844
                   },
                   {
-                    "t": 119,
+                    "t": 130,
                     "y": 6400,
                     "h": 11573,
                     "vh": 844
@@ -1138,15 +1138,15 @@
                 ],
                 "events": [
                   {
-                    "t": 45,
+                    "t": 53,
                     "name": "DOMContentLoaded"
                   },
                   {
-                    "t": 51,
+                    "t": 58,
                     "name": "load"
                   },
                   {
-                    "t": 54,
+                    "t": 60,
                     "name": "pageshow",
                     "persisted": false
                   }

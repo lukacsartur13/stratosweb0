@@ -50,14 +50,44 @@
    the restoring; this file only stops the document from being too short to
    restore *into*.
 
-   The homepage records how tall it settled — in `history.state`, which is the
-   platform's own per-entry store, so the number belongs to the entry it was
-   measured on and no key has to be invented for it. On the way back the entry
-   comes back with its state, this file reads it in `<head>` before the body is
-   parsed, and reserves that height with a `min-height` on `<body>`. First
-   layout then finds a document the right size, the browser's restore lands
-   where it was saved, and React mounts underneath a scroll position that is
-   already correct.
+   The homepage records how tall it settled, in `sessionStorage`. On the way
+   back this file reads it in `<head>` before the body is parsed and reserves
+   that height with a `min-height` on `<body>`. First layout then finds a
+   document the right size, the browser's restore lands where it was saved, and
+   React mounts underneath a scroll position that is already correct.
+
+   WHY NOT `history.state`, WHICH IS THE OBVIOUS PLACE
+   ---------------------------------------------------
+   It was the first implementation, and it is the better fit on paper: a
+   per-entry store needs no key, and the height would belong to exactly the
+   entry it was measured on.
+
+   It also broke a back navigation, which is worse than the defect it fixed.
+   Leaving the homepage with the navigation layer open — `header.js` closes the
+   layer on the way out, closing it un-fixes the body, and un-fixing the body
+   restores the document's full height — puts a resize, and therefore a
+   `replaceState`, one frame after the click that started the navigation. A
+   history entry rewritten while its own document is being replaced is not one
+   the traversal back to it can rely on. Measured, `mobile-390`, the existing
+   "navigating away and back leaves nothing behind" test run in isolation on an
+   idle machine, six runs each:
+
+       before this file exists                6 passed, 0 failed
+       with `history.state`                   1 passed, 5 failed
+       with `history.state`, guarded on
+         `pagehide`                           2 passed, 4 failed
+       with `sessionStorage` (shipped)        6 passed, 0 failed
+
+   The `pagehide` guard is the tempting fix and the middle row is why it is not
+   one: the write races the *click*, not the unload, and by `pagehide` it has
+   already happened.
+
+   `sessionStorage` mutates no navigation state, so the race has nowhere to
+   land. What is lost by not being per-entry is nothing that matters here: the
+   value is a layout measurement of one URL at one viewport width, and two
+   history entries for the same homepage at the same width have the same one.
+   It holds no identifier, it is a number, and it dies with the tab — see
+   _build/reports/phase9-consent-inventory.md §3.
 
    The reserve is released as soon as the real content is at least as tall,
    which on a back navigation is a few hundred milliseconds later. If the
@@ -67,11 +97,11 @@
 
    WHAT THIS COSTS
    ---------------
-   One `ResizeObserver` on the root element, no scroll listener, no timer, no
-   per-frame work and no polling of history state. The observer already had to
-   exist to record the settled height; releasing the reserve rides on it. Once
-   released, the callback is two integer comparisons and a `replaceState` on the
-   frames where the document's height actually changed.
+   One `ResizeObserver` on the root element. No scroll listener, no timer, no
+   per-frame work, and nothing polled. The observer already had to exist to
+   record the settled height; releasing the reserve rides on it. Once released,
+   the callback is two integer comparisons and one small `sessionStorage` write
+   on the frames where the document's height actually changed.
    ========================================================================== */
 (() => {
   'use strict';
@@ -81,28 +111,38 @@
   /** The property `body { min-height: … }` reads. See assets/css/chrome.css. */
   const PROP = '--home-reserve';
 
-  /** Where the settled height lives on the history entry. */
-  const KEY = 'stratosHome';
+  /**
+   * Where the settled height lives.
+   *
+   * One key, holding the last homepage measured: `{p, h, w}` — pathname, height
+   * and viewport width. The pathname is stored rather than folded into the key
+   * so the three locale homepages share one entry in the storage inventory;
+   * a visitor who switches locale mid-session simply gets no reserve on the
+   * first Back after the switch, which is the same as any first visit.
+   */
+  const KEY = 'stratos.home-height';
 
   const reserved = () => parseInt(root.style.getPropertyValue(PROP), 10) || 0;
 
   /* ------------------------------------------------------------- the reserve
 
      Read straight away, in <head>, because the only window that matters closes
-     at first layout. `history.state` is available synchronously from the first
-     script on a restored document — that is what makes this possible without
-     storage of our own and without a key that could collide across entries.
+     at first layout — the browser applies its scroll restoration there, and a
+     reserve set any later is a reserve set after the position was already lost.
 
-     The recorded width has to match. A phone that went away in portrait and
-     came back in landscape has a genuinely different document, and reserving
-     the old height there would be reserving the wrong number rather than none. */
+     Both the path and the width have to match. A phone that went away in
+     portrait and came back in landscape has a genuinely different document, and
+     reserving the old height there would be reserving the wrong number rather
+     than none. */
   try {
-    const saved = history.state && history.state[KEY];
-    if (saved && saved.w === innerWidth && saved.h > 0) {
+    const raw = sessionStorage.getItem(KEY);
+    const saved = raw ? JSON.parse(raw) : null;
+    if (saved && saved.p === location.pathname && saved.w === innerWidth && saved.h > 0) {
       root.style.setProperty(PROP, saved.h + 'px');
     }
   } catch (e) {
-    /* An opaque or unreadable state is simply no reserve. */
+    /* Storage disabled, full, or holding something this file did not write:
+       no reserve, and the page behaves exactly as it did before this existed. */
   }
 
   /* ------------------------------------------------- release, then record
@@ -111,9 +151,23 @@
      they are one callback rather than two observers.
 
      Order matters: the reserve is released first, because while it is up the
-     document's height is the *reserved* one and recording that would write the
-     reserve back into the entry and make it permanent. */
+     document's height IS the reserved one, and recording that would write the
+     reserve back into storage and make it permanent. */
+  /**
+   * True once the document is on its way out.
+   *
+   * A height measured during unload cannot be worth anything — the page is
+   * leaving, and the number that matters is the one it settled at while the
+   * visitor was reading it, recorded seconds ago. So the observer stops, and is
+   * re-armed on a `persisted` `pageshow` because a BFCache restore hands the
+   * same document back with a life ahead of it again.
+   */
+  let leaving = false;
+
   function heightChanged() {
+    // Nothing is written once the document is on its way out. See `leaving`.
+    if (leaving) return;
+
     /* Stand down while the full-screen navigation is open.
 
        `assets/js/header.js` holds the body at `position: fixed` for the
@@ -146,25 +200,20 @@
       }
     }
 
-    /* Record. `replaceState` creates no entry, fires no `popstate` and is not
-       a navigation — it edits the state of the entry the visitor is already on,
-       which is exactly the one they will come back to. */
+    /* Record. */
     const h = root.scrollHeight;
     const w = innerWidth;
     try {
-      const state = history.state && typeof history.state === 'object' ? history.state : {};
-      const was = state[KEY];
+      const raw = sessionStorage.getItem(KEY);
+      const was = raw ? JSON.parse(raw) : null;
       // Rewriting the same pair on every reflow would be a write per resize
       // frame for no change. 32px is below anything that could move the restore
       // by a perceptible amount and above the sub-pixel churn of a font swap.
-      if (was && was.w === w && Math.abs(was.h - h) < 32) return;
-      const next = {};
-      for (const k in state) next[k] = state[k];
-      next[KEY] = { h: h, w: w };
-      history.replaceState(next, '');
+      if (was && was.p === location.pathname && was.w === w && Math.abs(was.h - h) < 32) return;
+      sessionStorage.setItem(KEY, JSON.stringify({ p: location.pathname, h: h, w: w }));
     } catch (e) {
-      /* A state that cannot be structured-cloned is a page that does not get
-         this behaviour, not a page that throws on every resize. */
+      /* Storage disabled or full: a page that does not get this behaviour, not
+         a page that throws on every resize. */
     }
   }
 
@@ -182,6 +231,19 @@
       });
     });
     observer.observe(root);
+
+    // See `leaving`. Both the disconnect and the `leaving` flag are needed: the
+    // flag stops a callback already queued for the next frame, the disconnect
+    // stops any after that.
+    addEventListener('pagehide', () => {
+      leaving = true;
+      observer.disconnect();
+    });
+    addEventListener('pageshow', (event) => {
+      if (!event.persisted) return;
+      leaving = false;
+      observer.observe(root);
+    });
   }
 
   if (document.readyState === 'loading') {

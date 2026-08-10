@@ -61,6 +61,7 @@ It is authentication storage, which is strictly necessary by definition.
 | Key | Origin | Written by | Contents | Gate |
 |---|---|---|---|---|
 | `stratos.attribution` | public site | `assets/js/lead.js` | Up to five UTM campaign labels, a landing path, a referring host | see below |
+| `stratos.home-height` | homepage only | `assets/js/home-history.js` | Three numbers: the homepage's settled document height, the viewport width it was measured at, and the pathname (`/`, `/en/`, `/de/`) | strictly necessary |
 
 Written **only** when the page view carries an allow-listed campaign parameter or
 an external referrer. A visitor who types the address, or follows an internal
@@ -68,6 +69,26 @@ link, causes **zero bytes** — which is most visitors. It holds no identifier,
 and it dies with the tab.
 
 Design and the full allow-list: `phase9-attribution-design.md`.
+
+### `stratos.home-height`
+
+A layout measurement, and the gate is not a close call. It is the height in
+pixels that the homepage settled at, the viewport width it was measured at, and
+which of the three locale homepages it was — no identifier, nothing derived from
+the visitor, nothing transmitted anywhere, and it dies with the tab.
+
+It exists so that pressing Back returns the visitor to where they were reading.
+`<main>` is a React container, so on a back navigation the browser applies its
+scroll restoration to a two-thousand-pixel shell and the visitor's position is
+clamped away before the page exists; reserving the recorded height gives the
+browser's own restoration something to restore into. Storage carrying out a
+navigation the visitor just asked for is strictly necessary in the ordinary
+sense of the term.
+
+Written only on the homepage, and only when the document's height changes by
+more than 32 px. Full reasoning, including why `history.state` was tried first
+and abandoned: `assets/js/home-history.js` and
+`homepage-history-restoration-investigation.md`.
 
 > **REQUIRES LEGAL REVIEW** — whether this may be written without prior consent.
 > The engineering position is that it is not analytics: nothing is transmitted
