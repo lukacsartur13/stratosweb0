@@ -467,7 +467,77 @@ added, no `force: true`, no sleep, no worker-count change, no GPU flag.**
 
 ---
 
-## 8. Verdict
+## 8. Independent verification re-run
+
+Every gate in §6 was re-run from scratch against the **same source**, on a later
+and much quieter machine, to check that the totals above are reproducible rather
+than one evening's reading.
+
+Source identity established first, not assumed: `HEAD` is `1dfc182`, which is
+docs-only on top of the frozen `c2bd0bc`, and
+`git diff c2bd0bc HEAD -- assets tests scripts netlify.toml playwright.config.ts`
+is **empty**. The only dirty file in the tree is
+`assets/blender/stratos-altimeter.blend`, a binary art source that no gate reads.
+
+| gate | §6 frozen gate | this re-run | |
+|---|---|---|---|
+| `npm run typecheck` | PASS | **PASS** | ✓ |
+| `npm run build` | PASS | **PASS** | ✓ |
+| targeted hardening, `--workers=1` | 12/12 | **12/12** (38.9 s) | ✓ |
+| `npm test` | 1007 — 879 / **9** / 119 (12.6 min) | 1007 — 885 / **3** / 119 (8.9 min) | see below |
+| `npm run validate:full` | 165 — 131 / 0 / 34 | **165 — 131 / 0 / 34** (10.3 min) | ✓ identical |
+| route audit | 792 checks, 0 failing, 0 broken | **792 checks, 0 failing, 0 broken** | ✓ identical |
+| secrets | clean | **clean** — 675 files, 12 rules | ✓ |
+| SEO | 72 docs, 0 failing, 43 warnings | **72 docs, 0 failing, 43 warnings** | ✓ identical |
+| conversion | PASS | **PASS** — no CTA integrity failures | ✓ |
+| fingerprint | 72 pages, 25 assets, 0 unstamped | **72 pages, 25 assets, 0 unstamped** | ✓ identical |
+| draco | matches three 0.171.0 | **matches three 0.171.0** | ✓ |
+
+The secrets count moves 663 → 675 because the working tree now carries untracked
+scratch files that the scanner walks. Still clean; no tracked source changed.
+
+### 8.1 What the re-run says about §7's classification
+
+**Six of the nine did not reproduce, and the three that did are a strict subset
+of them, by name:**
+
+| project | test | failure |
+|---|---|---|
+| desktop-1920 | menu › opens from every header state | 12 s predicate expiry |
+| desktop-1920 | menu › focus is trapped inside the layer | 30 s, in `page.evaluate` |
+| reduced-motion | menu › focus is trapped inside the layer | 30 s |
+
+All three are timeouts in the **pre-existing** `homepage-chrome.spec.ts`. No
+assertion about product behaviour was violated in any of them, and none is in a
+file this workstream added.
+
+The measured difference is the machine, and it is no longer an inference:
+
+```
+during the §6 / §7 runs    load average 16–53 on 10 cores
+during this re-run         load average 2.07 / 4.22 / 7.43 on 10 cores
+```
+
+Same source, same suite, an order of magnitude less ambient load, and the
+failure count falls 9 → 3 while the pass count rises 879 → 885. That is the
+CPU-saturation classification behaving exactly as a CPU-saturation
+classification predicts, measured a second time rather than inherited — which is
+what §23 asks for. **The new evidence supports the existing classification and
+contradicts none of it**, so the classification stands.
+
+### 8.2 The two failures §7.4 called "mine"
+
+`desktop-1920` › history and `desktop-1920` › modality — the two new tests §7.4
+declined to claim were immune — **both passed in this re-run under full parallel
+load**, along with every other hardening test.
+
+All **12** hardening tests (8 modality, 4 history) passed in the parallel
+`npm test` run *and* 12/12 serially. The two new suites contributed **zero**
+failures to this gate on either path.
+
+---
+
+## 9. Verdict
 
 **FINAL HOMEPAGE INTERACTION HARDENING ACCEPTED WITH DOCUMENTED LIMITATIONS**
 
@@ -490,9 +560,13 @@ The limitations, each stated where it applies:
 3. **Safari's "tab to links" configuration is untested.** Playwright's WebKit
    offers no way to enable it, so the cycling behaviour a full-keyboard-access
    visitor would get is asserted only on Chromium.
-4. **Nine `npm test` failures remain, all timeouts, none a product assertion.**
-   Four are the baseline's own, measured on the same machine the same night; the
-   product fixes account for none of the change; two are new tests on the single
-   most expensive project and pass per-project.
+4. **`npm test` failures remain, all timeouts, none a product assertion.** Nine
+   on the §6 gate under heavy ambient load; **three** on the §8 re-run of the
+   same source on a quiet machine, a strict subset of the nine and all of them
+   in the pre-existing `homepage-chrome.spec.ts`. Four are the baseline's own,
+   measured on the same machine the same night; the product fixes account for
+   none of the change. The two new tests §7.4 declined to claim were immune
+   passed in the re-run under full parallel load, and the two new suites
+   contributed zero failures to it.
 
 Not pushed. Not deployed. Not merged. Phase 10 not begun.
