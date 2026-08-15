@@ -430,6 +430,30 @@ endpoint ever names an event the site does not send.
 
 ## 13. Production vs staging
 
+> ### Discovered at deploy time, and it changes what this default means today
+>
+> `stratosweb.hu` and `www.stratosweb.hu` **are not served by this project.** Both
+> answer from Wix (`server: Pepyaka`, `x-wix-request-id`, `x-wix-cache-control`);
+> the apex 301s to `www`, and `www` returns a 1.4 MB Wix document with none of
+> this site's bundles in it. This project is live at
+> **`stratosweb1.netlify.app`**, which is exactly what `analytics.js` anticipates
+> when it talks about "pre-cutover integration traffic on the netlify.app address"
+> — the domain cutover has not happened yet.
+>
+> The consequence is concrete and it lands on the default below. Every real
+> visitor to this site is currently on `stratosweb1.netlify.app`, which the
+> `hostName` filter correctly classifies as **staging**. So Portal Analytics
+> opening on **Production will show zero** until the domain moves, and the real
+> traffic will be under **Staging**.
+>
+> Nothing here is malfunctioning — the filter is doing precisely what it says, the
+> selector is one click away, and the screen prints the hosts it filtered on. But
+> the default is wrong for today's reality and right for the day after the
+> cutover. Two options, and it is a product decision rather than a technical one:
+> flip `DEFAULT_ENVIRONMENT` to `staging` until the domain moves, or add
+> `stratosweb1.netlify.app` to `GA4_PRODUCTION_HOSTS` in Netlify — which needs no
+> deploy and can be reverted the day the domain lands. **Neither has been done.**
+
 **Default: Production.** Selector: Production / Staging / All.
 
 Implemented on **`hostName`**, and that choice is the point. The site tags every event with an
@@ -734,11 +758,15 @@ complete because there is no evidence to mark it with.
 
 ### Production deployment
 
-11. Apply `supabase/migrations/20260814000100_lead_pipeline.sql`. Additive; review it first.
+11. **Apply `supabase/migrations/20260814000100_lead_pipeline.sql`.** Additive; review it
+    first. **This has not been done, and the code that needs it is now deployed** — until it
+    runs, the Proposal stage and internal notes are inert. See §19.
 12. Redeploy so the functions pick up the new variables.
 13. Open Portal → Analytics and confirm it leaves the `Not connected` state. **This is the first
     real authenticated request and it has not happened.**
 14. Open Portal → Overview and confirm System Health reads `ok` for all four services.
+15. Decide the environment default, or add the netlify.app host to `GA4_PRODUCTION_HOSTS`,
+    until the domain cutover happens. See §13.
 
 ### Legal review
 
@@ -754,9 +782,40 @@ complete because there is no evidence to mark it with.
 
 ---
 
+# 19. Deployed — and what is outstanding
+
+Pushed and deployed on request, after the gates above.
+
+| | |
+|---|---|
+| Commit | `c3506e6` on `main`, fast-forwarded from `ec409f4` |
+| Verified before pushing | a clean clone of `c3506e6` builds green |
+| Live at | **`https://stratosweb1.netlify.app`** — home and Portal both carry the new code |
+| Not live at | `stratosweb.hu` / `www.stratosweb.hu`, which are a Wix site. See §13. |
+
+The deployed Portal bundle hashes differently from a local build of the same commit, and that
+is expected rather than a mismatch: Netlify has `VITE_SUPABASE_URL` and
+`VITE_SUPABASE_ANON_KEY` set and Vite inlines them, so the same source produces different
+bytes there. The deployed bundle was checked directly and contains the new screens.
+
+## Outstanding, in the order it matters
+
+1. **Run the migration.** `supabase/migrations/20260814000100_lead_pipeline.sql`, in the
+   Supabase SQL editor. It could not be run from here — there are no Supabase credentials in
+   this working copy, which is also why it was never applied during the work. Until it runs:
+   * moving a lead to **Proposal** fails, and the Portal shows "The database refused that
+     change";
+   * **internal notes** fail, and the Portal says notes are not set up yet;
+   * a lead's **timeline** shows its arrival and nothing else.
+
+   Nothing is lost and nothing is corrupted — the public site, lead submission and every
+   other Portal screen are unaffected, and the failures are the handled paths rather than
+   crashes.
+2. **The GA4 service account**, §16 steps 1–8. Analytics stays in `Not connected` until then.
+3. **The environment default**, §13, until the domain cutover.
+
 # Not done
 
-* Not pushed, not deployed, not merged.
 * The migration is written and **not applied**.
 * No real GA4 request was made, because no credentials exist to make one with.
 * Phase 10 not begun.
