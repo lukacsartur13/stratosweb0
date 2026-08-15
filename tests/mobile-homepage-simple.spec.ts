@@ -73,6 +73,25 @@ async function revealed(page: Page) {
  * decoding. It is therefore the exact event "the instrument is on screen and
  * settled", which is what every assertion below actually needs.
  */
+/**
+ * The instrument has arrived where the current scroll position asks it to be.
+ *
+ * Two frames, then the flag. The overlay's reader is coalesced to one pass per
+ * animation frame, so there is a one-frame window after a scroll in which
+ * `data-settled` is still the flag left over from the PREVIOUS position — and
+ * `waitForSelector` polls on the frame clock, so it can win that race.
+ * Measured: it reported `ascent` with the hero's geometry and opacity 1.00,
+ * which is a frame that genuinely existed and is not the one being asserted
+ * about. The page's signal is not wrong; a test that asks immediately is asking
+ * a frame too early.
+ */
+const settled = async (page: Page) => {
+  await page.evaluate(() => new Promise((done) => {
+    requestAnimationFrame(() => requestAnimationFrame(() => done(null)));
+  }));
+  await page.waitForSelector('.mv-alt__stage[data-settled]', { timeout: 10_000 });
+};
+
 const instrumentReady = (page: Page) =>
   page.waitForSelector('.mv-alt__stage[data-ready]', { timeout: 30_000 });
 
@@ -187,6 +206,14 @@ test.describe('portrait mobile — the composition that runs', () => {
      * no-WebGL visitor got an empty slot containing a correctly laid-out,
      * completely invisible 315px instrument, and this test passed.
      */
+    // The composition has arrived. `data-settled` is the placement settle's own
+    // "I am where I am supposed to be" — the counterpart to `data-ready`, and
+    // the one that exists on this path, where nothing ever renders a frame.
+    // `revealed` above walks the whole document and jumps back to the top, so
+    // without this the measurement lands inside the return transition and reads
+    // an opacity that was true for one frame on its way to 1.
+    await page.waitForSelector('.mv-alt__stage[data-settled]', { timeout: 10_000 });
+
     const painted = await page.evaluate(() => {
       const svg = document.querySelector('.mv-alt__dial');
       if (!svg) return null;
@@ -959,29 +986,153 @@ test.describe('portrait mobile — the 3D instrument', () => {
     expect(after - before).toBe(0);
   });
 
-  test('nothing renders while the instrument is off screen', async ({ page }) => {
+  /**
+   * REPLACES 'nothing renders while the instrument is off screen'.
+   *
+   * That test asserted the defect this workstream exists to remove. It scrolled
+   * four screens past the hero, confirmed the renderer had stopped, and passed
+   * — which was exactly right when the instrument lived in the opening
+   * section's flow and exactly the behaviour the review rejected: the page's
+   * signature object left the experience after one screen of seventeen.
+   *
+   * The instrument is persistent now, so "off screen" is not a state it has.
+   * What replaced the assertion is the pair of guarantees that still hold and
+   * still matter — it stops when the page stops, and it stops when it has been
+   * deliberately hidden — plus the one the change introduced a risk of: that a
+   * persistent instrument does not quietly become a permanent render loop.
+   */
+  test('nothing renders while the instrument is deliberately hidden', async ({ page }) => {
     await countDraws(page);
     await page.goto('/');
     if (!(await mounted(page))) test.skip(true, 'desktop composition');
     await ready(page);
     await instrumentReady(page);
 
-    // Two screens past the instrument, which is past its observer's margin.
-    await page.evaluate(() => scrollTo({ top: innerHeight * 4, behavior: 'instant' }));
-    await page.waitForTimeout(1400);
+    // The navigation layer is the one authored disappearance mid-document.
+    // `.burger`, and only `.burger`. A previous version of this file guessed at
+    // three other selectors and matched none of them.
+    await page.locator('.burger').click();
+    await expect(page.locator('html')).toHaveClass(/menu-open/);
+    await page.waitForTimeout(1500);
 
     const before = await draws(page);
-    // Keep scrolling. This is the case that matters: the visitor is reading the
-    // rest of a seventeen-screen document, the ascent reader is firing on every
-    // frame, and there is nothing on screen to draw.
-    for (let i = 5; i <= 10; i++) {
-      await page.evaluate((n) => scrollTo({ top: innerHeight * n, behavior: 'instant' }), i);
-      await page.waitForTimeout(120);
-    }
-    await page.waitForTimeout(600);
-    const after = await draws(page);
+    await page.waitForTimeout(2000);
+    expect((await draws(page)) - before).toBe(0);
+  });
 
-    expect(after - before).toBe(0);
+  test('the instrument is still there, still reading, and never on the readout', async ({ page }) => {
+    await page.goto('/');
+    if (!(await mounted(page))) test.skip(true, 'desktop composition');
+    await ready(page);
+    await instrumentReady(page);
+
+    const overlay = page.locator('[data-testid="mobile-altimeter"]');
+    const stage = page.locator('.mv-alt__stage');
+
+    // The frame the page opens on: the instrument fills the band the opening
+    // section reserved for it, at full strength.
+    await expect(overlay).toHaveAttribute('data-inst-state', 'hero');
+    expect((await stage.boundingBox())!.width).toBeGreaterThan(280);
+
+    /**
+     * And then the rest of the document, one section at a time.
+     *
+     * ONE WALK, FOUR ASSERTIONS. This was two tests — persistence and the
+     * telemetry clearance — each traversing the whole document and each taking
+     * ~13 s. Two full traversals of a seventeen-screen WebGL page is real load
+     * on a suite that already sits close to its timeouts under parallel
+     * workers, and the two questions are asked at exactly the same scroll
+     * positions. So they are asked together.
+     *
+     * Stepping by SECTION rather than by screen for the same reason: eleven
+     * stops instead of seventeen, and a section boundary is where the
+     * instrument's state can actually change, so the shorter walk tests more
+     * per stop rather than less overall.
+     *
+     * At each stop:
+     *   * the overlay names an AUTHORED state, not an improvised one
+     *   * the instrument is settled — no assertion measures a transition
+     *   * it is on screen, at a real size, at a real opacity
+     *   * its needles agree with the altitude the page is showing
+     *   * it is clear of the telemetry rule, the page's only other fixed object
+     *
+     * Together those are the review's requirement in its own words: at no point
+     * in the primary journey is the reaction "where did the Altimeter go?".
+     */
+    const authored = new Set(['hero', 'ascent', 'capabilities', 'summit', 'work', 'process', 'arrival']);
+    const stages = await page.$$eval('[data-stage]', (els) => els.map((el) => el.getAttribute('data-stage')!));
+    expect(stages.length).toBeGreaterThan(8);
+
+    let lastAltitude = -1;
+    for (const id of stages) {
+      await page.evaluate((stage) => {
+        const section = document.querySelector(`[data-stage="${stage}"]`)!;
+        const rect = section.getBoundingClientRect();
+        scrollTo({ top: Math.max(0, rect.top + scrollY - innerHeight * 0.2), behavior: 'instant' });
+      }, id);
+
+      await settled(page);
+
+      const state = await overlay.getAttribute('data-inst-state');
+      // `recede` is authored too, and it is the LAST thing that happens: the
+      // homepage flow has ended and the site's own Arrival panel and footer
+      // have begun. Everything before that must be a visible state.
+      if (state === 'recede') break;
+
+      expect(authored, `${id} is in an authored state`).toContain(state);
+
+      const box = await stage.boundingBox();
+      const opacity = await stage.evaluate((el) => Number(getComputedStyle(el).opacity));
+      const viewport = page.viewportSize()!;
+
+      expect(box, `${id} has the instrument on screen`).not.toBeNull();
+      expect(box!.width, `${id} instrument width`).toBeGreaterThan(60);
+      expect(box!.y + box!.height, `${id} instrument top edge`).toBeGreaterThan(0);
+      expect(box!.y, `${id} instrument bottom edge`).toBeLessThan(viewport.height);
+      expect(opacity, `${id} instrument opacity`).toBeGreaterThan(0.4);
+
+      /**
+       * The page's two fixed objects, authored not to touch — in the DOCKED
+       * states.
+       *
+       * The rail keeps the instrument clear of the telemetry strip's rule at
+       * every viewport in the matrix, from a constant solved against the strip's
+       * own padding rather than a number that happened to look right at 390.
+       * A regression there is invisible in a screenshot of the top of the page
+       * and obvious to anyone actually reading the altitude.
+       *
+       * The HERO is excluded, and not as a convenience. In the hero the
+       * instrument is where the opening section's own composition puts it —
+       * the same block, at the same offset, as the in-flow slot it replaces —
+       * and on a short viewport that block's lower edge is already inside the
+       * telemetry gradient. Measured on `mobile-430`, whose preset viewport is
+       * 430x740: the reserve ends at 701 and the rule sits at 696. That is the
+       * accepted, shipped hero frame and the gradient washing over its base is
+       * how the strip has always separated itself from the page. Asserting
+       * clearance there would be asserting against the composition rather than
+       * against this change.
+       */
+      if (state !== 'hero') {
+        const clash = await page.evaluate(() => {
+          const instrument = document.querySelector('.mv-alt__stage')!.getBoundingClientRect();
+          const rule = document.querySelector('.mv-telemetry__rule')!.getBoundingClientRect();
+          return instrument.bottom > rule.top;
+        });
+        expect(clash, `${id}: instrument overlaps the telemetry rule`).toBe(false);
+      }
+
+      // It is not merely present, it is READING. The altitude only ever goes up
+      // on the way down the page, which is the whole premise of the journey.
+      const metres = await altitude(page);
+      expect(metres, `${id} altitude advances`).toBeGreaterThanOrEqual(lastAltitude);
+      lastAltitude = metres;
+    }
+
+    // The recede is reached, and it is a real departure rather than a shrug.
+    await page.evaluate(() => scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+    await settled(page);
+    await expect(overlay).toHaveAttribute('data-inst-state', 'recede');
+    expect(await stage.evaluate((el) => Number(getComputedStyle(el).opacity))).toBeLessThan(0.02);
   });
 
   test('the instrument adds no scroll listener of its own', async ({ page }) => {

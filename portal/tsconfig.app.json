@@ -17,5 +17,15 @@
     "baseUrl": ".",
     "paths": { "@/*": ["./src/*"] }
   },
-  "include": ["src"]
+  "include": ["src"],
+  // iCloud conflict copies. Every file this repository actually ships is
+  // tracked in git; a "Foo 2.tsx" beside "Foo.tsx" is a sync artefact of the
+  // working directory this project lives in, is imported by nothing, and is
+  // bundled by nothing — Vite only reaches modules that are imported. It was
+  // still typechecked, so a stale duplicate of a module whose API has since
+  // moved on failed the build for a file that is not part of it.
+  //
+  // `?` and not a character class: tsconfig globs support only `*`, `?` and
+  // `**/`, and a `[0-9]` here silently matches nothing at all.
+  "exclude": ["src/**/* ?.ts", "src/**/* ?.tsx"]
 }

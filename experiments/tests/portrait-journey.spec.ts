@@ -566,11 +566,39 @@ test.describe('portrait — the content', () => {
         return false;
       };
 
+      /**
+       * The persistent instrument, which is not inside any section.
+       *
+       * The Altimeter used to be a canvas inside the opening chapter's own
+       * flow, and a canvas is a replaced element, so it counted as content and
+       * the space it occupied was not a gap. It is now a FIXED OVERLAY, and
+       * what remains in the flow is an empty block reserving the space it draws
+       * into — which this walk correctly reported as a 335 px run of nothing.
+       *
+       * Correctly, and misleadingly: the reader is looking at a 335 px
+       * instrument there. So the overlay's own box is measured and offered to
+       * whichever section it overlaps, exactly like any other drawn box.
+       *
+       * This is deliberately NOT an exemption for the reserve. Nothing here
+       * says "ignore this element"; it says "something is drawn over it, and
+       * here is its rectangle". If the instrument ever stopped being drawn, or
+       * moved away from the space the hero keeps for it, the gap would reappear
+       * and this test would fail again — which is the whole point of it.
+       */
+      const overlay = document.querySelector<HTMLElement>('.mv-alt__stage');
+      const drawn = overlay && Number(getComputedStyle(overlay).opacity) > 0.05
+        ? overlay.getBoundingClientRect()
+        : null;
+
       const out: { stage: string; gapSvh: number; where: string }[] = [];
       for (const section of document.querySelectorAll<HTMLElement>('[data-stage]')) {
+        const bounds = section.getBoundingClientRect();
+        const overlaps = drawn && drawn.bottom > bounds.top && drawn.top < bounds.bottom;
+
         const boxes = [...section.querySelectorAll<HTMLElement>('*')]
           .filter(draws)
           .map((el) => el.getBoundingClientRect())
+          .concat(overlaps ? [drawn] : [])
           .filter((r) => r.height > 0 && r.width > 0)
           .sort((a, b) => a.top - b.top);
         if (boxes.length === 0) continue;

@@ -98,85 +98,35 @@ export function cameraDistance(aspect: number): number {
 export const primaryAngle = (metres: number) => -((metres % 1000) / 1000) * REV;
 export const secondaryAngle = (metres: number) => -(metres / 10_000) * REV;
 
-/** The instrument's rest attitude — a three-quarter view that shows the case. */
-const POSE = {
-  /** Arriving from below: turned further away, tipped further back, held small. */
-  entry: { pitch: -8 * DEG, yaw: 12.5 * DEG, scale: 0.93, z: -0.11 },
-  /**
-   * Composed. The frame the page is designed around, and the frame the visitor
-   * lands on — at every viewport in the matrix the slot's crossing at scroll
-   * zero is already inside the hold band, so the opening frame *is* this pose
-   * rather than a moment on the way to it.
-   *
-   * Under seven degrees of yaw and under four of pitch. Enough that the bezel
-   * has two visible faces and the crystal has somewhere to catch a highlight;
-   * little enough that the numerals at 1 and 2 are not read through a
-   * compression. Past about nine degrees the dial stops being a circle and
-   * starts being an ellipse, which is the point at which an instrument reads as
-   * a render of one.
-   */
-  held: { pitch: -3.6 * DEG, yaw: 6.8 * DEG, scale: 1, z: 0 },
-  /** Leaving upward: squaring up to the viewer and settling back a little. */
-  exit: { pitch: -0.8 * DEG, yaw: 2.4 * DEG, scale: 0.965, z: -0.055 },
-};
+/**
+ * The instrument's attitude, and where it now comes from.
+ *
+ * ## What was here, and why it is gone
+ *
+ * A three-key pose table (entry / held / exit) interpolated from how far the
+ * instrument's slot had crossed the viewport. That was the correct shape for an
+ * object that lived in one section's block flow and was on screen for about a
+ * screen and a half: it arrived from below, settled into a composed frame, held
+ * while it was being looked at, and left upward.
+ *
+ * The instrument does not do that any more. It persists for the whole document
+ * and is moved between authored positions, so "how far has the slot crossed the
+ * viewport" is a question with no answer — the overlay is fixed and never
+ * crosses anything. Attitude is now a property of the STATE, and the table
+ * lives with the rest of the composition in `anchors.ts`, because a state's
+ * position and a state's attitude are one design decision and splitting them
+ * across two files is how they drift.
+ *
+ * `HELD_POSE` stays, and it is still the accepted hero attitude: it is what the
+ * scene mounts at, what the loading silhouette is drawn behind, and what
+ * reduced motion holds.
+ */
+export type Pose = { pitch: number; yaw: number };
 
-export type Pose = { pitch: number; yaw: number; scale: number; z: number };
+/** The composed hero attitude. The frame the page opens on. */
+export const HELD_POSE: Pose = { pitch: -3.6 * DEG, yaw: 6.8 * DEG };
 
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp01 = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
-
-/**
- * Ease the two halves separately so the *held* pose is a plateau, not a
- * crossing.
- *
- * A single interpolation from entry to exit passes through the composed frame
- * at one instant and is never in it. The instrument would be turning
- * continuously for the whole time it is on screen, which is the "product
- * configurator" §6 rules out. Two eased legs with a flat middle means the
- * object arrives, *settles*, holds while the visitor is actually looking at it,
- * and then leaves — which is the difference between motion that is a property
- * of the object and motion that is a property of the scrollbar.
- */
-const HOLD_FROM = 0.34;
-const HOLD_TO = 0.62;
-
-/** A symmetric ease. Restrained: nothing here overshoots, because mass does not. */
-const ease = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
-
-/**
- * The instrument's attitude, from how far its slot has crossed the viewport.
- *
- * `t` is 0 when the slot's top edge is at the bottom of the viewport and 1 when
- * its bottom edge has passed the top — a quantity the *stage* computes from one
- * cached measurement and `scrollY`, never from a live layout read. §12: the
- * canvas must not generate measured content offsets, and this is the direction
- * that guarantee runs in. The instrument is told where it is; it never says.
- */
-export function poseAt(t: number): Pose {
-  const p = clamp01(t);
-  if (p <= HOLD_FROM) {
-    const k = ease(p / HOLD_FROM);
-    return {
-      pitch: lerp(POSE.entry.pitch, POSE.held.pitch, k),
-      yaw: lerp(POSE.entry.yaw, POSE.held.yaw, k),
-      scale: lerp(POSE.entry.scale, POSE.held.scale, k),
-      z: lerp(POSE.entry.z, POSE.held.z, k),
-    };
-  }
-  if (p >= HOLD_TO) {
-    const k = ease((p - HOLD_TO) / (1 - HOLD_TO));
-    return {
-      pitch: lerp(POSE.held.pitch, POSE.exit.pitch, k),
-      yaw: lerp(POSE.held.yaw, POSE.exit.yaw, k),
-      scale: lerp(POSE.held.scale, POSE.exit.scale, k),
-      z: lerp(POSE.held.z, POSE.exit.z, k),
-    };
-  }
-  return { ...POSE.held };
-}
-
-/** The composed pose, for reduced motion and for the loading silhouette. */
-export const HELD_POSE: Pose = { ...POSE.held };
 
 /**
  * Power-on, as one number.
@@ -233,18 +183,53 @@ export const emissiveGain = (power: number) => 0.56 + 0.44 * power;
 export const MOVED = 5e-4;
 
 /**
+ * The same idea for the overlay's travel, in the units the overlay moves in.
+ *
+ * `MOVED` is radians and cannot be reused here. A position settling towards a
+ * target 600px away would need fourteen time constants — over four seconds — to
+ * come within 5e-4 of a *pixel*, and every one of those frames is a `transform`
+ * write. A quarter of a CSS pixel is under a device pixel at every scale factor
+ * in the matrix, and it bounds the tail of a full-width move to about two
+ * seconds, which is the point at which further arithmetic is not visible to
+ * anyone.
+ *
+ * `MOVED_UNIT` covers scale and opacity, which are dimensionless: two
+ * thousandths of either is well under a pixel on a 335px object and a change in
+ * luminance nobody could name.
+ */
+export const MOVED_PX = 0.25;
+export const MOVED_UNIT = 2e-3;
+
+/**
  * How long each channel takes to give up 63% of its error, in seconds.
  *
  * Two groups, and the split is the point. The needles are the instrument's
  * mechanism and they are allowed to lag — §6's "heavy and physical" is not a
- * style, it is what a pointer with mass does. The pose is the *composition*,
- * and a composition that lags reads as the object sliding around inside the
- * frame rather than as the frame having been designed; it gets the shorter
- * constant so it tracks the scroll closely enough to feel attached to it.
+ * style, it is what a pointer with mass does.
+ *
+ * ## Why `pose` and `place` are now different numbers
+ *
+ * They used to be one, at 0.12s, because the pose tracked the scroll
+ * continuously and a composition that lags a finger reads as the object sliding
+ * around inside the frame. Neither half of that is true now: the pose changes
+ * only at a state boundary, and the move between two authored positions is a
+ * transition rather than a tracking.
+ *
+ * So `place` — the overlay's travel between positions — gets a long constant,
+ * because that move IS the "hero object becomes flight instrument" gesture and
+ * a fast one would read as a jump. `pose` is a shade quicker than the travel so
+ * the case has finished turning by the time it lands, which is what makes the
+ * arrival read as settling rather than as still adjusting.
+ *
+ * The hero leg is the exception and does not use either: it is scroll-linked,
+ * so its target moves with the finger and the settle rides on top of it.
  */
 export const RETAIN = {
   primary: 0.15,
   secondary: 0.2,
   power: 0.18,
-  pose: 0.12,
+  /** The attitude, at a state change. */
+  pose: 0.26,
+  /** The overlay's position, scale and opacity, at a state change. */
+  place: 0.34,
 };

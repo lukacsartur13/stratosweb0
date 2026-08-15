@@ -1,6 +1,7 @@
-import { Fragment, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { useRows, useSearch, formatDate, type LoadState } from '@/lib/useRows';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { SystemHealth } from '@/pages/overview';
 import { ROLE_LABELS, type Role } from '@/lib/permissions';
 import {
   Badge, Cell, EmptyState, ErrorState, Input, Panel, PanelHeader, Row, Skeleton, Table,
@@ -71,98 +72,23 @@ function DataPanel({
   );
 }
 
-/* -------------------------------------------------------------- overview */
-interface Lead { id: string; name: string; company: string | null; status: string; created_at: string }
-
-export function OverviewScreen() {
-  const { profile } = useAuth();
-  const leads = useRows<Lead>('leads', 'id, name, company, status, created_at');
-  const projects = useRows<{ id: string; status: string }>('projects', 'id, status');
-
-  const newLeads = leads.rows.filter((l) => l.status === 'new').length;
-  const liveProjects = projects.rows.filter((p) => p.status !== 'archived').length;
-
-  return (
-    <>
-      <PageHead
-        title={`Good to see you${profile?.full_name ? `, ${profile.full_name.split(' ')[0]}` : ''}`}
-        lede="Everything below is filtered by what your account is allowed to see."
-      />
-
-      <div className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat label="New leads" value={leads.state === 'ready' ? newLeads : null} state={leads.state} />
-        <Stat label="Leads total" value={leads.state === 'ready' ? leads.rows.length : null} state={leads.state} />
-        <Stat label="Live projects" value={projects.state === 'ready' ? liveProjects : null} state={projects.state} />
-        <Stat label="Your role" text={profile ? ROLE_LABELS[profile.role] : '—'} state="ready" />
-      </div>
-
-      <DataPanel
-        title="Latest leads"
-        state={leads.state}
-        message={leads.message}
-        count={leads.rows.length}
-        reload={leads.reload}
-        empty={{ title: 'No leads yet', body: 'Submissions from the public contact form and the quote questionnaire land here.' }}
-      >
-        <Table head={['Name', 'Company', 'Status', 'Received']}>
-          {leads.rows.slice(0, 8).map((l) => (
-            <Row key={l.id}>
-              <Cell>{l.name}</Cell>
-              <Cell className="text-haze">{l.company || '—'}</Cell>
-              <Cell><LeadStatus status={l.status} /></Cell>
-              <Cell className="num text-xs text-haze">{formatDate(l.created_at)}</Cell>
-            </Row>
-          ))}
-        </Table>
-      </DataPanel>
-    </>
-  );
-}
-
-function Stat({ label, value, text, state }: { label: string; value?: number | null; text?: string; state: LoadState }) {
-  return (
-    <Panel className="p-4">
-      <p className="label">{label}</p>
-      {state === 'loading' ? (
-        <Skeleton className="mt-2 h-7 w-16" />
-      ) : (
-        <p className="num mt-1.5 text-2xl text-paper">
-          {text ?? (value === null || value === undefined ? '—' : value)}
-        </p>
-      )}
-    </Panel>
-  );
-}
-
-function LeadStatus({ status }: { status: string }) {
-  const tone = status === 'won' ? 'good' : status === 'lost' || status === 'spam' ? 'bad' : status === 'new' ? 'warn' : 'neutral';
-  return <Badge tone={tone}>{status}</Badge>;
-}
-
-/* ------------------------------------------------------------------ leads */
-interface FullLead extends Lead {
-  email: string; service_interest: string | null; budget_range: string | null;
-  // Written by the canonical envelope — see netlify/functions/lead-contract.mjs.
-  // Every one is nullable because rows created before that migration have none.
-  form_type: string | null;
-  locale: string | null;
-  source_route: string | null;
-  submission_id: string | null;
-  payload: Record<string, unknown> | null;
-  // Timing, coarse context and campaign attribution. Never user-entered text —
-  // the server copies only the keys META declares in lead-contract.mjs, so
-  // whatever a browser sent, only those can be here.
-  meta: Record<string, unknown> | null;
-}
-
-/** Human label for the four public forms, plus the pre-envelope fallback. */
-const FORM_LABEL: Record<string, string> = {
-  newsletter: 'Newsletter',
-  contact: 'Contact',
-  impact: 'Impact',
-  questionnaire: 'Questionnaire',
-  website: 'Website',
-};
+/* ----------------------------------------------------------------- moved */
+/**
+ * `OverviewScreen` and `LeadsScreen` used to live here and now do not.
+ *
+ * Both outgrew a shared file. The overview became the Command Center — three
+ * data sources, its own health block, its own failure per panel — and Leads
+ * became a pipeline with a detail view, notes and a timeline. Keeping either in
+ * a file of seven small screens would have meant one 1 200-line module in which
+ * the Clients table and the lead timeline were neighbours.
+ *
+ *   pages/overview.tsx   the Command Center
+ *   pages/leads.tsx      the pipeline, detail, notes and timeline
+ *   lib/leads.ts         the status model and the mutations behind both
+ *
+ * What stays here is what it was for: the small, structurally identical table
+ * screens, and the two components every screen shares.
+ */
 
 /**
  * A stored web address, as an href — or null, if it must not become one.
@@ -193,176 +119,6 @@ function safeUrl(value: string | null | undefined): string | null {
   } catch {
     return null;
   }
-}
-
-/**
- * One submitted answer.
- *
- * The questionnaire's `answers` is an array of `{ q, a }`; everything else is a
- * flat scalar. Both are rendered here rather than in two components, because
- * the difference is one branch and a second component would drift.
- */
-function PayloadEntry({ label, value }: { label: string; value: unknown }) {
-  const text =
-    typeof value === 'boolean' ? (value ? 'Yes' : 'No')
-      : Array.isArray(value) ? `${value.length} answers`
-        : String(value ?? '—');
-  return (
-    <div className="grid gap-0.5">
-      <span className="label">{label}</span>
-      <span className="whitespace-pre-wrap break-words text-xs text-paper">{text || '—'}</span>
-    </div>
-  );
-}
-
-/**
- * Readable names for the `meta` keys, in the order they are worth reading.
- *
- * Anything not listed still renders, under its raw key — a lead stored by an
- * older or newer client must not become invisible because this table has not
- * caught up with it, which is the failure mode of rendering an allow-list.
- */
-const META_LABEL: Record<string, string> = {
-  utmSource: 'Campaign source',
-  utmMedium: 'Campaign medium',
-  utmCampaign: 'Campaign',
-  utmContent: 'Campaign content',
-  utmTerm: 'Campaign term',
-  landingRoute: 'Landed on',
-  landingReferrerHost: 'Came from',
-  referrerOrigin: 'Referrer at submit',
-  host: 'Served by',
-  viewport: 'Device',
-  elapsedMs: 'Time to fill (ms)',
-  attempt: 'Attempts',
-  legacyClient: 'Legacy client',
-  submissionIdSource: 'Submission id source',
-};
-
-const META_ORDER = Object.keys(META_LABEL);
-
-function LeadDetail({ lead, columns }: { lead: FullLead; columns: number }) {
-  const payload = lead.payload && typeof lead.payload === 'object' ? lead.payload : {};
-  const answers = Array.isArray((payload as { answers?: unknown }).answers)
-    ? ((payload as { answers: { q: string; a: string }[] }).answers)
-    : [];
-  const scalars = Object.entries(payload).filter(([k]) => k !== 'answers');
-
-  // Where the enquiry came from. Known keys first, in a deliberate order;
-  // anything unrecognised follows rather than being dropped.
-  const meta = lead.meta && typeof lead.meta === 'object' ? lead.meta : {};
-  const metaEntries = Object.entries(meta).sort(([a], [b]) => {
-    const ai = META_ORDER.indexOf(a);
-    const bi = META_ORDER.indexOf(b);
-    return (ai === -1 ? META_ORDER.length : ai) - (bi === -1 ? META_ORDER.length : bi)
-      || a.localeCompare(b);
-  });
-
-  return (
-    <tr className="border-b border-hair/60 bg-white/[0.02] last:border-0">
-      <Cell colSpan={columns} className="px-5 py-4">
-        <div className="grid gap-4">
-          <div className="grid gap-3 sm:grid-cols-3">
-            <PayloadEntry label="Locale" value={lead.locale} />
-            <PayloadEntry label="Submitted from" value={lead.source_route} />
-            <PayloadEntry label="Submission id" value={lead.submission_id} />
-          </div>
-
-          {scalars.length > 0 && (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {scalars.map(([k, v]) => <PayloadEntry key={k} label={k} value={v} />)}
-            </div>
-          )}
-
-          {answers.length > 0 && (
-            <div className="grid gap-2">
-              <span className="label">{answers.length} questionnaire answers</span>
-              <ol className="grid gap-2">
-                {answers.map((entry, i) => (
-                  <li key={`${i}-${entry.q}`} className="border-l border-hair pl-3">
-                    <p className="text-xs text-haze">{entry.q}</p>
-                    <p className="whitespace-pre-wrap break-words text-xs text-paper">{entry.a || '—'}</p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          )}
-
-          {metaEntries.length > 0 && (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {metaEntries.map(([k, v]) => (
-                <PayloadEntry key={k} label={META_LABEL[k] ?? k} value={v} />
-              ))}
-            </div>
-          )}
-
-          {scalars.length === 0 && answers.length === 0 && (
-            <p className="text-xs text-haze">
-              This lead predates the structured payload. Its answers are in the message field.
-            </p>
-          )}
-        </div>
-      </Cell>
-    </tr>
-  );
-}
-
-export function LeadsScreen() {
-  const { rows, state, message, reload } = useRows<FullLead>(
-    'leads',
-    'id, name, company, email, service_interest, budget_range, status, created_at, form_type, locale, source_route, submission_id, payload, meta',
-  );
-  const { query, setQuery, filtered } = useSearch(rows, ['name', 'company', 'email']);
-  const [open, setOpen] = useState<string | null>(null);
-
-  const head = ['Name', 'Form', 'Company', 'Email', 'Interest', 'Budget', 'Status', 'Received', ''];
-
-  return (
-    <>
-      <PageHead title="Leads" lede="Every enquiry from the public site, newest first." />
-      <DataPanel
-        title="All leads"
-        state={state} message={message} count={filtered.length} reload={reload}
-        search={{ value: query, onChange: setQuery, placeholder: 'Name, company, email…' }}
-        empty={{
-          title: rows.length ? 'Nothing matches' : 'No leads yet',
-          body: rows.length
-            ? 'Try a shorter search term.'
-            : 'The newsletter, contact form, Impact application and quote questionnaire all write here through the Netlify function.',
-        }}
-      >
-        <Table head={head}>
-          {filtered.map((l) => (
-            <Fragment key={l.id}>
-              <Row>
-                <Cell>{l.name}</Cell>
-                <Cell><Badge>{FORM_LABEL[l.form_type ?? ''] ?? l.form_type ?? '—'}</Badge></Cell>
-                <Cell className="text-haze">{l.company || '—'}</Cell>
-                <Cell className="text-haze">
-                  <a className="underline underline-offset-4 hover:text-paper" href={`mailto:${l.email}`}>{l.email}</a>
-                </Cell>
-                <Cell className="text-haze">{l.service_interest || '—'}</Cell>
-                <Cell className="num text-xs text-haze">{l.budget_range || '—'}</Cell>
-                <Cell><LeadStatus status={l.status} /></Cell>
-                <Cell className="num text-xs text-haze">{formatDate(l.created_at)}</Cell>
-                <Cell>
-                  <button
-                    type="button"
-                    className="label underline underline-offset-4 hover:text-paper"
-                    aria-expanded={open === l.id}
-                    onClick={() => setOpen(open === l.id ? null : l.id)}
-                  >
-                    {open === l.id ? 'Hide' : 'Details'}
-                  </button>
-                </Cell>
-              </Row>
-              {open === l.id && <LeadDetail lead={l} columns={head.length} />}
-            </Fragment>
-          ))}
-        </Table>
-      </DataPanel>
-    </>
-  );
 }
 
 /* --------------------------------------------------------------- projects */
@@ -554,7 +310,7 @@ export function SettingsScreen() {
   return (
     <>
       <PageHead title="Settings" lede="Environment and account. Secrets are never shown here." />
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-4 lg:grid-cols-3">
         <Panel>
           <PanelHeader title="This account" />
           <dl className="grid gap-3 p-5 text-sm">
@@ -575,6 +331,16 @@ export function SettingsScreen() {
             <Line term="Service role key" value="Server-side only — never in this bundle" />
           </dl>
         </Panel>
+        {/*
+          The same block the Command Center draws, and deliberately the same
+          component rather than a second one.
+
+          Settings is where somebody goes when they suspect a configuration
+          problem, so the operational readout belongs here as well as on the
+          landing screen. Two copies of it would be two things to keep in step,
+          and the one that got out of date would be the one somebody read.
+        */}
+        <SystemHealth />
       </div>
     </>
   );

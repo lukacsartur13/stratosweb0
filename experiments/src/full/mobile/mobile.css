@@ -130,7 +130,27 @@
 
 .mv-flow {
   position: relative;
-  z-index: 1;
+  /* ABOVE THE INSTRUMENT, AND THAT IS THE COMPOSITION DECISION.
+
+     The persistent instrument is a fixed overlay, and there is no position on a
+     scrolling page that a fixed overlay can hold without copy eventually
+     passing through it. The two ways out are to narrow the copy column by the
+     overlay's width for the whole document — which costs every paragraph on
+     every screen about a fifth of its measure, in three locales, to buy a
+     gutter that matters on one — or to put the instrument BEHIND the copy.
+
+     Behind is the right answer, and not merely the cheap one. The typography is
+     the accepted composition and nothing about it changes: the measure, the
+     leading and the line breaks are exactly what the review passed, because the
+     instrument arriving costs the flow nothing at all. Not one word is ever
+     obscured, because words are on top. And an instrument seen behind the text
+     with a line or two crossing it is the reading a real panel gauge has when
+     something is in front of it — which is a great deal closer to what this
+     page is about than a sticker in the corner would be.
+
+     3 would be the obvious number and is wrong: `.mv-telemetry` is 4, and the
+     instrument has to stay under it. See §05b. */
+  z-index: 2;
   padding-inline: var(--mv-pad);
   /* Clear of the fixed telemetry strip, which is the one thing on this page
      that overlaps the document. Measured rather than guessed: the strip is a
@@ -430,12 +450,12 @@
    the page. */
 
 /*
-  The stage is constrained; the block around it is not.
+  The reserve is constrained; the block around it is not.
 
   These were one element, and the caption inherited the dial's width — seven
   lines of fifteen monospaced characters, which reads as a column of debris
   beside the instrument rather than as an annotation of it. The caption wants
-  the section's measure and the stage wants its own, so they get one each.
+  the section's measure and the reserve wants its own, so they get one each.
 */
 .mv-alt {
   position: relative;
@@ -443,16 +463,32 @@
   margin: clamp(20px, 6vw, 32px) 0 clamp(26px, 7vw, 36px);
 }
 
-.mv-alt__stage {
-  position: relative;
-  /*
-    Square, and as wide as the column allows up to 86% of the screen.
+/*
+  THE HERO'S RESERVATION, AND IT PAINTS NOTHING.
 
-    The `86vw` term is what stops the stage being the full copy measure at
-    430x932, where the column is 383px and a square that size crowds the
-    headline it sits under. In portrait it is the binding term at every viewport
-    in the matrix; the `100%` is what keeps it inside the column at 360.
-  */
+  This element used to be the stage: it held the canvas, and the instrument
+  lived and died with it — one screen of a seventeen-screen document, after
+  which the page's signature object was simply gone. The instrument is now a
+  persistent overlay (see §05b), and what is left here is the space the opening
+  composition keeps for it, so the headline reads above and the caption and lead
+  read below exactly as they did.
+
+  The box is unchanged, to the pixel, and so are the two arguments for it.
+
+  Square, and as wide as the column allows up to 86% of the screen. The `86vw`
+  term is what stops the reserve being the full copy measure at 430x932, where
+  the column is 383px and a square that size crowds the headline it sits under.
+  In portrait it is the binding term at every viewport in the matrix; the `100%`
+  is what keeps it inside the column at 360.
+
+  And NO VIEWPORT-HEIGHT TERM. A layout height that depends on the viewport's
+  height reflows the whole document below it on every rotation, keyboard and
+  toolbar transition. The overlay's own box does have a height cap — see
+  `instrumentSize` in anchors.ts — and it can, because the overlay is fixed and
+  reflows nothing at all. That is the same rule, correctly applied to two boxes
+  with different relationships to the flow.
+*/
+.mv-alt__reserve {
   width: min(100%, 86vw);
   aspect-ratio: 1 / 1;
 
@@ -460,19 +496,78 @@
      left-aligned headline reads as an illustration, and off-axis it reads as an
      instrument mounted on the page. */
   margin-inline-start: clamp(-8px, -2vw, 0px);
-
-  /* The canvas is the only child that paints, and it is transparent. `contain`
-     rather than `overflow: hidden` so the browser also knows nothing inside can
-     affect the size of anything outside — which is the §12 guarantee stated to
-     the compositor as well as to the reader. */
-  contain: layout paint size style;
 }
 
+/* Landscape, where a square reserve as wide as an 788px column would be the
+   whole screen. The cap is `vw` for exactly the reason above: it is the one
+   axis that a collapsing toolbar cannot touch. */
 @media (orientation: landscape) {
-  .mv-alt__stage {
+  .mv-alt__reserve {
     width: min(100%, 38vw);
     aspect-ratio: 16 / 9;
   }
+}
+
+/* ==================================================== §05b — the overlay ==
+   THE INSTRUMENT, FOR THE WHOLE DOCUMENT.
+
+   Fixed, pointer-transparent, and above the flow but below the telemetry.
+   Everything about where it is at any moment is written to `.mv-alt__stage`'s
+   inline `transform` by the overlay's settle — see MobileAltimeter.tsx — from a
+   table of constants in anchors.ts. There are no per-state rules in this file
+   on purpose: a position that lives half in a stylesheet and half in a
+   transition would be two sources of truth for one number.
+
+   z-index 3 puts it over the copy and under the telemetry strip. Those two are
+   the only fixed objects on the page and they are authored not to touch: the
+   rail keeps the instrument 74px clear of the bottom edge, which is ~30px above
+   the telemetry's rule at every viewport in the matrix. */
+
+.mv-inst {
+  position: fixed;
+  inset: 0;
+  /* Over the background, under the copy, under the telemetry. See the note on
+     `.mv-flow`'s z-index for why under the copy is the composition and not a
+     concession. */
+  z-index: 1;
+  pointer-events: none;
+  /* Not `paint`: clipping to the viewport is the browser's job here, and a
+     paint containment on a full-viewport fixed element buys nothing while
+     costing a layer promotion. Not `size` either — this element's size IS the
+     fixed viewport, which is exactly the number the overlay reads from it. */
+  contain: layout style;
+}
+
+/*
+  The instrument's box.
+
+  Sized in JavaScript from the overlay's own rect, and moved only by
+  `transform`. Never by `top`/`left` — those are layout properties and would
+  cost a layout on every frame of a transition — and never by `width`, which
+  would resize the canvas's drawing buffer and force a full re-render at every
+  state. The buffer is created once at the hero size and every smaller state is
+  those same pixels scaled by the compositor, which is both sharper and free.
+
+  `contain: size` is safe here BECAUSE the dimensions are inline: the element is
+  told how big it is and its contents cannot answer back, which is the same
+  one-directional guarantee the in-flow stage had, kept.
+*/
+.mv-alt__stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* Until the first settle pass has run there is nowhere correct to be, and
+     the top-left corner is not it. */
+  opacity: 0;
+  will-change: transform, opacity;
+  contain: layout paint size style;
+}
+
+/* The end-of-homepage marker the recede is triggered from. It is a structural
+   position, not a rule: nothing about it is visible. */
+.mv-end {
+  display: block;
+  height: 1px;
 }
 
 /* react-three-fiber's own wrapper, named by the `className` on `<Canvas>`.
@@ -513,23 +608,45 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  /* The bloom the case sits in, and it is the only thing this element paints
+     once the instrument has arrived.
+
+     A DARK veil was tried here first, on the reasoning that the telemetry strip
+     separates itself from the document with a gradient and the instrument
+     should do the same. It is the wrong instinct once the instrument is BEHIND
+     the copy: a veil there darkens the sky, which is already near black, and
+     does nothing for legibility because there is nothing in front of it to
+     protect. What the instrument needs against that background is the opposite
+     — a soft lift that gives its silhouette somewhere to sit, so a 100px case
+     on the rail reads as an object in a space rather than as a decal. */
   background: radial-gradient(
     58% 58% at 50% 48%,
-    rgba(120, 156, 196, 0.14) 0%,
+    rgba(120, 156, 196, 0.15) 0%,
     rgba(10, 16, 26, 0) 72%
   );
-  transition: opacity 0.55s var(--mv-ease);
 }
 
+/* The loading silhouette, and this half IS temporary.
+
+   One hairline ring where the bezel is about to be, inset 8.5% — which is 83%
+   of the box, exactly the fraction of the frame `FILL` gives the bezel in
+   instrument.ts. So the ring is where the case lands, the crossfade has nothing
+   to travel, and the composition is stationary across it.
+
+   Deliberately not the SVG instrument: showing the drawing and then replacing
+   it with the render is the visible fallback-to-real flash the brief rules out,
+   and the only way to be certain it cannot happen is for the loading state to
+   be incapable of being mistaken for an instrument. */
 .mv-alt__wait::before {
   content: '';
   position: absolute;
   inset: 8.5%;
   border-radius: 50%;
   border: 1px solid rgba(203, 220, 233, 0.13);
+  transition: opacity 0.55s var(--mv-ease);
 }
 
-.mv-alt__stage[data-ready] .mv-alt__wait { opacity: 0; }
+.mv-alt__stage[data-ready] .mv-alt__wait::before { opacity: 0; }
 
 /* ---- the failure fallback ------------------------------------------------
    §18: the drawing is reachable only when there is no WebGL, when the renderer
@@ -583,7 +700,6 @@
   color: var(--haze);
 }
 
-.mv-sec--centre .mv-alt__stage { margin-inline: auto; }
 .mv-sec--centre .mv-alt__label { margin-inline: auto; }
 
 /* ============================================================= §06 — spine ==

@@ -180,6 +180,20 @@ export const __store = {
       insert: (row) => supabase.from('leads').insert(row).select('id').single(),
       findBySubmissionId: (id) =>
         supabase.from('leads').select('id').eq('submission_id', id).maybeSingle(),
+      /**
+       * Append one row to the lead's timeline.
+       *
+       * The Portal's lead detail shows what actually happened to an enquiry,
+       * and it is only allowed to show things that were recorded. A status
+       * change is recorded by a database trigger; whether the notification
+       * reached anyone is known only here, at the moment it is attempted, and
+       * was previously written to a function log that nothing can read back.
+       *
+       * `activity_logs` is append-only from the API's point of view — staff may
+       * select and no policy grants insert — so this write is possible only
+       * with the service key, which is the correct shape for an audit row.
+       */
+      logActivity: (row) => supabase.from('activity_logs').insert(row),
     };
   },
 };
@@ -393,6 +407,38 @@ export default async (request) => {
     if (notified.reason !== 'disabled') {
       audit('notify', envelope, { leadId: data.id, sent: notified.sent, reason: notified.reason });
     }
+
+    /**
+     * And record the attempt, so the Portal's timeline is history.
+     *
+     * ISOLATED THE SAME WAY THE NOTIFICATION IS, AND FOR THE SAME REASON.
+     * The lead is stored. Nothing after this point is allowed to change the
+     * visitor's answer, so this is optional-chained (a test that mocks the
+     * store without it is unaffected), the promise is caught, and the failure
+     * is a log line. A submission must never fail because an audit row could
+     * not be written — that would be the operational tail wagging the
+     * commercial dog.
+     *
+     * Nothing personal goes in `metadata`: an outcome, a reason and a form
+     * type. The lead's own row already holds the enquiry and is already behind
+     * RLS; duplicating any of it here would be a second copy of personal data
+     * in a table with a different retention story.
+     */
+    await Promise.resolve(
+      store.logActivity?.({
+        action: 'lead.received',
+        entity_type: 'lead',
+        entity_id: data.id,
+        metadata: {
+          formType: envelope.formType,
+          locale: envelope.locale,
+          notified: notified.sent,
+          notifyReason: notified.reason,
+        },
+      }),
+    ).catch((error) => {
+      audit('timeline.failed', envelope, { leadId: data.id, reason: String(error?.message ?? error) });
+    });
 
     return json(200, { ok: true, submissionId: envelope.submissionId, leadId: data.id });
   }

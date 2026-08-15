@@ -12,7 +12,7 @@ const BASE = `http://127.0.0.1:${PORT}`;
 // and running either five times over is five times the same answer.
 const NODE_ONLY = [
   /lead-endpoint\.spec\.ts/, /structured-data\.spec\.ts/, /portal-analytics\.spec\.ts/,
-  /lead-notify\.spec\.ts/, /redirects\.spec\.ts/,
+  /portal-health\.spec\.ts/, /lead-notify\.spec\.ts/, /redirects\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are

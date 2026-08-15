@@ -5,9 +5,11 @@ import { ProtectedRoute } from '@/features/auth/ProtectedRoute';
 import { LoginPage, ForgotPasswordPage, ResetPasswordPage } from '@/features/auth/pages';
 import { AdminLayout } from '@/components/layout/AdminLayout';
 import {
-  ActivityScreen, CaseStudiesScreen, ClientsScreen, LeadsScreen, NotFoundScreen,
-  OverviewScreen, ProjectsScreen, SettingsScreen, UsersScreen,
+  ActivityScreen, CaseStudiesScreen, ClientsScreen, NotFoundScreen,
+  ProjectsScreen, SettingsScreen, UsersScreen,
 } from '@/pages/screens';
+import { OverviewScreen } from '@/pages/overview';
+import { LeadsScreen } from '@/pages/leads';
 import { AnalyticsScreen } from '@/pages/analytics';
 
 /**

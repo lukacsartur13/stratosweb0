@@ -3,8 +3,9 @@ import { Canvas, invalidate, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import type { Group, Mesh, MeshStandardMaterial } from 'three';
-import { onAscent, onMeasure, viewportHeight } from './ascent';
+import { onAscent } from './ascent';
 import { prefersReducedMotion } from './device';
+import { PLACEMENTS, onInstrument } from './anchors';
 import {
   FOV,
   HELD_POSE,
@@ -12,7 +13,6 @@ import {
   RETAIN,
   cameraDistance,
   emissiveGain,
-  poseAt,
   powerAt,
   primaryAngle,
   secondaryAngle,
@@ -61,6 +61,23 @@ import {
  * page nobody is scrolling costs zero GPU work and zero main-thread work, which
  * is §4, and it is the single most important difference between this and every
  * previous mobile 3D attempt on this site.
+ *
+ * ## What the instrument becoming persistent cost, exactly
+ *
+ * It used to stop drawing entirely once its slot left the viewport, which was
+ * most of the document. It cannot any more: it is on screen for the whole read
+ * and its needles follow the altitude the whole way, which is the point of the
+ * change — the Altimeter is a signature object of this page and it disappeared
+ * from it after one screen.
+ *
+ * So the demand loop now draws on scroll frames for the length of the document
+ * rather than for one screen of it. What it draws is unchanged: 26 calls,
+ * 13 266 triangles, one 335px square buffer created once at the hero size and
+ * reused at every state — a rail state is those same pixels scaled down by the
+ * compositor, not a second render at a smaller size. And every other guarantee
+ * survives intact: nothing draws while the page is still, nothing draws while
+ * the navigation layer is up, nothing draws while the instrument has receded
+ * into the footer, and the scene still adds no scroll listener of its own.
  */
 
 const MODEL_URL = `${import.meta.env.BASE_URL}models/stratos-altimeter.glb`;
@@ -232,7 +249,7 @@ type Emissive = { mat: MeshStandardMaterial; base: number };
  * layout, writes a style, or touches the document. The component renders once,
  * at mount, and never again for the life of the page.
  */
-function Instrument({ host, onReady }: { host: HostRef; onReady: () => void }) {
+function Instrument({ onReady }: { onReady: () => void }) {
   const { scene, materials } = useGLTF(MODEL_URL);
   const root = useRef<Group>(null);
 
@@ -403,64 +420,44 @@ function Instrument({ host, onReady }: { host: HostRef; onReady: () => void }) {
   const settled = useRef(false);
 
   /**
-   * Is the slot on screen at all?
+   * Is the instrument being shown at all?
    *
-   * The single largest saving in this file, and the most obvious once measured:
-   * the instrument occupies one screen near the top of a seventeen-screen
-   * document, so for most of a read there is nothing on screen to draw. Without
-   * this gate the scroll reader keeps invalidating all the way to the footer
-   * and the renderer keeps drawing 26 calls for an object nobody can see.
+   * It used to be an `IntersectionObserver` on the slot, because the slot was
+   * one screen of a seventeen-screen document and for most of a read there was
+   * nothing on screen to draw. The instrument is persistent now, so that gate
+   * is answered "yes" for the whole document and an observer asking it would be
+   * an observer with one answer.
    *
-   * `IntersectionObserver`, not a scroll comparison: it costs nothing per
-   * frame, it is not a scroll listener (§15 counts those and this adds none),
-   * and it is the browser's own answer to the question rather than a
-   * reimplementation of it against a cached rectangle.
+   * What remains is the *authored* disappearance: the navigation layer being
+   * open, and the recede at the foot of the page. Both are decisions the
+   * overlay has already made — it is the thing that knows the state and the
+   * thing that draws the opacity — so it publishes them, and this subscribes.
+   * One source of truth for "visible", rather than two systems observing the
+   * same element and occasionally disagreeing about it.
    */
   const onScreen = useRef(true);
 
-  useEffect(() => {
-    const box = host.current;
-    if (!box || typeof IntersectionObserver !== 'function') return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.some((e) => e.isIntersecting);
-        if (visible === onScreen.current) return;
-        onScreen.current = visible;
-        // Arriving back on screen: the pose and the needles were kept correct
-        // while hidden — see the reader below — so this asks for the one frame
-        // that puts the correct state on the canvas, and no settle runs.
-        if (visible) invalidate();
-      },
-      // A screen of margin either way, so the instrument is already drawn
-      // correctly before its first pixel is on screen. An observer with no
-      // margin hands the visitor the frame the scene was left on.
-      { rootMargin: '100% 0px 100% 0px' },
-    );
-    observer.observe(box);
-    return () => observer.disconnect();
-  }, [host]);
+  useEffect(() =>
+    onInstrument((state, visible) => {
+      onScreen.current = visible;
+
+      // §"Use restrained: scale; position; opacity; slight orientation." The
+      // position and the scale are the overlay's; the orientation is the
+      // scene's, and this is where a state change becomes one.
+      if (!still) {
+        const pose = PLACEMENTS[state];
+        target.current.pitch = pose.pitch;
+        target.current.yaw = pose.yaw;
+      }
+
+      // Coming back into view — from a closed menu, or from scrolling back up
+      // out of the recede — the needles and the attitude were kept correct
+      // while hidden (see the reader below), so this asks for the one frame
+      // that puts the correct state on the canvas.
+      if (visible) invalidate();
+    }), [still]);
 
   useEffect(() => {
-    /**
-     * Where the slot sits in the document, cached.
-     *
-     * Refreshed by `onMeasure` on exactly the occasions the sections are
-     * remeasured — fonts, resize, orientation, `visualViewport`, bfcache — and
-     * never on a scroll frame. This is the number that lets the pose below be a
-     * function of screen position without a single `getBoundingClientRect` in
-     * the scroll path.
-     */
-    let slotTop = 0;
-    let slotHeight = 1;
-
-    const stopMeasuring = onMeasure(() => {
-      const box = host.current;
-      if (!box) return;
-      const rect = box.getBoundingClientRect();
-      slotTop = rect.top + scrollY;
-      slotHeight = Math.max(1, rect.height);
-    });
-
     const stopReading = onAscent(({ altitude }) => {
       const t = target.current;
 
@@ -468,23 +465,11 @@ function Instrument({ host, onReady }: { host: HostRef; onReady: () => void }) {
       t.secondary = secondaryAngle(altitude);
       t.power = powerAt(altitude);
 
-      // §20: under reduced motion the instrument stays, and stays *still*. It
-      // holds the composed pose and the needles are the only thing that move.
-      if (!still) {
-        const height = viewportHeight() || 1;
-        const crossed = (scrollY + height - slotTop) / (height + slotHeight);
-        const pose = poseAt(crossed);
-        t.pitch = pose.pitch;
-        t.yaw = pose.yaw;
-        t.scale = pose.scale;
-        t.z = pose.z;
-      }
-
-      // Off screen, the instrument is brought to its target *instantly* and no
+      // Hidden, the instrument is brought to its target *instantly* and no
       // frame is asked for. Nothing is skipped and nothing accumulates: the
       // state stays exactly correct, it simply stops being drawn — which is
-      // what §4 means by rendering on demand, stated at the one place on this
-      // page where "demand" can actually be zero.
+      // what rendering on demand means at the one place on this page where
+      // "demand" can actually be zero.
       if (!onScreen.current) {
         Object.assign(at.current, t);
         settled.current = true;
@@ -495,11 +480,8 @@ function Instrument({ host, onReady }: { host: HostRef; onReady: () => void }) {
       invalidate();
     });
 
-    return () => {
-      stopMeasuring();
-      stopReading();
-    };
-  }, [host, still]);
+    return stopReading;
+  }, []);
 
   /**
    * One frame's worth of settling, and the decision to ask for another.
@@ -532,20 +514,22 @@ function Instrument({ host, onReady }: { host: HostRef; onReady: () => void }) {
     a.power = chase(a.power, t.power, RETAIN.power);
     a.pitch = chase(a.pitch, t.pitch, RETAIN.pose);
     a.yaw = chase(a.yaw, t.yaw, RETAIN.pose);
-    a.scale = chase(a.scale, t.scale, RETAIN.pose);
-    a.z = chase(a.z, t.z, RETAIN.pose);
 
     if (needles.primary) needles.primary.rotation.z = a.primary;
     if (needles.secondary) needles.secondary.rotation.z = a.secondary;
 
     for (const { mat, base } of lit) mat.emissiveIntensity = base * emissiveGain(a.power);
 
+    // Attitude only. Size and position are the overlay's `transform` — the
+    // canvas keeps one framing for the life of the page, and a rail state is
+    // the hero's pixels scaled down by the compositor rather than a second
+    // render at a smaller size. Scaling the OBJECT instead would mean the
+    // instrument's projected size and the overlay's box disagreed, and the
+    // canvas would be mostly empty at every state but one.
     if (root.current) {
-      root.current.rotation.set(a.pitch, a.yaw, 0);
       // No roll, ever. An altimeter with its zero off the vertical reads as
       // broken rather than as styled.
-      root.current.position.z = a.z;
-      root.current.scale.setScalar(a.scale);
+      root.current.rotation.set(a.pitch, a.yaw, 0);
     }
 
     const moving =
@@ -553,9 +537,7 @@ function Instrument({ host, onReady }: { host: HostRef; onReady: () => void }) {
       Math.abs(a.secondary - t.secondary) > MOVED ||
       Math.abs(a.power - t.power) > MOVED ||
       Math.abs(a.pitch - t.pitch) > MOVED ||
-      Math.abs(a.yaw - t.yaw) > MOVED ||
-      Math.abs(a.scale - t.scale) > MOVED ||
-      Math.abs(a.z - t.z) > MOVED;
+      Math.abs(a.yaw - t.yaw) > MOVED;
 
     if (moving && onScreen.current) invalidate();
     else if (!settled.current) {
@@ -576,24 +558,24 @@ function Instrument({ host, onReady }: { host: HostRef; onReady: () => void }) {
 }
 
 /**
- * The stage's own element, handed down rather than looked up.
+ * The scene no longer needs a handle on its host element.
  *
- * The scene needs its host's document offset and cannot get it from the scene
- * graph — the `<Canvas>` renders into a DOM node this subtree does not own. The
- * stage owns that node and already has a ref to it, so it passes it in. The
- * alternative, a `querySelector` from inside the scene, would be a second
- * opinion about which element the slot is, and the two would disagree the first
- * time the stage grew a wrapper.
+ * It used to take one, in order to read the slot's document offset and to
+ * observe it for intersection. Both of those questions belonged to an
+ * instrument that lived in the document's flow. The instrument is a fixed
+ * overlay now: its position is authored, its visibility is published by the
+ * overlay that decides it, and there is no offset for the scene to read.
+ *
+ * Dropping the prop is not tidying. It is the last path by which anything
+ * inside the renderer could have reached a laid-out element on this page, and
+ * removing it makes "the canvas cannot generate a layout quantity" a property
+ * of the file rather than a claim about it.
  */
-export type HostRef = { readonly current: HTMLElement | null };
-
 export default function MobileInstrument({
-  host,
   dpr,
   onReady,
   onContextLost,
 }: {
-  host: HostRef;
   dpr: number;
   onReady: () => void;
   onContextLost: () => void;
@@ -667,7 +649,7 @@ export default function MobileInstrument({
       <InstrumentLights />
       <Baked />
       <Suspense fallback={null}>
-        <Instrument host={host} onReady={onReady} />
+        <Instrument onReady={onReady} />
       </Suspense>
     </Canvas>
   );

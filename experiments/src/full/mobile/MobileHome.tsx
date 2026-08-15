@@ -5,7 +5,7 @@ import { STAGES, formatAltitude } from '../journey';
 import { ALTITUDE_BANDS, measureAscent } from './ascent';
 import { startReveals } from './reveal';
 import { prefersReducedMotion } from './device';
-import { MobileAltimeter } from './MobileAltimeter';
+import { AltimeterInstrument, AltimeterReserve } from './MobileAltimeter';
 import { MobileTelemetry } from './MobileTelemetry';
 import './mobile.css';
 
@@ -197,9 +197,20 @@ export function MobileHome() {
             ]}
           />
 
-          {/* `.mobile`, not `calibration.meta`: that string says "the
-              instrument on the left", which is the desktop composition. */}
-          <MobileAltimeter label={m('calibration.meta.mobile')} />
+          {/*
+            The hero's reservation, and NOT the instrument.
+
+            The real Altimeter is a persistent overlay mounted at the foot of
+            this component — see `AltimeterInstrument`. What sits here is the
+            space the opening composition keeps for it: the headline reads
+            above, the caption and the lead read below, and at scroll zero the
+            overlay is positioned from exactly this block, so the accepted hero
+            frame is unchanged.
+
+            `.mobile`, not `calibration.meta`: that string says "the instrument
+            on the left", which is the desktop composition.
+          */}
+          <AltimeterReserve label={m('calibration.meta.mobile')} />
 
           <Copy className="mv-copy--lead">{m('calibration.lead')}</Copy>
           <p className="mv-actions mv-text">
@@ -485,7 +496,31 @@ export function MobileHome() {
             ))}
           </ul>
         </Section>
+
+        {/*
+          The foot of the homepage, as a structural fact.
+
+          Everything below this point belongs to the site's shared chrome — the
+          Arrival panel and the ground-control footer — which have their own
+          composition and no altitude band. The instrument watches this marker
+          and recedes when it arrives, so the journey ends deliberately rather
+          than with a 3D object hanging over a footer it is not part of.
+
+          A marker rather than a scroll fraction: the footer's height is
+          different in three locales and at four viewports, and a fraction of a
+          document is not a place.
+        */}
+        <i className="mv-end" data-mv-end aria-hidden="true" />
       </div>
+
+      {/*
+        The instrument, for the whole document.
+
+        A sibling of the flow rather than a descendant, for the same reason the
+        telemetry is: it is fixed, it must not join the flow's stacking context,
+        and nothing in the document should be able to paint over it.
+      */}
+      <AltimeterInstrument />
 
       <MobileTelemetry />
     </div>

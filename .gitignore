@@ -71,3 +71,8 @@ _build/reports/phase8-review/
 # TypeScript incremental build cache. Machine-specific, rewritten on every
 # typecheck, and meaningless to anyone else's checkout.
 *.tsbuildinfo
+
+# The mock-credential Portal bundle built by scripts/portal-shots.mjs. It exists
+# so the review captures can show a populated dashboard; it is never published,
+# is not `dist/`, and is rebuilt from scratch on every run.
+_build/.portal-mock/
