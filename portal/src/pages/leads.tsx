@@ -1,29 +1,29 @@
-import { Fragment, useState, type ReactNode } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { X } from 'lucide-react';
 import { useRows } from '@/lib/useRows';
-import { useAuth } from '@/features/auth/AuthProvider';
-import { can } from '@/lib/permissions';
-import { PageHead } from '@/pages/screens';
+import { useScope } from '@/lib/scope';
 import {
-  Badge, Button, Cell, EmptyState, ErrorState, Input, Panel, PanelHeader, Row, Skeleton,
-  Table, Textarea, cn,
+  Button, Cell, DataState, ErrorState, Input, Panel, Row, Select, Skeleton,
+  StatusPill, Table, cn,
 } from '@/components/ui';
-import { BarList, Segmented } from '@/components/charts';
 import {
-  FACETS, FORM_LABEL, LEAD_COLUMNS, PIPELINE, STATUS, buildTimeline, formatWhen, groupBy,
-  metaText, since, statusLabel, statusTone, today, useLeadDetail, useLeadFilter,
-  useLeadMutations, type Lead, type Stage, type TimelineEntry,
+  DAY_OPTIONS, FORM_LABEL, LEAD_COLUMNS, PIPELINE, STATUS, formatWhen, leadSource, statusLabel,
+  statusTone, useLeadFilter, type Lead,
 } from '@/lib/leads';
 
 /**
- * Leads — the pipeline, and the detail behind each row.
+ * LEADS — work.
  *
- * ## What this screen is for
+ * ## The question this screen answers
  *
- * Working a list, not admiring it. The table is the primary object; everything
- * else on the page either narrows it (the stage filter, the search, the sort)
- * or explains one row of it (the detail panel). There is no dashboard framing
- * around the leads, because the person opening this screen already knows why
- * they are here.
+ * "Who needs action?" — and nothing else. It is not a report on lead volume and
+ * it is not an attribution study; both of those are Analytics' job and moving
+ * them there is what let this become one excellent table instead of a table
+ * with two dashboards bolted to it.
+ *
+ * The shape is: what the pipeline looks like (one strip), how to narrow it (one
+ * row), and the list itself (everything below). A row is a link into the lead,
+ * not an accordion — see the note on `LeadDetailScreen` for why that changed.
  *
  * ## Personal data
  *
@@ -40,541 +40,222 @@ import {
  */
 
 export function LeadsScreen() {
-  const { profile } = useAuth();
-  const mayEdit = can(profile?.role, 'manage_leads');
-  const { rows, state, message, reload } = useRows<Lead>('leads', LEAD_COLUMNS);
-  const filter = useLeadFilter(rows);
-  const [open, setOpen] = useState<string | null>(null);
-  const [facet, setFacet] = useState(FACETS[0].id);
+  const { reloadToken } = useScope();
+  const [params] = useSearchParams();
+  const navigate = useNavigate();
+  const { rows, state, message, reload } = useRows<Lead>('leads', LEAD_COLUMNS, 'created_at', reloadToken);
 
-  const active = FACETS.find((f) => f.id === facet)!;
+  // `?status=new` is how the Dashboard's attention items arrive. Read once, as
+  // the filter's initial value, rather than kept in sync with the URL: the
+  // operator narrowing further should not be fighting the address bar.
+  const filter = useLeadFilter(rows, params.get('status') ?? 'all');
 
   return (
-    <>
-      <PageHead
-        title="Leads"
-        lede="Every enquiry from the public site. Personal data — visible to signed-in staff only."
-        right={
-          <div className="flex flex-wrap items-center gap-2">
-            <Input
-              type="search"
-              value={filter.query}
-              onChange={(e) => filter.setQuery(e.target.value)}
-              placeholder="Name, company, email, message…"
-              aria-label="Search leads"
-              className="h-8 w-52 py-1 text-xs sm:w-64"
-            />
-            <Segmented
-              label="Sort"
-              value={filter.sort}
-              options={[
-                { id: 'newest' as const, label: 'Newest' },
-                { id: 'oldest' as const, label: 'Oldest' },
-                { id: 'name' as const, label: 'Name' },
-                { id: 'status' as const, label: 'Stage' },
-              ]}
-              onChange={filter.setSort}
-            />
-          </div>
-        }
+    <div className="grid gap-4">
+      <StatusStrip
+        counts={filter.counts}
+        active={filter.filters.stage}
+        onPick={(stage) => filter.set('stage', stage)}
+        loading={state === 'loading'}
       />
 
-      {/* ------------------------------------------------------- pipeline -- */}
-      <section aria-label="Pipeline" className="mb-4 grid gap-2 sm:grid-cols-3 xl:grid-cols-7">
-        <StageTile
-          label="All"
-          count={filter.counts.all ?? 0}
-          active={filter.stage === 'all'}
-          onClick={() => filter.setStage('all')}
-        />
-        {PIPELINE.map((stage) => (
-          <StageTile
-            key={stage}
-            label={STATUS[stage].label}
-            count={filter.counts[stage] ?? 0}
-            tone={STATUS[stage].tone}
-            active={filter.stage === stage}
-            onClick={() => filter.setStage(filter.stage === stage ? 'all' : stage)}
-          />
-        ))}
-      </section>
+      <Panel className="min-w-0">
+        <FilterBar filter={filter} shown={filter.filtered.length} total={rows.length} />
 
-      {/*
-        The attribution panel sits BESIDE the table only at 2xl, and that is a
-        measurement rather than a taste.
-
-        At 1440 the sidebar takes 240 and the page padding 64, so a 320px column
-        beside the table leaves it about 800px for seven columns — and a
-        seven-column table with a 40px cell gutter needs more than that, so it
-        overflowed its own scroll container and the Name column ended up off the
-        left edge whenever a control inside it took focus. Below 1536 the panel
-        goes underneath, where it is just as readable and costs the table
-        nothing.
-      */}
-      <div className="grid gap-4 2xl:grid-cols-[1fr_320px]">
-        {/* ---------------------------------------------------- the table -- */}
-        <Panel className="min-w-0">
-          <PanelHeader
-            title={filter.stage === 'all' ? 'All leads' : `${statusLabel(filter.stage)} leads`}
-            action={
-              <span className="label">
-                {filter.filtered.length} of {rows.length}
-                {' · '}
-                {today(rows)} today · {since(rows, 7)} this week
-              </span>
-            }
-          />
-
-          {state === 'loading' && (
-            <div className="space-y-2 p-5" aria-busy="true">
-              {[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-10 w-full" />)}
-            </div>
-          )}
-
-          {state === 'unconfigured' && (
-            <EmptyState
-              title="Not connected"
-              body="Supabase credentials are not set in this environment, so there is nothing to read yet. See README.md for the setup steps."
-            />
-          )}
-
-          {state === 'error' && <ErrorState message={message} onRetry={reload} />}
-
-          {state === 'ready' && filter.filtered.length === 0 && (
-            <EmptyState
-              title={rows.length ? 'Nothing matches' : 'No leads yet'}
-              body={rows.length
-                ? 'Try a shorter search term, or clear the stage filter.'
-                : 'The newsletter, contact form, Impact application and quote questionnaire all write here through the Netlify function.'}
-            />
-          )}
-
-          {state === 'ready' && filter.filtered.length > 0 && (
-            <Table head={['Name', 'Form', 'Company', 'Interest', 'Stage', 'Received', '']}>
-              {filter.filtered.map((lead) => (
-                <Fragment key={lead.id}>
-                  <Row>
-                    <Cell>
-                      <span className="text-sm text-paper">{lead.name}</span>
-                      <a
-                        className="mt-0.5 block truncate text-[11px] text-haze underline underline-offset-4 hover:text-paper"
-                        href={`mailto:${lead.email}`}
-                      >
-                        {lead.email}
-                      </a>
-                    </Cell>
-                    <Cell><Badge>{FORM_LABEL[lead.form_type ?? ''] ?? lead.form_type ?? '—'}</Badge></Cell>
-                    <Cell className="text-haze">{lead.company || '—'}</Cell>
-                    <Cell className="text-haze">{lead.service_interest || '—'}</Cell>
-                    <Cell><Badge tone={statusTone(lead.status)}>{statusLabel(lead.status)}</Badge></Cell>
-                    <Cell className="num whitespace-nowrap text-xs text-haze">
-                      {formatWhen(lead.created_at)}
-                    </Cell>
-                    <Cell>
-                      <button
-                        type="button"
-                        className="label underline underline-offset-4 hover:text-paper"
-                        aria-expanded={open === lead.id}
-                        onClick={() => setOpen(open === lead.id ? null : lead.id)}
-                      >
-                        {open === lead.id ? 'Hide' : 'Open'}
-                      </button>
-                    </Cell>
-                  </Row>
-                  {open === lead.id && (
-                    <LeadDetail lead={lead} columns={7} mayEdit={mayEdit} reload={reload} />
-                  )}
-                </Fragment>
-              ))}
-            </Table>
-          )}
-        </Panel>
-
-        {/* ------------------------------------------------- attribution -- */}
-        <Panel className="h-fit min-w-0">
-          <PanelHeader
-            title="Where they came from"
-            action={<span className="label">{rows.length} leads</span>}
-          />
-          <div className="px-5 pt-3">
-            <div className="flex flex-wrap gap-1">
-              {FACETS.map((f) => (
-                <button
-                  key={f.id}
-                  type="button"
-                  aria-pressed={facet === f.id}
-                  onClick={() => setFacet(f.id)}
-                  className={cn(
-                    'rounded-sm border px-2 py-1 font-data text-[10px] uppercase tracking-[0.12em] transition-colors',
-                    facet === f.id
-                      ? 'border-signal/40 bg-white/[0.06] text-paper'
-                      : 'border-hair text-haze hover:text-paper',
-                  )}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
+        {state === 'loading' && (
+          <div className="space-y-1.5 p-4" aria-busy="true">
+            {[0, 1, 2, 3, 4, 5].map((i) => <Skeleton key={i} className="h-8 w-full" />)}
           </div>
-          <BarList
-            rows={groupBy(rows, active.of)}
-            empty="No attribution recorded on these leads yet."
-          />
-          {/*
-            The boundary, stated where the data is.
-
-            These counts come from the Portal's OWN lead rows — the UTM
-            parameters and landing route the browser sent with the submission —
-            and never from GA4. No GA4 user is ever associated with a named
-            lead, and no lead's personal data is ever sent to GA4. This panel is
-            aggregate business analysis of records this Portal already holds.
-          */}
-          <p className="border-t border-hair px-5 py-3 text-[11px] leading-relaxed text-haze">
-            From each lead&rsquo;s own submission, not from Google. Analytics is never joined to a
-            named person in either direction.
-          </p>
-        </Panel>
-      </div>
-    </>
-  );
-}
-
-/* =============================================================== the tiles == */
-
-function StageTile({
-  label, count, tone = 'neutral', active, onClick,
-}: {
-  label: string;
-  count: number;
-  tone?: 'neutral' | 'good' | 'warn' | 'bad';
-  active: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      className={cn(
-        'rounded-lg border px-3 py-2 text-left transition-colors',
-        active
-          ? 'border-signal/40 bg-white/[0.06]'
-          : 'border-hair bg-panel/60 hover:border-chrome/30 hover:bg-white/[0.03]',
-      )}
-    >
-      <span className="label block truncate">{label}</span>
-      <span
-        className={cn(
-          'num mt-0.5 block text-lg',
-          count === 0 ? 'text-haze' : tone === 'warn' ? 'text-signal' : 'text-paper',
         )}
-      >
-        {count}
-      </span>
-    </button>
-  );
-}
 
-/* ============================================================== the detail == */
-
-/**
- * One lead, opened.
- *
- * Everything the operator needs in order to act, in the order they need it:
- * who and how to reach them, what they asked for, where they came from, what
- * has happened so far, and the two things that can be done about it.
- */
-function LeadDetail({
-  lead, columns, mayEdit, reload,
-}: { lead: Lead; columns: number; mayEdit: boolean; reload: () => void }) {
-  const detail = useLeadDetail(lead.id);
-  const mutate = useLeadMutations(() => { reload(); void detail.reload(); });
-  const [error, setError] = useState<string | null>(null);
-  const [draft, setDraft] = useState('');
-
-  const payload = lead.payload && typeof lead.payload === 'object' ? lead.payload : {};
-  const meta = lead.meta && typeof lead.meta === 'object' ? lead.meta : {};
-  const answers = Array.isArray((payload as { answers?: unknown }).answers)
-    ? (payload as { answers: { q: string; a: string }[] }).answers
-    : [];
-  const scalars = Object.entries(payload).filter(([k]) => k !== 'answers');
-
-  const timeline = buildTimeline(lead, detail.notes, detail.log);
-
-  const submit = async () => {
-    const problem = await mutate.addNote(lead.id, draft);
-    setError(problem);
-    if (!problem) setDraft('');
-  };
-
-  return (
-    <tr className="border-b border-hair/60 bg-white/[0.02] last:border-0">
-      <Cell colSpan={columns} className="px-5 py-5">
-        {/*
-          `w-0 min-w-full`, and it is not a flourish.
-
-          A `colSpan` cell participates in the table's width calculation like any
-          other: its content's min-content width becomes a floor on the table,
-          and this cell holds a two-column grid of forty fields. Measured, the
-          expanded row pushed the table ~500px past its scroll container, which
-          then scrolled sideways to keep the focused control visible and left the
-          Name column off the left edge of the screen.
-
-          Width zero removes this cell from that calculation entirely; the
-          `min-width: 100%` then resolves against the width the table settled on
-          without it. The detail is exactly as wide as the table and never a
-          pixel wider.
-        */}
-        <div className="grid w-0 min-w-full gap-5 lg:grid-cols-[1.3fr_1fr]">
-          {/* ------------------------------------------------- the enquiry */}
-          <div className="grid min-w-0 gap-4">
-            <Group title="Contact">
-              <Fact label="Name" value={lead.name} />
-              <Fact label="Email" value={lead.email} />
-              <Fact label="Company" value={lead.company} />
-              <Fact label="Budget" value={lead.budget_range} />
-            </Group>
-
-            <Group title="Context">
-              <Fact label="Form" value={lead.form_type ? FORM_LABEL[lead.form_type] ?? lead.form_type : null} />
-              <Fact label="Locale" value={lead.locale} />
-              <Fact label="Submitted from" value={lead.source_route} />
-              <Fact label="Landed on" value={metaText(lead, 'landingRoute')} />
-              <Fact label="Came from" value={metaText(lead, 'landingReferrerHost')} />
-              <Fact label="Received" value={formatWhen(lead.created_at)} />
-            </Group>
-
-            <Group title="Campaign">
-              <Fact label="UTM source" value={metaText(lead, 'utmSource')} />
-              <Fact label="UTM medium" value={metaText(lead, 'utmMedium')} />
-              <Fact label="UTM campaign" value={metaText(lead, 'utmCampaign')} />
-              <Fact label="UTM content" value={metaText(lead, 'utmContent')} />
-              <Fact label="UTM term" value={metaText(lead, 'utmTerm')} />
-              <Fact label="Submission id" value={lead.submission_id} />
-            </Group>
-
-            {/*
-              EVERYTHING ELSE IN `meta`, AND THAT IS THE POINT.
-
-              The three groups above are an authored reading order, not an
-              allow-list. A lead written by an older client — or by a newer one
-              — must not become partly invisible because this file has not
-              caught up with it, so every remaining key renders under its own
-              raw name. The label table is for readability; dropping what it
-              does not recognise would make the detail screen quietly lossy,
-              which is the one thing an operational record must never be.
-            */}
-            {Object.entries(meta).filter(([k]) => !SHOWN_META.has(k)).length > 0 && (
-              <Group title="Other metadata">
-                {Object.entries(meta)
-                  .filter(([k]) => !SHOWN_META.has(k))
-                  .map(([k, v]) => (
-                    <Fact key={k} label={META_LABEL[k] ?? k} value={String(v ?? '')} />
-                  ))}
-              </Group>
-            )}
-
-            {lead.message && (
-              <div>
-                <p className="label mb-1">Message</p>
-                {/* A text node inside `pre-wrap`. Whatever was typed, this
-                    renders it as characters. */}
-                <p className="whitespace-pre-wrap break-words rounded-sm border border-hair bg-black/25 p-3 text-xs leading-relaxed text-paper">
-                  {lead.message}
-                </p>
-              </div>
-            )}
-
-            {scalars.length > 0 && (
-              <Group title="Answers">
-                {scalars.map(([k, v]) => (
-                  <Fact
-                    key={k}
-                    label={k}
-                    value={typeof v === 'boolean' ? (v ? 'Yes' : 'No') : Array.isArray(v) ? `${v.length} answers` : String(v ?? '')}
-                  />
-                ))}
-              </Group>
-            )}
-
-            {answers.length > 0 && (
-              <div>
-                <p className="label mb-1.5">{answers.length} questionnaire answers</p>
-                <ol className="grid gap-2">
-                  {answers.map((entry, i) => (
-                    <li key={`${i}-${entry.q}`} className="border-l border-hair pl-3">
-                      <p className="text-[11px] text-haze">{entry.q}</p>
-                      <p className="whitespace-pre-wrap break-words text-xs text-paper">{entry.a || '—'}</p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            )}
-
-            {scalars.length === 0 && answers.length === 0 && !lead.message && (
-              <p className="text-xs text-haze">
-                This lead predates the structured payload and carries no message.
-              </p>
-            )}
-          </div>
-
-          {/* ------------------------------------------ stage, notes, time */}
-          <div className="grid min-w-0 gap-4">
-            <div>
-              <p className="label mb-1.5">Stage</p>
-              {mayEdit ? (
-                <div className="flex flex-wrap gap-1">
-                  {PIPELINE.map((stage) => (
-                    <button
-                      key={stage}
-                      type="button"
-                      disabled={mutate.busy === lead.id}
-                      aria-pressed={lead.status === stage}
-                      onClick={async () => setError(await mutate.setStatus(lead.id, stage as Stage))}
-                      className={cn(
-                        'rounded-sm border px-2.5 py-1 font-data text-[10px] uppercase tracking-[0.12em]',
-                        'transition-colors disabled:opacity-45',
-                        lead.status === stage
-                          ? 'border-signal/50 bg-signal/10 text-paper'
-                          : 'border-hair text-haze hover:border-chrome/40 hover:text-paper',
-                      )}
-                    >
-                      {STATUS[stage].label}
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <Badge tone={statusTone(lead.status)}>{statusLabel(lead.status)}</Badge>
-              )}
-              <p className="mt-1.5 text-[11px] text-haze">
-                {STATUS[lead.status]?.note ?? 'A status this Portal does not draw.'}
-              </p>
-              {error && <p role="alert" className="mt-1.5 text-[11px] text-danger">{error}</p>}
-            </div>
-
-            {mayEdit && (
-              <div>
-                <label className="label mb-1.5 block" htmlFor={`note-${lead.id}`}>
-                  Internal note
-                </label>
-                <Textarea
-                  id={`note-${lead.id}`}
-                  value={draft}
-                  onChange={(e) => setDraft(e.target.value)}
-                  maxLength={4000}
-                  placeholder="Private to the team. Plain text."
-                  className="min-h-16 text-xs"
-                />
-                <div className="mt-1.5 flex items-center justify-between gap-2">
-                  <span className="num text-[10px] text-haze">{draft.length}/4000</span>
-                  <Button size="sm" disabled={!draft.trim() || mutate.busy === lead.id} onClick={() => void submit()}>
-                    Add note
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            <div>
-              <p className="label mb-2">Timeline</p>
-              {detail.state === 'loading' ? (
-                <Skeleton className="h-20 w-full" />
-              ) : (
-                <Timeline entries={timeline} />
-              )}
-              {/* The honest limit. Leads that predate the trigger and the audit
-                  row have neither, and their timelines show only what they have
-                  — which is better than inventing the rest. */}
-              <p className="mt-2 text-[10px] leading-relaxed text-haze">
-                Only recorded events appear here. Leads received before status changes were logged
-                show the arrival and nothing else.
-              </p>
-            </div>
-          </div>
-        </div>
-      </Cell>
-    </tr>
-  );
-}
-
-function Group({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div>
-      <p className="label mb-1.5">{title}</p>
-      <dl className="grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">{children}</dl>
-    </div>
-  );
-}
-
-function Fact({ label, value }: { label: string; value: string | null | undefined }) {
-  return (
-    <div className="grid min-w-0 gap-0.5">
-      <dt className="label truncate">{label}</dt>
-      <dd className="whitespace-pre-wrap break-words text-xs text-paper">{value || '—'}</dd>
-    </div>
-  );
-}
-
-/**
- * The `meta` keys the three authored groups above already show.
- *
- * Anything not in this set falls through to "Other metadata" under its raw key.
- * Keeping the set here rather than deriving it from the JSX is deliberate: the
- * groups are a reading order chosen by a person, and a derivation would make
- * moving a field between groups silently change what is hidden.
- */
-const SHOWN_META = new Set([
-  'utmSource', 'utmMedium', 'utmCampaign', 'utmContent', 'utmTerm',
-  'landingRoute', 'landingReferrerHost',
-]);
-
-/**
- * Readable names for the remaining `meta` keys, in no particular order.
- *
- * A fallback, not a filter: `META_LABEL[k] ?? k` is what guarantees an
- * unrecognised key still appears.
- */
-const META_LABEL: Record<string, string> = {
-  referrerOrigin: 'Referrer at submit',
-  host: 'Served by',
-  viewport: 'Device',
-  elapsedMs: 'Time to fill (ms)',
-  attempt: 'Attempts',
-  legacyClient: 'Legacy client',
-  submissionIdSource: 'Submission id source',
-};
-
-const KIND_TONE: Record<TimelineEntry['kind'], string> = {
-  received: 'bg-signal',
-  status: 'bg-chrome',
-  note: 'bg-good',
-  notified: 'bg-chrome/50',
-  other: 'bg-hair',
-};
-
-function Timeline({ entries }: { entries: TimelineEntry[] }) {
-  if (entries.length === 0) {
-    return <p className="text-xs text-haze">Nothing recorded.</p>;
-  }
-  return (
-    <ol className="relative grid gap-3 border-l border-hair pl-4">
-      {entries.map((entry) => (
-        <li key={entry.id} className="relative">
-          <span
-            className={cn('absolute -left-[19px] top-1.5 h-1.5 w-1.5 rounded-full', KIND_TONE[entry.kind])}
-            aria-hidden="true"
+        {state === 'unconfigured' && (
+          <DataState
+            kind="unconfigured"
+            title="Not connected"
+            body="Supabase credentials are not set in this environment, so there is nothing to read yet. See README.md for the setup steps."
           />
-          <p className="text-xs text-paper">{entry.title}</p>
-          {entry.detail && (
-            <p className="mt-0.5 whitespace-pre-wrap break-words text-[11px] leading-relaxed text-haze">
-              {entry.detail}
-            </p>
-          )}
-          <p className="num mt-0.5 text-[10px] text-haze">
-            {formatWhen(entry.at)}
-            {entry.by && <span> · {entry.by}</span>}
-          </p>
-        </li>
-      ))}
-    </ol>
+        )}
+
+        {state === 'error' && <ErrorState message={message} onRetry={reload} />}
+
+        {state === 'ready' && filter.filtered.length === 0 && (
+          <DataState
+            kind="empty"
+            title={rows.length ? 'Nothing matches' : 'No leads yet'}
+            body={rows.length
+              ? 'No lead matches every filter above.'
+              : 'The newsletter, contact form, Impact application and quote questionnaire all write here through the Netlify function.'}
+            action={rows.length ? <Button size="sm" onClick={filter.reset}>Clear filters</Button> : undefined}
+          />
+        )}
+
+        {state === 'ready' && filter.filtered.length > 0 && (
+          <Table
+            head={['Date', 'Company / person', 'Form', 'Source', 'Status', 'Locale']}
+            minWidth={840}
+            sticky
+          >
+            {filter.filtered.map((lead) => (
+              <Row key={lead.id} onClick={() => navigate(`/leads/${lead.id}`)}>
+                <Cell className="num whitespace-nowrap text-[11px] text-haze">
+                  {formatWhen(lead.created_at)}
+                </Cell>
+                <Cell className="min-w-0">
+                  {/* The real affordance. The row click is an enhancement; this
+                      is what a keyboard reaches and a middle click opens. */}
+                  <Link to={`/leads/${lead.id}`} className="text-[13px] text-paper hover:text-signal">
+                    {lead.company || lead.name}
+                  </Link>
+                  <span className="block truncate text-[11px] text-haze">
+                    {lead.company ? lead.name : lead.email}
+                  </span>
+                </Cell>
+                <Cell className="text-[11px] text-haze">
+                  {FORM_LABEL[lead.form_type ?? ''] ?? lead.form_type ?? '—'}
+                </Cell>
+                <Cell className="break-words text-[11px] text-haze">{leadSource(lead)}</Cell>
+                <Cell><StatusPill tone={statusTone(lead.status)}>{statusLabel(lead.status)}</StatusPill></Cell>
+                <Cell className="num text-[11px] uppercase text-haze">{lead.locale || '—'}</Cell>
+              </Row>
+            ))}
+          </Table>
+        )}
+      </Panel>
+    </div>
+  );
+}
+
+/* ============================================================ status strip */
+
+/**
+ * The pipeline, as one surface.
+ *
+ * Seven bordered tiles became seven cells of one bounded strip, for the same
+ * reason the Dashboard's KPIs did: seven cards is seven objects, and the reader
+ * wants one object with seven readings. Each cell is a toggle — pressing the
+ * active one clears it — and `aria-pressed` says which is on.
+ */
+function StatusStrip({
+  counts, active, onPick, loading,
+}: {
+  counts: Record<string, number>;
+  active: string;
+  onPick: (stage: string) => void;
+  loading: boolean;
+}) {
+  const cells: { id: string; label: string }[] = [
+    { id: 'all', label: 'All' },
+    ...PIPELINE.map((stage) => ({ id: stage as string, label: STATUS[stage].label })),
+  ];
+
+  return (
+    <Panel
+      aria-label="Pipeline"
+      className="grid grid-cols-2 divide-x divide-y divide-hairline bg-panel sm:grid-cols-4 xl:grid-cols-7 xl:divide-y-0"
+    >
+      {cells.map(({ id, label }) => {
+        const count = counts[id] ?? 0;
+        const selected = active === id;
+        return (
+          <button
+            key={id}
+            type="button"
+            aria-pressed={selected}
+            onClick={() => onPick(selected && id !== 'all' ? 'all' : id)}
+            className={cn(
+              'min-w-0 px-4 py-3 text-left transition-colors',
+              selected ? 'bg-flare' : 'hover:bg-flare',
+            )}
+          >
+            <span className="t-section block truncate">{label}</span>
+            {loading ? (
+              <Skeleton className="mt-1.5 h-5 w-8" />
+            ) : (
+              <span className={cn(
+                'num mt-1 block text-xl leading-none',
+                count === 0 ? 'text-haze' : selected ? 'text-signal' : 'text-paper',
+              )}>
+                {count}
+              </span>
+            )}
+          </button>
+        );
+      })}
+    </Panel>
+  );
+}
+
+/* =============================================================== filter bar */
+
+/**
+ * One control row, five dropdowns and a search box.
+ *
+ * Native `select`s, and every option list is built from the values the rows
+ * actually carry — a "Source" menu offering `linkedin` when no lead ever came
+ * from LinkedIn is a menu that teaches the operator to distrust it. Reset only
+ * appears when something is narrowed, because a permanently visible "Clear"
+ * next to an untouched form is a control that does nothing.
+ */
+function FilterBar({
+  filter, shown, total,
+}: { filter: ReturnType<typeof useLeadFilter>; shown: number; total: number }) {
+  const { filters, set, options } = filter;
+
+  return (
+    <div className="border-b border-hairline px-4 py-2.5">
+      <div className="flex flex-wrap items-center gap-2">
+        <Input
+          type="search"
+          value={filters.query}
+          onChange={(e) => set('query', e.target.value)}
+          placeholder="Name, company, email, message…"
+          aria-label="Search leads"
+          className="h-7 w-full py-1 text-xs sm:w-56"
+        />
+
+        <label className="sr-only" htmlFor="filter-days">Date</label>
+        <Select id="filter-days" value={filters.days} onChange={(e) => set('days', e.target.value)}>
+          {DAY_OPTIONS.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+        </Select>
+
+        <label className="sr-only" htmlFor="filter-form">Form</label>
+        <Select id="filter-form" value={filters.form} onChange={(e) => set('form', e.target.value)}>
+          <option value="all">Any form</option>
+          {options.forms.map((f) => (
+            <option key={f} value={f}>{FORM_LABEL[f] ?? f}</option>
+          ))}
+        </Select>
+
+        <label className="sr-only" htmlFor="filter-source">Source</label>
+        <Select id="filter-source" value={filters.source} onChange={(e) => set('source', e.target.value)}>
+          <option value="all">Any source</option>
+          {options.sources.map((s) => <option key={s} value={s}>{s}</option>)}
+        </Select>
+
+        <label className="sr-only" htmlFor="filter-locale">Locale</label>
+        <Select id="filter-locale" value={filters.locale} onChange={(e) => set('locale', e.target.value)}>
+          <option value="all">Any locale</option>
+          {options.locales.map((l) => <option key={l} value={l}>{l.toUpperCase()}</option>)}
+        </Select>
+
+        <label className="sr-only" htmlFor="filter-sort">Sort</label>
+        <Select id="filter-sort" value={filter.sort} onChange={(e) => filter.setSort(e.target.value as never)}>
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="name">By name</option>
+          <option value="status">By stage</option>
+        </Select>
+
+        {filter.narrowed && (
+          <Button size="sm" variant="quiet" onClick={filter.reset}>
+            <X size={11} aria-hidden="true" /> Clear
+          </Button>
+        )}
+
+        <span className="t-note ml-auto whitespace-nowrap">
+          {shown === total ? `${total} leads` : `${shown} of ${total}`}
+        </span>
+      </div>
+    </div>
   );
 }

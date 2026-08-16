@@ -127,6 +127,22 @@ export function groupBy(
     .slice(0, limit);
 }
 
+/**
+ * Where a lead came from, as one readable string.
+ *
+ * The UTM source when the browser sent one, the referring host when it did not,
+ * and `(direct)` when there was neither — which is what "somebody typed the
+ * address or came from a client with no referrer" honestly looks like. This is
+ * the Portal's OWN attribution, taken from the submission itself; it is never
+ * joined to a GA4 user and never leaves this database.
+ */
+export function leadSource(lead: Lead): string {
+  const source = metaText(lead, 'utmSource');
+  const medium = metaText(lead, 'utmMedium');
+  if (source) return medium ? `${source} / ${medium}` : source;
+  return metaText(lead, 'landingReferrerHost') ?? '(direct)';
+}
+
 /** The attribution facets the Leads screen offers. */
 export const FACETS: { id: string; label: string; of: (lead: Lead) => string | null }[] = [
   { id: 'source', label: 'Source', of: (l) => metaText(l, 'utmSource') ?? metaText(l, 'landingReferrerHost') },
@@ -189,6 +205,49 @@ interface LogRow {
  * thing a timeline must never do, because the whole value of it is that it
  * happened.
  */
+/**
+ * One lead, by id.
+ *
+ * The detail screen is a route now, which means it can be opened cold — from a
+ * link, from a bookmark, after a reload — with no list in memory to take the row
+ * from. So it reads its own row, through the same unqualified select and the
+ * same RLS policy as the list: a lead this account may not see comes back empty
+ * and the screen says "not found" rather than "forbidden", because which rows
+ * exist is itself something not to leak.
+ */
+export function useLead(leadId: string | undefined, reloadToken = 0) {
+  const [lead, setLead] = useState<Lead | null>(null);
+  const [state, setState] = useState<'loading' | 'ready' | 'missing' | 'error' | 'unconfigured'>(
+    isConfigured ? 'loading' : 'unconfigured',
+  );
+
+  const load = useCallback(async () => {
+    if (!isConfigured) return setState('unconfigured');
+    if (!leadId) return setState('missing');
+    setState('loading');
+
+    const { data, error } = await supabase
+      .from('leads')
+      .select(LEAD_COLUMNS)
+      .eq('id', leadId)
+      .maybeSingle();
+
+    if (error) {
+      // A malformed id is a 22P02 from Postgres, which is a "no such lead" in
+      // every sense that matters to a reader — not an outage.
+      console.error('[leads.detail]', error);
+      setState(error.code === '22P02' ? 'missing' : 'error');
+      return;
+    }
+    setLead((data ?? null) as Lead | null);
+    setState(data ? 'ready' : 'missing');
+  }, [leadId, reloadToken]);
+
+  useEffect(() => { void load(); }, [load]);
+
+  return { lead, state, reload: load };
+}
+
 export function useLeadDetail(leadId: string | null) {
   const [notes, setNotes] = useState<Note[]>([]);
   const [log, setLog] = useState<LogRow[]>([]);
@@ -363,16 +422,73 @@ export function useLeadMutations(onChanged: () => void) {
  */
 export type Sort = 'newest' | 'oldest' | 'name' | 'status';
 
-export function useLeadFilter(leads: Lead[]) {
-  const [query, setQuery] = useState('');
-  const [stage, setStage] = useState<string>('all');
+/** Everything the control row can narrow by. `all` is "do not narrow by this". */
+export interface LeadFilters {
+  query: string;
+  stage: string;
+  /** A number of days as a string, or `all`. A string so it can be a `select`. */
+  days: string;
+  form: string;
+  source: string;
+  locale: string;
+}
+
+const BLANK: LeadFilters = {
+  query: '', stage: 'all', days: 'all', form: 'all', source: 'all', locale: 'all',
+};
+
+export const DAY_OPTIONS = [
+  { id: 'all', label: 'Any date' },
+  { id: '1', label: 'Today' },
+  { id: '7', label: 'Last 7 days' },
+  { id: '30', label: 'Last 30 days' },
+  { id: '90', label: 'Last 90 days' },
+];
+
+/**
+ * The Leads screen's filter, search and sort, done in the browser.
+ *
+ * The list is capped at 200 rows by `useRows`, which is the whole dataset for
+ * this business for the foreseeable future, and filtering 200 objects in memory
+ * is instant. Pushing it into PostgREST would mean a round trip per keystroke
+ * for a result the client already has.
+ *
+ * `initialStage` exists for the Dashboard's attention items, which link at
+ * `/leads?status=new`: an operator who clicked "3 new leads have waited more
+ * than a day" should land on those three, not on everything.
+ */
+export function useLeadFilter(leads: Lead[], initialStage = 'all') {
+  const [filters, setFilters] = useState<LeadFilters>({ ...BLANK, stage: initialStage });
   const [sort, setSort] = useState<Sort>('newest');
 
+  const set = useCallback(<K extends keyof LeadFilters>(key: K, value: LeadFilters[K]) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  }, []);
+  const reset = useCallback(() => setFilters(BLANK), []);
+
+  /** The values these rows actually carry — never a hard-coded list. */
+  const options = useMemo(() => {
+    const distinct = (of: (lead: Lead) => string | null) =>
+      [...new Set(leads.map(of).filter((v): v is string => Boolean(v)))].sort();
+    return {
+      forms: distinct((l) => l.form_type),
+      sources: distinct(leadSource),
+      locales: distinct((l) => l.locale),
+    };
+  }, [leads]);
+
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = filters.query.trim().toLowerCase();
     let rows = leads;
 
-    if (stage !== 'all') rows = rows.filter((l) => l.status === stage);
+    if (filters.stage !== 'all') rows = rows.filter((l) => l.status === filters.stage);
+    if (filters.form !== 'all') rows = rows.filter((l) => l.form_type === filters.form);
+    if (filters.locale !== 'all') rows = rows.filter((l) => l.locale === filters.locale);
+    if (filters.source !== 'all') rows = rows.filter((l) => leadSource(l) === filters.source);
+    if (filters.days !== 'all') {
+      const from = Date.now() - Number(filters.days) * 86_400_000;
+      rows = rows.filter((l) => new Date(l.created_at).getTime() >= from);
+    }
     if (q) {
       rows = rows.filter((l) =>
         [l.name, l.company, l.email, l.message, l.service_interest, l.source_route]
@@ -393,7 +509,7 @@ export function useLeadFilter(leads: Lead[]) {
       order.sort((a, b) => rank(a.status) - rank(b.status) || b.created_at.localeCompare(a.created_at));
     }
     return order;
-  }, [leads, query, stage, sort]);
+  }, [leads, filters, sort]);
 
   const counts = useMemo(() => {
     const out: Record<string, number> = { all: leads.length };
@@ -401,7 +517,9 @@ export function useLeadFilter(leads: Lead[]) {
     return out;
   }, [leads]);
 
-  return { query, setQuery, stage, setStage, sort, setSort, filtered, counts };
+  const narrowed = (Object.keys(BLANK) as (keyof LeadFilters)[]).some((k) => filters[k] !== BLANK[k]);
+
+  return { filters, set, reset, narrowed, options, sort, setSort, filtered, counts };
 }
 
 /** How many leads arrived in the last `days` days. */
