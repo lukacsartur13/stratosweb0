@@ -1,0 +1,1145 @@
+{
+  "note": "Data requests per screen, recorded live against the mock bundle. Bundle assets excluded — these are PostgREST selects, RPC calls and the two Netlify endpoints only.",
+  "generatedAt": "2026-08-16T21:01:58.050Z",
+  "screens": [
+    {
+      "screen": "dashboard-1920",
+      "path": "/",
+      "viewport": "1920x1080",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 64,
+        "loadMs": 64,
+        "firstContentfulPaintMs": 136
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "dashboard-1440",
+      "path": "/",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 56,
+        "loadMs": 56,
+        "firstContentfulPaintMs": 124
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "dashboard-macbook-scan",
+      "path": "/",
+      "viewport": "1512x945",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 120
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/leads",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "dashboard-tablet",
+      "path": "/",
+      "viewport": "834x1112",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 38,
+        "loadMs": 38,
+        "firstContentfulPaintMs": 96
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "dashboard-mobile",
+      "path": "/",
+      "viewport": "390x844",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 42,
+        "loadMs": 42,
+        "firstContentfulPaintMs": 92
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "dashboard-mobile-drawer",
+      "path": "/",
+      "viewport": "390x844",
+      "dataRequests": 9,
+      "timing": {
+        "domContentLoadedMs": 40,
+        "loadMs": 40,
+        "firstContentfulPaintMs": 100
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution",
+        "GET http://127.0.0.1:4399/api/portal-health"
+      ]
+    },
+    {
+      "screen": "dashboard-not-configured",
+      "path": "/",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-not-connected",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 43,
+        "loadMs": 43,
+        "firstContentfulPaintMs": 104
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-1920",
+      "path": "/analytics",
+      "viewport": "1920x1080",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 45,
+        "loadMs": 45,
+        "firstContentfulPaintMs": 108
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-overview",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 43,
+        "loadMs": 43,
+        "firstContentfulPaintMs": 96
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-traffic",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 128
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-acquisition",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 50,
+        "loadMs": 50,
+        "firstContentfulPaintMs": 100
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-content",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-conversion",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 50,
+        "loadMs": 50,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-audience",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 46,
+        "loadMs": 46,
+        "firstContentfulPaintMs": 100
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-campaign",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-landing",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 53,
+        "loadMs": 53,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-no-compare",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 54,
+        "loadMs": 54,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-tablet",
+      "path": "/analytics",
+      "viewport": "834x1112",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 49,
+        "loadMs": 49,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-mobile",
+      "path": "/analytics",
+      "viewport": "390x844",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 54,
+        "loadMs": 54,
+        "firstContentfulPaintMs": 108
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "leads-1440",
+      "path": "/leads",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/leads",
+        "GET /rest/v1/opportunities"
+      ]
+    },
+    {
+      "screen": "leads-filtered",
+      "path": "/leads",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 51,
+        "loadMs": 51,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/leads",
+        "GET /rest/v1/opportunities"
+      ]
+    },
+    {
+      "screen": "leads-mobile",
+      "path": "/leads",
+      "viewport": "390x844",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 100
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/leads",
+        "GET /rest/v1/opportunities"
+      ]
+    },
+    {
+      "screen": "leads-tablet",
+      "path": "/leads",
+      "viewport": "834x1112",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 67,
+        "loadMs": 67,
+        "firstContentfulPaintMs": 132
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/leads",
+        "GET /rest/v1/opportunities"
+      ]
+    },
+    {
+      "screen": "lead-detail-1440",
+      "path": "/leads/a0000000-0000-4000-8000-000000000001",
+      "viewport": "1440x900",
+      "dataRequests": 6,
+      "timing": {
+        "domContentLoadedMs": 51,
+        "loadMs": 51,
+        "firstContentfulPaintMs": 116
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/leads",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/lead_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "lead-detail-mobile",
+      "path": "/leads/a0000000-0000-4000-8000-000000000001",
+      "viewport": "390x844",
+      "dataRequests": 6,
+      "timing": {
+        "domContentLoadedMs": 59,
+        "loadMs": 59,
+        "firstContentfulPaintMs": 108
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/leads",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/lead_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "system-1440",
+      "path": "/system",
+      "viewport": "1440x900",
+      "dataRequests": 2,
+      "timing": {
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health"
+      ]
+    },
+    {
+      "screen": "system-mobile",
+      "path": "/system",
+      "viewport": "390x844",
+      "dataRequests": 2,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 96
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health"
+      ]
+    },
+    {
+      "screen": "projects",
+      "path": "/projects",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 46,
+        "loadMs": 46,
+        "firstContentfulPaintMs": 96
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/project_milestones"
+      ]
+    },
+    {
+      "screen": "activity",
+      "path": "/activity",
+      "viewport": "1440x900",
+      "dataRequests": 3,
+      "timing": {
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 100
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "settings",
+      "path": "/settings",
+      "viewport": "1440x900",
+      "dataRequests": 2,
+      "timing": {
+        "domContentLoadedMs": 57,
+        "loadMs": 57,
+        "firstContentfulPaintMs": 120
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health"
+      ]
+    },
+    {
+      "screen": "dashboard-p2-pipeline",
+      "path": "/",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 42,
+        "loadMs": 42,
+        "firstContentfulPaintMs": 108
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "dashboard-p2-revenue",
+      "path": "/",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 45,
+        "loadMs": 45,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "dashboard-p2-projects",
+      "path": "/",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 55,
+        "loadMs": 55,
+        "firstContentfulPaintMs": 116
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "dashboard-p2-attention",
+      "path": "/",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 108
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "sales-pipeline-1440",
+      "path": "/sales",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 45,
+        "loadMs": 45,
+        "firstContentfulPaintMs": 96
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
+      ]
+    },
+    {
+      "screen": "sales-table-1440",
+      "path": "/sales?view=table",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 42,
+        "loadMs": 42,
+        "firstContentfulPaintMs": 92
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
+      ]
+    },
+    {
+      "screen": "sales-followups-1440",
+      "path": "/sales?view=followups",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 49,
+        "loadMs": 49,
+        "firstContentfulPaintMs": 100
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
+      ]
+    },
+    {
+      "screen": "sales-performance-1440",
+      "path": "/sales?view=performance",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 45,
+        "loadMs": 45,
+        "firstContentfulPaintMs": 100
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
+      ]
+    },
+    {
+      "screen": "sales-pipeline-mobile",
+      "path": "/sales",
+      "viewport": "390x844",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 46,
+        "loadMs": 46,
+        "firstContentfulPaintMs": 88
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
+      ]
+    },
+    {
+      "screen": "sales-table-mobile",
+      "path": "/sales?view=table",
+      "viewport": "390x844",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 92
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
+      ]
+    },
+    {
+      "screen": "opportunity-detail-1440",
+      "path": "/sales/d0000000-0000-4000-8000-000000000001",
+      "viewport": "1440x900",
+      "dataRequests": 6,
+      "timing": {
+        "domContentLoadedMs": 46,
+        "loadMs": 46,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/profiles",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "opportunity-lost-dialog",
+      "path": "/sales/d0000000-0000-4000-8000-000000000001",
+      "viewport": "1440x900",
+      "dataRequests": 6,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 100
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/profiles",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "opportunity-won-conversion",
+      "path": "/sales/d0000000-0000-4000-8000-000000000006",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 44,
+        "loadMs": 44,
+        "firstContentfulPaintMs": 96
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/organizations",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/profiles",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "opportunity-detail-mobile",
+      "path": "/sales/d0000000-0000-4000-8000-000000000001",
+      "viewport": "390x844",
+      "dataRequests": 6,
+      "timing": {
+        "domContentLoadedMs": 43,
+        "loadMs": 43,
+        "firstContentfulPaintMs": 92
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/profiles",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "clients-1440",
+      "path": "/clients",
+      "viewport": "1440x900",
+      "dataRequests": 5,
+      "timing": {
+        "domContentLoadedMs": 56,
+        "loadMs": 56,
+        "firstContentfulPaintMs": 120
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/organizations",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/opportunities"
+      ]
+    },
+    {
+      "screen": "client-detail-1440",
+      "path": "/clients/c0000000-0000-4000-8000-000000000001",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 46,
+        "loadMs": 46,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/organizations",
+        "GET /rest/v1/client_contacts",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "clients-mobile",
+      "path": "/clients",
+      "viewport": "390x844",
+      "dataRequests": 5,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 49,
+        "firstContentfulPaintMs": 92
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/organizations",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/opportunities"
+      ]
+    },
+    {
+      "screen": "client-detail-mobile",
+      "path": "/clients/c0000000-0000-4000-8000-000000000001",
+      "viewport": "390x844",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 96
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/organizations",
+        "GET /rest/v1/client_contacts",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "projects-1440",
+      "path": "/projects",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 44,
+        "loadMs": 44,
+        "firstContentfulPaintMs": 116
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/project_milestones"
+      ]
+    },
+    {
+      "screen": "project-detail-1440",
+      "path": "/projects/e0000000-0000-4000-8000-000000000001",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 53,
+        "loadMs": 53,
+        "firstContentfulPaintMs": 104
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/project_milestones",
+        "GET /rest/v1/project_costs",
+        "GET /rest/v1/project_links",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "project-profitability",
+      "path": "/projects/e0000000-0000-4000-8000-000000000001",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 104
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/project_milestones",
+        "GET /rest/v1/project_costs",
+        "GET /rest/v1/project_links",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "project-detail-not-recorded",
+      "path": "/projects/e0000000-0000-4000-8000-000000000002",
+      "viewport": "1440x900",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 45,
+        "loadMs": 45,
+        "firstContentfulPaintMs": 100
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/project_milestones",
+        "GET /rest/v1/project_costs",
+        "GET /rest/v1/project_links",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "projects-mobile",
+      "path": "/projects",
+      "viewport": "390x844",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 59,
+        "loadMs": 59,
+        "firstContentfulPaintMs": 104
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/project_milestones"
+      ]
+    },
+    {
+      "screen": "project-detail-mobile",
+      "path": "/projects/e0000000-0000-4000-8000-000000000001",
+      "viewport": "390x844",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 46,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 92
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/project_milestones",
+        "GET /rest/v1/project_costs",
+        "GET /rest/v1/project_links",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "project-detail-macbook",
+      "path": "/projects/e0000000-0000-4000-8000-000000000001",
+      "viewport": "1512x945",
+      "dataRequests": 8,
+      "timing": {
+        "domContentLoadedMs": 41,
+        "loadMs": 41,
+        "firstContentfulPaintMs": 108
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/project_milestones",
+        "GET /rest/v1/project_costs",
+        "GET /rest/v1/project_links",
+        "GET /rest/v1/record_notes",
+        "GET /rest/v1/activity_logs"
+      ]
+    },
+    {
+      "screen": "analytics-revenue-attribution",
+      "path": "/analytics",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 49,
+        "loadMs": 49,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "analytics-revenue-mobile",
+      "path": "/analytics",
+      "viewport": "390x844",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 44,
+        "loadMs": 44,
+        "firstContentfulPaintMs": 96
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_revenue_attribution"
+      ]
+    },
+    {
+      "screen": "sales-empty",
+      "path": "/sales",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 68,
+        "loadMs": 68,
+        "firstContentfulPaintMs": 128
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
+      ]
+    },
+    {
+      "screen": "clients-empty",
+      "path": "/clients",
+      "viewport": "1440x900",
+      "dataRequests": 5,
+      "timing": {
+        "domContentLoadedMs": 42,
+        "loadMs": 42,
+        "firstContentfulPaintMs": 92
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/organizations",
+        "GET /rest/v1/projects",
+        "GET /rest/v1/opportunities"
+      ]
+    },
+    {
+      "screen": "projects-empty",
+      "path": "/projects",
+      "viewport": "1440x900",
+      "dataRequests": 3,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/projects"
+      ]
+    },
+    {
+      "screen": "dashboard-empty-operations",
+      "path": "/",
+      "viewport": "1440x900",
+      "dataRequests": 7,
+      "timing": {
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 112
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET http://127.0.0.1:4399/api/portal-analytics",
+        "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/leads",
+        "GET /rest/v1/opportunities",
+        "GET /rest/v1/projects"
+      ]
+    }
+  ]
+}
