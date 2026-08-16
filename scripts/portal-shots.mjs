@@ -41,7 +41,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { extname, join, resolve } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..');
-const OUT = process.argv[2] || join(ROOT, '_build/reports/mobile-altimeter-portal-review/portal');
+const OUT = process.argv[2] || join(ROOT, '_build/reports/portal-p1/review');
 const BUNDLE = join(ROOT, '_build/.portal-mock');
 const PORT = 4399;
 
@@ -179,6 +179,23 @@ const LEADS = [
     submission_id: 'b0000000-0000-4000-8000-000000000006',
     payload: { answers: [{ q: 'What are you trying to achieve?', a: 'A site that sells.' }] },
     meta: { utmSource: 'newsletter', utmMedium: 'email', utmCampaign: 'spring', landingRoute: '/en/' },
+  },
+  {
+    // Deliberately aged and still at New. The Dashboard's attention section is
+    // derived from real conditions rather than from a list of sentences, so a
+    // fixture set in which nothing has gone stale captures an attention panel
+    // that is correctly empty and proves nothing about the one that is not.
+    id: 'a0000000-0000-4000-8000-000000000007',
+    name: 'Farkas Dóra', email: 'dora@example.invalid', company: 'Duna Hajók Kft.',
+    message: 'Foglalási rendszer és új weboldal kellene a szezon előtt.',
+    service_interest: 'Weboldal + foglalás', budget_range: '1–3M Ft', status: 'new',
+    created_at: iso(3, 10), form_type: 'contact', locale: 'hu', source_route: '/kapcsolat.html',
+    submission_id: 'b0000000-0000-4000-8000-000000000007', payload: {},
+    meta: {
+      utmSource: 'google', utmMedium: 'organic',
+      landingRoute: '/szolgaltatasok.html', landingReferrerHost: 'www.google.com',
+      viewport: 'desktop',
+    },
   },
 ];
 
@@ -343,8 +360,34 @@ function postgrest(url, headers) {
   // capability-guarded route redirects to the overview — which is exactly what
   // the first run of this script produced, and it looked like a routing bug.
   const single = String(headers.accept || '').includes('pgrst.object');
-  const rows = table(url);
+  const rows = filtered(url, table(url));
   return single ? rows[0] ?? null : rows;
+}
+
+/**
+ * Honour `id=eq.…`, because `.maybeSingle()` requires it.
+ *
+ * `maybeSingle()` on a GET asks for `application/json` and then FAILS if the
+ * array has more than one row — it is "at most one", enforced on the client.
+ * A mock that ignores the filter therefore hands back all six leads and the
+ * lead detail screen renders its error state, which is what the first run of
+ * this after P1 produced and which looked exactly like a product bug.
+ *
+ * Only the equality filters the Portal actually issues. Anything else is
+ * ignored, which is honest: this is a fixture server, and a filter it does not
+ * understand shows more rows rather than silently showing none.
+ */
+function filtered(url, rows) {
+  const params = new URL(url).searchParams;
+  let out = rows;
+  for (const [key, raw] of params) {
+    if (key === 'select' || key === 'order' || key === 'limit') continue;
+    const [op, ...rest] = raw.split('.');
+    if (op !== 'eq') continue;
+    const value = rest.join('.');
+    out = out.filter((row) => String(row[key] ?? '') === value);
+  }
+  return out;
 }
 
 function table(url) {
@@ -361,7 +404,44 @@ function table(url) {
   return [];
 }
 
-async function shoot(name, path, size, prepare) {
+/* ------------------------------------------------------- the assertions */
+
+/**
+ * What this script checks, and why the checks live HERE.
+ *
+ * `tests/portal.spec.ts` and `tests/portal-control-room.spec.ts` run against
+ * `dist/portal`, which has no Supabase credentials and therefore cannot sign
+ * anybody in: every Control Room screen is behind the auth guard, so the
+ * Playwright suite can reach the sign-in page and nothing else. It asserts the
+ * rest at the source, where the properties are decided.
+ *
+ * This script is the other half. It already builds a credentialled bundle,
+ * intercepts every request and drives each screen with fixtures — which makes
+ * it the one place the RENDERED Control Room exists. So it asserts the rendered
+ * contracts as it goes and exits non-zero if one fails, rather than writing a
+ * screenshot of a broken screen and reporting success.
+ *
+ * These are user-observable contracts, not pixels: which headings exist, which
+ * table columns exist, that a not-configured state does not read as a zero. A
+ * check on a coordinate would make the design unchangeable rather than correct.
+ */
+const failures = [];
+
+const check = (ok, what) => {
+  if (!ok) failures.push(what);
+};
+
+async function expectVisible(page, locator, what) {
+  check(await locator.first().isVisible().catch(() => false), what);
+}
+
+async function expectAbsent(page, locator, what) {
+  check((await locator.count()) === 0, what);
+}
+
+/* --------------------------------------------------------------- the shoot */
+
+async function open(size, { unconfigured = false } = {}) {
   const context = await browser.newContext({
     viewport: size,
     deviceScaleFactor: 2,
@@ -380,8 +460,26 @@ async function shoot(name, path, size, prepare) {
     // origin check hands them to the static server — which would answer the SPA
     // shell with an HTML content type and every panel would report "could not
     // be reached".
-    if (url.includes('/api/portal-analytics')) return json(route, { ok: true, configured: true, cached: false, realtimeCached: false, data: REPORT });
-    if (url.includes('/api/portal-health')) return json(route, HEALTH);
+    if (url.includes('/api/portal-analytics')) {
+      return unconfigured
+        ? json(route, {
+          ok: true, configured: false, propertyConfigured: true, basis: 'consented',
+          missing: ['GOOGLE_SERVICE_ACCOUNT_EMAIL', 'GOOGLE_PRIVATE_KEY'],
+          message: 'Portal Analytics is not connected to a Google Analytics property yet.',
+        })
+        : json(route, { ok: true, configured: true, cached: false, realtimeCached: false, data: REPORT });
+    }
+    if (url.includes('/api/portal-health')) {
+      return json(route, unconfigured
+        ? {
+          ...HEALTH,
+          services: {
+            ...HEALTH.services,
+            ga4: { state: 'unconfigured', missing: ['GOOGLE_SERVICE_ACCOUNT_EMAIL', 'GOOGLE_PRIVATE_KEY'] },
+          },
+        }
+        : HEALTH);
+    }
     if (url.startsWith(`http://127.0.0.1:${PORT}/`)) return route.continue();
     if (url.includes('/auth/v1/user')) return json(route, USER);
     if (url.includes('/auth/v1/')) return json(route, { access_token: 'mock', user: USER });
@@ -406,7 +504,28 @@ async function shoot(name, path, size, prepare) {
     }));
   }, [MOCK_URL, USER]);
 
+  return { context, page };
+}
+
+/**
+ * Capture one screen.
+ *
+ * `fullPage` is the default because a Control Room screen is a vertical
+ * argument and a viewport crop shows a third of it. `viewport: true` is for the
+ * one capture that is deliberately a crop: the ten-second scan, which is
+ * exactly "what is above the fold at this width".
+ */
+async function shoot(name, path, size, options = {}) {
+  const { prepare, assert, viewport = false, unconfigured = false, anchor } = options;
+  const { context, page } = await open(size, { unconfigured });
+
   await page.goto(`http://127.0.0.1:${PORT}/portal${path}`, { waitUntil: 'networkidle' });
+
+  if (prepare) await prepare(page);
+  await page.waitForTimeout(500);
+  // Assertions run against the UNBANNERED page, so the injected banner cannot
+  // satisfy a check by accident.
+  if (assert) await assert(page);
 
   // The banner. Every image in this set carries it, in the page itself rather
   // than only in the filename, because a cropped screenshot loses the filename.
@@ -417,103 +536,254 @@ async function shoot(name, path, size, prepare) {
       body{padding-top:25px}`,
   });
 
-  if (prepare) await prepare(page);
-  await page.waitForTimeout(700);
+  if (anchor) {
+    await page.evaluate((id) => {
+      document.querySelector(id)?.scrollIntoView({ block: 'start' });
+    }, anchor);
+    await page.waitForTimeout(350);
+  }
 
+  await page.waitForTimeout(250);
   const file = join(OUT, `MOCK-${name}.png`);
-  await page.screenshot({ path: file, fullPage: true });
+  await page.screenshot({ path: file, fullPage: !viewport && !anchor });
   console.log(`  ${file.replace(`${ROOT}/`, '')}`);
   await context.close();
 }
 
-const DESKTOP = { width: 1440, height: 900 };
+const W1920 = { width: 1920, height: 1080 };
+const W1440 = { width: 1440, height: 900 };
+// A 13" MacBook Air's default scaled resolution, which is the viewport this
+// product is actually read on and the one §39's density target is measured at.
+const MACBOOK = { width: 1512, height: 945 };
 const TABLET = { width: 834, height: 1112 };
 const PHONE = { width: 390, height: 844 };
 
+const LEAD = LEADS[0].id;
+
 console.log('capturing…');
 
-await shoot('command-center', '/', DESKTOP);
-await shoot('command-center-mobile', '/', PHONE);
+/* =============================================================== dashboard */
 
-await shoot('analytics-overview', '/analytics', DESKTOP);
-await shoot('analytics-trend-users', '/analytics', DESKTOP, async (page) => {
-  await page.getByRole('button', { name: 'Users', exact: true }).click();
+await shoot('dashboard-1920', '/', W1920, {
+  async assert(page) {
+    // 01 — the executive summary is one strip, and every figure in it is real.
+    await expectVisible(page, page.getByRole('region', { name: 'Executive summary' }),
+      'dashboard: the executive strip must exist');
+    for (const label of ['Active users', 'Sessions', 'Leads', 'Conversion', 'Realtime']) {
+      await expectVisible(page, page.getByText(label, { exact: true }),
+        `dashboard: the strip must show ${label}`);
+    }
+    // 02-06 — the sections, in the order the brief fixes.
+    const headings = await page.getByRole('heading', { level: 2 }).allTextContents();
+    const wanted = ['Traffic', 'Live', 'Conversion path', 'Acquisition', 'Recent leads', 'Needs attention'];
+    for (const h of wanted) {
+      check(headings.includes(h), `dashboard: section "${h}" is missing`);
+    }
+    const order = wanted.map((h) => headings.indexOf(h));
+    check(order.every((v, i) => i === 0 || v > order[i - 1]),
+      `dashboard: sections are out of order — ${headings.join(' → ')}`);
+
+    // The Dashboard shows ONE system line, never the full readout.
+    await expectVisible(page, page.getByText(/systems? (operational|requires? attention)/i),
+      'dashboard: the one-line system status is missing');
+    await expectAbsent(page, page.getByText('GA4 Data API', { exact: true }),
+      'dashboard: the full health readout must live on /system');
+
+    // The realtime figure is present and is the live signal.
+    await expectVisible(page, page.getByText('active now'), 'dashboard: the live count is missing');
+  },
 });
-await shoot('analytics-landing-pages', '/analytics', DESKTOP, async (page) => {
-  await page.getByRole('button', { name: 'Landing', exact: true }).click();
+
+await shoot('dashboard-1440', '/', W1440);
+await shoot('dashboard-macbook-scan', '/', MACBOOK, {
+  viewport: true,
+  async assert(page) {
+    // §39 / §50 — the ten-second scan. On the viewport this is read on, the
+    // summary, the traffic pulse and the live panel must be above the fold.
+    const fold = MACBOOK.height;
+    for (const [name, locator] of [
+      ['executive strip', page.getByRole('region', { name: 'Executive summary' })],
+      ['Traffic', page.getByRole('heading', { name: 'Traffic', exact: true })],
+      ['Live', page.getByRole('heading', { name: 'Live', exact: true })],
+    ]) {
+      const box = await locator.first().boundingBox();
+      check(box && box.y < fold, `dashboard: ${name} is below the fold at ${MACBOOK.width}×${fold}`);
+    }
+  },
 });
-await shoot('analytics-staging', '/analytics', DESKTOP, async (page) => {
-  await page.getByRole('button', { name: 'Staging', exact: true }).click();
+await shoot('dashboard-tablet', '/', TABLET);
+await shoot('dashboard-mobile', '/', PHONE, {
+  async assert(page) {
+    // §44 — the phone gets a top app bar and a drawer, not the desktop rail.
+    await expectVisible(page, page.getByRole('button', { name: /menu/i }),
+      'mobile: the menu control is missing');
+    await expectAbsent(page, page.getByRole('navigation', { name: 'Portal sections' }),
+      'mobile: the desktop rail must not be rendered');
+  },
+});
+
+await shoot('dashboard-mobile-drawer', '/', PHONE, {
+  prepare: (page) => page.getByRole('button', { name: /menu/i }).click(),
+  async assert(page) {
+    await expectVisible(page, page.getByRole('dialog', { name: /portal navigation/i }),
+      'mobile: the drawer must be a dialog');
+    for (const item of ['Dashboard', 'Analytics', 'Leads', 'System']) {
+      await expectVisible(page, page.getByRole('link', { name: item, exact: true }),
+        `mobile drawer: ${item} is missing`);
+    }
+  },
+});
+
+/* ================================================== the unconfigured states */
+
+await shoot('dashboard-not-configured', '/', W1440, {
+  unconfigured: true,
+  async assert(page) {
+    // THE contract of §41: not configured is not zero.
+    await expectVisible(page, page.getByText('Analytics not configured'),
+      'dashboard: an unconfigured property must say so');
+    const live = page.locator('[data-state="unconfigured"]');
+    check(await live.count() > 0, 'dashboard: the Live panel must render an unconfigured state');
+    // And the strip must not print a fabricated zero in its place.
+    const strip = page.getByRole('region', { name: 'Executive summary' });
+    const text = await strip.innerText();
+    check(text.includes('—'), 'dashboard: an unmeasurable figure must render as an em dash');
+
+    // The attention list and its own count must agree. They did not: an
+    // unconfigured GA4 produced two items keyed `ga4`, React rendered one of
+    // them twice, and the heading said four above a list of five.
+    const attention = page.getByRole('heading', { name: 'Needs attention' }).locator('..');
+    const counted = Number((await attention.innerText()).match(/Needs attention\s+(\d+)/i)?.[1] ?? '0');
+    const rendered = await page.getByRole('heading', { name: 'Needs attention' })
+      .locator('xpath=ancestor::section[1]').getByRole('listitem').count();
+    check(counted === rendered,
+      `dashboard: the attention count (${counted}) disagrees with the list (${rendered})`);
+  },
+});
+
+await shoot('analytics-not-connected', '/analytics', W1440, {
+  unconfigured: true,
+  async assert(page) {
+    await expectVisible(page, page.getByRole('heading', { name: /not connected/i }),
+      'analytics: the setup screen is missing');
+    await expectVisible(page, page.getByText('GOOGLE_SERVICE_ACCOUNT_EMAIL'),
+      'analytics: the outstanding variable NAMES should be listed');
+  },
+});
+
+/* =============================================================== analytics */
+
+await shoot('analytics-1920', '/analytics', W1920, {
+  async assert(page) {
+    // §19 — six sections, in order, as a vertical document.
+    const sections = ['Overview', 'Traffic', 'Acquisition', 'Content', 'Conversion', 'Audience'];
+    for (const id of sections) {
+      await expectVisible(page, page.locator(`#${id.toLowerCase()}`), `analytics: #${id} is missing`);
+    }
+    // §19 — Analytics is NOT the Dashboard. Realtime lives there, not here.
+    await expectAbsent(page, page.getByText('active now'),
+      'analytics: realtime belongs on the Dashboard');
+    await expectAbsent(page, page.getByRole('heading', { name: 'Needs attention' }),
+      'analytics: the attention list belongs on the Dashboard');
+  },
+});
+
+for (const section of ['overview', 'traffic', 'acquisition', 'content', 'conversion', 'audience']) {
+  await shoot(`analytics-${section}`, '/analytics', W1440, { anchor: `#${section}` });
+}
+
+await shoot('analytics-campaign', '/analytics', W1440, {
+  prepare: (page) => page.getByRole('button', { name: 'Campaign', exact: true }).click(),
+});
+await shoot('analytics-landing', '/analytics', W1440, {
+  prepare: (page) => page.getByRole('button', { name: 'Landing', exact: true }).click(),
+});
+await shoot('analytics-no-compare', '/analytics', W1440, {
+  prepare: (page) => page.getByLabel(/compare previous period/i).uncheck(),
 });
 await shoot('analytics-tablet', '/analytics', TABLET);
 await shoot('analytics-mobile', '/analytics', PHONE);
 
-await shoot('leads', '/leads', DESKTOP);
-await shoot('lead-detail', '/leads', DESKTOP, async (page) => {
-  await page.getByRole('button', { name: 'Open' }).first().click();
+/* =================================================================== leads */
+
+await shoot('leads-1440', '/leads', W1440, {
+  async assert(page) {
+    // §26 — the status summary strip, with real counts.
+    await expectVisible(page, page.getByRole('region', { name: 'Pipeline' }),
+      'leads: the status strip is missing');
+    // §28 — the columns the brief asks for.
+    const columns = await page.getByRole('columnheader').allTextContents();
+    for (const column of ['Date', 'Company / person', 'Form', 'Source', 'Status', 'Locale']) {
+      check(columns.includes(column), `leads: column "${column}" is missing`);
+    }
+    // §27 — one control row, and every filter in it.
+    for (const id of ['#filter-days', '#filter-form', '#filter-source', '#filter-locale']) {
+      await expectVisible(page, page.locator(id), `leads: filter ${id} is missing`);
+    }
+    // §52 — Leads answers "who needs action", and does not become Analytics.
+    await expectAbsent(page, page.getByRole('heading', { name: /^traffic$/i }),
+      'leads: traffic analysis belongs on Analytics');
+  },
 });
-await shoot('leads-filtered-proposal', '/leads', DESKTOP, async (page) => {
-  await page.getByRole('button', { name: /^Proposal/ }).first().click();
+
+await shoot('leads-filtered', '/leads', W1440, {
+  prepare: (page) => page.getByRole('button', { name: /^New/ }).first().click(),
+  async assert(page) {
+    check(await page.getByRole('button', { name: /^New/ }).first().getAttribute('aria-pressed') === 'true',
+      'leads: the selected stage must report aria-pressed');
+    await expectVisible(page, page.getByRole('button', { name: /clear/i }),
+      'leads: a narrowed list must offer a reset');
+  },
 });
+
 await shoot('leads-mobile', '/leads', PHONE);
-await shoot('lead-detail-mobile', '/leads', PHONE, async (page) => {
-  await page.getByRole('button', { name: 'Open' }).first().click();
+await shoot('leads-tablet', '/leads', TABLET);
+
+await shoot('lead-detail-1440', `/leads/${LEAD}`, W1440, {
+  async assert(page) {
+    // §29 — the 8/4 split, the message on the left, the operational metadata
+    // on the right.
+    await expectVisible(page, page.getByRole('heading', { name: 'Enquiry' }),
+      'lead detail: the enquiry panel is missing');
+    for (const panel of ['Stage', 'Origin', 'Activity']) {
+      await expectVisible(page, page.getByRole('heading', { name: panel, exact: true }),
+        `lead detail: the ${panel} panel is missing`);
+    }
+    await expectVisible(page, page.getByRole('link', { name: /all leads/i }),
+      'lead detail: there must be a way back to the list');
+  },
 });
+await shoot('lead-detail-mobile', `/leads/${LEAD}`, PHONE);
 
-await shoot('activity', '/activity', DESKTOP);
-await shoot('settings', '/settings', DESKTOP);
+/* ================================================================== system */
 
-/* ---------------------------------- the unconfigured state, on purpose ---- */
-
-// The state this deployment is ACTUALLY in until a service account exists. It
-// belongs in the review package beside the populated screens, because it is the
-// one of the two that a reviewer opening the real Portal today would see.
-{
-  const context = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 2, locale: 'en-GB' });
-  await context.route('**/*', async (route) => {
-    const url = route.request().url();
-    const headers = route.request().headers();
-    if (url.includes('/api/portal-analytics')) {
-      return json(route, {
-        ok: true, configured: false, propertyConfigured: true, basis: 'consented',
-        missing: ['GOOGLE_SERVICE_ACCOUNT_EMAIL', 'GOOGLE_PRIVATE_KEY'],
-        message: 'Portal Analytics is not connected to a Google Analytics property yet.',
-      });
+await shoot('system-1440', '/system', W1440, {
+  async assert(page) {
+    await expectVisible(page, page.getByRole('heading', { name: /system status/i }),
+      'system: the status panel is missing');
+    for (const service of ['Supabase', 'Lead API', 'GA4 Data API', 'Notifications']) {
+      await expectVisible(page, page.getByText(service, { exact: true }),
+        `system: ${service} is missing`);
     }
-    if (url.includes('/api/portal-health')) {
-      return json(route, {
-        ...HEALTH,
-        services: {
-          ...HEALTH.services,
-          ga4: { state: 'unconfigured', missing: ['GOOGLE_SERVICE_ACCOUNT_EMAIL', 'GOOGLE_PRIVATE_KEY'] },
-        },
-      });
+    // §53 — System answers one question and does not become a dashboard.
+    for (const business of ['Sessions', 'Conversion', 'Recent leads', 'Acquisition']) {
+      await expectAbsent(page, page.getByRole('heading', { name: business, exact: true }),
+        `system: ${business} does not belong on a diagnostics screen`);
     }
-    if (url.startsWith(`http://127.0.0.1:${PORT}/`)) return route.continue();
-    if (url.includes('/auth/v1/user')) return json(route, USER);
-    if (url.includes('/auth/v1/')) return json(route, { access_token: 'mock', user: USER });
-    if (url.includes('/rest/v1/')) return json(route, postgrest(url, headers));
-    return route.abort();
-  });
-  const page = await context.newPage();
-  await page.addInitScript(([url, user]) => {
-    const ref = new URL(url).hostname.split('.')[0];
-    localStorage.setItem(`sb-${ref}-auth-token`, JSON.stringify({
-      access_token: 'mock-access-token', refresh_token: 'mock-refresh-token',
-      token_type: 'bearer', expires_at: Math.floor(Date.now() / 1000) + 3600, expires_in: 3600,
-      user: { ...user, aud: 'authenticated', role: 'authenticated' },
-    }));
-  }, [MOCK_URL, USER]);
+    // §30 — nothing that could be a credential value.
+    const body = await page.locator('#portal-main').innerText();
+    for (const shape of [/eyJ[\w-]{10,}/, /-----BEGIN/, /https?:\/\/\S+\.supabase\.co/, /hooks\.slack\.com/]) {
+      check(!shape.test(body), `system: the page renders something shaped like a secret (${shape})`);
+    }
+  },
+});
+await shoot('system-mobile', '/system', PHONE);
 
-  for (const [name, path] of [['analytics-not-connected', '/analytics'], ['command-center-no-ga4', '/']]) {
-    await page.goto(`http://127.0.0.1:${PORT}/portal${path}`, { waitUntil: 'networkidle' });
-    await page.waitForTimeout(600);
-    const file = join(OUT, `MOCK-${name}.png`);
-    await page.screenshot({ path: file, fullPage: true });
-    console.log(`  ${file.replace(`${ROOT}/`, '')}`);
-  }
-  await context.close();
-}
+/* ================================================================= records */
+
+await shoot('projects', '/projects', W1440);
+await shoot('activity', '/activity', W1440);
+await shoot('settings', '/settings', W1440);
 
 await browser.close();
 server.close();
@@ -527,10 +797,23 @@ writeFileSync(
   + `\`_build/.portal-mock\` with placeholder credentials so that the real client is\n`
   + `constructed and every request can be intercepted; it is never published and is not\n`
   + `\`dist/\`. Every figure comes from the fixtures in \`scripts/portal-shots.mjs\`.\n\n`
-  + `\`MOCK-analytics-not-connected.png\` and \`MOCK-command-center-no-ga4.png\` are the\n`
+  + `\`MOCK-dashboard-not-configured.png\` and \`MOCK-analytics-not-connected.png\` are the\n`
   + `states this deployment is actually in today: the feature is built and waiting for\n`
-  + `credentials.\n\n`
+  + `credentials. They are in the set on purpose — they are what a reviewer opening the\n`
+  + `real Portal right now would see.\n\n`
+  + `This script also ASSERTS the rendered Control Room contracts as it captures, and\n`
+  + `exits non-zero if one fails. The Playwright suite runs against \`dist/portal\`,\n`
+  + `which has no credentials and therefore cannot reach any screen behind the auth\n`
+  + `guard; this is the one place the signed-in UI actually renders.\n\n`
   + `Regenerate with:\n\n    node scripts/portal-shots.mjs\n`,
 );
+
+if (failures.length > 0) {
+  console.error(`\n${failures.length} rendered contract(s) failed:\n`);
+  for (const failure of failures) console.error(`  ✗ ${failure}`);
+  process.exitCode = 1;
+} else {
+  console.log('\nall rendered contracts hold');
+}
 
 console.log(`\ndone — ${OUT.replace(`${ROOT}/`, '')}`);
