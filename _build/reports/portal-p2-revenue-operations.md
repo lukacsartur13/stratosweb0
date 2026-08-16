@@ -516,8 +516,61 @@ back to a legacy value, so nothing depends on them.
 
 ## 9. Tests
 
-**1013 existing tests pass, unchanged.** `tests/portal-revenue.spec.ts` adds
-**72**, in seven groups.
+### What is verified, and what is not
+
+| | Result |
+| --- | --- |
+| **The P2 change surface** — `portal.spec.ts` + `portal-control-room.spec.ts` + `portal-revenue.spec.ts` | **331 / 331 pass**, deterministically, on both projects |
+| Rendered contracts (`scripts/portal-shots.mjs`) | **57 / 57 hold** |
+| `npm run typecheck`, `scan:secrets`, `fingerprint:check` | clean |
+| **The full suite** | **not green, and not green at P1 either** — see below |
+
+**The full suite has pre-existing flakiness that this phase did not cause and
+has not fixed.** At the P1 acceptance commit (`8380e0b`), a full clean run is
+**1 failed / 1038 passed / 122 skipped**. Full runs on this machine produce a
+*varying* set of failures at both commits, all of them in the public-site
+homepage specs — `homepage-chrome`, `homepage-modality`, `homepage-history`,
+`mobile-homepage-simple`, `public-site` — which `playwright.config.ts` already
+warns "sit close to the 30 s timeout under parallel load". A run that took 8.3
+minutes early on took 25.4 minutes after six full passes, and the failure count
+tracked the runtime, not the diff.
+
+The like-for-like check, same machine and same minute, one targeted command:
+
+| Commit | `homepage-chrome` + `lead-forms` on desktop-1920 |
+| --- | --- |
+| P1 `8380e0b` | 1 failed / 64 passed |
+| P2 `HEAD` | 2 failed / 63 passed |
+
+Same specs, same failure names, differing by one flaky test. **No portal test
+appears in any of those failures.**
+
+### The regression this phase DID cause, and how it was found
+
+Five P1 contracts broke and were reported as passing. The cause was a truncated
+read: `tail -6` of a full run shows the passed/skipped summary, which is printed
+*after* the failure list. The arithmetic was there to catch it — 1013 + 122 =
+1135 against 1161 declared tests — and it was not checked.
+
+Four were assertions that needed bringing forward (the seven-item navigation,
+the promotion of Projects and Clients out of Records, the realtime figure moving
+to the Live panel). **Two were real defects:**
+
+* **`yellow is scarce` caught a design error.** `tone="live"` had been reused for
+  Won this month. That token is for the one figure true *right now*, and a
+  month-to-date total is a period figure. Removed — the executive strip now has
+  no yellow figure at all.
+* **A security check had been silenced without being violated.**
+  `pages/projects.tsx` hoisted `safeUrl(link.url)` into a local, so the lexical
+  check that reads every `href={…}` could no longer see it. The code was safe;
+  the assertion went quiet, which is worse. The file now uses the inline idiom
+  the rest of the Portal uses.
+
+Both were found by P1's own tests, which is what they are for.
+
+### The new tests
+
+`tests/portal-revenue.spec.ts` adds **72** (×2 projects = 144), in seven groups.
 
 | Group | Covers |
 | --- | --- |
@@ -641,7 +694,7 @@ Nothing was redesigned. P2 looks like it was always part of P1.
 
 | Gate | Status |
 | --- | --- |
-| P1 Control Room | ✅ preserved; two capture assertions updated for the documented §8 strip change |
+| P1 Control Room | ⚠️ **five contracts were broken and are fixed** — see §9. Four were assertions needing to move with the documented §8 and §45 changes; two were real defects the P1 tests caught. |
 | GA4 / Portal Analytics | ✅ all six sections intact, asserted |
 | Leads, notes, timeline | ✅ plus a Pipeline column and a Convert action |
 | System Health | ✅ untouched |
@@ -650,7 +703,9 @@ Nothing was redesigned. P2 looks like it was always part of P1.
 | Self-hosted fonts, CSP | ✅ untouched |
 | Website lead submissions | ✅ no function or contract edited |
 | Public homepage, mobile Altimeter, history restoration, menu inertness | ✅ not one public file edited |
-| Full suite | ✅ 1013 passed, 122 skipped |
+| Portal specs (the whole P2 change surface) | ✅ 331 / 331 |
+| Rendered contracts | ✅ 57 / 57 |
+| Full suite | ⚠️ **not green — and not green at P1 either.** Pre-existing public-site flakiness, unrelated to this diff. See §9. |
 | `npm run scan:secrets` | ✅ clean, 720 files |
 | `npm run typecheck` | ✅ clean |
 

@@ -243,8 +243,20 @@ the query: one line in `useOpportunities`, no change to any screen.
 
 ## 8. Regressions
 
-None. `npm test` — **1013 passed, 122 skipped**, unchanged from before this
-phase. The 72 new tests in `tests/portal-revenue.spec.ts` are additional.
+**In the change surface: none.** All 331 portal tests pass — `portal.spec.ts`,
+`portal-control-room.spec.ts` and `portal-revenue.spec.ts`, on both projects,
+deterministically.
+
+**Outside it: the full suite is not green, and was not green at P1.** A clean
+run at the P1 acceptance commit is 1 failed / 1038 passed / 122 skipped. The
+failures move between runs and are confined to the public-site homepage specs,
+which this repository's own Playwright config flags as timeout-sensitive under
+parallel load. See the Tests section of
+`_build/reports/portal-p2-revenue-operations.md` for the like-for-like
+comparison at both commits.
+
+Five P1 contracts were broken by this phase and are fixed; two of them were real
+defects rather than assertions needing an update. That section documents them.
 
 The public site is untouched by this phase. The complete set of files this
 phase edited or created is `portal/`, `supabase/`, `tests/portal-revenue.spec.ts`,
