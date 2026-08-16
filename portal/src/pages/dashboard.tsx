@@ -143,7 +143,14 @@ export function DashboardScreen() {
 
       {/* 04 */}
       <Grid>
-        {mayAnalytics && <Acquisition traffic={traffic} leads={rows} loading={analytics.kind === 'loading'} />}
+        {mayAnalytics && (
+          <Acquisition
+            traffic={traffic}
+            leads={rows}
+            loading={analytics.kind === 'loading'}
+            wide={!maySales || !wonExists}
+          />
+        )}
         {maySales && wonExists && <TopRevenueSources rows={attribution.rows} state={attribution.state} />}
       </Grid>
 
@@ -734,13 +741,17 @@ function ConversionPath({
  * places.
  */
 function Acquisition({
-  traffic, leads, loading,
-}: { traffic: Report | null; leads: Lead[]; loading: boolean }) {
+  traffic, leads, loading, wide = false,
+}: { traffic: Report | null; leads: Lead[]; loading: boolean; wide?: boolean }) {
   const rows = traffic?.acquisition.slice(0, 6) ?? [];
   const max = Math.max(...rows.map((r) => r.sessions), 1);
 
+  // Takes the whole row when there is no revenue block beside it — which is the
+  // case on any account that has not won anything yet (§36 hides that block
+  // rather than printing zeroes). A seven-column panel with five columns of
+  // nothing next to it reads as a panel that failed to load.
   return (
-    <Panel className="col-span-12 min-w-0 lg:col-span-7">
+    <Panel className={cn('col-span-12 min-w-0', wide ? 'lg:col-span-12' : 'lg:col-span-7')}>
       <SectionHeader
         title="Acquisition"
         note={traffic ? 'GA4 session-scoped' : 'from the leads themselves'}
