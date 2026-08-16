@@ -30,19 +30,27 @@ export type Capability =
   // work someone is assigned to. The same two roles are checked again, server
   // side, in netlify/functions/portal-analytics.mjs — hiding the nav item
   // decides what is drawn, and that check decides what can be read.
-  | 'view_analytics';
+  | 'view_analytics'
+  // Infrastructure diagnostics. A separate capability from `view_analytics`
+  // even though the same two roles hold both today, because they are different
+  // questions and will not always have the same answer: "how is the business
+  // doing" and "which integrations are broken" are read by different people the
+  // moment there is more than one of us. `netlify/functions/portal-health.mjs`
+  // enforces super_admin/admin server-side; this decides whether the nav item
+  // and the route are drawn.
+  | 'view_system';
 
 const MATRIX: Record<Role, Capability[]> = {
   super_admin: [
     'view_dashboard', 'view_leads', 'manage_leads', 'view_projects', 'manage_projects',
     'view_clients', 'manage_clients', 'view_case_studies', 'manage_case_studies',
     'manage_content', 'view_media', 'manage_users', 'manage_settings', 'view_activity',
-    'view_analytics',
+    'view_analytics', 'view_system',
   ],
   admin: [
     'view_dashboard', 'view_leads', 'manage_leads', 'view_projects', 'manage_projects',
     'view_clients', 'manage_clients', 'view_case_studies', 'manage_case_studies',
-    'manage_content', 'view_media', 'view_activity', 'view_analytics',
+    'manage_content', 'view_media', 'view_activity', 'view_analytics', 'view_system',
   ],
   // A team member sees the work assigned to them. The RLS policy on `projects`
   // is what actually narrows the rows; this just hides the screens that would

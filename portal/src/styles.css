@@ -7,10 +7,16 @@
     color-scheme: dark;
   }
 
+  /*
+    Level 0 — the page.
+
+    Flat near-black, and deliberately no gradient. The public site opens with a
+    radial glow because it is a horizon; an operating screen is not a horizon,
+    and a coloured wash behind a dense grid moves every surface's apparent value
+    depending on where it sits on the page.
+  */
   body {
-    background:
-      radial-gradient(120% 90% at 50% -20%, rgba(30, 52, 84, 0.5), transparent 60%),
-      #0b0f16;
+    background: theme('colors.ink');
     min-height: 100dvh;
   }
 
@@ -28,18 +34,84 @@
 }
 
 @layer components {
-  /* Numbers are monospaced and tabular everywhere in this product, so that a
-     column of figures in a table lines up without per-cell effort. */
+  /*
+    THE TYPOGRAPHIC LADDER
+    ======================
+    Six levels, and they differ by more than a couple of pixels each so that a
+    reader can tell them apart without measuring. Anything that does not fit one
+    of these is a seventh level and should not exist.
+
+      .t-page      the section this screen is        13px mono, caps, 0.22em
+      .t-section   a group of data inside it         10px mono, caps, 0.18em
+      .t-metric    a figure somebody came here for   28px mono, tabular
+      .t-row       the subject of a row              13px body
+      .t-meta      a fact about that subject         11px mono
+      .t-note      a qualification of either          10px, sentence case
+
+    Numbers are monospaced and tabular everywhere in this product, so that a
+    column of figures lines up without per-cell effort.
+  */
   .num {
     font-family: theme('fontFamily.data');
     font-variant-numeric: tabular-nums;
   }
 
+  .t-page {
+    font-family: theme('fontFamily.data');
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: theme('colors.paper');
+  }
+
+  .t-section,
   .label {
     font-family: theme('fontFamily.data');
     font-size: 10px;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: theme('colors.haze');
+  }
+
+  .t-metric {
+    font-family: theme('fontFamily.data');
+    font-variant-numeric: tabular-nums;
+    font-size: 28px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: theme('colors.paper');
+  }
+
+  .t-row {
+    font-size: 13px;
+    color: theme('colors.paper');
+  }
+
+  .t-meta {
+    font-family: theme('fontFamily.data');
+    font-variant-numeric: tabular-nums;
+    font-size: 11px;
+    color: theme('colors.haze');
+  }
+
+  .t-note {
+    font-size: 10px;
+    line-height: 1.5;
+    color: theme('colors.haze');
+  }
+
+  /*
+    THE GRID
+    ========
+    One twelve-column grid, one gap, used by every screen. Twelve columns at
+    every width — a child that should be full width on a phone says
+    `col-span-12 lg:col-span-8` rather than the grid changing shape underneath
+    it, which is what keeps "8 and 4" from silently becoming "8 and 4 stacked
+    with a 4-column child overflowing".
+  */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 16px;
   }
 }

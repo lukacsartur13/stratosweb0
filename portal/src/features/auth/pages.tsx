@@ -12,8 +12,10 @@ function AuthShell({ title, lede, children }: { title: string; lede: string; chi
     <main className="grid min-h-dvh place-items-center px-4 py-10">
       <div className="w-full max-w-sm">
         <div className="mb-6 text-center">
-          <p className="font-data text-[13px] tracking-[0.34em] text-paper">STRATOS</p>
-          <p className="label mt-1 text-signal">PORTAL</p>
+          {/* The mark is Aboreto here for the same reason it is in the sidebar:
+              one face draws the brand and nothing else in the product does. */}
+          <p className="font-mark text-[15px] tracking-[0.26em] text-paper">STRATOS</p>
+          <p className="t-section mt-1.5">Portal</p>
         </div>
         <Panel className="p-6">
           <h1 className="font-data text-[12px] uppercase tracking-[0.18em] text-chrome">{title}</h1>

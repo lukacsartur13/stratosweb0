@@ -1,8 +1,8 @@
-import { useId, useMemo, useState, type ReactNode } from 'react';
+import { useId, useMemo, useState } from 'react';
 import { cn } from '@/components/ui';
 
 /**
- * The Portal's charts, and there are three of them.
+ * The Portal's charts, and there are four of them.
  *
  * ## Why no chart library
  *
@@ -21,30 +21,32 @@ import { cn } from '@/components/ui';
  * result of turning them all off is the SVG below.
  *
  * The third is that what this dashboard needs is genuinely small: a line over
- * time, a row of bars, and a funnel. All three are `path` and `rect` elements
- * over a linear scale, and the arithmetic is visible in the file rather than
- * behind an options object.
+ * time, a row of bars, a funnel and a rule under a table row. All four are
+ * `path` and `rect` elements over a linear scale, and the arithmetic is visible
+ * in the file rather than behind an options object.
+ *
+ * ## One chart system
+ *
+ * Every chart here shares the same axis colour, the same two gridlines, the
+ * same accent, the same empty state and the same rule about labels being text
+ * nodes. Nothing on any screen should look like it arrived from a different
+ * theme, which is what happens the moment a second charting approach appears.
  *
  * ## The palette, and why it is nearly monochrome
  *
  * One accent — `signal`, the site's yellow — and everything else is the chrome
  * greys the rest of the portal uses. A colour here has to MEAN something: the
  * accent marks the series being read, and nothing else is coloured at all.
- * Where a second series is needed it is drawn in `chrome` at a lower opacity,
+ * Where a second measure is needed it is drawn in `chrome` at a lower opacity,
  * which reads as "the same measurement, less important" rather than as a
  * different category. That is a deliberate rejection of the categorical-colour
  * default: on a dashboard with five panels, five palettes is noise.
  */
 
-const AXIS = 'rgba(244,244,244,0.10)';
+const AXIS = 'rgba(244,244,244,0.09)';
+const ACCENT = '#FFEE25';
 
 /* =================================================================== line == */
-
-export interface Series {
-  id: string;
-  label: string;
-  points: number[];
-}
 
 /**
  * A time series, as one line over a filled area.
@@ -54,16 +56,28 @@ export interface Series {
  * plotting them together either needs three axes or squashes two of them flat
  * against the floor. The screen offers a switch instead, which is one click and
  * a chart you can actually read.
+ *
+ * ## `baseline`, and why it is not a second line
+ *
+ * GA4's Data API returns ONE time series for the range that was asked for.
+ * There is no previous-period series in the payload, and drawing one would mean
+ * inventing its shape. What the payload does carry is the previous period's
+ * TOTAL, so the comparison is drawn as what it honestly is: a dashed rule at the
+ * previous period's mean per interval, labelled as an average. A reader can see
+ * whether today is above or below where the last period sat without being shown
+ * a curve that nobody measured.
  */
 export function TrendChart({
   points,
   labels,
   label,
-  height = 168,
+  baseline,
+  height = 200,
 }: {
   points: number[];
   labels: string[];
   label: string;
+  baseline?: { value: number; label: string } | null;
   height?: number;
 }) {
   const id = useId();
@@ -73,34 +87,31 @@ export function TrendChart({
     const w = 1000;
     const h = height;
     // A floor of 1 on the maximum stops a flat zero series collapsing the
-    // scale to nothing and dividing by it.
-    const max = Math.max(1, ...points);
+    // scale to nothing and dividing by it. The baseline participates so that a
+    // previous period well above this one is still on the canvas.
+    const max = Math.max(1, ...points, baseline?.value ?? 0);
     const step = points.length > 1 ? w / (points.length - 1) : 0;
     const x = (i: number) => (points.length > 1 ? i * step : w / 2);
-    const y = (v: number) => h - (v / max) * (h - 12) - 6;
+    const y = (v: number) => h - (v / max) * (h - 14) - 7;
 
     const line = points.map((v, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
     const area = points.length
       ? `${line} L${x(points.length - 1).toFixed(1)},${h} L${x(0).toFixed(1)},${h} Z`
       : '';
     return { w, h, max, line, area, x, y };
-  }, [points, height]);
+  }, [points, height, baseline?.value]);
 
   if (points.length === 0) {
-    return (
-      <p className="px-5 py-10 text-center text-sm text-haze">
-        No data in this range.
-      </p>
-    );
+    return <p className="px-4 py-12 text-center text-xs text-haze">No data in this range.</p>;
   }
 
   const active = hover === null ? null : { value: points[hover], label: labels[hover] };
 
   return (
-    <div className="px-5 pb-4 pt-3">
-      <div className="mb-2 flex items-baseline justify-between gap-4">
-        <p className="label">{label}</p>
-        <p className="num text-xs text-haze">
+    <div className="px-4 pb-3 pt-3">
+      <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <p className="t-section">{label}</p>
+        <p className="t-meta">
           {active
             ? <><span className="text-paper">{active.value.toLocaleString('en-GB')}</span> · {active.label}</>
             : <>peak {geometry.max.toLocaleString('en-GB')}</>}
@@ -112,15 +123,16 @@ export function TrendChart({
         // `none` so the line stretches to the panel's width rather than keeping
         // a ratio and leaving a gutter. A time series has no natural aspect.
         preserveAspectRatio="none"
-        className="block h-[168px] w-full"
+        className="block w-full"
+        style={{ height }}
         role="img"
         aria-label={`${label} over time. Peak ${geometry.max}.`}
         onMouseLeave={() => setHover(null)}
       >
         <defs>
           <linearGradient id={`${id}-fill`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#FFEE25" stopOpacity="0.20" />
-            <stop offset="100%" stopColor="#FFEE25" stopOpacity="0" />
+            <stop offset="0%" stopColor={ACCENT} stopOpacity="0.16" />
+            <stop offset="100%" stopColor={ACCENT} stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -130,13 +142,8 @@ export function TrendChart({
         {[1 / 3, 2 / 3].map((f) => (
           <line
             key={f}
-            x1={0}
-            x2={geometry.w}
-            y1={geometry.h * f}
-            y2={geometry.h * f}
-            stroke={AXIS}
-            strokeWidth={1}
-            vectorEffect="non-scaling-stroke"
+            x1={0} x2={geometry.w} y1={geometry.h * f} y2={geometry.h * f}
+            stroke={AXIS} strokeWidth={1} vectorEffect="non-scaling-stroke"
           />
         ))}
 
@@ -144,7 +151,7 @@ export function TrendChart({
         <path
           d={geometry.line}
           fill="none"
-          stroke="#FFEE25"
+          stroke={ACCENT}
           strokeWidth={1.5}
           strokeLinejoin="round"
           strokeLinecap="round"
@@ -154,13 +161,21 @@ export function TrendChart({
           vectorEffect="non-scaling-stroke"
         />
 
+        {baseline && baseline.value > 0 && (
+          <line
+            x1={0} x2={geometry.w} y1={geometry.y(baseline.value)} y2={geometry.y(baseline.value)}
+            stroke="rgba(203,220,233,0.45)" strokeWidth={1} strokeDasharray="4 4"
+            vectorEffect="non-scaling-stroke"
+          />
+        )}
+
         {hover !== null && (
           <g>
             <line
               x1={geometry.x(hover)} x2={geometry.x(hover)} y1={0} y2={geometry.h}
-              stroke="rgba(244,244,244,0.28)" strokeWidth={1} vectorEffect="non-scaling-stroke"
+              stroke="rgba(244,244,244,0.26)" strokeWidth={1} vectorEffect="non-scaling-stroke"
             />
-            <circle cx={geometry.x(hover)} cy={geometry.y(points[hover])} r={3} fill="#FFEE25"
+            <circle cx={geometry.x(hover)} cy={geometry.y(points[hover])} r={3} fill={ACCENT}
               vectorEffect="non-scaling-stroke" />
           </g>
         )}
@@ -180,9 +195,15 @@ export function TrendChart({
         ))}
       </svg>
 
-      <div className="mt-1 flex justify-between">
-        <span className="num text-[10px] text-haze">{labels[0]}</span>
-        <span className="num text-[10px] text-haze">{labels[labels.length - 1]}</span>
+      <div className="mt-1 flex items-baseline justify-between gap-4">
+        <span className="t-note">{labels[0]}</span>
+        {baseline && baseline.value > 0 && (
+          <span className="t-note flex items-center gap-1.5">
+            <span className="inline-block h-px w-4 bg-chrome/45" aria-hidden="true" />
+            {baseline.label}
+          </span>
+        )}
+        <span className="t-note">{labels[labels.length - 1]}</span>
       </div>
     </div>
   );
@@ -198,12 +219,12 @@ export function TrendChart({
  * the distribution visible at a glance. A 1px rule does that; a filled bar
  * competes with the text it is annotating.
  */
-export function Meter({ value, max, tone = 'signal' }: { value: number; max: number; tone?: 'signal' | 'chrome' }) {
+export function Meter({ value, max, tone = 'chrome' }: { value: number; max: number; tone?: 'signal' | 'chrome' }) {
   const share = max > 0 ? Math.min(1, value / max) : 0;
   return (
-    <span className="mt-1 block h-px w-full bg-hair" aria-hidden="true">
+    <span className="mt-1 block h-px w-full bg-hairline" aria-hidden="true">
       <span
-        className={cn('block h-px', tone === 'signal' ? 'bg-signal' : 'bg-chrome/50')}
+        className={cn('block h-px', tone === 'signal' ? 'bg-signal' : 'bg-chrome/45')}
         style={{ width: `${(share * 100).toFixed(2)}%` }}
       />
     </span>
@@ -224,17 +245,19 @@ export function Meter({ value, max, tone = 'signal' }: { value: number; max: num
 export function BarList({
   rows,
   empty,
+  tone = 'chrome',
   format = (v: number) => v.toLocaleString('en-GB'),
 }: {
   rows: { key: string; value: number; note?: string }[];
   empty: string;
+  tone?: 'signal' | 'chrome';
   format?: (value: number) => string;
 }) {
-  if (rows.length === 0) return <p className="px-5 py-8 text-center text-sm text-haze">{empty}</p>;
+  if (rows.length === 0) return <p className="px-4 py-8 text-center text-xs text-haze">{empty}</p>;
   const max = Math.max(...rows.map((r) => r.value), 1);
 
   return (
-    <ul className="grid gap-2.5 px-5 py-4">
+    <ul className="grid gap-2 px-4 py-3">
       {rows.map((row) => (
         <li key={row.key}>
           <div className="flex items-baseline justify-between gap-3">
@@ -244,7 +267,7 @@ export function BarList({
               {format(row.value)}
             </span>
           </div>
-          <Meter value={row.value} max={max} />
+          <Meter value={row.value} max={max} tone={tone} />
         </li>
       ))}
     </ul>
@@ -254,55 +277,69 @@ export function BarList({
 /* ================================================================= funnel == */
 
 /**
- * The conversion funnel, as stacked proportional bars.
+ * The conversion path, as an editorial column rather than a graphic.
  *
- * Width is the share of the entry stage, which is what makes the drop-off
- * legible as a shape rather than as a column of numbers. The stage-to-stage
- * percentage sits in the gap between bars, because that is the number a reader
- * is actually looking for — "where do people stop" — and putting it on the bar
- * would make it look like a property of the stage rather than of the step into
- * it.
+ * §13 of the brief rules out the giant coloured funnel, and the reason is that
+ * a funnel drawn as a shape is read as a shape: the eye takes in "it narrows"
+ * and stops. What the reader actually wants is two numbers per step — how many
+ * arrived, and what share of the previous step that is — and those are typography,
+ * not geometry.
+ *
+ * So: the count is the largest thing on each row, the stage name sits under it
+ * in the section face, and the step conversion lives in the gap BETWEEN two
+ * stages, because that is a property of the step and not of either stage. The
+ * only geometry left is a 1px rule showing the share of entry, which costs
+ * nothing and lets the shape be seen by anyone who wants it.
  */
 export function Funnel({
   stages,
 }: {
-  stages: { id: string; label: string; count: number; ofPrevious: number | null; ofEntry: number | null; hint?: string }[];
+  stages: {
+    id: string; label: string; count: number;
+    ofPrevious: number | null; ofEntry: number | null; hint?: string;
+  }[];
 }) {
   const entry = stages[0]?.count ?? 0;
 
   return (
-    <ol className="grid gap-0 px-5 py-4">
+    <ol className="grid gap-0 px-4 py-3">
       {stages.map((stage, i) => {
         const share = entry > 0 ? Math.max(stage.count / entry, 0) : 0;
+        const last = i === stages.length - 1;
         return (
           <li key={stage.id}>
             {i > 0 && (
-              <div className="flex items-center gap-2 py-1.5 pl-3">
-                <span className="h-3 w-px bg-hair" aria-hidden="true" />
+              <div className="flex items-center gap-2 py-1.5">
+                <span className="text-[10px] leading-none text-haze/70" aria-hidden="true">↓</span>
                 <span className="num text-[10px] text-haze">
-                  {stage.ofPrevious === null ? '—' : `${(stage.ofPrevious * 100).toFixed(1)}% continue`}
+                  {stage.ofPrevious === null ? '—' : `${(stage.ofPrevious * 100).toFixed(1)}%`}
                 </span>
+                <span className="h-px flex-1 bg-hairline" aria-hidden="true" />
               </div>
             )}
             <div className="flex items-baseline justify-between gap-3">
-              <span className="text-xs text-paper">{stage.label}</span>
-              <span className="num text-xs text-paper">
-                {stage.count.toLocaleString('en-GB')}
-                {stage.ofEntry !== null && (
-                  <span className="ml-2 text-haze">{(stage.ofEntry * 100).toFixed(2)}%</span>
-                )}
-              </span>
+              <div className="min-w-0">
+                <p className={cn('num text-xl leading-none', last ? 'text-signal' : 'text-paper')}>
+                  {stage.count.toLocaleString('en-GB')}
+                </p>
+                <p className="t-section mt-1 truncate">{stage.label}</p>
+              </div>
+              {stage.ofEntry !== null && (
+                <span className="num shrink-0 text-[10px] text-haze">
+                  {(stage.ofEntry * 100).toFixed(2)}% of entry
+                </span>
+              )}
             </div>
-            <div className="mt-1 h-2 w-full rounded-sm bg-white/[0.04]" aria-hidden="true">
+            <div className="mt-1.5 h-px w-full bg-hairline" aria-hidden="true">
               <div
-                className={cn('h-2 rounded-sm', i === stages.length - 1 ? 'bg-signal' : 'bg-chrome/35')}
+                className={cn('h-px', last ? 'bg-signal' : 'bg-chrome/45')}
                 // A visible sliver for a non-zero stage that would otherwise
                 // round to nothing: "two leads out of nine hundred sessions" is
                 // a real number and a bar of zero width says it did not happen.
                 style={{ width: `${Math.max(share * 100, stage.count > 0 ? 0.6 : 0).toFixed(2)}%` }}
               />
             </div>
-            {stage.hint && <p className="num mt-1 text-[10px] text-haze">{stage.hint}</p>}
+            {stage.hint && <p className="num mt-1 text-[10px] leading-relaxed text-haze/80">{stage.hint}</p>}
           </li>
         );
       })}
@@ -313,7 +350,7 @@ export function Funnel({
 /* ================================================================ controls == */
 
 /**
- * A segmented control — the range and environment selectors.
+ * A segmented control — the range, environment and metric selectors.
  *
  * `aria-pressed` on real buttons rather than a `radiogroup`, because these are
  * not a form field: nothing is submitted, and each press takes effect
@@ -337,9 +374,9 @@ export function Segmented<T extends string>({
           aria-pressed={value === id}
           onClick={() => onChange(id)}
           className={cn(
-            'px-3 py-1.5 font-data text-[10px] uppercase tracking-[0.14em] transition-colors',
+            'px-2.5 py-1 font-data text-[10px] uppercase tracking-[0.14em] transition-colors',
             'focus-visible:outline-2 focus-visible:outline-signal',
-            value === id ? 'bg-white/[0.07] text-paper' : 'text-haze hover:text-paper',
+            value === id ? 'bg-flare text-paper' : 'text-haze hover:text-paper',
           )}
         >
           {text}
@@ -363,44 +400,8 @@ export function Delta({ value, inverse = false }: { value: number | null; invers
   const flat = Math.abs(value) < 0.005;
   const good = inverse ? value < 0 : value > 0;
   return (
-    <span
-      className={cn(
-        'num text-[10px]',
-        flat ? 'text-haze' : good ? 'text-good' : 'text-danger',
-      )}
-    >
-      {flat ? '±0%' : `${value > 0 ? '▲' : '▼'} ${Math.abs(value * 100).toFixed(1)}%`}
+    <span className={cn('num text-[10px]', flat ? 'text-haze' : good ? 'text-good' : 'text-danger')}>
+      {flat ? '±0%' : `${value > 0 ? '↑' : '↓'} ${Math.abs(value * 100).toFixed(1)}%`}
     </span>
-  );
-}
-
-/**
- * A KPI, and it is deliberately not a card the size of a postcard.
- *
- * The brief rules out giant empty KPI cards, and the reason is a real one: a
- * dashboard is read by scanning, and eight tiles that each hold one number in a
- * lot of air means scrolling to compare figures that belong side by side. This
- * is the compact form — label, figure, one line of context — and eight of them
- * fit above the fold on a laptop.
- */
-export function Stat({
-  label, value, note, delta, inverse, tone = 'default',
-}: {
-  label: string;
-  value: ReactNode;
-  note?: ReactNode;
-  delta?: number | null;
-  inverse?: boolean;
-  tone?: 'default' | 'accent';
-}) {
-  return (
-    <div className="rounded-lg border border-hair bg-panel/60 px-4 py-3 shadow-panel">
-      <p className="label truncate">{label}</p>
-      <p className={cn('num mt-1 text-xl', tone === 'accent' ? 'text-signal' : 'text-paper')}>{value}</p>
-      <div className="mt-0.5 flex flex-wrap items-baseline gap-x-2">
-        {delta !== undefined && <Delta value={delta ?? null} inverse={inverse} />}
-        {note && <span className="text-[10px] text-haze">{note}</span>}
-      </div>
-    </div>
   );
 }
