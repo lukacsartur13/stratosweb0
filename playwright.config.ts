@@ -46,7 +46,14 @@ const HARDENING = [/homepage-modality\.spec\.ts/, /homepage-history\.spec\.ts/];
 // This is not only about redundancy. The homepage specs drive a ~1 MB WebGL
 // bundle and sit close to the 30 s timeout under parallel load; running these
 // tests five times over pushed them past it.
-const ENGINE_ONLY = [/analytics\.spec\.ts/, /attribution\.spec\.ts/, /not-found\.spec\.ts/];
+// `portal-control-room.spec.ts` joins them for a third reason: most of it reads
+// portal/src off the filesystem and asserts structure, which is the same answer
+// in every engine and at every width. Its handful of rendered checks want one
+// desktop and one phone, which is exactly what this pair is.
+const ENGINE_ONLY = [
+  /analytics\.spec\.ts/, /attribution\.spec\.ts/, /not-found\.spec\.ts/,
+  /portal-control-room\.spec\.ts/,
+];
 
 export default defineConfig({
   testDir: './tests',

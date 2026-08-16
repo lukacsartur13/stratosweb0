@@ -219,7 +219,11 @@ test.describe('the portal renders stored values as text, never as markup', () =>
       for (const match of body.matchAll(/href=\{([^}]*)\}/g)) {
         const expr = match[1].trim();
         const safe =
-          /^`(mailto:|tel:|https:\/\/|\/)/.test(expr) ||   // literal scheme or absolute path
+          // A literal scheme, an absolute path, or a fragment. `#` is on this
+          // list because Analytics' section jump-links are built from an id —
+          // a fragment identifier addresses this document and cannot carry a
+          // scheme, so there is nothing for a stored value to smuggle into it.
+          /^`(mailto:|tel:|https:\/\/|\/|#)/.test(expr) ||
           /^['"](mailto:|tel:|https:\/\/|\/|#)/.test(expr) ||
           /^safeUrl\(/.test(expr) ||                       // scheme decided at the point of use
           /^to$|^path$/.test(expr);                        // a router prop, not a URL
@@ -235,11 +239,12 @@ test.describe('the portal renders stored values as text, never as markup', () =>
     // page with it. Every element that renders a stored value carries the wrap
     // classes; this asserts they are still on all of them.
     //
-    // Retargeted from screens.tsx to leads.tsx: the lead detail moved when it
-    // grew a pipeline, notes and a timeline, and `PayloadEntry` became `Fact`.
-    // The property is unchanged and so is the reason for it.
-    const leads = fs.readFileSync(path.join(SRC, 'pages', 'leads.tsx'), 'utf8');
-    const renderers = [...leads.matchAll(/<dd className="([^"]*)">\{value \|\| '—'\}/g)];
+    // Retargeted twice: screens.tsx → leads.tsx when the detail grew a
+    // pipeline, notes and a timeline, and leads.tsx → lead-detail.tsx in P1
+    // when it became its own route. The property is unchanged and so is the
+    // reason for it.
+    const leads = fs.readFileSync(path.join(SRC, 'pages', 'lead-detail.tsx'), 'utf8');
+    const renderers = [...leads.matchAll(/<dd className="([^"]*)">\s*\{value \|\| '—'\}/g)];
     expect(renderers.length, 'Fact must render the value').toBeGreaterThan(0);
     for (const [, classes] of renderers) {
       expect(classes, 'the payload value must wrap').toContain('break-words');
@@ -268,7 +273,7 @@ test.describe('the portal renders stored values as text, never as markup', () =>
     // FIRST and everything else after, so the filter this test used to forbid
     // is present and is exactly the right one: it removes the keys already
     // drawn above, and nothing else. `SHOWN_META` is asserted to be that set.
-    const leads = fs.readFileSync(path.join(SRC, 'pages', 'leads.tsx'), 'utf8');
+    const leads = fs.readFileSync(path.join(SRC, 'pages', 'lead-detail.tsx'), 'utf8');
     expect(leads).toContain('Object.entries(meta)');
     expect(leads, 'unknown keys fall back to the raw key')
       .toMatch(/META_LABEL\[k\]\s*\?\?\s*k/);
@@ -280,8 +285,20 @@ test.describe('the portal renders stored values as text, never as markup', () =>
     // screen entirely, which is the failure this whole test exists to catch.
     const set = /const SHOWN_META = new Set\(\[([\s\S]*?)\]\)/.exec(leads);
     expect(set, 'SHOWN_META must exist').not.toBeNull();
+
+    // `utmSource` and `landingReferrerHost` are drawn THROUGH `leadSource()`,
+    // which prints whichever of the two the lead actually carries as one Source
+    // line. They are in SHOWN_META for exactly that reason — repeating below
+    // whichever one it used would be the same fact twice — so the check is
+    // "drawn", not "drawn by a literal metaText call".
+    const viaLeadSource = new Set(['utmSource', 'landingReferrerHost']);
+    if (viaLeadSource.size > 0) {
+      expect(leads, 'leadSource() is what draws the source fields')
+        .toContain('leadSource(lead)');
+    }
     for (const key of set![1].match(/'([^']+)'/g) ?? []) {
       const bare = key.slice(1, -1);
+      if (viaLeadSource.has(bare)) continue;
       expect(leads, `${bare} is in SHOWN_META but never drawn`)
         .toContain(`metaText(lead, '${bare}')`);
     }
@@ -309,7 +326,10 @@ test.describe('responsive', () => {
   // suites that share a constant by accident are two suites that break together
   // when one of them moves.
   const SRC = path.join(process.cwd(), 'portal', 'src');
-  const SCREENS = ['pages/overview.tsx', 'pages/leads.tsx', 'pages/analytics.tsx', 'pages/screens.tsx'];
+  const SCREENS = [
+    'pages/dashboard.tsx', 'pages/leads.tsx', 'pages/lead-detail.tsx', 'pages/analytics.tsx',
+    'pages/system.tsx', 'pages/screens.tsx',
+  ];
 
   test('only the table scrolls sideways, and nothing states a pixel width', () => {
     for (const rel of SCREENS) {
@@ -323,9 +343,13 @@ test.describe('responsive', () => {
       const widths = [...body.matchAll(/\bw-\[\d+px\]|\bmin-w-\[\d+px\]/g)].map((m) => m[0]);
       expect(widths, `${rel} pins a pixel width`).toEqual([]);
 
-      // Every multi-column grid must start as one column. `grid-cols-N` with no
-      // breakpoint is a layout that is N columns wide on a 360px phone.
-      const rigid = [...body.matchAll(/className="[^"]*?(?<![:\w-])grid-cols-[2-9][^"]*"/g)].map((m) => m[0]);
+      // Three or more columns with no breakpoint is a layout that is three
+      // columns wide on a 360px phone. Two is allowed and is used deliberately
+      // — the executive strip and the pipeline strip are two columns at phone
+      // widths, which is legible, where one column would be a screen of
+      // scrolling to read five figures. Anything past two is not.
+      const rigid = [...body.matchAll(/className="[^"]*?(?<![:\w-])grid-cols-([3-9]|1[0-2])[^"]*"/g)]
+        .map((m) => m[0]);
       expect(rigid, `${rel} has an unbreakpointed multi-column grid`).toEqual([]);
     }
   });
@@ -351,7 +375,7 @@ test.describe('responsive', () => {
     // searching for the expression. `{row.path}` also appears as a React `key`,
     // which is not a rendered string and carries no classes, and a check that
     // cannot tell those apart fails on correct code.
-    const sites = [...analytics.matchAll(/className="([^"]*)"\s*>\{(row\.[\w. |]+)\}/g)];
+    const sites = [...analytics.matchAll(/className="([^"]*)"\s*>\{(row\.[\w.]+(?:\s*\|\|\s*[^}]+?)?)\}/g)];
     expect(sites.length, 'the dimension values must be rendered somewhere').toBeGreaterThan(3);
 
     for (const [, classes, expr] of sites) {

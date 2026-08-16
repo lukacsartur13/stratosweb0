@@ -111,6 +111,9 @@ const DESCRIBES_THE_RULE = new Set([
   'tests/lead-forms.spec.ts',
   'tests/lead-endpoint.spec.ts',
   'tests/portal.spec.ts',
+  // The same assertion, for the Control Room's bundles: it names the rule in
+  // order to forbid it, and carries no value.
+  'tests/portal-control-room.spec.ts',
   'README.md',
   '.env.example',
   'ARCHITECTURE.md',
