@@ -1,70 +1,99 @@
-import { useState, type ReactNode } from 'react';
-import { PageHead } from '@/pages/screens';
+import { useMemo, useState, type ReactNode } from 'react';
+import { useScope } from '@/lib/scope';
+import { Grid } from '@/components/shell/PortalShell';
 import {
-  Badge, Button, Cell, EmptyState, ErrorState, Panel, PanelHeader, Row, Skeleton, Table, cn,
+  Cell, DataState, ErrorState, MetricCell, MetricStrip, Panel, Row, SectionHeader, Skeleton,
+  Table, cn,
 } from '@/components/ui';
-import { BarList, Funnel, Meter, Segmented, Stat, TrendChart } from '@/components/charts';
+import { BarList, Delta, Funnel, Meter, Segmented, TrendChart } from '@/components/charts';
 import {
-  ENVIRONMENTS, RANGES, delta, duration, n, pct, trendLabel, useAnalytics,
-  type AnalyticsState, type Environment, type Range, type Report,
+  delta, duration, n, pct, trendLabel, useAnalytics,
+  type AnalyticsState, type Report,
 } from '@/lib/analytics';
 
 /**
- * Portal Analytics.
+ * ANALYTICS — analysis.
  *
- * Nine sections, one request. Everything on this screen comes from a single
- * same-origin call to `/api/portal-analytics`, which is where the Google
- * credentials live and stay; this component holds no Google identifier of any
- * kind. See `lib/analytics.ts` for the whole of that argument.
+ * ## What this screen is for, and what the Dashboard is for
  *
- * ## What it is trying to be
+ * The Dashboard answers "what is happening"; this answers "what happened, where
+ * did it come from, what did people read, and what converted". They draw on the
+ * same endpoint and they are not the same screen: the Dashboard shows five
+ * figures and one chart because it is read in ten seconds, and this shows six
+ * sections because it is read when somebody has a question.
  *
- * An operational instrument, not a report. The layout is dense on purpose:
- * eight KPIs above the fold, the trend beneath them, then acquisition, pages,
- * devices and the funnel — so that "what happened, where did it come from, and
- * did it turn into anything" is one scroll rather than four screens. Nothing
- * here is decorative. Every chart answers a question somebody would otherwise
- * have to open the GA4 interface to ask.
+ * Realtime is deliberately NOT here. "Is anyone on the site right now" is a
+ * decision-making question, it lives on the Dashboard, and duplicating it here
+ * would be the third place the same number appeared.
+ *
+ * ## One request, six sections
+ *
+ * Everything below comes from a single same-origin call to
+ * `/api/portal-analytics`, which is where the Google credentials live and stay;
+ * this component holds no Google identifier of any kind. See `lib/analytics.ts`
+ * for the whole of that argument. A hook per section would undo the server's
+ * work: six components mounting six fetches, each of which would either miss the
+ * server cache or wait on it, for a payload that is one object.
+ *
+ * ## The period and the deployment
+ *
+ * Both come from the command bar, not from this screen. They are properties of
+ * what the operator is looking at rather than of the page they are on, which is
+ * why the Dashboard and this screen can no longer silently disagree about which
+ * thirty days they mean.
  */
 
+const SECTIONS = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'traffic', label: 'Traffic' },
+  { id: 'acquisition', label: 'Acquisition' },
+  { id: 'content', label: 'Content' },
+  { id: 'conversion', label: 'Conversion' },
+  { id: 'audience', label: 'Audience' },
+] as const;
+
 export function AnalyticsScreen() {
-  const [range, setRange] = useState<Range>('30d');
-  const [environment, setEnvironment] = useState<Environment>('production');
-  const { state, reload } = useAnalytics(range, environment);
+  const { range, environment, reloadToken, compare, setCompare } = useScope();
+  const { state, reload } = useAnalytics(range, environment, true, reloadToken);
 
   return (
-    <>
-      <PageHead
-        title="Analytics"
-        lede="Google Analytics 4, read server-side. Figures describe measured traffic — see the note below."
-        right={
-          <div className="flex flex-wrap items-center gap-2">
-            <Segmented label="Environment" value={environment} options={ENVIRONMENTS} onChange={setEnvironment} />
-            <Segmented label="Date range" value={range} options={RANGES} onChange={setRange} />
-            <Button size="sm" onClick={() => void reload()}>Refresh</Button>
-          </div>
-        }
-      />
+    <div className="grid gap-4">
+      {/* One control row, and it holds only what the command bar does not:
+          the comparison, and the jump list. */}
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <nav aria-label="Analytics sections" className="flex flex-wrap gap-x-4 gap-y-1">
+          {SECTIONS.map((s) => (
+            <a key={s.id} href={`#${s.id}`} className="t-section hover:text-paper">{s.label}</a>
+          ))}
+        </nav>
+        <label className="flex cursor-pointer items-center gap-2 text-[11px] text-haze hover:text-paper">
+          <input
+            type="checkbox"
+            checked={compare}
+            onChange={(e) => setCompare(e.target.checked)}
+            className="h-3 w-3 accent-signal"
+          />
+          Compare previous period
+        </label>
+      </div>
 
-      <Screen state={state} reload={reload} />
-    </>
+      <Screen state={state} reload={reload} compare={compare} />
+    </div>
   );
 }
 
-function Screen({ state, reload }: { state: AnalyticsState; reload: () => void }) {
+function Screen({
+  state, reload, compare,
+}: { state: AnalyticsState; reload: () => void; compare: boolean }) {
   if (state.kind === 'loading') {
     return (
       <div aria-busy="true" className="grid gap-4">
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
-            <Panel key={i} className="p-4"><Skeleton className="h-11 w-full" /></Panel>
-          ))}
-        </div>
-        <Panel className="p-5"><Skeleton className="h-44 w-full" /></Panel>
-        <div className="grid gap-4 xl:grid-cols-2">
-          <Panel className="p-5"><Skeleton className="h-56 w-full" /></Panel>
-          <Panel className="p-5"><Skeleton className="h-56 w-full" /></Panel>
-        </div>
+        <Skeleton className="h-[104px] w-full" />
+        <Skeleton className="h-[280px] w-full" />
+        <Grid>
+          <Skeleton className="col-span-12 h-64 lg:col-span-7" />
+          <Skeleton className="col-span-12 h-64 lg:col-span-5" />
+        </Grid>
       </div>
     );
   }
@@ -77,7 +106,7 @@ function Screen({ state, reload }: { state: AnalyticsState; reload: () => void }
     return <Panel><ErrorState message={state.message} onRetry={reload} /></Panel>;
   }
 
-  return <Dashboard data={state.data} cached={state.cached} realtimeCached={state.realtimeCached} />;
+  return <Report_ data={state.data} cached={state.cached} compare={compare} />;
 }
 
 /**
@@ -92,8 +121,8 @@ function Screen({ state, reload }: { state: AnalyticsState; reload: () => void }
 function NotConnected({ missing, propertyConfigured }: { missing: string[]; propertyConfigured: boolean }) {
   return (
     <Panel>
-      <PanelHeader title="Not connected" />
-      <div className="grid gap-4 px-5 py-6">
+      <SectionHeader title="Not connected" />
+      <div className="grid gap-4 px-4 py-5">
         <p className="max-w-prose text-sm text-haze">
           Portal Analytics is built and waiting for credentials. Reporting needs a Google service
           account with read access to the GA4 property — a separate thing from the measurement tag
@@ -103,9 +132,7 @@ function NotConnected({ missing, propertyConfigured }: { missing: string[]; prop
           <div>
             <p className="label mb-1.5">Missing in the Netlify function environment</p>
             <ul className="grid gap-1">
-              {missing.map((name) => (
-                <li key={name} className="num text-xs text-paper">{name}</li>
-              ))}
+              {missing.map((name) => <li key={name} className="num text-xs text-paper">{name}</li>)}
             </ul>
           </div>
         )}
@@ -130,157 +157,91 @@ function NotConnected({ missing, propertyConfigured }: { missing: string[]; prop
   );
 }
 
-/* ================================================================ dashboard */
+/* ================================================================ the page */
 
-function Dashboard({
-  data, cached, realtimeCached,
-}: { data: Report; cached: boolean; realtimeCached: boolean }) {
-  const now = data.overview.current;
-  const was = data.overview.previous;
-
+function Report_({ data, cached, compare }: { data: Report; cached: boolean; compare: boolean }) {
   return (
-    <div className="grid gap-4">
-      {/* ---------------------------------------------------------- KPIs -- */}
-      <section aria-label="Key figures" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat
-          label="Active users"
-          value={n(now.activeUsers)}
-          delta={delta(now.activeUsers, was.activeUsers)}
-          note={data.comparison.label.toLowerCase()}
-        />
-        <Stat
-          label="Sessions"
-          value={n(now.sessions)}
-          delta={delta(now.sessions, was.sessions)}
-          note={data.comparison.label.toLowerCase()}
-        />
-        <Stat
-          label="Page views"
-          value={n(now.screenPageViews)}
-          delta={delta(now.screenPageViews, was.screenPageViews)}
-          note={data.comparison.label.toLowerCase()}
-        />
-        <Stat
-          label="New users"
-          value={n(now.newUsers)}
-          delta={delta(now.newUsers, was.newUsers)}
-          note={data.comparison.label.toLowerCase()}
-        />
+    <div className="grid gap-6">
+      <Section id="overview" title="Overview">
+        <Overview data={data} compare={compare} />
+      </Section>
 
-        <Stat
-          label="Lead events"
-          tone="accent"
-          value={n(now.leadEvents)}
-          delta={delta(now.leadEvents, was.leadEvents)}
-          note="form & questionnaire success"
-        />
-        <Stat
-          label="Lead events / session"
-          value={pct(now.leadRate, 2)}
-          delta={now.leadRate !== null && was.leadRate !== null ? delta(now.leadRate, was.leadRate) : null}
-        />
-        <Stat
-          label="Engagement rate"
-          value={pct(now.engagementRate)}
-          delta={now.engagementRate !== null && was.engagementRate !== null
-            ? delta(now.engagementRate, was.engagementRate) : null}
-          note="engaged sessions / sessions"
-        />
-        <Stat
-          label="Avg engagement time"
-          value={duration(now.engagementPerUser)}
-          delta={delta(now.engagementPerUser, was.engagementPerUser)}
-          note="per active user"
-        />
-      </section>
+      <Section id="traffic" title="Traffic">
+        <TrafficSection data={data} compare={compare} />
+      </Section>
 
-      {/* ------------------------------------------------------- realtime -- */}
-      <RealtimePanel data={data} cached={realtimeCached} />
+      <Section id="acquisition" title="Acquisition">
+        <AcquisitionSection data={data} />
+      </Section>
 
-      {/* ---------------------------------------------------------- trend -- */}
-      <TrendPanel data={data} />
+      <Section id="content" title="Content">
+        <ContentSection data={data} />
+      </Section>
 
-      {/* ------------------------------------------- acquisition + funnel -- */}
-      <div className="grid gap-4 xl:grid-cols-[1.4fr_1fr]">
-        <AcquisitionPanel data={data} />
-        <div className="grid gap-4">
-          <FunnelPanel data={data} />
-          <DevicePanel data={data} />
-        </div>
-      </div>
+      <Section id="conversion" title="Conversion">
+        <ConversionSection data={data} />
+      </Section>
 
-      {/* ---------------------------------------------------------- pages -- */}
-      <PagesPanel data={data} />
+      <Section id="audience" title="Audience">
+        <AudienceSection data={data} />
+      </Section>
 
-      {/* ----------------------------------------------------------- note -- */}
       <MeasurementNote data={data} cached={cached} />
     </div>
   );
 }
 
-/* ================================================================= realtime */
-
-function RealtimePanel({ data, cached }: { data: Report; cached: boolean }) {
-  const rt = data.realtime;
-
+/**
+ * A section of the page, with an anchor and a rule.
+ *
+ * The heading sits OUTSIDE the panels below it, which is the whole difference
+ * between "six sections" and "nine cards": a title above a rule says the things
+ * under it belong together, where a title inside a bordered box says only that
+ * the box has a name.
+ */
+function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
-    <Panel>
-      <PanelHeader
-        title="Realtime"
-        action={
-          <span className="flex items-center gap-2">
-            {rt && (
-              <span className="flex items-center gap-1.5">
-                {/* A dot, not a pulsing animation. The panel is a readout, and
-                    something blinking in the corner of an operational screen is
-                    a thing you learn to ignore. */}
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-good" aria-hidden="true" />
-                <span className="label">last {rt.minutes} min</span>
-              </span>
-            )}
-            {cached && <Badge>cached</Badge>}
-          </span>
-        }
-      />
-      {!rt ? (
-        <EmptyState
-          title="Realtime unavailable"
-          body="The realtime report could not be read. The figures above are unaffected — they come from a different Google endpoint."
-        />
-      ) : (
-        <div className="grid gap-0 lg:grid-cols-[220px_1fr_1fr] lg:divide-x lg:divide-hair">
-          <div className="border-b border-hair px-5 py-4 lg:border-b-0">
-            <p className="label">Active users</p>
-            <p className="num mt-1 text-3xl text-signal">{n(rt.activeUsersByPage)}</p>
-            {/* The honest caveat, in the place the number is. GA4 deduplicates
-                users across a dimensioned realtime report and this is a sum of
-                the rows, so a visitor who moved between two pages inside the
-                window appears on both. */}
-            <p className="mt-1 text-[10px] leading-relaxed text-haze">
-              Summed across pages, so a visitor who moved between two is counted on both.
-            </p>
-            {!rt.environmentFiltered && data.environment !== 'all' && (
-              <p className="mt-2 text-[10px] leading-relaxed text-haze">
-                Whole property — GA4 does not expose hostname on realtime reports, so the{' '}
-                {data.environment} filter above does not apply here.
-              </p>
-            )}
-          </div>
-          <div className="border-b border-hair lg:border-b-0">
-            <p className="label px-5 pb-1 pt-4">Pages being viewed</p>
-            <BarList rows={rt.byPage} empty="Nobody on the site right now." />
-          </div>
-          <div>
-            <p className="label px-5 pb-1 pt-4">Events</p>
-            <BarList rows={rt.byEvent} empty="No events in the window." />
-          </div>
-        </div>
-      )}
-    </Panel>
+    <section id={id} aria-labelledby={`${id}-heading`} className="scroll-mt-20">
+      <div className="mb-2.5 flex items-center gap-3">
+        <h2 id={`${id}-heading`} className="t-section text-chrome">{title}</h2>
+        <span className="h-px flex-1 bg-hairline" aria-hidden="true" />
+      </div>
+      {children}
+    </section>
   );
 }
 
-/* ==================================================================== trend */
+/* ============================================================== 1 overview */
+
+function Overview({ data, compare }: { data: Report; compare: boolean }) {
+  const now = data.overview.current;
+  const was = data.overview.previous;
+  const d = (a: number, b: number) => (compare ? <Delta value={delta(a, b)} /> : undefined);
+
+  return (
+    <MetricStrip label="Key figures" className="xl:grid-cols-6">
+      <MetricCell label="Active users" value={n(now.activeUsers)} delta={d(now.activeUsers, was.activeUsers)} />
+      <MetricCell label="Sessions" value={n(now.sessions)} delta={d(now.sessions, was.sessions)} />
+      <MetricCell label="Views" value={n(now.screenPageViews)} delta={d(now.screenPageViews, was.screenPageViews)} />
+      <MetricCell label="New users" value={n(now.newUsers)} delta={d(now.newUsers, was.newUsers)} />
+      <MetricCell
+        label="Lead events"
+        value={n(now.leadEvents)}
+        delta={d(now.leadEvents, was.leadEvents)}
+        note="form & questionnaire success"
+      />
+      <MetricCell
+        label="Conversion"
+        value={pct(now.leadRate, 2)}
+        delta={compare && now.leadRate !== null && was.leadRate !== null
+          ? <Delta value={delta(now.leadRate, was.leadRate)} /> : undefined}
+        note="lead events / session"
+      />
+    </MetricStrip>
+  );
+}
+
+/* =============================================================== 2 traffic */
 
 type Metric = 'activeUsers' | 'sessions' | 'screenPageViews';
 
@@ -290,66 +251,140 @@ const METRICS: { id: Metric; label: string }[] = [
   { id: 'screenPageViews', label: 'Views' },
 ];
 
-function TrendPanel({ data }: { data: Report }) {
+function TrafficSection({ data, compare }: { data: Report; compare: boolean }) {
   const [metric, setMetric] = useState<Metric>('sessions');
-  const points = data.trend.points.map((p) => p[metric]);
-  const labels = data.trend.points.map((p) => trendLabel(p.at, data.trend.grain));
+
+  const baseline = useMemo(() => {
+    if (!compare) return null;
+    const points = data.trend.points.length;
+    if (points === 0) return null;
+    const mean = data.overview.previous[metric] / points;
+    return mean > 0
+      ? { value: mean, label: `previous period, ${Math.round(mean).toLocaleString('en-GB')} avg` }
+      : null;
+  }, [compare, data, metric]);
 
   return (
     <Panel>
-      <PanelHeader
-        title="Traffic"
+      <SectionHeader
+        title={METRICS.find((m) => m.id === metric)!.label}
+        note={data.rangeLabel.toLowerCase()}
         action={<Segmented label="Metric" value={metric} options={METRICS} onChange={setMetric} />}
+        level={3}
       />
       <TrendChart
-        points={points}
-        labels={labels}
+        points={data.trend.points.map((p) => p[metric])}
+        labels={data.trend.points.map((p) => trendLabel(p.at, data.trend.grain))}
         label={`${METRICS.find((m) => m.id === metric)!.label} · ${data.rangeLabel.toLowerCase()}`}
+        baseline={baseline}
+        height={260}
       />
+      {/*
+        Why there is no second curve.
+
+        GA4's Data API returns one time series for the range that was asked for.
+        The previous period's TOTAL is in the payload; its shape is not. A dashed
+        rule at the previous period's mean is the honest form of that fact — the
+        alternative would be drawing a curve nobody measured.
+      */}
+      {compare && (
+        <p className="t-note border-t border-hairline px-4 py-2">
+          The dashed rule is the previous period&rsquo;s <span className="text-paper">average per
+          interval</span>. GA4 returns one series per request, so the previous period has a level
+          here but not a shape.
+        </p>
+      )}
     </Panel>
   );
 }
 
-/* ============================================================== acquisition */
+/* =========================================================== 3 acquisition */
 
-function AcquisitionPanel({ data }: { data: Report }) {
-  const rows = data.acquisition;
+type Grain = 'source' | 'campaign';
+
+function AcquisitionSection({ data }: { data: Report }) {
+  const [grain, setGrain] = useState<Grain>('source');
+
+  /**
+   * Source/medium, with campaigns folded in.
+   *
+   * The endpoint returns one row per source × medium × campaign. Reading that
+   * raw makes `google / cpc` appear five times, once per campaign, which is the
+   * campaign view wearing the source view's clothes. So the two tabs are two
+   * genuine aggregations of the same rows rather than two slices of one.
+   */
+  const rows = useMemo(() => {
+    const by = new Map<string, {
+      key: string; sessions: number; activeUsers: number; engaged: number; leadEvents: number;
+    }>();
+    for (const row of data.acquisition) {
+      const key = grain === 'source' ? `${row.source} / ${row.medium}` : row.campaign;
+      const seen = by.get(key) ?? { key, sessions: 0, activeUsers: 0, engaged: 0, leadEvents: 0 };
+      seen.sessions += row.sessions;
+      seen.activeUsers += row.activeUsers;
+      // Engagement is a rate per row, so it has to be re-weighted by sessions
+      // before it can be summed — averaging the rates would give a two-session
+      // row the same say as a two-thousand-session one.
+      seen.engaged += (row.engagementRate ?? 0) * row.sessions;
+      seen.leadEvents += row.leadEvents;
+      by.set(key, seen);
+    }
+    return [...by.values()].sort((a, b) => b.sessions - a.sessions);
+  }, [data.acquisition, grain]);
+
   const max = Math.max(...rows.map((r) => r.sessions), 1);
 
   return (
-    // `h-fit` so a short acquisition table does not stretch to match the two
-    // stacked panels beside it and leave a screen of empty panel under six rows.
-    <Panel className="h-fit min-w-0">
-      <PanelHeader
-        title="Acquisition"
-        action={<span className="label">GA4 session-scoped attribution</span>}
+    <Panel className="min-w-0">
+      <SectionHeader
+        title={grain === 'source' ? 'Source / medium' : 'Campaign'}
+        note="GA4 session-scoped attribution"
+        level={3}
+        action={
+          <Segmented
+            label="Acquisition breakdown"
+            value={grain}
+            options={[{ id: 'source' as const, label: 'Source / medium' }, { id: 'campaign' as const, label: 'Campaign' }]}
+            onChange={setGrain}
+          />
+        }
       />
       {rows.length === 0 ? (
-        <EmptyState title="No sessions" body="Nothing arrived in this range." />
+        <DataState kind="empty" title="No sessions" body="Nothing arrived in this range." />
       ) : (
-        <Table head={['Source / medium', 'Campaign', 'Sessions', 'Users', 'Engaged', 'Leads']}>
+        <Table
+          head={[
+            grain === 'source' ? 'Source / medium' : 'Campaign',
+            { label: 'Sessions', align: 'right' },
+            { label: 'Users', align: 'right' },
+            { label: 'Engaged', align: 'right' },
+            { label: 'Leads', align: 'right' },
+            { label: 'CVR', align: 'right' },
+          ]}
+          minWidth={720}
+        >
           {rows.map((row) => (
-            <Row key={`${row.source}|${row.medium}|${row.campaign}`}>
-              <Cell>
-                {/* Text, never a link. Source and referrer strings come from
-                    whatever a referring site put in a header. */}
-                <span className="break-words text-sm text-paper">{row.source}</span>
-                <span className="num ml-1.5 text-[10px] text-haze">/ {row.medium}</span>
+            <Row key={row.key}>
+              <Cell className="min-w-0">
+                {/* Text, never a link. Source and campaign strings come from
+                    whatever a referring site put in a header, or from whatever
+                    somebody typed into a UTM parameter. `break-all` because
+                    `spring-2026-kkv-remarketing-lookalike-1pct` is an ordinary
+                    campaign name and a 48-character unbroken token in a table
+                    cell sets that column's min-content width. */}
+                <span className="break-all text-xs text-paper">{row.key || '(not set)'}</span>
                 <Meter value={row.sessions} max={max} />
               </Cell>
-              {/* `break-all`, and the responsive suite is what caught this
-                  missing. A campaign name is whatever somebody typed into a UTM
-                  parameter — `spring-2026-kkv-remarketing-lookalike-1pct` is a
-                  perfectly ordinary one — and a 48-character unbroken token in
-                  a table cell sets that column's min-content width and pushes
-                  the table past its scroll container. */}
-              <Cell className="num break-all text-xs text-haze">{row.campaign}</Cell>
-              <Cell className="num text-right text-xs text-paper">{n(row.sessions)}</Cell>
-              <Cell className="num text-right text-xs text-haze">{n(row.activeUsers)}</Cell>
-              <Cell className="num text-right text-xs text-haze">{pct(row.engagementRate, 0)}</Cell>
-              <Cell className="num text-right text-xs">
-                <span className={row.leadEvents > 0 ? 'text-signal' : 'text-haze'}>{n(row.leadEvents)}</span>
-                <span className="ml-1.5 text-haze">{pct(row.leadRate, 1)}</span>
+              <Cell align="right" className="num text-xs text-paper">{n(row.sessions)}</Cell>
+              <Cell align="right" className="num text-xs text-haze">{n(row.activeUsers)}</Cell>
+              <Cell align="right" className="num text-xs text-haze">
+                {pct(row.sessions > 0 ? row.engaged / row.sessions : null, 0)}
+              </Cell>
+              <Cell align="right" className="num text-xs">
+                <span className={row.leadEvents > 0 ? 'text-paper' : 'text-haze'}>{n(row.leadEvents)}</span>
+              </Cell>
+              <Cell align="right" className="num text-xs text-haze">
+                {pct(row.sessions > 0 ? row.leadEvents / row.sessions : null, 2)}
               </Cell>
             </Row>
           ))}
@@ -359,96 +394,16 @@ function AcquisitionPanel({ data }: { data: Report }) {
   );
 }
 
-/* =================================================================== funnel */
+/* =============================================================== 4 content */
 
-function FunnelPanel({ data }: { data: Report }) {
-  return (
-    <Panel>
-      <PanelHeader title="Lead funnel" />
-      <Funnel
-        stages={data.funnel.map((stage) => ({
-          ...stage,
-          hint: stage.events ? stage.events.join(' · ') : undefined,
-        }))}
-      />
-      {/*
-        The qualification, next to the numbers rather than in a document.
-
-        These are EVENT counts against a SESSION count at the entry, which is
-        not a like-for-like ratio. GA4 can build a true user-scoped funnel, but
-        only through Funnel Exploration, which the Data API does not expose.
-        Showing event counts and saying what they are is honest; showing them
-        under the word "funnel" without this line would not be.
-      */}
-      <p className="border-t border-hair px-5 py-3 text-[11px] leading-relaxed text-haze">
-        Stages after the first are <span className="text-paper">event counts</span>, not unique
-        users: one visitor who clicks two CTAs is counted twice. GA4&rsquo;s user-scoped funnel is
-        an Exploration and is not available through the Data API.
-      </p>
-    </Panel>
-  );
-}
-
-/* ================================================================== devices */
-
-function DevicePanel({ data }: { data: Report }) {
-  const total = data.devices.reduce((sum, d) => sum + d.sessions, 0);
-
-  return (
-    <Panel>
-      <PanelHeader title="Devices" action={<span className="label">mobile ≠ desktop here</span>} />
-      {data.devices.length === 0 ? (
-        <EmptyState title="No sessions" body="Nothing to break down in this range." />
-      ) : (
-        <ul className="grid gap-3 px-5 py-4">
-          {data.devices.map((row) => (
-            <li key={row.device}>
-              <div className="flex items-baseline justify-between gap-3">
-                <span className="text-sm capitalize text-paper">{row.device}</span>
-                <span className="num text-xs text-haze">
-                  {n(row.sessions)} <span className="text-haze/70">({pct(total > 0 ? row.sessions / total : null, 0)})</span>
-                </span>
-              </div>
-              <Meter value={row.sessions} max={Math.max(...data.devices.map((d) => d.sessions), 1)} />
-              <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-0.5">
-                <Figure label="Users" value={n(row.activeUsers)} />
-                <Figure label="Engaged" value={pct(row.engagementRate, 0)} />
-                <Figure label="Leads" value={n(row.leadEvents)} accent={row.leadEvents > 0} />
-                <Figure label="Rate" value={pct(row.leadRate, 2)} />
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-      {/* The public site is two genuinely different experiences. This panel is
-          the only place that difference is measurable, and saying so is what
-          stops it reading as a stock breakdown nobody acts on. */}
-      <p className="border-t border-hair px-5 py-3 text-[11px] leading-relaxed text-haze">
-        The public site ships a separate portrait-mobile composition. A gap in the lead rate between
-        the two is a product signal, not a device fact.
-      </p>
-    </Panel>
-  );
-}
-
-function Figure({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
-  return (
-    <span className="flex items-baseline gap-1.5">
-      <span className="label">{label}</span>
-      <span className={cn('num text-xs', accent ? 'text-signal' : 'text-paper')}>{value}</span>
-    </span>
-  );
-}
-
-/* ==================================================================== pages */
-
-function PagesPanel({ data }: { data: Report }) {
+function ContentSection({ data }: { data: Report }) {
   const [view, setView] = useState<'pages' | 'landing'>('pages');
 
   return (
-    <Panel>
-      <PanelHeader
-        title="Pages"
+    <Panel className="min-w-0">
+      <SectionHeader
+        title={view === 'pages' ? 'Top pages' : 'Landing pages'}
+        level={3}
         action={
           <Segmented
             label="Page view"
@@ -461,54 +416,209 @@ function PagesPanel({ data }: { data: Report }) {
 
       {view === 'pages' ? (
         data.pages.length === 0 ? (
-          <EmptyState title="No page views" body="Nothing was viewed in this range." />
+          <DataState kind="empty" title="No page views" body="Nothing was viewed in this range." />
         ) : (
-          <Table head={['Page', 'Views', 'Users', 'Avg. time', 'Leads']}>
+          <Table
+            head={[
+              'Page',
+              { label: 'Views', align: 'right' },
+              { label: 'Users', align: 'right' },
+              { label: 'Avg. time', align: 'right' },
+              { label: 'Leads', align: 'right' },
+            ]}
+            minWidth={720}
+          >
             {data.pages.map((row) => (
               <Row key={row.path}>
-                <Cell>
-                  <span className="break-words text-sm text-paper">{row.title || row.path}</span>
+                <Cell className="min-w-0">
+                  <span className="break-words text-xs text-paper">{row.title || row.path}</span>
                   <span className="num mt-0.5 block break-all text-[10px] text-haze">{row.path}</span>
                   <Meter value={row.views} max={Math.max(...data.pages.map((p) => p.views), 1)} />
                 </Cell>
-                <Cell className="num text-right text-xs text-paper">{n(row.views)}</Cell>
-                <Cell className="num text-right text-xs text-haze">{n(row.activeUsers)}</Cell>
-                <Cell className="num text-right text-xs text-haze">{duration(row.engagementPerUser)}</Cell>
-                <Cell className="num text-right text-xs">
-                  <span className={row.leadEvents > 0 ? 'text-signal' : 'text-haze'}>{n(row.leadEvents)}</span>
+                <Cell align="right" className="num text-xs text-paper">{n(row.views)}</Cell>
+                <Cell align="right" className="num text-xs text-haze">{n(row.activeUsers)}</Cell>
+                <Cell align="right" className="num text-xs text-haze">{duration(row.engagementPerUser)}</Cell>
+                <Cell align="right" className="num text-xs">
+                  <span className={row.leadEvents > 0 ? 'text-paper' : 'text-haze'}>{n(row.leadEvents)}</span>
                 </Cell>
               </Row>
             ))}
           </Table>
         )
       ) : data.landingPages.length === 0 ? (
-        <EmptyState title="No landing pages" body="No sessions started in this range." />
+        <DataState kind="empty" title="No landing pages" body="No sessions started in this range." />
       ) : (
-        <Table head={['Landing page', 'Sessions', 'Users', 'Bounce', 'Leads', 'Rate']}>
+        <Table
+          head={[
+            'Landing page',
+            { label: 'Sessions', align: 'right' },
+            { label: 'Users', align: 'right' },
+            { label: 'Bounce', align: 'right' },
+            { label: 'Leads', align: 'right' },
+            { label: 'CVR', align: 'right' },
+          ]}
+          minWidth={720}
+        >
           {data.landingPages.map((row) => (
             <Row key={row.path}>
-              <Cell>
-                <span className="num break-all text-sm text-paper">{row.path}</span>
+              <Cell className="min-w-0">
+                <span className="num break-all text-xs text-paper">{row.path}</span>
                 <Meter value={row.sessions} max={Math.max(...data.landingPages.map((p) => p.sessions), 1)} />
               </Cell>
-              <Cell className="num text-right text-xs text-paper">{n(row.sessions)}</Cell>
-              <Cell className="num text-right text-xs text-haze">{n(row.activeUsers)}</Cell>
-              <Cell className="num text-right text-xs">
-                <span className="text-haze">{pct(row.bounceRate, 0)}</span>
+              <Cell align="right" className="num text-xs text-paper">{n(row.sessions)}</Cell>
+              <Cell align="right" className="num text-xs text-haze">{n(row.activeUsers)}</Cell>
+              <Cell align="right" className="num text-xs text-haze">{pct(row.bounceRate, 0)}</Cell>
+              <Cell align="right" className="num text-xs">
+                <span className={row.leadEvents > 0 ? 'text-paper' : 'text-haze'}>{n(row.leadEvents)}</span>
               </Cell>
-              <Cell className="num text-right text-xs">
-                <span className={row.leadEvents > 0 ? 'text-signal' : 'text-haze'}>{n(row.leadEvents)}</span>
-              </Cell>
-              <Cell className="num text-right text-xs text-haze">{pct(row.leadRate, 2)}</Cell>
+              <Cell align="right" className="num text-xs text-haze">{pct(row.leadRate, 2)}</Cell>
             </Row>
           ))}
         </Table>
       )}
 
-      <p className="border-t border-hair px-5 py-3 text-[11px] leading-relaxed text-haze">
+      <p className="t-note border-t border-hairline px-4 py-2.5">
         {view === 'pages'
           ? 'Leads here are enquiries sent FROM that page.'
           : 'Leads here are enquiries attributed to the session that STARTED on that page — which is the number an ad campaign is judged on.'}
+      </p>
+    </Panel>
+  );
+}
+
+/* ============================================================ 5 conversion */
+
+/**
+ * The same journey the Dashboard shows, with the depth the Dashboard has no
+ * room for: the stages beside the raw event counts that produced them.
+ *
+ * That pairing is the point of this section. The Dashboard says conversion
+ * moved; this says which event moved, which is the only form of the answer
+ * anybody can act on.
+ */
+function ConversionSection({ data }: { data: Report }) {
+  const byForm = useMemo(() => {
+    // The taxonomy splits the same step across the contact form and the quote
+    // questionnaire. Naming them is worth more than a single total, because
+    // they are two different products with two different failure modes.
+    const label = (name: string) =>
+      name.startsWith('questionnaire') ? 'Questionnaire' : name.startsWith('form') ? 'Form' : 'CTA';
+    const out = new Map<string, number>();
+    for (const event of data.events) out.set(label(event.name), (out.get(label(event.name)) ?? 0) + event.count);
+    return [...out.entries()].map(([key, value]) => ({ key, value })).sort((a, b) => b.value - a.value);
+  }, [data.events]);
+
+  return (
+    <Grid>
+      <Panel className="col-span-12 min-w-0 lg:col-span-5">
+        <SectionHeader title="Conversion path" level={3} note={data.rangeLabel.toLowerCase()} />
+        <Funnel
+          stages={data.funnel.map((stage) => ({
+            ...stage,
+            hint: stage.events ? stage.events.join(' · ') : undefined,
+          }))}
+        />
+        {/*
+          The qualification, next to the numbers rather than in a document.
+
+          These are EVENT counts against a SESSION count at the entry, which is
+          not a like-for-like ratio. GA4 can build a true user-scoped funnel, but
+          only through Funnel Exploration, which the Data API does not expose.
+          Showing event counts and saying what they are is honest; showing them
+          under the word "funnel" without this line would not be.
+        */}
+        <p className="t-note border-t border-hairline px-4 py-2.5">
+          Stages after the first are <span className="text-paper">event counts</span>, not unique
+          users: one visitor who clicks two CTAs is counted twice. GA4&rsquo;s user-scoped funnel is
+          an Exploration and is not available through the Data API.
+        </p>
+      </Panel>
+
+      <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-7">
+        <Panel className="min-w-0">
+          <SectionHeader title="Events behind the stages" level={3} />
+          {data.events.length === 0 ? (
+            <DataState kind="empty" title="No events" body="No funnel event fired in this range." />
+          ) : (
+            <Table head={['Event', { label: 'Count', align: 'right' }]} minWidth={560}>
+              {data.events.map((event) => (
+                <Row key={event.name}>
+                  <Cell className="num break-all text-xs text-paper">{event.name}</Cell>
+                  <Cell align="right" className="num text-xs text-haze">{n(event.count)}</Cell>
+                </Row>
+              ))}
+            </Table>
+          )}
+        </Panel>
+
+        <Panel className="min-w-0">
+          <SectionHeader title="By surface" level={3} note="which product the interaction was in" />
+          <BarList rows={byForm} empty="No events to group." />
+        </Panel>
+      </div>
+    </Grid>
+  );
+}
+
+/* ============================================================== 6 audience */
+
+/**
+ * Aggregate segments, and only aggregate segments.
+ *
+ * Device, and nothing that could identify anybody. There is no visitor list
+ * here, no session replay and no individual anything — GA4's Data API can
+ * return dimensions this Portal deliberately never asks for. Country and locale
+ * are absent for the same reason they are absent from the endpoint: they are not
+ * in the report, and adding them is a backend change with a privacy question
+ * attached, not a layout decision.
+ */
+function AudienceSection({ data }: { data: Report }) {
+  const total = data.devices.reduce((sum, d) => sum + d.sessions, 0);
+
+  return (
+    <Panel className="min-w-0">
+      <SectionHeader title="Device" level={3} note="mobile ≠ desktop here" />
+      {data.devices.length === 0 ? (
+        <DataState kind="empty" title="No sessions" body="Nothing to break down in this range." />
+      ) : (
+        <Table
+          head={[
+            'Device',
+            { label: 'Sessions', align: 'right' },
+            { label: 'Share', align: 'right' },
+            { label: 'Users', align: 'right' },
+            { label: 'Engaged', align: 'right' },
+            { label: 'Leads', align: 'right' },
+            { label: 'CVR', align: 'right' },
+          ]}
+          minWidth={720}
+        >
+          {data.devices.map((row) => (
+            <Row key={row.device}>
+              <Cell className="min-w-0">
+                <span className="text-xs capitalize text-paper">{row.device}</span>
+                <Meter value={row.sessions} max={Math.max(...data.devices.map((d) => d.sessions), 1)} />
+              </Cell>
+              <Cell align="right" className="num text-xs text-paper">{n(row.sessions)}</Cell>
+              <Cell align="right" className="num text-xs text-haze">
+                {pct(total > 0 ? row.sessions / total : null, 0)}
+              </Cell>
+              <Cell align="right" className="num text-xs text-haze">{n(row.activeUsers)}</Cell>
+              <Cell align="right" className="num text-xs text-haze">{pct(row.engagementRate, 0)}</Cell>
+              <Cell align="right" className="num text-xs">
+                <span className={row.leadEvents > 0 ? 'text-paper' : 'text-haze'}>{n(row.leadEvents)}</span>
+              </Cell>
+              <Cell align="right" className="num text-xs text-haze">{pct(row.leadRate, 2)}</Cell>
+            </Row>
+          ))}
+        </Table>
+      )}
+      {/* The public site is two genuinely different experiences. This section is
+          the only place that difference is measurable, and saying so is what
+          stops it reading as a stock breakdown nobody acts on. */}
+      <p className="t-note border-t border-hairline px-4 py-2.5">
+        The public site ships a separate portrait-mobile composition. A gap in the lead rate between
+        the two is a product signal, not a device fact.
       </p>
     </Panel>
   );
@@ -518,7 +628,7 @@ function PagesPanel({ data }: { data: Report }) {
 
 function MeasurementNote({ data, cached }: { data: Report; cached: boolean }) {
   return (
-    <Panel className="px-5 py-4">
+    <Panel className="px-4 py-3.5">
       <div className="grid gap-3 lg:grid-cols-[1fr_auto] lg:items-end">
         <p className="max-w-prose text-xs leading-relaxed text-haze">
           <span className="text-paper">Analytics reflects traffic where analytics measurement was permitted.</span>{' '}
@@ -527,7 +637,7 @@ function MeasurementNote({ data, cached }: { data: Report; cached: boolean }) {
           this property cannot know. GA4 terms are used as GA4 defines them: a session is a visit,
           not a person.
         </p>
-        <dl className="grid gap-1 text-[10px] lg:text-right">
+        <dl className="grid gap-1 lg:text-right">
           <Line term="Traffic" value={data.environmentFilter.note} />
           <Line
             term="Filter"
@@ -549,7 +659,7 @@ function MeasurementNote({ data, cached }: { data: Report; cached: boolean }) {
 
 function Line({ term, value }: { term: string; value: ReactNode }) {
   return (
-    <div className="flex flex-wrap items-baseline gap-2 lg:justify-end">
+    <div className={cn('flex flex-wrap items-baseline gap-2 lg:justify-end')}>
       <dt className="label">{term}</dt>
       <dd className="num text-[10px] text-haze">{value}</dd>
     </div>
