@@ -81,7 +81,28 @@ const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SER
 
 const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID;
 const GOOGLE_CLIENT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
+
+/**
+ * The service account's private key, normalized once, here.
+ *
+ * Netlify stores the PEM as a SINGLE LINE with literal backslash-n escapes:
+ *
+ *     -----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n
+ *
+ * `node:crypto` needs real newlines, and it does not say so politely when it
+ * does not get them — a key that still carries `\n` as two characters, or that
+ * carries a stray leading/trailing newline from the paste, fails deep inside
+ * OpenSSL as `error:1E08010C:DECODER routines::unsupported`. That message names
+ * neither the variable nor the cause, which is how it costs an afternoon.
+ *
+ * So: the escapes become newlines and the surrounding whitespace goes, once, at
+ * module load, and every consumer below takes the value from here. Normalizing
+ * at the point of use instead is how one call site gets fixed and another does
+ * not. The value is never logged — see the catch in the handler.
+ */
+const privateKey = process.env.GOOGLE_PRIVATE_KEY
+  ?.replace(/\\n/g, '\n')
+  .trim();
 
 /**
  * The hostnames that are the real website.
@@ -295,11 +316,10 @@ export const __google = {
     };
     const input = `${b64(JSON.stringify({ alg: 'RS256', typ: 'JWT' }))}.${b64(JSON.stringify(claim))}`;
 
-    // Netlify's UI stores a multi-line value with literal \n. A key that fails
-    // to parse throws here, is caught by the caller, and is reported as a
+    // Already normalized at module load — see `privateKey`. A key that still
+    // fails to parse throws here, is caught by the caller, and is reported as a
     // configuration fault — never with the key in the message.
-    const key = String(GOOGLE_PRIVATE_KEY).replace(/\\n/g, '\n');
-    const signature = crypto.createSign('RSA-SHA256').update(input).sign(key);
+    const signature = crypto.createSign('RSA-SHA256').update(input).sign(privateKey);
 
     const res = await fetch(TOKEN_URL, {
       method: 'POST',
@@ -382,7 +402,7 @@ function missingConfig() {
   return [
     ['GA4_PROPERTY_ID', GA4_PROPERTY_ID],
     ['GOOGLE_SERVICE_ACCOUNT_EMAIL', GOOGLE_CLIENT_EMAIL],
-    ['GOOGLE_PRIVATE_KEY', GOOGLE_PRIVATE_KEY],
+    ['GOOGLE_PRIVATE_KEY', privateKey],
   ].filter(([, value]) => !value).map(([name]) => name);
 }
 
