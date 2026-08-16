@@ -32,7 +32,54 @@ export type HealthState =
   | { kind: 'error'; message: string }
   | { kind: 'ready'; data: Health };
 
-export function useHealth(enabled = true) {
+/**
+ * One request per generation, however many components ask.
+ *
+ * The sidebar footer shows the environment and the System page shows the whole
+ * readout, so on `/system` two components want the same answer at the same
+ * moment — and the mobile drawer makes it three. Without this they would be
+ * three identical round trips, each of which makes the function probe Supabase.
+ *
+ * Keyed by the access token and the reload generation, so signing in as someone
+ * else or pressing Refresh gets a fresh answer and nothing else does. Cleared
+ * on failure as well as success: a cached rejection that never expires would
+ * turn one bad moment into a permanently broken panel.
+ */
+const inFlight = new Map<string, Promise<HealthState>>();
+
+function fetchHealth(token: string, key: string): Promise<HealthState> {
+  const existing = inFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async (): Promise<HealthState> => {
+    try {
+      const res = await fetch('/api/portal-health', {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        return {
+          kind: 'error',
+          message: res.status === 403
+            ? 'This account cannot view system health.'
+            : 'System health could not be read.',
+        };
+      }
+      return { kind: 'ready', data: (await res.json()) as Health };
+    } catch {
+      // The common case in development: the static server has no functions
+      // behind it. Not an outage, and worth saying so rather than showing red.
+      return { kind: 'error', message: 'System health could not be reached.' };
+    }
+  })();
+
+  inFlight.set(key, request);
+  // The shared entry lives only as long as the request itself. Holding the
+  // resolved value would make Refresh a no-op for the second caller.
+  void request.finally(() => { inFlight.delete(key); });
+  return request;
+}
+
+export function useHealth(enabled = true, reloadToken = 0) {
   const { session } = useAuth();
   const token = session?.access_token;
   const [state, setState] = useState<HealthState>({ kind: 'loading' });
@@ -44,26 +91,8 @@ export function useHealth(enabled = true) {
       setState({ kind: 'error', message: 'Your session has expired. Sign in again.' });
       return;
     }
-    try {
-      const res = await fetch('/api/portal-health', {
-        headers: { authorization: `Bearer ${token}` },
-      });
-      if (!res.ok) {
-        setState({
-          kind: 'error',
-          message: res.status === 403
-            ? 'This account cannot view system health.'
-            : 'System health could not be read.',
-        });
-        return;
-      }
-      setState({ kind: 'ready', data: (await res.json()) as Health });
-    } catch {
-      // The common case in development: the static server has no functions
-      // behind it. Not an outage, and worth saying so rather than showing red.
-      setState({ kind: 'error', message: 'System health could not be reached.' });
-    }
-  }, [token, enabled]);
+    setState(await fetchHealth(token, `${token}|${reloadToken}`));
+  }, [token, enabled, reloadToken]);
 
   useEffect(() => { void load(); }, [load]);
 

@@ -12,7 +12,7 @@ export type LoadState = 'loading' | 'ready' | 'error' | 'unconfigured';
  * `projects` gets their own organisation's rows because the database said so,
  * not because the frontend remembered to add a `where`.
  */
-export function useRows<T>(table: string, columns = '*', orderBy = 'created_at') {
+export function useRows<T>(table: string, columns = '*', orderBy = 'created_at', reloadToken = 0) {
   const [rows, setRows] = useState<T[]>([]);
   const [state, setState] = useState<LoadState>(isConfigured ? 'loading' : 'unconfigured');
   const [message, setMessage] = useState('');
@@ -40,7 +40,9 @@ export function useRows<T>(table: string, columns = '*', orderBy = 'created_at')
     }
     setRows((data ?? []) as T[]);
     setState('ready');
-  }, [table, columns, orderBy]);
+    // `reloadToken` is the command bar's Refresh — see the note on the same
+    // dependency in lib/analytics.ts.
+  }, [table, columns, orderBy, reloadToken]);
 
   useEffect(() => { void load(); }, [load]);
 

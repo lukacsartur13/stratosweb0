@@ -45,6 +45,17 @@ export const RANGES: { id: Range; label: string; long: string }[] = [
   { id: '90d', label: '90d', long: 'Last 90 days' },
 ];
 
+/**
+ * How many days each range covers, for the figures the Portal counts itself.
+ *
+ * The lead totals on the Dashboard come from Supabase, not from Google, so they
+ * need the same window the analytics call was given — otherwise the strip reads
+ * "sessions, last 30 days" next to "leads, last 7 days" and nothing says so.
+ * `today` is 1 here and is handled separately by `today()` in lib/leads.ts,
+ * which is midnight in the reader's own timezone rather than 24 hours ago.
+ */
+export const RANGE_DAYS: Record<Range, number> = { today: 1, '7d': 7, '30d': 30, '90d': 90 };
+
 export const ENVIRONMENTS: { id: Environment; label: string }[] = [
   { id: 'production', label: 'Production' },
   { id: 'staging', label: 'Staging' },
@@ -170,7 +181,7 @@ export type AnalyticsState =
  * read the property — the endpoint would answer 403 and the screen would show
  * an error for a panel it should simply not be drawing.
  */
-export function useAnalytics(range: Range, environment: Environment, enabled = true) {
+export function useAnalytics(range: Range, environment: Environment, enabled = true, reloadToken = 0) {
   const { session } = useAuth();
   const token = session?.access_token;
   const [state, setState] = useState<AnalyticsState>(
@@ -246,7 +257,11 @@ export function useAnalytics(range: Range, environment: Environment, enabled = t
       // dev` on the static server is the common case.
       setState({ kind: 'error', message: 'Analytics could not be reached.', code: 'NETWORK' });
     }
-  }, [range, environment, token, enabled]);
+    // `reloadToken` is the command bar's Refresh, and it is a dependency rather
+    // than an imperative call so that every screen reading this hook reloads
+    // together. A refresh that updated the panel you happened to be looking at
+    // and left the other three stale is worse than no refresh at all.
+  }, [range, environment, token, enabled, reloadToken]);
 
   useEffect(() => { void load(); }, [load]);
 
