@@ -83,26 +83,92 @@ const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID;
 const GOOGLE_CLIENT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 
 /**
- * The service account's private key, normalized once, here.
+ * The service account's private key, read once, here, from whichever variable
+ * carries it.
  *
- * Netlify stores the PEM as a SINGLE LINE with literal backslash-n escapes:
+ * ## The problem this shape exists to end
  *
- *     -----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n
+ * A PEM is a multi-line document and an environment variable is a single line,
+ * so something has to encode the newlines. The obvious answer — paste the JSON
+ * key file's `private_key` verbatim, literal `\n` escapes and all, and turn
+ * them back into newlines here — is `GOOGLE_PRIVATE_KEY` below, and it works
+ * right up until something between the paste box and the running function
+ * rewrites the string. A UI that stores `\n` as `\\n`, a shell that eats a
+ * backslash, a copy that arrives with CRLF, a value re-saved through a second
+ * tool: each produces a string that still LOOKS like a key and still fails, at
+ * the bottom of OpenSSL, as
  *
- * `node:crypto` needs real newlines, and it does not say so politely when it
- * does not get them — a key that still carries `\n` as two characters, or that
- * carries a stray leading/trailing newline from the paste, fails deep inside
- * OpenSSL as `error:1E08010C:DECODER routines::unsupported`. That message names
- * neither the variable nor the cause, which is how it costs an afternoon.
+ *     error:1E08010C:DECODER routines::unsupported
  *
- * So: the escapes become newlines and the surrounding whitespace goes, once, at
- * module load, and every consumer below takes the value from here. Normalizing
- * at the point of use instead is how one call site gets fixed and another does
- * not. The value is never logged — see the catch in the handler.
+ * which names neither the variable nor the cause. Normalizing harder does not
+ * fix it, because by then the damage is already in the stored value — there is
+ * no `.replace` that can tell a newline that was eaten from one that was never
+ * there.
+ *
+ * ## Base64 is the fix, and it is a fix rather than another guess
+ *
+ * `GOOGLE_PRIVATE_KEY_BASE64` holds the whole PEM — newlines included — encoded
+ * to the 64-character alphabet. That alphabet contains no backslash, no quote,
+ * no newline and nothing else a UI, a shell or a copy-paste is tempted to
+ * interpret, so the value that arrives here is byte-for-byte the value that was
+ * pasted. Decoding it is one call and cannot be got wrong; there is nothing
+ * left for an escaping layer to corrupt.
+ *
+ * Produce it from the JSON key file with:
+ *
+ *     jq -r .private_key key.json | base64 | tr -d '\n'
+ *
+ * ## The order, and why the old variable stays
+ *
+ * Base64 wins when it is present, and `GOOGLE_PRIVATE_KEY` remains as the
+ * fallback so an environment that is already working keeps working — this is a
+ * new door, not a lock changed on the old one. Whichever door the key comes
+ * through, it is normalized once, at module load, and every consumer below
+ * takes the value from here; normalizing at the point of use instead is how one
+ * call site gets fixed and another does not.
+ *
+ * Neither variable's value is ever logged, in either branch — not the PEM, not
+ * the Base64, not a prefix or a length of either. See `assertSignable` and the
+ * catch in the handler.
  */
-const privateKey = process.env.GOOGLE_PRIVATE_KEY
-  ?.replace(/\\n/g, '\n')
-  .trim();
+const privateKey = readPrivateKey();
+
+function readPrivateKey() {
+  const encoded = process.env.GOOGLE_PRIVATE_KEY_BASE64;
+  if (encoded) {
+    // `Buffer.from(…, 'base64')` never throws — it discards what is not in the
+    // alphabet — so a mangled value decodes to garbage rather than failing
+    // here. That is what `assertSignable` is for: the check that a decode
+    // produced a key belongs at the one place a key is used.
+    return Buffer.from(encoded, 'base64').toString('utf8').trim();
+  }
+  return process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n').trim();
+}
+
+/**
+ * The key, parsed — or a safe failure.
+ *
+ * `crypto.createSign().sign()` accepts a PEM string and parses it internally,
+ * which means a bad key fails during signing with OpenSSL's own message and
+ * whatever context the surrounding code happens to attach. Parsing first turns
+ * that into one deliberate, self-describing failure at a place that knows what
+ * the value is and knows not to print it.
+ *
+ * The returned `KeyObject` is what signs, so the PEM is parsed once rather than
+ * once per token.
+ */
+function assertSignable() {
+  try {
+    return crypto.createPrivateKey(privateKey);
+  } catch {
+    // The message is the whole log line, deliberately: no key, no Base64, no
+    // prefix, no length, and not the OpenSSL error either — `DECODER routines`
+    // is what sent anyone reading this here in the first place and it says
+    // nothing the sentence below does not.
+    console.error('portal-analytics: GOOGLE private key is not valid PEM after normalization');
+    throw new Error('private key is not valid PEM');
+  }
+}
 
 /**
  * The hostnames that are the real website.
@@ -316,10 +382,11 @@ export const __google = {
     };
     const input = `${b64(JSON.stringify({ alg: 'RS256', typ: 'JWT' }))}.${b64(JSON.stringify(claim))}`;
 
-    // Already normalized at module load — see `privateKey`. A key that still
-    // fails to parse throws here, is caught by the caller, and is reported as a
-    // configuration fault — never with the key in the message.
-    const signature = crypto.createSign('RSA-SHA256').update(input).sign(privateKey);
+    // Parsed before anything is signed with it — see `assertSignable`. A key
+    // that will not parse throws there, is caught by the handler, and is
+    // reported as a configuration fault, never with the key in the message.
+    const key = assertSignable();
+    const signature = crypto.createSign('RSA-SHA256').update(input).sign(key);
 
     const res = await fetch(TOKEN_URL, {
       method: 'POST',
@@ -397,7 +464,15 @@ export const __cache = {
   clear() { this.entries.clear(); this.token = null; },
 };
 
-/** Which required variables are absent. Names only — never values. */
+/**
+ * Which required variables are absent. Names only — never values.
+ *
+ * The key row is checked against `privateKey`, not against either environment
+ * variable, so setting EITHER one satisfies it. It is reported under the older
+ * name because that is the setting a reader who has neither should go and
+ * create; `GOOGLE_PRIVATE_KEY_BASE64` is the escape hatch for when that one has
+ * been created and is arriving corrupted.
+ */
 function missingConfig() {
   return [
     ['GA4_PROPERTY_ID', GA4_PROPERTY_ID],

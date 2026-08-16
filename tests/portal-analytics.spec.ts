@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -65,7 +66,14 @@ let serial = 0;
 
 /** A fresh module instance with exactly the environment given. */
 async function load(env: Record<string, string | undefined>): Promise<Handler> {
-  const keys = [...Object.keys(CONFIGURED), ...Object.keys(SUPABASE), 'GA4_PRODUCTION_HOSTS'];
+  // `GOOGLE_PRIVATE_KEY_BASE64` is cleared with the rest even though it is not
+  // in CONFIGURED: it is the branch that WINS over `GOOGLE_PRIVATE_KEY`, so a
+  // real one left in a developer's shell would silently take over every test
+  // below and the suite would pass against a credential instead of a fixture.
+  const keys = [
+    ...Object.keys(CONFIGURED), ...Object.keys(SUPABASE),
+    'GOOGLE_PRIVATE_KEY_BASE64', 'GA4_PRODUCTION_HOSTS',
+  ];
   for (const key of keys) delete process.env[key];
   for (const [key, value] of Object.entries(env)) {
     if (value === undefined) delete process.env[key];
@@ -751,6 +759,203 @@ test.describe('when Google fails', () => {
     expect((await get(h)).status).toBe(200);
     // Two tokens were minted, not one reused across the failure.
     expect(fixture.calls.length).toBeGreaterThan(0);
+  });
+});
+
+/* ==================================================== 7b. the private key == */
+
+/**
+ * How the PEM gets in, which is the one thing about this endpoint that has
+ * actually failed in production.
+ *
+ * `GOOGLE_PRIVATE_KEY` carries the key the way the JSON key file writes it —
+ * one line, literal `\n` escapes — and it works until something between the
+ * paste box and the running function rewrites the string. `\\n` stored for
+ * `\n`, a swallowed backslash, a CRLF: each produces a value that still looks
+ * like a key and dies inside OpenSSL as `DECODER routines::unsupported`.
+ *
+ * `GOOGLE_PRIVATE_KEY_BASE64` removes the class of failure rather than another
+ * instance of it — the Base64 alphabet holds no backslash, quote or newline, so
+ * there is nothing for an escaping layer to get wrong.
+ *
+ * The keys below are GENERATED, in the test, at run time. A PEM fixture in this
+ * file would be a PEM fixture in the repository, `npm run scan:secrets` would
+ * be right to fail on it, and a fake key that looks exactly like a real one is
+ * what makes a real one invisible when it is pasted in beside it.
+ */
+test.describe('the private key', () => {
+  const generate = () =>
+    crypto.generateKeyPairSync('rsa', {
+      modulusLength: 2048,
+      privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+      publicKeyEncoding: { type: 'spki', format: 'pem' },
+    });
+
+  const withKeyVariable = async (variables: Record<string, string>) => {
+    const h = await load({
+      ...SUPABASE,
+      GA4_PROPERTY_ID: CONFIGURED.GA4_PROPERTY_ID,
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: CONFIGURED.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      ...variables,
+    });
+    h.__auth.identify = asRole('admin');
+    // Only the reporting seam is replaced. `accessToken` is the REAL one, so
+    // the key is parsed and signed with exactly as it would be in production —
+    // which is the entire point of these tests.
+    h.__google.call = googleFixture().call;
+    return h;
+  };
+
+  /** Stand in for Google's token endpoint, and keep what was sent to it. */
+  const interceptToken = async (h: Handler, run: () => Promise<Response>) => {
+    const real = globalThis.fetch;
+    const posted: string[] = [];
+    globalThis.fetch = (async (url: any, init: any) => {
+      posted.push(String(new URLSearchParams(String(init?.body)).get('assertion')));
+      return new Response(JSON.stringify({ access_token: 'ya29.minted', expires_in: 3600 }), {
+        headers: { 'content-type': 'application/json' },
+      });
+    }) as typeof fetch;
+    try {
+      return { res: await run(), posted };
+    } finally {
+      globalThis.fetch = real;
+    }
+  };
+
+  test('a Base64 key is decoded and signs a JWT the public key verifies', async () => {
+    const { privateKey, publicKey } = generate();
+    const h = await withKeyVariable({
+      GOOGLE_PRIVATE_KEY_BASE64: Buffer.from(privateKey, 'utf8').toString('base64'),
+    });
+
+    const { res, posted } = await interceptToken(h, () => get(h));
+    expect(res.status).toBe(200);
+    expect((await res.json()).configured).toBe(true);
+
+    // Not "a token came back" — the assertion Google was handed carries a real
+    // RS256 signature over its own header and claim, made by the key that went
+    // in as Base64. That is the whole chain the production failure broke.
+    const [header, claim, signature] = posted[0].split('.');
+    expect(
+      crypto.verify(
+        'RSA-SHA256',
+        Buffer.from(`${header}.${claim}`),
+        publicKey,
+        Buffer.from(signature, 'base64url'),
+      ),
+    ).toBe(true);
+    expect(JSON.parse(Buffer.from(claim, 'base64url').toString())).toMatchObject({
+      iss: CONFIGURED.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      scope: 'https://www.googleapis.com/auth/analytics.readonly',
+    });
+  });
+
+  test('Base64 survives newline mangling that defeats the escaped variable', async () => {
+    // The production symptom, reproduced: the same key through both doors,
+    // after the exact corruption that has been observed — the `\n` escapes
+    // stored as `\\n`, which no `.replace(/\\n/g, …)` can undo.
+    const { privateKey } = generate();
+    const mangled = privateKey.replace(/\n/g, '\\\\n');
+
+    const escaped = await withKeyVariable({ GOOGLE_PRIVATE_KEY: mangled });
+    expect((await interceptToken(escaped, () => get(escaped))).res.status).toBe(502);
+
+    const encoded = await withKeyVariable({
+      GOOGLE_PRIVATE_KEY_BASE64: Buffer.from(privateKey, 'utf8').toString('base64'),
+    });
+    expect((await interceptToken(encoded, () => get(encoded))).res.status).toBe(200);
+  });
+
+  test('Base64 wins over the escaped variable when both are set', async () => {
+    // Migration order: the new variable is added while the old, broken one is
+    // still there. If the old one won, adding the new one would fix nothing.
+    const { privateKey, publicKey } = generate();
+    const h = await withKeyVariable({
+      GOOGLE_PRIVATE_KEY: 'not-a-key-and-not-shaped-like-one',
+      GOOGLE_PRIVATE_KEY_BASE64: Buffer.from(privateKey, 'utf8').toString('base64'),
+    });
+
+    const { res, posted } = await interceptToken(h, () => get(h));
+    expect(res.status).toBe(200);
+    const [header, claim, signature] = posted[0].split('.');
+    expect(
+      crypto.verify(
+        'RSA-SHA256', Buffer.from(`${header}.${claim}`), publicKey,
+        Buffer.from(signature, 'base64url'),
+      ),
+    ).toBe(true);
+  });
+
+  test('either variable alone is enough to count as configured', async () => {
+    for (const variables of [
+      { GOOGLE_PRIVATE_KEY: 'not-a-key-and-not-shaped-like-one' },
+      { GOOGLE_PRIVATE_KEY_BASE64: Buffer.from('not-a-key-either').toString('base64') },
+    ]) {
+      const h = await withKeyVariable(variables);
+      // Both reach Google and fail there (neither is a key) rather than
+      // reporting the variable as absent — 502, not `configured: false`.
+      expect((await interceptToken(h, () => get(h))).res.status).toBe(502);
+    }
+
+    const neither = await withKeyVariable({});
+    const body = await (await get(neither)).json();
+    expect(body.configured).toBe(false);
+    expect(body.missing).toEqual(['GOOGLE_PRIVATE_KEY']);
+  });
+
+  test('an unusable key fails before anything is sent to Google', async () => {
+    // Validation is ahead of the signature, so a mistyped variable costs one
+    // log line rather than a request carrying a malformed assertion.
+    const h = await withKeyVariable({
+      GOOGLE_PRIVATE_KEY_BASE64: Buffer.from('this decodes cleanly and is still not a key')
+        .toString('base64'),
+    });
+
+    const { res, posted } = await interceptToken(h, () => get(h));
+    expect(res.status).toBe(502);
+    expect(posted).toEqual([]);
+  });
+
+  test('nothing about either variable is logged, or answered', async () => {
+    /**
+     * The rule the whole feature is under: a key that fails to parse is a
+     * configuration fault, and a configuration fault is a sentence — never a
+     * prefix, a length, a fragment or an OpenSSL dump of the value.
+     */
+    const { privateKey } = generate();
+    const encoded = Buffer.from(privateKey, 'utf8').toString('base64');
+    // Truncated rather than appended to: extra bytes AFTER a PEM's footer are
+    // ignored by the parser, so a "corrupted" key that still ends in
+    // `-----END PRIVATE KEY-----` is a key. Cutting the tail off takes the
+    // footer with it, which is the half-pasted value this is standing in for.
+    const corrupted = encoded.slice(0, Math.floor(encoded.length / 2));
+    const h = await withKeyVariable({ GOOGLE_PRIVATE_KEY_BASE64: corrupted });
+
+    const real = console.error;
+    const logged: string[] = [];
+    console.error = (...args: unknown[]) => { logged.push(args.map(String).join(' ')); };
+
+    let text = '';
+    try {
+      const { res } = await interceptToken(h, () => get(h));
+      expect(res.status).toBe(502);
+      text = await res.text();
+    } finally {
+      console.error = real;
+    }
+
+    const said = logged.join('\n');
+    expect(said).toContain('not valid PEM after normalization');
+    for (const secret of [encoded, corrupted, privateKey, 'BEGIN PRIVATE KEY']) {
+      expect(said, 'the log carries the credential').not.toContain(secret);
+      expect(text, 'the response carries the credential').not.toContain(secret);
+    }
+    // Nor a fragment of one: sixteen characters of a Base64 key is still key
+    // material, and is the shape a "just log the first few chars to debug it"
+    // fix takes.
+    expect(said).not.toContain(encoded.slice(0, 16));
+    expect(JSON.parse(text).code).toBe('UPSTREAM_FAILED');
   });
 });
 
