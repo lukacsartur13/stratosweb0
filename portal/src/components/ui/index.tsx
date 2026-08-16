@@ -1,10 +1,11 @@
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { X } from 'lucide-react';
 import type {
   ButtonHTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes,
   TextareaHTMLAttributes,
 } from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 
 /**
  * The Control Room's primitives.
@@ -448,6 +449,175 @@ export function Cell({
     >
       {children}
     </td>
+  );
+}
+
+/* ------------------------------------------------------------- detail line */
+
+/**
+ * One fact in a detail column: what it is, and what it is.
+ *
+ * The unit of the right-hand column on every detail screen in the product. A
+ * column of these is ONE panel with a rule between each pair — not one card per
+ * fact, which is how a detail screen becomes fifteen equal boxes and stops
+ * having a hierarchy at all (§13).
+ *
+ * `value` takes a node rather than a string so that a figure that could not be
+ * measured can be `<NoFigure>` or the words "Not recorded" at the same size and
+ * in the same place as the number it replaces.
+ */
+export function DataLine({
+  term, value, note, className,
+}: { term: string; value: ReactNode; note?: ReactNode; className?: string }) {
+  return (
+    <div className={cn(
+      'flex items-baseline justify-between gap-4 border-b border-hairline px-4 py-2 last:border-0',
+      className,
+    )}>
+      <dt className="label shrink-0">{term}</dt>
+      <dd className="min-w-0 text-right">
+        <span className="block break-words text-[13px] text-paper">{value}</span>
+        {note && <span className="t-note block">{note}</span>}
+      </dd>
+    </div>
+  );
+}
+
+/**
+ * A figure that was never entered.
+ *
+ * NOT a zero, and not an em dash either — this one has words, because §31 asks
+ * specifically for `Not recorded` where a financial figure is missing. `0 Ft` of
+ * costs and "nobody has written the costs down" are different facts and only one
+ * of them makes a contribution figure meaningful.
+ */
+export function NotRecorded({ what }: { what?: string }) {
+  return (
+    <span className="text-[13px] text-haze" title={what ? `${what} has not been recorded` : undefined}>
+      Not recorded
+    </span>
+  );
+}
+
+/* ------------------------------------------------------------------ dialog */
+
+/**
+ * A modal dialog, and everything a modal dialog owes a keyboard (§62).
+ *
+ * ## What this does that a `<div>` with `position: fixed` does not
+ *
+ *   - `role="dialog"` + `aria-modal` + `aria-labelledby`, so it is announced as
+ *     a dialog with a name rather than as a pile of text that appeared.
+ *   - Focus MOVES INTO it on open, to the first focusable thing inside.
+ *   - Tab CYCLES inside it. A dialog you can Tab out of, into the page behind
+ *     that you cannot see, is the single worst keyboard bug a modal can have.
+ *   - Escape closes it.
+ *   - Focus RETURNS to whatever opened it. Otherwise closing a dialog drops the
+ *     keyboard user back at the top of the document.
+ *   - The page behind does not scroll.
+ *
+ * The native `<dialog>` element does most of this, and is not used here for one
+ * reason: `showModal()` has to be called imperatively against a ref, which means
+ * every caller manages an effect to keep the DOM in step with its own `open`
+ * state. This component takes `open` as a prop and is declarative, which is what
+ * the rest of the product is.
+ */
+export function Dialog({
+  open, onClose, title, description, children, footer, wide = false,
+}: {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  description?: string;
+  children: ReactNode;
+  footer?: ReactNode;
+  wide?: boolean;
+}) {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const returnTo = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    returnTo.current = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const focusable = () => Array.from(
+      panelRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), '
+        + 'textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ) ?? [],
+    ).filter((el) => el.offsetParent !== null);
+
+    // The first control, not the panel: a dialog that focuses its own container
+    // announces its title and then leaves the user pressing Tab to find out what
+    // is in it.
+    focusable()[0]?.focus();
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.stopPropagation(); onClose(); return; }
+      if (event.key !== 'Tab') return;
+
+      const items = focusable();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && (active === first || !panelRef.current?.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKey, true);
+    return () => {
+      document.removeEventListener('keydown', onKey, true);
+      document.body.style.overflow = previousOverflow;
+      returnTo.current?.focus?.();
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  const titleId = `dialog-${title.replace(/\W+/g, '-').toLowerCase()}`;
+
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center overflow-y-auto p-4">
+      <div className="fixed inset-0 bg-black/75" onClick={onClose} aria-hidden="true" />
+      <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        className={cn(
+          'relative w-full rounded border border-hair bg-deck shadow-panel',
+          wide ? 'max-w-2xl' : 'max-w-md',
+        )}
+      >
+        <header className="flex items-start justify-between gap-4 border-b border-hairline px-4 py-3">
+          <div className="min-w-0">
+            <h2 id={titleId} className="t-section text-chrome">{title}</h2>
+            {description && <p className="t-note mt-1 max-w-prose">{description}</p>}
+          </div>
+          <Button size="sm" variant="quiet" onClick={onClose} aria-label="Close">
+            <X size={13} aria-hidden="true" />
+          </Button>
+        </header>
+
+        <div className="max-h-[70dvh] overflow-y-auto px-4 py-4">{children}</div>
+
+        {footer && (
+          <footer className="flex flex-wrap items-center justify-end gap-2 border-t border-hairline px-4 py-3">
+            {footer}
+          </footer>
+        )}
+      </div>
+    </div>
   );
 }
 
