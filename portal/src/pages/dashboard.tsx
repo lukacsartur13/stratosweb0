@@ -202,8 +202,10 @@ type AnalyticsState = ReturnType<typeof useAnalytics>['state'];
  * and Won are two different questions the business could not previously ask at
  * all.
  *
- * Yellow now appears on `Won this month`, and only there: it is the one figure
- * in the strip that is money in rather than money hoped for.
+ * NO figure in this strip is yellow any more, and that is deliberate. The accent
+ * belonged to Realtime, Realtime moved to the Live panel, and it went with it.
+ * Painting Won this month yellow instead would have been reusing the "true right
+ * now" token for a month-to-date total.
  *
  * Every cell distinguishes the four ways of having nothing: a measured zero is
  * `0`, an absent service is an em dash with the reason, an unconfigured one
@@ -303,7 +305,15 @@ function ExecutiveStrip({
       {maySales && (
         <MetricCell
           label="Won this month"
-          tone="live"
+          // NOT `tone="live"`. That token exists for the one figure that is true
+          // RIGHT NOW rather than true for a period, and month-to-date revenue is
+          // emphatically a period figure. Reusing it here would have put two
+          // yellow numbers in one strip and diluted the only thing the accent
+          // means — which is exactly what P1's "yellow is scarce" budget exists
+          // to catch, and it caught it.
+          //
+          // The figure earns its prominence from being a large number in the
+          // executive strip, which is prominence enough.
           value={commercial(wonTotal, false)}
           note={wonTotal.total && wonTotal.total.items > 0
             ? `${wonTotal.total.items} ${wonTotal.total.items === 1 ? 'deal' : 'deals'}`

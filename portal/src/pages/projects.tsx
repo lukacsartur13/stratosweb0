@@ -385,15 +385,32 @@ export function ProjectDetailScreen() {
               </p>
             ) : (
               <ul className="grid">
-                {links.map((link) => {
-                  const href = safeUrl(link.url);
-                  return (
-                    <li key={link.id} className="flex items-center justify-between gap-3 border-b border-hairline px-4 py-2 last:border-0">
+                {links.map((link) => (
+                  /*
+                   * `safeUrl(...)` is called twice rather than hoisted into a
+                   * local, and that is deliberate.
+                   *
+                   * `tests/portal.spec.ts` → "no link is built from a stored
+                   * value without a fixed scheme" is a LEXICAL check: it reads
+                   * every `href={…}` in the source and requires the expression
+                   * itself to be a literal scheme, a router path, or a
+                   * `safeUrl()` call. Hoisting the result into `const href`
+                   * hides that from it — the code stays safe and the check goes
+                   * quiet, which is the worse of the two failure modes.
+                   *
+                   * The check could be taught to follow a variable. It should
+                   * not be: a security assertion that everyone must remember to
+                   * teach about is one that eventually gets taught wrong, and
+                   * the cost of keeping it unfoolable is one extra call on a
+                   * list that is never long. This is the same idiom
+                   * `pages/clients.tsx` and P1's `pages/screens.tsx` use.
+                   */
+                  <li key={link.id} className="flex items-center justify-between gap-3 border-b border-hairline px-4 py-2 last:border-0">
                       <div className="min-w-0">
                         <p className="text-[13px] text-paper">{link.label}</p>
-                        {href ? (
+                        {safeUrl(link.url) ? (
                           <a
-                            href={href}
+                            href={safeUrl(link.url)!}
                             target="_blank"
                             rel="noreferrer noopener"
                             className="block break-all text-[11px] text-haze underline underline-offset-4 hover:text-paper"
@@ -412,9 +429,8 @@ export function ProjectDetailScreen() {
                           <Trash2 size={11} aria-hidden="true" />
                         </Button>
                       )}
-                    </li>
-                  );
-                })}
+                  </li>
+                ))}
               </ul>
             )}
           </Panel>

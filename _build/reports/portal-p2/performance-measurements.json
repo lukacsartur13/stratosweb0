@@ -1,6 +1,6 @@
 {
   "note": "Data requests per screen, recorded live against the mock bundle. Bundle assets excluded — these are PostgREST selects, RPC calls and the two Netlify endpoints only.",
-  "generatedAt": "2026-08-16T21:10:58.994Z",
+  "generatedAt": "2026-08-16T22:16:15.336Z",
   "screens": [
     {
       "screen": "dashboard-1920",
@@ -8,9 +8,9 @@
       "viewport": "1920x1080",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 68,
-        "loadMs": 68,
-        "firstContentfulPaintMs": 160
+        "domContentLoadedMs": 233,
+        "loadMs": 233,
+        "firstContentfulPaintMs": 404
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -29,16 +29,16 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 49,
-        "loadMs": 49,
-        "firstContentfulPaintMs": 124
+        "domContentLoadedMs": 196,
+        "loadMs": 196,
+        "firstContentfulPaintMs": 340
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
         "GET http://127.0.0.1:4399/api/portal-analytics",
-        "GET /rest/v1/leads",
         "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/leads",
         "GET /rest/v1/opportunities",
         "GET /rest/v1/projects",
         "POST /rest/v1/rpc/portal_revenue_attribution"
@@ -50,16 +50,16 @@
       "viewport": "1512x945",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 217,
-        "loadMs": 217,
-        "firstContentfulPaintMs": 312
+        "domContentLoadedMs": 260,
+        "loadMs": 262,
+        "firstContentfulPaintMs": 480
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
         "GET http://127.0.0.1:4399/api/portal-analytics",
-        "POST /rest/v1/rpc/portal_sales_summary",
         "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
         "GET /rest/v1/opportunities",
         "GET /rest/v1/projects",
         "POST /rest/v1/rpc/portal_revenue_attribution"
@@ -71,16 +71,16 @@
       "viewport": "834x1112",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 47,
-        "loadMs": 47,
-        "firstContentfulPaintMs": 144
+        "domContentLoadedMs": 112,
+        "loadMs": 112,
+        "firstContentfulPaintMs": 256
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
         "GET http://127.0.0.1:4399/api/portal-analytics",
-        "POST /rest/v1/rpc/portal_sales_summary",
         "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
         "GET /rest/v1/opportunities",
         "GET /rest/v1/projects",
         "POST /rest/v1/rpc/portal_revenue_attribution"
@@ -92,16 +92,16 @@
       "viewport": "390x844",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 56,
-        "loadMs": 56,
-        "firstContentfulPaintMs": 120
+        "domContentLoadedMs": 139,
+        "loadMs": 139,
+        "firstContentfulPaintMs": 264
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
         "GET http://127.0.0.1:4399/api/portal-analytics",
-        "GET /rest/v1/leads",
         "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/leads",
         "GET /rest/v1/opportunities",
         "GET /rest/v1/projects",
         "POST /rest/v1/rpc/portal_revenue_attribution"
@@ -113,16 +113,16 @@
       "viewport": "390x844",
       "dataRequests": 9,
       "timing": {
-        "domContentLoadedMs": 64,
-        "loadMs": 64,
-        "firstContentfulPaintMs": 136
+        "domContentLoadedMs": 113,
+        "loadMs": 113,
+        "firstContentfulPaintMs": 240
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
         "GET http://127.0.0.1:4399/api/portal-analytics",
-        "GET /rest/v1/leads",
         "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/leads",
         "GET /rest/v1/opportunities",
         "GET /rest/v1/projects",
         "POST /rest/v1/rpc/portal_revenue_attribution",
@@ -135,16 +135,16 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 62,
-        "loadMs": 62,
-        "firstContentfulPaintMs": 140
+        "domContentLoadedMs": 113,
+        "loadMs": 113,
+        "firstContentfulPaintMs": 264
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
         "GET http://127.0.0.1:4399/api/portal-analytics",
-        "GET /rest/v1/leads",
         "POST /rest/v1/rpc/portal_sales_summary",
+        "GET /rest/v1/leads",
         "GET /rest/v1/opportunities",
         "GET /rest/v1/projects",
         "POST /rest/v1/rpc/portal_revenue_attribution"
@@ -156,9 +156,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 54,
-        "loadMs": 54,
-        "firstContentfulPaintMs": 124
+        "domContentLoadedMs": 117,
+        "loadMs": 117,
+        "firstContentfulPaintMs": 236
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -173,9 +173,9 @@
       "viewport": "1920x1080",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 55,
-        "loadMs": 55,
-        "firstContentfulPaintMs": 128
+        "domContentLoadedMs": 125,
+        "loadMs": 125,
+        "firstContentfulPaintMs": 240
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -190,9 +190,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 46,
-        "loadMs": 46,
-        "firstContentfulPaintMs": 108
+        "domContentLoadedMs": 75,
+        "loadMs": 76,
+        "firstContentfulPaintMs": 180
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -207,9 +207,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 62,
-        "loadMs": 62,
-        "firstContentfulPaintMs": 148
+        "domContentLoadedMs": 69,
+        "loadMs": 69,
+        "firstContentfulPaintMs": 132
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -224,9 +224,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 49,
-        "loadMs": 49,
-        "firstContentfulPaintMs": 108
+        "domContentLoadedMs": 59,
+        "loadMs": 59,
+        "firstContentfulPaintMs": 136
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -241,9 +241,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 44,
-        "loadMs": 44,
-        "firstContentfulPaintMs": 120
+        "domContentLoadedMs": 56,
+        "loadMs": 56,
+        "firstContentfulPaintMs": 124
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -258,9 +258,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 53,
-        "loadMs": 53,
-        "firstContentfulPaintMs": 116
+        "domContentLoadedMs": 39,
+        "loadMs": 39,
+        "firstContentfulPaintMs": 96
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -275,9 +275,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 45,
-        "loadMs": 46,
-        "firstContentfulPaintMs": 124
+        "domContentLoadedMs": 52,
+        "loadMs": 52,
+        "firstContentfulPaintMs": 104
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -292,9 +292,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 55,
-        "loadMs": 55,
-        "firstContentfulPaintMs": 120
+        "domContentLoadedMs": 76,
+        "loadMs": 76,
+        "firstContentfulPaintMs": 148
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -309,9 +309,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 62,
-        "loadMs": 62,
-        "firstContentfulPaintMs": 136
+        "domContentLoadedMs": 72,
+        "loadMs": 72,
+        "firstContentfulPaintMs": 148
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -326,9 +326,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 48,
-        "loadMs": 48,
-        "firstContentfulPaintMs": 116
+        "domContentLoadedMs": 65,
+        "loadMs": 65,
+        "firstContentfulPaintMs": 136
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -343,9 +343,9 @@
       "viewport": "834x1112",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 51,
-        "loadMs": 51,
-        "firstContentfulPaintMs": 128
+        "domContentLoadedMs": 63,
+        "loadMs": 63,
+        "firstContentfulPaintMs": 140
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -360,9 +360,9 @@
       "viewport": "390x844",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 50,
-        "loadMs": 50,
-        "firstContentfulPaintMs": 116
+        "domContentLoadedMs": 83,
+        "loadMs": 83,
+        "firstContentfulPaintMs": 152
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -377,9 +377,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 53,
-        "loadMs": 53,
-        "firstContentfulPaintMs": 128
+        "domContentLoadedMs": 77,
+        "loadMs": 77,
+        "firstContentfulPaintMs": 164
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -394,9 +394,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 49,
-        "loadMs": 49,
-        "firstContentfulPaintMs": 116
+        "domContentLoadedMs": 84,
+        "loadMs": 84,
+        "firstContentfulPaintMs": 164
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -411,9 +411,9 @@
       "viewport": "390x844",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 52,
-        "loadMs": 52,
-        "firstContentfulPaintMs": 116
+        "domContentLoadedMs": 81,
+        "loadMs": 81,
+        "firstContentfulPaintMs": 152
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -428,9 +428,9 @@
       "viewport": "834x1112",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 57,
-        "loadMs": 57,
-        "firstContentfulPaintMs": 140
+        "domContentLoadedMs": 87,
+        "loadMs": 87,
+        "firstContentfulPaintMs": 184
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -445,9 +445,9 @@
       "viewport": "1440x900",
       "dataRequests": 6,
       "timing": {
-        "domContentLoadedMs": 56,
-        "loadMs": 56,
-        "firstContentfulPaintMs": 132
+        "domContentLoadedMs": 62,
+        "loadMs": 62,
+        "firstContentfulPaintMs": 120
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -464,9 +464,9 @@
       "viewport": "390x844",
       "dataRequests": 6,
       "timing": {
-        "domContentLoadedMs": 45,
-        "loadMs": 45,
-        "firstContentfulPaintMs": 96
+        "domContentLoadedMs": 58,
+        "loadMs": 58,
+        "firstContentfulPaintMs": 104
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -483,9 +483,9 @@
       "viewport": "1440x900",
       "dataRequests": 2,
       "timing": {
-        "domContentLoadedMs": 53,
-        "loadMs": 53,
-        "firstContentfulPaintMs": 128
+        "domContentLoadedMs": 54,
+        "loadMs": 54,
+        "firstContentfulPaintMs": 104
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -498,8 +498,8 @@
       "viewport": "390x844",
       "dataRequests": 2,
       "timing": {
-        "domContentLoadedMs": 52,
-        "loadMs": 52,
+        "domContentLoadedMs": 58,
+        "loadMs": 58,
         "firstContentfulPaintMs": 112
       },
       "requests": [
@@ -513,9 +513,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 48,
-        "loadMs": 48,
-        "firstContentfulPaintMs": 124
+        "domContentLoadedMs": 45,
+        "loadMs": 45,
+        "firstContentfulPaintMs": 92
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -530,9 +530,9 @@
       "viewport": "1440x900",
       "dataRequests": 3,
       "timing": {
-        "domContentLoadedMs": 52,
-        "loadMs": 52,
-        "firstContentfulPaintMs": 116
+        "domContentLoadedMs": 45,
+        "loadMs": 45,
+        "firstContentfulPaintMs": 104
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -546,8 +546,8 @@
       "viewport": "1440x900",
       "dataRequests": 2,
       "timing": {
-        "domContentLoadedMs": 53,
-        "loadMs": 53,
+        "domContentLoadedMs": 61,
+        "loadMs": 61,
         "firstContentfulPaintMs": 128
       },
       "requests": [
@@ -561,9 +561,9 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 74,
-        "loadMs": 74,
-        "firstContentfulPaintMs": 148
+        "domContentLoadedMs": 53,
+        "loadMs": 53,
+        "firstContentfulPaintMs": 116
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -582,9 +582,9 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 49,
-        "loadMs": 49,
-        "firstContentfulPaintMs": 136
+        "domContentLoadedMs": 41,
+        "loadMs": 41,
+        "firstContentfulPaintMs": 96
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -603,9 +603,9 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 56,
-        "loadMs": 56,
-        "firstContentfulPaintMs": 132
+        "domContentLoadedMs": 77,
+        "loadMs": 77,
+        "firstContentfulPaintMs": 192
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -624,9 +624,9 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 50,
-        "loadMs": 50,
-        "firstContentfulPaintMs": 120
+        "domContentLoadedMs": 78,
+        "loadMs": 78,
+        "firstContentfulPaintMs": 164
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -645,26 +645,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 96,
-        "loadMs": 96,
-        "firstContentfulPaintMs": 168
-      },
-      "requests": [
-        "GET /rest/v1/profiles",
-        "GET http://127.0.0.1:4399/api/portal-health",
-        "GET /rest/v1/opportunities",
-        "POST /rest/v1/rpc/portal_sales_summary"
-      ]
-    },
-    {
-      "screen": "sales-table-1440",
-      "path": "/sales?view=table",
-      "viewport": "1440x900",
-      "dataRequests": 4,
-      "timing": {
-        "domContentLoadedMs": 133,
-        "loadMs": 133,
-        "firstContentfulPaintMs": 296
+        "domContentLoadedMs": 52,
+        "loadMs": 52,
+        "firstContentfulPaintMs": 112
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -674,14 +657,31 @@
       ]
     },
     {
+      "screen": "sales-table-1440",
+      "path": "/sales?view=table",
+      "viewport": "1440x900",
+      "dataRequests": 4,
+      "timing": {
+        "domContentLoadedMs": 53,
+        "loadMs": 53,
+        "firstContentfulPaintMs": 128
+      },
+      "requests": [
+        "GET /rest/v1/profiles",
+        "GET http://127.0.0.1:4399/api/portal-health",
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
+      ]
+    },
+    {
       "screen": "sales-followups-1440",
       "path": "/sales?view=followups",
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 77,
-        "loadMs": 77,
-        "firstContentfulPaintMs": 152
+        "domContentLoadedMs": 61,
+        "loadMs": 61,
+        "firstContentfulPaintMs": 136
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -696,15 +696,15 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 69,
-        "loadMs": 69,
-        "firstContentfulPaintMs": 128
+        "domContentLoadedMs": 49,
+        "loadMs": 49,
+        "firstContentfulPaintMs": 116
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
-        "POST /rest/v1/rpc/portal_sales_summary",
-        "GET /rest/v1/opportunities"
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
       ]
     },
     {
@@ -713,9 +713,9 @@
       "viewport": "390x844",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 59,
-        "loadMs": 59,
-        "firstContentfulPaintMs": 108
+        "domContentLoadedMs": 40,
+        "loadMs": 40,
+        "firstContentfulPaintMs": 80
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -730,15 +730,15 @@
       "viewport": "390x844",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 54,
-        "loadMs": 54,
-        "firstContentfulPaintMs": 104
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 120
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
-        "POST /rest/v1/rpc/portal_sales_summary",
-        "GET /rest/v1/opportunities"
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
       ]
     },
     {
@@ -747,9 +747,9 @@
       "viewport": "1440x900",
       "dataRequests": 6,
       "timing": {
-        "domContentLoadedMs": 59,
-        "loadMs": 59,
-        "firstContentfulPaintMs": 128
+        "domContentLoadedMs": 39,
+        "loadMs": 39,
+        "firstContentfulPaintMs": 88
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -766,8 +766,8 @@
       "viewport": "1440x900",
       "dataRequests": 6,
       "timing": {
-        "domContentLoadedMs": 62,
-        "loadMs": 62,
+        "domContentLoadedMs": 53,
+        "loadMs": 53,
         "firstContentfulPaintMs": 124
       },
       "requests": [
@@ -785,9 +785,9 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 50,
-        "loadMs": 50,
-        "firstContentfulPaintMs": 116
+        "domContentLoadedMs": 38,
+        "loadMs": 38,
+        "firstContentfulPaintMs": 88
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -806,9 +806,9 @@
       "viewport": "390x844",
       "dataRequests": 6,
       "timing": {
-        "domContentLoadedMs": 63,
-        "loadMs": 63,
-        "firstContentfulPaintMs": 116
+        "domContentLoadedMs": 46,
+        "loadMs": 46,
+        "firstContentfulPaintMs": 88
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -825,9 +825,9 @@
       "viewport": "1440x900",
       "dataRequests": 5,
       "timing": {
-        "domContentLoadedMs": 46,
-        "loadMs": 46,
-        "firstContentfulPaintMs": 100
+        "domContentLoadedMs": 39,
+        "loadMs": 39,
+        "firstContentfulPaintMs": 108
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -843,9 +843,9 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 60,
-        "loadMs": 60,
-        "firstContentfulPaintMs": 120
+        "domContentLoadedMs": 43,
+        "loadMs": 43,
+        "firstContentfulPaintMs": 100
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -864,9 +864,9 @@
       "viewport": "390x844",
       "dataRequests": 5,
       "timing": {
-        "domContentLoadedMs": 77,
-        "loadMs": 77,
-        "firstContentfulPaintMs": 124
+        "domContentLoadedMs": 49,
+        "loadMs": 49,
+        "firstContentfulPaintMs": 88
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -882,9 +882,9 @@
       "viewport": "390x844",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 74,
-        "loadMs": 74,
-        "firstContentfulPaintMs": 148
+        "domContentLoadedMs": 34,
+        "loadMs": 34,
+        "firstContentfulPaintMs": 68
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -903,9 +903,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 49,
-        "loadMs": 50,
-        "firstContentfulPaintMs": 116
+        "domContentLoadedMs": 41,
+        "loadMs": 41,
+        "firstContentfulPaintMs": 88
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -920,9 +920,9 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 163,
-        "loadMs": 163,
-        "firstContentfulPaintMs": 220
+        "domContentLoadedMs": 43,
+        "loadMs": 43,
+        "firstContentfulPaintMs": 100
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -941,9 +941,9 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 58,
-        "loadMs": 58,
-        "firstContentfulPaintMs": 136
+        "domContentLoadedMs": 50,
+        "loadMs": 50,
+        "firstContentfulPaintMs": 116
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -962,9 +962,9 @@
       "viewport": "1440x900",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 78,
-        "loadMs": 79,
-        "firstContentfulPaintMs": 144
+        "domContentLoadedMs": 49,
+        "loadMs": 49,
+        "firstContentfulPaintMs": 100
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -983,9 +983,9 @@
       "viewport": "390x844",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 82,
-        "loadMs": 82,
-        "firstContentfulPaintMs": 160
+        "domContentLoadedMs": 48,
+        "loadMs": 48,
+        "firstContentfulPaintMs": 92
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -1000,9 +1000,9 @@
       "viewport": "390x844",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 137,
-        "loadMs": 137,
-        "firstContentfulPaintMs": 204
+        "domContentLoadedMs": 40,
+        "loadMs": 40,
+        "firstContentfulPaintMs": 84
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -1021,9 +1021,9 @@
       "viewport": "1512x945",
       "dataRequests": 8,
       "timing": {
-        "domContentLoadedMs": 79,
-        "loadMs": 79,
-        "firstContentfulPaintMs": 184
+        "domContentLoadedMs": 45,
+        "loadMs": 45,
+        "firstContentfulPaintMs": 96
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -1042,9 +1042,9 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 125,
-        "loadMs": 125,
-        "firstContentfulPaintMs": 292
+        "domContentLoadedMs": 49,
+        "loadMs": 49,
+        "firstContentfulPaintMs": 116
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -1059,9 +1059,9 @@
       "viewport": "390x844",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 71,
-        "loadMs": 71,
-        "firstContentfulPaintMs": 132
+        "domContentLoadedMs": 45,
+        "loadMs": 45,
+        "firstContentfulPaintMs": 96
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -1076,15 +1076,15 @@
       "viewport": "1440x900",
       "dataRequests": 4,
       "timing": {
-        "domContentLoadedMs": 171,
-        "loadMs": 171,
-        "firstContentfulPaintMs": 444
+        "domContentLoadedMs": 46,
+        "loadMs": 46,
+        "firstContentfulPaintMs": 100
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
-        "POST /rest/v1/rpc/portal_sales_summary",
-        "GET /rest/v1/opportunities"
+        "GET /rest/v1/opportunities",
+        "POST /rest/v1/rpc/portal_sales_summary"
       ]
     },
     {
@@ -1093,9 +1093,9 @@
       "viewport": "1440x900",
       "dataRequests": 5,
       "timing": {
-        "domContentLoadedMs": 174,
-        "loadMs": 174,
-        "firstContentfulPaintMs": 316
+        "domContentLoadedMs": 42,
+        "loadMs": 42,
+        "firstContentfulPaintMs": 96
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -1111,9 +1111,9 @@
       "viewport": "1440x900",
       "dataRequests": 3,
       "timing": {
-        "domContentLoadedMs": 82,
-        "loadMs": 82,
-        "firstContentfulPaintMs": 212
+        "domContentLoadedMs": 39,
+        "loadMs": 39,
+        "firstContentfulPaintMs": 88
       },
       "requests": [
         "GET /rest/v1/profiles",
@@ -1127,16 +1127,16 @@
       "viewport": "1440x900",
       "dataRequests": 7,
       "timing": {
-        "domContentLoadedMs": 89,
-        "loadMs": 89,
-        "firstContentfulPaintMs": 200
+        "domContentLoadedMs": 47,
+        "loadMs": 47,
+        "firstContentfulPaintMs": 108
       },
       "requests": [
         "GET /rest/v1/profiles",
         "GET http://127.0.0.1:4399/api/portal-health",
         "GET http://127.0.0.1:4399/api/portal-analytics",
-        "POST /rest/v1/rpc/portal_sales_summary",
         "GET /rest/v1/leads",
+        "POST /rest/v1/rpc/portal_sales_summary",
         "GET /rest/v1/opportunities",
         "GET /rest/v1/projects"
       ]

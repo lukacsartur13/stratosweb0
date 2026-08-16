@@ -36,29 +36,49 @@ const code = (...parts: string[]) =>
 /* ========================================================= navigation === */
 
 test.describe('the shell', () => {
-  test('the primary navigation is the four products, in order', () => {
+  test('the primary navigation is the products, in order', () => {
     const shell = code('components', 'shell', 'PortalShell.tsx');
     const primary = /const PRIMARY: NavItem\[\] = \[([\s\S]*?)\];/.exec(shell);
     expect(primary, 'PRIMARY must exist').not.toBeNull();
 
+    // P1 fixed this at four. Phase P2 promoted Clients and Projects and added
+    // Sales, and the promotion is the thing the assertion now records: P1's own
+    // note said Clients was deliberately NOT a product because "an organisation
+    // list is not a client portal: there is no client account, no client-facing
+    // surface and no client workflow yet". Two of those three are now answered —
+    // a client has a relationship hub and a won value, a project has milestones
+    // and a contribution figure — and it is still not a client portal.
+    //
+    // The order is still the reading order of the business: decide, analyse,
+    // answer, sell, serve, deliver, diagnose.
     const labels = [...primary![1].matchAll(/label: '([^']+)'/g)].map((m) => m[1]);
-    expect(labels).toEqual(['Dashboard', 'Analytics', 'Leads', 'System']);
+    expect(labels).toEqual([
+      'Dashboard', 'Analytics', 'Leads', 'Sales', 'Clients', 'Projects', 'System',
+    ]);
   });
 
   test('records are a separate, subordinate group', () => {
     const shell = code('components', 'shell', 'PortalShell.tsx');
     const secondary = /const SECONDARY: NavItem\[\] = \[([\s\S]*?)\];/.exec(shell);
+    const primary = /const PRIMARY: NavItem\[\] = \[([\s\S]*?)\];/.exec(shell);
     expect(secondary, 'SECONDARY must exist').not.toBeNull();
 
-    // Every record screen that still exists is reachable. Removing a working
-    // screen from the product because its presentation changed is the failure
-    // this asserts against.
-    const labels = [...secondary![1].matchAll(/label: '([^']+)'/g)].map((m) => m[1]);
+    // THE contract, and it did not change in P2: every working screen stays
+    // reachable. Removing one from the product because its presentation changed
+    // is the failure this asserts against — so the check is that each label is
+    // in the navigation SOMEWHERE, not that it is in a particular half of it.
+    //
+    // Projects and Clients moved from Records to the products in P2. That is a
+    // promotion, which this test must permit; disappearing is what it must not.
+    const all = [...primary![1].matchAll(/label: '([^']+)'/g)].map((m) => m[1])
+      .concat([...secondary![1].matchAll(/label: '([^']+)'/g)].map((m) => m[1]));
     for (const expected of ['Projects', 'Clients', 'Case studies', 'Users', 'Activity', 'Settings']) {
-      expect(labels, `${expected} must remain reachable`).toContain(expected);
+      expect(all, `${expected} must remain reachable`).toContain(expected);
     }
 
-    // And they are drawn at a lower weight than the products.
+    // The records group still exists and is still the quieter half.
+    const records = [...secondary![1].matchAll(/label: '([^']+)'/g)].map((m) => m[1]);
+    expect(records.length, 'Records must not be emptied out').toBeGreaterThanOrEqual(4);
     expect(shell, 'the records group must be marked subdued').toMatch(/label="Records[^"]*"\s+subdued/);
   });
 
@@ -187,10 +207,25 @@ test.describe('the Dashboard hierarchy', () => {
   });
 
   test('yellow is scarce: it marks live, the last funnel stage and nothing else', () => {
-    // Every `text-signal` on the Dashboard, counted. This is a budget rather
-    // than a ban: the accent means something only while it is rare.
-    const yellows = [...dashboard.matchAll(/text-signal/g)].length;
-    expect(yellows, 'the Dashboard must not paint figures yellow by default').toBeLessThanOrEqual(4);
+    // Every `text-signal` the Dashboard PAINTS, counted. A budget rather than a
+    // ban: the accent means something only while it is rare.
+    //
+    // `hover:text-signal` is excluded, and that is a sharpening rather than a
+    // loosening. A hover state is an affordance on a link the visitor is already
+    // pointing at; it is not the screen painting a figure yellow, which is what
+    // the test name says and what the budget is protecting.
+    //
+    // P2 held the budget, and it did so by giving something up: the executive
+    // strip has NO yellow figure at all now. `tone="live"` was briefly reused for
+    // Won this month, this test caught it, and the reuse was wrong — that token
+    // is for the one figure true RIGHT NOW, and a month-to-date total is not.
+    const painted = [...dashboard.matchAll(/(?<!hover:)text-signal/g)].length;
+    expect(painted, 'the Dashboard must not paint figures yellow by default')
+      .toBeLessThanOrEqual(4);
+
+    // And the live token is spent on exactly one cell: the realtime count.
+    const live = [...dashboard.matchAll(/tone="live"/g)].length;
+    expect(live, 'only a figure that is true right now may be tone="live"').toBeLessThanOrEqual(1);
   });
 
   test('the system status on the Dashboard is one line, not the full readout', () => {
@@ -235,10 +270,14 @@ test.describe('zero, empty, unavailable and not configured are four things', () 
     // The strip's fallback is NoFigure plus a reason, for every analytics cell.
     expect(dashboard).toContain('<NoFigure reason="Analytics not configured" />');
     expect(dashboard).toContain('<NoFigure reason="Analytics unavailable" />');
-    expect(dashboard).toContain('<NoFigure reason="Realtime unavailable" />');
-    // And the Live panel says which of the two it is.
+    // And the Live panel says which of the two it is. The realtime figure left
+    // the strip in P2 (§8) and lives here, so this is where its unavailable
+    // state is now asserted — the state did not go away with the cell.
     expect(dashboard).toContain('title="Analytics not configured"');
     expect(dashboard).toContain('title="Realtime unavailable"');
+    // P2's commercial cells obey the same rule: a summary that could not be read
+    // is an em dash with a reason, never a zero pipeline.
+    expect(dashboard).toContain('<NoFigure reason="The pipeline summary could not be read" />');
   });
 
   test('every screen distinguishes not-connected from empty', () => {
