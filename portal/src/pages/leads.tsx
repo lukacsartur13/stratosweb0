@@ -2,6 +2,8 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { useRows } from '@/lib/useRows';
 import { useScope } from '@/lib/scope';
+import { useLeadConversions } from '@/lib/business';
+import { StageBadge } from '@/features/sales/bits';
 import {
   Button, Cell, DataState, ErrorState, Input, Panel, Row, Select, Skeleton,
   StatusPill, Table, cn,
@@ -44,6 +46,10 @@ export function LeadsScreen() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const { rows, state, message, reload } = useRows<Lead>('leads', LEAD_COLUMNS, 'created_at', reloadToken);
+  // Which enquiries already became opportunities. ONE bounded query for the
+  // whole list rather than one per row — see `useLeadConversions`. A lead that
+  // has been converted is marked here so nobody converts it twice.
+  const converted = useLeadConversions(reloadToken);
 
   // `?status=new` is how the Dashboard's attention items arrive. Read once, as
   // the filter's initial value, rather than kept in sync with the URL: the
@@ -91,7 +97,7 @@ export function LeadsScreen() {
 
         {state === 'ready' && filter.filtered.length > 0 && (
           <Table
-            head={['Date', 'Company / person', 'Form', 'Source', 'Status', 'Locale']}
+            head={['Date', 'Company / person', 'Form', 'Source', 'Status', 'Pipeline', 'Locale']}
             minWidth={840}
             sticky
           >
@@ -115,6 +121,23 @@ export function LeadsScreen() {
                 </Cell>
                 <Cell className="break-words text-[11px] text-haze">{leadSource(lead)}</Cell>
                 <Cell><StatusPill tone={statusTone(lead.status)}>{statusLabel(lead.status)}</StatusPill></Cell>
+                <Cell>
+                  {converted[lead.id]
+                    ? (
+                      // A link into the deal, not a badge that only says one
+                      // exists: the next thing anyone wants after "this became
+                      // an opportunity" is that opportunity.
+                      <Link
+                        to={`/sales/${converted[lead.id].id}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="hover:opacity-80"
+                        aria-label={`Open the opportunity for ${lead.company || lead.name}`}
+                      >
+                        <StageBadge stage={converted[lead.id].stage} />
+                      </Link>
+                    )
+                    : <span className="t-note">—</span>}
+                </Cell>
                 <Cell className="num text-[11px] uppercase text-haze">{lead.locale || '—'}</Cell>
               </Row>
             ))}

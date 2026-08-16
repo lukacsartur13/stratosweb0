@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Target } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { can } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
@@ -10,8 +10,16 @@ import {
 } from '@/components/ui';
 import {
   FORM_LABEL, PIPELINE, STATUS, buildTimeline, formatWhen, leadSource, metaText, statusLabel,
-  statusTone, useLead, useLeadDetail, useLeadMutations, type Stage, type TimelineEntry,
+  statusTone, useLead, useLeadDetail, useLeadMutations, type Lead, type Stage, type TimelineEntry,
 } from '@/lib/leads';
+import { draftFromLead } from '@/lib/business';
+// The conversion dialog is a form nobody sees until they press a button, on a
+// screen that IS in the entry bundle. Lazy, so opening a lead does not download
+// a dialog most lead views never open.
+const NewOpportunity = lazy(() =>
+  import('@/features/sales/OpportunityForm').then((m) => ({ default: m.NewOpportunity })));
+import { StageBadge } from '@/features/sales/bits';
+import { supabase, isConfigured } from '@/lib/supabase';
 
 /**
  * ONE LEAD — a route, not an accordion.
@@ -50,6 +58,7 @@ export function LeadDetailScreen() {
   const { profile } = useAuth();
   const { reloadToken } = useScope();
   const mayEdit = can(profile?.role, 'manage_leads');
+  const mayConvert = can(profile?.role, 'manage_sales');
 
   const { lead, state, reload } = useLead(id, reloadToken);
   const detail = useLeadDetail(state === 'ready' ? id ?? null : null);
@@ -224,6 +233,8 @@ export function LeadDetailScreen() {
 
         {/* =========================================== 4/12 — the metadata */}
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-4">
+          <Conversion lead={lead} mayConvert={mayConvert} />
+
           <Panel>
             <SectionHeader title="Stage" />
             <div className="px-4 py-3">
@@ -390,5 +401,103 @@ function Timeline({ entries }: { entries: TimelineEntry[] }) {
         </li>
       ))}
     </ol>
+  );
+}
+
+/* ========================================================= lead → deal == */
+
+/**
+ * Convert to opportunity (§3).
+ *
+ * ## Why this is a deliberate action and not automatic
+ *
+ * §3 is explicit: "Do NOT automatically convert every lead." Most enquiries are
+ * not commercial possibilities — a newsletter sign-up is not a deal — and a
+ * system that made one out of every submission would have a pipeline whose total
+ * meant nothing.
+ *
+ * ## What crossing this line does and does not do
+ *
+ * It creates an opportunity carrying the company, the contact and the whole of
+ * the attribution, and it leaves the lead exactly where it is. The enquiry is
+ * never deleted (§41), the message and the questionnaire answers are never
+ * copied (§3), and the two records stay joined by `opportunities.lead_id` so the
+ * chain from a channel to revenue survives the conversion.
+ */
+function Conversion({ lead, mayConvert }: { lead: Lead; mayConvert: boolean }) {
+  const [existing, setExisting] = useState<{ id: string; title: string; stage: string }[]>([]);
+  const [open, setOpen] = useState(false);
+  const [token, setToken] = useState(0);
+
+  // One filtered read on an indexed column. The lead detail screen knows about
+  // its own deals and asks about nothing else.
+  useEffect(() => {
+    let cancelled = false;
+    if (!isConfigured) return;
+    void (async () => {
+      const { data, error } = await supabase
+        .from('opportunities')
+        .select('id, title, stage')
+        .eq('lead_id', lead.id)
+        .order('created_at', { ascending: false })
+        .limit(10);
+      // A missing table means the P2 migration has not been applied. The rest of
+      // the lead screen is entirely usable without this panel.
+      if (error) { console.error('[opportunities.byLead]', error); return; }
+      if (!cancelled) setExisting((data ?? []) as never);
+    })();
+    return () => { cancelled = true; };
+  }, [lead.id, token]);
+
+  return (
+    <Panel>
+      <SectionHeader title="Pipeline" note={existing.length > 0 ? `${existing.length}` : undefined} />
+      <div className="px-4 py-3">
+        {existing.length > 0 ? (
+          <ul className="grid gap-2">
+            {existing.map((deal) => (
+              <li key={deal.id} className="flex items-center justify-between gap-2">
+                <Link to={`/sales/${deal.id}`} className="min-w-0 truncate text-[13px] text-paper hover:text-signal">
+                  {deal.title}
+                </Link>
+                <StageBadge stage={deal.stage} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-xs text-haze">
+            No opportunity yet. Converting is deliberate — an opportunity is a qualified commercial
+            possibility, not every enquiry that arrives.
+          </p>
+        )}
+
+        {mayConvert && (
+          <Button size="sm" variant={existing.length > 0 ? 'ghost' : 'primary'} className="mt-2.5"
+                  onClick={() => setOpen(true)}>
+            <Target size={12} aria-hidden="true" />
+            {existing.length > 0 ? 'Convert again' : 'Convert to opportunity'}
+          </Button>
+        )}
+
+        {existing.length > 0 && mayConvert && (
+          <p className="t-note mt-1.5">
+            A second opportunity is legitimate — a client can come back for different work — and is
+            never created by accident.
+          </p>
+        )}
+      </div>
+
+      {mayConvert && open && (
+        <Suspense fallback={null}>
+          <NewOpportunity
+            open
+            lockedLead
+            initial={draftFromLead(lead)}
+            onClose={() => setOpen(false)}
+            onCreated={() => setToken((n) => n + 1)}
+          />
+        </Suspense>
+      )}
+    </Panel>
   );
 }

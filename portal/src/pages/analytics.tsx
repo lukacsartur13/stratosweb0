@@ -1,4 +1,6 @@
 import { useMemo, useState, type ReactNode } from 'react';
+import { useAuth } from '@/features/auth/AuthProvider';
+import { can } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
 import { Grid } from '@/components/shell/PortalShell';
 import {
@@ -10,6 +12,10 @@ import {
   delta, duration, n, pct, trendLabel, useAnalytics,
   type AnalyticsState, type Report,
 } from '@/lib/analytics';
+import { moneyCompact } from '@/lib/money';
+import {
+  useAttribution, type AttributionDimension, type AttributionRow,
+} from '@/lib/business';
 
 /**
  * ANALYTICS — analysis.
@@ -49,12 +55,15 @@ const SECTIONS = [
   { id: 'acquisition', label: 'Acquisition' },
   { id: 'content', label: 'Content' },
   { id: 'conversion', label: 'Conversion' },
+  { id: 'revenue', label: 'Revenue' },
   { id: 'audience', label: 'Audience' },
 ] as const;
 
 export function AnalyticsScreen() {
+  const { profile } = useAuth();
   const { range, environment, reloadToken, compare, setCompare } = useScope();
   const { state, reload } = useAnalytics(range, environment, true, reloadToken);
+  const maySales = can(profile?.role, 'view_sales');
 
   return (
     <div className="grid gap-4">
@@ -77,14 +86,14 @@ export function AnalyticsScreen() {
         </label>
       </div>
 
-      <Screen state={state} reload={reload} compare={compare} />
+      <Screen state={state} reload={reload} compare={compare} maySales={maySales} />
     </div>
   );
 }
 
 function Screen({
-  state, reload, compare,
-}: { state: AnalyticsState; reload: () => void; compare: boolean }) {
+  state, reload, compare, maySales,
+}: { state: AnalyticsState; reload: () => void; compare: boolean; maySales: boolean }) {
   if (state.kind === 'loading') {
     return (
       <div aria-busy="true" className="grid gap-4">
@@ -98,15 +107,41 @@ function Screen({
     );
   }
 
+  // Revenue attribution is the ONE section that does not need Google.
+  //
+  // It is drawn even when GA4 is unconfigured or down, because its left-hand
+  // half — leads, qualified, opportunities, won, won value — comes entirely from
+  // the Portal's own records. Only the sessions column needs Google, and a
+  // missing sessions column is a missing column, not a missing section. This is
+  // the practical difference between "analytics is unavailable" and "we cannot
+  // tell you what your channels earned".
   if (state.kind === 'unconfigured') {
-    return <NotConnected missing={state.missing} propertyConfigured={state.propertyConfigured} />;
+    return (
+      <div className="grid gap-6">
+        <NotConnected missing={state.missing} propertyConfigured={state.propertyConfigured} />
+        {maySales && (
+          <Section id="revenue" title="Revenue attribution">
+            <RevenueAttribution traffic={null} />
+          </Section>
+        )}
+      </div>
+    );
   }
 
   if (state.kind === 'error') {
-    return <Panel><ErrorState message={state.message} onRetry={reload} /></Panel>;
+    return (
+      <div className="grid gap-6">
+        <Panel><ErrorState message={state.message} onRetry={reload} /></Panel>
+        {maySales && (
+          <Section id="revenue" title="Revenue attribution">
+            <RevenueAttribution traffic={null} />
+          </Section>
+        )}
+      </div>
+    );
   }
 
-  return <Report_ data={state.data} cached={state.cached} compare={compare} />;
+  return <Report_ data={state.data} cached={state.cached} compare={compare} maySales={maySales} />;
 }
 
 /**
@@ -159,7 +194,9 @@ function NotConnected({ missing, propertyConfigured }: { missing: string[]; prop
 
 /* ================================================================ the page */
 
-function Report_({ data, cached, compare }: { data: Report; cached: boolean; compare: boolean }) {
+function Report_({
+  data, cached, compare, maySales,
+}: { data: Report; cached: boolean; compare: boolean; maySales: boolean }) {
   return (
     <div className="grid gap-6">
       <Section id="overview" title="Overview">
@@ -181,6 +218,14 @@ function Report_({ data, cached, compare }: { data: Report; cached: boolean; com
       <Section id="conversion" title="Conversion">
         <ConversionSection data={data} />
       </Section>
+
+      {/* §55 — an ADDITIONAL layer. It does not replace a single GA4 section
+          above it, and every one of those is untouched by this phase. */}
+      {maySales && (
+        <Section id="revenue" title="Revenue attribution">
+          <RevenueAttribution traffic={data} />
+        </Section>
+      )}
 
       <Section id="audience" title="Audience">
         <AudienceSection data={data} />
@@ -663,5 +708,219 @@ function Line({ term, value }: { term: string; value: ReactNode }) {
       <dt className="label">{term}</dt>
       <dd className="num text-[10px] text-haze">{value}</dd>
     </div>
+  );
+}
+
+/* ================================================== revenue attribution == */
+
+/**
+ * REVENUE ATTRIBUTION (§33, §34, §35) — the chain, end to end.
+ *
+ *     source → sessions → leads → qualified → opportunities → won → revenue
+ *
+ * ## What is joined, and what is only ALIGNED
+ *
+ * This is the single most important paragraph on the screen, and the screen says
+ * it too rather than only this file.
+ *
+ * The right-hand five columns are one measurement: `portal_revenue_attribution()`
+ * walks the Portal's own records — a lead's recorded UTM, the opportunity it
+ * produced, the value that opportunity closed for — and every step is a real
+ * foreign key. That part is a JOIN.
+ *
+ * The `Sessions` column is a different measurement entirely. It comes from GA4,
+ * counts visits rather than people, only counts visitors who accepted analytics,
+ * and has no identifier in common with a lead row. It is placed beside the
+ * Portal's figures by MATCHING THE SOURCE STRING and nothing else.
+ *
+ * So there is no conversion rate in this table. Dividing won deals by GA4
+ * sessions would produce a number with a decimal point and no meaning, computed
+ * from two populations that do not overlap — §34's "do not manufacture
+ * precision" is exactly this temptation, and the honest answer is to show both
+ * columns, say what each is, and let a person read across.
+ *
+ * ## Individual tracking
+ *
+ * There is none, and there cannot be. §33 forbids GA4 user-level tracking and
+ * nothing here attempts it: the Google side of this table is an aggregate by
+ * source, the Portal side is an aggregate by source, and no request in this
+ * component carries an identifier for a person.
+ */
+
+const DIMENSIONS: { id: AttributionDimension; label: string }[] = [
+  { id: 'source', label: 'Source' },
+  { id: 'medium', label: 'Medium' },
+  { id: 'campaign', label: 'Campaign' },
+  { id: 'landing', label: 'Landing' },
+];
+
+function RevenueAttribution({ traffic }: { traffic: Report | null }) {
+  const { reloadToken } = useScope();
+  const [dimension, setDimension] = useState<AttributionDimension>('source');
+  const { rows, state } = useAttribution(dimension, true, reloadToken);
+
+  /**
+   * GA4 sessions for the same dimension, keyed the way the Portal keys it.
+   *
+   * Built from the acquisition rows the report already carries — no second
+   * request — and for `landing` from the landing-page rows. When GA4 has nothing
+   * to say about a key, the cell is an em dash rather than a zero: "Google did
+   * not report this source" and "no one arrived from it" are different facts.
+   */
+  const sessions = useMemo(() => {
+    const out = new Map<string, number>();
+    if (!traffic) return out;
+
+    const add = (key: string | null | undefined, value: number) => {
+      const k = (key ?? '').trim();
+      if (!k) return;
+      out.set(k, (out.get(k) ?? 0) + value);
+    };
+
+    if (dimension === 'landing') {
+      for (const row of traffic.landingPages) add(row.path, row.sessions);
+    } else {
+      for (const row of traffic.acquisition) {
+        add(dimension === 'medium' ? row.medium
+          : dimension === 'campaign' ? row.campaign
+            : row.source, row.sessions);
+      }
+    }
+    return out;
+  }, [traffic, dimension]);
+
+  const ranked = useMemo(
+    () => [...rows].sort((a, b) => b.won_value - a.won_value || b.leads - a.leads).slice(0, 25),
+    [rows],
+  );
+
+  const anyWon = ranked.some((r) => r.won > 0);
+
+  return (
+    <Panel className="min-w-0">
+      <SectionHeader
+        title="Source to revenue"
+        note="Portal records, aligned with GA4 sessions"
+        action={
+          <Segmented
+            label="Dimension"
+            value={dimension}
+            options={DIMENSIONS}
+            onChange={setDimension}
+          />
+        }
+      />
+
+      {state === 'loading' && (
+        <div className="space-y-1.5 p-4" aria-busy="true">
+          {[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-8 w-full" />)}
+        </div>
+      )}
+
+      {state === 'error' && (
+        <DataState
+          kind="unavailable"
+          title="Unavailable"
+          body="The attribution aggregate could not be read. It needs the P2 migration to have been applied."
+        />
+      )}
+
+      {state === 'unconfigured' && (
+        <DataState kind="unconfigured" title="Not connected" body="No database is configured in this environment." />
+      )}
+
+      {state === 'ready' && ranked.length === 0 && (
+        <DataState
+          kind="empty"
+          title="Nothing to attribute yet"
+          body="This table fills in as leads arrive and become opportunities. It needs no Google credentials for anything except the sessions column."
+        />
+      )}
+
+      {state === 'ready' && ranked.length > 0 && (
+        <>
+          <Table
+            head={[
+              DIMENSIONS.find((d) => d.id === dimension)!.label,
+              { label: 'Sessions', align: 'right' },
+              { label: 'Leads', align: 'right' },
+              { label: 'Qualified', align: 'right' },
+              { label: 'Opportunities', align: 'right' },
+              { label: 'Won', align: 'right' },
+              { label: 'Won value', align: 'right' },
+            ]}
+            minWidth={840}
+          >
+            {ranked.map((row) => <AttributionRowView key={row.key} row={row} sessions={sessions} />)}
+          </Table>
+
+          {/* §34 — the methodology, next to the numbers and not in a document. */}
+          <div className="grid gap-2 border-t border-hairline px-4 py-3">
+            <p className="max-w-prose text-xs leading-relaxed text-haze">
+              <span className="text-paper">Two measurements, side by side — not one join.</span>{' '}
+              Leads, Qualified, Opportunities, Won and Won value come from the Portal&rsquo;s own
+              records and are linked by real foreign keys: a lead&rsquo;s recorded attribution, the
+              opportunity it became, the value it closed for. Sessions comes from GA4, counts visits
+              rather than people, includes only visitors who accepted analytics, and is placed beside
+              them by matching the {dimension} string.
+            </p>
+            <p className="max-w-prose text-xs leading-relaxed text-haze">
+              There is deliberately <span className="text-paper">no conversion rate</span> in this
+              table. The two populations do not overlap, so a rate built by dividing one by the other
+              would be precision that does not exist. Nothing here identifies an individual, and no
+              request behind it carries a person&rsquo;s identifier.
+            </p>
+            {!traffic && (
+              <p className="t-note">
+                Sessions are unavailable in this view — GA4 is not connected, or its report could not
+                be read. Every other column is unaffected.
+              </p>
+            )}
+            {!anyWon && (
+              <p className="t-note">
+                No opportunity has been won yet, so every revenue figure is zero because it is
+                measured as zero — not because it is missing.
+              </p>
+            )}
+          </div>
+        </>
+      )}
+    </Panel>
+  );
+}
+
+function AttributionRowView({
+  row, sessions,
+}: { row: AttributionRow; sessions: Map<string, number> }) {
+  const ga4 = sessions.get(row.key);
+
+  return (
+    <Row>
+      {/* Text, never a link. A source string is whatever a referring site put in
+          a header, and a landing path is whatever a browser sent. */}
+      <Cell className="min-w-0 break-words text-[12px] text-paper">{row.key}</Cell>
+      <Cell align="right" className="num text-xs text-haze">
+        {ga4 === undefined
+          ? <span title="GA4 did not report this key — which is not the same as zero sessions">—</span>
+          : n(ga4)}
+      </Cell>
+      <Cell align="right" className="num text-xs text-paper">{n(row.leads)}</Cell>
+      <Cell align="right" className="num text-xs text-haze">{n(row.qualified)}</Cell>
+      <Cell align="right" className="num text-xs text-haze">{n(row.opportunities)}</Cell>
+      <Cell align="right" className="num text-xs text-paper">{n(row.won)}</Cell>
+      <Cell align="right" className="num text-xs">
+        {row.won === 0 ? (
+          <span className="text-haze">—</span>
+        ) : row.won_currencies > 1 ? (
+          // Two currencies behind one figure. The count is true; the sum is not
+          // a thing this system can compute, so it is not printed.
+          <span className="text-haze" title="Won in more than one currency — no rate exists to add them">
+            mixed
+          </span>
+        ) : (
+          <span className="text-signal">{moneyCompact(row.won_value, row.won_currency ?? 'HUF')}</span>
+        )}
+      </Cell>
+    </Row>
   );
 }

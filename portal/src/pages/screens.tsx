@@ -11,19 +11,28 @@ import {
  * The record tables.
  *
  * Everything here is a real table with a real RLS policy behind it, reachable
- * from the Records group in the sidebar. They are not one of the Portal's four
- * products — Dashboard, Analytics, Leads, System — and they are drawn at that
- * weight: one panel, one table, no dashboard framing.
+ * from the Records group in the sidebar. They are not one of the Portal's
+ * products — Dashboard, Analytics, Leads, Sales, Clients, Projects, System —
+ * and they are drawn at that weight: one panel, one table, no dashboard
+ * framing.
  *
- * `OverviewScreen` and `LeadsScreen` used to live here and now do not. The
- * overview became the Dashboard and Leads became a list with its own detail
- * route:
+ * What used to live here and now does not:
  *
- *   pages/dashboard.tsx     the Dashboard
- *   pages/leads.tsx         the list, its status strip and its filters
- *   pages/lead-detail.tsx   one lead, its notes and its timeline
- *   pages/system.tsx        the health readout that used to be duplicated here
- *   lib/leads.ts            the status model and the mutations behind them
+ *   pages/dashboard.tsx          the Dashboard (was OverviewScreen)
+ *   pages/leads.tsx              the lead list, its strip and its filters
+ *   pages/lead-detail.tsx        one lead, its notes and its timeline
+ *   pages/system.tsx             the health readout that was duplicated here
+ *   pages/sales.tsx              the pipeline, added in P2
+ *   pages/clients.tsx            Clients — was a read-only table in this file,
+ *                                and is now a relationship hub with a detail
+ *                                route, contacts and a won-value rollup
+ *   pages/projects.tsx           Projects — same story, plus milestones, costs
+ *                                and a contribution figure
+ *
+ * The three that left in P2 left for one reason: they stopped being lists of
+ * rows and became answers to questions, which is what separates a product from
+ * a record in this Portal's information architecture. What remains here is what
+ * is genuinely still a table.
  */
 
 /**
@@ -78,110 +87,6 @@ function DataPanel({
       )}
       {state === 'ready' && count > 0 && children}
     </Panel>
-  );
-}
-
-/**
- * A stored web address, as an href — or null, if it must not become one.
- *
- * This exists because `href={value}` on a value that came out of the database
- * is how a `javascript:` URL gets executed by a click. The path is real rather
- * than theoretical: `organizations.website` is populated from a client's own
- * answer, and the public form's URL check (`URL_RE` in lead-contract.mjs) is
- * deliberately permissive about formatting — it refuses text, not schemes. A
- * value of `javascript:alert(1).co` satisfies it.
- *
- * So the scheme is decided HERE, at the point of use, and only two are allowed.
- * A bare `example.com` is upgraded to https rather than rejected, because a
- * client typing their address without a scheme is the normal case and a link
- * that silently stops working is the wrong lesson to teach.
- *
- * Anything else renders as plain text: the value is still visible, still
- * copyable, and not clickable. Losing a link is a shrug; running someone else's
- * script inside an authenticated admin session is not.
- */
-function safeUrl(value: string | null | undefined): string | null {
-  const raw = (value ?? '').trim();
-  if (!raw) return null;
-  const candidate = /^[a-z][a-z0-9+.-]*:/i.test(raw) ? raw : `https://${raw}`;
-  try {
-    const url = new URL(candidate);
-    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
-  } catch {
-    return null;
-  }
-}
-
-/* --------------------------------------------------------------- projects */
-interface Project {
-  id: string; name: string; slug: string; status: string;
-  start_date: string | null; target_date: string | null;
-}
-
-export function ProjectsScreen() {
-  const { reloadToken } = useScope();
-  const { rows, state, message, reload } = useRows<Project>(
-    'projects', 'id, name, slug, status, start_date, target_date, created_at', 'created_at', reloadToken,
-  );
-  const { query, setQuery, filtered } = useSearch(rows, ['name', 'slug']);
-
-  return (
-    <DataPanel
-      title="All projects"
-      state={state} message={message} count={filtered.length} reload={reload}
-      search={{ value: query, onChange: setQuery, placeholder: 'Project name…' }}
-      empty={{ title: 'No projects', body: 'Projects you can see will appear here once they are created.' }}
-    >
-      <Table head={['Project', 'Status', 'Started', 'Target']}>
-        {filtered.map((p) => (
-          <Row key={p.id}>
-            <Cell className="text-[13px] text-paper">
-              {p.name}
-              <span className="num ml-2 text-[10px] text-haze">/{p.slug}</span>
-            </Cell>
-            <Cell><Badge tone={p.status === 'archived' ? 'neutral' : 'warn'}>{p.status}</Badge></Cell>
-            <Cell className="num text-xs text-haze">{formatDate(p.start_date)}</Cell>
-            <Cell className="num text-xs text-haze">{formatDate(p.target_date)}</Cell>
-          </Row>
-        ))}
-      </Table>
-    </DataPanel>
-  );
-}
-
-/* ---------------------------------------------------------------- clients */
-interface Org { id: string; name: string; slug: string; website: string | null; status: string; created_at: string }
-
-export function ClientsScreen() {
-  const { reloadToken } = useScope();
-  const { rows, state, message, reload } = useRows<Org>(
-    'organizations', 'id, name, slug, website, status, created_at', 'created_at', reloadToken,
-  );
-  const { query, setQuery, filtered } = useSearch(rows, ['name', 'slug']);
-
-  return (
-    <DataPanel
-      title="Organisations"
-      state={state} message={message} count={filtered.length} reload={reload}
-      search={{ value: query, onChange: setQuery, placeholder: 'Client name…' }}
-      empty={{ title: 'No clients', body: 'Add an organisation to give a client account something to belong to.' }}
-    >
-      <Table head={['Name', 'Website', 'Status', 'Added']}>
-        {filtered.map((o) => (
-          <Row key={o.id}>
-            <Cell className="text-[13px] text-paper">{o.name}</Cell>
-            <Cell className="break-all text-xs text-haze">
-              {safeUrl(o.website) ? (
-                <a href={safeUrl(o.website)!} target="_blank" rel="noreferrer noopener"
-                   className="underline underline-offset-4 hover:text-paper">{o.website}</a>
-              ) : (o.website || '—')}
-            </Cell>
-            <Cell><Badge tone={o.status === 'active' ? 'good' : 'neutral'}>{o.status}</Badge></Cell>
-            <Cell className="num text-xs text-haze">{formatDate(o.created_at)}</Cell>
-          </Row>
-        ))}
-      </Table>
-    </DataPanel>
   );
 }
 

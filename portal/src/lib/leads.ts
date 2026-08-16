@@ -67,6 +67,10 @@ export interface Lead {
   name: string;
   email: string;
   company: string | null;
+  // Added in P2: the sales conversion carries a contact through to the
+  // opportunity, and a phone number is the field a sales follow-up most often
+  // needs. The column has always existed on `leads`; only the select changed.
+  phone: string | null;
   message: string | null;
   service_interest: string | null;
   budget_range: string | null;
@@ -86,7 +90,7 @@ export interface Lead {
 }
 
 export const LEAD_COLUMNS =
-  'id, name, email, company, message, service_interest, budget_range, status, created_at, '
+  'id, name, email, company, phone, message, service_interest, budget_range, status, created_at, '
   + 'form_type, locale, source_route, submission_id, payload, meta';
 
 /* =============================================================== attribution */

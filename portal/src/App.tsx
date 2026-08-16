@@ -21,14 +21,32 @@ import { NotFoundScreen } from '@/pages/not-found';
  * everything else is split.
  *
  * Analytics is the largest single screen in the product (six sections, five
- * tables, the chart) and is never a landing page. The six record screens are
- * one chunk between them because they are one module and are opened rarely.
+ * tables, the chart) and is never a landing page. Sales, Clients and Projects
+ * are one chunk each. The remaining record screens are one chunk between them
+ * because they are one module and are opened rarely.
+ *
+ * P2 added three modules and did NOT add them to the entry bundle. The Dashboard
+ * shows a pipeline summary and an active-projects list, and both come from a
+ * server-side aggregate rather than from the modules' own code — so opening the
+ * Portal costs the same JavaScript it did before this phase.
  */
 const AnalyticsScreen = lazy(() =>
   import('@/pages/analytics').then((m) => ({ default: m.AnalyticsScreen })));
 
-const ProjectsScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.ProjectsScreen })));
-const ClientsScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.ClientsScreen })));
+// The three P2 modules. Each is its own chunk, and each list ships with its own
+// detail screen rather than in a separate one: opening a record from a list is
+// the single most likely next click, and splitting the two would mean a second
+// network round trip at exactly that moment.
+const SalesScreen = lazy(() => import('@/pages/sales').then((m) => ({ default: m.SalesScreen })));
+const OpportunityDetailScreen = lazy(() =>
+  import('@/pages/opportunity-detail').then((m) => ({ default: m.OpportunityDetailScreen })));
+const ClientsScreen = lazy(() => import('@/pages/clients').then((m) => ({ default: m.ClientsScreen })));
+const ClientDetailScreen = lazy(() =>
+  import('@/pages/clients').then((m) => ({ default: m.ClientDetailScreen })));
+const ProjectsScreen = lazy(() => import('@/pages/projects').then((m) => ({ default: m.ProjectsScreen })));
+const ProjectDetailScreen = lazy(() =>
+  import('@/pages/projects').then((m) => ({ default: m.ProjectDetailScreen })));
+
 const CaseStudiesScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.CaseStudiesScreen })));
 const UsersScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.UsersScreen })));
 const ActivityScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.ActivityScreen })));
@@ -94,7 +112,7 @@ export default function App() {
                 </ProtectedRoute>
               }
             >
-              {/* ---------------------------------------- the four products */}
+              {/* ------------------------------------------- the products */}
               <Route index element={<DashboardScreen />} />
               <Route path="analytics" element={
                 <ProtectedRoute capability="view_analytics"><AnalyticsScreen /></ProtectedRoute>} />
@@ -105,11 +123,21 @@ export default function App() {
               <Route path="system" element={
                 <ProtectedRoute capability="view_system"><SystemScreen /></ProtectedRoute>} />
 
-              {/* -------------------------------------------- the records */}
-              <Route path="projects" element={
-                <ProtectedRoute capability="view_projects"><ProjectsScreen /></ProtectedRoute>} />
+              {/* ------------------------------ revenue and operations (P2) */}
+              <Route path="sales" element={
+                <ProtectedRoute capability="view_sales"><SalesScreen /></ProtectedRoute>} />
+              <Route path="sales/:id" element={
+                <ProtectedRoute capability="view_sales"><OpportunityDetailScreen /></ProtectedRoute>} />
               <Route path="clients" element={
                 <ProtectedRoute capability="view_clients"><ClientsScreen /></ProtectedRoute>} />
+              <Route path="clients/:id" element={
+                <ProtectedRoute capability="view_clients"><ClientDetailScreen /></ProtectedRoute>} />
+              <Route path="projects" element={
+                <ProtectedRoute capability="view_projects"><ProjectsScreen /></ProtectedRoute>} />
+              <Route path="projects/:id" element={
+                <ProtectedRoute capability="view_projects"><ProjectDetailScreen /></ProtectedRoute>} />
+
+              {/* -------------------------------------------- the records */}
               <Route path="case-studies" element={
                 <ProtectedRoute capability="view_case_studies"><CaseStudiesScreen /></ProtectedRoute>} />
               <Route path="users" element={

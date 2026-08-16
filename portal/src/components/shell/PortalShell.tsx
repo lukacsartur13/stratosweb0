@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
   Activity, Building2, ChartLine, FolderKanban, Image, Inbox, LayoutDashboard, LogOut,
-  Menu, RefreshCw, ScrollText, Settings, Users, X,
+  Menu, RefreshCw, ScrollText, Settings, Target, Users, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { can, ROLE_LABELS, type Capability } from '@/lib/permissions';
@@ -46,22 +46,43 @@ import { Button, Select, Skeleton, cn } from '@/components/ui';
 
 interface NavItem { to: string; label: string; icon: typeof LayoutDashboard; cap: Capability }
 
-/** The four products. Order is the reading order of the whole product. */
+/**
+ * The products. Order is the reading order of the whole product, and it follows
+ * the business rather than the alphabet:
+ *
+ *     Dashboard   decisions      what is happening right now
+ *     Analytics   analysis       what happened, and why
+ *     Leads       work           who needs answering
+ *     Sales       commerce       what is likely to close
+ *     Clients     relationships  who we work for
+ *     Projects    delivery       what we owe them
+ *     System      diagnostics    is the infrastructure up
+ *
+ * P2 promoted three of these. Clients and Projects were records — read-only
+ * tables with no detail route — and P1's note said Clients was deliberately NOT
+ * a product because "an organisation list is not a client portal: there is no
+ * client account, no client-facing surface and no client workflow yet". Two of
+ * those three are now true. A client has a relationship hub, a lifetime value
+ * and contacts; a project has milestones, costs and a contribution figure. They
+ * earn the promotion by having become answers to questions rather than lists of
+ * rows — and this is still not a client portal, which stays out of scope.
+ */
 const PRIMARY: NavItem[] = [
   { to: '/',          label: 'Dashboard', icon: LayoutDashboard, cap: 'view_dashboard' },
   { to: '/analytics', label: 'Analytics', icon: ChartLine,       cap: 'view_analytics' },
   { to: '/leads',     label: 'Leads',     icon: Inbox,           cap: 'view_leads' },
+  { to: '/sales',     label: 'Sales',     icon: Target,          cap: 'view_sales' },
+  { to: '/clients',   label: 'Clients',   icon: Building2,       cap: 'view_clients' },
+  { to: '/projects',  label: 'Projects',  icon: FolderKanban,    cap: 'view_projects' },
   { to: '/system',    label: 'System',    icon: Activity,        cap: 'view_system' },
 ];
 
 /** Records and administration. Real screens, subordinate weight. */
 const SECONDARY: NavItem[] = [
-  { to: '/projects',     label: 'Projects',     icon: FolderKanban, cap: 'view_projects' },
-  { to: '/clients',      label: 'Clients',      icon: Building2,    cap: 'view_clients' },
-  { to: '/case-studies', label: 'Case studies', icon: Image,        cap: 'view_case_studies' },
-  { to: '/users',        label: 'Users',        icon: Users,        cap: 'manage_users' },
-  { to: '/activity',     label: 'Activity',     icon: ScrollText,   cap: 'view_activity' },
-  { to: '/settings',     label: 'Settings',     icon: Settings,     cap: 'manage_settings' },
+  { to: '/case-studies', label: 'Case studies', icon: Image,      cap: 'view_case_studies' },
+  { to: '/users',        label: 'Users',        icon: Users,      cap: 'manage_users' },
+  { to: '/activity',     label: 'Activity',     icon: ScrollText, cap: 'view_activity' },
+  { to: '/settings',     label: 'Settings',     icon: Settings,   cap: 'manage_settings' },
 ];
 
 /**
@@ -74,6 +95,7 @@ const SECONDARY: NavItem[] = [
 const TITLES: { path: string; title: string }[] = [
   { path: '/analytics', title: 'Analytics' },
   { path: '/leads', title: 'Leads' },
+  { path: '/sales', title: 'Sales' },
   { path: '/system', title: 'System' },
   { path: '/projects', title: 'Projects' },
   { path: '/clients', title: 'Clients' },
@@ -92,13 +114,21 @@ export function PortalShell() {
   const location = useLocation();
   const closeRef = useRef<HTMLButtonElement>(null);
   const leadDetail = useMatch('/leads/:id');
+  // The three detail routes P2 adds. The command bar names the RECORD rather
+  // than the section — "Opportunity", not "Sales" — because the bar's job is to
+  // say where you are, and on a detail screen where you are is the record.
+  const dealDetail = useMatch('/sales/:id');
+  const clientDetail = useMatch('/clients/:id');
+  const projectDetail = useMatch('/projects/:id');
 
   const primary = PRIMARY.filter((n) => can(profile?.role, n.cap));
   const secondary = SECONDARY.filter((n) => can(profile?.role, n.cap));
 
-  const title = leadDetail
-    ? 'Lead'
-    : TITLES.find((t) => location.pathname.startsWith(t.path))?.title ?? 'Dashboard';
+  const title = leadDetail ? 'Lead'
+    : dealDetail ? 'Opportunity'
+      : clientDetail ? 'Client'
+        : projectDetail ? 'Project'
+          : TITLES.find((t) => location.pathname.startsWith(t.path))?.title ?? 'Dashboard';
 
   // Route change closes the drawer, otherwise it stays open over the page the
   // visitor just asked for.

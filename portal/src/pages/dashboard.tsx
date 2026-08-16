@@ -10,13 +10,19 @@ import {
   Cell, DataState, MetricCell, MetricStrip, NoFigure, Panel, Row, SectionHeader, Skeleton,
   StatusPill, Table, cn,
 } from '@/components/ui';
-import { BarList, Delta, Funnel, Segmented, TrendChart } from '@/components/charts';
+import { BarList, Delta, Funnel, Meter, Segmented, TrendChart } from '@/components/charts';
+import { moneyCompact, primaryTotal, sumByCurrency } from '@/lib/money';
+import {
+  STAGE, bucket, dealAttention, dueTone, projectAttention, projectStatusLabel,
+  projectStatusTone, rankAttention, shortDate, stageDistribution,
+} from '@/lib/pipeline';
+import { useAttribution, useDashboardOperations, useSalesSummary } from '@/lib/business';
 import {
   RANGE_DAYS, delta, n, pct, trendLabel, useAnalytics, type Report,
 } from '@/lib/analytics';
 import { useHealth, type Health } from '@/lib/health';
 import {
-  FACETS, FORM_LABEL, LEAD_COLUMNS, formatWhen, groupBy, leadSource, since, statusLabel,
+  FACETS, LEAD_COLUMNS, formatWhen, groupBy, leadSource, since, statusLabel,
   statusTone, today, type Lead,
 } from '@/lib/leads';
 
@@ -25,16 +31,37 @@ import {
  *
  * ## The ten-second contract
  *
- * Somebody opens this between two other things. Before they scroll, they must
- * be able to answer: how much activity is there, how many leads came in, what
- * conversion looks like, whether anyone is on the site right now, where traffic
- * came from, what the latest enquiries are, whether anything needs doing, and
- * whether the infrastructure is up. Everything on this screen is one of those
- * eight answers; nothing on it is anything else.
+ * Somebody opens this between two other things. §56 sets the bar: within about
+ * fifteen seconds they must be able to read the traffic level, the leads, the
+ * conversion, the pipeline value, the weighted pipeline, the won value, the
+ * deals needing action, the active project count, the strongest acquisition
+ * source and the system health — WITHOUT visiting another route.
  *
- * The order is fixed and is not a taste: business state → website activity →
- * acquisition and conversion → operational work → required action →
- * infrastructure. It runs from what you decide with to what you fix.
+ * Every block on this screen answers one of those. Nothing on it answers
+ * anything else.
+ *
+ * The order is fixed and is not a taste:
+ *
+ *   01  executive summary      what the business is doing
+ *   02  traffic + live         what the website is doing
+ *   03  pipeline + conversion  what is likely to close, and what converts
+ *   04  acquisition + revenue  where it comes from, and what it is worth
+ *   05  recent leads + projects  the work in front of us
+ *   06  needs attention        what to do about it
+ *   07  system status          whether anything is broken
+ *
+ * It runs from what you decide with to what you fix.
+ *
+ * ## What P2 did NOT do to this screen
+ *
+ * It did not become a mosaic. Three panels were added and one figure was
+ * dropped from the strip; the section count went from six to seven, not to
+ * twelve. §47's instruction when a Dashboard gets noisy is to reduce
+ * information, not to add widgets — so the pipeline is a summary with a link
+ * rather than a board, revenue attribution is four rows rather than a table, and
+ * "recent opportunities" was deliberately NOT added as a sixth table, because
+ * the pipeline block already shows the shape of the book and the attention list
+ * already names the individual deals that need something doing.
  *
  * ## Why it draws from three sources and still loads once per source
  *
@@ -63,44 +90,80 @@ export function DashboardScreen() {
   const { range, environment, reloadToken, compare } = useScope();
   const mayAnalytics = can(profile?.role, 'view_analytics');
   const maySystem = can(profile?.role, 'view_system');
+  const maySales = can(profile?.role, 'view_sales');
+  const mayProjects = can(profile?.role, 'view_projects');
 
   const leads = useRows<Lead>('leads', LEAD_COLUMNS, 'created_at', reloadToken);
   const { state: analytics } = useAnalytics(range, environment, mayAnalytics, reloadToken);
   const { state: health } = useHealth(maySystem, reloadToken);
 
+  // The commercial layer. `summary` is server-aggregated (§59) and `operations`
+  // is two bounded, filtered reads — see `useDashboardOperations`. Neither loads
+  // the pipeline, the client book or the project list.
+  const summary = useSalesSummary(maySales, reloadToken);
+  const operations = useDashboardOperations(maySales || mayProjects, reloadToken);
+
   const rows = leads.rows;
   const ready = leads.state === 'ready';
   const traffic = analytics.kind === 'ready' ? analytics.data : null;
 
+  // §36 — the attribution call is made only when there is won revenue to
+  // attribute. On an account with an empty pipeline this request is never sent
+  // and the block degrades to nothing rather than to a table of zeroes.
+  const wonExists = bucket(summary.rows, 'won_all').some((r) => r.items > 0);
+  const attribution = useAttribution('source', maySales && wonExists, reloadToken);
+
   return (
     <div className="grid gap-4">
+      {/* 01 */}
       <ExecutiveStrip
         rows={rows}
         leadsReady={ready}
         analytics={analytics}
         traffic={traffic}
         mayAnalytics={mayAnalytics}
+        maySales={maySales}
+        summary={summary}
         compare={compare}
       />
 
+      {/* 02 */}
       {mayAnalytics && (
-        <>
-          <Grid>
-            <TrafficPulse traffic={traffic} loading={analytics.kind === 'loading'} compare={compare} />
-            <LivePanel analytics={analytics} traffic={traffic} />
-          </Grid>
-
-          <Grid>
-            <ConversionPath traffic={traffic} loading={analytics.kind === 'loading'} />
-            <Acquisition traffic={traffic} leads={rows} loading={analytics.kind === 'loading'} />
-          </Grid>
-        </>
+        <Grid>
+          <TrafficPulse traffic={traffic} loading={analytics.kind === 'loading'} compare={compare} />
+          <LivePanel analytics={analytics} traffic={traffic} />
+        </Grid>
       )}
 
-      <RecentLeads rows={rows} state={leads.state} />
-
+      {/* 03 */}
       <Grid>
-        <Attention rows={rows} leadsReady={ready} analytics={analytics} health={health} />
+        {maySales && <PipelineBlock summary={summary} />}
+        {mayAnalytics && <ConversionPath traffic={traffic} loading={analytics.kind === 'loading'} wide={!maySales} />}
+      </Grid>
+
+      {/* 04 */}
+      <Grid>
+        {mayAnalytics && <Acquisition traffic={traffic} leads={rows} loading={analytics.kind === 'loading'} />}
+        {maySales && wonExists && <TopRevenueSources rows={attribution.rows} state={attribution.state} />}
+      </Grid>
+
+      {/* 05 */}
+      <Grid>
+        <RecentLeads rows={rows} state={leads.state} />
+        {mayProjects && <ActiveProjects projects={operations.projects} state={operations.state} />}
+      </Grid>
+
+      {/* 06 + 07 */}
+      <Grid>
+        <Attention
+          rows={rows}
+          leadsReady={ready}
+          analytics={analytics}
+          health={health}
+          deals={operations.deals}
+          projects={operations.projects}
+          maySales={maySales}
+        />
         <SystemLine health={health} maySystem={maySystem} />
       </Grid>
     </div>
@@ -115,22 +178,40 @@ type AnalyticsState = ReturnType<typeof useAnalytics>['state'];
  * One surface, five figures, one baseline.
  *
  * Not five cards: a common background, hairline dividers, and every value at
- * the same height so the eye reads across rather than down. Yellow appears once
- * — on the realtime count — because that is the only figure here that is true
- * *now* rather than true for a period.
+ * the same height so the eye reads across rather than down.
+ *
+ * ## What P2 changed here, and why
+ *
+ * The strip used to be Active users · Sessions · Leads · Conversion · Realtime.
+ * It is now Sessions · Leads · Conversion · Pipeline · Won MTD.
+ *
+ * Two figures left and two arrived, and §8 is explicit about the trade: a
+ * commercial strip should immediately communicate *how much business is in
+ * motion*, and "Realtime can remain visible in the Traffic/Live area instead of
+ * consuming a primary business KPI slot if that produces better hierarchy". It
+ * does. The Live panel one row below already prints the realtime count at 4xl in
+ * yellow, which is a louder statement of the same fact than a strip cell was;
+ * and Active users and Sessions were two readings of one thing, where Pipeline
+ * and Won are two different questions the business could not previously ask at
+ * all.
+ *
+ * Yellow now appears on `Won this month`, and only there: it is the one figure
+ * in the strip that is money in rather than money hoped for.
  *
  * Every cell distinguishes the four ways of having nothing: a measured zero is
  * `0`, an absent service is an em dash with the reason, an unconfigured one
  * says so, and a role that may not read a figure is not shown the cell at all.
  */
 function ExecutiveStrip({
-  rows, leadsReady, analytics, traffic, mayAnalytics, compare,
+  rows, leadsReady, analytics, traffic, mayAnalytics, maySales, summary, compare,
 }: {
   rows: Lead[];
   leadsReady: boolean;
   analytics: AnalyticsState;
   traffic: Report | null;
   mayAnalytics: boolean;
+  maySales: boolean;
+  summary: ReturnType<typeof useSalesSummary>;
   compare: boolean;
 }) {
   const { range } = useScope();
@@ -154,16 +235,22 @@ function ExecutiveStrip({
 
   const periodNote = range === 'today' ? 'today' : `last ${days} days`;
 
+  // The two commercial figures. Both are the database's own sums, per currency,
+  // and neither is a client-side total over a truncated list.
+  const openTotal = primaryTotal(sumByCurrency(bucket(summary.rows, 'open')));
+  const wonTotal = primaryTotal(sumByCurrency(bucket(summary.rows, 'won_mtd')));
+
+  /** A commercial cell: the figure, or a measured nothing — never a fake zero. */
+  const commercial = (total: typeof openTotal, weighted: boolean) => {
+    if (summary.state === 'loading') return <Skeleton className="h-7 w-24" />;
+    if (summary.state === 'error') return <NoFigure reason="The pipeline summary could not be read" />;
+    const figure = total.total;
+    if (!figure || figure.items === 0) return <span className="text-haze">0</span>;
+    return moneyCompact(weighted ? figure.weighted : figure.value, figure.currency);
+  };
+
   return (
     <MetricStrip label="Executive summary">
-      {mayAnalytics && (
-        <MetricCell
-          label="Active users"
-          value={gap ? gap.value : n(now?.activeUsers)}
-          delta={!gap && compare && now && was ? <Delta value={delta(now.activeUsers, was.activeUsers)} /> : undefined}
-          note={gap ? gap.note : periodNote}
-        />
-      )}
       {mayAnalytics && (
         <MetricCell
           label="Sessions"
@@ -195,23 +282,29 @@ function ExecutiveStrip({
         />
       )}
 
-      {mayAnalytics && (
+      {/* The two commercial figures: what is in motion, and what has landed. */}
+      {maySales && (
         <MetricCell
-          label="Realtime"
-          tone="live"
-          value={
-            gap ? gap.value
-              : traffic?.realtime ? n(traffic.realtime.activeUsersByPage)
-                : <NoFigure reason="Realtime unavailable" />
-          }
-          note={
-            gap ? gap.note
-              : traffic?.realtime ? `active, last ${traffic.realtime.minutes} min` : 'unavailable'
-          }
+          label="Pipeline"
+          value={commercial(openTotal, false)}
+          note={openTotal.total && openTotal.total.items > 0
+            ? `${openTotal.total.items} open · ${moneyCompact(openTotal.total.weighted, openTotal.total.currency)} weighted`
+            : 'no open opportunities'}
         />
       )}
 
-      {!mayAnalytics && (
+      {maySales && (
+        <MetricCell
+          label="Won this month"
+          tone="live"
+          value={commercial(wonTotal, false)}
+          note={wonTotal.total && wonTotal.total.items > 0
+            ? `${wonTotal.total.items} ${wonTotal.total.items === 1 ? 'deal' : 'deals'}`
+            : 'nothing closed yet'}
+        />
+      )}
+
+      {!mayAnalytics && !maySales && (
         <MetricCell
           label="Unanswered"
           value={leadsReady ? rows.filter((l) => l.status === 'new').length : <Skeleton className="h-7 w-14" />}
@@ -219,6 +312,242 @@ function ExecutiveStrip({
         />
       )}
     </MetricStrip>
+  );
+}
+
+/* ==================================================== 03 — the pipeline == */
+
+/**
+ * PIPELINE (§9) — the shape of the commercial book, and nothing more.
+ *
+ * A compact stage distribution with a total and a weighted total, exactly as §9
+ * specifies. Deliberately NOT a Kanban: this is a summary screen, the board is
+ * one click away, and a drag-and-drop surface embedded in a dashboard is a
+ * surface somebody moves a deal on by accident while scrolling.
+ *
+ * The figures come from `portal_sales_summary()`, so the Dashboard prints the
+ * pipeline without loading a single opportunity.
+ */
+function PipelineBlock({ summary }: { summary: ReturnType<typeof useSalesSummary> }) {
+  const stages = stageDistribution(summary.rows);
+  const open = primaryTotal(sumByCurrency(bucket(summary.rows, 'open')));
+  const max = Math.max(...stages.map((s) => s.value), 1);
+  const anything = stages.some((s) => s.items > 0);
+
+  return (
+    <Panel className="col-span-12 min-w-0 lg:col-span-5">
+      <SectionHeader
+        title="Pipeline"
+        note="open opportunities"
+        action={
+          <Link to="/sales" className="t-note inline-flex items-center gap-1 underline underline-offset-4 hover:text-paper">
+            Opportunities <ArrowRight size={11} aria-hidden="true" />
+          </Link>
+        }
+      />
+
+      {summary.state === 'loading' && (
+        <div className="space-y-1.5 p-4" aria-busy="true">
+          {[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-7 w-full" />)}
+        </div>
+      )}
+
+      {summary.state === 'error' && (
+        <DataState
+          kind="unavailable"
+          title="Unavailable"
+          body="The pipeline summary could not be read. It needs the P2 migration to have been applied."
+        />
+      )}
+
+      {summary.state === 'unconfigured' && (
+        <DataState kind="unconfigured" title="Not connected" body="No database is configured in this environment." />
+      )}
+
+      {summary.state === 'ready' && !anything && (
+        <DataState
+          kind="empty"
+          title="No open opportunities"
+          body="The pipeline is what qualified leads become. Nothing is in it yet."
+          action={<Link to="/leads?status=qualified"><span className="t-note underline underline-offset-4">Convert a qualified lead</span></Link>}
+        />
+      )}
+
+      {summary.state === 'ready' && anything && (
+        <>
+          <table className="w-full border-collapse">
+            <caption className="sr-only">Open opportunities by stage</caption>
+            <tbody>
+              {stages.map((stage) => (
+                <tr key={stage.stage} className="border-b border-hairline last:border-0">
+                  <th scope="row" className="px-4 py-1.5 text-left font-normal">
+                    <span className="t-section">{STAGE[stage.stage].label}</span>
+                    <span className="mt-1 block"><Meter value={stage.value} max={max} /></span>
+                  </th>
+                  <td className="num w-12 px-2 py-1.5 text-right text-xs text-haze">{stage.items}</td>
+                  <td className="num w-24 px-4 py-1.5 text-right text-xs text-paper">
+                    {stage.items === 0 ? '—' : moneyCompact(stage.value, stage.currency ?? 'HUF')}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* The two figures the whole panel exists to produce. */}
+          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-t border-hair px-4 py-2.5">
+            <span className="t-section">Total</span>
+            <span className="num text-sm text-paper">
+              {open.total ? moneyCompact(open.total.value, open.total.currency) : '—'}
+            </span>
+            <span className="t-section">Weighted</span>
+            <span className="num text-sm text-chrome">
+              {open.total ? moneyCompact(open.total.weighted, open.total.currency) : '—'}
+            </span>
+          </div>
+          {open.others > 0 && (
+            <p className="t-note border-t border-hairline px-4 py-1.5 text-signal">
+              {open.others} more in {open.otherCurrencies.join(', ')} — not added in, because nothing
+              here converts between currencies.
+            </p>
+          )}
+        </>
+      )}
+    </Panel>
+  );
+}
+
+/* ============================================== 04 — where revenue came from */
+
+/**
+ * TOP REVENUE SOURCES (§36) — compact, and only when it is true.
+ *
+ * Not the whole attribution table: that is Analytics' job and putting it here
+ * would be the second copy of a screen that §36 explicitly rules out. Three rows
+ * and a link.
+ *
+ * The panel is not rendered at all unless won revenue exists, and the request
+ * behind it is not even made — see `wonExists` in `DashboardScreen`. A revenue
+ * block reading "Google / organic — 0 Ft" on a business that has closed nothing
+ * is worse than no block.
+ */
+function TopRevenueSources({
+  rows, state,
+}: { rows: ReturnType<typeof useAttribution>['rows']; state: string }) {
+  const top = rows.filter((r) => r.won_value > 0).slice(0, 4);
+  const max = Math.max(...top.map((r) => r.won_value), 1);
+
+  return (
+    <Panel className="col-span-12 min-w-0 lg:col-span-5">
+      <SectionHeader
+        title="Top revenue sources"
+        note="won value by acquisition source"
+        action={
+          <Link to="/analytics#revenue" className="t-note inline-flex items-center gap-1 underline underline-offset-4 hover:text-paper">
+            Attribution <ArrowRight size={11} aria-hidden="true" />
+          </Link>
+        }
+      />
+      {state === 'loading' ? (
+        <div className="space-y-1.5 p-4" aria-busy="true">
+          {[0, 1, 2].map((i) => <Skeleton key={i} className="h-7 w-full" />)}
+        </div>
+      ) : top.length === 0 ? (
+        <DataState
+          kind="empty"
+          title="No attributed revenue"
+          body="Won deals exist, but none of them carries an acquisition source."
+        />
+      ) : (
+        <table className="w-full border-collapse">
+          <caption className="sr-only">Won value by acquisition source</caption>
+          <tbody>
+            {top.map((row) => (
+              <tr key={row.key} className="border-b border-hairline last:border-0">
+                {/* Text, never a link. A source string is whatever a referring
+                    site put in a header. */}
+                <th scope="row" className="min-w-0 px-4 py-2 text-left font-normal">
+                  <span className="break-words text-xs text-paper">{row.key}</span>
+                  <span className="mt-1 block"><Meter value={row.won_value} max={max} /></span>
+                </th>
+                <td className="num w-24 px-4 py-2 text-right text-xs text-paper">
+                  {row.won_currencies > 1
+                    // Two currencies behind one figure. The count is true; the
+                    // sum would not be, so it is not printed.
+                    ? <span className="text-haze" title="Won in more than one currency">mixed</span>
+                    : moneyCompact(row.won_value, row.won_currency ?? 'HUF')}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </Panel>
+  );
+}
+
+/* ============================================== 05 — the delivery readout */
+
+/**
+ * ACTIVE PROJECTS (§57) — four to six rows, and a link.
+ *
+ * Not a project management wall. Four columns: what, for whom, where it is, when
+ * it is due — which is the whole of what a person scanning a dashboard needs to
+ * know about delivery. Sorted by target date, soonest first, so the row that
+ * matters is the first one.
+ */
+function ActiveProjects({
+  projects, state,
+}: { projects: ReturnType<typeof useDashboardOperations>['projects']; state: string }) {
+  return (
+    <Panel className="col-span-12 min-w-0 lg:col-span-5">
+      <SectionHeader
+        title="Active projects"
+        note={projects.length > 0 ? `${projects.length} live` : undefined}
+        action={
+          <Link to="/projects" className="t-note inline-flex items-center gap-1 underline underline-offset-4 hover:text-paper">
+            All projects <ArrowRight size={11} aria-hidden="true" />
+          </Link>
+        }
+      />
+      {state === 'loading' ? (
+        <div className="space-y-1.5 p-4" aria-busy="true">
+          {[0, 1, 2].map((i) => <Skeleton key={i} className="h-8 w-full" />)}
+        </div>
+      ) : projects.length === 0 ? (
+        <DataState
+          kind="empty"
+          title="No active projects"
+          body="A project is created from a won opportunity, which keeps the delivery connected to what sold it."
+        />
+      ) : (
+        <Table head={['Project', 'Client', 'Status', 'Target']} minWidth={560}>
+          {projects.slice(0, 6).map((project) => {
+            const tone = dueTone(project.target_date);
+            return (
+              <Row key={project.id}>
+                <Cell className="min-w-0">
+                  <Link to={`/projects/${project.id}`} className="text-[13px] text-paper hover:text-signal">
+                    {project.name}
+                  </Link>
+                </Cell>
+                <Cell className="truncate text-[11px] text-haze">{project.client?.name ?? '—'}</Cell>
+                <Cell>
+                  <StatusPill tone={projectStatusTone(project.status)}>
+                    {projectStatusLabel(project.status)}
+                  </StatusPill>
+                </Cell>
+                <Cell className={cn(
+                  'num whitespace-nowrap text-[11px]',
+                  tone === 'overdue' ? 'text-danger' : tone === 'today' ? 'text-signal' : 'text-haze',
+                )}>
+                  {shortDate(project.target_date)}
+                </Cell>
+              </Row>
+            );
+          })}
+        </Table>
+      )}
+    </Panel>
   );
 }
 
@@ -362,9 +691,11 @@ function LivePanel({ analytics, traffic }: { analytics: AnalyticsState; traffic:
 
 /* ========================================= 03 — conversion and acquisition */
 
-function ConversionPath({ traffic, loading }: { traffic: Report | null; loading: boolean }) {
+function ConversionPath({
+  traffic, loading, wide = false,
+}: { traffic: Report | null; loading: boolean; wide?: boolean }) {
   return (
-    <Panel className="col-span-12 min-w-0 lg:col-span-5">
+    <Panel className={cn('col-span-12 min-w-0', wide ? 'lg:col-span-12' : 'lg:col-span-7')}>
       <SectionHeader title="Conversion path" note="measured events" />
       {loading ? (
         <div className="p-4" aria-busy="true"><Skeleton className="h-48 w-full" /></div>
@@ -480,7 +811,7 @@ function Acquisition({
 
 function RecentLeads({ rows, state }: { rows: Lead[]; state: string }) {
   return (
-    <Panel className="min-w-0">
+    <Panel className="col-span-12 min-w-0 lg:col-span-7">
       <SectionHeader
         title="Recent leads"
         action={
@@ -517,7 +848,7 @@ function RecentLeads({ rows, state }: { rows: Lead[]; state: string }) {
       )}
 
       {state === 'ready' && rows.length > 0 && (
-        <Table head={['Time', 'Company / contact', 'Source', 'Form', 'Status']} minWidth={720}>
+        <Table head={['Time', 'Company / contact', 'Source', 'Status']} minWidth={560}>
           {rows.slice(0, 6).map((lead) => (
             <LeadRow key={lead.id} lead={lead} />
           ))}
@@ -547,9 +878,6 @@ export function LeadRow({ lead }: { lead: Lead }) {
         {lead.company && <span className="block truncate text-[11px] text-haze">{lead.name}</span>}
       </Cell>
       <Cell className="break-words text-[11px] text-haze">{leadSource(lead)}</Cell>
-      <Cell className="text-[11px] text-haze">
-        {FORM_LABEL[lead.form_type ?? ''] ?? lead.form_type ?? '—'}
-      </Cell>
       <Cell><StatusPill tone={statusTone(lead.status)}>{statusLabel(lead.status)}</StatusPill></Cell>
     </Row>
   );
@@ -557,31 +885,91 @@ export function LeadRow({ lead }: { lead: Lead }) {
 
 /* ====================================================== 05 — the attention */
 
-interface Item { id: string; text: string; to: string; urgent?: boolean }
+interface Item { id: string; text: string; to: string; urgent?: boolean; because?: string }
 
 /**
  * What actually needs doing, and nothing that does not.
  *
- * Every item below is derived from a real condition in real data: a lead row
- * whose status and age can be read, a service the health endpoint reported on,
- * an analytics call that failed. There is no overdue invoice, no project
- * deadline and no missing asset, because none of those exists in this system
- * and an invented one would be acted on.
+ * ## The four rules every item here obeys (§15)
+ *
+ *   1. It is derived from a condition that is actually STORED. There is no
+ *      overdue invoice and no missing asset, because neither exists in this
+ *      system and an invented one would be acted on.
+ *   2. It EXPLAINS why it is there. Every commercial item carries a `because`,
+ *      rendered under it, so an operator never has to guess what rule fired.
+ *   3. It LINKS to the record.
+ *   4. It DISAPPEARS when resolved. Nothing here is dismissed, snoozed or
+ *      acknowledged — every item is recomputed from the data on every load, and
+ *      fixing the data is the only way to clear it. That is what keeps this from
+ *      becoming a notification inbox nobody reads.
+ *
+ * ## Where the commercial items come from
+ *
+ * `dealAttention` and `projectAttention` in `lib/pipeline.ts`, over the bounded
+ * slice `useDashboardOperations` fetched. The rules are in that file rather than
+ * this one so they can be tested directly — see `tests/portal-revenue.spec.ts`.
  *
  * When there is nothing, it says so in one line. A full-width green success
  * panel for "nothing is wrong" is a panel that trains you to skip the section.
  */
 function Attention({
-  rows, leadsReady, analytics, health,
+  rows, leadsReady, analytics, health, deals, projects, maySales,
 }: {
   rows: Lead[];
   leadsReady: boolean;
   analytics: AnalyticsState;
   health: ReturnType<typeof useHealth>['state'];
+  deals: ReturnType<typeof useDashboardOperations>['deals'];
+  projects: ReturnType<typeof useDashboardOperations>['projects'];
+  maySales: boolean;
 }) {
   const items = useMemo<Item[]>(() => {
     const out: Item[] = [];
     const hours = (iso: string) => (Date.now() - new Date(iso).getTime()) / 3_600_000;
+
+    /* ---------------------------------------- the commercial rules */
+    if (maySales) {
+      const named = (recordId: string) => {
+        const deal = deals.find((d) => d.id === recordId);
+        return deal?.client?.name || deal?.company_name || deal?.title || 'An opportunity';
+      };
+      for (const item of dealAttention(deals.map((d) => ({
+        id: d.id,
+        stage: d.stage,
+        estimated_value: d.estimated_value,
+        currency: d.currency,
+        probability: d.probability,
+        expected_close_on: d.expected_close_on,
+        next_action: d.next_action,
+        next_action_on: d.next_action_on,
+        organization_id: d.organization_id,
+        archived_at: d.archived_at,
+      })))) {
+        out.push({
+          id: item.id,
+          to: item.to,
+          urgent: item.urgent,
+          text: `${named(item.record)} ${item.text}`,
+          because: item.because,
+        });
+      }
+    }
+
+    // Delivery. `openMilestones` is deliberately absent — see the note in
+    // `useDashboardOperations` on the query this screen does not make.
+    for (const item of projectAttention(projects.map((p) => ({
+      id: p.id, name: p.name, status: p.status, target_date: p.target_date,
+      value: p.value, archived_at: p.archived_at,
+    })))) {
+      const project = projects.find((p) => p.id === item.record);
+      out.push({
+        id: item.id,
+        to: item.to,
+        urgent: item.urgent,
+        text: `${project?.name ?? 'A project'} ${item.text}`,
+        because: item.because,
+      });
+    }
 
     if (leadsReady) {
       const cold = rows.filter((l) => l.status === 'new' && hours(l.created_at) > 24);
@@ -632,28 +1020,47 @@ function Attention({
     // Urgent first, and stable within each group. The list is read top down and
     // the thing somebody has to do today should not sit under a note about a
     // notification adapter that has been off since March.
-    return [...out].sort((a, b) => Number(Boolean(b.urgent)) - Number(Boolean(a.urgent)));
-  }, [rows, leadsReady, analytics, health]);
+    //
+    // `rankAttention` is the same sort the commercial rules use, imported rather
+    // than repeated so the two halves of this list cannot drift into two
+    // different ideas of what "urgent first" means.
+    return rankAttention(out.map((item) => ({
+      ...item, record: '', to: item.to, because: item.because ?? '', urgent: Boolean(item.urgent),
+    }))) as Item[];
+  }, [rows, leadsReady, analytics, health, deals, projects, maySales]);
 
   return (
     <Panel className="col-span-12 min-w-0 lg:col-span-8">
-      <SectionHeader title="Needs attention" note={items.length > 0 ? `${items.length}` : undefined} />
+      <SectionHeader
+        title="Needs attention"
+        note={items.length > 8 ? `showing 8 of ${items.length}` : items.length > 0 ? `${items.length}` : undefined}
+      />
       {items.length === 0 ? (
         <p className="px-4 py-3.5 text-xs text-haze">Nothing requires attention.</p>
       ) : (
         <ul className="grid">
-          {items.map((item) => (
+          {/* Capped at eight. A Dashboard section that can grow without limit is
+              a Dashboard that becomes an inbox — and the rules above are
+              deliberately narrow enough that eight is almost always all of them.
+              The count in the header is the true total either way. */}
+          {items.slice(0, 8).map((item) => (
             <li key={item.id} className="border-b border-hairline last:border-0">
               <Link
                 to={item.to}
-                className="flex items-center gap-2.5 px-4 py-2.5 transition-colors hover:bg-flare"
+                className="flex items-start gap-2.5 px-4 py-2.5 transition-colors hover:bg-flare"
               >
                 <span
-                  className={cn('h-1 w-1 shrink-0 rounded-full', item.urgent ? 'bg-signal' : 'bg-chrome/40')}
+                  className={cn('mt-1 h-1 w-1 shrink-0 rounded-full', item.urgent ? 'bg-signal' : 'bg-chrome/40')}
                   aria-hidden="true"
                 />
-                <span className="min-w-0 flex-1 text-xs text-paper">{item.text}</span>
-                <ArrowRight size={12} className="shrink-0 text-haze" aria-hidden="true" />
+                <span className="min-w-0 flex-1">
+                  <span className="block text-xs text-paper">{item.text}</span>
+                  {/* §15 — every item explains itself. The rule that fired is
+                      named in a sentence, so nobody has to guess why a record is
+                      on this list or what would take it off. */}
+                  {item.because && <span className="t-note mt-0.5 block">{item.because}</span>}
+                </span>
+                <ArrowRight size={12} className="mt-0.5 shrink-0 text-haze" aria-hidden="true" />
               </Link>
             </li>
           ))}
