@@ -50,9 +50,16 @@ const HARDENING = [/homepage-modality\.spec\.ts/, /homepage-history\.spec\.ts/];
 // portal/src off the filesystem and asserts structure, which is the same answer
 // in every engine and at every width. Its handful of rendered checks want one
 // desktop and one phone, which is exactly what this pair is.
+//
+// `portal-revenue.spec.ts` joins it for a FOURTH: every test in that file is
+// either a pure function over plain data or a read of portal/src and
+// supabase/migrations off the filesystem. Neither opens a page. It could
+// therefore live in the `node` project — and does not, only because it shares a
+// subject with the control-room suite and running the two together is how a
+// change to one is noticed by the other.
 const ENGINE_ONLY = [
   /analytics\.spec\.ts/, /attribution\.spec\.ts/, /not-found\.spec\.ts/,
-  /portal-control-room\.spec\.ts/,
+  /portal-control-room\.spec\.ts/, /portal-revenue\.spec\.ts/,
 ];
 
 export default defineConfig({

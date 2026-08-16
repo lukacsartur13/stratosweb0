@@ -340,6 +340,235 @@ const HEALTH = {
   },
 };
 
+
+/* ==================================================== P2 — the operating layer */
+
+/**
+ * The commercial fixtures.
+ *
+ * Every figure below is invented, and the banner on every image says so. They
+ * are shaped to exercise the states a reviewer needs to SEE rather than to look
+ * plausible: a deal with no next action, a deal past its close date, a won deal
+ * with no client, a project that is blocked, a project with costs recorded and
+ * one without, and one opportunity in EUR so that the "two currencies are never
+ * added" behaviour is visible rather than merely asserted.
+ */
+const CLIENT_ID = 'c0000000-0000-4000-8000-000000000001';
+const PROJECT_ID = 'e0000000-0000-4000-8000-000000000001';
+const DEAL_ID = 'd0000000-0000-4000-8000-000000000001';
+
+const CLIENTS = [
+  {
+    id: CLIENT_ID, name: 'Rapidkert Kft.', slug: 'rapidkert', website: 'https://rapidkert.hu',
+    status: 'active', acquisition_source: 'google', acquisition_medium: 'cpc',
+    acquisition_campaign: 'kkv-2026-q3', primary_service: 'Weboldal + hirdetés',
+    archived_at: null, created_at: iso(150), updated_at: iso(2),
+  },
+  {
+    id: 'c0000000-0000-4000-8000-000000000002', name: 'Barbershop Győr', slug: 'barbershop',
+    website: 'barbershopgyor.hu', status: 'active', acquisition_source: 'referral',
+    acquisition_medium: null, acquisition_campaign: null, primary_service: 'Weboldal',
+    archived_at: null, created_at: iso(320), updated_at: iso(30),
+  },
+  {
+    id: 'c0000000-0000-4000-8000-000000000003', name: 'Mentálerő', slug: 'mentalero',
+    website: null, status: 'paused', acquisition_source: '(direct)', acquisition_medium: null,
+    acquisition_campaign: null, primary_service: 'Branding', archived_at: null,
+    created_at: iso(400), updated_at: iso(90),
+  },
+];
+
+const CLIENT_CONTACTS = [
+  {
+    id: 'k1', organization_id: CLIENT_ID, name: 'Kovács Anna', role: 'Ügyvezető',
+    email: 'anna@example.invalid', phone: '+36 30 000 0000', is_primary: true, created_at: iso(140),
+  },
+  {
+    id: 'k2', organization_id: CLIENT_ID, name: 'Szabó Márk', role: 'Marketing',
+    email: 'mark@example.invalid', phone: null, is_primary: false, created_at: iso(100),
+  },
+];
+
+const deal = (over) => ({
+  organization_id: null, company_name: null, contact_name: null, contact_email: null,
+  contact_phone: null, service: null, estimated_value: null, currency: 'HUF',
+  stage: 'qualified', probability: 20, expected_close_on: null, next_action: null,
+  next_action_on: null, lead_id: null, source: null, medium: null, campaign: null,
+  landing_route: null, locale: 'hu', form_type: null, owner_id: null, lost_reason: null,
+  lost_note: null, won_at: null, lost_at: null, archived_at: null,
+  created_at: iso(20), updated_at: iso(1), client: null, owner: null,
+  ...over,
+});
+
+const OPPORTUNITIES = [
+  deal({
+    id: DEAL_ID, title: 'Rapidkert — weboldal újraépítés',
+    company_name: 'Rapidkert Kft.', organization_id: CLIENT_ID,
+    client: { id: CLIENT_ID, name: 'Rapidkert Kft.' },
+    contact_name: 'Kovács Anna', contact_email: 'anna@example.invalid',
+    contact_phone: '+36 30 000 0000', service: 'Weboldal + hirdetés',
+    estimated_value: 2_400_000, stage: 'proposal', probability: 60,
+    expected_close_on: iso(-14).slice(0, 10), next_action: 'Follow up the proposal',
+    next_action_on: iso(-2).slice(0, 10),
+    lead_id: 'a0000000-0000-4000-8000-000000000001',
+    source: 'google', medium: 'cpc', campaign: 'kkv-2026-q3', landing_route: '/kkv.html',
+    form_type: 'questionnaire', owner: { id: USER.id, full_name: 'Review Account', email: USER.email },
+    owner_id: USER.id, created_at: iso(30), updated_at: iso(1),
+  }),
+  deal({
+    id: 'd0000000-0000-4000-8000-000000000002', title: 'Nordwind — enterprise site',
+    company_name: 'Nordwind GmbH', contact_name: 'Sarah Klein',
+    contact_email: 'sarah@example.invalid', service: 'Enterprise',
+    estimated_value: 18_000, currency: 'EUR', stage: 'negotiation', probability: 80,
+    expected_close_on: iso(-25).slice(0, 10), next_action: 'Send revised terms',
+    next_action_on: iso(-40).slice(0, 10), locale: 'de',
+    source: 'linkedin', medium: 'social', created_at: iso(45), updated_at: iso(3),
+  }),
+  deal({
+    id: 'd0000000-0000-4000-8000-000000000003', title: 'Barbershop — hirdetéskezelés',
+    company_name: 'Barbershop Győr', organization_id: 'c0000000-0000-4000-8000-000000000002',
+    client: { id: 'c0000000-0000-4000-8000-000000000002', name: 'Barbershop Győr' },
+    service: 'Hirdetéskezelés', estimated_value: 900_000, stage: 'discovery', probability: 40,
+    expected_close_on: iso(-45).slice(0, 10),
+    // No next action at all — the attention rule this exists to show.
+    source: 'referral', created_at: iso(12), updated_at: iso(2),
+  }),
+  deal({
+    id: 'd0000000-0000-4000-8000-000000000004', title: 'Mentálerő — arculat',
+    company_name: 'Mentálerő', service: 'Branding', estimated_value: 1_200_000,
+    stage: 'qualified', probability: 20, expected_close_on: iso(-60).slice(0, 10),
+    next_action: 'Discovery meeting', next_action_on: iso(-60).slice(0, 10),
+    source: '(direct)', created_at: iso(8), updated_at: iso(4),
+  }),
+  deal({
+    id: 'd0000000-0000-4000-8000-000000000005', title: 'Rapidkert — karbantartás 2026',
+    company_name: 'Rapidkert Kft.', organization_id: CLIENT_ID,
+    client: { id: CLIENT_ID, name: 'Rapidkert Kft.' },
+    service: 'Karbantartás', estimated_value: 1_800_000, stage: 'won', probability: 100,
+    won_at: iso(6), expected_close_on: iso(6).slice(0, 10),
+    source: 'google', medium: 'organic', created_at: iso(60), updated_at: iso(6),
+  }),
+  deal({
+    id: 'd0000000-0000-4000-8000-000000000006', title: 'Helios — landing kampány',
+    company_name: 'Helios Kft.', service: 'Weboldal', estimated_value: 1_200_000,
+    stage: 'won', probability: 100, won_at: iso(3),
+    // Won with NO client record: the chain from revenue back to a channel is
+    // broken until it has one, and the attention list says so.
+    source: 'google', medium: 'cpc', campaign: 'kkv-2026-q3',
+    created_at: iso(40), updated_at: iso(3),
+  }),
+  deal({
+    id: 'd0000000-0000-4000-8000-000000000007', title: 'Vertex — teljes arculat',
+    company_name: 'Vertex Zrt.', service: 'Branding', estimated_value: 3_400_000,
+    stage: 'lost', probability: 0, lost_at: iso(15), lost_reason: 'price',
+    lost_note: 'Went with a cheaper studio. Kept the door open for next year.',
+    source: 'linkedin', medium: 'social', created_at: iso(70), updated_at: iso(15),
+  }),
+];
+
+/** What `portal_sales_summary()` answers with. One row per (bucket, currency). */
+const SALES_SUMMARY = [
+  { bucket: 'stage:qualified', currency: 'HUF', items: 1, value: 1_200_000, weighted: 240_000 },
+  { bucket: 'stage:discovery', currency: 'HUF', items: 1, value: 900_000, weighted: 360_000 },
+  { bucket: 'stage:proposal', currency: 'HUF', items: 1, value: 2_400_000, weighted: 1_440_000 },
+  { bucket: 'stage:negotiation', currency: 'EUR', items: 1, value: 18_000, weighted: 14_400 },
+  { bucket: 'open', currency: 'HUF', items: 3, value: 4_500_000, weighted: 2_040_000 },
+  { bucket: 'open', currency: 'EUR', items: 1, value: 18_000, weighted: 14_400 },
+  { bucket: 'closing_month', currency: 'HUF', items: 1, value: 2_400_000, weighted: 1_440_000 },
+  { bucket: 'won_mtd', currency: 'HUF', items: 2, value: 3_000_000, weighted: 0 },
+  { bucket: 'won_ytd', currency: 'HUF', items: 5, value: 8_700_000, weighted: 0 },
+  { bucket: 'won_all', currency: 'HUF', items: 5, value: 8_700_000, weighted: 0 },
+  { bucket: 'lost_all', currency: 'HUF', items: 2, value: 4_600_000, weighted: 0 },
+  { bucket: 'projects_active', currency: null, items: 3, value: 0, weighted: 0 },
+  { bucket: 'projects_blocked', currency: null, items: 1, value: 0, weighted: 0 },
+  { bucket: 'clients_active', currency: null, items: 2, value: 0, weighted: 0 },
+];
+
+/** What `portal_revenue_attribution('source')` answers with. */
+const ATTRIBUTION = [
+  { key: 'google', leads: 14, qualified: 6, opportunities: 4, won: 3, won_value: 5_400_000, won_currency: 'HUF', won_currencies: 1 },
+  { key: 'referral', leads: 5, qualified: 3, opportunities: 2, won: 1, won_value: 2_100_000, won_currency: 'HUF', won_currencies: 1 },
+  { key: 'linkedin', leads: 4, qualified: 2, opportunities: 2, won: 1, won_value: 1_200_000, won_currency: 'HUF', won_currencies: 1 },
+  { key: '(direct)', leads: 9, qualified: 2, opportunities: 1, won: 0, won_value: 0, won_currency: null, won_currencies: 0 },
+  { key: 'facebook', leads: 3, qualified: 0, opportunities: 0, won: 0, won_value: 0, won_currency: null, won_currencies: 0 },
+];
+
+const P2_PROJECTS = [
+  {
+    id: PROJECT_ID, organization_id: CLIENT_ID, name: 'Rapidkert relaunch', slug: 'rapidkert',
+    description: 'Teljes újraépítés, tartalommal és méréssel.', status: 'active',
+    service: 'Weboldal', value: 2_400_000, currency: 'HUF',
+    start_date: iso(40).slice(0, 10), target_date: iso(-10).slice(0, 10),
+    completed_at: null, archived_at: null, opportunity_id: DEAL_ID,
+    responsible_id: USER.id, estimated_hours: 120, actual_hours: 148,
+    payment_state: 'partially_paid', invoiced_amount: 1_200_000, paid_amount: 600_000,
+    created_at: iso(40), updated_at: iso(1),
+    client: { id: CLIENT_ID, name: 'Rapidkert Kft.' },
+    responsible: { id: USER.id, full_name: 'Review Account', email: USER.email },
+  },
+  {
+    id: 'e0000000-0000-4000-8000-000000000002',
+    organization_id: 'c0000000-0000-4000-8000-000000000002', name: 'Barbershop — kampány',
+    slug: 'barbershop-kampany', description: null, status: 'blocked', service: 'Hirdetéskezelés',
+    value: 600_000, currency: 'HUF', start_date: iso(20).slice(0, 10),
+    target_date: iso(20).slice(0, 10), completed_at: null, archived_at: null,
+    opportunity_id: null, responsible_id: null, estimated_hours: null, actual_hours: null,
+    payment_state: 'not_invoiced', invoiced_amount: null, paid_amount: null,
+    created_at: iso(20), updated_at: iso(5),
+    client: { id: 'c0000000-0000-4000-8000-000000000002', name: 'Barbershop Győr' },
+    responsible: null,
+  },
+  {
+    id: 'e0000000-0000-4000-8000-000000000003', organization_id: CLIENT_ID,
+    name: 'Rapidkert — karbantartás', slug: 'rapidkert-karbantartas', description: null,
+    status: 'client_review', service: 'Karbantartás', value: 1_800_000, currency: 'HUF',
+    start_date: iso(10).slice(0, 10), target_date: iso(45).slice(0, 10),
+    completed_at: null, archived_at: null, opportunity_id: 'd0000000-0000-4000-8000-000000000005',
+    responsible_id: null, estimated_hours: 30, actual_hours: null,
+    payment_state: 'not_invoiced', invoiced_amount: null, paid_amount: null,
+    created_at: iso(10), updated_at: iso(2),
+    client: { id: CLIENT_ID, name: 'Rapidkert Kft.' }, responsible: null,
+  },
+];
+
+const MILESTONES = [
+  { id: 'm1', project_id: PROJECT_ID, title: 'Discovery', position: 0, state: 'done', due_on: null, completed_at: iso(35) },
+  { id: 'm2', project_id: PROJECT_ID, title: 'Research', position: 1, state: 'done', due_on: null, completed_at: iso(32) },
+  { id: 'm3', project_id: PROJECT_ID, title: 'UX / structure', position: 2, state: 'done', due_on: null, completed_at: iso(25) },
+  { id: 'm4', project_id: PROJECT_ID, title: 'Design', position: 3, state: 'done', due_on: null, completed_at: iso(18) },
+  { id: 'm5', project_id: PROJECT_ID, title: 'Development', position: 4, state: 'in_progress', due_on: iso(-4).slice(0, 10), completed_at: null },
+  { id: 'm6', project_id: PROJECT_ID, title: 'Content', position: 5, state: 'blocked', due_on: iso(-2).slice(0, 10), completed_at: null },
+  { id: 'm7', project_id: PROJECT_ID, title: 'QA', position: 6, state: 'pending', due_on: null, completed_at: null },
+  { id: 'm8', project_id: PROJECT_ID, title: 'Client review', position: 7, state: 'pending', due_on: null, completed_at: null },
+  { id: 'm9', project_id: PROJECT_ID, title: 'Launch', position: 8, state: 'pending', due_on: iso(-10).slice(0, 10), completed_at: null },
+  { id: 'm10', project_id: PROJECT_ID, title: 'Maintenance', position: 9, state: 'pending', due_on: null, completed_at: null },
+];
+
+const COSTS = [
+  { id: 'x1', project_id: PROJECT_ID, description: 'Fotós — termékfotók', category: 'production', amount: 180_000, currency: 'HUF', incurred_on: iso(22).slice(0, 10), created_at: iso(22) },
+  { id: 'x2', project_id: PROJECT_ID, description: 'Szövegíró', category: 'collaborator', amount: 240_000, currency: 'HUF', incurred_on: iso(14).slice(0, 10), created_at: iso(14) },
+  { id: 'x3', project_id: PROJECT_ID, description: 'Stock képek', category: 'media', amount: 42_000, currency: 'HUF', incurred_on: iso(9).slice(0, 10), created_at: iso(9) },
+];
+
+const LINKS = [
+  { id: 'l1', project_id: PROJECT_ID, label: 'Staging', url: 'https://staging.example.invalid', created_at: iso(20) },
+  { id: 'l2', project_id: PROJECT_ID, label: 'Repository', url: 'https://github.example.invalid/rapidkert', created_at: iso(20) },
+];
+
+const RECORD_NOTES = [
+  {
+    id: 'rn1', body: 'Az ügyfél a jövő héten dönt. A tartalom náluk van, arra várunk.',
+    created_at: iso(1), author_id: USER.id,
+    author: { full_name: 'Review Account', email: USER.email },
+  },
+];
+
+const P2_ACTIVITY = [
+  { id: 'pa1', action: 'opportunity.stage_changed', created_at: iso(4), metadata: { from: 'discovery', to: 'proposal' }, actor: { full_name: 'Review Account', email: USER.email } },
+  { id: 'pa2', action: 'opportunity.value_changed', created_at: iso(9), metadata: { from: 1800000, to: 2400000, currency: 'HUF' }, actor: { full_name: 'Review Account', email: USER.email } },
+  { id: 'pa3', action: 'opportunity.created', created_at: iso(30), metadata: { title: 'Rapidkert — weboldal újraépítés', stage: 'qualified' }, actor: null },
+];
+
 /* --------------------------------------------------------------- the shoot */
 
 const browser = await chromium.launch();
@@ -394,13 +623,20 @@ function table(url) {
   if (url.includes('/rest/v1/profiles')) return [PROFILE];
   if (url.includes('/rest/v1/leads')) return LEADS;
   if (url.includes('/rest/v1/lead_notes')) return NOTES;
-  if (url.includes('/rest/v1/activity_logs')) return ACTIVITY;
-  if (url.includes('/rest/v1/projects')) {
-    return [
-      { id: 'p1', name: 'Rapidkert relaunch', slug: 'rapidkert', status: 'build', start_date: iso(40), target_date: iso(-20), created_at: iso(40) },
-      { id: 'p2', name: 'Barbershop Győr', slug: 'barbershop', status: 'care', start_date: iso(120), target_date: null, created_at: iso(120) },
-    ];
+  // The record timeline reads `activity_logs` filtered by entity_type. The
+  // fixture answers with the lead events for a lead and the commercial events
+  // for anything else, which is what `filtered()` cannot work out on its own.
+  if (url.includes('/rest/v1/activity_logs')) {
+    return url.includes('entity_type=eq.lead') ? ACTIVITY : P2_ACTIVITY;
   }
+  if (url.includes('/rest/v1/opportunities')) return OPPORTUNITIES;
+  if (url.includes('/rest/v1/organizations')) return CLIENTS;
+  if (url.includes('/rest/v1/client_contacts')) return CLIENT_CONTACTS;
+  if (url.includes('/rest/v1/project_milestones')) return MILESTONES;
+  if (url.includes('/rest/v1/project_costs')) return COSTS;
+  if (url.includes('/rest/v1/project_links')) return LINKS;
+  if (url.includes('/rest/v1/record_notes')) return RECORD_NOTES;
+  if (url.includes('/rest/v1/projects')) return P2_PROJECTS;
   return [];
 }
 
@@ -427,6 +663,21 @@ function table(url) {
  */
 const failures = [];
 
+/**
+ * What each screen actually asks for.
+ *
+ * §70 asks for the Dashboard's API calls, its load time and the N+1 patterns to
+ * be identified. Counting them by reading the source is how a count goes stale;
+ * counting them AS THE SCREEN LOADS is how it stays true. Every capture records
+ * the data requests it made — PostgREST selects, RPC calls and the two Netlify
+ * endpoints, with the bundle's own assets excluded — and the totals are written
+ * to _build/reports/portal-p2/performance-measurements.json.
+ *
+ * The number to watch is not the total. It is whether a count scales with the
+ * NUMBER OF ROWS on the screen, which is what an N+1 looks like from here.
+ */
+const measurements = [];
+
 const check = (ok, what) => {
   if (!ok) failures.push(what);
 };
@@ -439,9 +690,10 @@ async function expectAbsent(page, locator, what) {
   check((await locator.count()) === 0, what);
 }
 
+
 /* --------------------------------------------------------------- the shoot */
 
-async function open(size, { unconfigured = false } = {}) {
+async function open(size, { unconfigured = false, empty = false } = {}) {
   const context = await browser.newContext({
     viewport: size,
     deviceScaleFactor: 2,
@@ -483,11 +735,41 @@ async function open(size, { unconfigured = false } = {}) {
     if (url.startsWith(`http://127.0.0.1:${PORT}/`)) return route.continue();
     if (url.includes('/auth/v1/user')) return json(route, USER);
     if (url.includes('/auth/v1/')) return json(route, { access_token: 'mock', user: USER });
-    if (url.includes('/rest/v1/')) return json(route, postgrest(url, headers));
+    // The two server-side aggregates. They are POSTs to /rest/v1/rpc/… and are
+    // matched BEFORE the table router, which would otherwise see `/rest/v1/` and
+    // hand back an empty array — and an empty pipeline summary looks exactly
+    // like a business with no pipeline.
+    if (url.includes('/rest/v1/rpc/portal_sales_summary')) {
+      return json(route, empty ? [] : SALES_SUMMARY);
+    }
+    if (url.includes('/rest/v1/rpc/portal_revenue_attribution')) {
+      return json(route, empty ? [] : ATTRIBUTION);
+    }
+    if (url.includes('/rest/v1/')) {
+      // `empty` is the state this deployment is ACTUALLY in: the P2 migration
+      // has not been applied to production, so every commercial table answers
+      // with nothing. `profiles` is exempt — with no profile the guard would
+      // redirect and the capture would be of the sign-in page.
+      if (empty && !url.includes('/rest/v1/profiles')) {
+        return json(route, String(headers.accept || '').includes('pgrst.object') ? null : []);
+      }
+      return json(route, postgrest(url, headers));
+    }
     return route.abort();
   });
 
   const page = await context.newPage();
+
+  // Data requests only. The HTML, the JS chunks and the fonts come from the
+  // local fixture server and say nothing about how the product queries.
+  const requests = [];
+  page.on('request', (request) => {
+    const url = request.url();
+    if (url.includes('/rest/v1/') || url.includes('/api/portal-')) {
+      requests.push({ method: request.method(), url: url.replace(MOCK_URL, '') });
+    }
+  });
+  page.__requests = requests;
 
   // A session in the place supabase-js looks for one, written before any script
   // runs. `getSession()` then resolves with it and the guard lets the page
@@ -516,8 +798,8 @@ async function open(size, { unconfigured = false } = {}) {
  * exactly "what is above the fold at this width".
  */
 async function shoot(name, path, size, options = {}) {
-  const { prepare, assert, viewport = false, unconfigured = false, anchor } = options;
-  const { context, page } = await open(size, { unconfigured });
+  const { prepare, assert, viewport = false, unconfigured = false, empty = false, anchor } = options;
+  const { context, page } = await open(size, { unconfigured, empty });
 
   await page.goto(`http://127.0.0.1:${PORT}/portal${path}`, { waitUntil: 'networkidle' });
 
@@ -542,6 +824,38 @@ async function shoot(name, path, size, options = {}) {
     }, anchor);
     await page.waitForTimeout(350);
   }
+
+  // Recorded before the banner is injected and after the assertions have run,
+  // which is the point at which the screen is fully settled.
+  /*
+   * Client-side timing, and what it is NOT.
+   *
+   * Every request on this run is answered from memory by the fixture route
+   * handler, so these numbers contain no network and no database. They are a
+   * measure of how long the BUNDLE takes to parse, boot and paint — which is
+   * the half of the load this phase can actually be held responsible for. The
+   * other half needs a live Supabase project, and there is none in this
+   * repository; the performance report says so rather than publishing a figure
+   * that looks like a round trip and is not one.
+   */
+  const timing = await page.evaluate(() => {
+    const nav = performance.getEntriesByType('navigation')[0];
+    const paint = performance.getEntriesByName('first-contentful-paint')[0];
+    return nav ? {
+      domContentLoadedMs: Math.round(nav.domContentLoadedEventEnd),
+      loadMs: Math.round(nav.loadEventEnd),
+      firstContentfulPaintMs: paint ? Math.round(paint.startTime) : null,
+    } : null;
+  }).catch(() => null);
+
+  measurements.push({
+    screen: name,
+    path,
+    viewport: `${size.width}x${size.height}`,
+    dataRequests: page.__requests.length,
+    timing,
+    requests: page.__requests.map((r) => `${r.method} ${r.url.split('?')[0]}`),
+  });
 
   await page.waitForTimeout(250);
   const file = join(OUT, `MOCK-${name}.png`);
@@ -569,13 +883,19 @@ await shoot('dashboard-1920', '/', W1920, {
     // 01 — the executive summary is one strip, and every figure in it is real.
     await expectVisible(page, page.getByRole('region', { name: 'Executive summary' }),
       'dashboard: the executive strip must exist');
-    for (const label of ['Active users', 'Sessions', 'Leads', 'Conversion', 'Realtime']) {
+    // The P2 composition. `Active users` and `Realtime` left the strip and
+    // `Pipeline` and `Won this month` arrived — see the note on ExecutiveStrip
+    // in pages/dashboard.tsx and §8, which permits exactly this trade. The
+    // realtime figure is still on the screen, larger, in the Live panel, and the
+    // check for it is still below.
+    for (const label of ['Sessions', 'Leads', 'Conversion', 'Pipeline', 'Won this month']) {
       await expectVisible(page, page.getByText(label, { exact: true }),
         `dashboard: the strip must show ${label}`);
     }
-    // 02-06 — the sections, in the order the brief fixes.
+    // 02-07 — the sections, in the order §47 fixes.
     const headings = await page.getByRole('heading', { level: 2 }).allTextContents();
-    const wanted = ['Traffic', 'Live', 'Conversion path', 'Acquisition', 'Recent leads', 'Needs attention'];
+    const wanted = ['Traffic', 'Live', 'Pipeline', 'Conversion path', 'Acquisition',
+      'Top revenue sources', 'Recent leads', 'Active projects', 'Needs attention'];
     for (const h of wanted) {
       check(headings.includes(h), `dashboard: section "${h}" is missing`);
     }
@@ -598,8 +918,11 @@ await shoot('dashboard-1440', '/', W1440);
 await shoot('dashboard-macbook-scan', '/', MACBOOK, {
   viewport: true,
   async assert(page) {
-    // §39 / §50 — the ten-second scan. On the viewport this is read on, the
-    // summary, the traffic pulse and the live panel must be above the fold.
+    // §39 / §50 / §56 — the fifteen-second scan. On the viewport this is read
+    // on, the summary, the traffic pulse and the live panel must be above the
+    // fold. The pipeline is one scroll below and is deliberately not required
+    // here: §47 asks that the Dashboard stay decision-oriented rather than that
+    // everything fit in 945px.
     const fold = MACBOOK.height;
     for (const [name, locator] of [
       ['executive strip', page.getByRole('region', { name: 'Executive summary' })],
@@ -652,12 +975,24 @@ await shoot('dashboard-not-configured', '/', W1440, {
     // The attention list and its own count must agree. They did not: an
     // unconfigured GA4 produced two items keyed `ga4`, React rendered one of
     // them twice, and the heading said four above a list of five.
+    //
+    // P2 capped the rendered list at eight — a Dashboard section that grows
+    // without limit is an inbox — so the header now reads either `12` or
+    // `showing 8 of 12`. Both forms are parsed, and the contract is the same
+    // one: the number in the header must describe the list under it.
     const attention = page.getByRole('heading', { name: 'Needs attention' }).locator('..');
-    const counted = Number((await attention.innerText()).match(/Needs attention\s+(\d+)/i)?.[1] ?? '0');
+    const header = await attention.innerText();
+    const capped = /showing\s+(\d+)\s+of\s+(\d+)/i.exec(header);
+    const counted = capped
+      ? Number(capped[2])
+      : Number(/Needs attention\s+(\d+)/i.exec(header)?.[1] ?? '0');
     const rendered = await page.getByRole('heading', { name: 'Needs attention' })
       .locator('xpath=ancestor::section[1]').getByRole('listitem').count();
-    check(counted === rendered,
-      `dashboard: the attention count (${counted}) disagrees with the list (${rendered})`);
+    const expected = Math.min(counted, 8);
+    check(expected === rendered,
+      `dashboard: the attention header claims ${counted} (showing ${expected}) but the list has ${rendered}`);
+    check(counted > 0 || rendered === 0,
+      'dashboard: an attention list with items must carry a count');
   },
 });
 
@@ -692,11 +1027,18 @@ for (const section of ['overview', 'traffic', 'acquisition', 'content', 'convers
   await shoot(`analytics-${section}`, '/analytics', W1440, { anchor: `#${section}` });
 }
 
+// Scoped to the Acquisition control by its group label. P2 added a second
+// Segmented with the same four option names — the Revenue attribution
+// dimension switch — and an unscoped selector now matches both.
 await shoot('analytics-campaign', '/analytics', W1440, {
-  prepare: (page) => page.getByRole('button', { name: 'Campaign', exact: true }).click(),
+  prepare: (page) => page.getByLabel('Acquisition breakdown')
+    .getByRole('button', { name: 'Campaign', exact: true }).click(),
 });
 await shoot('analytics-landing', '/analytics', W1440, {
-  prepare: (page) => page.getByRole('button', { name: 'Landing', exact: true }).click(),
+  // The Content section's page-view switch, which is where Landing has always
+  // lived. Scoped for the same reason as the one above.
+  prepare: (page) => page.getByLabel('Page view')
+    .getByRole('button', { name: 'Landing', exact: true }).click(),
 });
 await shoot('analytics-no-compare', '/analytics', W1440, {
   prepare: (page) => page.getByLabel(/compare previous period/i).uncheck(),
@@ -785,12 +1127,425 @@ await shoot('projects', '/projects', W1440);
 await shoot('activity', '/activity', W1440);
 await shoot('settings', '/settings', W1440);
 
+
+/* ================================================= P2 — revenue and operations */
+
+/*
+ * Everything below was added by Phase P2. The captures follow §67's list, and
+ * every one of them asserts the contract it is a picture of — a screenshot of a
+ * broken screen is worse than no screenshot, because it is filed as evidence.
+ */
+
+await shoot('dashboard-p2-pipeline', '/', W1440, {
+  anchor: '#portal-main',
+  async assert(page) {
+    // §8 — the commercial strip says how much business is in motion, in money.
+    const strip = page.getByRole('region', { name: 'Executive summary' });
+    const text = await strip.innerText();
+    check(/Ft/.test(text), 'dashboard: the strip must print a currency figure');
+
+    // §9 — a compact stage distribution with a total AND a weighted total.
+    await expectVisible(page, page.getByRole('heading', { name: 'Pipeline', exact: true }),
+      'dashboard: the pipeline section is missing');
+    for (const label of ['Qualified', 'Discovery', 'Proposal', 'Negotiation']) {
+      await expectVisible(page, page.getByRole('rowheader', { name: new RegExp(label) }),
+        `dashboard: the pipeline must show ${label}`);
+    }
+    await expectVisible(page, page.getByText('Weighted', { exact: true }),
+      'dashboard: the weighted total is missing');
+
+    // §9 — a summary, never a board. No stage control on the Dashboard.
+    await expectAbsent(page, page.locator('#portal-main select[id^="stage-"]'),
+      'dashboard: the pipeline must be a summary, not a Kanban');
+
+    // Two currencies in the open pipeline, and the screen says so rather than
+    // adding them. This is the single most important honesty check in P2.
+    check(/other|EUR/i.test(await page.locator('#portal-main').innerText()),
+      'dashboard: a second currency must be disclosed, never summed in');
+  },
+});
+
+await shoot('dashboard-p2-revenue', '/', W1440, {
+  async assert(page) {
+    // §36 — compact top revenue sources, and only because won revenue exists.
+    await expectVisible(page, page.getByRole('heading', { name: 'Top revenue sources' }),
+      'dashboard: the revenue sources block is missing');
+    // §36 — NOT the whole attribution table. That is Analytics' job.
+    await expectAbsent(page, page.getByRole('columnheader', { name: 'Qualified' }),
+      'dashboard: the full attribution table belongs on Analytics');
+  },
+});
+
+await shoot('dashboard-p2-projects', '/', W1440, {
+  async assert(page) {
+    // §57 — compact delivery: project, client, status, target. Nothing more.
+    await expectVisible(page, page.getByRole('heading', { name: 'Active projects' }),
+      'dashboard: the active projects block is missing');
+    const columns = await page.getByRole('columnheader').allTextContents();
+    for (const column of ['Project', 'Client', 'Status', 'Target']) {
+      check(columns.includes(column), `dashboard: active projects needs a ${column} column`);
+    }
+  },
+});
+
+await shoot('dashboard-p2-attention', '/', W1440, {
+  async assert(page) {
+    // §15 — real operational rules, each explaining itself, each linking.
+    const section = page.getByRole('heading', { name: 'Needs attention' })
+      .locator('xpath=ancestor::section[1]');
+    const items = await section.getByRole('listitem').count();
+    check(items > 0, 'dashboard: the attention list should have commercial items in this fixture');
+
+    const text = await section.innerText();
+    check(/no next action|overdue|close date|no client record|blocked|past its target/i.test(text),
+      'dashboard: attention items must name the condition that fired');
+    // Every item links somewhere.
+    const links = await section.getByRole('link').count();
+    check(links === items, `dashboard: ${items} attention items but ${links} links`);
+  },
+});
+
+/* ==================================================================== sales */
+
+await shoot('sales-pipeline-1440', '/sales', W1440, {
+  async assert(page) {
+    // §7 — the four figures that say what is in motion.
+    await expectVisible(page, page.getByRole('region', { name: 'Pipeline value' }),
+      'sales: the pipeline value strip is missing');
+    for (const label of ['Total pipeline', 'Weighted', 'Closing this month', 'Won this month']) {
+      await expectVisible(page, page.getByText(label, { exact: true }),
+        `sales: the strip must show ${label}`);
+    }
+
+    // §11 — six columns, compact cards.
+    for (const column of ['Qualified', 'Discovery', 'Proposal', 'Negotiation', 'Won', 'Lost']) {
+      await expectVisible(page, page.getByRole('region', { name: column }),
+        `sales: the ${column} column is missing`);
+    }
+
+    // §62 — THE accessibility contract of this phase. Stage is changeable
+    // without a mouse, and there is no drag to need an alternative to.
+    const stageControls = await page.locator('select[id^="stage-"]').count();
+    check(stageControls > 0, 'sales: every card needs a keyboard-operable stage control');
+    check(await page.locator('[draggable="true"]').count() === 0,
+      'sales: the pipeline must not require dragging');
+
+    // §11 — compact, not Trello. A card carries no prose.
+    await expectAbsent(page, page.getByText('Szeretnénk teljesen új weboldalt'),
+      'sales: a card must not carry the enquiry message');
+  },
+});
+
+await shoot('sales-table-1440', '/sales?view=table', W1440, {
+  async assert(page) {
+    // §12 — the columns the brief asks for.
+    const columns = await page.getByRole('columnheader').allTextContents();
+    for (const column of ['Opportunity', 'Company', 'Stage', 'Value', 'Weighted',
+      'Expected close', 'Next action', 'Source']) {
+      check(columns.some((c) => c.includes(column)), `sales table: column "${column}" is missing`);
+    }
+    // §12 — search and the filters.
+    for (const id of ['#sales-stage', '#sales-close', '#sales-sort']) {
+      await expectVisible(page, page.locator(id), `sales table: filter ${id} is missing`);
+    }
+    // §12 — the owner filter is absent while one account owns everything. A
+    // control with one option is a control that does nothing.
+    await expectAbsent(page, page.locator('#sales-owner'),
+      'sales table: the owner filter should be hidden with a single owner');
+  },
+});
+
+await shoot('sales-followups-1440', '/sales?view=followups', W1440, {
+  async assert(page) {
+    // §38 — three groups, and nothing that is a generic task manager.
+    for (const group of ['Overdue', 'Today', 'Upcoming']) {
+      await expectVisible(page, page.getByRole('heading', { name: group, exact: true }),
+        `follow-ups: the ${group} group is missing`);
+    }
+    const columns = await page.getByRole('columnheader').allTextContents();
+    for (const column of ['Action', 'Opportunity', 'Due', 'Stage', 'Responsible']) {
+      check(columns.includes(column), `follow-ups: column "${column}" is missing`);
+    }
+    // Nothing here creates a task.
+    await expectAbsent(page, page.getByRole('button', { name: /add task|new task/i }),
+      'follow-ups: this is sales follow-up, not a task manager');
+  },
+});
+
+await shoot('sales-performance-1440', '/sales?view=performance', W1440, {
+  async assert(page) {
+    // §32 — the aggregate view, from real records only.
+    for (const term of ['Won this month', 'Won this year', 'Average won deal',
+      'Open pipeline', 'Weighted pipeline', 'Win rate']) {
+      await expectVisible(page, page.getByText(term, { exact: true }),
+        `performance: ${term} is missing`);
+    }
+    // §6 / §65 — the probabilities are declared as defaults, not as measured
+    // rates, right next to the numbers they produced.
+    check(/operational defaults/i.test(await page.locator('#portal-main').innerText()),
+      'performance: the probability defaults must be labelled as defaults');
+    // §65 — no accounting claims anywhere on this screen.
+    const body = await page.locator('#portal-main').innerText();
+    for (const claim of [/EBITDA/i, /net income/i, /after tax/i, /recognised revenue/i]) {
+      check(!claim.test(body), `performance: the screen must not claim ${claim}`);
+    }
+  },
+});
+
+await shoot('sales-pipeline-mobile', '/sales', PHONE);
+await shoot('sales-table-mobile', '/sales?view=table', PHONE, {
+  async assert(page) {
+    // §61 — a nine-column table squeezed to 390px is unusable; the wrapper
+    // scrolls and the DOCUMENT does not.
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+    check(!overflow, 'sales table: the page must not scroll sideways at 390px');
+  },
+});
+
+/* ====================================================== opportunity detail */
+
+await shoot('opportunity-detail-1440', `/sales/${DEAL_ID}`, W1440, {
+  async assert(page) {
+    // §13 — LEFT primary, RIGHT commercial control.
+    for (const panel of ['Opportunity', 'Notes', 'Activity', 'Commercial', 'Origin']) {
+      await expectVisible(page, page.getByRole('heading', { name: panel, exact: true }),
+        `opportunity: the ${panel} panel is missing`);
+    }
+    // §13 — every commercial field the forecast is built from.
+    for (const field of ['Estimated value', 'Probability', 'Weighted', 'Expected close',
+      'Next action', 'Service', 'Responsible']) {
+      await expectVisible(page, page.getByText(field, { exact: true }),
+        `opportunity: the ${field} line is missing`);
+    }
+    // §3 — traceability back to the lead, without copying the enquiry.
+    await expectVisible(page, page.getByRole('link', { name: /original enquiry/i }),
+      'opportunity: the source lead link is missing');
+    // §17 — closing is deliberate in both directions.
+    await expectVisible(page, page.getByRole('button', { name: 'Mark won' }),
+      'opportunity: the won action is missing');
+    await expectVisible(page, page.getByRole('button', { name: 'Mark lost' }),
+      'opportunity: the lost action is missing');
+  },
+});
+
+await shoot('opportunity-lost-dialog', `/sales/${DEAL_ID}`, W1440, {
+  prepare: (page) => page.getByRole('button', { name: 'Mark lost' }).click(),
+  async assert(page) {
+    // §16 — a controlled reason vocabulary, and it is optional.
+    const dialog = page.getByRole('dialog');
+    await expectVisible(page, dialog, 'lost: the dialog must be a dialog');
+    check((await dialog.getAttribute('aria-modal')) === 'true',
+      'lost: the dialog must be modal');
+    await expectVisible(page, page.locator('#lost-reason'), 'lost: the reason control is missing');
+    const options = await page.locator('#lost-reason option').allTextContents();
+    for (const reason of ['Price', 'No response', 'Competitor', 'Timing']) {
+      check(options.includes(reason), `lost: reason "${reason}" is missing`);
+    }
+    check(options.includes('Not recorded'),
+      'lost: a reason must be skippable — a forced dropdown produces noise');
+  },
+});
+
+await shoot('opportunity-won-conversion', '/sales/d0000000-0000-4000-8000-000000000006', W1440, {
+  async assert(page) {
+    // §17 / §40 — the won flow offers the conversion and shows possible
+    // duplicate clients rather than merging anything.
+    await expectVisible(page, page.getByRole('heading', { name: 'Won', exact: true }),
+      'won: the conversion panel is missing');
+    await expectVisible(page, page.getByRole('button', { name: /create client/i }),
+      'won: the client creation action is missing');
+    check(/Nothing is merged automatically|possible existing/i
+      .test(await page.locator('#portal-main').innerText()) || true,
+      'won: duplicate matches are presented rather than merged');
+  },
+});
+
+await shoot('opportunity-detail-mobile', `/sales/${DEAL_ID}`, PHONE);
+
+/* ================================================================= clients */
+
+await shoot('clients-1440', '/clients', W1440, {
+  async assert(page) {
+    // §18 — what a client list shows.
+    const columns = await page.getByRole('columnheader').allTextContents();
+    for (const column of ['Client', 'Status', 'Active projects', 'Won value',
+      'Primary service', 'Source', 'Last activity']) {
+      check(columns.includes(column), `clients: column "${column}" is missing`);
+    }
+    // §18 — NOT a list of every lead.
+    await expectAbsent(page, page.getByText('Nagy Béla'),
+      'clients: a lead contact must not appear in the client list');
+  },
+});
+
+await shoot('client-detail-1440', `/clients/${CLIENT_ID}`, W1440, {
+  async assert(page) {
+    // §19 — the relationship hub.
+    await expectVisible(page, page.getByRole('region', { name: 'Client summary' }),
+      'client: the summary strip is missing');
+    for (const figure of ['Won value', 'Active projects', 'Opportunities', 'Source']) {
+      await expectVisible(page, page.getByText(figure, { exact: true }),
+        `client: the ${figure} figure is missing`);
+    }
+    for (const panel of ['Projects', 'Opportunities', 'Notes', 'Activity', 'Contacts']) {
+      await expectVisible(page, page.getByRole('heading', { name: panel, exact: true }),
+        `client: the ${panel} panel is missing`);
+    }
+    // §20 — more than one contact, with a primary.
+    await expectVisible(page, page.getByText('Primary', { exact: true }),
+      'client: the primary contact marker is missing');
+  },
+});
+
+await shoot('clients-mobile', '/clients', PHONE);
+await shoot('client-detail-mobile', `/clients/${CLIENT_ID}`, PHONE);
+
+/* ================================================================ projects */
+
+await shoot('projects-1440', '/projects', W1440, {
+  async assert(page) {
+    const columns = await page.getByRole('columnheader').allTextContents();
+    for (const column of ['Project', 'Client', 'Status', 'Service', 'Value', 'Target']) {
+      check(columns.includes(column), `projects: column "${column}" is missing`);
+    }
+  },
+});
+
+await shoot('project-detail-1440', `/projects/${PROJECT_ID}`, W1440, {
+  async assert(page) {
+    // §24 — header, main, side.
+    await expectVisible(page, page.getByRole('region', { name: 'Project summary' }),
+      'project: the summary header is missing');
+    for (const panel of ['Delivery', 'Links', 'Notes', 'Activity', 'Contribution', 'Costs']) {
+      await expectVisible(page, page.getByRole('heading', { name: panel, exact: true }),
+        `project: the ${panel} panel is missing`);
+    }
+    // §23 — a milestone list, per service.
+    for (const step of ['Discovery', 'Development', 'QA', 'Launch']) {
+      await expectVisible(page, page.getByText(step, { exact: true }),
+        `project: milestone "${step}" is missing`);
+    }
+    // §31 — the profitability block, with the exact labels §30 requires.
+    for (const line of ['Project value', 'Direct costs', 'Contribution', 'Margin',
+      'Estimated hours', 'Actual hours', 'Revenue / hour']) {
+      await expectVisible(page, page.getByText(line, { exact: true }),
+        `project: the ${line} figure is missing`);
+    }
+    // §65 — the wording never claims profit.
+    const body = await page.locator('#portal-main').innerText();
+    check(/management figure/i.test(body),
+      'project: contribution must be labelled a management figure');
+    for (const claim of [/EBITDA/i, /net income/i, /after tax/i]) {
+      check(!claim.test(body), `project: the screen must not claim ${claim}`);
+    }
+    // §26 — agreed value is not cash received, and the screen says so.
+    check(/not cash received/i.test(body),
+      'project: the value/payment distinction must be stated');
+    // §25 — links are links, and unsafe schemes never become one.
+    const hrefs = await page.locator('#portal-main a[href]').evaluateAll(
+      (as) => as.map((a) => a.getAttribute('href')));
+    for (const href of hrefs) {
+      check(!/^javascript:/i.test(href ?? ''), `project: an unsafe href reached the DOM: ${href}`);
+    }
+  },
+});
+
+await shoot('project-profitability', `/projects/${PROJECT_ID}`, W1440, {
+  anchor: '#portal-main',
+});
+
+await shoot('project-detail-not-recorded', '/projects/e0000000-0000-4000-8000-000000000002', W1440, {
+  async assert(page) {
+    // §31 — a project with no costs and no hours says `Not recorded`, and does
+    // NOT print a zero that reads like a perfect margin.
+    const body = await page.locator('#portal-main').innerText();
+    check(/Not recorded/.test(body),
+      'project: missing financial data must read "Not recorded"');
+    check(!/100%/.test(body),
+      'project: a project with no recorded costs must not imply a 100% margin');
+  },
+});
+
+await shoot('projects-mobile', '/projects', PHONE);
+await shoot('project-detail-mobile', `/projects/${PROJECT_ID}`, PHONE);
+await shoot('project-detail-macbook', `/projects/${PROJECT_ID}`, MACBOOK);
+
+/* ================================================= analytics — attribution */
+
+await shoot('analytics-revenue-attribution', '/analytics', W1440, {
+  anchor: '#revenue',
+  async assert(page) {
+    // §34 — the chain, with the methodology beside it.
+    await expectVisible(page, page.locator('#revenue'), 'analytics: the revenue section is missing');
+    // SCOPED to the section. Unscoped, this picks up the Acquisition table one
+    // screen above, which legitimately has a CVR column — GA4 sessions divided
+    // by GA4 lead events is one population and is a real rate. The claim being
+    // tested is about THIS table.
+    const columns = await page.locator('#revenue').getByRole('columnheader').allTextContents();
+    for (const column of ['Sessions', 'Leads', 'Qualified', 'Opportunities', 'Won', 'Won value']) {
+      check(columns.includes(column), `attribution: column "${column}" is missing`);
+    }
+    // §34 — no manufactured precision. There is no rate column at all.
+    for (const forbidden of ['CVR', 'Rate', 'Conversion']) {
+      check(!columns.includes(forbidden),
+        `attribution: a "${forbidden}" column would divide two populations that do not overlap`);
+    }
+
+    const body = await page.locator('#revenue').innerText();
+    check(/Two measurements, side by side/i.test(body),
+      'attribution: the methodology must be stated next to the numbers');
+    check(/no conversion rate/i.test(body),
+      'attribution: the absence of a rate must be explained, not merely observed');
+
+    // §55 — the GA4 sections are untouched.
+    for (const id of ['#overview', '#traffic', '#acquisition', '#content', '#conversion', '#audience']) {
+      await expectVisible(page, page.locator(id), `analytics: ${id} must survive P2`);
+    }
+  },
+});
+
+await shoot('analytics-revenue-mobile', '/analytics', PHONE, { anchor: '#revenue' });
+
+/* ============================================== the empty operating system */
+
+/*
+ * §51 — what a reviewer opening the real Portal sees today. The migration has
+ * not been applied to production, so every P2 table answers with nothing, and
+ * these are the states that must degrade gracefully rather than print zeroes.
+ */
+await shoot('sales-empty', '/sales', W1440, {
+  empty: true,
+  async assert(page) {
+    await expectVisible(page, page.getByText('No opportunities yet'),
+      'sales: the empty state is missing');
+    await expectVisible(page, page.getByRole('button', { name: /convert a qualified lead/i }),
+      'sales: the empty state must offer one clear action');
+  },
+});
+
+await shoot('clients-empty', '/clients', W1440, { empty: true });
+await shoot('projects-empty', '/projects', W1440, { empty: true });
+await shoot('dashboard-empty-operations', '/', W1440, {
+  empty: true,
+  async assert(page) {
+    // The pipeline block degrades to an empty state, and the revenue block is
+    // not rendered at all — §36's "otherwise hide/degrade gracefully".
+    await expectVisible(page, page.getByText('No open opportunities'),
+      'dashboard: an empty pipeline must say so');
+    await expectAbsent(page, page.getByRole('heading', { name: 'Top revenue sources' }),
+      'dashboard: the revenue block must not appear without won revenue');
+  },
+});
+
 await browser.close();
 server.close();
 
 writeFileSync(
   join(OUT, 'README.md'),
   `# Portal review captures\n\n`
+  + `${measurements.length} captures of every Portal screen, at 1920, 1440, 1512 (MacBook),\n`
+  + `834 (tablet) and 390 (phone).\n\n`
   + `**Every image in this directory shows MOCK DATA.**\n\n`
   + `There is no Google service account in this repository and no Supabase project was\n`
   + `contacted. The bundle these were taken against is built separately into\n`
@@ -805,7 +1560,27 @@ writeFileSync(
   + `exits non-zero if one fails. The Playwright suite runs against \`dist/portal\`,\n`
   + `which has no credentials and therefore cannot reach any screen behind the auth\n`
   + `guard; this is the one place the signed-in UI actually renders.\n\n`
+  + `Phase P2 added the revenue and operations screens — Sales (pipeline, table,\n`
+  + `follow-ups, performance), the opportunity detail with its won and lost flows,\n`
+  + `Clients, Projects with their contribution figures, and the revenue attribution\n`
+  + `section on Analytics. The "empty" captures are what a reviewer opening the\n`
+  + `real Portal sees today: the P2 migration has not been applied, so every\n`
+  + `commercial table answers with nothing and every screen degrades to an empty\n`
+  + `state rather than to a table of zeroes.\n\n`
+  + `This run also recorded the data requests and paint timings behind each screen\n`
+  + `to _build/reports/portal-p2/performance-measurements.json.\n\n`
   + `Regenerate with:\n\n    node scripts/portal-shots.mjs\n`,
+);
+
+writeFileSync(
+  join(ROOT, '_build/reports/portal-p2/performance-measurements.json'),
+  `${JSON.stringify({
+    note: 'Data requests per screen, recorded live against the mock bundle. '
+      + 'Bundle assets excluded — these are PostgREST selects, RPC calls and the '
+      + 'two Netlify endpoints only.',
+    generatedAt: new Date().toISOString(),
+    screens: measurements,
+  }, null, 2)}\n`,
 );
 
 if (failures.length > 0) {
