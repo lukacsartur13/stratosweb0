@@ -94,6 +94,13 @@ await new Promise((done) => server.listen(PORT, done));
 
 /* -------------------------------------------------------------- the mocks */
 
+/**
+ * `iso(7)` is a week AGO. `iso(-7)` is a week from now.
+ *
+ * Spelled out because the sign is easy to get backwards and the P2 fixtures did
+ * exactly that on their first pass: every date meant to be overdue was in the
+ * future, so the review package quietly showed no overdue state at all.
+ */
 const iso = (daysAgo = 0, hour = 10) => {
   const d = new Date();
   d.setDate(d.getDate() - daysAgo);
@@ -408,8 +415,8 @@ const OPPORTUNITIES = [
     contact_name: 'Kovács Anna', contact_email: 'anna@example.invalid',
     contact_phone: '+36 30 000 0000', service: 'Weboldal + hirdetés',
     estimated_value: 2_400_000, stage: 'proposal', probability: 60,
-    expected_close_on: iso(-14).slice(0, 10), next_action: 'Follow up the proposal',
-    next_action_on: iso(-2).slice(0, 10),
+    expected_close_on: iso(14).slice(0, 10), next_action: 'Follow up the proposal',
+    next_action_on: iso(2).slice(0, 10),
     lead_id: 'a0000000-0000-4000-8000-000000000001',
     source: 'google', medium: 'cpc', campaign: 'kkv-2026-q3', landing_route: '/kkv.html',
     form_type: 'questionnaire', owner: { id: USER.id, full_name: 'Review Account', email: USER.email },
@@ -421,7 +428,7 @@ const OPPORTUNITIES = [
     contact_email: 'sarah@example.invalid', service: 'Enterprise',
     estimated_value: 18_000, currency: 'EUR', stage: 'negotiation', probability: 80,
     expected_close_on: iso(-25).slice(0, 10), next_action: 'Send revised terms',
-    next_action_on: iso(-40).slice(0, 10), locale: 'de',
+    next_action_on: iso(-5).slice(0, 10), locale: 'de',
     source: 'linkedin', medium: 'social', created_at: iso(45), updated_at: iso(3),
   }),
   deal({
@@ -429,7 +436,7 @@ const OPPORTUNITIES = [
     company_name: 'Barbershop Győr', organization_id: 'c0000000-0000-4000-8000-000000000002',
     client: { id: 'c0000000-0000-4000-8000-000000000002', name: 'Barbershop Győr' },
     service: 'Hirdetéskezelés', estimated_value: 900_000, stage: 'discovery', probability: 40,
-    expected_close_on: iso(-45).slice(0, 10),
+    expected_close_on: iso(45).slice(0, 10),
     // No next action at all — the attention rule this exists to show.
     source: 'referral', created_at: iso(12), updated_at: iso(2),
   }),
@@ -437,7 +444,7 @@ const OPPORTUNITIES = [
     id: 'd0000000-0000-4000-8000-000000000004', title: 'Mentálerő — arculat',
     company_name: 'Mentálerő', service: 'Branding', estimated_value: 1_200_000,
     stage: 'qualified', probability: 20, expected_close_on: iso(-60).slice(0, 10),
-    next_action: 'Discovery meeting', next_action_on: iso(-60).slice(0, 10),
+    next_action: 'Discovery meeting', next_action_on: iso(0).slice(0, 10),
     source: '(direct)', created_at: iso(8), updated_at: iso(4),
   }),
   deal({
@@ -498,7 +505,7 @@ const P2_PROJECTS = [
     id: PROJECT_ID, organization_id: CLIENT_ID, name: 'Rapidkert relaunch', slug: 'rapidkert',
     description: 'Teljes újraépítés, tartalommal és méréssel.', status: 'active',
     service: 'Weboldal', value: 2_400_000, currency: 'HUF',
-    start_date: iso(40).slice(0, 10), target_date: iso(-10).slice(0, 10),
+    start_date: iso(40).slice(0, 10), target_date: iso(10).slice(0, 10),
     completed_at: null, archived_at: null, opportunity_id: DEAL_ID,
     responsible_id: USER.id, estimated_hours: 120, actual_hours: 148,
     payment_state: 'partially_paid', invoiced_amount: 1_200_000, paid_amount: 600_000,
@@ -522,7 +529,7 @@ const P2_PROJECTS = [
     id: 'e0000000-0000-4000-8000-000000000003', organization_id: CLIENT_ID,
     name: 'Rapidkert — karbantartás', slug: 'rapidkert-karbantartas', description: null,
     status: 'client_review', service: 'Karbantartás', value: 1_800_000, currency: 'HUF',
-    start_date: iso(10).slice(0, 10), target_date: iso(45).slice(0, 10),
+    start_date: iso(10).slice(0, 10), target_date: iso(-45).slice(0, 10),
     completed_at: null, archived_at: null, opportunity_id: 'd0000000-0000-4000-8000-000000000005',
     responsible_id: null, estimated_hours: 30, actual_hours: null,
     payment_state: 'not_invoiced', invoiced_amount: null, paid_amount: null,
@@ -536,11 +543,11 @@ const MILESTONES = [
   { id: 'm2', project_id: PROJECT_ID, title: 'Research', position: 1, state: 'done', due_on: null, completed_at: iso(32) },
   { id: 'm3', project_id: PROJECT_ID, title: 'UX / structure', position: 2, state: 'done', due_on: null, completed_at: iso(25) },
   { id: 'm4', project_id: PROJECT_ID, title: 'Design', position: 3, state: 'done', due_on: null, completed_at: iso(18) },
-  { id: 'm5', project_id: PROJECT_ID, title: 'Development', position: 4, state: 'in_progress', due_on: iso(-4).slice(0, 10), completed_at: null },
-  { id: 'm6', project_id: PROJECT_ID, title: 'Content', position: 5, state: 'blocked', due_on: iso(-2).slice(0, 10), completed_at: null },
+  { id: 'm5', project_id: PROJECT_ID, title: 'Development', position: 4, state: 'in_progress', due_on: iso(4).slice(0, 10), completed_at: null },
+  { id: 'm6', project_id: PROJECT_ID, title: 'Content', position: 5, state: 'blocked', due_on: iso(2).slice(0, 10), completed_at: null },
   { id: 'm7', project_id: PROJECT_ID, title: 'QA', position: 6, state: 'pending', due_on: null, completed_at: null },
   { id: 'm8', project_id: PROJECT_ID, title: 'Client review', position: 7, state: 'pending', due_on: null, completed_at: null },
-  { id: 'm9', project_id: PROJECT_ID, title: 'Launch', position: 8, state: 'pending', due_on: iso(-10).slice(0, 10), completed_at: null },
+  { id: 'm9', project_id: PROJECT_ID, title: 'Launch', position: 8, state: 'pending', due_on: iso(-20).slice(0, 10), completed_at: null },
   { id: 'm10', project_id: PROJECT_ID, title: 'Maintenance', position: 9, state: 'pending', due_on: null, completed_at: null },
 ];
 
