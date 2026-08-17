@@ -195,22 +195,55 @@ test.describe('the full-screen navigation is a modal layer', () => {
      * reached the layer, not less — what neither outcome may include is the
      * field behind it taking the click. */
     const point: [number, number] = [box!.x + box!.width / 2, box!.y + box!.height / 2];
-    const landedOn = await page.evaluate(([x, y]) => {
+
+    /* What is under the pointer, and whether clicking it will navigate.
+       Both are read in one pass, before the click, because the second answer is
+       what makes the assertion after the click deterministic. */
+    const target = await page.evaluate(([x, y]) => {
       const el = document.elementFromPoint(x, y);
-      return el ? (el.closest('#menu') ? 'the layer' : `${el.tagName}#${el.id}`) : 'nothing';
+      return {
+        landedOn: el ? (el.closest('#menu') ? 'the layer' : `${el.tagName}#${el.id}`) : 'nothing',
+        href: el?.closest('a[href]')?.getAttribute('href') ?? null,
+      };
     }, point);
-    expect(landedOn, 'a pointer aimed at the newsletter field reaches it through the layer').toBe(
-      'the layer',
-    );
+
+    expect(
+      target.landedOn,
+      'a pointer aimed at the newsletter field reaches it through the layer',
+    ).toBe('the layer');
+
+    /* The layer covers the whole viewport, so those coordinates can be over one
+       of the layer's own destinations — and following it is correct. A
+       navigation there is more proof that the click reached the layer, not
+       less. What neither outcome may include is the field behind it taking the
+       click.
+     *
+     * The previous shape clicked and then called `waitForLoadState`, on the
+     * theory that it would settle a navigation the click might have started.
+     * It does not: it resolves immediately against the document that is already
+     * loaded, so when the click HAD started a navigation the `evaluate` after it
+     * raced the commit and Playwright reported "Execution context was
+     * destroyed". That is this test being wrong about timing rather than the
+     * page being wrong about anything — a comment to that effect was already
+     * here, above a mitigation that did not close the race, and it failed again
+     * in the stabilization gate.
+     *
+     * So the outcome is decided before the click rather than recovered from
+     * after it. If the pointer is over one of the layer's links the navigation
+     * is waited for as the expected event; if it is not, no navigation can
+     * happen and reading the focused element is safe. Neither branch races. */
+    if (target.href) {
+      await Promise.all([
+        page.waitForURL((url) => !url.pathname.endsWith('/index.html'), { timeout: 15_000 }),
+        page.mouse.click(point[0], point[1]),
+      ]);
+      // Arriving anywhere else at all is the layer having taken the pointer:
+      // the field behind it is not on this document.
+      expect(page.url(), 'the click through the layer went nowhere').not.toContain('/index.html');
+      return;
+    }
 
     await page.mouse.click(point[0], point[1]);
-    /* Settle first, whether or not that click navigated. Without this the
-       `evaluate` below races the commit of a document the click may have
-       started loading, and Playwright reports "Execution context was destroyed"
-       — which is this test being wrong about timing, not the page being wrong
-       about anything. `waitForLoadState` resolves immediately when nothing
-       navigated. */
-    await page.waitForLoadState('domcontentloaded');
     expect(
       await page.evaluate(() => document.activeElement?.id ?? ''),
       'the newsletter field took a click through the layer',
