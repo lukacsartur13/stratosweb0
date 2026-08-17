@@ -1,0 +1,42 @@
+{
+  "label": "B1-kkv-x5",
+  "workers": 5,
+  "nPerWorker": 1000,
+  "paths": "/kkv.html",
+  "port": 4452,
+  "startedAt": "2026-08-17T09:48:22.998Z",
+  "endedAt": "2026-08-17T09:56:23.875Z",
+  "load1Start": 2.42,
+  "load1End": 18.25,
+  "classification": "CONTROLLED",
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/B1-kkv-x5-server.ndjson",
+  "workerLabels": [
+    "B1-kkv-x5w1",
+    "B1-kkv-x5w2",
+    "B1-kkv-x5w3",
+    "B1-kkv-x5w4",
+    "B1-kkv-x5w5"
+  ],
+  "exitCodes": [
+    {
+      "worker": 1,
+      "code": 0
+    },
+    {
+      "worker": 2,
+      "code": 0
+    },
+    {
+      "worker": 3,
+      "code": 0
+    },
+    {
+      "worker": 4,
+      "code": 0
+    },
+    {
+      "worker": 5,
+      "code": 0
+    }
+  ]
+}

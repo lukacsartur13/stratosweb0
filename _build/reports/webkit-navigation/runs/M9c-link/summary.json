@@ -1,0 +1,183 @@
+{
+  "label": "M9c-link",
+  "startedAt": "2026-08-17T12:48:32.016Z",
+  "endedAt": "2026-08-17T12:51:15.633Z",
+  "classification": "CONTROLLED",
+  "load1Start": 1.7,
+  "load1End": 1.82,
+  "config": {
+    "n": 30,
+    "paths": [
+      "/kkv.html",
+      "/rolunk.html"
+    ],
+    "wait": "load",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 25,
+    "server": "nav",
+    "rate": "serial",
+    "action": "link",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 30,
+  "successes": 25,
+  "failures": 5,
+  "strayEvents": 0,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 25,
+    "A: goto invoked, no request issued": 5
+  },
+  "latency": {
+    "min": 102,
+    "p50": 539.3,
+    "p95": 608.9,
+    "p99": 615.4,
+    "max": 615.4
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 30,
+      "fail": 5
+    }
+  },
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/M9c-link-server.ndjson",
+  "hostSamples": [
+    {
+      "at": "2026-08-17T12:48:42.429Z",
+      "i": 20,
+      "webkitProcs": 4,
+      "webkitRssMb": 705,
+      "webkitCpu": 86,
+      "load1": 1.76
+    },
+    {
+      "at": "2026-08-17T12:48:52.430Z",
+      "i": 25,
+      "webkitProcs": 4,
+      "webkitRssMb": 359.3,
+      "webkitCpu": 0.5,
+      "load1": 1.94
+    },
+    {
+      "at": "2026-08-17T12:49:02.431Z",
+      "i": 25,
+      "webkitProcs": 4,
+      "webkitRssMb": 360.3,
+      "webkitCpu": 0.2,
+      "load1": 1.64
+    },
+    {
+      "at": "2026-08-17T12:49:12.432Z",
+      "i": 25,
+      "webkitProcs": 4,
+      "webkitRssMb": 360.4,
+      "webkitCpu": 0.5,
+      "load1": 1.46
+    },
+    {
+      "at": "2026-08-17T12:49:22.433Z",
+      "i": 26,
+      "webkitProcs": 4,
+      "webkitRssMb": 362.9,
+      "webkitCpu": 0.1,
+      "load1": 1.47
+    },
+    {
+      "at": "2026-08-17T12:49:32.434Z",
+      "i": 26,
+      "webkitProcs": 4,
+      "webkitRssMb": 362.7,
+      "webkitCpu": 0.2,
+      "load1": 1.39
+    },
+    {
+      "at": "2026-08-17T12:49:42.436Z",
+      "i": 26,
+      "webkitProcs": 4,
+      "webkitRssMb": 359.9,
+      "webkitCpu": 0.3,
+      "load1": 1.26
+    },
+    {
+      "at": "2026-08-17T12:49:52.438Z",
+      "i": 27,
+      "webkitProcs": 4,
+      "webkitRssMb": 348.4,
+      "webkitCpu": 0.2,
+      "load1": 2.17
+    },
+    {
+      "at": "2026-08-17T12:50:02.439Z",
+      "i": 27,
+      "webkitProcs": 4,
+      "webkitRssMb": 342,
+      "webkitCpu": 0.2,
+      "load1": 2.29
+    },
+    {
+      "at": "2026-08-17T12:50:12.438Z",
+      "i": 27,
+      "webkitProcs": 4,
+      "webkitRssMb": 341.9,
+      "webkitCpu": 0,
+      "load1": 1.94
+    },
+    {
+      "at": "2026-08-17T12:50:22.440Z",
+      "i": 28,
+      "webkitProcs": 4,
+      "webkitRssMb": 343.4,
+      "webkitCpu": 0.4,
+      "load1": 1.94
+    },
+    {
+      "at": "2026-08-17T12:50:32.440Z",
+      "i": 28,
+      "webkitProcs": 4,
+      "webkitRssMb": 343.4,
+      "webkitCpu": 0,
+      "load1": 1.72
+    },
+    {
+      "at": "2026-08-17T12:50:42.440Z",
+      "i": 28,
+      "webkitProcs": 4,
+      "webkitRssMb": 342.5,
+      "webkitCpu": 0,
+      "load1": 1.54
+    },
+    {
+      "at": "2026-08-17T12:50:52.440Z",
+      "i": 29,
+      "webkitProcs": 4,
+      "webkitRssMb": 315.6,
+      "webkitCpu": 0.1,
+      "load1": 1.98
+    },
+    {
+      "at": "2026-08-17T12:51:02.440Z",
+      "i": 29,
+      "webkitProcs": 4,
+      "webkitRssMb": 315,
+      "webkitCpu": 0.2,
+      "load1": 2.07
+    },
+    {
+      "at": "2026-08-17T12:51:12.441Z",
+      "i": 29,
+      "webkitProcs": 4,
+      "webkitRssMb": 315,
+      "webkitCpu": 0,
+      "load1": 1.98
+    }
+  ]
+}

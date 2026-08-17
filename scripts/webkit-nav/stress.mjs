@@ -409,13 +409,21 @@ async function main() {
   for (let i = 1; i <= N; i++) {
     // Recycle at the boundary the mode asks for. §16.
     if (i > 1) {
+      let recycled = false;
       if (MODE === 'new-browser' && (i - 1) % BATCH === 0) {
-        await browser.close(); await openBrowser(); await openContext();
+        await browser.close(); await openBrowser(); await openContext(); recycled = true;
       } else if (MODE === 'new-context' && (i - 1) % BATCH === 0) {
-        await context.close(); await openContext();
+        await context.close(); await openContext(); recycled = true;
       } else if (MODE === 'new-page') {
-        await page.close(); await openPage();
+        await page.close(); await openPage(); recycled = true;
       }
+      // A recycled page is `about:blank`, which has no link to activate and no
+      // document to reload. Forgetting this is what made `--action link`
+      // produce five perfect imitations of the defect under investigation —
+      // 30 000 ms, boundary A, on the reported route — when the truth was that
+      // the harness was asking a blank page to click its way somewhere. The
+      // first navigation after any recycle must be a `goto`.
+      if (recycled) previousUrl = null;
     }
 
     const path = PATHS[(i - 1) % PATHS.length];

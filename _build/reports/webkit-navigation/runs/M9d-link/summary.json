@@ -1,0 +1,78 @@
+{
+  "label": "M9d-link",
+  "startedAt": "2026-08-17T12:52:06.068Z",
+  "endedAt": "2026-08-17T12:52:39.203Z",
+  "classification": "CONTROLLED",
+  "load1Start": 2.46,
+  "load1End": 2.61,
+  "config": {
+    "n": 60,
+    "paths": [
+      "/kkv.html",
+      "/rolunk.html"
+    ],
+    "wait": "load",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 1000,
+    "server": "nav",
+    "rate": "serial",
+    "action": "link",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 60,
+  "successes": 60,
+  "failures": 0,
+  "strayEvents": 0,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 60
+  },
+  "latency": {
+    "min": 89.2,
+    "p50": 554,
+    "p95": 612.8,
+    "p99": 620.6,
+    "max": 620.6
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 60,
+      "fail": 0
+    }
+  },
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/M9d-link-server.ndjson",
+  "hostSamples": [
+    {
+      "at": "2026-08-17T12:52:16.518Z",
+      "i": 19,
+      "webkitProcs": 4,
+      "webkitRssMb": 688.6,
+      "webkitCpu": 101,
+      "load1": 2.91
+    },
+    {
+      "at": "2026-08-17T12:52:26.518Z",
+      "i": 37,
+      "webkitProcs": 4,
+      "webkitRssMb": 887.7,
+      "webkitCpu": 98.4,
+      "load1": 2.69
+    },
+    {
+      "at": "2026-08-17T12:52:36.517Z",
+      "i": 55,
+      "webkitProcs": 4,
+      "webkitRssMb": 959.6,
+      "webkitCpu": 68.6,
+      "load1": 2.66
+    }
+  ]
+}

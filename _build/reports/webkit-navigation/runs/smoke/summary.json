@@ -1,0 +1,52 @@
+{
+  "label": "smoke",
+  "startedAt": "2026-08-17T09:40:57.728Z",
+  "endedAt": "2026-08-17T09:40:59.749Z",
+  "classification": "CONTROLLED",
+  "load1Start": 2.02,
+  "load1End": 2.02,
+  "config": {
+    "n": 12,
+    "paths": [
+      "/kkv.html"
+    ],
+    "wait": "load",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 5,
+    "server": "nav",
+    "rate": "serial",
+    "action": "goto",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 12,
+  "successes": 12,
+  "failures": 0,
+  "strayEvents": 0,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 12
+  },
+  "latency": {
+    "min": 53.6,
+    "p50": 66.2,
+    "p95": 147.9,
+    "p99": 147.9,
+    "max": 147.9
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 12,
+      "fail": 0
+    }
+  },
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/smoke-server.ndjson",
+  "hostSamples": []
+}

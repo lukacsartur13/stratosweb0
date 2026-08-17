@@ -1,0 +1,42 @@
+{
+  "label": "S2-mixed",
+  "workers": 5,
+  "nPerWorker": 250,
+  "paths": "/index.html,/kkv.html",
+  "port": 4481,
+  "startedAt": "2026-08-17T11:55:03.341Z",
+  "endedAt": "2026-08-17T11:57:53.096Z",
+  "load1Start": 61.68,
+  "load1End": 35.33,
+  "classification": "CONTAMINATED",
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/S2-mixed-server.ndjson",
+  "workerLabels": [
+    "S2-mixedw1",
+    "S2-mixedw2",
+    "S2-mixedw3",
+    "S2-mixedw4",
+    "S2-mixedw5"
+  ],
+  "exitCodes": [
+    {
+      "worker": 1,
+      "code": 0
+    },
+    {
+      "worker": 2,
+      "code": 0
+    },
+    {
+      "worker": 3,
+      "code": 0
+    },
+    {
+      "worker": 4,
+      "code": 0
+    },
+    {
+      "worker": 5,
+      "code": 0
+    }
+  ]
+}

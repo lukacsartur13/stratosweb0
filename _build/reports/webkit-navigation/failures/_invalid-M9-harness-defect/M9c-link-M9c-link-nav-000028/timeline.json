@@ -1,0 +1,37 @@
+{
+  "label": "M9c-link",
+  "run": "M9c-link",
+  "record": {
+    "navId": "M9c-link-nav-000028",
+    "path": "/rolunk.html",
+    "ordinal": 28,
+    "gotoInvoked": 1786970985432.125,
+    "requestIssued": null,
+    "responseReceived": null,
+    "committed": null,
+    "domcontentloaded": null,
+    "load": null,
+    "gotoResolved": null,
+    "failedAt": 1786971015434.3064,
+    "status": null,
+    "error": "page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/rolunk.html\" until \"load\"\n============================================================",
+    "resources": [],
+    "pageErrors": [],
+    "consoleErrors": [],
+    "crashed": false,
+    "boundary": "A: goto invoked, no request issued",
+    "totalMs": 30002.2,
+    "load1": 2.02
+  },
+  "outstanding": [],
+  "pageUrl": "about:blank",
+  "title": "",
+  "readyState": "complete",
+  "boundary": "A: goto invoked, no request issued",
+  "host": {
+    "webkitProcs": 4,
+    "webkitRssMb": 343.2,
+    "webkitCpu": 0,
+    "load1": 2.02
+  }
+}

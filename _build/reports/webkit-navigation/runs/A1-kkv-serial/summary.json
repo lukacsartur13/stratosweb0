@@ -1,0 +1,297 @@
+{
+  "label": "A1-kkv-serial",
+  "startedAt": "2026-08-17T09:41:32.435Z",
+  "endedAt": "2026-08-17T09:46:22.383Z",
+  "classification": "CONTROLLED",
+  "load1Start": 1.52,
+  "load1End": 3.58,
+  "config": {
+    "n": 1500,
+    "paths": [
+      "/kkv.html"
+    ],
+    "wait": "load",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 1,
+    "server": "nav",
+    "rate": "serial",
+    "action": "goto",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 1500,
+  "successes": 1500,
+  "failures": 0,
+  "strayEvents": 0,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 1500
+  },
+  "latency": {
+    "min": 63,
+    "p50": 72.6,
+    "p95": 80.1,
+    "p99": 85.2,
+    "max": 162.5
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 250,
+      "fail": 0
+    },
+    "251-500": {
+      "n": 250,
+      "fail": 0
+    },
+    "501-750": {
+      "n": 250,
+      "fail": 0
+    },
+    "751-1000": {
+      "n": 250,
+      "fail": 0
+    },
+    "1001-1250": {
+      "n": 250,
+      "fail": 0
+    },
+    "1251-1500": {
+      "n": 250,
+      "fail": 0
+    }
+  },
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/A1-kkv-serial-server.ndjson",
+  "hostSamples": [
+    {
+      "at": "2026-08-17T09:41:43.110Z",
+      "i": 51,
+      "webkitProcs": 4,
+      "webkitRssMb": 248.5,
+      "webkitCpu": 35.6,
+      "load1": 1.67
+    },
+    {
+      "at": "2026-08-17T09:41:53.110Z",
+      "i": 103,
+      "webkitProcs": 3,
+      "webkitRssMb": 247.8,
+      "webkitCpu": 32.2,
+      "load1": 2.72
+    },
+    {
+      "at": "2026-08-17T09:42:03.111Z",
+      "i": 155,
+      "webkitProcs": 4,
+      "webkitRssMb": 345.8,
+      "webkitCpu": 55.1,
+      "load1": 3.64
+    },
+    {
+      "at": "2026-08-17T09:42:13.112Z",
+      "i": 209,
+      "webkitProcs": 4,
+      "webkitRssMb": 281.5,
+      "webkitCpu": 41.9,
+      "load1": 3.39
+    },
+    {
+      "at": "2026-08-17T09:42:23.112Z",
+      "i": 261,
+      "webkitProcs": 4,
+      "webkitRssMb": 237.5,
+      "webkitCpu": 33.8,
+      "load1": 3.18
+    },
+    {
+      "at": "2026-08-17T09:42:33.113Z",
+      "i": 313,
+      "webkitProcs": 4,
+      "webkitRssMb": 363.5,
+      "webkitCpu": 63.1,
+      "load1": 3.93
+    },
+    {
+      "at": "2026-08-17T09:42:43.112Z",
+      "i": 367,
+      "webkitProcs": 4,
+      "webkitRssMb": 343.1,
+      "webkitCpu": 55,
+      "load1": 3.64
+    },
+    {
+      "at": "2026-08-17T09:42:53.114Z",
+      "i": 420,
+      "webkitProcs": 4,
+      "webkitRssMb": 357.8,
+      "webkitCpu": 59.1,
+      "load1": 3.47
+    },
+    {
+      "at": "2026-08-17T09:43:03.114Z",
+      "i": 473,
+      "webkitProcs": 4,
+      "webkitRssMb": 313.6,
+      "webkitCpu": 56,
+      "load1": 3.39
+    },
+    {
+      "at": "2026-08-17T09:43:13.116Z",
+      "i": 526,
+      "webkitProcs": 4,
+      "webkitRssMb": 286.8,
+      "webkitCpu": 44.9,
+      "load1": 3.18
+    },
+    {
+      "at": "2026-08-17T09:43:23.116Z",
+      "i": 579,
+      "webkitProcs": 4,
+      "webkitRssMb": 250.4,
+      "webkitCpu": 35.4,
+      "load1": 3.08
+    },
+    {
+      "at": "2026-08-17T09:43:33.116Z",
+      "i": 632,
+      "webkitProcs": 4,
+      "webkitRssMb": 293.5,
+      "webkitCpu": 51.7,
+      "load1": 3.14
+    },
+    {
+      "at": "2026-08-17T09:43:43.118Z",
+      "i": 685,
+      "webkitProcs": 4,
+      "webkitRssMb": 324.6,
+      "webkitCpu": 57.1,
+      "load1": 2.96
+    },
+    {
+      "at": "2026-08-17T09:43:53.120Z",
+      "i": 739,
+      "webkitProcs": 4,
+      "webkitRssMb": 305,
+      "webkitCpu": 58.8,
+      "load1": 2.74
+    },
+    {
+      "at": "2026-08-17T09:44:03.121Z",
+      "i": 792,
+      "webkitProcs": 4,
+      "webkitRssMb": 288.4,
+      "webkitCpu": 47.3,
+      "load1": 2.77
+    },
+    {
+      "at": "2026-08-17T09:44:13.121Z",
+      "i": 845,
+      "webkitProcs": 4,
+      "webkitRssMb": 292.7,
+      "webkitCpu": 54.6,
+      "load1": 2.95
+    },
+    {
+      "at": "2026-08-17T09:44:23.123Z",
+      "i": 898,
+      "webkitProcs": 4,
+      "webkitRssMb": 287.7,
+      "webkitCpu": 51.7,
+      "load1": 3.25
+    },
+    {
+      "at": "2026-08-17T09:44:33.123Z",
+      "i": 947,
+      "webkitProcs": 4,
+      "webkitRssMb": 288.7,
+      "webkitCpu": 55.9,
+      "load1": 3.29
+    },
+    {
+      "at": "2026-08-17T09:44:43.124Z",
+      "i": 996,
+      "webkitProcs": 4,
+      "webkitRssMb": 290.2,
+      "webkitCpu": 56.4,
+      "load1": 4.05
+    },
+    {
+      "at": "2026-08-17T09:44:53.125Z",
+      "i": 1045,
+      "webkitProcs": 4,
+      "webkitRssMb": 366.5,
+      "webkitCpu": 74.4,
+      "load1": 3.89
+    },
+    {
+      "at": "2026-08-17T09:45:03.126Z",
+      "i": 1096,
+      "webkitProcs": 4,
+      "webkitRssMb": 354.7,
+      "webkitCpu": 64,
+      "load1": 4.16
+    },
+    {
+      "at": "2026-08-17T09:45:13.127Z",
+      "i": 1147,
+      "webkitProcs": 4,
+      "webkitRssMb": 326.3,
+      "webkitCpu": 59.8,
+      "load1": 3.99
+    },
+    {
+      "at": "2026-08-17T09:45:23.127Z",
+      "i": 1198,
+      "webkitProcs": 4,
+      "webkitRssMb": 353.8,
+      "webkitCpu": 64.1,
+      "load1": 3.84
+    },
+    {
+      "at": "2026-08-17T09:45:33.128Z",
+      "i": 1249,
+      "webkitProcs": 4,
+      "webkitRssMb": 248,
+      "webkitCpu": 44.9,
+      "load1": 3.56
+    },
+    {
+      "at": "2026-08-17T09:45:43.128Z",
+      "i": 1299,
+      "webkitProcs": 4,
+      "webkitRssMb": 363.2,
+      "webkitCpu": 69.4,
+      "load1": 3.4
+    },
+    {
+      "at": "2026-08-17T09:45:53.128Z",
+      "i": 1350,
+      "webkitProcs": 4,
+      "webkitRssMb": 353.7,
+      "webkitCpu": 69.1,
+      "load1": 3.26
+    },
+    {
+      "at": "2026-08-17T09:46:03.130Z",
+      "i": 1401,
+      "webkitProcs": 4,
+      "webkitRssMb": 287,
+      "webkitCpu": 55.8,
+      "load1": 3.61
+    },
+    {
+      "at": "2026-08-17T09:46:13.130Z",
+      "i": 1452,
+      "webkitProcs": 4,
+      "webkitRssMb": 306.2,
+      "webkitCpu": 59.7,
+      "load1": 3.59
+    }
+  ]
+}

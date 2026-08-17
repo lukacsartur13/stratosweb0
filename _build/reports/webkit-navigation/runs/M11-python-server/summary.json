@@ -1,0 +1,97 @@
+{
+  "label": "M11-python-server",
+  "startedAt": "2026-08-17T12:16:23.610Z",
+  "endedAt": "2026-08-17T12:17:06.330Z",
+  "classification": "CONTAMINATED",
+  "load1Start": 11.84,
+  "load1End": 7.88,
+  "config": {
+    "n": 1000,
+    "paths": [
+      "/kkv.html"
+    ],
+    "wait": "load",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 25,
+    "server": "python",
+    "rate": "serial",
+    "action": "goto",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 1000,
+  "successes": 1000,
+  "failures": 0,
+  "strayEvents": 0,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 1000
+  },
+  "latency": {
+    "min": 28.5,
+    "p50": 33,
+    "p95": 43.7,
+    "p99": 81.2,
+    "max": 95.6
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 250,
+      "fail": 0
+    },
+    "251-500": {
+      "n": 250,
+      "fail": 0
+    },
+    "501-750": {
+      "n": 250,
+      "fail": 0
+    },
+    "751-1000": {
+      "n": 250,
+      "fail": 0
+    }
+  },
+  "serverLog": null,
+  "hostSamples": [
+    {
+      "at": "2026-08-17T12:16:34.018Z",
+      "i": 229,
+      "webkitProcs": 4,
+      "webkitRssMb": 397.9,
+      "webkitCpu": 114.7,
+      "load1": 10.8
+    },
+    {
+      "at": "2026-08-17T12:16:44.018Z",
+      "i": 463,
+      "webkitProcs": 4,
+      "webkitRssMb": 429.2,
+      "webkitCpu": 146.8,
+      "load1": 9.75
+    },
+    {
+      "at": "2026-08-17T12:16:54.017Z",
+      "i": 707,
+      "webkitProcs": 4,
+      "webkitRssMb": 412.3,
+      "webkitCpu": 127.8,
+      "load1": 8.86
+    },
+    {
+      "at": "2026-08-17T12:17:04.018Z",
+      "i": 944,
+      "webkitProcs": 4,
+      "webkitRssMb": 444.3,
+      "webkitCpu": 153.3,
+      "load1": 7.88
+    }
+  ]
+}

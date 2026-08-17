@@ -1,0 +1,121 @@
+{
+  "label": "M10-node-server",
+  "startedAt": "2026-08-17T12:15:07.311Z",
+  "endedAt": "2026-08-17T12:16:20.279Z",
+  "classification": "CONTAMINATED",
+  "load1Start": 9.62,
+  "load1End": 12.79,
+  "config": {
+    "n": 1000,
+    "paths": [
+      "/kkv.html"
+    ],
+    "wait": "load",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 25,
+    "server": "node",
+    "rate": "serial",
+    "action": "goto",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 1000,
+  "successes": 1000,
+  "failures": 0,
+  "strayEvents": 0,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 1000
+  },
+  "latency": {
+    "min": 47.4,
+    "p50": 62.1,
+    "p95": 81.8,
+    "p99": 95.2,
+    "max": 148.8
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 250,
+      "fail": 0
+    },
+    "251-500": {
+      "n": 250,
+      "fail": 0
+    },
+    "501-750": {
+      "n": 250,
+      "fail": 0
+    },
+    "751-1000": {
+      "n": 250,
+      "fail": 0
+    }
+  },
+  "serverLog": null,
+  "hostSamples": [
+    {
+      "at": "2026-08-17T12:15:17.825Z",
+      "i": 126,
+      "webkitProcs": 4,
+      "webkitRssMb": 388.5,
+      "webkitCpu": 75,
+      "load1": 14.81
+    },
+    {
+      "at": "2026-08-17T12:15:27.825Z",
+      "i": 255,
+      "webkitProcs": 4,
+      "webkitRssMb": 415,
+      "webkitCpu": 143.3,
+      "load1": 19.65
+    },
+    {
+      "at": "2026-08-17T12:15:37.826Z",
+      "i": 390,
+      "webkitProcs": 4,
+      "webkitRssMb": 439.9,
+      "webkitCpu": 160.4,
+      "load1": 17.25
+    },
+    {
+      "at": "2026-08-17T12:15:47.825Z",
+      "i": 534,
+      "webkitProcs": 4,
+      "webkitRssMb": 429.6,
+      "webkitCpu": 150.9,
+      "load1": 16.15
+    },
+    {
+      "at": "2026-08-17T12:15:57.826Z",
+      "i": 678,
+      "webkitProcs": 4,
+      "webkitRssMb": 397.5,
+      "webkitCpu": 112,
+      "load1": 14.36
+    },
+    {
+      "at": "2026-08-17T12:16:07.825Z",
+      "i": 819,
+      "webkitProcs": 4,
+      "webkitRssMb": 448.8,
+      "webkitCpu": 161.8,
+      "load1": 13.06
+    },
+    {
+      "at": "2026-08-17T12:16:17.826Z",
+      "i": 965,
+      "webkitProcs": 4,
+      "webkitRssMb": 445.9,
+      "webkitCpu": 164.8,
+      "load1": 12.79
+    }
+  ]
+}

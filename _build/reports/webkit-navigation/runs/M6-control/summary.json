@@ -1,0 +1,64 @@
+{
+  "label": "M6-control",
+  "startedAt": "2026-08-17T12:12:31.095Z",
+  "endedAt": "2026-08-17T12:12:40.446Z",
+  "classification": "CONTAMINATED",
+  "load1Start": 28.69,
+  "load1End": 25.56,
+  "config": {
+    "n": 1000,
+    "paths": [
+      "/__navctl/control.html"
+    ],
+    "wait": "load",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 25,
+    "server": "nav",
+    "rate": "serial",
+    "action": "goto",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 1000,
+  "successes": 1000,
+  "failures": 0,
+  "strayEvents": 0,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 1000
+  },
+  "latency": {
+    "min": 2.3,
+    "p50": 3.1,
+    "p95": 5.4,
+    "p99": 7.2,
+    "max": 12.8
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 250,
+      "fail": 0
+    },
+    "251-500": {
+      "n": 250,
+      "fail": 0
+    },
+    "501-750": {
+      "n": 250,
+      "fail": 0
+    },
+    "751-1000": {
+      "n": 250,
+      "fail": 0
+    }
+  },
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/M6-control-server.ndjson",
+  "hostSamples": []
+}

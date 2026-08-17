@@ -1,0 +1,37 @@
+{
+  "label": "M9c-link",
+  "run": "M9c-link",
+  "record": {
+    "navId": "M9c-link-nav-000029",
+    "path": "/kkv.html",
+    "ordinal": 29,
+    "gotoInvoked": 1786971015502.6118,
+    "requestIssued": null,
+    "responseReceived": null,
+    "committed": null,
+    "domcontentloaded": null,
+    "load": null,
+    "gotoResolved": null,
+    "failedAt": 1786971045504.0022,
+    "status": null,
+    "error": "page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/kkv.html\" until \"load\"\n============================================================",
+    "resources": [],
+    "pageErrors": [],
+    "consoleErrors": [],
+    "crashed": false,
+    "boundary": "A: goto invoked, no request issued",
+    "totalMs": 30001.4,
+    "load1": 1.98
+  },
+  "outstanding": [],
+  "pageUrl": "about:blank",
+  "title": "",
+  "readyState": "complete",
+  "boundary": "A: goto invoked, no request issued",
+  "host": {
+    "webkitProcs": 4,
+    "webkitRssMb": 341.8,
+    "webkitCpu": 0,
+    "load1": 1.98
+  }
+}

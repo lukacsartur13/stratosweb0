@@ -1,0 +1,441 @@
+{
+  "label": "B1-kkv-x5w5",
+  "startedAt": "2026-08-17T09:48:23.218Z",
+  "endedAt": "2026-08-17T09:56:23.423Z",
+  "classification": "CONTROLLED",
+  "load1Start": 2.42,
+  "load1End": 18.25,
+  "config": {
+    "n": 1000,
+    "paths": [
+      "/kkv.html"
+    ],
+    "wait": "load",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 1,
+    "server": "none",
+    "rate": "serial",
+    "action": "goto",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 1000,
+  "successes": 1000,
+  "failures": 0,
+  "strayEvents": 0,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 1000
+  },
+  "latency": {
+    "min": 101.4,
+    "p50": 185.5,
+    "p95": 272.1,
+    "p99": 451.8,
+    "max": 574.5
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 250,
+      "fail": 0
+    },
+    "251-500": {
+      "n": 250,
+      "fail": 0
+    },
+    "501-750": {
+      "n": 250,
+      "fail": 0
+    },
+    "751-1000": {
+      "n": 250,
+      "fail": 0
+    }
+  },
+  "serverLog": null,
+  "hostSamples": [
+    {
+      "at": "2026-08-17T09:48:34.174Z",
+      "i": 30,
+      "webkitProcs": 20,
+      "webkitRssMb": 1444.7,
+      "webkitCpu": 224.9,
+      "load1": 7.15
+    },
+    {
+      "at": "2026-08-17T09:48:44.180Z",
+      "i": 60,
+      "webkitProcs": 17,
+      "webkitRssMb": 1293.1,
+      "webkitCpu": 181.9,
+      "load1": 11.35
+    },
+    {
+      "at": "2026-08-17T09:48:54.190Z",
+      "i": 89,
+      "webkitProcs": 18,
+      "webkitRssMb": 1349,
+      "webkitCpu": 173.9,
+      "load1": 10.83
+    },
+    {
+      "at": "2026-08-17T09:49:04.190Z",
+      "i": 118,
+      "webkitProcs": 18,
+      "webkitRssMb": 1298.2,
+      "webkitCpu": 174.5,
+      "load1": 10.62
+    },
+    {
+      "at": "2026-08-17T09:49:14.191Z",
+      "i": 146,
+      "webkitProcs": 20,
+      "webkitRssMb": 1421.8,
+      "webkitCpu": 219.5,
+      "load1": 12.62
+    },
+    {
+      "at": "2026-08-17T09:49:24.192Z",
+      "i": 174,
+      "webkitProcs": 17,
+      "webkitRssMb": 1255,
+      "webkitCpu": 155,
+      "load1": 12.83
+    },
+    {
+      "at": "2026-08-17T09:49:34.193Z",
+      "i": 200,
+      "webkitProcs": 20,
+      "webkitRssMb": 1397.8,
+      "webkitCpu": 191.1,
+      "load1": 16.35
+    },
+    {
+      "at": "2026-08-17T09:49:44.193Z",
+      "i": 229,
+      "webkitProcs": 18,
+      "webkitRssMb": 1338.1,
+      "webkitCpu": 193.3,
+      "load1": 17.44
+    },
+    {
+      "at": "2026-08-17T09:49:54.193Z",
+      "i": 255,
+      "webkitProcs": 18,
+      "webkitRssMb": 1358.3,
+      "webkitCpu": 200.6,
+      "load1": 16.62
+    },
+    {
+      "at": "2026-08-17T09:50:04.194Z",
+      "i": 280,
+      "webkitProcs": 20,
+      "webkitRssMb": 1489.4,
+      "webkitCpu": 248.6,
+      "load1": 15.72
+    },
+    {
+      "at": "2026-08-17T09:50:14.198Z",
+      "i": 305,
+      "webkitProcs": 19,
+      "webkitRssMb": 1378.1,
+      "webkitCpu": 205.7,
+      "load1": 16.45
+    },
+    {
+      "at": "2026-08-17T09:50:24.198Z",
+      "i": 328,
+      "webkitProcs": 18,
+      "webkitRssMb": 1360.3,
+      "webkitCpu": 226.1,
+      "load1": 16.17
+    },
+    {
+      "at": "2026-08-17T09:50:34.200Z",
+      "i": 350,
+      "webkitProcs": 20,
+      "webkitRssMb": 1584.1,
+      "webkitCpu": 288.2,
+      "load1": 17.72
+    },
+    {
+      "at": "2026-08-17T09:50:44.207Z",
+      "i": 370,
+      "webkitProcs": 20,
+      "webkitRssMb": 1498.8,
+      "webkitCpu": 262.5,
+      "load1": 19.18
+    },
+    {
+      "at": "2026-08-17T09:50:54.212Z",
+      "i": 389,
+      "webkitProcs": 18,
+      "webkitRssMb": 1364.1,
+      "webkitCpu": 230.8,
+      "load1": 19.02
+    },
+    {
+      "at": "2026-08-17T09:51:04.213Z",
+      "i": 406,
+      "webkitProcs": 19,
+      "webkitRssMb": 1350.5,
+      "webkitCpu": 225.4,
+      "load1": 19.82
+    },
+    {
+      "at": "2026-08-17T09:51:14.216Z",
+      "i": 425,
+      "webkitProcs": 18,
+      "webkitRssMb": 1362.5,
+      "webkitCpu": 237.9,
+      "load1": 17.93
+    },
+    {
+      "at": "2026-08-17T09:51:24.219Z",
+      "i": 442,
+      "webkitProcs": 18,
+      "webkitRssMb": 1302,
+      "webkitCpu": 193.8,
+      "load1": 18.65
+    },
+    {
+      "at": "2026-08-17T09:51:34.222Z",
+      "i": 459,
+      "webkitProcs": 19,
+      "webkitRssMb": 1410.8,
+      "webkitCpu": 253.1,
+      "load1": 19.89
+    },
+    {
+      "at": "2026-08-17T09:51:44.223Z",
+      "i": 477,
+      "webkitProcs": 17,
+      "webkitRssMb": 1258.9,
+      "webkitCpu": 200.6,
+      "load1": 21.94
+    },
+    {
+      "at": "2026-08-17T09:51:54.223Z",
+      "i": 495,
+      "webkitProcs": 20,
+      "webkitRssMb": 1573.6,
+      "webkitCpu": 298.4,
+      "load1": 24.65
+    },
+    {
+      "at": "2026-08-17T09:52:04.223Z",
+      "i": 512,
+      "webkitProcs": 18,
+      "webkitRssMb": 1343.9,
+      "webkitCpu": 228.6,
+      "load1": 23.13
+    },
+    {
+      "at": "2026-08-17T09:52:14.234Z",
+      "i": 529,
+      "webkitProcs": 18,
+      "webkitRssMb": 1225.6,
+      "webkitCpu": 178.1,
+      "load1": 23.86
+    },
+    {
+      "at": "2026-08-17T09:52:24.235Z",
+      "i": 548,
+      "webkitProcs": 18,
+      "webkitRssMb": 1297.8,
+      "webkitCpu": 234.3,
+      "load1": 24.35
+    },
+    {
+      "at": "2026-08-17T09:52:34.236Z",
+      "i": 567,
+      "webkitProcs": 19,
+      "webkitRssMb": 1456,
+      "webkitCpu": 269.7,
+      "load1": 22.54
+    },
+    {
+      "at": "2026-08-17T09:52:44.241Z",
+      "i": 587,
+      "webkitProcs": 19,
+      "webkitRssMb": 1436.7,
+      "webkitCpu": 279.4,
+      "load1": 23.19
+    },
+    {
+      "at": "2026-08-17T09:52:54.242Z",
+      "i": 605,
+      "webkitProcs": 20,
+      "webkitRssMb": 1492.7,
+      "webkitCpu": 279.9,
+      "load1": 21.32
+    },
+    {
+      "at": "2026-08-17T09:53:04.243Z",
+      "i": 624,
+      "webkitProcs": 17,
+      "webkitRssMb": 1295.3,
+      "webkitCpu": 209.8,
+      "load1": 20.3
+    },
+    {
+      "at": "2026-08-17T09:53:14.249Z",
+      "i": 641,
+      "webkitProcs": 17,
+      "webkitRssMb": 1259.6,
+      "webkitCpu": 173.5,
+      "load1": 19.38
+    },
+    {
+      "at": "2026-08-17T09:53:24.249Z",
+      "i": 660,
+      "webkitProcs": 20,
+      "webkitRssMb": 1338.4,
+      "webkitCpu": 214.1,
+      "load1": 23.68
+    },
+    {
+      "at": "2026-08-17T09:53:34.250Z",
+      "i": 680,
+      "webkitProcs": 20,
+      "webkitRssMb": 1439,
+      "webkitCpu": 266.7,
+      "load1": 24.8
+    },
+    {
+      "at": "2026-08-17T09:53:44.251Z",
+      "i": 701,
+      "webkitProcs": 19,
+      "webkitRssMb": 1340,
+      "webkitCpu": 242.5,
+      "load1": 23.8
+    },
+    {
+      "at": "2026-08-17T09:53:54.255Z",
+      "i": 722,
+      "webkitProcs": 19,
+      "webkitRssMb": 1359.7,
+      "webkitCpu": 231.7,
+      "load1": 22.74
+    },
+    {
+      "at": "2026-08-17T09:54:04.256Z",
+      "i": 741,
+      "webkitProcs": 20,
+      "webkitRssMb": 1457.5,
+      "webkitCpu": 276.6,
+      "load1": 20.53
+    },
+    {
+      "at": "2026-08-17T09:54:14.256Z",
+      "i": 762,
+      "webkitProcs": 20,
+      "webkitRssMb": 1545.8,
+      "webkitCpu": 299.3,
+      "load1": 19.34
+    },
+    {
+      "at": "2026-08-17T09:54:24.258Z",
+      "i": 783,
+      "webkitProcs": 20,
+      "webkitRssMb": 1542.1,
+      "webkitCpu": 290.1,
+      "load1": 21.43
+    },
+    {
+      "at": "2026-08-17T09:54:34.266Z",
+      "i": 804,
+      "webkitProcs": 20,
+      "webkitRssMb": 1396,
+      "webkitCpu": 253.9,
+      "load1": 23.16
+    },
+    {
+      "at": "2026-08-17T09:54:44.266Z",
+      "i": 826,
+      "webkitProcs": 17,
+      "webkitRssMb": 1247.8,
+      "webkitCpu": 176.7,
+      "load1": 22.74
+    },
+    {
+      "at": "2026-08-17T09:54:54.269Z",
+      "i": 847,
+      "webkitProcs": 18,
+      "webkitRssMb": 1321,
+      "webkitCpu": 244,
+      "load1": 24.77
+    },
+    {
+      "at": "2026-08-17T09:55:04.272Z",
+      "i": 866,
+      "webkitProcs": 20,
+      "webkitRssMb": 1505.8,
+      "webkitCpu": 294.8,
+      "load1": 22.82
+    },
+    {
+      "at": "2026-08-17T09:55:14.274Z",
+      "i": 886,
+      "webkitProcs": 20,
+      "webkitRssMb": 1508.6,
+      "webkitCpu": 291,
+      "load1": 21.28
+    },
+    {
+      "at": "2026-08-17T09:55:24.275Z",
+      "i": 904,
+      "webkitProcs": 17,
+      "webkitRssMb": 1305.8,
+      "webkitCpu": 203.1,
+      "load1": 19.23
+    },
+    {
+      "at": "2026-08-17T09:55:34.275Z",
+      "i": 924,
+      "webkitProcs": 18,
+      "webkitRssMb": 1308.2,
+      "webkitCpu": 219.1,
+      "load1": 17.89
+    },
+    {
+      "at": "2026-08-17T09:55:44.276Z",
+      "i": 942,
+      "webkitProcs": 18,
+      "webkitRssMb": 1307.1,
+      "webkitCpu": 236.6,
+      "load1": 17
+    },
+    {
+      "at": "2026-08-17T09:55:54.279Z",
+      "i": 959,
+      "webkitProcs": 20,
+      "webkitRssMb": 1441.5,
+      "webkitCpu": 244.7,
+      "load1": 18.29
+    },
+    {
+      "at": "2026-08-17T09:56:04.281Z",
+      "i": 977,
+      "webkitProcs": 18,
+      "webkitRssMb": 1371.4,
+      "webkitCpu": 249.1,
+      "load1": 17.68
+    },
+    {
+      "at": "2026-08-17T09:56:14.282Z",
+      "i": 990,
+      "webkitProcs": 17,
+      "webkitRssMb": 1169.4,
+      "webkitCpu": 126.5,
+      "load1": 16.5
+    }
+  ]
+}

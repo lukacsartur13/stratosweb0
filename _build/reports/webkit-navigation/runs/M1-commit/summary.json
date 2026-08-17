@@ -1,0 +1,81 @@
+{
+  "label": "M1-commit",
+  "startedAt": "2026-08-17T11:57:58.424Z",
+  "endedAt": "2026-08-17T11:58:20.846Z",
+  "classification": "CONTAMINATED",
+  "load1Start": 32.74,
+  "load1End": 24.63,
+  "config": {
+    "n": 1000,
+    "paths": [
+      "/kkv.html"
+    ],
+    "wait": "commit",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 25,
+    "server": "nav",
+    "rate": "serial",
+    "action": "goto",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 1000,
+  "successes": 1000,
+  "failures": 0,
+  "strayEvents": 652,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 1000
+  },
+  "latency": {
+    "min": 5.8,
+    "p50": 9,
+    "p95": 26.4,
+    "p99": 69.6,
+    "max": 94.6
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 250,
+      "fail": 0
+    },
+    "251-500": {
+      "n": 250,
+      "fail": 0
+    },
+    "501-750": {
+      "n": 250,
+      "fail": 0
+    },
+    "751-1000": {
+      "n": 250,
+      "fail": 0
+    }
+  },
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/M1-commit-server.ndjson",
+  "hostSamples": [
+    {
+      "at": "2026-08-17T11:58:08.865Z",
+      "i": 451,
+      "webkitProcs": 4,
+      "webkitRssMb": 354.4,
+      "webkitCpu": 107.8,
+      "load1": 28.1
+    },
+    {
+      "at": "2026-08-17T11:58:18.865Z",
+      "i": 913,
+      "webkitProcs": 4,
+      "webkitRssMb": 390.3,
+      "webkitCpu": 163.8,
+      "load1": 24.63
+    }
+  ]
+}

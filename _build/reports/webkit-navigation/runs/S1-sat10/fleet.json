@@ -1,0 +1,67 @@
+{
+  "label": "S1-sat10",
+  "workers": 10,
+  "nPerWorker": 700,
+  "paths": "/kkv.html",
+  "port": 4480,
+  "startedAt": "2026-08-17T11:40:39.938Z",
+  "endedAt": "2026-08-17T11:54:58.184Z",
+  "load1Start": 21.63,
+  "load1End": 66.61,
+  "classification": "CONTAMINATED",
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/S1-sat10-server.ndjson",
+  "workerLabels": [
+    "S1-sat10w1",
+    "S1-sat10w2",
+    "S1-sat10w3",
+    "S1-sat10w4",
+    "S1-sat10w5",
+    "S1-sat10w6",
+    "S1-sat10w7",
+    "S1-sat10w8",
+    "S1-sat10w9",
+    "S1-sat10w10"
+  ],
+  "exitCodes": [
+    {
+      "worker": 1,
+      "code": 0
+    },
+    {
+      "worker": 2,
+      "code": 0
+    },
+    {
+      "worker": 3,
+      "code": 0
+    },
+    {
+      "worker": 4,
+      "code": 0
+    },
+    {
+      "worker": 5,
+      "code": 0
+    },
+    {
+      "worker": 6,
+      "code": 0
+    },
+    {
+      "worker": 7,
+      "code": 0
+    },
+    {
+      "worker": 8,
+      "code": 0
+    },
+    {
+      "worker": 9,
+      "code": 0
+    },
+    {
+      "worker": 10,
+      "code": 0
+    }
+  ]
+}

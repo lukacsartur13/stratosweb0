@@ -1,0 +1,37 @@
+{
+  "label": "M9-link",
+  "run": "M9-link",
+  "record": {
+    "navId": "M9-link-nav-000003",
+    "path": "/kkv.html",
+    "ordinal": 3,
+    "gotoInvoked": 1786968850926.638,
+    "requestIssued": null,
+    "responseReceived": null,
+    "committed": null,
+    "domcontentloaded": null,
+    "load": null,
+    "gotoResolved": null,
+    "failedAt": 1786968880930.409,
+    "status": null,
+    "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('a[href$=\"kkv.html\"]').first()\n    - locator resolved to <a href=\"kkv.html\" aria-current=\"page\">…</a>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable",
+    "resources": [],
+    "pageErrors": [],
+    "consoleErrors": [],
+    "crashed": false,
+    "boundary": "A: goto invoked, no request issued",
+    "totalMs": 30003.8,
+    "load1": 6.86
+  },
+  "outstanding": [],
+  "pageUrl": "http://127.0.0.1:4469/kkv.html",
+  "title": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
+  "readyState": "complete",
+  "boundary": "A: goto invoked, no request issued",
+  "host": {
+    "webkitProcs": 4,
+    "webkitRssMb": 415.3,
+    "webkitCpu": 27.6,
+    "load1": 6.86
+  }
+}

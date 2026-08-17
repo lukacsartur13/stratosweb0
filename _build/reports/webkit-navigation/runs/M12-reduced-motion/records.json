@@ -1,0 +1,7378 @@
+[
+  {
+    "navId": "M12-reduced-motion-nav-000001",
+    "path": "/index.html",
+    "ordinal": 1,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 68.3,
+    "load1": 7.49,
+    "requestMs": 4.4,
+    "responseMs": 12.4,
+    "commitMs": 13,
+    "dclMs": null,
+    "loadMs": 68.3,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000002",
+    "path": "/index.html",
+    "ordinal": 2,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 102,
+    "load1": 7.49,
+    "requestMs": 31.5,
+    "responseMs": 62.8,
+    "commitMs": 65.8,
+    "dclMs": -0.8,
+    "loadMs": 102,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000003",
+    "path": "/index.html",
+    "ordinal": 3,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 70.5,
+    "load1": 7.49,
+    "requestMs": 30.7,
+    "responseMs": 32.8,
+    "commitMs": 34.6,
+    "dclMs": -27.1,
+    "loadMs": 70.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000004",
+    "path": "/index.html",
+    "ordinal": 4,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.3,
+    "load1": 7.49,
+    "requestMs": 32.8,
+    "responseMs": 52.9,
+    "commitMs": 54.9,
+    "dclMs": -1.6,
+    "loadMs": 86.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000005",
+    "path": "/index.html",
+    "ordinal": 5,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.9,
+    "load1": 7.49,
+    "requestMs": 31.5,
+    "responseMs": 51.2,
+    "commitMs": 53.3,
+    "dclMs": null,
+    "loadMs": 86.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000006",
+    "path": "/index.html",
+    "ordinal": 6,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 62.3,
+    "load1": 7.49,
+    "requestMs": 26.3,
+    "responseMs": 28,
+    "commitMs": 29.7,
+    "dclMs": -25.2,
+    "loadMs": 62.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000007",
+    "path": "/index.html",
+    "ordinal": 7,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 83.7,
+    "load1": 7.49,
+    "requestMs": 29.9,
+    "responseMs": 48,
+    "commitMs": 50.1,
+    "dclMs": -1,
+    "loadMs": 83.7,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000008",
+    "path": "/index.html",
+    "ordinal": 8,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 76.7,
+    "load1": 7.49,
+    "requestMs": 35.1,
+    "responseMs": 37.5,
+    "commitMs": 40.2,
+    "dclMs": -30.8,
+    "loadMs": 76.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000009",
+    "path": "/index.html",
+    "ordinal": 9,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 78.3,
+    "load1": 7.49,
+    "requestMs": 28,
+    "responseMs": 45.3,
+    "commitMs": 47.2,
+    "dclMs": -0.9,
+    "loadMs": 78.2,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000010",
+    "path": "/index.html",
+    "ordinal": 10,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.7,
+    "load1": 7.49,
+    "requestMs": 56.8,
+    "responseMs": 59.1,
+    "commitMs": 61.5,
+    "dclMs": -0.1,
+    "loadMs": 94.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000011",
+    "path": "/index.html",
+    "ordinal": 11,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79.9,
+    "load1": 7.49,
+    "requestMs": 27.4,
+    "responseMs": 45.7,
+    "commitMs": 47.7,
+    "dclMs": -0.8,
+    "loadMs": 79.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000012",
+    "path": "/index.html",
+    "ordinal": 12,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 62.9,
+    "load1": 7.49,
+    "requestMs": 27.4,
+    "responseMs": 29,
+    "commitMs": 31,
+    "dclMs": -25.1,
+    "loadMs": 62.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000013",
+    "path": "/index.html",
+    "ordinal": 13,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 87.2,
+    "load1": 7.49,
+    "requestMs": 29.1,
+    "responseMs": 48.8,
+    "commitMs": 53.4,
+    "dclMs": -0.9,
+    "loadMs": 87.2,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000014",
+    "path": "/index.html",
+    "ordinal": 14,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100.9,
+    "load1": 7.49,
+    "requestMs": 31.2,
+    "responseMs": 64.3,
+    "commitMs": 66.3,
+    "dclMs": -0.4,
+    "loadMs": 100.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000015",
+    "path": "/index.html",
+    "ordinal": 15,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 68.2,
+    "load1": 7.49,
+    "requestMs": 32.6,
+    "responseMs": 34.1,
+    "commitMs": 36.5,
+    "dclMs": -25.1,
+    "loadMs": 68.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000016",
+    "path": "/index.html",
+    "ordinal": 16,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.4,
+    "load1": 7.49,
+    "requestMs": 33.2,
+    "responseMs": 52.5,
+    "commitMs": 55,
+    "dclMs": -2.6,
+    "loadMs": 89.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000017",
+    "path": "/index.html",
+    "ordinal": 17,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 65.1,
+    "load1": 7.49,
+    "requestMs": 25.2,
+    "responseMs": 26.7,
+    "commitMs": 30,
+    "dclMs": -25.4,
+    "loadMs": 65.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000018",
+    "path": "/index.html",
+    "ordinal": 18,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 87,
+    "load1": 7.49,
+    "requestMs": 31.1,
+    "responseMs": 53.5,
+    "commitMs": 55.4,
+    "dclMs": -0.6,
+    "loadMs": 86.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000019",
+    "path": "/index.html",
+    "ordinal": 19,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79.8,
+    "load1": 7.49,
+    "requestMs": 28.8,
+    "responseMs": 46.7,
+    "commitMs": 48.7,
+    "dclMs": -1.1,
+    "loadMs": 79.8,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000020",
+    "path": "/index.html",
+    "ordinal": 20,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 83.4,
+    "load1": 7.49,
+    "requestMs": 29.1,
+    "responseMs": 47.4,
+    "commitMs": 50.3,
+    "dclMs": -0.5,
+    "loadMs": 83.4,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000021",
+    "path": "/index.html",
+    "ordinal": 21,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 78,
+    "load1": 7.49,
+    "requestMs": 37,
+    "responseMs": 39,
+    "commitMs": 40.9,
+    "dclMs": -34,
+    "loadMs": 78,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000022",
+    "path": "/index.html",
+    "ordinal": 22,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.6,
+    "load1": 7.49,
+    "requestMs": 30.6,
+    "responseMs": 50.5,
+    "commitMs": 52.7,
+    "dclMs": -0.6,
+    "loadMs": 86.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000023",
+    "path": "/index.html",
+    "ordinal": 23,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 85.9,
+    "load1": 7.49,
+    "requestMs": 32,
+    "responseMs": 52,
+    "commitMs": 54.6,
+    "dclMs": -1.8,
+    "loadMs": 85.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000024",
+    "path": "/index.html",
+    "ordinal": 24,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 69.7,
+    "load1": 7.49,
+    "requestMs": 33.2,
+    "responseMs": 35.5,
+    "commitMs": 37.7,
+    "dclMs": -25.6,
+    "loadMs": 69.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000025",
+    "path": "/index.html",
+    "ordinal": 25,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.7,
+    "load1": 7.49,
+    "requestMs": 31.8,
+    "responseMs": 51.4,
+    "commitMs": 53.7,
+    "dclMs": null,
+    "loadMs": 86.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000026",
+    "path": "/index.html",
+    "ordinal": 26,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 56,
+    "load1": 7.49,
+    "requestMs": 3.5,
+    "responseMs": 5.1,
+    "commitMs": 5.9,
+    "dclMs": null,
+    "loadMs": 56,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000027",
+    "path": "/index.html",
+    "ordinal": 27,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.1,
+    "load1": 7.49,
+    "requestMs": 30.3,
+    "responseMs": 56.4,
+    "commitMs": 59.1,
+    "dclMs": -0.8,
+    "loadMs": 92.1,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000028",
+    "path": "/index.html",
+    "ordinal": 28,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 105.4,
+    "load1": 7.49,
+    "requestMs": 63.2,
+    "responseMs": 64.8,
+    "commitMs": 67.6,
+    "dclMs": -1.9,
+    "loadMs": 105.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000029",
+    "path": "/index.html",
+    "ordinal": 29,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 81.8,
+    "load1": 7.21,
+    "requestMs": 29.6,
+    "responseMs": 47.9,
+    "commitMs": 49.7,
+    "dclMs": -0.3,
+    "loadMs": 81.8,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000030",
+    "path": "/index.html",
+    "ordinal": 30,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 72.3,
+    "load1": 7.21,
+    "requestMs": 34.2,
+    "responseMs": 35.9,
+    "commitMs": 38.7,
+    "dclMs": -26.7,
+    "loadMs": 72.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000031",
+    "path": "/index.html",
+    "ordinal": 31,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 81.3,
+    "load1": 7.21,
+    "requestMs": 27.9,
+    "responseMs": 46.1,
+    "commitMs": 48.7,
+    "dclMs": -0.8,
+    "loadMs": 81.3,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000032",
+    "path": "/index.html",
+    "ordinal": 32,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.9,
+    "load1": 7.21,
+    "requestMs": 33.4,
+    "responseMs": 54.7,
+    "commitMs": 56.5,
+    "dclMs": -2.5,
+    "loadMs": 89.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000033",
+    "path": "/index.html",
+    "ordinal": 33,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 96.6,
+    "load1": 7.21,
+    "requestMs": 36.4,
+    "responseMs": 59.5,
+    "commitMs": 61.5,
+    "dclMs": -0.1,
+    "loadMs": 96.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000034",
+    "path": "/index.html",
+    "ordinal": 34,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 85.3,
+    "load1": 7.21,
+    "requestMs": 30.9,
+    "responseMs": 50.8,
+    "commitMs": 52.9,
+    "dclMs": 77.2,
+    "loadMs": 85.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000035",
+    "path": "/index.html",
+    "ordinal": 35,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.5,
+    "load1": 7.21,
+    "requestMs": 33.5,
+    "responseMs": 56,
+    "commitMs": 58.1,
+    "dclMs": null,
+    "loadMs": 90.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000036",
+    "path": "/index.html",
+    "ordinal": 36,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.1,
+    "load1": 7.21,
+    "requestMs": 32.1,
+    "responseMs": 51.8,
+    "commitMs": 53.9,
+    "dclMs": -0.5,
+    "loadMs": 90.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000037",
+    "path": "/index.html",
+    "ordinal": 37,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 82.7,
+    "load1": 7.21,
+    "requestMs": 26.9,
+    "responseMs": 45.6,
+    "commitMs": 47.7,
+    "dclMs": -8.7,
+    "loadMs": 82.6,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000038",
+    "path": "/index.html",
+    "ordinal": 38,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 68.1,
+    "load1": 7.21,
+    "requestMs": 31.5,
+    "responseMs": 33.4,
+    "commitMs": 35.4,
+    "dclMs": -25.3,
+    "loadMs": 68.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000039",
+    "path": "/index.html",
+    "ordinal": 39,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.5,
+    "load1": 7.21,
+    "requestMs": 33.4,
+    "responseMs": 62.2,
+    "commitMs": 64.4,
+    "dclMs": null,
+    "loadMs": 97.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000040",
+    "path": "/index.html",
+    "ordinal": 40,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.9,
+    "load1": 7.21,
+    "requestMs": 31.4,
+    "responseMs": 51.8,
+    "commitMs": 56.5,
+    "dclMs": -1.1,
+    "loadMs": 90.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000041",
+    "path": "/index.html",
+    "ordinal": 41,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 96.3,
+    "load1": 7.21,
+    "requestMs": 33.1,
+    "responseMs": 57.8,
+    "commitMs": 60.1,
+    "dclMs": null,
+    "loadMs": 96.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000042",
+    "path": "/index.html",
+    "ordinal": 42,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91.7,
+    "load1": 7.21,
+    "requestMs": 33.5,
+    "responseMs": 55.4,
+    "commitMs": 57.4,
+    "dclMs": -0.6,
+    "loadMs": 91.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000043",
+    "path": "/index.html",
+    "ordinal": 43,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 87.1,
+    "load1": 7.21,
+    "requestMs": 29.8,
+    "responseMs": 49.8,
+    "commitMs": 51.8,
+    "dclMs": -1,
+    "loadMs": 87.1,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000044",
+    "path": "/index.html",
+    "ordinal": 44,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91.9,
+    "load1": 7.21,
+    "requestMs": 30.2,
+    "responseMs": 50.3,
+    "commitMs": 53.8,
+    "dclMs": -0.6,
+    "loadMs": 91.8,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000045",
+    "path": "/index.html",
+    "ordinal": 45,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 76,
+    "load1": 7.21,
+    "requestMs": 36.9,
+    "responseMs": 38.4,
+    "commitMs": 41.5,
+    "dclMs": -28.3,
+    "loadMs": 76,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000046",
+    "path": "/index.html",
+    "ordinal": 46,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 73,
+    "load1": 7.21,
+    "requestMs": 35.1,
+    "responseMs": 36.8,
+    "commitMs": 39.4,
+    "dclMs": -37.8,
+    "loadMs": 72.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000047",
+    "path": "/index.html",
+    "ordinal": 47,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 104.2,
+    "load1": 7.21,
+    "requestMs": 61.2,
+    "responseMs": 63.1,
+    "commitMs": 68.9,
+    "dclMs": -2,
+    "loadMs": 104.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000048",
+    "path": "/index.html",
+    "ordinal": 48,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98,
+    "load1": 7.21,
+    "requestMs": 33.3,
+    "responseMs": 56,
+    "commitMs": 58.3,
+    "dclMs": -0.3,
+    "loadMs": 97.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000049",
+    "path": "/index.html",
+    "ordinal": 49,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.7,
+    "load1": 7.21,
+    "requestMs": 31.6,
+    "responseMs": 41,
+    "commitMs": 62.2,
+    "dclMs": -1.3,
+    "loadMs": 97.7,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000050",
+    "path": "/index.html",
+    "ordinal": 50,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.9,
+    "load1": 7.21,
+    "requestMs": 35.9,
+    "responseMs": 59.7,
+    "commitMs": 62.2,
+    "dclMs": -0.6,
+    "loadMs": 98.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000051",
+    "path": "/index.html",
+    "ordinal": 51,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 63.1,
+    "load1": 7.21,
+    "requestMs": 3.1,
+    "responseMs": 5.5,
+    "commitMs": 6.2,
+    "dclMs": null,
+    "loadMs": 63.1,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000052",
+    "path": "/index.html",
+    "ordinal": 52,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 81.3,
+    "load1": 7.21,
+    "requestMs": 9.7,
+    "responseMs": 23.6,
+    "commitMs": 44.4,
+    "dclMs": -1.7,
+    "loadMs": 81.3,
+    "resourceCount": 24,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000053",
+    "path": "/index.html",
+    "ordinal": 53,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 104.4,
+    "load1": 7.21,
+    "requestMs": 37.6,
+    "responseMs": 60.5,
+    "commitMs": 63.3,
+    "dclMs": -2.1,
+    "loadMs": 104.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000054",
+    "path": "/index.html",
+    "ordinal": 54,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100.3,
+    "load1": 7.21,
+    "requestMs": 35.5,
+    "responseMs": 59.4,
+    "commitMs": 61.8,
+    "dclMs": -2,
+    "loadMs": 100.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000055",
+    "path": "/index.html",
+    "ordinal": 55,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 102.5,
+    "load1": 7.21,
+    "requestMs": 37.6,
+    "responseMs": 62.2,
+    "commitMs": 64.9,
+    "dclMs": -0.3,
+    "loadMs": 102.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000056",
+    "path": "/index.html",
+    "ordinal": 56,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.3,
+    "load1": 7.21,
+    "requestMs": 32.8,
+    "responseMs": 55.7,
+    "commitMs": 57.9,
+    "dclMs": -1.3,
+    "loadMs": 97.2,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000057",
+    "path": "/index.html",
+    "ordinal": 57,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.5,
+    "load1": 7.21,
+    "requestMs": 40.2,
+    "responseMs": 42.8,
+    "commitMs": 45.2,
+    "dclMs": -31.7,
+    "loadMs": 86.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000058",
+    "path": "/index.html",
+    "ordinal": 58,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 108.8,
+    "load1": 7.21,
+    "requestMs": 36.2,
+    "responseMs": 59.3,
+    "commitMs": 67.6,
+    "dclMs": -1.4,
+    "loadMs": 108.8,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000059",
+    "path": "/index.html",
+    "ordinal": 59,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 109.6,
+    "load1": 7.21,
+    "requestMs": 31.6,
+    "responseMs": 61.6,
+    "commitMs": 69,
+    "dclMs": -5.9,
+    "loadMs": 109.6,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000060",
+    "path": "/index.html",
+    "ordinal": 60,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.5,
+    "load1": 7.21,
+    "requestMs": 36.3,
+    "responseMs": 59.2,
+    "commitMs": 61.9,
+    "dclMs": -0.6,
+    "loadMs": 98.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000061",
+    "path": "/index.html",
+    "ordinal": 61,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.4,
+    "load1": 7.21,
+    "requestMs": 35.1,
+    "responseMs": 56.8,
+    "commitMs": 59.1,
+    "dclMs": -1,
+    "loadMs": 97.4,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000062",
+    "path": "/index.html",
+    "ordinal": 62,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.9,
+    "load1": 7.21,
+    "requestMs": 42.7,
+    "responseMs": 44.8,
+    "commitMs": 47.5,
+    "dclMs": -32.6,
+    "loadMs": 88.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000063",
+    "path": "/index.html",
+    "ordinal": 63,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 104.7,
+    "load1": 7.21,
+    "requestMs": 38.6,
+    "responseMs": 64.3,
+    "commitMs": 66.8,
+    "dclMs": -0.5,
+    "loadMs": 104.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000064",
+    "path": "/index.html",
+    "ordinal": 64,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 99,
+    "load1": 7.21,
+    "requestMs": 34.3,
+    "responseMs": 57.4,
+    "commitMs": 60.2,
+    "dclMs": -1.2,
+    "loadMs": 99,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000065",
+    "path": "/index.html",
+    "ordinal": 65,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.5,
+    "load1": 7.21,
+    "requestMs": 40.8,
+    "responseMs": 42.6,
+    "commitMs": 45.4,
+    "dclMs": -39,
+    "loadMs": 86.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000066",
+    "path": "/index.html",
+    "ordinal": 66,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 105.6,
+    "load1": 7.21,
+    "requestMs": 39.7,
+    "responseMs": 63.8,
+    "commitMs": 66.3,
+    "dclMs": -2.7,
+    "loadMs": 105.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000067",
+    "path": "/index.html",
+    "ordinal": 67,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 102,
+    "load1": 7.21,
+    "requestMs": 37.9,
+    "responseMs": 61.8,
+    "commitMs": 64.8,
+    "dclMs": -0.9,
+    "loadMs": 101.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000068",
+    "path": "/index.html",
+    "ordinal": 68,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 108,
+    "load1": 7.21,
+    "requestMs": 37.3,
+    "responseMs": 60.8,
+    "commitMs": 69.4,
+    "dclMs": -2.7,
+    "loadMs": 108,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000069",
+    "path": "/index.html",
+    "ordinal": 69,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 122.6,
+    "load1": 7.21,
+    "requestMs": 39.9,
+    "responseMs": 63.6,
+    "commitMs": 80.9,
+    "dclMs": null,
+    "loadMs": 122.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000070",
+    "path": "/index.html",
+    "ordinal": 70,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 85.4,
+    "load1": 7.21,
+    "requestMs": 41.4,
+    "responseMs": 43.5,
+    "commitMs": 45.9,
+    "dclMs": -31.1,
+    "loadMs": 85.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000071",
+    "path": "/index.html",
+    "ordinal": 71,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 112.3,
+    "load1": 7.21,
+    "requestMs": 39.5,
+    "responseMs": 69.9,
+    "commitMs": 73.8,
+    "dclMs": -2.6,
+    "loadMs": 112.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000072",
+    "path": "/index.html",
+    "ordinal": 72,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 102.3,
+    "load1": 7.21,
+    "requestMs": 36.8,
+    "responseMs": 60.6,
+    "commitMs": 62.3,
+    "dclMs": -2,
+    "loadMs": 102.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000073",
+    "path": "/index.html",
+    "ordinal": 73,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.4,
+    "load1": 7.21,
+    "requestMs": 36,
+    "responseMs": 58.5,
+    "commitMs": 61,
+    "dclMs": -0.6,
+    "loadMs": 97.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000074",
+    "path": "/index.html",
+    "ordinal": 74,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.2,
+    "load1": 7.21,
+    "requestMs": 31.9,
+    "responseMs": 53.5,
+    "commitMs": 55.8,
+    "dclMs": -1.9,
+    "loadMs": 95.1,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000075",
+    "path": "/index.html",
+    "ordinal": 75,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 120.8,
+    "load1": 7.21,
+    "requestMs": 36.1,
+    "responseMs": 59.6,
+    "commitMs": 67.4,
+    "dclMs": -0.5,
+    "loadMs": 120.8,
+    "resourceCount": 29,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000076",
+    "path": "/index.html",
+    "ordinal": 76,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 63.4,
+    "load1": 7.03,
+    "requestMs": 3.6,
+    "responseMs": 4.9,
+    "commitMs": 5.7,
+    "dclMs": null,
+    "loadMs": 63.4,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000077",
+    "path": "/index.html",
+    "ordinal": 77,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 107.7,
+    "load1": 7.03,
+    "requestMs": 37.1,
+    "responseMs": 67.2,
+    "commitMs": 70.7,
+    "dclMs": -1.4,
+    "loadMs": 107.7,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000078",
+    "path": "/index.html",
+    "ordinal": 78,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 99.5,
+    "load1": 7.03,
+    "requestMs": 34.1,
+    "responseMs": 55.4,
+    "commitMs": 57.5,
+    "dclMs": -0.7,
+    "loadMs": 99.5,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000079",
+    "path": "/index.html",
+    "ordinal": 79,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.6,
+    "load1": 7.03,
+    "requestMs": 33.6,
+    "responseMs": 55.6,
+    "commitMs": 57.7,
+    "dclMs": -0.3,
+    "loadMs": 94.6,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000080",
+    "path": "/index.html",
+    "ordinal": 80,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 104.7,
+    "load1": 7.03,
+    "requestMs": 38.8,
+    "responseMs": 63.7,
+    "commitMs": 66.5,
+    "dclMs": -0.4,
+    "loadMs": 104.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000081",
+    "path": "/index.html",
+    "ordinal": 81,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95,
+    "load1": 7.03,
+    "requestMs": 34,
+    "responseMs": 55.2,
+    "commitMs": 57.5,
+    "dclMs": -0.9,
+    "loadMs": 94.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000082",
+    "path": "/index.html",
+    "ordinal": 82,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 99.4,
+    "load1": 7.03,
+    "requestMs": 36.1,
+    "responseMs": 59.5,
+    "commitMs": 61.7,
+    "dclMs": null,
+    "loadMs": 99.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000083",
+    "path": "/index.html",
+    "ordinal": 83,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 104.2,
+    "load1": 7.03,
+    "requestMs": 40.3,
+    "responseMs": 62.6,
+    "commitMs": 64.9,
+    "dclMs": -1.4,
+    "loadMs": 104.2,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000084",
+    "path": "/index.html",
+    "ordinal": 84,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 102.6,
+    "load1": 7.03,
+    "requestMs": 36.5,
+    "responseMs": 60.6,
+    "commitMs": 62.6,
+    "dclMs": -5.1,
+    "loadMs": 102.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000085",
+    "path": "/index.html",
+    "ordinal": 85,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 99.3,
+    "load1": 7.03,
+    "requestMs": 36,
+    "responseMs": 60,
+    "commitMs": 62.5,
+    "dclMs": -2.1,
+    "loadMs": 99.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000086",
+    "path": "/index.html",
+    "ordinal": 86,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 104.8,
+    "load1": 7.03,
+    "requestMs": 63.4,
+    "responseMs": 65.2,
+    "commitMs": 67.4,
+    "dclMs": -1.2,
+    "loadMs": 104.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000087",
+    "path": "/index.html",
+    "ordinal": 87,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.3,
+    "load1": 7.03,
+    "requestMs": 33.1,
+    "responseMs": 54.1,
+    "commitMs": 56.7,
+    "dclMs": -1.1,
+    "loadMs": 92.3,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000088",
+    "path": "/index.html",
+    "ordinal": 88,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.1,
+    "load1": 7.03,
+    "requestMs": 35.2,
+    "responseMs": 57.4,
+    "commitMs": 59.6,
+    "dclMs": -0.5,
+    "loadMs": 95.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000089",
+    "path": "/index.html",
+    "ordinal": 89,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.2,
+    "load1": 7.03,
+    "requestMs": 34,
+    "responseMs": 55.8,
+    "commitMs": 58.2,
+    "dclMs": -1.4,
+    "loadMs": 95.2,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000090",
+    "path": "/index.html",
+    "ordinal": 90,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 115.3,
+    "load1": 7.03,
+    "requestMs": 35.8,
+    "responseMs": 58.3,
+    "commitMs": 68.4,
+    "dclMs": null,
+    "loadMs": 115.3,
+    "resourceCount": 29,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000091",
+    "path": "/index.html",
+    "ordinal": 91,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 81.8,
+    "load1": 7.03,
+    "requestMs": 39.3,
+    "responseMs": 40.9,
+    "commitMs": 43.3,
+    "dclMs": -28.2,
+    "loadMs": 81.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000092",
+    "path": "/index.html",
+    "ordinal": 92,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 75,
+    "load1": 7.03,
+    "requestMs": 35.5,
+    "responseMs": 37.2,
+    "commitMs": 39.6,
+    "dclMs": -28.5,
+    "loadMs": 75,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000093",
+    "path": "/index.html",
+    "ordinal": 93,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.6,
+    "load1": 7.03,
+    "requestMs": 34,
+    "responseMs": 55.7,
+    "commitMs": 58.1,
+    "dclMs": null,
+    "loadMs": 93.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000094",
+    "path": "/index.html",
+    "ordinal": 94,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.8,
+    "load1": 7.03,
+    "requestMs": 35.4,
+    "responseMs": 58,
+    "commitMs": 61.2,
+    "dclMs": -2.4,
+    "loadMs": 95.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000095",
+    "path": "/index.html",
+    "ordinal": 95,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 73.3,
+    "load1": 7.03,
+    "requestMs": 34.1,
+    "responseMs": 36.2,
+    "commitMs": 38.3,
+    "dclMs": -27.5,
+    "loadMs": 73.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000096",
+    "path": "/index.html",
+    "ordinal": 96,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.9,
+    "load1": 7.03,
+    "requestMs": 33.4,
+    "responseMs": 53.7,
+    "commitMs": 55.9,
+    "dclMs": -1.3,
+    "loadMs": 89.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000097",
+    "path": "/index.html",
+    "ordinal": 97,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.9,
+    "load1": 7.03,
+    "requestMs": 30.7,
+    "responseMs": 50.9,
+    "commitMs": 59.4,
+    "dclMs": -1,
+    "loadMs": 98.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000098",
+    "path": "/index.html",
+    "ordinal": 98,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 103.9,
+    "load1": 7.03,
+    "requestMs": 44,
+    "responseMs": 66.8,
+    "commitMs": 69,
+    "dclMs": null,
+    "loadMs": 103.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000099",
+    "path": "/index.html",
+    "ordinal": 99,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 75.2,
+    "load1": 7.03,
+    "requestMs": 35.4,
+    "responseMs": 37,
+    "commitMs": 39.9,
+    "dclMs": -28.7,
+    "loadMs": 75.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000100",
+    "path": "/index.html",
+    "ordinal": 100,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.1,
+    "load1": 7.03,
+    "requestMs": 30.6,
+    "responseMs": 52.9,
+    "commitMs": 55.3,
+    "dclMs": -1,
+    "loadMs": 92.1,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000101",
+    "path": "/index.html",
+    "ordinal": 101,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 65.9,
+    "load1": 7.03,
+    "requestMs": 3.5,
+    "responseMs": 9.2,
+    "commitMs": 9.9,
+    "dclMs": null,
+    "loadMs": 65.9,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000102",
+    "path": "/index.html",
+    "ordinal": 102,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 96,
+    "load1": 7.03,
+    "requestMs": 33.3,
+    "responseMs": 56.9,
+    "commitMs": 58.7,
+    "dclMs": -0.9,
+    "loadMs": 95.8,
+    "resourceCount": 25,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000103",
+    "path": "/index.html",
+    "ordinal": 103,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100.3,
+    "load1": 7.03,
+    "requestMs": 38,
+    "responseMs": 59.6,
+    "commitMs": 62.5,
+    "dclMs": null,
+    "loadMs": 100.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000104",
+    "path": "/index.html",
+    "ordinal": 104,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.2,
+    "load1": 7.03,
+    "requestMs": 34.4,
+    "responseMs": 55.9,
+    "commitMs": 58.1,
+    "dclMs": -1.5,
+    "loadMs": 92.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000105",
+    "path": "/index.html",
+    "ordinal": 105,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79,
+    "load1": 7.03,
+    "requestMs": 39.7,
+    "responseMs": 41.6,
+    "commitMs": 43.7,
+    "dclMs": -28.3,
+    "loadMs": 79,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000106",
+    "path": "/index.html",
+    "ordinal": 106,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.8,
+    "load1": 7.03,
+    "requestMs": 33.4,
+    "responseMs": 55.5,
+    "commitMs": 57.5,
+    "dclMs": null,
+    "loadMs": 90.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000107",
+    "path": "/index.html",
+    "ordinal": 107,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.4,
+    "load1": 7.03,
+    "requestMs": 32.3,
+    "responseMs": 51.6,
+    "commitMs": 53.6,
+    "dclMs": -3.1,
+    "loadMs": 88.4,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000108",
+    "path": "/index.html",
+    "ordinal": 108,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100.2,
+    "load1": 7.03,
+    "requestMs": 36,
+    "responseMs": 61.9,
+    "commitMs": 64.2,
+    "dclMs": -0.6,
+    "loadMs": 100.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000109",
+    "path": "/index.html",
+    "ordinal": 109,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.5,
+    "load1": 7.03,
+    "requestMs": 32.2,
+    "responseMs": 53.3,
+    "commitMs": 55.3,
+    "dclMs": -0.7,
+    "loadMs": 88.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000110",
+    "path": "/index.html",
+    "ordinal": 110,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.5,
+    "load1": 7.03,
+    "requestMs": 33.2,
+    "responseMs": 54.5,
+    "commitMs": 56.7,
+    "dclMs": -1.9,
+    "loadMs": 89.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000111",
+    "path": "/index.html",
+    "ordinal": 111,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.4,
+    "load1": 7.03,
+    "requestMs": 32.9,
+    "responseMs": 53.6,
+    "commitMs": 55.4,
+    "dclMs": -0.1,
+    "loadMs": 88.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000112",
+    "path": "/index.html",
+    "ordinal": 112,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.9,
+    "load1": 7.03,
+    "requestMs": 34.7,
+    "responseMs": 56.6,
+    "commitMs": 59.4,
+    "dclMs": -2.4,
+    "loadMs": 94.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000113",
+    "path": "/index.html",
+    "ordinal": 113,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.3,
+    "load1": 7.03,
+    "requestMs": 35,
+    "responseMs": 57,
+    "commitMs": 61.5,
+    "dclMs": -2.2,
+    "loadMs": 95.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000114",
+    "path": "/index.html",
+    "ordinal": 114,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 105.3,
+    "load1": 7.03,
+    "requestMs": 32.8,
+    "responseMs": 67.9,
+    "commitMs": 70.1,
+    "dclMs": -0.5,
+    "loadMs": 105.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000115",
+    "path": "/index.html",
+    "ordinal": 115,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.1,
+    "load1": 7.03,
+    "requestMs": 34.1,
+    "responseMs": 54.9,
+    "commitMs": 57,
+    "dclMs": null,
+    "loadMs": 90.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000116",
+    "path": "/index.html",
+    "ordinal": 116,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 84.6,
+    "load1": 7.03,
+    "requestMs": 28.6,
+    "responseMs": 48.2,
+    "commitMs": 50.2,
+    "dclMs": -1.1,
+    "loadMs": 84.6,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000117",
+    "path": "/index.html",
+    "ordinal": 117,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91.7,
+    "load1": 7.03,
+    "requestMs": 32.1,
+    "responseMs": 53,
+    "commitMs": 55.2,
+    "dclMs": -2,
+    "loadMs": 91.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000118",
+    "path": "/index.html",
+    "ordinal": 118,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91.2,
+    "load1": 7.03,
+    "requestMs": 32.6,
+    "responseMs": 54.3,
+    "commitMs": 56.6,
+    "dclMs": null,
+    "loadMs": 91.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000119",
+    "path": "/index.html",
+    "ordinal": 119,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.5,
+    "load1": 7.03,
+    "requestMs": 33.8,
+    "responseMs": 55,
+    "commitMs": 59.3,
+    "dclMs": -2.1,
+    "loadMs": 92.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000120",
+    "path": "/index.html",
+    "ordinal": 120,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79.6,
+    "load1": 7.03,
+    "requestMs": 39,
+    "responseMs": 40.4,
+    "commitMs": 42.6,
+    "dclMs": -26.5,
+    "loadMs": 79.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000121",
+    "path": "/index.html",
+    "ordinal": 121,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.7,
+    "load1": 7.03,
+    "requestMs": 40.1,
+    "responseMs": 60.6,
+    "commitMs": 62.7,
+    "dclMs": 0,
+    "loadMs": 94.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000122",
+    "path": "/index.html",
+    "ordinal": 122,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 84.6,
+    "load1": 7.03,
+    "requestMs": 28.9,
+    "responseMs": 48.8,
+    "commitMs": 51,
+    "dclMs": -1.4,
+    "loadMs": 84.6,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000123",
+    "path": "/index.html",
+    "ordinal": 123,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.5,
+    "load1": 7.03,
+    "requestMs": 33,
+    "responseMs": 54.5,
+    "commitMs": 59,
+    "dclMs": -1.9,
+    "loadMs": 97.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000124",
+    "path": "/index.html",
+    "ordinal": 124,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.2,
+    "load1": 7.03,
+    "requestMs": 33.1,
+    "responseMs": 57,
+    "commitMs": 59,
+    "dclMs": null,
+    "loadMs": 92.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000125",
+    "path": "/index.html",
+    "ordinal": 125,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 73.1,
+    "load1": 6.79,
+    "requestMs": 35.8,
+    "responseMs": 37.6,
+    "commitMs": 39.6,
+    "dclMs": -28.7,
+    "loadMs": 73.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000126",
+    "path": "/index.html",
+    "ordinal": 126,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 56.6,
+    "load1": 6.79,
+    "requestMs": 3.1,
+    "responseMs": 4.5,
+    "commitMs": 5.3,
+    "dclMs": 46.1,
+    "loadMs": 56.6,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000127",
+    "path": "/index.html",
+    "ordinal": 127,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.1,
+    "load1": 6.79,
+    "requestMs": 31.5,
+    "responseMs": 53.4,
+    "commitMs": 56.3,
+    "dclMs": null,
+    "loadMs": 89.1,
+    "resourceCount": 25,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000128",
+    "path": "/index.html",
+    "ordinal": 128,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79.9,
+    "load1": 6.79,
+    "requestMs": 38.7,
+    "responseMs": 40.3,
+    "commitMs": 42.8,
+    "dclMs": -30.3,
+    "loadMs": 79.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000129",
+    "path": "/index.html",
+    "ordinal": 129,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.2,
+    "load1": 6.79,
+    "requestMs": 33.1,
+    "responseMs": 54.7,
+    "commitMs": 56.7,
+    "dclMs": -0.1,
+    "loadMs": 90.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000130",
+    "path": "/index.html",
+    "ordinal": 130,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 85.4,
+    "load1": 6.79,
+    "requestMs": 29.5,
+    "responseMs": 49.5,
+    "commitMs": 52.7,
+    "dclMs": -0.7,
+    "loadMs": 85.4,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000131",
+    "path": "/index.html",
+    "ordinal": 131,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.6,
+    "load1": 6.79,
+    "requestMs": 32.8,
+    "responseMs": 54.4,
+    "commitMs": 56.5,
+    "dclMs": -0.4,
+    "loadMs": 89.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000132",
+    "path": "/index.html",
+    "ordinal": 132,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 83.9,
+    "load1": 6.79,
+    "requestMs": 29.3,
+    "responseMs": 49.1,
+    "commitMs": 51.2,
+    "dclMs": -1.1,
+    "loadMs": 83.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000133",
+    "path": "/index.html",
+    "ordinal": 133,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.2,
+    "load1": 6.79,
+    "requestMs": 34.6,
+    "responseMs": 55.4,
+    "commitMs": 57.5,
+    "dclMs": -0.1,
+    "loadMs": 90.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000134",
+    "path": "/index.html",
+    "ordinal": 134,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.5,
+    "load1": 6.79,
+    "requestMs": 32.2,
+    "responseMs": 51.1,
+    "commitMs": 54.2,
+    "dclMs": -4.5,
+    "loadMs": 88.4,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000135",
+    "path": "/index.html",
+    "ordinal": 135,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.3,
+    "load1": 6.79,
+    "requestMs": 32.6,
+    "responseMs": 58.5,
+    "commitMs": 60.3,
+    "dclMs": -0.4,
+    "loadMs": 95.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000136",
+    "path": "/index.html",
+    "ordinal": 136,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.6,
+    "load1": 6.79,
+    "requestMs": 32.6,
+    "responseMs": 53.1,
+    "commitMs": 54.6,
+    "dclMs": -2.3,
+    "loadMs": 86.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000137",
+    "path": "/index.html",
+    "ordinal": 137,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 87,
+    "load1": 6.79,
+    "requestMs": 32.4,
+    "responseMs": 52.8,
+    "commitMs": 54.9,
+    "dclMs": -0.5,
+    "loadMs": 87,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000138",
+    "path": "/index.html",
+    "ordinal": 138,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 87.6,
+    "load1": 6.79,
+    "requestMs": 32.8,
+    "responseMs": 53.1,
+    "commitMs": 55.3,
+    "dclMs": -2.3,
+    "loadMs": 87.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000139",
+    "path": "/index.html",
+    "ordinal": 139,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91.6,
+    "load1": 6.79,
+    "requestMs": 33.1,
+    "responseMs": 57.6,
+    "commitMs": 59.7,
+    "dclMs": -0.5,
+    "loadMs": 91.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000140",
+    "path": "/index.html",
+    "ordinal": 140,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 81.5,
+    "load1": 6.79,
+    "requestMs": 28.6,
+    "responseMs": 47.2,
+    "commitMs": 49.2,
+    "dclMs": -1.3,
+    "loadMs": 81.5,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000141",
+    "path": "/index.html",
+    "ordinal": 141,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98,
+    "load1": 6.79,
+    "requestMs": 35.4,
+    "responseMs": 56.5,
+    "commitMs": 63.9,
+    "dclMs": null,
+    "loadMs": 98,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000142",
+    "path": "/index.html",
+    "ordinal": 142,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 96.4,
+    "load1": 6.79,
+    "requestMs": 39.6,
+    "responseMs": 59.4,
+    "commitMs": 61.7,
+    "dclMs": -0.1,
+    "loadMs": 96.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000143",
+    "path": "/index.html",
+    "ordinal": 143,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 69.2,
+    "load1": 6.79,
+    "requestMs": 31.9,
+    "responseMs": 33.4,
+    "commitMs": 35.8,
+    "dclMs": -26.1,
+    "loadMs": 69.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000144",
+    "path": "/index.html",
+    "ordinal": 144,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.7,
+    "load1": 6.79,
+    "requestMs": 33.2,
+    "responseMs": 54.2,
+    "commitMs": 57.3,
+    "dclMs": -2,
+    "loadMs": 89.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000145",
+    "path": "/index.html",
+    "ordinal": 145,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 74.8,
+    "load1": 6.79,
+    "requestMs": 34.9,
+    "responseMs": 36.5,
+    "commitMs": 38.6,
+    "dclMs": -26.2,
+    "loadMs": 74.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000146",
+    "path": "/index.html",
+    "ordinal": 146,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.2,
+    "load1": 6.79,
+    "requestMs": 39.8,
+    "responseMs": 59.6,
+    "commitMs": 61.7,
+    "dclMs": -0.2,
+    "loadMs": 93.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000147",
+    "path": "/index.html",
+    "ordinal": 147,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 84.6,
+    "load1": 6.79,
+    "requestMs": 28.4,
+    "responseMs": 47.6,
+    "commitMs": 50.7,
+    "dclMs": -0.6,
+    "loadMs": 84.6,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000148",
+    "path": "/index.html",
+    "ordinal": 148,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91.6,
+    "load1": 6.79,
+    "requestMs": 32.1,
+    "responseMs": 55,
+    "commitMs": 57,
+    "dclMs": -0.5,
+    "loadMs": 91.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000149",
+    "path": "/index.html",
+    "ordinal": 149,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 70.7,
+    "load1": 6.79,
+    "requestMs": 32.9,
+    "responseMs": 34.5,
+    "commitMs": 37.1,
+    "dclMs": -26.1,
+    "loadMs": 70.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000150",
+    "path": "/index.html",
+    "ordinal": 150,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 85.7,
+    "load1": 6.79,
+    "requestMs": 29.5,
+    "responseMs": 49.2,
+    "commitMs": 51.3,
+    "dclMs": -1.3,
+    "loadMs": 85.7,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000151",
+    "path": "/index.html",
+    "ordinal": 151,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 55.6,
+    "load1": 6.79,
+    "requestMs": 3,
+    "responseMs": 4.3,
+    "commitMs": 5.1,
+    "dclMs": null,
+    "loadMs": 55.6,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000152",
+    "path": "/index.html",
+    "ordinal": 152,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.9,
+    "load1": 6.79,
+    "requestMs": 30,
+    "responseMs": 57.9,
+    "commitMs": 60.2,
+    "dclMs": -1.5,
+    "loadMs": 92.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000153",
+    "path": "/index.html",
+    "ordinal": 153,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 105.5,
+    "load1": 6.79,
+    "requestMs": 64.7,
+    "responseMs": 66.2,
+    "commitMs": 68.7,
+    "dclMs": -2,
+    "loadMs": 105.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000154",
+    "path": "/index.html",
+    "ordinal": 154,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 82.9,
+    "load1": 6.79,
+    "requestMs": 28.3,
+    "responseMs": 47.7,
+    "commitMs": 49.7,
+    "dclMs": -0.6,
+    "loadMs": 82.8,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000155",
+    "path": "/index.html",
+    "ordinal": 155,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.2,
+    "load1": 6.79,
+    "requestMs": 33.8,
+    "responseMs": 55.2,
+    "commitMs": 56.9,
+    "dclMs": -0.1,
+    "loadMs": 90.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000156",
+    "path": "/index.html",
+    "ordinal": 156,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.6,
+    "load1": 6.79,
+    "requestMs": 33.3,
+    "responseMs": 54.1,
+    "commitMs": 56.5,
+    "dclMs": null,
+    "loadMs": 89.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000157",
+    "path": "/index.html",
+    "ordinal": 157,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.4,
+    "load1": 6.79,
+    "requestMs": 30.9,
+    "responseMs": 50.6,
+    "commitMs": 52.6,
+    "dclMs": -1.4,
+    "loadMs": 86.4,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000158",
+    "path": "/index.html",
+    "ordinal": 158,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79.1,
+    "load1": 6.79,
+    "requestMs": 38.5,
+    "responseMs": 40.2,
+    "commitMs": 42.4,
+    "dclMs": -32.4,
+    "loadMs": 79.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000159",
+    "path": "/index.html",
+    "ordinal": 159,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 70.3,
+    "load1": 6.79,
+    "requestMs": 32.8,
+    "responseMs": 34.5,
+    "commitMs": 36.5,
+    "dclMs": -26.2,
+    "loadMs": 70.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000160",
+    "path": "/index.html",
+    "ordinal": 160,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 73,
+    "load1": 6.79,
+    "requestMs": 35.3,
+    "responseMs": 37,
+    "commitMs": 39.2,
+    "dclMs": -26.5,
+    "loadMs": 72.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000161",
+    "path": "/index.html",
+    "ordinal": 161,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.3,
+    "load1": 6.79,
+    "requestMs": 29.1,
+    "responseMs": 50.3,
+    "commitMs": 52.5,
+    "dclMs": -1,
+    "loadMs": 86.3,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000162",
+    "path": "/index.html",
+    "ordinal": 162,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.7,
+    "load1": 6.79,
+    "requestMs": 33.9,
+    "responseMs": 54.8,
+    "commitMs": 57.2,
+    "dclMs": -0.6,
+    "loadMs": 89.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000163",
+    "path": "/index.html",
+    "ordinal": 163,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91.2,
+    "load1": 6.79,
+    "requestMs": 30.1,
+    "responseMs": 49.6,
+    "commitMs": 53.4,
+    "dclMs": -0.8,
+    "loadMs": 91.2,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000164",
+    "path": "/index.html",
+    "ordinal": 164,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100.1,
+    "load1": 6.79,
+    "requestMs": 32.5,
+    "responseMs": 65.6,
+    "commitMs": 67.7,
+    "dclMs": -0.5,
+    "loadMs": 100.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000165",
+    "path": "/index.html",
+    "ordinal": 165,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 81.2,
+    "load1": 6.79,
+    "requestMs": 27.9,
+    "responseMs": 46.8,
+    "commitMs": 48.8,
+    "dclMs": -1.2,
+    "loadMs": 81.1,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000166",
+    "path": "/index.html",
+    "ordinal": 166,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.9,
+    "load1": 6.79,
+    "requestMs": 32.2,
+    "responseMs": 52.4,
+    "commitMs": 54.5,
+    "dclMs": -0.5,
+    "loadMs": 86.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000167",
+    "path": "/index.html",
+    "ordinal": 167,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 82.1,
+    "load1": 6.79,
+    "requestMs": 28.1,
+    "responseMs": 47,
+    "commitMs": 49.2,
+    "dclMs": -1.4,
+    "loadMs": 82,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000168",
+    "path": "/index.html",
+    "ordinal": 168,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 85.3,
+    "load1": 6.79,
+    "requestMs": 28.9,
+    "responseMs": 47.8,
+    "commitMs": 52,
+    "dclMs": -0.9,
+    "loadMs": 85.3,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000169",
+    "path": "/index.html",
+    "ordinal": 169,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.4,
+    "load1": 6.79,
+    "requestMs": 32.3,
+    "responseMs": 57.3,
+    "commitMs": 59.3,
+    "dclMs": -0.2,
+    "loadMs": 93.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000170",
+    "path": "/index.html",
+    "ordinal": 170,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 87.8,
+    "load1": 6.79,
+    "requestMs": 32.1,
+    "responseMs": 53,
+    "commitMs": 55.2,
+    "dclMs": null,
+    "loadMs": 87.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000171",
+    "path": "/index.html",
+    "ordinal": 171,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.4,
+    "load1": 6.79,
+    "requestMs": 39.2,
+    "responseMs": 59.3,
+    "commitMs": 62.8,
+    "dclMs": -2.4,
+    "loadMs": 95.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000172",
+    "path": "/index.html",
+    "ordinal": 172,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 84.2,
+    "load1": 6.79,
+    "requestMs": 27.7,
+    "responseMs": 47.2,
+    "commitMs": 49.2,
+    "dclMs": -1,
+    "loadMs": 84.2,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000173",
+    "path": "/index.html",
+    "ordinal": 173,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.5,
+    "load1": 6.79,
+    "requestMs": 32.3,
+    "responseMs": 52.1,
+    "commitMs": 54.1,
+    "dclMs": null,
+    "loadMs": 88.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000174",
+    "path": "/index.html",
+    "ordinal": 174,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 71.4,
+    "load1": 6.79,
+    "requestMs": 35.1,
+    "responseMs": 36.8,
+    "commitMs": 39.1,
+    "dclMs": -28.5,
+    "loadMs": 71.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000175",
+    "path": "/index.html",
+    "ordinal": 175,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 76.7,
+    "load1": 6.79,
+    "requestMs": 34,
+    "responseMs": 36.7,
+    "commitMs": 42.6,
+    "dclMs": -26.8,
+    "loadMs": 76.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000176",
+    "path": "/index.html",
+    "ordinal": 176,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 56.6,
+    "load1": 6.48,
+    "requestMs": 2.8,
+    "responseMs": 4.1,
+    "commitMs": 4.9,
+    "dclMs": null,
+    "loadMs": 56.6,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000177",
+    "path": "/index.html",
+    "ordinal": 177,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.1,
+    "load1": 6.48,
+    "requestMs": 31.8,
+    "responseMs": 53.6,
+    "commitMs": 55.2,
+    "dclMs": -0.7,
+    "loadMs": 88.1,
+    "resourceCount": 25,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000178",
+    "path": "/index.html",
+    "ordinal": 178,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 101,
+    "load1": 6.48,
+    "requestMs": 64,
+    "responseMs": 65.8,
+    "commitMs": 67.8,
+    "dclMs": null,
+    "loadMs": 100.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000179",
+    "path": "/index.html",
+    "ordinal": 179,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.6,
+    "load1": 6.48,
+    "requestMs": 32.5,
+    "responseMs": 51,
+    "commitMs": 53,
+    "dclMs": -1,
+    "loadMs": 90.6,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000180",
+    "path": "/index.html",
+    "ordinal": 180,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 83.8,
+    "load1": 6.48,
+    "requestMs": 28.6,
+    "responseMs": 48.1,
+    "commitMs": 50.5,
+    "dclMs": -0.4,
+    "loadMs": 83.8,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000181",
+    "path": "/index.html",
+    "ordinal": 181,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.1,
+    "load1": 6.48,
+    "requestMs": 33.6,
+    "responseMs": 54.1,
+    "commitMs": 56.4,
+    "dclMs": -0.6,
+    "loadMs": 89,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000182",
+    "path": "/index.html",
+    "ordinal": 182,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.1,
+    "load1": 6.48,
+    "requestMs": 33.2,
+    "responseMs": 53.5,
+    "commitMs": 55.8,
+    "dclMs": -2.5,
+    "loadMs": 88.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000183",
+    "path": "/index.html",
+    "ordinal": 183,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 72.1,
+    "load1": 6.48,
+    "requestMs": 34.2,
+    "responseMs": 35.7,
+    "commitMs": 38.1,
+    "dclMs": -29.2,
+    "loadMs": 72.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000184",
+    "path": "/index.html",
+    "ordinal": 184,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 62.4,
+    "load1": 6.48,
+    "requestMs": 26.8,
+    "responseMs": 28.1,
+    "commitMs": 30.1,
+    "dclMs": -26.1,
+    "loadMs": 62.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000185",
+    "path": "/index.html",
+    "ordinal": 185,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 85.2,
+    "load1": 6.48,
+    "requestMs": 30.9,
+    "responseMs": 49.2,
+    "commitMs": 51.4,
+    "dclMs": -4.7,
+    "loadMs": 85.1,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000186",
+    "path": "/index.html",
+    "ordinal": 186,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95,
+    "load1": 6.48,
+    "requestMs": 32,
+    "responseMs": 58.5,
+    "commitMs": 60.6,
+    "dclMs": -0.5,
+    "loadMs": 94.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000187",
+    "path": "/index.html",
+    "ordinal": 187,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 69.7,
+    "load1": 6.48,
+    "requestMs": 32.5,
+    "responseMs": 34.2,
+    "commitMs": 36.4,
+    "dclMs": -26.2,
+    "loadMs": 69.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000188",
+    "path": "/index.html",
+    "ordinal": 188,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 84.7,
+    "load1": 6.48,
+    "requestMs": 29.2,
+    "responseMs": 48.9,
+    "commitMs": 51,
+    "dclMs": -1.2,
+    "loadMs": 84.7,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000189",
+    "path": "/index.html",
+    "ordinal": 189,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 96.2,
+    "load1": 6.48,
+    "requestMs": 32.7,
+    "responseMs": 59.5,
+    "commitMs": 61.6,
+    "dclMs": -1.9,
+    "loadMs": 96.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000190",
+    "path": "/index.html",
+    "ordinal": 190,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 87.4,
+    "load1": 6.48,
+    "requestMs": 32.4,
+    "responseMs": 53.4,
+    "commitMs": 55.5,
+    "dclMs": -0.2,
+    "loadMs": 87.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000191",
+    "path": "/index.html",
+    "ordinal": 191,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.1,
+    "load1": 6.48,
+    "requestMs": 29.9,
+    "responseMs": 49.4,
+    "commitMs": 56.3,
+    "dclMs": -0.7,
+    "loadMs": 93.1,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000192",
+    "path": "/index.html",
+    "ordinal": 192,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.2,
+    "load1": 6.48,
+    "requestMs": 34.3,
+    "responseMs": 60.9,
+    "commitMs": 62.5,
+    "dclMs": null,
+    "loadMs": 98.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000193",
+    "path": "/index.html",
+    "ordinal": 193,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.7,
+    "load1": 6.48,
+    "requestMs": 32.8,
+    "responseMs": 53.9,
+    "commitMs": 56,
+    "dclMs": -0.6,
+    "loadMs": 88.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000194",
+    "path": "/index.html",
+    "ordinal": 194,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.6,
+    "load1": 6.48,
+    "requestMs": 33.3,
+    "responseMs": 54,
+    "commitMs": 56.7,
+    "dclMs": -2.6,
+    "loadMs": 90.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000195",
+    "path": "/index.html",
+    "ordinal": 195,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.1,
+    "load1": 6.48,
+    "requestMs": 30.5,
+    "responseMs": 49.7,
+    "commitMs": 51.8,
+    "dclMs": -0.5,
+    "loadMs": 88.1,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000196",
+    "path": "/index.html",
+    "ordinal": 196,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95,
+    "load1": 6.48,
+    "requestMs": 39.4,
+    "responseMs": 60.6,
+    "commitMs": 62.8,
+    "dclMs": null,
+    "loadMs": 94.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000197",
+    "path": "/index.html",
+    "ordinal": 197,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 87.8,
+    "load1": 6.48,
+    "requestMs": 32.6,
+    "responseMs": 52.7,
+    "commitMs": 54.9,
+    "dclMs": -2.8,
+    "loadMs": 87.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000198",
+    "path": "/index.html",
+    "ordinal": 198,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.9,
+    "load1": 6.48,
+    "requestMs": 31.3,
+    "responseMs": 51.4,
+    "commitMs": 59.3,
+    "dclMs": -0.8,
+    "loadMs": 94.8,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000199",
+    "path": "/index.html",
+    "ordinal": 199,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 102.3,
+    "load1": 6.48,
+    "requestMs": 34.8,
+    "responseMs": 63.1,
+    "commitMs": 64.9,
+    "dclMs": null,
+    "loadMs": 102.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000200",
+    "path": "/index.html",
+    "ordinal": 200,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92,
+    "load1": 6.48,
+    "requestMs": 33.5,
+    "responseMs": 55.7,
+    "commitMs": 57.8,
+    "dclMs": -0.1,
+    "loadMs": 92,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000201",
+    "path": "/index.html",
+    "ordinal": 201,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 59.7,
+    "load1": 6.48,
+    "requestMs": 3.1,
+    "responseMs": 4.4,
+    "commitMs": 5.2,
+    "dclMs": null,
+    "loadMs": 59.7,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000202",
+    "path": "/index.html",
+    "ordinal": 202,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.2,
+    "load1": 6.48,
+    "requestMs": 31.9,
+    "responseMs": 60.7,
+    "commitMs": 64,
+    "dclMs": -1,
+    "loadMs": 98.1,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000203",
+    "path": "/index.html",
+    "ordinal": 203,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.1,
+    "load1": 6.48,
+    "requestMs": 35.5,
+    "responseMs": 57.2,
+    "commitMs": 59.9,
+    "dclMs": -1.8,
+    "loadMs": 98.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000204",
+    "path": "/index.html",
+    "ordinal": 204,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 86.4,
+    "load1": 6.48,
+    "requestMs": 29.9,
+    "responseMs": 50,
+    "commitMs": 52,
+    "dclMs": -0.4,
+    "loadMs": 86.4,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000205",
+    "path": "/index.html",
+    "ordinal": 205,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.5,
+    "load1": 6.48,
+    "requestMs": 35.1,
+    "responseMs": 57.6,
+    "commitMs": 60,
+    "dclMs": -0.2,
+    "loadMs": 93.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000206",
+    "path": "/index.html",
+    "ordinal": 206,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.8,
+    "load1": 6.48,
+    "requestMs": 34.5,
+    "responseMs": 56.3,
+    "commitMs": 60.3,
+    "dclMs": null,
+    "loadMs": 94.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000207",
+    "path": "/index.html",
+    "ordinal": 207,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.4,
+    "load1": 6.48,
+    "requestMs": 31.4,
+    "responseMs": 51.8,
+    "commitMs": 54.1,
+    "dclMs": -1.2,
+    "loadMs": 89.3,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000208",
+    "path": "/index.html",
+    "ordinal": 208,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 105.5,
+    "load1": 6.48,
+    "requestMs": 41.6,
+    "responseMs": 66.3,
+    "commitMs": 68.4,
+    "dclMs": -0.6,
+    "loadMs": 105.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000209",
+    "path": "/index.html",
+    "ordinal": 209,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91,
+    "load1": 6.48,
+    "requestMs": 33.8,
+    "responseMs": 55.5,
+    "commitMs": 57.7,
+    "dclMs": -2.2,
+    "loadMs": 91,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000210",
+    "path": "/index.html",
+    "ordinal": 210,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91.2,
+    "load1": 6.48,
+    "requestMs": 33.8,
+    "responseMs": 55.2,
+    "commitMs": 57.4,
+    "dclMs": -0.7,
+    "loadMs": 91.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000211",
+    "path": "/index.html",
+    "ordinal": 211,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.7,
+    "load1": 6.48,
+    "requestMs": 34.7,
+    "responseMs": 55.9,
+    "commitMs": 58.2,
+    "dclMs": -2.4,
+    "loadMs": 92.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000212",
+    "path": "/index.html",
+    "ordinal": 212,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.5,
+    "load1": 6.48,
+    "requestMs": 36.3,
+    "responseMs": 57.8,
+    "commitMs": 60,
+    "dclMs": null,
+    "loadMs": 94.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000213",
+    "path": "/index.html",
+    "ordinal": 213,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.9,
+    "load1": 6.48,
+    "requestMs": 34.3,
+    "responseMs": 56.3,
+    "commitMs": 58.5,
+    "dclMs": -2.3,
+    "loadMs": 92.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000214",
+    "path": "/index.html",
+    "ordinal": 214,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100,
+    "load1": 6.48,
+    "requestMs": 32.7,
+    "responseMs": 55.4,
+    "commitMs": 64.6,
+    "dclMs": -0.9,
+    "loadMs": 100,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000215",
+    "path": "/index.html",
+    "ordinal": 215,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 103,
+    "load1": 6.48,
+    "requestMs": 39,
+    "responseMs": 59.8,
+    "commitMs": 61.9,
+    "dclMs": -0.1,
+    "loadMs": 103,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000216",
+    "path": "/index.html",
+    "ordinal": 216,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 81.5,
+    "load1": 6.48,
+    "requestMs": 40.4,
+    "responseMs": 42.8,
+    "commitMs": 44.9,
+    "dclMs": -30.6,
+    "loadMs": 81.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000217",
+    "path": "/index.html",
+    "ordinal": 217,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100.1,
+    "load1": 6.48,
+    "requestMs": 35.3,
+    "responseMs": 57.7,
+    "commitMs": 62.6,
+    "dclMs": null,
+    "loadMs": 100.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000218",
+    "path": "/index.html",
+    "ordinal": 218,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 102.2,
+    "load1": 6.48,
+    "requestMs": 36.8,
+    "responseMs": 60.5,
+    "commitMs": 62.8,
+    "dclMs": -0.1,
+    "loadMs": 102.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000219",
+    "path": "/index.html",
+    "ordinal": 219,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.8,
+    "load1": 6.48,
+    "requestMs": 36.5,
+    "responseMs": 59.5,
+    "commitMs": 62.1,
+    "dclMs": -2.1,
+    "loadMs": 98.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000220",
+    "path": "/index.html",
+    "ordinal": 220,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100.8,
+    "load1": 6.48,
+    "requestMs": 36,
+    "responseMs": 60.5,
+    "commitMs": 62.6,
+    "dclMs": -0.5,
+    "loadMs": 100.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000221",
+    "path": "/index.html",
+    "ordinal": 221,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 113.7,
+    "load1": 6.48,
+    "requestMs": 40,
+    "responseMs": 64,
+    "commitMs": 77.1,
+    "dclMs": -0.1,
+    "loadMs": 113.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000222",
+    "path": "/index.html",
+    "ordinal": 222,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 84.9,
+    "load1": 6.48,
+    "requestMs": 36.5,
+    "responseMs": 42.6,
+    "commitMs": 45.4,
+    "dclMs": -28.8,
+    "loadMs": 84.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000223",
+    "path": "/index.html",
+    "ordinal": 223,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.1,
+    "load1": 6.48,
+    "requestMs": 35.2,
+    "responseMs": 58.5,
+    "commitMs": 60.7,
+    "dclMs": null,
+    "loadMs": 98.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000224",
+    "path": "/index.html",
+    "ordinal": 224,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 78.9,
+    "load1": 6.48,
+    "requestMs": 35,
+    "responseMs": 37.5,
+    "commitMs": 40.4,
+    "dclMs": -28,
+    "loadMs": 78.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000225",
+    "path": "/index.html",
+    "ordinal": 225,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 96.5,
+    "load1": 6.48,
+    "requestMs": 35.2,
+    "responseMs": 58.5,
+    "commitMs": 60.9,
+    "dclMs": -2,
+    "loadMs": 96.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000226",
+    "path": "/index.html",
+    "ordinal": 226,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 61.5,
+    "load1": 6.37,
+    "requestMs": 3,
+    "responseMs": 4.4,
+    "commitMs": 5.3,
+    "dclMs": null,
+    "loadMs": 61.4,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000227",
+    "path": "/index.html",
+    "ordinal": 227,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 108.2,
+    "load1": 6.37,
+    "requestMs": 34.3,
+    "responseMs": 70.3,
+    "commitMs": 72.5,
+    "dclMs": -1.5,
+    "loadMs": 108.2,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000228",
+    "path": "/index.html",
+    "ordinal": 228,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.8,
+    "load1": 6.37,
+    "requestMs": 34.4,
+    "responseMs": 55.5,
+    "commitMs": 57.7,
+    "dclMs": -0.9,
+    "loadMs": 97.8,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000229",
+    "path": "/index.html",
+    "ordinal": 229,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 87.6,
+    "load1": 6.37,
+    "requestMs": 30.8,
+    "responseMs": 50.7,
+    "commitMs": 52.9,
+    "dclMs": -0.4,
+    "loadMs": 87.5,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000230",
+    "path": "/index.html",
+    "ordinal": 230,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 84.4,
+    "load1": 6.37,
+    "requestMs": 42.5,
+    "responseMs": 44.7,
+    "commitMs": 47.1,
+    "dclMs": -28.9,
+    "loadMs": 84.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000231",
+    "path": "/index.html",
+    "ordinal": 231,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 91.7,
+    "load1": 6.37,
+    "requestMs": 33.6,
+    "responseMs": 54.4,
+    "commitMs": 56.5,
+    "dclMs": -1.1,
+    "loadMs": 91.7,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000232",
+    "path": "/index.html",
+    "ordinal": 232,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.9,
+    "load1": 6.37,
+    "requestMs": 35.6,
+    "responseMs": 59.1,
+    "commitMs": 61.4,
+    "dclMs": -0.6,
+    "loadMs": 95.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000233",
+    "path": "/index.html",
+    "ordinal": 233,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.9,
+    "load1": 6.37,
+    "requestMs": 35.5,
+    "responseMs": 57.1,
+    "commitMs": 59.4,
+    "dclMs": -2.6,
+    "loadMs": 92.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000234",
+    "path": "/index.html",
+    "ordinal": 234,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 96.6,
+    "load1": 6.37,
+    "requestMs": 35.5,
+    "responseMs": 57.2,
+    "commitMs": 61,
+    "dclMs": -5.9,
+    "loadMs": 96.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000235",
+    "path": "/index.html",
+    "ordinal": 235,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.5,
+    "load1": 6.37,
+    "requestMs": 33.4,
+    "responseMs": 54.9,
+    "commitMs": 57.2,
+    "dclMs": -6.2,
+    "loadMs": 93.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000236",
+    "path": "/index.html",
+    "ordinal": 236,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.2,
+    "load1": 6.37,
+    "requestMs": 33.8,
+    "responseMs": 55.6,
+    "commitMs": 58.6,
+    "dclMs": 87.6,
+    "loadMs": 98.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000237",
+    "path": "/index.html",
+    "ordinal": 237,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 101.4,
+    "load1": 6.37,
+    "requestMs": 36.4,
+    "responseMs": 59,
+    "commitMs": 63.9,
+    "dclMs": 90.8,
+    "loadMs": 101.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000238",
+    "path": "/index.html",
+    "ordinal": 238,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 105.8,
+    "load1": 6.37,
+    "requestMs": 37.9,
+    "responseMs": 61.9,
+    "commitMs": 64.3,
+    "dclMs": null,
+    "loadMs": 105.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000239",
+    "path": "/index.html",
+    "ordinal": 239,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 105,
+    "load1": 6.37,
+    "requestMs": 36,
+    "responseMs": 64.7,
+    "commitMs": 67.4,
+    "dclMs": -2,
+    "loadMs": 105,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000240",
+    "path": "/index.html",
+    "ordinal": 240,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 108,
+    "load1": 6.37,
+    "requestMs": 37.5,
+    "responseMs": 60.9,
+    "commitMs": 70.8,
+    "dclMs": -0.7,
+    "loadMs": 108,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000241",
+    "path": "/index.html",
+    "ordinal": 241,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 105.3,
+    "load1": 6.37,
+    "requestMs": 36.3,
+    "responseMs": 58.7,
+    "commitMs": 67.3,
+    "dclMs": null,
+    "loadMs": 105.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000242",
+    "path": "/index.html",
+    "ordinal": 242,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 73.3,
+    "load1": 6.37,
+    "requestMs": 34.6,
+    "responseMs": 36.7,
+    "commitMs": 38.6,
+    "dclMs": -28.3,
+    "loadMs": 73.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000243",
+    "path": "/index.html",
+    "ordinal": 243,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.8,
+    "load1": 6.37,
+    "requestMs": 31.3,
+    "responseMs": 52.5,
+    "commitMs": 54.7,
+    "dclMs": -1.1,
+    "loadMs": 90.8,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000244",
+    "path": "/index.html",
+    "ordinal": 244,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.4,
+    "load1": 6.37,
+    "requestMs": 33.2,
+    "responseMs": 54.1,
+    "commitMs": 56.2,
+    "dclMs": -0.7,
+    "loadMs": 94.3,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000245",
+    "path": "/index.html",
+    "ordinal": 245,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.9,
+    "load1": 6.37,
+    "requestMs": 34.4,
+    "responseMs": 57.4,
+    "commitMs": 59.2,
+    "dclMs": -0.4,
+    "loadMs": 95.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000246",
+    "path": "/index.html",
+    "ordinal": 246,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 115.8,
+    "load1": 6.37,
+    "requestMs": 43.3,
+    "responseMs": 69.2,
+    "commitMs": 78.2,
+    "dclMs": null,
+    "loadMs": 115.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000247",
+    "path": "/index.html",
+    "ordinal": 247,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 82,
+    "load1": 6.37,
+    "requestMs": 35.7,
+    "responseMs": 41.5,
+    "commitMs": 44.5,
+    "dclMs": -30.4,
+    "loadMs": 82,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000248",
+    "path": "/index.html",
+    "ordinal": 248,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 90.8,
+    "load1": 6.37,
+    "requestMs": 33.6,
+    "responseMs": 55.1,
+    "commitMs": 57.4,
+    "dclMs": 0,
+    "loadMs": 90.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000249",
+    "path": "/index.html",
+    "ordinal": 249,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.4,
+    "load1": 6.37,
+    "requestMs": 34.8,
+    "responseMs": 56.3,
+    "commitMs": 58.9,
+    "dclMs": -2.2,
+    "loadMs": 93.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000250",
+    "path": "/index.html",
+    "ordinal": 250,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 80.2,
+    "load1": 6.37,
+    "requestMs": 37.3,
+    "responseMs": 39.3,
+    "commitMs": 41.6,
+    "dclMs": -30.3,
+    "loadMs": 80.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000251",
+    "path": "/index.html",
+    "ordinal": 251,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 61.9,
+    "load1": 6.37,
+    "requestMs": 3.4,
+    "responseMs": 4.8,
+    "commitMs": 5.7,
+    "dclMs": null,
+    "loadMs": 61.8,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000252",
+    "path": "/index.html",
+    "ordinal": 252,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 103.5,
+    "load1": 6.37,
+    "requestMs": 35.2,
+    "responseMs": 66.4,
+    "commitMs": 68.9,
+    "dclMs": -1.4,
+    "loadMs": 103.5,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000253",
+    "path": "/index.html",
+    "ordinal": 253,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.7,
+    "load1": 6.37,
+    "requestMs": 36.4,
+    "responseMs": 58.2,
+    "commitMs": 61.1,
+    "dclMs": -2.1,
+    "loadMs": 98.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000254",
+    "path": "/index.html",
+    "ordinal": 254,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.4,
+    "load1": 6.37,
+    "requestMs": 34.7,
+    "responseMs": 56.3,
+    "commitMs": 58.5,
+    "dclMs": null,
+    "loadMs": 93.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000255",
+    "path": "/index.html",
+    "ordinal": 255,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 84.9,
+    "load1": 6.37,
+    "requestMs": 43,
+    "responseMs": 44.8,
+    "commitMs": 47.3,
+    "dclMs": -31.6,
+    "loadMs": 84.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000256",
+    "path": "/index.html",
+    "ordinal": 256,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.8,
+    "load1": 6.37,
+    "requestMs": 36.7,
+    "responseMs": 59.8,
+    "commitMs": 62.1,
+    "dclMs": null,
+    "loadMs": 97.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000257",
+    "path": "/index.html",
+    "ordinal": 257,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 96.6,
+    "load1": 6.37,
+    "requestMs": 35.6,
+    "responseMs": 58.2,
+    "commitMs": 60.6,
+    "dclMs": -0.5,
+    "loadMs": 96.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000258",
+    "path": "/index.html",
+    "ordinal": 258,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 108.3,
+    "load1": 6.37,
+    "requestMs": 37.5,
+    "responseMs": 60.4,
+    "commitMs": 64.1,
+    "dclMs": -2.6,
+    "loadMs": 108.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000259",
+    "path": "/index.html",
+    "ordinal": 259,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79.6,
+    "load1": 6.37,
+    "requestMs": 12.7,
+    "responseMs": 32.2,
+    "commitMs": 41.7,
+    "dclMs": -5,
+    "loadMs": 79.6,
+    "resourceCount": 25,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000260",
+    "path": "/index.html",
+    "ordinal": 260,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.7,
+    "load1": 6.37,
+    "requestMs": 35.4,
+    "responseMs": 58.3,
+    "commitMs": 60.8,
+    "dclMs": -0.6,
+    "loadMs": 94.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000261",
+    "path": "/index.html",
+    "ordinal": 261,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 88.9,
+    "load1": 6.37,
+    "requestMs": 33.5,
+    "responseMs": 52.8,
+    "commitMs": 55,
+    "dclMs": -1,
+    "loadMs": 88.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000262",
+    "path": "/index.html",
+    "ordinal": 262,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.9,
+    "load1": 6.37,
+    "requestMs": 34.9,
+    "responseMs": 58.2,
+    "commitMs": 60.6,
+    "dclMs": -0.1,
+    "loadMs": 94.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000263",
+    "path": "/index.html",
+    "ordinal": 263,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.2,
+    "load1": 6.37,
+    "requestMs": 36,
+    "responseMs": 59,
+    "commitMs": 61.2,
+    "dclMs": -2.4,
+    "loadMs": 97.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000264",
+    "path": "/index.html",
+    "ordinal": 264,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 113.9,
+    "load1": 6.37,
+    "requestMs": 38.1,
+    "responseMs": 64.9,
+    "commitMs": 76.9,
+    "dclMs": null,
+    "loadMs": 113.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000265",
+    "path": "/index.html",
+    "ordinal": 265,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 104.9,
+    "load1": 6.37,
+    "requestMs": 30.1,
+    "responseMs": 59,
+    "commitMs": 67.1,
+    "dclMs": -5.2,
+    "loadMs": 104.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000266",
+    "path": "/index.html",
+    "ordinal": 266,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.9,
+    "load1": 6.37,
+    "requestMs": 34.4,
+    "responseMs": 57.2,
+    "commitMs": 59.5,
+    "dclMs": -0.5,
+    "loadMs": 93.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000267",
+    "path": "/index.html",
+    "ordinal": 267,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 96.5,
+    "load1": 6.37,
+    "requestMs": 35.6,
+    "responseMs": 57.7,
+    "commitMs": 60.6,
+    "dclMs": -2.4,
+    "loadMs": 96.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000268",
+    "path": "/index.html",
+    "ordinal": 268,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 102.2,
+    "load1": 6.37,
+    "requestMs": 36.1,
+    "responseMs": 59.4,
+    "commitMs": 61.8,
+    "dclMs": -1.7,
+    "loadMs": 102.2,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000269",
+    "path": "/index.html",
+    "ordinal": 269,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 83.4,
+    "load1": 6.37,
+    "requestMs": 39.5,
+    "responseMs": 41.7,
+    "commitMs": 44.7,
+    "dclMs": -30.1,
+    "loadMs": 83.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000270",
+    "path": "/index.html",
+    "ordinal": 270,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.5,
+    "load1": 6.37,
+    "requestMs": 41.4,
+    "responseMs": 44.8,
+    "commitMs": 49.7,
+    "dclMs": -33,
+    "loadMs": 93.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000271",
+    "path": "/index.html",
+    "ordinal": 271,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 93.3,
+    "load1": 6.37,
+    "requestMs": 10.5,
+    "responseMs": 31.4,
+    "commitMs": 54.1,
+    "dclMs": -0.2,
+    "loadMs": 93.3,
+    "resourceCount": 24,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000272",
+    "path": "/index.html",
+    "ordinal": 272,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 114.7,
+    "load1": 6.37,
+    "requestMs": 38.8,
+    "responseMs": 64.7,
+    "commitMs": 72.2,
+    "dclMs": null,
+    "loadMs": 114.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000273",
+    "path": "/index.html",
+    "ordinal": 273,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100.6,
+    "load1": 6.26,
+    "requestMs": 34.3,
+    "responseMs": 57.7,
+    "commitMs": 60.1,
+    "dclMs": -1.6,
+    "loadMs": 100.6,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000274",
+    "path": "/index.html",
+    "ordinal": 274,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 104.4,
+    "load1": 6.26,
+    "requestMs": 38.2,
+    "responseMs": 62.2,
+    "commitMs": 64.8,
+    "dclMs": -8.8,
+    "loadMs": 104.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000275",
+    "path": "/index.html",
+    "ordinal": 275,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.9,
+    "load1": 6.26,
+    "requestMs": 35.2,
+    "responseMs": 58.2,
+    "commitMs": 60.8,
+    "dclMs": null,
+    "loadMs": 98.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000276",
+    "path": "/index.html",
+    "ordinal": 276,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 66.8,
+    "load1": 6.26,
+    "requestMs": 3.3,
+    "responseMs": 4.8,
+    "commitMs": 5.7,
+    "dclMs": 57,
+    "loadMs": 66.8,
+    "resourceCount": 19,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000277",
+    "path": "/index.html",
+    "ordinal": 277,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 108.7,
+    "load1": 6.26,
+    "requestMs": 34.6,
+    "responseMs": 67,
+    "commitMs": 69.8,
+    "dclMs": null,
+    "loadMs": 108.7,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000278",
+    "path": "/index.html",
+    "ordinal": 278,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 99.6,
+    "load1": 6.26,
+    "requestMs": 47.8,
+    "responseMs": 50,
+    "commitMs": 54.7,
+    "dclMs": -34,
+    "loadMs": 99.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000279",
+    "path": "/index.html",
+    "ordinal": 279,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 103.8,
+    "load1": 6.26,
+    "requestMs": 37.8,
+    "responseMs": 62.2,
+    "commitMs": 64.8,
+    "dclMs": null,
+    "loadMs": 103.8,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000280",
+    "path": "/index.html",
+    "ordinal": 280,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 105,
+    "load1": 6.26,
+    "requestMs": 38.9,
+    "responseMs": 63.5,
+    "commitMs": 66.1,
+    "dclMs": -2.1,
+    "loadMs": 105,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000281",
+    "path": "/index.html",
+    "ordinal": 281,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79,
+    "load1": 6.26,
+    "requestMs": 37,
+    "responseMs": 38.8,
+    "commitMs": 41,
+    "dclMs": -31,
+    "loadMs": 79,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000282",
+    "path": "/index.html",
+    "ordinal": 282,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 97.5,
+    "load1": 6.26,
+    "requestMs": 36.4,
+    "responseMs": 59.3,
+    "commitMs": 61.5,
+    "dclMs": -2.5,
+    "loadMs": 97.5,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000283",
+    "path": "/index.html",
+    "ordinal": 283,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 109.4,
+    "load1": 6.26,
+    "requestMs": 38.5,
+    "responseMs": 61.1,
+    "commitMs": 71,
+    "dclMs": -0.7,
+    "loadMs": 109.4,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000284",
+    "path": "/index.html",
+    "ordinal": 284,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 81.5,
+    "load1": 6.26,
+    "requestMs": 7.8,
+    "responseMs": 16.7,
+    "commitMs": 38.2,
+    "dclMs": -0.2,
+    "loadMs": 81.5,
+    "resourceCount": 24,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000285",
+    "path": "/index.html",
+    "ordinal": 285,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79,
+    "load1": 6.26,
+    "requestMs": 37.3,
+    "responseMs": 38.9,
+    "commitMs": 41.5,
+    "dclMs": -28.6,
+    "loadMs": 78.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000286",
+    "path": "/index.html",
+    "ordinal": 286,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.4,
+    "load1": 6.26,
+    "requestMs": 31.8,
+    "responseMs": 53.6,
+    "commitMs": 55.9,
+    "dclMs": -1.2,
+    "loadMs": 92.4,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000287",
+    "path": "/index.html",
+    "ordinal": 287,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 78.6,
+    "load1": 6.26,
+    "requestMs": 32.3,
+    "responseMs": 34.6,
+    "commitMs": 37.8,
+    "dclMs": -28.5,
+    "loadMs": 78.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000288",
+    "path": "/index.html",
+    "ordinal": 288,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 79.3,
+    "load1": 6.26,
+    "requestMs": 36.9,
+    "responseMs": 40.1,
+    "commitMs": 42.8,
+    "dclMs": -30.3,
+    "loadMs": 79.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000289",
+    "path": "/index.html",
+    "ordinal": 289,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 101.2,
+    "load1": 6.26,
+    "requestMs": 35.8,
+    "responseMs": 57.2,
+    "commitMs": 59.6,
+    "dclMs": -0.1,
+    "loadMs": 101.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000290",
+    "path": "/index.html",
+    "ordinal": 290,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 95.1,
+    "load1": 6.26,
+    "requestMs": 35.4,
+    "responseMs": 57,
+    "commitMs": 60.4,
+    "dclMs": -2.5,
+    "loadMs": 95,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000291",
+    "path": "/index.html",
+    "ordinal": 291,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92,
+    "load1": 6.26,
+    "requestMs": 29.7,
+    "responseMs": 50.3,
+    "commitMs": 53.9,
+    "dclMs": -1.2,
+    "loadMs": 91.9,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000292",
+    "path": "/index.html",
+    "ordinal": 292,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.7,
+    "load1": 6.26,
+    "requestMs": 34.7,
+    "responseMs": 58.4,
+    "commitMs": 60.7,
+    "dclMs": -0.7,
+    "loadMs": 94.6,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000293",
+    "path": "/index.html",
+    "ordinal": 293,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 92.3,
+    "load1": 6.26,
+    "requestMs": 34.5,
+    "responseMs": 56,
+    "commitMs": 58.3,
+    "dclMs": -2.4,
+    "loadMs": 92.3,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000294",
+    "path": "/index.html",
+    "ordinal": 294,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 94.1,
+    "load1": 6.26,
+    "requestMs": 34.6,
+    "responseMs": 57,
+    "commitMs": 59.2,
+    "dclMs": -0.1,
+    "loadMs": 94.1,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000295",
+    "path": "/index.html",
+    "ordinal": 295,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 89.6,
+    "load1": 6.26,
+    "requestMs": 30.4,
+    "responseMs": 51.7,
+    "commitMs": 53.9,
+    "dclMs": -2.1,
+    "loadMs": 89.6,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000296",
+    "path": "/index.html",
+    "ordinal": 296,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 102,
+    "load1": 6.26,
+    "requestMs": 31.9,
+    "responseMs": 56.4,
+    "commitMs": 64.6,
+    "dclMs": -1.4,
+    "loadMs": 102,
+    "resourceCount": 26,
+    "failedResources": [
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-rapidkert.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-rapidkert.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/client-barbershop.png",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-1.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/img/work-2.jpg",
+        "type": "image",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      },
+      {
+        "url": "http://127.0.0.1:4472/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+        "type": "font",
+        "errorText": "cancelled"
+      }
+    ]
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000297",
+    "path": "/index.html",
+    "ordinal": 297,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 101.9,
+    "load1": 6.26,
+    "requestMs": 35.1,
+    "responseMs": 58.3,
+    "commitMs": 60.5,
+    "dclMs": -5.9,
+    "loadMs": 101.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000298",
+    "path": "/index.html",
+    "ordinal": 298,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 98.8,
+    "load1": 6.26,
+    "requestMs": 35.9,
+    "responseMs": 59.7,
+    "commitMs": 62.4,
+    "dclMs": null,
+    "loadMs": 98.7,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000299",
+    "path": "/index.html",
+    "ordinal": 299,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 100.9,
+    "load1": 6.26,
+    "requestMs": 37.4,
+    "responseMs": 61.1,
+    "commitMs": 63.3,
+    "dclMs": -2.7,
+    "loadMs": 100.9,
+    "resourceCount": 26,
+    "failedResources": []
+  },
+  {
+    "navId": "M12-reduced-motion-nav-000300",
+    "path": "/index.html",
+    "ordinal": 300,
+    "boundary": "SUCCESS",
+    "status": 200,
+    "totalMs": 103.6,
+    "load1": 6.26,
+    "requestMs": 36.7,
+    "responseMs": 60.3,
+    "commitMs": 63.1,
+    "dclMs": -4,
+    "loadMs": 103.6,
+    "resourceCount": 26,
+    "failedResources": []
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "label": "M9-link",
+  "run": "M9-link",
+  "record": {
+    "navId": "M9-link-nav-000004",
+    "path": "/kkv.html",
+    "ordinal": 4,
+    "gotoInvoked": 1786968881101.2073,
+    "requestIssued": null,
+    "responseReceived": null,
+    "committed": null,
+    "domcontentloaded": null,
+    "load": null,
+    "gotoResolved": null,
+    "failedAt": 1786968906907.7878,
+    "status": null,
+    "error": "locator.click: Target page, context or browser has been closed\nCall log:\n  - waiting for locator('a[href$=\"kkv.html\"]').first()\n    - locator resolved to <a href=\"kkv.html\" aria-current=\"page\">…</a>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable",
+    "resources": [],
+    "pageErrors": [],
+    "consoleErrors": [],
+    "crashed": false,
+    "boundary": "A: goto invoked, no request issued",
+    "totalMs": 25806.6,
+    "load1": 9.62
+  },
+  "outstanding": [],
+  "pageUrl": "http://127.0.0.1:4469/kkv.html",
+  "title": null,
+  "readyState": null,
+  "boundary": "A: goto invoked, no request issued",
+  "host": {
+    "webkitProcs": 0,
+    "webkitRssMb": 0,
+    "webkitCpu": 0,
+    "load1": 9.62
+  }
+}

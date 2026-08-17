@@ -1,0 +1,218 @@
+{
+  "label": "A1-kkv-serial",
+  "attempts": 1500,
+  "failures": 0,
+  "serverEventsSeen": 150350,
+  "serverSawRequestForEveryNav": true,
+  "responseConsistency": {
+    "distinctMainDocumentArtefacts": [
+      {
+        "key": "/kkv.html|200|39816",
+        "count": 1500
+      }
+    ],
+    "shortResponses": 1,
+    "truncatedResponses": 0
+  },
+  "keepAlive": {
+    "mainDocumentRequests": 1500,
+    "onReusedConnection": 0,
+    "reuseRate": 0,
+    "failedMainDocumentRequests": 0,
+    "failedOnReusedConnection": 0
+  },
+  "serverLatency": {
+    "responses": 33001,
+    "totalMs": {
+      "p50": 0.351,
+      "p95": 0.743,
+      "p99": 1.042,
+      "max": 12.104
+    },
+    "statMs": {
+      "p50": 0.065,
+      "p95": 0.195,
+      "p99": 0.277,
+      "max": 1.387
+    },
+    "firstByteMs": {
+      "p50": 0.248,
+      "p95": 0.54,
+      "p99": 0.746,
+      "max": 2.281
+    },
+    "slowestResponses": [
+      {
+        "path": "/assets/fonts/archivo/archivo-italic-latin.woff2",
+        "navId": "nav-000922",
+        "totalMs": 12.104,
+        "statMs": 0.161,
+        "firstByteMs": 0.406,
+        "bytes": 101888
+      },
+      {
+        "path": "/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin.woff2",
+        "navId": "nav-000922",
+        "totalMs": 8.104,
+        "statMs": 0.168,
+        "firstByteMs": 0.377,
+        "bytes": 40480
+      },
+      {
+        "path": "/assets/js/transitions.js?v=dc61d7c0",
+        "navId": "nav-000973",
+        "totalMs": 3.07,
+        "statMs": 0.079,
+        "firstByteMs": 0.235,
+        "bytes": 38691
+      },
+      {
+        "path": "/assets/css/main.css?v=d8423979",
+        "navId": "nav-000436",
+        "totalMs": 3.001,
+        "statMs": 0.457,
+        "firstByteMs": 1.868,
+        "bytes": 67736
+      },
+      {
+        "path": "/assets/css/main.css?v=d8423979",
+        "navId": "nav-001301",
+        "totalMs": 2.796,
+        "statMs": 0.433,
+        "firstByteMs": 1.179,
+        "bytes": 67736
+      },
+      {
+        "path": "/assets/fonts/archivo/archivo-normal-latin.woff2",
+        "navId": "nav-000691",
+        "totalMs": 2.584,
+        "statMs": 0.041,
+        "firstByteMs": 0.658,
+        "bytes": 90096
+      },
+      {
+        "path": "/assets/fonts/archivo/archivo-normal-latin.woff2",
+        "navId": "nav-001028",
+        "totalMs": 2.574,
+        "statMs": 0.074,
+        "firstByteMs": 2.281,
+        "bytes": 90096
+      },
+      {
+        "path": "/assets/js/header.js?v=304b98cb",
+        "navId": "nav-000018",
+        "totalMs": 2.492,
+        "statMs": 0.269,
+        "firstByteMs": 1.311,
+        "bytes": 21855
+      },
+      {
+        "path": "/assets/css/main.css?v=d8423979",
+        "navId": "nav-000891",
+        "totalMs": 2.487,
+        "statMs": 0.662,
+        "firstByteMs": 1.413,
+        "bytes": 67736
+      },
+      {
+        "path": "/assets/js/main.js?v=f73e626a",
+        "navId": "nav-001064",
+        "totalMs": 2.431,
+        "statMs": 0.665,
+        "firstByteMs": 1.399,
+        "bytes": 16235
+      },
+      {
+        "path": "/assets/fonts/archivo/archivo-normal-latin-ext.woff2",
+        "navId": "nav-000001",
+        "totalMs": 2.365,
+        "statMs": 0.345,
+        "firstByteMs": 1.118,
+        "bytes": 85856
+      },
+      {
+        "path": "/assets/css/transitions.css?v=ff49195a",
+        "navId": "nav-001301",
+        "totalMs": 2.278,
+        "statMs": 0.433,
+        "firstByteMs": 1.329,
+        "bytes": 14005
+      },
+      {
+        "path": "/assets/js/consent.js?v=767976db",
+        "navId": "nav-000024",
+        "totalMs": 2.275,
+        "statMs": 0.406,
+        "firstByteMs": 2.1,
+        "bytes": 7752
+      },
+      {
+        "path": "/assets/css/main.css?v=d8423979",
+        "navId": "nav-000001",
+        "totalMs": 2.267,
+        "statMs": 0.292,
+        "firstByteMs": 1.189,
+        "bytes": 67736
+      },
+      {
+        "path": "/assets/js/main.js?v=f73e626a",
+        "navId": "nav-000024",
+        "totalMs": 2.228,
+        "statMs": 0.387,
+        "firstByteMs": 2.065,
+        "bytes": 16235
+      },
+      {
+        "path": "/assets/js/main.js?v=f73e626a",
+        "navId": "nav-000454",
+        "totalMs": 2.215,
+        "statMs": 0.46,
+        "firstByteMs": 1.4,
+        "bytes": 16235
+      },
+      {
+        "path": "/assets/css/motion.css?v=6f5ffd5b",
+        "navId": "nav-000891",
+        "totalMs": 2.175,
+        "statMs": 0.53,
+        "firstByteMs": 1.184,
+        "bytes": 13306
+      },
+      {
+        "path": "/assets/js/header.js?v=304b98cb",
+        "navId": "nav-000636",
+        "totalMs": 2.085,
+        "statMs": 0.371,
+        "firstByteMs": 1.385,
+        "bytes": 21855
+      },
+      {
+        "path": "/assets/js/header.js?v=304b98cb",
+        "navId": "nav-001064",
+        "totalMs": 2.073,
+        "statMs": 0.436,
+        "firstByteMs": 1.974,
+        "bytes": 21855
+      },
+      {
+        "path": "/assets/css/transitions.css?v=ff49195a",
+        "navId": "nav-001228",
+        "totalMs": 2.026,
+        "statMs": 0.517,
+        "firstByteMs": 1.187,
+        "bytes": 14005
+      }
+    ]
+  },
+  "sockets": {
+    "opened": 9173,
+    "closed": 9173,
+    "closedWithError": 0,
+    "errors": [],
+    "timeouts": 0,
+    "clientErrors": [],
+    "requestsAborted": 0,
+    "fileErrors": []
+  },
+  "inflightHeartbeats": 0
+}

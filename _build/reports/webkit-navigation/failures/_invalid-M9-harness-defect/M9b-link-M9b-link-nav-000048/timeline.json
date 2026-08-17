@@ -1,0 +1,37 @@
+{
+  "label": "M9b-link",
+  "run": "M9b-link",
+  "record": {
+    "navId": "M9b-link-nav-000048",
+    "path": "/rolunk.html",
+    "ordinal": 48,
+    "gotoInvoked": 1786970890000.2073,
+    "requestIssued": null,
+    "responseReceived": null,
+    "committed": null,
+    "domcontentloaded": null,
+    "load": null,
+    "gotoResolved": null,
+    "failedAt": 1786970908647.3699,
+    "status": null,
+    "error": "page.waitForURL: Target page, context or browser has been closed\n=========================== logs ===========================\nwaiting for navigation to \"**/rolunk.html\" until \"load\"\n============================================================",
+    "resources": [],
+    "pageErrors": [],
+    "consoleErrors": [],
+    "crashed": false,
+    "boundary": "A: goto invoked, no request issued",
+    "totalMs": 18647.2,
+    "load1": 1.7
+  },
+  "outstanding": [],
+  "pageUrl": "about:blank",
+  "title": null,
+  "readyState": null,
+  "boundary": "A: goto invoked, no request issued",
+  "host": {
+    "webkitProcs": 0,
+    "webkitRssMb": 0,
+    "webkitCpu": 0,
+    "load1": 1.7
+  }
+}

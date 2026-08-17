@@ -1,0 +1,37 @@
+{
+  "label": "M9b-link",
+  "run": "M9b-link",
+  "record": {
+    "navId": "M9b-link-nav-000031",
+    "path": "/kkv.html",
+    "ordinal": 31,
+    "gotoInvoked": 1786970378962.4475,
+    "requestIssued": null,
+    "responseReceived": null,
+    "committed": null,
+    "domcontentloaded": null,
+    "load": null,
+    "gotoResolved": null,
+    "failedAt": 1786970408962.379,
+    "status": null,
+    "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('a[href$=\"kkv.html\"]:not([aria-current]):visible').first()\n",
+    "resources": [],
+    "pageErrors": [],
+    "consoleErrors": [],
+    "crashed": false,
+    "boundary": "A: goto invoked, no request issued",
+    "totalMs": 29999.9,
+    "load1": 20.42
+  },
+  "outstanding": [],
+  "pageUrl": "about:blank",
+  "title": "",
+  "readyState": "complete",
+  "boundary": "A: goto invoked, no request issued",
+  "host": {
+    "webkitProcs": 4,
+    "webkitRssMb": 329.4,
+    "webkitCpu": 0.2,
+    "load1": 20.42
+  }
+}

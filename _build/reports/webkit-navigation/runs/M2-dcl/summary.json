@@ -1,0 +1,129 @@
+{
+  "label": "M2-dcl",
+  "startedAt": "2026-08-17T11:58:24.156Z",
+  "endedAt": "2026-08-17T11:59:49.893Z",
+  "classification": "CONTAMINATED",
+  "load1Start": 22.89,
+  "load1End": 8.99,
+  "config": {
+    "n": 1000,
+    "paths": [
+      "/kkv.html"
+    ],
+    "wait": "domcontentloaded",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 25,
+    "server": "nav",
+    "rate": "serial",
+    "action": "goto",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 1000,
+  "successes": 1000,
+  "failures": 0,
+  "strayEvents": 57,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 1000
+  },
+  "latency": {
+    "min": 35.3,
+    "p50": 63.2,
+    "p95": 97.8,
+    "p99": 122,
+    "max": 192.5
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 250,
+      "fail": 0
+    },
+    "251-500": {
+      "n": 250,
+      "fail": 0
+    },
+    "501-750": {
+      "n": 250,
+      "fail": 0
+    },
+    "751-1000": {
+      "n": 250,
+      "fail": 0
+    }
+  },
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/M2-dcl-server.ndjson",
+  "hostSamples": [
+    {
+      "at": "2026-08-17T11:58:34.555Z",
+      "i": 137,
+      "webkitProcs": 4,
+      "webkitRssMb": 443.8,
+      "webkitCpu": 158.8,
+      "load1": 19.99
+    },
+    {
+      "at": "2026-08-17T11:58:44.555Z",
+      "i": 248,
+      "webkitProcs": 4,
+      "webkitRssMb": 462.2,
+      "webkitCpu": 156.3,
+      "load1": 17.46
+    },
+    {
+      "at": "2026-08-17T11:58:54.557Z",
+      "i": 366,
+      "webkitProcs": 4,
+      "webkitRssMb": 451.5,
+      "webkitCpu": 159.7,
+      "load1": 15.75
+    },
+    {
+      "at": "2026-08-17T11:59:04.556Z",
+      "i": 491,
+      "webkitProcs": 4,
+      "webkitRssMb": 447.8,
+      "webkitCpu": 155.3,
+      "load1": 13.79
+    },
+    {
+      "at": "2026-08-17T11:59:14.556Z",
+      "i": 600,
+      "webkitProcs": 4,
+      "webkitRssMb": 360.8,
+      "webkitCpu": 69.2,
+      "load1": 12.21
+    },
+    {
+      "at": "2026-08-17T11:59:24.557Z",
+      "i": 703,
+      "webkitProcs": 4,
+      "webkitRssMb": 403.4,
+      "webkitCpu": 130.8,
+      "load1": 11.12
+    },
+    {
+      "at": "2026-08-17T11:59:34.558Z",
+      "i": 815,
+      "webkitProcs": 4,
+      "webkitRssMb": 455.1,
+      "webkitCpu": 157.1,
+      "load1": 9.87
+    },
+    {
+      "at": "2026-08-17T11:59:44.559Z",
+      "i": 938,
+      "webkitProcs": 4,
+      "webkitRssMb": 450.7,
+      "webkitCpu": 160.6,
+      "load1": 8.81
+    }
+  ]
+}

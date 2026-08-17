@@ -1,0 +1,81 @@
+{
+  "label": "M7-homepage",
+  "startedAt": "2026-08-17T12:12:43.754Z",
+  "endedAt": "2026-08-17T12:13:21.414Z",
+  "classification": "CONTAMINATED",
+  "load1Start": 24.07,
+  "load1End": 15.5,
+  "config": {
+    "n": 300,
+    "paths": [
+      "/index.html"
+    ],
+    "wait": "load",
+    "timeoutMs": 30000,
+    "mode": "new-context",
+    "batch": 25,
+    "server": "nav",
+    "rate": "serial",
+    "action": "goto",
+    "settle": 0,
+    "reducedMotion": false
+  },
+  "engine": {
+    "playwright": "1.62.1",
+    "webkitVersion": "26.5",
+    "node": "v24.18.1",
+    "platform": "darwin-arm64"
+  },
+  "attempts": 300,
+  "successes": 300,
+  "failures": 0,
+  "strayEvents": 6,
+  "crashes": 0,
+  "boundaries": {
+    "SUCCESS": 300
+  },
+  "latency": {
+    "min": 53.4,
+    "p50": 110.7,
+    "p95": 146.7,
+    "p99": 177.2,
+    "max": 283.3
+  },
+  "byOrdinalBand": {
+    "1-250": {
+      "n": 250,
+      "fail": 0
+    },
+    "251-500": {
+      "n": 50,
+      "fail": 0
+    }
+  },
+  "serverLog": "/private/tmp/claude-501/-Users-arturlukacs-Library-Mobile-Documents-com-apple-CloudDocs-Downloads-StratosWeb/013b2fc9-74ad-42a1-b522-c91956554e23/scratchpad/navlogs/M7-homepage-server.ndjson",
+  "hostSamples": [
+    {
+      "at": "2026-08-17T12:12:54.150Z",
+      "i": 86,
+      "webkitProcs": 4,
+      "webkitRssMb": 492.5,
+      "webkitCpu": 155.3,
+      "load1": 20.91
+    },
+    {
+      "at": "2026-08-17T12:13:04.151Z",
+      "i": 157,
+      "webkitProcs": 4,
+      "webkitRssMb": 477.9,
+      "webkitCpu": 148.7,
+      "load1": 18.85
+    },
+    {
+      "at": "2026-08-17T12:13:14.151Z",
+      "i": 244,
+      "webkitProcs": 4,
+      "webkitRssMb": 530.9,
+      "webkitCpu": 154.6,
+      "load1": 16.33
+    }
+  ]
+}

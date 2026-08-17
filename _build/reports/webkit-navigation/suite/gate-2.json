@@ -1,0 +1,53 @@
+{
+  "label": "webkit-nav idle-host run 2",
+  "commit": "2e8eb9cf129617b1d76b817902b089be38fde42d",
+  "dirtyTrackedFiles": [
+    "M .claude/settings.local.json",
+    "M _build/build.py",
+    "M _build/pages/kkv.html",
+    "M _build/pages/munka-rapidkert.html",
+    "M _build/pages/munkaink.html",
+    "M assets/blender/stratos-altimeter.blend",
+    "M blender/mountains/__pycache__/stratos_terrain.cpython-313.pyc",
+    "M experiments/src/full/content.ts",
+    "M experiments/src/full/locales/de.ts",
+    "M experiments/src/full/locales/en.ts",
+    "M scripts/webkit-nav/stress.mjs"
+  ],
+  "timestamp": "2026-08-17T12:00:11.785Z",
+  "environment": {
+    "node": "v24.18.1",
+    "platform": "darwin-arm64",
+    "playwright": "1.62.1",
+    "workers": 5,
+    "projects": [
+      "node",
+      "desktop-1440",
+      "desktop-1920",
+      "mobile-390",
+      "mobile-430",
+      "desktop-webkit",
+      "portrait-chromium",
+      "reduced-motion"
+    ]
+  },
+  "duration": 891792.283,
+  "startTime": "2026-08-17T10:54:48.714Z",
+  "collected": 1271,
+  "accounted": 1271,
+  "arithmeticReconciles": true,
+  "passed": 1149,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 122,
+  "unclassified": 0,
+  "reporterStats": {
+    "startTime": "2026-08-17T10:54:48.714Z",
+    "duration": 891792.283,
+    "expected": 1149,
+    "skipped": 122,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "failingTests": []
+}
