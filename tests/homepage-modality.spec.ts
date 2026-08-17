@@ -336,4 +336,66 @@ test.describe('the full-screen navigation is a modal layer', () => {
       ).toBe(true);
     }
   });
+
+  test('reopening within the close transition does not hide the layer', async ({ page }) => {
+    /**
+     * The regression this exists for.
+     *
+     * `close()` cannot hide the layer at once — it has a 420 ms transition to
+     * play — so it hides it on a timer. That timer used to be armed without a
+     * handle, and nothing took it back: a visitor who closed the navigation and
+     * opened it again inside 420 ms got `hidden = true` applied to a layer that
+     * was now open. `aria-expanded` said "true", `.is-open` was on the element,
+     * focus had been moved into it, and there was nothing on screen.
+     *
+     * Reproduced on both engines at every gap below 420 ms before the fix, and
+     * on neither after it.
+     *
+     * ## Why the cycle is driven from inside the page
+     *
+     * The bug is a race against a 420 ms timer, so the gap between close and
+     * reopen has to be the quantity under test rather than whatever a protocol
+     * round trip happened to cost that run. Two `page.click()` calls through
+     * the driver measure the machine; `setTimeout` in the page measures the
+     * contract. This is also why the assertion survives a slow machine: at
+     * 4 fps a driven reopen takes seconds and lands *outside* the window, which
+     * is exactly how this defect stayed invisible on a loaded run and surfaced
+     * on the fastest project in the matrix.
+     *
+     * ## Why `hidden` and not a screenshot
+     *
+     * `hidden` is the property that was wrong. A visibility assertion would
+     * also catch it, and would additionally fail for every unrelated reason a
+     * transition can be mid-flight — this names the defect.
+     */
+    await page.goto('/index.html');
+    await homepageReady(page);
+    await openMenu(page);
+
+    const state = await page.evaluate(async () => {
+      const burger = document.querySelector<HTMLElement>('.burger')!;
+      const menu = document.querySelector<HTMLElement>('#menu')!;
+      const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+      await wait(100); // well inside the 420 ms hide timer
+      burger.click();
+      await wait(600); // outlive the timer the close armed
+
+      return {
+        expanded: burger.getAttribute('aria-expanded'),
+        hidden: menu.hidden,
+        open: menu.classList.contains('is-open'),
+      };
+    });
+
+    expect(state.expanded, 'the trigger did not report the layer as open').toBe('true');
+    expect(state.open, 'the layer did not take its open class').toBe(true);
+    expect(
+      state.hidden,
+      'the previous close’s hide timer hid a layer that had been reopened — ' +
+        'aria-expanded says open, .is-open is set, focus is inside it, and the ' +
+        'visitor is looking at nothing',
+    ).toBe(false);
+  });
 });
