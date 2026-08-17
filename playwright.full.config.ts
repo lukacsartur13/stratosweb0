@@ -183,6 +183,19 @@ export default defineConfig({
   // is for the other entry point — invoking Playwright directly against this
   // config — where it fails with the fix rather than with a wall of 404s.
   // ---------------------------------------------------------------------------
+  //
+  // OWNERSHIP. Under `scripts/hermetic/gate-run.mjs` this block is removed and
+  // the gate starts, records and tears down the server itself — see the same
+  // note in playwright.config.ts. It matters more here than there: this config
+  // still names `python3 -m http.server`, which is the server the main suite
+  // was moved OFF after two of five gate runs timed out on `page.goto` for a
+  // plain static page (Python 3.9 answers HTTP/1.0 with no keep-alive, and
+  // `--protocol` arrived in 3.11). The heaviest WebGL suite in the repository
+  // was still being served by it. That is not fixed by editing this line —
+  // §10 asks for the two servers to be COMPARED rather than swapped on a
+  // hunch — so the command below is left exactly as it was, and the gate
+  // selects the server it wants with `--server node|python`.
+  ...(process.env.STRATOS_GATE_SERVER ? {} : {
   webServer: {
     command:
       `test -f dist/experiments/stratos-ascent-full/index.html || ` +
@@ -200,4 +213,5 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
   },
+  }),
 });

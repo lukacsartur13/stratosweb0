@@ -258,15 +258,38 @@ export default defineConfig({
     },
   ],
 
-  webServer: {
-    // Was `python3 -m http.server`. It answers HTTP/1.0 with no keep-alive on
-    // this host's Python 3.9, so every asset opened a new socket, and under five
-    // parallel workers it dropped a request often enough to time out a
-    // `page.goto` on a plain 15 KB HTML page in two of five gate runs. See the
-    // header of scripts/test-server.mjs.
-    command: `node scripts/test-server.mjs ${PORT} dist`,
-    url: BASE,
-    reuseExistingServer: !process.env.CI,
-    timeout: 30_000,
-  },
+  // ---------------------------------------------------------------------------
+  // Who owns the server.
+  //
+  // Under `scripts/hermetic/gate-run.mjs` the answer is: the gate does. It
+  // starts the server, records its PID, port, ready time, shutdown time and
+  // exit code, and confirms the process is dead and the port released before
+  // the run is allowed to produce a verdict.
+  //
+  // So this block is REMOVED in that path rather than set to
+  // `reuseExistingServer: false`. The distinction matters. With the option set
+  // to false, Playwright still owns a server, still races the port, and still
+  // has to decide what to do about one that is already there — and "already
+  // there" is exactly how the previous investigation ended up with a suite
+  // attached to a seventeen-hour-old server serving a different checkout.
+  // Handing ownership to one process that tracks it removes the question
+  // instead of answering it.
+  //
+  // Outside the gate — a developer running `npm test` — nothing changes.
+  // ---------------------------------------------------------------------------
+  ...(process.env.STRATOS_GATE_SERVER
+    ? {}
+    : {
+        webServer: {
+          // Was `python3 -m http.server`. It answers HTTP/1.0 with no keep-alive on
+          // this host's Python 3.9, so every asset opened a new socket, and under five
+          // parallel workers it dropped a request often enough to time out a
+          // `page.goto` on a plain 15 KB HTML page in two of five gate runs. See the
+          // header of scripts/test-server.mjs.
+          command: `node scripts/test-server.mjs ${PORT} dist`,
+          url: BASE,
+          reuseExistingServer: !process.env.CI,
+          timeout: 30_000,
+        },
+      }),
 });
