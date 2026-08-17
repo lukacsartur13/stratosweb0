@@ -41,11 +41,46 @@ const SCRATCH = process.env.STRATOS_NAV_SCRATCH ?? join(os.tmpdir(), 'stratos-we
 const SERVER_LOG = join(SCRATCH, `${LABEL}-server.ndjson`);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+/**
+ * WHICH SERVER THE FLEET RUNS AGAINST.
+ *
+ * This used to be `nav-server.mjs` and nothing else, which is why the previous
+ * pass finished with the concurrent-Python arm recorded as NOT RUN — the only
+ * harness that produced concurrency could not point at Python, and the only
+ * harness that could point at Python (`stress.mjs --server python`) ran serially.
+ *
+ * That gap is the whole reason Python's exoneration was provisional.
+ * `server-comparison.md` measured it at 1 000/1 000 with a p50 of 33 ms and
+ * called the result narrow on purpose: Python 3.9's documented failure mode is
+ * connection churn under CONCURRENCY, and a serial arm opens ~20 sockets per
+ * page rather than hundreds a second. Measuring the tail of a mechanism the
+ * sample never engages is not evidence about that mechanism.
+ *
+ *   nav     the instrumented Node twin — per-request server-side log, so a
+ *           navigation can be correlated across client and server
+ *   node    scripts/test-server.mjs verbatim — what the suite actually uses
+ *   python  python3 -m http.server — HTTP/1.0, no keep-alive, GIL-bound
+ *
+ * Only `nav` writes the server-side log, so the correlation arm is unavailable
+ * for the other two. That is a property of those servers, not a shortcut: a
+ * stock server cannot be asked to log what it never recorded.
+ */
+const SERVER_KIND = arg('server', 'nav');
+const SERVERS = {
+  nav: ['node', ['scripts/webkit-nav/nav-server.mjs', String(PORT), 'dist', SERVER_LOG]],
+  node: ['node', ['scripts/test-server.mjs', String(PORT), 'dist']],
+  python: ['python3', ['-m', 'http.server', String(PORT), '--directory', 'dist']],
+};
+if (!SERVERS[SERVER_KIND]) {
+  console.error(`--server must be one of ${Object.keys(SERVERS).join(' | ')}`);
+  process.exit(2);
+}
+
 await mkdir(SCRATCH, { recursive: true });
 await rm(SERVER_LOG, { force: true });
 
-const server = spawn('node', ['scripts/webkit-nav/nav-server.mjs', String(PORT), 'dist', SERVER_LOG],
-  { stdio: ['ignore', 'ignore', 'inherit'] });
+const [serverCmd, serverArgs] = SERVERS[SERVER_KIND];
+const server = spawn(serverCmd, serverArgs, { stdio: ['ignore', 'ignore', 'inherit'] });
 
 for (let i = 0; i < 100; i++) {
   try { await fetch(`http://127.0.0.1:${PORT}/index.html`, { method: 'HEAD' }); break; }
@@ -69,7 +104,10 @@ const children = Array.from({ length: WORKERS }, (_, k) => {
     '--path', PATHS,
     '--port', String(PORT),
     '--server', 'none',
-    '--server-log', SERVER_LOG,
+    // Only the instrumented twin writes one; pointing the drivers at a log that
+    // will stay empty would produce an arm whose correlation column is silently
+    // blank rather than declared absent.
+    ...(SERVER_KIND === 'nav' ? ['--server-log', SERVER_LOG] : []),
     '--out', OUT,
     ...extra,
   ], { stdio: ['ignore', 'inherit', 'inherit'], env: process.env });
@@ -86,6 +124,8 @@ await Promise.race([done, sleep(5_000)]);
 await mkdir(join(OUT, 'runs', LABEL), { recursive: true });
 await writeFile(join(OUT, 'runs', LABEL, 'fleet.json'), JSON.stringify({
   label: LABEL, workers: WORKERS, nPerWorker: N, paths: PATHS, port: PORT,
+  server: SERVER_KIND,
+  serverCommand: `${serverCmd} ${serverArgs.join(' ')}`,
   startedAt, endedAt: new Date().toISOString(),
   load1Start: +startLoad.toFixed(2), load1End: +endLoad.toFixed(2),
   // Start load only — see the note in stress.mjs. A fleet run is *supposed* to
