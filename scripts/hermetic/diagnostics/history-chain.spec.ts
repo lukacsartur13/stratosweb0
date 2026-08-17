@@ -88,7 +88,30 @@ async function instrument(page: Page) {
     };
     wrap(window, 'scrollTo');
     wrap(window, 'scrollBy');
+    wrap(window, 'scroll');
     wrap(Element.prototype, 'scrollIntoView');
+    wrap(Element.prototype, 'scrollTo');
+
+    /* `scrollTop = n` is an ASSIGNMENT, not a call, so wrapping methods misses
+       it entirely — and it is the form GSAP's ScrollTrigger uses. The first
+       version of this file recorded an empty scroll log for a run that had
+       plainly been moved, which is worse than no log: it reads as proof that
+       nothing scrolled the page. Redefining the accessor is the only way to see
+       it, and the original setter is still called, so behaviour is unchanged. */
+    const desc = Object.getOwnPropertyDescriptor(Element.prototype, 'scrollTop');
+    if (desc?.set && desc.get) {
+      Object.defineProperty(Element.prototype, 'scrollTop', {
+        configurable: true,
+        get: desc.get,
+        set(v: number) {
+          if (this === document.documentElement || this === document.body || this === document.scrollingElement) {
+            w.__scrolls.push({ t: now(), fn: 'scrollTop=', args: String(v), y: scrollY,
+              stack: (new Error().stack ?? '').split('\n').slice(2, 5).join(' | ') });
+          }
+          return desc.set!.call(this, v);
+        },
+      });
+    }
 
     let stable = 0;
     let lastY = -1;
@@ -261,6 +284,60 @@ test('homepage history restoration — full trajectory', async ({ page }, info) 
   record.after = after;
   record.finalTrace = await dump(page);
 
+  /* ---- the SECOND traversal, which is the one that actually fails ---------
+   *
+   * `homepage-history.spec.ts:223` asserts the restore twice. The first
+   * assertion is at :275 and the second at :293, after a `goForward()` to the
+   * destination and a `goBack()` to the homepage again — and :293 is the one
+   * the stack trace names in every failure captured so far, both the
+   * load-induced one and the §20 mutation check.
+   *
+   * The first version of this diagnostic exercised only the first Back and
+   * passed 48 times out of 48, which was not evidence that the mechanism holds:
+   * it was evidence that the diagnostic was pointed at the wrong leg. The two
+   * legs are not the same journey. On the second one the homepage document has
+   * already been created once in this session, the destination page has had its
+   * own lifecycle in between, and the sessionStorage the reserve reads from has
+   * been written by something else since. Any of those could change what the
+   * reserve is worth, and none of them is exercised by a single Back. */
+  await page.goForward();
+  await page.waitForURL((u) => u.pathname.endsWith(href!.split('/').pop()!));
+  record.forwardTo = page.url();
+
+  const back2At = Date.now();
+  await page.goBack();
+  record.goBack2Ms = Date.now() - back2At;
+
+  const early2 = await dump(page);
+  record.restoreTrace2 = early2;
+  record.firstFrames2 = early2.frames.slice(0, 12);
+  record.reserveObserved2 = early2.frames.find((f) => f.reserve)?.reserve ?? null;
+  record.firstScrollY2 = early2.frames[0]?.y ?? null;
+  const ps2 = early2.events.filter((e) => e.kind === 'pageshow').pop() ?? null;
+  record.pageshow2 = ps2;
+  record.persisted2 = ps2 ? (ps2.detail as { persisted: boolean }).persisted : null;
+
+  try {
+    await settled(page);
+  } catch (err) {
+    outcome = 'FAIL';
+    record.settleError2 = String((err as Error).message).split('\n').slice(0, 6).join('\n');
+  }
+
+  const after2 = await place(page);
+  record.after2 = after2;
+  const checks2 = {
+    notTop: after2.y > TOLERANCE,
+    notBottom: after2.travel - after2.y > TOLERANCE,
+    withinTolerance: Math.abs(after2.y - before.y) <= TOLERANCE,
+    sameChapter: after2.chapter === before.chapter,
+    sameHeader: after2.headerState === before.headerState,
+  };
+  record.checks2 = checks2;
+  record.yError2 = after2.y - before.y;
+  record.heightAfter2 = after2.h;
+  if (!Object.values(checks2).every(Boolean)) outcome = 'FAIL';
+
   // ---- the product contract, evaluated but not thrown ---------------------
   // Recorded as booleans rather than asserted one at a time, so a failing run
   // still produces the whole picture instead of stopping at the first bad
@@ -287,6 +364,12 @@ test('homepage history restoration — full trajectory', async ({ page }, info) 
 
   if (!Object.values(checks).every(Boolean)) outcome = 'FAIL';
   record.outcome = outcome;
+  // Which LEG failed, named separately, because "the restore broke" is two
+  // different defects depending on the answer.
+  record.failingLeg =
+    outcome === 'PASS' ? null
+    : !Object.values(checks).every(Boolean) ? 'first-back'
+    : 'second-back (forward then back)';
 
   mkdirSync(OUT, { recursive: true });
   writeFileSync(
@@ -294,9 +377,16 @@ test('homepage history restoration — full trajectory', async ({ page }, info) 
     `${JSON.stringify(record, null, 2)}\n`,
   );
 
+  const ok = { notTop: true, notBottom: true, withinTolerance: true, sameChapter: true, sameHeader: true };
   expect(
     checks,
-    `left at ${before.y}, came back to ${after.y} (h ${before.h} -> ${after.h}, ` +
+    `FIRST back: left at ${before.y}, came back to ${after.y} (h ${before.h} -> ${after.h}, ` +
       `reserve ${reserved ?? 'none'}, first frame y=${record.firstScrollY}) — ${record.lastConfirmedEvent}`,
-  ).toEqual({ notTop: true, notBottom: true, withinTolerance: true, sameChapter: true, sameHeader: true });
+  ).toEqual(ok);
+  expect(
+    checks2,
+    `SECOND back (forward then back): left at ${before.y}, came back to ${after2.y} ` +
+      `(h ${after2.h}, reserve ${record.reserveObserved2 ?? 'none'}, ` +
+      `first frame y=${record.firstScrollY2}, persisted=${record.persisted2})`,
+  ).toEqual(ok);
 });
