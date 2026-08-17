@@ -80,6 +80,13 @@ const flag = (name) => argv.includes(`--${name}`);
 
 const LABEL = arg('label');
 if (!LABEL) { console.error('--label is required'); process.exit(2); }
+// `--action link` walks between the routes in `--path`, so one route means
+// asking a page to link to itself — which is not a navigation anyone performs
+// and whose only matching anchor is the page's own `aria-current` nav entry.
+if (arg('action', 'goto') === 'link' && String(arg('path', '/kkv.html')).split(',').length < 2) {
+  console.error('--action link needs at least two comma-separated --path routes to walk between');
+  process.exit(2);
+}
 
 const N = Number(arg('n', 1000));
 const PATHS = String(arg('path', '/kkv.html')).split(',').map((s) => s.trim()).filter(Boolean);
@@ -125,20 +132,36 @@ async function processHealth() {
 // ---------------------------------------------------------------------------
 // The static control page (§22).
 //
-// Written into the served root rather than a second server, because §22 asks
-// for the same server and the same browser process. `dist/` is build output and
-// is not tracked; `npm run build` clears it, so this is recreated on demand and
-// never becomes a fixture anyone has to maintain.
+// Written into the served root rather than served from a second server, because
+// §22 asks for the same server and the same browser process, and a control that
+// travels a different code path is not a control.
+//
+// It is created only when a run actually asks for it and deleted the moment
+// that run ends. That is not tidiness. `dist/` is build output, but the suite
+// *reads it as a subject*: `public-site.spec.ts` walks every `.html` under
+// `dist/` asserting no page carries an inline script, and
+// `structured-data.spec.ts` walks the same tree asserting every public page
+// carries exactly one parseable JSON-LD block. A control page left lying there
+// is a new public page as far as those tests are concerned, and it fails six of
+// them. Found the hard way, on the first instrumented suite run.
 // ---------------------------------------------------------------------------
 const CONTROL_DIR = join(ROOT, '__navctl');
+const CONTROL_PATH = '/__navctl/control.html';
+const WANTS_CONTROL = PATHS.includes(CONTROL_PATH);
 const CONTROL_HTML = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>navigation control</title></head>
 <body><h1>control</h1><p>No stylesheet, no script, no font, no image. One document, one request.</p></body></html>
 `;
 
 async function ensureControlPage() {
+  if (!WANTS_CONTROL) return;
   await mkdir(CONTROL_DIR, { recursive: true });
   await writeFile(join(CONTROL_DIR, 'control.html'), CONTROL_HTML);
+}
+
+async function removeControlPage() {
+  if (!WANTS_CONTROL) return;
+  await rm(CONTROL_DIR, { recursive: true, force: true });
 }
 
 // ---------------------------------------------------------------------------
@@ -337,7 +360,12 @@ const runDir = join(OUT, 'runs', LABEL);
 
 async function main() {
   await mkdir(SCRATCH, { recursive: true });
-  await rm(SERVER_LOG, { force: true });
+  // Only the process that OWNS the server may clear its log. Under `fleet.mjs`
+  // the server belongs to the parent and every driver runs with
+  // `--server none`; an unconditional delete here meant each child truncated
+  // the shared log as it started, and the fleet arms came out with no
+  // server-side record at all. Found after B1, S1 and S2 had already run.
+  if (SERVER !== 'none') await rm(SERVER_LOG, { force: true });
   await mkdir(runDir, { recursive: true });
   await ensureControlPage();
   await startServer();
@@ -411,7 +439,18 @@ async function main() {
       } else if (ACTION === 'link' && previousUrl) {
         // A real user-path navigation: click an anchor that points at the
         // target, which is the path `assets/js/transitions.js` participates in.
-        const link = page.locator(`a[href$="${path.replace(/^\//, '')}"]`).first();
+        //
+        // `:visible` and `:not([aria-current])` are both load-bearing. Without
+        // them the first matching anchor on a page is that page's own entry in
+        // the navigation chrome — `<a href="kkv.html" aria-current="page">` —
+        // which never becomes clickable, so Playwright waits out the entire
+        // ceiling on actionability and the navigation is never attempted. That
+        // produced three 30 s "boundary A" results that looked exactly like the
+        // defect under investigation and were nothing of the kind; they are
+        // kept, labelled, under failures/_invalid-M9-harness-defect/.
+        const link = page
+          .locator(`a[href$="${path.replace(/^\//, '')}"]:not([aria-current]):visible`)
+          .first();
         await Promise.all([
           page.waitForURL(`**${path}`, { waitUntil: WAIT, timeout: TIMEOUT }),
           link.click({ timeout: TIMEOUT }),
@@ -469,6 +508,7 @@ async function main() {
   clearInterval(sampler);
   await browser.close();
   await stopServer();
+  await removeControlPage();
 
   const endLoad = loadAverage();
   // Classified on the load the run STARTED under, not the load it ended under.
@@ -542,5 +582,8 @@ function bands(records) {
 main().catch(async (err) => {
   console.error(err);
   await stopServer();
+  // Even on the failure path — a control page that outlives a crashed run is
+  // six failing tests in whatever runs next.
+  await removeControlPage().catch(() => {});
   process.exit(1);
 });
