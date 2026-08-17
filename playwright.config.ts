@@ -259,7 +259,12 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: `python3 -m http.server ${PORT} --directory dist`,
+    // Was `python3 -m http.server`. It answers HTTP/1.0 with no keep-alive on
+    // this host's Python 3.9, so every asset opened a new socket, and under five
+    // parallel workers it dropped a request often enough to time out a
+    // `page.goto` on a plain 15 KB HTML page in two of five gate runs. See the
+    // header of scripts/test-server.mjs.
+    command: `node scripts/test-server.mjs ${PORT} dist`,
     url: BASE,
     reuseExistingServer: !process.env.CI,
     timeout: 30_000,
