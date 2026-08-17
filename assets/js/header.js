@@ -272,7 +272,22 @@
     const announce = (open) =>
       dispatchEvent(new CustomEvent('stratos:menu', { detail: { open } }));
 
+    /* The close transition's "now really hide it" timer, so that an open can
+       take it back.
+
+       `close()` cannot hide the layer immediately — it has a 420ms transition to
+       play out — so it hides it on a timer. Without a handle, that timer
+       survives a reopen: a visitor who closes the navigation and opens it again
+       inside 420ms gets `hidden = true` applied to a layer that is now open, and
+       the result is a menu that `aria-expanded`, `.is-open` and the focus
+       position all describe as open while nothing is on screen. Reproduced on
+       both engines at every gap below 420ms, and it is the failure
+       homepage-modality.spec.ts caught on desktop-webkit. */
+    let hideTimer = 0;
+
     function open() {
+      clearTimeout(hideTimer);
+      hideTimer = 0;
       restoreTo = document.activeElement;
       announce(true);
       scrollLock = scrollY;
@@ -317,9 +332,10 @@
       // After the restore, never before it: the driver re-reads the scroll
       // position when it comes back, and it has to read the restored one.
       announce(false);
-      const done = () => { menu.hidden = true; };
+      const done = () => { hideTimer = 0; menu.hidden = true; };
+      clearTimeout(hideTimer);
       if (RM) done();
-      else setTimeout(done, 420);
+      else hideTimer = setTimeout(done, 420);
       // Focus goes back where it came from. Losing it to <body> is the bug
       // that makes a keyboard user restart from the top of the document.
       //
