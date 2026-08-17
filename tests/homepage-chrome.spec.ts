@@ -101,13 +101,63 @@ const headerState = (page: Page) => deck(page).getAttribute('data-state');
  * one. Polled rather than slept, so it costs a few frames on a fast page.
  */
 async function settle(page: Page) {
-  let last = -1;
-  for (let i = 0; i < 30; i++) {
-    const h = await page.evaluate(() => document.documentElement.scrollHeight);
-    if (h === last) return;
-    last = h;
-    await page.waitForTimeout(120);
+  await atRest(page, () => page.evaluate(() => document.documentElement.scrollHeight), 'scrollHeight');
+}
+
+/**
+ * Read a number until it stops changing, and fail loudly if it never does.
+ *
+ * Replaces three near-identical loops that each returned on the FIRST pair of
+ * equal samples and each gave up silently. Both halves of that were wrong, and
+ * the second only became visible once the suite stopped being starved:
+ *
+ *   * **One repeat is not rest.** These quantities are eased per frame. Two
+ *     samples 120 ms apart can agree while an easing has not started, has
+ *     paused on a rounded value, or is between two equal frames. On a 4 fps
+ *     page the sampling was slow enough that the motion had always finished
+ *     first; on a 58 fps page it has not. `homepage-chrome:259` measured the
+ *     header at 55.39px against a 54px bound, and `:531` measured a scroll
+ *     position 25px from where it came to rest — both mid-transition, both
+ *     against a product that settles correctly. Measured: the header eases from
+ *     ~58.8px to 52.48px over ~300ms after a scroll.
+ *   * **Giving up silently is worse than timing out.** The old loops returned
+ *     the last value they happened to see when the iteration bound ran out, so
+ *     a starved page produced a plausible number and the failure surfaced later,
+ *     somewhere else, as a wrong assertion rather than as "this never settled".
+ *
+ * So: three consecutive agreeing samples, and an explicit throw naming the
+ * quantity if the budget is spent. Costs three samples on a page that is
+ * already still, which is the common case.
+ */
+async function atRest(
+  page: Page,
+  read: () => Promise<number>,
+  what: string,
+  { agree = 3, interval = 100, timeout = 15_000 } = {},
+): Promise<number> {
+  const deadline = Date.now() + timeout;
+  let last = Number.NaN;
+  let streak = 0;
+  let seen: number[] = [];
+
+  while (Date.now() < deadline) {
+    const value = await read();
+    seen = [...seen.slice(-5), value];
+    if (value === last) {
+      streak += 1;
+      if (streak >= agree - 1) return value;
+    } else {
+      streak = 0;
+      last = value;
+    }
+    await page.waitForTimeout(interval);
   }
+
+  throw new Error(
+    `${what} never came to rest within ${timeout}ms — last samples: ${seen.join(', ')}. ` +
+      'Either the page is genuinely still animating, or this project is not ' +
+      'getting enough frames to finish one (see tests/harness.spec.ts).',
+  );
 }
 
 /**
@@ -138,14 +188,13 @@ async function scrollToFraction(page: Page, f: number) {
  * lock was in fact restoring its captured position exactly.
  */
 async function restingScrollY(page: Page): Promise<number> {
-  let last = -1;
-  for (let i = 0; i < 25; i++) {
-    const y = await page.evaluate(() => Math.round(scrollY));
-    if (y === last) return y;
-    last = y;
-    await page.waitForTimeout(120);
-  }
-  return last;
+  // The header compacts over ~300ms after a scroll, and that is a layout change
+  // in a sticky element on a pinned journey — so the position is not at rest
+  // until the chrome above it is. Waiting for both is what makes the
+  // before/after comparison in the scroll-lock test a measurement of the lock
+  // rather than of the settling.
+  await atRest(page, () => deck(page).evaluate((el) => el.getBoundingClientRect().height), 'header height');
+  return atRest(page, () => page.evaluate(() => Math.round(scrollY)), 'scrollY');
 }
 
 /**
@@ -280,7 +329,18 @@ test.describe('the homepage flight deck', () => {
 
     // 40–52 px was the brief's range. Asserted as a range and not as a number
     // because the exact value is a design decision that may move inside it.
-    const journey = (await deck(page).boundingBox())!.height;
+    //
+    // Measured once the height has stopped moving, not once the crossfade has.
+    // The two marks finish their opacity swap before the header finishes
+    // compacting — the height eases from ~58.8px to 52.48px over ~300ms — so
+    // the opacity polls above are a proxy that resolves early. Reading the
+    // height immediately after them caught it at 55.39px against this 54px
+    // bound, which is a true reading of a frame the design passes through.
+    const journey = await atRest(
+      page,
+      () => deck(page).evaluate((el) => el.getBoundingClientRect().height),
+      'journey header height',
+    );
     expect(journey, `journey header is ${journey}px`).toBeGreaterThanOrEqual(38);
     expect(journey, `journey header is ${journey}px`).toBeLessThanOrEqual(54);
     expect(journey, 'the header did not compress at all').toBeLessThan(opening);
