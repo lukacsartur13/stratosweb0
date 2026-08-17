@@ -1,0 +1,132 @@
+{
+  "gate": "repository-wide regression gate",
+  "verdict": "NOT GREEN",
+  "reason": "5 wandering failures across 5 runs of one frozen commit; the failure set is not reproducible",
+  "commit": "27044dde1ee79d48438f155d8ee0ef5cd45707a7",
+  "timestamp": "2026-08-17T02:18:10.322Z",
+  "runs": 5,
+  "environment": {
+    "node": "v24.18.1",
+    "platform": "darwin-arm64",
+    "playwright": "1.62.1",
+    "workers": 5,
+    "projects": [
+      "node",
+      "desktop-1440",
+      "desktop-1920",
+      "mobile-390",
+      "mobile-430",
+      "desktop-webkit",
+      "portrait-chromium",
+      "reduced-motion"
+    ]
+  },
+  "dirtyTrackedFiles": [
+    "M .claude/settings.local.json",
+    "M assets/blender/stratos-altimeter.blend",
+    "M blender/mountains/__pycache__/stratos_terrain.cpython-313.pyc"
+  ],
+  "collected": 1271,
+  "collectedIdenticalAcrossRuns": true,
+  "skippedIdenticalAcrossRuns": true,
+  "arithmeticReconciledEveryRun": true,
+  "perRun": [
+    {
+      "run": 1,
+      "passed": 1148,
+      "failed": 1,
+      "flaky": 0,
+      "skipped": 122,
+      "durationMs": 244985.09999999998,
+      "failing": [
+        {
+          "project": "mobile-390",
+          "file": "public-site.spec.ts",
+          "line": 264,
+          "title": "/kkv.html responds and has a title and description",
+          "durationMs": 30036
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "passed": 1149,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 122,
+      "durationMs": 249112.283,
+      "failing": []
+    },
+    {
+      "run": 3,
+      "passed": 1149,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 122,
+      "durationMs": 256283.35,
+      "failing": []
+    },
+    {
+      "run": 4,
+      "passed": 1147,
+      "failed": 2,
+      "flaky": 0,
+      "skipped": 122,
+      "durationMs": 283597.683,
+      "failing": [
+        {
+          "project": "desktop-webkit",
+          "file": "homepage-history.spec.ts",
+          "line": 223,
+          "title": "back and forward restore the position, the chapter and the chrome",
+          "durationMs": 7753
+        },
+        {
+          "project": "mobile-390",
+          "file": "public-site.spec.ts",
+          "line": 240,
+          "title": "the en homepage is its own entry point with its own links",
+          "durationMs": 30035
+        }
+      ]
+    },
+    {
+      "run": 5,
+      "passed": 1146,
+      "failed": 3,
+      "flaky": 0,
+      "skipped": 122,
+      "durationMs": 277871.059,
+      "failing": [
+        {
+          "project": "desktop-1440",
+          "file": "homepage-chrome.spec.ts",
+          "line": 966,
+          "title": "navigating away and back leaves nothing behind",
+          "durationMs": 2462
+        },
+        {
+          "project": "mobile-390",
+          "file": "public-site.spec.ts",
+          "line": 264,
+          "title": "/kkv.html responds and has a title and description",
+          "durationMs": 30034
+        },
+        {
+          "project": "mobile-390",
+          "file": "public-site.spec.ts",
+          "line": 281,
+          "title": "the three languages are cross-linked with hreflang",
+          "durationMs": 30062
+        }
+      ]
+    }
+  ],
+  "stableFailures": 0,
+  "wanderingFailures": 5,
+  "durationMs": {
+    "min": 244985.09999999998,
+    "max": 283597.683,
+    "mean": 262370
+  }
+}
