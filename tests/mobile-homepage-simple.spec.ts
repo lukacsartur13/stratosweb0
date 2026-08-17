@@ -49,15 +49,81 @@ async function ready(page: Page) {
   });
 }
 
-/** Let every reveal fire, then let the longest transition (1.05 s) finish. */
+/**
+ * Walk the document so every reveal fires, and do not move on until each one
+ * has.
+ *
+ * ## What was wrong with the previous shape
+ *
+ * It scrolled the whole page in fixed 70 ms hops, returned to the top, and only
+ * then waited for every element to carry `.is-in`. Three separate faults, all of
+ * which this arrangement removes rather than mitigates:
+ *
+ *   * **70 ms was a guess about someone else's scheduler.** `IntersectionObserver`
+ *     samples; it does not track. Whether an element scrolled past between two
+ *     hops is reported at all depends on when the observer next runs, which
+ *     depends on how much of the machine this tab is getting.
+ *   * **A miss was unrecoverable.** Back at the top, an element halfway down the
+ *     document is not intersecting and never will be again, so anything the
+ *     sweep skipped could only ever be waited out to the 20 s timeout. The
+ *     failure therefore arrived detached from its cause, in a helper, with a
+ *     stack that pointed at the wait rather than at the hop that lost the
+ *     element.
+ *   * **The bound was a stale measurement.** `scrollHeight` was read once, before
+ *     any reveal had fired.
+ *
+ * It failed in 2 of 5 baseline full-suite runs, on both WebKit projects at once,
+ * and passed in isolation, file-serial and file-parallel every time — the
+ * signature of something that only loses the race when the machine is
+ * oversubscribed.
+ *
+ * ## The shape that cannot lose
+ *
+ * Advance one screen, then wait for the observer to have caught up on
+ * everything now *fully above the reveal line* before advancing again. A slow
+ * observer makes a step take longer; it can no longer make an element
+ * disappear. The page's own geometry is re-read every iteration, so the walk
+ * ends when the document says it has ended rather than when a number captured
+ * beforehand says so.
+ *
+ * `REVEAL_LINE` is `mobile/reveal.ts`'s `rootMargin: '0px 0px -12% 0px'`
+ * expressed the way a test can check it. Only elements whose *bottom* has
+ * cleared the line are required to have arrived — one straddling it is
+ * genuinely ambiguous, and demanding it would be asserting a rounding mode.
+ */
 async function revealed(page: Page) {
-  const height = await page.evaluate(() => document.documentElement.scrollHeight);
-  const step = await page.evaluate(() => Math.round(innerHeight * 0.8));
-  for (let y = 0; y < height; y += step) {
-    await page.evaluate((to) => scrollTo({ top: to, behavior: 'instant' }), y);
-    await page.waitForTimeout(70);
+  const REVEAL_LINE = 0.88; // 1 - 12%, from ROOT_MARGIN in mobile/reveal.ts
+
+  const settledAbove = () =>
+    page.waitForFunction(
+      (line) => {
+        const due = [...document.querySelectorAll('.mv-text, .mv-copy, .mv-lines')].filter(
+          (el) => el.getBoundingClientRect().bottom <= innerHeight * line,
+        );
+        return due.every((el) => el.classList.contains('is-in'));
+      },
+      REVEAL_LINE,
+      { timeout: 20_000 },
+    );
+
+  // Bounded only to turn "the document grew forever" into a legible failure
+  // rather than a hang; the loop's real exit is reaching the bottom.
+  for (let guard = 0; guard < 400; guard += 1) {
+    await settledAbove();
+    const atBottom = await page.evaluate(() => {
+      const doc = document.documentElement;
+      if (Math.ceil(scrollY + innerHeight) >= doc.scrollHeight - 1) return true;
+      scrollTo({ top: scrollY + Math.round(innerHeight * 0.8), behavior: 'instant' });
+      return false;
+    });
+    if (atBottom) break;
   }
+
+  await settledAbove();
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+
+  // The contract the callers actually depend on: the reveals finished. Reached
+  // by construction now rather than hoped for.
   await page.waitForFunction(
     () => document.querySelectorAll('.mv-text:not(.is-in), .mv-copy:not(.is-in), .mv-lines:not(.is-in)').length === 0,
     null,
