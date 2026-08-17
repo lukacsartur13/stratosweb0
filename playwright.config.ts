@@ -143,7 +143,20 @@ export default defineConfig({
   // collected count and refuses to produce a verdict that does not add up.
   reporter: [
     ['list'],
-    ['json', { outputFile: '_build/reports/regression-harness/last-run.json' }],
+    // `outputFile` set in the reporter options WINS over
+    // PLAYWRIGHT_JSON_OUTPUT_NAME, so hard-coding it means every repeated run
+    // overwrites the previous one's artefact — which defeats the repeated-run
+    // check the gate policy is built on. Found the hard way: five consecutive
+    // frozen-commit runs produced one file. The env var is honoured first, and
+    // the fixed path is only the default for an ordinary single run.
+    [
+      'json',
+      {
+        outputFile:
+          process.env.PLAYWRIGHT_JSON_OUTPUT_NAME ??
+          '_build/reports/regression-harness/last-run.json',
+      },
+    ],
     ...(process.env.CI ? [['github'] as const, ['html', { open: 'never' }] as const] : []),
   ],
 
