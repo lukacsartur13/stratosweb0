@@ -62,13 +62,90 @@ const ENGINE_ONLY = [
   /portal-control-room\.spec\.ts/, /portal-revenue\.spec\.ts/,
 ];
 
+// =============================================================================
+// Rasterization, and why it is configured rather than inherited.
+//
+// Headless Chromium on this platform defaults to SwiftShader — ANGLE's software
+// rasteriser — and draws every WebGL frame on the CPU. WebKit, in the same
+// suite, uses the Apple GPU. That asymmetry was invisible in this file and it
+// was the cause of the suite's wandering failures. Measured on the built
+// homepage, on the machine this runs on:
+//
+//                              1 page          5 pages (the suite's real shape)
+//   SwiftShader (the default)   4 fps           3-7 fps
+//                               2 086 ms/click  4 850 - 20 781 ms/click
+//   ANGLE Metal                58 fps          41-50 fps
+//                                  89 ms/click     40 -     47 ms/click
+//
+// The per-test budget is 30 000 ms. A single click costing twenty seconds is
+// how `homepage-chrome`'s menu tests failed: Playwright's actionability check
+// waits for *stability* — two consecutive animation frames with an unchanged
+// box — and at four frames a second that wait is arithmetic, not a defect. The
+// hit-test was correct every time it was captured: right element, pointer
+// events on, visible, nothing covering it.
+//
+// So this is not a performance flag. Software rasterisation was making the four
+// Chromium projects assert against a machine no visitor has, while the three
+// WebKit projects asserted against hardware — the brief's own class D,
+// "software rasterizer behaviour not representative of target browser/device".
+// Asking for the GPU makes the Chromium projects test the browser being
+// shipped to.
+//
+// PORTABILITY. `--use-angle=metal` selects a backend that only exists on macOS.
+// Where it cannot be honoured — a Linux CI container, any host without a GPU —
+// Chromium falls back to SwiftShader on its own; the flag is inert, not fatal.
+// That fallback is silent, which is the dangerous part, so it is not left to
+// trust: `tests/harness.spec.ts` asserts which renderer each Chromium project
+// actually got and fails if the suite is running software-rastered without
+// STRATOS_SOFTWARE_RASTER having declared it. An unrepresentative environment
+// is allowed; an undeclared one is not.
+//
+// FALLBACK. When that variable is set, the WebGL-heavy projects drop to one
+// worker each, because on a software rasteriser concurrency is what turns a
+// slow suite into a wandering one. It is deliberately not the default: capping
+// workers to outlast a bad renderer is the mitigation this workstream exists to
+// replace, and it is kept only for hosts that have no renderer to fix.
+// =============================================================================
+const SOFTWARE_RASTER = !!process.env.STRATOS_SOFTWARE_RASTER;
+const CHROMIUM_ARGS = SOFTWARE_RASTER ? [] : ['--use-angle=metal'];
+
+/**
+ * One worker per Chromium project when there is no GPU to share out.
+ *
+ * The rendering cost of this suite is concentrated in five of its nineteen
+ * files — `homepage-chrome`, `public-site`, `mobile-homepage-simple`,
+ * `homepage-modality`, `homepage-history` — which between them account for
+ * ~1 668 of the baseline's 2 792 test-seconds and every one of its ~380 scene
+ * instantiations. They are carried by the four Chromium projects, so capping
+ * those projects is what caps the concurrent software rasterisation.
+ *
+ * Applied only under `STRATOS_SOFTWARE_RASTER`. With the GPU in play the cap is
+ * unnecessary and measurably so: five concurrent hardware-rendered homepages
+ * hold 41-50 fps and 40-47 ms clicks, against 3-7 fps and up to 20 781 ms on the
+ * software path.
+ */
+const heavyWorkers = SOFTWARE_RASTER ? { workers: 1 } : {};
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 2 : undefined,
-  reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : [['list']],
+  // Retries mask exactly the property this suite is now required to have: that
+  // the same commit produces the same result. A test that only passes on the
+  // second attempt is a wandering failure with its evidence thrown away.
+  retries: 0,
+  // Stated rather than inherited from "50% of cores", so the number is a
+  // decision that can be argued with.
+  workers: process.env.CI ? 2 : 5,
+  // A machine-readable report on EVERY run, not only on CI. The P2 miscount
+  // happened because the only artefact was terminal output and it was read with
+  // `tail`; `scripts/gate-report.mjs` reconciles this file's totals against the
+  // collected count and refuses to produce a verdict that does not add up.
+  reporter: [
+    ['list'],
+    ['json', { outputFile: '_build/reports/regression-harness/last-run.json' }],
+    ...(process.env.CI ? [['github'] as const, ['html', { open: 'never' }] as const] : []),
+  ],
 
   use: {
     baseURL: BASE,
@@ -81,10 +158,10 @@ export default defineConfig({
     // rather than five times over in every viewport.
     { name: 'node', testMatch: NODE_ONLY },
 
-    { name: 'desktop-1440', testIgnore: [...NODE_ONLY, ...HARDENING], use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },
+    { name: 'desktop-1440', testIgnore: [...NODE_ONLY, ...HARDENING], ...heavyWorkers, use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 }, launchOptions: { args: CHROMIUM_ARGS } } },
     // Desktop Chromium at 1920x1080 is the hardening matrix's Chromium desktop
     // arm, so `HARDENING` is deliberately NOT ignored here.
-    { name: 'desktop-1920', testIgnore: [...NODE_ONLY, ...ENGINE_ONLY], use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 } } },
+    { name: 'desktop-1920', testIgnore: [...NODE_ONLY, ...ENGINE_ONLY], ...heavyWorkers, use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 }, launchOptions: { args: CHROMIUM_ARGS } } },
     // Portrait WebKit, and the matrix's WebKit portrait arm for the same reason.
     { name: 'mobile-390',   testIgnore: NODE_ONLY, use: { ...devices['iPhone 13'] } },
     { name: 'mobile-430',   testIgnore: [...NODE_ONLY, ...ENGINE_ONLY, ...HARDENING], use: { ...devices['iPhone 14 Pro Max'] } },
@@ -100,6 +177,7 @@ export default defineConfig({
     {
       name: 'portrait-chromium',
       testMatch: HARDENING,
+      ...heavyWorkers,
       // Chromium at the phone viewport, with the coarse pointer and touch that
       // `main.tsx` forks the composition on. Spelled out rather than taken from
       // a device preset because every preset at this size defaults to WebKit,
@@ -110,10 +188,39 @@ export default defineConfig({
         deviceScaleFactor: 3,
         isMobile: true,
         hasTouch: true,
+        launchOptions: { args: CHROMIUM_ARGS },
       },
     },
     {
-      testIgnore: [...NODE_ONLY, ...ENGINE_ONLY, ...HARDENING],
+      // Only the files that contain a reduced-motion assertion.
+      //
+      // This project used to be `testIgnore`-shaped, and so carried 147 tests:
+      // 41 from homepage-chrome, 29 from public-site, 27 from
+      // mobile-homepage-simple — and 29 from lead-forms and 21 from portal,
+      // neither of which contains a single reduced-motion assertion.
+      //
+      // Those last 50 were not a weaker version of the same coverage. Because
+      // the declarative option does not reach the page (see below), and because
+      // this project is Desktop Chrome at 1440x900 exactly as `desktop-1440`
+      // is, they were the same tests, in the same engine, at the same size,
+      // against the same media state, run a second time. The suite's own canary
+      // — public-site.spec.ts, 'the reduced-motion test environment is
+      // genuinely active' — is what proves it, by asserting that an un-emulated
+      // page here still reports `matches === false`.
+      //
+      // Removing them removes no assertion from the suite and no failure mode
+      // from the gate. It is §41's "duplication where proven safe", and the
+      // proof is the canary.
+      //
+      // What is deliberately NOT done: cutting this further to only the ~20
+      // tests that call `enableReducedMotion`. That needs a tag on each of
+      // them, and the remaining duplication inside these three files is a
+      // tidiness cost rather than a correctness one — it is quantified in
+      // resource-map.md rather than traded away here.
+      testMatch: [
+        /homepage-chrome\.spec\.ts/, /public-site\.spec\.ts/, /mobile-homepage-simple\.spec\.ts/,
+      ],
+      ...heavyWorkers,
       // The site promises a readable document without animation, and this
       // project is where that promise is asserted.
       //
@@ -129,7 +236,12 @@ export default defineConfig({
       // `enableReducedMotion(page)` from tests/helpers/reduced-motion.ts, which
       // emulates the state at runtime and then verifies it from inside the page.
       name: 'reduced-motion',
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' },
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1440, height: 900 },
+        reducedMotion: 'reduce',
+        launchOptions: { args: CHROMIUM_ARGS },
+      },
     },
   ],
 
