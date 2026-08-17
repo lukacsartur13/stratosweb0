@@ -70,7 +70,29 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: 0,
   workers: 1,
-  reporter: [['list']],
+  // A machine-readable report, for the same reason the main config has one.
+  //
+  // This config had `[['list']]` and nothing else, which meant the WebGL suite
+  // could only ever be judged from terminal output — exactly the arrangement
+  // that produced the P2 miscount. The hermetic gate caught it the first time
+  // it ran: `RUN hg-01 INVALID — NO_PLAYWRIGHT_JSON_playwright-full`. 165 tests
+  // had passed and the gate still refused to certify the run, because results
+  // it cannot count are results it cannot vouch for.
+  //
+  // `outputFile` honours PLAYWRIGHT_JSON_OUTPUT_NAME first so repeated runs do
+  // not overwrite each other's artefact — the hard-coded path is only the
+  // default for a single ad-hoc run. See the same note in playwright.config.ts.
+  reporter: [
+    ['list'],
+    [
+      'json',
+      {
+        outputFile:
+          process.env.PLAYWRIGHT_JSON_OUTPUT_NAME ??
+          '_build/reports/regression-harness/last-full-run.json',
+      },
+    ],
+  ],
   // Eleven screens of scroll with a damped clock: the journey tests genuinely
   // take longer than a document test, and the default 30 s is not enough for
   // the full-ascent walk.
