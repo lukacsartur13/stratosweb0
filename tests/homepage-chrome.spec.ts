@@ -83,6 +83,35 @@ const deck = (page: Page) => page.locator('header.nav');
 const burger = (page: Page) => page.locator('.burger');
 const menu = (page: Page) => page.locator('#menu');
 
+/**
+ * The header controller is BOUND, not merely painted.
+ *
+ * `header.nav` and `.burger` are both in the server-rendered shell, so they are
+ * visible, stable and clickable the instant the document parses — and
+ * Playwright's actionability check asks for exactly those properties. None of
+ * them is "has a JavaScript listener". A click delivered before
+ * `assets/js/header.js` has run is a real click on a real button that nothing
+ * is listening to, and the layer then correctly stays `hidden` for the whole of
+ * the following assertion's budget.
+ *
+ * `window.Stratos.header` is published at the END of that file (header.js:419),
+ * after every listener in it is bound — including
+ * `burger.addEventListener('click', …)` at :371. So it is an exact readiness
+ * marker rather than an approximate one, and waiting on it is a state wait
+ * rather than a duration.
+ *
+ * Measured over 100 instrumented executions of the subpage contract: the
+ * document was still `loading` or `interactive` at click time in 15 of them,
+ * and `Stratos.header` was absent in one. `defer` closes most of the window —
+ * deferred scripts run before `DOMContentLoaded` — but not all of it.
+ */
+const headerInstalled = (page: Page) =>
+  page.waitForFunction(
+    () => typeof (window as unknown as { Stratos?: { header?: unknown } }).Stratos?.header === 'object',
+    null,
+    { timeout: 15_000 },
+  );
+
 /** The header's own state word, as the state machine wrote it. */
 const headerState = (page: Page) => deck(page).getAttribute('data-state');
 
@@ -1004,12 +1033,18 @@ test.describe('lifecycle', () => {
 
   test('a subpage reached from the homepage carries the same working header', async ({ page }) => {
     await page.goto('/index.html');
+    await headerInstalled(page);
     await burger(page).click();
     await menu(page).locator('.menu__panel a[href]').first().click();
 
     // Same state machine, same trigger, same layer — on the other side of a
     // full document navigation.
+    //
+    // `toBeVisible()` on the deck says the shell has painted; it does not say
+    // the script that makes the trigger work has run. Both are waited for, and
+    // the second is the one this contract was losing a race to.
     await expect(deck(page)).toBeVisible();
+    await headerInstalled(page);
     await burger(page).click();
     await expect(menu(page)).toBeVisible();
     await page.keyboard.press('Escape');
