@@ -59,6 +59,79 @@ const burger = (page: Page) => page.locator('.burger');
 const menu = (page: Page) => page.locator('#menu');
 
 /** Open the layer and wait for the state that says focus has been placed. */
+/**
+ * Wait until the topmost element at a viewport coordinate stops changing.
+ *
+ * WHY THIS EXISTS
+ * ---------------
+ * The pointer assertion below decides, BEFORE clicking, whether the click will
+ * navigate — and then chooses how to observe the result. That prediction is
+ * only sound if the element under the point at click time is the element that
+ * was sampled.
+ *
+ * `openMenu()` waits for `aria-expanded="true"` and `toBeVisible()`. Neither
+ * waits for the layer to finish opening: `toBeVisible()` requires only a
+ * non-empty bounding box. Measured on `portrait-chromium`, sampling the same
+ * coordinate every 20 ms from the moment `openMenu()` returns:
+ *
+ *     i=0..4   DIV.menu__veil   href null
+ *     i=5..    A                href /nagyvallalat.html
+ *
+ * The identity under a FIXED coordinate changes about 100 ms in, as the layer's
+ * contents settle. A sample that caught the veil followed by a click that
+ * caught the link takes the "cannot navigate" branch, the navigation commits,
+ * and `page.evaluate` dies with "Execution context was destroyed" — which is
+ * exactly the failure recorded in run 4 of the hermetic sequence.
+ *
+ * So the precondition the prediction depends on is waited for explicitly. This
+ * is a state — "the layer has stopped moving under this point" — and not a
+ * duration: nothing here is a `waitForTimeout`, and the budget is a ceiling
+ * rather than a delay.
+ *
+ * TWO conditions, and the first is why a stability window alone is not enough.
+ * The layer opens behind `div.menu__veil`, which sits on top, holds still for
+ * many frames, and only then gives way to the links beneath it. A "same answer
+ * five frames running" test is therefore perfectly satisfied BY THE VEIL, and
+ * settles on an answer that is about to stop being true — which is how the
+ * first version of this helper still failed 4 times in 200.
+ *
+ * So the layer's own animations are quiesced first. Scoped to `#menu`: document
+ * -wide never settles, because the homepage runs a journey behind it.
+ */
+async function stableHitTarget(page: Page, point: [number, number]): Promise<void> {
+  // 1. the layer has stopped moving at all
+  await page.waitForFunction(
+    () => {
+      const m = document.getElementById('menu') as HTMLElement | null;
+      if (!m || m.hidden) return false;
+      const running = ((m as unknown as { getAnimations?: (o: object) => Animation[] })
+        .getAnimations?.({ subtree: true }) ?? []).filter((a) => a.playState === 'running');
+      return running.length === 0;
+    },
+    null,
+    { timeout: 10_000, polling: 'raf' },
+  );
+
+  // 2. and the answer under this particular point has stopped changing
+  await page.waitForFunction(
+    ([x, y]) => {
+      const w = window as unknown as { __hit?: { key: string; n: number } };
+      const el = document.elementFromPoint(x, y);
+      const a = el?.closest('a[href]') ?? null;
+      const key = `${el ? `${el.tagName}#${el.id}.${String(el.className)}` : 'nothing'}` +
+        `|${a?.getAttribute('href') ?? ''}`;
+      const seen = (w.__hit ??= { key: '', n: 0 });
+      if (key === seen.key) seen.n += 1;
+      else { seen.key = key; seen.n = 0; }
+      // Five consecutive frames with the same answer. The observed transition
+      // settles well inside this; a layer still moving cannot satisfy it.
+      return seen.n >= 5;
+    },
+    point,
+    { timeout: 10_000, polling: 'raf' },
+  );
+}
+
 async function openMenu(page: Page) {
   await burger(page).click();
   // `aria-expanded` is written in the same synchronous block that moves focus,
@@ -195,6 +268,12 @@ test.describe('the full-screen navigation is a modal layer', () => {
      * reached the layer, not less — what neither outcome may include is the
      * field behind it taking the click. */
     const point: [number, number] = [box!.x + box!.width / 2, box!.y + box!.height / 2];
+
+    /* The layer must have stopped moving under this coordinate before anything
+       is predicted from it. See `stableHitTarget` — without this the sample and
+       the click can disagree, and the branch chosen below is then the wrong
+       one. */
+    await stableHitTarget(page, point);
 
     /* What is under the pointer, and whether clicking it will navigate.
        Both are read in one pass, before the click, because the second answer is
