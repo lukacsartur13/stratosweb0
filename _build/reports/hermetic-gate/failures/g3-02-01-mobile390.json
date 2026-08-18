@@ -1,0 +1,59 @@
+{
+  "test": "public-site.spec.ts:264 /kkv.html responds and has a title and description",
+  "file": "public-site.spec.ts",
+  "line": 264,
+  "title": "/kkv.html responds and has a title and description",
+  "project": "mobile-390",
+  "gate": "playwright-main",
+  "runId": "g3-02",
+  "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
+  "startedAt": "2026-08-18T11:57:22.088Z",
+  "durationMs": 30038,
+  "status": "unexpected",
+  "retries": 0,
+  "lastConfirmedEvent": "page.goto did not resolve — boundary NOT proven (see §21)",
+  "navigationShaped": true,
+  "mayBeCalledNavigationStall": false,
+  "errors": [
+    "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+    "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4322/kkv.html\", waiting until \"load\"\u001b[22m\n\n\n  263 |   for (const path of pages) {"
+  ],
+  "subjectHashStatus": {
+    "identical": true,
+    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "canaryEvents": 0
+  },
+  "runValidity": {
+    "valid": true,
+    "invalidReasons": []
+  },
+  "serverState": [
+    {
+      "name": "main",
+      "kind": "node",
+      "port": 4322,
+      "pid": 3753,
+      "readyAt": "2026-08-18T11:57:35.562Z",
+      "stoppedAt": "2026-08-18T12:16:05.823Z",
+      "exitCode": null
+    },
+    {
+      "name": "full",
+      "kind": "node",
+      "port": 4327,
+      "pid": 3770,
+      "readyAt": "2026-08-18T11:57:35.795Z",
+      "stoppedAt": "2026-08-18T12:16:05.824Z",
+      "exitCode": null
+    }
+  ],
+  "environmentLoad": {
+    "count": 225,
+    "meanLoad1": 8.04,
+    "peakLoad1": 19.33,
+    "minLoad1": 2.45,
+    "peakBrowserProcs": 45,
+    "peakSwapUsedMB": 1343.25
+  }
+}
