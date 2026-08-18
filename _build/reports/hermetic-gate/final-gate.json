@@ -1,0 +1,430 @@
+{
+  "workstream": "hermetic regression gate",
+  "frozenCommit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+  "generatedAt": "2026-08-18T09:37:51.033Z",
+  "subjectRoot": "/Users/arturlukacs/stratos-hermetic/subject",
+  "validRunIds": [
+    "g2-01",
+    "g2-02",
+    "g2-03",
+    "g2-04",
+    "g2-05",
+    "g2-06"
+  ],
+  "validRuns": 6,
+  "requestedRuns": 6,
+  "invalidAttempts": [
+    {
+      "runId": "hg-01",
+      "reason": "NO_PLAYWRIGHT_JSON_playwright-full",
+      "commit": "4ae0838",
+      "note": "different commit; superseded by the reporter fix in 6fda3ff. Not counted."
+    }
+  ],
+  "subjectMutationCount": 0,
+  "totalCanaryEvents": 0,
+  "frozenHashes": {
+    "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+    "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+    "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+  },
+  "hashesIdenticalAcrossRuns": {
+    "product": true,
+    "test": true,
+    "config": true,
+    "dist": true
+  },
+  "aggregateIdentity": {
+    "collected": true,
+    "passed": false,
+    "skipped": true,
+    "failed": false
+  },
+  "skipSetIdentical": true,
+  "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+  "failureSetIdentical": false,
+  "everFailed": [
+    "[desktop-1440] homepage-chrome.spec.ts:1005 a subpage reached from the homepage carries the same working header",
+    "[portrait-chromium] homepage-modality.spec.ts:96 while it is open the page behind it cannot be reached, and afterwards it can"
+  ],
+  "wanderingFailures": [
+    {
+      "test": "[desktop-1440] homepage-chrome.spec.ts:1005 a subpage reached from the homepage carries the same working header",
+      "inRuns": [
+        4
+      ]
+    },
+    {
+      "test": "[portrait-chromium] homepage-modality.spec.ts:96 while it is open the page behind it cannot be reached, and afterwards it can",
+      "inRuns": [
+        4
+      ]
+    }
+  ],
+  "greenRuns": 5,
+  "allValid": true,
+  "allArithmeticReconciles": true,
+  "deterministic": false,
+  "loadRange": {
+    "meanMin": 8.03,
+    "meanMax": 16.85,
+    "peakMin": 15.94,
+    "peakMax": 32.09
+  },
+  "runtimeRange": {
+    "minSec": 1181,
+    "maxSec": 1451
+  },
+  "verdict": "HERMETIC REGRESSION GATE NOT ACCEPTED",
+  "mergeGate": "NOT GREEN",
+  "verdictReason": "Six valid runs, identical subject, identical collected and identical skip SET, but the failure set is not identical: two tests failed in run 4 only and in no other run. Section 37 of the stabilization brief and section 12 of the completion brief both make any wandering failure disqualifying regardless of green rate.",
+  "rows": [
+    {
+      "run": 1,
+      "runId": "g2-01",
+      "valid": true,
+      "green": true,
+      "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+      "hashes": {
+        "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+        "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+        "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+        "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+        "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+      },
+      "subjectIdentical": true,
+      "canaryEvents": 0,
+      "orphanedProcesses": 0,
+      "portsStillHeld": 0,
+      "gatesRun": [
+        "typecheck",
+        "fingerprint-check",
+        "draco-check",
+        "secret-scan",
+        "seo-audit",
+        "conversion-audit",
+        "route-audit",
+        "playwright-main",
+        "playwright-full"
+      ],
+      "buildRan": true,
+      "suites": {
+        "main": {
+          "collected": 1271,
+          "passed": 1150,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 121,
+          "reconciles": true
+        },
+        "webgl": {
+          "collected": 165,
+          "passed": 131,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 34,
+          "reconciles": true
+        }
+      },
+      "collected": 1436,
+      "passed": 1281,
+      "failed": 0,
+      "skipped": 155,
+      "durationMs": 1227270,
+      "meanLoad": 8.03,
+      "peakLoad": 15.94,
+      "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+      "failureSet": []
+    },
+    {
+      "run": 2,
+      "runId": "g2-02",
+      "valid": true,
+      "green": true,
+      "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+      "hashes": {
+        "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+        "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+        "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+        "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+        "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+      },
+      "subjectIdentical": true,
+      "canaryEvents": 0,
+      "orphanedProcesses": 0,
+      "portsStillHeld": 0,
+      "gatesRun": [
+        "typecheck",
+        "fingerprint-check",
+        "draco-check",
+        "secret-scan",
+        "seo-audit",
+        "conversion-audit",
+        "route-audit",
+        "playwright-main",
+        "playwright-full"
+      ],
+      "buildRan": true,
+      "suites": {
+        "main": {
+          "collected": 1271,
+          "passed": 1150,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 121,
+          "reconciles": true
+        },
+        "webgl": {
+          "collected": 165,
+          "passed": 131,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 34,
+          "reconciles": true
+        }
+      },
+      "collected": 1436,
+      "passed": 1281,
+      "failed": 0,
+      "skipped": 155,
+      "durationMs": 1440857,
+      "meanLoad": 13.5,
+      "peakLoad": 32.09,
+      "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+      "failureSet": []
+    },
+    {
+      "run": 3,
+      "runId": "g2-03",
+      "valid": true,
+      "green": true,
+      "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+      "hashes": {
+        "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+        "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+        "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+        "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+        "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+      },
+      "subjectIdentical": true,
+      "canaryEvents": 0,
+      "orphanedProcesses": 0,
+      "portsStillHeld": 0,
+      "gatesRun": [
+        "typecheck",
+        "fingerprint-check",
+        "draco-check",
+        "secret-scan",
+        "seo-audit",
+        "conversion-audit",
+        "route-audit",
+        "playwright-main",
+        "playwright-full"
+      ],
+      "buildRan": true,
+      "suites": {
+        "main": {
+          "collected": 1271,
+          "passed": 1150,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 121,
+          "reconciles": true
+        },
+        "webgl": {
+          "collected": 165,
+          "passed": 131,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 34,
+          "reconciles": true
+        }
+      },
+      "collected": 1436,
+      "passed": 1281,
+      "failed": 0,
+      "skipped": 155,
+      "durationMs": 1428946,
+      "meanLoad": 13.77,
+      "peakLoad": 22.9,
+      "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+      "failureSet": []
+    },
+    {
+      "run": 4,
+      "runId": "g2-04",
+      "valid": true,
+      "green": false,
+      "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+      "hashes": {
+        "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+        "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+        "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+        "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+        "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+      },
+      "subjectIdentical": true,
+      "canaryEvents": 0,
+      "orphanedProcesses": 0,
+      "portsStillHeld": 0,
+      "gatesRun": [
+        "typecheck",
+        "fingerprint-check",
+        "draco-check",
+        "secret-scan",
+        "seo-audit",
+        "conversion-audit",
+        "route-audit",
+        "playwright-main",
+        "playwright-full"
+      ],
+      "buildRan": true,
+      "suites": {
+        "main": {
+          "collected": 1271,
+          "passed": 1148,
+          "failed": 2,
+          "flaky": 0,
+          "skipped": 121,
+          "reconciles": true
+        },
+        "webgl": {
+          "collected": 165,
+          "passed": 131,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 34,
+          "reconciles": true
+        }
+      },
+      "collected": 1436,
+      "passed": 1279,
+      "failed": 2,
+      "skipped": 155,
+      "durationMs": 1419836,
+      "meanLoad": 16.85,
+      "peakLoad": 32.05,
+      "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+      "failureSet": [
+        "[desktop-1440] homepage-chrome.spec.ts:1005 a subpage reached from the homepage carries the same working header",
+        "[portrait-chromium] homepage-modality.spec.ts:96 while it is open the page behind it cannot be reached, and afterwards it can"
+      ]
+    },
+    {
+      "run": 5,
+      "runId": "g2-05",
+      "valid": true,
+      "green": true,
+      "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+      "hashes": {
+        "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+        "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+        "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+        "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+        "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+      },
+      "subjectIdentical": true,
+      "canaryEvents": 0,
+      "orphanedProcesses": 0,
+      "portsStillHeld": 0,
+      "gatesRun": [
+        "typecheck",
+        "fingerprint-check",
+        "draco-check",
+        "secret-scan",
+        "seo-audit",
+        "conversion-audit",
+        "route-audit",
+        "playwright-main",
+        "playwright-full"
+      ],
+      "buildRan": true,
+      "suites": {
+        "main": {
+          "collected": 1271,
+          "passed": 1150,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 121,
+          "reconciles": true
+        },
+        "webgl": {
+          "collected": 165,
+          "passed": 131,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 34,
+          "reconciles": true
+        }
+      },
+      "collected": 1436,
+      "passed": 1281,
+      "failed": 0,
+      "skipped": 155,
+      "durationMs": 1181126,
+      "meanLoad": 10.42,
+      "peakLoad": 26.01,
+      "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+      "failureSet": []
+    },
+    {
+      "run": 6,
+      "runId": "g2-06",
+      "valid": true,
+      "green": true,
+      "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+      "hashes": {
+        "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+        "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+        "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+        "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+        "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+      },
+      "subjectIdentical": true,
+      "canaryEvents": 0,
+      "orphanedProcesses": 0,
+      "portsStillHeld": 0,
+      "gatesRun": [
+        "typecheck",
+        "fingerprint-check",
+        "draco-check",
+        "secret-scan",
+        "seo-audit",
+        "conversion-audit",
+        "route-audit",
+        "playwright-main",
+        "playwright-full"
+      ],
+      "buildRan": true,
+      "suites": {
+        "main": {
+          "collected": 1271,
+          "passed": 1150,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 121,
+          "reconciles": true
+        },
+        "webgl": {
+          "collected": 165,
+          "passed": 131,
+          "failed": 0,
+          "flaky": 0,
+          "skipped": 34,
+          "reconciles": true
+        }
+      },
+      "collected": 1436,
+      "passed": 1281,
+      "failed": 0,
+      "skipped": 155,
+      "durationMs": 1451109,
+      "meanLoad": 16.05,
+      "peakLoad": 24.64,
+      "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+      "failureSet": []
+    }
+  ]
+}

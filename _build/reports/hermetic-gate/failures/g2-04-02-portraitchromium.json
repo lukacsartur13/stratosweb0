@@ -1,0 +1,58 @@
+{
+  "test": "homepage-modality.spec.ts:96 while it is open the page behind it cannot be reached, and afterwards it can",
+  "file": "homepage-modality.spec.ts",
+  "line": 96,
+  "title": "while it is open the page behind it cannot be reached, and afterwards it can",
+  "project": "portrait-chromium",
+  "gate": "playwright-main",
+  "runId": "g2-04",
+  "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+  "startedAt": "2026-08-17T21:52:23.639Z",
+  "durationMs": 2339,
+  "status": "unexpected",
+  "retries": 0,
+  "lastConfirmedEvent": "navigation occurred — context destroyed mid-evaluate",
+  "navigationShaped": false,
+  "mayBeCalledNavigationStall": false,
+  "errors": [
+    "Error: page.evaluate: Execution context was destroyed, most likely because of a navigation\n\n  246 |     await page.mouse.click(point[0], point[1]);\n  247 |     expect(\n> 248 |       await page.evaluate(() => document.activeElement?.id ?? ''),\n      |                  ^"
+  ],
+  "subjectHashStatus": {
+    "identical": true,
+    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "canaryEvents": 0
+  },
+  "runValidity": {
+    "valid": true,
+    "invalidReasons": []
+  },
+  "serverState": [
+    {
+      "name": "main",
+      "kind": "node",
+      "port": 4322,
+      "pid": 46165,
+      "readyAt": "2026-08-17T21:52:42.369Z",
+      "stoppedAt": "2026-08-17T22:16:03.175Z",
+      "exitCode": null
+    },
+    {
+      "name": "full",
+      "kind": "node",
+      "port": 4327,
+      "pid": 46182,
+      "readyAt": "2026-08-17T21:52:42.607Z",
+      "stoppedAt": "2026-08-17T22:16:03.175Z",
+      "exitCode": null
+    }
+  ],
+  "environmentLoad": {
+    "count": 284,
+    "meanLoad1": 16.85,
+    "peakLoad1": 32.05,
+    "minLoad1": 7.02,
+    "peakBrowserProcs": 47,
+    "peakSwapUsedMB": 1447.25
+  }
+}

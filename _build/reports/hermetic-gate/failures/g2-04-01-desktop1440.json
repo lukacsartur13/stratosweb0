@@ -1,0 +1,58 @@
+{
+  "test": "homepage-chrome.spec.ts:1005 a subpage reached from the homepage carries the same working header",
+  "file": "homepage-chrome.spec.ts",
+  "line": 1005,
+  "title": "a subpage reached from the homepage carries the same working header",
+  "project": "desktop-1440",
+  "gate": "playwright-main",
+  "runId": "g2-04",
+  "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+  "startedAt": "2026-08-17T21:52:23.639Z",
+  "durationMs": 6996,
+  "status": "unexpected",
+  "retries": 0,
+  "lastConfirmedEvent": "UNCLASSIFIED — insufficient artefact to name a boundary",
+  "navigationShaped": false,
+  "mayBeCalledNavigationStall": false,
+  "errors": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#menu')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms"
+  ],
+  "subjectHashStatus": {
+    "identical": true,
+    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "canaryEvents": 0
+  },
+  "runValidity": {
+    "valid": true,
+    "invalidReasons": []
+  },
+  "serverState": [
+    {
+      "name": "main",
+      "kind": "node",
+      "port": 4322,
+      "pid": 46165,
+      "readyAt": "2026-08-17T21:52:42.369Z",
+      "stoppedAt": "2026-08-17T22:16:03.175Z",
+      "exitCode": null
+    },
+    {
+      "name": "full",
+      "kind": "node",
+      "port": 4327,
+      "pid": 46182,
+      "readyAt": "2026-08-17T21:52:42.607Z",
+      "stoppedAt": "2026-08-17T22:16:03.175Z",
+      "exitCode": null
+    }
+  ],
+  "environmentLoad": {
+    "count": 284,
+    "meanLoad1": 16.85,
+    "peakLoad1": 32.05,
+    "minLoad1": 7.02,
+    "peakBrowserProcs": 47,
+    "peakSwapUsedMB": 1447.25
+  }
+}

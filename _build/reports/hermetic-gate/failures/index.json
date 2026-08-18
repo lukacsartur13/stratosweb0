@@ -1,0 +1,16 @@
+[
+  {
+    "file": "g2-04-01-desktop1440.json",
+    "test": "homepage-chrome.spec.ts:1005 a subpage reached from the homepage carries the same working header",
+    "project": "desktop-1440",
+    "runId": "g2-04",
+    "lastConfirmedEvent": "UNCLASSIFIED — insufficient artefact to name a boundary"
+  },
+  {
+    "file": "g2-04-02-portraitchromium.json",
+    "test": "homepage-modality.spec.ts:96 while it is open the page behind it cannot be reached, and afterwards it can",
+    "project": "portrait-chromium",
+    "runId": "g2-04",
+    "lastConfirmedEvent": "navigation occurred — context destroyed mid-evaluate"
+  }
+]
