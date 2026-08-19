@@ -17,6 +17,7 @@
 
 import { chromium } from '@playwright/test';
 import { spawn } from 'node:child_process';
+import { createServer } from 'node:net';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -28,8 +29,21 @@ const OUT = join(ROOT, '_build', 'reports', 'phase8-route-audit.json');
 // and a test run cannot be in flight at the same time — and worse, cleaning
 // up 'my' port kills someone else's server mid-suite, which is exactly how
 // a green harness turned into 60 phantom failures once.
-const PORT = 4331;
-const BASE = `http://127.0.0.1:${PORT}`;
+// ... and picking a fixed one means assuming it is free, which it is not
+// always. On 2026-08-19 an unrelated session on this host left a server of its
+// own on 4331. `serve()` below spawned python, python could not bind, python
+// wrote "Address already in use" to a discarded stderr and exited, and this
+// audit then ran all 792 of its checks against ANOTHER PROJECT'S WEBSITE and
+// reported 792 confident failures of this one. Not a single line of it was
+// true, and nothing in the output said so.
+//
+// So the port is a starting point rather than a decision, and — because a free
+// port can still be taken in the microseconds between the check and the bind —
+// the server that answers is required to PROVE it is serving this dist before
+// a single route is audited.
+const PORT_FROM = 4331;
+let PORT = PORT_FROM;
+let BASE = `http://127.0.0.1:${PORT}`;
 const QUICK = process.argv.includes('--quick');
 
 // §14's list. The full set runs by default; --quick keeps the authoring loop
@@ -67,17 +81,67 @@ async function routes() {
   return out;
 }
 
-function serve() {
-  const p = spawn('python3', ['-m', 'http.server', String(PORT), '--directory', join(ROOT, 'dist')],
-    { stdio: 'ignore' });
-  return p;
-}
-
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
+/** Bindable right now. Advisory only — `proveItIsOurs` is what actually decides. */
+const bindable = (port) =>
+  new Promise((resolve) => {
+    const probe = createServer();
+    probe.once('error', () => resolve(false));
+    probe.once('listening', () => probe.close(() => resolve(true)));
+    probe.listen(port, '127.0.0.1');
+  });
+
+async function freePort(from, span = 40) {
+  for (let p = from; p < from + span; p += 1) if (await bindable(p)) return p;
+  throw new Error(`no free port in ${from}..${from + span}`);
+}
+
+function serve() {
+  return spawn('python3', ['-m', 'http.server', String(PORT), '--directory', join(ROOT, 'dist')],
+    { stdio: 'ignore' });
+}
+
+/**
+ * The check that would have turned 792 false failures into one true error.
+ *
+ * Readiness is not identity. Something answering on the port says only that
+ * something is answering; this compares what it serves against the bytes on
+ * disk, so a foreign server is a loud abort rather than a silent audit of
+ * somebody else's site.
+ */
+async function proveItIsOurs() {
+  const onDisk = await readFile(join(ROOT, 'dist', 'index.html'), 'utf8');
+  const deadline = Date.now() + 20_000;
+  let last = 'never answered';
+  while (Date.now() < deadline) {
+    try {
+      const res = await fetch(`${BASE}/index.html`);
+      const body = await res.text();
+      if (body === onDisk) return;
+      last = `serves a DIFFERENT /index.html (${body.length} bytes, ours is ${onDisk.length})`;
+    } catch (e) {
+      last = String(e.message ?? e);
+    }
+    await wait(250);
+  }
+  throw new Error(
+    `route-audit: the server on :${PORT} is not this checkout's — ${last}.\n` +
+    'Refusing to audit it. Nothing below this line would have been about this project.',
+  );
+}
+
 async function main() {
+  PORT = await freePort(PORT_FROM);
+  BASE = `http://127.0.0.1:${PORT}`;
   const server = serve();
-  await wait(900);
+  try {
+    await proveItIsOurs();
+  } catch (e) {
+    server.kill();
+    throw e;
+  }
+  console.log(`route-audit: serving dist/ on :${PORT}`);
 
   const browser = await chromium.launch();
   const all = await routes();
