@@ -77,6 +77,30 @@ const FULL_PORT = Number(flag('full-port', 4327));
 
 mkdirSync(OUT_DIR, { recursive: true });
 mkdirSync(join(OUT_DIR, 'logs'), { recursive: true });
+
+/**
+ * Where the navigation-boundary recorder writes — §46.
+ *
+ * Wired in here rather than left to whoever remembers to export the variables,
+ * because §46 is a requirement ON THE GATE: if the mobile-390 navigation fails
+ * again, that run MUST contain `lastConfirmedState` and a complete bundle, and
+ * a run that produced only `page.goto timeout` would mean this whole workstream
+ * failed. An opt-in diagnostic satisfies that exactly as often as somebody
+ * remembers it.
+ *
+ * The correlation log lives under the run's own output directory, so the six
+ * runs cannot overwrite each other's evidence, and it is outside every canaried
+ * tree, so it cannot invalidate the run that produces it.
+ */
+const NAV_DIAG_DIR = join(OUT_DIR, 'nav-diag');
+const NAV_DIAG_OUT = join(ROOT, '_build/reports/final-navigation-boundary/failures');
+const NAV_DIAG_ENV = {
+  STRATOS_NAV_DIAG_DIR: NAV_DIAG_DIR,
+  STRATOS_NAV_DIAG_RUN: RUN_ID,
+  STRATOS_NAV_DIAG_OUT: NAV_DIAG_OUT,
+  STRATOS_NAV_DIAG_SUBJECT: join(ROOT, '_build/reports/hermetic-gate/manifests', `${RUN_ID}-before.json`),
+};
+
 mkdirSync(join(ROOT, '_build/reports/hermetic-gate/manifests'), { recursive: true });
 
 const log = (...m) => console.log(`[${new Date().toISOString()}] ${m.join(' ')}`);
@@ -263,7 +287,14 @@ async function startServer(name, port, kind) {
     : ['node', ['scripts/test-server.mjs', String(port), 'dist']];
 
   const startedAt = new Date().toISOString();
-  const child = spawn(cmd[0], cmd[1], { cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'] });
+  // The server half of the boundary recorder (§9) writes into the run's own
+  // directory. Passed explicitly rather than inherited, so the gate owns the
+  // path the same way it owns the PID and the port.
+  const child = spawn(cmd[0], cmd[1], {
+    cwd: ROOT,
+    env: { ...process.env, STRATOS_NAV_DIAG_DIR: NAV_DIAG_DIR },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
   register(child, `server:${name}`);
   child.stdout.on('data', (b) => stream.write(b));
   child.stderr.on('data', (b) => stream.write(b));
@@ -339,14 +370,14 @@ const GATES = [
     id: 'playwright-main',
     cmd: 'npx', args: ['playwright', 'test'],
     server: true,
-    env: { PLAYWRIGHT_JSON_OUTPUT_NAME: MAIN_JSON, STRATOS_GATE_SERVER: '1' },
+    env: { PLAYWRIGHT_JSON_OUTPUT_NAME: MAIN_JSON, STRATOS_GATE_SERVER: '1', ...NAV_DIAG_ENV },
     json: MAIN_JSON,
   },
   {
     id: 'playwright-full',
     cmd: 'npx', args: ['playwright', 'test', '--config', 'playwright.full.config.ts'],
     server: true,
-    env: { PLAYWRIGHT_JSON_OUTPUT_NAME: FULL_JSON, STRATOS_GATE_SERVER: '1' },
+    env: { PLAYWRIGHT_JSON_OUTPUT_NAME: FULL_JSON, STRATOS_GATE_SERVER: '1', ...NAV_DIAG_ENV },
     json: FULL_JSON,
   },
 ];
