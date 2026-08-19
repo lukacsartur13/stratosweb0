@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect, type Page } from './helpers/navigation-boundary';
 import fs from 'node:fs';
 import path from 'node:path';
 import { enableReducedMotion, matchesReducedMotion } from './helpers/reduced-motion';
