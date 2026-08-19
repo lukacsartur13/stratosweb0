@@ -58,6 +58,7 @@
 import { spawn, execFileSync } from 'node:child_process';
 import { createWriteStream, mkdirSync, writeFileSync, readFileSync, existsSync, watch } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { createServer } from 'node:net';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 const argv = process.argv.slice(2);
@@ -279,7 +280,54 @@ function loadStats() {
 // ---------------------------------------------------------------------------
 const servers = [];
 
+/**
+ * Nothing may already be holding the port this run is about to claim.
+ *
+ * `startServer` decides a server is ready when the socket answers — which is
+ * true of SOMEBODY ELSE'S server too. Without this, a stale listener on 4322 is
+ * not an error: the spawned process fails to bind, the readiness probe succeeds
+ * against the stranger, and the whole gate runs against a `dist/` this checkout
+ * did not build. The end-of-run `lsof` would then report PORTS_STILL_HELD and
+ * mark the run INVALID — the right verdict, twenty minutes late, and with no
+ * hint of the cause.
+ *
+ * BOTH bindings are probed, and that is not belt-and-braces — each one is blind
+ * to a case the other catches. On macOS a wildcard listener and a loopback-only
+ * listener can coexist on the same port, so:
+ *
+ *   held by `python3 -m http.server` (binds `*`)     wildcard probe fails,
+ *                                                     loopback probe SUCCEEDS
+ *   held by `scripts/test-server.mjs` (binds 127.0.0.1)  loopback probe fails,
+ *                                                     wildcard probe SUCCEEDS
+ *
+ * Both were live on this machine while this was written — a stale `http.server`
+ * from an unrelated checkout on `*:4331`, and this repository's own test server
+ * on `127.0.0.1:4322`. A single-family probe reported one of them free.
+ */
+function portHolder(port) {
+  try {
+    const out = execFileSync('lsof', ['-nP', `-iTCP:${port}`, '-sTCP:LISTEN'], { encoding: 'utf8' }).trim();
+    return out ? out.split('\n').slice(1).join('\n') : null;
+  } catch { return null; }   // lsof exits non-zero when nothing holds the port
+}
+
+const bindable = (port, host) =>
+  new Promise((resolve) => {
+    const probe = createServer();
+    probe.once('error', () => resolve(false));
+    probe.once('listening', () => probe.close(() => resolve(true)));
+    if (host) probe.listen(port, host); else probe.listen(port);
+  });
+
+const portFree = async (port) => (await bindable(port)) && (await bindable(port, '127.0.0.1'));
+
 async function startServer(name, port, kind) {
+  if (!(await portFree(port))) {
+    throw new Error(
+      `port ${port} is already held before this run claimed it:\n${portHolder(port) ?? '(holder not identified)'}\n` +
+      'Refusing to start: a readiness probe cannot tell that server from ours.',
+    );
+  }
   const logPath = join(OUT_DIR, 'logs', `server-${name}.log`);
   const stream = createWriteStream(logPath);
   const cmd = kind === 'python'

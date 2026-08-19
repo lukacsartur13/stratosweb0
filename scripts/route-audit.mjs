@@ -83,14 +83,33 @@ async function routes() {
 
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/** Bindable right now. Advisory only — `proveItIsOurs` is what actually decides. */
-const bindable = (port) =>
+/**
+ * Bindable right now, by the server this is about to start.
+ *
+ * Probes the wildcard AND the loopback binding, because on macOS the two can
+ * coexist on one port and each probe is blind to what the other catches. A
+ * `python3 -m http.server` holds `*:PORT` and is invisible to a loopback probe;
+ * `scripts/test-server.mjs` holds `127.0.0.1:PORT` and is invisible to a
+ * wildcard one. Either will happily answer the fetch below.
+ *
+ * Not hypothetical: it is what this check found the first time it ran in this
+ * workstream, with a stale `http.server` from an unrelated checkout holding
+ * `*:4331`. `proveItIsOurs` caught it and aborted — the guard working exactly as
+ * designed — but a gate that aborts because a stranger is on the port it happened
+ * to pick is a gate that cannot be repeated, and repeatability is the whole
+ * point of the sequence. Asking the right question moves on to 4332 instead.
+ *
+ * Still advisory: `proveItIsOurs` is what actually decides.
+ */
+const bindOne = (port, host) =>
   new Promise((resolve) => {
     const probe = createServer();
     probe.once('error', () => resolve(false));
     probe.once('listening', () => probe.close(() => resolve(true)));
-    probe.listen(port, '127.0.0.1');
+    if (host) probe.listen(port, host); else probe.listen(port);
   });
+
+const bindable = async (port) => (await bindOne(port)) && (await bindOne(port, '127.0.0.1'));
 
 async function freePort(from, span = 40) {
   for (let p = from; p < from + span; p += 1) if (await bindable(p)) return p;
