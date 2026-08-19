@@ -1,5 +1,6 @@
 import { test as base, expect, type Page, type Request, type Response } from '@playwright/test';
 import fs from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
@@ -238,16 +239,70 @@ function readServerLines(navId: string): ServerLine[] {
   if (!DIAG_DIR) return [];
   const out: ServerLine[] = [];
   let files: string[] = [];
-  try { files = fs.readdirSync(DIAG_DIR).filter((f) => /^server-\d+\.jsonl$/.test(f)); } catch { return []; }
+  try { files = readdirSync(DIAG_DIR).filter((f) => /^server-\d+\.jsonl$/.test(f)); } catch { return []; }
   for (const f of files) {
     let text = '';
-    try { text = fs.readFileSync(path.join(DIAG_DIR, f), 'utf8'); } catch { continue; }
+    try { text = readFileSync(path.join(DIAG_DIR, f), 'utf8'); } catch { continue; }
     for (const line of text.split('\n')) {
       if (!line || !line.includes(navId)) continue;
       try { const o = JSON.parse(line) as ServerLine; if (o.navId === navId) out.push({ ...o, __file: f }); } catch { /* partial line */ }
     }
   }
   return out;
+}
+
+/**
+ * §14 — the response signature, and what a FAILING one is compared against.
+ *
+ * A signature on its own says nothing. The question §14 actually asks is
+ * whether the response this navigation got differs from the ones every other
+ * navigation to the same route got, and answering it needs the population as
+ * well as the sample. The server's log already holds the population: every
+ * instrumented request to this path, from every test in the run.
+ *
+ * Compact by construction — status, declared length, content type. Never a
+ * body: "do not log entire HTML bodies for thousands of navigations", and the
+ * comparison that matters does not need one.
+ */
+function responseSignature(navId: string, targetUrl: string | null) {
+  if (!DIAG_DIR || !targetUrl) return null;
+  let p: string;
+  try { p = new URL(targetUrl).pathname; } catch { return null; }
+
+  const sigs = new Map<string, { count: number; navIds: string[] }>();
+  let mine: { status: unknown; bytes: unknown; type: unknown } | null = null;
+  let files: string[] = [];
+  try { files = readdirSync(DIAG_DIR).filter((f) => /^server-\d+\.jsonl$/.test(f)); } catch { return null; }
+
+  for (const f of files) {
+    let text = '';
+    try { text = readFileSync(path.join(DIAG_DIR, f), 'utf8'); } catch { continue; }
+    for (const line of text.split('\n')) {
+      if (!line || !line.includes('head-sent')) continue;
+      let o: ServerLine;
+      try { o = JSON.parse(line) as ServerLine; } catch { continue; }
+      if (o.phase !== 'head-sent' || o.url !== p) continue;
+      const sig = `${o.status}|${o.bytes}|${o.type}`;
+      const e = sigs.get(sig) ?? { count: 0, navIds: [] };
+      e.count += 1;
+      if (e.navIds.length < 3) e.navIds.push(String(o.navId));
+      sigs.set(sig, e);
+      if (o.navId === navId) mine = { status: o.status, bytes: o.bytes, type: o.type };
+    }
+  }
+  if (!sigs.size) return null;
+  const population = [...sigs.entries()].map(([signature, v]) => ({ signature, ...v })).sort((a, b) => b.count - a.count);
+  const mineSig = mine ? `${mine.status}|${mine.bytes}|${mine.type}` : null;
+  return {
+    path: p,
+    thisNavigation: mine,
+    thisSignature: mineSig,
+    population,
+    // The whole point. If this is false, the response itself is the anomaly and
+    // the investigation moves to the server; if true, the response was ordinary
+    // and whatever went wrong went wrong after it.
+    matchesTheCommonSignature: mineSig === null ? null : mineSig === population[0].signature,
+  };
 }
 
 /**
@@ -406,6 +461,7 @@ export const test = base.extend<{ page: Page }>({
     const w = (f: string, o: unknown) => fs.writeFileSync(path.join(dir, f), `${JSON.stringify(o, null, 2)}\n`);
     w('timeline.json', { navId, target: nb.target, gotoResolved: nb.gotoResolved, gotoError: nb.gotoError, preceding: nb.preceding, events: nb.events });
     w('server.json', { navId, diagDir: DIAG_DIR, lineCount: lines.length, statesConfirmed: [...sStates], lines });
+    w('response-signature.json', responseSignature(navId, nb.target) ?? { note: 'no server correlation available' });
     w('network.json', nb.network());
     w('page-state.json', {
       urlFromDriver: page.url(), title, crashed: nb.crashed, closed: nb.closed,

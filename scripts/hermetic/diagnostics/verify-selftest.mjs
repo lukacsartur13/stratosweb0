@@ -78,6 +78,7 @@ for (const d of readdirSync(root, { withFileTypes: true }).filter((e) => e.isDir
     hasTimeline: existsSync(join(root, d.name, 'timeline.json')),
     hasNetwork: existsSync(join(root, d.name, 'network.json')),
     hasPageState: existsSync(join(root, d.name, 'page-state.json')),
+    hasSignature: existsSync(join(root, d.name, 'response-signature.json')),
   });
 }
 rows.sort((a, b) => a.arm.localeCompare(b.arm));
@@ -86,7 +87,7 @@ const problems = [];
 for (const arm of Object.keys(EXPECTED)) if (!rows.some((r) => r.arm === arm)) problems.push(`arm ${arm}: no bundle written`);
 for (const r of rows) {
   if (r.got !== r.want) problems.push(`arm ${r.arm}: lastConfirmedState=${r.got}, expected ${r.want}`);
-  for (const [k, v] of Object.entries({ timeline: r.hasTimeline, server: r.hasServer, network: r.hasNetwork, 'page-state': r.hasPageState }))
+  for (const [k, v] of Object.entries({ timeline: r.hasTimeline, server: r.hasServer, network: r.hasNetwork, 'page-state': r.hasPageState, 'response-signature': r.hasSignature }))
     if (!v) problems.push(`arm ${r.arm}: ${k}.json missing`);
   // Arm E times out AFTER a resolved goto, so its error is a waitForSelector.
   if (r.arm !== 'E' && !r.checkedAgainstReport) problems.push(`arm ${r.arm}: not found in the Playwright report — cannot check the API prefix`);
