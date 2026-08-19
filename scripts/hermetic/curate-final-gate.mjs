@@ -29,6 +29,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 
 const argv = process.argv.slice(2);
@@ -43,12 +44,37 @@ const RUNS_DIR = arg('runs');
 const BUNDLES = arg('bundles');
 const OUT = arg('out');
 
+/**
+ * §45 asks for an identical skip set **by identity**, and `gate.json` records
+ * only a count. Two runs can each skip 155 tests and skip 155 DIFFERENT tests;
+ * that is a real nondeterminism and a count comparison passes it without
+ * noticing. So the set is reconstructed from the Playwright reports, sorted,
+ * and hashed — the hash is what the runs are required to agree on.
+ */
+function skipSet(runDir) {
+  const ids = [];
+  for (const f of ['playwright-main.json', 'playwright-full.json']) {
+    const j = readJson(join(runDir, f));
+    if (!j) continue;
+    const specs = [];
+    const walk = (x) => { for (const y of x.suites ?? []) walk(y); for (const y of x.specs ?? []) specs.push(y); };
+    for (const x of j.suites ?? []) walk(x);
+    for (const sp of specs)
+      for (const t of sp.tests ?? [])
+        for (const r of t.results ?? [])
+          if (r.status === 'skipped') ids.push(`[${t.projectName}] ${sp.file}:${sp.line} ${sp.title}`);
+  }
+  ids.sort();
+  return { count: ids.length, sha: createHash('sha256').update(ids.join('\n')).digest('hex'), ids };
+}
+
 /** Per-run detail from each gate.json, which the raw matrix summarises away. */
 const rows = (raw.rows ?? []).map((r) => {
   // `six-run.mjs` names it `id`; an already-curated file names it `runId`.
   // Accept both so this can be dry-run against a previous sequence.
   const runId = r.id ?? r.runId;
   const g = readJson(join(RUNS_DIR, runId, 'gate.json'), {});
+  const skips = skipSet(join(RUNS_DIR, runId));
   const gate = (id) => (g.gates ?? []).find((x) => x.id === id) ?? {};
   const main = gate('playwright-main');
   const full = gate('playwright-full');
@@ -84,6 +110,7 @@ const rows = (raw.rows ?? []).map((r) => {
     suites: { main: suite(main), webgl: suite(full) },
     collected: r.collected, passed: r.passed, failed: r.failed, skipped: r.skipped,
     durationMs: r.durationMs, meanLoad: r.meanLoad, peakLoad: r.peakLoad,
+    skipSetSha: skips.sha, skipSetCount: skips.count,
     failureSet: r.failures ?? [],
   };
 });
@@ -112,12 +139,17 @@ const zeroMutation = rows.every((r) => r.subjectIdentical === true);
 const zeroOrphans = rows.every((r) => r.orphanedProcesses === 0 && r.portsStillHeld === 0);
 const identicalCollected = uniq(rows.map((r) => r.collected)).length === 1;
 const identicalSkipped = uniq(rows.map((r) => r.skipped)).length === 1;
+/** The one §45 actually asks for: the same tests, not merely the same number. */
+const identicalSkipSet = rows.length > 0
+  && uniq(rows.map((r) => r.skipSetSha)).length === 1
+  && rows.every((r) => r.skipSetCount > 0);
 const arithmetic = rows.every((r) => r.suites.main.reconciles !== false && r.suites.webgl.reconciles !== false);
 /** §46: a navigation-shaped failure with no boundary means THIS workstream failed. */
 const unclassifiedNavigation = navBoundaries.filter((b) => !b.lastConfirmedState);
 
 const accepted = allValid && allGreen && zeroCanary && zeroMutation && zeroOrphans
-  && identicalCollected && identicalSkipped && arithmetic && unclassifiedNavigation.length === 0;
+  && identicalCollected && identicalSkipped && identicalSkipSet && arithmetic
+  && unclassifiedNavigation.length === 0;
 
 const reasons = [
   ...(allValid ? [] : [`only ${rows.filter((r) => r.valid).length}/${raw.requestedRuns ?? 6} runs were VALID`]),
@@ -126,7 +158,8 @@ const reasons = [
   ...(zeroMutation ? [] : ['the subject changed during a run']),
   ...(zeroOrphans ? [] : ['a server process or port survived a run']),
   ...(identicalCollected ? [] : ['collected counts differ across runs']),
-  ...(identicalSkipped ? [] : ['skip sets differ across runs']),
+  ...(identicalSkipped ? [] : ['skip COUNTS differ across runs']),
+  ...(identicalSkipSet ? [] : ['skip SETS differ across runs by identity (same count, different tests)']),
   ...(arithmetic ? [] : ['a suite total does not reconcile']),
   ...(unclassifiedNavigation.length ? [`${unclassifiedNavigation.length} navigation failure(s) carry no lastConfirmedState — §46`] : []),
 ];
@@ -165,7 +198,9 @@ const out = {
     passed: uniq(rows.map((r) => r.passed)).length === 1,
     failed: uniq(rows.map((r) => r.failed)).length === 1,
   },
-  skipSetIdentical: identicalSkipped,
+  skipSetIdentical: identicalSkipSet,
+  skipSetShas: uniq(rows.map((r) => r.skipSetSha)),
+  skipSetSha: identicalSkipSet ? rows[0]?.skipSetSha ?? null : null,
   failureSetIdentical: uniq(rows.map((r) => JSON.stringify(r.failureSet))).length === 1,
   allArithmeticReconciles: arithmetic,
   everFailed: raw.everFailed ?? [],
