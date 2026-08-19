@@ -83,6 +83,22 @@
      out the remainder rather than being silently dropped. */
   var MIN_FILL_MS = 3000;
 
+  /* How far PAST that threshold the wait aims.
+
+     Not a tolerance for a slow server, and not a bigger version of MIN_FILL_MS:
+     the threshold itself is the server's and is unchanged. This exists because
+     a wait computed to finish at EXACTLY the rejection threshold has no room
+     for the granularity of the timer that implements it — `setTimeout` takes a
+     whole number of milliseconds, so a wait of 2989.4 ms is scheduled as 2989
+     and lands short. Measured on the unfixed controller, the headroom over the
+     threshold was 0-2 ms across four projects, and exactly 0 on one of them.
+
+     What a shortfall costs is not a retry or an error. `submit-lead.mjs` drops
+     the submission as automated and answers HTTP 200 with `ok: true` and an
+     invented `leadId`, so the visitor is shown the success copy for an enquiry
+     that was never stored. See _build/reports/lead-silent-drop/. */
+  var MIN_FILL_MARGIN_MS = 250;
+
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
   /* Strings the build writes into <script id="i18n">. Fallbacks are Hungarian,
@@ -131,6 +147,25 @@
     return hex.slice(0, 4).join('') + '-' + hex.slice(4, 6).join('') + '-' +
            hex.slice(6, 8).join('') + '-' + hex.slice(8, 10).join('') + '-' +
            hex.slice(10, 16).join('');
+  }
+
+  /**
+   * Milliseconds on a timebase the system clock cannot move.
+   *
+   * `Date.now()` is the adjustable wall clock; `setTimeout` fires on the
+   * browser's monotonic timebase. Scheduling on one and measuring on the other
+   * is what let a backward clock adjustment of 4 ms make a real submission
+   * report less fill time than it had actually spent waiting — and be discarded
+   * for it. The two readings below are now taken on the same clock as the wait.
+   *
+   * `performance.now()` is universally available in the browsers this site
+   * supports; the fallback is for a document with no `performance` at all,
+   * where the old behaviour is still better than none.
+   */
+  function monotonicNow() {
+    return (window.performance && typeof window.performance.now === 'function')
+      ? window.performance.now()
+      : Date.now();
   }
 
   function cut(v, n) {
@@ -480,7 +515,7 @@
        success so the next enquiry is a new lead. */
     var submissionId = uuid();
     var attempt = 0;
-    var readyAt = Date.now();
+    var readyAt = monotonicNow();
 
     function setLabel(text) {
       if (label) label.textContent = text;
@@ -527,8 +562,12 @@
       setState('submitting', T.sending);
 
       /* Wait out the server's minimum fill time rather than being silently
-         dropped by it. Only ever a wait, never a second request. */
-      var wait = Math.max(0, MIN_FILL_MS - (Date.now() - readyAt));
+         dropped by it. Only ever a wait, never a second request.
+
+         Past the threshold rather than up to it, and measured on the same clock
+         the timer fires on — the two properties whose absence let a genuine
+         enquiry be discarded while the visitor was shown the success copy. */
+      var wait = Math.max(0, MIN_FILL_MS + MIN_FILL_MARGIN_MS - (monotonicNow() - readyAt));
 
       window.setTimeout(function () {
         send({
@@ -536,7 +575,7 @@
           formType: formType,
           fields: read.fields,
           botField: read.botField,
-          elapsedMs: Date.now() - readyAt,
+          elapsedMs: Math.round(monotonicNow() - readyAt),
           attempt: attempt,
         }).then(function (result) {
           if (result.state === 'success') {
@@ -548,7 +587,7 @@
                is a new submission with a new id. */
             submissionId = uuid();
             attempt = 0;
-            readyAt = Date.now();
+            readyAt = monotonicNow();
             return;
           }
 
@@ -581,7 +620,7 @@
       if (form.dataset.state !== 'submitting') return;
       release();
       setState('', '');
-      readyAt = Date.now();
+      readyAt = monotonicNow();
     });
   }
 
@@ -609,6 +648,7 @@
     uuid: uuid,
     endpoint: ENDPOINT,
     minFillMs: MIN_FILL_MS,
+    minFillMarginMs: MIN_FILL_MARGIN_MS,
     strings: T,
     /* Exposed for tests, which assert the allow-list rather than trusting it. */
     attribution: attribution,
