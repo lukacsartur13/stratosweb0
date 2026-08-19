@@ -342,6 +342,94 @@ test.describe('contact form', () => {
   });
 });
 
+/**
+ * The minimum fill wait, which is the one thing in this controller that can
+ * lose a real enquiry without anyone finding out.
+ *
+ * `submit-lead.mjs` discards any envelope whose `meta.elapsedMs` is below
+ * `MIN_FILL_MS` (3 000) as automated — and `dropSilently` answers that discard
+ * with HTTP 200, `ok: true` and a freshly invented `leadId`. The page cannot
+ * tell that apart from a stored lead, so it shows the success copy and the
+ * enquiry is gone. There is no error anywhere: the only trace is a
+ * `drop.tooFast` line in a function log nobody reads.
+ *
+ * The controller therefore waits the threshold out rather than being dropped by
+ * it. These two tests assert the two properties that wait has to have, both of
+ * which it lacked when the g4 gate caught it reporting 2 996 ms — see
+ * _build/reports/lead-silent-drop/root-cause-before-fix.md.
+ */
+test.describe('the minimum fill wait', () => {
+  // No shared `beforeEach` navigation here: both tests need to arm the page
+  // before it loads, or to timestamp the load from outside it.
+
+  test('a backward wall-clock step during the wait cannot under-report the fill time', async ({ page }) => {
+    // The wait is scheduled on the browser's monotonic timebase and, before the
+    // fix, was MEASURED on `Date.now()` — the adjustable wall clock. A backward
+    // adjustment between the two made the envelope report less time than the
+    // controller had actually spent waiting, and the server dropped it.
+    //
+    // 400 ms rather than the 4 ms the gate observed: the same mechanism, at a
+    // size that cannot be confused with scheduling noise in either direction.
+    await page.addInitScript(() => {
+      const real = Date.now.bind(Date);
+      let offset = 0;
+      Date.now = () => real() - offset;
+      // Capture phase, so this is armed before the controller's own listener
+      // computes the wait. The step lands 500 ms in — inside the wait, long
+      // after it was scheduled and long before it fires.
+      document.addEventListener('submit', () => {
+        setTimeout(() => { offset += 400; }, 500);
+      }, true);
+    });
+
+    await page.goto('/ugyfelszolgalat.html');
+    // Taken AFTER the navigation resolves, so it is no earlier than the moment
+    // the controller started its own window — which makes the interval measured
+    // from it a LOWER bound on the time the controller really waited. Measured
+    // out here, where the page's patched clock cannot reach it: the fix has to
+    // make the report true, not merely large enough to pass.
+    const readyAt = Date.now();
+
+    const sent = await interceptLead(page);
+    await fillContact(page);
+    await page.getByRole('button', { name: 'Küldés' }).click();
+    await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
+    const realElapsed = Date.now() - readyAt;
+
+    // One user submission, one request. A fix that retried would pass the
+    // assertion below and create a second lead.
+    expect(sent).toHaveLength(1);
+    expect(sent[0].meta.attempt).toBe(1);
+    expect(sent[0].submissionId).toMatch(UUID_RE);
+
+    // The envelope must not carry a value the server will discard.
+    expect(sent[0].meta.elapsedMs).toBeGreaterThanOrEqual(3000);
+    // …and it must not be an inflated one either: the controller really did
+    // wait that long, whatever the page's clock was told to say.
+    expect(realElapsed).toBeGreaterThanOrEqual(3000);
+  });
+
+  test('the wait clears the drop threshold with headroom rather than landing on it', async ({ page }) => {
+    await page.goto('/ugyfelszolgalat.html');
+    // The second half of the defect, and the reason the first half was fatal:
+    // the controller aimed at EXACTLY `MIN_FILL_MS`, so any shortfall of any
+    // size crossed the threshold. `setTimeout` truncates its delay to whole
+    // milliseconds, which is a shortfall of up to 1 ms on its own — before any
+    // clock adjustment is involved.
+    //
+    // The floor asserted here is the contract, not the constant: it is spelled
+    // out so that removing the headroom fails this test rather than silently
+    // restoring a boundary-exact aim.
+    const sent = await interceptLead(page);
+    await fillContact(page);
+    await page.getByRole('button', { name: 'Küldés' }).click();
+    await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
+
+    expect(sent).toHaveLength(1);
+    expect(sent[0].meta.elapsedMs).toBeGreaterThanOrEqual(3200);
+  });
+});
+
 test.describe('newsletter', () => {
   test('subscribes with only an address, as its own source', async ({ page }) => {
     await page.goto('/rolunk.html');
@@ -511,6 +599,34 @@ test.describe('the deployed bundle', () => {
       }
     }
     expect(offenders, `Web3Forms survives in:\n${offenders.join('\n')}`).toEqual([]);
+  });
+
+  /**
+   * The merge-gate canary for the silent drop.
+   *
+   * The two behavioural tests above prove the corrected controller works; this
+   * one proves the corrected controller is what actually SHIPPED. It reads the
+   * built bundle, it is two assertions long, and it exists so the gate goes red
+   * on the defect returning even if nothing ever runs a stress sweep again.
+   *
+   * Both assertions describe shape rather than behaviour, deliberately: a
+   * canary that re-derives the behaviour is a slower copy of the tests above,
+   * and what is being guarded here is a specific pair of lines that were wrong.
+   */
+  test('the shipped controller measures the fill window on a clock that cannot move', async () => {
+    const src = await readFile(join(DIST, 'assets/js/lead.js'), 'utf8');
+
+    // `Date.now()` is the adjustable wall clock. Reading the fill window from it
+    // while waiting on the monotonic one is what let a 4 ms backward adjustment
+    // make a genuine enquiry report 2 996 ms — and be discarded for it, behind
+    // an HTTP 200 and the success copy.
+    expect(src, 'lead.js is reading the fill window off the wall clock again')
+      .not.toMatch(/Date\.now\(\)\s*-\s*readyAt/);
+
+    // And the wait must still finish PAST the server's threshold rather than on
+    // it: measured headroom on the unfixed controller was 0-2 ms.
+    expect(src, 'lead.js aims the fill wait at the drop threshold again')
+      .toMatch(/MIN_FILL_MARGIN_MS\s*=\s*[1-9]\d+\s*;/);
   });
 
   test('every public form posts to the internal endpoint', async () => {
