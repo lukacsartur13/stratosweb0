@@ -39,6 +39,7 @@
  */
 
 import { spawn, spawnSync, execFileSync } from 'node:child_process';
+
 import { readFileSync, writeFileSync, mkdirSync, existsSync, watch } from 'node:fs';
 import { join, resolve } from 'node:path';
 import os from 'node:os';
@@ -139,17 +140,37 @@ if (spec.grep) pwArgs.push('-g', spec.grep);
 log(`arm=${ARM} repeat=${REPEAT} workers=${WORKERS}`);
 const startedAt = nowIso();
 const t0 = Date.now();
-const pw = spawnSync('npx', pwArgs, {
-  cwd: ROOT, stdio: ['ignore', 'inherit', 'inherit'], encoding: 'utf8',
-  env: {
-    ...process.env,
-    STRATOS_GATE_SERVER: '1',
-    STRATOS_DIAG_PORT: String(PORT),
-    STRATOS_NAV_DIAG_DIR: join(workDir, 'diag'),
-    STRATOS_NAV_DIAG_RUN: RUN_ID,
-    STRATOS_NAV_DIAG_OUT: join(OUT, 'failures'),
-    PLAYWRIGHT_JSON_OUTPUT_NAME: reportPath,
-  },
+
+/**
+ * `spawn` and await, NOT `spawnSync`.
+ *
+ * The first version used `spawnSync` and it quietly destroyed two of the three
+ * things this runner exists to record. `spawnSync` blocks the event loop for
+ * the entire arm, so for 38 minutes the load sampler never ticked — `load` came
+ * out `null` — and every `fs.watch` callback sat queued until the child exited,
+ * at which point all 509 of them fired inside the same millisecond and carried
+ * that millisecond as their timestamp.
+ *
+ * The canary still did its job: it caught a real rebuild of `dist` and
+ * correctly invalidated the run. But it could not say WHEN, and "when" is the
+ * difference between "another process rebuilt the subject at 11:07" and 509
+ * events with no history at all.
+ */
+const pw = await new Promise((resolve) => {
+  const child = spawn('npx', pwArgs, {
+    cwd: ROOT, stdio: ['ignore', 'inherit', 'inherit'],
+    env: {
+      ...process.env,
+      STRATOS_GATE_SERVER: '1',
+      STRATOS_DIAG_PORT: String(PORT),
+      STRATOS_NAV_DIAG_DIR: join(workDir, 'diag'),
+      STRATOS_NAV_DIAG_RUN: RUN_ID,
+      STRATOS_NAV_DIAG_OUT: join(OUT, 'failures'),
+      PLAYWRIGHT_JSON_OUTPUT_NAME: reportPath,
+    },
+  });
+  child.on('exit', (code) => resolve({ status: code }));
+  child.on('error', () => resolve({ status: -1 }));
 });
 const durationMs = Date.now() - t0;
 clearInterval(loadTimer);
