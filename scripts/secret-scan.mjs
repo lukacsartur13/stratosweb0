@@ -136,6 +136,42 @@ const DESCRIBES_THE_RULE = new Set([
   '_build/reports/phase9-dependency-audit.md',
 ]);
 
+/**
+ * Machine-generated run artefacts, excluded by PATH PREFIX rather than by name.
+ *
+ * The gate writes a Playwright JSON report into its own run directory, and that
+ * report quotes failing test SOURCE and error text verbatim. So when
+ * `tests/lead-forms.spec.ts` failed — on a line that reads
+ *
+ *     expect(JSON.stringify(envelope)).not.toMatch(/access_key|web3forms/i);
+ *
+ * — the words landed inside `runs/g4-02/playwright-main.json`, and this scanner
+ * reported six findings for them. That file is already in `DESCRIBES_THE_RULE`
+ * precisely because it names the rule in order to forbid it; the exemption is
+ * keyed on the authored path, and quoting the same text somewhere else brought
+ * the finding back from the dead.
+ *
+ * The consequence was worse than a false positive. The artefact persists, so
+ * EVERY LATER RUN failed the same way: run 3 was red because of run 2's output,
+ * which destroys the independence the repeated-run gate is built on. Six runs
+ * are not six runs if one can poison the next.
+ *
+ * Deliberately NOT `_build/reports/**`. The comment on `DESCRIBES_THE_RULE`
+ * argues that a directory-wide exemption there is how a real pasted key stops
+ * being caught, and that argument is right — for AUTHORED reports. These paths
+ * are different in kind: regenerated every run, never written by hand, never
+ * deployed. That is the same category as `test-results` and
+ * `playwright-report`, which SKIP_DIRS already excludes by name; these need a
+ * prefix because their directory names are not distinctive.
+ */
+const GENERATED_TREES = [
+  '_build/reports/hermetic-gate/runs',
+  '_build/reports/final-navigation-boundary/failures',
+  '_build/reports/final-navigation-boundary/stress',
+  '_build/reports/regression-harness/last-run.json',
+];
+const isGenerated = (rel) => GENERATED_TREES.some((p) => rel === p || rel.startsWith(`${p}/`));
+
 // iCloud Drive writes "thing 2.ext" next to "thing.ext" when the folder syncs
 // from two machines. .gitignore already refuses to commit them and
 // scripts/assemble.mjs already keeps them out of dist/, so they are neither
@@ -153,6 +189,7 @@ async function walk(dir, out = []) {
     if (SKIP_DIRS.has(entry.name)) continue;
     if (isDuplicate(entry.name)) continue;
     const path = join(dir, entry.name);
+    if (isGenerated(relative(ROOT, path))) continue;
     if (entry.isDirectory()) await walk(path, out);
     else if (TEXT.test(entry.name)) out.push(path);
   }
