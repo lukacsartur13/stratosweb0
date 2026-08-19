@@ -1,0 +1,5942 @@
+{
+  "runId": "g5-01",
+  "startedAt": "2026-08-19T17:40:17.707Z",
+  "root": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb",
+  "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+  "serverKind": "node",
+  "valid": false,
+  "invalidReasons": [
+    "SUBJECT_MUTATED_DURING_RUN",
+    "CANARY_WRITES_DURING_RUN=699"
+  ],
+  "gates": [
+    {
+      "id": "typecheck",
+      "exitCode": 0,
+      "durationMs": 3348,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/typecheck.log",
+      "needsServer": false
+    },
+    {
+      "id": "fingerprint-check",
+      "exitCode": 0,
+      "durationMs": 129,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/fingerprint-check.log",
+      "needsServer": false
+    },
+    {
+      "id": "draco-check",
+      "exitCode": 0,
+      "durationMs": 109,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/draco-check.log",
+      "needsServer": false
+    },
+    {
+      "id": "secret-scan",
+      "exitCode": 0,
+      "durationMs": 496,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/secret-scan.log",
+      "needsServer": false
+    },
+    {
+      "id": "seo-audit",
+      "exitCode": 0,
+      "durationMs": 127,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/seo-audit.log",
+      "needsServer": false
+    },
+    {
+      "id": "conversion-audit",
+      "exitCode": 0,
+      "durationMs": 142,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/conversion-audit.log",
+      "needsServer": false
+    },
+    {
+      "id": "route-audit",
+      "exitCode": 0,
+      "durationMs": 259703,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/route-audit.log",
+      "needsServer": false
+    },
+    {
+      "id": "playwright-main",
+      "exitCode": 0,
+      "durationMs": 317824,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/playwright-main.log",
+      "needsServer": true,
+      "reportExitCode": 0,
+      "collected": 1285,
+      "passed": 1164,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 121,
+      "arithmeticReconciles": true,
+      "failingTests": []
+    },
+    {
+      "id": "playwright-full",
+      "exitCode": 0,
+      "durationMs": 596628,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/playwright-full.log",
+      "needsServer": true,
+      "reportExitCode": 0,
+      "collected": 165,
+      "passed": 131,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 34,
+      "arithmeticReconciles": true,
+      "failingTests": []
+    }
+  ],
+  "build": {
+    "site": {
+      "exitCode": 0,
+      "durationMs": 7557,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/build.log"
+    },
+    "experiments": {
+      "exitCode": 0,
+      "durationMs": 3434,
+      "log": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/build-full.log"
+    }
+  },
+  "subject": {
+    "before": {
+      "combined": "2e3dcda142138c9ee2e232faca7efcc7947ebc4d81e43e76e9e4b465d9b1b1e3",
+      "product": "6cce15d91dd856cbc93094dbf724b06387dfae1b41c273c2b2086386b4138493",
+      "test": "40b30419a4b1123a239e49b8cc14e0021bfafc5f1a1a3e517d0505f709a84855",
+      "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+      "dist": "081cefa1b13739c63e0bfbe416831ba9d10bbd1fa21003ceb67969c0a447fa37",
+      "distFiles": 188
+    },
+    "after": {
+      "combined": "ab679e479d3c92d778cabebc6939e7c9a62b655843c4941bca1416de7cd28a09",
+      "product": "6cce15d91dd856cbc93094dbf724b06387dfae1b41c273c2b2086386b4138493",
+      "test": "40b30419a4b1123a239e49b8cc14e0021bfafc5f1a1a3e517d0505f709a84855",
+      "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+      "dist": "450b7eaf5a1648bc7e9eba5fcf679aaa7cc1fc1315b349331d4d58859f467357",
+      "distFiles": 310
+    },
+    "identical": false
+  },
+  "servers": [
+    {
+      "name": "main",
+      "kind": "node",
+      "port": 4322,
+      "pid": 33681,
+      "root": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/dist",
+      "startedAt": "2026-08-19T17:40:28.862Z",
+      "readyAt": "2026-08-19T17:40:29.091Z",
+      "logPath": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/server-main.log",
+      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+      "stoppedAt": "2026-08-19T18:00:08.103Z",
+      "exitCode": null
+    },
+    {
+      "name": "full",
+      "kind": "node",
+      "port": 4327,
+      "pid": 33698,
+      "root": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/dist",
+      "startedAt": "2026-08-19T17:40:29.112Z",
+      "readyAt": "2026-08-19T17:40:29.324Z",
+      "logPath": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/runs/g5-01/logs/server-full.log",
+      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+      "stoppedAt": "2026-08-19T18:00:08.103Z",
+      "exitCode": null
+    }
+  ],
+  "ownedProcesses": [
+    {
+      "what": "gate:build",
+      "pid": 33240,
+      "startedAt": "2026-08-19T17:40:17.749Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:40:25.305Z",
+      "signal": null
+    },
+    {
+      "what": "gate:build-full",
+      "pid": 33565,
+      "startedAt": "2026-08-19T17:40:25.306Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:40:28.739Z",
+      "signal": null
+    },
+    {
+      "what": "gate:manifest-g5-01-before",
+      "pid": 33664,
+      "startedAt": "2026-08-19T17:40:28.740Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:40:28.858Z",
+      "signal": null
+    },
+    {
+      "what": "server:main",
+      "pid": 33681,
+      "startedAt": "2026-08-19T17:40:28.863Z",
+      "exitCode": null,
+      "exitedAt": "2026-08-19T18:00:08.106Z",
+      "signal": "SIGKILL"
+    },
+    {
+      "what": "server:full",
+      "pid": 33698,
+      "startedAt": "2026-08-19T17:40:29.113Z",
+      "exitCode": null,
+      "exitedAt": "2026-08-19T18:00:08.106Z",
+      "signal": "SIGKILL"
+    },
+    {
+      "what": "gate:typecheck",
+      "pid": 33715,
+      "startedAt": "2026-08-19T17:40:29.346Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:40:32.693Z",
+      "signal": null
+    },
+    {
+      "what": "gate:fingerprint-check",
+      "pid": 33804,
+      "startedAt": "2026-08-19T17:40:32.694Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:40:32.822Z",
+      "signal": null
+    },
+    {
+      "what": "gate:draco-check",
+      "pid": 33849,
+      "startedAt": "2026-08-19T17:40:32.823Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:40:32.931Z",
+      "signal": null
+    },
+    {
+      "what": "gate:secret-scan",
+      "pid": 33879,
+      "startedAt": "2026-08-19T17:40:32.932Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:40:33.427Z",
+      "signal": null
+    },
+    {
+      "what": "gate:seo-audit",
+      "pid": 33914,
+      "startedAt": "2026-08-19T17:40:33.428Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:40:33.554Z",
+      "signal": null
+    },
+    {
+      "what": "gate:conversion-audit",
+      "pid": 33944,
+      "startedAt": "2026-08-19T17:40:33.555Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:40:33.696Z",
+      "signal": null
+    },
+    {
+      "what": "gate:route-audit",
+      "pid": 33973,
+      "startedAt": "2026-08-19T17:40:33.697Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:44:53.399Z",
+      "signal": null
+    },
+    {
+      "what": "gate:playwright-main",
+      "pid": 35895,
+      "startedAt": "2026-08-19T17:44:53.403Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:50:11.224Z",
+      "signal": null
+    },
+    {
+      "what": "gate:playwright-main-report",
+      "pid": 38410,
+      "startedAt": "2026-08-19T17:50:11.226Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T17:50:11.390Z",
+      "signal": null
+    },
+    {
+      "what": "gate:playwright-full",
+      "pid": 38425,
+      "startedAt": "2026-08-19T17:50:11.392Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T18:00:08.018Z",
+      "signal": null
+    },
+    {
+      "what": "gate:playwright-full-report",
+      "pid": 40996,
+      "startedAt": "2026-08-19T18:00:08.019Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T18:00:08.103Z",
+      "signal": null
+    },
+    {
+      "what": "gate:manifest-g5-01-after",
+      "pid": 41011,
+      "startedAt": "2026-08-19T18:00:08.106Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-19T18:00:16.940Z",
+      "signal": null
+    },
+    {
+      "what": "gate:manifest-compare",
+      "pid": 41034,
+      "startedAt": "2026-08-19T18:00:16.943Z",
+      "exitCode": 3,
+      "exitedAt": "2026-08-19T18:00:16.972Z",
+      "signal": null
+    }
+  ],
+  "canaryEvents": [
+    {
+      "at": "2026-08-19T17:40:31.748Z",
+      "target": "dist",
+      "event": "change",
+      "file": "adatkezelesi-tajekoztato.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.748Z",
+      "target": "dist",
+      "event": "change",
+      "file": "arajanlat.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.748Z",
+      "target": "dist",
+      "event": "change",
+      "file": "kkv.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.798Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-google-vagy-facebook.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.798Z",
+      "target": "dist",
+      "event": "change",
+      "file": "munkaink.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.798Z",
+      "target": "dist",
+      "event": "change",
+      "file": "munka-barbershop.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.798Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-miert-nem-hoz-ugyfelet.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.798Z",
+      "target": "dist",
+      "event": "change",
+      "file": "szolgaltatasok.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.798Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-weboldal-arak.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.799Z",
+      "target": "dist",
+      "event": "change",
+      "file": "impact-program.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.799Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.799Z",
+      "target": "dist",
+      "event": "change",
+      "file": "impresszum.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.799Z",
+      "target": "dist",
+      "event": "change",
+      "file": "ugyfelszolgalat.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.799Z",
+      "target": "dist",
+      "event": "change",
+      "file": "branding.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.799Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-google-elso-oldal.html"
+    },
+    {
+      "at": "2026-08-19T17:40:31.799Z",
+      "target": "dist",
+      "event": "change",
+      "file": "munka-mentaltrening.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.436Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/index.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.436Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/contact.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.436Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/work-rapidkert.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/404.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/privacy-policy.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/imprint.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-outdated-website.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/work-barbershop.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/quote.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/web-design-enterprise.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/services.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-no-enquiries.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/impact-program.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/work-mentaltrening.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/work.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.487Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-google-business-profile.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.722Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-google-first-page.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.722Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/ads-management.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.776Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-google-or-facebook.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.776Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-website-cost.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.776Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/about.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/branding.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/web-design-sme.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-google-cegprofil.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-elavult-weboldal.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "nagyvallalat.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "munka-rapidkert.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "hirdeteskezeles.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "404.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "rolunk.html"
+    },
+    {
+      "at": "2026-08-19T17:40:32.823Z",
+      "target": "dist",
+      "event": "change",
+      "file": "sitemap.xml"
+    },
+    {
+      "at": "2026-08-19T17:40:33.698Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-signal.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/motion.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/type.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-blog.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-about.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/main.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-contact.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-rapidkert.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/chrome.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-impact.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-build.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-services.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/transitions.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.749Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-quiz.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.799Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-brand.css"
+    },
+    {
+      "at": "2026-08-19T17:40:33.799Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/quote.de.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.080Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/motion.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/header.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/lead.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/quote.en.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/analytics.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/home-history.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/transitions.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/main.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/consent.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/quote.hu.js"
+    },
+    {
+      "at": "2026-08-19T17:40:34.131Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/client-rapidkert.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.182Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/favicon.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.182Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-duna-enterior.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.182Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/kivitelezes.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.182Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-synergy.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.182Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/work-1.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.410Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/space-horizon.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.410Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/work-rapidkert.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.410Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-haio.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/client-barbershop.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/team-artur.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/team-richard.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/icons.svg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-kontyos.webp"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-3.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-duna-hajok.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-fice.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-6.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/plane-cursor.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/texture-fabric.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/work-2.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.461Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-4.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-1.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-2.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/gdpr.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/work-3.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-grantool.png"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/cloud-tops.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/moon.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/hero.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/struktura.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:34.512Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-5.jpg"
+    },
+    {
+      "at": "2026-08-19T17:40:35.006Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/jetbrains-mono/OFL.txt"
+    },
+    {
+      "at": "2026-08-19T17:40:35.006Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2"
+    },
+    {
+      "at": "2026-08-19T17:40:35.006Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin.woff2"
+    },
+    {
+      "at": "2026-08-19T17:40:35.056Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/aboreto/aboreto-normal-latin.woff2"
+    },
+    {
+      "at": "2026-08-19T17:40:35.056Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/aboreto/OFL.txt"
+    },
+    {
+      "at": "2026-08-19T17:40:35.056Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/aboreto/aboreto-normal-latin-ext.woff2"
+    },
+    {
+      "at": "2026-08-19T17:40:35.056Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/archivo-italic-latin-ext.woff2"
+    },
+    {
+      "at": "2026-08-19T17:40:35.056Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/archivo-italic-latin.woff2"
+    },
+    {
+      "at": "2026-08-19T17:40:35.056Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/OFL.txt"
+    },
+    {
+      "at": "2026-08-19T17:40:35.056Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/archivo-normal-latin.woff2"
+    },
+    {
+      "at": "2026-08-19T17:40:35.056Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/archivo-normal-latin-ext.woff2"
+    },
+    {
+      "at": "2026-08-19T17:40:35.514Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-google-unternehmensprofil.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.514Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/index.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/404.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/impact-programm.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/branding.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-keine-anfragen.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/projekt-barbershop.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/angebot.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/projekte.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/webdesign-kmu.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-veraltete-website.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-google-erste-seite.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/webdesign-grossunternehmen.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/kontakt.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.565Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-google-oder-facebook.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.616Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/impressum.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.616Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-website-kosten.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.616Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/projekt-mentaltrening.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.616Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/datenschutz.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.616Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/werbeanzeigen.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.616Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/projekt-rapidkert.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.616Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/leistungen.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.616Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/ueber-uns.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "robots.txt"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "models/stratos-mountains-desktop.glb"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "models/stratos-altimeter.glb"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "models/stratos-mountains-mobile.glb"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco/draco_decoder.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco/MANIFEST.json"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco/draco_decoder.wasm"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco/draco_wasm_wrapper.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "index.html"
+    },
+    {
+      "at": "2026-08-19T17:40:35.667Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/ScrollTrigger-7Zy99s9Q.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.717Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/MobileInstrument-BYs4_m_c.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.717Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/index-Bvu9zNsI.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.717Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/main-CkZ5Ow1d.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.717Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/Gltf-D7FiHbmi.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.717Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/JourneyScene-u8II-7Ur.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.717Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/main-BX_y03kk.css"
+    },
+    {
+      "at": "2026-08-19T17:40:35.770Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/clients-BMynSm9P.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.770Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/records-BX80TGcE.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.770Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/screens-BulDyxLO.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.818Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/sales-D5WoKUGa.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.818Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/opportunity-detail-Ba-1Y8Yv.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.818Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/OpportunityForm-CPbpq30N.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.869Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/supabase-CI_V8wt2.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.869Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/sales-ndX6UH6G.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.869Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/projects-BozhIBsQ.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.869Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/plus-BI2k7X75.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.869Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/index-CwCoZP76.css"
+    },
+    {
+      "at": "2026-08-19T17:40:35.869Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/index-C6bxHk4w.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.869Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/analytics-DxzyI7Vl.js"
+    },
+    {
+      "at": "2026-08-19T17:40:35.920Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/vendor--ue7KvUB.js"
+    },
+    {
+      "at": "2026-08-19T17:40:36.048Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/index.html"
+    },
+    {
+      "at": "2026-08-19T17:40:36.098Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/index.html"
+    },
+    {
+      "at": "2026-08-19T17:40:37.978Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco/draco_decoder.js"
+    },
+    {
+      "at": "2026-08-19T17:40:37.978Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco/draco_wasm_wrapper.js"
+    },
+    {
+      "at": "2026-08-19T17:40:37.978Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco/MANIFEST.json"
+    },
+    {
+      "at": "2026-08-19T17:40:37.978Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco/draco_decoder.wasm"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/models/stratos-mountains-mobile.glb"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/models/stratos-mountains-desktop.glb"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/models/stratos-altimeter.glb"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/ScrollTrigger-7Zy99s9Q.js"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/Gltf-C895YFSk.js"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/MobileInstrument-CPssszLu.js"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/JourneyScene-wOIOG7lj.js"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/full-BX_y03kk.css"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/full-8-r5-n0W.js"
+    },
+    {
+      "at": "2026-08-19T17:40:38.028Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/index-Bvu9zNsI.js"
+    },
+    {
+      "at": "2026-08-19T17:40:38.906Z",
+      "target": "dist",
+      "event": "change",
+      "file": "dist"
+    },
+    {
+      "at": "2026-08-19T17:40:38.956Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal"
+    },
+    {
+      "at": "2026-08-19T17:40:50.891Z",
+      "target": "assets",
+      "event": "change",
+      "file": "js/quote.hu.js"
+    },
+    {
+      "at": "2026-08-19T17:40:50.942Z",
+      "target": "dist",
+      "event": "change",
+      "file": "ugyfelszolgalat.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.942Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/contact.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.942Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/privacy-policy.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.942Z",
+      "target": "dist",
+      "event": "change",
+      "file": "adatkezelesi-tajekoztato.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.993Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-google-vagy-facebook.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.993Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/imprint.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.993Z",
+      "target": "dist",
+      "event": "change",
+      "file": "branding.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.993Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-outdated-website.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.993Z",
+      "target": "dist",
+      "event": "change",
+      "file": "impresszum.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.993Z",
+      "target": "dist",
+      "event": "change",
+      "file": "munka-barbershop.html"
+    },
+    {
+      "at": "2026-08-19T17:40:50.993Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/404.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-google-elso-oldal.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "impact-program.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/work-barbershop.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/quote.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/work-rapidkert.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "szolgaltatasok.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "arajanlat.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/index.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "dist"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-miert-nem-hoz-ugyfelet.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "kkv.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-weboldal-arak.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "assets",
+      "event": "change",
+      "file": "js/quote.en.js"
+    },
+    {
+      "at": "2026-08-19T17:40:51.044Z",
+      "target": "assets",
+      "event": "change",
+      "file": "js/quote.de.js"
+    },
+    {
+      "at": "2026-08-19T17:40:51.093Z",
+      "target": "dist",
+      "event": "change",
+      "file": "munka-mentaltrening.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.093Z",
+      "target": "dist",
+      "event": "change",
+      "file": "munkaink.html"
+    },
+    {
+      "at": "2026-08-19T17:40:51.530Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets"
+    },
+    {
+      "at": "2026-08-19T17:40:51.530Z",
+      "target": "dist",
+      "event": "change",
+      "file": "models"
+    },
+    {
+      "at": "2026-08-19T17:40:51.530Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de"
+    },
+    {
+      "at": "2026-08-19T17:40:51.660Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/aboreto"
+    },
+    {
+      "at": "2026-08-19T17:40:51.660Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/models"
+    },
+    {
+      "at": "2026-08-19T17:40:51.660Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco"
+    },
+    {
+      "at": "2026-08-19T17:40:51.660Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/jetbrains-mono"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo"
+    },
+    {
+      "at": "2026-08-19T17:40:51.711Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments"
+    },
+    {
+      "at": "2026-08-19T17:40:51.761Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "assets/home 2"
+    },
+    {
+      "at": "2026-08-19T17:40:51.761Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "hirdeteskezeles 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:00.981Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/plane-cursor.png"
+    },
+    {
+      "at": "2026-08-19T17:41:00.981Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-kontyos.webp"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/main-CkZ5Ow1d.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/aboreto/aboreto-normal-latin.woff2"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-services.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/team-richard.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/projects-BozhIBsQ.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco/draco_decoder.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-3.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/home-history.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/quote.de.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/impact-program.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/consent.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/motion.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/work-1.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/client-barbershop.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-duna-hajok.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/analytics.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/kivitelezes.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-haio.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.033Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/impact-programm.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/work-rapidkert.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-google-unternehmensprofil.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin.woff2"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/type.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "nagyvallalat.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/gdpr.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-quiz.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/archivo-normal-latin-ext.woff2"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/transitions.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/about.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-contact.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-no-enquiries.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-google-cegprofil.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-about.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/archivo-italic-latin-ext.woff2"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-2.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/transitions.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-rapidkert.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-6.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/web-design-sme.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-google-business-profile.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/full-BX_y03kk.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.084Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/favicon.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/space-horizon.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-5.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/motion.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-grantool.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-blog.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/leistungen.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/lead.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-build.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/header.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-google-or-facebook.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/quote.en.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-fice.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/aboreto/OFL.txt"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-1.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/chrome.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/branding.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/work.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/client-rapidkert.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/ads-management.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/impressum.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-duna-enterior.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "dist"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/quote.hu.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/work-2.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/logo-synergy.png"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js/main.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-brand.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/texture-fabric.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/jetbrains-mono/OFL.txt"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/main.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-signal.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/icons.svg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/work-mentaltrening.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/team-artur.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/aboreto/aboreto-normal-latin-ext.woff2"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-google-first-page.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.134Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/cloud-tops.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/blog-4.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/moon.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco/MANIFEST.json"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-google-erste-seite.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/supabase-CI_V8wt2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog-website-cost.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/hero.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css/page-impact.css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/blog.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/clients-BMynSm9P.js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/web-design-enterprise.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "blog-elavult-weboldal.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/work-3.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img/struktura.jpg"
+    },
+    {
+      "at": "2026-08-19T17:41:01.184Z",
+      "target": "dist",
+      "event": "change",
+      "file": "en/services.html"
+    },
+    {
+      "at": "2026-08-19T17:41:01.582Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/css"
+    },
+    {
+      "at": "2026-08-19T17:41:01.582Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home"
+    },
+    {
+      "at": "2026-08-19T17:41:01.582Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/js"
+    },
+    {
+      "at": "2026-08-19T17:41:01.582Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts"
+    },
+    {
+      "at": "2026-08-19T17:41:01.740Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco"
+    },
+    {
+      "at": "2026-08-19T17:41:01.740Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo"
+    },
+    {
+      "at": "2026-08-19T17:41:01.740Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets"
+    },
+    {
+      "at": "2026-08-19T17:41:01.740Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/jetbrains-mono"
+    },
+    {
+      "at": "2026-08-19T17:41:01.791Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full"
+    },
+    {
+      "at": "2026-08-19T17:41:01.791Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/img"
+    },
+    {
+      "at": "2026-08-19T17:41:01.791Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/aboreto"
+    },
+    {
+      "at": "2026-08-19T17:41:02.315Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "assets/home 2"
+    },
+    {
+      "at": "2026-08-19T17:41:11.918Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/analytics-DxzyI7Vl.js"
+    },
+    {
+      "at": "2026-08-19T17:41:11.918Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal"
+    },
+    {
+      "at": "2026-08-19T17:41:11.918Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/projekt-rapidkert.html"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco/draco_decoder.wasm"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "munka-rapidkert.html"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "sitemap.xml"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/main-BX_y03kk.css"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/MobileInstrument-BYs4_m_c.js"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/OpportunityForm-CPbpq30N.js"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/JourneyScene-wOIOG7lj.js"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "index.html"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-keine-anfragen.html"
+    },
+    {
+      "at": "2026-08-19T17:41:11.969Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/records-BX80TGcE.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.019Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/OFL.txt"
+    },
+    {
+      "at": "2026-08-19T17:41:12.019Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-google-oder-facebook.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.019Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/branding.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.019Z",
+      "target": "dist",
+      "event": "change",
+      "file": "models"
+    },
+    {
+      "at": "2026-08-19T17:41:12.019Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/index-Bvu9zNsI.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "impact-program 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/index.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/sales-ndX6UH6G.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/index-C6bxHk4w.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco/draco_decoder.wasm"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/archivo-italic-latin.woff2"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/angebot.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/sales-D5WoKUGa.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/Gltf-C895YFSk.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/MobileInstrument-CPssszLu.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/screens-BulDyxLO.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/vendor--ue7KvUB.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "hirdeteskezeles.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/models/stratos-altimeter.glb"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/projekt-mentaltrening.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/JourneyScene-u8II-7Ur.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.070Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/webdesign-kmu.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "robots.txt"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/werbeanzeigen.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "models/stratos-mountains-desktop.glb"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/index.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/datenschutz.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo/archivo-normal-latin.woff2"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/index.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/opportunity-detail-Ba-1Y8Yv.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco/draco_wasm_wrapper.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "rolunk.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "404.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco/MANIFEST.json"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/index-Bvu9zNsI.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "draco/draco_decoder.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/plus-BI2k7X75.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "dist"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-veraltete-website.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/blog-website-kosten.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/ueber-uns.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.120Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/webdesign-grossunternehmen.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/projekt-barbershop.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/models/stratos-mountains-mobile.glb"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets/index-CwCoZP76.css"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/ScrollTrigger-7Zy99s9Q.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/ScrollTrigger-7Zy99s9Q.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home/Gltf-D7FiHbmi.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "models/stratos-altimeter.glb"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "models/stratos-mountains-mobile.glb"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco/draco_wasm_wrapper.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.171Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/404.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.221Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets/full-8-r5-n0W.js"
+    },
+    {
+      "at": "2026-08-19T17:41:12.221Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/models/stratos-mountains-desktop.glb"
+    },
+    {
+      "at": "2026-08-19T17:41:12.221Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/kontakt.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.221Z",
+      "target": "dist",
+      "event": "change",
+      "file": "de/projekte.html"
+    },
+    {
+      "at": "2026-08-19T17:41:12.221Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full"
+    },
+    {
+      "at": "2026-08-19T17:41:12.221Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/home"
+    },
+    {
+      "at": "2026-08-19T17:41:12.221Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts"
+    },
+    {
+      "at": "2026-08-19T17:41:12.221Z",
+      "target": "dist",
+      "event": "change",
+      "file": "portal/assets"
+    },
+    {
+      "at": "2026-08-19T17:41:12.577Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "assets/img 2"
+    },
+    {
+      "at": "2026-08-19T17:41:12.627Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/assets"
+    },
+    {
+      "at": "2026-08-19T17:41:12.678Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets/fonts/archivo"
+    },
+    {
+      "at": "2026-08-19T17:41:12.678Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/models"
+    },
+    {
+      "at": "2026-08-19T17:41:12.678Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments/stratos-ascent-full/draco"
+    },
+    {
+      "at": "2026-08-19T17:41:19.281Z",
+      "target": "dist",
+      "event": "change",
+      "file": "dist"
+    },
+    {
+      "at": "2026-08-19T17:41:19.332Z",
+      "target": "dist",
+      "event": "change",
+      "file": "experiments"
+    },
+    {
+      "at": "2026-08-19T17:41:19.332Z",
+      "target": "dist",
+      "event": "change",
+      "file": "assets"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "munka-barbershop 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "ugyfelszolgalat 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "munkaink 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "404 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "sitemap 3.xml"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "robots 2.txt"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "sitemap 2.xml"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "index 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "nagyvallalat 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "blog-google-cegprofil 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "munka-rapidkert 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "rolunk 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "munka-mentaltrening 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "szolgaltatasok 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.383Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "robots 3.txt"
+    },
+    {
+      "at": "2026-08-19T17:41:19.846Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/clients-BMynSm9P 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:19.846Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "draco/MANIFEST 2.json"
+    },
+    {
+      "at": "2026-08-19T17:41:19.846Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/blog-google-or-facebook 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.846Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/privacy-policy 3.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "models/stratos-altimeter 2.glb"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/OpportunityForm-CPbpq30N 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/work-barbershop 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/index 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/blog-google-business-profile 3.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/privacy-policy 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/records-BX80TGcE 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "draco/draco_decoder 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/screens-BulDyxLO 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/sales-ndX6UH6G 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "models/stratos-mountains-desktop 2.glb"
+    },
+    {
+      "at": "2026-08-19T17:41:19.896Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/contact 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.993Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/web-design-enterprise 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.993Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/blog-website-cost 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.993Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/blog-google-business-profile 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:19.993Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/index-C6bxHk4w 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/supabase-CI_V8wt2 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/blog-outdated-website 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/branding 3.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/sales-D5WoKUGa 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "models/stratos-mountains-mobile 2.glb"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/quote 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/vendor--ue7KvUB 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/blog-no-enquiries 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/web-design-sme 3.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/projects-BozhIBsQ 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/blog 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/analytics-DxzyI7Vl 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/404 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/ads-management 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/branding 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "portal/assets/plus-BI2k7X75 2.js"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/blog-google-first-page 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "draco/draco_decoder 2.wasm"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "assets/fonts 2"
+    },
+    {
+      "at": "2026-08-19T17:41:20.044Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/services 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.095Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/index 2.html"
+    },
+    {
+      "at": "2026-08-19T17:41:20.095Z",
+      "target": "dist",
+      "event": "rename",
+      "file": "en/quote 3.html"
+    }
+  ],
+  "load": {
+    "count": 238,
+    "meanLoad1": 8.07,
+    "peakLoad1": 18.69,
+    "minLoad1": 2.54,
+    "peakBrowserProcs": 42,
+    "peakSwapUsedMB": 3670.81
+  },
+  "environment": {
+    "node": "v24.18.1",
+    "platform": "darwin-arm64",
+    "cpus": 10,
+    "memoryGB": 25.8
+  },
+  "canaryEventCount": 699,
+  "orphanedProcesses": [],
+  "portsStillHeld": [],
+  "loadSamples": [
+    {
+      "at": "2026-08-19T17:40:17.746Z",
+      "load1": 12.13,
+      "load5": 5.17,
+      "load15": 2.86,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 5,
+      "browserProcs": 19,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-19T17:40:22.774Z",
+      "load1": 18.13,
+      "load5": 6.53,
+      "load15": 3.35,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 6,
+      "browserProcs": 19,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-19T17:40:27.780Z",
+      "load1": 16.99,
+      "load5": 6.49,
+      "load15": 3.35,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 6,
+      "browserProcs": 23,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-19T17:40:32.776Z",
+      "load1": 15.79,
+      "load5": 6.41,
+      "load15": 3.34,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 7,
+      "browserProcs": 23,
+      "pythonProcs": 4,
+      "canaryEvents": 34
+    },
+    {
+      "at": "2026-08-19T17:40:37.780Z",
+      "load1": 18.69,
+      "load5": 7.17,
+      "load15": 3.63,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 26,
+      "pythonProcs": 5,
+      "canaryEvents": 174
+    },
+    {
+      "at": "2026-08-19T17:40:42.786Z",
+      "load1": 17.28,
+      "load5": 7.07,
+      "load15": 3.61,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 190
+    },
+    {
+      "at": "2026-08-19T17:40:47.783Z",
+      "load1": 16.13,
+      "load5": 7,
+      "load15": 3.61,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 190
+    },
+    {
+      "at": "2026-08-19T17:40:52.786Z",
+      "load1": 15.48,
+      "load5": 7.02,
+      "load15": 3.64,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 240
+    },
+    {
+      "at": "2026-08-19T17:40:57.787Z",
+      "load1": 14.4,
+      "load5": 6.93,
+      "load15": 3.63,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 240
+    },
+    {
+      "at": "2026-08-19T17:41:02.788Z",
+      "load1": 14.21,
+      "load5": 7.02,
+      "load15": 3.67,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 358
+    },
+    {
+      "at": "2026-08-19T17:41:07.789Z",
+      "load1": 13.23,
+      "load5": 6.93,
+      "load15": 3.66,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 358
+    },
+    {
+      "at": "2026-08-19T17:41:12.806Z",
+      "load1": 12.57,
+      "load5": 6.9,
+      "load15": 3.67,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 440
+    },
+    {
+      "at": "2026-08-19T17:41:17.792Z",
+      "load1": 11.8,
+      "load5": 6.84,
+      "load15": 3.67,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 440
+    },
+    {
+      "at": "2026-08-19T17:41:22.789Z",
+      "load1": 10.94,
+      "load5": 6.74,
+      "load15": 3.65,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 514
+    },
+    {
+      "at": "2026-08-19T17:41:27.802Z",
+      "load1": 10.06,
+      "load5": 6.63,
+      "load15": 3.63,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 566
+    },
+    {
+      "at": "2026-08-19T17:41:32.796Z",
+      "load1": 9.66,
+      "load5": 6.6,
+      "load15": 3.64,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 573
+    },
+    {
+      "at": "2026-08-19T17:41:37.791Z",
+      "load1": 8.96,
+      "load5": 6.51,
+      "load15": 3.62,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 573
+    },
+    {
+      "at": "2026-08-19T17:41:42.821Z",
+      "load1": 8.49,
+      "load5": 6.45,
+      "load15": 3.62,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 22,
+      "pythonProcs": 5,
+      "canaryEvents": 573
+    },
+    {
+      "at": "2026-08-19T17:41:47.795Z",
+      "load1": 7.89,
+      "load5": 6.36,
+      "load15": 3.6,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 22,
+      "pythonProcs": 5,
+      "canaryEvents": 573
+    },
+    {
+      "at": "2026-08-19T17:41:52.796Z",
+      "load1": 7.33,
+      "load5": 6.27,
+      "load15": 3.59,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 573
+    },
+    {
+      "at": "2026-08-19T17:41:57.795Z",
+      "load1": 7.31,
+      "load5": 6.28,
+      "load15": 3.61,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 573
+    },
+    {
+      "at": "2026-08-19T17:42:02.793Z",
+      "load1": 6.96,
+      "load5": 6.22,
+      "load15": 3.6,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 573
+    },
+    {
+      "at": "2026-08-19T17:42:07.795Z",
+      "load1": 6.4,
+      "load5": 6.12,
+      "load15": 3.58,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:12.804Z",
+      "load1": 6.13,
+      "load5": 6.07,
+      "load15": 3.58,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:17.797Z",
+      "load1": 5.64,
+      "load5": 5.97,
+      "load15": 3.56,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:22.801Z",
+      "load1": 5.27,
+      "load5": 5.89,
+      "load15": 3.54,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:27.797Z",
+      "load1": 4.93,
+      "load5": 5.8,
+      "load15": 3.53,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:32.800Z",
+      "load1": 4.77,
+      "load5": 5.76,
+      "load15": 3.52,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:37.800Z",
+      "load1": 4.55,
+      "load5": 5.69,
+      "load15": 3.51,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:42.809Z",
+      "load1": 4.35,
+      "load5": 5.63,
+      "load15": 3.5,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 22,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:47.809Z",
+      "load1": 4.08,
+      "load5": 5.56,
+      "load15": 3.49,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:52.823Z",
+      "load1": 3.91,
+      "load5": 5.5,
+      "load15": 3.48,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:42:57.803Z",
+      "load1": 3.68,
+      "load5": 5.42,
+      "load15": 3.47,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:02.816Z",
+      "load1": 3.86,
+      "load5": 5.43,
+      "load15": 3.48,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:07.804Z",
+      "load1": 3.63,
+      "load5": 5.36,
+      "load15": 3.47,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:12.815Z",
+      "load1": 3.42,
+      "load5": 5.28,
+      "load15": 3.45,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:17.814Z",
+      "load1": 3.31,
+      "load5": 5.23,
+      "load15": 3.44,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:22.810Z",
+      "load1": 3.04,
+      "load5": 5.14,
+      "load15": 3.42,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:27.814Z",
+      "load1": 2.8,
+      "load5": 5.06,
+      "load15": 3.4,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:32.813Z",
+      "load1": 2.97,
+      "load5": 5.06,
+      "load15": 3.41,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:37.810Z",
+      "load1": 2.98,
+      "load5": 5.02,
+      "load15": 3.41,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:42.825Z",
+      "load1": 2.9,
+      "load5": 4.97,
+      "load15": 3.4,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:47.819Z",
+      "load1": 2.99,
+      "load5": 4.96,
+      "load15": 3.4,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:52.823Z",
+      "load1": 2.99,
+      "load5": 4.92,
+      "load15": 3.4,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:43:57.832Z",
+      "load1": 3.23,
+      "load5": 4.94,
+      "load15": 3.42,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:02.831Z",
+      "load1": 3.21,
+      "load5": 4.91,
+      "load15": 3.41,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:07.830Z",
+      "load1": 3.19,
+      "load5": 4.88,
+      "load15": 3.41,
+      "swapUsedMB": 3670.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:12.817Z",
+      "load1": 3.02,
+      "load5": 4.81,
+      "load15": 3.4,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:17.824Z",
+      "load1": 3.26,
+      "load5": 4.83,
+      "load15": 3.41,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:22.821Z",
+      "load1": 3.07,
+      "load5": 4.77,
+      "load15": 3.4,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:27.820Z",
+      "load1": 3.07,
+      "load5": 4.74,
+      "load15": 3.4,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:32.824Z",
+      "load1": 3.06,
+      "load5": 4.71,
+      "load15": 3.39,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:37.821Z",
+      "load1": 2.9,
+      "load5": 4.65,
+      "load15": 3.38,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:42.826Z",
+      "load1": 2.82,
+      "load5": 4.6,
+      "load15": 3.37,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:47.837Z",
+      "load1": 2.68,
+      "load5": 4.54,
+      "load15": 3.36,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 8,
+      "browserProcs": 22,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:52.828Z",
+      "load1": 2.54,
+      "load5": 4.48,
+      "load15": 3.34,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 8,
+      "browserProcs": 23,
+      "pythonProcs": 5,
+      "canaryEvents": 581
+    },
+    {
+      "at": "2026-08-19T17:44:57.874Z",
+      "load1": 2.82,
+      "load5": 4.51,
+      "load15": 3.36,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 36,
+      "pythonProcs": 4,
+      "canaryEvents": 583
+    },
+    {
+      "at": "2026-08-19T17:45:02.847Z",
+      "load1": 2.99,
+      "load5": 4.52,
+      "load15": 3.37,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 36,
+      "pythonProcs": 4,
+      "canaryEvents": 587
+    },
+    {
+      "at": "2026-08-19T17:45:07.829Z",
+      "load1": 3.31,
+      "load5": 4.56,
+      "load15": 3.39,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 37,
+      "pythonProcs": 4,
+      "canaryEvents": 593
+    },
+    {
+      "at": "2026-08-19T17:45:13.012Z",
+      "load1": 3.45,
+      "load5": 4.56,
+      "load15": 3.4,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 39,
+      "pythonProcs": 4,
+      "canaryEvents": 598
+    },
+    {
+      "at": "2026-08-19T17:45:17.982Z",
+      "load1": 6.62,
+      "load5": 5.2,
+      "load15": 3.63,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 41,
+      "pythonProcs": 4,
+      "canaryEvents": 601
+    },
+    {
+      "at": "2026-08-19T17:45:23.196Z",
+      "load1": 8.65,
+      "load5": 5.65,
+      "load15": 3.79,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 41,
+      "pythonProcs": 4,
+      "canaryEvents": 601
+    },
+    {
+      "at": "2026-08-19T17:45:27.965Z",
+      "load1": 9.32,
+      "load5": 5.84,
+      "load15": 3.87,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 41,
+      "pythonProcs": 4,
+      "canaryEvents": 601
+    },
+    {
+      "at": "2026-08-19T17:45:32.964Z",
+      "load1": 8.81,
+      "load5": 5.79,
+      "load15": 3.87,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 601
+    },
+    {
+      "at": "2026-08-19T17:45:37.961Z",
+      "load1": 8.19,
+      "load5": 5.71,
+      "load15": 3.85,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 601
+    },
+    {
+      "at": "2026-08-19T17:45:42.964Z",
+      "load1": 7.77,
+      "load5": 5.66,
+      "load15": 3.84,
+      "swapUsedMB": 3662.81,
+      "nodeProcs": 13,
+      "browserProcs": 40,
+      "pythonProcs": 4,
+      "canaryEvents": 603
+    },
+    {
+      "at": "2026-08-19T17:45:47.951Z",
+      "load1": 7.79,
+      "load5": 5.7,
+      "load15": 3.87,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 40,
+      "pythonProcs": 4,
+      "canaryEvents": 610
+    },
+    {
+      "at": "2026-08-19T17:45:52.961Z",
+      "load1": 7.48,
+      "load5": 5.67,
+      "load15": 3.87,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 40,
+      "pythonProcs": 4,
+      "canaryEvents": 618
+    },
+    {
+      "at": "2026-08-19T17:45:57.948Z",
+      "load1": 7.28,
+      "load5": 5.66,
+      "load15": 3.88,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 39,
+      "pythonProcs": 4,
+      "canaryEvents": 629
+    },
+    {
+      "at": "2026-08-19T17:46:02.951Z",
+      "load1": 6.94,
+      "load5": 5.62,
+      "load15": 3.87,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 40,
+      "pythonProcs": 4,
+      "canaryEvents": 637
+    },
+    {
+      "at": "2026-08-19T17:46:07.947Z",
+      "load1": 7.91,
+      "load5": 5.84,
+      "load15": 3.96,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 40,
+      "pythonProcs": 4,
+      "canaryEvents": 644
+    },
+    {
+      "at": "2026-08-19T17:46:12.952Z",
+      "load1": 7.67,
+      "load5": 5.83,
+      "load15": 3.96,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 4,
+      "canaryEvents": 650
+    },
+    {
+      "at": "2026-08-19T17:46:17.959Z",
+      "load1": 7.38,
+      "load5": 5.79,
+      "load15": 3.96,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 39,
+      "pythonProcs": 4,
+      "canaryEvents": 656
+    },
+    {
+      "at": "2026-08-19T17:46:22.953Z",
+      "load1": 7.03,
+      "load5": 5.75,
+      "load15": 3.96,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 39,
+      "pythonProcs": 4,
+      "canaryEvents": 663
+    },
+    {
+      "at": "2026-08-19T17:46:27.962Z",
+      "load1": 6.87,
+      "load5": 5.73,
+      "load15": 3.96,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 4,
+      "canaryEvents": 671
+    },
+    {
+      "at": "2026-08-19T17:46:32.962Z",
+      "load1": 6.56,
+      "load5": 5.69,
+      "load15": 3.96,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 39,
+      "pythonProcs": 4,
+      "canaryEvents": 676
+    },
+    {
+      "at": "2026-08-19T17:46:37.973Z",
+      "load1": 6.11,
+      "load5": 5.61,
+      "load15": 3.94,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 39,
+      "pythonProcs": 4,
+      "canaryEvents": 681
+    },
+    {
+      "at": "2026-08-19T17:46:42.975Z",
+      "load1": 5.86,
+      "load5": 5.57,
+      "load15": 3.93,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 39,
+      "pythonProcs": 4,
+      "canaryEvents": 687
+    },
+    {
+      "at": "2026-08-19T17:46:47.964Z",
+      "load1": 5.71,
+      "load5": 5.54,
+      "load15": 3.93,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 4,
+      "canaryEvents": 698
+    },
+    {
+      "at": "2026-08-19T17:46:52.973Z",
+      "load1": 5.25,
+      "load5": 5.45,
+      "load15": 3.91,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:46:57.978Z",
+      "load1": 5.31,
+      "load5": 5.46,
+      "load15": 3.92,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:03.026Z",
+      "load1": 7.45,
+      "load5": 5.9,
+      "load15": 4.09,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 41,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:08.013Z",
+      "load1": 8.54,
+      "load5": 6.15,
+      "load15": 4.19,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:12.979Z",
+      "load1": 9.13,
+      "load5": 6.31,
+      "load15": 4.25,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:17.973Z",
+      "load1": 8.64,
+      "load5": 6.26,
+      "load15": 4.25,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:22.976Z",
+      "load1": 8.11,
+      "load5": 6.19,
+      "load15": 4.23,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:27.974Z",
+      "load1": 7.62,
+      "load5": 6.12,
+      "load15": 4.22,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:32.979Z",
+      "load1": 7.09,
+      "load5": 6.03,
+      "load15": 4.2,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:38.094Z",
+      "load1": 6.92,
+      "load5": 6.01,
+      "load15": 4.21,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:42.982Z",
+      "load1": 6.77,
+      "load5": 6,
+      "load15": 4.21,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:47.975Z",
+      "load1": 6.31,
+      "load5": 5.91,
+      "load15": 4.19,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:52.967Z",
+      "load1": 6.36,
+      "load5": 5.93,
+      "load15": 4.21,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:47:57.975Z",
+      "load1": 6.17,
+      "load5": 5.9,
+      "load15": 4.21,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:02.974Z",
+      "load1": 6.4,
+      "load5": 5.95,
+      "load15": 4.23,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:07.988Z",
+      "load1": 7.09,
+      "load5": 6.1,
+      "load15": 4.3,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:12.978Z",
+      "load1": 6.68,
+      "load5": 6.03,
+      "load15": 4.28,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:17.982Z",
+      "load1": 6.22,
+      "load5": 5.95,
+      "load15": 4.26,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:22.982Z",
+      "load1": 5.97,
+      "load5": 5.9,
+      "load15": 4.26,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:28.003Z",
+      "load1": 5.73,
+      "load5": 5.85,
+      "load15": 4.25,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:33.034Z",
+      "load1": 5.75,
+      "load5": 5.85,
+      "load15": 4.26,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:38.019Z",
+      "load1": 6.09,
+      "load5": 5.92,
+      "load15": 4.29,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:43.232Z",
+      "load1": 6.48,
+      "load5": 6.01,
+      "load15": 4.33,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:47.995Z",
+      "load1": 6.28,
+      "load5": 5.97,
+      "load15": 4.33,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:52.997Z",
+      "load1": 5.94,
+      "load5": 5.91,
+      "load15": 4.31,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:48:57.983Z",
+      "load1": 5.54,
+      "load5": 5.82,
+      "load15": 4.3,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:02.988Z",
+      "load1": 5.5,
+      "load5": 5.81,
+      "load15": 4.3,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:08.000Z",
+      "load1": 5.7,
+      "load5": 5.85,
+      "load15": 4.32,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:13.063Z",
+      "load1": 5.64,
+      "load5": 5.83,
+      "load15": 4.32,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:18.016Z",
+      "load1": 5.67,
+      "load5": 5.83,
+      "load15": 4.33,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:23.022Z",
+      "load1": 5.86,
+      "load5": 5.87,
+      "load15": 4.36,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:28.034Z",
+      "load1": 5.47,
+      "load5": 5.79,
+      "load15": 4.34,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:33.028Z",
+      "load1": 5.43,
+      "load5": 5.78,
+      "load15": 4.34,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:38.345Z",
+      "load1": 6.52,
+      "load5": 5.99,
+      "load15": 4.42,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:43.487Z",
+      "load1": 11.2,
+      "load5": 6.97,
+      "load15": 4.78,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 31,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:48.120Z",
+      "load1": 11.91,
+      "load5": 7.19,
+      "load15": 4.87,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 12,
+      "browserProcs": 35,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:53.772Z",
+      "load1": 12.07,
+      "load5": 7.3,
+      "load15": 4.92,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 42,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:49:58.765Z",
+      "load1": 12.95,
+      "load5": 7.56,
+      "load15": 5.03,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:03.543Z",
+      "load1": 13.91,
+      "load5": 7.85,
+      "load15": 5.14,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 39,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:08.921Z",
+      "load1": 16.16,
+      "load5": 8.42,
+      "load15": 5.36,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 13,
+      "browserProcs": 39,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:13.015Z",
+      "load1": 16.47,
+      "load5": 8.61,
+      "load15": 5.44,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:18.023Z",
+      "load1": 16.91,
+      "load5": 8.83,
+      "load15": 5.54,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:23.042Z",
+      "load1": 16.52,
+      "load5": 8.89,
+      "load15": 5.58,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:28.028Z",
+      "load1": 16.16,
+      "load5": 8.94,
+      "load15": 5.62,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:33.022Z",
+      "load1": 15.58,
+      "load5": 8.94,
+      "load15": 5.64,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:38.023Z",
+      "load1": 14.5,
+      "load5": 8.82,
+      "load15": 5.61,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:43.040Z",
+      "load1": 14.05,
+      "load5": 8.83,
+      "load15": 5.63,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:48.044Z",
+      "load1": 14.13,
+      "load5": 8.93,
+      "load15": 5.69,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:53.027Z",
+      "load1": 13.96,
+      "load5": 8.98,
+      "load15": 5.73,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:50:58.038Z",
+      "load1": 13,
+      "load5": 8.86,
+      "load15": 5.7,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:03.038Z",
+      "load1": 12.28,
+      "load5": 8.78,
+      "load15": 5.69,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:08.030Z",
+      "load1": 12.1,
+      "load5": 8.8,
+      "load15": 5.72,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:13.038Z",
+      "load1": 11.77,
+      "load5": 8.79,
+      "load15": 5.73,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:18.019Z",
+      "load1": 10.91,
+      "load5": 8.66,
+      "load15": 5.7,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:23.018Z",
+      "load1": 10.51,
+      "load5": 8.61,
+      "load15": 5.7,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:28.019Z",
+      "load1": 10.71,
+      "load5": 8.69,
+      "load15": 5.75,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:33.055Z",
+      "load1": 10.73,
+      "load5": 8.72,
+      "load15": 5.78,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:38.038Z",
+      "load1": 10.76,
+      "load5": 8.76,
+      "load15": 5.81,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:43.035Z",
+      "load1": 10.86,
+      "load5": 8.82,
+      "load15": 5.84,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:48.045Z",
+      "load1": 10.23,
+      "load5": 8.72,
+      "load15": 5.83,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:53.024Z",
+      "load1": 9.65,
+      "load5": 8.62,
+      "load15": 5.81,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:51:58.045Z",
+      "load1": 9.03,
+      "load5": 8.51,
+      "load15": 5.79,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:03.040Z",
+      "load1": 9.35,
+      "load5": 8.59,
+      "load15": 5.83,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:08.046Z",
+      "load1": 9.48,
+      "load5": 8.63,
+      "load15": 5.86,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:13.054Z",
+      "load1": 9.68,
+      "load5": 8.68,
+      "load15": 5.9,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:18.029Z",
+      "load1": 9.95,
+      "load5": 8.75,
+      "load15": 5.94,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:23.057Z",
+      "load1": 9.95,
+      "load5": 8.77,
+      "load15": 5.96,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:28.060Z",
+      "load1": 9.96,
+      "load5": 8.79,
+      "load15": 5.98,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:33.052Z",
+      "load1": 9.88,
+      "load5": 8.8,
+      "load15": 6,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:38.058Z",
+      "load1": 10.13,
+      "load5": 8.87,
+      "load15": 6.04,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:43.056Z",
+      "load1": 10.2,
+      "load5": 8.9,
+      "load15": 6.07,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:48.050Z",
+      "load1": 10.26,
+      "load5": 8.94,
+      "load15": 6.1,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:53.045Z",
+      "load1": 10.24,
+      "load5": 8.95,
+      "load15": 6.12,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:52:58.036Z",
+      "load1": 10.38,
+      "load5": 9,
+      "load15": 6.16,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:03.054Z",
+      "load1": 10.35,
+      "load5": 9.02,
+      "load15": 6.18,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:08.057Z",
+      "load1": 10.08,
+      "load5": 8.99,
+      "load15": 6.18,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:13.072Z",
+      "load1": 10.16,
+      "load5": 9.02,
+      "load15": 6.21,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:18.083Z",
+      "load1": 10.3,
+      "load5": 9.07,
+      "load15": 6.25,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:23.050Z",
+      "load1": 10.36,
+      "load5": 9.1,
+      "load15": 6.27,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:28.077Z",
+      "load1": 9.69,
+      "load5": 8.98,
+      "load15": 6.25,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:33.066Z",
+      "load1": 9.87,
+      "load5": 9.03,
+      "load15": 6.28,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:38.067Z",
+      "load1": 10.28,
+      "load5": 9.13,
+      "load15": 6.33,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:43.066Z",
+      "load1": 10.42,
+      "load5": 9.18,
+      "load15": 6.37,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:48.069Z",
+      "load1": 10.55,
+      "load5": 9.23,
+      "load15": 6.4,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:53.064Z",
+      "load1": 11.06,
+      "load5": 9.35,
+      "load15": 6.46,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:53:58.072Z",
+      "load1": 11.22,
+      "load5": 9.41,
+      "load15": 6.5,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:03.074Z",
+      "load1": 11.36,
+      "load5": 9.47,
+      "load15": 6.54,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:08.076Z",
+      "load1": 11.33,
+      "load5": 9.5,
+      "load15": 6.56,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:13.081Z",
+      "load1": 11.07,
+      "load5": 9.47,
+      "load15": 6.57,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:18.075Z",
+      "load1": 11.14,
+      "load5": 9.52,
+      "load15": 6.6,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:23.073Z",
+      "load1": 11.13,
+      "load5": 9.54,
+      "load15": 6.63,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:28.083Z",
+      "load1": 10.72,
+      "load5": 9.48,
+      "load15": 6.62,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:33.077Z",
+      "load1": 10.66,
+      "load5": 9.49,
+      "load15": 6.64,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:38.071Z",
+      "load1": 10.69,
+      "load5": 9.51,
+      "load15": 6.67,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:43.077Z",
+      "load1": 10.71,
+      "load5": 9.54,
+      "load15": 6.69,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:48.077Z",
+      "load1": 10.73,
+      "load5": 9.56,
+      "load15": 6.72,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:53.083Z",
+      "load1": 10.76,
+      "load5": 9.59,
+      "load15": 6.74,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:54:58.082Z",
+      "load1": 10.78,
+      "load5": 9.61,
+      "load15": 6.77,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:03.200Z",
+      "load1": 10.87,
+      "load5": 9.65,
+      "load15": 6.8,
+      "swapUsedMB": 3654.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:08.105Z",
+      "load1": 10.88,
+      "load5": 9.67,
+      "load15": 6.82,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:13.117Z",
+      "load1": 10.57,
+      "load5": 9.63,
+      "load15": 6.82,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:18.106Z",
+      "load1": 10.77,
+      "load5": 9.68,
+      "load15": 6.86,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:23.107Z",
+      "load1": 10.78,
+      "load5": 9.7,
+      "load15": 6.88,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:28.107Z",
+      "load1": 10.8,
+      "load5": 9.72,
+      "load15": 6.91,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:33.107Z",
+      "load1": 10.98,
+      "load5": 9.78,
+      "load15": 6.94,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:38.113Z",
+      "load1": 10.98,
+      "load5": 9.8,
+      "load15": 6.97,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:43.116Z",
+      "load1": 11.06,
+      "load5": 9.83,
+      "load15": 7,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:48.120Z",
+      "load1": 11.22,
+      "load5": 9.89,
+      "load15": 7.03,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:53.125Z",
+      "load1": 12.16,
+      "load5": 10.1,
+      "load15": 7.12,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:55:58.118Z",
+      "load1": 11.99,
+      "load5": 10.1,
+      "load15": 7.14,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:03.119Z",
+      "load1": 11.91,
+      "load5": 10.12,
+      "load15": 7.16,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:08.115Z",
+      "load1": 11.83,
+      "load5": 10.13,
+      "load15": 7.19,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:13.121Z",
+      "load1": 11.93,
+      "load5": 10.18,
+      "load15": 7.22,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:18.119Z",
+      "load1": 11.85,
+      "load5": 10.19,
+      "load15": 7.24,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:23.116Z",
+      "load1": 11.3,
+      "load5": 10.11,
+      "load15": 7.23,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:28.098Z",
+      "load1": 11.44,
+      "load5": 10.15,
+      "load15": 7.26,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:33.121Z",
+      "load1": 10.68,
+      "load5": 10.02,
+      "load15": 7.23,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:38.101Z",
+      "load1": 9.99,
+      "load5": 9.88,
+      "load15": 7.2,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:43.102Z",
+      "load1": 9.35,
+      "load5": 9.75,
+      "load15": 7.17,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:48.112Z",
+      "load1": 8.84,
+      "load5": 9.64,
+      "load15": 7.14,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:53.110Z",
+      "load1": 8.21,
+      "load5": 9.5,
+      "load15": 7.11,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:56:58.123Z",
+      "load1": 7.71,
+      "load5": 9.37,
+      "load15": 7.08,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:03.110Z",
+      "load1": 7.26,
+      "load5": 9.25,
+      "load15": 7.05,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:08.115Z",
+      "load1": 6.75,
+      "load5": 9.11,
+      "load15": 7.01,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:13.112Z",
+      "load1": 6.45,
+      "load5": 9.01,
+      "load15": 6.99,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:18.123Z",
+      "load1": 6.02,
+      "load5": 8.88,
+      "load15": 6.95,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:23.115Z",
+      "load1": 5.62,
+      "load5": 8.75,
+      "load15": 6.92,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:28.115Z",
+      "load1": 5.49,
+      "load5": 8.67,
+      "load15": 6.9,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:33.119Z",
+      "load1": 5.45,
+      "load5": 8.61,
+      "load15": 6.89,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:38.125Z",
+      "load1": 5.17,
+      "load5": 8.5,
+      "load15": 6.86,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:43.116Z",
+      "load1": 4.92,
+      "load5": 8.39,
+      "load15": 6.83,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:48.131Z",
+      "load1": 4.6,
+      "load5": 8.27,
+      "load15": 6.8,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:53.125Z",
+      "load1": 4.31,
+      "load5": 8.15,
+      "load15": 6.76,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:57:58.128Z",
+      "load1": 3.97,
+      "load5": 8.01,
+      "load15": 6.72,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:03.137Z",
+      "load1": 3.65,
+      "load5": 7.88,
+      "load15": 6.68,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:08.138Z",
+      "load1": 3.44,
+      "load5": 7.76,
+      "load15": 6.65,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:13.138Z",
+      "load1": 3.32,
+      "load5": 7.67,
+      "load15": 6.62,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:18.138Z",
+      "load1": 3.06,
+      "load5": 7.54,
+      "load15": 6.58,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:23.134Z",
+      "load1": 2.97,
+      "load5": 7.45,
+      "load15": 6.56,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:28.136Z",
+      "load1": 2.89,
+      "load5": 7.36,
+      "load15": 6.53,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:33.160Z",
+      "load1": 2.74,
+      "load5": 7.25,
+      "load15": 6.5,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:38.147Z",
+      "load1": 2.6,
+      "load5": 7.15,
+      "load15": 6.46,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:43.147Z",
+      "load1": 2.55,
+      "load5": 7.06,
+      "load15": 6.44,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:48.147Z",
+      "load1": 2.59,
+      "load5": 6.99,
+      "load15": 6.42,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:53.141Z",
+      "load1": 2.7,
+      "load5": 6.94,
+      "load15": 6.4,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:58:58.132Z",
+      "load1": 2.73,
+      "load5": 6.88,
+      "load15": 6.38,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:03.146Z",
+      "load1": 2.67,
+      "load5": 6.8,
+      "load15": 6.36,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:08.143Z",
+      "load1": 2.85,
+      "load5": 6.77,
+      "load15": 6.35,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:13.150Z",
+      "load1": 4.31,
+      "load5": 7,
+      "load15": 6.43,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:18.147Z",
+      "load1": 4.28,
+      "load5": 6.95,
+      "load15": 6.42,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:23.138Z",
+      "load1": 4.18,
+      "load5": 6.89,
+      "load15": 6.4,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:28.160Z",
+      "load1": 3.92,
+      "load5": 6.79,
+      "load15": 6.37,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:33.144Z",
+      "load1": 3.77,
+      "load5": 6.71,
+      "load15": 6.34,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:38.142Z",
+      "load1": 3.63,
+      "load5": 6.63,
+      "load15": 6.32,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:43.153Z",
+      "load1": 4.3,
+      "load5": 6.72,
+      "load15": 6.35,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:48.148Z",
+      "load1": 4.75,
+      "load5": 6.77,
+      "load15": 6.37,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:53.154Z",
+      "load1": 5.33,
+      "load5": 6.86,
+      "load15": 6.4,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T17:59:58.150Z",
+      "load1": 5.31,
+      "load5": 6.83,
+      "load15": 6.39,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    },
+    {
+      "at": "2026-08-19T18:00:03.152Z",
+      "load1": 5.92,
+      "load5": 6.93,
+      "load15": 6.43,
+      "swapUsedMB": 3646.81,
+      "nodeProcs": 9,
+      "browserProcs": 26,
+      "pythonProcs": 4,
+      "canaryEvents": 699
+    }
+  ],
+  "durationMs": 1199319,
+  "finishedAt": "2026-08-19T18:00:17.027Z",
+  "failedGates": [],
+  "allFailingTests": [],
+  "green": false
+}
