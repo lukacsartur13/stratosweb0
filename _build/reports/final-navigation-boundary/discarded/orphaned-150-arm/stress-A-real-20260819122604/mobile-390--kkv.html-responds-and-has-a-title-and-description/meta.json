@@ -1,0 +1,54 @@
+{
+  "runId": "stress-A-real-20260819122604",
+  "navId": "stress-A-real-20260819122604.mobile-390.w385.kkv.html-responds-and-has-a-title-and-description.55",
+  "test": {
+    "file": "public-site.spec.ts",
+    "line": 264,
+    "title": "/kkv.html responds and has a title and description",
+    "project": "mobile-390",
+    "workerIndex": 385,
+    "repeatEachIndex": 55,
+    "retry": 0
+  },
+  "preceding": {
+    "urlBefore": "about:blank",
+    "contextPages": 1,
+    "openRequests": 0,
+    "navigationsInThisTest": 0,
+    "workerTestsBefore": 0,
+    "workerNavigationsBefore": 0,
+    "precedingTest": null,
+    "precedingNavigation": null
+  },
+  "status": "failed",
+  "expectedStatus": "passed",
+  "durationMs": 1470,
+  "timeoutMs": 30000,
+  "lastConfirmedState": "REQUEST_STARTED",
+  "statesReached": [
+    "GOTO_CALLED",
+    "REQUEST_STARTED"
+  ],
+  "screenshot": true,
+  "error": [
+    "Error: page.goto: Could not connect to the server.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4322/kkv.html\", waiting until \"load\"\u001b[22m\n"
+  ],
+  "errorIsPartial": false,
+  "frozenSubject": {
+    "source": "_build/reports/hermetic-gate/manifests/frozen-reference.json",
+    "dist": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "tests": null,
+    "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b"
+  },
+  "system": {
+    "loadavg": [
+      79.85791015625,
+      126.578125,
+      123.9013671875
+    ],
+    "freememMB": 1532,
+    "cpus": 10,
+    "platform": "darwin 25.6.0",
+    "arch": "arm64"
+  }
+}

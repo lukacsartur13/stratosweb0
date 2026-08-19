@@ -1,0 +1,52 @@
+{
+  "runId": "stress-A-routes-20260819114426",
+  "stage": "A",
+  "arm": "routes",
+  "startedAt": "2026-08-19T11:44:26.594Z",
+  "durationMs": 2120729,
+  "commit": "32d08c4f412a82643a2451a2021f2b41193ac3cb",
+  "repeatEach": 500,
+  "workers": 5,
+  "playwrightExit": 0,
+  "targetTitle": [
+    "/kkv.html responds and has a title and description"
+  ],
+  "targetProject": "mobile-390",
+  "executions": {
+    "target": 500,
+    "all": 5000
+  },
+  "failures": {
+    "target": 0,
+    "other": 0,
+    "detail": []
+  },
+  "subject": {
+    "identical": true,
+    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+    "testBefore": "ed25678015cf1e14804e37fcf2b29614243432e0baf2c2a43481dc6416312beb",
+    "testAfter": "ed25678015cf1e14804e37fcf2b29614243432e0baf2c2a43481dc6416312beb",
+    "canaryEvents": 0,
+    "canaryDetail": []
+  },
+  "servers": [
+    {
+      "name": "main",
+      "port": 4322,
+      "pid": 32456,
+      "startedAt": "2026-08-19T11:44:26.359Z",
+      "stoppedAt": "2026-08-19T12:19:48.825Z",
+      "confirmedDead": true
+    }
+  ],
+  "portReleased": true,
+  "load": {
+    "samples": 423,
+    "mean": 38.72,
+    "peak": 120.66,
+    "min": 15.34
+  },
+  "valid": true,
+  "invalidReasons": []
+}

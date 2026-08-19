@@ -1,0 +1,33 @@
+{
+  "total": 1,
+  "truncatedEvents": 0,
+  "failed": [
+    {
+      "url": "http://127.0.0.1:4322/kkv.html",
+      "method": "GET",
+      "resourceType": "document",
+      "isNavigation": true,
+      "mainFrame": true,
+      "startedAt": 117,
+      "finishedAt": null,
+      "failedAt": 127,
+      "failure": "Could not connect to the server.",
+      "status": null
+    }
+  ],
+  "pending": [],
+  "mainDocument": [
+    {
+      "url": "http://127.0.0.1:4322/kkv.html",
+      "method": "GET",
+      "resourceType": "document",
+      "isNavigation": true,
+      "mainFrame": true,
+      "startedAt": 117,
+      "finishedAt": null,
+      "failedAt": 127,
+      "failure": "Could not connect to the server.",
+      "status": null
+    }
+  ]
+}

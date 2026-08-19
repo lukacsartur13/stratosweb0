@@ -1,0 +1,44 @@
+{
+  "navId": "stress-A-real-20260819122604.mobile-390.w385.kkv.html-responds-and-has-a-title-and-description.55",
+  "target": "http://127.0.0.1:4322/kkv.html",
+  "gotoResolved": false,
+  "gotoError": "page.goto: Could not connect to the server.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4322/kkv.html\", waiting until \"load\"\u001b[22m\n",
+  "preceding": {
+    "urlBefore": "about:blank",
+    "contextPages": 1,
+    "openRequests": 0,
+    "navigationsInThisTest": 0,
+    "workerTestsBefore": 0,
+    "workerNavigationsBefore": 0,
+    "precedingTest": null,
+    "precedingNavigation": null
+  },
+  "events": [
+    {
+      "t": 53,
+      "event": "GOTO_CALLED",
+      "state": "GOTO_CALLED",
+      "url": "/kkv.html",
+      "resolvedTarget": "http://127.0.0.1:4322/kkv.html",
+      "urlBefore": "about:blank",
+      "waitUntil": "load (default)",
+      "timeout": "inherited from test timeout"
+    },
+    {
+      "t": 117,
+      "event": "REQUEST_STARTED",
+      "state": "REQUEST_STARTED",
+      "url": "http://127.0.0.1:4322/kkv.html"
+    },
+    {
+      "t": 127,
+      "event": "requestfailed",
+      "url": "http://127.0.0.1:4322/kkv.html",
+      "method": "GET",
+      "type": "document",
+      "errorText": "Could not connect to the server.",
+      "mainFrame": true,
+      "isNavigation": true
+    }
+  ]
+}

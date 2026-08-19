@@ -1,0 +1,20 @@
+{
+  "urlFromDriver": "about:blank",
+  "title": "",
+  "crashed": false,
+  "closed": false,
+  "inPage": {
+    "readyState": "complete",
+    "visibilityState": "visible",
+    "title": "",
+    "hasBody": true,
+    "hasMain": false,
+    "href": "about:blank",
+    "bodyChildCount": 0,
+    "resources": 0
+  },
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: Could not connect to the server."
+  ]
+}
