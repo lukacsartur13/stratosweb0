@@ -13,6 +13,10 @@ const BASE = `http://127.0.0.1:${PORT}`;
 const NODE_ONLY = [
   /lead-endpoint\.spec\.ts/, /structured-data\.spec\.ts/, /portal-analytics\.spec\.ts/,
   /portal-health\.spec\.ts/, /lead-notify\.spec\.ts/, /redirects\.spec\.ts/,
+  // Runs the repository secret scan as a child process and asserts what it does
+  // and does not read. No page, no viewport, and running it five times over is
+  // five full walks of the repository for the same answer.
+  /gate-independence\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are
