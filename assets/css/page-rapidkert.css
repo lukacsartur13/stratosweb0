@@ -1,0 +1,200 @@
+/* ==========================================================================
+   STRATOS — Rapidkert case study. Loaded by `css: rapidkert`.
+
+   Three compositions this one route needs and no other does: the ledger that
+   splits one headline figure into the two channels that produced it, the
+   dominant ratio, and the closing tally. Everything else on the page is the
+   shared vocabulary — `.band`, `.smark`, `.metrics`, `.caps`, `.frame`,
+   `.related` — used unmodified.
+
+   WHY THESE ARE NOT `.stats`
+   The stat block already in main.css is a ROW OF PEERS: four figures of equal
+   rank, ruled apart. None of the three below is that. The ledger is one figure
+   and its decomposition, the ratio is a single figure with no peers at all,
+   and the tally is an arithmetic statement whose last line is not a sibling of
+   the first two, it is their sum. Reusing `.stats` for any of them would flatten
+   exactly the relationship each one exists to show.
+
+   NUMBER AND CAPTION ARE ONE ELEMENT
+   Every figure here is a <p> whose value and caption are inline children made
+   into blocks by CSS. That is not a styling preference: the translation engine
+   in _build/i18n.py only extracts a unit that contains a cased letter, so a
+   bare "44,8×" in its own element would never reach the dictionary and the
+   English page would render the Hungarian decimal comma. Kept together, the
+   whole line is one translatable string and the separator localises with it.
+   ========================================================================== */
+
+/* ------------------------------------------------------- headline hyphenation
+   type.css gives `hyphens: auto` to every h1 and h2 in Hungarian and German,
+   and it is right to: it stops a long German compound escaping a narrow column.
+   It also withdraws that rule at signature size, with a reason that applies
+   word for word to this page — a hyphen in type that is read as an image before
+   it is read as words looks like a bug, and the example it cites is a *valid*
+   Hungarian syllable break.
+
+   On this route the same thing happened to "A felszín csak az utolsó réteg",
+   which came out as "CSAK AZ UTOL- / SÓ RÉTEG" at 1440. Nothing was overflowing
+   — measured, not guessed: the longest word is 58px inside a 565px column — the
+   engine was hyphenating purely to even out the rag. Widening the measure could
+   not fix it either, because the binding constraint is the `g-split` grid track
+   and not the heading's own max-width.
+
+   So the automatic break is withdrawn here and the overflow protection is kept,
+   exactly as type.css does for the signature. Two qualifiers on the selector
+   because `[lang='hu'] h2` is (0,1,1) and a bare class would tie and lose. */
+[lang] h1.display,
+[lang] h2.display,
+[lang] p.display,
+[lang] .closer {
+  hyphens: manual;
+  overflow-wrap: break-word;
+}
+
+/* ------------------------------------------------------------- the ledger
+   ~15M, and the two channels it is made of. The split sits UNDER the total and
+   is ruled off from it, because the reader has to see the sum before the
+   parts — the parts are the honesty, the sum is the claim. */
+.ledger { border-top: 1px solid var(--hair); padding-top: clamp(1.4rem, 3.5vw, 2.4rem); }
+
+.ledger__head { margin: 0; }
+.ledger__v {
+  display: block;
+  font-family: var(--display); font-size: var(--step-5);
+  font-variation-settings: 'wdth' var(--wd), 'wght' var(--wt);
+  line-height: .86; color: var(--signal);
+  font-variant-numeric: tabular-nums;
+  /* The figure is the longest unbreakable token on the page. Without this a
+     430px viewport puts "~15M Ft" past the right edge rather than wrapping. */
+  overflow-wrap: anywhere;
+}
+.ledger__c {
+  display: block; margin-top: .9rem; max-width: 24ch;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em;
+  color: rgba(244, 244, 244, .7);
+}
+
+/* Two columns of equal rank — these two ARE peers, unlike the total above. */
+.ledger__split {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  margin-top: clamp(1.8rem, 4.5vw, 3rem);
+  border-top: 1px solid var(--hair);
+}
+.ledger__part {
+  margin: 0; padding: clamp(1.2rem, 3vw, 2rem) clamp(1rem, 2vw, 2rem) 0 0;
+}
+.ledger__pv {
+  display: block;
+  font-family: var(--display); font-size: var(--step-3);
+  font-variation-settings: 'wdth' var(--wd), 'wght' var(--wt);
+  line-height: .9; color: var(--chrome);
+  font-variant-numeric: tabular-nums; overflow-wrap: anywhere;
+}
+.ledger__pc {
+  display: block; margin-top: .7rem;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em; color: var(--haze);
+}
+
+/* --------------------------------------------------------- the ratio
+   One figure, no peers, and the largest type on the page after the H1. It is
+   ruled top and bottom rather than boxed, for the reason main.css gives about
+   `.metric`: a reading off an instrument is ruled, not boxed. */
+.figure {
+  margin: clamp(2.2rem, 5.5vw, 3.6rem) 0 0;
+  padding: clamp(1.6rem, 4vw, 2.6rem) 0;
+  border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+}
+.figure__v {
+  display: block;
+  font-family: var(--display);
+  /* Deliberately larger than --step-5: this is the page's loudest number and
+     it has one short token to fill, so it can take the width the H1 cannot. */
+  font-size: clamp(3.4rem, 15vw, 11rem);
+  font-variation-settings: 'wdth' var(--wd), 'wght' var(--wt);
+  line-height: .82; color: var(--signal);
+  font-variant-numeric: tabular-nums; overflow-wrap: anywhere;
+}
+.figure__c {
+  display: block; margin-top: 1rem; max-width: 34ch;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em; color: var(--haze);
+}
+
+/* ----------------------------------------------------------- the tally
+   The closing arithmetic. Rows are ruled like `.proof`, and the sum row is
+   given the signal colour and a heavier rule — it is a conclusion, not a
+   fourth item. */
+.tally { border-top: 1px solid var(--hair); }
+.tally__row {
+  margin: 0;
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr);
+  gap: clamp(.6rem, 2vw, 2rem); align-items: baseline;
+  padding-block: clamp(1.1rem, 3vw, 1.9rem);
+  border-bottom: 1px solid var(--hair);
+}
+.tally__v {
+  font-family: var(--display); font-size: var(--step-3);
+  font-variation-settings: 'wdth' var(--wd), 'wght' var(--wt);
+  line-height: .95; font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.tally__c {
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .16em; color: var(--haze);
+  justify-self: end; text-align: right;
+}
+.tally__row--sum { border-bottom-width: 2px; }
+.tally__row--sum .tally__v { color: var(--signal); }
+
+/* ---------------------------------------------------------- the closing line */
+.closer {
+  margin: clamp(2.6rem, 6.5vw, 4.5rem) 0 0;
+  font-family: var(--display); font-size: var(--step-4);
+  font-variation-settings: 'wdth' var(--wd), 'wght' var(--wt);
+  line-height: .95; text-transform: uppercase; max-width: 16ch;
+  text-wrap: balance;
+}
+
+/* -------------------------------------------------------- pale-band inversion
+   Sections 02 and 07 sit on `.band--pale`, where --signal on #F4F4F4 is an
+   unreadable yellow-on-white. The same inversion main.css applies to `.metric`
+   is applied to all three compositions here. */
+.band--pale .ledger,
+.band--pale .ledger__split,
+.band--pale .figure,
+.band--pale .tally,
+.band--pale .tally__row { border-color: rgba(0, 0, 0, .16); }
+
+.band--pale .ledger__v,
+.band--pale .figure__v,
+.band--pale .tally__row--sum .tally__v { color: var(--void); }
+.band--pale .ledger__pv { color: #2F6E96; }
+.band--pale .ledger__c { color: rgba(0, 0, 0, .7); }
+.band--pale .figure__c,
+.band--pale .ledger__pc,
+.band--pale .tally__c { color: rgba(0, 0, 0, .55); }
+
+/* -------------------------------------------------- `.metric` as a paragraph
+   main.css styles `.metric` as a block container; here it is a <p> so that the
+   figure and its label form one translatable unit (see the header note). The
+   only thing that needs saying is that a <p> carries margins and a <div> does
+   not. */
+.metrics .metric { margin: 0; }
+
+/* ------------------------------------------------------------------ entrance
+   There is deliberately NO entrance CSS here. The figures carry `data-reveal`
+   and their containers carry `data-stagger`, which is the primitive main.css
+   and main.js already ship for exactly this: one IntersectionObserver, one
+   `.is-in` class, and a `--d` delay computed from each element's index inside
+   its stagger group. A second fade-up system scoped to one page would be a
+   second thing to keep in step with the global reduced-motion rules, for a
+   result the reader could not tell apart. */
+
+/* -------------------------------------------------------------- narrow widths
+   The tally is the one composition that cannot stay two-column on a phone: its
+   value column holds "~201E Ft → ~9M Ft", which is three tokens and an arrow. */
+@media (max-width: 620px) {
+  .tally__row { grid-template-columns: 1fr; gap: .5rem; }
+  .tally__c { justify-self: start; text-align: left; }
+}

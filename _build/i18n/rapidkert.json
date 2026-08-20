@@ -1,0 +1,323 @@
+{
+ "_comment": [
+  "The Rapidkert case study, its Work-index card and the two references to it",
+  "on the SME page. Hungarian key -> [English, German].",
+  "",
+  "ON THE NUMBERS — read before editing",
+  "Every quantity is identical in all three languages. Only the FORMATTING is",
+  "localised, and it has to be, because the same glyph means different things:",
+  "Hungarian writes 4,1% with a decimal comma and English reads that comma as a",
+  "thousands separator. So 31 500 / 31,500 / 31.500 is one number written three",
+  "ways, and 4,1% / 4.1% / 4,1 % likewise. Anyone editing these must change the",
+  "presentation and never the value.",
+  "",
+  "The currency is written Ft in Hungarian and HUF in English and German. HUF is",
+  "the ISO code an English or German reader can price; Ft is what a Hungarian",
+  "reader expects. Same currency, same amounts.",
+  "",
+  "ON THE WORDING — the claim is narrow on purpose",
+  "'Contracted project value' is not revenue and not profit, and 44.8x is a",
+  "ratio of that value to ad spend — NOT a return, NOT a net ROI and NOT a",
+  "margin. The German 'beauftragter Projektwert' and the English 'contracted",
+  "project value' were chosen for exactly that narrowness. The 15M figure is the",
+  "sum of two channels and only 9M of it sits behind the 201K of media spend, so",
+  "no sentence in any language may divide 15M by 201K."
+ ],
+
+ "Rapidkert Kft. — 3D webdesign, SEO és Google Ads esettanulmány | Stratos": [
+  "Rapidkert — 3D web design, SEO and Google Ads case study | Stratos",
+  "Rapidkert — 3D-Webdesign, SEO und Google Ads Fallstudie | Stratos"
+ ],
+ "Hogyan épített a Stratos mérhető keresési akvizíciót és egy interaktív 3D weboldalt a Rapidkertnek — nagyjából 15 millió Ft szerződött projektértékkel fizetett és organikus keresésből.": [
+  "How Stratos Media combined Google Ads, SEO and an interactive 3D web experience for Rapidkert, contributing to approximately 15 million HUF in contracted project value.",
+  "Wie Stratos Media für Rapidkert Google Ads, SEO und ein interaktives 3D-Weberlebnis verbunden hat — mit rund 15 Millionen HUF beauftragtem Projektwert aus der Suche."
+ ],
+
+ "Rapidkert Kft. — Győr, Magyarország": [
+  "Rapidkert Kft. — Győr, Hungary",
+  "Rapidkert Kft. — Győr, Ungarn"
+ ],
+ "Egy nagyszerű kert <span class=\"sig\">a felszín alatt kezdődik.</span>": [
+  "A great garden <span class=\"sig\">starts below the surface.</span>",
+  "Ein großartiger Garten <span class=\"sig\">beginnt unter der Oberfläche.</span>"
+ ],
+ "A Rapidkert a föld felett épít kerteket. Mi azt a digitális rendszert építettük meg, ami alattuk hozza a növekedést.": [
+  "Rapidkert builds gardens above ground. We built the digital system beneath its growth.",
+  "Rapidkert baut Gärten über der Erde. Wir haben das digitale System darunter gebaut, aus dem das Wachstum kommt."
+ ],
+ "<span>3D webélmény</span><span>Webfejlesztés</span><span>SEO</span><span>Google Ads</span><span>Digitális stratégia</span>": [
+  "<span>3D web experience</span><span>Web development</span><span>SEO</span><span>Google Ads</span><span>Digital strategy</span>",
+  "<span>3D-Weberlebnis</span><span>Webentwicklung</span><span>SEO</span><span>Google Ads</span><span>Digitalstrategie</span>"
+ ],
+ "<span><b>Szektor</b> kertépítés, öntözéstechnika</span> <span><b>Amit szállítottunk</b> akvizíció és weboldal</span> <span><b>Nyelv</b> magyar, angol</span> <span><b>Élő cím</b> rapidkert.com</span>": [
+  "<span><b>Sector</b> landscaping, irrigation</span> <span><b>What we delivered</b> acquisition and website</span> <span><b>Languages</b> Hungarian, English</span> <span><b>Live at</b> rapidkert.com</span>",
+  "<span><b>Branche</b> Gartenbau, Bewässerungstechnik</span> <span><b>Unsere Leistung</b> Akquise und Website</span> <span><b>Sprachen</b> Ungarisch, Englisch</span> <span><b>Live unter</b> rapidkert.com</span>"
+ ],
+
+ "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Üzleti eredmény</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Business impact</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Geschäftlicher Effekt</span>"
+ ],
+ "<b class=\"ledger__v\">~15M Ft</b><span class=\"ledger__c\">Szerződött projektérték keresésből</span>": [
+  "<b class=\"ledger__v\">~15M HUF</b><span class=\"ledger__c\">Contracted project value from search</span>",
+  "<b class=\"ledger__v\">~15 Mio. HUF</b><span class=\"ledger__c\">Beauftragter Projektwert aus der Suche</span>"
+ ],
+ "<b class=\"ledger__pv\">~9M Ft</b><span class=\"ledger__pc\">Google Ads</span>": [
+  "<b class=\"ledger__pv\">~9M HUF</b><span class=\"ledger__pc\">Google Ads</span>",
+  "<b class=\"ledger__pv\">~9 Mio. HUF</b><span class=\"ledger__pc\">Google Ads</span>"
+ ],
+ "<b class=\"ledger__pv\">~6M Ft</b><span class=\"ledger__pc\">Organikus keresés</span>": [
+  "<b class=\"ledger__pv\">~6M HUF</b><span class=\"ledger__pc\">Organic search</span>",
+  "<b class=\"ledger__pv\">~6 Mio. HUF</b><span class=\"ledger__pc\">Organische Suche</span>"
+ ],
+ "Két csatorna, <span class=\"sig\">egy rendszer.</span>": [
+  "Two channels, <span class=\"sig\">one system.</span>",
+  "Zwei Kanäle, <span class=\"sig\">ein System.</span>"
+ ],
+ "A fizetett és az organikus keresés együtt mérhető akvizíciós csatornává vált a Rapidkert számára: a kettő nagyjából 15 millió Ft értékű szerződött projektet hozott.": [
+  "Paid and organic search became measurable acquisition channels for Rapidkert, generating approximately 15 million HUF in contracted project value between them.",
+  "Bezahlte und organische Suche wurden für Rapidkert zu messbaren Akquisekanälen: Zusammen brachten sie einen beauftragten Projektwert von rund 15 Millionen HUF."
+ ],
+ "A két szám külön áll, mert külön is keletkezett. A 6M Ft organikus eredmény mögött nincs hirdetési költés, ezért a 15M Ft-ot nem osztjuk el a hirdetési kerettel — az arányszám csak a Google Ads 9M Ft-jára vonatkozik.": [
+  "The two figures are kept apart because they arose apart. There is no ad spend behind the 6M HUF organic result, so we do not divide the 15M HUF by the media budget — the ratio applies to the 9M HUF from Google Ads alone.",
+  "Die beiden Zahlen stehen getrennt, weil sie getrennt entstanden sind. Hinter dem organischen Ergebnis von 6 Mio. HUF steht kein Werbebudget, deshalb teilen wir die 15 Mio. HUF nicht durch die Media-Ausgaben — die Verhältniszahl bezieht sich allein auf die 9 Mio. HUF aus Google Ads."
+ ],
+
+ "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Google Ads teljesítmény</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Google Ads performance</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Google Ads Leistung</span>"
+ ],
+ "A keresletet ott fogtuk el, ahol keletkezik": [
+  "We captured demand where it forms",
+  "Wir haben die Nachfrage dort abgeholt, wo sie entsteht"
+ ],
+ "Öt hónap egyetlen fiókban, kertépítésre és öntözéstechnikára szűkített keresési szándékkal.": [
+  "Five months in a single account, with search intent narrowed to landscaping and irrigation.",
+  "Fünf Monate in einem einzigen Konto, mit auf Gartenbau und Bewässerungstechnik eingegrenzter Suchintention."
+ ],
+ "<b class=\"metric__v\">31 500+</b><span class=\"metric__l\">Megjelenés</span><span class=\"metric__src\">Google Ads · 2025.12.01—2026.04.30</span>": [
+  "<b class=\"metric__v\">31,500+</b><span class=\"metric__l\">Impressions</span><span class=\"metric__src\">Google Ads · 1 Dec 2025 — 30 Apr 2026</span>",
+  "<b class=\"metric__v\">31.500+</b><span class=\"metric__l\">Impressionen</span><span class=\"metric__src\">Google Ads · 01.12.2025—30.04.2026</span>"
+ ],
+ "<b class=\"metric__v\">1 290+</b><span class=\"metric__l\">Kattintás</span><span class=\"metric__src\">Google Ads · 2025.12.01—2026.04.30</span>": [
+  "<b class=\"metric__v\">1,290+</b><span class=\"metric__l\">Clicks</span><span class=\"metric__src\">Google Ads · 1 Dec 2025 — 30 Apr 2026</span>",
+  "<b class=\"metric__v\">1.290+</b><span class=\"metric__l\">Klicks</span><span class=\"metric__src\">Google Ads · 01.12.2025—30.04.2026</span>"
+ ],
+ "<b class=\"metric__v\">4,1%</b><span class=\"metric__l\">Átkattintási arány (CTR)</span><span class=\"metric__src\">Google Ads · 2025.12.01—2026.04.30</span>": [
+  "<b class=\"metric__v\">4.1%</b><span class=\"metric__l\">Click-through rate (CTR)</span><span class=\"metric__src\">Google Ads · 1 Dec 2025 — 30 Apr 2026</span>",
+  "<b class=\"metric__v\">4,1 %</b><span class=\"metric__l\">Klickrate (CTR)</span><span class=\"metric__src\">Google Ads · 01.12.2025—30.04.2026</span>"
+ ],
+ "<b class=\"metric__v\">156 Ft</b><span class=\"metric__l\">Átlagos kattintási költség</span><span class=\"metric__src\">Google Ads · 2025.12.01—2026.04.30</span>": [
+  "<b class=\"metric__v\">156 HUF</b><span class=\"metric__l\">Average cost per click</span><span class=\"metric__src\">Google Ads · 1 Dec 2025 — 30 Apr 2026</span>",
+  "<b class=\"metric__v\">156 HUF</b><span class=\"metric__l\">Durchschnittlicher Klickpreis</span><span class=\"metric__src\">Google Ads · 01.12.2025—30.04.2026</span>"
+ ],
+ "<b class=\"metric__v\">~201E Ft</b><span class=\"metric__l\">Hirdetési költés</span><span class=\"metric__src\">Google Ads · 2025.12.01—2026.04.30</span>": [
+  "<b class=\"metric__v\">~201K HUF</b><span class=\"metric__l\">Ad spend</span><span class=\"metric__src\">Google Ads · 1 Dec 2025 — 30 Apr 2026</span>",
+  "<b class=\"metric__v\">~201 Tsd. HUF</b><span class=\"metric__l\">Werbeausgaben</span><span class=\"metric__src\">Google Ads · 01.12.2025—30.04.2026</span>"
+ ],
+ "<b class=\"metric__v\">~9M Ft</b><span class=\"metric__l\">Szerződött projektérték</span><span class=\"metric__src\">Ügyfél által visszaigazolva</span>": [
+  "<b class=\"metric__v\">~9M HUF</b><span class=\"metric__l\">Contracted project value</span><span class=\"metric__src\">Confirmed by the client</span>",
+  "<b class=\"metric__v\">~9 Mio. HUF</b><span class=\"metric__l\">Beauftragter Projektwert</span><span class=\"metric__src\">Vom Kunden bestätigt</span>"
+ ],
+ "<b class=\"figure__v\">44,8×</b><span class=\"figure__c\">Szerződött projektérték / Google Ads költés</span>": [
+  "<b class=\"figure__v\">44.8×</b><span class=\"figure__c\">Contracted project value / Google Ads spend</span>",
+  "<b class=\"figure__v\">44,8×</b><span class=\"figure__c\">Beauftragter Projektwert / Google Ads Ausgaben</span>"
+ ],
+ "Nagyjából 201 ezer Ft hirdetési költés mintegy 9 millió Ft értékű szerződött projekthez járult hozzá. Minden hirdetésre költött 1 Ft körülbelül 44,8 Ft szerződött projektértéknek felelt meg.": [
+  "Approximately 201 thousand HUF in media spend contributed to around 9 million HUF in contracted projects. Every 1 HUF spent on Google Ads corresponded to approximately 44.8 HUF in contracted project value.",
+  "Rund 201 Tausend HUF Media-Ausgaben trugen zu etwa 9 Millionen HUF an beauftragten Projekten bei. Jeder für Google Ads ausgegebene HUF entsprach rund 44,8 HUF beauftragtem Projektwert."
+ ],
+ "Ez arányszám, nem nyereség és nem nettó megtérülés: a szerződött projektérték a kivitelezés költségeit is tartalmazza.": [
+  "This is a ratio, not profit and not a net return: contracted project value includes the cost of carrying the work out.",
+  "Das ist eine Verhältniszahl, kein Gewinn und keine Nettorendite: Der beauftragte Projektwert enthält auch die Kosten der Ausführung."
+ ],
+
+ "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Organikus keresés</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Organic search</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Organische Suche</span>"
+ ],
+ "A keresés <span class=\"sig\">kamatozik.</span>": [
+  "Search that <span class=\"sig\">compounds.</span>",
+  "Suche, die <span class=\"sig\">sich verzinst.</span>"
+ ],
+ "A fizetett hirdetés az azonnali keresletet fogja be — addig hoz megkeresést, amíg fut. Az organikus láthatóság ezzel párhuzamosan egy második akvizíciós réteget épített, amelynek nincs kattintási költsége.": [
+  "Paid search captures immediate demand — it brings enquiries for as long as it runs. Alongside it, organic visibility built a second acquisition layer, one with no cost per click.",
+  "Bezahlte Suche fängt die unmittelbare Nachfrage ab — sie bringt Anfragen, solange sie läuft. Parallel dazu hat organische Sichtbarkeit eine zweite Akquiseebene aufgebaut, und die kostet keinen Klickpreis."
+ ],
+ "A SEO és az organikus Google-forgalom nagyjából 6 millió Ft értékű további szerződött projektet hozott.": [
+  "SEO and organic Google traffic contributed approximately 6 million HUF in additional contracted projects.",
+  "SEO und organischer Google-Traffic brachten weitere beauftragte Projekte im Wert von rund 6 Millionen HUF."
+ ],
+ "<b class=\"metric__v\">~6M Ft</b><span class=\"metric__l\">Organikus keresésből származó projektérték</span><span class=\"metric__src\">Ügyfél által visszaigazolva</span>": [
+  "<b class=\"metric__v\">~6M HUF</b><span class=\"metric__l\">Organic search project value</span><span class=\"metric__src\">Confirmed by the client</span>",
+  "<b class=\"metric__v\">~6 Mio. HUF</b><span class=\"metric__l\">Projektwert aus organischer Suche</span><span class=\"metric__src\">Vom Kunden bestätigt</span>"
+ ],
+ "<b class=\"metric__v\">0 Ft</b><span class=\"metric__l\">Ehhez tartozó hirdetési költés</span><span class=\"metric__src\">Google Ads · 2025.12.01—2026.04.30</span>": [
+  "<b class=\"metric__v\">0 HUF</b><span class=\"metric__l\">Ad spend behind it</span><span class=\"metric__src\">Google Ads · 1 Dec 2025 — 30 Apr 2026</span>",
+  "<b class=\"metric__v\">0 HUF</b><span class=\"metric__l\">Werbeausgaben dahinter</span><span class=\"metric__src\">Google Ads · 01.12.2025—30.04.2026</span>"
+ ],
+
+ "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">A digitális újragondolás</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">The digital reinvention</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">Die digitale Neuerfindung</span>"
+ ],
+ "A teljesítmény hozta a megkereséseket. <span class=\"sig\">A dizájn hozza a pozíciót.</span>": [
+  "Performance built the pipeline. <span class=\"sig\">Design built the position.</span>",
+  "Die Performance hat die Anfragen gebracht. <span class=\"sig\">Das Design bringt die Position.</span>"
+ ],
+ "Amikor az akvizíciós rendszer már bizonyított, a kérdés megváltozott. Nem az volt többé a cél, hogy a Rapidkert felvegye a versenyt a többi kertépítő weboldalával.": [
+  "Once the acquisition system had proved its value, the question changed. The objective was no longer for Rapidkert to simply compete with other landscaping websites.",
+  "Als das Akquisesystem seinen Wert bewiesen hatte, änderte sich die Frage. Es ging nicht mehr darum, dass Rapidkert mit anderen Gartenbau-Websites mithält."
+ ],
+ "Hanem az, hogy újradefiniáljuk, milyen érzés lehet egy kertépítő weboldala.": [
+  "It was to redefine what a landscaping website could feel like.",
+  "Sondern darum, neu zu definieren, wie sich die Website eines Gartenbauers anfühlen kann."
+ ],
+
+ "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">A felszín alatt</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Below the surface</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Unter der Oberfläche</span>"
+ ],
+ "Egy nagyszerű kert a felszín alatt kezdődik.": [
+  "A great garden starts below the surface.",
+  "Ein großartiger Garten beginnt unter der Oberfläche."
+ ],
+ "A legtöbb kertépítő weboldal ugyanazt mutatja: kész gyepet, növényeket, teraszt, elkészült kertet. Csupa olyat, ami látszik.": [
+  "Most landscaping websites show the same things: finished lawns, plants, terraces, completed gardens. All of it the part you can see.",
+  "Die meisten Gartenbau-Websites zeigen dasselbe: fertigen Rasen, Pflanzen, Terrassen, fertige Gärten. Alles nur das, was sichtbar ist."
+ ],
+ "A kert minősége azonban nem a felszínen dől el. Talajelőkészítés, vízelvezetés, öntözés, föld alatti gépészet, szerkezeti előkészítés — ezek döntik el, hogy a kert két év múlva hogyan néz ki. Az ügyfél ebből semmit nem lát.": [
+  "But the quality of a garden is not decided at the surface. Soil preparation, drainage, irrigation, underground systems, structural preparation — these decide what the garden looks like in two years. The customer sees none of it.",
+  "Die Qualität eines Gartens entscheidet sich jedoch nicht an der Oberfläche. Bodenvorbereitung, Entwässerung, Bewässerung, unterirdische Technik, statische Vorbereitung — sie entscheiden, wie der Garten in zwei Jahren aussieht. Der Kunde sieht davon nichts."
+ ],
+ "Ez lett a weboldal vizuális és tartalmi alapgondolata: a Rapidkert láthatatlan szaktudását tettük a központi képi ötletté.": [
+  "This became the visual and conceptual foundation of the website: we turned Rapidkert's invisible expertise into the central visual idea.",
+  "Das wurde zur visuellen und inhaltlichen Grundidee der Website: Wir haben das unsichtbare Können von Rapidkert zur zentralen Bildidee gemacht."
+ ],
+ "Ahelyett, hogy újabb galériát építettünk volna kész kertekből, olyan élményt építettünk, amely megmutatja, mitől maradnak szépek azok a kertek.": [
+  "Instead of building another gallery of finished gardens, we built an experience that reveals what makes those gardens last.",
+  "Statt einer weiteren Galerie fertiger Gärten haben wir ein Erlebnis gebaut, das zeigt, warum diese Gärten Bestand haben."
+ ],
+
+ "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Interaktív 3D élmény</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Interactive 3D experience</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Interaktives 3D-Erlebnis</span>"
+ ],
+ "A Rapidkert interaktív 3D kertépítő weboldala a Stratos Mediától: a nyitóképernyőn a kert és az alatta lévő talaj térbeli keresztmetszete, rétegekre bontva.": [
+  "Rapidkert interactive 3D landscaping website by Stratos Media: the opening screen shows a three-dimensional cross-section of the garden and the ground beneath it, separated into layers.",
+  "Die interaktive 3D-Website von Rapidkert Gartenbau, umgesetzt von Stratos Media: Der Startbildschirm zeigt einen räumlichen Querschnitt durch den Garten und den Boden darunter, in Schichten aufgetrennt."
+ ],
+ "A felszín csak az utolsó réteg": [
+  "The surface is only the final layer",
+  "Die Oberfläche ist nur die letzte Schicht"
+ ],
+ "A nyitóképernyő közepén nem fotó áll, hanem egy térbeli kertkeresztmetszet. A 3D itt nem díszítés, hanem az érvelés eszköze.": [
+  "At the centre of the opening screen there is no photograph but a three-dimensional cross-section of a garden. The 3D here is not decoration; it is how the argument is made.",
+  "Im Zentrum des Startbildschirms steht kein Foto, sondern ein räumlicher Gartenquerschnitt. Das 3D ist hier keine Dekoration, sondern das Mittel der Argumentation."
+ ],
+ "Térbeli keresztmetszet": ["Three-dimensional cross-section", "Räumlicher Querschnitt"],
+ "A nyitóképernyő tárgya egy kimetszett talajkocka: felül a kész kertfelület gyeppel és járólapokkal, alatta a rétegek.": [
+  "The subject of the opening screen is a cut block of ground: the finished garden surface on top, with lawn and paving slabs, and the layers below it.",
+  "Gegenstand des Startbildschirms ist ein herausgeschnittener Bodenblock: oben die fertige Gartenfläche mit Rasen und Gehwegplatten, darunter die Schichten."
+ ],
+ "Föld alatti rétegek": ["Underground layers", "Unterirdische Schichten"],
+ "Termőréteg, tömörített altalaj és kavicságy egymás alatt, láthatóan elkülönítve — az a szerkezet, amit a kész kert eltakar.": [
+  "Topsoil, compacted subsoil and gravel bed one below the other, visibly separated — the structure the finished garden hides.",
+  "Mutterboden, verdichteter Unterboden und Kiesbett übereinander, sichtbar getrennt — genau die Struktur, die der fertige Garten verdeckt."
+ ],
+ "Öntözés és vízelvezetés": ["Irrigation and drainage", "Bewässerung und Entwässerung"],
+ "A metszetben ott fut a szórófej vezetéke és a dréncső, abban a mélységben, ahol a valóságban is van.": [
+  "The sprinkler line and the drainage pipe run through the section at the depth they sit at in reality.",
+  "Im Querschnitt verlaufen die Leitung des Sprinklers und das Drainagerohr — in genau der Tiefe, in der sie auch in Wirklichkeit liegen."
+ ],
+ "Mélységmérő": ["Depth readout", "Tiefenanzeige"],
+ "A jobb szélen méteres mélységkijelző áll, amely a felszínen nullát mutat: az oldal a saját mértékegységében beszél a mélységről.": [
+  "A depth readout in metres sits along the right edge, reading zero at the surface: the site talks about depth in its own unit.",
+  "Am rechten Rand steht eine Tiefenanzeige in Metern, die an der Oberfläche null zeigt: Die Seite spricht über Tiefe in ihrer eigenen Maßeinheit."
+ ],
+ "Görgetés lefelé, nem előre": ["Scrolling down, not forward", "Nach unten scrollen, nicht nach vorn"],
+ "Az oldal a „Görgess a felszín alá” utasítással indul: a görgetés iránya maga a történet.": [
+  "The site opens with the instruction \"scroll below the surface\": the direction of the scroll is the story itself.",
+  "Die Seite beginnt mit der Aufforderung „Scrolle unter die Oberfläche“: Die Scrollrichtung ist die Geschichte."
+ ],
+ "Tipográfia és paletta": ["Typography and palette", "Typografie und Farbpalette"],
+ "Nagy, tömör groteszk címsor, monospace technikai feliratok, és visszafogott természetes paletta — mélyzöld, föld- és homokszínek, meleg krém.": [
+  "A large, dense grotesque for the headline, monospace technical labels, and a restrained natural palette — deep green, earth and sand tones, warm cream.",
+  "Eine große, kompakte Grotesk für die Überschrift, technische Beschriftungen in Monospace und eine zurückhaltende natürliche Palette — Tiefgrün, Erd- und Sandtöne, warmes Creme."
+ ],
+ "Kétnyelvű felület": ["Bilingual interface", "Zweisprachige Oberfläche"],
+ "Magyar és angol változat, a fejlécből váltható.": [
+  "Hungarian and English versions, switchable from the header.",
+  "Ungarische und englische Fassung, über den Header umschaltbar."
+ ],
+ "A fenti leírás a publikált rapidkert.com nyitóképernyőjén ellenőrizhető.": [
+  "Everything described above can be checked on the published rapidkert.com opening screen.",
+  "Alles oben Beschriebene lässt sich auf dem veröffentlichten Startbildschirm von rapidkert.com überprüfen."
+ ],
+
+ "<span class=\"smark__n\" aria-hidden=\"true\">07</span><span class=\"smark__t\">Eredmény</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">07</span><span class=\"smark__t\">Result</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">07</span><span class=\"smark__t\">Ergebnis</span>"
+ ],
+ "<b class=\"tally__v\">~201E Ft → ~9M Ft</b><span class=\"tally__c\">Google Ads</span>": [
+  "<b class=\"tally__v\">~201K HUF → ~9M HUF</b><span class=\"tally__c\">Google Ads</span>",
+  "<b class=\"tally__v\">~201 Tsd. HUF → ~9 Mio. HUF</b><span class=\"tally__c\">Google Ads</span>"
+ ],
+ "<b class=\"tally__v\">+ ~6M Ft</b><span class=\"tally__c\">Organikus keresés</span>": [
+  "<b class=\"tally__v\">+ ~6M HUF</b><span class=\"tally__c\">Organic search</span>",
+  "<b class=\"tally__v\">+ ~6 Mio. HUF</b><span class=\"tally__c\">Organische Suche</span>"
+ ],
+ "<b class=\"tally__v\">= ~15M Ft</b><span class=\"tally__c\">Szerződött projektérték</span>": [
+  "<b class=\"tally__v\">= ~15M HUF</b><span class=\"tally__c\">Contracted project value</span>",
+  "<b class=\"tally__v\">= ~15 Mio. HUF</b><span class=\"tally__c\">Beauftragter Projektwert</span>"
+ ],
+ "Egy akvizíciós rendszer. Egy teljesen újragondolt digitális jelenlét.": [
+  "One acquisition system. One completely reimagined digital presence.",
+  "Ein Akquisesystem. Eine vollständig neu gedachte digitale Präsenz."
+ ],
+ "A Rapidkert oldala azzal az elvvel készült, amivel a Rapidkert dolgozik: ami a felszín alatt történik, az dönt el mindent, ami fölötte van.": [
+  "The Rapidkert site was built on the same principle Rapidkert works by: what happens below the surface determines everything above it.",
+  "Die Website von Rapidkert ist nach demselben Prinzip gebaut, nach dem Rapidkert arbeitet: Was unter der Oberfläche passiert, entscheidet alles darüber."
+ ],
+ "Az adatok forrása a Rapidkert Google Ads fiókja a 2025.12.01—2026.04.30 időszakra, valamint az ügyfél által visszaigazolt szerződött projektérték. A szerződött projektérték nem árbevétel és nem nyereség.": [
+  "The figures come from Rapidkert's Google Ads account for 1 December 2025 to 30 April 2026, and from the contracted project value confirmed by the client. Contracted project value is neither revenue nor profit.",
+  "Die Zahlen stammen aus dem Google Ads Konto von Rapidkert für den Zeitraum 01.12.2025 bis 30.04.2026 sowie aus dem vom Kunden bestätigten beauftragten Projektwert. Beauftragter Projektwert ist weder Umsatz noch Gewinn."
+ ],
+ "A felszín alól <span class=\"sig\">a kategória fölé.</span>": [
+  "From below the surface <span class=\"sig\">to above the category.</span>",
+  "Von unter der Oberfläche <span class=\"sig\">über die Kategorie hinaus.</span>"
+ ],
+
+ "Ez a szolgáltatás áll a Google Ads eredmény mögött: kampányépítés, mérés és folyamatos optimalizálás.": [
+  "This is the service behind the Google Ads result: campaign build, measurement and continuous optimisation.",
+  "Das ist die Leistung hinter dem Google Ads Ergebnis: Kampagnenaufbau, Messung und laufende Optimierung."
+ ],
+ "Ez a szolgáltatás áll a weboldal mögött: tervezés, fejlesztés és karbantartás fix havidíjban.": [
+  "This is the service behind the website: design, development and maintenance in one fixed monthly fee.",
+  "Das ist die Leistung hinter der Website: Gestaltung, Entwicklung und Wartung in einer festen monatlichen Gebühr."
+ ],
+
+ "Egy nagyszerű kert a felszín alatt kezdődik": [
+  "A great garden starts below the surface",
+  "Ein großartiger Garten beginnt unter der Oberfläche"
+ ],
+ "Google Ads és SEO, együtt nagyjából 15 millió Ft értékű szerződött projekttel — majd egy teljesen újragondolt weboldal, amelynek közepén a kert és a talaj interaktív 3D keresztmetszete áll.": [
+  "Google Ads and SEO, together worth approximately 15 million HUF in contracted projects — then a completely rethought website built around an interactive 3D cross-section of a garden and the ground beneath it.",
+  "Google Ads und SEO, zusammen rund 15 Millionen HUF an beauftragten Projekten — danach eine vollständig neu gedachte Website, in deren Zentrum ein interaktiver 3D-Querschnitt durch Garten und Boden steht."
+ ],
+ "3D webélmény": ["3D web experience", "3D-Weberlebnis"],
+ "SEO és Google Ads": ["SEO and Google Ads", "SEO und Google Ads"],
+
+ "A Rapidkert interaktív 3D kertépítő weboldala a Stratos Mediától: a nyitóképernyőn a kert és az alatta lévő talaj térbeli keresztmetszete.": [
+  "Rapidkert interactive 3D landscaping website by Stratos Media: the opening screen shows a three-dimensional cross-section of the garden and the ground beneath it.",
+  "Die interaktive 3D-Website von Rapidkert Gartenbau, umgesetzt von Stratos Media: Der Startbildschirm zeigt einen räumlichen Querschnitt durch den Garten und den Boden darunter."
+ ],
+ "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Interaktív 3D weboldal</span></a>": [
+  "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Interactive 3D website</span></a>",
+  "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Interaktive 3D-Website</span></a>"
+ ],
+ "Egy élő oldal ugyanebből a szolgáltatásból: interaktív 3D weboldal egy kertépítő vállalkozásnak.": [
+  "A live site from this same service: an interactive 3D website for a landscaping business.",
+  "Eine Live-Website aus derselben Leistung: eine interaktive 3D-Website für einen Gartenbaubetrieb."
+ ]
+}
