@@ -436,9 +436,48 @@
       external = true;
       if (meta && meta.edges) EDGES = meta.edges;
       const v = Math.min(1, Math.max(0, p));
-      if (Math.abs(v - last) <= 0.0004) return;
+
+      /* The gate is about SCROLL NOISE, and on this route the altitude and the
+         stage label are not made of scroll.
+
+         On the other 66 routes `paint` derives both from `p`, so "p has not
+         moved" and "nothing on screen has changed" are the same statement and
+         one comparison settles both. The homepage does not derive them: it
+         PUSHES them, from a damped clock and a stage map that are free to move
+         while `p` does not. Two ways that happens, both measured:
+
+           * the clock's final approach. `advance` snaps to its target once it
+             is within `SETTLE_EPSILON`, and the last few frames of that
+             approach move `p` by less than this gate. A stage boundary crossed
+             in that window was never painted — and because `last` only
+             advances when a paint happens and the page has by then STOPPED,
+             the header kept the previous stage label and the previous
+             altitude for as long as the visitor stayed there.
+
+           * a recalibration. `calibrate()` moves the stage boundaries when the
+             layout does — a late image decode, a rotation, the scrollbar
+             coming and going — so the same `journey.current` resolves to a
+             different stage with no scroll at all.
+
+         Measured on the built homepage at 1920x1080 (travel 24 089 px, so this
+         gate is 9.6 px): at scrollY 13 176 the deck printed "Munkáink 16 993 m"
+         beside an instrument reading "17 000 m RENDSZER", indefinitely. Three
+         of twenty-one settled positions across that boundary disagreed. Two
+         readouts on one screen, and the whole reason the homepage pushes real
+         metres rather than letting this file derive them.
+
+         So the gate now asks the question it was always meant to ask: has
+         anything the header PRINTS changed? `p` still gates the state machine
+         and the `is-solid` toggle; `alt` and `key` gate themselves. A frame
+         that moved the page by nothing still costs comparisons and no writes,
+         which is the property the note at the top of this file claims. */
+      const alt = meta && meta.alt != null ? Math.round(meta.alt) : null;
+      const key = meta && meta.key != null ? meta.key : null;
+      const still = Math.abs(v - last) <= 0.0004;
+      if (still && (alt === null || alt === shownAlt) && (key === null || key === shownKey)) return;
+
       last = v;
-      paint(v, meta ? meta.alt : null, meta ? meta.key : null);
+      paint(v, meta ? meta.alt : null, key);
     },
     /** Hand the header back to document scroll. Called when the journey's
      *  clock stops — an unmount, or a fall back to the reduced-motion path. */
