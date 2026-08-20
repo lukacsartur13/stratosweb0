@@ -1,0 +1,70 @@
+==================================================================
+== rapidkert-metric-01 : preflight (quiet host required before the run may START)
+==================================================================
+manifest 5dbe66581a21  product=386b9d8a(304) test=aed85526(76) config=94c5bf52(14) dist=d0d7c9c1(186)
+
+preflight rapidkert-metric-01-preflight-1: PASS
+  load1 1.82 (max 2.06, cap 6)  load5 1.91  load15 2.63
+  free mem 78%  swap 3267.62 MB  iCloud 0%
+  ports 4322:free 4327:free
+  subject 5dbe66581a21 product=386b9d8a dist=d0d7c9c1(186)
+  -> /Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/rapidkert-metric-01/preflight/rapidkert-metric-01-preflight-1.json
+
+PREFLIGHT PASS on attempt 1 -> starting rapidkert-metric-01
+==================================================================
+== rapidkert-metric-01 : authoritative run STARTED 2026-08-20T18:21:49Z — it now counts
+==   dist   d0d7c9c132dbdd392bb4b101329b1ff813948dc655e49a249d00551dec72a7e3
+==   test   aed85526b8bd94f03250293c5e9f1e7d9c990c797c0670b8c1e97476c64c7594
+==   config 94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b
+==================================================================
+[2026-08-20T18:21:49.038Z] gate run rapidkert-metric-01 — root /Users/arturlukacs/stratos-hermetic/subject
+[2026-08-20T18:21:49.075Z] phase 1: build (declared mutation window)
+[2026-08-20T18:22:00.270Z] phase 2: freeze — capturing BEFORE manifest
+[2026-08-20T18:22:00.343Z] canaries armed on 6 tree(s)
+[2026-08-20T18:22:00.343Z] phase 3: starting owned servers
+[2026-08-20T18:22:00.587Z] server main (node) pid=71810 :4322 ready
+[2026-08-20T18:22:00.817Z] server full (node) pid=71827 :4327 ready
+[2026-08-20T18:22:00.817Z] phase 4: running 9 gate(s)
+[2026-08-20T18:22:00.817Z]   gate typecheck
+[2026-08-20T18:22:04.513Z]   gate fingerprint-check
+[2026-08-20T18:22:04.647Z]   gate draco-check
+[2026-08-20T18:22:04.754Z]   gate secret-scan
+[2026-08-20T18:22:05.264Z]   gate seo-audit
+[2026-08-20T18:22:05.392Z]   gate conversion-audit
+[2026-08-20T18:22:05.544Z]   gate route-audit
+[2026-08-20T18:26:23.405Z]   gate playwright-main
+[2026-08-20T18:30:46.506Z]   gate playwright-full
+[2026-08-20T18:40:51.909Z] phase 5: stopping owned servers
+[2026-08-20T18:40:51.911Z] phase 6: capturing AFTER manifest
+[2026-08-20T18:40:52.082Z] phase 7: verifying cleanup
+
+======================================================================
+RUN rapidkert-metric-01   VALID   NOT GREEN
+commit  02d0399bf7baf26c0b50d8959504c87d957aa2dd
+subject 5dbe66581a212d42 -> 5dbe66581a212d42  IDENTICAL
+dist    d0d7c9c132dbdd39
+canary  0 write event(s) during the run
+load    mean 6.82 peak 12.47
+elapsed 1143.1s
+  PASS  typecheck
+  PASS  fingerprint-check
+  PASS  draco-check
+  PASS  secret-scan
+  PASS  seo-audit
+  PASS  conversion-audit
+  PASS  route-audit
+  FAIL  playwright-main  1159/1290 passed, 9 failed, 122 skipped
+  PASS  playwright-full  131/165 passed, 0 failed, 34 skipped
+    ! [mobile-390] homepage-chrome.spec.ts:295 the opening state is the full wordmark over a transparent header
+    ! [mobile-430] homepage-chrome.spec.ts:295 the opening state is the full wordmark over a transparent header
+    ! [desktop-1440] homepage-chrome.spec.ts:1070 navigating away and back leaves nothing behind
+    ! [desktop-1920] homepage-chrome.spec.ts:1070 navigating away and back leaves nothing behind
+    ! [mobile-390] homepage-chrome.spec.ts:1070 navigating away and back leaves nothing behind
+    ! [mobile-430] homepage-chrome.spec.ts:1070 navigating away and back leaves nothing behind
+    ! [reduced-motion] homepage-chrome.spec.ts:1070 navigating away and back leaves nothing behind
+    ! [mobile-390] public-site.spec.ts:79 loads with the hero, the altimeter and no console errors
+    ! [mobile-430] public-site.spec.ts:79 loads with the hero, the altimeter and no console errors
+written: /Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/gate.json
+======================================================================
+== rapidkert-metric-01 : gate-run exit 1
+FINAL HERMETIC GATE: VALID + RED

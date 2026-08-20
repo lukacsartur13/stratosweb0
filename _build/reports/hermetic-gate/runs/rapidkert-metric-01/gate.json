@@ -1,0 +1,3086 @@
+{
+  "runId": "rapidkert-metric-01",
+  "startedAt": "2026-08-20T18:21:49.037Z",
+  "root": "/Users/arturlukacs/stratos-hermetic/subject",
+  "commit": "02d0399bf7baf26c0b50d8959504c87d957aa2dd",
+  "serverKind": "node",
+  "valid": true,
+  "invalidReasons": [],
+  "gates": [
+    {
+      "id": "typecheck",
+      "exitCode": 0,
+      "durationMs": 3696,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/typecheck.log",
+      "needsServer": false
+    },
+    {
+      "id": "fingerprint-check",
+      "exitCode": 0,
+      "durationMs": 134,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/fingerprint-check.log",
+      "needsServer": false
+    },
+    {
+      "id": "draco-check",
+      "exitCode": 0,
+      "durationMs": 107,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/draco-check.log",
+      "needsServer": false
+    },
+    {
+      "id": "secret-scan",
+      "exitCode": 0,
+      "durationMs": 510,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/secret-scan.log",
+      "needsServer": false
+    },
+    {
+      "id": "seo-audit",
+      "exitCode": 0,
+      "durationMs": 128,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/seo-audit.log",
+      "needsServer": false
+    },
+    {
+      "id": "conversion-audit",
+      "exitCode": 0,
+      "durationMs": 152,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/conversion-audit.log",
+      "needsServer": false
+    },
+    {
+      "id": "route-audit",
+      "exitCode": 0,
+      "durationMs": 257861,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/route-audit.log",
+      "needsServer": false
+    },
+    {
+      "id": "playwright-main",
+      "exitCode": 1,
+      "durationMs": 262961,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/playwright-main.log",
+      "needsServer": true,
+      "reportExitCode": 1,
+      "collected": 1290,
+      "passed": 1159,
+      "failed": 9,
+      "flaky": 0,
+      "skipped": 122,
+      "arithmeticReconciles": true,
+      "failingTests": [
+        {
+          "title": "the opening state is the full wordmark over a transparent header",
+          "file": "homepage-chrome.spec.ts",
+          "line": 295,
+          "project": "mobile-390",
+          "status": "unexpected",
+          "duration": 537,
+          "retries": 0,
+          "classification": "UNCLASSIFIED",
+          "errors": [
+            "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+          ]
+        },
+        {
+          "title": "the opening state is the full wordmark over a transparent header",
+          "file": "homepage-chrome.spec.ts",
+          "line": 295,
+          "project": "mobile-430",
+          "status": "unexpected",
+          "duration": 1142,
+          "retries": 0,
+          "classification": "UNCLASSIFIED",
+          "errors": [
+            "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+          ]
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "file": "homepage-chrome.spec.ts",
+          "line": 1070,
+          "project": "desktop-1440",
+          "status": "unexpected",
+          "duration": 2176,
+          "retries": 0,
+          "classification": "UNCLASSIFIED",
+          "errors": [
+            "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+          ]
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "file": "homepage-chrome.spec.ts",
+          "line": 1070,
+          "project": "desktop-1920",
+          "status": "unexpected",
+          "duration": 1404,
+          "retries": 0,
+          "classification": "UNCLASSIFIED",
+          "errors": [
+            "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+          ]
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "file": "homepage-chrome.spec.ts",
+          "line": 1070,
+          "project": "mobile-390",
+          "status": "unexpected",
+          "duration": 2224,
+          "retries": 0,
+          "classification": "UNCLASSIFIED",
+          "errors": [
+            "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+          ]
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "file": "homepage-chrome.spec.ts",
+          "line": 1070,
+          "project": "mobile-430",
+          "status": "unexpected",
+          "duration": 2040,
+          "retries": 0,
+          "classification": "UNCLASSIFIED",
+          "errors": [
+            "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n"
+          ]
+        },
+        {
+          "title": "navigating away and back leaves nothing behind",
+          "file": "homepage-chrome.spec.ts",
+          "line": 1070,
+          "project": "reduced-motion",
+          "status": "unexpected",
+          "duration": 1668,
+          "retries": 0,
+          "classification": "UNCLASSIFIED",
+          "errors": [
+            "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n"
+          ]
+        },
+        {
+          "title": "loads with the hero, the altimeter and no console errors",
+          "file": "public-site.spec.ts",
+          "line": 79,
+          "project": "mobile-390",
+          "status": "unexpected",
+          "duration": 741,
+          "retries": 0,
+          "classification": "UNCLASSIFIED",
+          "errors": [
+            "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+          ]
+        },
+        {
+          "title": "loads with the hero, the altimeter and no console errors",
+          "file": "public-site.spec.ts",
+          "line": 79,
+          "project": "mobile-430",
+          "status": "unexpected",
+          "duration": 787,
+          "retries": 0,
+          "classification": "UNCLASSIFIED",
+          "errors": [
+            "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "playwright-full",
+      "exitCode": 0,
+      "durationMs": 605320,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/playwright-full.log",
+      "needsServer": true,
+      "reportExitCode": 0,
+      "collected": 165,
+      "passed": 131,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 34,
+      "arithmeticReconciles": true,
+      "failingTests": []
+    }
+  ],
+  "build": {
+    "site": {
+      "exitCode": 0,
+      "durationMs": 7825,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/build.log"
+    },
+    "experiments": {
+      "exitCode": 0,
+      "durationMs": 3370,
+      "log": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/build-full.log"
+    }
+  },
+  "subject": {
+    "before": {
+      "combined": "5dbe66581a212d423980f8e5b440c721d47eaff5eb0e5d96f50766362f314bb2",
+      "product": "386b9d8ab9a66dcad059fb61a3f49594e4d2ac06a76ab834cfe3b273d44f9341",
+      "test": "aed85526b8bd94f03250293c5e9f1e7d9c990c797c0670b8c1e97476c64c7594",
+      "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+      "dist": "d0d7c9c132dbdd392bb4b101329b1ff813948dc655e49a249d00551dec72a7e3",
+      "distFiles": 186
+    },
+    "after": {
+      "combined": "5dbe66581a212d423980f8e5b440c721d47eaff5eb0e5d96f50766362f314bb2",
+      "product": "386b9d8ab9a66dcad059fb61a3f49594e4d2ac06a76ab834cfe3b273d44f9341",
+      "test": "aed85526b8bd94f03250293c5e9f1e7d9c990c797c0670b8c1e97476c64c7594",
+      "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+      "dist": "d0d7c9c132dbdd392bb4b101329b1ff813948dc655e49a249d00551dec72a7e3",
+      "distFiles": 186
+    },
+    "identical": true
+  },
+  "servers": [
+    {
+      "name": "main",
+      "kind": "node",
+      "port": 4322,
+      "pid": 71810,
+      "root": "/Users/arturlukacs/stratos-hermetic/subject/dist",
+      "startedAt": "2026-08-20T18:22:00.346Z",
+      "readyAt": "2026-08-20T18:22:00.571Z",
+      "logPath": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/server-main.log",
+      "commit": "02d0399bf7baf26c0b50d8959504c87d957aa2dd",
+      "stoppedAt": "2026-08-20T18:40:51.909Z",
+      "exitCode": null
+    },
+    {
+      "name": "full",
+      "kind": "node",
+      "port": 4327,
+      "pid": 71827,
+      "root": "/Users/arturlukacs/stratos-hermetic/subject/dist",
+      "startedAt": "2026-08-20T18:22:00.590Z",
+      "readyAt": "2026-08-20T18:22:00.799Z",
+      "logPath": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/rapidkert-metric-01/logs/server-full.log",
+      "commit": "02d0399bf7baf26c0b50d8959504c87d957aa2dd",
+      "stoppedAt": "2026-08-20T18:40:51.909Z",
+      "exitCode": null
+    }
+  ],
+  "ownedProcesses": [
+    {
+      "what": "gate:build",
+      "pid": 71511,
+      "startedAt": "2026-08-20T18:21:49.078Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:21:56.900Z",
+      "signal": null
+    },
+    {
+      "what": "gate:build-full",
+      "pid": 71727,
+      "startedAt": "2026-08-20T18:21:56.901Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:22:00.270Z",
+      "signal": null
+    },
+    {
+      "what": "gate:manifest-rapidkert-metric-01-before",
+      "pid": 71793,
+      "startedAt": "2026-08-20T18:22:00.271Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:22:00.342Z",
+      "signal": null
+    },
+    {
+      "what": "server:main",
+      "pid": 71810,
+      "startedAt": "2026-08-20T18:22:00.347Z",
+      "exitCode": null,
+      "exitedAt": "2026-08-20T18:40:51.912Z",
+      "signal": "SIGKILL"
+    },
+    {
+      "what": "server:full",
+      "pid": 71827,
+      "startedAt": "2026-08-20T18:22:00.591Z",
+      "exitCode": null,
+      "exitedAt": "2026-08-20T18:40:51.912Z",
+      "signal": "SIGKILL"
+    },
+    {
+      "what": "gate:typecheck",
+      "pid": 71844,
+      "startedAt": "2026-08-20T18:22:00.818Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:22:04.513Z",
+      "signal": null
+    },
+    {
+      "what": "gate:fingerprint-check",
+      "pid": 71946,
+      "startedAt": "2026-08-20T18:22:04.515Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:22:04.647Z",
+      "signal": null
+    },
+    {
+      "what": "gate:draco-check",
+      "pid": 71970,
+      "startedAt": "2026-08-20T18:22:04.648Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:22:04.753Z",
+      "signal": null
+    },
+    {
+      "what": "gate:secret-scan",
+      "pid": 71994,
+      "startedAt": "2026-08-20T18:22:04.754Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:22:05.264Z",
+      "signal": null
+    },
+    {
+      "what": "gate:seo-audit",
+      "pid": 72018,
+      "startedAt": "2026-08-20T18:22:05.265Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:22:05.392Z",
+      "signal": null
+    },
+    {
+      "what": "gate:conversion-audit",
+      "pid": 72042,
+      "startedAt": "2026-08-20T18:22:05.393Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:22:05.544Z",
+      "signal": null
+    },
+    {
+      "what": "gate:route-audit",
+      "pid": 72066,
+      "startedAt": "2026-08-20T18:22:05.545Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:26:23.404Z",
+      "signal": null
+    },
+    {
+      "what": "gate:playwright-main",
+      "pid": 73860,
+      "startedAt": "2026-08-20T18:26:23.406Z",
+      "exitCode": 1,
+      "exitedAt": "2026-08-20T18:30:46.366Z",
+      "signal": null
+    },
+    {
+      "what": "gate:playwright-main-report",
+      "pid": 76054,
+      "startedAt": "2026-08-20T18:30:46.368Z",
+      "exitCode": 1,
+      "exitedAt": "2026-08-20T18:30:46.505Z",
+      "signal": null
+    },
+    {
+      "what": "gate:playwright-full",
+      "pid": 76069,
+      "startedAt": "2026-08-20T18:30:46.507Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:40:51.826Z",
+      "signal": null
+    },
+    {
+      "what": "gate:playwright-full-report",
+      "pid": 78947,
+      "startedAt": "2026-08-20T18:40:51.827Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:40:51.909Z",
+      "signal": null
+    },
+    {
+      "what": "gate:manifest-rapidkert-metric-01-after",
+      "pid": 78962,
+      "startedAt": "2026-08-20T18:40:51.912Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:40:52.056Z",
+      "signal": null
+    },
+    {
+      "what": "gate:manifest-compare",
+      "pid": 78979,
+      "startedAt": "2026-08-20T18:40:52.057Z",
+      "exitCode": 0,
+      "exitedAt": "2026-08-20T18:40:52.082Z",
+      "signal": null
+    }
+  ],
+  "canaryEvents": [],
+  "load": {
+    "count": 229,
+    "meanLoad1": 6.82,
+    "peakLoad1": 12.47,
+    "minLoad1": 1.5,
+    "peakBrowserProcs": 42,
+    "peakSwapUsedMB": 3267.62
+  },
+  "environment": {
+    "node": "v24.18.1",
+    "platform": "darwin-arm64",
+    "cpus": 10,
+    "memoryGB": 25.8
+  },
+  "canaryEventCount": 0,
+  "orphanedProcesses": [],
+  "portsStillHeld": [],
+  "loadSamples": [
+    {
+      "at": "2026-08-20T18:21:49.074Z",
+      "load1": 1.82,
+      "load5": 1.91,
+      "load15": 2.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 5,
+      "browserProcs": 17,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:21:54.104Z",
+      "load1": 1.83,
+      "load5": 1.91,
+      "load15": 2.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 6,
+      "browserProcs": 17,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:21:59.104Z",
+      "load1": 1.85,
+      "load5": 1.91,
+      "load15": 2.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 6,
+      "browserProcs": 17,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:04.103Z",
+      "load1": 2.26,
+      "load5": 2,
+      "load15": 2.65,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 17,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:09.101Z",
+      "load1": 2.56,
+      "load5": 2.06,
+      "load15": 2.67,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:14.110Z",
+      "load1": 2.43,
+      "load5": 2.04,
+      "load15": 2.66,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 25,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:19.111Z",
+      "load1": 2.32,
+      "load5": 2.03,
+      "load15": 2.65,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 25,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:24.107Z",
+      "load1": 2.21,
+      "load5": 2.01,
+      "load15": 2.64,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 25,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:29.106Z",
+      "load1": 2.11,
+      "load5": 1.99,
+      "load15": 2.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:34.110Z",
+      "load1": 2.19,
+      "load5": 2.01,
+      "load15": 2.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 20,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:39.107Z",
+      "load1": 2.17,
+      "load5": 2.01,
+      "load15": 2.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:44.113Z",
+      "load1": 2.48,
+      "load5": 2.07,
+      "load15": 2.65,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:49.108Z",
+      "load1": 2.44,
+      "load5": 2.07,
+      "load15": 2.65,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:54.111Z",
+      "load1": 2.4,
+      "load5": 2.07,
+      "load15": 2.64,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:22:59.113Z",
+      "load1": 2.29,
+      "load5": 2.05,
+      "load15": 2.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:04.117Z",
+      "load1": 3.15,
+      "load5": 2.23,
+      "load15": 2.69,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 25,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:09.123Z",
+      "load1": 3.22,
+      "load5": 2.26,
+      "load15": 2.7,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 25,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:14.116Z",
+      "load1": 3.04,
+      "load5": 2.24,
+      "load15": 2.69,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 25,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:19.121Z",
+      "load1": 3.44,
+      "load5": 2.34,
+      "load15": 2.72,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:24.117Z",
+      "load1": 3.24,
+      "load5": 2.32,
+      "load15": 2.71,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:29.116Z",
+      "load1": 3.3,
+      "load5": 2.34,
+      "load15": 2.72,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:34.119Z",
+      "load1": 3.28,
+      "load5": 2.35,
+      "load15": 2.72,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:39.139Z",
+      "load1": 3.17,
+      "load5": 2.35,
+      "load15": 2.71,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 25,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:44.122Z",
+      "load1": 3,
+      "load5": 2.33,
+      "load15": 2.7,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 25,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:49.124Z",
+      "load1": 2.84,
+      "load5": 2.3,
+      "load15": 2.69,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:54.122Z",
+      "load1": 2.77,
+      "load5": 2.3,
+      "load15": 2.69,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:23:59.125Z",
+      "load1": 2.63,
+      "load5": 2.28,
+      "load15": 2.68,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:04.121Z",
+      "load1": 2.58,
+      "load5": 2.27,
+      "load15": 2.67,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:09.128Z",
+      "load1": 2.45,
+      "load5": 2.25,
+      "load15": 2.66,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:14.125Z",
+      "load1": 2.42,
+      "load5": 2.24,
+      "load15": 2.66,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:19.132Z",
+      "load1": 2.46,
+      "load5": 2.26,
+      "load15": 2.66,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:24.125Z",
+      "load1": 2.42,
+      "load5": 2.25,
+      "load15": 2.66,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:29.137Z",
+      "load1": 2.39,
+      "load5": 2.25,
+      "load15": 2.65,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 20,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:34.131Z",
+      "load1": 2.28,
+      "load5": 2.23,
+      "load15": 2.64,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:39.137Z",
+      "load1": 2.18,
+      "load5": 2.21,
+      "load15": 2.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:44.129Z",
+      "load1": 2.08,
+      "load5": 2.19,
+      "load15": 2.62,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:49.136Z",
+      "load1": 2.08,
+      "load5": 2.18,
+      "load15": 2.62,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 25,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:54.138Z",
+      "load1": 2.55,
+      "load5": 2.28,
+      "load15": 2.65,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:24:59.135Z",
+      "load1": 2.42,
+      "load5": 2.26,
+      "load15": 2.64,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:04.139Z",
+      "load1": 2.39,
+      "load5": 2.25,
+      "load15": 2.64,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:09.137Z",
+      "load1": 2.28,
+      "load5": 2.23,
+      "load15": 2.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:14.142Z",
+      "load1": 2.26,
+      "load5": 2.23,
+      "load15": 2.62,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:19.145Z",
+      "load1": 2.16,
+      "load5": 2.21,
+      "load15": 2.62,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:24.144Z",
+      "load1": 2.06,
+      "load5": 2.19,
+      "load15": 2.61,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:29.141Z",
+      "load1": 1.98,
+      "load5": 2.17,
+      "load15": 2.6,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:34.151Z",
+      "load1": 1.9,
+      "load5": 2.15,
+      "load15": 2.59,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:39.145Z",
+      "load1": 1.83,
+      "load5": 2.13,
+      "load15": 2.58,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:44.143Z",
+      "load1": 1.68,
+      "load5": 2.09,
+      "load15": 2.56,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:49.145Z",
+      "load1": 1.54,
+      "load5": 2.06,
+      "load15": 2.55,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:54.152Z",
+      "load1": 1.5,
+      "load5": 2.04,
+      "load15": 2.54,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:25:59.147Z",
+      "load1": 1.7,
+      "load5": 2.07,
+      "load15": 2.54,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:04.146Z",
+      "load1": 1.64,
+      "load5": 2.05,
+      "load15": 2.54,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:09.153Z",
+      "load1": 1.83,
+      "load5": 2.09,
+      "load15": 2.54,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:14.157Z",
+      "load1": 1.77,
+      "load5": 2.07,
+      "load15": 2.53,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:19.158Z",
+      "load1": 2.35,
+      "load5": 2.18,
+      "load15": 2.57,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 8,
+      "browserProcs": 21,
+      "pythonProcs": 4,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:24.172Z",
+      "load1": 7.6,
+      "load5": 3.27,
+      "load15": 2.96,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 18,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:29.193Z",
+      "load1": 7.23,
+      "load5": 3.27,
+      "load15": 2.96,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:34.173Z",
+      "load1": 6.73,
+      "load5": 3.23,
+      "load15": 2.94,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:39.178Z",
+      "load1": 6.52,
+      "load5": 3.24,
+      "load15": 2.95,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:44.250Z",
+      "load1": 7.19,
+      "load5": 3.44,
+      "load15": 3.02,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:49.785Z",
+      "load1": 8.78,
+      "load5": 3.83,
+      "load15": 3.16,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 39,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:54.183Z",
+      "load1": 10.08,
+      "load5": 4.18,
+      "load15": 3.29,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:26:59.193Z",
+      "load1": 10.47,
+      "load5": 4.36,
+      "load15": 3.36,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:04.191Z",
+      "load1": 10.03,
+      "load5": 4.37,
+      "load15": 3.37,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:09.229Z",
+      "load1": 9.47,
+      "load5": 4.35,
+      "load15": 3.36,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 37,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:14.195Z",
+      "load1": 9.19,
+      "load5": 4.38,
+      "load15": 3.38,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 36,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:19.200Z",
+      "load1": 9.34,
+      "load5": 4.49,
+      "load15": 3.42,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 11,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:24.328Z",
+      "load1": 11.23,
+      "load5": 4.96,
+      "load15": 3.6,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:29.227Z",
+      "load1": 11.13,
+      "load5": 5.04,
+      "load15": 3.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 37,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:34.386Z",
+      "load1": 10.8,
+      "load5": 5.07,
+      "load15": 3.65,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:39.257Z",
+      "load1": 10.02,
+      "load5": 5.01,
+      "load15": 3.64,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:44.252Z",
+      "load1": 10.34,
+      "load5": 5.16,
+      "load15": 3.7,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:49.264Z",
+      "load1": 10.15,
+      "load5": 5.2,
+      "load15": 3.72,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:54.255Z",
+      "load1": 10.54,
+      "load5": 5.36,
+      "load15": 3.79,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:27:59.326Z",
+      "load1": 10.01,
+      "load5": 5.34,
+      "load15": 3.79,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 36,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:04.296Z",
+      "load1": 9.85,
+      "load5": 5.39,
+      "load15": 3.81,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 37,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:09.258Z",
+      "load1": 10.18,
+      "load5": 5.53,
+      "load15": 3.87,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:14.263Z",
+      "load1": 9.85,
+      "load5": 5.54,
+      "load15": 3.89,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:19.265Z",
+      "load1": 9.22,
+      "load5": 5.48,
+      "load15": 3.87,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:24.270Z",
+      "load1": 8.72,
+      "load5": 5.44,
+      "load15": 3.87,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:29.294Z",
+      "load1": 8.66,
+      "load5": 5.48,
+      "load15": 3.89,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:34.335Z",
+      "load1": 8.93,
+      "load5": 5.59,
+      "load15": 3.94,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:39.346Z",
+      "load1": 9.66,
+      "load5": 5.79,
+      "load15": 4.02,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 14,
+      "browserProcs": 42,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:44.259Z",
+      "load1": 9.12,
+      "load5": 5.75,
+      "load15": 4.02,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:49.272Z",
+      "load1": 8.63,
+      "load5": 5.7,
+      "load15": 4.01,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:54.263Z",
+      "load1": 8.02,
+      "load5": 5.62,
+      "load15": 3.99,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:28:59.270Z",
+      "load1": 8.26,
+      "load5": 5.71,
+      "load15": 4.03,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:04.306Z",
+      "load1": 8.4,
+      "load5": 5.78,
+      "load15": 4.07,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:09.273Z",
+      "load1": 7.81,
+      "load5": 5.7,
+      "load15": 4.05,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:14.264Z",
+      "load1": 7.66,
+      "load5": 5.71,
+      "load15": 4.06,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:19.269Z",
+      "load1": 7.13,
+      "load5": 5.63,
+      "load15": 4.04,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:24.290Z",
+      "load1": 6.88,
+      "load5": 5.6,
+      "load15": 4.04,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:29.293Z",
+      "load1": 6.81,
+      "load5": 5.61,
+      "load15": 4.05,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 29,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:34.356Z",
+      "load1": 6.74,
+      "load5": 5.61,
+      "load15": 4.06,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:39.328Z",
+      "load1": 7.8,
+      "load5": 5.85,
+      "load15": 4.16,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:44.296Z",
+      "load1": 7.34,
+      "load5": 5.79,
+      "load15": 4.14,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:49.286Z",
+      "load1": 7.07,
+      "load5": 5.76,
+      "load15": 4.14,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:54.278Z",
+      "load1": 6.58,
+      "load5": 5.68,
+      "load15": 4.12,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:29:59.291Z",
+      "load1": 6.46,
+      "load5": 5.67,
+      "load15": 4.13,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:04.313Z",
+      "load1": 6.26,
+      "load5": 5.64,
+      "load15": 4.13,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:09.281Z",
+      "load1": 6.24,
+      "load5": 5.65,
+      "load15": 4.14,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:14.303Z",
+      "load1": 5.82,
+      "load5": 5.57,
+      "load15": 4.12,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 37,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:19.291Z",
+      "load1": 5.67,
+      "load5": 5.54,
+      "load15": 4.12,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:24.297Z",
+      "load1": 5.46,
+      "load5": 5.5,
+      "load15": 4.11,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 12,
+      "browserProcs": 36,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:29.367Z",
+      "load1": 5.42,
+      "load5": 5.49,
+      "load15": 4.12,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:34.321Z",
+      "load1": 5.39,
+      "load5": 5.48,
+      "load15": 4.12,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 38,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:39.548Z",
+      "load1": 5.68,
+      "load5": 5.54,
+      "load15": 4.15,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 37,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:44.673Z",
+      "load1": 7.14,
+      "load5": 5.85,
+      "load15": 4.27,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 13,
+      "browserProcs": 35,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:49.284Z",
+      "load1": 7.13,
+      "load5": 5.87,
+      "load15": 4.28,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:54.306Z",
+      "load1": 7.2,
+      "load5": 5.9,
+      "load15": 4.3,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:30:59.305Z",
+      "load1": 7.51,
+      "load5": 5.99,
+      "load15": 4.34,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:04.307Z",
+      "load1": 7.79,
+      "load5": 6.07,
+      "load15": 4.38,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:09.296Z",
+      "load1": 8.04,
+      "load5": 6.15,
+      "load15": 4.42,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:14.346Z",
+      "load1": 8.2,
+      "load5": 6.21,
+      "load15": 4.45,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:19.316Z",
+      "load1": 8.5,
+      "load5": 6.31,
+      "load15": 4.5,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:24.333Z",
+      "load1": 9.1,
+      "load5": 6.47,
+      "load15": 4.56,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:29.319Z",
+      "load1": 9.34,
+      "load5": 6.56,
+      "load15": 4.61,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:34.341Z",
+      "load1": 9.79,
+      "load5": 6.7,
+      "load15": 4.67,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:39.416Z",
+      "load1": 9.65,
+      "load5": 6.72,
+      "load15": 4.69,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:44.314Z",
+      "load1": 9.75,
+      "load5": 6.79,
+      "load15": 4.72,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:49.319Z",
+      "load1": 9.05,
+      "load5": 6.7,
+      "load15": 4.7,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:54.331Z",
+      "load1": 8.49,
+      "load5": 6.62,
+      "load15": 4.69,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:31:59.324Z",
+      "load1": 8.69,
+      "load5": 6.69,
+      "load15": 4.72,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:04.313Z",
+      "load1": 8.15,
+      "load5": 6.61,
+      "load15": 4.71,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:09.315Z",
+      "load1": 8.38,
+      "load5": 6.69,
+      "load15": 4.74,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:14.334Z",
+      "load1": 8.67,
+      "load5": 6.77,
+      "load15": 4.79,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:19.334Z",
+      "load1": 8.86,
+      "load5": 6.84,
+      "load15": 4.82,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:24.334Z",
+      "load1": 9.19,
+      "load5": 6.95,
+      "load15": 4.87,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:29.318Z",
+      "load1": 8.77,
+      "load5": 6.9,
+      "load15": 4.86,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:34.326Z",
+      "load1": 9.03,
+      "load5": 6.98,
+      "load15": 4.91,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:39.335Z",
+      "load1": 8.47,
+      "load5": 6.9,
+      "load15": 4.89,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:44.332Z",
+      "load1": 8.75,
+      "load5": 6.98,
+      "load15": 4.93,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:49.354Z",
+      "load1": 9.17,
+      "load5": 7.1,
+      "load15": 4.98,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:54.345Z",
+      "load1": 9.4,
+      "load5": 7.18,
+      "load15": 5.02,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:32:59.333Z",
+      "load1": 8.8,
+      "load5": 7.09,
+      "load15": 5.01,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:04.347Z",
+      "load1": 8.9,
+      "load5": 7.14,
+      "load15": 5.03,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:09.351Z",
+      "load1": 9.07,
+      "load5": 7.21,
+      "load15": 5.07,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:14.353Z",
+      "load1": 9.3,
+      "load5": 7.29,
+      "load15": 5.11,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:19.347Z",
+      "load1": 9.76,
+      "load5": 7.41,
+      "load15": 5.17,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:24.345Z",
+      "load1": 10.1,
+      "load5": 7.52,
+      "load15": 5.22,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:29.347Z",
+      "load1": 10.17,
+      "load5": 7.58,
+      "load15": 5.25,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:34.351Z",
+      "load1": 10.32,
+      "load5": 7.65,
+      "load15": 5.29,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:39.349Z",
+      "load1": 11.89,
+      "load5": 8.02,
+      "load15": 5.44,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:44.340Z",
+      "load1": 11.58,
+      "load5": 8.02,
+      "load15": 5.45,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:49.355Z",
+      "load1": 12.25,
+      "load5": 8.22,
+      "load15": 5.54,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:54.351Z",
+      "load1": 12.47,
+      "load5": 8.33,
+      "load15": 5.59,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:33:59.354Z",
+      "load1": 12.36,
+      "load5": 8.38,
+      "load15": 5.62,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:04.349Z",
+      "load1": 11.53,
+      "load5": 8.27,
+      "load15": 5.6,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:09.355Z",
+      "load1": 10.84,
+      "load5": 8.18,
+      "load15": 5.58,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:14.361Z",
+      "load1": 10.37,
+      "load5": 8.13,
+      "load15": 5.58,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:19.362Z",
+      "load1": 10.42,
+      "load5": 8.18,
+      "load15": 5.61,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:24.363Z",
+      "load1": 10.55,
+      "load5": 8.24,
+      "load15": 5.65,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:29.363Z",
+      "load1": 10.51,
+      "load5": 8.27,
+      "load15": 5.68,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:34.363Z",
+      "load1": 10.63,
+      "load5": 8.33,
+      "load15": 5.71,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:39.363Z",
+      "load1": 10.82,
+      "load5": 8.41,
+      "load15": 5.75,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:44.367Z",
+      "load1": 10.91,
+      "load5": 8.47,
+      "load15": 5.79,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:49.363Z",
+      "load1": 10.92,
+      "load5": 8.51,
+      "load15": 5.82,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:54.372Z",
+      "load1": 10.92,
+      "load5": 8.55,
+      "load15": 5.85,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:34:59.365Z",
+      "load1": 10.85,
+      "load5": 8.58,
+      "load15": 5.88,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:04.367Z",
+      "load1": 10.94,
+      "load5": 8.63,
+      "load15": 5.91,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:09.367Z",
+      "load1": 10.95,
+      "load5": 8.67,
+      "load15": 5.94,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:14.370Z",
+      "load1": 11.03,
+      "load5": 8.73,
+      "load15": 5.98,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:19.368Z",
+      "load1": 10.95,
+      "load5": 8.75,
+      "load15": 6,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:24.369Z",
+      "load1": 10.87,
+      "load5": 8.77,
+      "load15": 6.02,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:29.364Z",
+      "load1": 10.08,
+      "load5": 8.64,
+      "load15": 5.99,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:34.372Z",
+      "load1": 10.15,
+      "load5": 8.68,
+      "load15": 6.02,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:39.389Z",
+      "load1": 10.3,
+      "load5": 8.73,
+      "load15": 6.06,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:44.375Z",
+      "load1": 10.44,
+      "load5": 8.79,
+      "load15": 6.09,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:49.380Z",
+      "load1": 10.72,
+      "load5": 8.87,
+      "load15": 6.14,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:54.372Z",
+      "load1": 10.9,
+      "load5": 8.94,
+      "load15": 6.18,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:35:59.378Z",
+      "load1": 10.91,
+      "load5": 8.98,
+      "load15": 6.21,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:04.380Z",
+      "load1": 10.92,
+      "load5": 9.01,
+      "load15": 6.23,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:09.382Z",
+      "load1": 11.08,
+      "load5": 9.07,
+      "load15": 6.27,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:14.380Z",
+      "load1": 11.16,
+      "load5": 9.12,
+      "load15": 6.31,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:19.397Z",
+      "load1": 11.15,
+      "load5": 9.15,
+      "load15": 6.33,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:24.382Z",
+      "load1": 11.77,
+      "load5": 9.32,
+      "load15": 6.41,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:29.384Z",
+      "load1": 11.71,
+      "load5": 9.34,
+      "load15": 6.43,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:34.394Z",
+      "load1": 11.09,
+      "load5": 9.26,
+      "load15": 6.42,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:39.387Z",
+      "load1": 11.25,
+      "load5": 9.32,
+      "load15": 6.46,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:44.389Z",
+      "load1": 11.23,
+      "load5": 9.35,
+      "load15": 6.48,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:49.395Z",
+      "load1": 11.85,
+      "load5": 9.51,
+      "load15": 6.56,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:54.393Z",
+      "load1": 11.78,
+      "load5": 9.53,
+      "load15": 6.58,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:36:59.393Z",
+      "load1": 12.04,
+      "load5": 9.62,
+      "load15": 6.63,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:04.394Z",
+      "load1": 12.11,
+      "load5": 9.68,
+      "load15": 6.67,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:09.395Z",
+      "load1": 12.03,
+      "load5": 9.7,
+      "load15": 6.69,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:14.381Z",
+      "load1": 11.22,
+      "load5": 9.57,
+      "load15": 6.67,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:19.400Z",
+      "load1": 10.48,
+      "load5": 9.44,
+      "load15": 6.64,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:24.415Z",
+      "load1": 9.72,
+      "load5": 9.3,
+      "load15": 6.61,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:29.390Z",
+      "load1": 9.1,
+      "load5": 9.18,
+      "load15": 6.58,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:34.391Z",
+      "load1": 8.46,
+      "load5": 9.05,
+      "load15": 6.55,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:39.407Z",
+      "load1": 7.86,
+      "load5": 8.91,
+      "load15": 6.51,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:44.394Z",
+      "load1": 7.31,
+      "load5": 8.78,
+      "load15": 6.48,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:49.410Z",
+      "load1": 6.8,
+      "load5": 8.65,
+      "load15": 6.45,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:54.398Z",
+      "load1": 6.5,
+      "load5": 8.56,
+      "load15": 6.43,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:37:59.404Z",
+      "load1": 6.3,
+      "load5": 8.48,
+      "load15": 6.41,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:04.412Z",
+      "load1": 6.03,
+      "load5": 8.39,
+      "load15": 6.39,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:09.406Z",
+      "load1": 6.03,
+      "load5": 8.35,
+      "load15": 6.39,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:14.404Z",
+      "load1": 5.55,
+      "load5": 8.21,
+      "load15": 6.35,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:19.409Z",
+      "load1": 5.18,
+      "load5": 8.09,
+      "load15": 6.32,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:24.424Z",
+      "load1": 4.85,
+      "load5": 7.97,
+      "load15": 6.29,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:29.419Z",
+      "load1": 4.54,
+      "load5": 7.86,
+      "load15": 6.26,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:34.414Z",
+      "load1": 4.18,
+      "load5": 7.73,
+      "load15": 6.22,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 10,
+      "browserProcs": 26,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:39.421Z",
+      "load1": 4.4,
+      "load5": 7.71,
+      "load15": 6.23,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:44.425Z",
+      "load1": 4.21,
+      "load5": 7.62,
+      "load15": 6.2,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:49.431Z",
+      "load1": 3.95,
+      "load5": 7.51,
+      "load15": 6.17,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:54.429Z",
+      "load1": 3.72,
+      "load5": 7.4,
+      "load15": 6.14,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:38:59.436Z",
+      "load1": 3.5,
+      "load5": 7.29,
+      "load15": 6.11,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:04.420Z",
+      "load1": 3.46,
+      "load5": 7.22,
+      "load15": 6.09,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:09.425Z",
+      "load1": 3.26,
+      "load5": 7.12,
+      "load15": 6.06,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:14.424Z",
+      "load1": 3.16,
+      "load5": 7.03,
+      "load15": 6.04,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:19.430Z",
+      "load1": 3.23,
+      "load5": 6.98,
+      "load15": 6.02,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:24.439Z",
+      "load1": 3.45,
+      "load5": 6.97,
+      "load15": 6.02,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:29.432Z",
+      "load1": 3.33,
+      "load5": 6.88,
+      "load15": 6,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:34.430Z",
+      "load1": 3.38,
+      "load5": 6.83,
+      "load15": 5.99,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 18,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:39.447Z",
+      "load1": 3.43,
+      "load5": 6.79,
+      "load15": 5.98,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:44.441Z",
+      "load1": 3.4,
+      "load5": 6.72,
+      "load15": 5.96,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:49.458Z",
+      "load1": 3.13,
+      "load5": 6.61,
+      "load15": 5.92,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:54.434Z",
+      "load1": 2.96,
+      "load5": 6.52,
+      "load15": 5.89,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:39:59.439Z",
+      "load1": 2.88,
+      "load5": 6.44,
+      "load15": 5.87,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 21,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:04.438Z",
+      "load1": 2.81,
+      "load5": 6.37,
+      "load15": 5.85,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:09.441Z",
+      "load1": 2.74,
+      "load5": 6.3,
+      "load15": 5.83,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:14.442Z",
+      "load1": 2.92,
+      "load5": 6.27,
+      "load15": 5.82,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:19.446Z",
+      "load1": 2.77,
+      "load5": 6.19,
+      "load15": 5.79,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:24.440Z",
+      "load1": 2.87,
+      "load5": 6.15,
+      "load15": 5.78,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:29.450Z",
+      "load1": 3.52,
+      "load5": 6.23,
+      "load15": 5.81,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:34.449Z",
+      "load1": 4.36,
+      "load5": 6.36,
+      "load15": 5.86,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:39.460Z",
+      "load1": 4.81,
+      "load5": 6.42,
+      "load15": 5.88,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:44.453Z",
+      "load1": 5.38,
+      "load5": 6.51,
+      "load15": 5.92,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    },
+    {
+      "at": "2026-08-20T18:40:49.446Z",
+      "load1": 5.35,
+      "load5": 6.49,
+      "load15": 5.91,
+      "swapUsedMB": 3267.62,
+      "nodeProcs": 9,
+      "browserProcs": 22,
+      "pythonProcs": 3,
+      "canaryEvents": 0
+    }
+  ],
+  "durationMs": 1143104,
+  "finishedAt": "2026-08-20T18:40:52.142Z",
+  "failedGates": [
+    "playwright-main"
+  ],
+  "allFailingTests": [
+    {
+      "gate": "playwright-main",
+      "title": "the opening state is the full wordmark over a transparent header",
+      "file": "homepage-chrome.spec.ts",
+      "line": 295,
+      "project": "mobile-390",
+      "status": "unexpected",
+      "duration": 537,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "gate": "playwright-main",
+      "title": "the opening state is the full wordmark over a transparent header",
+      "file": "homepage-chrome.spec.ts",
+      "line": 295,
+      "project": "mobile-430",
+      "status": "unexpected",
+      "duration": 1142,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "gate": "playwright-main",
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "desktop-1440",
+      "status": "unexpected",
+      "duration": 2176,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "gate": "playwright-main",
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "desktop-1920",
+      "status": "unexpected",
+      "duration": 1404,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "gate": "playwright-main",
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "mobile-390",
+      "status": "unexpected",
+      "duration": 2224,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "gate": "playwright-main",
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "mobile-430",
+      "status": "unexpected",
+      "duration": 2040,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n"
+      ]
+    },
+    {
+      "gate": "playwright-main",
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "reduced-motion",
+      "status": "unexpected",
+      "duration": 1668,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n"
+      ]
+    },
+    {
+      "gate": "playwright-main",
+      "title": "loads with the hero, the altimeter and no console errors",
+      "file": "public-site.spec.ts",
+      "line": 79,
+      "project": "mobile-390",
+      "status": "unexpected",
+      "duration": 741,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "gate": "playwright-main",
+      "title": "loads with the hero, the altimeter and no console errors",
+      "file": "public-site.spec.ts",
+      "line": 79,
+      "project": "mobile-430",
+      "status": "unexpected",
+      "duration": 787,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    }
+  ],
+  "green": false
+}

@@ -1,0 +1,159 @@
+{
+  "label": "rapidkert-metric-01:playwright-main",
+  "commit": "02d0399bf7baf26c0b50d8959504c87d957aa2dd",
+  "dirtyTrackedFiles": [],
+  "timestamp": "2026-08-20T18:30:46.501Z",
+  "environment": {
+    "node": "v24.18.1",
+    "platform": "darwin-arm64",
+    "playwright": "1.62.1",
+    "workers": 5,
+    "projects": [
+      "node",
+      "desktop-1440",
+      "desktop-1920",
+      "mobile-390",
+      "mobile-430",
+      "desktop-webkit",
+      "portrait-chromium",
+      "reduced-motion"
+    ]
+  },
+  "duration": 262526.749,
+  "startTime": "2026-08-20T18:26:23.775Z",
+  "collected": 1290,
+  "accounted": 1290,
+  "arithmeticReconciles": true,
+  "passed": 1159,
+  "failed": 9,
+  "flaky": 0,
+  "skipped": 122,
+  "unclassified": 0,
+  "reporterStats": {
+    "startTime": "2026-08-20T18:26:23.775Z",
+    "duration": 262526.749,
+    "expected": 1159,
+    "skipped": 122,
+    "unexpected": 9,
+    "flaky": 0
+  },
+  "failingTests": [
+    {
+      "title": "the opening state is the full wordmark over a transparent header",
+      "file": "homepage-chrome.spec.ts",
+      "line": 295,
+      "project": "mobile-390",
+      "status": "unexpected",
+      "duration": 537,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "title": "the opening state is the full wordmark over a transparent header",
+      "file": "homepage-chrome.spec.ts",
+      "line": 295,
+      "project": "mobile-430",
+      "status": "unexpected",
+      "duration": 1142,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "desktop-1440",
+      "status": "unexpected",
+      "duration": 2176,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "desktop-1920",
+      "status": "unexpected",
+      "duration": 1404,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "mobile-390",
+      "status": "unexpected",
+      "duration": 2224,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "mobile-430",
+      "status": "unexpected",
+      "duration": 2040,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n"
+      ]
+    },
+    {
+      "title": "navigating away and back leaves nothing behind",
+      "file": "homepage-chrome.spec.ts",
+      "line": 1070,
+      "project": "reduced-motion",
+      "status": "unexpected",
+      "duration": 1668,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n"
+      ]
+    },
+    {
+      "title": "loads with the hero, the altimeter and no console errors",
+      "file": "public-site.spec.ts",
+      "line": 79,
+      "project": "mobile-390",
+      "status": "unexpected",
+      "duration": 741,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    },
+    {
+      "title": "loads with the hero, the altimeter and no console errors",
+      "file": "public-site.spec.ts",
+      "line": 79,
+      "project": "mobile-430",
+      "status": "unexpected",
+      "duration": 787,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "Error: console errors:\nFailed to load resource: the server responded with a status of 404 (Not Found)\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m"
+      ]
+    }
+  ]
+}
