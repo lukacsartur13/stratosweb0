@@ -1,6 +1,8 @@
 import { expect, test, type Page } from '@playwright/test';
 import { enableReducedMotion } from '../../tests/helpers/reduced-motion';
 import { STAGES } from '../src/full/journey';
+import { COLLABORATIONS, FEATURED_CASE_ID, WORK } from '../src/full/content';
+import { pageHref } from '../src/full/i18n';
 
 /**
  * The portrait journey, as CURRENT HEAD actually builds it.
@@ -350,28 +352,44 @@ test.describe('portrait — the content', () => {
       ).toBeGreaterThan(60);
     }
 
-    // Three case studies, each carrying the portrait composition's three-part
-    // structure — challenge, intervention, result — answered in prose.
+    // The portfolio chapter: marks, then ONE case.
     //
-    // Three terms, not the desktop composition's five. `MobileHome` prints
-    // challenge/intervention/result and drops `implementation` and `ongoing`;
-    // the checkpoints below drop `youProvide` the same way. That is the
-    // accepted portrait edit rather than a fault, and the number is asserted
-    // exactly so that a *further* field going missing is a failure rather than
-    // a shrug. The difference is recorded in the reconciliation report; it is a
-    // content decision, and this file is not where it gets decided.
-    for (const id of ['rapidkert', 'barbershop', 'mentaltrening']) {
-      const c = page.getByTestId(`case-${id}`);
-      await expect(c, `case ${id} is missing`).toHaveCount(1);
-      await expect(c.locator('dt')).toHaveCount(3);
-      for (const dd of await c.locator('dd').all()) {
-        expect((await dd.innerText()).trim().length).toBeGreaterThan(20);
-      }
+    // This asserted three case studies, each with a three-term description
+    // list. That was the portrait composition's edit of a homepage catalogue,
+    // and the catalogue is gone: `/work` carries all three projects, and a
+    // phone scrolling them here was scrolling the portfolio twice. The
+    // architecture is asserted rather than the old shape, and from the content
+    // tables rather than a remembered list.
+    const marks = page.getByTestId('collaborations').locator('.mv-collab__item img');
+    await expect(marks, 'one mark per approved collaboration').toHaveCount(COLLABORATIONS.length);
+    expect(await marks.evaluateAll((els) => els.map((e) => (e as HTMLImageElement).alt))).toEqual(
+      COLLABORATIONS.map((c) => c.name),
+    );
+
+    const cases = page.locator('[data-testid^="case-"]');
+    await expect(cases, 'the homepage features exactly one case study').toHaveCount(1);
+    await expect(cases).toHaveAttribute('data-testid', `case-${FEATURED_CASE_ID}`);
+
+    for (const w of WORK.filter((c) => c.id !== FEATURED_CASE_ID)) {
+      await expect(
+        page.getByTestId(`case-${w.id}`),
+        `${w.id} belongs on /work, not on the homepage`,
+      ).toHaveCount(0);
     }
-    await expect(
-      page.locator('[data-testid^="case-"]'),
-      'the homepage shows exactly three project summaries',
-    ).toHaveCount(3);
+
+    // The feature carries its result, its sourced figure and both ways out —
+    // the portrait composition drops the description list, not the proof.
+    const featured = WORK.find((w) => w.id === FEATURED_CASE_ID)!;
+    const feature = page.getByTestId(`case-${FEATURED_CASE_ID}`);
+    await expect(feature.locator('.mv-feature__name')).toHaveText(featured.name);
+    await expect(feature.locator('.mv-feature__result')).toHaveText(featured.result);
+    await expect(feature.locator('.mv-case__metric strong')).toHaveText(featured.metric!.value);
+    await expect(feature.locator('.mv-case__metric span')).toHaveText(featured.metric!.label);
+    await expect(page.getByTestId('cta-featured-case')).toHaveAttribute(
+      'href',
+      pageHref('caseRapidkert'),
+    );
+    await expect(page.getByTestId('cta-work')).toHaveAttribute('href', pageHref('work'));
 
     // Seven process checkpoints, each with its three columns answered.
     for (let i = 1; i <= 7; i++) {
@@ -399,7 +417,12 @@ test.describe('portrait — the content', () => {
         `chapter ${id} is empty without WebGL`,
       ).toBeGreaterThan(60);
     }
-    await expect(page.locator('[data-testid^="case-"]')).toHaveCount(3);
+    // The portfolio chapter survives the denial too, in its current shape: the
+    // marks are plain <img>, the feature is plain DOM, and neither has ever
+    // needed a renderer. Asserted as one featured case rather than three cards
+    // for the same reason as in the contract above.
+    await expect(page.locator('[data-testid^="case-"]')).toHaveCount(1);
+    await expect(page.locator('.mv-collab__item img')).toHaveCount(COLLABORATIONS.length);
   });
 
   test('the skip link lands on the content @smoke', async ({ page }) => {

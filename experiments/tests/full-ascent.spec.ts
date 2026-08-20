@@ -36,7 +36,9 @@ import {
   ringLock,
 } from '../src/full/meridian';
 import { IRIS, irisHoleRadius } from '../src/full/components/meridianParts';
-import { WORK } from '../src/full/content';
+import { COLLABORATIONS, FEATURED_CASE_ID, WORK } from '../src/full/content';
+import { pageHref } from '../src/full/i18n';
+import { MESSAGES } from '../src/full/locales/messages';
 
 /**
  * Centre a stage's panel in the viewport, by measuring where it actually is.
@@ -355,26 +357,51 @@ test.describe('the content survives without the canvas', () => {
       expect((await section.innerText()).trim().length, `stage ${id} is empty`).toBeGreaterThan(60);
     }
 
-    // The case studies carry the five-part structure, with prose in each part.
+    // The portfolio stage: marks, then ONE case.
     //
-    // Three, not the four this asserted through Phase 8. Phase 8.5 §9.2 caps the
-    // homepage Selected Work at three project summaries, and §10.2's approved
-    // organisation list does not include Pille Sewing — two independent reasons
-    // for the same removal. The count is asserted BOTH ways on purpose: a
-    // fourth case study reappearing is as much a regression as one of these
-    // three going missing, and a loop over a list can only catch the second.
-    for (const id of ['rapidkert', 'barbershop', 'mentaltrening']) {
-      const c = page.getByTestId(`case-${id}`);
-      await expect(c, `case ${id} is missing`).toHaveCount(1);
-      await expect(c.locator('dt')).toHaveCount(5);
-      for (const dd of await c.locator('dd').all()) {
-        expect((await dd.innerText()).trim().length).toBeGreaterThan(20);
-      }
+    // This asserted three full case studies, each with a five-term description
+    // list, and it was right while the homepage was a catalogue. It is not one
+    // any more. `/work` carries all three projects with the same photographs
+    // and links to each full case page; the homepage was printing that twice in
+    // the middle of a brand narrative, so it now carries a rail of marks and a
+    // single featured case.
+    //
+    // Asserted from the content tables rather than from a remembered list, and
+    // in BOTH directions: the featured case going missing is a regression, and
+    // a second case study reappearing beside it is the exact regression this
+    // architecture exists to prevent.
+    const collaborations = page.getByTestId('collaborations');
+    await expect(collaborations, 'the collaboration rail is missing').toHaveCount(1);
+
+    const marks = collaborations.locator('.collab__item img');
+    await expect(marks, 'one mark per approved collaboration').toHaveCount(COLLABORATIONS.length);
+    // Marks are informative, not decorative: a rail of six empty alts tells a
+    // screen reader nothing about who the collaborations were with.
+    expect(await marks.evaluateAll((els) => els.map((e) => (e as HTMLImageElement).alt))).toEqual(
+      COLLABORATIONS.map((c) => c.name),
+    );
+
+    // Exactly one case study on the homepage, and it is the featured one.
+    const cases = page.locator('[data-testid^="case-"]');
+    await expect(cases, 'the homepage features exactly one case study').toHaveCount(1);
+    await expect(cases).toHaveAttribute('data-testid', `case-${FEATURED_CASE_ID}`);
+    await expect(cases, 'the featured case declares itself').toHaveAttribute('data-featured', 'true');
+
+    // And the ones that are no longer featured are genuinely gone rather than
+    // merely hidden — a collapsed card still ships its photograph and its copy.
+    for (const w of WORK.filter((c) => c.id !== FEATURED_CASE_ID)) {
+      await expect(
+        page.getByTestId(`case-${w.id}`),
+        `${w.id} belongs on /work, not on the homepage`,
+      ).toHaveCount(0);
     }
-    await expect(
-      page.locator('[data-testid^="case-"]'),
-      'the homepage shows exactly three project summaries (§9.2)',
-    ).toHaveCount(3);
+
+    // The feature says what it is for: a result, a proof point and a way in.
+    const featured = WORK.find((w) => w.id === FEATURED_CASE_ID)!;
+    const feature = page.getByTestId(`case-${FEATURED_CASE_ID}`);
+    await expect(feature.locator('.feature__name')).toHaveText(featured.name);
+    await expect(feature.locator('.feature__result')).toHaveText(featured.result);
+    expect((await feature.locator('.feature__result').innerText()).trim().length).toBeGreaterThan(20);
 
     // Seven process checkpoints, each with all four columns answered.
     for (let i = 1; i <= 7; i++) {
@@ -401,24 +428,18 @@ test.describe('the content survives without the canvas', () => {
     // line existed to catch — fails it too. Node resolves `WORK` at the `hu`
     // locale (i18n.ts) and the route is `lang="hu"`, so these are the same
     // strings the page renders.
-    for (const w of WORK) {
-      const metric = page.getByTestId(`case-${w.id}`).locator('.case__metric');
+    const featuredCase = WORK.find((w) => w.id === FEATURED_CASE_ID)!;
+    expect(
+      featuredCase.metric,
+      'the featured case is the one with a sourced figure — that is why it is featured',
+    ).toBeTruthy();
 
-      if (!w.metric) {
-        await expect(
-          metric,
-          `case ${w.id} has no sourced figure, so it must render no metric row`,
-        ).toHaveCount(0);
-        continue;
-      }
-
-      await expect(
-        metric,
-        `case ${w.id} must render its sourced metric exactly once`,
-      ).toHaveCount(1);
+    {
+      const metric = page.getByTestId(`case-${featuredCase.id}`).locator('.case__metric');
+      await expect(metric, 'the featured case renders its metric exactly once').toHaveCount(1);
       await expect(metric).toBeVisible();
-      await expect(metric.locator('strong'), `${w.id} metric value`).toHaveText(w.metric.value);
-      await expect(metric.locator('span'), `${w.id} metric label`).toHaveText(w.metric.label);
+      await expect(metric.locator('strong'), 'metric value').toHaveText(featuredCase.metric!.value);
+      await expect(metric.locator('span'), 'metric label').toHaveText(featuredCase.metric!.label);
     }
 
     // One metric row in the whole document, and it belongs to Rapidkert.
@@ -429,29 +450,210 @@ test.describe('the content survives without the canvas', () => {
     const metrics = page.locator('.case__metric');
     await expect(metrics, 'exactly one metric row is rendered, with no duplicate').toHaveCount(1);
     await expect(
-      metrics.locator('xpath=ancestor::article[contains(@class, "case")]'),
-      'the metric belongs to the Rapidkert case',
-    ).toHaveAttribute('data-testid', 'case-rapidkert');
+      metrics.locator('xpath=ancestor::article[1]'),
+      'the metric belongs to the featured case',
+    ).toHaveAttribute('data-testid', `case-${FEATURED_CASE_ID}`);
 
-    // And where it sits: under the five-part body, above the testimonial.
+    // And where it sits: after the result it quantifies, before the way out.
     //
-    // The figure is the pay-off of the case and the quote is the corroboration,
-    // so that order is the claim the layout makes. A row that renders above the
-    // challenge, or below the client logo, is a regression no count can see.
-    const at = await page.getByTestId('case-rapidkert').evaluate((el) => {
+    // The result sentence makes the claim in prose and the metric is the figure
+    // behind it, so a metric that renders above its own result — or below the
+    // actions, after the reader has already been asked to leave — is a
+    // regression no count can see.
+    const at = await page.getByTestId(`case-${FEATURED_CASE_ID}`).evaluate((el) => {
       const kids = [...el.children];
       const index = (sel: string) => kids.findIndex((k) => k.matches(sel));
       return {
-        body: index('dl.case__body'),
+        figure: index('figure.feature__figure'),
+        result: index('p.feature__result'),
         metric: index('p.case__metric'),
-        quote: index('blockquote.case__quote'),
+        cta: index('div.feature__cta'),
       };
     });
-    expect(at.body, 'the case body is missing').toBeGreaterThanOrEqual(0);
-    expect(at.quote, 'the case testimonial is missing').toBeGreaterThanOrEqual(0);
-    expect(at.metric, 'the metric is not a direct child of the case').toBeGreaterThanOrEqual(0);
-    expect(at.metric, 'the metric must follow the case body').toBeGreaterThan(at.body);
-    expect(at.quote, 'the metric must precede the testimonial').toBeGreaterThan(at.metric);
+    expect(at.figure, 'the feature has no figure').toBeGreaterThanOrEqual(0);
+    expect(at.result, 'the feature has no result statement').toBeGreaterThanOrEqual(0);
+    expect(at.metric, 'the metric is not a direct child of the feature').toBeGreaterThanOrEqual(0);
+    expect(at.cta, 'the feature offers no way out').toBeGreaterThanOrEqual(0);
+    expect(at.metric, 'the metric must follow the result it quantifies').toBeGreaterThan(at.result);
+    expect(at.cta, 'the metric must precede the actions').toBeGreaterThan(at.metric);
+  });
+
+  test('every case-study asset the content names is in the production build', async ({ page }) => {
+    await page.goto('./');
+
+    // The packaging defect this exists to catch, stated once.
+    //
+    // `content.ts` can name an image that exists in a working tree and was
+    // never committed. Nothing upstream notices: the file is on disk, the types
+    // check, the component renders, and the developer's own build serves it.
+    // The FROZEN build does not contain it, so the visitor gets a broken figure
+    // and the suite gets a console error — which is how this arrived, as nine
+    // failures in two files that never mention Rapidkert, none of them within
+    // reach of the cause.
+    //
+    // So the contract is against the SERVED ARTEFACT, not the filesystem. A
+    // test that stats the working tree would have passed on the commit that
+    // shipped the defect.
+    const assets = [
+      ...WORK.flatMap((w) => [
+        ...(w.image ? [{ id: w.id, kind: 'image', src: w.image.src, frame: w.image.frame }] : []),
+        ...(w.logo ? [{ id: w.id, kind: 'logo', src: w.logo.src, frame: undefined }] : []),
+      ]),
+      // The collaboration marks are shipped content on the same terms, and one
+      // of them — Barbershop's — is the only thing representing that client on
+      // the homepage now. A mark that 404s is a hole in the credibility rail.
+      ...COLLABORATIONS.map((c) => ({ id: c.name, kind: 'mark', src: c.src, frame: undefined })),
+    ];
+
+    // A loop over an empty list is a passing test that checks nothing. Every
+    // case carries a figure today; losing one is a content decision, and it
+    // should be made in content.ts rather than absorbed silently here.
+    expect(assets.length, 'no assets to check').toBeGreaterThanOrEqual(
+      WORK.length + COLLABORATIONS.length,
+    );
+
+    for (const a of assets) {
+      const url = new URL(a.src, page.url()).toString();
+      const res = await page.request.get(url);
+      const where = `${a.id} ${a.kind} ${a.src}`;
+
+      expect(res.status(), where).toBe(200);
+      // Status alone is not enough. A server that answers an unknown path with
+      // an index shell returns 200 and an HTML body, and a redirect to a
+      // fallback returns an image that is not this one.
+      expect(res.headers()['content-type'], `${where} — content-type`).toMatch(/^image\//);
+      expect((await res.body()).byteLength, `${where} — empty body`).toBeGreaterThan(1024);
+    }
+
+    // And where content.ts declares a frame, it is the reserved box the layout
+    // is built on and the ratio the figure adopts, so it has to be the served
+    // file's real size rather than a remembered one. A frame that disagrees
+    // with the file reserves the wrong box and crops against the wrong ratio.
+    for (const a of assets) {
+      if (!a.frame) continue;
+      const real = await page.evaluate(
+        (src) =>
+          new Promise<[number, number]>((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve([img.naturalWidth, img.naturalHeight]);
+            img.onerror = () => reject(new Error(`could not decode ${src}`));
+            img.src = src;
+          }),
+        a.src,
+      );
+      expect(real, `${a.id} — declared frame does not match the served file`).toEqual([
+        a.frame.width,
+        a.frame.height,
+      ]);
+    }
+  });
+
+  test('the featured case opens the case study, and the stage opens /work', async ({ page }) => {
+    await page.goto('./');
+
+    // The homepage stopped carrying the portfolio, so the two routes out of
+    // this stage are the whole architecture: one into the case that has a full
+    // story, one into the page that has the rest. Either going missing puts the
+    // visitor in a stage that shows six marks and one project and offers no way
+    // to see any more.
+    //
+    // The hrefs are asserted against `pageHref`, which is the same map the
+    // component renders from — so this checks the ROUTE resolves in the
+    // document's locale rather than that someone typed a Hungarian filename.
+    const caseCta = page.getByTestId('cta-featured-case');
+    const workCta = page.getByTestId('cta-work');
+    await expect(caseCta).toHaveCount(1);
+    await expect(workCta).toHaveCount(1);
+    await expect(caseCta).toHaveAttribute('href', pageHref('caseRapidkert'));
+    await expect(workCta).toHaveAttribute('href', pageHref('work'));
+
+    // Both are real anchors a keyboard can reach, not divs with handlers.
+    for (const cta of [caseCta, workCta]) {
+      await expect(cta).toBeVisible();
+      expect(await cta.evaluate((el) => el.tagName)).toBe('A');
+    }
+
+    // And both destinations exist in the build. A CTA pointing at a 404 is the
+    // same defect as a missing image, one navigation later.
+    for (const cta of [caseCta, workCta]) {
+      const href = (await cta.getAttribute('href'))!;
+      const res = await page.request.get(new URL(href, page.url()).toString());
+      expect(res.status(), `${href} -> ${res.status()}`).toBe(200);
+    }
+  });
+
+  test('the simplified portfolio stage holds in all three locales', async ({ page }) => {
+    // The route this file otherwise drives is the Hungarian development
+    // candidate. The SHIPPED homepages are `/`, `/en/` and `/de/`, all three
+    // built from this same module — so a stage that only works in Hungarian is
+    // a stage that is broken on two thirds of the site, and nothing else in
+    // either suite would say so.
+    //
+    // Copy lengths are deliberately not compared. What has to hold in every
+    // locale is the ARCHITECTURE: the marks, one featured case, and two actions
+    // that resolve to that locale's own routes rather than to Hungarian
+    // filenames with a prefix bolted on.
+    for (const [locale, path] of [
+      ['hu', '/index.html'],
+      ['en', '/en/index.html'],
+      ['de', '/de/index.html'],
+    ] as const) {
+      await page.goto(path);
+      await expect(page.locator('html'), locale).toHaveAttribute('lang', locale);
+
+      await expect(
+        page.getByTestId('collaborations'),
+        `${locale}: no collaboration rail`,
+      ).toHaveCount(1);
+      await expect(
+        page.locator('.collab__item img, .mv-collab__item img'),
+        `${locale}: wrong number of marks`,
+      ).toHaveCount(COLLABORATIONS.length);
+
+      await expect(
+        page.locator('[data-testid^="case-"]'),
+        `${locale}: the homepage must feature exactly one case study`,
+      ).toHaveCount(1);
+      await expect(page.locator('[data-testid^="case-"]')).toHaveAttribute(
+        'data-testid',
+        `case-${FEATURED_CASE_ID}`,
+      );
+
+      // Localised routes, from the same map the component renders from.
+      await expect(page.getByTestId('cta-featured-case'), `${locale}: case CTA`).toHaveAttribute(
+        'href',
+        pageHref('caseRapidkert', locale),
+      );
+      await expect(page.getByTestId('cta-work'), `${locale}: work CTA`).toHaveAttribute(
+        'href',
+        pageHref('work', locale),
+      );
+
+      // Localised LABELS, not just localised destinations. An English button on
+      // the German page is the failure this is really watching for, and it is
+      // invisible to an href assertion.
+      await expect(page.getByTestId('cta-work')).toHaveText(MESSAGES['featured.cta.work'][locale]);
+      await expect(page.getByTestId('collaborations').locator('h3')).toHaveText(
+        MESSAGES['collaborations.title'][locale],
+      );
+
+      // No missing key reached the page. `m()` is type-checked, so an absent
+      // key is a compile error rather than a runtime one — what this catches is
+      // a key that resolved to an empty string in one locale's column.
+      const empty = await page.evaluate(() =>
+        [...document.querySelectorAll('[data-testid^="cta-"], .collab__title, .feature__label')]
+          .filter((el) => !(el.textContent ?? '').trim())
+          .map((el) => el.className || el.getAttribute('data-testid')),
+      );
+      expect(empty, `${locale}: empty labels`).toEqual([]);
+
+      // And the destinations exist in this locale's tree.
+      for (const id of ['cta-featured-case', 'cta-work'] as const) {
+        const href = (await page.getByTestId(id).getAttribute('href'))!;
+        const res = await page.request.get(new URL(href, page.url()).toString());
+        expect(res.status(), `${locale}: ${href} -> ${res.status()}`).toBe(200);
+      }
+    }
   });
 
   test('the calls to action are real anchors with real destinations', async ({ page }) => {
@@ -501,14 +703,17 @@ test.describe('reduced motion', () => {
     // And the document still reads, in full — not a stripped-down variant.
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.getByTestId('stage-destination')).toBeVisible();
-    // Three, per §9.2 — see the note on the same list in "the content survives
-    // without the canvas". Reduced motion must show the SAME three, which is
-    // what makes the count worth asserting here too: this is the path where a
-    // stripped-down variant would be easiest to ship by accident.
-    for (const id of ['rapidkert', 'barbershop', 'mentaltrening']) {
-      await expect(page.getByTestId(`case-${id}`)).toBeVisible();
-    }
-    await expect(page.locator('[data-testid^="case-"]')).toHaveCount(3);
+    // The same portfolio stage the animated path shows — see the note in "the
+    // content survives without the canvas". Reduced motion is the path where a
+    // stripped-down variant is easiest to ship by accident, so it gets the same
+    // architecture asserted rather than a weaker version of it: the marks, the
+    // one featured case, and both ways out.
+    await expect(page.getByTestId('collaborations')).toBeVisible();
+    await expect(page.locator('.collab__item img')).toHaveCount(COLLABORATIONS.length);
+    await expect(page.getByTestId(`case-${FEATURED_CASE_ID}`)).toBeVisible();
+    await expect(page.locator('[data-testid^="case-"]')).toHaveCount(1);
+    await expect(page.getByTestId('cta-featured-case')).toBeVisible();
+    await expect(page.getByTestId('cta-work')).toBeVisible();
   });
 
   test('hides no essential content and keeps every CTA usable', async ({ page }) => {
