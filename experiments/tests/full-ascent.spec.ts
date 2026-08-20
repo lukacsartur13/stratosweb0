@@ -1345,6 +1345,25 @@ test.describe('Altimeter Meridian — as the visitor gets it', () => {
     // than for a fixed 1.7 s. On a real GPU that is quicker than the old flat
     // wait; on a software rasteriser it is honest about how long convergence
     // actually takes, and the default 120 s is not enough room for that.
+    //
+    // A FLOOR, NOT THE BUDGET. The budget is re-derived below, once this
+    // process can see how many frames it is actually being given.
+    //
+    // 300 000 was the budget, and it is the whole of why this test failed in
+    // `g5-02` (306 645 ms) and again in `final-closure-01` (303 456 ms) — twice,
+    // at the same line, by one and two per cent. Neither run reached an
+    // assertion; both expired inside the wait at :1439.
+    //
+    // The wait below is frame-rate independent in the number of frames it takes
+    // and emphatically not in the time those frames take, because `MAX_FRAME_DT`
+    // caps the per-frame decay: the slower the page, the more wall-clock each
+    // settle costs. Measured on a quiet reference host, one settle costs
+    // 6 766 ms over 42 frames and twenty cost 135 s, which is 95% of this
+    // test's 129 s runtime — a 2.3x margin under a constant. `final-closure-01`
+    // ran `playwright-full` 1.55x slower than G6 at five parallel workers, and
+    // that margin is what it spent.
+    //
+    // So the constant is a floor and the budget is measured. See `budget()`.
     test.setTimeout(300_000);
 
     // The page-level half of the 3 000 m fix, and the half that covers mobile:
@@ -1433,10 +1452,8 @@ test.describe('Altimeter Meridian — as the visitor gets it', () => {
     // in `settle` must have fired for any starting distance this test can
     // create. Frame-rate independent by construction: ~34 frames at 39 fps,
     // ~18 at 8 fps, and correct at either.
-    const settleAt = async (y: number) => {
-      await page.evaluate((to) => scrollTo({ top: to, behavior: 'instant' as ScrollBehavior }), y);
-
-      await page.evaluate(
+    const settleClock = () =>
+      page.evaluate(
         ({ smoothing, maxDt, epsilon }) =>
           new Promise<void>((resolve, reject) => {
             // The largest distance a park-then-read step can leave on the clock
@@ -1462,11 +1479,43 @@ test.describe('Altimeter Meridian — as the visitor gets it', () => {
         { smoothing: JOURNEY_SMOOTHING, maxDt: MAX_FRAME_DT, epsilon: SETTLE_EPSILON },
       );
 
+    const settleAt = async (y: number) => {
+      await page.evaluate((to) => scrollTo({ top: to, behavior: 'instant' as ScrollBehavior }), y);
+      await settleClock();
+
       return page.evaluate(() => ({
         stage: (document.querySelector('.hud') as HTMLElement | null)?.dataset.stage ?? '',
         metres: (document.querySelector('[data-testid="altitude-value"]')?.textContent ?? '').replace(/\D/g, ''),
       }));
     };
+
+    /**
+     * The budget, measured rather than declared.
+     *
+     * Twenty settles follow, and what one costs is a property of the frames
+     * this process is being given — not of the journey, and not of anything
+     * this test can assert about. So it is timed once, here, against the very
+     * wait it is a budget for, and the timeout is set from the answer.
+     *
+     * The scene is loaded and the track is warm at this point, so this sample
+     * is taken under the same conditions the twenty will run under. The 2x is
+     * for a host that gets *slower* during the run, which is exactly what five
+     * parallel WebGL suites do to each other; the 60 s is the load, the sweep
+     * and the twenty scroll instructions, all of which are already spent or
+     * bounded elsewhere.
+     *
+     * This is not a raised timeout. It is the same budget the constant was
+     * trying to express, computed at the frame rate that actually obtains
+     * instead of at the one the author's machine happened to have. A page whose
+     * clock genuinely never settles still fails, and fails where it should —
+     * `settleClock` rejects at 900 frames.
+     */
+    const startedSettle = Date.now();
+    await settleClock();
+    const oneSettle = Date.now() - startedSettle;
+    const budget = Math.max(300_000, oneSettle * 20 * 2 + 60_000);
+    test.setTimeout(budget);
+    info.annotations.push({ type: 'budget', description: `${budget} ms, from one settle of ${oneSettle} ms` });
 
     // Approached from below, then from above, settling fully each time. Same
     // scroll position, same altitude, and therefore — this is the assertion —
