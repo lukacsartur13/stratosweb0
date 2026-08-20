@@ -17,6 +17,10 @@ const NODE_ONLY = [
   // and does not read. No page, no viewport, and running it five times over is
   // five full walks of the repository for the same answer.
   /gate-independence\.spec\.ts/,
+  // Asks git what is tracked and reads the shipped HTML off the filesystem.
+  // No page, no viewport, and running it five times over is five identical
+  // walks of the repository for the same answer.
+  /asset-packaging\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are
