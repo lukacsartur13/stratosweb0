@@ -45,7 +45,8 @@
  * USAGE
  * -----
  *   node scripts/hermetic/gate-run.mjs --run-id r1 [--root <dir>]
- *        [--expect-dist <sha>] [--server node|python] [--gates a,b,c]
+ *        [--expect-dist <sha>] [--expect-test <sha>] [--expect-config <sha>]
+ *        [--server node|python] [--gates a,b,c]
  *        [--skip-build] [--out <dir>]
  *
  * Exit codes:
@@ -72,6 +73,15 @@ const ROOT = resolve(flag('root', process.cwd()));
 const RUN_ID = flag('run-id', `run-${Date.now()}`);
 const SERVER_KIND = flag('server', 'node');
 const EXPECT_DIST = flag('expect-dist');
+// The subject is four groups, and until now only ONE of them could be pinned.
+// `dist` is what the browser sees, so it was pinned first and for good reason —
+// but a gate that starts from a different `test` group is testing the frozen
+// artefact against a definition of pass that is not the frozen one, and the
+// before/after comparison cannot see it: that comparison catches change DURING
+// a run, never a run that began from the wrong subject. Symmetrical flags, same
+// failure mode, same `invalidReasons` channel.
+const EXPECT_TEST = flag('expect-test');
+const EXPECT_CONFIG = flag('expect-config');
 const OUT_DIR = resolve(flag('out', join(ROOT, '_build/reports/hermetic-gate/runs', RUN_ID)));
 const MAIN_PORT = Number(flag('main-port', 4322));
 const FULL_PORT = Number(flag('full-port', 4327));
@@ -495,8 +505,14 @@ async function main() {
   };
 
   // §7: the artefact must be the frozen one, not merely *an* artefact.
-  if (EXPECT_DIST && before && before.groups.dist.hash !== EXPECT_DIST) {
-    result.invalidReasons.push(`DIST_NOT_FROZEN_REFERENCE expected=${EXPECT_DIST} got=${before.groups.dist.hash}`);
+  for (const [group, expected, reason] of [
+    ['dist', EXPECT_DIST, 'DIST_NOT_FROZEN_REFERENCE'],
+    ['test', EXPECT_TEST, 'TEST_NOT_FROZEN_REFERENCE'],
+    ['config', EXPECT_CONFIG, 'CONFIG_NOT_FROZEN_REFERENCE'],
+  ]) {
+    if (!expected || !before) continue;
+    const got = before.groups[group]?.hash;
+    if (got !== expected) result.invalidReasons.push(`${reason} expected=${expected} got=${got}`);
   }
 
   armCanaries();

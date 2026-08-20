@@ -28,8 +28,11 @@
  *
  *   product   The site and portal sources. A change here means the gate is no
  *             longer testing the product it started with.
- *   test      Specs, helpers, validators. A change here means the gate changed
- *             its own definition of pass mid-flight.
+ *   test      Specs, helpers, validators — from EVERY config's testDir, not
+ *             just the main one, and including test-only modules that happen to
+ *             be filed outside a `tests/` directory. A change here means the
+ *             gate changed its own definition of pass mid-flight. See the group
+ *             definition below for what this cost when it was only `tests`.
  *   config    Playwright configs, package manifests, lockfiles, netlify.toml.
  *             A change here can silently alter project lists and worker counts,
  *             which changes the collected count and so the arithmetic.
@@ -45,6 +48,11 @@
  *   _build/reports/**   The gate writes its own reports there while it runs.
  *                       Hashing them would make every run invalidate itself.
  *   test-results/**     Playwright's own output, same reason.
+ *   .env, .env.*        Secrets, and not the subject. A gate whose result
+ *                       depended on them would be a gate that could not be
+ *                       reproduced from the repository, which is a defect in
+ *                       the gate rather than something to hash around. Stated
+ *                       here so the omission is a decision, not an oversight.
  *   node_modules/**     Four hundred megabytes and ~50 000 files; hashing it
  *                       per run would cost more than the run. Frozen by the
  *                       lockfiles, which ARE hashed, and by the fact that
@@ -86,7 +94,35 @@ const GROUPS = {
     'experiments/src', 'netlify', 'supabase', 'public',
     '_build/pages', '_build/i18n', '_build/partials', '_build/build.py',
   ],
-  test: ['tests', 'scripts'],
+  // Every executable TEST INPUT, not merely the directory the main config
+  // happens to point at.
+  //
+  // This group used to read `['tests', 'scripts']`, and that was wrong in a way
+  // that made the phrase "test subject fully frozen" broader than the guarantee
+  // behind it. Three of the four Playwright configs in this repository —
+  // `playwright.full.config.ts`, `playwright.experiments.config.ts`,
+  // `playwright.mountains.config.ts` — declare `testDir: './experiments/tests'`,
+  // and NOTHING in that tree was hashed. The WebGL/full suite, 165 tests across
+  // the two files the full config collects, could have been edited mid-gate and
+  // every manifest comparison would still have printed SUBJECT IDENTICAL.
+  //
+  // Two loose modules join it for the same reason. `terrain-mask.mjs` and
+  // `valley-metrics.mjs` sit at `experiments/` root rather than under
+  // `experiments/src`, and are imported by `mountain-framing.spec.ts` and by
+  // nothing else — they are test code that happens to be filed one directory
+  // too high. They were in neither group: the product group hashes
+  // `experiments/src`, which does not contain them.
+  //
+  // The rule the group now follows: a file is a test input if the harness
+  // executes it or imports it while deciding pass or fail. Membership is by
+  // that question, never by which directory a config's `testDir` names.
+  test: [
+    'tests',
+    'experiments/tests',
+    'experiments/terrain-mask.mjs',
+    'experiments/valley-metrics.mjs',
+    'scripts',
+  ],
   config: [
     'playwright.config.ts', 'playwright.full.config.ts',
     'playwright.experiments.config.ts', 'playwright.mountains.config.ts',

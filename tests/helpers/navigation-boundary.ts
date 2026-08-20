@@ -331,8 +331,23 @@ function frozenHashes() {
     ?? '_build/reports/hermetic-gate/manifests/frozen-reference.json';
   try {
     const m = JSON.parse(fs.readFileSync(p, 'utf8'));
-    return { source: p, dist: m?.groups?.dist?.hash ?? null, tests: m?.groups?.tests?.hash ?? null, commit: m?.commit ?? null };
-  } catch { return { source: p, dist: null, tests: null, commit: null }; }
+    // The group is named `test`, singular, in manifest.mjs. This read said
+    // `groups.tests` and so evaluated to `null` in every bundle ever written —
+    // including the G6 red run, whose meta.json records `"tests": null` next to
+    // a perfectly good `dist` hash. A bundle that cannot say which test code
+    // produced it is missing half of what §35 asks a bundle to prove, so the
+    // name is corrected and the field keeps its `test` spelling from here on.
+    return {
+      source: p,
+      dist: m?.groups?.dist?.hash ?? null,
+      test: m?.groups?.test?.hash ?? null,
+      config: m?.groups?.config?.hash ?? null,
+      combined: m?.combinedHash ?? null,
+      commit: m?.commit ?? null,
+    };
+  } catch {
+    return { source: p, dist: null, test: null, config: null, combined: null, commit: null };
+  }
 }
 
 /** Never let an interrogation of a stuck page become the reason nothing is written. */
