@@ -36,6 +36,7 @@ import {
   ringLock,
 } from '../src/full/meridian';
 import { IRIS, irisHoleRadius } from '../src/full/components/meridianParts';
+import { WORK } from '../src/full/content';
 
 /**
  * Centre a stage's panel in the viewport, by measuring where it actually is.
@@ -382,10 +383,75 @@ test.describe('the content survives without the canvas', () => {
       await expect(cp.locator('dt')).toHaveCount(4);
     }
 
-    // No invented metrics. The repository has no verified figure for any of
-    // these projects, so the metric row must be absent rather than filled in
-    // with something plausible.
-    await expect(page.locator('.case__metric')).toHaveCount(0);
+    // The metric row, asserted against the content table rather than against a
+    // remembered count.
+    //
+    // This line read `.case__metric` count === 0 through Phase 8, and that was
+    // correct while no entry in `WORK` carried a figure. Rapidkert now carries
+    // one — the contracted project value its case-study route publishes — so a
+    // zero count is no longer the honest statement of the rule, it is a stale
+    // record of the old content. The rule the old assertion was really
+    // protecting has not changed: a metric row appears if and only if the
+    // content table has a sourced figure for that case, and it says exactly
+    // what the table says.
+    //
+    // So the contract is DERIVED from `WORK`, in both directions. Deleting
+    // Rapidkert's metric fails it, changing its value or its label fails it,
+    // and inventing one for Barbershop or mentaltrening — the failure the old
+    // line existed to catch — fails it too. Node resolves `WORK` at the `hu`
+    // locale (i18n.ts) and the route is `lang="hu"`, so these are the same
+    // strings the page renders.
+    for (const w of WORK) {
+      const metric = page.getByTestId(`case-${w.id}`).locator('.case__metric');
+
+      if (!w.metric) {
+        await expect(
+          metric,
+          `case ${w.id} has no sourced figure, so it must render no metric row`,
+        ).toHaveCount(0);
+        continue;
+      }
+
+      await expect(
+        metric,
+        `case ${w.id} must render its sourced metric exactly once`,
+      ).toHaveCount(1);
+      await expect(metric).toBeVisible();
+      await expect(metric.locator('strong'), `${w.id} metric value`).toHaveText(w.metric.value);
+      await expect(metric.locator('span'), `${w.id} metric label`).toHaveText(w.metric.label);
+    }
+
+    // One metric row in the whole document, and it belongs to Rapidkert.
+    //
+    // The loop above scopes every check to one case article, so it cannot see a
+    // second copy rendered outside the cases, nor a metric that has drifted
+    // onto the wrong case while `WORK` still names the right one.
+    const metrics = page.locator('.case__metric');
+    await expect(metrics, 'exactly one metric row is rendered, with no duplicate').toHaveCount(1);
+    await expect(
+      metrics.locator('xpath=ancestor::article[contains(@class, "case")]'),
+      'the metric belongs to the Rapidkert case',
+    ).toHaveAttribute('data-testid', 'case-rapidkert');
+
+    // And where it sits: under the five-part body, above the testimonial.
+    //
+    // The figure is the pay-off of the case and the quote is the corroboration,
+    // so that order is the claim the layout makes. A row that renders above the
+    // challenge, or below the client logo, is a regression no count can see.
+    const at = await page.getByTestId('case-rapidkert').evaluate((el) => {
+      const kids = [...el.children];
+      const index = (sel: string) => kids.findIndex((k) => k.matches(sel));
+      return {
+        body: index('dl.case__body'),
+        metric: index('p.case__metric'),
+        quote: index('blockquote.case__quote'),
+      };
+    });
+    expect(at.body, 'the case body is missing').toBeGreaterThanOrEqual(0);
+    expect(at.quote, 'the case testimonial is missing').toBeGreaterThanOrEqual(0);
+    expect(at.metric, 'the metric is not a direct child of the case').toBeGreaterThanOrEqual(0);
+    expect(at.metric, 'the metric must follow the case body').toBeGreaterThan(at.body);
+    expect(at.quote, 'the metric must precede the testimonial').toBeGreaterThan(at.metric);
   });
 
   test('the calls to action are real anchors with real destinations', async ({ page }) => {
