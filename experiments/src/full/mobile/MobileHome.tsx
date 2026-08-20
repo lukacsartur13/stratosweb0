@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode } from 'react';
 import { m, pageHref } from '../i18n';
-import { CAPABILITIES, PROCESS, SYSTEM, WORK } from '../content';
+import { CAPABILITIES, COLLABORATIONS, FEATURED_CASE_ID, PROCESS, SYSTEM, WORK } from '../content';
 import { STAGES, formatAltitude } from '../journey';
 import { ALTITUDE_BANDS, measureAscent } from './ascent';
 import { startReveals } from './reveal';
@@ -137,6 +137,10 @@ function Copy({ children, className = '', stagger }: { children: ReactNode; clas
 }
 
 export function MobileHome() {
+  // The one case this composition features. Same rule and same id as the
+  // desktop composition — the two share the content table and nothing else.
+  const featured = WORK.find((w) => w.id === FEATURED_CASE_ID);
+
   useEffect(() => {
     const stopReveals = startReveals(document);
 
@@ -287,9 +291,12 @@ export function MobileHome() {
         </Section>
 
         {/* ── 6 · 11 000–17 000 m — “those who climbed with us” ─────────
-            §16: starts immediately, no lead-in. Name, then logo, then scope,
-            then a small image crop — a project index rather than a gallery.
-            No horizontal scroller and no full-bleed imagery. */}
+            Marks, then one case. The portrait counterpart of the desktop
+            composition's stage 6, and the same reasoning: this used to be three
+            full cards — image, description list, metric, testimonial, mark —
+            stacked down a phone, which is `/work` reprinted inside a brand
+            narrative. Six plated marks and one sourced case say the same thing
+            in a fraction of the scroll. */}
         <Section id="selected-work">
           <Label at={m('selectedWork.altitude')}>{m('selectedWork.eyebrow')}</Label>
           <Lines
@@ -297,67 +304,80 @@ export function MobileHome() {
           />
           <Copy className="mv-copy--lead">{m('selectedWork.lead')}</Copy>
 
-          <div className="mv-work">
-            {WORK.map((w, i) => (
-              <article className="mv-case mv-text" data-stagger={i} key={w.id} data-testid={`case-${w.id}`}>
-                <header className="mv-case__head">
-                  <span className="mv-case__at">{formatAltitude(w.altitude)} m</span>
-                  <h3 className="mv-case__name">{w.name}</h3>
-                  <p className="mv-case__sector">{w.sector}</p>
-                </header>
-
-                {w.logo && (
+          <section className="mv-collab" data-testid="collaborations">
+            <h3 className="mv-collab__title">{m('collaborations.title')}</h3>
+            <p className="mv-collab__note">{m('collaborations.note')}</p>
+            <ul className="mv-collab__set">
+              {COLLABORATIONS.map((c) => (
+                <li className="mv-collab__item" key={c.src}>
                   <img
-                    className="mv-case__logo"
-                    src={w.logo.src}
-                    alt={w.logo.alt}
+                    src={c.src}
+                    alt={c.name}
                     loading="lazy"
                     decoding="async"
+                    width={c.width}
+                    height={c.height}
                   />
-                )}
+                </li>
+              ))}
+            </ul>
+          </section>
 
-                {w.image && (
-                  <figure className="mv-case__figure">
-                    {/* Dimension-bearing and lazy. The box is reserved before
-                        the bytes arrive, so a late image cannot shift the copy
-                        under a reader — the only reflow risk left on the page. */}
-                    <img
-                      src={w.image.src}
-                      alt={w.image.alt}
-                      loading="lazy"
-                      decoding="async"
-                      width={1200}
-                      height={1500}
-                    />
-                  </figure>
-                )}
+          {featured && (
+            <article
+              className="mv-feature"
+              data-testid={`case-${featured.id}`}
+              data-featured="true"
+            >
+              <p className="mv-feature__label">{m('featured.label')}</p>
+              <h3 className="mv-feature__name">{featured.name}</h3>
+              <p className="mv-feature__sector">
+                {featured.sector} · {formatAltitude(featured.altitude)} m
+              </p>
 
-                <dl className="mv-case__body">
-                  <dt>{m('case.term.challenge')}</dt>
-                  <dd>{w.challenge}</dd>
-                  <dt>{m('case.term.intervention')}</dt>
-                  <dd>{w.intervention}</dd>
-                  <dt>{m('case.term.result')}</dt>
-                  <dd>{w.result}</dd>
-                </dl>
+              {featured.image && (
+                <figure
+                  className="mv-feature__figure"
+                  // The 5:4 window lived on the figure in the old card system.
+                  // A landscape hero gets its own frame instead of being cropped
+                  // into a window cut for portrait mockups.
+                  style={
+                    featured.image.frame
+                      ? {
+                          aspectRatio: `${featured.image.frame.width} / ${featured.image.frame.height}`,
+                        }
+                      : undefined
+                  }
+                >
+                  <img
+                    src={featured.image.src}
+                    alt={featured.image.alt}
+                    loading="lazy"
+                    decoding="async"
+                    width={featured.image.frame?.width ?? 1200}
+                    height={featured.image.frame?.height ?? 1500}
+                  />
+                </figure>
+              )}
 
-                {w.metric && (
-                  <p className="mv-case__metric">
-                    <strong>{w.metric.value}</strong> <span>{w.metric.label}</span>
-                  </p>
-                )}
+              <p className="mv-feature__result">{featured.result}</p>
 
-                {w.quote && (
-                  <blockquote className="mv-case__quote">
-                    <p>{w.quote.text}</p>
-                    <footer>
-                      <b>{w.quote.by}</b> · {w.quote.role}
-                    </footer>
-                  </blockquote>
-                )}
-              </article>
-            ))}
-          </div>
+              {featured.metric && (
+                <p className="mv-case__metric">
+                  <strong>{featured.metric.value}</strong> <span>{featured.metric.label}</span>
+                </p>
+              )}
+
+              <div className="mv-feature__cta">
+                <a href={pageHref('caseRapidkert')} data-testid="cta-featured-case">
+                  {m('featured.cta.case')}
+                </a>
+                <a href={pageHref('work')} data-testid="cta-work">
+                  {m('featured.cta.work')}
+                </a>
+              </div>
+            </article>
+          )}
         </Section>
 
         {/* ── 7 · 17 000–22 000 m — “nine areas in three layers” ────────

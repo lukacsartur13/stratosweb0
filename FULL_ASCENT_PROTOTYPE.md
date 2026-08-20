@@ -290,9 +290,38 @@ stratégiára lenne szüksége.
 
 ### Az esettanulmányokról — fontos
 
+**A főoldal nem portfólió-katalógus.** A 11 000–17 000 méteres szakasz korábban
+minden projektet teljes kártyaként vitt — kép, ötelemű leírás, metrika, idézet,
+védjegy, háromszor egymás után. Ugyanezt a három projektet a `/munkaink.html`
+is viszi, ugyanazokkal a képekkel, és onnan vezet át a teljes
+esettanulmány-oldalakra; a főoldal tehát kétszer nyomtatta ki a portfóliót, egy
+márkanarratíva közepén.
+
+Ami a helyére került, a legkisebb szerkezet, ami az állítást még bizonyítja:
+
+* **hat védjegy** egy sávban (`COLLABORATIONS` a `content.ts`-ben) — az
+  együttműködés tényét mondják, nem azt, hogy esettanulmány is tartozik hozzájuk;
+* **egy kiemelt eset**, a Rapidkert (`FEATURED_CASE_ID`) — az egyetlen projekt,
+  aminek forrásolt száma van, és amit a `build.py` `CASE_STATUS`-a `full`-ként
+  jelöl. A másik kettő `summary`, és a `/munkaink.html`-en keresztül érhető el;
+* **két kiút**: az esettanulmány és a portfólió, mindkettő a `pageHref` térképből,
+  tehát mindhárom nyelven a saját útvonalára.
+
+A hierarchia maga az üzenet: egy védjegy nem úgy néz ki, mint egy kártya, így a
+sávban semmi nem ígér esettanulmányt, és az egyetlen dolog, ami ígér, azt az
+egyet nyitja meg, ami létezik.
+
+A `share` értékek ettől nem lettek hibásak: a szakasz rövidebb lett, és a
+`useStageCalibration` betöltés után úgyis a mért panelhatárokkal írja felül a
+névleges kereteket. (A fenti táblázat „öt esettanulmány" megjegyzése már a
+Phase 8.5 óta elavult volt — a szakasz akkor is hármat vitt.)
+
 Semmi nincs kitalálva. Minden állítás visszavezethető valamire, ami már a
 repóban van: a Rapidkert-idézet a főoldalon publikált referencia, a logók és
-képernyőképek a már szállított `assets/img/` tartalmak.
+képernyőképek a már szállított `assets/img/` tartalmak. A védjegysáv az a hat
+márka, amit az oldal már mutat; a `logo-fice.png` és a `logo-haio.png`
+szándékosan nincs benne, mert a saját oldaluk mondja ki, hogy egyik sem
+együttműködés.
 
 **A `metric` mező csak ott van kitöltve, ahol a számnak megnevezett forrása
 van.** A Rapidkertnek van: `~15M Ft` szerződött projektérték keresésből — ugyanaz

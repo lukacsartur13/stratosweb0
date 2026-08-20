@@ -245,4 +245,11 @@ export const DE: Record<string, string> = {
     'Ein einheitlicher, wiedererkennbarer Auftritt auf allen Flächen der Marke.',
   'Arculati konzultáció és a megjelenés karbantartása.':
     'Beratung zum Erscheinungsbild und Pflege des Auftritts.',
+
+  // Collaboration marks. Proper nouns: identity, recorded rather than assumed.
+  'Kontyos.hu': 'Kontyos.hu',
+  'Grantool Kft.': 'Grantool Kft.',
+  'Synergy Digital Hungary Kft.': 'Synergy Digital Hungary Kft.',
+  'Duna Hajók': 'Duna Hajók',
+  'Duna Enterior': 'Duna Enterior',
 };

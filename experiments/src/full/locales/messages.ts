@@ -280,9 +280,36 @@ export const MESSAGES = {
     de: 'gemeinsam aufgestiegen.',
   },
   'selectedWork.lead': {
-    hu: 'Négy magassági pont. Mindegyik valódi ügyfél, valódi élő rendszerrel.',
-    en: 'Four altitude points. Each one a real client, with a real system in production.',
-    de: 'Vier Höhenpunkte. Jeder davon ein echter Kunde mit einem echten, laufenden System.',
+    hu: 'Valódi ügyfelek, valódi élő rendszerekkel. Egy projektet emelünk ki itt; a többi a Munkáink oldalon van.',
+    en: 'Real clients, with real systems in production. One project is featured here; the rest are on the work page.',
+    de: 'Echte Kunden mit echten, laufenden Systemen. Ein Projekt steht hier im Mittelpunkt; die übrigen finden sich auf der Projektseite.',
+  },
+  // --- the collaboration rail -------------------------------------------------
+  'collaborations.title': {
+    hu: 'Együttműködések',
+    en: 'Selected collaborations',
+    de: 'Ausgewählte Kooperationen',
+  },
+  'collaborations.note': {
+    hu: 'Nem mindegyikről van esettanulmány.',
+    en: 'Not every one of them has a case study.',
+    de: 'Nicht zu jeder davon gibt es eine Fallstudie.',
+  },
+  // --- the one featured case --------------------------------------------------
+  'featured.label': {
+    hu: 'Kiemelt eset',
+    en: 'Featured case',
+    de: 'Ausgewählter Fall',
+  },
+  'featured.cta.case': {
+    hu: 'A Rapidkert esettanulmány',
+    en: 'View the Rapidkert case study',
+    de: 'Die Rapidkert-Fallstudie',
+  },
+  'featured.cta.work': {
+    hu: 'Összes munkánk',
+    en: 'Explore all work',
+    de: 'Alle Projekte',
   },
   // The five terms of every case study's description list, in render order.
   'case.term.challenge': {

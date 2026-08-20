@@ -893,110 +893,150 @@
 }
 
 /* ============================================================== §07 — work ==
-   A project index. §16: no giant imagery, no horizontal gallery. Name, logo,
-   scope, then one small crop. */
+   Marks, then one case.
 
-.mv-work {
+   This section used to be a project index: three `.mv-case` blocks, each with a
+   name, a client mark, a three-term description list, a cropped figure, a
+   metric and a testimonial, stacked down a phone. `/work` carries the same
+   three projects, so the phone was scrolling the portfolio twice.
+
+   `.mv-case__metric` survives the rewrite and is used by the feature — it is
+   the metric's presentation, not the card's. */
+
+.mv-collab {
   display: grid;
-  gap: clamp(40px, 11vw, 56px);
+  gap: 0.45rem;
   margin-top: clamp(30px, 8vw, 40px);
 }
 
-.mv-case {
-  display: grid;
-  gap: 0.9rem;
-  /* A hairline, not a plate. The only thing separating one project from the
-     next, so the page background runs continuously behind all of them. */
-  padding-block-start: clamp(24px, 7vw, 32px);
-  border-block-start: 1px solid var(--hair);
-}
-
-.mv-case__head { display: grid; gap: 0.2rem; }
-
-.mv-case__at {
-  font: 500 0.66rem/1.4 var(--data);
-  letter-spacing: 0.12em;
-  color: var(--signal);
-}
-
-.mv-case__name {
+.mv-collab__title {
   margin: 0;
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: 1.4rem;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  color: var(--paper);
-}
-
-.mv-case__sector {
-  margin: 0;
-  font: 500 0.68rem/1.5 var(--data);
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--haze);
-}
-
-/*
-  THE CLIENT LOGOS ARE BLACK MARKS ON TRANSPARENCY.
-
-  Measured, not assumed: `client-rapidkert.png` is 95% transparent and 5% dark
-  pixels, `client-barbershop.png` 85% and 14%, and neither has a single light
-  pixel in it. They are artwork drawn for a white page, and dropped onto this
-  one unmodified they are a black mark on a near-black background — which is
-  what they were, invisible except as a faint smudge.
-
-  `brightness(0) invert(1)` flattens whatever colour the mark is to black and
-  then to white, leaving the alpha channel alone. It is the one filter that is
-  correct for every one of these files regardless of what colour it was drawn
-  in, and it stays correct when a fifth client is added.
-
-  Small, static, and on two elements — not a full-viewport filter. §17's ban is
-  on the expensive kind.
-*/
-.mv-case__logo {
-  width: auto;
-  max-width: 130px;
-  max-height: 34px;
-  object-fit: contain;
-  object-position: left center;
-  filter: brightness(0) invert(1);
-  opacity: 0.72;
-}
-
-.mv-case__figure {
-  margin: 0;
-  /* A crop, not a poster. A 5:4 window onto a portrait photograph is the
-     smallest presentation that still reads as the project rather than as
-     decoration. */
-  aspect-ratio: 5 / 4;
-  overflow: hidden;
-  border: 1px solid var(--hair);
-}
-
-.mv-case__figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 34%;
-  display: block;
-}
-
-.mv-case__body { margin: 0; max-width: var(--mv-measure); }
-
-.mv-case__body dt {
-  margin-top: 0.6rem;
   font: 500 0.62rem/1.4 var(--data);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--haze);
 }
 
-.mv-case__body dd {
-  margin: 0.1rem 0 0;
-  font-size: 0.92rem;
+.mv-collab__note {
+  margin: 0;
+  font-size: 0.86rem;
+  color: rgba(244, 244, 244, 0.66);
+  max-width: var(--mv-measure);
+}
+
+/* A wrapping rail, not a scroller. §16 rules out a horizontal gallery, and a
+   marks rail is the one thing on this page that genuinely has no order to
+   preserve — so it wraps. */
+.mv-collab__set {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* Identical plates, marks never touched — the desktop rule at phone size. See
+   the note in styles.css for why every mark is plated rather than only the
+   dark ones. */
+.mv-collab__item img {
+  display: block;
+  background: #dce4ea;
+  border-radius: 2px;
+  width: 96px;
+  height: 54px;
+  padding: 7px 9px;
+  object-fit: contain;
+}
+
+/* ---------------------------------------------------- the one featured case */
+
+.mv-feature {
+  display: grid;
+  gap: 0.85rem;
+  /* A hairline, not a plate — the same separation the project index used, so
+     the page background still runs continuously behind the section. */
+  margin-top: clamp(34px, 9vw, 48px);
+  padding-block-start: clamp(24px, 7vw, 32px);
+  border-block-start: 1px solid var(--hair);
+}
+
+.mv-feature,
+.mv-feature > * {
+  min-width: 0;
+}
+
+.mv-feature__label {
+  margin: 0;
+  font: 500 0.62rem/1.4 var(--data);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.mv-feature__name {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 7vw, 1.95rem);
+  line-height: 1.12;
+}
+
+.mv-feature__sector {
+  margin: 0;
+  font: 500 0.62rem/1.4 var(--data);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+/* The whole frame, at its own ratio.
+
+   The index cropped every figure into a 5:4 window with `object-fit: cover`,
+   which suited the portrait mockups it was built for. A landscape hero capture
+   put through that window loses its first words on every line. The ratio comes
+   inline from `content.ts`; nothing here knows a number. */
+.mv-feature__figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--hair);
+}
+
+.mv-feature__figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.mv-feature__result {
+  margin: 0;
+  font-size: 0.94rem;
   line-height: 1.58;
-  color: rgba(244, 244, 244, 0.78);
+  color: rgba(244, 244, 244, 0.86);
+  max-width: var(--mv-measure);
+}
+
+/* Two stacked links, each its own 44px target. Not buttons: the phone
+   composition uses text actions everywhere else and a pair of filled buttons
+   here would make this the loudest thing on the page. */
+.mv-feature__cta {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 0.3rem;
+}
+
+.mv-feature__cta a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font: 500 0.72rem/1.4 var(--data);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal);
+  text-decoration: none;
+  border-block-end: 1px solid var(--hair);
 }
 
 .mv-case__metric {
@@ -1010,29 +1050,17 @@
   font-weight: 400;
   font-size: 1.7rem;
   color: var(--signal);
+  /* A figure is one token, and a flex item shrinks below its content by
+     default. At 390px the label beside it squeezed `~15M Ft` onto two lines and
+     the unit was left stranded under the number — a split that reads as a
+     different, smaller figure. The label may wrap; the value may not. */
+  flex: none;
+  white-space: nowrap;
 }
 .mv-case__metric span {
   font: 500 0.66rem/1.4 var(--data);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--haze);
-}
-
-.mv-case__quote {
-  margin: 0;
-  padding-inline-start: 0.95rem;
-  border-inline-start: 1px solid rgba(255, 238, 37, 0.4);
-}
-.mv-case__quote p {
-  margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: var(--chrome);
-}
-.mv-case__quote footer {
-  margin-top: 0.4rem;
-  font: 500 0.64rem/1.4 var(--data);
-  letter-spacing: 0.1em;
   color: var(--haze);
 }
 

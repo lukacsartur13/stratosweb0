@@ -4,7 +4,7 @@ import { m, pageHref } from './i18n';
 import { JourneyFallback } from './components/JourneyFallback';
 import { SceneBoundary } from './components/SceneBoundary';
 import { detect, hasFinePointer, type Capability } from '@/lib/capabilities';
-import { CAPABILITIES, PROCESS, SYSTEM, WORK } from './content';
+import { CAPABILITIES, COLLABORATIONS, FEATURED_CASE_ID, PROCESS, SYSTEM, WORK } from './content';
 import { STAGES, formatAltitude, journey } from './journey';
 import {
   useDebugOverride,
@@ -405,7 +405,28 @@ function CloudBreakthrough() {
 }
 
 // --- 6 · 11 000–17 000 m -----------------------------------------------------
+//
+// Marks, then one case. Not a catalogue.
+//
+// This stage used to render every entry in `WORK` as a full card: photograph,
+// five-term description list, metric, testimonial and client mark, three times
+// over. That is `/work`, which carries the same three projects with the same
+// three photographs and links to each full case page — so the homepage was
+// printing the portfolio twice and asking the visitor to read it in the middle
+// of a brand narrative.
+//
+// What replaces it is the smallest structure that still proves the claim:
+//
+//   * six marks, plated identically, saying a collaboration happened;
+//   * ONE case with a sourced number, saying what came of one;
+//   * two ways out — the case itself, and the portfolio.
+//
+// The hierarchy is the point. A mark is not styled as a card, so nothing in the
+// rail looks like it opens a case study, and the one thing that does opens the
+// one that exists. See FEATURED_CASE_ID in content.ts for why it is Rapidkert.
 function SelectedWork() {
+  const featured = WORK.find((w) => w.id === FEATURED_CASE_ID);
+
   return (
     <Panel
       id="selected-work"
@@ -418,61 +439,89 @@ function SelectedWork() {
       </h2>
       <p className="panel__lead">{m('selectedWork.lead')}</p>
 
-      <div className="work">
-        {WORK.map((w) => (
-          <article className="case" key={w.id} data-testid={`case-${w.id}`}>
-            <header className="case__head">
-              <p className="case__at">{formatAltitude(w.altitude)} m</p>
-              <h3 className="case__name">{w.name}</h3>
-              <p className="case__sector">{w.sector}</p>
-            </header>
+      <section className="collab" data-testid="collaborations">
+        <h3 className="collab__title">{m('collaborations.title')}</h3>
+        <p className="collab__note">{m('collaborations.note')}</p>
+        {/* A list, because it is one — six marks of equal standing. Each mark
+            carries the organisation's name as its alt text: these are
+            informative, not decorative, and a rail of six empty alts would tell
+            a screen reader nothing about who the collaborations were with. */}
+        <ul className="collab__set">
+          {COLLABORATIONS.map((c) => (
+            <li className="collab__item" key={c.src}>
+              <img
+                src={c.src}
+                alt={c.name}
+                loading="lazy"
+                decoding="async"
+                width={c.width}
+                height={c.height}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
 
-            {w.image && (
-              <figure className="case__figure">
-                {/* Lazy and dimension-bearing: these are below the fold by
-                    definition, and an image that arrives without a reserved box
-                    reflows the track under ScrollTrigger's feet. */}
-                <img src={w.image.src} alt={w.image.alt} loading="lazy" decoding="async" width={1200} height={1500} />
-              </figure>
-            )}
+      {featured && (
+        <article className="feature" data-testid={`case-${featured.id}`} data-featured="true">
+          <p className="feature__label">{m('featured.label')}</p>
 
-            <dl className="case__body">
-              <dt>{m('case.term.challenge')}</dt>
-              <dd>{w.challenge}</dd>
-              <dt>{m('case.term.intervention')}</dt>
-              <dd>{w.intervention}</dd>
-              <dt>{m('case.term.implementation')}</dt>
-              <dd>{w.implementation}</dd>
-              <dt>{m('case.term.result')}</dt>
-              <dd>{w.result}</dd>
-              <dt>{m('case.term.ongoing')}</dt>
-              <dd>{w.ongoing}</dd>
-            </dl>
+          <div className="feature__head">
+            <h3 className="feature__name">{featured.name}</h3>
+            <p className="feature__sector">
+              {featured.sector} · {formatAltitude(featured.altitude)} m
+            </p>
+          </div>
 
-            {/* Rendered only when a verified figure exists. Rapidkert has one;
-                the other two do not, and the honest thing there is an absent
-                row rather than an invented number. */}
-            {w.metric && (
-              <p className="case__metric">
-                <strong>{w.metric.value}</strong> <span>{w.metric.label}</span>
-              </p>
-            )}
+          {featured.image && (
+            <figure className="feature__figure">
+              {/* Below the fold by definition, so lazy — and dimension-bearing,
+                  because an image that arrives without a reserved box reflows
+                  the track under ScrollTrigger's feet.
 
-            {w.quote && (
-              <blockquote className="case__quote">
-                <p>{w.quote.text}</p>
-                <footer>
-                  <b>{w.quote.by}</b> · {w.quote.role}
-                </footer>
-              </blockquote>
-            )}
+                  `frame` carries the real intrinsic size and the ratio the
+                  figure adopts. This one is a landscape hero capture: it gets a
+                  landscape frame rather than being forced through the portrait
+                  slot the old cards used, which cut the headline mid-word. */}
+              <img
+                src={featured.image.src}
+                alt={featured.image.alt}
+                loading="lazy"
+                decoding="async"
+                width={featured.image.frame?.width ?? 1200}
+                height={featured.image.frame?.height ?? 1500}
+                style={
+                  featured.image.frame
+                    ? { aspectRatio: `${featured.image.frame.width} / ${featured.image.frame.height}` }
+                    : undefined
+                }
+              />
+            </figure>
+          )}
 
-            {w.logo && (
-              <img className="case__logo" src={w.logo.src} alt={w.logo.alt} loading="lazy" decoding="async" />
-            )}
-          </article>
-        ))}
-      </div>
+          {/* One result statement and one line about the work. The remaining
+              three terms — situation, intervention, ongoing — are the case
+              page's job, and repeating them here is what made this a catalogue. */}
+          <p className="feature__result">{featured.result}</p>
+
+          {featured.metric && (
+            <p className="case__metric">
+              <strong>{featured.metric.value}</strong> <span>{featured.metric.label}</span>
+            </p>
+          )}
+
+          <p className="feature__work">{featured.implementation}</p>
+
+          <div className="feature__cta">
+            <a className="btn" href={pageHref('caseRapidkert')} data-testid="cta-featured-case">
+              {m('featured.cta.case')}
+            </a>
+            <a className="btn btn--ghost" href={pageHref('work')} data-testid="cta-work">
+              {m('featured.cta.work')}
+            </a>
+          </div>
+        </article>
+      )}
     </Panel>
   );
 }

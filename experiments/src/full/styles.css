@@ -1400,12 +1400,12 @@ img { max-width: 100%; height: auto; }
   /* The nested cards.
      -----------------
      Removing the panel's own rectangle and leaving three more inside it is half
-     a job: with the plate gone, `.case`, `.system__ring` and `.check` become
-     the visible card treatment, and the case grid repeats four times in a row.
+     a job: with the plate gone, `.feature`, `.system__ring` and `.check` become
+     the visible card treatment.
 
      They are grouping, not surfaces, so they group the way the rest of this
      composition does — one fine rule above the block and the sky behind it. */
-  :root .case,
+  :root .feature,
   :root .system__ring,
   :root .check {
     background: none;
@@ -1621,7 +1621,7 @@ img { max-width: 100%; height: auto; }
 
 /* The fourth grid that was keyed to the viewport rather than to the plate.
 
-   `.case`, `.system` and `.check__grid` were converted to container queries
+   The case grid, `.system` and `.check__grid` were converted to container queries
    when the instrument was centred; the ladder was missed because it never
    *looked* dense — two columns, one of them a fixed 6.5rem. That fixed column
    is the problem. On a 1024×768 the copy budget gives the plate a 177px content
@@ -1677,14 +1677,84 @@ img { max-width: 100%; height: auto; }
   overflow-wrap: break-word;
 }
 
-/* ------------------------------------------------- stage 6 — the case studies */
-.work {
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
+/* --------------------------------- stage 6 — collaborations + one featured case
+
+   This block used to style a three-card gallery: `.work`, `.case`, and eleven
+   `.case__*` rules for a head, a portrait figure, a five-term description list,
+   a quotation and a client mark, rendered three times. `/work` carries the same
+   three projects, so the homepage was styling the portfolio twice.
+
+   What is left is two things. A rail of plated marks, which is credibility and
+   is deliberately subordinate to the brand narrative around it; and one
+   feature, which is the only thing in this stage that looks like a case study
+   because it is the only one that is one.
+
+   `.case__metric` survives the rewrite unchanged and is used by the feature —
+   it is the metric's own presentation, not the card's. */
+
+.collab {
   margin-top: 2rem;
+  display: grid;
+  gap: 0.6rem;
 }
 
-.case {
+.collab__title {
+  margin: 0;
+  font: 500 0.72rem/1.6 var(--data);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+
+.collab__note {
+  margin: 0;
+  color: var(--chrome);
+  font-size: 0.92rem;
+}
+
+.collab__set {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(0.7rem, 1.6vw, 1.4rem);
+}
+
+/* Every mark on an identical plate, and the mark itself never touched.
+
+   The rule is `assets/css/motion.css`'s, restated here because the homepage
+   does not load that stylesheet — it links only type.css and transitions.css.
+   Three of these marks are dark artwork on a near-black page and would vanish
+   without something to sit on, and plating only those three reads as three
+   broken assets in bandages rather than as an index of reference plates.
+
+   The box is the constant; `object-fit: contain` lets each mark find its own
+   size inside it. Nothing is stretched, cropped, recoloured or greyscaled —
+   these are other people's identities, shown in their own colours or not at
+   all. Sized a step smaller than the site's own rail: here the marks are
+   support for the brand narrative, not the subject of the stage. */
+.collab__item img {
+  display: block;
+  background: #dce4ea;
+  border-radius: 2px;
+  /* Sized to put three marks on a row inside the panel's copy measure, which
+     is 472px at 1440 — not to the viewport, which is three times that. At the
+     site rail's 142px they fell to two per row and six marks became a
+     three-row block: a logo wall, which is the one thing this rail must not
+     be. Three-up over two rows keeps it a rail, and a smaller plate keeps it
+     support rather than subject. */
+  width: clamp(96px, 9vw, 132px);
+  height: clamp(54px, 5vw, 72px);
+  padding: clamp(7px, 0.8vw, 11px) clamp(9px, 1vw, 14px);
+  object-fit: contain;
+}
+
+/* ---------------------------------------------------- the one featured case */
+
+.feature {
+  margin-top: clamp(2rem, 4vw, 3.2rem);
   display: grid;
   gap: 1.1rem;
   padding: clamp(1.2rem, 2.4vw, 2rem);
@@ -1696,21 +1766,19 @@ img { max-width: 100%; height: auto; }
 
    A grid or flex child's default `min-width: auto` refuses to go below its
    min-content width, and min-content for a paragraph is its longest *word*.
-   Hungarian and German supply plenty that are 20+ characters, so a case study
-   inside a 189px plate on an 844×390 sat at its 244px floor and pushed the
-   document 36px sideways at every altitude — the whole viewport failed on
+   Hungarian and German supply plenty that are 20+ characters, so a panel of
+   prose inside a 189px plate on an 844x390 sat at its 244px floor and pushed
+   the document 36px sideways at every altitude — the whole viewport failed on
    h-overflow, not on collision.
 
-   This is correction 1, better line breaking, and it is the right one here:
-   the alternative readings all cost content. `min-width: 0` lets the track
-   shrink; `overflow-wrap: break-word` lets the one over-long word break rather
-   than setting the floor for the entire column. Ordinary words are untouched —
-   `break-word` only acts when a word cannot fit on a line of its own — so this
-   changes no line that was already able to break normally. */
-.case,
-.case > *,
-.case__head > *,
-.case__body > *,
+   `min-width: 0` lets the track shrink; `overflow-wrap: break-word` lets the
+   one over-long word break rather than setting the floor for the entire
+   column. Ordinary words are untouched — `break-word` only acts when a word
+   cannot fit on a line of its own. */
+.feature,
+.feature > *,
+.feature__head > *,
+.feature__cols > *,
 .system__ring,
 .system__ring > *,
 .check,
@@ -1719,85 +1787,111 @@ img { max-width: 100%; height: auto; }
   min-width: 0;
 }
 
-.case,
+.feature,
 .system__ring,
 .check,
 .ladder__step {
   overflow-wrap: break-word;
 }
 
-/* Two columns from tablet up, image beside the prose. Deliberately not a
-   horizontal carousel: a carousel hides most of the work behind an interaction
-   nobody performs, and it makes the case studies feel interchangeable — which
-   is the opposite of "passing meaningful altitude milestones". */
-@container panel (min-width: 46rem) {
-  .case {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    grid-template-areas:
-      'head  figure'
-      'body  figure'
-      'quote figure'
-      'logo  figure';
-    align-items: start;
-    column-gap: 2.2rem;
-  }
-  .case__head { grid-area: head; }
-  .case__figure { grid-area: figure; align-self: stretch; }
-  .case__body { grid-area: body; }
-  .case__quote { grid-area: quote; }
-  .case__logo { grid-area: logo; }
-  .case:nth-child(even) {
-    grid-template-areas:
-      'figure head'
-      'figure body'
-      'figure quote'
-      'figure logo';
-  }
-}
-
-.case__head { display: grid; gap: 0.25rem; }
-
-.case__at {
-  margin: 0 !important;
-  font: 500 0.78rem/1.4 var(--data);
-  letter-spacing: 0.14em;
-  color: var(--signal);
-}
-
-.case__name {
+.feature__label {
   margin: 0;
-  font-size: clamp(1.3rem, 1rem + 1.1vw, 1.9rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-
-.case__sector {
-  margin: 0 !important;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--haze);
-}
-
-.case__figure { margin: 0; }
-.case__figure img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border: 1px solid var(--hair);
-}
-
-.case__body { margin: 0; display: grid; gap: 0.15rem; }
-.case__body dt {
-  margin-top: 0.75rem;
   font: 500 0.72rem/1.6 var(--data);
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  color: var(--signal);
+}
+
+.feature__head { display: grid; gap: 0.25rem; }
+
+.feature__name {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.1;
+}
+
+.feature__sector {
+  margin: 0;
+  font: 500 0.72rem/1.6 var(--data);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--haze);
 }
-.case__body dt:first-child { margin-top: 0; }
-.case__body dd { margin: 0; color: var(--chrome); font-size: 0.95rem; }
+
+/* Full width, and at its own ratio.
+
+   The old cards cut every figure to 4:5 and filled it with `object-fit: cover`,
+   which suited the portrait mockups they were made for. This frame is a
+   landscape hero capture and the 4:5 window kept 48% of its width: every
+   horizontal position cut the headline mid-word and took either the left column
+   or the side of the 3D cross-section with it. A wide panel has room for the
+   whole frame, so it gets the whole frame. The ratio itself is set inline from
+   `content.ts`, so this rule never has to know a number. */
+.feature__figure { margin: 0; }
+.feature__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--hair);
+}
+
+.feature__result {
+  margin: 0;
+  color: var(--chrome);
+  font-size: 1.02rem;
+  max-width: 62ch;
+}
+
+.feature__work {
+  margin: 0;
+  color: var(--haze);
+  font-size: 0.94rem;
+  max-width: 62ch;
+}
+
+.feature__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+/* Two columns when the PANEL is wide enough, not when the viewport is.
+
+   `container: panel / inline-size` is declared on `.panel__inner`, and the
+   panel is far narrower than the window on purpose: the copy budget keeps it
+   clear of the centred dial, so `.panel--wide` measures 547px inside a 1440px
+   viewport and 730px inside a 1920px one. A `@media (min-width: 760px)` here
+   split 547px into two 215px columns and put the metric and both actions into
+   tracks narrower than the sentence above them — the same viewport-keyed
+   mistake this file already records against `.system` and `.check__grid`, both
+   of which were converted to container queries for exactly this reason.
+
+   40rem of panel is the point where two columns are each wider than the
+   metric's own line, so the split earns itself. Below it they stack in source
+   order, which is already the reading order. */
+@container panel (min-width: 40rem) {
+  .feature {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'label   label'
+      'head    head'
+      'figure  figure'
+      'result  work'
+      'metric  cta';
+    column-gap: clamp(1.4rem, 3vw, 2.6rem);
+    align-items: start;
+  }
+  .feature__label { grid-area: label; }
+  .feature__head { grid-area: head; }
+  .feature__figure { grid-area: figure; }
+  .feature__result { grid-area: result; }
+  .feature__work { grid-area: work; }
+  .feature .case__metric { grid-area: metric; }
+  .feature__cta { grid-area: cta; justify-self: start; }
+}
 
 .case__metric {
   margin: 0 !important;
@@ -1808,21 +1902,6 @@ img { max-width: 100%; height: auto; }
   font-size: 1.6rem;
   font-weight: 300;
   color: var(--signal);
-}
-
-.case__quote {
-  margin: 0;
-  padding-left: 1.1rem;
-  border-left: 2px solid var(--signal);
-}
-.case__quote p { margin: 0 0 0.5rem; font-size: 1rem; }
-.case__quote footer { font-size: 0.85rem; color: var(--haze); }
-
-.case__logo {
-  width: auto;
-  max-height: 34px;
-  opacity: 0.75;
-  justify-self: start;
 }
 
 /* --------------------------------------------------- stage 7 — the system --- */
@@ -2296,7 +2375,7 @@ img { max-width: 100%; height: auto; }
   .ladder__name { font-size: 0.98rem; }
   .ladder__line { font-size: 0.88rem; }
 
-  .case { padding: 1.1rem; }
+  .feature { padding: 1.1rem; }
   .panel__stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 

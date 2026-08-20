@@ -66,7 +66,25 @@ export type CaseStudy = {
   ongoing: string;
   /** Attributed quotation, where one has actually been given. */
   quote?: { text: string; by: string; role: string };
-  image?: { src: string; alt: string };
+  image?: {
+    src: string;
+    alt: string;
+    /**
+     * Intrinsic pixel size, and the opt-out from the 4:5 slot.
+     *
+     * `styles.css` cuts the case figure at 4:5 and fills it with
+     * `object-fit: cover`, which is right for the portrait mockups the slot was
+     * made for: they are 0.75-0.83 already, so the crop takes a few pixels off
+     * an edge and nothing is lost. Where this is set, the figure adopts the
+     * frame's own ratio instead and the crop does not happen.
+     *
+     * It is set only where the crop would take something the picture is FOR —
+     * see Rapidkert, whose frame is a landscape hero the 4:5 window cuts
+     * through mid-word. Setting it because a photograph would look nicer wide
+     * is how three case studies stop sharing a rhythm.
+     */
+    frame?: { width: number; height: number };
+  };
   logo?: { src: string; alt: string };
 };
 
@@ -98,6 +116,13 @@ const WORK_HU: CaseStudy[] = [
     image: {
       src: '/assets/img/work-rapidkert.jpg',
       alt: 'A Rapidkert interaktív 3D kertépítő weboldala a Stratos Mediától',
+      // The one frame in this table that cannot be cropped to 4:5. It is a
+      // full-width hero capture, and the 4:5 window keeps 48% of its width:
+      // every horizontal position cuts the headline mid-word and takes either
+      // the left column or the side of the 3D cross-section with it. The
+      // cross-section is the project. Shown whole, at its own ratio, which is
+      // also how the case-study route publishes it.
+      frame: { width: 1454, height: 869 },
     },
     logo: { src: '/assets/img/client-rapidkert.png', alt: 'Rapidkert Kft.' },
   },
@@ -133,6 +158,66 @@ const WORK_HU: CaseStudy[] = [
     ongoing: 'Folyamatos tartalmi gondozás és technikai karbantartás.',
     image: { src: '/assets/img/work-2.jpg', alt: 'A mentaltrening.com weboldala' },
   },
+];
+
+/**
+ * The one case study the homepage features, by id.
+ *
+ * WHY ONE, WHEN THE TABLE HOLDS THREE
+ * -----------------------------------
+ * The homepage stopped being a portfolio catalogue. It sells the brand, the
+ * capability and the journey; the portfolio lives on `/work`, which carries all
+ * three projects with their own images and links to each full case page. A
+ * homepage that reproduced the same three cards, the same three photographs and
+ * the same metrics was printing `/work` twice and reading as a database.
+ *
+ * Rapidkert is the exception because it is the only project that can carry a
+ * feature: `_build/build.py`'s CASE_STATUS marks it `full` and the other two
+ * `summary`, and it is the only entry in this table with a sourced metric. A
+ * featured case whose proof point is "we also did this one" is not a feature.
+ *
+ * The other two entries stay in `WORK` rather than being deleted. They are real
+ * sourced content, `/work` renders the same projects, and the asset contract in
+ * full-ascent.spec.ts checks every image this table names — so the table is the
+ * inventory even where the homepage is no longer the surface.
+ */
+export const FEATURED_CASE_ID = 'rapidkert';
+
+/**
+ * Marks shown in the homepage's collaboration rail.
+ *
+ * The same six the site already shows, and no more. Five come from `/work`'s
+ * "Akikkel dolgoztunk, de nincs róluk esettanulmány" group; Barbershop joins
+ * them from the case table. Nothing here is new, and nothing here is a claim:
+ * a mark says a collaboration existed, not that a case study exists for it, and
+ * that is exactly why the rail is marks and not cards.
+ *
+ * DELIBERATELY ABSENT, and not an oversight in either case:
+ *
+ *   * `logo-fice.png` — the Impact Program build, which impact-program.html
+ *     describes in its own words as "nem is együttműködés": the site says it is
+ *     not a collaboration, so it cannot be in a collaboration rail.
+ *   * `logo-haio.png` — a sponsorship, where hirdeteskezeles.html says "itt
+ *     csak nem ügyfél a másik oldal".
+ *   * `client-rapidkert.png` — Rapidkert has the featured case immediately
+ *     below. Its mark in the rail as well would say the same name twice in one
+ *     stage, at two different weights.
+ *   * mentaltrening — there is no mark for it in `assets/img/`, and one is not
+ *     invented here. It is reached through `/work` like everything else.
+ *
+ * `width`/`height` are the files' real intrinsic sizes. The rail plates every
+ * mark into an identical box with `object-fit: contain`, so these reserve the
+ * right space without any mark being stretched, cropped or recoloured.
+ */
+export type Mark = { name: string; src: string; width: number; height: number };
+
+const COLLABORATIONS_HU: Mark[] = [
+  { name: 'Kontyos.hu',                  src: '/assets/img/logo-kontyos.webp',       width: 436, height: 107 },
+  { name: 'Grantool Kft.',               src: '/assets/img/logo-grantool.png',       width: 600, height: 401 },
+  { name: 'Synergy Digital Hungary Kft.', src: '/assets/img/logo-synergy.png',       width: 382, height: 600 },
+  { name: 'Duna Hajók',                  src: '/assets/img/logo-duna-hajok.png',     width: 600, height: 195 },
+  { name: 'Duna Enterior',               src: '/assets/img/logo-duna-enterior.png',  width: 600, height: 196 },
+  { name: 'Barbershop Győr',             src: '/assets/img/client-barbershop.png',   width: 1800, height: 1800 },
 ];
 
 // -----------------------------------------------------------------------------
@@ -249,9 +334,18 @@ const CAPABILITIES_HU = [
 // -----------------------------------------------------------------------------
 
 export const WORK: CaseStudy[] = localise(WORK_HU);
+/**
+ * Localised like every other table, even though five of the six names are
+ * proper nouns that come back identical. `name` is alt text — a screen reader
+ * reads it aloud — so it goes through the same walk the rest of the copy does,
+ * and the identity entries in `locales/{en,de}.ts` record that a person looked
+ * at each one and decided it stays as it is. That is the rule `NON_COPY_KEYS`
+ * already states for `name`, `alt`, `by` and `role`.
+ */
+export const COLLABORATIONS: Mark[] = localise(COLLABORATIONS_HU);
 export const SYSTEM: SystemNode[] = localise(SYSTEM_HU);
 export const PROCESS: Checkpoint[] = localise(PROCESS_HU);
 export const CAPABILITIES = localise(CAPABILITIES_HU);
 
 /** The untranslated source, for the i18n worklist generator and its test. */
-export const SOURCE_TABLES = { WORK_HU, SYSTEM_HU, PROCESS_HU, CAPABILITIES_HU };
+export const SOURCE_TABLES = { WORK_HU, SYSTEM_HU, PROCESS_HU, CAPABILITIES_HU, COLLABORATIONS_HU };

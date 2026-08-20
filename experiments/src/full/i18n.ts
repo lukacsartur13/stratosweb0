@@ -103,23 +103,26 @@ export const INTL_TAG: Record<Locale, string> = {
  * rename shows up as a broken link in the link check rather than silently.
  */
 type PageId = 'sme' | 'enterprise' | 'branding' | 'ads' | 'quote' | 'contact' | 'about'
-  | 'imprint' | 'privacy';
+  | 'imprint' | 'privacy' | 'work' | 'caseRapidkert';
 
 const PAGES: Record<Locale, Record<PageId, string>> = {
   hu: {
     sme: 'kkv.html', enterprise: 'nagyvallalat.html', branding: 'branding.html',
     ads: 'hirdeteskezeles.html', quote: 'arajanlat.html', contact: 'ugyfelszolgalat.html',
     about: 'rolunk.html', imprint: 'impresszum.html', privacy: 'adatkezelesi-tajekoztato.html',
+    work: 'munkaink.html', caseRapidkert: 'munka-rapidkert.html',
   },
   en: {
     sme: 'web-design-sme.html', enterprise: 'web-design-enterprise.html', branding: 'branding.html',
     ads: 'ads-management.html', quote: 'quote.html', contact: 'contact.html',
     about: 'about.html', imprint: 'imprint.html', privacy: 'privacy-policy.html',
+    work: 'work.html', caseRapidkert: 'work-rapidkert.html',
   },
   de: {
     sme: 'webdesign-kmu.html', enterprise: 'webdesign-grossunternehmen.html', branding: 'branding.html',
     ads: 'werbeanzeigen.html', quote: 'angebot.html', contact: 'kontakt.html',
     about: 'ueber-uns.html', imprint: 'impressum.html', privacy: 'datenschutz.html',
+    work: 'projekte.html', caseRapidkert: 'projekt-rapidkert.html',
   },
 };
 
