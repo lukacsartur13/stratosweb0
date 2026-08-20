@@ -1,0 +1,26 @@
+### STAGE B (parallel 3) ###
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] stage B · model fresh-context · route /nagyvallalat.html · 1500 attempts across 3 workers
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] subject 8cac14bc6f6c dist=28af7fe4 test=332bd2f7
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] server owned on http://127.0.0.1:4344
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 50/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 100/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 150/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 200/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 250/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 300/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 350/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 400/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 450/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 500/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 550/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 600/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 650/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 700/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 750/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 800/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 850/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 900/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 950/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 1000/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 1050/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820105835] 1100/1500 attempts · 0 stalls

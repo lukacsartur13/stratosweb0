@@ -1,0 +1,65 @@
+==================================================================
+== final-closure-01 : preflight (quiet host required before the run may START)
+==================================================================
+manifest cf68faefabc9  product=088c0284(304) test=5203f7ba(76) config=94c5bf52(14) dist=2538acb4(186)
+
+preflight final-closure-01-preflight-1: PASS
+  load1 2.96 (max 3.05, cap 6)  load5 12.69  load15 34.04
+  free mem 58%  swap 3387.62 MB  iCloud 0%
+  ports 4322:free 4327:free
+  subject cf68faefabc9 product=088c0284 dist=2538acb4(186)
+  -> /Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/final-closure/preflight/final-closure-01-preflight-1.json
+
+PREFLIGHT PASS on attempt 1 -> starting final-closure-01
+==================================================================
+== final-closure-01 : authoritative run STARTED 2026-08-20T11:19:20Z — it now counts
+==   dist   2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3
+==   test   5203f7ba5e865c3b4977331c73fec70bc6bab1dc10589132fa35f4db536180f2
+==   config 94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b
+==================================================================
+[2026-08-20T11:19:20.576Z] gate run final-closure-01 — root /Users/arturlukacs/stratos-hermetic/subject
+[2026-08-20T11:19:20.605Z] phase 1: build skipped (--skip-build)
+[2026-08-20T11:19:20.605Z] phase 2: freeze — capturing BEFORE manifest
+[2026-08-20T11:19:20.669Z] canaries armed on 6 tree(s)
+[2026-08-20T11:19:20.669Z] phase 3: starting owned servers
+[2026-08-20T11:19:20.923Z] server main (node) pid=50639 :4322 ready
+[2026-08-20T11:19:21.164Z] server full (node) pid=50656 :4327 ready
+[2026-08-20T11:19:21.164Z] phase 4: running 9 gate(s)
+[2026-08-20T11:19:21.164Z]   gate typecheck
+[2026-08-20T11:19:24.613Z]   gate fingerprint-check
+[2026-08-20T11:19:24.724Z]   gate draco-check
+[2026-08-20T11:19:24.825Z]   gate secret-scan
+[2026-08-20T11:19:25.266Z]   gate seo-audit
+[2026-08-20T11:19:25.380Z]   gate conversion-audit
+[2026-08-20T11:19:25.512Z]   gate route-audit
+[2026-08-20T11:23:46.631Z]   gate playwright-main
+[2026-08-20T11:33:54.300Z]   gate playwright-full
+[2026-08-20T11:49:22.941Z] phase 5: stopping owned servers
+[2026-08-20T11:49:22.943Z] phase 6: capturing AFTER manifest
+[2026-08-20T11:49:23.116Z] phase 7: verifying cleanup
+
+======================================================================
+RUN final-closure-01   VALID   NOT GREEN
+commit  b9a87da4287b87de37558d9cf144c0a1c109be2f
+subject cf68faefabc95a3e -> cf68faefabc95a3e  IDENTICAL
+dist    2538acb4918470f2
+canary  0 write event(s) during the run
+load    mean 26.99 peak 112
+elapsed 1802.6s
+  PASS  typecheck
+  PASS  fingerprint-check
+  PASS  draco-check
+  PASS  secret-scan
+  PASS  seo-audit
+  PASS  conversion-audit
+  PASS  route-audit
+  FAIL  playwright-main  1161/1285 passed, 3 failed, 121 skipped
+  FAIL  playwright-full  130/165 passed, 1 failed, 34 skipped
+    ! [desktop-1920] homepage-chrome.spec.ts:482 the readout names the stage the journey reports
+    ! [mobile-390] mobile-homepage-simple.spec.ts:591 the altitude advances with the document and settles at the ceiling
+    ! [mobile-390] mobile-homepage-simple.spec.ts:638 the menu opens, locks only while it is open, and leaves the ascent where it was
+    ! [desktop] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction
+written: /Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/final-closure-01/gate.json
+======================================================================
+== final-closure-01 : gate-run exit 1
+FINAL CLOSURE GATE: VALID + RED — investigate only this run's failing contract (§51)

@@ -1,0 +1,109 @@
+
+### --stage B --model fresh-context --attempts 1500 --parallel 5 --neighbours --id-offset 1000 --keep-success 0 ###
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] stage B · model fresh-context · route /nagyvallalat.html · 1500 attempts across 5 workers
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] subject 12a477a97cf3 dist=28af7fe4 test=ef4238e6
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] server owned on http://127.0.0.1:4344
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 50/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 100/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 150/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 200/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 250/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 300/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 350/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 400/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 450/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 500/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 550/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 600/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 650/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 700/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 750/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 800/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 850/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 900/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 950/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1000/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1050/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1100/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1150/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1200/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1250/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1300/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1350/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1400/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1450/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] 1500/1500 attempts · 0 stalls
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] VALID=false executed=1500 stalls=0 p50=284ms p99=1375ms max=1994ms elapsed=638s
+[nav-dispatch B-fresh-context-nagyvallalathtml-20260820102809] INVALID: SUBJECT_CHANGED_DURING_RUN
+
+### --stage L-A --model reused-page --attempts 300 --parallel 5 --neighbours --id-offset 10000 --keep-success 0 ###
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] stage L-A · model reused-page · route /nagyvallalat.html · 300 attempts across 5 workers
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] subject b1c7a348bbcc dist=28af7fe4 test=99b886cb
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] server owned on http://127.0.0.1:4344
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] 50/300 attempts · 0 stalls
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] 100/300 attempts · 0 stalls
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] 150/300 attempts · 0 stalls
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] 200/300 attempts · 0 stalls
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] 250/300 attempts · 0 stalls
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] 300/300 attempts · 0 stalls
+[nav-dispatch L-A-reused-page-nagyvallalathtml-20260820103847] VALID=true executed=300 stalls=0 p50=303ms p99=635ms max=705ms elapsed=127s
+
+### --stage L-B --model fresh-page --attempts 300 --parallel 5 --neighbours --id-offset 11000 --keep-success 0 ###
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] stage L-B · model fresh-page · route /nagyvallalat.html · 300 attempts across 5 workers
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] subject b1c7a348bbcc dist=28af7fe4 test=99b886cb
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] server owned on http://127.0.0.1:4344
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] 50/300 attempts · 0 stalls
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] 100/300 attempts · 0 stalls
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] 150/300 attempts · 0 stalls
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] 200/300 attempts · 0 stalls
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] 250/300 attempts · 0 stalls
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] 300/300 attempts · 0 stalls
+[nav-dispatch L-B-fresh-page-nagyvallalathtml-20260820104055] VALID=true executed=300 stalls=0 p50=326ms p99=564ms max=622ms elapsed=132s
+
+### --stage L-D --model fresh-browser --attempts 300 --parallel 5 --neighbours --id-offset 13000 --keep-success 0 ###
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] stage L-D · model fresh-browser · route /nagyvallalat.html · 300 attempts across 5 workers
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] subject b1c7a348bbcc dist=28af7fe4 test=99b886cb
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] server owned on http://127.0.0.1:4344
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] 50/300 attempts · 0 stalls
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] 100/300 attempts · 0 stalls
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] 150/300 attempts · 0 stalls
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] 200/300 attempts · 0 stalls
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] 250/300 attempts · 0 stalls
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] 300/300 attempts · 0 stalls
+[nav-dispatch L-D-fresh-browser-nagyvallalathtml-20260820104307] VALID=true executed=300 stalls=0 p50=320ms p99=556ms max=578ms elapsed=202s
+
+### --stage R-kkv --model fresh-context --route /kkv.html --attempts 300 --parallel 5 --neighbours --id-offset 20000 --keep-success 0 ###
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] stage R-kkv · model fresh-context · route /kkv.html · 300 attempts across 5 workers
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] subject b1c7a348bbcc dist=28af7fe4 test=99b886cb
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] server owned on http://127.0.0.1:4344
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] 50/300 attempts · 0 stalls
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] 100/300 attempts · 0 stalls
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] 150/300 attempts · 0 stalls
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] 200/300 attempts · 0 stalls
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] 250/300 attempts · 0 stalls
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] 300/300 attempts · 0 stalls
+[nav-dispatch R-kkv-fresh-context-kkvhtml-20260820104630] VALID=true executed=300 stalls=0 p50=298ms p99=727ms max=1017ms elapsed=126s
+
+### --stage R-light --model fresh-context --route /impresszum.html --attempts 300 --parallel 5 --neighbours --id-offset 21000 --keep-success 0 ###
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] stage R-light · model fresh-context · route /impresszum.html · 300 attempts across 5 workers
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] subject b1c7a348bbcc dist=28af7fe4 test=99b886cb
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] server owned on http://127.0.0.1:4344
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] 50/300 attempts · 0 stalls
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] 100/300 attempts · 0 stalls
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] 150/300 attempts · 0 stalls
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] 200/300 attempts · 0 stalls
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] 250/300 attempts · 0 stalls
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] 300/300 attempts · 0 stalls
+[nav-dispatch R-light-fresh-context-impresszumhtml-20260820104837] VALID=true executed=300 stalls=0 p50=231ms p99=1545ms max=1713ms elapsed=160s
+
+### --stage W-warm --model fresh-context --attempts 300 --parallel 5 --neighbours --warmup --id-offset 30000 --keep-success 0 ###
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] stage W-warm · model fresh-context · route /nagyvallalat.html · 300 attempts across 5 workers
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] subject b1c7a348bbcc dist=28af7fe4 test=99b886cb
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] server owned on http://127.0.0.1:4344
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] 50/300 attempts · 0 stalls
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] 100/300 attempts · 0 stalls
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] 150/300 attempts · 0 stalls
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] 200/300 attempts · 0 stalls
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] 250/300 attempts · 0 stalls
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] 300/300 attempts · 0 stalls
+[nav-dispatch W-warm-fresh-context-nagyvallalathtml-20260820105118] VALID=true executed=300 stalls=0 p50=436ms p99=1661ms max=1712ms elapsed=218s

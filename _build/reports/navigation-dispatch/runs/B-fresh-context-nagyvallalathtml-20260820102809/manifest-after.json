@@ -1,0 +1,2956 @@
+{
+  "label": "after",
+  "root": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb",
+  "commit": "51bfe08c4151feb8aaa8bd643e8150fd0d7bd224",
+  "timestamp": "2026-08-20T10:38:47.437Z",
+  "combinedHash": "b1c7a348bbccc0f78f6c4fc47bc299f90bf1839a658a94ad992c846a543c24fb",
+  "groups": {
+    "product": {
+      "hash": "337c281cd6f0c11b331d8184814d60586fbeb8d12bf1249aa3f898c47da8f07b",
+      "fileCount": 346,
+      "bytes": 15507953,
+      "absentRoots": [
+        "portal/public",
+        "_build/partials"
+      ],
+      "evictedPlaceholders": [],
+      "files": {
+        "_build/build.py": {
+          "sha": "18219232adf6876997fca6bca9cbae84659c94caee8334a9d8f3409b552694c7",
+          "bytes": 104329
+        },
+        "_build/i18n/_common.json": {
+          "sha": "1ae38611f21696b6f915ec54d6c1447a48272acecb9eed730128750b02d651d0",
+          "bytes": 8193
+        },
+        "_build/i18n/adatkezelesi-tajekoztato.json": {
+          "sha": "4f4925405004f4ef1cb7e13ad4e84abde36c368f6cdf715b3be87326c7749709",
+          "bytes": 42943
+        },
+        "_build/i18n/arajanlat.json": {
+          "sha": "afa23aeb1fcc6787437da5f9015c545f908da3fe3b4e81ad31a53900ff1f582c",
+          "bytes": 25479
+        },
+        "_build/i18n/blog-cikkek-1.json": {
+          "sha": "332c9f89884f971363f5b7474ce0c1ed2539f1b5c981a6b69b647e21e0d74020",
+          "bytes": 38304
+        },
+        "_build/i18n/blog-cikkek-2.json": {
+          "sha": "23442a9644476b836566ff299bfcd6e3a13d7030b100c10894f81412a32f0613",
+          "bytes": 32219
+        },
+        "_build/i18n/blog-kapcsolat.json": {
+          "sha": "958c47af3ee9971bf53583c4974e4aa9647afe1199670cbf0fc23f46a68d784e",
+          "bytes": 17193
+        },
+        "_build/i18n/branding.json": {
+          "sha": "2537f94c9b4c55557ef0b176fb11b3fb019b140d9c7905efe29c4ead99ee3b71",
+          "bytes": 19155
+        },
+        "_build/i18n/esettanulmanyok.json": {
+          "sha": "27f583808c1a3d534514c71c8f58c7f84507608df437831cb478a85f3d39f57a",
+          "bytes": 24279
+        },
+        "_build/i18n/hirdeteskezeles.json": {
+          "sha": "cbc838cf8f2c718ed89a23f52bc55f288000ac326dc5da4f9e062671d8e8248c",
+          "bytes": 28210
+        },
+        "_build/i18n/impact-program.json": {
+          "sha": "c337838ce30d398ca42458a847a317d85df4fce2a10bd3bc1a02e10905a8e49d",
+          "bytes": 20413
+        },
+        "_build/i18n/kapcsolodas.json": {
+          "sha": "abe5e0a489112ce5768e782059b9928ffa76f5369b81e372a444e8f20a366e76",
+          "bytes": 9874
+        },
+        "_build/i18n/kkv.json": {
+          "sha": "c46ed5863a119d0d6f1a18c787da44d86fc493b8c0cd7deff751cf092e461027",
+          "bytes": 19248
+        },
+        "_build/i18n/munkaink.json": {
+          "sha": "84d37d4d4bf0450420cdc46b5082a52f7158300678a689c2218df245e1934440",
+          "bytes": 12310
+        },
+        "_build/i18n/nagyvallalat.json": {
+          "sha": "84c6523e5dde3d389b6e7a0e4abc71bd8a58e301a06ebb678fa90002cfba383b",
+          "bytes": 21351
+        },
+        "_build/i18n/rapidkert.json": {
+          "sha": "041c33985d7d915d0c31cb0c2a08440f79b922e01543c50f9d4b847bc4fd3c03",
+          "bytes": 29181
+        },
+        "_build/i18n/rolunk.json": {
+          "sha": "2d0b7a44b857d5ab9dd857e5e5a0291184e0fb58321d44d145c76dc4cc5325f0",
+          "bytes": 17657
+        },
+        "_build/i18n/szolgaltatasok.json": {
+          "sha": "b75765c2911cd3ecffd263959a01903e94a1eee1139ecdb12aae6a340c14284a",
+          "bytes": 23881
+        },
+        "_build/i18n/ugyfelszolgalat.json": {
+          "sha": "20059c1fe6ca7b67f9523abe4107331a0ce7b5d98922e437ac66f258d8b778d0",
+          "bytes": 15983
+        },
+        "_build/pages/adatkezelesi-tajekoztato.html": {
+          "sha": "52c0143c522c44b1a74d4edd1b355e758a79eb492f2c411e8f637de236e4a1cb",
+          "bytes": 16601
+        },
+        "_build/pages/arajanlat.html": {
+          "sha": "f70d6bc989a93c6a46cf1085e590a041c9428268b4dc49a079cfbd411bdbbcd4",
+          "bytes": 27658
+        },
+        "_build/pages/blog-elavult-weboldal.html": {
+          "sha": "61290db6e26ddbd870660c2e25983f68b1cd2c7a93214191a7e1f21aecbdb238",
+          "bytes": 8111
+        },
+        "_build/pages/blog-google-cegprofil.html": {
+          "sha": "0600a262154f55e90db34b651a804edc48ea278a00ea20781e71350585aa1198",
+          "bytes": 8544
+        },
+        "_build/pages/blog-google-elso-oldal.html": {
+          "sha": "18d3fd9874cbf07efd81b6e41654f37cb71375b5841d69a659b4be52321cd98e",
+          "bytes": 8938
+        },
+        "_build/pages/blog-google-vagy-facebook.html": {
+          "sha": "8c1e0255f9f04f918b5578d8b60d189418f3491b8795fc1fc71d861698823aa6",
+          "bytes": 7770
+        },
+        "_build/pages/blog-miert-nem-hoz-ugyfelet.html": {
+          "sha": "fa6aada5f184707c636c94b998070bcd66889c6a115c8a1a6e0e24e87bfe3f51",
+          "bytes": 7952
+        },
+        "_build/pages/blog-weboldal-arak.html": {
+          "sha": "f745550c483715b61f9a0928a32fb7d5f772b40ea8752333a0a7ec3e532c85ea",
+          "bytes": 8594
+        },
+        "_build/pages/blog.html": {
+          "sha": "b45379bb4aee9868c2b8f9dbbdb3934030172715a6ae563a9e527ba815b7b371",
+          "bytes": 9071
+        },
+        "_build/pages/branding.html": {
+          "sha": "65ecd59ace12f8959e119b062c698a5ba9df5c792a85dc6bc36623653b6d0fb5",
+          "bytes": 15280
+        },
+        "_build/pages/hirdeteskezeles.html": {
+          "sha": "9e8d63116d3ab864265d11657b4911fc8ae99cb4929b4fa8b4b3d9ba1f806266",
+          "bytes": 21057
+        },
+        "_build/pages/impact-program.html": {
+          "sha": "48e9a2a94578284152107fd121023d2951237320d9d02907cfb7aa2480057c05",
+          "bytes": 22222
+        },
+        "_build/pages/impresszum.html": {
+          "sha": "1e4aa2613ea5d6d4ab3c09c8f176ff6bf4bfa494bb92769d7cabdb630522d3fb",
+          "bytes": 2324
+        },
+        "_build/pages/kkv.html": {
+          "sha": "bf5b773eff890770d9aa87b64751ccbaaf30502b542517b3687c7c91f4d5abf3",
+          "bytes": 20509
+        },
+        "_build/pages/munka-barbershop.html": {
+          "sha": "16b70b47c81dbdc0006d18b86c2406dd8f7560e4f2c6873238123188c390e8d2",
+          "bytes": 8008
+        },
+        "_build/pages/munka-mentaltrening.html": {
+          "sha": "22813a7f4eaec5c07624815d7794228004704c413e3465d83905bec5f2111e65",
+          "bytes": 7970
+        },
+        "_build/pages/munka-rapidkert.html": {
+          "sha": "fc622a368eb37ef0dec87fb26782561dc766017f068f2e42133e2ffa0a93061c",
+          "bytes": 16575
+        },
+        "_build/pages/munkaink.html": {
+          "sha": "bf36ed88d029a944226561415ad044f7b5bcfce412838fc9fbbcbcffc9df1646",
+          "bytes": 9804
+        },
+        "_build/pages/nagyvallalat.html": {
+          "sha": "15a7a36911fb25b34390306a69efc8b04adb4dde3a975758266fd0882e13973b",
+          "bytes": 20146
+        },
+        "_build/pages/rolunk.html": {
+          "sha": "f029a668551b0171d16657ec1b363cabc7a7ee98ca2c55f2b5d167f3cd7f513a",
+          "bytes": 29382
+        },
+        "_build/pages/szolgaltatasok.html": {
+          "sha": "797801c6b8aa554fbd8b9817203a8807344a14fedfcfb25c2483ef605956a15c",
+          "bytes": 16262
+        },
+        "_build/pages/ugyfelszolgalat.html": {
+          "sha": "326f6a65e8985b5bb9d4ad4b025ee40828632e0f213614d1cb0f00f4ea21595b",
+          "bytes": 14194
+        },
+        "404.html": {
+          "sha": "343db863201270cf50bfae42823c70ff23c7183f2ec8ebe1bd551fa4abb18a79",
+          "bytes": 16007
+        },
+        "adatkezelesi-tajekoztato.html": {
+          "sha": "a0c91eaf83003f46e570db61b0b7bf08e87619f96dbb587b77e335196bc11a56",
+          "bytes": 35208
+        },
+        "arajanlat.html": {
+          "sha": "240c9b0ff27b6c5ccd2629c74445b26636c85144a8549afb59ef866114ead0f1",
+          "bytes": 15147
+        },
+        "assets/blender/stratos-altimeter.blend": {
+          "sha": "e89d5422a156d86e223ca6e179ecd3d14b69464ef6070de6b100af33d7702323",
+          "bytes": 297589
+        },
+        "assets/blender/stratos-altimeter.blend1": {
+          "sha": "c70506508441d42bed0f6a332e0b4f65eaaa93e71b2d999a7960d88234ffd915",
+          "bytes": 304790
+        },
+        "assets/css/chrome.css": {
+          "sha": "d233ff42702f49c9889e65440b5d58acd8d0e6ad9084719e3fc44c7b7852cd58",
+          "bytes": 35955
+        },
+        "assets/css/main.css": {
+          "sha": "d8423979e5c92be9d12b9ca51f993e4defdd7171066c060d20e85b99644dc910",
+          "bytes": 67736
+        },
+        "assets/css/motion.css": {
+          "sha": "6f5ffd5bdc90dd7357ca0ec268b7ecc13acdb1aa4f7b54f7f6dc157272c2cce7",
+          "bytes": 13306
+        },
+        "assets/css/page-about.css": {
+          "sha": "ea17fc40cd9adf22910b202fc932d20939293e5fef4faf8399bdc34e521b6adb",
+          "bytes": 1410
+        },
+        "assets/css/page-blog.css": {
+          "sha": "eb58929696c1c6e2e38f0e3efb80b2debdaaade71ab6d06b3d99bbaedf293932",
+          "bytes": 6283
+        },
+        "assets/css/page-brand.css": {
+          "sha": "3718cec98a2c6dd0f0430e4a8b11422090f34b5539d3e5dc15d97cf888ae989d",
+          "bytes": 2281
+        },
+        "assets/css/page-build.css": {
+          "sha": "4eba9a7a88b248adc66b6ffb96cba530fe94a673a57604e422c316b8daf3a28c",
+          "bytes": 9211
+        },
+        "assets/css/page-contact.css": {
+          "sha": "c629b6e27825367e7abdc2300afce1a57a4bf06264b58825433e75fe29cc34b2",
+          "bytes": 1244
+        },
+        "assets/css/page-impact.css": {
+          "sha": "c09ab307aa49428fb18643b6c371ff9270105a1b76f0024e0fd0ef927ba3c54a",
+          "bytes": 958
+        },
+        "assets/css/page-quiz.css": {
+          "sha": "3634cacfde69e50904af96f378b5f3eaadc8e2d40674294e016fcf6a96542762",
+          "bytes": 1907
+        },
+        "assets/css/page-rapidkert.css": {
+          "sha": "26929691b626d60cea43ebcd1a82ceb1c157cd6b0207957c913bf8d4022e56da",
+          "bytes": 9275
+        },
+        "assets/css/page-services.css": {
+          "sha": "fa6111653970476fafb0a943a554984c89dd41b11f64510749c7dfff24fc3529",
+          "bytes": 6531
+        },
+        "assets/css/page-signal.css": {
+          "sha": "be843c51e63f848d8e458a53c6808e9b1d0c1e2e6bd8b81225c46bd5228669f9",
+          "bytes": 2814
+        },
+        "assets/css/transitions.css": {
+          "sha": "ff49195a5b9b7ec0f138e4596d6181d8a2d5599b8149aa7279f3ef0d59de6734",
+          "bytes": 14005
+        },
+        "assets/css/type.css": {
+          "sha": "1873057976f4ae477293e9bbe049aa459a004a33893bcb96c1b6892a1abf1985",
+          "bytes": 17333
+        },
+        "assets/fonts/aboreto/aboreto-normal-latin-ext.woff2": {
+          "sha": "42b480ebcf28fec501f377e347cc893b25b87dc06378281e0dd5876e62c84e91",
+          "bytes": 4768
+        },
+        "assets/fonts/aboreto/aboreto-normal-latin.woff2": {
+          "sha": "b9663ceea4e706a82df728ef022aa9a3fa26ea8f2e5561e34048007ac39bbef8",
+          "bytes": 10636
+        },
+        "assets/fonts/aboreto/OFL.txt": {
+          "sha": "da0971c73aa1773b791926b81530f3cec50c94031912f162a320263488805ef8",
+          "bytes": 4383
+        },
+        "assets/fonts/archivo/archivo-italic-latin-ext.woff2": {
+          "sha": "11b6dd9960cbffe23dd7192d2ca1995ad81a857001afff29a8b84d4b1a38f3b5",
+          "bytes": 93252
+        },
+        "assets/fonts/archivo/archivo-italic-latin.woff2": {
+          "sha": "d2a3a083e983d78b2e2fd848a990200b34fcb1392ed11f695096b7535ef74d88",
+          "bytes": 101888
+        },
+        "assets/fonts/archivo/archivo-normal-latin-ext.woff2": {
+          "sha": "a75c792f980dc1dbe0e85efb721808267e32d2e7ef6c4a99d525c842d8712a08",
+          "bytes": 85856
+        },
+        "assets/fonts/archivo/archivo-normal-latin.woff2": {
+          "sha": "4c98b9d490d1698ec95f2ff17a6c7d0e72691864c0c5d7bc2a2c161b45afe5ad",
+          "bytes": 90096
+        },
+        "assets/fonts/archivo/OFL.txt": {
+          "sha": "108b4e57c9c796d3d38d0428ca7ee39de47ad93187302718d9b2d8864b9b716b",
+          "bytes": 4388
+        },
+        "assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2": {
+          "sha": "7db7affbce1fdee69c1ffc2641bbca289b049867f524c9d861fe35ab6670bf29",
+          "bytes": 15204
+        },
+        "assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin.woff2": {
+          "sha": "1e06740a02a443fb7f3eeda8fcaa685a0f6c620e3f01e6666e847295469ce3ad",
+          "bytes": 40480
+        },
+        "assets/fonts/jetbrains-mono/OFL.txt": {
+          "sha": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+          "bytes": 4399
+        },
+        "assets/fonts/MANIFEST.json": {
+          "sha": "5e4009611fd59ac50e13f0549c67b83abbc3523cd6bc5af22c64b0d0ef829369",
+          "bytes": 5396
+        },
+        "assets/img/blog-1.jpg": {
+          "sha": "6185e690ab6b81512b0eedf2efe62d4bbf86ac77201f60bd1c2bae0ef2ef7bb1",
+          "bytes": 223881
+        },
+        "assets/img/blog-2.jpg": {
+          "sha": "22453704ac62daae0884a0c29f0f3834f97bcf091539056f0eb39b9b05b1880a",
+          "bytes": 203556
+        },
+        "assets/img/blog-3.jpg": {
+          "sha": "de15f7d220e96c4505ef221861ce6c1889b257891258c3ddf7f4d6659f61ba0b",
+          "bytes": 222263
+        },
+        "assets/img/blog-4 2.jpg": {
+          "sha": "c8c8670bd4b67794f14dbdb1501971855ba839a404bc273c4344c8f3e90c03f5",
+          "bytes": 243382
+        },
+        "assets/img/blog-4.jpg": {
+          "sha": "c8c8670bd4b67794f14dbdb1501971855ba839a404bc273c4344c8f3e90c03f5",
+          "bytes": 243382
+        },
+        "assets/img/blog-5 2.jpg": {
+          "sha": "ee072a73166566004aaa36e221c30011e66b8ae5b46ec9ce30787bbce5b8f89e",
+          "bytes": 225059
+        },
+        "assets/img/blog-5.jpg": {
+          "sha": "ee072a73166566004aaa36e221c30011e66b8ae5b46ec9ce30787bbce5b8f89e",
+          "bytes": 225059
+        },
+        "assets/img/blog-6.jpg": {
+          "sha": "d7c35af7a1ef2812e8278071c532e976c1e54e7dab5df94bb5a06f91183ff17e",
+          "bytes": 221330
+        },
+        "assets/img/client-barbershop 2.png": {
+          "sha": "c70c5eebed850e4f84112d931be5a30a8a01613c26b884c6768c25f550723046",
+          "bytes": 367794
+        },
+        "assets/img/client-barbershop.png": {
+          "sha": "c70c5eebed850e4f84112d931be5a30a8a01613c26b884c6768c25f550723046",
+          "bytes": 367794
+        },
+        "assets/img/client-rapidkert 2.png": {
+          "sha": "acebba1a71f4c21530fff7d9351cd61c960043769192b667006957e49e235fa7",
+          "bytes": 84733
+        },
+        "assets/img/client-rapidkert.png": {
+          "sha": "acebba1a71f4c21530fff7d9351cd61c960043769192b667006957e49e235fa7",
+          "bytes": 84733
+        },
+        "assets/img/cloud-tops.jpg": {
+          "sha": "762dec10d142989f6507ef9e074bb857c2d7da0e541e1005c25aa2015d5c62e0",
+          "bytes": 113070
+        },
+        "assets/img/favicon 2.png": {
+          "sha": "c84282b3ed3edccb241a27c51d770ccb3c4729094e800749bba25b8aa6c60d0a",
+          "bytes": 4132
+        },
+        "assets/img/favicon.png": {
+          "sha": "c84282b3ed3edccb241a27c51d770ccb3c4729094e800749bba25b8aa6c60d0a",
+          "bytes": 4132
+        },
+        "assets/img/FORRASOK.md": {
+          "sha": "051c66055bdfb74afa9c363aeba1cfcd284f11a6a3240d075d49c4f6acef9703",
+          "bytes": 2112
+        },
+        "assets/img/gdpr.png": {
+          "sha": "61962d77c6312dc4f1b819ba4b8fad4702971986baaf4609a0f8772223fe74c0",
+          "bytes": 100240
+        },
+        "assets/img/hero.jpg": {
+          "sha": "2efda586869a9137be16381a530de5dd64b0af65811fb0bd07de5f5c7853c9e1",
+          "bytes": 149840
+        },
+        "assets/img/icons.svg": {
+          "sha": "f17a18e1b4b9fcfecaf49d7fa505132c2a27e4d9113a0bd8ae8bfc417c24acac",
+          "bytes": 6050
+        },
+        "assets/img/kivitelezes 2.jpg": {
+          "sha": "b4826667cb17cf599e26b70f3c325342caac80a5e3605af7ea964f7feea7fe4c",
+          "bytes": 456774
+        },
+        "assets/img/kivitelezes.jpg": {
+          "sha": "b4826667cb17cf599e26b70f3c325342caac80a5e3605af7ea964f7feea7fe4c",
+          "bytes": 456774
+        },
+        "assets/img/logo 2.png": {
+          "sha": "f432a5b066f4f719bfeae670ed1bf885acab5a5cce2f5830cedacba562b2693d",
+          "bytes": 91223
+        },
+        "assets/img/logo-duna-enterior.png": {
+          "sha": "82f619dd9572be7da90368602f24cac4215c6f23228bdf2b6f6f252397400741",
+          "bytes": 36819
+        },
+        "assets/img/logo-duna-hajok.png": {
+          "sha": "f6234397311bdc6ced13c81f6b614ba913b8583685d128f9df011b964aa9c94f",
+          "bytes": 55257
+        },
+        "assets/img/logo-fice.png": {
+          "sha": "8e16382d9bc3fcaad6dd0f7107d2f9d5b791cdda557204b9ebeb3700b55312f0",
+          "bytes": 66418
+        },
+        "assets/img/logo-grantool.png": {
+          "sha": "1489bc8654a8048f7753628962c4bf9255e6981898a04fee267c4fb2893c0f14",
+          "bytes": 56616
+        },
+        "assets/img/logo-haio.png": {
+          "sha": "dd7600b780b92454ab1c99bf1ff2a9cb1c661671ccd7cbdebaffb13d44822db6",
+          "bytes": 53374
+        },
+        "assets/img/logo-kontyos.webp": {
+          "sha": "c9878f09141195259242da0bc89c72a464c6707e4b7de25ff951ac17ea7bcdef",
+          "bytes": 7554
+        },
+        "assets/img/logo-synergy.png": {
+          "sha": "2b045fc59e0a06e7280f19e808233a72e2c2ab8cd69c9f3702d732acda7043d3",
+          "bytes": 52528
+        },
+        "assets/img/logo.png": {
+          "sha": "f432a5b066f4f719bfeae670ed1bf885acab5a5cce2f5830cedacba562b2693d",
+          "bytes": 91223
+        },
+        "assets/img/moon.jpg": {
+          "sha": "dcb8f10f9bc8c2265018a5c263d2117f094dc600c850b65d3352beb51a223212",
+          "bytes": 159251
+        },
+        "assets/img/plane-cursor 2.png": {
+          "sha": "14210a5bef60a59b69fec5d27c00e182de7d3f1b5c3afa8015cd49eb7968fc9d",
+          "bytes": 6613
+        },
+        "assets/img/plane-cursor.png": {
+          "sha": "14210a5bef60a59b69fec5d27c00e182de7d3f1b5c3afa8015cd49eb7968fc9d",
+          "bytes": 6613
+        },
+        "assets/img/space-horizon.jpg": {
+          "sha": "d319a7f9ed3c82e499c7e09a0a6781e4511f1322981b72caef6a3d36cb41f6da",
+          "bytes": 194193
+        },
+        "assets/img/struktura.jpg": {
+          "sha": "5863d2cb5e5b2f93096c98924f26882f359c7e47964d02c0897ae5d38aada177",
+          "bytes": 267574
+        },
+        "assets/img/team-artur.jpg": {
+          "sha": "a3b0c0b74983822684fcfbaa458b358b1d29e2e600618102a462c6daa7a25b8e",
+          "bytes": 243840
+        },
+        "assets/img/team-richard.jpg": {
+          "sha": "f2091c4333e232becb761ba17ab2452cc029c43f416ebc875c9afb977445af2c",
+          "bytes": 114931
+        },
+        "assets/img/texture-fabric.jpg": {
+          "sha": "6851ae2fa9d0cd374c7d905b2cae5fcb57c23b2fa2bf45d96a94d40b8ea259af",
+          "bytes": 419698
+        },
+        "assets/img/work-1 2.jpg": {
+          "sha": "fb51bbc6f1f4accdc0e6b0de92a92db38ddb54e89635ddedafe8a0886c46b280",
+          "bytes": 172098
+        },
+        "assets/img/work-1.jpg": {
+          "sha": "fb51bbc6f1f4accdc0e6b0de92a92db38ddb54e89635ddedafe8a0886c46b280",
+          "bytes": 172098
+        },
+        "assets/img/work-2.jpg": {
+          "sha": "4340b5263717cca6d8cf3d05158c6d511dc0b45509c4fc4547f8a8e5d180cbc3",
+          "bytes": 308552
+        },
+        "assets/img/work-3.jpg": {
+          "sha": "63e2fd43e04be9e9ab48dfff1877292a45d8c0c95a0bf7e4a2cc24d8e229ea27",
+          "bytes": 335495
+        },
+        "assets/img/work-rapidkert.jpg": {
+          "sha": "3c6bc5b4f40150bea15f19e2905b4c2db91666fafc59e68bbfb02daebe2a87cc",
+          "bytes": 232421
+        },
+        "assets/js/analytics.js": {
+          "sha": "9e8ddd556a9fd54f69739a02eaea7999ee3c0a42f62d705dc139fb2a3b1d0244",
+          "bytes": 30669
+        },
+        "assets/js/consent.js": {
+          "sha": "767976dbb7a9a73591f6fdf1cab92fc929e4947009332aba82c395b466fd7b39",
+          "bytes": 7752
+        },
+        "assets/js/header.js": {
+          "sha": "304b98cbb2c8691ec3339152ae9aafc031654f42b9bcc422ebc3c66bff8bdc66",
+          "bytes": 21855
+        },
+        "assets/js/home-history.js": {
+          "sha": "cf65dfef6d9219c7292ba0e1aaddcf989e2de20847207ca22841893f5aa1b290",
+          "bytes": 12154
+        },
+        "assets/js/lead.js": {
+          "sha": "41d424a50e5ba13274b1b9f1861b949931b59435190a5286bd9ffe8556195f63",
+          "bytes": 26995
+        },
+        "assets/js/main 2.js": {
+          "sha": "ff39b64761d72b3547fb9040dcbf3437a922518c648295b6ce6e97b30a65a3e2",
+          "bytes": 21917
+        },
+        "assets/js/main.js": {
+          "sha": "f73e626a0d51945320dcd266a66f48b184d45b26995ce4d8c9751e283dfe47ed",
+          "bytes": 16235
+        },
+        "assets/js/motion.js": {
+          "sha": "494069f74eaa6ac224f54b34b1d067dc1b610d6060b5fb05be63160f1fe6cfae",
+          "bytes": 17588
+        },
+        "assets/js/quote.de.js": {
+          "sha": "a14ec6f18c99c4cfa16a80fdbaa7399bb4fb5f22980e324d22c637178a4b201c",
+          "bytes": 25709
+        },
+        "assets/js/quote.en.js": {
+          "sha": "c10c49b812fe5f61588758eb825d7d73710ca869f9186e8b350f731545a935b7",
+          "bytes": 24935
+        },
+        "assets/js/quote.hu.js": {
+          "sha": "17ba1cc53709c75bec557043d36f84e7e9f9b7711354c4626401ecba8d3f55b3",
+          "bytes": 25409
+        },
+        "assets/js/transitions.js": {
+          "sha": "dc61d7c0e14a0cce2a83b32ef0775d388461c6692e9de667fa818f6725df4eb4",
+          "bytes": 38691
+        },
+        "blog 2.html": {
+          "sha": "2a8c9f4d54551676a0643039cda0477bd321f8cec4f522ab007a6dd2ea696c18",
+          "bytes": 13491
+        },
+        "blog-elavult-weboldal.html": {
+          "sha": "10f2ab52affd0c26980eb541a88372b3264b59d3093ba573c6bca59d7e2ff64b",
+          "bytes": 27591
+        },
+        "blog-google-cegprofil.html": {
+          "sha": "5ef046da91e71f0e3f2f1c3568742a71b9eeef75d6349fff4956172f672e9b31",
+          "bytes": 28090
+        },
+        "blog-google-elso-oldal.html": {
+          "sha": "394a4a787ff81d01b1d6f9aee3bd054047241ebde5177ee10a37e78473332cc7",
+          "bytes": 28417
+        },
+        "blog-google-vagy-facebook.html": {
+          "sha": "3e2b714cc87ce4a39ab91b14a725d995fea7dfface8e79b1265c0125464532eb",
+          "bytes": 27322
+        },
+        "blog-miert-nem-hoz-ugyfelet.html": {
+          "sha": "2320176bcd3cc8a0d09bf877f61390ed752a4a70dc3992838cfe7d4a9bde694c",
+          "bytes": 27454
+        },
+        "blog-weboldal-arak.html": {
+          "sha": "8c5178bac16454840275d6d885cdb226843a0499ba7084d497719e8ebd600c57",
+          "bytes": 27980
+        },
+        "blog.html": {
+          "sha": "a106f648922382b77ef88ff07b5b6796e9190408f512618a800698de9fa39c33",
+          "bytes": 27805
+        },
+        "branding.html": {
+          "sha": "722ff11c0836528867164f74cc075229c18a10b6ae5cbe481527785086744c3e",
+          "bytes": 34396
+        },
+        "de/404.html": {
+          "sha": "329b551ed14bdbae6c9becae3b83e68599b2ceda7f0b06c6f7b89dcef23a0a27",
+          "bytes": 15896
+        },
+        "de/angebot 2.html": {
+          "sha": "e3ea2aa665e3ddd04a11afb053e47f4c4eac2bbdc8737b203c24374cb27856ec",
+          "bytes": 28635
+        },
+        "de/angebot.html": {
+          "sha": "9318481d269641c1818eae3e536900abecb66ef77f544aff115d7a738b0afbf4",
+          "bytes": 15072
+        },
+        "de/blog 2.html": {
+          "sha": "f9552de213a026e3083e74dea254015e88b67908dc1df0cd306b0c404e7c4fbd",
+          "bytes": 13421
+        },
+        "de/blog-google-erste-seite.html": {
+          "sha": "5d6c2396a572f5ccf1f16fa82141cda498944470ee7fcee87fdee612f02eeef9",
+          "bytes": 27894
+        },
+        "de/blog-google-oder-facebook.html": {
+          "sha": "2aa99faac56514619a9d60fc4c6566f98636083ce4785f4797fd0ba0465b3105",
+          "bytes": 26900
+        },
+        "de/blog-google-unternehmensprofil.html": {
+          "sha": "ee6c0e1b9e9b9d964fac3c5e8784e319d5a7f1700ad95989958a9b69ceea93cb",
+          "bytes": 27730
+        },
+        "de/blog-keine-anfragen.html": {
+          "sha": "1798087211e146e8ac5444f057442876be71d90153583bb68c1212bed8e3d9d6",
+          "bytes": 27068
+        },
+        "de/blog-veraltete-website.html": {
+          "sha": "ed6aa96cf404e22c94f731a93db142d985c8460e2f694449df36b1b321147cf2",
+          "bytes": 27164
+        },
+        "de/blog-website-kosten.html": {
+          "sha": "2f0f378cc107ce7f4648fc27c348081860854f78ce4179f8f1704ec4dc9499f1",
+          "bytes": 27565
+        },
+        "de/blog.html": {
+          "sha": "895f62bae546416e8e74849fe7fdca309f624ae32d679ee3b41ceecf75709f05",
+          "bytes": 27690
+        },
+        "de/branding 2.html": {
+          "sha": "11da015d7b84a9a08e81860ccb13155cfcb33073f27e3fa8d3c1ef76d3fc23d1",
+          "bytes": 19880
+        },
+        "de/branding.html": {
+          "sha": "4ebad9e6df5c6c17515cedabfb7864e0dd4877317e668557d1e25c855ad27e4b",
+          "bytes": 34176
+        },
+        "de/datenschutz 2.html": {
+          "sha": "dd268087247845dde6340f6d4d38e6b9afa4ac73e574f02e13a2fdf981a2d1e4",
+          "bytes": 18977
+        },
+        "de/datenschutz.html": {
+          "sha": "3608af1c732c10b34bf0a7a12082a47939c902d050126e61dc3d943ea3195ff0",
+          "bytes": 34303
+        },
+        "de/impact-programm 2.html": {
+          "sha": "98262ea9dce57f487d1136035aa733188f219c6cca249a493289fc6d50ef021d",
+          "bytes": 23850
+        },
+        "de/impact-programm.html": {
+          "sha": "c81b652188c926b248dc85dc8161c669aa767221a424a39dee5c8d6a961d0dab",
+          "bytes": 40643
+        },
+        "de/impressum 2.html": {
+          "sha": "49f8a160836a57f79d4aaaba1ff0d7b332bf324f4c39d74227d9f97f382fb9c6",
+          "bytes": 9334
+        },
+        "de/impressum.html": {
+          "sha": "0d4795c50c3e5f17a8c1d76e21f8031d75dda6c0585fd9b2e8c6fe08a07d9eaf",
+          "bytes": 20494
+        },
+        "de/kontakt 2.html": {
+          "sha": "bbb48e2b6b3e80006756fb324e133b3fa1cf7444ccd37bc4c45569397bc38c09",
+          "bytes": 13571
+        },
+        "de/kontakt.html": {
+          "sha": "54ea7e9c72520353422007e08b70c16298b5d968ad5a5662d9c9992cee247f1d",
+          "bytes": 32267
+        },
+        "de/leistungen.html": {
+          "sha": "f61e65fcf1357897c86b920c151118487f3c4ae38e0c38a600b40d9cb3d8cb20",
+          "bytes": 35245
+        },
+        "de/projekt-barbershop.html": {
+          "sha": "94fec439ffe04601127ca7085cada2e479368381d66a382bdfc52de87830ffdb",
+          "bytes": 26473
+        },
+        "de/projekt-mentaltrening.html": {
+          "sha": "b5ecb1103f35c07d1e56c20cc41d305a39103b6a84805d20c3c948e30be2e20c",
+          "bytes": 26407
+        },
+        "de/projekt-rapidkert.html": {
+          "sha": "0886a872cf56a3dd7e5bb1faf8a624186e291f4d65482223a3a74dd463f29fa5",
+          "bytes": 34635
+        },
+        "de/projekte.html": {
+          "sha": "5cd7025fd78a3e0f4634b7feadc2b75f767690915654adc3e2eedd0f82b9cc27",
+          "bytes": 28700
+        },
+        "de/ueber-uns 2.html": {
+          "sha": "31ffc9b6320aa8371fc89b7a1300345b826b92db43ea241c6007c5e8cd633e5e",
+          "bytes": 32213
+        },
+        "de/ueber-uns.html": {
+          "sha": "ec2913a33129148a056f8bc5f2066383d4736f323b30883f5951f758d83b5640",
+          "bytes": 47782
+        },
+        "de/webdesign-grossunternehmen 2.html": {
+          "sha": "f531b1ee4a2d5f958eb73fb2bf3b5c9d86142c87fa920b04895fa598aea41841",
+          "bytes": 21322
+        },
+        "de/webdesign-grossunternehmen.html": {
+          "sha": "3b546b01c775568b5381d0c8b9b7e0b929bfb16589a9fc0c01d7df074567b945",
+          "bytes": 39306
+        },
+        "de/webdesign-kmu 2.html": {
+          "sha": "da51652aa32b9722aaa5dc398855abd520cd7b882bc9a2d56510eec71e01de24",
+          "bytes": 20480
+        },
+        "de/webdesign-kmu.html": {
+          "sha": "5519f821304d439cb259bf51081abffd4e92630034f2604890aa672760db61ea",
+          "bytes": 39332
+        },
+        "de/werbeanzeigen 2.html": {
+          "sha": "569dc67ff922d49f55de4e2b4561c5f327cf057cfa14285eb38d70b20d40f368",
+          "bytes": 21404
+        },
+        "de/werbeanzeigen.html": {
+          "sha": "4692be98867bf29d665072e54b3b2e1fe5c388ec80a81ebf2403e7e9a3eda5a2",
+          "bytes": 39778
+        },
+        "en/404.html": {
+          "sha": "97926781839085a96101c906f95d8bee9514d15467de2053f682deec72da98c3",
+          "bytes": 15542
+        },
+        "en/about.html": {
+          "sha": "63b3adee9f43d3c234a7e16bc26fe25f96fe487cfdf5467333c7f7a8b64260c6",
+          "bytes": 46875
+        },
+        "en/ads-management.html": {
+          "sha": "41c7622647c9daecf4623c06c6e0fea5c7666cb59f7b9377e93b207b5654c352",
+          "bytes": 38811
+        },
+        "en/blog-google-business-profile.html": {
+          "sha": "654c965c013e0b83cf44012f069945cc103d4d5c0c3774001c7a22334bbf3db1",
+          "bytes": 26828
+        },
+        "en/blog-google-first-page.html": {
+          "sha": "7a7d3326f5dc29cfd774492523020cf7d7f964f7f7e2f6532d9d172a70ae1577",
+          "bytes": 26956
+        },
+        "en/blog-google-or-facebook.html": {
+          "sha": "89ff275f2372ab17319c57f750dae60a027c6bc47f112706bb08db8bd1e0bc61",
+          "bytes": 26253
+        },
+        "en/blog-no-enquiries.html": {
+          "sha": "89d53e6185abd60baa9739c7a33c4cb19ce2bae2955c9b1bd14dcef4ac07b852",
+          "bytes": 26133
+        },
+        "en/blog-outdated-website.html": {
+          "sha": "6bd078d180ab748d7a1f69f37b8e08665d70a81864e15952bdb87e4ff604c2cc",
+          "bytes": 26488
+        },
+        "en/blog-website-cost.html": {
+          "sha": "47095e4c29dbd6ea8760e9232f57d16383bdb73b84093d69f127b41bfd256117",
+          "bytes": 26913
+        },
+        "en/blog.html": {
+          "sha": "670c9257d7fa1070df82a2d69680383e1b4acfb7ccc76f5a72f3ba5ffdae44c3",
+          "bytes": 27086
+        },
+        "en/branding.html": {
+          "sha": "b03ddeb4d73efe73c0921056f914d2098ca3a76cd29cca52c12d686ae569b34e",
+          "bytes": 33366
+        },
+        "en/contact.html": {
+          "sha": "5a3bedde6a3c699d7f310d1e0c54e4b327f81c72e573b4069022ddc896918bd3",
+          "bytes": 31350
+        },
+        "en/impact-program.html": {
+          "sha": "72500fc65e9ad07b405e6cb0833059d056a4c20cb6a41f635ad49f4c0b3d2c35",
+          "bytes": 39394
+        },
+        "en/imprint.html": {
+          "sha": "034c8e9dc1d6ea9091a3d953cc8df98538f21ce73b5eb49743fe2b0c81bd3114",
+          "bytes": 20159
+        },
+        "en/privacy-policy.html": {
+          "sha": "f18878bdbfac0adaf2abc3ea6af8af06ce9b9f6f85cd53bc0b8b39d8ffb9d382",
+          "bytes": 32749
+        },
+        "en/quote.html": {
+          "sha": "e31350641a00c753252a46ff560c9b149f557806997426ad19404fdade1bd126",
+          "bytes": 14755
+        },
+        "en/services.html": {
+          "sha": "2cc14b862e27c4ce923d910cf1f50f3485ee9a192e276124bf5d9e78c9d804f0",
+          "bytes": 34343
+        },
+        "en/web-design-enterprise.html": {
+          "sha": "596a216292ac6d05cffbd6c6176032058dc4165b3e12487aafc647caf4e49e7d",
+          "bytes": 38169
+        },
+        "en/web-design-sme.html": {
+          "sha": "4bd6b3c074225fa3d6fa443f15d05938478d859888163aa586d61cb5413e944b",
+          "bytes": 38333
+        },
+        "en/work-barbershop.html": {
+          "sha": "76b4c65f1356865b7ec328c6cbf5508ed3b60789c57a9c550499765c5e4ccfa2",
+          "bytes": 25641
+        },
+        "en/work-mentaltrening.html": {
+          "sha": "ac87af4098a2fde424e40034a4a09cfdfa77742562a85266c8e2f00cb5cccd23",
+          "bytes": 25689
+        },
+        "en/work-rapidkert.html": {
+          "sha": "902da77941f622053d8100ddb9244df58d25abc58bb41149fe40bb4aeaf2d425",
+          "bytes": 33684
+        },
+        "en/work.html": {
+          "sha": "a37a320560526e58ec25e6db07a42dc80d1e3368e22e6902d7f2de11db53c57b",
+          "bytes": 27965
+        },
+        "experiments/src/AscentPrototype 2.tsx": {
+          "sha": "02c254098a5af17bda28f2ee11191b3833b3f789480acbcb00d148cce2e93bd5",
+          "bytes": 7121
+        },
+        "experiments/src/AscentPrototype.tsx": {
+          "sha": "02c254098a5af17bda28f2ee11191b3833b3f789480acbcb00d148cce2e93bd5",
+          "bytes": 7121
+        },
+        "experiments/src/components/AltimeterModel.tsx": {
+          "sha": "2962c6840c7be5ba4acaf6d2b6f83ecd5707b8b28981696bbfd3dba802875b37",
+          "bytes": 5906
+        },
+        "experiments/src/components/AltitudeHUD.tsx": {
+          "sha": "82cdd4f2efe6740d7252d0dfdacca9dbc5cad6eaf9032edaa3633c31b2a2f2df",
+          "bytes": 3202
+        },
+        "experiments/src/components/AscentScene.tsx": {
+          "sha": "68500474858091b92982d974a540e254fa186c98343760f5990a0618a038b1ef",
+          "bytes": 3044
+        },
+        "experiments/src/components/AtmosphericLayer.tsx": {
+          "sha": "4a39957ed06124aa89515d05746602197dc9c889d8adfefb988c189598975d59",
+          "bytes": 7254
+        },
+        "experiments/src/components/CameraRig.tsx": {
+          "sha": "a6b8faa141bb3e34f9babab72c6e8dd5089877320acb929969584cc99792a4f2",
+          "bytes": 3610
+        },
+        "experiments/src/components/PrototypeFallback.tsx": {
+          "sha": "8583750839387a098122043b0b088bdbe4a50dec86e094c0181addcb4dbbac3b",
+          "bytes": 4523
+        },
+        "experiments/src/components/PrototypePerformanceManager.tsx": {
+          "sha": "52d431c0f45740f56d7d69cb9d6169d75ace453f688c30cea9220d361e2fe972",
+          "bytes": 2947
+        },
+        "experiments/src/full/cloud.ts": {
+          "sha": "8c13202bbb24873b7571a700cde8f70f91cc62834f4f40a83c88b7f6b537e611",
+          "bytes": 37206
+        },
+        "experiments/src/full/components/AltimeterMeridian.tsx": {
+          "sha": "1ba1b3ccd44dafd729a7b6da41bb8cec7defda346229b27a3fc409986fdfd4aa",
+          "bytes": 23963
+        },
+        "experiments/src/full/components/ApertureCore.tsx": {
+          "sha": "72548f00e8545c9b0a553ced0a1d2275a92b14b3d839eb31162429615fae603c",
+          "bytes": 7463
+        },
+        "experiments/src/full/components/CloudDeck.tsx": {
+          "sha": "a881d5060ec68e91b4ed294b8aa438809f21cbe116d00bb8a72a7db89a612bad",
+          "bytes": 21424
+        },
+        "experiments/src/full/components/DebugPanel.tsx": {
+          "sha": "09e56d0eefaa6b15734078ef2c12eb1dd8174ea1b484942490a1aad599386187",
+          "bytes": 21442
+        },
+        "experiments/src/full/components/EarthLimb.tsx": {
+          "sha": "f31778a2a762c74297fb378893af6989c0f7714caa0a30f520516f17c66a3137",
+          "bytes": 7723
+        },
+        "experiments/src/full/components/JourneyCamera.tsx": {
+          "sha": "ddbe11c3562f8e5ab138478c11c83d9f03b99f1a952ba0ff6a96a9947196a969",
+          "bytes": 10760
+        },
+        "experiments/src/full/components/JourneyFallback.tsx": {
+          "sha": "94cd4a1abe2a60a659af0f9f4b872f44cfc8517e6a7f5ab1759eca8c807061b9",
+          "bytes": 4357
+        },
+        "experiments/src/full/components/JourneyHUD.tsx": {
+          "sha": "5c16ea9963e62cb82aae94d20ae75529a79175b74979bc2ba8f79673cc877ffd",
+          "bytes": 11133
+        },
+        "experiments/src/full/components/JourneyScene.tsx": {
+          "sha": "0b4b2e67db298ff80046c4eff9bfb505367c1485ca4a5ca560af4f15b2ffe606",
+          "bytes": 18971
+        },
+        "experiments/src/full/components/MeridianAxis.tsx": {
+          "sha": "f90eb904e46e235b6f2919774f108171a40e5710ec4e67c66e062e6863d858f1",
+          "bytes": 2752
+        },
+        "experiments/src/full/components/MeridianDrawing.tsx": {
+          "sha": "3d9b8aca16ef2a99dba999b82a77102ff0b94e7b0332e6eb02ae508432acacdf",
+          "bytes": 12921
+        },
+        "experiments/src/full/components/MeridianLights.tsx": {
+          "sha": "ae3896b6916aee51ef71776da34c6abdc54793cc237ffe7586d48fe7260efe30",
+          "bytes": 5528
+        },
+        "experiments/src/full/components/meridianParts.ts": {
+          "sha": "70971a6f0b716c2c94caf5e8e7df4c297abc71a14f8ee792c15230604adaa20c",
+          "bytes": 21591
+        },
+        "experiments/src/full/components/MeridianRing.tsx": {
+          "sha": "3ac1787a17cb4f0e4be5b10e3da26b0e652a8a95d6a824177ddc2394bc6d50fc",
+          "bytes": 12666
+        },
+        "experiments/src/full/components/mountainMaterial.ts": {
+          "sha": "f1e833e93c21bf356c2f546b51b395e618373a778cd4dcc80f95340823556bcb",
+          "bytes": 30452
+        },
+        "experiments/src/full/components/MountainRange.tsx": {
+          "sha": "4b7b23e9731fbb86d3986ca172ae7b0264b5e4a4b0cae61cc60d5c0c5b239d2a",
+          "bytes": 12776
+        },
+        "experiments/src/full/components/QualityManager.tsx": {
+          "sha": "e1fd79b3f3a1716ac2701afa9923c6a53ecc337c0e2190c4438785d63ce133bf",
+          "bytes": 5946
+        },
+        "experiments/src/full/components/SceneBoundary.tsx": {
+          "sha": "44bbe71ef55c0b5ff233993af70ec44a08d27add1d418c6e363621c74c18a0ff",
+          "bytes": 2107
+        },
+        "experiments/src/full/components/Sky.tsx": {
+          "sha": "04987cdd8b2d8d443d1615158be88e1f6bf62fe7f158fbb194874745629a6454",
+          "bytes": 7935
+        },
+        "experiments/src/full/components/StarField.tsx": {
+          "sha": "f40efe2a9e16dfcd92021e02c11dd47fb6d97474bd00708d1ac6549973a88c12",
+          "bytes": 4803
+        },
+        "experiments/src/full/components/SystemRings.tsx": {
+          "sha": "09adbfabb95ca55adf9f5e2f857af0386362b0d3cee1ef3118e86c8447bb096c",
+          "bytes": 11210
+        },
+        "experiments/src/full/composition.ts": {
+          "sha": "d226e7cc6c916e676f982e6dbc9db69187efb220a8f73800facf9e941c4aad48",
+          "bytes": 80421
+        },
+        "experiments/src/full/content.ts": {
+          "sha": "7381f96d07fb1071283e4baadcf1e2973882d92f2f59b360d72212cdbefb4317",
+          "bytes": 13334
+        },
+        "experiments/src/full/FullAscent.tsx": {
+          "sha": "5521dab2997f0bf83ef1b44e0c2b20dfccdf07b28e39e0ed0f798cf524e18563",
+          "bytes": 28037
+        },
+        "experiments/src/full/i18n.ts": {
+          "sha": "c7262681e491ca138308f2a3a18aa70e38c8600694dfd346d188a4f1d0757b96",
+          "bytes": 10745
+        },
+        "experiments/src/full/journey.ts": {
+          "sha": "2b01ca56f15fddf7b408aa8e15b40240358abe84597553c8eec522a51e711e8e",
+          "bytes": 28705
+        },
+        "experiments/src/full/kineticDom.ts": {
+          "sha": "87a69aa1989980a6fbfa76ac62b20fc69c305d91f2e8611495b2d07cc6ea6934",
+          "bytes": 7529
+        },
+        "experiments/src/full/kineticType.ts": {
+          "sha": "27e0a39646dde568663e8beabeef95db943dd1f4d94c5e78a870f2fcf20c30db",
+          "bytes": 10875
+        },
+        "experiments/src/full/locales/de.ts": {
+          "sha": "34564552831669c12ae315fd706d57bbbf03244dd49ab4b60b39df69cf6da98a",
+          "bytes": 16797
+        },
+        "experiments/src/full/locales/en.ts": {
+          "sha": "9bbf07c283158136c4e7b9317a37e73b2f62735144220f12a7c28d40a07b3979",
+          "bytes": 16089
+        },
+        "experiments/src/full/locales/messages.ts": {
+          "sha": "589058553bdf0ff2edb67bed19b31e587c2a6337f7d4bfa25fd52c93ef4c1ee2",
+          "bytes": 33841
+        },
+        "experiments/src/full/main.tsx": {
+          "sha": "5d1ce9072dece5ebb3086227baf1e50e73a005b5d87d5ce311d38b418151c929",
+          "bytes": 7014
+        },
+        "experiments/src/full/meridian.ts": {
+          "sha": "2569282ea4252a5c9aa55800544138172d12545c04a90fc267fd54f84dc5a967",
+          "bytes": 22425
+        },
+        "experiments/src/full/meridianSound.ts": {
+          "sha": "15b883d311ffe7e50956ab1087b44e1dce42101cbfd269449f37ded06acc3b86",
+          "bytes": 8467
+        },
+        "experiments/src/full/mobile/anchors.ts": {
+          "sha": "27929c0ad62f7cc96285c164f557fb698a868f5ab4607d0767a68d85fcec664c",
+          "bytes": 18502
+        },
+        "experiments/src/full/mobile/ascent.ts": {
+          "sha": "1a1d078a4237eac460ab2c650df691275dcaf0994853268ecaef6ebcce726e9b",
+          "bytes": 16517
+        },
+        "experiments/src/full/mobile/device.ts": {
+          "sha": "8502e20fb8fd489bb6d3919d71f29ec1ec0adc99d2809816de6118b9ae15ad42",
+          "bytes": 2838
+        },
+        "experiments/src/full/mobile/instrument.ts": {
+          "sha": "11d935784a9c97b956045f52a8943a9abc96a3369411dcf4f893b0710a12c6e3",
+          "bytes": 11353
+        },
+        "experiments/src/full/mobile/mobile.css": {
+          "sha": "6f93025d65620c9754ac569622b0d6c6540a4e53b8b724225ff533152787ae63",
+          "bytes": 42477
+        },
+        "experiments/src/full/mobile/MobileAltimeter.tsx": {
+          "sha": "602bb72d4bd0255c9e46cea589bbe45bc97b18e5df101756f5fe338e5e8b936b",
+          "bytes": 25719
+        },
+        "experiments/src/full/mobile/MobileHome 2.tsx": {
+          "sha": "5a861f15d341bed5a42054100126998a23a260bd9cb436413ac78ab990c99634",
+          "bytes": 20952
+        },
+        "experiments/src/full/mobile/MobileHome.tsx": {
+          "sha": "2ada905c658670dfe33f7286b9626cc95ace68dded740402c7a0d044e223f912",
+          "bytes": 22540
+        },
+        "experiments/src/full/mobile/MobileInstrument.tsx": {
+          "sha": "658062654459a81b297cff5e0e0f93659bbe07905ea03dc0febf7d6beef6e5b0",
+          "bytes": 29187
+        },
+        "experiments/src/full/mobile/MobileTelemetry 2.tsx": {
+          "sha": "1f985ed5c88d94f209c5f9311b60a46e9eecc7e88507080e9e55f3301ccc14ba",
+          "bytes": 5461
+        },
+        "experiments/src/full/mobile/MobileTelemetry.tsx": {
+          "sha": "1f985ed5c88d94f209c5f9311b60a46e9eecc7e88507080e9e55f3301ccc14ba",
+          "bytes": 5461
+        },
+        "experiments/src/full/mobile/reveal 2.ts": {
+          "sha": "37eb90b4d851d65963f5f75fc4e3891ecd898f84f45a5f4df0e8a12bbcf1ebf0",
+          "bytes": 4725
+        },
+        "experiments/src/full/mobile/reveal.ts": {
+          "sha": "37eb90b4d851d65963f5f75fc4e3891ecd898f84f45a5f4df0e8a12bbcf1ebf0",
+          "bytes": 4725
+        },
+        "experiments/src/full/mountainAsset.ts": {
+          "sha": "935d5f5cfbb540b01f02d6d0e80e3aea438d78a35adfc19674862396af28a265",
+          "bytes": 7668
+        },
+        "experiments/src/full/mountainLook.ts": {
+          "sha": "5b44bd7b5c44554a3f5e2c47a869ba96190fd086e3e62091002c075b0d69e21d",
+          "bytes": 42495
+        },
+        "experiments/src/full/mountains.ts": {
+          "sha": "90b6c10f90eb7ad3aa80c8360a52a0bbb92ad7225338579c1d2e24058897c41b",
+          "bytes": 12848
+        },
+        "experiments/src/full/siteHeader.ts": {
+          "sha": "5820234529e20826f77f212db5add347fa85c0264b1b67e98d5cd6ef20a0caa2",
+          "bytes": 13009
+        },
+        "experiments/src/full/styles.css": {
+          "sha": "dea48a3dca22d95250c224f7a4f549fbc81044b4647e4babb69d9ceec0a7f5f2",
+          "bytes": 111608
+        },
+        "experiments/src/full/useJourneyScroll.ts": {
+          "sha": "2832e4f8ed22951e294893238e969cddb67fe20435353214c23590659a735586",
+          "bytes": 14777
+        },
+        "experiments/src/lib/ascent.ts": {
+          "sha": "9feb962b846a255761892c322d15679ac6f07c506a7294d41e637f726825aacc",
+          "bytes": 2878
+        },
+        "experiments/src/lib/capabilities.ts": {
+          "sha": "7288c2747b0ccf2f4f870600969771186a906bb4cb5e54f1da71de094f035046",
+          "bytes": 5060
+        },
+        "experiments/src/lib/useScrollDriver.ts": {
+          "sha": "e686a8177cfc9b2d061c5e671400bd3888f8548319f7c30c517e7af24882bb0f",
+          "bytes": 3469
+        },
+        "experiments/src/main 2.tsx": {
+          "sha": "1b9fd3f8ede692746b99d4c021c65850bf98e4b0195b76967cfb1494a56c97b1",
+          "bytes": 1415
+        },
+        "experiments/src/main.tsx": {
+          "sha": "1b9fd3f8ede692746b99d4c021c65850bf98e4b0195b76967cfb1494a56c97b1",
+          "bytes": 1415
+        },
+        "experiments/src/styles 2.css": {
+          "sha": "cc61cb70ca507cd6453efa4c38054be1f81b9a9dd6e50f75f3606c515cf6d6af",
+          "bytes": 9382
+        },
+        "experiments/src/styles.css": {
+          "sha": "cc61cb70ca507cd6453efa4c38054be1f81b9a9dd6e50f75f3606c515cf6d6af",
+          "bytes": 9382
+        },
+        "hirdeteskezeles 2.html": {
+          "sha": "5f24754c20ce1b027881d200eed3fc37e8aa2e8941d6715cb857e151d74f5996",
+          "bytes": 21985
+        },
+        "hirdeteskezeles.html": {
+          "sha": "d78217bb3db84e31bb0d043461fed1283c2713fc28b3c368291de697b1f17c5c",
+          "bytes": 40620
+        },
+        "impact-program 2.html": {
+          "sha": "e95859e5c58a463cf1642f933493e2803e7ec02b3ae5cb14ceeb0d03e02b4efd",
+          "bytes": 24375
+        },
+        "impact-program.html": {
+          "sha": "45ba8c3d21fa8cf3fcc3b86971969f05f60e428d60dd7403e792783ed52929bc",
+          "bytes": 41173
+        },
+        "impresszum 2.html": {
+          "sha": "6200577c6d5904b140b51f0baa2d35693efa1820d9e22c44b6ab5e5847088064",
+          "bytes": 9191
+        },
+        "impresszum.html": {
+          "sha": "a066dc842706934d4a5d0575e81d8683e36b6b17c245ccc82e3a471c46877d64",
+          "bytes": 20580
+        },
+        "kkv 2.html": {
+          "sha": "f2b28fbb711160c966fae81314fd9c409d794b8784a6e06cbef47f1e9c5cae01",
+          "bytes": 20892
+        },
+        "kkv.html": {
+          "sha": "76a5b2927a457173bb19332f858f5c8900b9179617b5c2c948e4b902f61adf87",
+          "bytes": 39705
+        },
+        "munka-barbershop.html": {
+          "sha": "02a55351b08c856a7022eaa1bab599b9d96520153af370cd1e35325fb644374d",
+          "bytes": 26812
+        },
+        "munka-mentaltrening.html": {
+          "sha": "8e5607d885a492cec8db657db5e172a8fa7762e41f4f312a5bf6822ffad4e050",
+          "bytes": 26831
+        },
+        "munka-rapidkert.html": {
+          "sha": "3c0c4198d86cd5d356a76cc5e8e1f59001e5d5a7ed0d14b533f3071bda00aaf0",
+          "bytes": 35574
+        },
+        "munkaink.html": {
+          "sha": "b0bbc9a831cfec987c4d4bb14873e928f8576aaa23734f27b03620045434d201",
+          "bytes": 29183
+        },
+        "nagyvallalat 2.html": {
+          "sha": "68c71dcf03288ae21cbdc6e51627f6ed338a89d0744ea563aaed16c6e200ef58",
+          "bytes": 21686
+        },
+        "nagyvallalat.html": {
+          "sha": "ee9949790bd477c5ec5755a0ca3977589a36772a9253617cf01994cfa335b539",
+          "bytes": 39659
+        },
+        "netlify/functions/lead-contract.mjs": {
+          "sha": "8dc572b6307c32bdc36d95b8bc0b845bb0e6079c6d24b01cf8b1594ac2dd7a23",
+          "bytes": 33643
+        },
+        "netlify/functions/lead-notify.mjs": {
+          "sha": "87d578bab6f6410ded4b64e139ae86b3a1fe77769ecf91583ad7eeba1d5fe34d",
+          "bytes": 8002
+        },
+        "netlify/functions/portal-analytics.mjs": {
+          "sha": "129028d0a6d51d79d93562ae614b65ecb93f82fa57db8fff1accfbe437efdb8c",
+          "bytes": 48419
+        },
+        "netlify/functions/portal-health.mjs": {
+          "sha": "3aad417df1915c8f5258767eec3ab17da38ed5788725c3b9594be657cf53ecdd",
+          "bytes": 8617
+        },
+        "netlify/functions/submit-lead 2.mjs": {
+          "sha": "2b4892bed5c386f549fde16b23cdc6c282d030372416ddef1bc360ae25a7d127",
+          "bytes": 7026
+        },
+        "netlify/functions/submit-lead.mjs": {
+          "sha": "02a65a84a12990384695417cf10b125f1c3e1818f2be722d6ba2e92bc82f5a34",
+          "bytes": 21128
+        },
+        "portal/index.html": {
+          "sha": "345d4ed0749185337897928a24d0fd67c0e11f98dfd4ee90e4fb3f224734e993",
+          "bytes": 1903
+        },
+        "portal/src/App.tsx": {
+          "sha": "068d87d90af5e29814296b9b248407c8b8684cb2033408043efb229c952280b9",
+          "bytes": 8158
+        },
+        "portal/src/components/charts.tsx": {
+          "sha": "ff1a13b63ea3ab2f047cdc04cbda1b6f403548dd076f183f3c6949cdb9dc491d",
+          "bytes": 16377
+        },
+        "portal/src/components/shell/PortalShell.tsx": {
+          "sha": "115e61defa89acc972ad327019a57ae4d10129de3aecb5563341b43971fc3d9c",
+          "bytes": 17213
+        },
+        "portal/src/components/ui/index.tsx": {
+          "sha": "6987eabf080d020f35d68fc6f8e72b8d341f9ba917f231fe16e8afd9c98d810f",
+          "bytes": 22834
+        },
+        "portal/src/features/auth/AuthProvider.tsx": {
+          "sha": "d8d563142973e4d8c01117b63fe01999dd1546c9b36e43e8ab1bb91265a99934",
+          "bytes": 5328
+        },
+        "portal/src/features/auth/pages.tsx": {
+          "sha": "a57cfe04fe81e57f6d140c44fdd34c25833c87508a33c2e049642395734327e0",
+          "bytes": 8512
+        },
+        "portal/src/features/auth/ProtectedRoute.tsx": {
+          "sha": "ac3a32b04e9aa9a9e4823e95cb4620567fa305fca44d4a361a6e85bab5a5b9ed",
+          "bytes": 2278
+        },
+        "portal/src/features/sales/bits.tsx": {
+          "sha": "b72942a82276be9d849988dbc30258f77dd78e1876f6981227375c186d7b478b",
+          "bytes": 1341
+        },
+        "portal/src/features/sales/OpportunityForm.tsx": {
+          "sha": "e487f5d8ba3643cdc6f899cabbda55397ad3a08f7263c38062a177db494e8c04",
+          "bytes": 7763
+        },
+        "portal/src/lib/analytics.ts": {
+          "sha": "ef7e50f307a93924b7e8297a7118d4d6a05e2bf9b83b15342448c531f2bb4887",
+          "bytes": 11336
+        },
+        "portal/src/lib/business.ts": {
+          "sha": "6713c131c68434375380353f3e3046f8550d2ae857221465a281d0a2ec3dee7b",
+          "bytes": 15219
+        },
+        "portal/src/lib/health.ts": {
+          "sha": "641048cdcf2d9c5df7dd3a8dfeed076deded5243d23ef739696ed2d055cc6ee2",
+          "bytes": 4580
+        },
+        "portal/src/lib/leads.ts": {
+          "sha": "9dd8cf501cdf36196a4954729ace5b5ba9d14b0cd9fc3a884a8b0203e3f28b47",
+          "bytes": 21330
+        },
+        "portal/src/lib/money.ts": {
+          "sha": "9290de6720c1eae35f9f9bc7b16f9b1e4dd6113cd7941c42e73071dea26be5f4",
+          "bytes": 8108
+        },
+        "portal/src/lib/operations.ts": {
+          "sha": "86f5e21a0df97228c2be5cf986c0e9c98ac97d669f487143bdbde71991645f82",
+          "bytes": 25694
+        },
+        "portal/src/lib/permissions.ts": {
+          "sha": "c77ed36b192e7b226e1bca2e2c429344d4e80cbeabb368d44bba7d63b80c843c",
+          "bytes": 4621
+        },
+        "portal/src/lib/pipeline.ts": {
+          "sha": "c434a9f4181c7702dfb64f9210d1273420e9e04405048e6fb779efdbe7a25657",
+          "bytes": 25893
+        },
+        "portal/src/lib/records.ts": {
+          "sha": "d3ec81c8e2a6cd93a808e7bdd12a4a2442e79279f866a1c2aed1f72a2a1c4c12",
+          "bytes": 8416
+        },
+        "portal/src/lib/sales.ts": {
+          "sha": "62bbeef1f1491a56d361b20fcc6b235e17e642c1cb1a36654f44208652a67d84",
+          "bytes": 17924
+        },
+        "portal/src/lib/scope.tsx": {
+          "sha": "2c03576f376da58e78d649119e24d95d892a4f54e2a1c2eaba6f083894d65f93",
+          "bytes": 2765
+        },
+        "portal/src/lib/supabase.ts": {
+          "sha": "cfd6e9d59e67d4c4694ee321bde4f01e10bdaeb4201b0e92ce26f15b1fccf5c5",
+          "bytes": 2243
+        },
+        "portal/src/lib/useRows.ts": {
+          "sha": "73d01d03d70da7e1f5973b7ef72013095bfc0ac07003a78b5ebe02adcda6a474",
+          "bytes": 2736
+        },
+        "portal/src/main.tsx": {
+          "sha": "b37c149cf210ae845aad26ea48178436580d9037181b9845463c9ed7761f4089",
+          "bytes": 309
+        },
+        "portal/src/pages/analytics.tsx": {
+          "sha": "8ec5aa2faadf85cffd2a2a7381283b572ec7ecbc477f2f6b63a0fa01bd09da68",
+          "bytes": 38397
+        },
+        "portal/src/pages/clients.tsx": {
+          "sha": "a592d6d73011822ca9b7ef97344f8db13e9611e7bd60e56d3ea7e2653570a87c",
+          "bytes": 34201
+        },
+        "portal/src/pages/dashboard.tsx": {
+          "sha": "f7f28369b9344fafbee22bf4b17ecb874baf715812073c88bd5f0eab4f1ca99b",
+          "bytes": 46979
+        },
+        "portal/src/pages/lead-detail.tsx": {
+          "sha": "22fb7b98f5b56366d6f1ea483e334beb406daeb2c574b6c40170baf729d54f85",
+          "bytes": 20619
+        },
+        "portal/src/pages/leads.tsx": {
+          "sha": "769f3d070010a58bce26e092c40c36e917acf348783ea548623ebf36c301957b",
+          "bytes": 11758
+        },
+        "portal/src/pages/not-found.tsx": {
+          "sha": "5ad29a7699d356ed36180be8f575a3e6253c89796ba25c90f7ac69edd3fbd9fb",
+          "bytes": 775
+        },
+        "portal/src/pages/opportunity-detail.tsx": {
+          "sha": "4ce5fc34405d296513522d2a2983897bca525b395c916f5179a470c43a6de835",
+          "bytes": 36937
+        },
+        "portal/src/pages/projects.tsx": {
+          "sha": "ea03a172906796cf24417578b8ee167765507438fc613eecab3b89486f79eec9",
+          "bytes": 51703
+        },
+        "portal/src/pages/sales.tsx": {
+          "sha": "6e882915829c9d1f3a98b0b4377c7ca377c25b8dc1d015470aa9c48774eea822",
+          "bytes": 29566
+        },
+        "portal/src/pages/screens.tsx": {
+          "sha": "5c6151f0f20457d13e02b3babfc5a56f9acf921c94561d2fe783d8e29ccce77a",
+          "bytes": 9140
+        },
+        "portal/src/pages/system.tsx": {
+          "sha": "5d3d8a633e2f7a89ef1f7ca8d6e2941ce2da81ddd6d745e6b03276f5c9f59e64",
+          "bytes": 6119
+        },
+        "portal/src/styles 2.css": {
+          "sha": "f084fbd9b3d994d7671283d5836d47d3b122988801771cc6d957c6c4da969657",
+          "bytes": 1031
+        },
+        "portal/src/styles.css": {
+          "sha": "22c60d47917821cfd3e128509956b14e1eb06ac765d756e36d5dc06c4d7f49d0",
+          "bytes": 3165
+        },
+        "portal/src/vite-env.d 2.ts": {
+          "sha": "de410db1d645b86b919989d390a6d45e2ef2065f79b1ed1234b0179ea430ea0d",
+          "bytes": 281
+        },
+        "portal/src/vite-env.d.ts": {
+          "sha": "dd4e30a5d9c08c5da41b696e5aad68a60fe5ea2598f2bd3f3cb0baf0550efe59",
+          "bytes": 464
+        },
+        "public/draco/draco_decoder.js": {
+          "sha": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f",
+          "bytes": 512465
+        },
+        "public/draco/draco_decoder.wasm": {
+          "sha": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac",
+          "bytes": 192420
+        },
+        "public/draco/draco_wasm_wrapper.js": {
+          "sha": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6",
+          "bytes": 58456
+        },
+        "public/draco/MANIFEST.json": {
+          "sha": "2dded6c5ea055f4f234fe29f5eb596bf6ecbf821b85bf7ceb661da4e5dda5c68",
+          "bytes": 371
+        },
+        "public/models/stratos-altimeter.glb": {
+          "sha": "cdf9d9c51011eff59cb09418d99978a2f9284fc66156baa646a7c18bd6b8ab2f",
+          "bytes": 396912
+        },
+        "public/models/stratos-mountains-desktop.glb": {
+          "sha": "e86c3a02069333c0f8d7b06e47d9a5710d5482ab2cfddd64f3c580c71aaf4c80",
+          "bytes": 345744
+        },
+        "public/models/stratos-mountains-mobile.glb": {
+          "sha": "e36037f499a0177ab5bbaa01e321d07522717a365b0800abd8e330a1bde4e2a3",
+          "bytes": 177816
+        },
+        "rolunk 2.html": {
+          "sha": "94f19c6f819c1b4fe44d3ad2175fc1e38b75f81851d94e3129d1c580ad2aca37",
+          "bytes": 33137
+        },
+        "rolunk.html": {
+          "sha": "6bd904c0abd43352f62a0a63526e838eca16802babe5e52aac00e171c21f5f00",
+          "bytes": 48742
+        },
+        "supabase/checks/lead-envelope-preflight-quick.sql": {
+          "sha": "c01cced2f85512222234d83ffeb0d3781b0d3bee30a9cb35e79afbec60134730",
+          "bytes": 5559
+        },
+        "supabase/checks/lead-envelope-preflight.sql": {
+          "sha": "9301f92b9d2f5c11200a3d2e30642fca2b86f1c1114473dddd8c599f5c685db2",
+          "bytes": 5081
+        },
+        "supabase/checks/lead-envelope-rollback.sql": {
+          "sha": "6ebdac4c24a1b31948125ee2c375c95c48320fbcfb49334b55f008901526dfc9",
+          "bytes": 3868
+        },
+        "supabase/checks/lead-envelope-verify.sql": {
+          "sha": "581a03601d0d8aedd2119df0fedf1fc8e8b0fb0b556449f0e8044e23505b492d",
+          "bytes": 5932
+        },
+        "supabase/checks/revenue-operations-rollback.sql": {
+          "sha": "e089d6d50dae2f523e859bb48fc56cc65f666816897388bb0a9cd2c3d344433a",
+          "bytes": 7730
+        },
+        "supabase/checks/revenue-operations-verify.sql": {
+          "sha": "403dcc20761629efa9a92cbf640d8daf95a4ae96c824888a680eb9f46da8f420",
+          "bytes": 8925
+        },
+        "supabase/migrations/20260801000100_schema.sql": {
+          "sha": "6772943ac76d86367d66328101ba8bd52701d74666f2bfd23d831bac2f405a5e",
+          "bytes": 8719
+        },
+        "supabase/migrations/20260801000200_rls.sql": {
+          "sha": "10b90d2db45e40f8b6f7fdab2e8c47a006a9fb956aace360564158f7fb97c56d",
+          "bytes": 9478
+        },
+        "supabase/migrations/20260805000100_lead_envelope.sql": {
+          "sha": "1af0f33b585ff861ee8391a83f0de5b444353437e75418e06b0cf69986415713",
+          "bytes": 4661
+        },
+        "supabase/migrations/20260814000100_lead_pipeline.sql": {
+          "sha": "9bf7926a519193fd19146a9c25a967318755e01a3c3cff9e68d68be6a9f08597",
+          "bytes": 7897
+        },
+        "supabase/migrations/20260816000100_revenue_operations.sql": {
+          "sha": "b67a841775989d99b0782843577d7d60dba06b5bca88cec5783f9f2a3dacdcee",
+          "bytes": 53374
+        },
+        "szolgaltatasok.html": {
+          "sha": "030d9f188a3dc56a8fc690a672278a2b4bcf0cdb4bba9401d47a9cb299b05ab2",
+          "bytes": 35842
+        },
+        "ugyfelszolgalat 2.html": {
+          "sha": "ec8a5190d7ed74627b48ca1f8d612dc0add1a18e18388f680aac81e65cbaaa62",
+          "bytes": 13846
+        },
+        "ugyfelszolgalat.html": {
+          "sha": "b0689ab60d19f372592031f5334a50bdfbcb391ecbff80179592009ed4a6c041",
+          "bytes": 32929
+        }
+      }
+    },
+    "test": {
+      "hash": "99b886cb8c1687d0547aa884b752f10e2468d988ea1a9ca27076b23268533d6f",
+      "fileCount": 86,
+      "bytes": 1381192,
+      "absentRoots": [],
+      "evictedPlaceholders": [],
+      "files": {
+        "experiments/terrain-mask.mjs": {
+          "sha": "14c64d09c800825fb34deaa99f475397130475b57e9c474794648185efeff15e",
+          "bytes": 11995
+        },
+        "experiments/tests/ascent.spec 2.ts": {
+          "sha": "95ef3ec3ff0e6d9b919bc885ff29fcd559b0aa5d0fa173b47305e63b42b512d6",
+          "bytes": 14457
+        },
+        "experiments/tests/ascent.spec.ts": {
+          "sha": "95ef3ec3ff0e6d9b919bc885ff29fcd559b0aa5d0fa173b47305e63b42b512d6",
+          "bytes": 14457
+        },
+        "experiments/tests/full-ascent.spec 2.ts": {
+          "sha": "a2d12818c1f7eda76b41accf73337a4f6e255d74cecf2af047ef0ecc83693135",
+          "bytes": 66348
+        },
+        "experiments/tests/full-ascent.spec.ts": {
+          "sha": "f6891223d3cdeec5f6df60fbf23884a64a62f0948fe820e620c74ba0f3f13304",
+          "bytes": 77377
+        },
+        "experiments/tests/mountain-framing.spec.ts": {
+          "sha": "95a94b113335ae0a31e4d2ef2e13348895504662b69dbc9ab2621524c3a4b229",
+          "bytes": 14198
+        },
+        "experiments/tests/portrait-journey.spec.ts": {
+          "sha": "9058d313e9e72b32c5b437dcb40d205d40d870c3a0e96a6d23a34c5abb366f3c",
+          "bytes": 51673
+        },
+        "experiments/valley-metrics.mjs": {
+          "sha": "0a2ff69fd81ae48c456bc8462439bd3ac6daf261aabf6510f1dc09ad9ad7ec07",
+          "bytes": 16572
+        },
+        "scripts/assemble 2.mjs": {
+          "sha": "52cb469c692b58981c66ef8b0e2b0619cf83de5470e7aedbb9870e2be3a6c5d2",
+          "bytes": 5648
+        },
+        "scripts/assemble.mjs": {
+          "sha": "4fa60c1557ff7956e7bbcad0ae7f444461e17e0120aad6eb1e0d620d94808cf0",
+          "bytes": 10246
+        },
+        "scripts/content-inventory.mjs": {
+          "sha": "a96ff257aac7171a98a90bb856610d4261fbe2285c8828d7b8c835112f85980e",
+          "bytes": 14111
+        },
+        "scripts/conversion-audit.mjs": {
+          "sha": "0f6af204a3f7c3dce06391065859ade3764f79ccebf5629d5f12a7c1806ad191",
+          "bytes": 15109
+        },
+        "scripts/fingerprint-assets.mjs": {
+          "sha": "fc7e259e085ff6590c0a738ae35a0a225bfaa8e6b55c25a8cfd11638d1faec2b",
+          "bytes": 8218
+        },
+        "scripts/font-metadata.mjs": {
+          "sha": "5c8506f263f50cf2f6f7891f83b4c2027f9440dd96cd00c4e1ec0f6573104312",
+          "bytes": 9708
+        },
+        "scripts/gate-matrix.mjs": {
+          "sha": "97fef27451468e682fa0e6d9e21b4c2f897b15fa34aca7811ff1e41342b54cb5",
+          "bytes": 7584
+        },
+        "scripts/gate-report.mjs": {
+          "sha": "f46099962444f2ef604f84f61ae278dfb226248173b1a9d01644e172b7f45944",
+          "bytes": 9091
+        },
+        "scripts/hermetic/curate-final-gate.mjs": {
+          "sha": "9a0be1dc7ca05de5ecdee8454cae80e8b4c038915a145974743000f158fb37eb",
+          "bytes": 11909
+        },
+        "scripts/hermetic/diagnostics/contract-a.spec.ts": {
+          "sha": "57901a976b2ea922d5d4626d336d71d77f520d4fb6f8f80290e49114ad7fb268",
+          "bytes": 8134
+        },
+        "scripts/hermetic/diagnostics/contract-b.spec.ts": {
+          "sha": "ae72b99dba19330a1a70b10a442f2b95b9e2f319a91c3a3f5488fda4cd46a7d2",
+          "bytes": 10204
+        },
+        "scripts/hermetic/diagnostics/dispatch-matrix.sh": {
+          "sha": "c954ef28273d171c79529ed4ede991b30ae5ccf445fe64e38745853937d9d91c",
+          "bytes": 1658
+        },
+        "scripts/hermetic/diagnostics/dispatch-summary.mjs": {
+          "sha": "18ab960fda0118a98b06db98a278a863a37cd1a14b88c66795eba10221dc42b7",
+          "bytes": 1601
+        },
+        "scripts/hermetic/diagnostics/dispatch-worker.mjs": {
+          "sha": "c366db64daa50d0452025bd9283558933d702048b134a6ea66de2f8891d530e5",
+          "bytes": 15156
+        },
+        "scripts/hermetic/diagnostics/history-chain.spec.ts": {
+          "sha": "a4b2dcbc7bd1539df017230be734d4d47f56b3a9aee8932ced9f875ca68881ee",
+          "bytes": 17160
+        },
+        "scripts/hermetic/diagnostics/lead-chain.spec.ts": {
+          "sha": "c5e50249697760350715402a0f669113e2ee9395d542a0be6a80019a97cb1505",
+          "bytes": 14054
+        },
+        "scripts/hermetic/diagnostics/nav-boundary-selftest.spec.ts": {
+          "sha": "8b38aebf90e2aa39979320d9661917f02fc2ed0a337b58dbbcfe6fdba4d30e16",
+          "bytes": 4326
+        },
+        "scripts/hermetic/diagnostics/nav-boundary-stress.spec.ts": {
+          "sha": "8d685e1a5d96a7f6eda749f81ac8f2e0ec19108d3108dc838d5f2f3b0778e7c5",
+          "bytes": 3068
+        },
+        "scripts/hermetic/diagnostics/playwright.diagnostics.config.ts": {
+          "sha": "f1b16f78d98b2f4433030e0afde4d95770b11c547524fba6ed4581f06fa0b793",
+          "bytes": 2423
+        },
+        "scripts/hermetic/diagnostics/selftest.sh": {
+          "sha": "c045192080c467020aafc9f70aff0fb02a51a41ef8a13ab36d9f82ea3bcf6672",
+          "bytes": 1459
+        },
+        "scripts/hermetic/diagnostics/stall-server.mjs": {
+          "sha": "781c20381312b6aeb3e41d9b08a335aee1fcc245fcb872e2b7be6f256c414e43",
+          "bytes": 2556
+        },
+        "scripts/hermetic/diagnostics/verify-selftest.mjs": {
+          "sha": "3f3cf881bef8fad53144727592c72d218ccad18d03df5a30d44bb015938e539f",
+          "bytes": 5324
+        },
+        "scripts/hermetic/failure-records.mjs": {
+          "sha": "e06867a0d2f0cd33725a971d4e1f2574a2fe9cfa75f2c44619d777c88628c292",
+          "bytes": 6160
+        },
+        "scripts/hermetic/gate-run.mjs": {
+          "sha": "68616b05341e3e97abf253845e4cbd61e3058821823540bd48df04d78c392973",
+          "bytes": 29601
+        },
+        "scripts/hermetic/manifest.mjs": {
+          "sha": "3dbc7dfb3442f77fb8aba72a87fd95a17f4f238136aeda1793bf56e3bb65672d",
+          "bytes": 13730
+        },
+        "scripts/hermetic/nav-dispatch.mjs": {
+          "sha": "307a40065bdfe2584ffc3c2ddecee72ff7af926f14ae656f1aca1a2dafefc6a4",
+          "bytes": 14541
+        },
+        "scripts/hermetic/nav-stress.mjs": {
+          "sha": "2f5eb66f92b1dd8a2c6014d80feb7502ab7e5bd02249eb7154ff7baa6e5b7130",
+          "bytes": 12404
+        },
+        "scripts/hermetic/six-run.mjs": {
+          "sha": "4943e3694511d06545fe7ec454d613aec702c8418208cbe21a1df0af1505de92",
+          "bytes": 8688
+        },
+        "scripts/meridian-i18n 2.mjs": {
+          "sha": "89daac0d18fc090da66a164f4fa74a1eca21cfee7e7e85274e6b22933c239dcc",
+          "bytes": 5584
+        },
+        "scripts/meridian-i18n.mjs": {
+          "sha": "89daac0d18fc090da66a164f4fa74a1eca21cfee7e7e85274e6b22933c239dcc",
+          "bytes": 5584
+        },
+        "scripts/mobile-altimeter-review.mjs": {
+          "sha": "73889ede637d7ee7b0dc8ea3fe499419d1dbbf04466245389ff71f73f72b40a6",
+          "bytes": 17075
+        },
+        "scripts/portal-shots.mjs": {
+          "sha": "a883410c334d77789a63b91daeeab0db0d0d7fe3e4e40f4982ad8f16e37fa10e",
+          "bytes": 80137
+        },
+        "scripts/recovery-link.mjs": {
+          "sha": "1613fba2c9b13fbf335f4d9ca8b27763aba57fec52b32c13b243ed256c2a7924",
+          "bytes": 1819
+        },
+        "scripts/review-package.mjs": {
+          "sha": "13c2b3111e9ff5254a4d75dc771b2502e683b09b4e7dc2df9eb172f9d5efe767",
+          "bytes": 10760
+        },
+        "scripts/route-audit.mjs": {
+          "sha": "c5d6b839ff2682d67ad8dc022309bbca9c8df685e2cef531028eeef6884ff3fb",
+          "bytes": 16212
+        },
+        "scripts/route-matrix.mjs": {
+          "sha": "eb3830438558c455c99134ddb9e968c90d4a4d214cccca56cd48094c34af2be7",
+          "bytes": 12490
+        },
+        "scripts/secret-scan 2.mjs": {
+          "sha": "7e4bf31b1325ae6552c7fb59614ac23040976241cb02e93ad6ecaa7620c04c80",
+          "bytes": 4160
+        },
+        "scripts/secret-scan.mjs": {
+          "sha": "3b8d6aa6f536092022242ee7db9fa8404851ecaad12c5d2ec48926dd075107a4",
+          "bytes": 11520
+        },
+        "scripts/seo-audit.mjs": {
+          "sha": "04b0e5acdda1bd124856910314d7c53cb8de228aa1da21c2abffa5ac4fcafb5a",
+          "bytes": 18083
+        },
+        "scripts/site-origin.d.mts": {
+          "sha": "9b18c1f07ca05adae8089e52ca82da8888b4ce768a52c9886283b3a18135ea3f",
+          "bytes": 631
+        },
+        "scripts/site-origin.mjs": {
+          "sha": "3a1672f4a122f8c8b51b96b2e059a2a12d34338b1ecbd6bce8e060a59fd91d1b",
+          "bytes": 2513
+        },
+        "scripts/sync-draco 2.mjs": {
+          "sha": "530b38d503633c8e3a0eb8b4f288c366a9b73ab996ca9f4eb3b4e2a2e472461b",
+          "bytes": 6075
+        },
+        "scripts/sync-draco.mjs": {
+          "sha": "530b38d503633c8e3a0eb8b4f288c366a9b73ab996ca9f4eb3b4e2a2e472461b",
+          "bytes": 6075
+        },
+        "scripts/sync-fonts.mjs": {
+          "sha": "326d4ee97061d8df5aefb86531d2a4adcdb90a4073420c43042c73e1d7127497",
+          "bytes": 9812
+        },
+        "scripts/test-server.mjs": {
+          "sha": "17906d911833338da5d45235670d793d081236b20099063553af7d3bb91fd289",
+          "bytes": 9121
+        },
+        "scripts/webkit-nav/correlate.mjs": {
+          "sha": "30a831c6bebf02d33ba030d58224341170e5c97cf90503afa86df97847579004",
+          "bytes": 8532
+        },
+        "scripts/webkit-nav/fleet.mjs": {
+          "sha": "36c665792e58f44c138cecae4891c2e6d54c028d6ebb1c13c37adc8b9126eded",
+          "bytes": 6256
+        },
+        "scripts/webkit-nav/matrix.sh": {
+          "sha": "2f06ec763ec9a834d6a67e1fab5f86663e3fb13b6fbd120e74ea3027de5b719b",
+          "bytes": 3147
+        },
+        "scripts/webkit-nav/nav-server.mjs": {
+          "sha": "ae409af36f274e03c8e6d2eb5fb869e602b4ed9a059490cc758142d2fa59fded",
+          "bytes": 11210
+        },
+        "scripts/webkit-nav/stress.mjs": {
+          "sha": "4fa9fe1cfdbfcab95f9bbaaead3ae50b41c2a9388f3c0165a3b8dd2eb870ec16",
+          "bytes": 27509
+        },
+        "scripts/webkit-nav/suite-loop.sh": {
+          "sha": "47ec3c87accf857d93a921f77c127a23408adb5a27b444db03e7e97127d5f2af",
+          "bytes": 2271
+        },
+        "tests/analytics.spec.ts": {
+          "sha": "fd3fe75c95f8bd60f808c851f1531cd4bee6b9f5e44d4eacd2fb85bf772aeb9a",
+          "bytes": 34841
+        },
+        "tests/attribution.spec.ts": {
+          "sha": "c8d7a4ab7bc9b2e8d7d6295e65d842695c85ed98a695ded84e9d662406b80208",
+          "bytes": 11390
+        },
+        "tests/gate-independence.spec.ts": {
+          "sha": "475fa91b2586f59dd262c23f0505a0bf8e3d9821721256b601ef3daccf2a344c",
+          "bytes": 7707
+        },
+        "tests/harness.spec.ts": {
+          "sha": "f0e8d42c881925443cd61f870f7009b451ee77812a7355350b6689ff4031fe04",
+          "bytes": 8178
+        },
+        "tests/helpers/homepage.ts": {
+          "sha": "39c173ee43b3296627d6c0f8b6713cff0e12fd9ddfe7f3459f84457d5b8c6c53",
+          "bytes": 3665
+        },
+        "tests/helpers/navigation-boundary.ts": {
+          "sha": "5701f6643fe0c0c32f94b89723f8e0ff727c329028488ed391fc444c741f3255",
+          "bytes": 23460
+        },
+        "tests/helpers/reduced-motion.ts": {
+          "sha": "fdd27086a90fa8addb754b591520db6382ca1fba2fec0ba50435a8962d4fdd5f",
+          "bytes": 4290
+        },
+        "tests/homepage-chrome.spec.ts": {
+          "sha": "5cef69dd8165b9204a7fe03c37e6ab8bc0d15455eef4ddad309ee8f734082082",
+          "bytes": 54000
+        },
+        "tests/homepage-history.spec.ts": {
+          "sha": "334377ff2736fc9207c9f9717f46240f08a215fda4f961af22d0ccb9d1c7d5fc",
+          "bytes": 15599
+        },
+        "tests/homepage-modality.spec.ts": {
+          "sha": "5cefc5bf89fba8e053a01c39c43dad30e206cec34e6c5c0e2eb6a241095a137b",
+          "bytes": 25110
+        },
+        "tests/lead-endpoint.spec 2.ts": {
+          "sha": "1f51dacd766263abc209f1d3aec591baf40e2827ad91870091d9b4de5cb4b547",
+          "bytes": 6131
+        },
+        "tests/lead-endpoint.spec.ts": {
+          "sha": "6bf42d27aa5c685a192d09e532e3a4f031f64ebc49bea0746f09852ba1ee17f3",
+          "bytes": 35983
+        },
+        "tests/lead-forms.spec 2.ts": {
+          "sha": "6d5c9f4dea2103ea48b6acbc8c99c9e0b1817cd1d08b153fd18437939279cfec",
+          "bytes": 15657
+        },
+        "tests/lead-forms.spec.ts": {
+          "sha": "d23cfe39af0c36ee94079b507b01409c1f0acfccfd614c6b37caab976270cd83",
+          "bytes": 31561
+        },
+        "tests/lead-notify.spec.ts": {
+          "sha": "b29e120858b22654859d82cd9f88aa151f9cd9b71dbb85b6b92790894f6c7227",
+          "bytes": 11625
+        },
+        "tests/mobile-homepage-simple.spec.ts": {
+          "sha": "de4f6038bcb390dd55394f1dfd01af9b6564cdad9767b41fea14edf6cf912d34",
+          "bytes": 62817
+        },
+        "tests/not-found.spec.ts": {
+          "sha": "043f60fe892eda8ab8ad3a391afbe7604bca1a61db095f9530ed9221500ff230",
+          "bytes": 5496
+        },
+        "tests/portal-analytics.spec.ts": {
+          "sha": "2857226a419d477ecc5c78f3acc7119987a8043e75eff87be5e11cc322c05648",
+          "bytes": 48296
+        },
+        "tests/portal-control-room.spec.ts": {
+          "sha": "00b90ebdad947c53915910e9650c2a66485e98ed5a55cfa5047ca5a3bfcb75d0",
+          "bytes": 27323
+        },
+        "tests/portal-health.spec.ts": {
+          "sha": "1efa29d235a0cdc9ca1c182baa1040214ce6a582f6481fbbea2fcdc38dd3668f",
+          "bytes": 12181
+        },
+        "tests/portal-revenue.spec.ts": {
+          "sha": "c3d7c0697a9240961e5f24655aa6247ebd4f100e4965795671c69f6cf4a49208",
+          "bytes": 39966
+        },
+        "tests/portal.spec 2.ts": {
+          "sha": "fce31a993f7517b3841aaac0acf841c0f28a2de5c99e48bb64a86fbb89130f06",
+          "bytes": 5623
+        },
+        "tests/portal.spec.ts": {
+          "sha": "648bb51e0f5f3edfc6c3249a8761fcfbd58532d3f01aeb8138766180092e8183",
+          "bytes": 22072
+        },
+        "tests/public-site.spec 2.ts": {
+          "sha": "0c037d6b4f6c4cca3c1994e16c5204c8ccd7d4b3fa7fc7728aa9b6abfed22279",
+          "bytes": 15947
+        },
+        "tests/public-site.spec.ts": {
+          "sha": "07deeef075e1f3a6cbb3d979f9398582f99f4c4adb4ee87242819dee808e71c1",
+          "bytes": 22007
+        },
+        "tests/redirects.spec.ts": {
+          "sha": "466820f6e12cff78e26e6112fe1d3e442e9d1bfb09893762b9d78cd228261895",
+          "bytes": 5862
+        },
+        "tests/structured-data.spec.ts": {
+          "sha": "7586dec900e5d8b0f37cc1f2c60f7dacba0c85a0cd92a96108a7ccbfcb2ea67f",
+          "bytes": 16881
+        }
+      }
+    },
+    "config": {
+      "hash": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+      "fileCount": 14,
+      "bytes": 260963,
+      "absentRoots": [],
+      "evictedPlaceholders": [],
+      "files": {
+        "experiments/package-lock.json": {
+          "sha": "48fde09394aacb64ef2cd09ae2feb7df4e46997c2788340afd8f9c2d2adbf90f",
+          "bytes": 96210
+        },
+        "experiments/package.json": {
+          "sha": "ec4511b0b26ada173adf1285f3126a5de25af5b61617155552d571e30d625256",
+          "bytes": 1215
+        },
+        "experiments/tsconfig.json": {
+          "sha": "e8d6f7b50828db3953e21c7e92584f9206b3cd2551b4012507372afbb7fe9ce3",
+          "bytes": 107
+        },
+        "netlify.toml": {
+          "sha": "07ae2cc2590df28bc0f9ab8d734d19ebeee46041a59e81b6e4119e865abb6ef0",
+          "bytes": 13747
+        },
+        "package-lock.json": {
+          "sha": "a9c752390419aff3ce9c91a0d234479ebae5084c9645e82ea49746946a937a50",
+          "bytes": 6272
+        },
+        "package.json": {
+          "sha": "9eb85f5396cf370f4279e0242f7fc2027219b61df46e6e1d932642c9508d446f",
+          "bytes": 3503
+        },
+        "playwright.config.ts": {
+          "sha": "fa6a114b21dc9742fe593d78955285926ae1cc1e477c2d5ee55f9c3523e93d9f",
+          "bytes": 15915
+        },
+        "playwright.experiments.config.ts": {
+          "sha": "44ebc00f09b636e3ba0bc7b91370ea4482a068e7de50793d2c2189a77d6f2c1f",
+          "bytes": 2898
+        },
+        "playwright.full.config.ts": {
+          "sha": "ff903ba1cc612460343f1eefe07674ce860dcddab5bbeaaa6b796777cd1a4747",
+          "bytes": 11674
+        },
+        "playwright.mountains.config.ts": {
+          "sha": "ab62ed52787572a5494b12385f3a5653e59c4eacbc3f5cb9e243e4aea55823e3",
+          "bytes": 4649
+        },
+        "portal/package-lock.json": {
+          "sha": "4bfbce600ed7249157ef9210bf470f1158befb8dea20acbc77804a807c297a75",
+          "bytes": 102639
+        },
+        "portal/package.json": {
+          "sha": "366f2325440b0d20e42844065df596d577e5940c2027fff471834d341a8b1375",
+          "bytes": 1011
+        },
+        "portal/tsconfig.json": {
+          "sha": "e8d6f7b50828db3953e21c7e92584f9206b3cd2551b4012507372afbb7fe9ce3",
+          "bytes": 107
+        },
+        "portal/vite.config.ts": {
+          "sha": "b6f7d7e4a149f5d1c7efbdc001fa739050548b361f3419c9b930f8c2c9323031",
+          "bytes": 1016
+        }
+      }
+    },
+    "dist": {
+      "hash": "28af7fe452ee43946139cbd65215fb573d7d005e3e426f5eaab9919ee5904d05",
+      "fileCount": 281,
+      "bytes": 20293425,
+      "absentRoots": [],
+      "evictedPlaceholders": [],
+      "files": {
+        "dist/404.html": {
+          "sha": "37fa60906a963e2005d6a847f8f927c4b20ba60760db66d21b78b224af9e83be",
+          "bytes": 16139
+        },
+        "dist/adatkezelesi-tajekoztato.html": {
+          "sha": "d55ee331e2aea2b496a361dd3bab12d058fb78bb898c1b81884c429bb080c85d",
+          "bytes": 35340
+        },
+        "dist/arajanlat.html": {
+          "sha": "b925a687960474340de23ed6e5b72e575181f4e41963bd8e2038120c28a6a080",
+          "bytes": 15301
+        },
+        "dist/assets/css/chrome.css": {
+          "sha": "d233ff42702f49c9889e65440b5d58acd8d0e6ad9084719e3fc44c7b7852cd58",
+          "bytes": 35955
+        },
+        "dist/assets/css/main.css": {
+          "sha": "d8423979e5c92be9d12b9ca51f993e4defdd7171066c060d20e85b99644dc910",
+          "bytes": 67736
+        },
+        "dist/assets/css/motion.css": {
+          "sha": "6f5ffd5bdc90dd7357ca0ec268b7ecc13acdb1aa4f7b54f7f6dc157272c2cce7",
+          "bytes": 13306
+        },
+        "dist/assets/css/page-about.css": {
+          "sha": "ea17fc40cd9adf22910b202fc932d20939293e5fef4faf8399bdc34e521b6adb",
+          "bytes": 1410
+        },
+        "dist/assets/css/page-blog.css": {
+          "sha": "eb58929696c1c6e2e38f0e3efb80b2debdaaade71ab6d06b3d99bbaedf293932",
+          "bytes": 6283
+        },
+        "dist/assets/css/page-brand.css": {
+          "sha": "3718cec98a2c6dd0f0430e4a8b11422090f34b5539d3e5dc15d97cf888ae989d",
+          "bytes": 2281
+        },
+        "dist/assets/css/page-build.css": {
+          "sha": "4eba9a7a88b248adc66b6ffb96cba530fe94a673a57604e422c316b8daf3a28c",
+          "bytes": 9211
+        },
+        "dist/assets/css/page-contact.css": {
+          "sha": "c629b6e27825367e7abdc2300afce1a57a4bf06264b58825433e75fe29cc34b2",
+          "bytes": 1244
+        },
+        "dist/assets/css/page-impact.css": {
+          "sha": "c09ab307aa49428fb18643b6c371ff9270105a1b76f0024e0fd0ef927ba3c54a",
+          "bytes": 958
+        },
+        "dist/assets/css/page-quiz.css": {
+          "sha": "3634cacfde69e50904af96f378b5f3eaadc8e2d40674294e016fcf6a96542762",
+          "bytes": 1907
+        },
+        "dist/assets/css/page-rapidkert.css": {
+          "sha": "26929691b626d60cea43ebcd1a82ceb1c157cd6b0207957c913bf8d4022e56da",
+          "bytes": 9275
+        },
+        "dist/assets/css/page-services.css": {
+          "sha": "fa6111653970476fafb0a943a554984c89dd41b11f64510749c7dfff24fc3529",
+          "bytes": 6531
+        },
+        "dist/assets/css/page-signal.css": {
+          "sha": "be843c51e63f848d8e458a53c6808e9b1d0c1e2e6bd8b81225c46bd5228669f9",
+          "bytes": 2814
+        },
+        "dist/assets/css/transitions.css": {
+          "sha": "ff49195a5b9b7ec0f138e4596d6181d8a2d5599b8149aa7279f3ef0d59de6734",
+          "bytes": 14005
+        },
+        "dist/assets/css/type.css": {
+          "sha": "1873057976f4ae477293e9bbe049aa459a004a33893bcb96c1b6892a1abf1985",
+          "bytes": 17333
+        },
+        "dist/assets/fonts/aboreto/aboreto-normal-latin-ext.woff2": {
+          "sha": "42b480ebcf28fec501f377e347cc893b25b87dc06378281e0dd5876e62c84e91",
+          "bytes": 4768
+        },
+        "dist/assets/fonts/aboreto/aboreto-normal-latin.woff2": {
+          "sha": "b9663ceea4e706a82df728ef022aa9a3fa26ea8f2e5561e34048007ac39bbef8",
+          "bytes": 10636
+        },
+        "dist/assets/fonts/aboreto/OFL.txt": {
+          "sha": "da0971c73aa1773b791926b81530f3cec50c94031912f162a320263488805ef8",
+          "bytes": 4383
+        },
+        "dist/assets/fonts/archivo/archivo-italic-latin-ext.woff2": {
+          "sha": "11b6dd9960cbffe23dd7192d2ca1995ad81a857001afff29a8b84d4b1a38f3b5",
+          "bytes": 93252
+        },
+        "dist/assets/fonts/archivo/archivo-italic-latin.woff2": {
+          "sha": "d2a3a083e983d78b2e2fd848a990200b34fcb1392ed11f695096b7535ef74d88",
+          "bytes": 101888
+        },
+        "dist/assets/fonts/archivo/archivo-normal-latin-ext.woff2": {
+          "sha": "a75c792f980dc1dbe0e85efb721808267e32d2e7ef6c4a99d525c842d8712a08",
+          "bytes": 85856
+        },
+        "dist/assets/fonts/archivo/archivo-normal-latin.woff2": {
+          "sha": "4c98b9d490d1698ec95f2ff17a6c7d0e72691864c0c5d7bc2a2c161b45afe5ad",
+          "bytes": 90096
+        },
+        "dist/assets/fonts/archivo/OFL.txt": {
+          "sha": "108b4e57c9c796d3d38d0428ca7ee39de47ad93187302718d9b2d8864b9b716b",
+          "bytes": 4388
+        },
+        "dist/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2": {
+          "sha": "7db7affbce1fdee69c1ffc2641bbca289b049867f524c9d861fe35ab6670bf29",
+          "bytes": 15204
+        },
+        "dist/assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin.woff2": {
+          "sha": "1e06740a02a443fb7f3eeda8fcaa685a0f6c620e3f01e6666e847295469ce3ad",
+          "bytes": 40480
+        },
+        "dist/assets/fonts/jetbrains-mono/OFL.txt": {
+          "sha": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+          "bytes": 4399
+        },
+        "dist/assets/home/Gltf-D7FiHbmi.js": {
+          "sha": "2d1b802c86bb900bca7f0649fe66816802202043a0e3c5a6d9b5db19ba370bc7",
+          "bytes": 896910
+        },
+        "dist/assets/home/index-Bvu9zNsI.js": {
+          "sha": "3efcc2c9016df2a5a646b223cce885dff7021bf543c1cc5c4ecc815ef2cdc748",
+          "bytes": 70848
+        },
+        "dist/assets/home/JourneyScene-u8II-7Ur.js": {
+          "sha": "15a0bcc63621b223ce104715a4b7b923c64850492846658d02ed37c79c09c966",
+          "bytes": 172951
+        },
+        "dist/assets/home/main-BX_y03kk.css": {
+          "sha": "3b95b187774d7f384879f74c2ad803f4c79285e73ad75c858f17ff5f8a4b1991",
+          "bytes": 34839
+        },
+        "dist/assets/home/main-CkZ5Ow1d.js": {
+          "sha": "a7701b6361113ad2dc79a23ed1226a936cf61ed1e22e0a2d4fc62fb89ff3bdb9",
+          "bytes": 270292
+        },
+        "dist/assets/home/MobileInstrument-BYs4_m_c.js": {
+          "sha": "ec9f44d712025792c2eba6d966131476435ce9487436c2c8f635be8169977236",
+          "bytes": 4630
+        },
+        "dist/assets/home/ScrollTrigger-7Zy99s9Q.js": {
+          "sha": "3193106bd8610c1839a0f1e25ec7e80577a60902982839386709a9836f0af7d6",
+          "bytes": 43986
+        },
+        "dist/assets/img/blog-1.jpg": {
+          "sha": "6185e690ab6b81512b0eedf2efe62d4bbf86ac77201f60bd1c2bae0ef2ef7bb1",
+          "bytes": 223881
+        },
+        "dist/assets/img/blog-2.jpg": {
+          "sha": "22453704ac62daae0884a0c29f0f3834f97bcf091539056f0eb39b9b05b1880a",
+          "bytes": 203556
+        },
+        "dist/assets/img/blog-3.jpg": {
+          "sha": "de15f7d220e96c4505ef221861ce6c1889b257891258c3ddf7f4d6659f61ba0b",
+          "bytes": 222263
+        },
+        "dist/assets/img/blog-4.jpg": {
+          "sha": "c8c8670bd4b67794f14dbdb1501971855ba839a404bc273c4344c8f3e90c03f5",
+          "bytes": 243382
+        },
+        "dist/assets/img/blog-5.jpg": {
+          "sha": "ee072a73166566004aaa36e221c30011e66b8ae5b46ec9ce30787bbce5b8f89e",
+          "bytes": 225059
+        },
+        "dist/assets/img/blog-6.jpg": {
+          "sha": "d7c35af7a1ef2812e8278071c532e976c1e54e7dab5df94bb5a06f91183ff17e",
+          "bytes": 221330
+        },
+        "dist/assets/img/client-barbershop.png": {
+          "sha": "c70c5eebed850e4f84112d931be5a30a8a01613c26b884c6768c25f550723046",
+          "bytes": 367794
+        },
+        "dist/assets/img/client-rapidkert.png": {
+          "sha": "acebba1a71f4c21530fff7d9351cd61c960043769192b667006957e49e235fa7",
+          "bytes": 84733
+        },
+        "dist/assets/img/cloud-tops.jpg": {
+          "sha": "762dec10d142989f6507ef9e074bb857c2d7da0e541e1005c25aa2015d5c62e0",
+          "bytes": 113070
+        },
+        "dist/assets/img/favicon.png": {
+          "sha": "c84282b3ed3edccb241a27c51d770ccb3c4729094e800749bba25b8aa6c60d0a",
+          "bytes": 4132
+        },
+        "dist/assets/img/gdpr.png": {
+          "sha": "61962d77c6312dc4f1b819ba4b8fad4702971986baaf4609a0f8772223fe74c0",
+          "bytes": 100240
+        },
+        "dist/assets/img/hero.jpg": {
+          "sha": "2efda586869a9137be16381a530de5dd64b0af65811fb0bd07de5f5c7853c9e1",
+          "bytes": 149840
+        },
+        "dist/assets/img/icons.svg": {
+          "sha": "f17a18e1b4b9fcfecaf49d7fa505132c2a27e4d9113a0bd8ae8bfc417c24acac",
+          "bytes": 6050
+        },
+        "dist/assets/img/kivitelezes.jpg": {
+          "sha": "b4826667cb17cf599e26b70f3c325342caac80a5e3605af7ea964f7feea7fe4c",
+          "bytes": 456774
+        },
+        "dist/assets/img/logo-duna-enterior.png": {
+          "sha": "82f619dd9572be7da90368602f24cac4215c6f23228bdf2b6f6f252397400741",
+          "bytes": 36819
+        },
+        "dist/assets/img/logo-duna-hajok.png": {
+          "sha": "f6234397311bdc6ced13c81f6b614ba913b8583685d128f9df011b964aa9c94f",
+          "bytes": 55257
+        },
+        "dist/assets/img/logo-fice.png": {
+          "sha": "8e16382d9bc3fcaad6dd0f7107d2f9d5b791cdda557204b9ebeb3700b55312f0",
+          "bytes": 66418
+        },
+        "dist/assets/img/logo-grantool.png": {
+          "sha": "1489bc8654a8048f7753628962c4bf9255e6981898a04fee267c4fb2893c0f14",
+          "bytes": 56616
+        },
+        "dist/assets/img/logo-haio.png": {
+          "sha": "dd7600b780b92454ab1c99bf1ff2a9cb1c661671ccd7cbdebaffb13d44822db6",
+          "bytes": 53374
+        },
+        "dist/assets/img/logo-kontyos.webp": {
+          "sha": "c9878f09141195259242da0bc89c72a464c6707e4b7de25ff951ac17ea7bcdef",
+          "bytes": 7554
+        },
+        "dist/assets/img/logo-synergy.png": {
+          "sha": "2b045fc59e0a06e7280f19e808233a72e2c2ab8cd69c9f3702d732acda7043d3",
+          "bytes": 52528
+        },
+        "dist/assets/img/logo.png": {
+          "sha": "f432a5b066f4f719bfeae670ed1bf885acab5a5cce2f5830cedacba562b2693d",
+          "bytes": 91223
+        },
+        "dist/assets/img/moon.jpg": {
+          "sha": "dcb8f10f9bc8c2265018a5c263d2117f094dc600c850b65d3352beb51a223212",
+          "bytes": 159251
+        },
+        "dist/assets/img/plane-cursor.png": {
+          "sha": "14210a5bef60a59b69fec5d27c00e182de7d3f1b5c3afa8015cd49eb7968fc9d",
+          "bytes": 6613
+        },
+        "dist/assets/img/space-horizon.jpg": {
+          "sha": "d319a7f9ed3c82e499c7e09a0a6781e4511f1322981b72caef6a3d36cb41f6da",
+          "bytes": 194193
+        },
+        "dist/assets/img/struktura.jpg": {
+          "sha": "5863d2cb5e5b2f93096c98924f26882f359c7e47964d02c0897ae5d38aada177",
+          "bytes": 267574
+        },
+        "dist/assets/img/team-artur.jpg": {
+          "sha": "a3b0c0b74983822684fcfbaa458b358b1d29e2e600618102a462c6daa7a25b8e",
+          "bytes": 243840
+        },
+        "dist/assets/img/team-richard.jpg": {
+          "sha": "f2091c4333e232becb761ba17ab2452cc029c43f416ebc875c9afb977445af2c",
+          "bytes": 114931
+        },
+        "dist/assets/img/texture-fabric.jpg": {
+          "sha": "6851ae2fa9d0cd374c7d905b2cae5fcb57c23b2fa2bf45d96a94d40b8ea259af",
+          "bytes": 419698
+        },
+        "dist/assets/img/work-1.jpg": {
+          "sha": "fb51bbc6f1f4accdc0e6b0de92a92db38ddb54e89635ddedafe8a0886c46b280",
+          "bytes": 172098
+        },
+        "dist/assets/img/work-2.jpg": {
+          "sha": "4340b5263717cca6d8cf3d05158c6d511dc0b45509c4fc4547f8a8e5d180cbc3",
+          "bytes": 308552
+        },
+        "dist/assets/img/work-3.jpg": {
+          "sha": "63e2fd43e04be9e9ab48dfff1877292a45d8c0c95a0bf7e4a2cc24d8e229ea27",
+          "bytes": 335495
+        },
+        "dist/assets/img/work-rapidkert.jpg": {
+          "sha": "3c6bc5b4f40150bea15f19e2905b4c2db91666fafc59e68bbfb02daebe2a87cc",
+          "bytes": 232421
+        },
+        "dist/assets/js/analytics.js": {
+          "sha": "9e8ddd556a9fd54f69739a02eaea7999ee3c0a42f62d705dc139fb2a3b1d0244",
+          "bytes": 30669
+        },
+        "dist/assets/js/consent.js": {
+          "sha": "767976dbb7a9a73591f6fdf1cab92fc929e4947009332aba82c395b466fd7b39",
+          "bytes": 7752
+        },
+        "dist/assets/js/header.js": {
+          "sha": "304b98cbb2c8691ec3339152ae9aafc031654f42b9bcc422ebc3c66bff8bdc66",
+          "bytes": 21855
+        },
+        "dist/assets/js/home-history.js": {
+          "sha": "cf65dfef6d9219c7292ba0e1aaddcf989e2de20847207ca22841893f5aa1b290",
+          "bytes": 12154
+        },
+        "dist/assets/js/lead.js": {
+          "sha": "41d424a50e5ba13274b1b9f1861b949931b59435190a5286bd9ffe8556195f63",
+          "bytes": 26995
+        },
+        "dist/assets/js/main.js": {
+          "sha": "f73e626a0d51945320dcd266a66f48b184d45b26995ce4d8c9751e283dfe47ed",
+          "bytes": 16235
+        },
+        "dist/assets/js/motion.js": {
+          "sha": "494069f74eaa6ac224f54b34b1d067dc1b610d6060b5fb05be63160f1fe6cfae",
+          "bytes": 17588
+        },
+        "dist/assets/js/quote.de.js": {
+          "sha": "a14ec6f18c99c4cfa16a80fdbaa7399bb4fb5f22980e324d22c637178a4b201c",
+          "bytes": 25709
+        },
+        "dist/assets/js/quote.en.js": {
+          "sha": "c10c49b812fe5f61588758eb825d7d73710ca869f9186e8b350f731545a935b7",
+          "bytes": 24935
+        },
+        "dist/assets/js/quote.hu.js": {
+          "sha": "17ba1cc53709c75bec557043d36f84e7e9f9b7711354c4626401ecba8d3f55b3",
+          "bytes": 25409
+        },
+        "dist/assets/js/transitions.js": {
+          "sha": "dc61d7c0e14a0cce2a83b32ef0775d388461c6692e9de667fa818f6725df4eb4",
+          "bytes": 38691
+        },
+        "dist/blog 2.html": {
+          "sha": "93efadff0897016bfdc1a3f24b048c5cf4707d625418a4a49e198296df973efe",
+          "bytes": 27948
+        },
+        "dist/blog-elavult-weboldal 3.html": {
+          "sha": "24a147e6566b108b590260f4c7c1b8f8c83d107d74665142c8af491df09755b3",
+          "bytes": 27723
+        },
+        "dist/blog-elavult-weboldal.html": {
+          "sha": "24a147e6566b108b590260f4c7c1b8f8c83d107d74665142c8af491df09755b3",
+          "bytes": 27723
+        },
+        "dist/blog-google-cegprofil 3.html": {
+          "sha": "44df1f2ce20b47887a36583a7ea27eb14c5af11960cf032029f209e8dcbe90db",
+          "bytes": 28222
+        },
+        "dist/blog-google-cegprofil.html": {
+          "sha": "44df1f2ce20b47887a36583a7ea27eb14c5af11960cf032029f209e8dcbe90db",
+          "bytes": 28222
+        },
+        "dist/blog-google-elso-oldal 3.html": {
+          "sha": "58d73090c7025f5f9fc04d3e00236452ded37d0a5114ec9bcdc5d770b5e9f93f",
+          "bytes": 28549
+        },
+        "dist/blog-google-elso-oldal.html": {
+          "sha": "58d73090c7025f5f9fc04d3e00236452ded37d0a5114ec9bcdc5d770b5e9f93f",
+          "bytes": 28549
+        },
+        "dist/blog-google-vagy-facebook 3.html": {
+          "sha": "84edc86d9b41f8a4376515a4e8d567a3d5b5a8bc756578a7187cd137845e7999",
+          "bytes": 27454
+        },
+        "dist/blog-google-vagy-facebook.html": {
+          "sha": "84edc86d9b41f8a4376515a4e8d567a3d5b5a8bc756578a7187cd137845e7999",
+          "bytes": 27454
+        },
+        "dist/blog-miert-nem-hoz-ugyfelet 3.html": {
+          "sha": "779a2ec3fe229b63cb67b12e985f69f2e4b6e7b830eaa9c950a70b7e629c3a36",
+          "bytes": 27586
+        },
+        "dist/blog-miert-nem-hoz-ugyfelet.html": {
+          "sha": "779a2ec3fe229b63cb67b12e985f69f2e4b6e7b830eaa9c950a70b7e629c3a36",
+          "bytes": 27586
+        },
+        "dist/blog-weboldal-arak 3.html": {
+          "sha": "480a52e6ebaa6e5d6e50cf3fb29ab9edd646ed449e9e198379675bfffda44209",
+          "bytes": 28112
+        },
+        "dist/blog-weboldal-arak.html": {
+          "sha": "480a52e6ebaa6e5d6e50cf3fb29ab9edd646ed449e9e198379675bfffda44209",
+          "bytes": 28112
+        },
+        "dist/blog.html": {
+          "sha": "93efadff0897016bfdc1a3f24b048c5cf4707d625418a4a49e198296df973efe",
+          "bytes": 27948
+        },
+        "dist/branding 3.html": {
+          "sha": "96aec2ee373984d84b3e236e50e55ee445c156ccc551b9b3b5f6fea81e8221e0",
+          "bytes": 34539
+        },
+        "dist/branding.html": {
+          "sha": "96aec2ee373984d84b3e236e50e55ee445c156ccc551b9b3b5f6fea81e8221e0",
+          "bytes": 34539
+        },
+        "dist/de/404 3.html": {
+          "sha": "ed0b9dc95c677e063653bf2dd2f42caf1cfd7317c729c1ece153e0c575769d3c",
+          "bytes": 16028
+        },
+        "dist/de/404.html": {
+          "sha": "ed0b9dc95c677e063653bf2dd2f42caf1cfd7317c729c1ece153e0c575769d3c",
+          "bytes": 16028
+        },
+        "dist/de/angebot 2.html": {
+          "sha": "8f815107f3f63f9b2ffcbdea9783df6e2e0991c27a2743d00559cdd7732c4245",
+          "bytes": 15226
+        },
+        "dist/de/angebot.html": {
+          "sha": "8f815107f3f63f9b2ffcbdea9783df6e2e0991c27a2743d00559cdd7732c4245",
+          "bytes": 15226
+        },
+        "dist/de/blog 2.html": {
+          "sha": "7c58475d7371fe4dbcc9de03c2a33353c265eb6319c93c3fe5ef19264cbbd040",
+          "bytes": 27833
+        },
+        "dist/de/blog-google-erste-seite 2.html": {
+          "sha": "67b15d19229f0004973becb12f5de429c4079b14ac7aeb669afe84b894d67d71",
+          "bytes": 28026
+        },
+        "dist/de/blog-google-erste-seite.html": {
+          "sha": "67b15d19229f0004973becb12f5de429c4079b14ac7aeb669afe84b894d67d71",
+          "bytes": 28026
+        },
+        "dist/de/blog-google-oder-facebook 2.html": {
+          "sha": "e5b55a538698f4332b2024d191927f823b0370288da0035d9bbbc73d4eab93ab",
+          "bytes": 27032
+        },
+        "dist/de/blog-google-oder-facebook.html": {
+          "sha": "e5b55a538698f4332b2024d191927f823b0370288da0035d9bbbc73d4eab93ab",
+          "bytes": 27032
+        },
+        "dist/de/blog-google-unternehmensprofil 2.html": {
+          "sha": "8679bcf4c99e9cd0b0eb0a3b456abbb4f2f8595f1c91a5364035a634822ff9ac",
+          "bytes": 27862
+        },
+        "dist/de/blog-google-unternehmensprofil.html": {
+          "sha": "8679bcf4c99e9cd0b0eb0a3b456abbb4f2f8595f1c91a5364035a634822ff9ac",
+          "bytes": 27862
+        },
+        "dist/de/blog-keine-anfragen 2.html": {
+          "sha": "86c7de6c63229d938c4a99157c39a9e0fa471ef07a75e9ba51fdaa6ddfcd323d",
+          "bytes": 27200
+        },
+        "dist/de/blog-keine-anfragen.html": {
+          "sha": "86c7de6c63229d938c4a99157c39a9e0fa471ef07a75e9ba51fdaa6ddfcd323d",
+          "bytes": 27200
+        },
+        "dist/de/blog-veraltete-website 3.html": {
+          "sha": "fa92eb5f2d6bf371bf929aa0d2bd99a69d3ebe8865fe5ff282733c88dc846086",
+          "bytes": 27296
+        },
+        "dist/de/blog-veraltete-website.html": {
+          "sha": "fa92eb5f2d6bf371bf929aa0d2bd99a69d3ebe8865fe5ff282733c88dc846086",
+          "bytes": 27296
+        },
+        "dist/de/blog-website-kosten 2.html": {
+          "sha": "d6d0295d0ae4007c8d801d05044d2285c8eff36d86e8350b59dbec50f780a1f3",
+          "bytes": 27697
+        },
+        "dist/de/blog-website-kosten.html": {
+          "sha": "d6d0295d0ae4007c8d801d05044d2285c8eff36d86e8350b59dbec50f780a1f3",
+          "bytes": 27697
+        },
+        "dist/de/blog.html": {
+          "sha": "7c58475d7371fe4dbcc9de03c2a33353c265eb6319c93c3fe5ef19264cbbd040",
+          "bytes": 27833
+        },
+        "dist/de/branding 3.html": {
+          "sha": "271d1e4bd1a609177e80ce548b3ba34f52df9b65fede969fa6e909a68e402f8a",
+          "bytes": 34319
+        },
+        "dist/de/branding.html": {
+          "sha": "271d1e4bd1a609177e80ce548b3ba34f52df9b65fede969fa6e909a68e402f8a",
+          "bytes": 34319
+        },
+        "dist/de/datenschutz 3.html": {
+          "sha": "8931b2f2377fdce2caafda83b85bd6f5196181dd1b6e51a7eca6cb9011bc0a95",
+          "bytes": 34435
+        },
+        "dist/de/datenschutz.html": {
+          "sha": "8931b2f2377fdce2caafda83b85bd6f5196181dd1b6e51a7eca6cb9011bc0a95",
+          "bytes": 34435
+        },
+        "dist/de/impact-programm 2.html": {
+          "sha": "f80b998c755f3006bf4cf0746c59d69272379615ea6f888268fd11cbb3a3d2b4",
+          "bytes": 40786
+        },
+        "dist/de/impact-programm.html": {
+          "sha": "f80b998c755f3006bf4cf0746c59d69272379615ea6f888268fd11cbb3a3d2b4",
+          "bytes": 40786
+        },
+        "dist/de/impressum 2.html": {
+          "sha": "676585203dc6608644b2966a8b5148376bf92a79356790859eff1881cc9ba1eb",
+          "bytes": 20626
+        },
+        "dist/de/impressum.html": {
+          "sha": "676585203dc6608644b2966a8b5148376bf92a79356790859eff1881cc9ba1eb",
+          "bytes": 20626
+        },
+        "dist/de/index 2.html": {
+          "sha": "824a54acc002fe2cc1b85833095995ab664b6594406706c398e2b2ba86a26970",
+          "bytes": 19728
+        },
+        "dist/de/index.html": {
+          "sha": "824a54acc002fe2cc1b85833095995ab664b6594406706c398e2b2ba86a26970",
+          "bytes": 19728
+        },
+        "dist/de/kontakt 2.html": {
+          "sha": "c5326d129da294cb32eabf739b8258b912ef1d9acc283ad61a3be66eb6666cbf",
+          "bytes": 32410
+        },
+        "dist/de/kontakt.html": {
+          "sha": "c5326d129da294cb32eabf739b8258b912ef1d9acc283ad61a3be66eb6666cbf",
+          "bytes": 32410
+        },
+        "dist/de/leistungen 2.html": {
+          "sha": "9c2c88ccad38bd8e8c7063b7aee30497c555237cc3ca8f0a6bcfbb5dc75e623c",
+          "bytes": 35388
+        },
+        "dist/de/leistungen.html": {
+          "sha": "9c2c88ccad38bd8e8c7063b7aee30497c555237cc3ca8f0a6bcfbb5dc75e623c",
+          "bytes": 35388
+        },
+        "dist/de/projekt-barbershop 3.html": {
+          "sha": "e7a162796dcef2215ac4bcf87f5be3c6ec3430b9e12c07f8515e5c698fe89b16",
+          "bytes": 26605
+        },
+        "dist/de/projekt-barbershop.html": {
+          "sha": "e7a162796dcef2215ac4bcf87f5be3c6ec3430b9e12c07f8515e5c698fe89b16",
+          "bytes": 26605
+        },
+        "dist/de/projekt-mentaltrening 2.html": {
+          "sha": "a91817cda2fe56954bd4bd236201708c4e5b72b6200d04d3a816fbbf44bb058b",
+          "bytes": 26539
+        },
+        "dist/de/projekt-mentaltrening.html": {
+          "sha": "a91817cda2fe56954bd4bd236201708c4e5b72b6200d04d3a816fbbf44bb058b",
+          "bytes": 26539
+        },
+        "dist/de/projekt-rapidkert 3.html": {
+          "sha": "725a83fe013d5c9e8b1fb779e2498cd8ce6f3c563d097ec326f3b56b2274e856",
+          "bytes": 34778
+        },
+        "dist/de/projekt-rapidkert.html": {
+          "sha": "725a83fe013d5c9e8b1fb779e2498cd8ce6f3c563d097ec326f3b56b2274e856",
+          "bytes": 34778
+        },
+        "dist/de/projekte 2.html": {
+          "sha": "01ba315b7493dd5d62c98374e57fabecaab11ae40705edad357dbbdeb5d32bb3",
+          "bytes": 28832
+        },
+        "dist/de/projekte.html": {
+          "sha": "01ba315b7493dd5d62c98374e57fabecaab11ae40705edad357dbbdeb5d32bb3",
+          "bytes": 28832
+        },
+        "dist/de/ueber-uns 2.html": {
+          "sha": "ec9c0daa41746718d704c07c9d3a1475767aef15b7a321ed9e28844c99a61ae3",
+          "bytes": 47925
+        },
+        "dist/de/ueber-uns.html": {
+          "sha": "ec9c0daa41746718d704c07c9d3a1475767aef15b7a321ed9e28844c99a61ae3",
+          "bytes": 47925
+        },
+        "dist/de/webdesign-grossunternehmen 2.html": {
+          "sha": "127d2c2a2567298f82434d68e18b8f676a6132a079de9fb7791e30d8bdb03090",
+          "bytes": 39449
+        },
+        "dist/de/webdesign-grossunternehmen.html": {
+          "sha": "127d2c2a2567298f82434d68e18b8f676a6132a079de9fb7791e30d8bdb03090",
+          "bytes": 39449
+        },
+        "dist/de/webdesign-kmu 2.html": {
+          "sha": "7177d11016b93e261b62816bc2db0170e13b2da18dc4557b79d38cbcaf8c05b4",
+          "bytes": 39475
+        },
+        "dist/de/webdesign-kmu.html": {
+          "sha": "7177d11016b93e261b62816bc2db0170e13b2da18dc4557b79d38cbcaf8c05b4",
+          "bytes": 39475
+        },
+        "dist/de/werbeanzeigen 2.html": {
+          "sha": "223cb56ac665bcd94a579a775fba5dae1e24c2ee274245fb5bc4c4e1ef455693",
+          "bytes": 39921
+        },
+        "dist/de/werbeanzeigen.html": {
+          "sha": "223cb56ac665bcd94a579a775fba5dae1e24c2ee274245fb5bc4c4e1ef455693",
+          "bytes": 39921
+        },
+        "dist/draco/draco_decoder 3.js": {
+          "sha": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f",
+          "bytes": 512465
+        },
+        "dist/draco/draco_decoder 3.wasm": {
+          "sha": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac",
+          "bytes": 192420
+        },
+        "dist/draco/draco_decoder.js": {
+          "sha": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f",
+          "bytes": 512465
+        },
+        "dist/draco/draco_decoder.wasm": {
+          "sha": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac",
+          "bytes": 192420
+        },
+        "dist/draco/draco_wasm_wrapper 4.js": {
+          "sha": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6",
+          "bytes": 58456
+        },
+        "dist/draco/draco_wasm_wrapper.js": {
+          "sha": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6",
+          "bytes": 58456
+        },
+        "dist/draco/MANIFEST 4.json": {
+          "sha": "2dded6c5ea055f4f234fe29f5eb596bf6ecbf821b85bf7ceb661da4e5dda5c68",
+          "bytes": 371
+        },
+        "dist/draco/MANIFEST.json": {
+          "sha": "2dded6c5ea055f4f234fe29f5eb596bf6ecbf821b85bf7ceb661da4e5dda5c68",
+          "bytes": 371
+        },
+        "dist/en/404 4.html": {
+          "sha": "d5bbcc96a7da605efb5f84cd9950a012bfaf10a8d9cc71d36a7cf9e0f1221c01",
+          "bytes": 15674
+        },
+        "dist/en/404.html": {
+          "sha": "d5bbcc96a7da605efb5f84cd9950a012bfaf10a8d9cc71d36a7cf9e0f1221c01",
+          "bytes": 15674
+        },
+        "dist/en/about 4.html": {
+          "sha": "914dc9aa189d243ffe9f6e33a8202a5ee0731181e13716f101f3677ec2c268ac",
+          "bytes": 47018
+        },
+        "dist/en/about.html": {
+          "sha": "914dc9aa189d243ffe9f6e33a8202a5ee0731181e13716f101f3677ec2c268ac",
+          "bytes": 47018
+        },
+        "dist/en/ads-management 4.html": {
+          "sha": "3ce41144006fad884bf6db41fd46e2afe9bc36d68cbc5d2b1ddcb81581282f7e",
+          "bytes": 38954
+        },
+        "dist/en/ads-management.html": {
+          "sha": "3ce41144006fad884bf6db41fd46e2afe9bc36d68cbc5d2b1ddcb81581282f7e",
+          "bytes": 38954
+        },
+        "dist/en/blog 4.html": {
+          "sha": "cd411fddb7a6bf40fdc11159706df7f1bf22e63078427fb1029ec0e41964b788",
+          "bytes": 27229
+        },
+        "dist/en/blog-google-business-profile 4.html": {
+          "sha": "de94cea2a19fc4eca57359b00d09e6698478ed4f13e43d250eb71664b3a36303",
+          "bytes": 26960
+        },
+        "dist/en/blog-google-business-profile.html": {
+          "sha": "de94cea2a19fc4eca57359b00d09e6698478ed4f13e43d250eb71664b3a36303",
+          "bytes": 26960
+        },
+        "dist/en/blog-google-first-page 4.html": {
+          "sha": "3de5e14c8371e1e490062adabc375721d4084b5758bafdff8c58ef9de47040fb",
+          "bytes": 27088
+        },
+        "dist/en/blog-google-first-page.html": {
+          "sha": "3de5e14c8371e1e490062adabc375721d4084b5758bafdff8c58ef9de47040fb",
+          "bytes": 27088
+        },
+        "dist/en/blog-google-or-facebook 4.html": {
+          "sha": "148c64a51f14c6265391b448eca1e757a2e0a835843ce09cb7608ae85dd4ada8",
+          "bytes": 26385
+        },
+        "dist/en/blog-google-or-facebook.html": {
+          "sha": "148c64a51f14c6265391b448eca1e757a2e0a835843ce09cb7608ae85dd4ada8",
+          "bytes": 26385
+        },
+        "dist/en/blog-no-enquiries 4.html": {
+          "sha": "f057ec496fcec1b4f826b801fe43a2c76941e4f30818e24e9e58fe5a491904df",
+          "bytes": 26265
+        },
+        "dist/en/blog-no-enquiries.html": {
+          "sha": "f057ec496fcec1b4f826b801fe43a2c76941e4f30818e24e9e58fe5a491904df",
+          "bytes": 26265
+        },
+        "dist/en/blog-outdated-website 4.html": {
+          "sha": "e47bcf11d8c8a0264d93e59bcd3fc6fb0e0015488ecf5332bb2338686db98673",
+          "bytes": 26620
+        },
+        "dist/en/blog-outdated-website.html": {
+          "sha": "e47bcf11d8c8a0264d93e59bcd3fc6fb0e0015488ecf5332bb2338686db98673",
+          "bytes": 26620
+        },
+        "dist/en/blog-website-cost 4.html": {
+          "sha": "b447bc735989f4183c1a45463b898a54292db71b4cc682a4f80a139b20b1ae90",
+          "bytes": 27045
+        },
+        "dist/en/blog-website-cost.html": {
+          "sha": "b447bc735989f4183c1a45463b898a54292db71b4cc682a4f80a139b20b1ae90",
+          "bytes": 27045
+        },
+        "dist/en/blog.html": {
+          "sha": "cd411fddb7a6bf40fdc11159706df7f1bf22e63078427fb1029ec0e41964b788",
+          "bytes": 27229
+        },
+        "dist/en/branding 4.html": {
+          "sha": "5dc40153320b341069562149e5b14d788830effebbcc6be4f0f190f429217442",
+          "bytes": 33509
+        },
+        "dist/en/branding.html": {
+          "sha": "5dc40153320b341069562149e5b14d788830effebbcc6be4f0f190f429217442",
+          "bytes": 33509
+        },
+        "dist/en/contact 4.html": {
+          "sha": "4d8f55bcc32a8bb0f02416de4640e0a6922dc4d6f7fcabd0a6c01731517a5bc4",
+          "bytes": 31493
+        },
+        "dist/en/contact.html": {
+          "sha": "4d8f55bcc32a8bb0f02416de4640e0a6922dc4d6f7fcabd0a6c01731517a5bc4",
+          "bytes": 31493
+        },
+        "dist/en/impact-program 4.html": {
+          "sha": "a748e6d66708669a126ab8a539b4335b9ef4ca7d50f55f02418596d67230fe5f",
+          "bytes": 39537
+        },
+        "dist/en/impact-program.html": {
+          "sha": "a748e6d66708669a126ab8a539b4335b9ef4ca7d50f55f02418596d67230fe5f",
+          "bytes": 39537
+        },
+        "dist/en/imprint 4.html": {
+          "sha": "e061cd72e3120e7bb38fc6dfff0c179a628a3db5c8661d459406cb9db9d11c7b",
+          "bytes": 20291
+        },
+        "dist/en/imprint.html": {
+          "sha": "e061cd72e3120e7bb38fc6dfff0c179a628a3db5c8661d459406cb9db9d11c7b",
+          "bytes": 20291
+        },
+        "dist/en/index 3.html": {
+          "sha": "47afd03723a23e800a470e1dcc96e7391e3a694c0002b7e6818e3b646dbd08f6",
+          "bytes": 19357
+        },
+        "dist/en/index.html": {
+          "sha": "47afd03723a23e800a470e1dcc96e7391e3a694c0002b7e6818e3b646dbd08f6",
+          "bytes": 19357
+        },
+        "dist/en/privacy-policy 4.html": {
+          "sha": "8f8a2efbd0189808be8d2df40a441a9e7db8119ef8c497bd56fe656783996277",
+          "bytes": 32881
+        },
+        "dist/en/privacy-policy.html": {
+          "sha": "8f8a2efbd0189808be8d2df40a441a9e7db8119ef8c497bd56fe656783996277",
+          "bytes": 32881
+        },
+        "dist/en/quote 4.html": {
+          "sha": "469cf1a281710267c983659bb2df1633905d2f038a3d22360ae0e7721a98fea5",
+          "bytes": 14909
+        },
+        "dist/en/quote.html": {
+          "sha": "469cf1a281710267c983659bb2df1633905d2f038a3d22360ae0e7721a98fea5",
+          "bytes": 14909
+        },
+        "dist/en/services 4.html": {
+          "sha": "2d235bd0b5570ff202386ac7ac8b590c280056dc3b4304e862e60999e81cb834",
+          "bytes": 34486
+        },
+        "dist/en/services.html": {
+          "sha": "2d235bd0b5570ff202386ac7ac8b590c280056dc3b4304e862e60999e81cb834",
+          "bytes": 34486
+        },
+        "dist/en/web-design-enterprise 4.html": {
+          "sha": "6b4a73135c7a08a1eb5748d346153cc055f55146ad3138b64274e44a9c5e26c3",
+          "bytes": 38312
+        },
+        "dist/en/web-design-enterprise.html": {
+          "sha": "6b4a73135c7a08a1eb5748d346153cc055f55146ad3138b64274e44a9c5e26c3",
+          "bytes": 38312
+        },
+        "dist/en/web-design-sme 4.html": {
+          "sha": "9126459b3e03c4771468c352c501c8d6d45b5f4e6576165c2e8339e5c271a540",
+          "bytes": 38476
+        },
+        "dist/en/web-design-sme.html": {
+          "sha": "9126459b3e03c4771468c352c501c8d6d45b5f4e6576165c2e8339e5c271a540",
+          "bytes": 38476
+        },
+        "dist/en/work 4.html": {
+          "sha": "45885de8d64e592bfbaee769ac5d0fd9773ce606b44b641e70b29789d5ebcdb8",
+          "bytes": 28097
+        },
+        "dist/en/work-barbershop 4.html": {
+          "sha": "2cf03dd97106b54d94c2c7ca68f8595569b17e6b3fb1b9b700d1a37c52df0479",
+          "bytes": 25773
+        },
+        "dist/en/work-barbershop.html": {
+          "sha": "2cf03dd97106b54d94c2c7ca68f8595569b17e6b3fb1b9b700d1a37c52df0479",
+          "bytes": 25773
+        },
+        "dist/en/work-mentaltrening 4.html": {
+          "sha": "8d06cee2797d805672063a8540917b84dafbd73f546350886142b394daacbce5",
+          "bytes": 25821
+        },
+        "dist/en/work-mentaltrening.html": {
+          "sha": "8d06cee2797d805672063a8540917b84dafbd73f546350886142b394daacbce5",
+          "bytes": 25821
+        },
+        "dist/en/work-rapidkert 4.html": {
+          "sha": "f4d3367d9768bf67faf8ace7fc71bbe4aa342a100dd4429e7fd48350b60838ff",
+          "bytes": 33827
+        },
+        "dist/en/work-rapidkert.html": {
+          "sha": "f4d3367d9768bf67faf8ace7fc71bbe4aa342a100dd4429e7fd48350b60838ff",
+          "bytes": 33827
+        },
+        "dist/en/work.html": {
+          "sha": "45885de8d64e592bfbaee769ac5d0fd9773ce606b44b641e70b29789d5ebcdb8",
+          "bytes": 28097
+        },
+        "dist/experiments/stratos-ascent-full/assets/full-8-r5-n0W.js": {
+          "sha": "9935e54eb6e0067c26cbb1af57b51f5b6a650cb602512e266a1b1d43f267d875",
+          "bytes": 270309
+        },
+        "dist/experiments/stratos-ascent-full/assets/full-BX_y03kk.css": {
+          "sha": "3b95b187774d7f384879f74c2ad803f4c79285e73ad75c858f17ff5f8a4b1991",
+          "bytes": 34839
+        },
+        "dist/experiments/stratos-ascent-full/assets/Gltf-C895YFSk.js": {
+          "sha": "9b5967342ca6423127b72dada5f32d4f16c16508686acb8f243a448bf7bfe7bf",
+          "bytes": 896910
+        },
+        "dist/experiments/stratos-ascent-full/assets/index-Bvu9zNsI.js": {
+          "sha": "3efcc2c9016df2a5a646b223cce885dff7021bf543c1cc5c4ecc815ef2cdc748",
+          "bytes": 70848
+        },
+        "dist/experiments/stratos-ascent-full/assets/JourneyScene-wOIOG7lj.js": {
+          "sha": "3be464bd0e429f2556aff38adc967e20ed5c02f77188269ded81a700f8ce4d9a",
+          "bytes": 173079
+        },
+        "dist/experiments/stratos-ascent-full/assets/MobileInstrument-CPssszLu.js": {
+          "sha": "a7ae8f809f3e5922585ca0d7866f07d6bcb8a9226806e3a96e0696408abf3028",
+          "bytes": 4662
+        },
+        "dist/experiments/stratos-ascent-full/assets/ScrollTrigger-7Zy99s9Q.js": {
+          "sha": "3193106bd8610c1839a0f1e25ec7e80577a60902982839386709a9836f0af7d6",
+          "bytes": 43986
+        },
+        "dist/experiments/stratos-ascent-full/draco/draco_decoder.js": {
+          "sha": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f",
+          "bytes": 512465
+        },
+        "dist/experiments/stratos-ascent-full/draco/draco_decoder.wasm": {
+          "sha": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac",
+          "bytes": 192420
+        },
+        "dist/experiments/stratos-ascent-full/draco/draco_wasm_wrapper.js": {
+          "sha": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6",
+          "bytes": 58456
+        },
+        "dist/experiments/stratos-ascent-full/draco/MANIFEST.json": {
+          "sha": "2dded6c5ea055f4f234fe29f5eb596bf6ecbf821b85bf7ceb661da4e5dda5c68",
+          "bytes": 371
+        },
+        "dist/experiments/stratos-ascent-full/index.html": {
+          "sha": "ac49f1127caae09fdcb8a9a3c1bf3381a9b9b83a61b4d7152db053b180849dad",
+          "bytes": 2892
+        },
+        "dist/experiments/stratos-ascent-full/models/stratos-altimeter.glb": {
+          "sha": "cdf9d9c51011eff59cb09418d99978a2f9284fc66156baa646a7c18bd6b8ab2f",
+          "bytes": 396912
+        },
+        "dist/experiments/stratos-ascent-full/models/stratos-mountains-desktop.glb": {
+          "sha": "e86c3a02069333c0f8d7b06e47d9a5710d5482ab2cfddd64f3c580c71aaf4c80",
+          "bytes": 345744
+        },
+        "dist/experiments/stratos-ascent-full/models/stratos-mountains-mobile.glb": {
+          "sha": "e36037f499a0177ab5bbaa01e321d07522717a365b0800abd8e330a1bde4e2a3",
+          "bytes": 177816
+        },
+        "dist/hirdeteskezeles 4.html": {
+          "sha": "130858b29edb677cb54d8dd5fd08222fbcad697bdc3338c6e5ea5f095d26ed3c",
+          "bytes": 40763
+        },
+        "dist/hirdeteskezeles.html": {
+          "sha": "130858b29edb677cb54d8dd5fd08222fbcad697bdc3338c6e5ea5f095d26ed3c",
+          "bytes": 40763
+        },
+        "dist/impact-program 4.html": {
+          "sha": "bee8077b120337a2c4906bc833de635af25d13c078c82f41eb818f215bc65668",
+          "bytes": 41316
+        },
+        "dist/impact-program.html": {
+          "sha": "bee8077b120337a2c4906bc833de635af25d13c078c82f41eb818f215bc65668",
+          "bytes": 41316
+        },
+        "dist/impresszum 3.html": {
+          "sha": "3083f6af0459606096de5b604c1b2a0aa30287093a141b34081713e3c488c076",
+          "bytes": 20712
+        },
+        "dist/impresszum.html": {
+          "sha": "3083f6af0459606096de5b604c1b2a0aa30287093a141b34081713e3c488c076",
+          "bytes": 20712
+        },
+        "dist/index 3.html": {
+          "sha": "ea2b70905505103a69a53ab6941615a81c787cdb1ba3adf098fd06153fcf0c99",
+          "bytes": 20490
+        },
+        "dist/index.html": {
+          "sha": "ea2b70905505103a69a53ab6941615a81c787cdb1ba3adf098fd06153fcf0c99",
+          "bytes": 20490
+        },
+        "dist/kkv 3.html": {
+          "sha": "0032830fc0187e927379c3fffb5adb50acfa6b811ee1d1875ad4ea7e7a9038b3",
+          "bytes": 39848
+        },
+        "dist/kkv.html": {
+          "sha": "0032830fc0187e927379c3fffb5adb50acfa6b811ee1d1875ad4ea7e7a9038b3",
+          "bytes": 39848
+        },
+        "dist/models/stratos-altimeter 4.glb": {
+          "sha": "cdf9d9c51011eff59cb09418d99978a2f9284fc66156baa646a7c18bd6b8ab2f",
+          "bytes": 396912
+        },
+        "dist/models/stratos-altimeter.glb": {
+          "sha": "cdf9d9c51011eff59cb09418d99978a2f9284fc66156baa646a7c18bd6b8ab2f",
+          "bytes": 396912
+        },
+        "dist/models/stratos-mountains-desktop 4.glb": {
+          "sha": "e86c3a02069333c0f8d7b06e47d9a5710d5482ab2cfddd64f3c580c71aaf4c80",
+          "bytes": 345744
+        },
+        "dist/models/stratos-mountains-desktop.glb": {
+          "sha": "e86c3a02069333c0f8d7b06e47d9a5710d5482ab2cfddd64f3c580c71aaf4c80",
+          "bytes": 345744
+        },
+        "dist/models/stratos-mountains-mobile 3.glb": {
+          "sha": "e36037f499a0177ab5bbaa01e321d07522717a365b0800abd8e330a1bde4e2a3",
+          "bytes": 177816
+        },
+        "dist/models/stratos-mountains-mobile.glb": {
+          "sha": "e36037f499a0177ab5bbaa01e321d07522717a365b0800abd8e330a1bde4e2a3",
+          "bytes": 177816
+        },
+        "dist/munka-barbershop 4.html": {
+          "sha": "b5ee4b8e3826b4cb61a3b95ec698481f92c3a155e29a1d036df0dff173b8aa12",
+          "bytes": 26944
+        },
+        "dist/munka-barbershop.html": {
+          "sha": "b5ee4b8e3826b4cb61a3b95ec698481f92c3a155e29a1d036df0dff173b8aa12",
+          "bytes": 26944
+        },
+        "dist/munka-mentaltrening 4.html": {
+          "sha": "f19e0b825d7a459ccf110ac2336086ddc43ead86ea5252dcead78c361cb5f498",
+          "bytes": 26963
+        },
+        "dist/munka-mentaltrening.html": {
+          "sha": "f19e0b825d7a459ccf110ac2336086ddc43ead86ea5252dcead78c361cb5f498",
+          "bytes": 26963
+        },
+        "dist/munka-rapidkert 4.html": {
+          "sha": "363f3521f4838b690d717496f8b7c76071a1178ff7f47f1ad7acb0ab5aca8cff",
+          "bytes": 35717
+        },
+        "dist/munka-rapidkert.html": {
+          "sha": "363f3521f4838b690d717496f8b7c76071a1178ff7f47f1ad7acb0ab5aca8cff",
+          "bytes": 35717
+        },
+        "dist/munkaink 4.html": {
+          "sha": "e510c62be16647176606a6614834f643aaec4b6349ac5c226b64321b06c1e2c0",
+          "bytes": 29315
+        },
+        "dist/munkaink.html": {
+          "sha": "e510c62be16647176606a6614834f643aaec4b6349ac5c226b64321b06c1e2c0",
+          "bytes": 29315
+        },
+        "dist/nagyvallalat 4.html": {
+          "sha": "b7fd8a69831d5d04184d09b2a540ffab9a58946f8f09e75114269add1a6d3dfa",
+          "bytes": 39802
+        },
+        "dist/nagyvallalat.html": {
+          "sha": "b7fd8a69831d5d04184d09b2a540ffab9a58946f8f09e75114269add1a6d3dfa",
+          "bytes": 39802
+        },
+        "dist/portal/assets/analytics-DxzyI7Vl 3.js": {
+          "sha": "7655eee378684e2ae3bb2ba3d8cc69a49f0f8eb35cc03b6019d0d6d6a32631c3",
+          "bytes": 20116
+        },
+        "dist/portal/assets/analytics-DxzyI7Vl.js": {
+          "sha": "7655eee378684e2ae3bb2ba3d8cc69a49f0f8eb35cc03b6019d0d6d6a32631c3",
+          "bytes": 20116
+        },
+        "dist/portal/assets/clients-BMynSm9P 3.js": {
+          "sha": "ed9564fdbbce6a4e46f4ddafd7c14f44c49cfc00c45fee66bc9a337c41293de1",
+          "bytes": 19950
+        },
+        "dist/portal/assets/clients-BMynSm9P.js": {
+          "sha": "ed9564fdbbce6a4e46f4ddafd7c14f44c49cfc00c45fee66bc9a337c41293de1",
+          "bytes": 19950
+        },
+        "dist/portal/assets/index-C6bxHk4w 3.js": {
+          "sha": "0ec1eeb84a76ca328ec2739e69a5921472a0337431653800a829468f892f0036",
+          "bytes": 215834
+        },
+        "dist/portal/assets/index-C6bxHk4w.js": {
+          "sha": "0ec1eeb84a76ca328ec2739e69a5921472a0337431653800a829468f892f0036",
+          "bytes": 215834
+        },
+        "dist/portal/assets/index-CwCoZP76 4.css": {
+          "sha": "655aeaa023fd00f89e8eed59ee967e36211b3120117cd26ee50388df558d5f5c",
+          "bytes": 21746
+        },
+        "dist/portal/assets/index-CwCoZP76.css": {
+          "sha": "655aeaa023fd00f89e8eed59ee967e36211b3120117cd26ee50388df558d5f5c",
+          "bytes": 21746
+        },
+        "dist/portal/assets/opportunity-detail-Ba-1Y8Yv 4.js": {
+          "sha": "2e18d848d012fb17eb0dea0e197d0a0608a25becbb465a482e89cad90821618c",
+          "bytes": 20578
+        },
+        "dist/portal/assets/opportunity-detail-Ba-1Y8Yv.js": {
+          "sha": "2e18d848d012fb17eb0dea0e197d0a0608a25becbb465a482e89cad90821618c",
+          "bytes": 20578
+        },
+        "dist/portal/assets/OpportunityForm-CPbpq30N 3.js": {
+          "sha": "d82979572b9565818375e1bc1e45ad0005547b77d43b5efc2670be47d30b1f8f",
+          "bytes": 4687
+        },
+        "dist/portal/assets/OpportunityForm-CPbpq30N.js": {
+          "sha": "d82979572b9565818375e1bc1e45ad0005547b77d43b5efc2670be47d30b1f8f",
+          "bytes": 4687
+        },
+        "dist/portal/assets/plus-BI2k7X75 3.js": {
+          "sha": "85e059b884d4fb78c833aa2cc611a6e8b8c26da3d261133bc3f5cdf073a80ef9",
+          "bytes": 323
+        },
+        "dist/portal/assets/plus-BI2k7X75.js": {
+          "sha": "85e059b884d4fb78c833aa2cc611a6e8b8c26da3d261133bc3f5cdf073a80ef9",
+          "bytes": 323
+        },
+        "dist/portal/assets/projects-BozhIBsQ 4.js": {
+          "sha": "83f135e64e236c64e915f8dab231fa0ef7b8697f8a8cf99487a85a28937e81dd",
+          "bytes": 30799
+        },
+        "dist/portal/assets/projects-BozhIBsQ.js": {
+          "sha": "83f135e64e236c64e915f8dab231fa0ef7b8697f8a8cf99487a85a28937e81dd",
+          "bytes": 30799
+        },
+        "dist/portal/assets/records-BX80TGcE 3.js": {
+          "sha": "b7f17955afc3da250ad9a07611fef0efed3f1cc0d1a29e37c9cf07cc6283684e",
+          "bytes": 12643
+        },
+        "dist/portal/assets/records-BX80TGcE.js": {
+          "sha": "b7f17955afc3da250ad9a07611fef0efed3f1cc0d1a29e37c9cf07cc6283684e",
+          "bytes": 12643
+        },
+        "dist/portal/assets/sales-D5WoKUGa 3.js": {
+          "sha": "c1f5117fb476a35b51bae19ae6603d7a76ac2bea135586a7a3ebe52d761123db",
+          "bytes": 16246
+        },
+        "dist/portal/assets/sales-D5WoKUGa.js": {
+          "sha": "c1f5117fb476a35b51bae19ae6603d7a76ac2bea135586a7a3ebe52d761123db",
+          "bytes": 16246
+        },
+        "dist/portal/assets/sales-ndX6UH6G 3.js": {
+          "sha": "82109ff801bb2833d9ab5c54c1e7754668cc942e1d17a2bce38c5bd1e6c00adc",
+          "bytes": 6278
+        },
+        "dist/portal/assets/sales-ndX6UH6G.js": {
+          "sha": "82109ff801bb2833d9ab5c54c1e7754668cc942e1d17a2bce38c5bd1e6c00adc",
+          "bytes": 6278
+        },
+        "dist/portal/assets/screens-BulDyxLO 3.js": {
+          "sha": "b79833e5e005b7e53c0d7b5bbb5911f0b6580b1fcea09a4f8743da7bd19ccba9",
+          "bytes": 4557
+        },
+        "dist/portal/assets/screens-BulDyxLO.js": {
+          "sha": "b79833e5e005b7e53c0d7b5bbb5911f0b6580b1fcea09a4f8743da7bd19ccba9",
+          "bytes": 4557
+        },
+        "dist/portal/assets/supabase-CI_V8wt2 4.js": {
+          "sha": "ee93a22778e2104cdd356762a93a7424511337b2d32e8dfe264fdff8f1f32762",
+          "bytes": 218463
+        },
+        "dist/portal/assets/supabase-CI_V8wt2.js": {
+          "sha": "ee93a22778e2104cdd356762a93a7424511337b2d32e8dfe264fdff8f1f32762",
+          "bytes": 218463
+        },
+        "dist/portal/assets/vendor--ue7KvUB 4.js": {
+          "sha": "db4be605687ec9be21796e5d14879efebad36463c6c12c4916ac24fc5795f1cd",
+          "bytes": 165937
+        },
+        "dist/portal/assets/vendor--ue7KvUB.js": {
+          "sha": "db4be605687ec9be21796e5d14879efebad36463c6c12c4916ac24fc5795f1cd",
+          "bytes": 165937
+        },
+        "dist/portal/index 3.html": {
+          "sha": "f8d95b6c6124887f9e0af50558ce2a4faa9d3e1cb25032161e1ac8158bacc927",
+          "bytes": 2185
+        },
+        "dist/portal/index.html": {
+          "sha": "f8d95b6c6124887f9e0af50558ce2a4faa9d3e1cb25032161e1ac8158bacc927",
+          "bytes": 2185
+        },
+        "dist/robots 4.txt": {
+          "sha": "0faf4b540bcfcc6e4027876882bc3fa718659cab166f01f45c342a064d192915",
+          "bytes": 101
+        },
+        "dist/robots.txt": {
+          "sha": "0faf4b540bcfcc6e4027876882bc3fa718659cab166f01f45c342a064d192915",
+          "bytes": 101
+        },
+        "dist/rolunk 4.html": {
+          "sha": "e1b4a9bf1578af4e16ba41fb478668e393d10beff439d4f833c731694c089cab",
+          "bytes": 48885
+        },
+        "dist/rolunk.html": {
+          "sha": "e1b4a9bf1578af4e16ba41fb478668e393d10beff439d4f833c731694c089cab",
+          "bytes": 48885
+        },
+        "dist/sitemap 4.xml": {
+          "sha": "6700cd59c4ee85c0bcb0fc2b1126887cdf66ded100ca48d0c36cc82eea1182da",
+          "bytes": 34170
+        },
+        "dist/sitemap.xml": {
+          "sha": "6700cd59c4ee85c0bcb0fc2b1126887cdf66ded100ca48d0c36cc82eea1182da",
+          "bytes": 34170
+        },
+        "dist/szolgaltatasok 2.html": {
+          "sha": "8c93591a9981dc4cac771b23f3cd58c4269d3b57ff032e12fdb8e62221ff197d",
+          "bytes": 35985
+        },
+        "dist/szolgaltatasok.html": {
+          "sha": "8c93591a9981dc4cac771b23f3cd58c4269d3b57ff032e12fdb8e62221ff197d",
+          "bytes": 35985
+        },
+        "dist/ugyfelszolgalat 4.html": {
+          "sha": "7eafa99627cf6141b7578a848b24750c8841e0ba7b2c04003faaec39f30f9614",
+          "bytes": 33072
+        },
+        "dist/ugyfelszolgalat.html": {
+          "sha": "7eafa99627cf6141b7578a848b24750c8841e0ba7b2c04003faaec39f30f9614",
+          "bytes": 33072
+        }
+      }
+    }
+  }
+}

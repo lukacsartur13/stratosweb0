@@ -1,0 +1,56 @@
+{
+  "kind": "attempt",
+  "id": "nav-dispatch-040601",
+  "model": "fresh-context",
+  "route": "/nagyvallalat.html",
+  "outcome": "resolved",
+  "status": 200,
+  "durationUs": 189174,
+  "gotoAtUs": 963149,
+  "dispatchUs": 14586,
+  "pre": {
+    "url": "about:blank",
+    "pageClosed": false,
+    "contextClosed": false,
+    "browserConnected": true,
+    "readyState": "complete",
+    "contextPages": 1,
+    "pageIndex": 0
+  },
+  "events": [
+    {
+      "us": 977735,
+      "state": "REQUEST_EVENT",
+      "url": "http://127.0.0.1:4344/nagyvallalat.html"
+    },
+    {
+      "us": 987412,
+      "state": "RESPONSE_EVENT",
+      "status": 200
+    },
+    {
+      "us": 989105,
+      "state": "FRAME_NAVIGATED",
+      "url": "http://127.0.0.1:4344/nagyvallalat.html"
+    },
+    {
+      "us": 1106925,
+      "state": "DOMCONTENTLOADED"
+    },
+    {
+      "us": 1152281,
+      "state": "LOAD"
+    }
+  ],
+  "statesReached": [
+    "TEST_READY",
+    "GOTO_CALLED",
+    "REQUEST_EVENT",
+    "RESPONSE_EVENT",
+    "FRAME_NAVIGATED",
+    "DOMCONTENTLOADED",
+    "LOAD",
+    "GOTO_RESOLVED"
+  ],
+  "error": null
+}

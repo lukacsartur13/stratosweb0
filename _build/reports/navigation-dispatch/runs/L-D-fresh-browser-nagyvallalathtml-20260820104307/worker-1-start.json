@@ -1,0 +1,42 @@
+{
+  "kind": "worker-start",
+  "model": "fresh-browser",
+  "attempts": 60,
+  "route": "/nagyvallalat.html",
+  "base": "http://127.0.0.1:4344",
+  "browser": "webkit",
+  "browserVersion": "26.5",
+  "contextOptions": {
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1",
+    "viewport": {
+      "width": 390,
+      "height": 664
+    },
+    "screen": {
+      "width": 390,
+      "height": 844
+    },
+    "deviceScaleFactor": 3,
+    "isMobile": true,
+    "hasTouch": true,
+    "defaultBrowserType": "webkit"
+  },
+  "states": [
+    "TEST_READY",
+    "GOTO_CALLED",
+    "PROTOCOL_COMMAND_DISPATCHED",
+    "PROTOCOL_POLICY_CHECK_STARTED",
+    "PROTOCOL_COMMAND_ACKNOWLEDGED",
+    "PROTOCOL_POLICY_ALLOWED",
+    "BROWSER_NAVIGATION_STARTED",
+    "REQUEST_EVENT",
+    "SERVER_RECEIVED",
+    "RESPONSE_EVENT",
+    "FRAME_NAVIGATED",
+    "DOMCONTENTLOADED",
+    "LOAD",
+    "GOTO_RESOLVED"
+  ],
+  "pid": 35628,
+  "node": "v24.18.1"
+}

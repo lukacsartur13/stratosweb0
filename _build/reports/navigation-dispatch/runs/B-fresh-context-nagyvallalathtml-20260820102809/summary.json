@@ -1,0 +1,70 @@
+{
+  "run": "B-fresh-context-nagyvallalathtml-20260820102809",
+  "stage": "B",
+  "model": "fresh-context",
+  "route": "/nagyvallalat.html",
+  "warmup": false,
+  "neighbours": true,
+  "parallel": 5,
+  "requested": 1500,
+  "executed": 1500,
+  "resolved": 1500,
+  "failed": 0,
+  "stalls": 0,
+  "stallIds": [],
+  "byOutcome": {
+    "resolved": 1500
+  },
+  "durationsMs": {
+    "p50": 284,
+    "p90": 374,
+    "p99": 1375,
+    "max": 1994
+  },
+  "elapsedMs": 637581,
+  "workerExitCodes": [
+    {
+      "index": 0,
+      "code": 0
+    },
+    {
+      "index": 1,
+      "code": 0
+    },
+    {
+      "index": 2,
+      "code": 0
+    },
+    {
+      "index": 3,
+      "code": 0
+    },
+    {
+      "index": 4,
+      "code": 0
+    }
+  ],
+  "subject": {
+    "before": "12a477a97cf3bd6449df84620bfbeea269d6e0fe3f7c23f0112f2ce7e94d9140",
+    "after": "b1c7a348bbccc0f78f6c4fc47bc299f90bf1839a658a94ad992c846a543c24fb",
+    "identical": false,
+    "dist": "28af7fe452ee43946139cbd65215fb573d7d005e3e426f5eaab9919ee5904d05",
+    "test": "ef4238e62e162bbd80830291af4c66cc89cdfc58df1da8819f8708cd057680b7"
+  },
+  "canaryHits": [],
+  "valid": false,
+  "invalidReasons": [
+    "SUBJECT_CHANGED_DURING_RUN"
+  ],
+  "host": {
+    "platform": "darwin 25.6.0",
+    "cpus": 10,
+    "freememMB": 2714,
+    "loadavg": [
+      96.17578125,
+      61.51025390625,
+      37.08154296875
+    ]
+  },
+  "successSamples": []
+}
