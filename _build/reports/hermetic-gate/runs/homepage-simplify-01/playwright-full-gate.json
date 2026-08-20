@@ -1,0 +1,40 @@
+{
+  "label": "homepage-simplify-01:playwright-full",
+  "commit": "96fc959d5bbe921ef00e3d050faeadacbdb87d79",
+  "dirtyTrackedFiles": [],
+  "timestamp": "2026-08-20T20:26:45.398Z",
+  "environment": {
+    "node": "v24.18.1",
+    "platform": "darwin-arm64",
+    "playwright": "1.62.1",
+    "workers": 1,
+    "projects": [
+      "desktop",
+      "mobile-390",
+      "mobile-landscape",
+      "mobile-430",
+      "mobile-375",
+      "mobile-360",
+      "reduced-motion"
+    ]
+  },
+  "duration": 575240.1680000001,
+  "startTime": "2026-08-20T20:17:10.090Z",
+  "collected": 171,
+  "accounted": 171,
+  "arithmeticReconciles": true,
+  "passed": 137,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 34,
+  "unclassified": 0,
+  "reporterStats": {
+    "startTime": "2026-08-20T20:17:10.090Z",
+    "duration": 575240.1680000001,
+    "expected": 137,
+    "skipped": 34,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "failingTests": []
+}

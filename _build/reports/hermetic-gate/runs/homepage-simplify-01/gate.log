@@ -1,0 +1,61 @@
+==================================================================
+== homepage-simplify-01 : preflight (quiet host required before the run may START)
+==================================================================
+manifest 9e207d1a6f24  product=443d25a1(305) test=0b74bbd5(76) config=94c5bf52(14) dist=ef1532d5(187)
+
+preflight homepage-simplify-01-preflight-1: PASS
+  load1 3.06 (max 3.06, cap 6)  load5 5.5  load15 6.78
+  free mem 72%  swap 3091.62 MB  iCloud 0%
+  ports 4322:free 4327:free
+  subject 9e207d1a6f24 product=443d25a1 dist=ef1532d5(187)
+  -> /Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/homepage-simplify-01/preflight/homepage-simplify-01-preflight-1.json
+
+PREFLIGHT PASS on attempt 1 -> starting homepage-simplify-01
+==================================================================
+== homepage-simplify-01 : authoritative run STARTED 2026-08-20T20:08:15Z — it now counts
+==   dist   ef1532d5ffed24f41dc8fda56b7e225d147b332238a7770aafe05e54429fdc78
+==   test   0b74bbd5aa71eb79c390389ab7cf295cd024cc9484d8f5602a383cb82f1c598a
+==   config 94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b
+==================================================================
+[2026-08-20T20:08:15.887Z] gate run homepage-simplify-01 — root /Users/arturlukacs/stratos-hermetic/subject
+[2026-08-20T20:08:15.932Z] phase 1: build (declared mutation window)
+[2026-08-20T20:08:26.115Z] phase 2: freeze — capturing BEFORE manifest
+[2026-08-20T20:08:26.190Z] canaries armed on 6 tree(s)
+[2026-08-20T20:08:26.190Z] phase 3: starting owned servers
+[2026-08-20T20:08:26.437Z] server main (node) pid=89289 :4322 ready
+[2026-08-20T20:08:26.675Z] server full (node) pid=89310 :4327 ready
+[2026-08-20T20:08:26.675Z] phase 4: running 9 gate(s)
+[2026-08-20T20:08:26.675Z]   gate typecheck
+[2026-08-20T20:08:29.804Z]   gate fingerprint-check
+[2026-08-20T20:08:29.918Z]   gate draco-check
+[2026-08-20T20:08:30.022Z]   gate secret-scan
+[2026-08-20T20:08:30.530Z]   gate seo-audit
+[2026-08-20T20:08:30.649Z]   gate conversion-audit
+[2026-08-20T20:08:30.782Z]   gate route-audit
+[2026-08-20T20:12:45.984Z]   gate playwright-main
+[2026-08-20T20:17:09.554Z]   gate playwright-full
+[2026-08-20T20:26:45.401Z] phase 5: stopping owned servers
+[2026-08-20T20:26:45.402Z] phase 6: capturing AFTER manifest
+[2026-08-20T20:26:45.549Z] phase 7: verifying cleanup
+
+======================================================================
+RUN homepage-simplify-01   VALID   GREEN
+commit  96fc959d5bbe921ef00e3d050faeadacbdb87d79
+subject 9e207d1a6f2430c6 -> 9e207d1a6f2430c6  IDENTICAL
+dist    ef1532d5ffed24f4
+canary  0 write event(s) during the run
+load    mean 7.95 peak 14.56
+elapsed 1109.7s
+  PASS  typecheck
+  PASS  fingerprint-check
+  PASS  draco-check
+  PASS  secret-scan
+  PASS  seo-audit
+  PASS  conversion-audit
+  PASS  route-audit
+  PASS  playwright-main  1168/1290 passed, 0 failed, 122 skipped
+  PASS  playwright-full  137/171 passed, 0 failed, 34 skipped
+written: /Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/homepage-simplify-01/gate.json
+======================================================================
+== homepage-simplify-01 : gate-run exit 0
+FINAL HERMETIC GATE: VALID + GREEN
