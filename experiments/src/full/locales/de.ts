@@ -190,17 +190,20 @@ export const DE: Record<string, string> = {
     'Suchanfragen im Gartenbau sind saisonal und stark ortsgebunden. Das Interesse war da, aber nicht von den richtigen Leuten: Viele Anfragen kamen von Menschen, die etwas ganz anderes brauchten.',
   'Nem több forgalmat céloztunk meg, hanem pontosabbat. A pozicionálás, az oldal szerkezete és a hirdetések ugyanarra a szűkebb keresési szándékra épültek.':
     'Wir haben nicht auf mehr Traffic gezielt, sondern auf genaueren. Positionierung, Seitenstruktur und Werbung bauten auf derselben, enger gefassten Suchintention auf.',
-  'Egyedi weboldal, a szolgáltatásokra bontott aloldalakkal, mérhető űrlapokkal, és a hozzá illesztett hirdetéskezelés — egy rendszerként, nem három külön projektként.':
-    'Eine eigene Website mit nach Leistungen aufgeteilten Unterseiten, messbaren Formularen und der dazu passenden Werbebetreuung — als ein System, nicht als drei getrennte Projekte.',
-  'Több megkeresés érkezett, és célzottabban találtak rájuk azok, akik valóban kertépítést kerestek. Ezt az ügyfél mondta el, nem mi mértük.':
-    'Es kamen mehr Anfragen, und wer wirklich Gartenbau suchte, fand sie gezielter. Das hat der Kunde uns gesagt, gemessen haben wir es nicht.',
+  'Google Ads és SEO egy rendszerként, majd egy teljesen újragondolt weboldal, amelynek közepén a kert és az alatta lévő talaj interaktív 3D keresztmetszete áll.':
+    'Google Ads und SEO als ein System, danach eine vollständig neu gedachte Website, in deren Zentrum ein interaktiver 3D-Querschnitt durch einen Garten und den Boden darunter steht.',
+  'A fizetett és az organikus keresés együtt nagyjából 15 millió Ft értékű szerződött projektet hozott: mintegy 9 millió Ft a Google Adsből, további 6 millió Ft az organikus keresésből.':
+    'Bezahlte und organische Suche brachten zusammen einen beauftragten Projektwert von rund 15 Millionen HUF: etwa 9 Millionen HUF aus Google Ads und weitere 6 Millionen HUF aus der organischen Suche.',
+  '~15M Ft': '~15 Mio. HUF',
+  'Szerződött projektérték keresésből': 'Beauftragter Projektwert aus der Suche',
   'Az oldal karbantartása és a hirdetések folyamatos kezelése havidíjas konstrukcióban.':
     'Wartung der Website und laufende Betreuung der Werbung im Monatsmodell.',
   'Az eredmények gyorsan láthatóak lettek: több megkeresés érkezett, és sokkal célzottabban találtak ránk azok az ügyfelek, akik valóban a szolgáltatásainkat keresték.':
     'Die Ergebnisse waren schnell sichtbar: Es kamen mehr Anfragen, und die Kunden, die wirklich unsere Leistungen suchten, fanden uns deutlich gezielter.',
   'Győrffy Márton': 'Győrffy Márton',
   'CEO, Rapidkert Kft.': 'CEO, Rapidkert Kft.',
-  'A Rapidkert kertépítés weboldala': 'Die Website von Rapidkert Gartenbau',
+  'A Rapidkert interaktív 3D kertépítő weboldala a Stratos Mediától':
+    'Die interaktive 3D-Website von Rapidkert Gartenbau, umgesetzt von Stratos Media',
 
   // 2 · Barbershop Győr — 13 200 m
   'Barbershop Győr': 'Barbershop Győr',

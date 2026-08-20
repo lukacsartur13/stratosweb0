@@ -183,17 +183,20 @@ export const EN: Record<string, string> = {
     'Searches for landscaping are seasonal and strongly tied to a place. The interest was there, but not from the right people: many enquiries came from those who needed something else entirely.',
   'Nem több forgalmat céloztunk meg, hanem pontosabbat. A pozicionálás, az oldal szerkezete és a hirdetések ugyanarra a szűkebb keresési szándékra épültek.':
     'We did not aim for more traffic, but for more precise traffic. The positioning, the structure of the site and the advertising were all built on the same, narrower search intent.',
-  'Egyedi weboldal, a szolgáltatásokra bontott aloldalakkal, mérhető űrlapokkal, és a hozzá illesztett hirdetéskezelés — egy rendszerként, nem három külön projektként.':
-    'A custom website, with subpages broken out by service, measurable forms, and the ads management fitted to it — as one system, not as three separate projects.',
-  'Több megkeresés érkezett, és célzottabban találtak rájuk azok, akik valóban kertépítést kerestek. Ezt az ügyfél mondta el, nem mi mértük.':
-    'More enquiries came in, and the people genuinely looking for landscaping found them more precisely. This is what the client told us; we did not measure it.',
+  'Google Ads és SEO egy rendszerként, majd egy teljesen újragondolt weboldal, amelynek közepén a kert és az alatta lévő talaj interaktív 3D keresztmetszete áll.':
+    'Google Ads and SEO as one system, then a completely rethought website built around an interactive 3D cross-section of a garden and the ground beneath it.',
+  'A fizetett és az organikus keresés együtt nagyjából 15 millió Ft értékű szerződött projektet hozott: mintegy 9 millió Ft a Google Adsből, további 6 millió Ft az organikus keresésből.':
+    'Paid and organic search together generated approximately 15 million HUF in contracted project value: around 9 million HUF from Google Ads and a further 6 million HUF from organic search.',
+  '~15M Ft': '~15M HUF',
+  'Szerződött projektérték keresésből': 'Contracted project value from search',
   'Az oldal karbantartása és a hirdetések folyamatos kezelése havidíjas konstrukcióban.':
     'Maintenance of the site and continuous management of the advertising, on a monthly retainer.',
   'Az eredmények gyorsan láthatóak lettek: több megkeresés érkezett, és sokkal célzottabban találtak ránk azok az ügyfelek, akik valóban a szolgáltatásainkat keresték.':
     'The results became visible quickly: more enquiries came in, and the customers who were genuinely looking for our services found us far more precisely.',
   'Győrffy Márton': 'Győrffy Márton',
   'CEO, Rapidkert Kft.': 'CEO, Rapidkert Kft.',
-  'A Rapidkert kertépítés weboldala': 'The Rapidkert landscaping website',
+  'A Rapidkert interaktív 3D kertépítő weboldala a Stratos Mediától':
+    'The Rapidkert interactive 3D landscaping website by Stratos Media',
 
   // 2 · Barbershop Győr — 13 200 m
   'Barbershop Győr': 'Barbershop Győr',

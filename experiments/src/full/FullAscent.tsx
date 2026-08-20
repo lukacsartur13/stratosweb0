@@ -449,8 +449,9 @@ function SelectedWork() {
               <dd>{w.ongoing}</dd>
             </dl>
 
-            {/* Rendered only when a verified figure exists. None do yet, and the
-                honest thing is an absent row rather than an invented number. */}
+            {/* Rendered only when a verified figure exists. Rapidkert has one;
+                the other two do not, and the honest thing there is an absent
+                row rather than an invented number. */}
             {w.metric && (
               <p className="case__metric">
                 <strong>{w.metric.value}</strong> <span>{w.metric.label}</span>

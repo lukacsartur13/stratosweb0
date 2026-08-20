@@ -294,13 +294,20 @@ Semmi nincs kitalálva. Minden állítás visszavezethető valamire, ami már a
 repóban van: a Rapidkert-idézet a főoldalon publikált referencia, a logók és
 képernyőképek a már szállított `assets/img/` tartalmak.
 
-**A `metric` mező minden bejegyzésen `null`, és ez megállapítás, nem
-mulasztás:** ebben a repóban nincs egyetlen igazolt számszerű eredmény sem
-egyetlen projektre sem. A brief pontos metrikát kért *ahol igazolt metrika
-létezik*, és megtiltotta a kitalálásukat. A layout rendereli a sort, ha van
-érték, és teljesen elhagyja, ha nincs — egy későbbi kitöltés egysoros
-változtatás, tervezői munka nélkül. Egy teszt is őrzi: `.case__metric` darabszáma
-nulla.
+**A `metric` mező csak ott van kitöltve, ahol a számnak megnevezett forrása
+van.** A Rapidkertnek van: `~15M Ft` szerződött projektérték keresésből — ugyanaz
+az érték és ugyanaz a felirat, amit a `munka-rapidkert.html` esettanulmány közöl.
+A másik két bejegyzésen `null`, és ez ott továbbra is megállapítás, nem mulasztás:
+igazolt számszerű eredmény nincs hozzájuk. A brief pontos metrikát kért *ahol
+igazolt metrika létezik*, és megtiltotta a kitalálásukat. A layout rendereli a
+sort, ha van érték, és teljesen elhagyja, ha nincs.
+
+A szám **szerződött projektérték** — nem árbevétel és nem nyereség. Egy teszt
+őrzi, és a `WORK` táblából vezeti le a szerződést, nem egy megjegyzett
+darabszámból: minden esethez pontosan akkor és csak akkor tartozik metrikasor, ha
+a tartalmi táblában van hozzá forrásolt szám, és a sor pontosan azt írja, amit a
+tábla. Így a Rapidkert metrikájának elvesztése és egy kitalált szám megjelenése
+ugyanúgy bukik.
 
 **Az „Uncensored Society" és a „Brickness Community" nem szerepel**, mert a
 repóban sehol nincs hozzájuk anyag — se szöveg, se logó, se képernyőkép.
