@@ -496,6 +496,81 @@ test.describe('the homepage flight deck', () => {
     expect(key.toLowerCase()).toBe(stage.toLowerCase());
   });
 
+  /**
+   * The deck prints what it is pushed, and a still page does not exempt it.
+   *
+   * ## Why this exists, and why the test above is not enough
+   *
+   * The test above is the page-level statement and it is the one that failed in
+   * `final-closure-01` — `"munkáink"` in the deck beside `"rendszer"` in the
+   * instrument. The defect behind it was real and is fixed. But that test only
+   * *witnesses* it when the journey happens to come to rest inside a ~9 px band
+   * above a stage boundary, and where that band falls depends on where
+   * `calibrate()` put the boundary on the run. Measured: with the defect
+   * deliberately restored, the test above passed 10 of 10. It caught the defect
+   * once, by luck, and cannot be relied on to catch it again.
+   *
+   * ## What is actually being protected
+   *
+   * `Stratos.header.push()` is the interface the homepage drives the shared deck
+   * through, and it is the whole of the homepage's half of the flight deck —
+   * `siteHeader.ts` on the desktop journey and `MobileTelemetry.tsx` on the
+   * portrait page are its only two callers. Its contract is: the altitude and
+   * the stage label are values the CALLER owns, and the deck prints them.
+   *
+   * Progress is not the whole state on this route, and that is the point. The
+   * journey's clock settles onto its target in steps that fall below any scroll
+   * gate, and `calibrate()` moves the stage boundaries when a late image decodes
+   * — so the stage the visitor is in can change while `scrollY` does not move at
+   * all. A deck that repaints only when progress moves keeps the previous stage
+   * name, and keeps it for as long as the visitor stays there.
+   *
+   * So: the same progress, twice, with a different stage. If the second one is
+   * not on screen, the deck is deriving rather than printing, and the page has
+   * two readouts that can disagree. Measured, deterministic, and it does not
+   * depend on where a boundary landed.
+   */
+  test('the deck prints a new stage pushed at an unchanged scroll position', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === 'reduced-motion', 'no clock on that path, so nothing is being pushed');
+    await page.goto('/index.html');
+    await homepageReady(page);
+    await headerInstalled(page);
+
+    const printed = await page.evaluate(() => {
+      const deck = (window as unknown as {
+        Stratos: { header: { push(p: number, meta?: { alt?: number; key?: string }): void; release(): void } };
+      }).Stratos.header;
+      const read = () => ({
+        key: (document.querySelector('.nav__alt-k')?.textContent ?? '').trim(),
+        alt: (document.querySelector('.nav__alt-v')?.textContent ?? '').replace(/\D/g, ''),
+      });
+
+      // A position, and the stage the journey reports there.
+      deck.push(0.5, { alt: 12_000, key: 'ALFA' });
+      const first = read();
+
+      // The same position. A different stage — which is what a boundary crossed
+      // inside the clock's final approach looks like, and what a recalibration
+      // looks like. Nothing scrolled.
+      deck.push(0.5, { alt: 17_000, key: 'BRAVO' });
+      const second = read();
+
+      // Hand the deck back rather than leaving the rest of the file's tests on
+      // a header this one hijacked. The page's own driver re-takes it on its
+      // next frame.
+      deck.release();
+      return { first, second };
+    });
+
+    expect(printed.first.key, 'the deck did not print the first pushed stage at all').toBe('ALFA');
+    expect(printed.first.alt).toBe('12000');
+    expect(
+      printed.second.key,
+      'the deck kept the previous stage name when the journey changed stage without scrolling',
+    ).toBe('BRAVO');
+    expect(printed.second.alt, 'the deck kept the previous altitude too').toBe('17000');
+  });
+
   test('the altitude readout is hidden from assistive technology', async ({ page }) => {
     await page.goto('/index.html');
     // Decorative: the same number is already announced by the HUD's live
