@@ -161,6 +161,111 @@ const settled = async (page: Page) => {
 const instrumentReady = (page: Page) =>
   page.waitForSelector('.mv-alt__stage[data-ready]', { timeout: 30_000 });
 
+/**
+ * The ascent reader has run against the scroll position just set.
+ *
+ * `scrollTo` moves `scrollY` synchronously and nothing else. `ascent.ts` listens
+ * for the scroll event and coalesces to **at most one reader pass per animation
+ * frame** — deliberately, and it is the whole of the portrait performance
+ * architecture (§26: no new scroll listeners, nothing that runs after the finger
+ * lifts). So the readout is written on a FRAME, and until one has happened it
+ * still holds the value for the previous position.
+ *
+ * This replaces a `waitForTimeout(200)` in the two tests below, and that sleep
+ * is the exact cause of both of this file's failures in `final-closure-01`:
+ *
+ *   :591  expected 30 000 at the foot of the document, read `0`
+ *   :638  expected the ascent held across the menu, read a 14 970 m drift
+ *
+ * Neither is a drift and neither is a zero. `0` and `14 970` are the readings at
+ * the position the page was at **before** the scroll — measured: the top of the
+ * document reads `0`, and `scrollY = 5200` settles at exactly 14 970 m. 200 ms
+ * is four frames on a quiet host and none at all on a host running five WebGL
+ * pages at once, which is what the gate does to itself.
+ *
+ * Two frames, not one, and the reason is ordering rather than caution. The
+ * scroll event is dispatched in the "update the rendering" step, *before* that
+ * frame's animation callbacks, so the reader's own frame request is always
+ * queued no later than the first one taken here — and is therefore always
+ * serviced before the second. One frame is enough in every ordering but one;
+ * two is enough in all of them, and costs a frame.
+ *
+ * Not a duration: on a page getting 3 fps this waits 660 ms and on a page
+ * getting 120 fps it waits 17 ms, and it is the same statement either way.
+ */
+const ascentRead = (page: Page) =>
+  page.evaluate(
+    () => new Promise<void>((done) => requestAnimationFrame(() => requestAnimationFrame(() => done()))),
+  );
+
+/**
+ * The document has come to rest where it was sent, and the reader has read it.
+ *
+ * `scrollTo` is not the end of the scroll on this engine. Measured on
+ * `mobile-390`, thirty fresh loads, after
+ * `scrollTo({ top: 5200, behavior: 'instant' })`:
+ *
+ *   * `scrollY` moved again after the instruction in **19 of 30** runs
+ *   * it settled 1–2 px LOW — 5 200 became 5 199 or 5 198
+ *   * it was stable from frame **7–8**, never before frame 5
+ *
+ * The page is still arriving when the instruction returns: reveals fire, images
+ * below the fold decode, and the document adjusts under a fixed scroll offset.
+ *
+ * That matters to Contract C and not only to the readout. `header.js` captures
+ * the position at the moment the layer OPENS — by then settled — and puts that
+ * back on close, to a pixel. A `before` sampled two frames after the scroll is
+ * the *unsettled* position, so the comparison measures the settling and blames
+ * the lock. Measured: waiting only for the reader's frame, the restore
+ * assertion `|scrollY − before| <= 2` failed 44 times in 400, reporting 3, 4, 5
+ * and 6 px — a lock that was restoring its captured position exactly.
+ *
+ * And the position does not stop moving when the scroll does. Measured on
+ * `mobile-430`, twenty-five fresh loads, sampling what `header.js` actually
+ * locks (`-body.top` at the moment the layer opens) against the position the
+ * test had already called settled:
+ *
+ *   before = 5 200 in 25 of 25;  locked = 5 198 in 9, 5 199 in 3, 5 200 in 13
+ *   the restore was EXACT in 25 of 25 — `scrollY` after close == what was locked
+ *
+ * The page drifts up by a pixel or two *after* the scroll has stopped, and the
+ * lock then faithfully restores the drifted position. The cause is named in the
+ * sibling suite already: the deck compacts over ~0.45 s after a scroll, that is
+ * a layout change above the viewport, and the browser holds the rendered
+ * content still by taking the difference out of `scrollY`. Under a loaded host
+ * the drift reaches 3–6 px, which is where the 44 failures came from.
+ *
+ * So all three are waited for, in the order they happen: the deck stops
+ * resizing and the position stops moving — one condition, because the first
+ * causes the second — and then the reader runs against where it stopped.
+ * `waitForFunction` polls on the frame clock, so the count below is frames.
+ */
+async function scrolledAndRead(page: Page) {
+  await page.evaluate(() => {
+    (window as unknown as { __settle: { at: string; n: number } }).__settle = { at: '', n: 0 };
+  });
+  await page.waitForFunction(
+    () => {
+      // The deck's height is measured alongside the position because it is the
+      // thing that MOVES the position. Rounded to a tenth so the transition's
+      // own sub-pixel steps do not keep the counter at zero forever.
+      const deck = document.querySelector('.nav');
+      const height = deck ? Math.round(deck.getBoundingClientRect().height * 10) / 10 : 0;
+      const at = `${scrollY}|${height}`;
+      const s = (window as unknown as { __settle: { at: string; n: number } }).__settle;
+      if (s.at === at) s.n += 1;
+      else {
+        s.at = at;
+        s.n = 0;
+      }
+      return s.n >= 5;
+    },
+    null,
+    { timeout: 15_000 },
+  );
+  await ascentRead(page);
+}
+
 /** The metres the page is currently showing the visitor. */
 const altitude = (page: Page) =>
   page
@@ -598,7 +703,7 @@ test.describe('portrait mobile — the composition itself', () => {
 
     const top = await read();
     await page.evaluate(() => scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
-    await page.waitForTimeout(200);
+    await scrolledAndRead(page);
     const bottom = await read();
 
     expect(top).toBeLessThan(1000);
@@ -643,7 +748,7 @@ test.describe('portrait mobile — lifecycle', () => {
     await ready(page);
 
     await page.evaluate(() => scrollTo({ top: 5200, behavior: 'instant' }));
-    await page.waitForTimeout(200);
+    await scrolledAndRead(page);
     const before = await page.evaluate(() => scrollY);
     const altitudeBefore = await altitude(page);
 
