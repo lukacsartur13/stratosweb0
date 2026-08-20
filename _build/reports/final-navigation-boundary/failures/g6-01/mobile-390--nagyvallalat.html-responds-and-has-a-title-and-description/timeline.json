@@ -1,0 +1,28 @@
+{
+  "navId": "g6-01.mobile-390.w19.nagyvallalat.html-responds-and-has-a-title-and-description.0",
+  "target": "http://127.0.0.1:4322/nagyvallalat.html",
+  "gotoResolved": false,
+  "gotoError": null,
+  "preceding": {
+    "urlBefore": "about:blank",
+    "contextPages": 1,
+    "openRequests": 0,
+    "navigationsInThisTest": 0,
+    "workerTestsBefore": 11,
+    "workerNavigationsBefore": 11,
+    "precedingTest": "/kkv.html responds and has a title and description",
+    "precedingNavigation": "http://127.0.0.1:4322/kkv.html"
+  },
+  "events": [
+    {
+      "t": 2,
+      "event": "GOTO_CALLED",
+      "state": "GOTO_CALLED",
+      "url": "/nagyvallalat.html",
+      "resolvedTarget": "http://127.0.0.1:4322/nagyvallalat.html",
+      "urlBefore": "about:blank",
+      "waitUntil": "load (default)",
+      "timeout": "inherited from test timeout"
+    }
+  ]
+}

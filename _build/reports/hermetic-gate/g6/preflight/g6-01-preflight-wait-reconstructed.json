@@ -1,0 +1,26 @@
+{
+  "attempt": "g6-01-preflight-wait (reconstructed)",
+  "verdict": "WAIT",
+  "provenance": "RECONSTRUCTED FROM CONSOLE OUTPUT — the original JSON was overwritten. This attempt was run manually with the attempt id 'g6-01-preflight-1'; the sequence driver then used the same id for its own first attempt, which PASSED, and the PASS record replaced this one on disk. The values below are exactly as the checker printed them and are reproduced here rather than lost, because §17 requires both the failed attempt and the later passing attempt to be recorded. The filename collision is a bookkeeping defect in the driver, noted in the summary.",
+  "at": "2026-08-20T03:2xZ (before 03:25:45Z)",
+  "load": { "load1": 1.37, "load1Max": 1.37, "load5": 1.77, "load15": 1.85, "cap": 6.0 },
+  "memory": { "freeMemPctMin": 50, "swapUsedMB": 3462.81 },
+  "icloud": { "sustainedCpu": 0 },
+  "ports": [ { "port": 4322, "free": true }, { "port": 4327, "free": true } ],
+  "subject": {
+    "combined": "660f76198c30f6f9a843908ef2cf822b6b5701bfdacc93e6d630311b6b5db269",
+    "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+    "dist": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+    "distFiles": 186,
+    "intact": true
+  },
+  "failedChecks": [
+    {
+      "id": "no-competing-suites",
+      "section": "C",
+      "severity": "WAIT",
+      "detail": "competing workload executing at 34.6% sustained CPU: chrome-headless-shell(9733) 16.6%, chrome-headless-shell(9735) 18%"
+    }
+  ],
+  "outcome": "No run was started. The competing automation-browser workload was allowed to settle (observed falling to 0.0% sustained across three consecutive samples), after which preflight was re-run and PASSED."
+}

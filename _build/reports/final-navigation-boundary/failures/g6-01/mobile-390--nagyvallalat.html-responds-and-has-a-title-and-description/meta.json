@@ -1,0 +1,53 @@
+{
+  "runId": "g6-01",
+  "navId": "g6-01.mobile-390.w19.nagyvallalat.html-responds-and-has-a-title-and-description.0",
+  "test": {
+    "file": "public-site.spec.ts",
+    "line": 264,
+    "title": "/nagyvallalat.html responds and has a title and description",
+    "project": "mobile-390",
+    "workerIndex": 19,
+    "repeatEachIndex": 0,
+    "retry": 0
+  },
+  "preceding": {
+    "urlBefore": "about:blank",
+    "contextPages": 1,
+    "openRequests": 0,
+    "navigationsInThisTest": 0,
+    "workerTestsBefore": 11,
+    "workerNavigationsBefore": 11,
+    "precedingTest": "/kkv.html responds and has a title and description",
+    "precedingNavigation": "http://127.0.0.1:4322/kkv.html"
+  },
+  "status": "timedOut",
+  "expectedStatus": "passed",
+  "durationMs": 30003,
+  "timeoutMs": 30000,
+  "lastConfirmedState": "GOTO_CALLED",
+  "statesReached": [
+    "GOTO_CALLED"
+  ],
+  "screenshot": true,
+  "error": [
+    "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+  ],
+  "errorIsPartial": true,
+  "frozenSubject": {
+    "source": "/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/manifests/g6-01-before.json",
+    "dist": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+    "tests": null,
+    "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f"
+  },
+  "system": {
+    "loadavg": [
+      4.16943359375,
+      3.62939453125,
+      2.65185546875
+    ],
+    "freememMB": 927,
+    "cpus": 10,
+    "platform": "darwin 25.6.0",
+    "arch": "arm64"
+  }
+}

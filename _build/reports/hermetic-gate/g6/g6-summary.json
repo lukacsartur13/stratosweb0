@@ -1,0 +1,377 @@
+{
+  "sequence": "g6",
+  "policy": "_build/reports/hermetic-gate/host-health-policy.md",
+  "preRegistration": "_build/reports/hermetic-gate/g6/pre-registration.md",
+  "requiredRuns": 3,
+  "runsRecorded": 1,
+  "allValid": false,
+  "allGreen": false,
+  "identical": {
+    "commit": true,
+    "product": true,
+    "test": true,
+    "config": true,
+    "dist": true,
+    "collected": true,
+    "skipSet": true
+  },
+  "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+  "arithmeticReconciles": true,
+  "totalFailures": 1,
+  "canaryWrites": 0,
+  "orphanedProcesses": 0,
+  "portsStillHeld": 0,
+  "subjectIdenticalAll": true,
+  "noRebuildBetweenRuns": true,
+  "rows": [
+    {
+      "id": "g6-01",
+      "valid": true,
+      "green": false,
+      "invalidReasons": [],
+      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+      "hashes": {
+        "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+        "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+        "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+        "dist": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+        "distFiles": 186,
+        "combined": "660f76198c30f6f9a843908ef2cf822b6b5701bfdacc93e6d630311b6b5db269"
+      },
+      "hashesAfter": {
+        "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+        "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+        "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+        "dist": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+        "distFiles": 186,
+        "combined": "660f76198c30f6f9a843908ef2cf822b6b5701bfdacc93e6d630311b6b5db269"
+      },
+      "subjectIdentical": true,
+      "canaryEvents": 0,
+      "orphanedProcesses": 0,
+      "portsStillHeld": 0,
+      "buildSkipped": true,
+      "durationMs": 1108731,
+      "load": {
+        "count": 222,
+        "meanLoad1": 5.5,
+        "peakLoad1": 11.28,
+        "minLoad1": 1.22,
+        "peakBrowserProcs": 46,
+        "peakSwapUsedMB": 3462.81
+      },
+      "collected": 1450,
+      "passed": 1294,
+      "failed": 1,
+      "skipped": 155,
+      "suites": {
+        "main": {
+          "collected": 1285,
+          "passed": 1163,
+          "failed": 1,
+          "skipped": 121,
+          "sum": 1285,
+          "reconciles": true
+        },
+        "webgl": {
+          "collected": 165,
+          "passed": 131,
+          "failed": 0,
+          "skipped": 34,
+          "sum": 165,
+          "reconciles": true
+        }
+      },
+      "failedGates": [
+        "playwright-main"
+      ],
+      "failures": [
+        "[mobile-390] public-site.spec.ts:264 /nagyvallalat.html responds and has a title and description"
+      ],
+      "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+      "skipSetCount": 155,
+      "skipIds": [
+        "[desktop-1440] mobile-homepage-simple.spec.ts:1034 nothing renders while the page is idle",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:1070 nothing renders while the instrument is deliberately hidden",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:1204 the instrument adds no scroll listener of its own",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:1246 the slot has a fixed box that the instrument cannot change",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:190 a phone gets the simple composition and exactly one canvas",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:211 the Altimeter GLB is loaded and nothing else from the old scene is",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:236 the renderer is not requested at all when there is no WebGL",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:315 the document scrolls itself",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:347 nothing moves the scroll position on the page's behalf",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:406 the page stops when the scroll stops",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:435 every section starts near its own top",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:462 no section is a tall empty spacer",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:503 nothing paints an opaque plate across the altimeter",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:540 there is one altitude readout, not two",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:553 the telemetry stays visible and above the copy",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:591 the altitude advances with the document and settles at the ceiling",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:608 every reveal completes",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:623 the closing action is reachable at the bottom of the page",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:638 the menu opens, locks only while it is open, and leaves the ascent where it was",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:755 the menu closes on the burger too, and traps Tab while it is open",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:818 a back navigation comes back with a live, agreeing readout",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:884 browser chrome collapsing does not move the composition",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:913 a rotation keeps the mobile composition",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:936 everything is present and nothing travels",
+        "[desktop-1440] mobile-homepage-simple.spec.ts:968 the real instrument stays, and stops moving",
+        "[desktop-1440] public-site.spec.ts:298 the ascent degrades to a readable document",
+        "[desktop-1440] public-site.spec.ts:327 the reduced-motion test environment is genuinely active",
+        "[desktop-1920] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 1024x768",
+        "[desktop-1920] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 360x800",
+        "[desktop-1920] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 375x812",
+        "[desktop-1920] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 844x390 landscape",
+        "[desktop-1920] homepage-chrome.spec.ts:1116 the chrome survives 200% zoom and increased text spacing",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:1034 nothing renders while the page is idle",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:1070 nothing renders while the instrument is deliberately hidden",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:1204 the instrument adds no scroll listener of its own",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:1246 the slot has a fixed box that the instrument cannot change",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:190 a phone gets the simple composition and exactly one canvas",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:211 the Altimeter GLB is loaded and nothing else from the old scene is",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:236 the renderer is not requested at all when there is no WebGL",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:315 the document scrolls itself",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:347 nothing moves the scroll position on the page's behalf",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:406 the page stops when the scroll stops",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:435 every section starts near its own top",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:462 no section is a tall empty spacer",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:503 nothing paints an opaque plate across the altimeter",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:540 there is one altitude readout, not two",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:553 the telemetry stays visible and above the copy",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:591 the altitude advances with the document and settles at the ceiling",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:608 every reveal completes",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:623 the closing action is reachable at the bottom of the page",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:638 the menu opens, locks only while it is open, and leaves the ascent where it was",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:755 the menu closes on the burger too, and traps Tab while it is open",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:818 a back navigation comes back with a live, agreeing readout",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:884 browser chrome collapsing does not move the composition",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:913 a rotation keeps the mobile composition",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:936 everything is present and nothing travels",
+        "[desktop-1920] mobile-homepage-simple.spec.ts:968 the real instrument stays, and stops moving",
+        "[desktop-1920] public-site.spec.ts:298 the ascent degrades to a readable document",
+        "[desktop-1920] public-site.spec.ts:327 the reduced-motion test environment is genuinely active",
+        "[desktop] full-ascent.spec.ts:416 reads as a document and never downloads the renderer",
+        "[desktop] full-ascent.spec.ts:448 hides no essential content and keeps every CTA usable",
+        "[mobile-390] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 1024x768",
+        "[mobile-390] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 360x800",
+        "[mobile-390] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 375x812",
+        "[mobile-390] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 844x390 landscape",
+        "[mobile-390] homepage-chrome.spec.ts:1116 the chrome survives 200% zoom and increased text spacing",
+        "[mobile-390] homepage-chrome.spec.ts:315 desktop navigation is visible at the top and collapses into the trigger",
+        "[mobile-390] homepage-chrome.spec.ts:559 focus is trapped inside the layer while it is open",
+        "[mobile-390] mobile-homepage-simple.spec.ts:1294 a desktop viewport still gets the cinematic journey and its terrain",
+        "[mobile-390] public-site.spec.ts:298 the ascent degrades to a readable document",
+        "[mobile-390] public-site.spec.ts:327 the reduced-motion test environment is genuinely active",
+        "[mobile-430] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 1024x768",
+        "[mobile-430] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 360x800",
+        "[mobile-430] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 375x812",
+        "[mobile-430] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 844x390 landscape",
+        "[mobile-430] homepage-chrome.spec.ts:1116 the chrome survives 200% zoom and increased text spacing",
+        "[mobile-430] homepage-chrome.spec.ts:315 desktop navigation is visible at the top and collapses into the trigger",
+        "[mobile-430] homepage-chrome.spec.ts:559 focus is trapped inside the layer while it is open",
+        "[mobile-430] mobile-homepage-simple.spec.ts:1294 a desktop viewport still gets the cinematic journey and its terrain",
+        "[mobile-430] public-site.spec.ts:298 the ascent degrades to a readable document",
+        "[mobile-430] public-site.spec.ts:327 the reduced-motion test environment is genuinely active",
+        "[reduced-motion] full-ascent.spec.ts:1026 the canonical root transform exists at every altitude the range is mounted at",
+        "[reduced-motion] full-ascent.spec.ts:1052 just below, exactly at, and just above the hide boundary",
+        "[reduced-motion] full-ascent.spec.ts:1077 crossing below 12 000 m introduces no discontinuity",
+        "[reduced-motion] full-ascent.spec.ts:1097 reverse re-entry reconstructs the forward transform exactly",
+        "[reduced-motion] full-ascent.spec.ts:1120 nothing is drawn while hidden, and nothing is mounted above the unmount threshold",
+        "[reduced-motion] full-ascent.spec.ts:1143 3 000 m resolves the same way from either direction",
+        "[reduced-motion] full-ascent.spec.ts:1162 a forward sweep and a reverse sweep agree at every altitude",
+        "[reduced-motion] full-ascent.spec.ts:1191 the progress-keyed helper is the altitude rule, not a second copy of it",
+        "[reduced-motion] full-ascent.spec.ts:1213 scrolling down and back up returns the instrument to its 0 m baseline",
+        "[reduced-motion] full-ascent.spec.ts:1246 the altitude climbs continuously, with no stage boundary that stalls it",
+        "[reduced-motion] full-ascent.spec.ts:1274 the structural stages are announced in order, and unwound in reverse",
+        "[reduced-motion] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction",
+        "[reduced-motion] full-ascent.spec.ts:1526 captures the no-WebGL fallback",
+        "[reduced-motion] full-ascent.spec.ts:1544 records what each path transfers",
+        "[reduced-motion] full-ascent.spec.ts:195 loads the scene and the instrument with no console errors",
+        "[reduced-motion] full-ascent.spec.ts:216 the altitude climbs the whole way and reaches exactly 30 000 m",
+        "[reduced-motion] full-ascent.spec.ts:243 the rendered scene changes between every act",
+        "[reduced-motion] full-ascent.spec.ts:271 never scrolls sideways, at any altitude",
+        "[reduced-motion] full-ascent.spec.ts:294 keeps time while the tab is hidden and the canvas is parked",
+        "[reduced-motion] full-ascent.spec.ts:320 reaches the ceiling even if the canvas never renders again",
+        "[reduced-motion] full-ascent.spec.ts:481 falls back to the static instrument when WebGL cannot be created",
+        "[reduced-motion] full-ascent.spec.ts:520 three.js is absent from the eager entry and never preloaded",
+        "[reduced-motion] full-ascent.spec.ts:571 no secrets and no Web3Forms references reached the bundle",
+        "[reduced-motion] full-ascent.spec.ts:624 the CTA arrives over the scene, with no gap and no footer collision",
+        "[reduced-motion] full-ascent.spec.ts:676 scrolling to the very end is not trapped and does not jump",
+        "[reduced-motion] full-ascent.spec.ts:714 no canvas/text overlap and no viewport overflow at any stage",
+        "[reduced-motion] full-ascent.spec.ts:836 the aperture holds three exact settings and nothing between them drifts",
+        "[reduced-motion] full-ascent.spec.ts:864 the iris closes without a gap and opens without one",
+        "[reduced-motion] full-ascent.spec.ts:887 the rings lock in order, one at a time, each at its own altitude",
+        "[reduced-motion] full-ascent.spec.ts:924 all three rings perform the same lock gesture, and none of them bounces",
+        "[reduced-motion] full-ascent.spec.ts:960 the whole instrument state is a pure function of altitude, in both directions",
+        "[reduced-motion] full-ascent.spec.ts:989 the six announced stages cover the range and never run backwards",
+        "[reduced-motion] homepage-chrome.spec.ts:1054 the header binds exactly one scroll listener and no permanent loop",
+        "[reduced-motion] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 1024x768",
+        "[reduced-motion] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 360x800",
+        "[reduced-motion] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 375x812",
+        "[reduced-motion] homepage-chrome.spec.ts:1090 the chrome fits and never scrolls sideways at 844x390 landscape",
+        "[reduced-motion] homepage-chrome.spec.ts:1116 the chrome survives 200% zoom and increased text spacing",
+        "[reduced-motion] homepage-chrome.spec.ts:337 the journey state compacts the wordmark and keeps the header short",
+        "[reduced-motion] homepage-chrome.spec.ts:437 the header does not chatter when the visitor hovers on a boundary",
+        "[reduced-motion] homepage-chrome.spec.ts:459 the header prints the journey altitude, not an altitude of its own",
+        "[reduced-motion] homepage-chrome.spec.ts:482 the readout names the stage the journey reports",
+        "[reduced-motion] homepage-chrome.spec.ts:647 opening the menu does not walk the journey back down the mountain",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:1034 nothing renders while the page is idle",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:1070 nothing renders while the instrument is deliberately hidden",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:1204 the instrument adds no scroll listener of its own",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:1246 the slot has a fixed box that the instrument cannot change",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:1294 a desktop viewport still gets the cinematic journey and its terrain",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:190 a phone gets the simple composition and exactly one canvas",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:211 the Altimeter GLB is loaded and nothing else from the old scene is",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:236 the renderer is not requested at all when there is no WebGL",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:315 the document scrolls itself",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:347 nothing moves the scroll position on the page's behalf",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:406 the page stops when the scroll stops",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:435 every section starts near its own top",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:462 no section is a tall empty spacer",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:503 nothing paints an opaque plate across the altimeter",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:540 there is one altitude readout, not two",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:553 the telemetry stays visible and above the copy",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:591 the altitude advances with the document and settles at the ceiling",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:608 every reveal completes",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:623 the closing action is reachable at the bottom of the page",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:638 the menu opens, locks only while it is open, and leaves the ascent where it was",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:755 the menu closes on the burger too, and traps Tab while it is open",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:818 a back navigation comes back with a live, agreeing readout",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:884 browser chrome collapsing does not move the composition",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:913 a rotation keeps the mobile composition",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:936 everything is present and nothing travels",
+        "[reduced-motion] mobile-homepage-simple.spec.ts:968 the real instrument stays, and stops moving",
+        "[reduced-motion] public-site.spec.ts:112 altitude climbs as the visitor scrolls",
+        "[reduced-motion] public-site.spec.ts:191 the stage the visitor is in is exposed to assistive technology"
+      ],
+      "nonPlaywrightGates": [
+        {
+          "id": "typecheck",
+          "exitCode": 0,
+          "pass": true
+        },
+        {
+          "id": "fingerprint-check",
+          "exitCode": 0,
+          "pass": true
+        },
+        {
+          "id": "draco-check",
+          "exitCode": 0,
+          "pass": true
+        },
+        {
+          "id": "secret-scan",
+          "exitCode": 0,
+          "pass": true
+        },
+        {
+          "id": "seo-audit",
+          "exitCode": 0,
+          "pass": true
+        },
+        {
+          "id": "conversion-audit",
+          "exitCode": 0,
+          "pass": true
+        },
+        {
+          "id": "route-audit",
+          "exitCode": 0,
+          "pass": true
+        }
+      ],
+      "renderer": {
+        "executions": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "lead": {
+        "executions": 128,
+        "passed": 128,
+        "failed": 0,
+        "skipped": 0
+      },
+      "leadSilentDrop": {
+        "executions": 32,
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0,
+        "perContract": [
+          {
+            "contract": "a backward wall-clock step during the wait cannot under-report the fill time",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "the wait clears the drop threshold with headroom rather than landing on it",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "the shipped controller measures the fill window on a clock that cannot move",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "a double click produces exactly one request",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "Enter in a text field cannot slip a second request past the disabled button",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "a network failure shows the failure state and keeps everything typed",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "a retry after a failure re-sends the same submission id",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "a fresh enquiry after a success gets a new submission id",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          }
+        ]
+      },
+      "portal": {
+        "executions": 411,
+        "passed": 411,
+        "failed": 0,
+        "skipped": 0
+      },
+      "webglDetail": {
+        "failing": []
+      },
+      "navShaped": []
+    },
+    {
+      "id": "g6-02",
+      "missing": true
+    },
+    {
+      "id": "g6-03",
+      "missing": true
+    }
+  ],
+  "generatedAt": "2026-08-20T03:45:24.557Z",
+  "closureMet": false
+}

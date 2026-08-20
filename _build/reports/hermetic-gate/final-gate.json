@@ -1,464 +1,341 @@
 {
-  "workstream": "lead.js silent-drop product fix + hermetic run-output independence",
-  "generatedAt": "2026-08-19T20:47:42.510Z",
+  "workstream": "G6 quiet-host closure gate \u2014 prospective host-health execution policy",
+  "generatedAt": "2026-08-20T03:50:31.478842Z",
   "determinesCurrentVerdict": true,
-  "sequencePrefix": "g5",
-  "frozenSubject": {
-    "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
-    "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
-    "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
-    "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
-    "dist": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
-    "combined": "660f76198c30f6f9a843908ef2cf822b6b5701bfdacc93e6d630311b6b5db269"
-  },
-  "subjectRoot": "/Users/arturlukacs/stratos-hermetic/subject",
-  "validRunIds": [
-    "g5-01",
-    "g5-02",
-    "g5-03",
-    "g5-04",
-    "g5-05",
-    "g5-06"
-  ],
-  "validRuns": 6,
-  "requestedRuns": 6,
-  "attempts": 6,
-  "discarded": [],
-  "subjectMutationCount": 0,
-  "totalCanaryEvents": 0,
-  "totalOrphanedProcesses": 0,
-  "totalPortsHeld": 0,
-  "hashesIdenticalAcrossRuns": {
-    "product": true,
-    "test": true,
-    "config": true,
-    "dist": true
-  },
-  "aggregateIdentity": {
-    "collected": true,
-    "skipped": true,
-    "passed": false,
-    "failed": false
-  },
-  "skipSetIdentical": true,
-  "skipSetShas": [
-    "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee"
-  ],
-  "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-  "failureSetIdentical": false,
-  "allArithmeticReconciles": true,
-  "everFailed": [
-    "[desktop-1920] lead-forms.spec.ts:472 maps the application into the lead schema",
-    "[desktop] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction",
-    "[desktop] full-ascent.spec.ts:1500 captures every stage of the journey",
-    "[mobile-390] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
-    "[mobile-430] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout"
-  ],
-  "wanderingFailures": [
-    {
-      "test": "[desktop-1920] lead-forms.spec.ts:472 maps the application into the lead schema",
-      "inRuns": [
-        6
-      ]
-    },
-    {
-      "test": "[desktop] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction",
-      "inRuns": [
-        2
-      ]
-    },
-    {
-      "test": "[desktop] full-ascent.spec.ts:1500 captures every stage of the journey",
-      "inRuns": [
-        2
-      ]
-    },
-    {
-      "test": "[mobile-390] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
-      "inRuns": [
-        2
-      ]
-    },
-    {
-      "test": "[mobile-430] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
-      "inRuns": [
-        2
-      ]
-    }
-  ],
-  "greenRuns": 4,
-  "allValid": true,
-  "deterministic": false,
-  "navigationBoundaries": [],
-  "unclassifiedNavigationFailures": [],
-  "verdict": "HERMETIC REGRESSION GATE NOT ACCEPTED",
+  "sequencePrefix": "g6",
+  "verdict": "G6 QUIET-HOST CLOSURE GATE: NOT GREEN",
   "mergeGate": "NOT GREEN",
-  "verdictReason": "2 run(s) were not green: [\"[desktop-1920] lead-forms.spec.ts:472 maps the application into the lead schema\",\"[desktop] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction\",\"[desktop] full-ascent.spec.ts:1500 captures every stage of the journey\",\"[mobile-390] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout\",\"[mobile-430] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout\"]",
-  "rows": [
-    {
-      "run": 1,
-      "runId": "g5-01",
-      "valid": true,
+  "leadSilentDropDefect": "RESOLVED",
+  "regressionHarnessWorkstream": "NOT CLOSED \u2014 one valid non-green run",
+  "verdictReason": "Three consecutive VALID+GREEN runs were pre-registered as the closure criterion before g6-01 began. g6-01 started after a passing prospective host-health preflight on a quiet host (load1 1.22 at start, mean 5.50 / peak 11.28 during) and returned VALID + RED with one failure: [mobile-390] public-site.spec.ts:264 /nagyvallalat.html. Section 35 forbids rerunning to obtain three green results, so g6-02 and g6-03 were not started and the predefined sequence fails. The subject was trustworthy throughout: hashes identical before and after, zero canary writes, zero orphans, zero ports held, arithmetic reconciled in both suites, skip set identical by hash to G5 and G3.",
+  "currentClosureMeasurement": {
+    "sequence": "g6",
+    "policy": "_build/reports/hermetic-gate/host-health-policy.md",
+    "preRegistration": "_build/reports/hermetic-gate/g6/pre-registration.md",
+    "preflightSummary": "_build/reports/hermetic-gate/g6/preflight-summary.md",
+    "matrix": "_build/reports/hermetic-gate/g6-three-run-matrix.md",
+    "finalReport": "_build/reports/hermetic-gate/g6-final-report.md",
+    "executionPolicy": "prospective host-health preflight gates RUN START ONLY; a started run counts regardless of later host conditions",
+    "requiredRuns": 3,
+    "runsStarted": 1,
+    "runsNotStarted": [
+      "g6-02",
+      "g6-03"
+    ],
+    "runsNotStartedReason": "g6-01 was VALID + RED; section 35 forbids rerunning for green",
+    "validRuns": 1,
+    "greenRuns": 0,
+    "closureMet": false,
+    "frozenSubject": {
+      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+      "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+      "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+      "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+      "dist": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+      "distFiles": 186,
+      "combined": "660f76198c30f6f9a843908ef2cf822b6b5701bfdacc93e6d630311b6b5db269"
+    },
+    "subjectRoot": "/Users/arturlukacs/stratos-hermetic/subject",
+    "identicalToG5Subject": true,
+    "rebuiltBetweenRuns": false,
+    "subjectMutationCount": 0,
+    "totalCanaryEvents": 0,
+    "totalOrphanedProcesses": 0,
+    "totalPortsHeld": 0,
+    "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+    "skipSetCount": 155,
+    "skipSetIdenticalToG5": true,
+    "allArithmeticReconciles": true,
+    "preflightAttempts": [
+      {
+        "attempt": "tool-validation",
+        "verdict": "WAIT",
+        "load1": 1.62,
+        "blocking": "competing automation workload"
+      },
+      {
+        "attempt": "g6-01-preflight-wait",
+        "verdict": "WAIT",
+        "load1": 1.37,
+        "blocking": "chrome-headless-shell 34.6% sustained CPU",
+        "recordProvenance": "reconstructed from console output \u2014 original JSON overwritten by an attempt-id collision"
+      },
+      {
+        "attempt": "g6-01-preflight-1",
+        "verdict": "PASS",
+        "load1": 1.22,
+        "checksSatisfied": 18,
+        "startedRun": "g6-01"
+      }
+    ],
+    "rows": [
+      {
+        "run": 1,
+        "runId": "g6-01",
+        "preflight": "PASS",
+        "valid": true,
+        "green": false,
+        "startedAt": "2026-08-20T03:25:45Z",
+        "collected": 1450,
+        "passed": 1294,
+        "failed": 1,
+        "skipped": 155,
+        "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+        "suites": {
+          "main": {
+            "collected": 1285,
+            "passed": 1163,
+            "failed": 1,
+            "skipped": 121,
+            "sum": 1285,
+            "reconciles": true
+          },
+          "webgl": {
+            "collected": 165,
+            "passed": 131,
+            "failed": 0,
+            "skipped": 34,
+            "sum": 165,
+            "reconciles": true
+          }
+        },
+        "durationMs": 1108731,
+        "meanLoad": 5.5,
+        "peakLoad": 11.28,
+        "minLoad": 1.22,
+        "subjectIdentical": true,
+        "canaryEvents": 0,
+        "orphanedProcesses": 0,
+        "portsStillHeld": 0,
+        "nonPlaywrightGates": [
+          {
+            "id": "typecheck",
+            "exitCode": 0,
+            "pass": true
+          },
+          {
+            "id": "fingerprint-check",
+            "exitCode": 0,
+            "pass": true
+          },
+          {
+            "id": "draco-check",
+            "exitCode": 0,
+            "pass": true
+          },
+          {
+            "id": "secret-scan",
+            "exitCode": 0,
+            "pass": true
+          },
+          {
+            "id": "seo-audit",
+            "exitCode": 0,
+            "pass": true
+          },
+          {
+            "id": "conversion-audit",
+            "exitCode": 0,
+            "pass": true
+          },
+          {
+            "id": "route-audit",
+            "exitCode": 0,
+            "pass": true
+          }
+        ],
+        "renderer": {
+          "executions": 4,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "portal": {
+          "executions": 411,
+          "passed": 411,
+          "failed": 0,
+          "skipped": 0
+        },
+        "lead": {
+          "executions": 128,
+          "passed": 128,
+          "failed": 0,
+          "skipped": 0
+        },
+        "leadSilentDrop": {
+          "executions": 32,
+          "passed": 32,
+          "failed": 0,
+          "skipped": 0
+        },
+        "leadSilentDropPerContract": [
+          {
+            "contract": "a backward wall-clock step during the wait cannot under-report the fill time",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "the wait clears the drop threshold with headroom rather than landing on it",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "the shipped controller measures the fill window on a clock that cannot move",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "a double click produces exactly one request",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "Enter in a text field cannot slip a second request past the disabled button",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "a network failure shows the failure state and keeps everything typed",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "a retry after a failure re-sends the same submission id",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          },
+          {
+            "contract": "a fresh enquiry after a success gets a new submission id",
+            "executions": 4,
+            "passed": 4,
+            "failed": 0
+          }
+        ],
+        "failures": [
+          "[mobile-390] public-site.spec.ts:264 /nagyvallalat.html responds and has a title and description"
+        ]
+      }
+    ],
+    "failureBoundary": {
+      "test": "[mobile-390] public-site.spec.ts:264 /nagyvallalat.html responds and has a title and description",
+      "gate": "playwright-main",
+      "project": "mobile-390",
+      "lastConfirmedState": "GOTO_CALLED",
+      "statesReached": [
+        "GOTO_CALLED"
+      ],
+      "gotoResolved": false,
+      "target": "http://127.0.0.1:4322/nagyvallalat.html",
+      "durationMs": 30003,
+      "timeoutMs": 30000,
+      "browserNetworkEvents": 0,
+      "serverLogLinesForNavId": 0,
+      "pageUrlAtFailure": "about:blank",
+      "pageReadyState": "complete",
+      "crashed": false,
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "precedingNavigation": "http://127.0.0.1:4322/kkv.html",
+      "workerTestsBefore": 11,
+      "workerNavigationsBefore": 11,
+      "sameRouteOtherProjects": "desktop-1440 and desktop-1920 both served 200 | 39802 bytes",
+      "loadAtFailure": [
+        4.169,
+        3.629,
+        2.652
+      ],
+      "freeMemMBAtFailure": 927,
+      "classification": "the navigation never left the browser \u2014 not a server stall, not a slow response, not a page-load hang",
+      "bundle": "_build/reports/final-navigation-boundary/failures/g6-01/mobile-390--nagyvallalat.html-responds-and-has-a-title-and-description",
+      "priorOccurrences": "G3 recorded the same test line and project on a different route parameter (/kkv.html, run 2 of 6); absent from G5"
+    },
+    "webglSuite": {
+      "perRun": "131/165 passed, 0 failed, 34 skipped",
       "green": true,
-      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
-      "hashes": {
-        "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
-        "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
-        "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
-        "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
-        "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
-      },
-      "subjectIdentical": true,
-      "canaryEvents": 0,
-      "orphanedProcesses": 0,
-      "portsStillHeld": 0,
-      "gatesRun": [
-        "typecheck",
-        "fingerprint-check",
-        "draco-check",
-        "secret-scan",
-        "seo-audit",
-        "conversion-audit",
-        "route-audit",
-        "playwright-main",
-        "playwright-full"
-      ],
-      "buildRan": true,
-      "suites": {
-        "main": {
-          "collected": 1285,
-          "passed": 1164,
-          "failed": 0,
-          "skipped": 121,
-          "reconciles": true
-        },
-        "webgl": {
-          "collected": 165,
-          "passed": 131,
-          "failed": 0,
-          "skipped": 34,
-          "reconciles": true
-        }
-      },
-      "collected": 1450,
-      "passed": 1295,
+      "note": "the G5 load outlier manifested here as two full-ascent failures; under a controlled start the suite was green"
+    },
+    "rendererCanary": {
+      "executions": 4,
+      "passed": 4,
       "failed": 0,
-      "skipped": 155,
-      "durationMs": 1148515,
-      "meanLoad": 6.59,
-      "peakLoad": 14.39,
-      "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-      "skipSetCount": 155,
-      "failureSet": []
+      "swiftShaderRegression": false,
+      "angleMetal": true
     },
-    {
-      "run": 2,
-      "runId": "g5-02",
-      "valid": true,
-      "green": false,
-      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
-      "hashes": {
-        "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
-        "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
-        "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
-        "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
-        "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
-      },
-      "subjectIdentical": true,
-      "canaryEvents": 0,
-      "orphanedProcesses": 0,
-      "portsStillHeld": 0,
-      "gatesRun": [
-        "typecheck",
-        "fingerprint-check",
-        "draco-check",
-        "secret-scan",
-        "seo-audit",
-        "conversion-audit",
-        "route-audit",
-        "playwright-main",
-        "playwright-full"
-      ],
-      "buildRan": true,
-      "suites": {
-        "main": {
-          "collected": 1285,
-          "passed": 1162,
-          "failed": 2,
-          "skipped": 121,
-          "reconciles": true
-        },
-        "webgl": {
-          "collected": 165,
-          "passed": 129,
-          "failed": 2,
-          "skipped": 34,
-          "reconciles": true
-        }
-      },
-      "collected": 1450,
-      "passed": 1291,
-      "failed": 4,
-      "skipped": 155,
-      "durationMs": 2702317,
-      "meanLoad": 88.15,
-      "peakLoad": 186.37,
-      "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-      "skipSetCount": 155,
-      "failureSet": [
-        "[desktop] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction",
-        "[desktop] full-ascent.spec.ts:1500 captures every stage of the journey",
-        "[mobile-390] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
-        "[mobile-430] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout"
-      ]
-    },
-    {
-      "run": 3,
-      "runId": "g5-03",
-      "valid": true,
-      "green": true,
-      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
-      "hashes": {
-        "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
-        "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
-        "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
-        "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
-        "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
-      },
-      "subjectIdentical": true,
-      "canaryEvents": 0,
-      "orphanedProcesses": 0,
-      "portsStillHeld": 0,
-      "gatesRun": [
-        "typecheck",
-        "fingerprint-check",
-        "draco-check",
-        "secret-scan",
-        "seo-audit",
-        "conversion-audit",
-        "route-audit",
-        "playwright-main",
-        "playwright-full"
-      ],
-      "buildRan": true,
-      "suites": {
-        "main": {
-          "collected": 1285,
-          "passed": 1164,
-          "failed": 0,
-          "skipped": 121,
-          "reconciles": true
-        },
-        "webgl": {
-          "collected": 165,
-          "passed": 131,
-          "failed": 0,
-          "skipped": 34,
-          "reconciles": true
-        }
-      },
-      "collected": 1450,
-      "passed": 1295,
+    "portalP1P2": {
+      "executions": 411,
+      "passed": 411,
       "failed": 0,
-      "skipped": 155,
-      "durationMs": 1774208,
-      "meanLoad": 26.74,
-      "peakLoad": 110.27,
-      "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-      "skipSetCount": 155,
-      "failureSet": []
+      "skipped": 0,
+      "p3Started": false
     },
-    {
-      "run": 4,
-      "runId": "g5-04",
-      "valid": true,
-      "green": true,
-      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
-      "hashes": {
-        "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
-        "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
-        "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
-        "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
-        "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
-      },
-      "subjectIdentical": true,
-      "canaryEvents": 0,
-      "orphanedProcesses": 0,
-      "portsStillHeld": 0,
-      "gatesRun": [
-        "typecheck",
-        "fingerprint-check",
-        "draco-check",
-        "secret-scan",
-        "seo-audit",
-        "conversion-audit",
-        "route-audit",
-        "playwright-main",
-        "playwright-full"
+    "knownLimitations": [
+      "one valid red run gives a boundary, not a failure rate; three runs were pre-registered and one was executed",
+      "the g6-01 failure is classified to its boundary (GOTO_CALLED, zero network events) but its cause is unknown",
+      "experiments/tests/ is in no manifest hash group, though playwright.full.config.ts sources the WebGL suite from it",
+      "host preflight cannot see inside the browser; this failure was internal to a WebKit-family context on a quiet host",
+      "a preflight attempt-id collision overwrote one WAIT record, reconstructed from console output"
+    ],
+    "rapidkertExperimentExclusion": {
+      "status": "OUTSIDE THE FROZEN SUBJECT \u2014 not resolved, not discarded, not modified, not included",
+      "files": [
+        "experiments/src/full/content.ts",
+        "experiments/src/full/locales/de.ts",
+        "experiments/src/full/locales/en.ts"
       ],
-      "buildRan": true,
-      "suites": {
-        "main": {
-          "collected": 1285,
-          "passed": 1164,
-          "failed": 0,
-          "skipped": 121,
-          "reconciles": true
-        },
-        "webgl": {
-          "collected": 165,
-          "passed": 131,
-          "failed": 0,
-          "skipped": 34,
-          "reconciles": true
-        }
-      },
-      "collected": 1450,
-      "passed": 1295,
-      "failed": 0,
-      "skipped": 155,
-      "durationMs": 1131945,
-      "meanLoad": 6.2,
-      "peakLoad": 11.5,
-      "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-      "skipSetCount": 155,
-      "failureSet": []
-    },
+      "conflict": "experiments/tests/full-ascent.spec.ts:388 asserts .case__metric toHaveCount(0); the edit adds a metric to Rapidkert",
+      "gatedSurface": "full-ascent.spec.ts IS the WebGL gate suite (playwright.full.config.ts CINEMATIC)",
+      "hashedPath": "experiments/src/full/content.ts is in the hashed product group",
+      "releaseConsequence": "adding these edits to the same release creates a NEW subject; G6 does not validate them"
+    }
+  },
+  "invalidAttempts": [
     {
-      "run": 5,
-      "runId": "g5-05",
-      "valid": true,
-      "green": true,
-      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
-      "hashes": {
-        "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
-        "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
-        "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
-        "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
-        "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
-      },
-      "subjectIdentical": true,
-      "canaryEvents": 0,
-      "orphanedProcesses": 0,
-      "portsStillHeld": 0,
-      "gatesRun": [
-        "typecheck",
-        "fingerprint-check",
-        "draco-check",
-        "secret-scan",
-        "seo-audit",
-        "conversion-audit",
-        "route-audit",
-        "playwright-main",
-        "playwright-full"
+      "runId": "g5-icloud-invalid-attempt",
+      "sequence": "g5",
+      "valid": false,
+      "invalidReasons": [
+        "SUBJECT_MUTATED_DURING_RUN",
+        "CANARY_WRITES_DURING_RUN=699"
       ],
-      "buildRan": true,
-      "suites": {
-        "main": {
-          "collected": 1285,
-          "passed": 1164,
-          "failed": 0,
-          "skipped": 121,
-          "reconciles": true
-        },
-        "webgl": {
-          "collected": 165,
-          "passed": 131,
-          "failed": 0,
-          "skipped": 34,
-          "reconciles": true
-        }
-      },
-      "collected": 1450,
-      "passed": 1295,
-      "failed": 0,
-      "skipped": 155,
-      "durationMs": 1154599,
-      "meanLoad": 6.2,
-      "peakLoad": 13.23,
-      "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-      "skipSetCount": 155,
-      "failureSet": []
-    },
-    {
-      "run": 6,
-      "runId": "g5-06",
-      "valid": true,
-      "green": false,
-      "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
-      "hashes": {
-        "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
-        "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
-        "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
-        "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
-        "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
-      },
-      "subjectIdentical": true,
-      "canaryEvents": 0,
-      "orphanedProcesses": 0,
-      "portsStillHeld": 0,
-      "gatesRun": [
-        "typecheck",
-        "fingerprint-check",
-        "draco-check",
-        "secret-scan",
-        "seo-audit",
-        "conversion-audit",
-        "route-audit",
-        "playwright-main",
-        "playwright-full"
-      ],
-      "buildRan": true,
-      "suites": {
-        "main": {
-          "collected": 1285,
-          "passed": 1163,
-          "failed": 1,
-          "skipped": 121,
-          "reconciles": true
-        },
-        "webgl": {
-          "collected": 165,
-          "passed": 131,
-          "failed": 0,
-          "skipped": 34,
-          "reconciles": true
-        }
-      },
-      "collected": 1450,
-      "passed": 1294,
-      "failed": 1,
-      "skipped": 155,
-      "durationMs": 1428364,
-      "meanLoad": 13.19,
-      "peakLoad": 44.2,
-      "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-      "skipSetCount": 155,
-      "failureSet": [
-        "[desktop-1920] lead-forms.spec.ts:472 maps the application into the lead schema"
-      ]
+      "canaryEventCount": 699,
+      "root": "/Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb",
+      "distBefore": "081cefa1b13739c63e0bfbe416831ba9d10bbd1fa21003ceb67969c0a447fa37",
+      "distFilesBefore": 188,
+      "distAfter": "450b7eaf5a1648bc7e9eba5fcf679aaa7cc1fc1315b349331d4d58859f467357",
+      "distFilesAfter": 310,
+      "note": "run from the iCloud-synchronised development checkout; `bird` re-materialised conflict duplicates, expanding dist 188 -> 310 files with 699 canary writes. This is the evidence that establishes the hermetic worktree as part of the authoritative environment. Preserved per section 49; not counted as a run."
     }
   ],
+  "historicalNote": "Sequences below are preserved exactly as recorded at their own time. Fields inside them \u2014 including `determinesCurrentVerdict` \u2014 describe the state when that sequence was curated and have NOT been rewritten. G5 remains 6/6 VALID and 4/6 GREEN; no G5 run has been discarded or reclassified.",
   "historical": {
-    "previousSequence": {
-      "workstream": "hermetic regression gate — final two contracts",
-      "generatedAt": "2026-08-18T13:35:35.990Z",
+    "g5Sequence": {
+      "workstream": "lead.js silent-drop product fix + hermetic run-output independence",
+      "generatedAt": "2026-08-19T20:47:42.510Z",
+      "determinesCurrentVerdict": true,
+      "sequencePrefix": "g5",
       "frozenSubject": {
-        "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
-        "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-        "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
-        "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
-        "dist": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
-        "note": "product, config and dist byte-identical to the previous sequence; only test changed (the two corrections)"
+        "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+        "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+        "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+        "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+        "dist": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+        "combined": "660f76198c30f6f9a843908ef2cf822b6b5701bfdacc93e6d630311b6b5db269"
       },
       "subjectRoot": "/Users/arturlukacs/stratos-hermetic/subject",
       "validRunIds": [
-        "g3-01",
-        "g3-02",
-        "g3-03",
-        "g3-04",
-        "g3-05",
-        "g3-06"
+        "g5-01",
+        "g5-02",
+        "g5-03",
+        "g5-04",
+        "g5-05",
+        "g5-06"
       ],
       "validRuns": 6,
       "requestedRuns": 6,
@@ -481,94 +358,72 @@
         "failed": false
       },
       "skipSetIdentical": true,
+      "skipSetShas": [
+        "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee"
+      ],
       "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
       "failureSetIdentical": false,
       "allArithmeticReconciles": true,
       "everFailed": [
-        "[mobile-390] public-site.spec.ts:264 /kkv.html responds and has a title and description"
+        "[desktop-1920] lead-forms.spec.ts:472 maps the application into the lead schema",
+        "[desktop] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction",
+        "[desktop] full-ascent.spec.ts:1500 captures every stage of the journey",
+        "[mobile-390] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
+        "[mobile-430] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout"
       ],
       "wanderingFailures": [
         {
-          "test": "[mobile-390] public-site.spec.ts:264 /kkv.html responds and has a title and description",
+          "test": "[desktop-1920] lead-forms.spec.ts:472 maps the application into the lead schema",
+          "inRuns": [
+            6
+          ]
+        },
+        {
+          "test": "[desktop] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction",
+          "inRuns": [
+            2
+          ]
+        },
+        {
+          "test": "[desktop] full-ascent.spec.ts:1500 captures every stage of the journey",
+          "inRuns": [
+            2
+          ]
+        },
+        {
+          "test": "[mobile-390] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
+          "inRuns": [
+            2
+          ]
+        },
+        {
+          "test": "[mobile-430] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
           "inRuns": [
             2
           ]
         }
       ],
-      "greenRuns": 5,
+      "greenRuns": 4,
       "allValid": true,
       "deterministic": false,
-      "rendererCanary": {
-        "perRun": "12/12 passed, 0 failed",
-        "swiftShaderRegression": false,
-        "identities": [
-          "desktop-1440: ANGLE Metal (Apple M4)",
-          "desktop-1920: ANGLE Metal (Apple M4)",
-          "mobile-390: Apple GPU",
-          "mobile-430: Apple GPU"
-        ]
-      },
-      "portalP1P2": {
-        "perRun": "411/411 passed, 0 failed, 0 skipped",
-        "executions": 2466,
-        "deterministic": true
-      },
-      "webglSuite": {
-        "perRun": "131/165 passed, 0 failed, 34 skipped",
-        "deterministic": true
-      },
-      "loadRange": {
-        "meanMin": 6.44,
-        "meanMax": 9.09,
-        "peakMin": 12.6,
-        "peakMax": 19.41
-      },
-      "runtimeRange": {
-        "minSec": 1120,
-        "maxSec": 1219
-      },
-      "contractsCorrected": [
-        {
-          "contract": "A",
-          "test": "homepage-chrome.spec.ts:1005",
-          "project": "desktop-1440",
-          "classification": "REAL TEST RACE",
-          "productChange": false,
-          "correction": "wait for window.Stratos.header before driving the burger",
-          "mutationCheck": "5/5 projects fail when menu.hidden=false is a no-op",
-          "stressExecutions": 425,
-          "stressFailures": 0,
-          "observedInNewSequence": false
-        },
-        {
-          "contract": "B",
-          "test": "homepage-modality.spec.ts:96",
-          "project": "portrait-chromium",
-          "classification": "REAL TEST RACE",
-          "productChange": false,
-          "correction": "quiesce layer animations, then require a stable hit-test target, before predicting the click",
-          "mutationCheck": "4/4 projects fail with .menu{pointer-events:none}",
-          "stressExecutions": 640,
-          "stressFailures": 0,
-          "observedInNewSequence": false
-        }
-      ],
+      "navigationBoundaries": [],
+      "unclassifiedNavigationFailures": [],
       "verdict": "HERMETIC REGRESSION GATE NOT ACCEPTED",
       "mergeGate": "NOT GREEN",
-      "verdictReason": "Both previously wandering contracts were corrected and neither recurred in six valid runs. A DIFFERENT wandering failure appeared instead: [mobile-390] public-site.spec.ts:264 /kkv.html, a 30s page.goto timeout, in run 2 only. Section 33 requires NOT ACCEPTED for a new wandering failure, and section 25 forbids ACCEPTED WITH LIMITATIONS for nondeterminism.",
+      "verdictReason": "2 run(s) were not green: [\"[desktop-1920] lead-forms.spec.ts:472 maps the application into the lead schema\",\"[desktop] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction\",\"[desktop] full-ascent.spec.ts:1500 captures every stage of the journey\",\"[mobile-390] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout\",\"[mobile-430] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout\"]",
       "rows": [
         {
           "run": 1,
-          "runId": "g3-01",
+          "runId": "g5-01",
           "valid": true,
           "green": true,
-          "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
+          "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
           "hashes": {
-            "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-            "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
-            "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
-            "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
-            "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+            "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+            "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+            "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+            "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+            "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
           },
           "subjectIdentical": true,
           "canaryEvents": 0,
@@ -588,8 +443,8 @@
           "buildRan": true,
           "suites": {
             "main": {
-              "collected": 1271,
-              "passed": 1150,
+              "collected": 1285,
+              "passed": 1164,
               "failed": 0,
               "skipped": 121,
               "reconciles": true
@@ -602,28 +457,29 @@
               "reconciles": true
             }
           },
-          "collected": 1436,
-          "passed": 1281,
+          "collected": 1450,
+          "passed": 1295,
           "failed": 0,
           "skipped": 155,
-          "durationMs": 1203423,
-          "meanLoad": 9.09,
-          "peakLoad": 18.47,
+          "durationMs": 1148515,
+          "meanLoad": 6.59,
+          "peakLoad": 14.39,
           "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+          "skipSetCount": 155,
           "failureSet": []
         },
         {
           "run": 2,
-          "runId": "g3-02",
+          "runId": "g5-02",
           "valid": true,
           "green": false,
-          "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
+          "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
           "hashes": {
-            "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-            "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
-            "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
-            "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
-            "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+            "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+            "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+            "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+            "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+            "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
           },
           "subjectIdentical": true,
           "canaryEvents": 0,
@@ -643,8 +499,237 @@
           "buildRan": true,
           "suites": {
             "main": {
-              "collected": 1271,
-              "passed": 1149,
+              "collected": 1285,
+              "passed": 1162,
+              "failed": 2,
+              "skipped": 121,
+              "reconciles": true
+            },
+            "webgl": {
+              "collected": 165,
+              "passed": 129,
+              "failed": 2,
+              "skipped": 34,
+              "reconciles": true
+            }
+          },
+          "collected": 1450,
+          "passed": 1291,
+          "failed": 4,
+          "skipped": 155,
+          "durationMs": 2702317,
+          "meanLoad": 88.15,
+          "peakLoad": 186.37,
+          "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+          "skipSetCount": 155,
+          "failureSet": [
+            "[desktop] full-ascent.spec.ts:1342 the stage announced at a scroll position does not depend on the direction",
+            "[desktop] full-ascent.spec.ts:1500 captures every stage of the journey",
+            "[mobile-390] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout",
+            "[mobile-430] mobile-homepage-simple.spec.ts:1089 the instrument is still there, still reading, and never on the readout"
+          ]
+        },
+        {
+          "run": 3,
+          "runId": "g5-03",
+          "valid": true,
+          "green": true,
+          "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+          "hashes": {
+            "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+            "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+            "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+            "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+            "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
+          },
+          "subjectIdentical": true,
+          "canaryEvents": 0,
+          "orphanedProcesses": 0,
+          "portsStillHeld": 0,
+          "gatesRun": [
+            "typecheck",
+            "fingerprint-check",
+            "draco-check",
+            "secret-scan",
+            "seo-audit",
+            "conversion-audit",
+            "route-audit",
+            "playwright-main",
+            "playwright-full"
+          ],
+          "buildRan": true,
+          "suites": {
+            "main": {
+              "collected": 1285,
+              "passed": 1164,
+              "failed": 0,
+              "skipped": 121,
+              "reconciles": true
+            },
+            "webgl": {
+              "collected": 165,
+              "passed": 131,
+              "failed": 0,
+              "skipped": 34,
+              "reconciles": true
+            }
+          },
+          "collected": 1450,
+          "passed": 1295,
+          "failed": 0,
+          "skipped": 155,
+          "durationMs": 1774208,
+          "meanLoad": 26.74,
+          "peakLoad": 110.27,
+          "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+          "skipSetCount": 155,
+          "failureSet": []
+        },
+        {
+          "run": 4,
+          "runId": "g5-04",
+          "valid": true,
+          "green": true,
+          "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+          "hashes": {
+            "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+            "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+            "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+            "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+            "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
+          },
+          "subjectIdentical": true,
+          "canaryEvents": 0,
+          "orphanedProcesses": 0,
+          "portsStillHeld": 0,
+          "gatesRun": [
+            "typecheck",
+            "fingerprint-check",
+            "draco-check",
+            "secret-scan",
+            "seo-audit",
+            "conversion-audit",
+            "route-audit",
+            "playwright-main",
+            "playwright-full"
+          ],
+          "buildRan": true,
+          "suites": {
+            "main": {
+              "collected": 1285,
+              "passed": 1164,
+              "failed": 0,
+              "skipped": 121,
+              "reconciles": true
+            },
+            "webgl": {
+              "collected": 165,
+              "passed": 131,
+              "failed": 0,
+              "skipped": 34,
+              "reconciles": true
+            }
+          },
+          "collected": 1450,
+          "passed": 1295,
+          "failed": 0,
+          "skipped": 155,
+          "durationMs": 1131945,
+          "meanLoad": 6.2,
+          "peakLoad": 11.5,
+          "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+          "skipSetCount": 155,
+          "failureSet": []
+        },
+        {
+          "run": 5,
+          "runId": "g5-05",
+          "valid": true,
+          "green": true,
+          "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+          "hashes": {
+            "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+            "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+            "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+            "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+            "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
+          },
+          "subjectIdentical": true,
+          "canaryEvents": 0,
+          "orphanedProcesses": 0,
+          "portsStillHeld": 0,
+          "gatesRun": [
+            "typecheck",
+            "fingerprint-check",
+            "draco-check",
+            "secret-scan",
+            "seo-audit",
+            "conversion-audit",
+            "route-audit",
+            "playwright-main",
+            "playwright-full"
+          ],
+          "buildRan": true,
+          "suites": {
+            "main": {
+              "collected": 1285,
+              "passed": 1164,
+              "failed": 0,
+              "skipped": 121,
+              "reconciles": true
+            },
+            "webgl": {
+              "collected": 165,
+              "passed": 131,
+              "failed": 0,
+              "skipped": 34,
+              "reconciles": true
+            }
+          },
+          "collected": 1450,
+          "passed": 1295,
+          "failed": 0,
+          "skipped": 155,
+          "durationMs": 1154599,
+          "meanLoad": 6.2,
+          "peakLoad": 13.23,
+          "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+          "skipSetCount": 155,
+          "failureSet": []
+        },
+        {
+          "run": 6,
+          "runId": "g5-06",
+          "valid": true,
+          "green": false,
+          "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+          "hashes": {
+            "product": "088c02849aad0e870111fab16585dac6a1caf4fcd1b99893e1e5511682547c84",
+            "test": "2d561c3320f5c51b2432ae96d81782fc337ee30d864cc41daa5f2093e8165a8e",
+            "config": "94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b",
+            "distBefore": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3",
+            "distAfter": "2538acb4918470f2d172c66df16737819bb41668936f7301fec65cfc396783c3"
+          },
+          "subjectIdentical": true,
+          "canaryEvents": 0,
+          "orphanedProcesses": 0,
+          "portsStillHeld": 0,
+          "gatesRun": [
+            "typecheck",
+            "fingerprint-check",
+            "draco-check",
+            "secret-scan",
+            "seo-audit",
+            "conversion-audit",
+            "route-audit",
+            "playwright-main",
+            "playwright-full"
+          ],
+          "buildRan": true,
+          "suites": {
+            "main": {
+              "collected": 1285,
+              "passed": 1163,
               "failed": 1,
               "skipped": 121,
               "reconciles": true
@@ -657,259 +742,147 @@
               "reconciles": true
             }
           },
-          "collected": 1436,
-          "passed": 1280,
+          "collected": 1450,
+          "passed": 1294,
           "failed": 1,
           "skipped": 155,
-          "durationMs": 1123955,
-          "meanLoad": 8.04,
-          "peakLoad": 19.33,
+          "durationMs": 1428364,
+          "meanLoad": 13.19,
+          "peakLoad": 44.2,
           "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+          "skipSetCount": 155,
           "failureSet": [
-            "[mobile-390] public-site.spec.ts:264 /kkv.html responds and has a title and description"
+            "[desktop-1920] lead-forms.spec.ts:472 maps the application into the lead schema"
           ]
-        },
-        {
-          "run": 3,
-          "runId": "g3-03",
-          "valid": true,
-          "green": true,
-          "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
-          "hashes": {
-            "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-            "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
-            "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
-            "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
-            "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
-          },
-          "subjectIdentical": true,
-          "canaryEvents": 0,
-          "orphanedProcesses": 0,
-          "portsStillHeld": 0,
-          "gatesRun": [
-            "typecheck",
-            "fingerprint-check",
-            "draco-check",
-            "secret-scan",
-            "seo-audit",
-            "conversion-audit",
-            "route-audit",
-            "playwright-main",
-            "playwright-full"
-          ],
-          "buildRan": true,
-          "suites": {
-            "main": {
-              "collected": 1271,
-              "passed": 1150,
-              "failed": 0,
-              "skipped": 121,
-              "reconciles": true
-            },
-            "webgl": {
-              "collected": 165,
-              "passed": 131,
-              "failed": 0,
-              "skipped": 34,
-              "reconciles": true
-            }
-          },
-          "collected": 1436,
-          "passed": 1281,
-          "failed": 0,
-          "skipped": 155,
-          "durationMs": 1219036,
-          "meanLoad": 8.62,
-          "peakLoad": 19.41,
-          "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-          "failureSet": []
-        },
-        {
-          "run": 4,
-          "runId": "g3-04",
-          "valid": true,
-          "green": true,
-          "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
-          "hashes": {
-            "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-            "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
-            "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
-            "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
-            "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
-          },
-          "subjectIdentical": true,
-          "canaryEvents": 0,
-          "orphanedProcesses": 0,
-          "portsStillHeld": 0,
-          "gatesRun": [
-            "typecheck",
-            "fingerprint-check",
-            "draco-check",
-            "secret-scan",
-            "seo-audit",
-            "conversion-audit",
-            "route-audit",
-            "playwright-main",
-            "playwright-full"
-          ],
-          "buildRan": true,
-          "suites": {
-            "main": {
-              "collected": 1271,
-              "passed": 1150,
-              "failed": 0,
-              "skipped": 121,
-              "reconciles": true
-            },
-            "webgl": {
-              "collected": 165,
-              "passed": 131,
-              "failed": 0,
-              "skipped": 34,
-              "reconciles": true
-            }
-          },
-          "collected": 1436,
-          "passed": 1281,
-          "failed": 0,
-          "skipped": 155,
-          "durationMs": 1132260,
-          "meanLoad": 6.88,
-          "peakLoad": 14.5,
-          "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-          "failureSet": []
-        },
-        {
-          "run": 5,
-          "runId": "g3-05",
-          "valid": true,
-          "green": true,
-          "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
-          "hashes": {
-            "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-            "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
-            "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
-            "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
-            "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
-          },
-          "subjectIdentical": true,
-          "canaryEvents": 0,
-          "orphanedProcesses": 0,
-          "portsStillHeld": 0,
-          "gatesRun": [
-            "typecheck",
-            "fingerprint-check",
-            "draco-check",
-            "secret-scan",
-            "seo-audit",
-            "conversion-audit",
-            "route-audit",
-            "playwright-main",
-            "playwright-full"
-          ],
-          "buildRan": true,
-          "suites": {
-            "main": {
-              "collected": 1271,
-              "passed": 1150,
-              "failed": 0,
-              "skipped": 121,
-              "reconciles": true
-            },
-            "webgl": {
-              "collected": 165,
-              "passed": 131,
-              "failed": 0,
-              "skipped": 34,
-              "reconciles": true
-            }
-          },
-          "collected": 1436,
-          "passed": 1281,
-          "failed": 0,
-          "skipped": 155,
-          "durationMs": 1119723,
-          "meanLoad": 6.44,
-          "peakLoad": 12.6,
-          "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-          "failureSet": []
-        },
-        {
-          "run": 6,
-          "runId": "g3-06",
-          "valid": true,
-          "green": true,
-          "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
-          "hashes": {
-            "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-            "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
-            "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
-            "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
-            "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
-          },
-          "subjectIdentical": true,
-          "canaryEvents": 0,
-          "orphanedProcesses": 0,
-          "portsStillHeld": 0,
-          "gatesRun": [
-            "typecheck",
-            "fingerprint-check",
-            "draco-check",
-            "secret-scan",
-            "seo-audit",
-            "conversion-audit",
-            "route-audit",
-            "playwright-main",
-            "playwright-full"
-          ],
-          "buildRan": true,
-          "suites": {
-            "main": {
-              "collected": 1271,
-              "passed": 1150,
-              "failed": 0,
-              "skipped": 121,
-              "reconciles": true
-            },
-            "webgl": {
-              "collected": 165,
-              "passed": 131,
-              "failed": 0,
-              "skipped": 34,
-              "reconciles": true
-            }
-          },
-          "collected": 1436,
-          "passed": 1281,
-          "failed": 0,
-          "skipped": 155,
-          "durationMs": 1205091,
-          "meanLoad": 7.59,
-          "peakLoad": 14.59,
-          "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
-          "failureSet": []
         }
       ],
       "historical": {
         "previousSequence": {
-          "frozenCommit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
-          "validRuns": 6,
-          "greenRuns": 5,
-          "everFailed": [
-            "[desktop-1440] homepage-chrome.spec.ts:1005 a subpage reached from the homepage carries the same working header",
-            "[portrait-chromium] homepage-modality.spec.ts:96 while it is open the page behind it cannot be reached, and afterwards it can"
+          "workstream": "hermetic regression gate \u2014 final two contracts",
+          "generatedAt": "2026-08-18T13:35:35.990Z",
+          "frozenSubject": {
+            "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
+            "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+            "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
+            "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+            "dist": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+            "note": "product, config and dist byte-identical to the previous sequence; only test changed (the two corrections)"
+          },
+          "subjectRoot": "/Users/arturlukacs/stratos-hermetic/subject",
+          "validRunIds": [
+            "g3-01",
+            "g3-02",
+            "g3-03",
+            "g3-04",
+            "g3-05",
+            "g3-06"
           ],
-          "note": "superseded — test hash changed by the two corrections; retained as evidence per section 35",
+          "validRuns": 6,
+          "requestedRuns": 6,
+          "attempts": 6,
+          "discarded": [],
+          "subjectMutationCount": 0,
+          "totalCanaryEvents": 0,
+          "totalOrphanedProcesses": 0,
+          "totalPortsHeld": 0,
+          "hashesIdenticalAcrossRuns": {
+            "product": true,
+            "test": true,
+            "config": true,
+            "dist": true
+          },
+          "aggregateIdentity": {
+            "collected": true,
+            "skipped": true,
+            "passed": false,
+            "failed": false
+          },
+          "skipSetIdentical": true,
+          "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+          "failureSetIdentical": false,
+          "allArithmeticReconciles": true,
+          "everFailed": [
+            "[mobile-390] public-site.spec.ts:264 /kkv.html responds and has a title and description"
+          ],
+          "wanderingFailures": [
+            {
+              "test": "[mobile-390] public-site.spec.ts:264 /kkv.html responds and has a title and description",
+              "inRuns": [
+                2
+              ]
+            }
+          ],
+          "greenRuns": 5,
+          "allValid": true,
+          "deterministic": false,
+          "rendererCanary": {
+            "perRun": "12/12 passed, 0 failed",
+            "swiftShaderRegression": false,
+            "identities": [
+              "desktop-1440: ANGLE Metal (Apple M4)",
+              "desktop-1920: ANGLE Metal (Apple M4)",
+              "mobile-390: Apple GPU",
+              "mobile-430: Apple GPU"
+            ]
+          },
+          "portalP1P2": {
+            "perRun": "411/411 passed, 0 failed, 0 skipped",
+            "executions": 2466,
+            "deterministic": true
+          },
+          "webglSuite": {
+            "perRun": "131/165 passed, 0 failed, 34 skipped",
+            "deterministic": true
+          },
+          "loadRange": {
+            "meanMin": 6.44,
+            "meanMax": 9.09,
+            "peakMin": 12.6,
+            "peakMax": 19.41
+          },
+          "runtimeRange": {
+            "minSec": 1120,
+            "maxSec": 1219
+          },
+          "contractsCorrected": [
+            {
+              "contract": "A",
+              "test": "homepage-chrome.spec.ts:1005",
+              "project": "desktop-1440",
+              "classification": "REAL TEST RACE",
+              "productChange": false,
+              "correction": "wait for window.Stratos.header before driving the burger",
+              "mutationCheck": "5/5 projects fail when menu.hidden=false is a no-op",
+              "stressExecutions": 425,
+              "stressFailures": 0,
+              "observedInNewSequence": false
+            },
+            {
+              "contract": "B",
+              "test": "homepage-modality.spec.ts:96",
+              "project": "portrait-chromium",
+              "classification": "REAL TEST RACE",
+              "productChange": false,
+              "correction": "quiesce layer animations, then require a stable hit-test target, before predicting the click",
+              "mutationCheck": "4/4 projects fail with .menu{pointer-events:none}",
+              "stressExecutions": 640,
+              "stressFailures": 0,
+              "observedInNewSequence": false
+            }
+          ],
+          "verdict": "HERMETIC REGRESSION GATE NOT ACCEPTED",
+          "mergeGate": "NOT GREEN",
+          "verdictReason": "Both previously wandering contracts were corrected and neither recurred in six valid runs. A DIFFERENT wandering failure appeared instead: [mobile-390] public-site.spec.ts:264 /kkv.html, a 30s page.goto timeout, in run 2 only. Section 33 requires NOT ACCEPTED for a new wandering failure, and section 25 forbids ACCEPTED WITH LIMITATIONS for nondeterminism.",
           "rows": [
             {
               "run": 1,
-              "runId": "g2-01",
+              "runId": "g3-01",
               "valid": true,
               "green": true,
-              "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+              "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
               "hashes": {
                 "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-                "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
                 "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
                 "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
                 "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
@@ -935,7 +908,6 @@
                   "collected": 1271,
                   "passed": 1150,
                   "failed": 0,
-                  "flaky": 0,
                   "skipped": 121,
                   "reconciles": true
                 },
@@ -943,7 +915,6 @@
                   "collected": 165,
                   "passed": 131,
                   "failed": 0,
-                  "flaky": 0,
                   "skipped": 34,
                   "reconciles": true
                 }
@@ -952,21 +923,21 @@
               "passed": 1281,
               "failed": 0,
               "skipped": 155,
-              "durationMs": 1227270,
-              "meanLoad": 8.03,
-              "peakLoad": 15.94,
-              "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+              "durationMs": 1203423,
+              "meanLoad": 9.09,
+              "peakLoad": 18.47,
+              "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
               "failureSet": []
             },
             {
               "run": 2,
-              "runId": "g2-02",
+              "runId": "g3-02",
               "valid": true,
-              "green": true,
-              "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+              "green": false,
+              "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
               "hashes": {
                 "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-                "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
                 "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
                 "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
                 "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
@@ -990,9 +961,8 @@
               "suites": {
                 "main": {
                   "collected": 1271,
-                  "passed": 1150,
-                  "failed": 0,
-                  "flaky": 0,
+                  "passed": 1149,
+                  "failed": 1,
                   "skipped": 121,
                   "reconciles": true
                 },
@@ -1000,30 +970,31 @@
                   "collected": 165,
                   "passed": 131,
                   "failed": 0,
-                  "flaky": 0,
                   "skipped": 34,
                   "reconciles": true
                 }
               },
               "collected": 1436,
-              "passed": 1281,
-              "failed": 0,
+              "passed": 1280,
+              "failed": 1,
               "skipped": 155,
-              "durationMs": 1440857,
-              "meanLoad": 13.5,
-              "peakLoad": 32.09,
-              "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
-              "failureSet": []
+              "durationMs": 1123955,
+              "meanLoad": 8.04,
+              "peakLoad": 19.33,
+              "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+              "failureSet": [
+                "[mobile-390] public-site.spec.ts:264 /kkv.html responds and has a title and description"
+              ]
             },
             {
               "run": 3,
-              "runId": "g2-03",
+              "runId": "g3-03",
               "valid": true,
               "green": true,
-              "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+              "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
               "hashes": {
                 "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-                "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
                 "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
                 "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
                 "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
@@ -1049,7 +1020,6 @@
                   "collected": 1271,
                   "passed": 1150,
                   "failed": 0,
-                  "flaky": 0,
                   "skipped": 121,
                   "reconciles": true
                 },
@@ -1057,7 +1027,6 @@
                   "collected": 165,
                   "passed": 131,
                   "failed": 0,
-                  "flaky": 0,
                   "skipped": 34,
                   "reconciles": true
                 }
@@ -1066,81 +1035,21 @@
               "passed": 1281,
               "failed": 0,
               "skipped": 155,
-              "durationMs": 1428946,
-              "meanLoad": 13.77,
-              "peakLoad": 22.9,
-              "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+              "durationMs": 1219036,
+              "meanLoad": 8.62,
+              "peakLoad": 19.41,
+              "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
               "failureSet": []
             },
             {
               "run": 4,
-              "runId": "g2-04",
-              "valid": true,
-              "green": false,
-              "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
-              "hashes": {
-                "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-                "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
-                "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
-                "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
-                "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
-              },
-              "subjectIdentical": true,
-              "canaryEvents": 0,
-              "orphanedProcesses": 0,
-              "portsStillHeld": 0,
-              "gatesRun": [
-                "typecheck",
-                "fingerprint-check",
-                "draco-check",
-                "secret-scan",
-                "seo-audit",
-                "conversion-audit",
-                "route-audit",
-                "playwright-main",
-                "playwright-full"
-              ],
-              "buildRan": true,
-              "suites": {
-                "main": {
-                  "collected": 1271,
-                  "passed": 1148,
-                  "failed": 2,
-                  "flaky": 0,
-                  "skipped": 121,
-                  "reconciles": true
-                },
-                "webgl": {
-                  "collected": 165,
-                  "passed": 131,
-                  "failed": 0,
-                  "flaky": 0,
-                  "skipped": 34,
-                  "reconciles": true
-                }
-              },
-              "collected": 1436,
-              "passed": 1279,
-              "failed": 2,
-              "skipped": 155,
-              "durationMs": 1419836,
-              "meanLoad": 16.85,
-              "peakLoad": 32.05,
-              "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
-              "failureSet": [
-                "[desktop-1440] homepage-chrome.spec.ts:1005 a subpage reached from the homepage carries the same working header",
-                "[portrait-chromium] homepage-modality.spec.ts:96 while it is open the page behind it cannot be reached, and afterwards it can"
-              ]
-            },
-            {
-              "run": 5,
-              "runId": "g2-05",
+              "runId": "g3-04",
               "valid": true,
               "green": true,
-              "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+              "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
               "hashes": {
                 "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-                "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
                 "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
                 "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
                 "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
@@ -1166,7 +1075,6 @@
                   "collected": 1271,
                   "passed": 1150,
                   "failed": 0,
-                  "flaky": 0,
                   "skipped": 121,
                   "reconciles": true
                 },
@@ -1174,7 +1082,6 @@
                   "collected": 165,
                   "passed": 131,
                   "failed": 0,
-                  "flaky": 0,
                   "skipped": 34,
                   "reconciles": true
                 }
@@ -1183,21 +1090,76 @@
               "passed": 1281,
               "failed": 0,
               "skipped": 155,
-              "durationMs": 1181126,
-              "meanLoad": 10.42,
-              "peakLoad": 26.01,
-              "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+              "durationMs": 1132260,
+              "meanLoad": 6.88,
+              "peakLoad": 14.5,
+              "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
+              "failureSet": []
+            },
+            {
+              "run": 5,
+              "runId": "g3-05",
+              "valid": true,
+              "green": true,
+              "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
+              "hashes": {
+                "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+                "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
+                "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+                "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+                "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+              },
+              "subjectIdentical": true,
+              "canaryEvents": 0,
+              "orphanedProcesses": 0,
+              "portsStillHeld": 0,
+              "gatesRun": [
+                "typecheck",
+                "fingerprint-check",
+                "draco-check",
+                "secret-scan",
+                "seo-audit",
+                "conversion-audit",
+                "route-audit",
+                "playwright-main",
+                "playwright-full"
+              ],
+              "buildRan": true,
+              "suites": {
+                "main": {
+                  "collected": 1271,
+                  "passed": 1150,
+                  "failed": 0,
+                  "skipped": 121,
+                  "reconciles": true
+                },
+                "webgl": {
+                  "collected": 165,
+                  "passed": 131,
+                  "failed": 0,
+                  "skipped": 34,
+                  "reconciles": true
+                }
+              },
+              "collected": 1436,
+              "passed": 1281,
+              "failed": 0,
+              "skipped": 155,
+              "durationMs": 1119723,
+              "meanLoad": 6.44,
+              "peakLoad": 12.6,
+              "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
               "failureSet": []
             },
             {
               "run": 6,
-              "runId": "g2-06",
+              "runId": "g3-06",
               "valid": true,
               "green": true,
-              "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+              "commit": "1ec8dadeb7fd9b6fac6dae0eaa2b5333bdfd208b",
               "hashes": {
                 "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
-                "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                "test": "293a3b5c99c21be7fdc7e4d26ab48f8ba2d1bfe6219c59e08fc416159fac1ba1",
                 "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
                 "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
                 "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
@@ -1223,7 +1185,6 @@
                   "collected": 1271,
                   "passed": 1150,
                   "failed": 0,
-                  "flaky": 0,
                   "skipped": 121,
                   "reconciles": true
                 },
@@ -1231,7 +1192,6 @@
                   "collected": 165,
                   "passed": 131,
                   "failed": 0,
-                  "flaky": 0,
                   "skipped": 34,
                   "reconciles": true
                 }
@@ -1240,17 +1200,376 @@
               "passed": 1281,
               "failed": 0,
               "skipped": 155,
-              "durationMs": 1451109,
-              "meanLoad": 16.05,
-              "peakLoad": 24.64,
-              "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+              "durationMs": 1205091,
+              "meanLoad": 7.59,
+              "peakLoad": 14.59,
+              "skipSetSha": "bb65b6846f9975fa5b2cb3a73439adc1ae56ab8e09933c6dbaf43fb05a837cee",
               "failureSet": []
             }
-          ]
+          ],
+          "historical": {
+            "previousSequence": {
+              "frozenCommit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+              "validRuns": 6,
+              "greenRuns": 5,
+              "everFailed": [
+                "[desktop-1440] homepage-chrome.spec.ts:1005 a subpage reached from the homepage carries the same working header",
+                "[portrait-chromium] homepage-modality.spec.ts:96 while it is open the page behind it cannot be reached, and afterwards it can"
+              ],
+              "note": "superseded \u2014 test hash changed by the two corrections; retained as evidence per section 35",
+              "rows": [
+                {
+                  "run": 1,
+                  "runId": "g2-01",
+                  "valid": true,
+                  "green": true,
+                  "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+                  "hashes": {
+                    "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+                    "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                    "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+                    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+                    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+                  },
+                  "subjectIdentical": true,
+                  "canaryEvents": 0,
+                  "orphanedProcesses": 0,
+                  "portsStillHeld": 0,
+                  "gatesRun": [
+                    "typecheck",
+                    "fingerprint-check",
+                    "draco-check",
+                    "secret-scan",
+                    "seo-audit",
+                    "conversion-audit",
+                    "route-audit",
+                    "playwright-main",
+                    "playwright-full"
+                  ],
+                  "buildRan": true,
+                  "suites": {
+                    "main": {
+                      "collected": 1271,
+                      "passed": 1150,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 121,
+                      "reconciles": true
+                    },
+                    "webgl": {
+                      "collected": 165,
+                      "passed": 131,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 34,
+                      "reconciles": true
+                    }
+                  },
+                  "collected": 1436,
+                  "passed": 1281,
+                  "failed": 0,
+                  "skipped": 155,
+                  "durationMs": 1227270,
+                  "meanLoad": 8.03,
+                  "peakLoad": 15.94,
+                  "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+                  "failureSet": []
+                },
+                {
+                  "run": 2,
+                  "runId": "g2-02",
+                  "valid": true,
+                  "green": true,
+                  "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+                  "hashes": {
+                    "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+                    "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                    "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+                    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+                    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+                  },
+                  "subjectIdentical": true,
+                  "canaryEvents": 0,
+                  "orphanedProcesses": 0,
+                  "portsStillHeld": 0,
+                  "gatesRun": [
+                    "typecheck",
+                    "fingerprint-check",
+                    "draco-check",
+                    "secret-scan",
+                    "seo-audit",
+                    "conversion-audit",
+                    "route-audit",
+                    "playwright-main",
+                    "playwright-full"
+                  ],
+                  "buildRan": true,
+                  "suites": {
+                    "main": {
+                      "collected": 1271,
+                      "passed": 1150,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 121,
+                      "reconciles": true
+                    },
+                    "webgl": {
+                      "collected": 165,
+                      "passed": 131,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 34,
+                      "reconciles": true
+                    }
+                  },
+                  "collected": 1436,
+                  "passed": 1281,
+                  "failed": 0,
+                  "skipped": 155,
+                  "durationMs": 1440857,
+                  "meanLoad": 13.5,
+                  "peakLoad": 32.09,
+                  "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+                  "failureSet": []
+                },
+                {
+                  "run": 3,
+                  "runId": "g2-03",
+                  "valid": true,
+                  "green": true,
+                  "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+                  "hashes": {
+                    "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+                    "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                    "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+                    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+                    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+                  },
+                  "subjectIdentical": true,
+                  "canaryEvents": 0,
+                  "orphanedProcesses": 0,
+                  "portsStillHeld": 0,
+                  "gatesRun": [
+                    "typecheck",
+                    "fingerprint-check",
+                    "draco-check",
+                    "secret-scan",
+                    "seo-audit",
+                    "conversion-audit",
+                    "route-audit",
+                    "playwright-main",
+                    "playwright-full"
+                  ],
+                  "buildRan": true,
+                  "suites": {
+                    "main": {
+                      "collected": 1271,
+                      "passed": 1150,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 121,
+                      "reconciles": true
+                    },
+                    "webgl": {
+                      "collected": 165,
+                      "passed": 131,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 34,
+                      "reconciles": true
+                    }
+                  },
+                  "collected": 1436,
+                  "passed": 1281,
+                  "failed": 0,
+                  "skipped": 155,
+                  "durationMs": 1428946,
+                  "meanLoad": 13.77,
+                  "peakLoad": 22.9,
+                  "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+                  "failureSet": []
+                },
+                {
+                  "run": 4,
+                  "runId": "g2-04",
+                  "valid": true,
+                  "green": false,
+                  "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+                  "hashes": {
+                    "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+                    "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                    "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+                    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+                    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+                  },
+                  "subjectIdentical": true,
+                  "canaryEvents": 0,
+                  "orphanedProcesses": 0,
+                  "portsStillHeld": 0,
+                  "gatesRun": [
+                    "typecheck",
+                    "fingerprint-check",
+                    "draco-check",
+                    "secret-scan",
+                    "seo-audit",
+                    "conversion-audit",
+                    "route-audit",
+                    "playwright-main",
+                    "playwright-full"
+                  ],
+                  "buildRan": true,
+                  "suites": {
+                    "main": {
+                      "collected": 1271,
+                      "passed": 1148,
+                      "failed": 2,
+                      "flaky": 0,
+                      "skipped": 121,
+                      "reconciles": true
+                    },
+                    "webgl": {
+                      "collected": 165,
+                      "passed": 131,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 34,
+                      "reconciles": true
+                    }
+                  },
+                  "collected": 1436,
+                  "passed": 1279,
+                  "failed": 2,
+                  "skipped": 155,
+                  "durationMs": 1419836,
+                  "meanLoad": 16.85,
+                  "peakLoad": 32.05,
+                  "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+                  "failureSet": [
+                    "[desktop-1440] homepage-chrome.spec.ts:1005 a subpage reached from the homepage carries the same working header",
+                    "[portrait-chromium] homepage-modality.spec.ts:96 while it is open the page behind it cannot be reached, and afterwards it can"
+                  ]
+                },
+                {
+                  "run": 5,
+                  "runId": "g2-05",
+                  "valid": true,
+                  "green": true,
+                  "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+                  "hashes": {
+                    "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+                    "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                    "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+                    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+                    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+                  },
+                  "subjectIdentical": true,
+                  "canaryEvents": 0,
+                  "orphanedProcesses": 0,
+                  "portsStillHeld": 0,
+                  "gatesRun": [
+                    "typecheck",
+                    "fingerprint-check",
+                    "draco-check",
+                    "secret-scan",
+                    "seo-audit",
+                    "conversion-audit",
+                    "route-audit",
+                    "playwright-main",
+                    "playwright-full"
+                  ],
+                  "buildRan": true,
+                  "suites": {
+                    "main": {
+                      "collected": 1271,
+                      "passed": 1150,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 121,
+                      "reconciles": true
+                    },
+                    "webgl": {
+                      "collected": 165,
+                      "passed": 131,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 34,
+                      "reconciles": true
+                    }
+                  },
+                  "collected": 1436,
+                  "passed": 1281,
+                  "failed": 0,
+                  "skipped": 155,
+                  "durationMs": 1181126,
+                  "meanLoad": 10.42,
+                  "peakLoad": 26.01,
+                  "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+                  "failureSet": []
+                },
+                {
+                  "run": 6,
+                  "runId": "g2-06",
+                  "valid": true,
+                  "green": true,
+                  "commit": "6fda3ff4e75f5364c4ace7cbff1d9f79b60fc65e",
+                  "hashes": {
+                    "product": "69106294dc4c1cbd140414c8376cfb0cdee7ece836a366304cb7dcb92136f7b6",
+                    "test": "d5e98d86c9436a2c3dcc6be420b2c2fa4a8896f1b2cde2423a3e560bab916c3b",
+                    "config": "39f6a93856f5b7fb2cb602dfca57ce3018e93c4e2bf32c238329a7255a657b50",
+                    "distBefore": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4",
+                    "distAfter": "2cce7616f7f96a0d6ba51fe386f8431cc9ed712d7231b49807f3b404cfa371d4"
+                  },
+                  "subjectIdentical": true,
+                  "canaryEvents": 0,
+                  "orphanedProcesses": 0,
+                  "portsStillHeld": 0,
+                  "gatesRun": [
+                    "typecheck",
+                    "fingerprint-check",
+                    "draco-check",
+                    "secret-scan",
+                    "seo-audit",
+                    "conversion-audit",
+                    "route-audit",
+                    "playwright-main",
+                    "playwright-full"
+                  ],
+                  "buildRan": true,
+                  "suites": {
+                    "main": {
+                      "collected": 1271,
+                      "passed": 1150,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 121,
+                      "reconciles": true
+                    },
+                    "webgl": {
+                      "collected": 165,
+                      "passed": 131,
+                      "failed": 0,
+                      "flaky": 0,
+                      "skipped": 34,
+                      "reconciles": true
+                    }
+                  },
+                  "collected": 1436,
+                  "passed": 1281,
+                  "failed": 0,
+                  "skipped": 155,
+                  "durationMs": 1451109,
+                  "meanLoad": 16.05,
+                  "peakLoad": 24.64,
+                  "skipSetSha": "9e33218a6d5b8115715c448469902c1af9476c2c12beaae4c88fba984d99585e",
+                  "failureSet": []
+                }
+              ]
+            }
+          },
+          "determinesCurrentVerdict": false,
+          "note": "superseded \u2014 retained per \u00a749"
         }
-      },
-      "determinesCurrentVerdict": false,
-      "note": "superseded — retained per §49"
+      }
     }
   }
 }

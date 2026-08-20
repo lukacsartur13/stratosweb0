@@ -1,0 +1,16 @@
+{
+  "path": "/nagyvallalat.html",
+  "thisNavigation": null,
+  "thisSignature": null,
+  "population": [
+    {
+      "signature": "200|39802|undefined",
+      "count": 2,
+      "navIds": [
+        "g6-01.desktop-1440.w9.nagyvallalat.html-responds-and-has-a-title-and-description.0",
+        "g6-01.desktop-1920.w14.nagyvallalat.html-responds-and-has-a-title-and-description.0"
+      ]
+    }
+  ],
+  "matchesTheCommonSignature": null
+}
