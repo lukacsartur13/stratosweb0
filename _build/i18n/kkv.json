@@ -1,76 +1,243 @@
 {
- "Webdesign KKV-nak — havidíjas weboldal | Stratos": ["Web design for SMEs — a website on a monthly fee | Stratos", "Webdesign für KMU — Website zur Monatsgebühr | Stratos"],
- "Tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban. Weboldal egyéni és kisvállalkozóknak, nagy egyszeri költség nélkül.": ["Design, development, hosting and ongoing maintenance in one fixed monthly fee. A website for sole traders and small businesses, without a large upfront cost.", "Konzeption, Entwicklung, Hosting und laufende Wartung in einer festen Monatsgebühr. Eine Website für Selbstständige und kleine Unternehmen — ohne hohe Einmalkosten."],
-
- "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Webdesign KKV-nak</b>": ["<a href=\"index.html\">Stratos</a> / Services / <b>Web design for SMEs</b>", "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Webdesign für KMU</b>"],
- "Weboldal,<br>nagy egyszeri<br><span class=\"sig\">költség nélkül.</span>": ["A website<br>without the big<br><span class=\"sig\">upfront cost.</span>", "Eine Website<br>ohne hohe<br><span class=\"sig\">Einmalkosten.</span>"],
- "Tervezés, fejlesztés, tárhely és folyamatos karbantartás. Minden egy fix havidíjban.": ["Design, development, hosting and ongoing maintenance. All in one fixed monthly fee.", "Konzeption, Entwicklung, Hosting und laufende Wartung. Alles in einer festen Monatsgebühr."],
- "Havidíjas weboldal": ["Website on a monthly fee", "Website zur Monatsgebühr"],
- "Nincs rejtett költség": ["No hidden costs", "Keine versteckten Kosten"],
- "Folyamatos karbantartás": ["Ongoing maintenance", "Laufende Wartung"],
-
- "Egy jó weboldal nem egyszeri kiadás, hanem <span class=\"sig\">működő eszköz.</span>": ["A good website isn't a one-off expense — it's a <span class=\"sig\">working tool.</span>", "Eine gute Website ist keine einmalige Ausgabe, sondern ein <span class=\"sig\">funktionierendes Werkzeug.</span>"],
- "Mi megtervezzük, megépítjük és karbantartjuk, te pedig havidíjért használod. Úgy, mint az áramot vagy a telefonod.": ["We design it, build it and maintain it; you use it for a monthly fee. Like your electricity or your phone.", "Wir gestalten, bauen und warten sie — du nutzt sie für eine Monatsgebühr. So wie deinen Strom oder dein Telefon."],
- "Mit kapsz<br>a havidíjért?": ["What the<br>monthly fee buys", "Was du für<br>die Monatsgebühr bekommst"],
- "Nem sablonból dolgozunk. A vállalkozásodra szabott megjelenést tervezünk, ami megkülönböztet a konkurenciától.": ["We don't work from templates. We design a look tailored to your business that sets you apart from the competition.", "Wir arbeiten nicht mit Vorlagen. Wir gestalten einen Auftritt, der auf dein Unternehmen zugeschnitten ist und dich von der Konkurrenz abhebt."],
- "Gyors, modern weboldal": ["A fast, modern website", "Eine schnelle, moderne Website"],
- "Mobilra optimalizált, villámgyors oldal, ami a keresőkben is jól teljesít. Kód, nem oldalépítő.": ["A mobile-optimised, lightning-fast site that also performs well in search. Written in code, not assembled in a page builder.", "Eine mobiloptimierte, blitzschnelle Seite, die auch in Suchmaschinen gut abschneidet. In Code gebaut, nicht im Baukasten zusammengeklickt."],
- "Tárhely és karbantartás": ["Hosting and maintenance", "Hosting und Wartung"],
- "Domain, tárhely, biztonsági mentés, frissítések. Az oldal működéséről mi gondoskodunk, neked nincs vele dolgod.": ["Domain, hosting, backups, updates. Keeping the site running is our job — you don't have to think about it.", "Domain, Hosting, Backups, Updates. Den Betrieb der Seite übernehmen wir — du musst dich um nichts kümmern."],
- "Módosítások": ["Changes", "Änderungen"],
- "Új árlista, új szolgáltatás, friss képek? Írj egy e-mailt, és mi átvezetjük. A kisebb módosítások a havidíj részei.": ["New price list, new service, fresh photos? Send an email and we'll make the change. Smaller edits are part of the monthly fee.", "Neue Preisliste, neue Leistung, frische Fotos? Schreib eine E-Mail, und wir pflegen es ein. Kleinere Änderungen sind in der Monatsgebühr enthalten."],
-
- "Így jutsz el<br>az élő oldaladig": ["How you get<br>to a live site", "So kommst du<br>zu deiner Website"],
- "Csak az, amire egy kisvállalkozásnak tényleg szüksége van — se több, se kevesebb.": ["Only what a small business actually needs — no more, no less.", "Nur das, was ein kleines Unternehmen wirklich braucht — nicht mehr und nicht weniger."],
- "Beszélgetünk": ["We talk", "Wir sprechen"],
- "Egy rövid online vagy telefonos egyeztetésen átbeszéljük, mire van szüksége a vállalkozásodnak.": ["In a short online or phone call we go through what your business needs.", "In einem kurzen Online- oder Telefongespräch klären wir, was dein Unternehmen braucht."],
- "Megtervezzük és megépítjük": ["We design and build", "Wir gestalten und bauen"],
- "Elkészítjük a dizájntervet, majd jóváhagyás után a kész weboldalt. Menet közben mindent látsz és véleményezhetsz.": ["We produce the design concept and, once approved, the finished website. You see everything along the way and can give feedback.", "Wir erstellen den Designentwurf und nach deiner Freigabe die fertige Website. Du siehst unterwegs alles und kannst Feedback geben."],
- "Élesítünk és karbantartunk": ["We launch and maintain", "Wir starten und warten"],
- "Az oldal elindul, és onnantól folyamatosan gondozzuk. Te a vállalkozásoddal foglalkozol, a weboldal a mi dolgunk.": ["The site goes live and from then on we look after it. You get on with your business; the website is our job.", "Die Seite geht live, und ab dann kümmern wir uns weiter darum. Du machst dein Geschäft, die Website ist unsere Sache."],
-
- "Barbershop Győr weboldal": ["Barbershop Győr website", "Website von Barbershop Győr"],
- "mentaltrening.com weboldal": ["mentaltrening.com website", "Website von mentaltrening.com"],
- "Rapidkert kertépítés weboldal": ["Rapidkert landscaping website", "Website von Rapidkert Gartenbau"],
-
- "Miért jobb,<br>mint egyszer<br>kifizetni?": ["Why is it better<br>than paying<br>once?", "Warum besser<br>als einmal<br>zahlen?"],
- "Egy egyedi weboldal egyszeri díja jellemzően több százezer forint, és a munka ott nem ér véget: tárhely, frissítések, javítások, módosítások. Ezek nélkül az oldal pár év alatt elavul.": ["A bespoke website typically costs several thousand euros up front, and the work doesn't stop there: hosting, updates, fixes, changes. Without them the site is outdated within a few years.", "Eine individuelle Website kostet einmalig meist mehrere Tausend Euro — und damit ist die Arbeit nicht vorbei: Hosting, Updates, Fehlerbehebung, Änderungen. Ohne das ist die Seite in wenigen Jahren veraltet."],
- "A havidíjas modellben nincs nagy kezdeti kiadás, és az oldalad sosem marad magára. Ami elromlik, javítjuk. Ami elavul, frissítjük. Kiszámítható költség, kiszámítható működés.": ["In the monthly model there's no large initial outlay and your site is never left on its own. What breaks, we fix. What ages, we update. Predictable cost, predictable operation.", "Im Monatsmodell gibt es keine hohe Anfangsausgabe, und deine Seite bleibt nie sich selbst überlassen. Was kaputtgeht, reparieren wir. Was veraltet, aktualisieren wir. Planbare Kosten, planbarer Betrieb."],
- "Nincs hűségidő és nincs kötbér — havonta felmondható.": ["No lock-in and no penalty clause — cancellable monthly.", "Keine Mindestlaufzeit und keine Vertragsstrafe — monatlich kündbar."],
- "A domain és minden tartalom a tiéd marad.": ["The domain and all content stay yours.", "Domain und sämtliche Inhalte bleiben deins."],
- "Moduláris felépítés: bővíthető, akár webshoppal is.": ["Modular build: extendable, even with an online shop.", "Modularer Aufbau: erweiterbar, auch um einen Onlineshop."],
- "Reszponzív kialakítás, minden eszköztípuson tesztelve.": ["Responsive design, tested on every device type.", "Responsives Design, auf jedem Gerätetyp getestet."],
-
- "Egy egyszerűbb weboldal jellemzően 1–2 hét alatt elkészül, miután megkaptuk a szükséges tartalmakat (szövegek, képek, arculati elemek). Összetettebb, több funkciót tartalmazó oldalak esetén ez 3–4 hétre nőhet, de a folyamat minden lépéséről folyamatosan tájékoztatunk.": ["A simpler website is typically ready in 1–2 weeks once we have the content we need (copy, images, brand assets). For more complex sites with more features this can grow to 3–4 weeks, and we keep you informed at every step.", "Eine einfachere Website ist meist in 1–2 Wochen fertig, sobald wir die nötigen Inhalte haben (Texte, Bilder, Markenelemente). Bei komplexeren Seiten mit mehr Funktionen können es 3–4 Wochen werden — wir halten dich in jedem Schritt auf dem Laufenden."],
- "Miért előnyös a havidíjas konstrukció a nagy egyszeri költség helyett?": ["Why is a monthly fee better than a large one-off cost?", "Warum ist die Monatsgebühr besser als hohe Einmalkosten?"],
- "Így nem kell egyszerre több százezer forintos beruházást vállalnod, hanem kiszámítható, alacsonyabb havi költséggel indíthatod el az online jelenléted. A havidíj emellett a folyamatos karbantartást, tárhelyet, frissítéseket és supportot is tartalmazza, így nem érnek váratlan extra költségek.": ["You don't have to commit to a four-figure investment in one go; you can start your online presence with a predictable, lower monthly cost. The fee also covers ongoing maintenance, hosting, updates and support, so no unexpected extra costs turn up.", "Du musst keine vierstellige Investition auf einmal stemmen, sondern startest deinen Online-Auftritt mit planbaren, niedrigeren Monatskosten. Die Gebühr deckt zudem laufende Wartung, Hosting, Updates und Support ab — unerwartete Zusatzkosten gibt es nicht."],
- "A weboldalad a te márkádhoz, arculatodhoz és céljaidhoz igazodva készül, nem egy sablonból dolgozunk kreatív keretek nélkül. A dizájn, a szövegezés és a funkciók is a te vállalkozásod igényei alapján kerülnek kialakításra.": ["Your website is built around your brand, your visual identity and your goals — we don't work from a template with no creative room. The design, the copy and the features all follow the needs of your business.", "Deine Website entsteht rund um deine Marke, dein Erscheinungsbild und deine Ziele — wir arbeiten nicht ohne kreativen Spielraum aus einer Vorlage. Design, Texte und Funktionen richten sich nach den Anforderungen deines Unternehmens."],
- "Igen, a weboldal moduláris felépítésű, így új oldalakkal, funkciókkal vagy akár webshoppal is bővíthető, ahogy a vállalkozásod növekszik. Nem kell mindent az elején eldöntened, a rendszer veled együtt fejlődik.": ["Yes. The website is modular, so new pages, features or even an online shop can be added as your business grows. You don't have to decide everything at the start — the system grows with you.", "Ja. Die Website ist modular aufgebaut, sodass neue Seiten, Funktionen oder sogar ein Onlineshop ergänzt werden können, während dein Unternehmen wächst. Du musst nicht alles am Anfang entscheiden — das System wächst mit."],
- "Igen, minden weboldal reszponzív kialakítású, vagyis automatikusan alkalmazkodik mobiltelefonhoz, tablethez és asztali géphez egyaránt. Ezt élesítés előtt minden eszköztípuson leteszteljük.": ["Yes. Every website is responsive, so it adapts automatically to phones, tablets and desktops. We test this on every device type before launch.", "Ja. Jede Website ist responsiv und passt sich automatisch an Handy, Tablet und Desktop an. Das testen wir vor dem Go-live auf jedem Gerätetyp."],
- "Igen, kérésre a Google és Meta (Facebook/Instagram) hirdetéseid beállításában és kezelésében is tudunk segíteni, a célzástól a kampányok folyamatos optimalizálásáig. Így a weboldalad mellett a hozzá vezető forgalom is szakértő kezekben van.": ["Yes. On request we can help set up and run your Google and Meta (Facebook/Instagram) advertising, from targeting to continuous campaign optimisation. That way the traffic reaching your site is in expert hands too.", "Ja. Auf Wunsch helfen wir bei Einrichtung und Betreuung deiner Google- und Meta-Werbung (Facebook/Instagram) — vom Targeting bis zur laufenden Kampagnenoptimierung. So ist neben der Website auch der Traffic dorthin in erfahrenen Händen."],
- "Kapok segítséget a weboldal és az online marketing megértésében?": ["Will I get help understanding the website and online marketing?", "Bekomme ich Hilfe, die Website und das Online-Marketing zu verstehen?"],
- "Természetesen, nem hagyunk magadra az átadás után. Érthetően elmagyarázzuk, hogyan működik az oldalad, és alapszintű útmutatást adunk az online marketing legfontosabb fogalmairól is, hogy magabiztosan tudj döntéseket hozni.": ["Of course — we don't leave you alone after handover. We explain in plain language how your site works and give you a grounding in the key online marketing concepts, so you can make decisions confidently.", "Selbstverständlich — nach der Übergabe lassen wir dich nicht allein. Wir erklären verständlich, wie deine Seite funktioniert, und geben dir eine Einführung in die wichtigsten Begriffe des Online-Marketings, damit du sicher entscheiden kannst."],
- "A weboldalhoz és a hirdetésekhez is átlátható statisztikákat biztosítunk, amelyekből látod a látogatottságot, a legfontosabb mutatókat és a kampányok eredményességét. Igény esetén rendszeres, közérthető riportokban is összefoglaljuk a teljesítményt.": ["We provide clear statistics for both the website and the ads, showing traffic, the key metrics and campaign results. On request we also summarise performance in regular, plain-language reports.", "Für Website und Werbung liefern wir verständliche Statistiken mit Besucherzahlen, den wichtigsten Kennzahlen und Kampagnenergebnissen. Auf Wunsch fassen wir die Leistung zusätzlich in regelmäßigen, klar formulierten Reports zusammen."],
- "Kié a weboldal és a domain?": ["Who owns the website and the domain?", "Wem gehören Website und Domain?"],
- "A domain és minden tartalom a tiéd. Az oldalt mi üzemeltetjük, amíg él az előfizetés; ha felmondod, a domaint és a tartalmaidat természetesen átadjuk.": ["The domain and all content are yours. We operate the site while the subscription runs; if you cancel, we of course hand over the domain and your content.", "Domain und sämtliche Inhalte gehören dir. Wir betreiben die Seite, solange das Abo läuft; bei Kündigung übergeben wir Domain und Inhalte selbstverständlich."],
- "Van hűségidő vagy kötbér?": ["Is there a minimum term or a penalty?", "Gibt es Mindestlaufzeit oder Vertragsstrafe?"],
- "Nincs. A szerződés havonta mondható fel, rejtett költségek nélkül. Addig maradsz, amíg elégedett vagy a szolgáltatással.": ["No. The contract can be cancelled monthly, with no hidden costs. You stay as long as you're happy with the service.", "Nein. Der Vertrag ist monatlich kündbar, ohne versteckte Kosten. Du bleibst so lange, wie du zufrieden bist."],
- "Mit kell nekem biztosítanom a kezdéshez?": ["What do I need to provide to get started?", "Was muss ich für den Start bereitstellen?"],
- "Elég néhány alapinformáció a vállalkozásodról, valamint szövegek és képek, ha vannak. Ha nincsenek, a megfogalmazásban és a képek kiválasztásában is segítünk, hogy ne ezen múljon az indulás.": ["A few basics about your business, plus copy and images if you have them. If you don't, we help with the wording and with choosing images, so that's never what holds the launch up.", "Ein paar Grundinformationen über dein Unternehmen sowie Texte und Bilder, falls vorhanden. Wenn nicht, helfen wir bei Formulierung und Bildauswahl — daran soll der Start nicht scheitern."],
- "Mi van, ha már van weboldalam?": ["What if I already have a website?", "Was, wenn ich schon eine Website habe?"],
- "Meglévő oldalt is átveszünk. Átnézzük, mi menthető belőle, és vagy megújítjuk, vagy újat építünk helyette; a tartalmaid és a domained természetesen megmaradnak.": ["We take over existing sites too. We review what's worth keeping and either refresh it or build a new one in its place; your content and your domain stay with you.", "Bestehende Seiten übernehmen wir ebenfalls. Wir prüfen, was erhaltenswert ist, und erneuern sie entweder oder bauen eine neue; Inhalte und Domain bleiben selbstverständlich bei dir."],
-
- "Kezdjük el a <span class=\"sig\">weboldalad.</span>": ["Let's start <span class=\"sig\">your website.</span>", "Starten wir <span class=\"sig\">deine Website.</span>"],
- "Minden nap, amíg nincs profi oldalad, egy ügyfél a versenytársadnál köt ki. Töltsd ki a kérdőívet, és pár napon belül ott lehetsz, ahol keresnek.": ["Every day you go without a professional site, a client ends up at your competitor's. Fill in the questionnaire and within days you can be where people are looking for you.", "Jeden Tag ohne professionelle Website landet ein Kunde bei deiner Konkurrenz. Füll den Fragebogen aus, und in wenigen Tagen bist du dort, wo man nach dir sucht."],
-
- "_p85": ["Phase 8.5 — the pinned build sequence's stage keys and the text-led",
-          "project index that replaced three full-height screenshots (brief",
-          "§9.1, §12). The index entries are whole anchors because the",
-          "extractor takes a leaf with text as one unit; the Hungarian href",
-          "stays put so relink() can map it per locale."],
- "01 — Egyeztetés": ["01 — Conversation", "01 — Gespräch"],
- "02 — Terv és fejlesztés": ["02 — Design and build", "02 — Entwurf und Umsetzung"],
- "03 — Élesítés": ["03 — Launch", "03 — Livegang"],
+ "Webdesign KKV-nak — havidíjas weboldal | Stratos": [
+  "Web design for SMEs — a website on a monthly fee | Stratos",
+  "Webdesign für KMU — Website zur Monatsgebühr | Stratos"
+ ],
+ "Tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban. Weboldal egyéni és kisvállalkozóknak, nagy egyszeri költség nélkül.": [
+  "Design, development, hosting and ongoing maintenance in one fixed monthly fee. A website for sole traders and small businesses, without a large upfront cost.",
+  "Konzeption, Entwicklung, Hosting und laufende Wartung in einer festen Monatsgebühr. Eine Website für Selbstständige und kleine Unternehmen — ohne hohe Einmalkosten."
+ ],
+ "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Webdesign KKV-nak</b>": [
+  "<a href=\"index.html\">Stratos</a> / Services / <b>Web design for SMEs</b>",
+  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Webdesign für KMU</b>"
+ ],
+ "Weboldal,<br>nagy egyszeri<br><span class=\"sig\">költség nélkül.</span>": [
+  "A website<br>without the big<br><span class=\"sig\">upfront cost.</span>",
+  "Eine Website<br>ohne hohe<br><span class=\"sig\">Einmalkosten.</span>"
+ ],
+ "Tervezés, fejlesztés, tárhely és folyamatos karbantartás. Minden egy fix havidíjban.": [
+  "Design, development, hosting and ongoing maintenance. All in one fixed monthly fee.",
+  "Konzeption, Entwicklung, Hosting und laufende Wartung. Alles in einer festen Monatsgebühr."
+ ],
+ "Havidíjas weboldal": [
+  "Website on a monthly fee",
+  "Website zur Monatsgebühr"
+ ],
+ "Nincs rejtett költség": [
+  "No hidden costs",
+  "Keine versteckten Kosten"
+ ],
+ "Folyamatos karbantartás": [
+  "Ongoing maintenance",
+  "Laufende Wartung"
+ ],
+ "Egy jó weboldal nem egyszeri kiadás, hanem <span class=\"sig\">működő eszköz.</span>": [
+  "A good website isn't a one-off expense — it's a <span class=\"sig\">working tool.</span>",
+  "Eine gute Website ist keine einmalige Ausgabe, sondern ein <span class=\"sig\">funktionierendes Werkzeug.</span>"
+ ],
+ "Mi megtervezzük, megépítjük és karbantartjuk, te pedig havidíjért használod. Úgy, mint az áramot vagy a telefonod.": [
+  "We design it, build it and maintain it; you use it for a monthly fee. Like your electricity or your phone.",
+  "Wir gestalten, bauen und warten sie — du nutzt sie für eine Monatsgebühr. So wie deinen Strom oder dein Telefon."
+ ],
+ "Mit kapsz<br>a havidíjért?": [
+  "What the<br>monthly fee buys",
+  "Was du für<br>die Monatsgebühr bekommst"
+ ],
+ "Nem sablonból dolgozunk. A vállalkozásodra szabott megjelenést tervezünk, ami megkülönböztet a konkurenciától.": [
+  "We don't work from templates. We design a look tailored to your business that sets you apart from the competition.",
+  "Wir arbeiten nicht mit Vorlagen. Wir gestalten einen Auftritt, der auf dein Unternehmen zugeschnitten ist und dich von der Konkurrenz abhebt."
+ ],
+ "Gyors, modern weboldal": [
+  "A fast, modern website",
+  "Eine schnelle, moderne Website"
+ ],
+ "Mobilra optimalizált, villámgyors oldal, ami a keresőkben is jól teljesít. Kód, nem oldalépítő.": [
+  "A mobile-optimised, lightning-fast site that also performs well in search. Written in code, not assembled in a page builder.",
+  "Eine mobiloptimierte, blitzschnelle Seite, die auch in Suchmaschinen gut abschneidet. In Code gebaut, nicht im Baukasten zusammengeklickt."
+ ],
+ "Tárhely és karbantartás": [
+  "Hosting and maintenance",
+  "Hosting und Wartung"
+ ],
+ "Domain, tárhely, biztonsági mentés, frissítések. Az oldal működéséről mi gondoskodunk, neked nincs vele dolgod.": [
+  "Domain, hosting, backups, updates. Keeping the site running is our job — you don't have to think about it.",
+  "Domain, Hosting, Backups, Updates. Den Betrieb der Seite übernehmen wir — du musst dich um nichts kümmern."
+ ],
+ "Módosítások": [
+  "Changes",
+  "Änderungen"
+ ],
+ "Új árlista, új szolgáltatás, friss képek? Írj egy e-mailt, és mi átvezetjük. A kisebb módosítások a havidíj részei.": [
+  "New price list, new service, fresh photos? Send an email and we'll make the change. Smaller edits are part of the monthly fee.",
+  "Neue Preisliste, neue Leistung, frische Fotos? Schreib eine E-Mail, und wir pflegen es ein. Kleinere Änderungen sind in der Monatsgebühr enthalten."
+ ],
+ "Így jutsz el<br>az élő oldaladig": [
+  "How you get<br>to a live site",
+  "So kommst du<br>zu deiner Website"
+ ],
+ "Csak az, amire egy kisvállalkozásnak tényleg szüksége van — se több, se kevesebb.": [
+  "Only what a small business actually needs — no more, no less.",
+  "Nur das, was ein kleines Unternehmen wirklich braucht — nicht mehr und nicht weniger."
+ ],
+ "Beszélgetünk": [
+  "We talk",
+  "Wir sprechen"
+ ],
+ "Egy rövid online vagy telefonos egyeztetésen átbeszéljük, mire van szüksége a vállalkozásodnak.": [
+  "In a short online or phone call we go through what your business needs.",
+  "In einem kurzen Online- oder Telefongespräch klären wir, was dein Unternehmen braucht."
+ ],
+ "Megtervezzük és megépítjük": [
+  "We design and build",
+  "Wir gestalten und bauen"
+ ],
+ "Elkészítjük a dizájntervet, majd jóváhagyás után a kész weboldalt. Menet közben mindent látsz és véleményezhetsz.": [
+  "We produce the design concept and, once approved, the finished website. You see everything along the way and can give feedback.",
+  "Wir erstellen den Designentwurf und nach deiner Freigabe die fertige Website. Du siehst unterwegs alles und kannst Feedback geben."
+ ],
+ "Élesítünk és karbantartunk": [
+  "We launch and maintain",
+  "Wir starten und warten"
+ ],
+ "Az oldal elindul, és onnantól folyamatosan gondozzuk. Te a vállalkozásoddal foglalkozol, a weboldal a mi dolgunk.": [
+  "The site goes live and from then on we look after it. You get on with your business; the website is our job.",
+  "Die Seite geht live, und ab dann kümmern wir uns weiter darum. Du machst dein Geschäft, die Website ist unsere Sache."
+ ],
+ "Barbershop Győr weboldal": [
+  "Barbershop Győr website",
+  "Website von Barbershop Győr"
+ ],
+ "mentaltrening.com weboldal": [
+  "mentaltrening.com website",
+  "Website von mentaltrening.com"
+ ],
+ "Miért jobb,<br>mint egyszer<br>kifizetni?": [
+  "Why is it better<br>than paying<br>once?",
+  "Warum besser<br>als einmal<br>zahlen?"
+ ],
+ "Egy egyedi weboldal egyszeri díja jellemzően több százezer forint, és a munka ott nem ér véget: tárhely, frissítések, javítások, módosítások. Ezek nélkül az oldal pár év alatt elavul.": [
+  "A bespoke website typically costs several thousand euros up front, and the work doesn't stop there: hosting, updates, fixes, changes. Without them the site is outdated within a few years.",
+  "Eine individuelle Website kostet einmalig meist mehrere Tausend Euro — und damit ist die Arbeit nicht vorbei: Hosting, Updates, Fehlerbehebung, Änderungen. Ohne das ist die Seite in wenigen Jahren veraltet."
+ ],
+ "A havidíjas modellben nincs nagy kezdeti kiadás, és az oldalad sosem marad magára. Ami elromlik, javítjuk. Ami elavul, frissítjük. Kiszámítható költség, kiszámítható működés.": [
+  "In the monthly model there's no large initial outlay and your site is never left on its own. What breaks, we fix. What ages, we update. Predictable cost, predictable operation.",
+  "Im Monatsmodell gibt es keine hohe Anfangsausgabe, und deine Seite bleibt nie sich selbst überlassen. Was kaputtgeht, reparieren wir. Was veraltet, aktualisieren wir. Planbare Kosten, planbarer Betrieb."
+ ],
+ "Nincs hűségidő és nincs kötbér — havonta felmondható.": [
+  "No lock-in and no penalty clause — cancellable monthly.",
+  "Keine Mindestlaufzeit und keine Vertragsstrafe — monatlich kündbar."
+ ],
+ "A domain és minden tartalom a tiéd marad.": [
+  "The domain and all content stay yours.",
+  "Domain und sämtliche Inhalte bleiben deins."
+ ],
+ "Moduláris felépítés: bővíthető, akár webshoppal is.": [
+  "Modular build: extendable, even with an online shop.",
+  "Modularer Aufbau: erweiterbar, auch um einen Onlineshop."
+ ],
+ "Reszponzív kialakítás, minden eszköztípuson tesztelve.": [
+  "Responsive design, tested on every device type.",
+  "Responsives Design, auf jedem Gerätetyp getestet."
+ ],
+ "Egy egyszerűbb weboldal jellemzően 1–2 hét alatt elkészül, miután megkaptuk a szükséges tartalmakat (szövegek, képek, arculati elemek). Összetettebb, több funkciót tartalmazó oldalak esetén ez 3–4 hétre nőhet, de a folyamat minden lépéséről folyamatosan tájékoztatunk.": [
+  "A simpler website is typically ready in 1–2 weeks once we have the content we need (copy, images, brand assets). For more complex sites with more features this can grow to 3–4 weeks, and we keep you informed at every step.",
+  "Eine einfachere Website ist meist in 1–2 Wochen fertig, sobald wir die nötigen Inhalte haben (Texte, Bilder, Markenelemente). Bei komplexeren Seiten mit mehr Funktionen können es 3–4 Wochen werden — wir halten dich in jedem Schritt auf dem Laufenden."
+ ],
+ "Miért előnyös a havidíjas konstrukció a nagy egyszeri költség helyett?": [
+  "Why is a monthly fee better than a large one-off cost?",
+  "Warum ist die Monatsgebühr besser als hohe Einmalkosten?"
+ ],
+ "Így nem kell egyszerre több százezer forintos beruházást vállalnod, hanem kiszámítható, alacsonyabb havi költséggel indíthatod el az online jelenléted. A havidíj emellett a folyamatos karbantartást, tárhelyet, frissítéseket és supportot is tartalmazza, így nem érnek váratlan extra költségek.": [
+  "You don't have to commit to a four-figure investment in one go; you can start your online presence with a predictable, lower monthly cost. The fee also covers ongoing maintenance, hosting, updates and support, so no unexpected extra costs turn up.",
+  "Du musst keine vierstellige Investition auf einmal stemmen, sondern startest deinen Online-Auftritt mit planbaren, niedrigeren Monatskosten. Die Gebühr deckt zudem laufende Wartung, Hosting, Updates und Support ab — unerwartete Zusatzkosten gibt es nicht."
+ ],
+ "A weboldalad a te márkádhoz, arculatodhoz és céljaidhoz igazodva készül, nem egy sablonból dolgozunk kreatív keretek nélkül. A dizájn, a szövegezés és a funkciók is a te vállalkozásod igényei alapján kerülnek kialakításra.": [
+  "Your website is built around your brand, your visual identity and your goals — we don't work from a template with no creative room. The design, the copy and the features all follow the needs of your business.",
+  "Deine Website entsteht rund um deine Marke, dein Erscheinungsbild und deine Ziele — wir arbeiten nicht ohne kreativen Spielraum aus einer Vorlage. Design, Texte und Funktionen richten sich nach den Anforderungen deines Unternehmens."
+ ],
+ "Igen, a weboldal moduláris felépítésű, így új oldalakkal, funkciókkal vagy akár webshoppal is bővíthető, ahogy a vállalkozásod növekszik. Nem kell mindent az elején eldöntened, a rendszer veled együtt fejlődik.": [
+  "Yes. The website is modular, so new pages, features or even an online shop can be added as your business grows. You don't have to decide everything at the start — the system grows with you.",
+  "Ja. Die Website ist modular aufgebaut, sodass neue Seiten, Funktionen oder sogar ein Onlineshop ergänzt werden können, während dein Unternehmen wächst. Du musst nicht alles am Anfang entscheiden — das System wächst mit."
+ ],
+ "Igen, minden weboldal reszponzív kialakítású, vagyis automatikusan alkalmazkodik mobiltelefonhoz, tablethez és asztali géphez egyaránt. Ezt élesítés előtt minden eszköztípuson leteszteljük.": [
+  "Yes. Every website is responsive, so it adapts automatically to phones, tablets and desktops. We test this on every device type before launch.",
+  "Ja. Jede Website ist responsiv und passt sich automatisch an Handy, Tablet und Desktop an. Das testen wir vor dem Go-live auf jedem Gerätetyp."
+ ],
+ "Igen, kérésre a Google és Meta (Facebook/Instagram) hirdetéseid beállításában és kezelésében is tudunk segíteni, a célzástól a kampányok folyamatos optimalizálásáig. Így a weboldalad mellett a hozzá vezető forgalom is szakértő kezekben van.": [
+  "Yes. On request we can help set up and run your Google and Meta (Facebook/Instagram) advertising, from targeting to continuous campaign optimisation. That way the traffic reaching your site is in expert hands too.",
+  "Ja. Auf Wunsch helfen wir bei Einrichtung und Betreuung deiner Google- und Meta-Werbung (Facebook/Instagram) — vom Targeting bis zur laufenden Kampagnenoptimierung. So ist neben der Website auch der Traffic dorthin in erfahrenen Händen."
+ ],
+ "Kapok segítséget a weboldal és az online marketing megértésében?": [
+  "Will I get help understanding the website and online marketing?",
+  "Bekomme ich Hilfe, die Website und das Online-Marketing zu verstehen?"
+ ],
+ "Természetesen, nem hagyunk magadra az átadás után. Érthetően elmagyarázzuk, hogyan működik az oldalad, és alapszintű útmutatást adunk az online marketing legfontosabb fogalmairól is, hogy magabiztosan tudj döntéseket hozni.": [
+  "Of course — we don't leave you alone after handover. We explain in plain language how your site works and give you a grounding in the key online marketing concepts, so you can make decisions confidently.",
+  "Selbstverständlich — nach der Übergabe lassen wir dich nicht allein. Wir erklären verständlich, wie deine Seite funktioniert, und geben dir eine Einführung in die wichtigsten Begriffe des Online-Marketings, damit du sicher entscheiden kannst."
+ ],
+ "A weboldalhoz és a hirdetésekhez is átlátható statisztikákat biztosítunk, amelyekből látod a látogatottságot, a legfontosabb mutatókat és a kampányok eredményességét. Igény esetén rendszeres, közérthető riportokban is összefoglaljuk a teljesítményt.": [
+  "We provide clear statistics for both the website and the ads, showing traffic, the key metrics and campaign results. On request we also summarise performance in regular, plain-language reports.",
+  "Für Website und Werbung liefern wir verständliche Statistiken mit Besucherzahlen, den wichtigsten Kennzahlen und Kampagnenergebnissen. Auf Wunsch fassen wir die Leistung zusätzlich in regelmäßigen, klar formulierten Reports zusammen."
+ ],
+ "Kié a weboldal és a domain?": [
+  "Who owns the website and the domain?",
+  "Wem gehören Website und Domain?"
+ ],
+ "A domain és minden tartalom a tiéd. Az oldalt mi üzemeltetjük, amíg él az előfizetés; ha felmondod, a domaint és a tartalmaidat természetesen átadjuk.": [
+  "The domain and all content are yours. We operate the site while the subscription runs; if you cancel, we of course hand over the domain and your content.",
+  "Domain und sämtliche Inhalte gehören dir. Wir betreiben die Seite, solange das Abo läuft; bei Kündigung übergeben wir Domain und Inhalte selbstverständlich."
+ ],
+ "Van hűségidő vagy kötbér?": [
+  "Is there a minimum term or a penalty?",
+  "Gibt es Mindestlaufzeit oder Vertragsstrafe?"
+ ],
+ "Nincs. A szerződés havonta mondható fel, rejtett költségek nélkül. Addig maradsz, amíg elégedett vagy a szolgáltatással.": [
+  "No. The contract can be cancelled monthly, with no hidden costs. You stay as long as you're happy with the service.",
+  "Nein. Der Vertrag ist monatlich kündbar, ohne versteckte Kosten. Du bleibst so lange, wie du zufrieden bist."
+ ],
+ "Mit kell nekem biztosítanom a kezdéshez?": [
+  "What do I need to provide to get started?",
+  "Was muss ich für den Start bereitstellen?"
+ ],
+ "Elég néhány alapinformáció a vállalkozásodról, valamint szövegek és képek, ha vannak. Ha nincsenek, a megfogalmazásban és a képek kiválasztásában is segítünk, hogy ne ezen múljon az indulás.": [
+  "A few basics about your business, plus copy and images if you have them. If you don't, we help with the wording and with choosing images, so that's never what holds the launch up.",
+  "Ein paar Grundinformationen über dein Unternehmen sowie Texte und Bilder, falls vorhanden. Wenn nicht, helfen wir bei Formulierung und Bildauswahl — daran soll der Start nicht scheitern."
+ ],
+ "Mi van, ha már van weboldalam?": [
+  "What if I already have a website?",
+  "Was, wenn ich schon eine Website habe?"
+ ],
+ "Meglévő oldalt is átveszünk. Átnézzük, mi menthető belőle, és vagy megújítjuk, vagy újat építünk helyette; a tartalmaid és a domained természetesen megmaradnak.": [
+  "We take over existing sites too. We review what's worth keeping and either refresh it or build a new one in its place; your content and your domain stay with you.",
+  "Bestehende Seiten übernehmen wir ebenfalls. Wir prüfen, was erhaltenswert ist, und erneuern sie entweder oder bauen eine neue; Inhalte und Domain bleiben selbstverständlich bei dir."
+ ],
+ "Kezdjük el a <span class=\"sig\">weboldalad.</span>": [
+  "Let's start <span class=\"sig\">your website.</span>",
+  "Starten wir <span class=\"sig\">deine Website.</span>"
+ ],
+ "Minden nap, amíg nincs profi oldalad, egy ügyfél a versenytársadnál köt ki. Töltsd ki a kérdőívet, és pár napon belül ott lehetsz, ahol keresnek.": [
+  "Every day you go without a professional site, a client ends up at your competitor's. Fill in the questionnaire and within days you can be where people are looking for you.",
+  "Jeden Tag ohne professionelle Website landet ein Kunde bei deiner Konkurrenz. Füll den Fragebogen aus, und in wenigen Tagen bist du dort, wo man nach dir sucht."
+ ],
+ "_p85": [
+  "Phase 8.5 — the pinned build sequence's stage keys and the text-led",
+  "project index that replaced three full-height screenshots (brief",
+  "§9.1, §12). The index entries are whole anchors because the",
+  "extractor takes a leaf with text as one unit; the Hungarian href",
+  "stays put so relink() can map it per locale."
+ ],
+ "01 — Egyeztetés": [
+  "01 — Conversation",
+  "01 — Gespräch"
+ ],
+ "02 — Terv és fejlesztés": [
+  "02 — Design and build",
+  "02 — Entwurf und Umsetzung"
+ ],
+ "03 — Élesítés": [
+  "03 — Launch",
+  "03 — Livegang"
+ ],
  "<a href=\"munka-barbershop.html\"><span class=\"proofidx__n\">Barbershop Győr</span><span class=\"proofidx__s\">Foglalás-vezérelt weboldal</span></a>": [
   "<a href=\"munka-barbershop.html\"><span class=\"proofidx__n\">Barbershop Győr</span><span class=\"proofidx__s\">Booking-led website</span></a>",
   "<a href=\"munka-barbershop.html\"><span class=\"proofidx__n\">Barbershop Győr</span><span class=\"proofidx__s\">Buchungsgesteuerte Website</span></a>"
@@ -78,9 +245,5 @@
  "<a href=\"munka-mentaltrening.html\"><span class=\"proofidx__n\">mentaltrening.com</span><span class=\"proofidx__s\">Személyes márka, egy döntés</span></a>": [
   "<a href=\"munka-mentaltrening.html\"><span class=\"proofidx__n\">mentaltrening.com</span><span class=\"proofidx__s\">Personal brand, one decision</span></a>",
   "<a href=\"munka-mentaltrening.html\"><span class=\"proofidx__n\">mentaltrening.com</span><span class=\"proofidx__s\">Persönliche Marke, eine Entscheidung</span></a>"
- ],
- "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Szolgáltatás-bemutató weboldal</span></a>": [
-  "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Service presentation website</span></a>",
-  "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Website zur Leistungsdarstellung</span></a>"
  ]
 }

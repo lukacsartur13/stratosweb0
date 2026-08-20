@@ -85,16 +85,35 @@ CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening")
 #
 # `full` is earned, not assumed. It requires professional media, a documented
 # challenge and strategy, design rationale, a technical account and verified
-# results. The three current projects have none of that yet — each one says so
-# on its own page, in a section headed "result figures are deliberately absent"
-# — so publishing them under `full` route rules was the site claiming a maturity
-# its own copy denies. They are `summary` until the real case studies exist.
+# results. All three projects began as `summary` because none of them had those
+# five — each one said so on its own page, in a section headed "result figures
+# are deliberately absent" — and publishing them under `full` route rules would
+# have been the site claiming a maturity its own copy denied.
 #
 # Note what this does NOT do: it does not delete a route or a word. All nine
 # routes stay live and reachable, keep their content, keep their hreflang set.
-# Promoting one later is a one-word edit here.
+# Promoting one is a one-word edit here.
+#
+# RAPIDKERT WAS PROMOTED, AND THIS IS WHAT PAID FOR IT
+# Not the redesign on its own — a nicer page is not evidence. The route now
+# carries all five of the things `full` asks for, and every one of them is
+# checkable:
+#
+#   media      the published rapidkert.com opening screen, ours to show;
+#   challenge  seasonal, strongly local search intent, stated on the page;
+#   design     the below-the-surface concept, and why the 3D cross-section is
+#              the argument rather than decoration;
+#   technical  what the live site actually does, described only from what the
+#              published screen shows;
+#   results    Google Ads for 2025-12-01—2026-04-30 and the contracted project
+#              value confirmed by the client, each figure carrying its source
+#              in `.metric__src` rather than sitting on the page unattributed.
+#
+# The section that used to say the figures were deliberately absent is gone
+# because it is no longer true, which is the only reason it was allowed to go.
+# The other two projects have none of this and stay `summary`.
 CASE_STATUS = {
-    "case-rapidkert": "summary",
+    "case-rapidkert": "full",
     "case-barbershop": "summary",
     "case-mentaltrening": "summary",
 }
