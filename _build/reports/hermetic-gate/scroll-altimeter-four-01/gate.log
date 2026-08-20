@@ -1,0 +1,61 @@
+==================================================================
+== scroll-altimeter-four-01 : preflight (quiet host required before the run may START)
+==================================================================
+manifest 1c8dc0d7f220  product=6b93a303(304) test=6fdd6f60(76) config=94c5bf52(14) dist=af279952(186)
+
+preflight scroll-altimeter-four-01-preflight-1: PASS
+  load1 1.07 (max 1.09, cap 6)  load5 2.35  load15 6.23
+  free mem 70%  swap 3323.62 MB  iCloud 0%
+  ports 4322:free 4327:free
+  subject 1c8dc0d7f220 product=6b93a303 dist=af279952(186)
+  -> /Users/arturlukacs/Library/Mobile Documents/com~apple~CloudDocs/Downloads/StratosWeb/_build/reports/hermetic-gate/scroll-altimeter-four-01/preflight/scroll-altimeter-four-01-preflight-1.json
+
+PREFLIGHT PASS on attempt 1 -> starting scroll-altimeter-four-01
+==================================================================
+== scroll-altimeter-four-01 : authoritative run STARTED 2026-08-20T15:43:52Z — it now counts
+==   dist   af279952d1def82b6ae7858d946f95981416aa3aff53bb677934d3d774b94626
+==   test   6fdd6f60f96774cb4246da7fa58a130873c5c926974ce3f9d2839d1d0112f520
+==   config 94c5bf52ccac846c9bb8149f8cda1d55cb78d51c32db5fcc798411cd611b326b
+==================================================================
+[2026-08-20T15:43:52.174Z] gate run scroll-altimeter-four-01 — root /Users/arturlukacs/stratos-hermetic/subject
+[2026-08-20T15:43:52.211Z] phase 1: build (declared mutation window)
+[2026-08-20T15:44:04.217Z] phase 2: freeze — capturing BEFORE manifest
+[2026-08-20T15:44:04.340Z] canaries armed on 6 tree(s)
+[2026-08-20T15:44:04.340Z] phase 3: starting owned servers
+[2026-08-20T15:44:04.592Z] server main (node) pid=54539 :4322 ready
+[2026-08-20T15:44:04.824Z] server full (node) pid=54556 :4327 ready
+[2026-08-20T15:44:04.824Z] phase 4: running 9 gate(s)
+[2026-08-20T15:44:04.824Z]   gate typecheck
+[2026-08-20T15:44:08.465Z]   gate fingerprint-check
+[2026-08-20T15:44:08.588Z]   gate draco-check
+[2026-08-20T15:44:08.700Z]   gate secret-scan
+[2026-08-20T15:44:09.208Z]   gate seo-audit
+[2026-08-20T15:44:09.336Z]   gate conversion-audit
+[2026-08-20T15:44:09.481Z]   gate route-audit
+[2026-08-20T15:48:36.334Z]   gate playwright-main
+[2026-08-20T15:55:09.990Z]   gate playwright-full
+[2026-08-20T16:07:04.817Z] phase 5: stopping owned servers
+[2026-08-20T16:07:04.820Z] phase 6: capturing AFTER manifest
+[2026-08-20T16:07:04.986Z] phase 7: verifying cleanup
+
+======================================================================
+RUN scroll-altimeter-four-01   VALID   GREEN
+commit  2215ef96b3614ca6698608fd18a30c6db27cbb26
+subject 1c8dc0d7f22088eb -> 1c8dc0d7f22088eb  IDENTICAL
+dist    af279952d1def82b
+canary  0 write event(s) during the run
+load    mean 11.5 peak 35.55
+elapsed 1392.9s
+  PASS  typecheck
+  PASS  fingerprint-check
+  PASS  draco-check
+  PASS  secret-scan
+  PASS  seo-audit
+  PASS  conversion-audit
+  PASS  route-audit
+  PASS  playwright-main  1168/1290 passed, 0 failed, 122 skipped
+  PASS  playwright-full  131/165 passed, 0 failed, 34 skipped
+written: /Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/scroll-altimeter-four-01/gate.json
+======================================================================
+== scroll-altimeter-four-01 : gate-run exit 0
+FINAL HERMETIC CLOSURE GATE: VALID + GREEN
