@@ -50,6 +50,18 @@ _build/reports/shards/
 # the record. Anything genuinely worth keeping can be force-added.
 _build/reports/**/*.png
 _build/reports/*-shots/
+# The same rule for the recordings the temporal reviews cite. No .webm under
+# _build/reports/ has ever been tracked — but nothing said so, and one review
+# package's natural-scroll captures are 35 MB, which a single `git add -A`
+# would have committed. Same reasoning as the stills: regenerable, and the
+# finding is what the .md says about them.
+_build/reports/**/*.webm
+# And the same for a review package's raw per-sample dumps. `probe-*.mjs` beside
+# the report regenerates them in seconds, every figure they contain is quoted in
+# the .md, and nothing reads them — unlike the audit JSON at the top of
+# _build/reports/, which the `--check` gates do read and which stays tracked.
+# This one package's dumps were 61 000 lines.
+_build/reports/*-repair/*.json
 
 # Review packages: the imagery is ignored, the writing is not.
 #

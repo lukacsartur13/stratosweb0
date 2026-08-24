@@ -55,6 +55,10 @@ button, input, textarea, select { font: inherit; color: inherit; }
   outline-offset: 3px;
   border-radius: 2px;
 }
+/* Same reason as `.band--pale .sig`: a 2 px yellow ring on paper is 1.09 : 1,
+   so on the light sections the keyboard ring was very nearly not there. The
+   pale-band ink keeps it the same mark in the same colour family. */
+.band--pale :focus-visible { outline-color: var(--signal-ink); }
 
 ::selection { background: var(--signal); color: var(--void); }
 
@@ -211,6 +215,19 @@ section { position: relative; }
 .band--pale .eyebrow { color: rgba(0,0,0,.5); }
 .band--pale .rule { border-color: rgba(0,0,0,.16); }
 
+/* THE SIGNAL, WHEN IT HAS TO CARRY TEXT ON PAPER.
+   `--signal` is 1.09 : 1 against `--paper`, which is fine for a 2 px rule and
+   unreadable for a word. The system already solved this once for the other
+   accent — `.chr` is #9CC6E4 on dark and #2F6E96 on pale, same hue, same
+   saturation, dropped in lightness until it clears — and simply never
+   completed the pair for the signal. This is that missing half: hue 53.5 and
+   full saturation, exactly `--signal`'s own, at 5.60 : 1 on paper.
+
+   It is defined here rather than in chrome.css's token block on purpose. The
+   homepage links chrome.css and does not link this file, so a token that only
+   pale bands can use has no business being visible to it. */
+.band--pale { --signal-ink: #6E6200; }
+
 .rule { border: 0; border-top: 1px solid var(--hair); }
 
 /* --------------------------------------------------------- nav
@@ -241,6 +258,10 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 
 /* `.muted` is in chrome.css — the footer's newsletter lede uses it. */
 .sig { color: var(--signal); }
+/* The half of the pair that was missing. `.sig` is a display-sized accent word
+   inside a headline — "Ügyfelet.", "hat állomás van." — so it is the sentence,
+   not decoration around it, and on paper it measured 1.09 : 1. */
+.band--pale .sig { color: var(--signal-ink); }
 /* the raw chrome highlight is near-white; text needs a touch more saturation */
 .chr { color: #9CC6E4; }
 .band--pale .chr { color: #2F6E96; }
@@ -407,6 +428,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 .panel {
   border: 1px solid var(--hair); padding: clamp(1.4rem, 3vw, 2.4rem);
   display: flex; flex-direction: column; gap: 1.2rem; background: var(--ink);
+  color: var(--paper);
 }
 .panel--lit { background: var(--signal); color: var(--void); border-color: var(--signal); }
 .panel--lit .checks li { color: rgba(0,0,0,.8); }
@@ -504,6 +526,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 .card {
   position: relative; padding: clamp(1.4rem, 2.4vw, 2.2rem);
   border: 1px solid var(--hair); background: var(--ink);
+  color: var(--paper);
   display: flex; flex-direction: column; gap: .8rem;
   overflow: hidden; transition: border-color .4s, transform .5s var(--ease);
 }
@@ -520,6 +543,29 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 }
 .card h3 { font-family: var(--display); font-size: var(--step-1); text-transform: uppercase; line-height: 1.1; }
 .card p { color: rgba(244,244,244,.7); font-size: var(--step-0); }
+
+/* ------------------------------------------------- dark islands in a pale band
+   `.band--pale` flips the whole section to ink-on-paper and then re-states every
+   text role beneath it as a descendant rule. A `.panel` or a `.card` dropped
+   into such a section is a dark surface *inside* that scope, so those descendant
+   rules kept applying across the boundary and painted black text onto a
+   near-black card: the Impact cause-card titles and their chips, and the Google
+   Ads checklist, all measured between 1.07 and 1.10 : 1.
+
+   Two halves to the repair, and the first one is the general rule. A component
+   that paints its own background must state its own foreground — `.panel` and
+   `.card` set `background: var(--ink)` and said nothing about colour, so they
+   inherited whatever the section was. They now declare it, which fixes every
+   role that merely inherits, `h3` included.
+
+   The second half is below: the roles `.band--pale` overrides *explicitly* need
+   the island to win, and it can only do that on specificity. `.panel--lit` is
+   excluded from all of it because it is a genuinely light surface — the yellow
+   Meta card — and wants the pale band's ink, not the dark surface's paper. */
+.band--pale :is(.panel, .card):not(.panel--lit) .checks li { color: rgba(244,244,244,.78); }
+.band--pale :is(.panel, .card):not(.panel--lit) .tags span {
+  border-color: var(--hair); color: rgba(244,244,244,.7);
+}
 
 /* numbered sequence — used only where order genuinely carries meaning */
 .steps { counter-reset: s; display: grid; gap: 0; }
@@ -850,20 +896,39 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
   transition: color .3s;
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary:hover { color: var(--signal); }
+
+/* THE ACTIVE STATE IS A MARK, NOT A COLOUR ON THE QUESTION.
+   The open question used to be set in `--signal`, which is 1.09 : 1 on a pale
+   band — the one line on the page a reader is definitely reading, and the
+   hardest to read on it. Hover did the same thing, so pointing at a question
+   made it *less* legible than leaving it alone.
+
+   The question now keeps full authority in every state — it is the content —
+   and the signal moves to the two places that are genuinely state and carry no
+   words: the mark at the end of the row, and the rule under an open entry.
+   Both are large enough and structural enough for the accent to read at the
+   contrast it actually has, which is what §6 permits and §5 requires. */
+.faq { --faq-accent: var(--signal); }
+.band--pale .faq { --faq-accent: var(--signal-ink); }
+
 .faq summary::after {
   content: ""; position: absolute; right: .4rem; top: 50%;
   width: 13px; height: 13px; margin-top: -7px;
   background:
-    linear-gradient(currentColor, currentColor) center/100% 1px no-repeat,
-    linear-gradient(currentColor, currentColor) center/1px 100% no-repeat;
-  transition: transform .4s var(--ease);
+    linear-gradient(var(--faq-mark, currentColor), var(--faq-mark, currentColor)) center/100% 1px no-repeat,
+    linear-gradient(var(--faq-mark, currentColor), var(--faq-mark, currentColor)) center/1px 100% no-repeat;
+  transition: transform .4s var(--ease), background-image .3s;
 }
-.faq details[open] summary { color: var(--signal); }
+.faq summary:hover { --faq-mark: var(--faq-accent); }
+.faq details[open] summary { --faq-mark: var(--faq-accent); }
 .faq details[open] summary::after { transform: rotate(135deg); }
 .faq .faq__a { padding: 0 clamp(1rem, 8vw, 6rem) 1.6rem 0; color: rgba(244,244,244,.72); }
 .band--pale .faq__a { color: rgba(0,0,0,.72); }
 .band--pale .faq, .band--pale .faq details { border-color: rgba(0,0,0,.16); }
+/* The small rule §7 asks for: an open entry is bracketed, not repainted. After
+   the pale-band border rule above, which is the same specificity and would
+   otherwise take the accent straight back off again. */
+.faq details[open], .band--pale .faq details[open] { border-bottom-color: var(--faq-accent); }
 
 /* --------------------------------------------------------- forms */
 .form { display: grid; gap: 1.4rem; }
@@ -878,7 +943,10 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
   transition: border-color .3s;
 }
 .field select { color: var(--paper); }
-.field select option { background: var(--ink); }
+/* Same rule as the panels: this paints a dark background, so it owes a colour.
+   On the pale-band form it was inheriting the section's ink and rendering the
+   dropdown black-on-black at 1.10 : 1 — invisible, and on a control. */
+.field select option { background: var(--ink); color: var(--paper); }
 .field input:focus, .field textarea:focus, .field select:focus {
   outline: none; border-bottom-color: var(--signal);
 }
@@ -1160,6 +1228,10 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 }
 .band--pale .smark { border-color: rgba(0, 0, 0, .16); }
 .band--pale .smark__t { color: rgba(0, 0, 0, .55); }
+/* The numeral is the quieter half of the pair by design and stays quieter —
+   but at 1.09 : 1 on paper it was not quiet, it was absent, while its own
+   sibling `.smark__t` had been given a pale variant years earlier. */
+.band--pale .smark__n { color: var(--signal-ink); }
 
 /* ------------------------------------------------------------- metric block
    A figure and what it means. Rules between, not boxes around: a metric is a

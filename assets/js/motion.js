@@ -76,7 +76,35 @@
       // `span` is the distance the element travels between "bottom edge just
       // entered" and "top edge just left". For a tall pinned section that is
       // its own height; for a short one it is one viewport.
-      const span = Math.max(1, r.height + vh * rec.lead);
+      //
+      // PINNED SECTIONS MEASURE THE PIN, NOT THE SECTION.
+      // A section that holds a sticky pin is only *readable* while the pin is
+      // stuck to the viewport, and that window is `height - pinHeight`, not
+      // `height`. Normalising over the full height therefore spent the last
+      // `pinHeight / height` of the range — 29% of the build sequence, 34% of
+      // the services rail, 45% of that rail at 1920×1080 — advancing progress
+      // after the pin had already let go and the section was leaving. The
+      // third build stage arrived with 120 px of pinned scroll left to read it
+      // in, 5.6% of its own window, and the rail was still two panels from the
+      // end when it came unstuck.
+      //
+      // `horizontalRail` already documents the intent this restores: the
+      // section is one viewport taller than its travel so that the extra
+      // viewport HOLDS THE END STATE. Measuring the pin is what makes progress
+      // reach 1 exactly as the pin releases, so that last viewport holds a
+      // finished frame instead of finishing the frame.
+      //
+      // Both boxes are read live rather than derived from `vh`, which is what
+      // makes this correct across `svh`/`dvh` and a moving mobile toolbar: the
+      // pin's height is whatever the pin actually got, not what a unit promised.
+      //
+      // Travel of zero means the pin is not pinning — under 860 px `.build`
+      // drops to `height: auto` with a static pin and the stages become an
+      // ordinary stacked list, and the services rail goes static in portrait.
+      // There is no sticky window to measure there, so the range falls back to
+      // the element's own, which is what those layouts were always driven by.
+      const travel = rec.pin ? r.height - rec.pin.getBoundingClientRect().height : 0;
+      const span = travel > 4 ? travel : Math.max(1, r.height + vh * rec.lead);
       rec.update(clamp((vh * rec.lead - r.top) / span, 0, 1));
     }
   }
@@ -114,10 +142,18 @@
 
   /** Register an element. `update(p)` is called with 0..1 and nothing else.
    *  `lead` scales how much viewport is counted as approach — 1 means the
-   *  range opens when the element's top hits the bottom of the screen. */
-  function register(el, update, lead = 1) {
+   *  range opens when the element's top hits the bottom of the screen.
+   *  `pinSel` names this element's sticky child, if it has one; passing it
+   *  makes the range end where the pin lets go rather than where the section
+   *  does. It is opt-in per primitive rather than inferred, because the two
+   *  primitives that own a pin are the only ones that should measure one —
+   *  the header and the Arrival footer are registered here too, on the
+   *  homepage as well as on the 66 generated routes, and their ranges are
+   *  correct as they stand. */
+  function register(el, update, lead = 1, pinSel = null) {
     if (RM) { update(1); return; }
-    tracked.set(el, { update, live: false, lead });
+    const pin = pinSel ? el.querySelector(pinSel) : null;
+    tracked.set(el, { update, live: false, lead, pin });
     io ? io.observe(el) : update(1);
   }
 
@@ -172,15 +208,32 @@
     const fill = el.querySelector('[data-stage-fill]');
     let shown = -1;
 
+    const pin = el.querySelector('.stage__pin');
+
+    /* Is this actually behaving as a sequence right now?
+       Only if the pin has scroll travel to move through. Under 860 px the build
+       pages drop the container to `height: auto` and the pin to `position:
+       static`, and the three stages become an ordinary stacked list with
+       `opacity: 1 !important` — all of them on screen, all of them read in
+       order. The code below still ran the pinned path there and marked two of
+       the three `aria-hidden="true"`, so two thirds of the sequence was visible
+       to the eye and absent from the accessibility tree on every phone.
+       Measured on a state change only, which happens N times per pass. */
+    const sequenced = () => !pin
+      || el.getBoundingClientRect().height - pin.getBoundingClientRect().height > 4;
+
     const show = (i) => {
       if (i === shown) return;
       shown = i;
+      const seq = sequenced();
       stages.forEach((s, n) => {
         s.classList.toggle('is-on', n === i);
         s.classList.toggle('is-past', n < i);
         // Only the live stage is in the accessibility tree; the others are
         // duplicated copy that a screen reader would otherwise read N times.
-        s.setAttribute('aria-hidden', n === i ? 'false' : 'true');
+        // Unless they are all on screen at once, in which case they are not
+        // duplicates of one slot — they are the section.
+        s.setAttribute('aria-hidden', (!seq || n === i) ? 'false' : 'true');
       });
       el.dataset.stageAt = i;
     };
@@ -198,7 +251,7 @@
       show(clamp(Math.floor(p * stages.length), 0, stages.length - 1));
       if (fill) fill.style.transform = `scaleX(${p})`;
       el.style.setProperty('--stage-p', p.toFixed(4));
-    }, 0);
+    }, 0, '.stage__pin');
   }
 
   /* ------------------------------------------------ 5.3 HorizontalRail */
@@ -244,7 +297,7 @@
         el.dataset.railAt = at;
         panels.forEach((pl, i) => pl.classList.toggle('is-on', i === at));
       }
-    }, 0);
+    }, 0, '.rail__pin');
 
     addEventListener('resize', measure, { passive: true });
   }

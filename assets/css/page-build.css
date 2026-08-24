@@ -37,6 +37,12 @@
   color: var(--signal);
   margin-bottom: .9rem;
 }
+/* This is the step's name — "01 — Egyeztetés" — not an ornament on it, and
+   these two pages run the sequence on a pale band, where `--signal` measured
+   1.09 : 1. The yellow that signals *which* step is live stays yellow: it is
+   `.build__fill`, the rule that fills across the top, which is a rule and can
+   afford the contrast it has. The words take the pale-band ink. */
+.band--pale .build__k { color: var(--signal-ink); }
 .build__stage h3 { margin-bottom: 1rem; }
 .build__stage .prose { max-width: 42ch; }
 
