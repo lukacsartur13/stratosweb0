@@ -952,4 +952,15 @@ html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
   /* One column, and the two answers share the row so neither leads. */
   .consent__actions { width: 100%; }
   .consent__btn { flex: 1 1 0; justify-content: center; }
+
+  /* And the label may wrap here, which `.consent__btn` forbids above.
+     `flex: 1 1 0` gives both answers exactly half the row whatever they say —
+     that is the symmetry this component is built around — but half of a 390px
+     screen is 167px, and "Nem járulok hozzá" needs 183px on one line. With
+     `nowrap` it simply ran out of its own button, on every page of the site,
+     at the width most visitors arrive at. Wrapping keeps the symmetry the
+     nowrap was never protecting: the flex row stretches both buttons to the
+     same height, so two lines on one answer and one on the other still reads
+     as two identical controls. */
+  .consent__btn { white-space: normal; text-wrap: balance; }
 }
