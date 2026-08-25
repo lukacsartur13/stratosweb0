@@ -112,16 +112,20 @@ export const MESSAGES = {
    * That is a gap for a reader — you can land here and still not know you are
    * looking at a web agency — and it was a measurable one for search: an audit
    * flagged that none of the words in the page title appear in the H1, because
-   * the title names the service and the city and the H1 names neither.
+   * the title names the service and the H1 named neither it nor the trade.
+   *
+   * It named a city for one deploy and does not any more. A line that says
+   * where the company sits reads as where the company *works*, and this one
+   * works in three languages across three countries.
    *
    * So it is a deck line, not a replacement. The statement keeps both of its
    * lines and its silhouette; this sits under them, small and set in the data
    * face, and reads as the instrument label the rest of the page is full of.
    */
   'calibration.title.locator': {
-    hu: 'Stratos · Weboldal készítés Győrben és Budapesten',
-    en: 'Stratos · Web design and development in Hungary',
-    de: 'Stratos · Webdesign und Entwicklung in Ungarn',
+    hu: 'Stratos · Weboldal készítés és digitális ügynökség',
+    en: 'Stratos · Web design and digital agency',
+    de: 'Stratos · Webdesign und Digitalagentur',
   },
   'calibration.lead': {
     hu: 'A legtöbb vállalkozás a földön versenyzik: ugyanazokkal az eszközökkel, ugyanazokért a figyelemmorzsákért. Mi máshol dolgozunk. Előbb megnézzük, hol tartasz — aztán megépítjük a rendszert, amivel feljebb kerülsz.',

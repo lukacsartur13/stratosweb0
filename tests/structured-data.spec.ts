@@ -398,5 +398,5 @@ test('the breadcrumb trail matches the one the page renders', () => {
       expect(item.item, `${doc.file} item`).toMatch(/^https:\/\//);
     });
   }
-  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(69);
+  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(66);
 });

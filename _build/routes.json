@@ -50,11 +50,6 @@
    "en": "impact-program.html",
    "de": "impact-programm.html"
   },
-  "gyor": {
-   "hu": "weboldal-keszites-gyor.html",
-   "en": "web-design-gyor.html",
-   "de": "webdesign-gyor.html"
-  },
   "work": {
    "hu": "munkaink.html",
    "en": "work.html",
@@ -177,11 +172,6 @@
    "en": "/en/impact-program.html",
    "de": "/de/impact-programm.html"
   },
-  "gyor": {
-   "hu": "/weboldal-keszites-gyor.html",
-   "en": "/en/web-design-gyor.html",
-   "de": "/de/webdesign-gyor.html"
-  },
   "work": {
    "hu": "/munkaink.html",
    "en": "/en/work.html",
@@ -268,7 +258,6 @@
   "ads": "full",
   "seo": "full",
   "impact": "full",
-  "gyor": "full",
   "work": "full",
   "case-rapidkert": "full",
   "case-barbershop": "summary",

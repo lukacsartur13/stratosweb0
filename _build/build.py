@@ -45,12 +45,6 @@ SLUGS = {
     "ads":         {"hu": "hirdeteskezeles.html",          "en": "ads-management.html",        "de": "werbeanzeigen.html"},
     "seo":         {"hu": "keresooptimalizalas.html",      "en": "seo.html",                   "de": "suchmaschinenoptimierung.html"},
     "impact":      {"hu": "impact-program.html",           "en": "impact-program.html",        "de": "impact-programm.html"},
-    # The city page. Not in SERVICES and not in the dropdown: it is the same
-    # four services stated for one place, so listing it beside them would offer
-    # the reader a sixth thing to buy that does not exist. It is reached from
-    # the services index, the footer and search — which is where a local query
-    # arrives from anyway.
-    "gyor":        {"hu": "weboldal-keszites-gyor.html",   "en": "web-design-gyor.html",       "de": "webdesign-gyor.html"},
     "work":        {"hu": "munkaink.html",                 "en": "work.html",                  "de": "projekte.html"},
     "case-rapidkert":    {"hu": "munka-rapidkert.html",    "en": "work-rapidkert.html",        "de": "projekt-rapidkert.html"},
     "case-barbershop":   {"hu": "munka-barbershop.html",   "en": "work-barbershop.html",       "de": "projekt-barbershop.html"},
@@ -323,7 +317,6 @@ UI = {
             "index": "Főoldal", "about": "Rólunk", "services": "Szolgáltatások",
             "sme": "KKV", "enterprise": "Nagyvállalat", "branding": "Branding",
             "ads": "Hirdetés", "seo": "SEO", "impact": "Impact", "work": "Munkáink",
-            "gyor": "Weboldal készítés Győr",
             "blog": "Blog", "contact": "Kapcsolat", "quote": "Árajánlat",
         },
         # A hírlevél még nem létezik: a beküldés eltárolja a címet, és semmi
@@ -429,7 +422,7 @@ UI = {
             "index": "Home", "about": "About", "services": "Services",
             "sme": "SME", "enterprise": "Enterprise", "branding": "Branding",
             "ads": "Ads", "seo": "SEO", "impact": "Impact", "work": "Work",
-            "gyor": "Web design in Győr", "blog": "Blog",
+            "blog": "Blog",
             "contact": "Contact", "quote": "Get a quote",
         },
         "nl_lede": "Our newsletter is still being built. Leave your address and we'll tell you when it starts.",
@@ -522,7 +515,6 @@ UI = {
             "index": "Start", "about": "Über uns", "services": "Leistungen",
             "sme": "KMU", "enterprise": "Konzerne", "branding": "Branding",
             "ads": "Werbung", "seo": "SEO", "impact": "Impact", "work": "Projekte",
-            "gyor": "Webdesign in Győr",
             "blog": "Blog", "contact": "Kontakt", "quote": "Angebot",
         },
         "nl_lede": "Unser Newsletter entsteht gerade. Hinterlasse deine Adresse, dann sagen wir Bescheid, sobald er startet.",
@@ -1135,12 +1127,6 @@ PAGE_TYPE_SCHEMA = {
 BREADCRUMB_PARENT = {
     "sme": "services", "enterprise": "services",
     "branding": "services", "ads": "services", "seo": "services",
-    # The city page's visible trail reads Stratos / Szolgáltatások / … , so its
-    # chain has to say the same. Without an entry here `crumb_chain` returns a
-    # two-step chain against a three-step trail and `breadcrumb()` refuses to
-    # emit anything — correctly, and silently, which is how a page ends up with
-    # crumbs on screen and none in the structured data.
-    "gyor": "services",
 }
 
 SCHEMA_LANG = {"hu": "hu-HU", "en": "en-GB", "de": "de-DE"}
@@ -1302,11 +1288,19 @@ def build_structured_data(lang, key, title, desc, meta, body):
             "postalCode": "9151",
             "addressCountry": "HU",
         },
+        # Countries, not cities.
+        #
+        # This was Győr, Budapest and the county for one deploy, alongside a
+        # route dedicated to the city. Both are withdrawn for the same reason:
+        # naming a town as the area served is a claim about how far the company
+        # reaches, and this one reaches as far as it has languages. The seat
+        # above stays — that is a legal fact /impresszum.html has to state, and
+        # it is what makes a local result possible without the site telling
+        # everyone else it is not for them.
         "areaServed": [
-            {"@type": "City", "name": "Győr"},
-            {"@type": "City", "name": "Budapest"},
-            {"@type": "AdministrativeArea", "name": "Győr-Moson-Sopron"},
             {"@type": "Country", "name": "Magyarország"},
+            {"@type": "Country", "name": "Österreich"},
+            {"@type": "Country", "name": "Deutschland"},
         ],
         "knowsLanguage": ["hu", "en", "de"],
         "sameAs": SOCIAL_PROFILES,
@@ -1638,25 +1632,15 @@ ARCHETYPE_CTA = {
 # number the altimeter rail has been climbing towards all the way down — so the
 # footer closes the instrument rather than announcing an unrelated figure.
 CEILINGS = {"impact": 30000, "ads": 17000, "enterprise": 9400,
-            "seo": 6200, "branding": 4800, "sme": 1200,
-            # 420 m is the altitude the subpage rail already reads at rest, and
-            # the city page is the one route where that is the literal answer:
-            # it is about the ground, not the climb.
-            "gyor": 420}
+            "seo": 6200, "branding": 4800, "sme": 1200}
 
 
 def build_footer(lang, key):
     u = UI[lang]
     p = u["p85"]
-    # `gyor` is in this list and not in the services dropdown, for the reason
-    # given at the slug table: it is the same four services stated for one
-    # place, so it belongs where a reader looks for *where you are*, not where
-    # they choose *what to buy*. Without a link here it would be an orphan —
-    # reachable only from the sitemap, which is how a page gets crawled and
-    # never ranked.
     pages = "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["menu"][k]}</a></li>'
-        for k in ("about", "work", "gyor", "contact", "blog", "quote"))
+        for k in ("about", "work", "contact", "blog", "quote"))
     svc = f'\n          <li><a href="{href(lang, "services")}">{u["svc_all"]}</a></li>'
     svc += "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
@@ -2179,9 +2163,7 @@ GROUND_COPY = {
                "mérés és a havi riport ugyanannak a szerződésnek a része.",
         "where_h": "Hol dolgozunk",
         "where": "Az irodánk Győr mellett van, és a Győr-Moson-Sopron vármegyei "
-                 "vállalkozásokkal szívesen leülünk személyesen is — erről külön oldalunk is van: "
-                 "<a href=\"/weboldal-keszites-gyor.html\">weboldal készítés Győrben</a>. "
-                 "Budapesti és külföldi "
+                 "vállalkozásokkal szívesen leülünk személyesen is. Budapesti és külföldi "
                  "ügyfeleinkkel online dolgozunk, ami az elmúlt években semmivel sem "
                  "bizonyult lassabbnak. Ha nem tudod eldönteni, melyik szolgáltatás kellene, "
                  "írj nekünk: a beszélgetés ingyenes, és a végén akkor is okosabb leszel, ha "
@@ -2263,9 +2245,7 @@ GROUND_COPY = {
                "measurement and the monthly report are part of the same agreement.",
         "where_h": "Where we work",
         "where": "Our office is just outside Győr, and we are happy to meet businesses across "
-                 "Győr-Moson-Sopron county in person — there is a "
-                 "<a href=\"/en/web-design-gyor.html\">page of its own</a> about that. "
-                 "We work with clients in Budapest and "
+                 "Győr-Moson-Sopron county in person. We work with clients in Budapest and "
                  "abroad online, which over the past years has proved no slower at all. If "
                  "you cannot tell which service you need, write to us: the conversation is "
                  "free, and you will know more at the end of it either way.",
@@ -2344,8 +2324,7 @@ GROUND_COPY = {
                "nicht: Wartung, Messung und der monatliche Report gehören zum selben Vertrag.",
         "where_h": "Wo wir arbeiten",
         "where": "Unser Büro liegt bei Győr, und mit Unternehmen aus dem Komitat "
-                 "Győr-Moson-Sopron treffen wir uns gerne persönlich — dazu gibt es eine "
-                 "<a href=\"/de/webdesign-gyor.html\">eigene Seite</a>. Mit Kundinnen und Kunden "
+                 "Győr-Moson-Sopron treffen wir uns gerne persönlich. Mit Kundinnen und Kunden "
                  "in Budapest und im Ausland arbeiten wir online, was sich in den letzten "
                  "Jahren als keineswegs langsamer erwiesen hat. Wenn Sie nicht wissen, welche "
                  "Leistung Sie brauchen, schreiben Sie uns: Das Gespräch ist kostenlos, und "
