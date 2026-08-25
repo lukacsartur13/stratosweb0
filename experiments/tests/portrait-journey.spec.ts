@@ -3,6 +3,16 @@ import { enableReducedMotion } from '../../tests/helpers/reduced-motion';
 import { STAGES } from '../src/full/journey';
 import { COLLABORATIONS, FEATURED_CASE_ID, WORK } from '../src/full/content';
 import { pageHref } from '../src/full/i18n';
+import { bootJourneyOnLoad } from '../../tests/helpers/homepage';
+// This file measures both routes: the prototype at
+// /experiments/stratos-ascent-full/, which mounts on load and always has, and
+// the three locale homepages, which do not — see `bootJourneyOnLoad`. Arming it
+// for every navigation gives the homepage a visitor who has moved, and costs
+// the prototype a dispatched event nothing is listening for.
+test.beforeEach(async ({ page }) => {
+  await bootJourneyOnLoad(page);
+});
+
 
 /**
  * The portrait journey, as CURRENT HEAD actually builds it.

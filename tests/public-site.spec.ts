@@ -2,7 +2,16 @@ import { test, expect, type Page } from './helpers/navigation-boundary';
 import fs from 'node:fs';
 import path from 'node:path';
 import { enableReducedMotion, matchesReducedMotion } from './helpers/reduced-motion';
-import { altitudeReadout, homepageReady, isMobileHomepage, stageReadout } from './helpers/homepage';
+import { altitudeReadout, bootJourneyOnLoad, homepageReady, isMobileHomepage, stageReadout } from './helpers/homepage';
+
+// The homepage waits for a first move before it mounts the journey — see
+// `bootJourneyOnLoad`. Every navigation in this file gets one, on every
+// document it loads, so what these tests assert about is a page a visitor is
+// reading rather than one they have only landed on.
+test.beforeEach(async ({ page }) => {
+  await bootJourneyOnLoad(page);
+});
+
 
 /**
  * Console noise that is not the site's fault and must not fail a run:

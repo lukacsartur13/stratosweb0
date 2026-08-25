@@ -101,7 +101,7 @@ type Emissive = { mat: MeshStandardMaterial; base: number };
 const readQuality = () => journey.debug.quality;
 
 export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
-  const { scene, materials } = useGLTF(MODEL_URL);
+  const { scene, materials } = useGLTF(MODEL_URL, false, false);
   const root = useRef<Group>(null);
   const gimbal = useRef<Group>(null);
   const housing = useRef<Group>(null);
@@ -491,4 +491,32 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
   );
 }
 
-useGLTF.preload(MODEL_URL);
+/**
+ * The two `false`s are the decoder extensions, and they are load-bearing.
+ *
+ * drei's `useGLTF` defaults BOTH on: it builds a `DRACOLoader` pointed at
+ * `https://www.gstatic.com/draco/...` and it calls `MeshoptDecoder()`, which
+ * instantiates a WebAssembly module from an inlined base64 string — before it
+ * has looked at the file, so it happens whether or not the asset uses either
+ * extension.
+ *
+ * `models/stratos-altimeter.glb` uses neither. Its only extension is
+ * `KHR_materials_emissive_strength`; the DRACO meshes on this site are the two
+ * mountain ranges, and `MountainRange.tsx` builds its own decoder for them
+ * against the self-hosted `/draco/` copy for exactly this reason.
+ *
+ * So the defaults bought nothing and cost a Content Security Policy violation
+ * on every load: `script-src 'self' https://www.googletagmanager.com` has no
+ * `'unsafe-eval'`, and Chromium refuses `WebAssembly.instantiate()` under it.
+ * The model still decoded — the failure is in a decoder the file never needed —
+ * but it logged a `CompileError` to the console and an entry to the Issues
+ * panel on every visit, which is two failed Lighthouse best-practice audits and
+ * a real error in a real console for anyone who opens one.
+ *
+ * The alternative was widening the policy with `'wasm-unsafe-eval'`. Turning
+ * off a decoder nothing here uses is the smaller change, and it is the one that
+ * does not spend a CSP directive to fix a self-inflicted error. Both call sites
+ * — the hook and the `preload` — carry the same arguments, because whichever
+ * runs first is the one that configures the shared loader.
+ */
+useGLTF.preload(MODEL_URL, false, false);

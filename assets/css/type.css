@@ -85,9 +85,13 @@
   font-stretch: 62% 125%;
   font-display: swap;
   src: url('../fonts/archivo/archivo-normal-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  /* Four codepoints, not the published latin-ext block. The files behind these
+     faces are `&text=` subsets carrying ő Ő ű Ű → and nothing else — see
+     LATIN_EXT_TEXT in scripts/sync-fonts.mjs for the measurement that led there
+     and for the build check that keeps it honest. Declaring the full block over
+     a file that no longer holds it is what would produce tofu, so the two are
+     changed together or not at all. */
+  unicode-range: U+0150-0151, U+0170-0171, U+2192;
 }
 
 @font-face {
@@ -109,9 +113,13 @@
   font-stretch: 62% 125%;
   font-display: swap;
   src: url('../fonts/archivo/archivo-italic-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  /* Four codepoints, not the published latin-ext block. The files behind these
+     faces are `&text=` subsets carrying ő Ő ű Ű → and nothing else — see
+     LATIN_EXT_TEXT in scripts/sync-fonts.mjs for the measurement that led there
+     and for the build check that keeps it honest. Declaring the full block over
+     a file that no longer holds it is what would produce tofu, so the two are
+     changed together or not at all. */
+  unicode-range: U+0150-0151, U+0170-0171, U+2192;
 }
 
 @font-face {
@@ -131,9 +139,13 @@
   font-weight: 100 800;
   font-display: swap;
   src: url('../fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  /* Four codepoints, not the published latin-ext block. The files behind these
+     faces are `&text=` subsets carrying ő Ő ű Ű → and nothing else — see
+     LATIN_EXT_TEXT in scripts/sync-fonts.mjs for the measurement that led there
+     and for the build check that keeps it honest. Declaring the full block over
+     a file that no longer holds it is what would produce tofu, so the two are
+     changed together or not at all. */
+  unicode-range: U+0150-0151, U+0170-0171, U+2192;
 }
 
 /* Aboreto — the logo wordmark, and only that.
@@ -165,9 +177,13 @@
   font-weight: 400;
   font-display: swap;
   src: url('../fonts/aboreto/aboreto-normal-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  /* Four codepoints, not the published latin-ext block. The files behind these
+     faces are `&text=` subsets carrying ő Ő ű Ű → and nothing else — see
+     LATIN_EXT_TEXT in scripts/sync-fonts.mjs for the measurement that led there
+     and for the build check that keeps it honest. Declaring the full block over
+     a file that no longer holds it is what would produce tofu, so the two are
+     changed together or not at all. */
+  unicode-range: U+0150-0151, U+0170-0171, U+2192;
 }
 
 /* ------------------------------------------------- metric-matched shims */

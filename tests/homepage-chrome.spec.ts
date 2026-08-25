@@ -1,6 +1,15 @@
 import { test, expect, type Page } from '@playwright/test';
 import { enableReducedMotion, matchesReducedMotion } from './helpers/reduced-motion';
-import { altitudeMetres, homepageReady, stageReadout } from './helpers/homepage';
+import { altitudeMetres, bootJourneyOnLoad, homepageReady, stageReadout } from './helpers/homepage';
+
+// The homepage waits for a first move before it mounts the journey — see
+// `bootJourneyOnLoad`. Every navigation in this file gets one, on every
+// document it loads, so what these tests assert about is a page a visitor is
+// reading rather than one they have only landed on.
+test.beforeEach(async ({ page }) => {
+  await bootJourneyOnLoad(page);
+});
+
 
 /**
  * The homepage's site chrome: the flight deck, the full-screen navigation, the

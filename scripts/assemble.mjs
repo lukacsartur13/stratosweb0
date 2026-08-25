@@ -10,7 +10,8 @@
 // build:portal (vite, which writes dist/portal itself).
 // =============================================================================
 
-import { cp, mkdir, rm, writeFile, readdir, readFile } from 'node:fs/promises';
+import { cp, mkdir, rm, writeFile, readdir, readFile, stat } from 'node:fs/promises';
+import { transform } from 'esbuild';
 import { existsSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -82,10 +83,100 @@ async function main() {
     }
   }
 
+  await minifyAssets();
+
   await writeFile(join(DIST, 'robots.txt'), robots(), 'utf8');
   await writeFile(join(DIST, 'sitemap.xml'), await sitemap(pages), 'utf8');
 
   console.log(`assemble: ${pages.length} Hungarian pages + ${COPY_DIRS.join(', ')} -> dist/`);
+}
+
+// --------------------------------------------------------------------- minify
+//
+// The shared stylesheets and scripts are shipped minified, and the source tree
+// is left exactly as it is. Both halves of that sentence are the point.
+//
+// WHY IT IS WORTH DOING HERE, WHEN IT USUALLY IS NOT
+// --------------------------------------------------
+// These files are unusually comment-dense — deliberately, and that is not going
+// to change, because the comments are where the reasons live. The cost of that
+// on the wire is not small and it is entirely recoverable:
+//
+//     assets/css/chrome.css        36,638 -> 16,085 bytes   (9,948 -> 3,610 br)
+//     assets/css/type.css          17,282 ->  7,113         (4,482 -> 1,297 br)
+//     assets/css/transitions.css   13,931 ->  3,980         (3,720 ->   821 br)
+//     assets/js/home-history.js    12,113 ->  1,128         (3,910 ->   498 br)
+//     assets/js/transitions.js     38,516 ->  5,360        (11,077 -> 1,925 br)
+//
+// The first four of those are RENDER-BLOCKING: three stylesheets in <head> on
+// every route, and one synchronous script on the homepage that has to run
+// before first layout. Together they were 22 KB of compressed bytes standing
+// between a visitor on a phone and the first paint, and roughly a third of that
+// was prose addressed to whoever next opens the file.
+//
+// This runs before `build:home`, which is load-bearing in one more way than the
+// ordering note below says: `inlineCriticalCss()` in
+// experiments/vite.home.config.ts reads the three stylesheets back out of dist
+// and puts them inside the three homepage shells, so the bytes it inlines are
+// the minified ones. Inlining the source would put 68 KB of comments into three
+// documents.
+//
+// WHY NOT MINIFY IN PLACE, OR CHECK IN A MINIFIED COPY
+// ---------------------------------------------------
+// `npm run dev` serves the repository root, and the authoring loop depends on
+// the file you open being the file the browser ran. A build artefact is the
+// right place for a transformation nobody should have to read.
+//
+// ORDER
+// -----
+// Before fingerprinting, which is the last step of `npm run build`: the hash in
+// `?v=` is taken from the bytes in dist/, so it has to be taken from the bytes
+// that ship. Vite already minifies everything under assets/home and
+// portal/assets, and neither is touched here.
+//
+// A file that esbuild refuses is a build failure rather than a file that
+// silently ships unminified — a syntax error it can see is one the browser will
+// see too.
+const MINIFY_DIRS = [join('assets', 'css'), join('assets', 'js')];
+
+async function minifyAssets() {
+  let saved = 0;
+  let count = 0;
+
+  for (const dir of MINIFY_DIRS) {
+    const root = join(DIST, dir);
+    if (!existsSync(root)) continue;
+
+    for (const name of await readdir(root)) {
+      const path = join(root, name);
+      if (!(await stat(path)).isFile()) continue;
+      const loader = name.endsWith('.css') ? 'css' : name.endsWith('.js') ? 'js' : null;
+      if (!loader) continue;
+
+      const source = await readFile(path, 'utf8');
+      let code;
+      try {
+        // `es2019` and `chrome100` rather than esnext: minification must not
+        // become a transpile that changes what the browser is handed, and both
+        // targets are below anything these files already use.
+        ({ code } = await transform(source, {
+          loader,
+          minify: true,
+          target: loader === 'css' ? 'chrome100' : 'es2019',
+          legalComments: 'none',
+        }));
+      } catch (err) {
+        console.error(`assemble: ${dir}/${name} did not minify — ${err.message}`);
+        process.exit(1);
+      }
+
+      await writeFile(path, code, 'utf8');
+      saved += source.length - code.length;
+      count += 1;
+    }
+  }
+
+  console.log(`assemble: minified ${count} shared assets, ${(saved / 1024).toFixed(1)} KB of source removed`);
 }
 
 function robots() {

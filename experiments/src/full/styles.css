@@ -138,6 +138,101 @@ img { max-width: 100%; height: auto; }
   outline-offset: 3px;
 }
 
+/* ====================================================== the empty landmark ===
+   What the mount host is worth before React exists, and why that is a number.
+
+   `<main class="journey">` is empty in the parsed shell — the application
+   renders into it, and until the module has been fetched, parsed and mounted
+   the document is a header, an Arrival and a footer. That is roughly two
+   thousand pixels standing in for fourteen thousand, so the Arrival opens *in
+   the first viewport*, paints there, and is then pushed thirteen screens down
+   the moment the journey arrives.
+
+   Measured on the deployed site, that single displacement was a Cumulative
+   Layout Shift of 1.000 — the whole of a CLS of 1.013, against a 0.1 budget —
+   and the largest contentful paint was the Arrival's headline for the same
+   reason: it was the biggest thing on a page that had not started yet.
+
+   One viewport of reserve fixes both. `:empty` is the whole of the condition:
+   the reserve exists for exactly as long as the host has nothing in it, which
+   on the production homepage is only the dev server (the built shells carry
+   the opening frame below) and on the prototype is the moment before its
+   synchronous mount. `svh`, matching `.journey__stage`, and for the same
+   reason: it is the viewport that does not move when iOS Safari's toolbars do.
+
+   See assets/js/home-history.js for the other half of this problem: that file
+   reserves the *settled* height on a back navigation, this one reserves the
+   first screen on a first visit. */
+main.journey:empty { min-height: 100svh; }
+
+/* ------------------------------------------------------- the opening frame ==
+   What the document says before it becomes the journey.
+
+   The markup is generated into the shell at build time by `openingFrame()` in
+   `experiments/vite.home.config.ts`, from the same five `MESSAGES` entries the
+   Calibration panel opens with. It is the first contentful paint, the largest
+   contentful paint, and — for a visitor with no JavaScript, or one who reads
+   the opening and leaves — the whole of the page's opening argument.
+
+   `createRoot`'s first commit removes it. Nothing here transitions, animates or
+   observes: it exists to be correct in the first layout the browser performs
+   and to be gone by the second.
+
+   The type is the Calibration panel's own, quoted rather than invented:
+   `.panel__title--hero`'s clamp, `.panel__title`'s weight, leading and
+   tracking, `.panel__title em`'s signal colour on the emphasised word, and
+   `.panel__lead`'s size and colour. A frame that had a look of its own would
+   read as one design replacing another rather than as one settling. */
+.jboot {
+  /* One viewport, so the Arrival starts below the fold and the growth that
+     follows the mount happens off screen. Same `svh` argument as the stage. */
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 6rem clamp(1.25rem, 5vw, 5rem) clamp(3rem, 10vh, 7rem);
+}
+
+.jboot__h {
+  margin: 0;
+  max-width: 20ch;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 1rem + 2.5vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+}
+
+/* The authored line break, honoured. The panel sets this statement on two
+   lines with a `<br />`; a block that let it re-wrap would be a different
+   silhouette. */
+.jboot__h span { display: block; }
+/* Quoted from `.panel__title em`: not italic, and the one word in signal. */
+.jboot__h em { font-style: normal; color: var(--signal); }
+
+.jboot__lede {
+  margin: 0;
+  max-width: 54ch;
+  font-size: clamp(0.96rem, 0.92rem + 0.24vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--chrome);
+}
+
+.jboot__act { margin: 0.4rem 0 0; }
+.jboot__act a {
+  display: inline-block;
+  font-family: var(--data);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--signal);
+  padding-bottom: 0.35rem;
+}
+
 /* ============================================================== the track ===
    One sticky stage, spanning the entire journey *including* the closing CTA.
 

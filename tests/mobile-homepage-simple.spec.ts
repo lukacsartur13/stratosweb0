@@ -1,5 +1,15 @@
 import { test, expect, type Page } from '@playwright/test';
 import { enableReducedMotion } from './helpers/reduced-motion';
+import { bootJourneyOnLoad } from './helpers/homepage';
+
+// The homepage waits for a first move before it mounts the journey — see
+// `bootJourneyOnLoad`. Every navigation in this file gets one, on every
+// document it loads, so what these tests assert about is a page a visitor is
+// reading rather than one they have only landed on.
+test.beforeEach(async ({ page }) => {
+  await bootJourneyOnLoad(page);
+});
+
 
 /**
  * The simplified portrait homepage — architecture, not pixels.
@@ -1409,6 +1419,15 @@ test.describe('desktop — the composition that must not have changed', () => {
     // pending `waitForRequest` behind on every phone project, which is what
     // this did and how it failed there.
     await page.goto('/');
+    // Which fork ran is a question about the DOM, and the DOM does not have the
+    // answer until the journey has mounted. That used to be true by the time
+    // `goto` resolved; it is not any more, because the homepage waits for the
+    // visitor's first move and `bootJourneyOnLoad` gives it one at `load`. So
+    // wait for whichever composition arrives before asking which one it was —
+    // otherwise a phone reads as "not mobile" and runs the desktop assertion.
+    await page.waitForSelector('[data-testid="mobile-home"], [data-testid="journey-track"]', {
+      timeout: 20_000,
+    });
     if (await mounted(page)) test.skip(true, 'mobile composition — this is the desktop assertion');
 
     const terrain = page.waitForRequest(/mountains.*\.glb/i, { timeout: 45_000 });
