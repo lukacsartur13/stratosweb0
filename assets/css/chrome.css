@@ -964,3 +964,18 @@ html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
      as two identical controls. */
   .consent__btn { white-space: normal; text-wrap: balance; }
 }
+
+/* Below this the row cannot hold two answers at all, and the reason is one
+   German word. `flex: 1 1 0` splits the row in half, so each button gets
+   (row − gap) / 2; at a 360px viewport that is 154px and "Einverstanden" needs
+   158. It is thirteen letters with nothing to wrap at, so the previous rule
+   cannot help it — Hungarian and English both fit because theirs are two words
+   or short.
+
+   Stacking is the answer that keeps the component's own rule: full width each,
+   still identical, still neither leading. Measured — 360px is where a large
+   share of Android phones actually sit, so this is not a hypothetical width. */
+@media (max-width: 380px) {
+  .consent__actions { flex-direction: column; }
+  .consent__btn { flex: 1 1 auto; width: 100%; }
+}
