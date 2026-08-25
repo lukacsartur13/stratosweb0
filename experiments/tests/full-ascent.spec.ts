@@ -36,19 +36,9 @@ import {
   ringLock,
 } from '../src/full/meridian';
 import { IRIS, irisHoleRadius } from '../src/full/components/meridianParts';
-import { COLLABORATIONS, FEATURED_CASE_ID, PROCESS, WORK } from '../src/full/content';
+import { COLLABORATIONS, FEATURED_CASE_ID, WORK } from '../src/full/content';
 import { pageHref } from '../src/full/i18n';
 import { MESSAGES } from '../src/full/locales/messages';
-import { bootJourneyOnLoad } from '../../tests/helpers/homepage';
-// This file measures both routes: the prototype at
-// /experiments/stratos-ascent-full/, which mounts on load and always has, and
-// the three locale homepages, which do not — see `bootJourneyOnLoad`. Arming it
-// for every navigation gives the homepage a visitor who has moved, and costs
-// the prototype a dispatched event nothing is listening for.
-test.beforeEach(async ({ page }) => {
-  await bootJourneyOnLoad(page);
-});
-
 
 /**
  * Centre a stage's panel in the viewport, by measuring where it actually is.
@@ -364,20 +354,6 @@ test.describe('the content survives without the canvas', () => {
     for (const id of stages) {
       const section = page.getByTestId(`stage-${id}`);
       await expect(section, `stage ${id} is missing`).toHaveCount(1);
-      // Sixty characters, except for the one chapter whose whole design is that
-      // it has almost nothing in it.
-      //
-      // The action beat is a question and an invitation — `Készen állsz
-      // felemelkedni?` is twenty-six characters and §15 asks for the emptiest
-      // frame on the homepage. A character count is a proxy for "this chapter
-      // rendered", and for this chapter the direct question is better: it has
-      // its statement, it has its action, and the action goes somewhere.
-      if (id === 'destination') {
-        await expect(section.locator('.act__monument'), 'the closing question').toHaveCount(1);
-        await expect(section.getByTestId('cta-primary'), 'the closing action').toHaveCount(1);
-        await expect(section.getByTestId('cta-secondary'), 'the route back to the work').toHaveCount(1);
-        continue;
-      }
       expect((await section.innerText()).trim().length, `stage ${id} is empty`).toBeGreaterThan(60);
     }
 
@@ -397,12 +373,7 @@ test.describe('the content survives without the canvas', () => {
     const collaborations = page.getByTestId('collaborations');
     await expect(collaborations, 'the collaboration rail is missing').toHaveCount(1);
 
-    // `.act__marks li img`, not `.collab__item img`. The Proof act is a frame
-    // now rather than a section with a heading over a rail, and the rule the
-    // old selector was expressing — six marks, each carrying its
-    // organisation's name — is unchanged and is asserted below exactly as it
-    // was. §50: replace a stale selector, never weaken the contract behind it.
-    const marks = collaborations.locator('img');
+    const marks = collaborations.locator('.collab__item img');
     await expect(marks, 'one mark per approved collaboration').toHaveCount(COLLABORATIONS.length);
     // Marks are informative, not decorative: a rail of six empty alts tells a
     // screen reader nothing about who the collaborations were with.
@@ -428,69 +399,16 @@ test.describe('the content survives without the canvas', () => {
     // The feature says what it is for: a result, a proof point and a way in.
     const featured = WORK.find((w) => w.id === FEATURED_CASE_ID)!;
     const feature = page.getByTestId(`case-${FEATURED_CASE_ID}`);
-    await expect(feature.locator('.case__result')).toHaveText(featured.result);
-    expect((await feature.locator('.case__result').innerText()).trim().length).toBeGreaterThan(20);
-    // The client's name is in the act's frame rather than inside the case
-    // article — it is one of the two quiet lines under the figure — so it is
-    // asserted where it now lives instead of being dropped.
-    await expect(
-      page.locator("[data-act='iv'] .act__editorial span").first(),
-      'the featured client is named in the Proof frame',
-    ).toHaveText(featured.name);
+    await expect(feature.locator('.feature__name')).toHaveText(featured.name);
+    await expect(feature.locator('.feature__result')).toHaveText(featured.result);
+    expect((await feature.locator('.feature__result').innerText()).trim().length).toBeGreaterThan(20);
 
-    // THE PROCESS PASSAGE, COMPRESSED — three principles, seven names, one route.
-    //
-    // THE CONTRACT CHANGED, AND THE CHANGE IS THE POINT — phase 4. This used to
-    // walk seven checkpoints and assert that each one named and answered all
-    // four of its terms. It was the right contract for a homepage that carried
-    // the whole operating model, and the whole finding of phase 4 is that the
-    // homepage should not carry it: thirty-five sentences is 5.6 screens, which
-    // made the process a longer chapter than any of the six master acts.
-    //
-    // What replaces it holds the same line from the other side. The old rule
-    // protected against detail being silently dropped; this one protects
-    // against detail silently coming BACK, and against the compression having
-    // thrown anything away — the seven stages are still named, there are
-    // exactly three principles, each one is a label with a sentence, and there
-    // is a route to where the rest of it went.
-    //
-    // The four terms and their twenty-eight sentences are checked at their new
-    // address by `scripts/process-inventory.mjs`, which fails if any of the
-    // thirty-five original units is missing from where the audit says it went.
-    const processPanel = page.getByTestId('stage-process');
-
-    for (const p of PROCESS) {
-      expect(
-        (await processPanel.innerText()).replace(/\s+/g, ' '),
-        `the process passage still names stage ${p.index}, "${p.name}"`,
-      ).toContain(p.name);
+    // Seven process checkpoints, each with all four columns answered.
+    for (let i = 1; i <= 7; i++) {
+      const cp = page.getByTestId(`checkpoint-${i}`);
+      await expect(cp).toHaveCount(1);
+      await expect(cp.locator('dt')).toHaveCount(4);
     }
-
-    const principles = processPanel.locator('.passage__principle');
-    await expect(principles, 'exactly three process principles').toHaveCount(3);
-    for (const n of [1, 2, 3] as const) {
-      const item = principles.nth(n - 1);
-      await expect(item.getByRole('heading', { level: 3 })).toHaveText(
-        MESSAGES[`process.principle.${n}.name`].hu,
-      );
-      await expect(item.locator('p')).toHaveText(MESSAGES[`process.principle.${n}.line`].hu);
-    }
-
-    // NO CHECKPOINT ANYWHERE ON THE PAGE. The old composition's test ids, and
-    // the four term labels that were its column headings: if any of them comes
-    // back, the passage is documenting the operating model again.
-    await expect(page.locator('[data-testid^="checkpoint-"]')).toHaveCount(0);
-    for (const term of ['Mi történik', 'Amit átadunk', 'Várható eredmény']) {
-      expect(
-        (await processPanel.innerText()).replace(/\s+/g, ' '),
-        `the four-term grid did not come back — "${term}"`,
-      ).not.toContain(term);
-    }
-
-    // ONE ROUTE DEEPER, and it points at the page that received the detail.
-    const deeper = processPanel.getByTestId('cta-process-detail');
-    await expect(deeper).toHaveText(MESSAGES['process.cta.detail'].hu);
-    await expect(deeper).toHaveAttribute('href', '/szolgaltatasok.html#folyamat');
 
     // The metric row, asserted against the content table rather than against a
     // remembered count.
@@ -516,67 +434,48 @@ test.describe('the content survives without the canvas', () => {
       'the featured case is the one with a sourced figure — that is why it is featured',
     ).toBeTruthy();
 
-    // THE FIGURE IS THE ACT'S STATEMENT NOW, and the contract moved with it
-    // rather than being dropped.
-    //
-    // What this used to assert was a `.case__metric` row inside the case
-    // article, with the value in a `<strong>` and the label in a `<span>`, and
-    // where it sat relative to the result and the actions. The value, the
-    // label and the uniqueness are §11's requirement and they are unchanged.
-    // The POSITION contract is stale: in the six-act design the figure is the
-    // Proof act's monument — the largest type in the frame — and the two quiet
-    // lines under it are the client and the definition. Asserting that it
-    // follows a result sentence would be asserting the layout it replaced.
     {
-      const figure = page.locator("[data-act='iv'] .act__monument--figure");
-      await expect(figure, 'the Proof act renders its figure exactly once').toHaveCount(1);
-      await expect(figure, 'the figure is `content.ts`s, word for word').toHaveText(
-        featuredCase.metric!.value,
-      );
-
-      const define = page.locator("[data-act='iv'] .act__editorial span");
-      await expect(define, 'the client and the definition, stacked').toHaveCount(2);
-      await expect(define.nth(1), 'the metric label is unchanged').toHaveText(
-        featuredCase.metric!.label,
-      );
-
-      // THE FIGURE IS THE LARGEST TYPE IN ITS OWN ACT. That is what makes the
-      // act read as evidence before a word of it is read, and it is the one
-      // property a selector cannot see.
-      const largest = await page.evaluate(() => {
-        const act = document.querySelector("[data-act='iv']")!;
-        let biggest = 0;
-        let text = '';
-        for (const el of act.querySelectorAll('h1, h2, h3, p, span, a')) {
-          if (!(el.textContent ?? '').trim()) continue;
-          const size = parseFloat(getComputedStyle(el).fontSize);
-          if (size > biggest) {
-            biggest = size;
-            text = (el.textContent ?? '').trim();
-          }
-        }
-        return { biggest: Math.round(biggest), text };
-      });
-      expect(largest.text, 'the figure is the largest type in the Proof act').toBe(
-        featuredCase.metric!.value,
-      );
-
-      // One figure in the whole document. A second copy anywhere — in the act's
-      // body, in the case article, in a mobile fallback rendered at desktop —
-      // is the duplication the old count existed to prevent.
-      const everywhere = await page.evaluate((value) => {
-        // Leaf-counted. A `<h2>` whose only child is a `<span>` carrying the
-        // figure has the same `textContent` as the span, so counting every
-        // element that matches counts one figure twice — which is what the
-        // first version of this assertion did, and it reported a duplicate
-        // that was not there.
-        const hits = [...document.querySelectorAll('h1, h2, h3, p, strong, span, i, b, dd, li')].filter(
-          (el) => (el.textContent ?? '').trim() === value,
-        );
-        return hits.filter((el) => !hits.some((other) => other !== el && el.contains(other))).length;
-      }, featuredCase.metric!.value);
-      expect(everywhere, 'the figure is rendered once, with no duplicate').toBe(1);
+      const metric = page.getByTestId(`case-${featuredCase.id}`).locator('.case__metric');
+      await expect(metric, 'the featured case renders its metric exactly once').toHaveCount(1);
+      await expect(metric).toBeVisible();
+      await expect(metric.locator('strong'), 'metric value').toHaveText(featuredCase.metric!.value);
+      await expect(metric.locator('span'), 'metric label').toHaveText(featuredCase.metric!.label);
     }
+
+    // One metric row in the whole document, and it belongs to Rapidkert.
+    //
+    // The loop above scopes every check to one case article, so it cannot see a
+    // second copy rendered outside the cases, nor a metric that has drifted
+    // onto the wrong case while `WORK` still names the right one.
+    const metrics = page.locator('.case__metric');
+    await expect(metrics, 'exactly one metric row is rendered, with no duplicate').toHaveCount(1);
+    await expect(
+      metrics.locator('xpath=ancestor::article[1]'),
+      'the metric belongs to the featured case',
+    ).toHaveAttribute('data-testid', `case-${FEATURED_CASE_ID}`);
+
+    // And where it sits: after the result it quantifies, before the way out.
+    //
+    // The result sentence makes the claim in prose and the metric is the figure
+    // behind it, so a metric that renders above its own result — or below the
+    // actions, after the reader has already been asked to leave — is a
+    // regression no count can see.
+    const at = await page.getByTestId(`case-${FEATURED_CASE_ID}`).evaluate((el) => {
+      const kids = [...el.children];
+      const index = (sel: string) => kids.findIndex((k) => k.matches(sel));
+      return {
+        figure: index('figure.feature__figure'),
+        result: index('p.feature__result'),
+        metric: index('p.case__metric'),
+        cta: index('div.feature__cta'),
+      };
+    });
+    expect(at.figure, 'the feature has no figure').toBeGreaterThanOrEqual(0);
+    expect(at.result, 'the feature has no result statement').toBeGreaterThanOrEqual(0);
+    expect(at.metric, 'the metric is not a direct child of the feature').toBeGreaterThanOrEqual(0);
+    expect(at.cta, 'the feature offers no way out').toBeGreaterThanOrEqual(0);
+    expect(at.metric, 'the metric must follow the result it quantifies').toBeGreaterThan(at.result);
+    expect(at.cta, 'the metric must precede the actions').toBeGreaterThan(at.metric);
   });
 
   test('every case-study asset the content names is in the production build', async ({ page }) => {
@@ -707,7 +606,7 @@ test.describe('the content survives without the canvas', () => {
         `${locale}: no collaboration rail`,
       ).toHaveCount(1);
       await expect(
-        page.locator('[data-testid="collaborations"] img'),
+        page.locator('.collab__item img, .mv-collab__item img'),
         `${locale}: wrong number of marks`,
       ).toHaveCount(COLLABORATIONS.length);
 
@@ -734,23 +633,15 @@ test.describe('the content survives without the canvas', () => {
       // the German page is the failure this is really watching for, and it is
       // invisible to an href assertion.
       await expect(page.getByTestId('cta-work')).toHaveText(MESSAGES['featured.cta.work'][locale]);
-      // NO HEADING OVER THE MARKS, in any locale, on either surface.
-      //
-      // This asserted that `collaborations.title` was rendered as an `<h3>`
-      // over the rail. §28 of the production brief cuts it: the marks' presence
-      // is the content, and a label on top of it is a second voice saying what
-      // the eye has already understood. The contract is therefore inverted
-      // rather than deleted — a heading coming back is the regression now.
-      await expect(
-        page.getByTestId('collaborations').locator('h3'),
-        `${locale}: the proof plate must carry no heading`,
-      ).toHaveCount(0);
+      await expect(page.getByTestId('collaborations').locator('h3')).toHaveText(
+        MESSAGES['collaborations.title'][locale],
+      );
 
       // No missing key reached the page. `m()` is type-checked, so an absent
       // key is a compile error rather than a runtime one — what this catches is
       // a key that resolved to an empty string in one locale's column.
       const empty = await page.evaluate(() =>
-        [...document.querySelectorAll('[data-testid^="cta-"], .act__monument, .act__editorial span')]
+        [...document.querySelectorAll('[data-testid^="cta-"], .collab__title, .feature__label')]
           .filter((el) => !(el.textContent ?? '').trim())
           .map((el) => el.className || el.getAttribute('data-testid')),
       );
@@ -818,7 +709,7 @@ test.describe('reduced motion', () => {
     // architecture asserted rather than a weaker version of it: the marks, the
     // one featured case, and both ways out.
     await expect(page.getByTestId('collaborations')).toBeVisible();
-    await expect(page.locator('[data-testid="collaborations"] img')).toHaveCount(COLLABORATIONS.length);
+    await expect(page.locator('.collab__item img')).toHaveCount(COLLABORATIONS.length);
     await expect(page.getByTestId(`case-${FEATURED_CASE_ID}`)).toBeVisible();
     await expect(page.locator('[data-testid^="case-"]')).toHaveCount(1);
     await expect(page.getByTestId('cta-featured-case')).toBeVisible();
@@ -833,7 +724,7 @@ test.describe('reduced motion', () => {
     // this path. A reduced-motion page that "works" by hiding the copy that
     // would have animated in is the failure mode this asserts against.
     const faded = await page.evaluate(() =>
-      [...document.querySelectorAll('.panel h1, .panel h2, .panel h3, .panel p, .panel a.btn, .act__action, .act__routes a, .case, .check')]
+      [...document.querySelectorAll('.panel h1, .panel h2, .panel h3, .panel p, .panel a.btn, .case, .check')]
         .filter((el) => {
           const cs = getComputedStyle(el);
           const r = el.getBoundingClientRect();

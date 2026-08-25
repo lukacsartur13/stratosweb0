@@ -1451,22 +1451,22 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
         <p class="form__note" style="margin-top:.6rem" role="status"></p>
       </div>
       <div>
-        <h3>{{f_links}}</h3>
+        <h4>{{f_links}}</h4>
         <ul>{{f_pages}}
         </ul>
       </div>
       <div>
-        <h3>{{f_services}}</h3>
+        <h4>{{f_services}}</h4>
         <ul>{{f_svc}}
         </ul>
       </div>
       <div>
-        <h3>{{f_contact}}</h3>
+        <h4>{{f_contact}}</h4>
         <ul>
           <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
           <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
         </ul>
-        <h3 style="margin-top:1.6rem">{{f_social}}</h3>
+        <h4 style="margin-top:1.6rem">{{f_social}}</h4>
         <ul>
           <li><a href="https://www.linkedin.com/company/stratos-media-agency" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://www.instagram.com/stratosweb/" target="_blank" rel="noopener">Instagram</a></li>
@@ -1479,7 +1479,7 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
            the languages are the three locales this build emits. Nothing here
            is an availability claim the site cannot support. -->
       <div>
-        <h3>{{f_status}}</h3>
+        <h4>{{f_status}}</h4>
         <ul class="foot__status">
           <li>{{st_reply}}</li>
           <li>{{st_where}}</li>
@@ -1968,17 +1968,8 @@ def build_home_chrome(lang):
                     lang, "index", home_title, home_desc, {}, ""),
             # `base="/"` so the wordmark's plane resolves from `/`, `/en/` and
             # `/de/` alike, and from the dev server's `/home/hu.html`.
-            #
-            # Stamped, exactly as the 66 generated routes are. The homepage
-            # takes its chrome through this file rather than through the page
-            # loop, so it was the one route where `stamp_images` never ran —
-            # and it is the route that could least afford it. Three unsized
-            # images (the header's plane, the footer's plane, the GDPR mark)
-            # sat in a document whose <main> is empty until React mounts, so
-            # each one landed into a layout that was already moving. Lighthouse
-            # named all three under `unsized-images` on the deployed site.
-            "deck": stamp_images(build_deck(lang, "index", "/", HOME_PATH[lang])),
-            "footer": stamp_images(build_footer(lang, "index")),
+            "deck": build_deck(lang, "index", "/", HOME_PATH[lang]),
+            "footer": build_footer(lang, "index"),
             "scripts": HOME_SCRIPTS,
         }
 

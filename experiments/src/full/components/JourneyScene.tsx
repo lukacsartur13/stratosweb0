@@ -15,6 +15,7 @@ import { MeridianLights } from './MeridianLights';
 import { QualityManager } from './QualityManager';
 import { Sky } from './Sky';
 import { StarField } from './StarField';
+import { Checkpoints, SystemRings } from './SystemRings';
 import { MountainRange } from './MountainRange';
 
 /**
@@ -73,33 +74,9 @@ function useMountainMode(): MountainMode {
   return mode;
 }
 
-/*
- * THE TWO CHAPTER DIAGRAMS ARE GONE — §6 and §45 of the continuity brief.
- *
- * `SystemRings` mounted three concentric rings and nine nodes between 17 000
- * and 22 000 m, and `Checkpoints` mounted seven progress markers between
- * 22 000 and 25 500 m. Both were built for the chapter they sat behind, and
- * both are on §6's list twice over: concentric circles, orbit diagrams,
- * HUD-like annotations, old chapter markers.
- *
- * §45 is the sharper reason. The background must not announce a chapter — no
- * "the picture changes because we have entered a new section" — and a diagram
- * that mounts because the visitor crossed an altitude is that announcement
- * made in geometry. It was also the loudest object in the two frames this
- * phase exists to quieten: the ring's ellipse ran across the whole width
- * behind `Kilenc terület, három rétegben.`, which is exactly the "decorative
- * geometry" §11 forbids around the recomposed structure.
- *
- * §35 asks what else the code served before it is deleted. These two served
- * nothing else: no progress state, no accessibility, no history, no marker,
- * no mobile path. Every word they illustrated is in the passage under them, in
- * the document, announced — see `PassageSystem` and `PassageProcess`.
- *
- * What replaces them is nothing. The sky, the wash and the typography carry
- * these two chapters, which is §17's ascent communicated through atmosphere and
- * statement arrival rather than through more objects.
- */
 function StagedGeometry({ simplified }: { simplified: boolean }) {
+  const nearSystem = useNearAltitude(17_000, 22_000);
+  const nearProcess = useNearAltitude(22_000, 25_500);
   const nearSpace = useNearAltitude(24_000, 30_000, 3_000);
 
   // The range exists from the ground to just past the cloud pass and nowhere
@@ -116,6 +93,8 @@ function StagedGeometry({ simplified }: { simplified: boolean }) {
   return (
     <>
       {nearMountains && <MountainRange />}
+      {nearSystem && <SystemRings simplified={simplified} />}
+      {nearProcess && <Checkpoints simplified={simplified} />}
       {nearSpace && (
         <>
           <StarField simplified={simplified} />
@@ -370,10 +349,7 @@ export default function JourneyScene({
       }}
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
-        // 1.05 -> 0.95. §O of the master study: the restrained presentation is
-        // a slightly lower exposure with the separation handed to a rim, rather
-        // than a brighter object. See MeridianLights.
-        gl.toneMappingExposure = 1.0;
+        gl.toneMappingExposure = 1.05;
         gl.setClearColor('#04060a', 1);
       }}
       // No shadow map anywhere in the journey. One hero object that lights
@@ -407,12 +383,6 @@ export default function JourneyScene({
         <Environment resolution={simplified ? 64 : 128} frames={1}>
           <Lightformer form="rect" intensity={2.6} position={[-2.2, 2.4, 2.0]} scale={[5, 5, 1]} color="#dce8f7" />
           <Lightformer form="rect" intensity={1.1} position={[2.8, 0.4, 1.2]} scale={[3, 6, 1]} color="#7f96b5" />
-{/* The lower ring — investigated under §25's "environment reflection"
-              and left exactly as it was. Raising it from 0.7 to 1.5 moved the
-              arrival's measured ink share by 0.2 points, which is noise, and it
-              is the only lever in that section's list that is shared with Act
-              I's protected frame. See `MeridianLights`. */}
-          
           <Lightformer form="ring" intensity={0.7} position={[0, -2.4, 1.6]} scale={[4, 4, 1]} color="#2b3446" />
         </Environment>
 

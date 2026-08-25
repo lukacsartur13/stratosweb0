@@ -1,13 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    // DOM is here because `vite.home.config.ts` imports `src/full/i18n.ts` to
-    // resolve the homepage's own links at build time, and that module names
-    // `document` in one guarded branch (`typeof document === 'undefined'`).
-    // Including the library types does not put a DOM in Node; it lets the
-    // build config share the site's single source of truth for its routes
-    // instead of keeping a second copy of the slug table.
-    "lib": ["ES2023", "DOM"],
+    "lib": ["ES2023"],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "types": ["node"],

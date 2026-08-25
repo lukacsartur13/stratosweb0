@@ -12,8 +12,7 @@ import { fileURLToPath } from 'node:url';
  * half is asserted in lead-endpoint.spec.ts.
  */
 
-const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const DIST = join(ROOT, 'dist');
+const DIST = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 
 type Reply = { status?: number; body?: unknown; delayMs?: number };
 
@@ -606,56 +605,28 @@ test.describe('the deployed bundle', () => {
    * The merge-gate canary for the silent drop.
    *
    * The two behavioural tests above prove the corrected controller works; this
-   * one proves the corrected controller is what actually SHIPPED. It exists so
-   * the gate goes red on the defect returning even if nothing ever runs a
-   * stress sweep again.
+   * one proves the corrected controller is what actually SHIPPED. It reads the
+   * built bundle, it is two assertions long, and it exists so the gate goes red
+   * on the defect returning even if nothing ever runs a stress sweep again.
    *
-   * The assertions describe shape rather than behaviour, deliberately: a canary
-   * that re-derives the behaviour is a slower copy of the tests above, and what
-   * is being guarded here is a specific pair of lines that were wrong.
-   *
-   * ## Why it now reads two files
-   *
-   * `scripts/assemble.mjs` minifies the shared scripts on their way into dist —
-   * they are unusually comment-dense and three of them are render-blocking on
-   * every route. A minified `lead.js` no longer contains the identifier
-   * `readyAt` or the constant `MIN_FILL_MARGIN_MS`, so the two regexes below
-   * would not have failed on the defect returning: they would have stopped
-   * matching anything at all, which is worse than a red gate because it is a
-   * green one.
-   *
-   * So the shape is asserted where the shape is written, and the SHIPPED file
-   * is asserted on the two properties minification cannot rename: that it
-   * carries the monotonic clock, and that the adjustable one appears exactly
-   * once — as the fallback inside `monotonicNow`, and nowhere near the fill
-   * window.
+   * Both assertions describe shape rather than behaviour, deliberately: a
+   * canary that re-derives the behaviour is a slower copy of the tests above,
+   * and what is being guarded here is a specific pair of lines that were wrong.
    */
   test('the shipped controller measures the fill window on a clock that cannot move', async () => {
-    const source = await readFile(join(ROOT, 'assets/js/lead.js'), 'utf8');
+    const src = await readFile(join(DIST, 'assets/js/lead.js'), 'utf8');
 
     // `Date.now()` is the adjustable wall clock. Reading the fill window from it
     // while waiting on the monotonic one is what let a 4 ms backward adjustment
     // make a genuine enquiry report 2 996 ms — and be discarded for it, behind
     // an HTTP 200 and the success copy.
-    expect(source, 'lead.js is reading the fill window off the wall clock again')
+    expect(src, 'lead.js is reading the fill window off the wall clock again')
       .not.toMatch(/Date\.now\(\)\s*-\s*readyAt/);
 
     // And the wait must still finish PAST the server's threshold rather than on
     // it: measured headroom on the unfixed controller was 0-2 ms.
-    expect(source, 'lead.js aims the fill wait at the drop threshold again')
+    expect(src, 'lead.js aims the fill wait at the drop threshold again')
       .toMatch(/MIN_FILL_MARGIN_MS\s*=\s*[1-9]\d+\s*;/);
-
-    const shipped = await readFile(join(DIST, 'assets/js/lead.js'), 'utf8');
-
-    expect(shipped, 'the shipped lead.js has no monotonic clock in it')
-      .toMatch(/performance\.now\(\)/);
-
-    // One, and it is the fallback for a browser with no `performance.now`. A
-    // second one is a second reading of a clock that can move.
-    expect(
-      (shipped.match(/Date\.now\(\)/g) ?? []).length,
-      'the shipped lead.js reads the adjustable clock more than once',
-    ).toBe(1);
   });
 
   test('every public form posts to the internal endpoint', async () => {

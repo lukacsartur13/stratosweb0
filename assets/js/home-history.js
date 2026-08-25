@@ -184,50 +184,20 @@
     const held = reserved();
 
     if (held) {
+      // Measure the composition's own height by taking the reserve away. One
+      // forced layout, only on the frames where something resized, and only
+      // until the reserve is gone for good — which is the first time the real
+      // content reaches it.
+      root.style.removeProperty(PROP);
+      const natural = root.scrollHeight;
       // What the restored scroll position actually needs underneath it. Below
       // this the browser would clamp, and the visitor would lose their place
       // for the second time.
       const needed = Math.ceil(scrollY + innerHeight);
-
-      /* The composition's own height, measured WITHOUT taking the reserve away.
-
-         It used to be measured by removing the property and reading
-         `scrollHeight`, which is the obvious way and is a trap: removing it
-         shrinks the document *synchronously*, the browser clamps the scroll
-         position to the new bottom during the very layout that
-         `scrollHeight` forces, and by the next line `scrollY` is already the
-         clamped value. The reserve is then put back at the wrong height, the
-         document is tall again, and the visitor is somewhere they never were.
-
-         That could not happen while the journey mounted during load, because by
-         the first resize frame the real content was always taller than the
-         reserve. It can now: `src/full/main.tsx` waits for the visitor's first
-         move, so the frames in between have a document that is one opening
-         frame, an Arrival and a footer — and this is a Back navigation, where
-         the visitor's first move may be a while coming. It showed up as this
-         file's own test failing under load: left at 4 965, came back at the
-         bottom of a document 2 000 px tall.
-
-         Summing the children's boxes reads the same number and changes no
-         style, so nothing can clamp underneath it. `scrollHeight` is not the
-         fallback it looks like either — the reserve is a `min-height` on
-         `body`, and it does not move body's children. Elements with no box are
-         skipped: the last child of `<body>` is a `<script>`. */
-      let bottom = 0;
-      for (const child of document.body.children) {
-        const box = child.getBoundingClientRect();
-        if (box.height > 0) bottom = Math.max(bottom, box.bottom);
-      }
-      const natural = Math.ceil(bottom + scrollY);
-
       if (natural < needed) {
         root.style.setProperty(PROP, needed + 'px');
         return;
       }
-      // The real content has reached the restored position. The reserve has
-      // done its job and goes, in the one place where letting it go cannot
-      // move anybody.
-      root.style.removeProperty(PROP);
     }
 
     /* Record. */

@@ -1,3 +1,0 @@
-test-server: /Users/arturlukacs/stratos-hermetic/subject/dist on http://127.0.0.1:4327
-
-[gate identity] {"name":"full","kind":"node","port":4327,"pid":10165,"root":"/Users/arturlukacs/stratos-hermetic/subject/dist","startedAt":"2026-08-20T03:25:45.381Z","readyAt":"2026-08-20T03:25:45.593Z","logPath":"/Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/runs/g6-01/logs/server-full.log","commit":"48811e991089dd8cb73f23ec1c6ae880446cff6f","stoppedAt":null,"exitCode":null}

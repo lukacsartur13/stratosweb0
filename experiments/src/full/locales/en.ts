@@ -59,38 +59,104 @@ export const EN: Record<string, string> = {
   'Automatizálás': 'Automation',
   'Ami ismétlődik, az fusson magától.': 'What repeats should run by itself.',
 
-  // --- VII · the nine system nodes -----------------------------------------
-  //
-  // NAMES ONLY, AND THE NINE SENTENCES ARE NOT MISSING — they are on the
-  // services route. Phase 5.1 compressed the system chapter from three staged
-  // layers to one composed beat, and the nine `name — sentence` pairs went to
-  // `06 · Amit be tudunk vállalni` on `szolgaltatasok.html`, whole and
-  // unedited, in all three locales. Four of them restated a line Act III
-  // already says on this page. See `content.ts` and
-  // `scripts/system-inventory.mjs`, which fails if any of the twenty-eight
-  // original units is not at its declared destination.
-  //
-  // Stratégia, Fejlesztés, Hirdetés and Automatizálás are already keyed above
-  // as capabilities; only the five that are not appear here.
+  // --- VII · the nine system nodes, ring 0 (core) and ring 1 (structure) ----
   'Kutatás': 'Research',
+  'Piac, versenytársak, keresési szándék. Mielőtt bármit építenénk.':
+    'Market, competitors, search intent. Before we build anything.',
+  // "Ez dönti el a többit." also opens `system.ring.0.note` in messages.ts, and
+  // is translated the same way there. Same sentence, same claim, one wording.
+  'Mit mondunk, kinek, és milyen sorrendben. Ez dönti el a többit.':
+    'What we say, to whom, and in what order. This decides the rest.',
   'Arculat': 'Branding',
+  'A vizuális nyelv, amely minden felületen ugyanaz marad.':
+    'The visual language that stays the same on every surface.',
   'Weboldal': 'Website',
+  'A központ, ahová minden csatorna vezet, és ahol a döntés megszületik.':
+    'The centre every channel leads to, and where the decision is made.',
+  'Egyedi funkciók, integrációk, sebesség. Nem sablon, nem plugin-halmaz.':
+    'Custom features, integrations, speed. Not a template, not a pile of plugins.',
+
+  // --- VII · ring 2 (operation) --------------------------------------------
+  'Fizetett forgalom oda, ahol már van mit fogadnia.':
+    'Paid traffic where there is already something to receive it.',
   'Analitika': 'Analytics',
+  'Mérés, amely nem riportot termel, hanem döntést.':
+    'Measurement that produces a decision, not a report.',
   'Optimalizálás': 'Optimisation',
+  'Havi finomhangolás a mért adatok alapján, nem megérzésből.':
+    'Monthly fine-tuning based on measured data, not on hunches.',
+  'Ami ismétlődik, azt nem embernek kell csinálnia.':
+    'What repeats should not be done by a person.',
 
   // --- VIII · the seven checkpoints ----------------------------------------
   // Four of the seven names — Kutatás, Stratégia, Fejlesztés, Optimalizálás —
   // are already keyed above as capabilities or system nodes. Only three are new.
-  //
-  // THE TWENTY-EIGHT SENTENCES THAT USED TO FOLLOW ARE NOT HERE ANY MORE, and
-  // they were not retranslated or dropped: phase 4 moved them, with these exact
-  // English strings, into `_build/i18n/szolgaltatasok.json`, where the services
-  // route's `05 · A folyamat` section renders them. The homepage carries the
-  // seven names and three principles derived from the same sentences; the four
-  // terms and their answers are one route deeper. See `../content.ts`.
   'Felderítés': 'Discovery',
   'Tervezés': 'Design',
-  'Élesítés': 'Go-live',
+  'Indulás': 'Launch',
+
+  // 1 · Felderítés
+  'Egy beszélgetés arról, hol tart a vállalkozás, és mi az, ami valóban akadályozza.':
+    'A conversation about where the business stands, and what is genuinely holding it back.',
+  'Írásos helyzetkép és egy őszinte válasz arra, hogy tudunk-e segíteni.':
+    'A written assessment, and an honest answer on whether we can help.',
+  'Hozzáférést a jelenlegi számokhoz és időt egy alapos beszélgetésre.':
+    'Access to your current figures, and time for a thorough conversation.',
+  'Közös kép a kiindulási pontról — vagy egy korrekt nem.':
+    'A shared picture of the starting point — or a straight no.',
+
+  // 2 · Kutatás
+  'Versenytárs- és keresési elemzés, a jelenlegi felületek technikai átvizsgálása.':
+    'Competitor and search analysis, and a technical review of the current surfaces.',
+  'Kutatási összefoglaló: kereslet, versenyhelyzet, technikai hiányosságok.':
+    'A research summary: demand, competitive position, technical gaps.',
+  'Belső ismeretet az ügyfelekről, amit adat nem mutat meg.':
+    'Inside knowledge about your customers that the data does not show.',
+  'Tényeken alapuló alap a stratégiához.': 'A fact-based foundation for the strategy.',
+
+  // 3 · Stratégia
+  'Eldöntjük a pozicionálást, az üzeneteket és a csatornák sorrendjét.':
+    'We decide the positioning, the messages and the order of the channels.',
+  'Stratégiai dokumentum mérhető célokkal és ütemezéssel.':
+    'A strategy document with measurable goals and a schedule.',
+  'Döntést. Ez az a pont, ahol a legtöbb múlik rajtad.':
+    'A decision. This is the point where the most depends on you.',
+  'Egy irány, amelyhez minden későbbi döntés mérhető.':
+    'A direction every later decision can be measured against.',
+
+  // 4 · Tervezés
+  'Arculat és felületi tervek készülnek, valós tartalommal, nem kitöltő szöveggel.':
+    'Branding and interface designs are produced, with real content, not filler text.',
+  'Jóváhagyható dizájnterv minden fontos nézetre.':
+    'An approvable design for every important view.',
+  'Visszajelzést egy körben, összegyűjtve.': 'Feedback in one round, collected together.',
+  'Jóváhagyott terv, amiből egyértelmű, mi épül.':
+    'An approved design that makes it unambiguous what gets built.',
+
+  // 5 · Fejlesztés
+  'Megépítjük. Menet közben látod, nem a végén.':
+    'We build it. You see it as it goes, not at the end.',
+  'Működő oldal tesztkörnyezetben, mérésekkel felszerelve.':
+    'A working site in a test environment, fitted with measurement.',
+  'Tartalmat és a hozzáféréseket.': 'Content, and the access you hold.',
+  'Élesíthető rendszer, nem bemutató.': 'A system ready to go live, not a demo.',
+
+  // 6 · Indulás
+  'Élesítés, átirányítások, mérés ellenőrzése, hirdetések indítása.':
+    'Go-live, redirects, verification of the measurement, starting the advertising.',
+  'Élő rendszer és átadási dokumentáció.': 'A live system, and handover documentation.',
+  'Jóváhagyást az indulásra.': 'Approval to launch.',
+  'A rendszer működik és mér.': 'The system runs, and measures.',
+
+  // 7 · Optimalizálás
+  'Havonta: mérés, elemzés, módosítás. Ez nem projektzárás, hanem üzemeltetés.':
+    'Every month: measure, analyse, adjust. This is not project closure, it is operation.',
+  'Havi riport és a végrehajtott módosítások listája.':
+    'A monthly report, and the list of changes made.',
+  'Visszajelzést arról, milyen megkeresések érkeznek.':
+    'Feedback on what kind of enquiries are coming in.',
+  'Rendszer, amely idővel jobb lesz, nem elavul.':
+    'A system that gets better over time rather than going out of date.',
 
   /*
    * --- VI · the four case studies ----------------------------------------

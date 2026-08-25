@@ -52,7 +52,7 @@ A szakaszok egyetlen forrásból származnak: `experiments/src/full/journey.ts`
 | 5 | `cloud-breakthrough` | 8 500 – 11 000 | 1.6 | kilépés a rétegből, tág negatív tér, felhőtetők alul |
 | 6 | `selected-work` | 11 000 – 17 000 | 4.4 | négy valódi ügyfél, ötrészes szerkezettel |
 | 7 | `system` | 17 000 – 22 000 | 2.4 | kilenc terület három koncentrikus rétegben |
-| 8 | `process` | 22 000 – 25 500 | 2.0 | a hét ellenőrzőpont neve, három elv, egy útvonal mélyebbre |
+| 8 | `process` | 22 000 – 25 500 | 3.0 | hét ellenőrzőpont, négy kérdésre válaszolva |
 | 9 | `stratosphere-transition` | 25 500 – 28 000 | 1.4 | kék indigóba fordul, csillagok, görbület sejlik |
 | 10 | `full-stratosphere` | 28 000 – 30 000 | 1.4 | Föld-görbület, vékony horizontfény, zárócím |
 | 11 | `destination` | 30 000 | 1.2 | konverziós CTA a kész jelenet előtt |
@@ -106,8 +106,7 @@ experiments/
   full.html                      belépési pont (buildkor index.html-re nevezve)
   vite.full.config.ts            saját Vite-konfiguráció, saját chunk-gráf
   src/full/
-    main.tsx                     belépő: eldönti, MIKOR induljon az utazás
-    boot.tsx                     gyökér + végső hibahatár (lusta chunk)
+    main.tsx                     gyökér + végső hibahatár
     FullAscent.tsx               képességvizsgálat, lusta betöltés, teljes HTML narratíva
     journey.ts                   szakasztérkép, magasságkurva, óra, kalibráció
     content.ts                   minden szöveg adatként (esettanulmányok, rendszer, folyamat)

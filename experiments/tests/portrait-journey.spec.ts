@@ -1,20 +1,8 @@
 import { expect, test, type Page } from '@playwright/test';
 import { enableReducedMotion } from '../../tests/helpers/reduced-motion';
-import { STAGES, type StageId } from '../src/full/journey';
-import { levelOf } from '../src/full/acts';
-import { COLLABORATIONS, FEATURED_CASE_ID, PROCESS, WORK } from '../src/full/content';
-import { MESSAGES } from '../src/full/locales/messages';
+import { STAGES } from '../src/full/journey';
+import { COLLABORATIONS, FEATURED_CASE_ID, WORK } from '../src/full/content';
 import { pageHref } from '../src/full/i18n';
-import { bootJourneyOnLoad } from '../../tests/helpers/homepage';
-// This file measures both routes: the prototype at
-// /experiments/stratos-ascent-full/, which mounts on load and always has, and
-// the three locale homepages, which do not — see `bootJourneyOnLoad`. Arming it
-// for every navigation gives the homepage a visitor who has moved, and costs
-// the prototype a dispatched event nothing is listening for.
-test.beforeEach(async ({ page }) => {
-  await bootJourneyOnLoad(page);
-});
-
 
 /**
  * The portrait journey, as CURRENT HEAD actually builds it.
@@ -372,7 +360,7 @@ test.describe('portrait — the content', () => {
     // phone scrolling them here was scrolling the portfolio twice. The
     // architecture is asserted rather than the old shape, and from the content
     // tables rather than a remembered list.
-    const marks = page.getByTestId('collaborations').locator('img');
+    const marks = page.getByTestId('collaborations').locator('.mv-collab__item img');
     await expect(marks, 'one mark per approved collaboration').toHaveCount(COLLABORATIONS.length);
     expect(await marks.evaluateAll((els) => els.map((e) => (e as HTMLImageElement).alt))).toEqual(
       COLLABORATIONS.map((c) => c.name),
@@ -393,64 +381,25 @@ test.describe('portrait — the content', () => {
     // the portrait composition drops the description list, not the proof.
     const featured = WORK.find((w) => w.id === FEATURED_CASE_ID)!;
     const feature = page.getByTestId(`case-${FEATURED_CASE_ID}`);
+    await expect(feature.locator('.mv-feature__name')).toHaveText(featured.name);
     await expect(feature.locator('.mv-feature__result')).toHaveText(featured.result);
-
-    // THE FIGURE IS THE ACT'S STATEMENT, and the client's name and the metric's
-    // label are the two quiet lines under it — the same structure the desktop
-    // frame uses, because §33 asks for one art direction on both surfaces.
-    //
-    // What this replaces is `.mv-feature__name` carrying the client and a
-    // `.mv-case__metric` row carrying `<strong>` + `<span>` inside the case
-    // article. The VALUE, the LABEL and the CLIENT are §11's requirement and
-    // are all still asserted, against `content.ts`, in the places the six-act
-    // composition puts them. `.mv-feature__name` is now the act's body
-    // heading — `selectedWork.title` — which is where §J1 of the master study
-    // says that sentence survives.
-    const proof = page.getByTestId('stage-selected-work');
-    await expect(proof.locator('.mv-title--figure')).toHaveText(featured.metric!.value);
-    await expect(proof.locator('.mv-feature__define span').nth(0)).toHaveText(featured.name);
-    await expect(proof.locator('.mv-feature__define span').nth(1)).toHaveText(featured.metric!.label);
+    await expect(feature.locator('.mv-case__metric strong')).toHaveText(featured.metric!.value);
+    await expect(feature.locator('.mv-case__metric span')).toHaveText(featured.metric!.label);
     await expect(page.getByTestId('cta-featured-case')).toHaveAttribute(
       'href',
       pageHref('caseRapidkert'),
     );
     await expect(page.getByTestId('cta-work')).toHaveAttribute('href', pageHref('work'));
 
-    // THE COMPRESSED PROCESS, ON THE PHONE — the same contract the desktop suite
-    // holds, because §17 asks the phone for the same edit and it needed it more:
-    // the seven checkpoints were 3.4 screens and 26% of the portrait journey.
-    //
-    // What this replaces asserted that every checkpoint answered all four of
-    // its terms. That contract moved with the content: the four terms are
-    // `<dt>`s on the services route now, and `scripts/process-inventory.mjs`
-    // fails if any of the thirty-five original units is missing from where the
-    // audit says it went.
-    const processSection = page.getByTestId('stage-process');
-
-    for (const p of PROCESS) {
-      expect(
-        (await processSection.innerText()).replace(/\s+/g, ' '),
-        `the process passage still names stage ${p.index}, "${p.name}"`,
-      ).toContain(p.name);
+    // Seven process checkpoints, each with its three columns answered.
+    for (let i = 1; i <= 7; i++) {
+      const cp = page.getByTestId(`checkpoint-${i}`);
+      await expect(cp).toHaveCount(1);
+      await expect(cp.locator('dt')).toHaveCount(3);
+      for (const dd of await cp.locator('dd').all()) {
+        expect((await dd.innerText()).trim().length).toBeGreaterThan(10);
+      }
     }
-
-    for (const n of [1, 2, 3] as const) {
-      const item = page.getByTestId(`process-principle-${n}`);
-      await expect(item).toHaveCount(1);
-      await expect(item.getByRole('heading', { level: 3 })).toHaveText(
-        MESSAGES[`process.principle.${n}.name`].hu,
-      );
-      await expect(item.locator('.mv-passage__note')).toHaveText(
-        MESSAGES[`process.principle.${n}.line`].hu,
-      );
-    }
-    await expect(page.locator('[data-testid^="process-principle-"]')).toHaveCount(3);
-    await expect(page.locator('[data-testid^="checkpoint-"]')).toHaveCount(0);
-
-    await expect(page.getByTestId('cta-process-detail')).toHaveAttribute(
-      'href',
-      `${pageHref('services')}#folyamat`,
-    );
   });
 
   test('no chapter waits for a renderer to exist @smoke', async ({ page }) => {
@@ -538,13 +487,7 @@ test.describe('portrait — the content', () => {
     const leads = await page.evaluate(() => {
       const out: { stage: string; svh: number; px: number; padPx: number; viewport: number }[] = [];
       for (const section of document.querySelectorAll<HTMLElement>('[data-stage]')) {
-        // `.mv-passage__overline` is here because a passage's first line IS
-        // the overline: §8 sets the two halves of one authored sentence in two
-        // registers, the condition above the consequence, and the condition is
-        // first in the document as well as on the screen. Without it this
-        // reported 60px "inserted above the first line" at the breakthrough,
-        // where the 60px is the first half of the chapter's own statement.
-        const first = section.querySelector('.mv-eyebrow, .mv-passage__overline, .mv-title');
+        const first = section.querySelector('.mv-eyebrow, .mv-title');
         if (!first) continue;
         const gap = first.getBoundingClientRect().top - section.getBoundingClientRect().top;
         out.push({
@@ -612,78 +555,76 @@ test.describe('portrait — the content', () => {
     // page having stopped.
     //
     // "Band" means between the content, or after it. It does not mean the
-    // section's own leading padding: the test above holds that directly against
-    // the section's own computed padding, which is a stricter statement than
-    // this one could make. So the walk starts at the first box.
+    // section's own leading padding: this walk used to start `reach` at the
+    // section's top, so a chapter's top padding counted as a run of nothing and
+    // the opening chapter reported its header clearance — 168 px, 43.1 svh of a
+    // 390 px landscape viewport — as a spacer. That padding is declared,
+    // width-driven and sits under the production header; the test above now
+    // holds it directly, against the section's own computed padding, which is a
+    // stricter statement than this one could make.
     //
-    // ## MEASURED ONE CHAPTER AT A TIME, AT THE SCROLL POSITION THE CHAPTER IS
-    // READ AT
-    //
-    // This used to measure all eleven sections in one pass, at whatever scroll
-    // position the reveal walk happened to leave, and it was correct while the
-    // instrument was a persistent overlay: the object was drawn *somewhere* at
-    // every moment, and the one reserve in the flow was under it.
-    //
-    // The six-act appearance budget puts the instrument in two chapters of
-    // eleven (§32), and the flow keeps room for it in both — the opening's
-    // reserve and the arrival's air. Measured all at once, whichever of the two
-    // the visitor is not currently looking at reports its reserve as a 44 svh
-    // run of nothing, which is true of the DOM and false of the page: nobody is
-    // ever at both at the same time, and at either one the object is drawn into
-    // the space it keeps.
-    //
-    // So each chapter is brought on screen and measured there. That is the
-    // question the test is named after — what does a reader meet in this
-    // chapter — and it is stricter than the single pass, not looser: a reserve
-    // that the object failed to arrive in is still a gap, at exactly the moment
-    // it would be seen.
-    const gaps: { stage: string; gapSvh: number; where: string }[] = [];
+    // So the walk starts at the first box. An interior gap and a trailing gap
+    // are both still caught, and those are the two shapes a scroll-budget
+    // spacer actually takes.
+    const gaps = await page.evaluate(() => {
+      // Only boxes that DRAW something count as content.
+      //
+      // Verified by mutation rather than assumed: with every element's box
+      // counted, a 300 px empty `<div>` inserted between two content blocks —
+      // the exact shape of the old scroll-budget spacer — was **not** caught,
+      // at either viewport, because an empty div has a box and a box fills its
+      // own gap. The test could only ever see space made by margins and
+      // padding, which is not how the defect it is named after was built.
+      //
+      // A replaced element, or an element with a direct non-whitespace text
+      // node. Wrappers whose children carry the text are excluded and cost
+      // nothing, because their children are measured; an empty div is excluded
+      // and its height becomes the gap it actually is.
+      const REPLACED = new Set(['IMG', 'SVG', 'CANVAS', 'VIDEO', 'PICTURE', 'HR']);
+      const draws = (el: Element) => {
+        if (REPLACED.has(el.tagName)) return true;
+        for (const node of el.childNodes) {
+          if (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()) return true;
+        }
+        return false;
+      };
 
-    for (const id of STAGE_IDS) {
-      await page.locator(`[data-stage="${id}"]`).scrollIntoViewIfNeeded();
-      // The instrument's placement is damped; this is the same settle the rest
-      // of the suite gives it.
-      await page.waitForTimeout(700);
+      /**
+       * The persistent instrument, which is not inside any section.
+       *
+       * The Altimeter used to be a canvas inside the opening chapter's own
+       * flow, and a canvas is a replaced element, so it counted as content and
+       * the space it occupied was not a gap. It is now a FIXED OVERLAY, and
+       * what remains in the flow is an empty block reserving the space it draws
+       * into — which this walk correctly reported as a 335 px run of nothing.
+       *
+       * Correctly, and misleadingly: the reader is looking at a 335 px
+       * instrument there. So the overlay's own box is measured and offered to
+       * whichever section it overlaps, exactly like any other drawn box.
+       *
+       * This is deliberately NOT an exemption for the reserve. Nothing here
+       * says "ignore this element"; it says "something is drawn over it, and
+       * here is its rectangle". If the instrument ever stopped being drawn, or
+       * moved away from the space the hero keeps for it, the gap would reappear
+       * and this test would fail again — which is the whole point of it.
+       */
+      const overlay = document.querySelector<HTMLElement>('.mv-alt__stage');
+      const drawn = overlay && Number(getComputedStyle(overlay).opacity) > 0.05
+        ? overlay.getBoundingClientRect()
+        : null;
 
-      const gap = await page.evaluate((stage) => {
-        // Only boxes that DRAW something count as content.
-        //
-        // Verified by mutation rather than assumed: with every element's box
-        // counted, a 300 px empty `<div>` inserted between two content blocks —
-        // the exact shape of the old scroll-budget spacer — was **not** caught,
-        // because an empty div has a box and a box fills its own gap.
-        const REPLACED = new Set(['IMG', 'SVG', 'CANVAS', 'VIDEO', 'PICTURE', 'HR']);
-        const draws = (el: Element) => {
-          if (REPLACED.has(el.tagName)) return true;
-          for (const node of el.childNodes) {
-            if (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()) return true;
-          }
-          return false;
-        };
-
-        // The instrument, which is not inside any section. Its rectangle is
-        // offered to whichever section it overlaps, exactly like any other
-        // drawn box — and only while it is actually drawn. This is deliberately
-        // not an exemption for the reserve: nothing here says "ignore this
-        // element", it says "something is drawn over it, and here it is".
-        const overlay = document.querySelector<HTMLElement>('.mv-alt__stage');
-        const drawn =
-          overlay && Number(getComputedStyle(overlay).opacity) > 0.05
-            ? overlay.getBoundingClientRect()
-            : null;
-
-        const section = document.querySelector<HTMLElement>(`[data-stage="${stage}"]`)!;
+      const out: { stage: string; gapSvh: number; where: string }[] = [];
+      for (const section of document.querySelectorAll<HTMLElement>('[data-stage]')) {
         const bounds = section.getBoundingClientRect();
         const overlaps = drawn && drawn.bottom > bounds.top && drawn.top < bounds.bottom;
 
         const boxes = [...section.querySelectorAll<HTMLElement>('*')]
           .filter(draws)
           .map((el) => el.getBoundingClientRect())
-          .concat(overlaps ? [drawn!] : [])
+          .concat(overlaps ? [drawn] : [])
           .filter((r) => r.height > 0 && r.width > 0)
           .sort((a, b) => a.top - b.top);
-        if (boxes.length === 0) return null;
-
+        if (boxes.length === 0) continue;
         let reach = boxes[0].top;
         let largest = 0;
         let where = 'interior';
@@ -691,16 +632,16 @@ test.describe('portrait — the content', () => {
           if (box.top > reach && box.top - reach > largest) largest = box.top - reach;
           reach = Math.max(reach, box.bottom);
         }
-        const trailing = bounds.bottom - reach;
+        const trailing = section.getBoundingClientRect().bottom - reach;
         if (trailing > largest) {
           largest = trailing;
           where = 'trailing';
         }
-        return { stage, gapSvh: (largest / innerHeight) * 100, where };
-      }, id);
-
-      if (gap && gap.gapSvh > 34) gaps.push(gap);
-    }
+        const gapSvh = (largest / innerHeight) * 100;
+        if (gapSvh > 34) out.push({ stage: section.dataset.stage!, gapSvh, where });
+      }
+      return out;
+    });
 
     expect(gaps).toEqual([]);
   });
@@ -1191,106 +1132,5 @@ test.describe('portrait — the layout holds', () => {
     await expect(page.locator('canvas')).toHaveCount(1);
 
     await page.setViewportSize(size);
-  });
-
-  // ===========================================================================
-  // THE CONTINUITY PASS, IN PORTRAIT — §27, §50.
-  //
-  // "Mobile should use the same hierarchy: MASTER / PASSAGE. No persistent
-  // technical UI. No revival of cards/rails simply because screen width is
-  // smaller." Three contracts, and none of them is a coordinate.
-  // ===========================================================================
-
-  test('every chapter declares a level, and the two surfaces agree @smoke', async ({ page }) => {
-    await open(page);
-    const levels = await page.evaluate(() =>
-      Object.fromEntries(
-        [...document.querySelectorAll<HTMLElement>('.mv-sec[data-stage]')].map((el) => [
-          el.dataset.stage!,
-          el.dataset.level ?? '(none)',
-        ]),
-      ),
-    );
-    expect(Object.keys(levels).sort()).toEqual(STAGE_IDS.slice().sort());
-    for (const id of STAGE_IDS) {
-      // The SAME function the desktop composition publishes from. If the two
-      // surfaces could disagree about which chapters are destinations, the page
-      // would be two designs rather than one design on two devices — §27.
-      expect(levels[id], `${id} declares no level`).toBe(levelOf(id as StageId));
-    }
-  });
-
-  test('the rejected crossing composition does not render in portrait @smoke', async ({ page }) => {
-    await open(page);
-    // §6, item by item, in the portrait composition's own class names. Absence
-    // from the DOCUMENT rather than invisibility — §34 forbids leaving a second
-    // working visual system behind a selector.
-    const REJECTED: [string, string][] = [
-      ['.mv-spine, .mv-spine__rule, .mv-spine__item, .mv-spine__at', 'the Meridian rail, its station dots and its altitude stamps'],
-      ['.mv-layer, .mv-layer__index, .mv-layer__list', 'the three bordered layer blocks and their yellow index'],
-      ['.mv-check, .mv-check__index, .mv-check__at, .mv-check__grid', 'the checkpoint cards, their index numerals, altitude stamps and description grid'],
-      ['.mv-notes', 'the annotation layer — dense microcopy on hairlines'],
-      ['.mv-sec[data-level="passage"] .mv-eyebrow', 'the chapter marker on a passage'],
-    ];
-    for (const [selector, why] of REJECTED) {
-      await expect(page.locator(selector), `${why} — still in the document`).toHaveCount(0);
-    }
-  });
-
-  test('the phone spends yellow exactly twice @smoke', async ({ page }) => {
-    await open(page);
-    // §22: two events on the whole page, and everything between them is the
-    // page's own ink. Asked of what actually painted, because `--signal` is
-    // inherited and reached through gradients and borders as well as colour —
-    // counting stylesheet rules would not have found the six altitude stamps in
-    // Act III's ladder or the progress fill in the telemetry strip.
-    const painted = await page.evaluate(() => {
-      const isSignal = (c: string) => {
-        const m = /rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:[,/\s]+([\d.]+))?/.exec(c || '');
-        if (!m) return false;
-        const [r, g, b] = [+m[1], +m[2], +m[3]];
-        const a = m[4] === undefined ? 1 : +m[4];
-        return a > 0.05 && r > 150 && g > 130 && b < 110 && r - b > 90 && g - b > 70;
-      };
-      const out: string[] = [];
-      // THE ASCENT ONLY. `.mv-flow` is the eleven chapters and `.mv-telemetry`
-      // is the fixed strip over them; the shared footer, the closed menu and
-      // the skip link are site chrome rather than the journey, and §21 scopes
-      // the yellow decision to the ascent. The skip link is the one worth
-      // naming: it is a focus affordance parked off-screen, so it has a real
-      // box and a yellow focus background at all times, and it is in `<main>`
-      // on the bare mount host this suite runs against and outside it on the
-      // built homepage — a difference that has nothing to do with the design.
-      for (const el of document.querySelectorAll('.mv-flow *, .mv-telemetry *')) {
-        const cs = getComputedStyle(el);
-        if (cs.display === 'none' || cs.visibility === 'hidden') continue;
-        const r = el.getBoundingClientRect();
-        if (r.width < 1 || r.height < 1) continue;
-        for (const prop of ['color', 'backgroundColor', 'borderTopColor', 'borderBottomColor', 'backgroundImage'] as const) {
-          if (isSignal(cs[prop])) {
-            const sec = el.closest('.mv-sec');
-            out.push(
-              `${sec?.getAttribute('data-stage') ?? '(strip)'} · ` +
-                `${el.tagName.toLowerCase()}.${String(el.className || '').split(' ')[0]} · ` +
-                `${(el.textContent || '').trim().slice(0, 24)}`,
-            );
-            break;
-          }
-        }
-      }
-      return [...new Set(out)];
-    });
-    // The figure at the proof and the closing action. Nothing else, anywhere.
-    //
-    // Counted by CHAPTER rather than by element: `~15M Ft` is an `<h2>` with
-    // two reveal wrappers inside it and all three inherit the colour, so an
-    // element count would be asserting how the reveal is built rather than
-    // where the page spends its yellow. The message carries the elements, so a
-    // failure still says WHAT started painting it.
-    const chapters = [...new Set(painted.map((s) => s.split(' · ')[0]))].sort();
-    expect(
-      chapters,
-      `the ascent paints the signal colour outside its budget:\n  ${painted.join('\n  ')}`,
-    ).toEqual(['destination', 'selected-work']);
   });
 });

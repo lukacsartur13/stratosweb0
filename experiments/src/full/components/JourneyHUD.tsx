@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CEILING_M, STAGES, advance, clamp, formatAltitude, journey } from '../journey';
 import { m } from '../i18n';
 import { publishKinetic, reserveKinetic } from '../kineticDom';
@@ -132,72 +132,15 @@ export function JourneyHUD() {
    * neither of those raises a plain `resize` — and on the track's own resize,
    * which is what catches a locale change and an increased system text size.
    */
-  useLayoutEffect(() => {
+  useEffect(() => {
     let frame = 0;
-    /**
-     * Measure to a FIXED POINT, inside one frame.
-     *
-     * The composition is measured, published, and then re-measured — because the
-     * numbers it publishes change the panels' heights, the track's ResizeObserver
-     * below fires, and the pass runs again. That loop is convergent and it was
-     * two steps deep while the statement was a 73px headline whose size barely
-     * moved between passes.
-     *
-     * It is five steps deep under the monument scale, and the steps are the
-     * document's own height: traced on WebKit, 21 041 → 19 167 → 18 861 → 18 837
-     * → 18 813 → 18 794 across successive frames. A page whose height is still
-     * settling after the first paint is a page a back navigation lands in the
-     * wrong place on — WebKit has no scroll anchoring, and the homepage history
-     * check measured a restore 563px short of where the visitor left.
-     *
-     * Iterating here rather than across frames is the same convergence with the
-     * intermediate states removed: `measureComposition` already forces the layout
-     * it needs, so reading the height back costs nothing extra, and the observer
-     * does not fire because the height has stopped changing before this yields.
-     * Four is a bound, not a target — it settles in two on every viewport in the
-     * matrix — and it is there so a pathological layout cannot spin.
-     */
-    const settle = () => {
-      let previous = -1;
-      for (let pass = 0; pass < 4; pass++) {
-        measureComposition();
-        const height = document.documentElement.scrollHeight;
-        if (height === previous) break;
-        previous = height;
-      }
-    };
     const schedule = () => {
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(settle);
+      frame = requestAnimationFrame(() => measureComposition());
     };
 
-    // SYNCHRONOUSLY, BEFORE THE FIRST PAINT — and then again once the fonts have
-    // settled.
-    //
-    // The measurement used to wait for `document.fonts.ready`, on the sound
-    // argument that the decision it takes depends on how the headline wraps and
-    // the fallback and the webfont wrap differently. That is still true of the
-    // DECISION. It is not true of the two numbers that decide how tall the page
-    // is: `--copy-room` and `--statement-w` are solved from the viewport and the
-    // instrument's projection, and neither needs a glyph.
-    //
-    // Waiting for the fonts to publish them means the first painted frame lays
-    // the dense chapters out against a fallback column, and the document is
-    // 1 161px taller than it will be a frame later. WebKit restores a back
-    // navigation's scroll position against the height it finds, and has no
-    // scroll anchoring to correct it afterwards — measured, a restore 426px
-    // short of where the visitor left, against a 200px tolerance.
-    //
-    // Running it here as well costs one extra layout at mount and makes the
-    // first painted height the settled one. The fonts pass still runs and still
-    // decides everything it decided before.
-    // SYNCHRONOUSLY, not through `schedule` — which defers to the next animation
-    // frame, and the next animation frame is after the first paint. Calling it
-    // that way changed nothing at all: traced on WebKit, the first painted frame
-    // still had no `data-rails` and no `--copy-room` on any panel, and the
-    // document was still 19 955px against the 18 794 it settles to.
-    settle();
     if ('fonts' in document) document.fonts.ready.then(schedule).catch(schedule);
+    else schedule();
 
     // Where homepage content may begin, measured off the shared header — and
     // remeasured *here* rather than on the tick, because the deck's boundaries

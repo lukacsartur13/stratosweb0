@@ -1,15 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { enableReducedMotion, matchesReducedMotion } from './helpers/reduced-motion';
-import { altitudeMetres, bootJourneyOnLoad, homepageReady, stageReadout } from './helpers/homepage';
-
-// The homepage waits for a first move before it mounts the journey — see
-// `bootJourneyOnLoad`. Every navigation in this file gets one, on every
-// document it loads, so what these tests assert about is a page a visitor is
-// reading rather than one they have only landed on.
-test.beforeEach(async ({ page }) => {
-  await bootJourneyOnLoad(page);
-});
-
+import { altitudeMetres, homepageReady, stageReadout } from './helpers/homepage';
 
 /**
  * The homepage's site chrome: the flight deck, the full-screen navigation, the
@@ -321,81 +312,6 @@ test.describe('the homepage flight deck', () => {
     expect(errors, `console errors:\n${errors.join('\n')}`).toEqual([]);
   });
 
-  // ---------------------------------------------------------------------------
-  // THE CALL TO ACTION IS NEUTRAL ON THIS ROUTE — §21, §52 of the continuity
-  // brief.
-  //
-  // The homepage opens on Act I — the smallest fill in the six-act design, five
-  // objects and a great deal of air — and the deck's `opening` state was
-  // carrying two filled yellow blocks across the top of it: the quote button
-  // and the active locale chip. The journey's entire yellow budget is two
-  // events, the last of them the closing invitation, so the ascent began by
-  // spending its scarcest asset on neither of them.
-  //
-  // WHAT THIS DOES NOT ASSERT is a colour. §21 offers white, a restrained
-  // outline or a quiet neutral treatment and any of the three would satisfy it,
-  // so pinning the shipped one here would forbid the other two — §51's warning
-  // in as many words. What is asserted is the decision: not filled, not the
-  // signal colour at rest, and unmistakable again on focus.
-  //
-  // SCOPE. The rules are in the homepage's own stylesheet and no other route
-  // links it, so the second half of §52 — "other pages retain their intended
-  // commercial treatment" — is asserted on a service route in the same test.
-  // ---------------------------------------------------------------------------
-  test('the homepage CTA is neutral, obvious on focus, and scoped to this route', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name.startsWith('mobile'), 'the desktop link row and its button are not on a phone');
-    if (testInfo.project.name === 'reduced-motion') await enableReducedMotion(page);
-    await page.goto('/index.html');
-    await expect(deck(page)).toBeVisible();
-    expect(await headerState(page)).toBe('opening');
-
-    // `#ffee25` is `rgb(255, 238, 37)`. The blue component has to be ANCHORED —
-    // written without the trailing delimiter this also matched
-    // `rgb(244, 244, 244)`, because `[0-9]{1,2}` happily took the first two
-    // digits of the third 244 and reported the paper ink as the signal colour.
-    const signal = /rgba?\(\s*2[0-9]{2},\s*2[0-9]{2},\s*\d{1,2}\s*[,)]/;
-    const paint = (locator: ReturnType<Page['locator']>) =>
-      locator.evaluate((el) => {
-        const cs = getComputedStyle(el);
-        return { bg: cs.backgroundColor, color: cs.color, border: cs.borderTopColor };
-      });
-
-    const cta = page.locator('.nav__links .btn').first();
-    await expect(cta).toBeVisible();
-    const resting = await paint(cta);
-    for (const [k, v] of Object.entries(resting)) {
-      expect(v, `the homepage CTA's ${k} is still the signal colour at rest`).not.toMatch(signal);
-    }
-    expect(resting.bg, 'the homepage CTA is still a filled block').toMatch(/rgba\(0, 0, 0, 0\)|transparent/);
-
-    // The active locale chip is the second yellow block in that frame, and it
-    // is a current-state marker rather than an offer. `aria-current` is what
-    // carries the state for assistive technology and is untouched.
-    const chip = page.locator('.nav .lang a[aria-current="true"]').first();
-    expect((await paint(chip)).bg, 'the active locale chip is still filled').toMatch(
-      /rgba\(0, 0, 0, 0\)|transparent/,
-    );
-
-    // Focused, it is unmistakable again. Asserted as a CHANGE rather than as a
-    // colour, so the treatment can be revised without this contract lying —
-    // what §52 asks for is that the state exists and is obvious.
-    await cta.focus();
-    await page.waitForTimeout(400);
-    const focused = await paint(cta);
-    expect(focused.bg, 'the homepage CTA has no visible focus state').not.toBe(resting.bg);
-
-    // AND THE OTHER ROUTES ARE UNTOUCHED. §21 warns against globally destroying
-    // a useful conversion element; this is the half of the decision that says
-    // the scoping actually worked.
-    await page.goto('/szolgaltatasok.html');
-    const elsewhere = page.locator('.nav__links .btn').first();
-    await expect(elsewhere).toBeVisible();
-    expect(
-      (await paint(elsewhere)).bg,
-      'a service route lost its filled call to action',
-    ).toMatch(signal);
-  });
-
   test('desktop navigation is visible at the top and collapses into the trigger', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name.startsWith('mobile'), 'no desktop link row on a phone, by design');
     if (testInfo.project.name === 'reduced-motion') await enableReducedMotion(page);
@@ -459,63 +375,37 @@ test.describe('the homepage flight deck', () => {
     expect(journey, 'the header did not compress at all').toBeLessThan(opening);
   });
 
-  /**
-   * THE HOMEPAGE HAS TWO HEADER STATES, AND THE THIRD IS THE PAGE'S OWN.
-   *
-   * THIS CONTRACT IS REPLACED, NOT WEAKENED. What it asserted was that the deck
-   * reaches its `destination` state at the foot of the homepage and reveals the
-   * project-start button, on the argument that a visitor who has read the whole
-   * page should be given somewhere to go. That argument is now made by the page
-   * itself and made better: the six-act art direction closes on an action beat
-   * whose entire mechanism is that nothing competes with it — one question, one
-   * invitation, and the emptiest frame on the site. Re-expanding the header
-   * over it puts a nav bar and a second call to action across the arrival, and
-   * spends the page's last yellow event on chrome.
-   *
-   * So the homepage publishes one edge and holds the journey state to the foot
-   * of the track, and what this asserts is the stricter statement: the deck
-   * stays out of the way AND the route it used to carry is still there, in the
-   * page, at the end. Both surfaces make the same decision — see
-   * `siteHeader.ts` and `mobile/MobileTelemetry.tsx`. The other 66 routes are
-   * untouched: the adapter is the homepage's.
-   */
-  test('the header stays out of the way at the foot, and the page carries the action', async ({
-    page,
-  }, testInfo) => {
+  test('the destination state resolves near the end and reveals the CTA', async ({ page }, testInfo) => {
     if (testInfo.project.name === 'reduced-motion') await enableReducedMotion(page);
     await page.goto('/index.html');
 
     await scrollToFraction(page, 1);
-    await expectState(page, 'journey');
-    await expect(page.locator('.nav__cta')).toBeHidden();
+    await expectState(page, 'destination');
 
-    // And the route is not lost. The closing action is the page's own, it is a
-    // real anchor to the quote form, and the Arrival's primary action is below
-    // it.
-    const closing = page.getByTestId('cta-primary');
-    await expect(closing).toHaveCount(1);
-    await expect(closing).toHaveAttribute('href', /arajanlat|quote|angebot/i);
-    await expect(page.locator('.arrival__cta a').first()).toBeAttached();
+    // The project-start CTA is the point of the destination state — on a
+    // viewport wide enough to hold one. Below 640px the header is `STRATOS
+    // MENU` and the CTA is deliberately not in it; the Arrival's own primary
+    // action, a screen further down, is the phone's project-start route.
+    const width = page.viewportSize()!.width;
+    if (width > 640) {
+      await expect(page.locator('.nav__cta')).toBeVisible();
+    } else {
+      await expect(page.locator('.nav__cta')).toBeHidden();
+      await expect(page.locator('.arrival__cta a').first()).toBeAttached();
+    }
   });
 
   test('the states are reversible and the top of the page is always the opening state', async ({ page }, testInfo) => {
     if (testInfo.project.name === 'reduced-motion') await enableReducedMotion(page);
     await page.goto('/index.html');
 
-    // TWO STATES ON THIS ROUTE. The homepage publishes one edge and holds the
-    // journey state to the foot of the track, because the page's own action
-    // beat is what the deck's `destination` state used to provide — see the
-    // note on `the header stays out of the way at the foot` above, and
-    // `experiments/src/full/siteHeader.ts`. The other 66 routes still have
-    // three, and this file's other tests still exercise them.
     await scrollToFraction(page, 0.5);
     await expectState(page, 'journey');
     await scrollToFraction(page, 1);
-    await expectState(page, 'journey');
+    await expectState(page, 'destination');
 
-    // All the way back. No stale class may survive the return — that is the
-    // specific bug the brief names, and it is the same bug whichever state the
-    // visitor is returning from.
+    // All the way back. No stale destination class may survive the return —
+    // that is the specific bug the brief names.
     await scrollToFraction(page, 0);
     await expectState(page, 'opening');
     await expect(page.locator('.brand__full')).toBeVisible();
@@ -537,11 +427,7 @@ test.describe('the homepage flight deck', () => {
     // and only ever showed up under reduced motion.
     await settle(page);
     await page.evaluate(() => window.scrollTo(0, 1e7));
-    // `journey`, not `destination` — this route has two states. The property
-    // being asserted is unchanged and is the one the test is named after: ONE
-    // jump lands on the right state, with no intermediate scroll events, rather
-    // than advancing one state per paint and stopping short.
-    await expectState(page, 'journey');
+    await expectState(page, 'destination');
 
     // And back the other way, in one jump, for the same reason.
     await page.evaluate(() => window.scrollTo(0, 0));
@@ -701,11 +587,7 @@ test.describe('the full-screen menu on the homepage', () => {
     if (testInfo.project.name === 'reduced-motion') await enableReducedMotion(page);
     await page.goto('/index.html');
 
-    // Every state this route has, which is two — see the note on `the header
-    // stays out of the way at the foot`. The foot of the page is included
-    // anyway, because "the menu opens from the bottom of the homepage" is the
-    // requirement and it does not depend on what the deck calls itself there.
-    for (const [fraction, state] of [[0, 'opening'], [0.5, 'journey'], [1, 'journey']] as const) {
+    for (const [fraction, state] of [[0, 'opening'], [0.5, 'journey'], [1, 'destination']] as const) {
       await scrollToFraction(page, fraction);
       await expectState(page, state);
 
@@ -905,11 +787,7 @@ test.describe('return to 0 m', () => {
     expect((await toTop.innerText()).trim().length).toBeGreaterThan(0);
 
     await scrollToFraction(page, 1);
-    // `journey`, not `destination` — this route has two states. See the note on
-    // `the header stays out of the way at the foot`. What is being asserted
-    // here is Return to 0 m, and it is unchanged: the control returns the page
-    // and pushes no history entry, from wherever the visitor is.
-    await expectState(page, 'journey');
+    await expectState(page, 'destination');
     const entriesBefore = await page.evaluate(() => history.length);
 
     await toTop.click();

@@ -48,18 +48,11 @@
   </head>
   <body>
     <!-- The React mount host *is* the main landmark, and it has to be, because
-         both entries mount onto `#main`. This prototype shares the journey with
-         the three production locale shells — one application, four documents —
-         so it carries the same host. See experiments/home/hu.html for the
-         reasoning behind the arrangement.
-
-         The ENTRY is its own, and only since the homepage stopped mounting on
-         load: `src/full/main.tsx` waits for the visitor's first move and has a
-         static opening frame to show while it waits, and this document has
-         neither. `src/full/prototype.tsx` is four lines that import the same
-         journey and mount it straight away, which is what keeps this route the
-         fixed baseline the benchmarks are written against. -->
+         `src/full/main.tsx` mounts onto `#main`. This prototype shares that
+         entry point with the three production locale shells — one application,
+         four documents — so it carries the same host. See
+         experiments/home/hu.html for the reasoning behind the arrangement. -->
     <main class="journey" id="main" tabindex="-1"></main>
-    <script type="module" src="/src/full/prototype.tsx"></script>
+    <script type="module" src="/src/full/main.tsx"></script>
   </body>
 </html>

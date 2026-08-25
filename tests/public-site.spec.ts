@@ -2,16 +2,7 @@ import { test, expect, type Page } from './helpers/navigation-boundary';
 import fs from 'node:fs';
 import path from 'node:path';
 import { enableReducedMotion, matchesReducedMotion } from './helpers/reduced-motion';
-import { altitudeReadout, bootJourneyOnLoad, homepageReady, isMobileHomepage, stageReadout } from './helpers/homepage';
-
-// The homepage waits for a first move before it mounts the journey — see
-// `bootJourneyOnLoad`. Every navigation in this file gets one, on every
-// document it loads, so what these tests assert about is a page a visitor is
-// reading rather than one they have only landed on.
-test.beforeEach(async ({ page }) => {
-  await bootJourneyOnLoad(page);
-});
-
+import { altitudeReadout, homepageReady, isMobileHomepage, stageReadout } from './helpers/homepage';
 
 /**
  * Console noise that is not the site's fault and must not fail a run:
@@ -123,48 +114,19 @@ test.describe('homepage', () => {
     await page.goto('/index.html');
     await homepageReady(page);
     const live = await readout(page);
-    await expect(live).toBeAttached();
+    await expect(live).toBeVisible();
 
-    // NOT `toBeVisible`, AND THAT IS THE POINT OF THE SIX-ACT ART DIRECTION.
-    //
-    // This asserted a persistent altitude readout painted in the corner of the
-    // viewport for the whole ascent. The approved design carries ONE altitude
-    // reading in the six frames — a 10px mono label in the one act whose
-    // sentence is itself a measurement about the atmosphere — and §21 of the
-    // production brief names the permanent readout as the noisy altitude system
-    // it replaces. The header's own decorative altimeter is suppressed on this
-    // route for the same reason.
-    //
-    // What the test was really watching for survives whole, and is what is
-    // asserted below: the journey's clock is LIVE, it starts on the ground, it
-    // climbs with the scroll, and it never reads outside its own declared
-    // range. The element is still in the document and still written once a
-    // frame — it is the accessible readout now rather than a picture — so every
-    // one of those questions can still be asked of it.
-    const read = async () => Number(((await live.textContent()) ?? '').replace(/[^\d]/g, ''));
+    const read = async () => Number((await live.innerText()).replace(/[^\d]/g, ''));
 
     // The journey begins on the ground. The previous homepage seeded its
     // decorative readout at 420 m; this one starts the ascent at zero and says
     // so, and the damped clock needs a moment to settle onto it after boot.
-    await expect.poll(read, { timeout: 10_000 }).toBe(0);
+    await expect(live).toHaveText('0', { timeout: 10_000 });
     const atTop = await read();
 
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight * 0.6));
     await page.waitForTimeout(1_700); // the clock damps towards the scroll position
     const later = await read();
-
-    // And the design's own claim, asserted rather than assumed: there is no
-    // persistent altitude PICTURE anywhere on the page. A readout that came
-    // back — in the deck, in a corner, in a strip — would be the one thing §21
-    // rules out, and it would be invisible to every other check in this file.
-    const painted = await page.evaluate(() =>
-      [...document.querySelectorAll('.hud__digits, .hud__readout, .nav__alt')].filter((el) => {
-        const cs = getComputedStyle(el);
-        const r = el.getBoundingClientRect();
-        return cs.display !== 'none' && cs.visibility !== 'hidden' && r.width > 1 && r.height > 1;
-      }).length,
-    );
-    expect(painted, 'a persistent altitude readout is painted on the homepage').toBe(0);
 
     expect(later, 'the readout did not respond to the scroll').toBeGreaterThan(atTop);
     // The journey is declared as 0 m to 30 000 m. Nothing should read outside it.

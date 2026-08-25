@@ -1,18 +1,19 @@
 {
- "generated": "2026-08-23T19:45:47.651Z",
+ "generated": "2026-08-09T14:34:01.416Z",
  "origin": "https://stratosweb.hu",
  "previewOrigin": false,
  "excludedFromAudit": [
+  "/experiments/",
   "/portal/"
  ],
  "counts": {
   "documents": 72,
-  "indexable": 63,
-  "noindex": 6,
+  "indexable": 60,
+  "noindex": 9,
   "notFound": 3,
-  "sitemapEntries": 63,
+  "sitemapEntries": 60,
   "failures": 0,
-  "warnings": 37
+  "warnings": 43
  },
  "robots": {
   "disallow": [
@@ -89,6 +90,26 @@
    "detail": "hreflang=\"de\" -> /de/projekt-mentaltrening.html is noindex"
   },
   {
+   "route": "/de/projekt-rapidkert.html",
+   "rule": "description-length",
+   "detail": "176 characters (outside 70–165)"
+  },
+  {
+   "route": "/de/projekt-rapidkert.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"hu\" -> /munka-rapidkert.html is noindex"
+  },
+  {
+   "route": "/de/projekt-rapidkert.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"en\" -> /en/work-rapidkert.html is noindex"
+  },
+  {
+   "route": "/de/projekt-rapidkert.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"de\" -> /de/projekt-rapidkert.html is noindex"
+  },
+  {
    "route": "/de/webdesign-grossunternehmen.html",
    "rule": "title-length",
    "detail": "70 characters (over 65)"
@@ -140,13 +161,18 @@
   },
   {
    "route": "/en/work-rapidkert.html",
-   "rule": "title-length",
-   "detail": "66 characters (over 65)"
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"hu\" -> /munka-rapidkert.html is noindex"
   },
   {
    "route": "/en/work-rapidkert.html",
-   "rule": "description-length",
-   "detail": "168 characters (outside 70–165)"
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"en\" -> /en/work-rapidkert.html is noindex"
+  },
+  {
+   "route": "/en/work-rapidkert.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"de\" -> /de/projekt-rapidkert.html is noindex"
   },
   {
    "route": "/impact-program.html",
@@ -190,13 +216,18 @@
   },
   {
    "route": "/munka-rapidkert.html",
-   "rule": "title-length",
-   "detail": "72 characters (over 65)"
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"hu\" -> /munka-rapidkert.html is noindex"
   },
   {
    "route": "/munka-rapidkert.html",
-   "rule": "description-length",
-   "detail": "184 characters (outside 70–165)"
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"en\" -> /en/work-rapidkert.html is noindex"
+  },
+  {
+   "route": "/munka-rapidkert.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"de\" -> /de/projekt-rapidkert.html is noindex"
   },
   {
    "route": "/szolgaltatasok.html",
@@ -1305,7 +1336,7 @@
   {
    "route": "/de/index.html",
    "file": "dist/de/index.html",
-   "bytes": 19728,
+   "bytes": 19157,
    "is404": false,
    "lang": "de",
    "title": "Stratos — Digitale Systeme, die Wachstum bringen | Győr & Budapest",
@@ -1398,7 +1429,7 @@
   {
    "route": "/de/leistungen.html",
    "file": "dist/de/leistungen.html",
-   "bytes": 41496,
+   "bytes": 35388,
    "is404": false,
    "lang": "de",
    "title": "Leistungen — Webdesign, Entwicklung, Branding, Werbung | Stratos",
@@ -1537,13 +1568,13 @@
   {
    "route": "/de/projekt-rapidkert.html",
    "file": "dist/de/projekt-rapidkert.html",
-   "bytes": 34778,
+   "bytes": 27141,
    "is404": false,
    "lang": "de",
-   "title": "Rapidkert — 3D-Webdesign, SEO und Google Ads Fallstudie | Stratos",
-   "description": "Wie Stratos Media für Rapidkert Google Ads, SEO und ein interaktives 3D-Weberlebnis verbunden hat — mit rund 15 Millionen HUF beauftragtem Projektwert aus der Suche.",
+   "title": "Rapidkert Kft. — Website für Gartenbau | Stratos",
+   "description": "Fallstudie: eine Website für automatische Bewässerung und Gartenbau. Ein abendliches Gartenfoto, eine klar benannte Leistung, eine kostenlose Beratung als einzige Aufforderung.",
    "h1": [
-    "Ein großartiger Garten beginnt unter der Oberfläche."
+    "Ein Garten, den du auch abends ansehen willst."
    ],
    "canonical": "https://stratosweb.hu/de/projekt-rapidkert.html",
    "canonicalPath": "/de/projekt-rapidkert.html",
@@ -1565,12 +1596,12 @@
      "href": "/munka-rapidkert.html"
     }
    ],
-   "robotsMeta": null,
-   "indexable": true,
+   "robotsMeta": "noindex, follow",
+   "indexable": false,
    "og": {
-    "title": "Rapidkert — 3D-Webdesign, SEO und Google Ads Fallstudie | Stratos",
-    "description": "Wie Stratos Media für Rapidkert Google Ads, SEO und ein interaktives 3D-Weberlebnis verbunden hat — mit rund 15 Millionen HUF beauftragtem Projektwert aus der Suche.",
-    "image": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
+    "title": "Rapidkert Kft. — Website für Gartenbau | Stratos",
+    "description": "Fallstudie: eine Website für automatische Bewässerung und Gartenbau. Ein abendliches Gartenfoto, eine klar benannte Leistung, eine kostenlose Beratung als einzige Aufforderung.",
+    "image": "https://stratosweb.hu/assets/img/work-3.jpg",
     "url": "https://stratosweb.hu/de/projekt-rapidkert.html",
     "type": "website"
    },
@@ -1578,13 +1609,12 @@
    "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": true,
-   "inSitemap": true,
-   "inboundLinks": 5
+   "inSitemap": false
   },
   {
    "route": "/de/projekte.html",
    "file": "dist/de/projekte.html",
-   "bytes": 28832,
+   "bytes": 28790,
    "is404": false,
    "lang": "de",
    "title": "Projekte — Live-Websites und Kundenprojekte | Stratos",
@@ -1725,7 +1755,7 @@
   {
    "route": "/de/webdesign-kmu.html",
    "file": "dist/de/webdesign-kmu.html",
-   "bytes": 39475,
+   "bytes": 39441,
    "is404": false,
    "lang": "de",
    "title": "Webdesign für KMU — Website zur Monatsgebühr | Stratos",
@@ -2459,7 +2489,7 @@
   {
    "route": "/en/index.html",
    "file": "dist/en/index.html",
-   "bytes": 19357,
+   "bytes": 18786,
    "is404": false,
    "lang": "en",
    "title": "Stratos — Digital systems that drive growth | Győr & Budapest",
@@ -2599,7 +2629,7 @@
   {
    "route": "/en/services.html",
    "file": "dist/en/services.html",
-   "bytes": 40338,
+   "bytes": 34486,
    "is404": false,
    "lang": "en",
    "title": "Services — web design, development, branding, advertising | Stratos",
@@ -2693,7 +2723,7 @@
   {
    "route": "/en/web-design-sme.html",
    "file": "dist/en/web-design-sme.html",
-   "bytes": 38476,
+   "bytes": 38453,
    "is404": false,
    "lang": "en",
    "title": "Web design for SMEs — a website on a monthly fee | Stratos",
@@ -2832,13 +2862,13 @@
   {
    "route": "/en/work-rapidkert.html",
    "file": "dist/en/work-rapidkert.html",
-   "bytes": 33827,
+   "bytes": 26464,
    "is404": false,
    "lang": "en",
-   "title": "Rapidkert — 3D web design, SEO and Google Ads case study | Stratos",
-   "description": "How Stratos Media combined Google Ads, SEO and an interactive 3D web experience for Rapidkert, contributing to approximately 15 million HUF in contracted project value.",
+   "title": "Rapidkert Kft. — landscaping website | Stratos",
+   "description": "Case study: a website for automatic irrigation and landscaping. One evening garden photograph, one service named out loud, one free consultation as the only request.",
    "h1": [
-    "A great garden starts below the surface."
+    "A garden you want to look at after dark, too."
    ],
    "canonical": "https://stratosweb.hu/en/work-rapidkert.html",
    "canonicalPath": "/en/work-rapidkert.html",
@@ -2860,12 +2890,12 @@
      "href": "/munka-rapidkert.html"
     }
    ],
-   "robotsMeta": null,
-   "indexable": true,
+   "robotsMeta": "noindex, follow",
+   "indexable": false,
    "og": {
-    "title": "Rapidkert — 3D web design, SEO and Google Ads case study | Stratos",
-    "description": "How Stratos Media combined Google Ads, SEO and an interactive 3D web experience for Rapidkert, contributing to approximately 15 million HUF in contracted project value.",
-    "image": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
+    "title": "Rapidkert Kft. — landscaping website | Stratos",
+    "description": "Case study: a website for automatic irrigation and landscaping. One evening garden photograph, one service named out loud, one free consultation as the only request.",
+    "image": "https://stratosweb.hu/assets/img/work-3.jpg",
     "url": "https://stratosweb.hu/en/work-rapidkert.html",
     "type": "website"
    },
@@ -2873,13 +2903,12 @@
    "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": true,
-   "inSitemap": true,
-   "inboundLinks": 5
+   "inSitemap": false
   },
   {
    "route": "/en/work.html",
    "file": "dist/en/work.html",
-   "bytes": 28097,
+   "bytes": 28046,
    "is404": false,
    "lang": "en",
    "title": "Work — live websites and client projects | Stratos",
@@ -3067,7 +3096,7 @@
   {
    "route": "/index.html",
    "file": "dist/index.html",
-   "bytes": 20490,
+   "bytes": 19919,
    "is404": false,
    "lang": "hu",
    "title": "Stratos — Digitális rendszerek, amik növekedést hoznak | Győr & Budapest",
@@ -3113,7 +3142,7 @@
   {
    "route": "/kkv.html",
    "file": "dist/kkv.html",
-   "bytes": 39848,
+   "bytes": 39816,
    "is404": false,
    "lang": "hu",
    "title": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
@@ -3252,13 +3281,13 @@
   {
    "route": "/munka-rapidkert.html",
    "file": "dist/munka-rapidkert.html",
-   "bytes": 35717,
+   "bytes": 27655,
    "is404": false,
    "lang": "hu",
-   "title": "Rapidkert Kft. — 3D webdesign, SEO és Google Ads esettanulmány | Stratos",
-   "description": "Hogyan épített a Stratos mérhető keresési akvizíciót és egy interaktív 3D weboldalt a Rapidkertnek — nagyjából 15 millió Ft szerződött projektértékkel fizetett és organikus keresésből.",
+   "title": "Rapidkert Kft. — kertépítés weboldal | Stratos",
+   "description": "Esettanulmány: automata öntözőrendszer és kertépítés weboldala. Egy esti kertfotó, egy kimondott szolgáltatás, egy díjmentes konzultáció mint egyetlen kérés.",
    "h1": [
-    "Egy nagyszerű kert a felszín alatt kezdődik."
+    "Egy kert, amit este is meg akarsz nézni."
    ],
    "canonical": "https://stratosweb.hu/munka-rapidkert.html",
    "canonicalPath": "/munka-rapidkert.html",
@@ -3280,12 +3309,12 @@
      "href": "/munka-rapidkert.html"
     }
    ],
-   "robotsMeta": null,
-   "indexable": true,
+   "robotsMeta": "noindex, follow",
+   "indexable": false,
    "og": {
-    "title": "Rapidkert Kft. — 3D webdesign, SEO és Google Ads esettanulmány | Stratos",
-    "description": "Hogyan épített a Stratos mérhető keresési akvizíciót és egy interaktív 3D weboldalt a Rapidkertnek — nagyjából 15 millió Ft szerződött projektértékkel fizetett és organikus keresésből.",
-    "image": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
+    "title": "Rapidkert Kft. — kertépítés weboldal | Stratos",
+    "description": "Esettanulmány: automata öntözőrendszer és kertépítés weboldala. Egy esti kertfotó, egy kimondott szolgáltatás, egy díjmentes konzultáció mint egyetlen kérés.",
+    "image": "https://stratosweb.hu/assets/img/work-3.jpg",
     "url": "https://stratosweb.hu/munka-rapidkert.html",
     "type": "website"
    },
@@ -3293,13 +3322,12 @@
    "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": true,
-   "inSitemap": true,
-   "inboundLinks": 5
+   "inSitemap": false
   },
   {
    "route": "/munkaink.html",
    "file": "dist/munkaink.html",
-   "bytes": 29315,
+   "bytes": 29268,
    "is404": false,
    "lang": "hu",
    "title": "Munkáink — élő weboldalak és ügyfélprojektek | Stratos",
@@ -3440,7 +3468,7 @@
   {
    "route": "/szolgaltatasok.html",
    "file": "dist/szolgaltatasok.html",
-   "bytes": 41914,
+   "bytes": 35985,
    "is404": false,
    "lang": "hu",
    "title": "Szolgáltatások — webdesign, fejlesztés, branding, hirdetés | Stratos",

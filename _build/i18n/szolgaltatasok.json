@@ -1,315 +1,92 @@
 {
- "_comment": [
-  "Phase 8 — the services overview route, which did not exist before.",
-  ""
- ],
- "Szolgáltatások — webdesign, fejlesztés, branding, hirdetés | Stratos": [
-  "Services — web design, development, branding, advertising | Stratos",
-  "Leistungen — Webdesign, Entwicklung, Branding, Werbung | Stratos"
- ],
- "Négy szolgáltatás, egy rendszer: egyedi weboldal KKV-nak és nagyvállalatnak, arculat és szövegezés, valamint Google és Meta hirdetéskezelés. Az ajánlat mindig egyedi.": [
-  "Four services, one system: custom websites for SMEs and enterprises, brand identity and copywriting, and Google and Meta ads management. Every proposal is tailored.",
-  "Vier Leistungen, ein System: individuelle Websites für KMU und Großunternehmen, Erscheinungsbild und Texte sowie Google- und Meta-Werbebetreuung. Jedes Angebot ist individuell."
- ],
- "<a href=\"index.html\">Stratos</a> / <b>Szolgáltatások</b>": [
-  "<a href=\"index.html\">Stratos</a> / <b>Services</b>",
-  "<a href=\"index.html\">Stratos</a> / <b>Leistungen</b>"
- ],
- "Négy szolgáltatás,<br>egy <span class=\"sig\">rendszer.</span>": [
-  "Four services,<br>one <span class=\"sig\">system.</span>",
-  "Vier Leistungen,<br>ein <span class=\"sig\">System.</span>"
- ],
- "Egy weboldal önmagában nem hoz ügyfelet. Akkor hoz, ha van mit mondania, megtalálják, és valaki figyeli, mi történik utána. Ezért négy szolgáltatásunk van, és ezért ritkán kell mind a négy.": [
-  "A website on its own doesn't bring clients. It brings them when it has something to say, when people find it, and when somebody watches what happens next. That's why there are four services — and why you rarely need all four.",
-  "Eine Website allein bringt keine Kunden. Sie bringt welche, wenn sie etwas zu sagen hat, wenn man sie findet und wenn jemand beobachtet, was danach passiert. Deshalb gibt es vier Leistungen — und deshalb braucht man selten alle vier."
- ],
- "Nincsenek előre meghirdetett csomagok. A terjedelmet és az árat a feladat összetettsége, a követelmények és az üzleti cél határozza meg, konzultáció után.": [
-  "There are no published packages. Scope and price follow the complexity of the work, the requirements and the business objective, decided after a consultation.",
-  "Es gibt keine vorgefertigten Pakete. Umfang und Preis richten sich nach der Komplexität der Aufgabe, den Anforderungen und dem Geschäftsziel — festgelegt nach der Beratung."
- ],
- "<span><b>Egyedi</b> HTML, CSS, JavaScript</span> <span><b>Három nyelven</b> magyar, angol, német</span> <span><b>Projektalapú</b> nem ügynökségi óradíj</span>": [
-  "<span><b>Custom</b> HTML, CSS, JavaScript</span> <span><b>Three languages</b> Hungarian, English, German</span> <span><b>Project-based</b> not an agency hourly rate</span>",
-  "<span><b>Individuell</b> HTML, CSS, JavaScript</span> <span><b>Drei Sprachen</b> Ungarisch, Englisch, Deutsch</span> <span><b>Projektbasiert</b> kein Agentur-Stundensatz</span>"
- ],
- "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Hogyan kapcsolódnak</span>": [
-  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">How they connect</span>",
-  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Wie sie zusammenhängen</span>"
- ],
- "A weboldal a központ. A többi <span class=\"sig\">forgalmat és jelentést ad hozzá.</span>": [
-  "The website is the centre. The rest <span class=\"sig\">adds traffic and meaning.</span>",
-  "Die Website ist das Zentrum. Der Rest <span class=\"sig\">fügt Reichweite und Bedeutung hinzu.</span>"
- ],
- "A legtöbb projekt a weboldallal kezdődik, mert az az egyetlen felület, amit teljesen te birtokolsz. Az arculat azt dönti el, hogy az oldal hitelesnek látszik-e; a hirdetés azt, hogy egyáltalán eljut-e rá valaki.": [
-  "Most projects start with the website, because it's the only surface you fully own. The brand identity decides whether it looks credible; the advertising decides whether anyone gets there at all.",
-  "Die meisten Projekte beginnen mit der Website, weil sie die einzige Fläche ist, die dir vollständig gehört. Das Erscheinungsbild entscheidet, ob sie glaubwürdig wirkt; die Werbung entscheidet, ob überhaupt jemand dorthin gelangt."
- ],
- "Ebből következik, hogy melyik szolgáltatásra van szükséged. Ha még nincs oldalad, hirdetést indítani pénzkidobás. Ha van oldalad, de senki nem találja meg, nem az oldal a szűk keresztmetszet.": [
-  "That's what tells you which service you need. If you don't have a site yet, running ads is throwing money away. If you have a site but nobody finds it, the site isn't the bottleneck.",
-  "Daraus ergibt sich, welche Leistung du brauchst. Wenn du noch keine Website hast, ist Werbung rausgeworfenes Geld. Wenn du eine Website hast, sie aber niemand findet, ist nicht die Website der Engpass."
- ],
- "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">A szolgáltatások</span>": [
-  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">The services</span>",
-  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Die Leistungen</span>"
- ],
- "Melyik üzleti problémára válasz?": [
-  "Which business problem does it answer?",
-  "Auf welches geschäftliche Problem antwortet sie?"
- ],
- "01 — Webdesign": [
-  "01 — Web design",
-  "01 — Webdesign"
- ],
- "Weboldal KKV-nak": [
-  "A website for SMEs",
-  "Website für KMU"
- ],
- "Nincs weboldalad, vagy van, de kínos megmutatni. Nem akarsz egyszerre több százezer forintot kifizetni egy olyan dologért, aminek a működéséhez utána is kell valaki. Tervezés, fejlesztés, tárhely és karbantartás egy fix havidíjban.": [
-  "You don't have a website, or you have one you'd rather not show anyone. You don't want to pay a large sum up front for something that still needs looking after afterwards. Design, development, hosting and maintenance in one fixed monthly fee.",
-  "Du hast keine Website, oder eine, die du ungern zeigst. Du willst nicht auf einmal eine große Summe für etwas zahlen, das danach weiter betreut werden muss. Gestaltung, Entwicklung, Hosting und Wartung in einer festen monatlichen Gebühr."
- ],
- "Egyéni vállalkozóknak, kis- és középvállalkozásoknak. Egyedi dizájn, kódból építve, nem oldalépítővel.": [
-  "For sole traders and small to medium businesses. Custom design, built from code, not with a page builder.",
-  "Für Einzelunternehmen sowie kleine und mittlere Betriebe. Individuelles Design, aus Code gebaut, nicht mit einem Baukasten."
- ],
- "02 — Webdesign": [
-  "02 — Web design",
-  "02 — Webdesign"
- ],
- "Weboldal nagyvállalatnak": [
-  "A website for enterprises",
-  "Website für Großunternehmen"
- ],
- "Több döntéshozó, meglévő rendszerek, jóváhagyási körök és olyan követelmények, amiket egy sablon nem tud teljesíteni. Egyedi fejlesztés, integrációk és dokumentált átadás.": [
-  "Several decision-makers, existing systems, approval rounds and requirements a template can't meet. Custom development, integrations and a documented handover.",
-  "Mehrere Entscheider, bestehende Systeme, Freigabeschleifen und Anforderungen, die eine Vorlage nicht erfüllen kann. Individuelle Entwicklung, Integrationen und eine dokumentierte Übergabe."
- ],
- "Marketingcsapatoknak és nagyobb szervezeteknek. Egyeztetett ütemezés, írásos ajánlat.": [
-  "For marketing teams and larger organisations. An agreed schedule and a written proposal.",
-  "Für Marketingteams und größere Organisationen. Abgestimmter Zeitplan, schriftliches Angebot."
- ],
- "03 — Arculat": [
-  "03 — Identity",
-  "03 — Erscheinungsbild"
- ],
- "Branding és szövegezés": [
-  "Branding and copywriting",
-  "Branding und Texte"
- ],
- "A vállalkozásod jó, de nem néz ki annak. Logó, színek, tipográfia és a szövegek, amik ugyanazt mondják minden felületen — a weboldaltól a számláig.": [
-  "Your business is good but doesn't look it. Logo, colours, typography and the words that say the same thing on every surface — from the website to the invoice.",
-  "Dein Unternehmen ist gut, sieht aber nicht so aus. Logo, Farben, Typografie und Texte, die auf jeder Fläche dasselbe sagen — von der Website bis zur Rechnung."
- ],
- "Új márkáknak és megújuló vállalkozásoknak. Gyakran a weboldal előtt érdemes.": [
-  "For new brands and businesses being refreshed. Often worth doing before the website.",
-  "Für neue Marken und Unternehmen im Umbruch. Oft sinnvoll vor der Website."
- ],
- "04 — Hirdetés": [
-  "04 — Advertising",
-  "04 — Werbung"
- ],
- "Google és Meta hirdetéskezelés": [
-  "Google and Meta ads management",
-  "Google- und Meta-Werbebetreuung"
- ],
- "Van oldalad, de nem talál rá senki, vagy hirdetsz, de nem tudod, mi lett a pénz sorsa. Kampánykezelés méréssel és érthető riporttal — nem havi képernyőfotókkal.": [
-  "You have a site but nobody finds it, or you advertise but don't know where the money went. Campaign management with measurement and a report you can read — not monthly screenshots.",
-  "Du hast eine Website, aber niemand findet sie, oder du wirbst, weißt aber nicht, wohin das Geld geflossen ist. Kampagnenbetreuung mit Messung und einem verständlichen Bericht — nicht mit monatlichen Screenshots."
- ],
- "Akkor van értelme, ha az oldal már meggyőző. Előbb a cél, aztán a költés.": [
-  "Worth it once the site is already convincing. The goal first, the spending second.",
-  "Sinnvoll, wenn die Website bereits überzeugt. Erst das Ziel, dann die Ausgaben."
- ],
- "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Kombinációk</span>": [
-  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Combinations</span>",
-  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Kombinationen</span>"
- ],
- "Mi az, ami tényleg együtt működik?": [
-  "What actually works together?",
-  "Was funktioniert wirklich zusammen?"
- ],
- "Nem azért soroljuk fel, hogy többet vegyél. Azért, mert a rossz sorrend a leggyakoribb oka annak, hogy egy projekt nem hoz eredményt.": [
-  "We're not listing this so you buy more. We're listing it because the wrong order is the most common reason a project produces nothing.",
-  "Wir listen das nicht auf, damit du mehr kaufst. Sondern weil die falsche Reihenfolge der häufigste Grund dafür ist, dass ein Projekt nichts bringt."
- ],
- "Arculat, majd weboldal": [
-  "Identity, then website",
-  "Erscheinungsbild, dann Website"
- ],
- "Ha nincs kialakult megjelenésed, az oldal tervezése közben úgyis el kell dönteni ugyanezeket. Fordított sorrendben kétszer fizeted ki.": [
-  "If you don't have a settled look, the same decisions have to be made while designing the site anyway. In the wrong order you pay for them twice.",
-  "Wenn du kein festes Erscheinungsbild hast, müssen dieselben Entscheidungen ohnehin beim Gestalten der Website fallen. In der falschen Reihenfolge zahlst du sie zweimal."
- ],
- "Weboldal, majd hirdetés": [
-  "Website, then advertising",
-  "Website, dann Werbung"
- ],
- "A hirdetés forgalmat vesz. Ha a forgalom egy meggyőzhetetlen oldalra érkezik, a költés az oldal hibáit skálázza fel.": [
-  "Advertising buys traffic. If that traffic lands on an unconvincing page, the spending scales up the page's faults.",
-  "Werbung kauft Traffic. Landet dieser Traffic auf einer nicht überzeugenden Seite, skalieren die Ausgaben nur deren Schwächen."
- ],
- "Weboldal és SEO együtt": [
-  "Website and SEO together",
-  "Website und SEO zusammen"
- ],
- "A keresőoptimalizálás nagy része szerkezet, sebesség és szöveg — ezek az oldal építése közben ingyen vannak, utólag átépítés.": [
-  "Most of search optimisation is structure, speed and text — free while the site is being built, a rebuild afterwards.",
-  "Suchmaschinenoptimierung besteht größtenteils aus Struktur, Geschwindigkeit und Text — beim Bau der Website kostenlos, nachträglich ein Umbau."
- ],
- "Csak hirdetés": [
-  "Advertising only",
-  "Nur Werbung"
- ],
- "Akkor van értelme önmagában, ha van meglévő, mérhetően működő oldalad, és a szűk keresztmetszet valóban a forgalom.": [
-  "Worth it on its own when you already have a site that measurably works and traffic really is the bottleneck.",
-  "Allein sinnvoll, wenn du bereits eine messbar funktionierende Website hast und der Engpass tatsächlich der Traffic ist."
- ],
- "Csak arculat": [
-  "Identity only",
-  "Nur Erscheinungsbild"
- ],
- "Előfordul: van működő oldalad, de a márka nem tart lépést a vállalkozással. Ilyenkor az arculat önmagában is teljes projekt.": [
-  "It happens: the site works, but the brand hasn't kept up with the business. Then the identity is a complete project on its own.",
-  "Das kommt vor: Die Website funktioniert, aber die Marke hält mit dem Unternehmen nicht Schritt. Dann ist das Erscheinungsbild allein ein vollständiges Projekt."
- ],
- "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">Az ajánlat</span>": [
-  "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">The proposal</span>",
-  "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">Das Angebot</span>"
- ],
- "Hogyan születik az árajánlat?": [
-  "How is the quote put together?",
-  "Wie entsteht das Angebot?"
- ],
- "Azért nincs árlista a weboldalon, mert egy őszinte árlistának annyi sorra lenne szüksége, hogy használhatatlan legyen. Helyette ez van.": [
-  "There's no price list on this site because an honest one would need so many lines that it would be useless. This is what there is instead.",
-  "Es gibt hier keine Preisliste, weil eine ehrliche Preisliste so viele Zeilen bräuchte, dass sie unbrauchbar wäre. Stattdessen gibt es das hier."
- ],
- "Igényfelmérés": [
-  "Understanding the requirement",
-  "Bedarfsanalyse"
- ],
- "Írásban vagy beszélgetésben. Kiderül, mit csinál a vállalkozásod, ki a vevőd, mi van most, és mit szeretnél elérni.": [
-  "In writing or in conversation. It establishes what your business does, who your customer is, what exists now, and what you want to achieve.",
-  "Schriftlich oder im Gespräch. Dabei klärt sich, was dein Unternehmen macht, wer dein Kunde ist, was aktuell existiert und was du erreichen willst."
- ],
- "Terjedelem": [
-  "Scope",
-  "Umfang"
- ],
- "Ebből lesz a scope: hány oldal, milyen funkciók, milyen tartalom, milyen integráció, ki írja a szövegeket, ki adja a képeket.": [
-  "That becomes the scope: how many pages, which features, what content, which integrations, who writes the copy, who supplies the images.",
-  "Daraus wird der Umfang: wie viele Seiten, welche Funktionen, welche Inhalte, welche Integrationen, wer die Texte schreibt, wer die Bilder liefert."
- ],
- "Írásos ajánlat": [
-  "Written proposal",
-  "Schriftliches Angebot"
- ],
- "A terjedelemre kapsz árat és ütemezést. Ha valami kimarad belőle, az is szerepel benne — így nem menet közben derül ki.": [
-  "You get a price and a schedule for that scope. Anything left out is named as well — so it doesn't surface halfway through.",
-  "Für diesen Umfang bekommst du Preis und Zeitplan. Was nicht enthalten ist, steht ebenfalls darin — damit es nicht unterwegs auftaucht."
- ],
- "Indulás vagy nem": [
-  "Go or no go",
-  "Start oder nicht"
- ],
- "Az ajánlat nem kötelezettség. Ha a projekt így nem éri meg neked, azt jobb az elején tudni.": [
-  "The proposal isn't a commitment. If the project isn't worth it to you on these terms, it's better to know at the start.",
-  "Das Angebot ist keine Verpflichtung. Wenn sich das Projekt so für dich nicht lohnt, ist es besser, das am Anfang zu wissen."
- ],
- "A négy szolgáltatás mögötti képességek": [
-  "The capabilities behind the four services",
-  "Die Fähigkeiten hinter den vier Leistungen"
- ],
- "Ez a lista arról szól, mit tudunk megcsinálni — nem arról, hogy minden projektben mindegyikre szükség van.": [
-  "This list is about what we can do — not about every project needing all of it.",
-  "Diese Liste sagt, was wir können — nicht, dass jedes Projekt alles davon braucht."
- ],
- "Egyedi HTML, CSS és JavaScript fejlesztés, sablon és oldalépítő nélkül.": [
-  "Custom HTML, CSS and JavaScript development, without templates or page builders.",
-  "Individuelle HTML-, CSS- und JavaScript-Entwicklung, ohne Vorlage und ohne Baukasten."
- ],
- "Reszponzív kialakítás, mobilon, tableten és asztali gépen tesztelve.": [
-  "Responsive layouts, tested on phone, tablet and desktop.",
-  "Responsive Layouts, getestet auf Smartphone, Tablet und Desktop."
- ],
- "Webshop és rendelési folyamat, ha a vállalkozásnak arra van szüksége.": [
-  "Online shop and ordering flow, where the business needs one.",
-  "Onlineshop und Bestellprozess, wenn das Unternehmen das braucht."
- ],
- "Keresőoptimalizálás: szerkezet, sebesség, metaadatok és szövegezés.": [
-  "Search optimisation: structure, speed, metadata and copy.",
-  "Suchmaschinenoptimierung: Struktur, Geschwindigkeit, Metadaten und Texte."
- ],
- "Szövegírás magyarul, angolul és németül.": [
-  "Copywriting in Hungarian, English and German.",
-  "Texterstellung auf Ungarisch, Englisch und Deutsch."
- ],
- "Arculattervezés: logó, színek, tipográfia, alkalmazás.": [
-  "Identity design: logo, colours, typography, application.",
-  "Gestaltung des Erscheinungsbilds: Logo, Farben, Typografie, Anwendung."
- ],
- "Google Ads és Meta (Facebook, Instagram) kampányok kezelése.": [
-  "Managing Google Ads and Meta (Facebook, Instagram) campaigns.",
-  "Betreuung von Google-Ads- und Meta-Kampagnen (Facebook, Instagram)."
- ],
- "Mérés és riportálás: mi hozott megkeresést, és mi nem.": [
-  "Measurement and reporting: what produced enquiries and what didn't.",
-  "Messung und Reporting: Was Anfragen gebracht hat und was nicht."
- ],
- "Automatizálás és integráció ott, ahol valódi kézi munkát vált ki.": [
-  "Automation and integration where it replaces real manual work.",
-  "Automatisierung und Integration dort, wo sie echte Handarbeit ersetzt."
- ],
- "Nonprofit szervezeteknek": [
-  "For non-profits",
-  "Für Non-Profit-Organisationen"
- ],
- "Az Impact Program külön útvonal": [
-  "The Impact Program is a separate route",
-  "Das Impact-Programm ist ein eigener Weg"
- ],
- "Nem szolgáltatás és nem kedvezmény. Külön jelentkezési folyamat nonprofit szervezeteknek és közösségi kezdeményezéseknek, saját elbírálási szempontokkal.": [
-  "Not a service and not a discount. A separate application process for non-profits and community initiatives, with its own assessment criteria.",
-  "Keine Leistung und kein Rabatt. Ein eigenes Bewerbungsverfahren für Non-Profit-Organisationen und Gemeinschaftsinitiativen, mit eigenen Bewertungskriterien."
- ],
- "A jelentkezés nem jelent automatikus kiválasztást, és a program nem minden szervezet számára a megfelelő út.": [
-  "Applying does not mean being selected, and the programme is not the right route for every organisation.",
-  "Eine Bewerbung bedeutet keine automatische Auswahl, und das Programm ist nicht für jede Organisation der richtige Weg."
- ],
- "Megnézem az Impact Programot": [
-  "See the Impact Program",
-  "Impact-Programm ansehen"
- ],
- "Következő lépés": [
-  "Next step",
-  "Nächster Schritt"
- ],
- "Nem tudod, melyik <span class=\"sig\">kell?</span>": [
-  "Not sure which one <span class=\"sig\">you need?</span>",
-  "Du weißt nicht, welche du <span class=\"sig\">brauchst?</span>"
- ],
- "Ez a leggyakoribb kiindulópont, és pont ezért van a díjmentes konzultáció. Egy beszélgetés után tudni fogod, mi az, amire tényleg költened érdemes — akkor is, ha az kevesebb, mint amire számítottál.": [
-  "That's the most common starting point, and it's exactly what the free consultation is for. After one conversation you'll know what is genuinely worth spending on — even if that turns out to be less than you expected.",
-  "Das ist der häufigste Ausgangspunkt, und genau dafür gibt es die kostenlose Beratung. Nach einem Gespräch weißt du, wofür sich Ausgaben wirklich lohnen — auch wenn das weniger ist, als du erwartet hast."
- ],
- "Beszéljünk róla": [
-  "Let's talk about it",
-  "Sprechen wir darüber"
- ],
- "Előbb megnézem a munkáinkat": [
-  "Show me your work first",
-  "Erst eure Projekte ansehen"
- ],
- "_p85": [
-  "Phase 8.5 — the branching service map in the hero, the label on the",
-  "horizontal service journey, and the connector line each panel ends on.",
-  "",
-  "The four map entries are whole anchors rather than loose runs because",
-  "the extractor takes a leaf with text in it as one unit. The Hungarian",
-  "href stays in the translated value on purpose: relink() runs after",
-  "translation and maps kkv.html to web-design-sme.html itself, so an",
-  "English filename written here would be looked up, missed and left as a",
-  "dead link."
- ],
+ "_comment": ["Phase 8 — the services overview route, which did not exist before.", ""],
+
+ "Szolgáltatások — webdesign, fejlesztés, branding, hirdetés | Stratos": ["Services — web design, development, branding, advertising | Stratos", "Leistungen — Webdesign, Entwicklung, Branding, Werbung | Stratos"],
+ "Négy szolgáltatás, egy rendszer: egyedi weboldal KKV-nak és nagyvállalatnak, arculat és szövegezés, valamint Google és Meta hirdetéskezelés. Az ajánlat mindig egyedi.": ["Four services, one system: custom websites for SMEs and enterprises, brand identity and copywriting, and Google and Meta ads management. Every proposal is tailored.", "Vier Leistungen, ein System: individuelle Websites für KMU und Großunternehmen, Erscheinungsbild und Texte sowie Google- und Meta-Werbebetreuung. Jedes Angebot ist individuell."],
+ "<a href=\"index.html\">Stratos</a> / <b>Szolgáltatások</b>": ["<a href=\"index.html\">Stratos</a> / <b>Services</b>", "<a href=\"index.html\">Stratos</a> / <b>Leistungen</b>"],
+ "Négy szolgáltatás,<br>egy <span class=\"sig\">rendszer.</span>": ["Four services,<br>one <span class=\"sig\">system.</span>", "Vier Leistungen,<br>ein <span class=\"sig\">System.</span>"],
+ "Egy weboldal önmagában nem hoz ügyfelet. Akkor hoz, ha van mit mondania, megtalálják, és valaki figyeli, mi történik utána. Ezért négy szolgáltatásunk van, és ezért ritkán kell mind a négy.": ["A website on its own doesn't bring clients. It brings them when it has something to say, when people find it, and when somebody watches what happens next. That's why there are four services — and why you rarely need all four.", "Eine Website allein bringt keine Kunden. Sie bringt welche, wenn sie etwas zu sagen hat, wenn man sie findet und wenn jemand beobachtet, was danach passiert. Deshalb gibt es vier Leistungen — und deshalb braucht man selten alle vier."],
+ "Nincsenek előre meghirdetett csomagok. A terjedelmet és az árat a feladat összetettsége, a követelmények és az üzleti cél határozza meg, konzultáció után.": ["There are no published packages. Scope and price follow the complexity of the work, the requirements and the business objective, decided after a consultation.", "Es gibt keine vorgefertigten Pakete. Umfang und Preis richten sich nach der Komplexität der Aufgabe, den Anforderungen und dem Geschäftsziel — festgelegt nach der Beratung."],
+ "<span><b>Egyedi</b> HTML, CSS, JavaScript</span> <span><b>Három nyelven</b> magyar, angol, német</span> <span><b>Projektalapú</b> nem ügynökségi óradíj</span>": ["<span><b>Custom</b> HTML, CSS, JavaScript</span> <span><b>Three languages</b> Hungarian, English, German</span> <span><b>Project-based</b> not an agency hourly rate</span>", "<span><b>Individuell</b> HTML, CSS, JavaScript</span> <span><b>Drei Sprachen</b> Ungarisch, Englisch, Deutsch</span> <span><b>Projektbasiert</b> kein Agentur-Stundensatz</span>"],
+ "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Hogyan kapcsolódnak</span>": ["<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">How they connect</span>", "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Wie sie zusammenhängen</span>"],
+ "A weboldal a központ. A többi <span class=\"sig\">forgalmat és jelentést ad hozzá.</span>": ["The website is the centre. The rest <span class=\"sig\">adds traffic and meaning.</span>", "Die Website ist das Zentrum. Der Rest <span class=\"sig\">fügt Reichweite und Bedeutung hinzu.</span>"],
+ "A legtöbb projekt a weboldallal kezdődik, mert az az egyetlen felület, amit teljesen te birtokolsz. Az arculat azt dönti el, hogy az oldal hitelesnek látszik-e; a hirdetés azt, hogy egyáltalán eljut-e rá valaki.": ["Most projects start with the website, because it's the only surface you fully own. The brand identity decides whether it looks credible; the advertising decides whether anyone gets there at all.", "Die meisten Projekte beginnen mit der Website, weil sie die einzige Fläche ist, die dir vollständig gehört. Das Erscheinungsbild entscheidet, ob sie glaubwürdig wirkt; die Werbung entscheidet, ob überhaupt jemand dorthin gelangt."],
+ "Ebből következik, hogy melyik szolgáltatásra van szükséged. Ha még nincs oldalad, hirdetést indítani pénzkidobás. Ha van oldalad, de senki nem találja meg, nem az oldal a szűk keresztmetszet.": ["That's what tells you which service you need. If you don't have a site yet, running ads is throwing money away. If you have a site but nobody finds it, the site isn't the bottleneck.", "Daraus ergibt sich, welche Leistung du brauchst. Wenn du noch keine Website hast, ist Werbung rausgeworfenes Geld. Wenn du eine Website hast, sie aber niemand findet, ist nicht die Website der Engpass."],
+ "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">A szolgáltatások</span>": ["<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">The services</span>", "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Die Leistungen</span>"],
+ "Melyik üzleti problémára válasz?": ["Which business problem does it answer?", "Auf welches geschäftliche Problem antwortet sie?"],
+ "01 — Webdesign": ["01 — Web design", "01 — Webdesign"],
+ "Weboldal KKV-nak": ["A website for SMEs", "Website für KMU"],
+ "Nincs weboldalad, vagy van, de kínos megmutatni. Nem akarsz egyszerre több százezer forintot kifizetni egy olyan dologért, aminek a működéséhez utána is kell valaki. Tervezés, fejlesztés, tárhely és karbantartás egy fix havidíjban.": ["You don't have a website, or you have one you'd rather not show anyone. You don't want to pay a large sum up front for something that still needs looking after afterwards. Design, development, hosting and maintenance in one fixed monthly fee.", "Du hast keine Website, oder eine, die du ungern zeigst. Du willst nicht auf einmal eine große Summe für etwas zahlen, das danach weiter betreut werden muss. Gestaltung, Entwicklung, Hosting und Wartung in einer festen monatlichen Gebühr."],
+ "Egyéni vállalkozóknak, kis- és középvállalkozásoknak. Egyedi dizájn, kódból építve, nem oldalépítővel.": ["For sole traders and small to medium businesses. Custom design, built from code, not with a page builder.", "Für Einzelunternehmen sowie kleine und mittlere Betriebe. Individuelles Design, aus Code gebaut, nicht mit einem Baukasten."],
+ "02 — Webdesign": ["02 — Web design", "02 — Webdesign"],
+ "Weboldal nagyvállalatnak": ["A website for enterprises", "Website für Großunternehmen"],
+ "Több döntéshozó, meglévő rendszerek, jóváhagyási körök és olyan követelmények, amiket egy sablon nem tud teljesíteni. Egyedi fejlesztés, integrációk és dokumentált átadás.": ["Several decision-makers, existing systems, approval rounds and requirements a template can't meet. Custom development, integrations and a documented handover.", "Mehrere Entscheider, bestehende Systeme, Freigabeschleifen und Anforderungen, die eine Vorlage nicht erfüllen kann. Individuelle Entwicklung, Integrationen und eine dokumentierte Übergabe."],
+ "Marketingcsapatoknak és nagyobb szervezeteknek. Egyeztetett ütemezés, írásos ajánlat.": ["For marketing teams and larger organisations. An agreed schedule and a written proposal.", "Für Marketingteams und größere Organisationen. Abgestimmter Zeitplan, schriftliches Angebot."],
+ "03 — Arculat": ["03 — Identity", "03 — Erscheinungsbild"],
+ "Branding és szövegezés": ["Branding and copywriting", "Branding und Texte"],
+ "A vállalkozásod jó, de nem néz ki annak. Logó, színek, tipográfia és a szövegek, amik ugyanazt mondják minden felületen — a weboldaltól a számláig.": ["Your business is good but doesn't look it. Logo, colours, typography and the words that say the same thing on every surface — from the website to the invoice.", "Dein Unternehmen ist gut, sieht aber nicht so aus. Logo, Farben, Typografie und Texte, die auf jeder Fläche dasselbe sagen — von der Website bis zur Rechnung."],
+ "Új márkáknak és megújuló vállalkozásoknak. Gyakran a weboldal előtt érdemes.": ["For new brands and businesses being refreshed. Often worth doing before the website.", "Für neue Marken und Unternehmen im Umbruch. Oft sinnvoll vor der Website."],
+ "04 — Hirdetés": ["04 — Advertising", "04 — Werbung"],
+ "Google és Meta hirdetéskezelés": ["Google and Meta ads management", "Google- und Meta-Werbebetreuung"],
+ "Van oldalad, de nem talál rá senki, vagy hirdetsz, de nem tudod, mi lett a pénz sorsa. Kampánykezelés méréssel és érthető riporttal — nem havi képernyőfotókkal.": ["You have a site but nobody finds it, or you advertise but don't know where the money went. Campaign management with measurement and a report you can read — not monthly screenshots.", "Du hast eine Website, aber niemand findet sie, oder du wirbst, weißt aber nicht, wohin das Geld geflossen ist. Kampagnenbetreuung mit Messung und einem verständlichen Bericht — nicht mit monatlichen Screenshots."],
+ "Akkor van értelme, ha az oldal már meggyőző. Előbb a cél, aztán a költés.": ["Worth it once the site is already convincing. The goal first, the spending second.", "Sinnvoll, wenn die Website bereits überzeugt. Erst das Ziel, dann die Ausgaben."],
+ "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Kombinációk</span>": ["<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Combinations</span>", "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Kombinationen</span>"],
+ "Mi az, ami tényleg együtt működik?": ["What actually works together?", "Was funktioniert wirklich zusammen?"],
+ "Nem azért soroljuk fel, hogy többet vegyél. Azért, mert a rossz sorrend a leggyakoribb oka annak, hogy egy projekt nem hoz eredményt.": ["We're not listing this so you buy more. We're listing it because the wrong order is the most common reason a project produces nothing.", "Wir listen das nicht auf, damit du mehr kaufst. Sondern weil die falsche Reihenfolge der häufigste Grund dafür ist, dass ein Projekt nichts bringt."],
+ "Arculat, majd weboldal": ["Identity, then website", "Erscheinungsbild, dann Website"],
+ "Ha nincs kialakult megjelenésed, az oldal tervezése közben úgyis el kell dönteni ugyanezeket. Fordított sorrendben kétszer fizeted ki.": ["If you don't have a settled look, the same decisions have to be made while designing the site anyway. In the wrong order you pay for them twice.", "Wenn du kein festes Erscheinungsbild hast, müssen dieselben Entscheidungen ohnehin beim Gestalten der Website fallen. In der falschen Reihenfolge zahlst du sie zweimal."],
+ "Weboldal, majd hirdetés": ["Website, then advertising", "Website, dann Werbung"],
+ "A hirdetés forgalmat vesz. Ha a forgalom egy meggyőzhetetlen oldalra érkezik, a költés az oldal hibáit skálázza fel.": ["Advertising buys traffic. If that traffic lands on an unconvincing page, the spending scales up the page's faults.", "Werbung kauft Traffic. Landet dieser Traffic auf einer nicht überzeugenden Seite, skalieren die Ausgaben nur deren Schwächen."],
+ "Weboldal és SEO együtt": ["Website and SEO together", "Website und SEO zusammen"],
+ "A keresőoptimalizálás nagy része szerkezet, sebesség és szöveg — ezek az oldal építése közben ingyen vannak, utólag átépítés.": ["Most of search optimisation is structure, speed and text — free while the site is being built, a rebuild afterwards.", "Suchmaschinenoptimierung besteht größtenteils aus Struktur, Geschwindigkeit und Text — beim Bau der Website kostenlos, nachträglich ein Umbau."],
+ "Csak hirdetés": ["Advertising only", "Nur Werbung"],
+ "Akkor van értelme önmagában, ha van meglévő, mérhetően működő oldalad, és a szűk keresztmetszet valóban a forgalom.": ["Worth it on its own when you already have a site that measurably works and traffic really is the bottleneck.", "Allein sinnvoll, wenn du bereits eine messbar funktionierende Website hast und der Engpass tatsächlich der Traffic ist."],
+ "Csak arculat": ["Identity only", "Nur Erscheinungsbild"],
+ "Előfordul: van működő oldalad, de a márka nem tart lépést a vállalkozással. Ilyenkor az arculat önmagában is teljes projekt.": ["It happens: the site works, but the brand hasn't kept up with the business. Then the identity is a complete project on its own.", "Das kommt vor: Die Website funktioniert, aber die Marke hält mit dem Unternehmen nicht Schritt. Dann ist das Erscheinungsbild allein ein vollständiges Projekt."],
+ "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">Az ajánlat</span>": ["<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">The proposal</span>", "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">Das Angebot</span>"],
+ "Hogyan születik az árajánlat?": ["How is the quote put together?", "Wie entsteht das Angebot?"],
+ "Azért nincs árlista a weboldalon, mert egy őszinte árlistának annyi sorra lenne szüksége, hogy használhatatlan legyen. Helyette ez van.": ["There's no price list on this site because an honest one would need so many lines that it would be useless. This is what there is instead.", "Es gibt hier keine Preisliste, weil eine ehrliche Preisliste so viele Zeilen bräuchte, dass sie unbrauchbar wäre. Stattdessen gibt es das hier."],
+ "Igényfelmérés": ["Understanding the requirement", "Bedarfsanalyse"],
+ "Írásban vagy beszélgetésben. Kiderül, mit csinál a vállalkozásod, ki a vevőd, mi van most, és mit szeretnél elérni.": ["In writing or in conversation. It establishes what your business does, who your customer is, what exists now, and what you want to achieve.", "Schriftlich oder im Gespräch. Dabei klärt sich, was dein Unternehmen macht, wer dein Kunde ist, was aktuell existiert und was du erreichen willst."],
+ "Terjedelem": ["Scope", "Umfang"],
+ "Ebből lesz a scope: hány oldal, milyen funkciók, milyen tartalom, milyen integráció, ki írja a szövegeket, ki adja a képeket.": ["That becomes the scope: how many pages, which features, what content, which integrations, who writes the copy, who supplies the images.", "Daraus wird der Umfang: wie viele Seiten, welche Funktionen, welche Inhalte, welche Integrationen, wer die Texte schreibt, wer die Bilder liefert."],
+ "Írásos ajánlat": ["Written proposal", "Schriftliches Angebot"],
+ "A terjedelemre kapsz árat és ütemezést. Ha valami kimarad belőle, az is szerepel benne — így nem menet közben derül ki.": ["You get a price and a schedule for that scope. Anything left out is named as well — so it doesn't surface halfway through.", "Für diesen Umfang bekommst du Preis und Zeitplan. Was nicht enthalten ist, steht ebenfalls darin — damit es nicht unterwegs auftaucht."],
+ "Indulás vagy nem": ["Go or no go", "Start oder nicht"],
+ "Az ajánlat nem kötelezettség. Ha a projekt így nem éri meg neked, azt jobb az elején tudni.": ["The proposal isn't a commitment. If the project isn't worth it to you on these terms, it's better to know at the start.", "Das Angebot ist keine Verpflichtung. Wenn sich das Projekt so für dich nicht lohnt, ist es besser, das am Anfang zu wissen."],
+ "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Amit be tudunk vállalni</span>": ["<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">What we can take on</span>", "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Was wir übernehmen können</span>"],
+ "A négy szolgáltatás mögötti képességek": ["The capabilities behind the four services", "Die Fähigkeiten hinter den vier Leistungen"],
+ "Ez a lista arról szól, mit tudunk megcsinálni — nem arról, hogy minden projektben mindegyikre szükség van.": ["This list is about what we can do — not about every project needing all of it.", "Diese Liste sagt, was wir können — nicht, dass jedes Projekt alles davon braucht."],
+ "Egyedi HTML, CSS és JavaScript fejlesztés, sablon és oldalépítő nélkül.": ["Custom HTML, CSS and JavaScript development, without templates or page builders.", "Individuelle HTML-, CSS- und JavaScript-Entwicklung, ohne Vorlage und ohne Baukasten."],
+ "Reszponzív kialakítás, mobilon, tableten és asztali gépen tesztelve.": ["Responsive layouts, tested on phone, tablet and desktop.", "Responsive Layouts, getestet auf Smartphone, Tablet und Desktop."],
+ "Webshop és rendelési folyamat, ha a vállalkozásnak arra van szüksége.": ["Online shop and ordering flow, where the business needs one.", "Onlineshop und Bestellprozess, wenn das Unternehmen das braucht."],
+ "Keresőoptimalizálás: szerkezet, sebesség, metaadatok és szövegezés.": ["Search optimisation: structure, speed, metadata and copy.", "Suchmaschinenoptimierung: Struktur, Geschwindigkeit, Metadaten und Texte."],
+ "Szövegírás magyarul, angolul és németül.": ["Copywriting in Hungarian, English and German.", "Texterstellung auf Ungarisch, Englisch und Deutsch."],
+ "Arculattervezés: logó, színek, tipográfia, alkalmazás.": ["Identity design: logo, colours, typography, application.", "Gestaltung des Erscheinungsbilds: Logo, Farben, Typografie, Anwendung."],
+ "Google Ads és Meta (Facebook, Instagram) kampányok kezelése.": ["Managing Google Ads and Meta (Facebook, Instagram) campaigns.", "Betreuung von Google-Ads- und Meta-Kampagnen (Facebook, Instagram)."],
+ "Mérés és riportálás: mi hozott megkeresést, és mi nem.": ["Measurement and reporting: what produced enquiries and what didn't.", "Messung und Reporting: Was Anfragen gebracht hat und was nicht."],
+ "Automatizálás és integráció ott, ahol valódi kézi munkát vált ki.": ["Automation and integration where it replaces real manual work.", "Automatisierung und Integration dort, wo sie echte Handarbeit ersetzt."],
+ "Nonprofit szervezeteknek": ["For non-profits", "Für Non-Profit-Organisationen"],
+ "Az Impact Program külön útvonal": ["The Impact Program is a separate route", "Das Impact-Programm ist ein eigener Weg"],
+ "Nem szolgáltatás és nem kedvezmény. Külön jelentkezési folyamat nonprofit szervezeteknek és közösségi kezdeményezéseknek, saját elbírálási szempontokkal.": ["Not a service and not a discount. A separate application process for non-profits and community initiatives, with its own assessment criteria.", "Keine Leistung und kein Rabatt. Ein eigenes Bewerbungsverfahren für Non-Profit-Organisationen und Gemeinschaftsinitiativen, mit eigenen Bewertungskriterien."],
+ "A jelentkezés nem jelent automatikus kiválasztást, és a program nem minden szervezet számára a megfelelő út.": ["Applying does not mean being selected, and the programme is not the right route for every organisation.", "Eine Bewerbung bedeutet keine automatische Auswahl, und das Programm ist nicht für jede Organisation der richtige Weg."],
+ "Megnézem az Impact Programot": ["See the Impact Program", "Impact-Programm ansehen"],
+ "Következő lépés": ["Next step", "Nächster Schritt"],
+ "Nem tudod, melyik <span class=\"sig\">kell?</span>": ["Not sure which one <span class=\"sig\">you need?</span>", "Du weißt nicht, welche du <span class=\"sig\">brauchst?</span>"],
+ "Ez a leggyakoribb kiindulópont, és pont ezért van a díjmentes konzultáció. Egy beszélgetés után tudni fogod, mi az, amire tényleg költened érdemes — akkor is, ha az kevesebb, mint amire számítottál.": ["That's the most common starting point, and it's exactly what the free consultation is for. After one conversation you'll know what is genuinely worth spending on — even if that turns out to be less than you expected.", "Das ist der häufigste Ausgangspunkt, und genau dafür gibt es die kostenlose Beratung. Nach einem Gespräch weißt du, wofür sich Ausgaben wirklich lohnen — auch wenn das weniger ist, als du erwartet hast."],
+ "Beszéljünk róla": ["Let's talk about it", "Sprechen wir darüber"],
+ "Előbb megnézem a munkáinkat": ["Show me your work first", "Erst eure Projekte ansehen"],
+
+ "_p85": ["Phase 8.5 — the branching service map in the hero, the label on the",
+          "horizontal service journey, and the connector line each panel ends on.",
+          "",
+          "The four map entries are whole anchors rather than loose runs because",
+          "the extractor takes a leaf with text in it as one unit. The Hungarian",
+          "href stays in the translated value on purpose: relink() runs after",
+          "translation and maps kkv.html to web-design-sme.html itself, so an",
+          "English filename written here would be looked up, missed and left as a",
+          "dead link."],
+
  "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Webdesign</span><span class=\"branch__t\">Weboldal KKV-nak</span></a>": [
   "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Web design</span><span class=\"branch__t\">Website for an SME</span></a>",
   "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Webdesign</span><span class=\"branch__t\">Website für KMU</span></a>"
@@ -326,10 +103,9 @@
   "<a href=\"hirdeteskezeles.html\"><span class=\"branch__k\">04 — Advertising</span><span class=\"branch__t\">Google and Meta ad management</span></a>",
   "<a href=\"hirdeteskezeles.html\"><span class=\"branch__k\">04 — Werbung</span><span class=\"branch__t\">Google- und Meta-Werbung</span></a>"
  ],
- "A négy szolgáltatás": [
-  "The four services",
-  "Die vier Leistungen"
- ],
+
+ "A négy szolgáltatás": ["The four services", "Die vier Leistungen"],
+
  "<b>Innen tovább:</b> ha a megjelenés még nincs eldöntve, az arculat előbbre való.": [
   "<b>What follows:</b> if the look isn't settled yet, the identity comes first.",
   "<b>Und danach:</b> steht das Erscheinungsbild noch nicht fest, kommt es zuerst."
@@ -345,261 +121,5 @@
  "<b>Innen tovább:</b> amit a mérés megmutat, az visszamegy az oldalba.": [
   "<b>What follows:</b> what the measurement shows goes back into the site.",
   "<b>Und danach:</b> was die Messung zeigt, fließt zurück in die Website."
- ],
- "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">A folyamat</span>": [
-  "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">The process</span>",
-  "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Der Prozess</span>"
- ],
- "Minden ponton tudod, mi történik, mit kapsz tőlünk, mit várunk tőled, és mi lesz az eredménye.": [
-  "At every point you know what is happening, what you get from us, what we expect from you, and what the outcome will be.",
-  "An jedem Punkt wissen Sie, was geschieht, was Sie von uns bekommen, was wir von Ihnen erwarten und was dabei herauskommt."
- ],
- "Mi történik": [
-  "What happens",
-  "Was geschieht"
- ],
- "Amit átadunk": [
-  "What we hand over",
-  "Was wir übergeben"
- ],
- "Amit tőled kérünk": [
-  "What we ask of you",
-  "Was wir von Ihnen brauchen"
- ],
- "Várható eredmény": [
-  "Expected outcome",
-  "Erwartetes Ergebnis"
- ],
- "Felderítés": [
-  "Discovery",
-  "Erkundung"
- ],
- "Egy beszélgetés arról, hol tart a vállalkozás, és mi az, ami valóban akadályozza.": [
-  "A conversation about where the business stands, and what is genuinely holding it back.",
-  "Ein Gespräch darüber, wo das Unternehmen steht und was es wirklich aufhält."
- ],
- "Írásos helyzetkép és egy őszinte válasz arra, hogy tudunk-e segíteni.": [
-  "A written assessment, and an honest answer on whether we can help.",
-  "Eine schriftliche Bestandsaufnahme und eine ehrliche Antwort darauf, ob wir helfen können."
- ],
- "Hozzáférést a jelenlegi számokhoz és időt egy alapos beszélgetésre.": [
-  "Access to your current figures, and time for a thorough conversation.",
-  "Zugang zu Ihren aktuellen Zahlen und Zeit für ein gründliches Gespräch."
- ],
- "Közös kép a kiindulási pontról — vagy egy korrekt nem.": [
-  "A shared picture of the starting point — or a straight no.",
-  "Ein gemeinsames Bild vom Ausgangspunkt — oder ein klares Nein."
- ],
- "Kutatás": [
-  "Research",
-  "Recherche"
- ],
- "Versenytárs- és keresési elemzés, a jelenlegi felületek technikai átvizsgálása.": [
-  "Competitor and search analysis, and a technical review of the current surfaces.",
-  "Wettbewerbs- und Suchanalyse sowie eine technische Prüfung der bestehenden Flächen."
- ],
- "Kutatási összefoglaló: kereslet, versenyhelyzet, technikai hiányosságok.": [
-  "A research summary: demand, competitive position, technical gaps.",
-  "Eine Rechercheübersicht: Nachfrage, Wettbewerbslage, technische Lücken."
- ],
- "Belső ismeretet az ügyfelekről, amit adat nem mutat meg.": [
-  "Inside knowledge about your customers that the data does not show.",
-  "Internes Wissen über Ihre Kunden, das Daten nicht zeigen."
- ],
- "Tényeken alapuló alap a stratégiához.": [
-  "A fact-based foundation for the strategy.",
-  "Eine faktenbasierte Grundlage für die Strategie."
- ],
- "Stratégia": [
-  "Strategy",
-  "Strategie"
- ],
- "Eldöntjük a pozicionálást, az üzeneteket és a csatornák sorrendjét.": [
-  "We decide the positioning, the messages and the order of the channels.",
-  "Wir entscheiden über Positionierung, Botschaften und die Reihenfolge der Kanäle."
- ],
- "Stratégiai dokumentum mérhető célokkal és ütemezéssel.": [
-  "A strategy document with measurable goals and a schedule.",
-  "Ein Strategiedokument mit messbaren Zielen und Zeitplan."
- ],
- "Döntést. Ez az a pont, ahol a legtöbb múlik rajtad.": [
-  "A decision. This is the point where the most depends on you.",
-  "Eine Entscheidung. Das ist der Punkt, an dem am meisten von Ihnen abhängt."
- ],
- "Egy irány, amelyhez minden későbbi döntés mérhető.": [
-  "A direction every later decision can be measured against.",
-  "Eine Richtung, an der sich jede spätere Entscheidung messen lässt."
- ],
- "Arculat és felületi tervek készülnek, valós tartalommal, nem kitöltő szöveggel.": [
-  "Branding and interface designs are produced, with real content, not filler text.",
-  "Es entstehen Marken- und Oberflächenentwürfe, mit echten Inhalten, nicht mit Blindtext."
- ],
- "Jóváhagyható dizájnterv minden fontos nézetre.": [
-  "An approvable design for every important view.",
-  "Ein freigabefähiger Entwurf für jede wichtige Ansicht."
- ],
- "Visszajelzést egy körben, összegyűjtve.": [
-  "Feedback in one round, collected together.",
-  "Rückmeldungen in einer Runde, gesammelt."
- ],
- "Jóváhagyott terv, amiből egyértelmű, mi épül.": [
-  "An approved design that makes it unambiguous what gets built.",
-  "Ein freigegebener Entwurf, aus dem eindeutig hervorgeht, was gebaut wird."
- ],
- "Fejlesztés": [
-  "Development",
-  "Entwicklung"
- ],
- "Megépítjük. Menet közben látod, nem a végén.": [
-  "We build it. You see it as it goes, not at the end.",
-  "Wir bauen es. Sie sehen es währenddessen, nicht erst am Ende."
- ],
- "Működő oldal tesztkörnyezetben, mérésekkel felszerelve.": [
-  "A working site in a test environment, fitted with measurement.",
-  "Eine funktionierende Website in einer Testumgebung, mit Messung ausgestattet."
- ],
- "Tartalmat és a hozzáféréseket.": [
-  "Content, and the access you hold.",
-  "Inhalte und die Zugänge."
- ],
- "Élesíthető rendszer, nem bemutató.": [
-  "A system ready to go live, not a demo.",
-  "Ein System, das live gehen kann, keine Vorführung."
- ],
- "Élesítés, átirányítások, mérés ellenőrzése, hirdetések indítása.": [
-  "Go-live, redirects, verification of the measurement, starting the advertising.",
-  "Livegang, Weiterleitungen, Prüfung der Messung, Start der Werbung."
- ],
- "Élő rendszer és átadási dokumentáció.": [
-  "A live system, and handover documentation.",
-  "Ein laufendes System und eine Übergabedokumentation."
- ],
- "Jóváhagyást az indulásra.": [
-  "Approval to launch.",
-  "Die Freigabe für den Start."
- ],
- "A rendszer működik és mér.": [
-  "The system runs, and measures.",
-  "Das System läuft und misst."
- ],
- "Optimalizálás": [
-  "Optimisation",
-  "Optimierung"
- ],
- "Havonta: mérés, elemzés, módosítás. Ez nem projektzárás, hanem üzemeltetés.": [
-  "Every month: measure, analyse, adjust. This is not project closure, it is operation.",
-  "Monatlich: messen, analysieren, anpassen. Das ist kein Projektabschluss, sondern Betrieb."
- ],
- "Havi riport és a végrehajtott módosítások listája.": [
-  "A monthly report, and the list of changes made.",
-  "Ein Monatsbericht und die Liste der durchgeführten Änderungen."
- ],
- "Visszajelzést arról, milyen megkeresések érkeznek.": [
-  "Feedback on what kind of enquiries are coming in.",
-  "Rückmeldung dazu, welche Anfragen eingehen."
- ],
- "Rendszer, amely idővel jobb lesz, nem elavul.": [
-  "A system that gets better over time rather than going out of date.",
-  "Ein System, das mit der Zeit besser wird, statt zu veralten."
- ],
- "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Amit be tudunk vállalni</span>": [
-  "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">What we can take on</span>",
-  "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Was wir übernehmen können</span>"
- ],
- "Élesítés": [
-  "Go-live",
-  "Livegang"
- ],
- "Hogyan dolgozunk egy projekten?": [
-  "How do we work through a project?",
-  "Wie arbeiten wir an einem Projekt?"
- ],
- "_comment_system": [
-  "Phase 5.1 — the nine areas in three layers, moved here from the homepage's",
-  "system chapter. Every English and German string below is the translation",
-  "that already existed for it in experiments/src/full/locales/{en,de}.ts and",
-  "messages.ts; nothing was retranslated. The heading drops the comma the",
-  "homepage statement breaks its two display lines on, because here it is one",
-  "heading rather than two lines. See scripts/system-inventory.mjs."
- ],
- "Kilenc terület, három rétegben": [
-  "Nine areas in three layers",
-  "Neun Bereiche in drei Schichten"
- ],
- "A sorrend a lényeg, nem az, hogy kilenc van belőle.": [
-  "The order is the point, not the fact that there are nine of them.",
-  "Es kommt auf die Reihenfolge an, nicht darauf, dass es neun sind."
- ],
- "Mag": [
-  "Core",
-  "Kern"
- ],
- "Ez dönti el a többit. Enélkül minden alatta lévő döntés találgatás.": [
-  "This decides the rest. Without it, every decision below it is guesswork.",
-  "Er entscheidet über alles Weitere. Ohne ihn ist jede Entscheidung darunter Raterei."
- ],
- "Piac, versenytársak, keresési szándék. Mielőtt bármit építenénk.": [
-  "Market, competitors, search intent. Before we build anything.",
-  "Markt, Wettbewerber, Suchintention. Bevor wir irgendetwas bauen."
- ],
- "Mit mondunk, kinek, és milyen sorrendben. Ez dönti el a többit.": [
-  "What we say, to whom, and in what order. This decides the rest.",
-  "Was wir sagen, zu wem und in welcher Reihenfolge. Das entscheidet über alles Weitere."
- ],
- "Szerkezet": [
-  "Structure",
-  "Struktur"
- ],
- "Amit a stratégia meghatároz, itt épül fel és itt kap formát.": [
-  "What the strategy defines is built here, and takes its shape here.",
-  "Was die Strategie festlegt, wird hier aufgebaut und erhält hier seine Form."
- ],
- "Arculat": [
-  "Branding",
-  "Branding"
- ],
- "A vizuális nyelv, amely minden felületen ugyanaz marad.": [
-  "The visual language that stays the same on every surface.",
-  "Die visuelle Sprache, die auf jeder Fläche dieselbe bleibt."
- ],
- "A központ, ahová minden csatorna vezet, és ahol a döntés megszületik.": [
-  "The centre every channel leads to, and where the decision is made.",
-  "Das Zentrum, zu dem alle Kanäle führen und wo die Entscheidung fällt."
- ],
- "Egyedi funkciók, integrációk, sebesség. Nem sablon, nem plugin-halmaz.": [
-  "Custom features, integrations, speed. Not a template, not a pile of plugins.",
-  "Eigene Funktionen, Integrationen, Geschwindigkeit. Keine Vorlage, kein Plugin-Haufen."
- ],
- "Működés": [
-  "Operation",
-  "Betrieb"
- ],
- "Ami csak akkor működik, ha a két belső réteg már a helyén van.": [
-  "What only works once the two inner layers are already in place.",
-  "Was nur funktioniert, wenn die beiden inneren Schichten bereits stehen."
- ],
- "Fizetett forgalom oda, ahol már van mit fogadnia.": [
-  "Paid traffic where there is already something to receive it.",
-  "Bezahlter Traffic dorthin, wo ihn bereits etwas empfängt."
- ],
- "Analitika": [
-  "Analytics",
-  "Analytics"
- ],
- "Mérés, amely nem riportot termel, hanem döntést.": [
-  "Measurement that produces a decision, not a report.",
-  "Messung, die keine Reports hervorbringt, sondern Entscheidungen."
- ],
- "Havi finomhangolás a mért adatok alapján, nem megérzésből.": [
-  "Monthly fine-tuning based on measured data, not on hunches.",
-  "Monatliche Feinabstimmung auf Basis gemessener Daten, nicht aus dem Bauch heraus."
- ],
- "Automatizálás": [
-  "Automation",
-  "Automatisierung"
- ],
- "Ami ismétlődik, azt nem embernek kell csinálnia.": [
-  "What repeats should not be done by a person.",
-  "Was sich wiederholt, muss kein Mensch tun."
  ]
 }

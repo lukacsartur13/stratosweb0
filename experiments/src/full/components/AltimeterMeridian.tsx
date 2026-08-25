@@ -7,14 +7,7 @@ import { cameraHeightAt, clamp, settle, journey, lerp } from '../journey';
 import {
   RAIL_DEPTH_TRIM,
   RAIL_SCALE_TRIM,
-  actFrame,
-  actInstrumentScale,
-  actWorldX,
-  actWorldY,
   currentFit,
-  INSTRUMENT_CUTOFF,
-  instrumentPresenceAt,
-  instrumentStateAt,
   railCameraYaw,
   railFaceYaw,
   railTrack,
@@ -23,7 +16,6 @@ import {
   recededDepth,
   recedeAt,
   setLiveRecede,
-  WITHDRAW_FLOOR,
 } from '../composition';
 import { RINGS, meridian } from '../meridian';
 import { useDebugOverride } from '../useJourneyScroll';
@@ -109,7 +101,7 @@ type Emissive = { mat: MeshStandardMaterial; base: number };
 const readQuality = () => journey.debug.quality;
 
 export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
-  const { scene, materials } = useGLTF(MODEL_URL, false, false);
+  const { scene, materials } = useGLTF(MODEL_URL);
   const root = useRef<Group>(null);
   const gimbal = useRef<Group>(null);
   const housing = useRef<Group>(null);
@@ -254,7 +246,7 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
     [],
   );
 
-  const smoothed = useRef({ primary: 0, secondary: 0, power: 0, recede: 0, tiltX: 0, tiltY: 0, presence: 1 });
+  const smoothed = useRef({ primary: 0, secondary: 0, power: 0, recede: 0, tiltX: 0, tiltY: 0 });
   const lastProgress = useRef(0);
 
   useFrame((_, delta) => {
@@ -394,7 +386,7 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
       // change size. It buys the ring composition a little more edge margin
       // exactly where the lateral budget is tightest, and settling further away
       // as it moves aside is the mass-bearing direction.
-      const railScale = recededScale(recede) * (1 - RAIL_SCALE_TRIM * off);
+      const scale = recededScale(recede) * (1 - RAIL_SCALE_TRIM * off);
       const z = recededDepth(recede) - RAIL_DEPTH_TRIM * off;
 
       // Distance from the camera to the instrument's plane. The camera's z is
@@ -402,91 +394,7 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
       // of the altitude and forward and reverse traversal agree to the ulp.
       const distance = Math.max(camera.position.z - z, 1e-3);
       const camYaw = railCameraYaw(m);
-      const railX = railWorldX(m, distance, camYaw, Math.max(size.width, 1) / Math.max(size.height, 1));
-
-      // --- the act placement ---------------------------------------------------
-      //
-      // THE APPROVED ART DIRECTION PUTS THE INSTRUMENT IN TWO FRAMES, AT TWO
-      // AUTHORED POSITIONS, AT TWO AUTHORED SIZES.
-      //
-      // Act I: a 221px dial in the upper right, its right edge on the right
-      // margin line, with the statement below and to the left of it. Act VI: a
-      // 160px dial low and centred, under the arrival. Neither is a centred
-      // object with copy beside it, which is the composition the rails and the
-      // recede were built to produce — so for those two acts this solves the
-      // world transform that lands the object exactly where the master frame
-      // puts it, and the rails and the recede stand down.
-      //
-      // Solved, not tuned: the same closed form as `railWorldX`, on both axes,
-      // plus the inverse of `projectedEssentialHeight` for the size. Pure
-      // functions of the progress and the viewport, so forward and reverse
-      // traversal are identical by construction, exactly as everything else in
-      // this scene is.
-      //
-      // The presence ramp is the second half of it, and it is not an opacity
-      // trick. Between the two acts the object is NOT IN THE PICTURE (§32), and
-      // the way it leaves is by withdrawing — the same scale and depth pair
-      // every other change of size on this object goes through — until it is
-      // small enough that drawing it is a lie, at which point it stops being
-      // drawn. Nothing is faded, nothing is desaturated, and nothing is left on
-      // screen at 8% opacity pretending to be atmosphere.
-      const fit = currentFit();
-      const frame = actFrame(fit);
-      const state = instrumentStateAt(journey.current);
-      const presenceTarget = instrumentPresenceAt(journey.current);
-      s.presence = settle(s.presence, presenceTarget, 0.9, dt);
-      const presence = state ? state.presence : s.presence;
-
-      let x = railX;
-      let scale = railScale;
-      if (state) {
-        const aspect = Math.max(size.width, 1) / Math.max(size.height, 1);
-        x = actWorldX(state.x, distance, aspect, fit, frame);
-        root.current.position.y =
-          cameraHeightAt(journey.current) + actWorldY(state.y, distance, fit, frame);
-        scale = actInstrumentScale(state.dial, fit, frame, m);
-      }
-
-      // Withdrawal. `presence` is 1 in the two acts that have the object and 0
-      // everywhere else, ramped over 0.4 of a screen at each edge, so the exit
-      // and the return are movements rather than cuts.
-      // RAISED FROM 0.012 TO 0.05 BY THE CONTINUITY PASS — §46, and it is the
-      // arrival's optical pass (§25) reaching a frame it was not aimed at.
-      //
-      // The withdrawal shrinks and recedes rather than fading, which is the
-      // right grammar and is why this cut-off exists at all: a dial at 8%
-      // opacity across the middle of a frame is atmosphere pretending to be an
-      // object. But a SHRUNK object is still fully lit, and §H2 of the
-      // continuity report roughly doubled the key and quadrupled the rim above
-      // 25 000 m — so the same 2% presence that used to be invisible in the
-      // action frame came back as a legible little ring at x = 1113.
-      //
-      // Caught by photographing the seven master frames against the accepted
-      // implementation's own stills: the action beat is meant to be the
-      // emptiest frame on the page and it had gained an object.
-      //
-      // 0.05 rather than a fade. At 0.05 the object is at 22% of its scale and
-      // 0.86 units further back, and the ramp spends the last two hundredths of
-      // a screen of scroll between here and zero — so the cut is not visible as
-      // a cut, and the alternative would be changing a movement into a fade
-      // everywhere to fix one frame. Act I and Act VI hold the object at
-      // presence 1 and are untouched by construction.
-      // THE WITHDRAWAL MOVED. It is now inside the solved state — see
-      // `instrumentStateAt`, where it is one uniform scale about the frame's
-      // principal point instead of a scale multiplier here and a depth offset
-      // below. Same law, same 0.18 floor, same cut-off; the difference is that
-      // the mask can perform the identical arithmetic and therefore cannot come
-      // off the object while it leaves (§11, §28). The `if (state)` branch above
-      // has already taken the shrink and the pull, because `state.dial` and
-      // `state.x/y` carry them.
-      //
-      // The rail path — reachable only with a placement table that has no
-      // entries — keeps the old two-piece form, since there is no mask on it.
-      root.current.visible = presence > INSTRUMENT_CUTOFF && !journey.debug.hideInstrument;
-      if (!state && presence < 1) {
-        scale *= WITHDRAW_FLOOR + (1 - WITHDRAW_FLOOR) * presence;
-        root.current.position.z = z - (1 - presence) * 0.9;
-      }
+      const x = railWorldX(m, distance, camYaw, Math.max(size.width, 1) / Math.max(size.height, 1));
 
       root.current.position.x = x;
       // Rides at exactly the camera's height, so it sits on the view axis and is
@@ -495,8 +403,8 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
       // is actually told — but it no longer climbs relative to the instrument.
       // The rails move the composition laterally only; nothing here touches the
       // vertical, and the vertical centre tolerance is unchanged.
-      if (!state) root.current.position.y = cameraHeightAt(journey.current);
-      if (state || presence >= 1) root.current.position.z = z;
+      root.current.position.y = cameraHeightAt(journey.current);
+      root.current.position.z = z;
       root.current.scale.setScalar(scale);
 
       // The three-quarter reveal. It opens as the rings separate and holds.
@@ -509,34 +417,11 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
       // instrument is small enough that any of this costs legibility, so it
       // gets less than half.
       const reveal = meridian.rings[0].settle * 0.35 + meridian.rings[1].settle * 0.4 + meridian.rings[2].settle * 0.25;
-      // 12 degrees, not 27, and the reason is §13 of the production brief.
-      //
-      // 27 was chosen as the smallest angle at which the central shaft clears
-      // the case, against the largest at which the dial is still readable
-      // head-on — a correct trade for a composition in which the arrival was
-      // one object among several and the visitor had been watching it turn for
-      // eleven chapters. The approved arrival is not that: it is the one
-      // symmetrical frame in the design, the object is square-on, and §13 asks
-      // for equilibrium rather than for a three-quarter presentation.
-      //
-      // 12 keeps the shaft visible — the axis still reads, which was the
-      // original constraint — and returns most of the dial to the viewer. It is
-      // a presentation change, not a model change: nothing about the geometry,
-      // the rings or the materials moved.
-      // The authored pose is an ADDITION to the reveal and to the power-on ramp,
-      // never a replacement for either: the object the visitor sees at any act
-      // is still the object the whole page has been assembling, turned by the
-      // few degrees that act's composition asks for. §15 — the minimum physical
-      // motion, and no rotation that exists only because it could.
-      const yaw =
-        reveal * (landscape ? 12 : 11) * DEG + journey.debug.instrumentYaw + (state ? state.yaw * DEG : 0);
-      const pitch = reveal * (landscape ? -4 : -4) * DEG + (state ? state.pitch * DEG : 0);
+      const yaw = reveal * (landscape ? 27 : 11) * DEG + journey.debug.instrumentYaw;
+      const pitch = reveal * (landscape ? -9 : -4) * DEG;
 
-      // `powered`, not `settle`: the imported damper of that name is used in
-      // this block now, and a local that shadows it would make the presence
-      // ramp above unreachable in the least visible way possible.
-      const powered = clamp(s.power);
-      root.current.rotation.x = lerp(POSE.ground.pitch, POSE.lit.pitch, powered) + pitch;
+      const settle = clamp(s.power);
+      root.current.rotation.x = lerp(POSE.ground.pitch, POSE.lit.pitch, settle) + pitch;
       // The last term keeps the dial presenting its face as it leaves the axis.
       // At the full displacement the instrument stands about eleven degrees off
       // the view axis, and left alone it would be seen increasingly from the
@@ -545,7 +430,7 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
       // few degrees are what stop it looking like a flat translation, and they
       // are the same order as the pose yaw it already carries.
       root.current.rotation.y =
-        lerp(POSE.ground.yaw, POSE.lit.yaw, powered) + recede * 0.2 + yaw + railFaceYaw(x, distance);
+        lerp(POSE.ground.yaw, POSE.lit.yaw, settle) + recede * 0.2 + yaw + railFaceYaw(x, distance);
       // No roll, ever. An altimeter with its zero off the vertical reads as
       // broken rather than as styled.
       root.current.rotation.z = 0;
@@ -606,32 +491,4 @@ export function AltimeterMeridian({ simplified }: { simplified: boolean }) {
   );
 }
 
-/**
- * The two `false`s are the decoder extensions, and they are load-bearing.
- *
- * drei's `useGLTF` defaults BOTH on: it builds a `DRACOLoader` pointed at
- * `https://www.gstatic.com/draco/...` and it calls `MeshoptDecoder()`, which
- * instantiates a WebAssembly module from an inlined base64 string — before it
- * has looked at the file, so it happens whether or not the asset uses either
- * extension.
- *
- * `models/stratos-altimeter.glb` uses neither. Its only extension is
- * `KHR_materials_emissive_strength`; the DRACO meshes on this site are the two
- * mountain ranges, and `MountainRange.tsx` builds its own decoder for them
- * against the self-hosted `/draco/` copy for exactly this reason.
- *
- * So the defaults bought nothing and cost a Content Security Policy violation
- * on every load: `script-src 'self' https://www.googletagmanager.com` has no
- * `'unsafe-eval'`, and Chromium refuses `WebAssembly.instantiate()` under it.
- * The model still decoded — the failure is in a decoder the file never needed —
- * but it logged a `CompileError` to the console and an entry to the Issues
- * panel on every visit, which is two failed Lighthouse best-practice audits and
- * a real error in a real console for anyone who opens one.
- *
- * The alternative was widening the policy with `'wasm-unsafe-eval'`. Turning
- * off a decoder nothing here uses is the smaller change, and it is the one that
- * does not spend a CSP directive to fix a self-inflicted error. Both call sites
- * — the hook and the `preload` — carry the same arguments, because whichever
- * runs first is the one that configures the shared loader.
- */
-useGLTF.preload(MODEL_URL, false, false);
+useGLTF.preload(MODEL_URL);

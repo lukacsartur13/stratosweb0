@@ -98,101 +98,16 @@
 .mv-sky__depth {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #060a12 0%, #04060a 46%, #020306 100%);
-}
-
-/* ============================================ the two altitude layers ======
-
-   THE BACKGROUND IS A JOURNEY NOW, AND IT WAS NOT.
-
-   What was here read: *"the altitude tint, driven by nothing — it is a fixed
-   gradient, and the sense of ascent comes from the copy and the instrument, not
-   from a colour that has to be recomputed"*. That was a defensible trade when
-   this page's brief was a performance reset. The audit is the bill for it:
-   photographed at 27 950 m, this background was indistinguishable from the one
-   at 0 m, on the one surface where there is no sky shader to carry the climb.
-
-   Two layers, both pure functions of `--mv-alt` — the journey expressed 0…1,
-   published by `atmosphere.ts` off the scroll reader the page already runs:
-
-     ground   the dense lower air the opening sits in. Full strength at 0 m and
-              gone by 9 000 m, so the first chapters are visibly the ground
-              falling away — which on this surface is the whole of the first
-              scroll's promise.
-     opening  the cold light above. Absent at 0 m, widest through the upper
-              stages, pulled back at the ceiling where the frame should be the
-              emptiest thing on the page.
-
-   ## Everything the mobile brief rules out is still ruled out
-
-   No filter on a full-viewport element, no blurred blobs, no particles, nothing
-   animated on its own clock, no second scroll listener and no per-frame layout
-   read. Both are `opacity` on a fixed element inside a layer that already
-   exists, so a change is a compositor re-blend of two quads and the main thread
-   does one `setProperty` on the frames where the value moved at all. The
-   property is quantised to a hundredth of the journey — 300 vertical metres —
-   so that is about a hundred writes over the whole document.
-
-   ## The alphas are low on purpose
-
-   The direction rules out the galaxy and asks for restraint at altitude. At
-   these values neither layer is a *thing* in the frame; the ground reads as
-   density and the opening reads as distance, which is what atmosphere is. */
-
-.mv-sky__ground,
-.mv-sky__opening {
-  position: absolute;
-  inset: 0;
-}
-
-/* THE GROUND LAYER IS LIGHT, NOT DARK, AND THAT IS THE ONE THING TO KNOW ABOUT IT.
-
-   The obvious way to build a dense lower atmosphere is to darken the bottom of
-   the frame, which is what the desktop composition does — there it sits over a
-   lit mountain range and the darkening has something to act on. Here it has
-   nothing: the page is already near-black at the bottom edge, and a black band
-   over black is not density, it is nothing at all. Rendered that way at 0 m,
-   the frame was identical to the one at 28 000 m, which is the defect this
-   layer exists to remove.
-
-   Standing at the bottom of an atmosphere and looking up, the low air is the
-   part you can SEE — haze, scatter, the light of the ground in it. So this is a
-   pale, cold haze lifting off the bottom edge, with the warm signal trace that
-   used to be permanent now living inside it, which makes the trace mean
-   something: it is the ground, and it goes when the ground does.
-
-   Full strength at 0 m and gone by 9 000 m — the top of the cloud deck. Above
-   the deck there is no ground to see, and a haze band that outlived it would be
-   the one thing on the page contradicting the altitude the instrument shows. */
-.mv-sky__ground {
   background:
-    radial-gradient(160% 44% at 50% 108%, rgb(126 158 196 / 0.24) 0%, rgb(10 16 26 / 0) 68%),
-    /* the warm ground trace, low and off-centre, so the frame is not
+    /* the high, cold light the ascent is heading towards */
+    radial-gradient(120% 62% at 50% -12%, rgba(120, 156, 196, 0.17) 0%, rgba(10, 16, 26, 0) 62%),
+    /* a single warm signal trace, low and off-centre, so the frame is not
        symmetrical — the one thing keeping this from reading as a vignette */
-    radial-gradient(88% 44% at 12% 106%, rgb(255 238 37 / 0.055) 0%, rgb(4 6 10 / 0) 58%),
-    linear-gradient(0deg, rgb(96 124 158 / 0.13) 0%, rgb(10 16 26 / 0) 48%);
-  /* Two terms, and the fast one is what the first screen of scroll is for.
-
-     `--mv-alt` is the whole 30 000 m and the opening section covers 150 of
-     them, so on its own this layer is still at 99% after a full screen of
-     scrolling — see `--mv-lift` in atmosphere.ts. The product falls to 57% over
-     that screen and reaches zero at 9 000 m, the top of the cloud deck and the
-     last altitude at which there is any ground to see. */
-  opacity: calc(clamp(0, calc((0.3 - var(--mv-alt, 0)) / 0.3), 1) * (1 - 0.45 * var(--mv-lift, 0)));
+    radial-gradient(88% 48% at 12% 104%, rgba(255, 238, 37, 0.05) 0%, rgba(4, 6, 10, 0) 58%),
+    linear-gradient(180deg, #060a12 0%, #04060a 46%, #020306 100%);
 }
 
-.mv-sky__opening {
-  background: radial-gradient(
-    152% 64% at 50% -6%,
-    rgb(150 184 220 / 0.26) 0%,
-    rgb(96 130 172 / 0.1) 46%,
-    rgb(10 16 26 / 0) 78%
-  );
-  opacity: calc(clamp(0, calc(var(--mv-alt, 0) / 0.5), 1) * (1 - 0.42 * clamp(0, var(--mv-alt, 0), 1)));
-}
-
-/* Grain, as a tiled data URI rather than an SVG filter. Last in the sky, so it
-   sits over both altitude layers and the whole frame keeps one surface.
+/* Grain, as a tiled data URI rather than an SVG filter.
    `filter: url(#noise)` on a full-viewport element is re-rasterised whenever
    anything above it changes and was measured as the single most expensive
    thing on the old mobile page. A 64px PNG tile costs one texture upload and
@@ -321,26 +236,17 @@
   letter-spacing: 0.1em;
 }
 
-/* LAYER A, PORTRAIT.
-
-   Larger and tighter than it was — 2.15rem at 360px against 1.85, leading 1.04
-   against 1.12 — but nowhere near the landscape ramp, and the ceiling is the
-   reason. §20 of the mobile brief warns against headings so large they produce
-   one-word lines, German breaks first, and a phone headline that has to be read
-   two words at a time is worse than a smaller one, not better.
-
-   Most of the portrait hierarchy is therefore bought at the OTHER end: the
-   supporting line is one sentence and the annotations are a third the size of
-   the body copy they replace. A 2.4rem statement over a 0.7rem annotation is a
-   3.4× contrast, against the 2.1× this page had. */
 .mv-title {
-  margin: 0 0 1.05rem;
-  max-width: 16ch;
+  margin: 0 0 1.1rem;
+  max-width: 18ch;
   font-family: var(--display);
   font-weight: 300;
-  font-size: clamp(2.15rem, 1.1rem + 5vw, 2.8rem);
-  line-height: 1.04;
-  letter-spacing: -0.028em;
+  /* 1.9rem at 360px, 2.35rem at 430px. Deliberately below the desktop hero
+     ramp: §20 warns against headings so large they produce one-word lines, and
+     German is the case that breaks first. */
+  font-size: clamp(1.85rem, 1.1rem + 4.2vw, 2.45rem);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
   color: var(--paper);
 }
 
@@ -378,84 +284,11 @@
   color: var(--signal);
 }
 
-/* ---------------------------------------------- THE MONUMENT SCALE, PORTRAIT
-
-   §23: on a 390 or a 430 the major statements should be significantly more
-   ambitious than they were, the headline is the hero, and a page where the
-   title and the body copy look nearly the same size is not authored.
-
-   The five tiers are `scene.ts`'s, so a chapter that is a monument on the
-   desktop is a monument on the phone — the art direction is one decision, made
-   once, and §22's "mobile is not a miniature desktop" is honoured where it
-   actually matters: every NUMBER below is authored for portrait and shares
-   nothing with a desktop rule.
-
-   ## What changed, and why the old ceiling was the wrong bound
-
-   The scale this replaces topped out at 2.8rem — 44.8px, and at 390 the clamp
-   resolved to 37. The note above it argued for that ceiling on the grounds that
-   a headline large enough to produce one-word lines is worse than a smaller
-   one, and that is true; it is just not what 37px was protecting against. The
-   real bound is the LONGEST WORD against the measure, which at 390 is 342px, and
-   for nine of the eleven chapters that allows 55–118px. Two of them do not, and
-   those two carry `mobileScale` in the scene table with the word that decides it
-   named in the comment.
-
-   So the ceiling comes off the tier and goes where it belongs — on the chapter
-   — and the phone gets 53–61px statements over 0.74rem annotations. That is a
-   4.5–5× contrast between Layer A and Layer C, against 3.4× before, and it is
-   most of what §24 means by "the hierarchy should remain obvious".
-
-   ## The measure comes off with it
-
-   `max-width: 16ch` was sized for a 37px headline and is a hard bound at 56: a
-   `ch` is a fraction of the font size, so a measure in `ch` shrinks the box
-   exactly as fast as the type grows and the statement can never gain a line's
-   worth of width. The monument tiers take the frame instead, which on a phone
-   is the only honest measure there is. */
-.mv-sec[data-monument='colossus'] .mv-title {
-  max-width: none;
-  font-size: calc(clamp(2.9rem, 1rem + 11.5vw, 4.6rem) * var(--mv-monument, 1));
-  line-height: 0.94;
-  letter-spacing: -0.04em;
+.mv-title--hero { font-size: clamp(2rem, 1.1rem + 5vw, 2.7rem); }
+.mv-title--statement {
+  max-width: 15ch;
+  font-size: clamp(1.9rem, 1.1rem + 4.6vw, 2.55rem);
 }
-
-.mv-sec[data-monument='monument'] .mv-title {
-  max-width: none;
-  font-size: calc(clamp(2.7rem, 1rem + 10.4vw, 4.2rem) * var(--mv-monument, 1));
-  line-height: 0.96;
-  letter-spacing: -0.036em;
-}
-
-.mv-sec[data-monument='hero'] .mv-title {
-  max-width: none;
-  font-size: calc(clamp(2.6rem, 0.9rem + 10vw, 4rem) * var(--mv-monument, 1));
-  line-height: 0.98;
-  letter-spacing: -0.034em;
-}
-
-/* The trough, and it is authored — §18's rhythm needs one or the peaks are not
-   peaks. Two chapters of eleven take it, and the nine around them are half as
-   large again. */
-.mv-sec[data-monument='plain'] .mv-title {
-  max-width: 18ch;
-  font-size: calc(clamp(1.9rem, 0.9rem + 5.4vw, 2.6rem) * var(--mv-monument, 1));
-  line-height: 1.08;
-  letter-spacing: -0.026em;
-}
-
-/* A sentence rather than a phrase. Sixty characters at the monument tier is a
-   phone screen with nothing on it but its own headline. */
-.mv-sec[data-monument='long'] .mv-title {
-  max-width: 20ch;
-  font-size: calc(clamp(1.75rem, 0.85rem + 4.6vw, 2.4rem) * var(--mv-monument, 1));
-  line-height: 1.14;
-  letter-spacing: -0.022em;
-}
-
-/* The two class hooks stay in the markup — they are what the reveal and the
-   centred chapters key off — but they no longer carry a size. */
-.mv-title--statement { max-width: none; }
 
 .mv-copy {
   margin: 0 0 1rem;
@@ -465,64 +298,11 @@
   color: rgba(244, 244, 244, 0.82);
 }
 
-/* LAYER B, PORTRAIT. One sentence, brighter than the body it replaces, and
-   capped at a measure that makes a third line the signal that the copy belongs
-   in Layer C. */
-/* LAYER B, PORTRAIT. One sentence, and it steps DOWN rather than up.
-
-   It used to be 1.05rem — larger than the body copy it sits among — on the
-   argument that the one supporting line per chapter has to survive next to the
-   statement. At 37px of statement that was right. At 56 it is the wrong end of
-   the problem: §23 names "title and body copy looking nearly the same size" as
-   the defect, and the fix for a headline that does not dominate is a bigger
-   headline, not a louder line under it.
-
-   0.94rem against a 56px statement is a 3.8× step, with the annotations a
-   further 1.3× below that. Three sizes, each visibly a rank apart, which is
-   §24's hierarchy stated as numbers. */
 .mv-copy--lead {
-  max-width: 28ch;
-  font-size: 0.94rem;
+  font-size: 1.06rem;
   line-height: 1.6;
-  color: rgb(244 244 244 / 0.8);
+  color: var(--paper);
 }
-
-/* ============================================ LAYER C, PORTRAIT — the notes
-
-   The same third layer the landscape composition gained, at phone scale: the
-   data face, small, each item on its own hairline, in the narrowest measure on
-   the page.
-
-   None of these sentences are new — see the notes in `locales/messages.ts`.
-   They are the second, third and fourth sentences of paragraphs that used to be
-   set at body size under a headline, ranked below the supporting line instead
-   of beside it. */
-.mv-notes {
-  list-style: none;
-  margin: 1.3rem 0 0;
-  padding: 0;
-  display: grid;
-  gap: 0.35rem;
-  max-width: 32ch;
-}
-
-.mv-notes li {
-  padding-block-start: 0.4rem;
-  border-block-start: 1px solid rgb(244 244 244 / 0.13);
-  font: 400 0.74rem/1.55 var(--data);
-  letter-spacing: 0.01em;
-  color: var(--haze);
-}
-
-.mv-notes--technical li {
-  font-size: 0.68rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  line-height: 1.7;
-  color: rgb(126 140 158 / 0.72);
-}
-
-.mv-sec--centre .mv-notes { margin-inline: auto; }
 
 .mv-meta {
   margin: 1.2rem 0 0;
@@ -550,65 +330,32 @@
 .mv-lines,
 .mv-rule { --mv-delay: 0s; }
 
-/* REVERSE GRAVITY — EVERY SIGN BELOW IS NEGATIVE, AND THAT IS THE POINT.
-
-   These five roles were the Rapidkert motion reference applied verbatim: +18px,
-   +12px and +105%, all of them a rise from beneath the resting position. They
-   are excellent, and they are the exact opposite of what this page is now
-   about. Three of the five were the loudest bottom-up gesture on the homepage,
-   repeated eleven times.
-
-   The durations, the easing, the stagger and the cap are UNCHANGED — they are
-   measured values and there was nothing wrong with them. Only the direction is
-   reversed: copy now settles DOWN into its resting place, which is what
-   arriving from overhead looks like.
-
-   The masked headline is the one that carries it. `translate3d(0, -105%, 0)`
-   inside an `overflow: hidden` line box means the line descends into the frame
-   from above rather than climbing into it from below, and at a display size
-   that single sign is most of what a visitor reads as the direction of travel.
-
-   `.mv-label` keeps its horizontal offset. An annotation that slid vertically
-   would compete with the statement it annotates, and it is the one role here
-   that is not about altitude.
-
-   The distances are shortened a little — 14px and 10px against 18 and 12 —
-   because a downward settle covers the same perceptual ground in less
-   travel: it is moving with gravity as the eye expects type to, not against
-   it. */
-
-/* TextReveal — the general-purpose settle. 0.8s, Rapidkert's measured body
-   figure, now downward. */
+/* TextReveal — the general-purpose rise. 18px, 0.8s, Rapidkert's measured
+   body figure. */
 .mv-text {
   opacity: 0;
-  transform: translate3d(0, -14px, 0);
+  transform: translate3d(0, 18px, 0);
   transition:
     opacity var(--mv-dur-text) var(--mv-ease) var(--mv-delay),
     transform var(--mv-dur-text) var(--mv-ease) var(--mv-delay);
 }
 .mv-text.is-in { opacity: 1; transform: none; }
 
-/* LineReveal — a masked line box, DESCENDING. The travel is the full line
-   height rather than a pixel figure, so it is correct at every heading size and
-   in every locale without a second rule. */
+/* LineReveal — a masked line box. The travel is the full line height rather
+   than a pixel figure, so it is correct at every heading size and in every
+   locale without a second rule. */
 .mv-lines {
   display: block;
   overflow: hidden;
   /* A descender-safe mask. `overflow:hidden` on a line box clips the tail of a
      g or a j at the resting position; the padding gives it room and the equal
-     negative margin gives the space back to the layout.
-
-     The mask now has to be tight at the TOP as well, because that is the side
-     the line arrives from: an ascender or a Hungarian double acute peeking
-     above the box before the line has landed would give the whole gesture away.
-     `overflow: hidden` already clips it; what changed is that the clip is now
-     load-bearing on the top edge rather than only on the bottom. */
+     negative margin gives the space back to the layout. */
   padding-block-end: 0.14em;
   margin-block-end: -0.14em;
 }
 .mv-lines__in {
   display: block;
-  transform: translate3d(0, -105%, 0);
+  transform: translate3d(0, 105%, 0);
   transition: transform var(--mv-dur-line) var(--mv-ease) var(--mv-delay);
 }
 .mv-lines.is-in .mv-lines__in { transform: none; }
@@ -616,7 +363,7 @@
 /* CopyReveal — much subtler, and quicker. §6: 10–18px, 350–550ms. */
 .mv-copy {
   opacity: 0;
-  transform: translate3d(0, -10px, 0);
+  transform: translate3d(0, 12px, 0);
   transition:
     opacity var(--mv-dur-copy) var(--mv-ease) var(--mv-delay),
     transform var(--mv-dur-copy) var(--mv-ease) var(--mv-delay);
@@ -633,45 +380,6 @@
     transform var(--mv-dur-label) var(--mv-ease) var(--mv-delay);
 }
 .mv-label.is-in { opacity: 1; transform: none; }
-
-/* THE PASSAGE STATEMENT MOVES FASTER, BECAUSE IT HAS LESS ROOM TO MOVE IN —
-   §22's pace contrast and §24's "no state relies on a tiny scroll interval".
-
-   The two reveal lines are 33% of a screen apart. A master act's statement is
-   painted at 88% of the frame and has 52% of a screen to travel before it
-   reaches the reading position; a chapter marker is painted at 54% — the
-   reverse-gravity line — and has 19%. Same 1.05 s masked-line duration for
-   both, so under a flick the two tiers came apart in the wrong direction:
-   measured at 390x844 and 1800 px/s, the acts were 17–24% out of home as they
-   passed the reading line and the passages were 61–72%.
-
-   A passage statement is 32px against an act's 52 and travels its own line
-   height, so it covers less ground; taking less time to cover it is the same
-   gesture, not a hurried one. 0.62 s is between the body figure and the line
-   figure, both of which are Rapidkert's measured values, and it closes about
-   half the gap. It does not close all of it: at a hard fling nothing on a
-   time-driven reveal lands, which is a property of the mechanism rather than
-   of this number. */
-.mv-head { --mv-dur-line: 0.62s; }
-
-/* The chapter marker: the altitude label and the statement, as one box.
-
-   It carries no visual treatment of its own — no surface, no border, no
-   spacing that the pair did not already have — and it exists for two reasons,
-   both of them about timing rather than appearance.
-
-   It is the box `reveal.ts` observes on the high line, so the pair is painted
-   only once it has reached the upper half of the frame and is never seen to
-   climb into place from the bottom edge. And it is one box, so the label and
-   the headline resolve as a single event instead of a third of a screen apart.
-
-   `display: block` and nothing else is deliberate. A wrapper that introduced a
-   margin, a padding or a stacking context would change the accepted portrait
-   typography, and the whole of §20's instruction is that the mobile line breaks
-   and measure stay exactly as they were reviewed. */
-.mv-head {
-  display: block;
-}
 
 /* RuleDraw — a Meridian line drawing itself. `scaleY` on a 1px element, which
    is a compositor transform and not a layout change. */
@@ -1048,27 +756,22 @@
   color: var(--signal);
 }
 
-/* The three index scenes — capabilities, layers, checkpoints — are ranked the
-   same way on this surface as on the other: the entry's NAME is display type
-   and its line is an annotation. They used to sit within a tenth of an em of
-   each other, which read as one weight of text however carefully it was
-   spaced. */
 .mv-spine__name {
-  margin: 0 0 0.15rem;
+  margin: 0 0 0.2rem;
   font-family: var(--display);
-  font-weight: 300;
-  font-size: 1.42rem;
-  line-height: 1.1;
-  letter-spacing: -0.024em;
+  font-weight: 400;
+  font-size: 1.16rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--paper);
 }
 
 .mv-spine__line {
   margin: 0;
-  max-width: 32ch;
-  font: 400 0.76rem/1.55 var(--data);
-  letter-spacing: 0.01em;
-  color: var(--haze);
+  max-width: var(--mv-measure);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: rgba(244, 244, 244, 0.74);
 }
 
 /* ---- nine areas in three layers ---------------------------------------- */
@@ -1082,29 +785,26 @@
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
-  margin: 0 0 0.3rem;
+  margin: 0 0 0.35rem;
   font-family: var(--display);
-  font-weight: 300;
-  font-size: 1.5rem;
-  line-height: 1.08;
-  letter-spacing: -0.024em;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.25;
   color: var(--paper);
 }
 
-/* The layer number as a figure. The chapter's whole claim is that these three
-   are not peers, and a 0.68rem tracked label said the opposite. */
 .mv-layer__index {
-  font: 300 1.25rem/1 var(--display);
-  letter-spacing: -0.02em;
+  font: 500 0.68rem/1 var(--data);
+  letter-spacing: 0.1em;
   color: var(--signal);
 }
 
 .mv-layer__note {
-  margin: 0 0 0.85rem;
-  max-width: 32ch;
-  font: 400 0.76rem/1.55 var(--data);
-  letter-spacing: 0.01em;
-  color: var(--haze);
+  margin: 0 0 0.8rem;
+  max-width: var(--mv-measure);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(244, 244, 244, 0.66);
 }
 
 .mv-layer__list {
@@ -1151,18 +851,17 @@
 }
 
 .mv-check__index {
-  font: 300 1.35rem/1.05 var(--display);
-  letter-spacing: -0.02em;
+  font: 600 0.72rem/1.4 var(--data);
+  letter-spacing: 0.1em;
   color: var(--signal);
 }
 
 .mv-check__name {
   margin: 0;
   font-family: var(--display);
-  font-weight: 300;
-  font-size: 1.45rem;
-  line-height: 1.08;
-  letter-spacing: -0.024em;
+  font-weight: 400;
+  font-size: 1.18rem;
+  line-height: 1.25;
   color: var(--paper);
 }
 
@@ -1188,9 +887,9 @@
 
 .mv-check__grid dd {
   margin: 0.1rem 0 0;
-  font: 400 0.76rem/1.55 var(--data);
-  letter-spacing: 0.01em;
-  color: var(--haze);
+  font-size: 0.92rem;
+  line-height: 1.58;
+  color: rgba(244, 244, 244, 0.78);
 }
 
 /* ============================================================== §07 — work ==
@@ -1218,88 +917,24 @@
   color: var(--haze);
 }
 
-/* An annotation, not a subtitle — the same demotion the landscape rail got, and
-   for the same reason: it is a caveat about the marks, and at body size under a
-   label it read as a second heading. */
 .mv-collab__note {
   margin: 0;
-  font: 400 0.72rem/1.55 var(--data);
-  letter-spacing: 0.01em;
-  color: var(--haze);
-  max-width: 32ch;
+  font-size: 0.86rem;
+  color: rgba(244, 244, 244, 0.66);
+  max-width: var(--mv-measure);
 }
 
 /* A wrapping rail, not a scroller. §16 rules out a horizontal gallery, and a
    marks rail is the one thing on this page that genuinely has no order to
    preserve — so it wraps. */
-/* QUIETER, and it is the direction's word for it.
-
-   The rail is credibility encountered during an ascent — signals, coordinates,
-   organisations recognised on the way past — and six plates at full strength in
-   the brightest frame of the journey are not that. They were the loudest thing
-   on the page at 13 000 m.
-
-   What does NOT change is the marks themselves: nothing here is stretched,
-   cropped, recoloured or greyscaled, because these are other people's
-   identities and the reason they are plated at all is that three of the six are
-   dark artwork that would vanish on a near-black page. The plate loses a little
-   of its brightness and the rail as a whole sits a step back from full
-   presence, which is a difference of weight rather than of treatment. */
-/* THE REGISTER — §14, at phone scale.
-
-   A wrapped grid of six plates is a client wall on a phone exactly as it is on a
-   desktop, and a client wall says OUR CLIENTS. What the direction asks for is
-   PROOF OF TRAJECTORY: a register of names met on the way up, with the label
-   above it carrying more weight than the marks in it.
-
-   One scrolling rail between two hairlines, three and a bit marks visible at a
-   time, so it reads as a strip of plates continuing past the frame rather than
-   as a grid that happens to have six cells. Scroll-snap so it always rests on a
-   mark, and no scrollbar, because this is a plate and not a carousel.
-
-   THE MARKS THEMSELVES ARE NOT TOUCHED — not stretched, cropped, recoloured or
-   greyscaled. Three of the six are dark artwork on a near-black page and the
-   plate is the reason they are visible at all. */
 .mv-collab__set {
-  opacity: 0.86;
   list-style: none;
-  margin: 0.7rem 0 0;
+  margin: 0.5rem 0 0;
   padding: 0;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0;
-  border-block: 1px solid var(--hair);
-  /* Out through the page gutter, so the rail is a full-width strip and the
-     marks that continue past the edge are visibly continuing rather than
-     clipped. Bounded by the gutter itself: nothing may make the page scroll
-     sideways. */
-  margin-inline: calc(-1 * var(--mv-pad));
-  padding-inline: var(--mv-pad);
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-}
-
-.mv-collab__set::-webkit-scrollbar { display: none; }
-
-.mv-collab__item {
-  flex: none;
-  scroll-snap-align: start;
-}
-
-.mv-collab__item + .mv-collab__item {
-  border-inline-start: 1px solid var(--hair);
-}
-
-/* The label above the rail is the louder object, and it says so. Nothing about
-   the words changes — "Együttműködések" is the approved copy. */
-.mv-collab__title {
-  font: 500 0.72rem/1.5 var(--data);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgb(244 244 244 / 0.9);
+  gap: 0.7rem;
 }
 
 /* Identical plates, marks never touched — the desktop rule at phone size. See
@@ -1307,11 +942,11 @@
    dark ones. */
 .mv-collab__item img {
   display: block;
-  background: #c3ced8;
-  border-radius: 0;
-  width: 84px;
-  height: 48px;
-  padding: 6px 8px;
+  background: #dce4ea;
+  border-radius: 2px;
+  width: 96px;
+  height: 54px;
+  padding: 7px 9px;
   object-fit: contain;
 }
 
@@ -1340,15 +975,12 @@
   color: var(--signal);
 }
 
-/* The one client name the homepage prints, at a scale that says so — a clear
-   tier below the chapter statement and a clear tier above everything under it. */
 .mv-feature__name {
   margin: 0;
   font-family: var(--display);
-  font-weight: 300;
-  font-size: clamp(1.85rem, 8.4vw, 2.4rem);
-  line-height: 1.04;
-  letter-spacing: -0.025em;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 7vw, 1.95rem);
+  line-height: 1.12;
 }
 
 .mv-feature__sector {
@@ -1365,21 +997,10 @@
    which suited the portrait mockups it was built for. A landscape hero capture
    put through that window loses its first words on every line. The ratio comes
    inline from `content.ts`; nothing here knows a number. */
-/* EDGE TO EDGE — §16, at phone scale.
-
-   A landscape hero capture inside a bordered rectangle inside a 24px gutter is
-   an illustration in a column; run to both edges of the frame it is a field the
-   composition is built on. The bleed is exactly the page gutter, expressed as
-   the same custom property that sets it, so the picture reaches the frame and
-   nothing reaches past it — a box wider than the document scrolls the document
-   sideways, and on a phone that is a broken page rather than a wide one.
-
-   Its own ratio, unchanged, set inline from `content.ts`. No crop: §16 rules it
-   out and the 5:4 window this replaces cut the first words off every line. */
 .mv-feature__figure {
-  margin-inline: calc(-1 * var(--mv-pad));
+  margin: 0;
   overflow: hidden;
-  border-block: 1px solid var(--hair);
+  border: 1px solid var(--hair);
 }
 
 .mv-feature__figure img {
@@ -1389,15 +1010,12 @@
   object-fit: contain;
 }
 
-/* Layer B, and it steps down with the rest of the portrait hierarchy — see
-   `.mv-copy--lead`. At 1rem under a 4.4rem figure it was the second-largest
-   object in the frame and it is the third-ranked one. */
 .mv-feature__result {
   margin: 0;
   font-size: 0.94rem;
-  line-height: 1.6;
-  color: rgba(244, 244, 244, 0.8);
-  max-width: 34ch;
+  line-height: 1.58;
+  color: rgba(244, 244, 244, 0.86);
+  max-width: var(--mv-measure);
 }
 
 /* Two stacked links, each its own 44px target. Not buttons: the phone
@@ -1421,71 +1039,16 @@
   border-block-end: 1px solid var(--hair);
 }
 
-/* THE PROOF POINT, AS A FIGURE.
-
-   The one sourced number on the homepage, stacked rather than run on: value at
-   display scale, meaning ranked under it as an annotation. Beside each other at
-   1.7rem and 0.66rem they read as a line of prose that happened to start with a
-   number; stacked they read as the measurement they are, which is how the case
-   study itself publishes it.
-
-   The value and its meaning are untouched — contracted project value from
-   search, exactly as `content.ts` states it. */
 .mv-case__metric {
   margin: 0;
-  display: grid;
-  gap: 0.15rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
 }
-/* THE PROOF POINT AS A TYPOGRAPHIC EVENT — §15, at phone scale.
-
-   `~15M Ft` is the only sourced number on this page. At 2.7rem it was a figure
-   in a list, a shade larger than the paragraph above it; at the size below it is
-   the largest thing in its own frame and reads as the measurement it is, which
-   is how the case study itself publishes it.
-
-   Lifted into the lower edge of the picture, as it is on the desktop, so the
-   two are one composition rather than a photograph with a number under it. The
-   shadow is what lets a display figure survive whatever is behind it without a
-   plate — the screenshot has light regions and the number crosses them.
-
-   THE VALUE AND ITS MEANING ARE UNTOUCHED: contracted project value from
-   search, exactly as `content.ts` states it, with the label directly beneath it
-   at exactly the size it always had. Making a number larger does not make it a
-   different number. */
-/* The figure, then the metric ON it, then the line that explains it.
-
-   The DOM order is the reading order — picture, result, figure, actions — and
-   it stays that way for a screen reader and for the no-CSS case. What changes
-   is the visual order, so the display figure is lifted into the LOWER EDGE OF
-   THE PICTURE rather than into the paragraph above it, which is where a
-   negative margin on the source order put it. `order` on a grid item is exactly
-   the tool for a visual sequence that differs from a semantic one, and the
-   difference here is one row.
-
-   Same composition as the desktop's, arrived at through a different mechanism:
-   there the feature is a two-column grid and the metric takes the row under the
-   figure by name. */
-.mv-feature__figure { order: 1; }
-.mv-case__metric { order: 2; }
-.mv-feature__result { order: 3; }
-.mv-feature__cta { order: 4; }
-.mv-feature__label { order: -2; }
-.mv-feature__name { order: -1; }
-.mv-feature__sector { order: 0; }
-
-.mv-case__metric {
-  margin-block-start: calc(-1 * clamp(1.9rem, 8.5vw, 2.8rem)) !important;
-  position: relative;
-  z-index: 1;
-}
-
 .mv-case__metric strong {
   font-family: var(--display);
-  font-weight: 300;
-  font-size: clamp(3rem, 15vw, 4.4rem);
-  text-shadow: 0 2px 22px rgb(2 5 11 / 0.85);
-  line-height: 1;
-  letter-spacing: -0.03em;
+  font-weight: 400;
+  font-size: 1.7rem;
   color: var(--signal);
   /* A figure is one token, and a flex item shrinks below its content by
      default. At 390px the label beside it squeezed `~15M Ft` onto two lines and
@@ -1679,560 +1242,4 @@
   .mv-rule { transform: scaleY(1) !important; transition: none !important; }
   .mv-alt__dial { transition: none !important; }
   .mv-btn { transition: none !important; }
-}
-
-/* =============================================================================
-   ======================== D I R E C T I O N   D · phone ======================
-   =============================================================================
-
-   The same six acts, TRANSLATED rather than shrunk. §35 of the production brief
-   asks for exactly that distinction, and the two things it means in practice
-   are that the statements are the same authored strings with the same authored
-   breaks (`act.<id>.monument`), and that every number expressing them is solved
-   against a phone's own field rather than derived from the desktop's.
-
-   §N of the master study established that not one of the seven frames needs
-   sticky choreography, a pinned scene or a scroll-driven layout to work as a
-   still: every one is a column of two to five objects. So nothing below adds a
-   scene, a listener, a measurement or a mechanism. It is type, spacing, and one
-   change of rank per element.
-   ========================================================================== */
-
-/* THE ACT FRAMES ARE THE PAGE'S SILENCES AS WELL AS ITS STATEMENTS.
-
-   A crossing sits in the ordinary chapter rhythm. An act gets air above and
-   below it that no crossing gets, which on a phone — where every chapter is a
-   column and none of them can be composed against a frame — is the only device
-   left that says "this one is a frame". */
-/* MARGIN, NOT PADDING, AND `vw`, NOT `svh`. Two corrections the portrait suite
-   made to the first draft of this rule, and both are contracts this page has
-   held for a long time:
-
-     * `padding` is inside the section box, so it counts as the space above a
-       chapter's first line — and 22svh of it put every act's opening line a
-       fifth of a screen below its own boundary, which is the "chapter the
-       visitor scrolls into rather than arrives at" the suite measures for and
-       §35 forbids. Margin is between chapters, where chapter spacing belongs,
-       and it is what `--mv-gap-chapter` already is.
-     * `svh` is stable against a collapsing toolbar and NOT against a viewport
-       resize, and the whole mobile composition is measured in `vw` for that
-       reason. A height-driven layout moves every chapter when the browser
-       chrome changes, which is the one thing a reader must never feel.
-
-   It also fixes something neither of those is about. The chapter before an act
-   gains that act's spacing, which is what makes a short crossing long enough to
-   be OBSERVED: `cloud-breakthrough` is a statement and one line, and the
-   accessibility walk — which steps by less than half a viewport and is
-   deliberately not fractional — stepped straight over it and never announced
-   it. */
-/* NOT THE OPENING. A top margin on the first flow child collapses out through
-   `.mv-flow` and moves the whole document down by its own height — measured at
-   125px on a 390, and it showed up not as a gap but as a HISTORY DEFECT: the
-   restored page came back 125px below where the visitor left it, every time,
-   deterministically, against a 200px tolerance. The opening's clearance is its
-   own `padding-block-start`, which is header clearance rather than chapter
-   spacing and is declared where `.mv-sec--lead` is. */
-.mv-sec[data-act-role='peak']:not(.mv-sec--lead) { margin-block-start: var(--mv-gap-chapter); }
-
-/* The room the returning instrument occupies in the arrival's column. It is a
-   spacer and it paints nothing: the object itself is the fixed overlay, and
-   this is what stops the copy being underneath it. `vw`, for the reason
-   above. */
-.mv-arrival-air { height: clamp(112px, 30vw, 176px); }
-
-/* THE MONUMENTS.
-
-   One step up from the tiers they replace, because the acts lost their
-   eyebrows, their altitude ranges and most of their microcopy and the statement
-   is now doing the work those were sharing. Held where the longest Hungarian
-   word still fits a phone measure whole — a display line that breaks mid-word
-   is the one fault §35 will not carry. */
-.mv-sec[data-act-role='peak'] .mv-title {
-  --mv-lh: 0.95;
-  /* Solved against the longest authored LINE a phone measure has to hold, not
-     against the desktop's fraction. At 390px the column is 342px and the
-     longest thirteen-character Hungarian line — `felemelkedni?`, `egy
-     rendszer.`, `a görbületet.` — needs about 52px to sit on one line. A
-     display line that re-breaks mid-phrase is the single fault §35 will not
-     carry, so the ceiling is where the longest one fits rather than where the
-     shortest one would look best. */
-  font-size: calc(clamp(2.4rem, 0.9rem + 8.4vw, 4.2rem) * var(--mv-monument, 1));
-  letter-spacing: -0.028em;
-  max-width: none;
-}
-
-/* Act VI's statement is one seventeen-character Hungarian word and it is the
-   binding setting on this surface as well as on the desktop. */
-:root[lang='hu'] .mv-sec[data-act='vi'] .mv-title,
-:root[lang='de'] .mv-sec[data-act='vi'] .mv-title {
-  font-size: calc(clamp(1.9rem, 0.7rem + 6.6vw, 3.2rem) * var(--mv-monument, 1));
-}
-
-/* THE FIGURE. Act IV's statement is `~15M Ft` — seven glyphs in all three
-   languages, which is why it is the one setting on either surface where the
-   three locales agree. It is the phone's only yellow before the closing
-   action. */
-.mv-title--figure {
-  color: var(--signal, #ffee25);
-  letter-spacing: -0.03em;
-}
-
-/* No word-level emphasis inside a statement, on either surface. §16. */
-.mv-sec[data-act-role='peak'] .mv-title em {
-  color: inherit;
-  font-style: normal;
-  font-weight: inherit;
-}
-
-/* THE CROSSINGS, STEPPED DOWN.
-
-   They keep every word and lose their rank, exactly as they do on the desktop.
-   Two thirds of the act scale is the step that reads as a different kind of
-   chapter rather than as the same chapter slightly smaller. */
-.mv-sec[data-act-role='crossing'] .mv-title {
-  font-size: calc(clamp(1.7rem, 0.8rem + 4.4vw, 2.3rem) * var(--mv-monument, 1));
-  letter-spacing: -0.018em;
-}
-
-/* THE PROOF ACT'S DEFINITION — a name and a metric label, stacked, at two
-   opacities. One object, two registers, and the same shape the desktop frame
-   uses. */
-.mv-feature__define { display: grid; gap: 0.3rem; margin-block: 1.1rem 0; }
-.mv-feature__define span:first-child { color: rgb(244 244 244 / 0.62); }
-.mv-feature__define span + span { color: rgb(244 244 244 / 0.4); }
-
-/* THE ACTION. A line of type with a hairline under it, at the copy size, at
-   weight 400 — not a filled button. §15: the lack of competition is what gives
-   it importance, and a phone is not an exception to that.
-
-   It keeps a 44px tap target through the padding rather than through a fill,
-   so the touch ergonomics the button had are unchanged. */
-.mv-act {
-  display: inline-block;
-  padding: 0.85rem 0 0.7rem;
-  min-height: 44px;
-  color: var(--signal, #ffee25);
-  font-size: 1rem;
-  letter-spacing: -0.002em;
-  text-decoration: none;
-  border-bottom: 1px solid rgb(255 238 37 / 0.34);
-}
-
-/* The actions band holds the two apart rather than side by side: they are two
-   different invitations at two different weights, and a row would read them as
-   a pair of buttons. */
-.mv-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem; }
-
-.mv-quiet {
-  display: inline-block;
-  padding: 0.75rem 0 0.6rem;
-  min-height: 44px;
-  color: rgb(244 244 244 / 0.46);
-  font-size: 0.95rem;
-  text-decoration: none;
-  border-bottom: 1px solid rgb(244 244 244 / 0.11);
-}
-
-/* THE COLLABORATION MARKS lose their heading and their note here too. §28:
-   their existence is the content, and a label on top of it is a second voice
-   saying what the eye has already understood. */
-.mv-sec[data-act='iv'] .mv-collab__title,
-.mv-sec[data-act='iv'] .mv-collab__note,
-.mv-sec[data-act='iv'] .mv-feature__label { display: none; }
-
-/* =============================================================================
-   ===================== T H E   P A S S A G E ,   P O R T R A I T =============
-   =============================================================================
-
-   §27 of the continuity brief: mobile uses the same hierarchy as the desktop —
-   MASTER for the seven approved frames, PASSAGE for everything between them —
-   and it does NOT keep the old crossing composition merely because the screen
-   is narrower.
-
-   What was here, measured at 390 × 844 before this pass, and every item of it
-   on §6's list: a yellow rule down the left of three chapters, a yellow station
-   dot per entry, a display-size index numeral in the signal colour on every
-   layer and every checkpoint, an altitude stamp on each one, a description grid
-   for the process, bordered list items for the nine areas, an eyebrow carrying
-   a roman numeral and an altitude range on all four crossings, and the notes
-   set in the data face on hairlines.
-
-   §28 holds throughout. This is CSS, typography and content presentation —
-   there is no new observer, no new measurement, no sticky container, no
-   scroll listener and nothing added to a frame. The reveal system is the one
-   that was already here and the elements it observes are the ones it already
-   observed.
-   ========================================================================== */
-
-/* -----------------------------------------------------------------------------
-   WHAT A PASSAGE MAY NOT HAVE.
-
-   Authored once, against the level, rather than four times against four stage
-   ids — which is §32's small vocabulary on this surface. A crossing that is
-   added later inherits the rule instead of inheriting the old design.
-   -------------------------------------------------------------------------- */
-
-/* The chapter marker. It is in the document as an `sr-only` line — see
-   `PassageHead` — so nothing is lost; it is not painted. The six acts have
-   never had one, and a passage that carries a roman numeral and an altitude
-   range is a passage announcing that it belongs to a different website. */
-.mv-sec[data-level='passage'] .mv-eyebrow { display: none; }
-
-/* No word-level colour inside a statement, on either surface. §16. */
-.mv-sec[data-level='passage'] .mv-title em {
-  color: inherit;
-  font-style: normal;
-  font-weight: inherit;
-}
-
-/* -----------------------------------------------------------------------------
-   THE PASSAGE STATEMENT.
-
-   It keeps the `plain` tier it already had — 1.9–2.6rem against the acts'
-   2.9–4.8rem — because that ratio is the desktop's ratio and §27 asks the two
-   surfaces to rank their chapters the same way. What it gains is the measure
-   and the air of a composition rather than of a heading: the statement takes
-   the frame, and the space above it is the passage's own.
-   -------------------------------------------------------------------------- */
-
-/* AIR AROUND THE STATEMENT, AND IT IS DOING TWO JOBS.
-   
-   §4 asks a Passage Statement for generous spacing, which is reason enough. It
-   is also the cheapest 40px of the chapter height the two spacer contracts and
-   the accessibility walk are fighting over — see the note on the foot silence
-   below. Space BETWEEN two drawn boxes is composition and is measured as such;
-   the same 40px added to the padding at the foot would be one larger run of
-   nothing. */
-.mv-sec[data-level='passage'] .mv-title {
-  max-width: 20ch;
-  margin-block-end: 2rem;
-}
-
-/* The quiet half of a sentence whose other half is the statement — §8, and the
-   portrait half of `.passage__overline`. It sits ABOVE the statement in the
-   document as well as on the screen, so the sentence reads in its own order for
-   a screen reader and for the eye alike. */
-.mv-passage__overline {
-  max-width: 30ch;
-  margin-block-end: 1.6rem;
-  font-size: 0.94rem;
-  line-height: 1.6;
-  color: rgb(244 244 244 / 0.62);
-}
-
-/* -----------------------------------------------------------------------------
-   THE STRUCTURAL LAYER — §11, §12, §39.
-
-   One item, one beat, one column. `--mv-gap` is the page's own chapter rhythm
-   and it is what separates one checkpoint from the next: the item before this
-   one has left the frame by the time this one is read, which is the whole of
-   what "staged rather than all at once" means on a phone.
-
-   `--mv-gap` rather than a fresh number, and `vw` rather than `svh` with it —
-   the whole portrait composition is measured in `vw` so that a collapsing
-   toolbar moves no chapter, and a staged sequence measured in viewport heights
-   would move seven of them under the reader's thumb.
-   -------------------------------------------------------------------------- */
-
-.mv-passage__item { margin-block-start: var(--mv-gap); }
-
-/* No station dot. It was drawn on `.mv-check` and `.mv-layer` by a shared
-   `::before` in the signal colour — a yellow marker per entry, twenty of them
-   across two chapters, in a design whose whole yellow budget is two events. */
-.mv-passage__item::before { content: none; }
-
-.mv-passage__name {
-  margin: 0 0 0.4rem;
-  font-family: var(--display);
-  font-weight: 300;
-  font-size: 1.5rem;
-  line-height: 1.08;
-  letter-spacing: -0.024em;
-  color: var(--paper);
-}
-
-.mv-passage__note {
-  max-width: 32ch;
-  margin: 0 0 0.9rem;
-  font-size: 0.94rem;
-  line-height: 1.6;
-  color: rgb(244 244 244 / 0.62);
-}
-
-/* THE NINE NAMES, AS ONE LINE PER LAYER — phase 5.1, and the phone's half of
-   the desktop's `.passage__areas`.
-
-   §10 rules out cards, tiles, icons and orbiting labels, and this surface has
-   the same answer the desktop has: a running line separated by middots. It
-   wraps rather than scrolling — a two-line wrap of four names is still one
-   object, and a horizontal scroller would be a carousel of the thing the brief
-   says must not become a carousel. The names take the paper ink because in this
-   chapter the name is the content; the middot takes the note's.
-
-   The nine sentences that used to sit under these names are on the services
-   route — see `content.ts`. */
-.mv-passage__areas {
-  max-width: var(--mv-measure);
-  margin: 0;
-  font-size: 0.94rem;
-  line-height: 1.6;
-  color: var(--paper);
-}
-
-/* 0.25em, because the markup carries a real space either side of the middot —
-   see `MobileHome.tsx` — and padding on its own is not a break opportunity. */
-.mv-passage__areas i {
-  font-style: normal;
-  color: rgb(244 244 244 / 0.34);
-  padding: 0 0.25em;
-}
-
-/* -----------------------------------------------------------------------------
-   `TERM — SENTENCE`, THE PAGE'S ONLY STRUCTURAL IDIOM.
-
-   The same shape as `.passage__terms` on the desktop, at phone measure: the
-   term in the ink of the running text, an em dash, the sentence after it, one
-   column, no rule, no border, no grid, no tracked-out label above each field.
-
-   What it replaces on this surface is three separate treatments — a description
-   grid for the checkpoints, a bordered list for the nine areas, and the data
-   face on hairlines for the symptoms — which is three structural languages in
-   one chapter's worth of scroll.
-   -------------------------------------------------------------------------- */
-
-.mv-terms {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.72rem;
-  max-width: var(--mv-measure);
-}
-
-.mv-terms li {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 0.94rem;
-  line-height: 1.62;
-  color: rgb(244 244 244 / 0.7);
-}
-
-.mv-terms b {
-  font-weight: 400;
-  color: var(--paper);
-}
-
-/* The three symptoms at the cloud entry are sentences rather than terms, so
-   they take the same column with no term on them. They used to be the mono
-   face on hairlines — §6's "dense microcopy" and "HUD-like annotations" in one
-   object. */
-.mv-terms--plain { margin-block-start: 1.4rem; }
-
-/* The compressed process's route out, at the foot of the passage. `--mv-gap` is
-   the chapter rhythm every other item in this passage is separated by, so the
-   link sits at the same distance from the last principle as the principles do
-   from each other — one more object in the sequence rather than a footer on it. */
-.mv-passage__route { margin-block-start: var(--mv-gap); }
-
-/* =============================================================================
-   THE YELLOW BUDGET, PORTRAIT. §22, and it is the same budget as the desktop's.
-
-   TWO EVENTS ON THE WHOLE PAGE — `~15M Ft` at the proof and the closing action
-   — and §22's own words for the rest of the journey are ZERO. The desktop has
-   held that since the previous pass and `probe-yellow.mjs` was written to check
-   it; run against the phone it found twenty-two elements painting the signal
-   colour, sixteen of them inside the journey:
-
-     lower-atmosphere   six altitude stamps down the capability ladder, plus a
-                        station dot per step and a yellow-topped rule
-     selected-work      both routes out of the Proof act — the case and the
-                        work — which the DESKTOP act deliberately does not
-                        colour, for exactly this reason: the act has one yellow
-                        event and it is the figure
-     destination        both links inside the closing contact line
-     calibration        the OPENING action, which the yellow map in `acts.ts`
-                        gives `none`. The desktop opening is a line of type on a
-                        hairline in the editorial ink; the phone's was the
-                        signal colour, so the page spent its scarcest asset in
-                        the first frame
-     the telemetry      the live altitude and its progress fill, in every frame
-                        of the entire journey
-
-   None of this is removed and nothing loses a role: every one of those elements
-   is still exactly where it was, at the same size, with the same target, the
-   same href and the same text. What changes is that they are in the page's own
-   ink instead of the one colour it has decided to spend twice.
-
-   The mechanism is the variable rather than nineteen overrides. `--signal` is
-   reset for the whole flow and re-granted to the two budgeted events, so a rule
-   that reaches for it later inherits the budget instead of inheriting the
-   colour — which is the same arrangement, and the same argument, as
-   `:root .panel:not(.panel--act) { --signal: var(--act-34) }` on the desktop.
-   ========================================================================== */
-
-.mv-flow {
-  /* Not `--haze`: this is the colour a thing that WAS an accent becomes, and it
-     has to stay legible as a link and as a label. The paper ink at the
-     editorial step, which is what every other quiet element on this surface
-     already uses. */
-  --signal: rgb(244 244 244 / 0.62);
-}
-
-/* THE TWO EVENTS. Re-granted by name, and these two names are the budget. */
-.mv-title--figure,
-.mv-act--signal { --signal: #ffee25; }
-
-/* The closing action keeps its hairline in the real colour too — the rule under
-   it is part of the same object, and it is authored as a literal in the rule
-   further up this file rather than through the variable. */
-.mv-act--signal { border-bottom-color: rgb(255 238 37 / 0.34); }
-
-/* The opening action is a line of type on a hairline, exactly as the desktop's
-   is. Same size, same target, same href; §22 is about which of the page's two
-   invitations is allowed to be the loud one, and it is the last. */
-.mv-act:not(.mv-act--signal) { border-bottom-color: var(--hair); }
-
-/* THE TELEMETRY STRIP. It is fixed, so it is outside `.mv-flow` and outside the
-   reset above, and it is the one element on the phone that is in EVERY frame.
-   
-   §27 asks for no persistent technical UI and the strip is the closest thing on
-   this surface to it. It is kept, and the reason is the one the previous pass
-   already established the hard way: this is the phone's only altimeter. The
-   desktop reads the altitude through a live region because it has an instrument
-   in the picture twice; the phone has a fixed overlay at zero presence for nine
-   chapters of eleven, so removing the strip would leave a page whose entire
-   premise is an altitude with no altitude on it — which is the defect §10.2 of
-   the mobile brief was written against and which was reversed once already.
-   
-   What is removed is its LOUDNESS. The digits and the progress fill were the
-   signal colour, in every frame, for the length of the journey — sixty per cent
-   of the page's scroll spent on the colour §22 reserves for two moments. */
-.mv-telemetry { --signal: rgb(244 244 244 / 0.62); }
-.mv-telemetry__rule i { background: rgb(244 244 244 / 0.34); }
-
-/* -----------------------------------------------------------------------------
-   THE SILENCE AT A PASSAGE'S FOOT — §5, §13, §29.
-
-   `cloud-breakthrough` is three objects: the condition, the consequence and one
-   supporting line. Composed, that is 203px on a 390 — a quarter of a screen —
-   and the recomposition made it shorter than the design it replaced, because
-   the old version set the whole sentence as a four-line display headline with
-   an eyebrow over it.
-
-   Two things go wrong at a quarter of a screen, and the second is what found
-   the first.
-
-   §5 asks for MONUMENT -> WHISPER -> MONUMENT, and this is the whisper directly
-   before the Proof act — the loudest frame on the page. With a chapter gap and
-   nothing else, the phone ran the quietest state straight into the loudest with
-   no air between them, which is the rhythm §5 exists to prevent. §29 puts a
-   number on the same thing from the other side: a passage should resolve within
-   about one screen-scale beat, and a quarter of one is not a beat, it is a
-   paragraph.
-
-   AND THE ACCESSIBILITY WALK STEPPED OVER IT. `portrait-journey.spec.ts` walks
-   the document in steps of 0.45 of a viewport — deliberately not fractional, so
-   the step is a known distance rather than a different one per device — and a
-   chapter shorter than the step can be passed without ever being entered, so
-   the stage readout never announces it. That is the same defect §G4 of the
-   production report recorded against `cloud-breakthrough` once already, and it
-   came back the moment the chapter got shorter.
-
-   `padding-block-end` and not a margin, and not top padding:
-
-     * a MARGIN would not help. The stage bands are measured from each section's
-       own box — `measureAscent` reads `getBoundingClientRect()` — so space
-       between two sections belongs to neither of them and the walk can still
-       step from one into the next.
-     * TOP padding is capped at about 16svh by `the first meaningful line of
-       every chapter is near its own top`, and rightly: air above a chapter's
-       first line is a chapter the visitor scrolls into rather than arrives at.
-     * BOTTOM padding moves nothing. The statement stays exactly where it was
-       against its own boundary, and what grows is the silence AFTER it — which
-       is the thing §13 asks for in as many words.
-
-   `vw`, like every other length in this composition, so a collapsing toolbar
-   moves no chapter.
-
-   THE NUMBER IS BOUNDED FROM BOTH SIDES, and both bounds are existing
-   contracts rather than taste:
-
-     BELOW   the section has to be taller than the accessibility walk's step, or
-             the chapter is never entered. `portrait-journey.spec.ts` steps by
-             0.45 of a viewport, which at 390 x 844 is 380px against a shortest
-             passage whose content is 203px.
-     ABOVE   a trailing band over 34 svh is a spacer, and TWO suites say so
-             independently — `no chapter contains a tall run of nothing` in the
-             full-ascent suite and `no section is a tall empty spacer` in the
-             site suite. The trailing band IS this padding, exactly.
-
-   AND THE TWO SUITES MEASURE THE SAME PHONE AT TWO HEIGHTS. The full-ascent
-   config states its viewports — 390 x 844, the panel size — while the site
-   config takes the device descriptor's CONTENT box, 390 x 664. Same width, same
-   padding in pixels, and 226px is 27 svh on one and 34 on the other. The first
-   attempt at 58vw passed the full gate and failed the site suite by six
-   hundredths of a point, which is the most instructive kind of near-miss: a
-   `vw` length is stable across a rotation and is NOT stable across the
-   viewport-height difference between two test configurations of the same
-   device, and the shorter of the two is always the one that binds.
-
-   So the window at width 390 is 177px (the walk) to 226px (the spacer ceiling),
-   with 40px of the difference taken by the air around the statement above —
-   where it is composition rather than a run of nothing.
-
-   SOLVED RATHER THAN GUESSED AT, because four attempts at guessing it each
-   landed within a couple of points of one bound or the other — and two of them
-   passed one suite while failing the other.
-
-   The relationship, measured rather than modelled: the trailing band is this
-   padding plus about 26px of the last paragraph's own margin, and the shortest
-   passage's section is 227px plus the padding at width 390.
-
-   Which viewports each bound is actually enforced at matters, and it is not all
-   of them. The walk runs on `mobile-390` and `mobile-landscape` only —
-   `mobile-430`, `-375` and `-360` are smoke projects and the walk is not smoke.
-   The spacer ceiling is checked at 390 x 844 and 844 x 390 by the full suite and
-   at 390 x 664 and 430 x 740 by the site suite. So at width 390:
-
-     floor     section >= 380px at 844 tall   ->  padding >= 153px
-     ceiling   band <= 34 svh at 664 tall     ->  padding <= 200px
-
-   45vw is 175px, near the middle, and it clears the shapes nobody tests as
-   well. The tightest of those is 430 x 932 — 424px against a 419px step — and
-   it is worth saying that this shape is a test configuration rather than a
-   phone: 932 is the iPhone 14 Pro Max's PANEL height, which no browser ever
-   reports as `innerHeight`. The same device's content box is 430 x 740, where
-   the same passage is 424px against a 333px step.
-
-   The four near-misses are worth recording, because each one is the same
-   mistake in a different disguise — a length that is correct on the viewport
-   you happened to measure: 66vw was 92 svh in landscape, 58vw was 34.06 against
-   a 34 ceiling on the site suite's shorter 390, 48vw was 32.1, and 37vw put the
-   floor under the walk on the very viewport the walk runs at.
-
-   Measured across all seven viewport shapes the two suites use: the trailing
-   band is 23.5–30.3 svh against a 34 ceiling, and the shortest passage is
-   386–424px against a step of 176–419px. Both bounds hold everywhere, with the
-   thinnest margin on the shape that is not a device.
-   -------------------------------------------------------------------------- */
-.mv-sec[data-level='passage'] { padding-block-end: clamp(150px, 45vw, 200px); }
-
-/* LANDSCAPE NEEDS ALMOST NONE OF IT, and a `vw` length on a wide short viewport
-   is the trap: at 844 × 390 the same 66vw was 360px against a 390px screen —
-   92 svh of trailing nothing in every passage, four failures of the contract
-   above, and the only reason it was not four failures of taste as well is that
-   nobody had looked at the page in landscape yet.
-
-   The rule is the same rule and the arithmetic is what changed. At 844 wide the
-   measure is twice as long, so the shortest passage's content is 216px against
-   a 175px step — it already clears the walk with no help at all. What is left
-   for the padding to do is the composition's half of the job: a beat of silence
-   after the statement rather than the next chapter arriving against it.
-
-   Keyed to the ASPECT and not to a width, because the question is whether the
-   viewport is wide and short — which is the same hinge `styles.css` uses to
-   decide whether copy sits beside the instrument or above it. */
-@media (min-aspect-ratio: 1 / 1) {
-  .mv-sec[data-level='passage'] { padding-block-end: clamp(48px, 6vw, 72px); }
 }

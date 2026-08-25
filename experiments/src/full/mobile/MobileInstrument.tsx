@@ -250,7 +250,7 @@ type Emissive = { mat: MeshStandardMaterial; base: number };
  * at mount, and never again for the life of the page.
  */
 function Instrument({ onReady }: { onReady: () => void }) {
-  const { scene, materials } = useGLTF(MODEL_URL, false, false);
+  const { scene, materials } = useGLTF(MODEL_URL);
   const root = useRef<Group>(null);
 
   const still = useMemo(prefersReducedMotion, []);
@@ -661,10 +661,4 @@ function Baked() {
   return null;
 }
 
-/**
- * `false, false` — no DRACO loader, no Meshopt decoder. The altimeter needs
- * neither, and drei builds both by default, which costs a CSP violation and a
- * console error on every load. The full argument is in
- * `components/AltimeterMeridian.tsx`, which loads the same file the same way.
- */
-useGLTF.preload(MODEL_URL, false, false);
+useGLTF.preload(MODEL_URL);

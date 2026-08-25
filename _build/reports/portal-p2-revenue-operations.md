@@ -7,17 +7,6 @@ the business-operating layer on top of it. The Portal was
 `analytics + lead administration`; it is now the system Stratos runs its
 commercial life in.
 
-### Status at a glance
-
-| | |
-| --- | --- |
-| **P2 change-surface gate** | **PASS** |
-| **Repository-wide regression gate** | **NOT GREEN** |
-| **Merge / deploy** | **NOT APPROVED** |
-
-P2 is **ready for human review**. It is **not ready for merge or deploy**. The
-two statements are not in tension, and §14 sets out exactly why.
-
 ---
 
 ## 1. The architecture
@@ -556,10 +545,6 @@ The like-for-like check, same machine and same minute, one targeted command:
 Same specs, same failure names, differing by one flaky test. **No portal test
 appears in any of those failures.**
 
-**This characterises the failures; it does not accept them.** The repository-wide
-regression gate is NOT GREEN, and nothing in this section should be read as
-clearing it — see §14.
-
 ### The regression this phase DID cause, and how it was found
 
 Five P1 contracts broke and were reported as passing. The cause was a truncated
@@ -707,46 +692,6 @@ Nothing was redesigned. P2 looks like it was always part of P1.
 
 ## 14. Regression gates
 
-There are two gates here, and they are not the same gate. Reading one as the
-other is the single most likely way to misread this report, so they are stated
-separately and named separately.
-
-### The three verdicts
-
-| | |
-| --- | --- |
-| **P2 CHANGE-SURFACE GATE** | **PASS** |
-| **REPOSITORY-WIDE REGRESSION GATE** | **NOT GREEN** |
-| **MERGE / DEPLOY** | **NOT APPROVED** |
-
-Stated plainly, without hedging:
-
-* **All P2 Portal contracts are currently green.** `portal.spec.ts` +
-  `portal-control-room.spec.ts` + `portal-revenue.spec.ts` — **331 / 331**,
-  deterministically, on both projects. `scripts/portal-shots.mjs` — **57 / 57**.
-  `typecheck`, `scan:secrets`, `fingerprint:check` — clean.
-* **The full repository suite remains red.** It is not green at `HEAD`, and it
-  was not green at the P1 acceptance commit either.
-* **The remaining failures are outside the Portal change surface.** Every one of
-  them is a public-site homepage spec. No portal test appears in any failure at
-  either commit, and P2 did not edit one public file.
-* **Like-for-like P1/P2 runs reproduce the same shifting homepage failure
-  class.** Same specs, same failure names, a differing count that tracks machine
-  load rather than the diff (§9).
-* **This does NOT mean the full regression gate is accepted.** A red suite whose
-  failures are explained is still a red suite. The explanation establishes *where
-  the failures live*; it does not convert the repository-wide gate to PASS, and
-  nothing in this report should be quoted as though it did.
-* **P2 is therefore ready for human review, not ready for merge or deploy.** The
-  work is reviewable now because its own contracts hold and its failure surface
-  is characterised. It is not mergeable now because the repository-wide gate is
-  not green.
-
-The verdict at the foot of this report is a **review** verdict. It is not a merge
-approval, not a deploy approval, and does not stand in for one.
-
-### The gate table
-
 | Gate | Status |
 | --- | --- |
 | P1 Control Room | ⚠️ **five contracts were broken and are fixed** — see §9. Four were assertions needing to move with the documented §8 and §45 changes; two were real defects the P1 tests caught. |
@@ -765,21 +710,5 @@ approval, not a deploy approval, and does not stand in for one.
 | `npm run typecheck` | ✅ clean |
 
 ---
-
-## 15. What comes next
-
-Not P3. The next workstream is a **dedicated regression-harness stabilization
-pass**, before any further Portal feature development. The public-site homepage
-specs sit close to their timeout under parallel load and fail in a shifting set
-that tracks machine load; until that is fixed, no phase can produce a green
-repository-wide gate, and every phase after this one would inherit the same
-ambiguous result. Stabilize the harness first, then take the merge decision on
-P2 against a gate that means something.
-
----
-
-**P2 CHANGE-SURFACE GATE: PASS**
-**REPOSITORY-WIDE REGRESSION GATE: NOT GREEN**
-**MERGE / DEPLOY: NOT APPROVED**
 
 PORTAL P2 REVENUE & OPERATIONS READY FOR REVIEW

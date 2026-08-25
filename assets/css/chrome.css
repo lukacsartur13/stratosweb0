@@ -589,22 +589,9 @@ a { color: inherit; text-decoration: none; }
   --converge: 0;
   position: relative;
 }
-/* The resting opacity is .52, not .25, and the number is a contrast floor
-   rather than a taste. `opacity` composites the whole control — label included
-   — against the void behind it, so a call to action parked at .25 is #000 on
-   #403c09: a measured 1.86:1, against the 4.5:1 AA needs for its 13.6px label.
-   The convergence is not decoration on top of readable text; until the visitor
-   arrives it *is* the text, and it was failing.
-
-   .52 clears the threshold on both buttons with room to spare — 4.87:1 solid
-   and 5.24:1 ghost, computed on #000 over #FFEE25 and #F4F4F4 over #000, both
-   composited at that opacity against the void — and the travel from there to 1
-   still reads as an arrival. .50 is where the solid button is only 4.56:1,
-   which passes on paper and leaves nothing for a rounding error; below it the
-   effect is bought with a label nobody can read. */
 [data-converge] .converge__cta {
   transform: translateY(calc((1 - var(--converge)) * 1.4rem));
-  opacity: calc(.52 + var(--converge) * .48);
+  opacity: calc(.25 + var(--converge) * .75);
 }
 [data-converge].is-arrived .converge__cta { transform: none; opacity: 1; }
 
@@ -724,7 +711,7 @@ html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
 @media (max-width: 900px) { .foot__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .foot__grid { grid-template-columns: 1fr; } }
 
-.foot h3 {
+.foot h4 {
   font-family: var(--data); font-size: 10px; font-weight: 400;
   letter-spacing: .22em;
   text-transform: uppercase; color: var(--haze); margin-bottom: 1.1rem;

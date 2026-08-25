@@ -69,21 +69,10 @@ export function MobileTelemetry() {
     let bounds: number[][] = [];
     const readBounds = () => {
       const toJourney = progressOfSection('initial-ascent');
+      const toDestination = progressOfSection('full-stratosphere');
       bounds = [
         [toJourney, Math.max(0, toJourney - 0.015)],
-        // TWO STATES ON THIS ROUTE, NOT THREE — the same decision the desktop
-        // adapter makes, and for the same reason (see `siteHeader.ts`). The
-        // header's destination state opens the deck back up and adds a second
-        // call to action, and the action beat IS that somewhere to go: one
-        // question and one invitation in the emptiest frame on the page.
-        // Re-expanding a nav bar and a second button over it spends the page's
-        // last yellow event on chrome.
-        //
-        // The threshold is put beyond the end of the document rather than
-        // removed: `header.js` indexes `EDGES[i]` for the state it is in and a
-        // one-entry array throws on the first frame past the journey edge. The
-        // shared file is not this route's to change.
-        [1.01, toJourney],
+        [toDestination, Math.max(toJourney, toDestination - 0.015)],
       ];
     };
     readBounds();

@@ -3,14 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Stratos Media — static trilingual public site plus the private React portal.",
+  "description": "Stratos Media \u2014 static trilingual public site plus the private React portal.",
   "scripts": {
     "postinstall": "npm ci --prefix portal && npm ci --prefix experiments",
     "generate": "python3 _build/build.py",
     "build:site": "node scripts/assemble.mjs",
     "build:portal": "npm --prefix portal run build",
-    "build": "npm run generate && npm run build:site && npm run build:home && npm run build:portal && npm run fingerprint && npm run fonts:check",
-    "fonts:check": "node scripts/font-coverage.mjs",
+    "build": "npm run generate && npm run build:site && npm run build:home && npm run build:portal && npm run fingerprint",
     "fingerprint": "node scripts/fingerprint-assets.mjs",
     "fingerprint:check": "node scripts/fingerprint-assets.mjs --check",
     "dev": "python3 -m http.server 4321",
@@ -23,7 +22,7 @@
     "test:experiments": "playwright test --config playwright.experiments.config.ts",
     "dev:full": "npm --prefix experiments run dev:full",
     "build:full": "npm --prefix experiments run build:full",
-    "test:full": "npm run build:full && npm run build:home && playwright test --config playwright.full.config.ts",
+    "test:full": "npm run build:full && playwright test --config playwright.full.config.ts",
     "clean:validate": "rm -rf dist/experiments test-results",
     "validate:full": "npm run clean:validate && npm run build && npm run test:full",
     "bench": "node experiments/bench.mjs",
@@ -50,13 +49,12 @@
     "test:mountains": "playwright test --config playwright.mountains.config.ts"
   },
   "comments": {
-    "dependencies": "Runtime dependencies of the NETLIFY FUNCTIONS, and nothing else. The public site ships no third-party JavaScript and the portal has its own manifest; this block exists because Netlify bundles netlify/functions/* against the ROOT package.json, not against portal/. Omitting @supabase/supabase-js here is what made every lead submission crash with ERR_MODULE_NOT_FOUND at the store step — the SDK was installed under portal/node_modules, where the function cannot reach it."
+    "dependencies": "Runtime dependencies of the NETLIFY FUNCTIONS, and nothing else. The public site ships no third-party JavaScript and the portal has its own manifest; this block exists because Netlify bundles netlify/functions/* against the ROOT package.json, not against portal/. Omitting @supabase/supabase-js here is what made every lead submission crash with ERR_MODULE_NOT_FOUND at the store step \u2014 the SDK was installed under portal/node_modules, where the function cannot reach it."
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.47.10"
   },
   "devDependencies": {
-    "@playwright/test": "^1.49.1",
-    "esbuild": "^0.25.12"
+    "@playwright/test": "^1.49.1"
   }
 }

@@ -230,35 +230,6 @@ export const RETAIN = {
   power: 0.18,
   /** The attitude, at a state change. */
   pose: 0.26,
-  /**
-   * The overlay's position, scale and opacity, at a state change.
-   *
-   * 0.34 -> 0.22, and the reason is §15 of the temporal review rather than a
-   * preference about how motion should feel.
-   *
-   * This is the one constant that decides whether the arrival's return LANDS.
-   * The `arrival` state is active only while the visitor is in Act VI, and Act
-   * VI's chapter on a phone is its content — a statement, the instrument's air
-   * and one lead, 340px at 390x844. That is 0.38 s of scroll at an ordinary
-   * phone pace: barely one time constant, so an exponential chase reached about
-   * two thirds of the target and then began fading again. Measured against an
-   * authored 0.44 opacity: 0.36 in a stepped walk with settling time at every
-   * position, 0.34 at 900 px/s, 0.22 at 1 800, 0.16 at 3 200. The return never
-   * reached its own value at any speed.
-   *
-   * The obvious fix — give the chapter more scroll — is the one this codebase
-   * forbids: `portrait-journey.spec.ts` holds that no chapter may carry more
-   * than a third of a screen of blank band, and on this surface a chapter's
-   * length is its content. Buying duration with emptiness is exactly what that
-   * contract exists to stop, and it was tried and correctly rejected by it.
-   *
-   * So the chase gets shorter instead. At 0.22 s the same 0.38 s of scroll is
-   * 1.7 time constants and the state lands; three time constants is 0.66 s,
-   * which is still a movement rather than a switch, and the withdrawal still
-   * reads as the object receding. Every other state change on the page gets
-   * crisper by the same amount, which is §22's pace contrast rather than a
-   * regression: the phone's transitions were the slowest thing on a surface
-   * whose reveals are all under a second.
-   */
-  place: 0.22,
+  /** The overlay's position, scale and opacity, at a state change. */
+  place: 0.34,
 };
