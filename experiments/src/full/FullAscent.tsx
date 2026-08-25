@@ -305,6 +305,7 @@ function Calibration() {
         {m('calibration.title.a')}
         <br />
         <em>{m('calibration.title.em')}</em> {m('calibration.title.b')}
+        <span className="panel__title-locator">{m('calibration.title.locator')}</span>
       </h1>
       <p className="panel__lead">{m('calibration.lead')}</p>
       <p className="panel__actions">

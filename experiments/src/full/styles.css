@@ -212,6 +212,24 @@ main.journey:empty { min-height: 100svh; }
 /* Quoted from `.panel__title em`: not italic, and the one word in signal. */
 .jboot__h em { font-style: normal; color: var(--signal); }
 
+/* The locator line. Deliberately not display type: it is the instrument label
+   under the statement, so it takes the data face, the tracking and the muted
+   weight every other readout on this page uses. Sized well below the smallest
+   step of the headline so the two-line silhouette above it still reads as the
+   headline. */
+.jboot__h-locator,
+.panel__title-locator {
+  display: block;
+  margin-top: clamp(1rem, 2.4vh, 1.6rem);
+  font-family: var(--data, ui-monospace, monospace);
+  font-size: clamp(0.66rem, 0.6rem + 0.22vw, 0.8rem);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: rgba(244, 244, 244, 0.55);
+}
+
 .jboot__lede {
   margin: 0;
   max-width: 54ch;

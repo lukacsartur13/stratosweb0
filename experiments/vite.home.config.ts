@@ -182,6 +182,7 @@ function openingFrame(): Plugin {
       '  <h1 class="jboot__h">',
       `    <span>${line1}</span>`,
       `    <span><em>${em}</em> ${line2}</span>`,
+      `    <span class="jboot__h-locator">${escape(MESSAGES['calibration.title.locator'][lang])}</span>`,
       '  </h1>',
       `  <p class="jboot__lede">${escape(MESSAGES['calibration.lead'][lang])}</p>`,
       `  <p class="jboot__act"><a href="${pageHref('quote', lang)}">${escape(MESSAGES['common.cta.ascend'][lang])}</a></p>`,

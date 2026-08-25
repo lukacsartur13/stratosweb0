@@ -659,7 +659,13 @@ html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
   margin-top: clamp(2.4rem, 6vh, 4rem);
 }
 @media (min-width: 900px) {
-  .ground__cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+  .ground__cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  /* The right column carries five headed blocks; the left carries two
+     paragraphs. Left to itself the lede ends a third of the way down and
+     leaves a tall empty gutter beside the rest. Sticky keeps the statement
+     beside whatever the reader is on, which is what the column is for.
+     `align-self: start` because a stretched grid item has no room to move. */
+  .ground__lede { position: sticky; top: clamp(6rem, 14vh, 9rem); align-self: start; }
 }
 
 .ground__lede p {
@@ -704,6 +710,39 @@ html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
 }
 .ground__svc a:hover,
 .ground__svc a:focus-visible { color: var(--signal); text-decoration-color: var(--signal); }
+
+/* The FAQ block closes the statement. Full width under the two columns, and a
+   <dl> because that is what a question-and-answer list is — the same six pairs
+   the FAQPage node in the JSON-LD is built from. */
+.ground__faq {
+  margin-top: clamp(2.6rem, 6vh, 4rem);
+  padding-top: clamp(1.8rem, 4vh, 2.6rem);
+  border-top: 1px solid var(--hair);
+}
+.ground__faq-h {
+  margin: 0 0 1.4rem;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .24em; color: var(--haze);
+}
+.ground__faq dl {
+  margin: 0;
+  display: grid; gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+.ground__faq dl > div { padding: 1.1rem 0; }
+@media (min-width: 700px) {
+  .ground__faq dl { gap: 0 clamp(2rem, 4vw, 3.5rem); }
+}
+.ground__faq dt {
+  font-family: var(--display); font-weight: 600;
+  font-size: var(--step-0); color: var(--paper);
+  margin-bottom: .45rem;
+}
+.ground__faq dd {
+  margin: 0; max-width: 52ch;
+  font-size: var(--step--1); line-height: 1.62;
+  color: rgba(244, 244, 244, .60);
+}
 
 /* ------------------------------------------------- ARRIVAL / GROUND CONTROL
    The §8 finale. Three movements: the trace converges, the page asks its own

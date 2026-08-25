@@ -105,6 +105,24 @@ export const MESSAGES = {
     en: 'is what we build.',
     de: 'bauen wir.',
   },
+  /**
+   * The locator line, inside the H1 and after the statement.
+   *
+   * The hero said what the company believes and never what it does or where.
+   * That is a gap for a reader — you can land here and still not know you are
+   * looking at a web agency — and it was a measurable one for search: an audit
+   * flagged that none of the words in the page title appear in the H1, because
+   * the title names the service and the city and the H1 names neither.
+   *
+   * So it is a deck line, not a replacement. The statement keeps both of its
+   * lines and its silhouette; this sits under them, small and set in the data
+   * face, and reads as the instrument label the rest of the page is full of.
+   */
+  'calibration.title.locator': {
+    hu: 'Stratos · Weboldal készítés Győrben és Budapesten',
+    en: 'Stratos · Web design and development in Hungary',
+    de: 'Stratos · Webdesign und Entwicklung in Ungarn',
+  },
   'calibration.lead': {
     hu: 'A legtöbb vállalkozás a földön versenyzik: ugyanazokkal az eszközökkel, ugyanazokért a figyelemmorzsákért. Mi máshol dolgozunk. Előbb megnézzük, hol tartasz — aztán megépítjük a rendszert, amivel feljebb kerülsz.',
     en: 'Most businesses compete on the ground: the same tools, the same crumbs of attention. We work somewhere else. First we look at where you stand — then we build the system that takes you higher.',

@@ -1292,6 +1292,20 @@ def build_structured_data(lang, key, title, desc, meta, body):
         webpage["breadcrumb"] = {"@id": trail["@id"]}
         graph.append(trail)
 
+    if key == "index":
+        graph.append({
+            "@type": "FAQPage",
+            "@id": page_url + "#faq",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": q,
+                    "acceptedAnswer": {"@type": "Answer", "text": a},
+                }
+                for q, a in GROUND_COPY[lang]["faq"]
+            ],
+        })
+
     if key in ("sme", "enterprise", "branding", "ads"):
         # No `offers`, no `priceRange`, no `areaServed`. The site publishes no
         # price for any of the four, and a Service node without an Offer is a
@@ -2035,7 +2049,14 @@ GROUND = """<section class="ground" aria-labelledby="ground-h">
         <p>{{how}}</p>
         <h3>{{where_h}}</h3>
         <p>{{where}}</p>
+        <h3>{{who_h}}</h3>
+        <p>{{who}}</p>
       </div>
+    </div>
+    <div class="ground__faq">
+      <h3 class="ground__faq-h">{{faq_h}}</h3>
+      <dl>{{faq}}
+      </dl>
     </div>
   </div>
 </section>
@@ -2088,6 +2109,40 @@ GROUND_COPY = {
                  "bizonyult lassabbnak. Ha nem tudod eldönteni, melyik szolgáltatás kellene, "
                  "írj nekünk: a beszélgetés ingyenes, és a végén akkor is okosabb leszel, ha "
                  "nem velünk dolgozol tovább.",
+        "who_h": "Kikkel dolgozunk",
+        "who": "Nincs olyan iparág, amire szakosodtunk volna, és ezt szándékosan nem is akarjuk. Építettünk oldalt kertépítő cégnek, borbélyüzletnek, mentáltréning-szakembernek, ipari beszállítónak és nonprofit szervezetnek — a feladat mindegyiknél ugyanaz volt: megérteni, kinek szól, mit kell megértenie az első képernyőn, és mi az a lépés, amit meg akarunk könnyíteni neki. Ami valóban közös az ügyfeleinkben, az nem a szakma, hanem a hozzáállás: mindegyikük komolyan veszi, amit csinál, és nem egy kipipálandó weboldalt keres, hanem valamit, ami dolgozik helyette. Ha te is így gondolkodsz, akkor jó helyen jársz, függetlenül attól, hogy mekkora a cég és mivel foglalkozik.",
+        "faq_h": "Gyakori kérdések",
+        "faq": [
+            ("Mennyibe kerül egy weboldal készítés?",
+             "Nincs árlistánk, mert két egyforma feladat sincs. A KKV-oldalaink fix havidíjban "
+             "mennek, amiben benne van a tervezés, a fejlesztés, a tárhely és a karbantartás; a "
+             "nagyvállalati fejlesztéseket projektalapon árazzuk. A díjmentes konzultáció után "
+             "kapsz egy konkrét számot, és a blogunkon részletesen leírtuk, mi hajtja fel egy "
+             "weboldal árát."),
+            ("Mennyi idő alatt készül el?",
+             "Egy tipikus kisvállalkozói weboldal négy-hat hét a szerződéstől az élesítésig, ha "
+             "a tartalom időben megvan. A leggyakoribb csúszás nem a fejlesztés, hanem a "
+             "szövegek és a fotók — ezért segítünk mindkettőben."),
+            ("Kell hozzá WordPress vagy más rendszer?",
+             "Nem. Minden oldalunkat egyedileg fejlesztjük, ezért nincs sablon, nincs "
+             "bővítménydzsungel és nincs havonta érkező biztonsági frissítés, amit valakinek "
+             "le kell futtatnia. Cserébe gyorsabb, biztonságosabb, és pontosan azt tudja, "
+             "amire szükség van."),
+            ("Szerkeszthetem magam a tartalmat?",
+             "Igen, ahol ennek értelme van. Az oldal azon részeit, amiket rendszeresen "
+             "frissíteni kell — árak, nyitvatartás, hírek, referenciák — kapsz felülethez "
+             "hozzáférést. Ami ritkán változik, azt mi módosítjuk, a havidíj részeként."),
+            ("Csak Győrben és Budapesten dolgoztok?",
+             "Nem, csak ott tudunk személyesen leülni. Ügyfeleink egy része az ország más "
+             "pontjairól való, és dolgozunk osztrák és német cégeknek is — magyarul, angolul "
+             "és németül. Az online együttműködés az elmúlt években semmivel nem bizonyult "
+             "lassabbnak a személyesnél."),
+            ("Mi történik, ha elégedetlen vagyok?",
+             "A havidíjas konstrukció felmondható, és az oldal a tiéd marad — nem tartjuk "
+             "túszként a domaint vagy a tartalmat. Ez a modell csak akkor éri meg nekünk, ha "
+             "hosszú távon elégedett vagy, ami elég erős ösztönző ahhoz, hogy ne kelljen "
+             "szerződéssel kényszeríteni."),
+        ],
     },
     "en": {
         "eyebrow": "GROUND CONTROL",
@@ -2135,6 +2190,38 @@ GROUND_COPY = {
                  "abroad online, which over the past years has proved no slower at all. If "
                  "you cannot tell which service you need, write to us: the conversation is "
                  "free, and you will know more at the end of it either way.",
+        "who_h": "Who we work with",
+        "who": "There is no industry we specialise in, and that is deliberate. We have built sites for a landscaping firm, a barbershop, a mental-training practitioner, an industrial supplier and a nonprofit — and the job was the same every time: understand who it is for, what they need to grasp on the first screen, and which single step we are trying to make easier. What our clients actually have in common is not a trade but an attitude: each of them takes their work seriously and is not looking for a website to tick off, but for something that works on their behalf. If you think that way too, you are in the right place, whatever the size of the company.",
+        "faq_h": "Frequently asked questions",
+        "faq": [
+            ("How much does a website cost?",
+             "We publish no price list, because no two briefs are the same. Our small-business "
+             "sites run on a fixed monthly fee that covers design, development, hosting and "
+             "maintenance; enterprise work is priced per project. You get a concrete number "
+             "after the free consultation, and our blog sets out in detail what drives the "
+             "price of a website."),
+            ("How long does it take?",
+             "A typical small-business site is four to six weeks from signature to launch, if "
+             "the content is ready on time. The usual delay is not development but the copy "
+             "and the photography — which is why we help with both."),
+            ("Do you use WordPress or a similar system?",
+             "No. Every site we build is developed from scratch, so there is no template, no "
+             "plugin jungle and no monthly security update someone has to remember to run. In "
+             "return it is faster, safer, and does exactly what it needs to."),
+            ("Can I edit the content myself?",
+             "Yes, where that makes sense. You get access to the parts that need regular "
+             "updating — prices, opening hours, news, references. What rarely changes, we "
+             "change for you, as part of the monthly fee."),
+            ("Do you only work in Győr and Budapest?",
+             "No, those are only the places we can meet in person. Some of our clients are "
+             "elsewhere in Hungary, and we work for Austrian and German companies too — in "
+             "Hungarian, English and German. Working online has proved no slower than meeting "
+             "in person."),
+            ("What happens if I am not happy?",
+             "The monthly agreement can be ended and the site stays yours — we do not hold the "
+             "domain or the content hostage. This model only works for us if you are satisfied "
+             "over the long run, which is a stronger incentive than any contract clause."),
+        ],
     },
     "de": {
         "eyebrow": "BODENKONTROLLE",
@@ -2183,6 +2270,41 @@ GROUND_COPY = {
                  "Jahren als keineswegs langsamer erwiesen hat. Wenn Sie nicht wissen, welche "
                  "Leistung Sie brauchen, schreiben Sie uns: Das Gespräch ist kostenlos, und "
                  "Sie wissen danach in jedem Fall mehr.",
+        "who_h": "Mit wem wir arbeiten",
+        "who": "Es gibt keine Branche, auf die wir uns spezialisiert haben, und das ist Absicht. Wir haben Websites für einen Gartenbaubetrieb, einen Barbershop, eine Mentaltrainerin, einen Industriezulieferer und eine gemeinnützige Organisation gebaut — und die Aufgabe war jedes Mal dieselbe: verstehen, für wen sie ist, was auf dem ersten Bildschirm ankommen muss und welchen einen Schritt wir erleichtern wollen. Gemeinsam ist unseren Kunden nicht die Branche, sondern die Haltung: Sie alle nehmen ihre Arbeit ernst und suchen keine Website zum Abhaken, sondern etwas, das für sie arbeitet. Wenn Sie so denken, sind Sie hier richtig — unabhängig von der Größe des Unternehmens.",
+        "faq_h": "Häufige Fragen",
+        "faq": [
+            ("Was kostet eine Website?",
+             "Wir veröffentlichen keine Preisliste, weil keine zwei Aufgaben gleich sind. "
+             "Unsere Websites für kleine Unternehmen laufen zu einer festen Monatsgebühr, die "
+             "Konzept, Entwicklung, Hosting und Wartung enthält; Projekte für Großunternehmen "
+             "rechnen wir pro Projekt ab. Nach der kostenlosen Beratung bekommen Sie eine "
+             "konkrete Zahl."),
+            ("Wie lange dauert es?",
+             "Eine typische Website für ein kleines Unternehmen dauert vier bis sechs Wochen "
+             "von der Unterschrift bis zum Launch, wenn die Inhalte rechtzeitig vorliegen. Die "
+             "übliche Verzögerung ist nicht die Entwicklung, sondern Text und Fotos — deshalb "
+             "helfen wir bei beidem."),
+            ("Nutzen Sie WordPress oder ein ähnliches System?",
+             "Nein. Jede Website entwickeln wir individuell, deshalb gibt es keine Vorlage, "
+             "keinen Plugin-Dschungel und kein monatliches Sicherheitsupdate, an das jemand "
+             "denken muss. Dafür ist sie schneller, sicherer und kann genau das, was gebraucht "
+             "wird."),
+            ("Kann ich die Inhalte selbst bearbeiten?",
+             "Ja, wo es sinnvoll ist. Für die Bereiche, die regelmäßig aktualisiert werden — "
+             "Preise, Öffnungszeiten, Neuigkeiten, Referenzen — bekommen Sie Zugang. Was sich "
+             "selten ändert, ändern wir für Sie, als Teil der Monatsgebühr."),
+            ("Arbeiten Sie nur in Győr und Budapest?",
+             "Nein, dort können wir uns nur persönlich treffen. Ein Teil unserer Kunden sitzt "
+             "anderswo in Ungarn, und wir arbeiten auch für österreichische und deutsche "
+             "Unternehmen — auf Ungarisch, Englisch und Deutsch. Die Zusammenarbeit online hat "
+             "sich als nicht langsamer erwiesen."),
+            ("Was, wenn ich unzufrieden bin?",
+             "Die Monatsvereinbarung ist kündbar und die Website bleibt Ihre — wir halten "
+             "weder Domain noch Inhalte fest. Dieses Modell lohnt sich für uns nur, wenn Sie "
+             "langfristig zufrieden sind, und das ist ein stärkerer Anreiz als jede "
+             "Vertragsklausel."),
+        ],
     },
 }
 
@@ -2193,12 +2315,17 @@ def build_ground(lang):
     svc = "".join(
         f'\n          <li><a href="{root_href(lang, k)}">{name}</a> — {line}</li>'
         for k, name, line in g["svc"])
+    faq = "".join(
+        f'\n        <div><dt>{q}</dt><dd>{a}</dd></div>'
+        for q, a in g["faq"])
     return render(GROUND, dict(
         eyebrow=g["eyebrow"], h=g["h"], p1=g["p1"], p2=g["p2"],
         svc_h=g["svc_h"], svc=svc,
         why_h=g["why_h"], why=g["why"],
         how_h=g["how_h"], how=g["how"],
         where_h=g["where_h"], where=g["where"],
+        who_h=g["who_h"], who=g["who"],
+        faq_h=g["faq_h"], faq=faq,
     ))
 
 
