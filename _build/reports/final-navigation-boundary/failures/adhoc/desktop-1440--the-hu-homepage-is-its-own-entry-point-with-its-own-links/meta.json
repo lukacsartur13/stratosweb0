@@ -1,0 +1,61 @@
+{
+  "runId": "adhoc",
+  "navId": "adhoc.desktop-1440.w5.the-hu-homepage-is-its-own-entry-point-with-its-own-links.0",
+  "test": {
+    "file": "public-site.spec.ts",
+    "line": 269,
+    "title": "the hu homepage is its own entry point with its own links",
+    "project": "desktop-1440",
+    "workerIndex": 5,
+    "repeatEachIndex": 0,
+    "retry": 0
+  },
+  "preceding": {
+    "urlBefore": "about:blank",
+    "contextPages": 1,
+    "openRequests": 0,
+    "navigationsInThisTest": 0,
+    "workerTestsBefore": 0,
+    "workerNavigationsBefore": 0,
+    "precedingTest": null,
+    "precedingNavigation": null
+  },
+  "status": "failed",
+  "expectedStatus": "passed",
+  "durationMs": 943,
+  "timeoutMs": 30000,
+  "lastConfirmedState": "DESTINATION_READY",
+  "statesReached": [
+    "GOTO_CALLED",
+    "REQUEST_STARTED",
+    "RESPONSE_EVENT",
+    "NAV_COMMITTED",
+    "DOMCONTENTLOADED",
+    "LOAD",
+    "DESTINATION_READY"
+  ],
+  "screenshot": true,
+  "error": [
+    "Error: /index.html\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m400\u001b[39m\nReceived:   \u001b[31m404\u001b[39m"
+  ],
+  "errorIsPartial": false,
+  "frozenSubject": {
+    "source": "_build/reports/hermetic-gate/manifests/frozen-reference.json",
+    "dist": null,
+    "test": null,
+    "config": null,
+    "combined": null,
+    "commit": null
+  },
+  "system": {
+    "loadavg": [
+      26.7021484375,
+      8.99267578125,
+      5.31689453125
+    ],
+    "freememMB": 590,
+    "cpus": 10,
+    "platform": "darwin 25.6.0",
+    "arch": "arm64"
+  }
+}

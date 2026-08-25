@@ -61,110 +61,44 @@ export const DE: Record<string, string> = {
   'Automatizálás': 'Automatisierung',
   'Ami ismétlődik, az fusson magától.': 'Was sich wiederholt, soll von selbst laufen.',
 
-  // --- VII · die neun Systemknoten, Ring 0 (Kern) und Ring 1 (Struktur) -----
+  // --- VII · die neun Systemknoten ------------------------------------------
+  //
+  // NUR DIE NAMEN — die neun Sätze fehlen nicht, sie stehen auf der
+  // Leistungsseite. Phase 5.1 hat das Systemkapitel von drei gestaffelten
+  // Ebenen auf einen komponierten Takt verdichtet; die neun `Name — Satz`-Paare
+  // sind unverändert nach `06 · Amit be tudunk vállalni` in
+  // `szolgaltatasok.html` umgezogen, in allen drei Sprachen. Vier davon haben
+  // wiederholt, was Akt III auf derselben Seite bereits sagt. Siehe
+  // `content.ts` und `scripts/system-inventory.mjs`.
+  //
+  // Stratégia, Fejlesztés, Hirdetés und Automatizálás sind oben bereits als
+  // Leistungsbereiche hinterlegt; hier stehen nur die fünf übrigen.
   'Kutatás': 'Recherche',
-  'Piac, versenytársak, keresési szándék. Mielőtt bármit építenénk.':
-    'Markt, Wettbewerber, Suchintention. Bevor wir irgendetwas bauen.',
-  // "Ez dönti el a többit." eröffnet auch `system.ring.0.note` in messages.ts
-  // und ist dort gleich übersetzt. Derselbe Satz, dieselbe Aussage, eine
-  // Formulierung.
-  'Mit mondunk, kinek, és milyen sorrendben. Ez dönti el a többit.':
-    'Was wir sagen, zu wem und in welcher Reihenfolge. Das entscheidet über alles Weitere.',
   'Arculat': 'Branding',
-  'A vizuális nyelv, amely minden felületen ugyanaz marad.':
-    'Die visuelle Sprache, die auf jeder Fläche dieselbe bleibt.',
   'Weboldal': 'Website',
-  'A központ, ahová minden csatorna vezet, és ahol a döntés megszületik.':
-    'Das Zentrum, zu dem alle Kanäle führen und wo die Entscheidung fällt.',
-  'Egyedi funkciók, integrációk, sebesség. Nem sablon, nem plugin-halmaz.':
-    'Eigene Funktionen, Integrationen, Geschwindigkeit. Keine Vorlage, kein Plugin-Haufen.',
-
-  // --- VII · Ring 2 (Betrieb) ----------------------------------------------
-  'Fizetett forgalom oda, ahol már van mit fogadnia.':
-    'Bezahlter Traffic dorthin, wo ihn bereits etwas empfängt.',
   'Analitika': 'Analytics',
-  'Mérés, amely nem riportot termel, hanem döntést.':
-    'Messung, die keine Reports hervorbringt, sondern Entscheidungen.',
   'Optimalizálás': 'Optimierung',
-  'Havi finomhangolás a mért adatok alapján, nem megérzésből.':
-    'Monatliche Feinabstimmung auf Basis gemessener Daten, nicht aus dem Bauch heraus.',
-  'Ami ismétlődik, azt nem embernek kell csinálnia.':
-    'Was sich wiederholt, muss kein Mensch tun.',
 
   // --- VIII · die sieben Kontrollpunkte -------------------------------------
   // Vier der sieben Namen — Kutatás, Stratégia, Fejlesztés, Optimalizálás —
   // sind oben bereits als Leistungsbereich oder Systemknoten hinterlegt. Nur
   // drei sind neu. `Tervezés` ist die Entwurfsphase, `Dizájn` die Disziplin;
-  // im Deutschen bleiben die beiden deshalb getrennt.
+  // im Deutschen bleiben die beiden deshalb getrennt — `Konzeption` gegen
+  // `Design`, und `Konzeption` ist auch das Wort, das `_build/i18n/_common.json`
+  // für dieselbe Phase auf den übrigen Seiten setzt. Vorher stand hier
+  // `Gestaltung`: dieselbe Unterscheidung, ein anderes Wort, und damit zwei
+  // Namen für einen Schritt, sobald die Startseite auf die Leistungsseite
+  // verlinkt.
+  //
+  // DIE ACHTUNDZWANZIG SÄTZE, DIE HIER STANDEN, SIND UMGEZOGEN — nicht neu
+  // übersetzt und nicht gestrichen: Phase 4 hat sie mit genau diesen deutschen
+  // Strings nach `_build/i18n/szolgaltatasok.json` verschoben, wo der Abschnitt
+  // `05 · A folyamat` der Leistungsseite sie ausgibt. Die Startseite trägt die
+  // sieben Namen und drei daraus abgeleitete Prinzipien; die vier Begriffe und
+  // ihre Antworten liegen eine Route tiefer. Siehe `../content.ts`.
   'Felderítés': 'Erkundung',
-  'Tervezés': 'Gestaltung',
-  'Indulás': 'Start',
-
-  // 1 · Felderítés
-  'Egy beszélgetés arról, hol tart a vállalkozás, és mi az, ami valóban akadályozza.':
-    'Ein Gespräch darüber, wo das Unternehmen steht und was es wirklich aufhält.',
-  'Írásos helyzetkép és egy őszinte válasz arra, hogy tudunk-e segíteni.':
-    'Eine schriftliche Bestandsaufnahme und eine ehrliche Antwort darauf, ob wir helfen können.',
-  'Hozzáférést a jelenlegi számokhoz és időt egy alapos beszélgetésre.':
-    'Zugang zu Ihren aktuellen Zahlen und Zeit für ein gründliches Gespräch.',
-  'Közös kép a kiindulási pontról — vagy egy korrekt nem.':
-    'Ein gemeinsames Bild vom Ausgangspunkt — oder ein klares Nein.',
-
-  // 2 · Kutatás
-  'Versenytárs- és keresési elemzés, a jelenlegi felületek technikai átvizsgálása.':
-    'Wettbewerbs- und Suchanalyse sowie eine technische Prüfung der bestehenden Flächen.',
-  'Kutatási összefoglaló: kereslet, versenyhelyzet, technikai hiányosságok.':
-    'Eine Rechercheübersicht: Nachfrage, Wettbewerbslage, technische Lücken.',
-  'Belső ismeretet az ügyfelekről, amit adat nem mutat meg.':
-    'Internes Wissen über Ihre Kunden, das Daten nicht zeigen.',
-  'Tényeken alapuló alap a stratégiához.':
-    'Eine faktenbasierte Grundlage für die Strategie.',
-
-  // 3 · Stratégia
-  'Eldöntjük a pozicionálást, az üzeneteket és a csatornák sorrendjét.':
-    'Wir entscheiden über Positionierung, Botschaften und die Reihenfolge der Kanäle.',
-  'Stratégiai dokumentum mérhető célokkal és ütemezéssel.':
-    'Ein Strategiedokument mit messbaren Zielen und Zeitplan.',
-  'Döntést. Ez az a pont, ahol a legtöbb múlik rajtad.':
-    'Eine Entscheidung. Das ist der Punkt, an dem am meisten von Ihnen abhängt.',
-  'Egy irány, amelyhez minden későbbi döntés mérhető.':
-    'Eine Richtung, an der sich jede spätere Entscheidung messen lässt.',
-
-  // 4 · Tervezés
-  'Arculat és felületi tervek készülnek, valós tartalommal, nem kitöltő szöveggel.':
-    'Es entstehen Marken- und Oberflächenentwürfe, mit echten Inhalten, nicht mit Blindtext.',
-  'Jóváhagyható dizájnterv minden fontos nézetre.':
-    'Ein freigabefähiger Entwurf für jede wichtige Ansicht.',
-  'Visszajelzést egy körben, összegyűjtve.': 'Rückmeldungen in einer Runde, gesammelt.',
-  'Jóváhagyott terv, amiből egyértelmű, mi épül.':
-    'Ein freigegebener Entwurf, aus dem eindeutig hervorgeht, was gebaut wird.',
-
-  // 5 · Fejlesztés
-  'Megépítjük. Menet közben látod, nem a végén.':
-    'Wir bauen es. Sie sehen es währenddessen, nicht erst am Ende.',
-  'Működő oldal tesztkörnyezetben, mérésekkel felszerelve.':
-    'Eine funktionierende Website in einer Testumgebung, mit Messung ausgestattet.',
-  'Tartalmat és a hozzáféréseket.': 'Inhalte und die Zugänge.',
-  'Élesíthető rendszer, nem bemutató.':
-    'Ein System, das live gehen kann, keine Vorführung.',
-
-  // 6 · Indulás
-  'Élesítés, átirányítások, mérés ellenőrzése, hirdetések indítása.':
-    'Livegang, Weiterleitungen, Prüfung der Messung, Start der Werbung.',
-  'Élő rendszer és átadási dokumentáció.':
-    'Ein laufendes System und eine Übergabedokumentation.',
-  'Jóváhagyást az indulásra.': 'Die Freigabe für den Start.',
-  'A rendszer működik és mér.': 'Das System läuft und misst.',
-
-  // 7 · Optimalizálás
-  'Havonta: mérés, elemzés, módosítás. Ez nem projektzárás, hanem üzemeltetés.':
-    'Monatlich: messen, analysieren, anpassen. Das ist kein Projektabschluss, sondern Betrieb.',
-  'Havi riport és a végrehajtott módosítások listája.':
-    'Ein Monatsbericht und die Liste der durchgeführten Änderungen.',
-  'Visszajelzést arról, milyen megkeresések érkeznek.':
-    'Rückmeldung dazu, welche Anfragen eingehen.',
-  'Rendszer, amely idővel jobb lesz, nem elavul.':
-    'Ein System, das mit der Zeit besser wird, statt zu veralten.',
+  'Tervezés': 'Konzeption',
+  'Élesítés': 'Livegang',
 
   /*
    * --- VI · die vier Fallstudien ------------------------------------------

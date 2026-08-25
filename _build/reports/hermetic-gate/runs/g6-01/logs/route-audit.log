@@ -1,0 +1,22 @@
+$ node scripts/route-audit.mjs
+(cwd: /Users/arturlukacs/stratos-hermetic/subject)
+
+route-audit: serving dist/ on :4331
+  1920x1080 done
+  1440x900 done
+  1366x768 done
+  1280x800 done
+  1024x768 done
+  820x1180 done
+  430x932 done
+  390x844 done
+  375x812 done
+  360x800 done
+  844x390 done
+  1280@200% done
+
+route-audit: 66 routes x 12 viewports = 792 checks
+  failing checks: 0
+  broken internal links: 0
+
+[exit 0] 252.8s

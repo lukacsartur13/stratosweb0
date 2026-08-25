@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>Stratos — luxury art direction, six composition studies</title>
+<style>
+/* ==========================================================================
+   PHASE 1 — SIX STATIC COMPOSITION STUDIES, 1440 × 900.
+
+   Nothing here is production code and nothing here is imported by the site.
+   This file exists to be photographed: six frames, no animation, no scroll,
+   no scene, no interaction. Each one has to hold completely still (§31).
+
+   Everything it uses already exists in the repository:
+     type      assets/fonts/{archivo,jetbrains-mono,aboreto}
+     palette   experiments/src/full/styles.css + components/Sky.tsx
+     instrument renders of public/models/stratos-altimeter.glb under the four
+               lights of components/MeridianLights.tsx — see render-instrument.mjs
+     images    assets/img/work-rapidkert.jpg and the six collaboration marks
+     words     experiments/src/full/locales/messages.ts and content.ts
+
+   No new copy was written. Statements are shortened, split or re-ranked; no
+   claim was invented and the Rapidkert figure keeps its exact meaning.
+   ========================================================================== */
+
+@font-face{font-family:'Archivo';font-style:normal;font-weight:100 900;font-stretch:62% 125%;src:url('../../../assets/fonts/archivo/archivo-normal-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC;}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:100 900;font-stretch:62% 125%;src:url('../../../assets/fonts/archivo/archivo-normal-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F,U+2C60-2C7F;}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;src:url('../../../assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC;}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;src:url('../../../assets/fonts/jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F,U+2C60-2C7F;}
+@font-face{font-family:'Aboreto';font-style:normal;font-weight:400;src:url('../../../assets/fonts/aboreto/aboreto-normal-latin.woff2') format('woff2');unicode-range:U+0000-00FF;}
+
+:root{
+  /* THE PALETTE — five values, all of them already in the repository. */
+  --ink:     #04060a;   /* PRIMARY DARK     styles.css --ink        */
+  --ceiling: #01060f;   /* the ceiling sky  Sky.tsx, 30 000 m top   */
+  --blue:    #0e2a58;   /* ATMOSPHERIC BLUE Sky.tsx, 22 000 m top   */
+  --paper:   #f4f4f4;   /* PRIMARY TYPE     styles.css --paper      */
+  --haze:    #8a929b;   /* SECONDARY TYPE   styles.css --haze       */
+  --signal:  #ffee25;   /* STRATOS YELLOW   styles.css --signal     */
+
+  --micro-c: rgba(244,244,244,.28);
+  --hair-c:  rgba(244,244,244,.09);
+
+  --display:'Archivo', system-ui, sans-serif;
+  --data:'JetBrains Mono', ui-monospace, monospace;
+  --mark:'Aboreto','Archivo',serif;
+
+  /* One margin, obeyed by every frame. Whitespace is only a material once it
+     is measured. */
+  --m:100px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#0a0c0f;}
+body{
+  font-family:var(--display);
+  -webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;align-items:center;gap:48px;padding:48px 0;
+}
+.frame{position:relative;width:1440px;height:900px;overflow:hidden;background:var(--ink);color:var(--paper);isolation:isolate;}
+
+/* ----------------------------------------------------------- FOUR TYPE ROLES
+   Four. Not ten. §34.
+   MONUMENT — extreme scale, light weight. Weight is what separates a monument
+              from a shout: Archivo at 380 across 130px reads as authority,
+              the same size at 620 reads as a banner.
+   DISPLAY  — the secondary statement, and only ever one per frame.
+   BODY     — small editorial text, narrow measure, never full-contrast.
+   MICRO    — rare metadata. Mono, and it appears three times in six frames.
+   ---------------------------------------------------------------------------- */
+.monument{font-weight:380;font-stretch:100%;letter-spacing:-.034em;line-height:.96;color:var(--paper);}
+.display {font-weight:400;letter-spacing:-.022em;line-height:1.04;font-size:54px;color:rgba(244,244,244,.44);}
+.body    {font-weight:400;font-size:18px;line-height:1.62;color:rgba(244,244,244,.52);max-width:32ch;}
+.micro   {font-family:var(--data);font-weight:450;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--micro-c);}
+.hair{height:1px;background:var(--hair-c);border:0;}
+
+/* The one action, and it appears twice on the whole page. It is important
+   because of the room around it, not because it is loud. §26. */
+.cta{display:inline-flex;align-items:center;gap:18px;background:var(--signal);color:#0c0c05;
+     font-weight:500;font-size:15px;letter-spacing:.005em;padding:20px 36px;border-radius:1px;}
+.cta .arrow{font-family:var(--data);font-size:12px;opacity:.62;}
+
+.instrument{position:absolute;pointer-events:none;}
+
+/* ==========================================================================
+   ACT I — GROUND / PREMISE.        0 m
+   Dominant: THE INSTRUMENT.  Yellow: 1.  Occupied ≈ 38%.
+   ========================================================================== */
+#act1{background:
+  radial-gradient(112% 74% at 76% 44%, rgba(30,44,66,.50) 0%, rgba(9,13,20,0) 60%),
+  linear-gradient(180deg,#04060a 0%,#05080e 56%,#090e17 100%);}
+#act1 .instrument{width:800px;height:800px;right:-96px;top:74px;filter:drop-shadow(0 54px 96px rgba(0,0,0,.7));}
+#act1 .wordmark{position:absolute;left:var(--m);top:66px;font-family:var(--mark);font-size:18px;letter-spacing:.44em;color:rgba(244,244,244,.68);z-index:2;}
+#act1 .col{position:absolute;left:var(--m);top:262px;width:660px;z-index:2;}
+#act1 .whisper{font-size:19px;font-weight:400;color:rgba(244,244,244,.40);letter-spacing:-.004em;margin-bottom:30px;}
+#act1 .monument{font-size:116px;}
+#act1 .action{position:absolute;left:var(--m);top:648px;z-index:2;}
+#act1 .stamp{position:absolute;left:var(--m);bottom:60px;z-index:2;}
+
+/* ==========================================================================
+   ACT II — NOISE / EARLY ASCENT.   6 000 m
+   Dominant: TYPOGRAPHY.  No instrument at all.  Yellow: 0.  Occupied ≈ 36%.
+   The statement takes the left three fifths and the support line is thrown to
+   the opposite corner, so the open field between them is a diagonal the eye
+   crosses rather than a region the composition failed to solve.
+   ========================================================================== */
+#act2{background:
+  radial-gradient(130% 96% at 14% 4%, rgba(22,40,66,.85) 0%, rgba(6,9,14,0) 62%),
+  linear-gradient(180deg,#080f1c 0%,#14243c 48%,#1a2b41 100%);}
+#act2::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(78% 54% at 74% 100%, rgba(61,81,101,.34) 0%, rgba(20,36,60,0) 72%);}
+#act2 .monument{position:absolute;left:var(--m);top:196px;font-size:196px;letter-spacing:-.046em;line-height:.94;z-index:2;}
+#act2 .body{position:absolute;right:var(--m);bottom:104px;text-align:right;max-width:31ch;font-size:19px;z-index:2;}
+
+/* ==========================================================================
+   ACT III — SYSTEM.                17 000 m
+   Dominant: THE STATEMENT, with the instrument holding the far edge and
+   cropped by it. Yellow: 0.  Occupied ≈ 44%.
+   ========================================================================== */
+#act3{background:
+  radial-gradient(74% 52% at 94% 46%, rgba(30,62,108,.50) 0%, rgba(6,14,32,0) 66%),
+  linear-gradient(180deg,#04091a 0%,#081630 60%,#0b1f42 100%);}
+#act3 .instrument{width:780px;height:780px;right:-352px;top:132px;filter:drop-shadow(0 36px 70px rgba(0,0,0,.5));}
+#act3 .col{position:absolute;left:var(--m);top:214px;z-index:2;}
+#act3 .monument{font-size:152px;}
+#act3 .display{margin-top:16px;}
+#act3 .ladder{position:absolute;left:var(--m);right:var(--m);bottom:112px;z-index:3;}
+#act3 .ladder ol{display:flex;list-style:none;margin-top:24px;}
+#act3 .ladder li{flex:1;font-family:var(--data);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,244,244,.40);}
+
+/* ==========================================================================
+   ACT IV — PROOF / WORK.           22 000 m
+   Dominant: THE RAPIDKERT FRAME.  The instrument is not in this act at all.
+   Yellow: 1 — the figure, and it is the largest yellow object on the page.
+   Occupied ≈ 62%: the densest frame, deliberately, because this is the one
+   act whose job is evidence rather than atmosphere.
+   ========================================================================== */
+#act4{background:linear-gradient(180deg,#040c1c 0%,#08172f 56%,#0b2044 100%);}
+#act4 .marks{position:absolute;left:var(--m);top:78px;right:var(--m);z-index:3;}
+#act4 .marks .row{display:flex;align-items:center;gap:62px;margin-top:28px;}
+/* Every mark is plated into an identical box and contained inside it, so six
+   files with six different aspect ratios read as one line rather than as six
+   sizes. §23. */
+/* Optically sized rather than mechanically sized. Six marks with six aspect
+   ratios set to one box height read as six sizes; set to one apparent WEIGHT
+   they read as one line. The heights below are the six that measured equal by
+   eye at this scale, and the rule that produced them is written down so the
+   next mark added to the rail is sized the same way. */
+#act4 .marks .plate{display:flex;align-items:center;}
+#act4 .marks img{width:auto;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.36;}
+#act4 .marks img.wide{height:21px;}   /* 4:1 and 3:1 wordmarks   */
+#act4 .marks img.square{height:31px;} /* 1:1 and 1.5:1 emblems   */
+#act4 .marks img.tall{height:36px;}   /* the one portrait mark   */
+/* Masked rather than overlaid. An overlay has to guess the colour of the field
+   behind it, and the field is a vertical gradient — so a single flat overlay
+   colour produces a visible step down the image's left edge. Masking the image
+   itself lets the real field come through, at every height. */
+#act4 .shot{position:absolute;right:0;top:216px;width:764px;height:684px;z-index:1;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 9%,#000 30%),
+                     linear-gradient(180deg,transparent 0%,rgba(0,0,0,.4) 6%,#000 20%);
+  -webkit-mask-composite:source-in;mask-composite:intersect;}
+#act4 .shot img{width:100%;height:100%;object-fit:cover;object-position:left top;filter:saturate(.72) brightness(.86);}
+/* One wash left on top of the mask, and only one: the image is a bright
+   screenshot and the act is a night sky. This sinks it into the atmosphere
+   without turning it into a card. */
+#act4 .shot::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(200deg,rgba(7,20,44,.30) 0%,rgba(7,20,44,0) 55%);}
+#act4 .figure{position:absolute;left:var(--m);top:266px;z-index:4;}
+#act4 .figure .n{font-size:148px;font-weight:380;letter-spacing:-.046em;line-height:.9;color:var(--signal);}
+#act4 .figure .cap{margin-top:30px;font-family:var(--data);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(244,244,244,.42);line-height:2;max-width:22ch;}
+#act4 .who{position:absolute;left:var(--m);bottom:92px;z-index:4;}
+#act4 .who .name{font-size:27px;font-weight:400;letter-spacing:-.012em;}
+#act4 .who .line{margin-top:14px;font-size:17px;line-height:1.62;color:rgba(244,244,244,.48);max-width:30ch;}
+
+/* ==========================================================================
+   ACT V — HIGH ALTITUDE.           27 000 m
+   Dominant: NEGATIVE SPACE, with the curvature as the only reference.
+   No instrument.  Yellow: 0.  Occupied ≈ 26% — the emptiest frame on the page,
+   and the one intended to be the site's signature still.
+   ========================================================================== */
+#act5{background:linear-gradient(180deg,#01050e 0%,#04122a 56%,#061838 100%);}
+#act5 .limb{position:absolute;left:50%;transform:translateX(-50%);bottom:-1210px;
+  width:2840px;height:1580px;border-radius:50%;
+  background:radial-gradient(closest-side,#020813 76%,#0a2044 100%);
+  box-shadow:0 0 140px 4px rgba(99,166,224,.16), 0 -2px 0 0 rgba(150,196,244,.46);}
+#act5 .monument{position:absolute;left:var(--m);top:186px;font-size:152px;letter-spacing:-.038em;line-height:.98;z-index:2;}
+#act5 .micro{position:absolute;right:var(--m);bottom:70px;z-index:2;}
+
+/* ==========================================================================
+   ACT VI — ARRIVAL.                30 000 m
+   Dominant: THE INSTRUMENT'S RETURN, under a colossal question.
+   Yellow: 1 (the action).  Occupied ≈ 40%.  Three elements and the sky.
+   ========================================================================== */
+#act6{background:linear-gradient(180deg,#01060f 0%,#020a18 60%,#031026 100%);}
+#act6 .limb{position:absolute;left:50%;transform:translateX(-50%);bottom:-1500px;
+  width:3280px;height:1840px;border-radius:50%;
+  background:radial-gradient(closest-side,#01060f 80%,#061a38 100%);
+  box-shadow:0 -2px 0 0 rgba(126,178,232,.32), 0 0 170px 8px rgba(70,128,196,.12);}
+#act6 .monument{position:absolute;left:0;right:0;top:128px;text-align:center;font-size:104px;z-index:3;}
+#act6 .instrument{width:428px;height:428px;left:50%;margin-left:-214px;top:288px;
+  filter:drop-shadow(0 26px 54px rgba(0,0,0,.5));z-index:2;}
+#act6 .action{position:absolute;left:0;right:0;bottom:96px;text-align:center;z-index:3;}
+#act6 .action .lead{font-size:17px;color:rgba(244,244,244,.44);margin-bottom:34px;}
+</style>
+</head>
+<body>
+
+<!-- =============================== ACT I =============================== -->
+<section class="frame" id="act1" data-act="01-ground">
+  <div class="wordmark">STRATOS</div>
+  <img class="instrument" src="assets/instrument-hero.png" alt="">
+  <div class="col">
+    <p class="whisper">Nem weboldalakat építünk.</p>
+    <h1 class="monument">Magasságot<br>építünk.</h1>
+  </div>
+  <div class="action"><a class="cta">Kezdjük az emelkedést <span class="arrow">&#8599;</span></a></div>
+  <p class="micro stamp">0 m</p>
+</section>
+
+<!-- =============================== ACT II ============================== -->
+<section class="frame" id="act2" data-act="02-noise">
+  <h2 class="monument">Idelent<br>minden zajos.</h2>
+  <p class="body">Nem a zaj a probléma, hanem hogy a legtöbb rendszer benne is marad.</p>
+</section>
+
+<!-- ============================== ACT III ============================== -->
+<section class="frame" id="act3" data-act="03-system">
+  <img class="instrument" src="assets/instrument-system.png" alt="">
+  <div class="col">
+    <h2 class="monument">Hat terület.</h2>
+    <p class="display">Egy rendszer.</p>
+  </div>
+  <div class="ladder">
+    <hr class="hair">
+    <ol>
+      <li>Stratégia</li><li>Dizájn</li><li>Fejlesztés</li>
+      <li>Hirdetés</li><li>Konverzió</li><li>Automatizálás</li>
+    </ol>
+  </div>
+</section>
+
+<!-- =============================== ACT IV ============================== -->
+<section class="frame" id="act4" data-act="04-proof">
+  <div class="marks">
+    <p class="micro">Együttműködések</p>
+    <div class="row">
+      <span class="plate"><img class="wide"   src="../../../assets/img/logo-kontyos.webp" alt=""></span>
+      <span class="plate"><img class="square" src="../../../assets/img/logo-grantool.png" alt=""></span>
+      <span class="plate"><img class="tall"   src="../../../assets/img/logo-synergy.png" alt=""></span>
+      <span class="plate"><img class="wide"   src="../../../assets/img/logo-duna-hajok.png" alt=""></span>
+      <span class="plate"><img class="wide"   src="../../../assets/img/logo-duna-enterior.png" alt=""></span>
+      <span class="plate"><img class="square" src="../../../assets/img/client-barbershop.png" alt=""></span>
+    </div>
+  </div>
+  <div class="shot"><img src="../../../assets/img/work-rapidkert.jpg" alt=""></div>
+  <div class="figure">
+    <div class="n">~15M Ft</div>
+    <div class="cap">Szerződött projektérték keresésből</div>
+  </div>
+  <div class="who">
+    <div class="name">Rapidkert Kft.</div>
+    <p class="line">Google Ads és SEO egy rendszerként, majd egy teljesen újragondolt weboldal.</p>
+  </div>
+</section>
+
+<!-- =============================== ACT V =============================== -->
+<section class="frame" id="act5" data-act="05-high-altitude">
+  <div class="limb"></div>
+  <h2 class="monument">Innen már<br>látni a<br>görbületet.</h2>
+  <p class="micro">27 000 m</p>
+</section>
+
+<!-- =============================== ACT VI ============================== -->
+<section class="frame" id="act6" data-act="06-arrival">
+  <div class="limb"></div>
+  <img class="instrument" src="assets/instrument-arrival.png" alt="">
+  <h2 class="monument">Készen állsz<br>felemelkedni?</h2>
+  <div class="action">
+    <p class="lead">Egy beszélgetéssel kezdődik.</p>
+    <a class="cta">Kezdjük az emelkedést <span class="arrow">&#8599;</span></a>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+{
+  "hero": {
+    "objects": {
+      "act__monument": [
+        120,
+        271,
+        769.5,
+        304.9
+      ],
+      "act__editorial": [
+        120,
+        648,
+        400,
+        55.1
+      ],
+      "act__action": [
+        920,
+        636,
+        170.8,
+        44
+      ]
+    },
+    "monumentPx": 148,
+    "monumentColor": "rgb(244, 244, 244)",
+    "monumentOpacity": "1",
+    "instrument": 1,
+    "alt": 0.002
+  },
+  "noise": {
+    "objects": {
+      "act__monument": [
+        792.8,
+        152,
+        527.3,
+        470.9
+      ],
+      "act__editorial": [
+        120,
+        704,
+        400,
+        27.5
+      ]
+    },
+    "monumentPx": 167,
+    "monumentColor": "rgb(244, 244, 244)",
+    "monumentOpacity": "1",
+    "instrument": 0,
+    "alt": 0.02
+  },
+  "system": {
+    "objects": {
+      "act__editorial": [
+        920,
+        196,
+        400,
+        27.5
+      ],
+      "act__monument": [
+        120,
+        380,
+        889.4,
+        304.5
+      ],
+      "act__index": [
+        120,
+        766,
+        570.2,
+        17
+      ]
+    },
+    "monumentPx": 162,
+    "monumentColor": "rgb(244, 244, 244)",
+    "monumentOpacity": "1",
+    "instrument": 0,
+    "alt": 0.114
+  },
+  "proof": {
+    "objects": {
+      "act__marks": [
+        120,
+        140,
+        525.9,
+        29
+      ],
+      "act__monument": [
+        120,
+        297,
+        621.7,
+        168.3
+      ],
+      "act__editorial": [
+        120,
+        508,
+        400,
+        61.1
+      ],
+      "act__shot": [
+        760,
+        470,
+        880,
+        526
+      ],
+      "act__routes": [
+        120,
+        576,
+        371.8,
+        44
+      ]
+    },
+    "monumentPx": 179,
+    "monumentColor": "rgb(255, 238, 37)",
+    "monumentOpacity": "1",
+    "instrument": 0,
+    "alt": 0.398
+  },
+  "high": {
+    "objects": {
+      "act__micro": [
+        120,
+        129,
+        64,
+        16.5
+      ],
+      "act__editorial": [
+        920,
+        120,
+        400,
+        55.1
+      ],
+      "act__monument": [
+        120,
+        446,
+        1056.7,
+        327.1
+      ]
+    },
+    "monumentPx": 174,
+    "monumentColor": "rgb(244, 244, 244)",
+    "monumentOpacity": "1",
+    "instrument": 0,
+    "alt": 0.864
+  },
+  "arrival": {
+    "objects": {
+      "act__monument": [
+        120,
+        137,
+        1200,
+        268.8
+      ]
+    },
+    "monumentPx": 143,
+    "monumentColor": "rgb(244, 244, 244)",
+    "monumentOpacity": "1",
+    "instrument": 1,
+    "alt": 0.942
+  },
+  "action": {
+    "objects": {
+      "act__monument": [
+        120,
+        312,
+        792.5,
+        255.7
+      ],
+      "act__action": [
+        920,
+        636,
+        170.8,
+        44
+      ]
+    },
+    "monumentPx": 136,
+    "monumentColor": "rgb(244, 244, 244)",
+    "monumentOpacity": "1",
+    "instrument": 0,
+    "alt": 1
+  },
+  "p1": {
+    "instrument": 0,
+    "alt": 0.214,
+    "statement": null
+  },
+  "p2": {
+    "instrument": 0,
+    "alt": 0.304,
+    "statement": null
+  },
+  "p3": {
+    "instrument": 0,
+    "alt": 0.596,
+    "statement": null
+  },
+  "p4": {
+    "instrument": 0,
+    "alt": 0.754,
+    "statement": null
+  }
+}

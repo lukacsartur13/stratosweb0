@@ -59,6 +59,20 @@ server is polled until it answers instead of slept at; and whatever answers must
 on disk, before a single route is audited. A mismatch is a loud abort naming the
 port.
 
+**Confirmed in the live gate.** Run `g4-01`'s route-audit log:
+
+```
+route-audit: serving dist/ on :4331
+  failing checks: 0
+  broken internal links: 0
+[exit 0] 264.1s
+```
+
+792 failures and 0 failures, on the same commit, the same `dist` and the same
+66 routes — the entire difference being whether the port was answered by this
+project's server or somebody else's. The audit was never failing; it was never
+looking at this project.
+
 ### 2b. The stress runner blocked its own instruments
 
 `scripts/hermetic/nav-stress.mjs` drove Playwright with `spawnSync`, which

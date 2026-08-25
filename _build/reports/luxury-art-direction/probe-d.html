@@ -1,0 +1,19 @@
+<!doctype html><html lang="hu"><head><meta charset="utf-8">
+<title>Direction D — measuring surface</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="direction-d.css">
+<style>
+/* Not a study frame. This page exists only so solve-d.mjs measures glyphs
+   under exactly the styles direction-d.css sets — same family, same weight,
+   same width axis, same tracking — rather than under a reconstruction of
+   them that could drift from the real thing without anyone noticing. */
+body{background:#0a0b0d;}
+/* Off-screen, but LAID OUT: `font-display:block` faces are only fetched when
+   something actually uses them, and a probe page with an empty body measures
+   a fallback while reporting no error at all. fonts-ready.mjs asserts as
+   well; this is the belt to its braces. */
+#warm{position:absolute;left:-9999px;top:0;font-size:40px;}
+#warm b{font-family:'Aboreto';font-weight:400;}
+#warm i{font-family:'JetBrains Mono';font-style:normal;}
+#probe{position:relative;width:6000px;height:900px;}
+</style></head><body><div id="warm">Magasságot építünk Innen már látni a görbületet ÁÉÍÓÖŐÚÜŰ Krümmung Höhe<b>STRATOS</b><i>27 000 m</i></div><div id="probe"></div></body></html>

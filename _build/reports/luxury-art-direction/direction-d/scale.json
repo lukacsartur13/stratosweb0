@@ -1,0 +1,1061 @@
+{
+  "rules": {
+    "FIELD": 1200,
+    "MAXLINE": 0.98,
+    "SIZE_CAP": 210,
+    "CLEARANCE": 0.12
+  },
+  "scenes": {
+    "d1": {
+      "fill": 0.64,
+      "foot": 548
+    },
+    "d2": {
+      "fill": 0.74,
+      "foot": 662
+    },
+    "d3": {
+      "fill": 0.88,
+      "foot": 748
+    }
+  },
+  "solved": {
+    "d1": {
+      "fill": 0.64,
+      "foot": 548,
+      "huSize": 148,
+      "K": 186798,
+      "locales": {
+        "hu": {
+          "lines": [
+            "Magasságot",
+            "építünk."
+          ],
+          "idealSize": 148,
+          "size": 148,
+          "clampedBy": "none",
+          "leading": 1.03,
+          "gapConstantEm": -0.905,
+          "clearanceEm": 0.125,
+          "lineWidthsPx": [
+            769,
+            493
+          ],
+          "longestLinePx": 769,
+          "fillOfField": 64.1,
+          "inkRunPx": 1262,
+          "areaIndex": 186798,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 305,
+          "top": 271
+        },
+        "en": {
+          "lines": [
+            "Altitude is",
+            "what we build."
+          ],
+          "idealSize": 137.5,
+          "size": 137,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.735,
+          "clearanceEm": 0.205,
+          "lineWidthsPx": [
+            553,
+            801
+          ],
+          "longestLinePx": 801,
+          "fillOfField": 66.7,
+          "inkRunPx": 1354,
+          "areaIndex": 185499,
+          "areaVsHungarian": 99.3,
+          "blockHeightPx": 258,
+          "top": 310
+        },
+        "de": {
+          "lines": [
+            "Höhe",
+            "bauen wir."
+          ],
+          "idealSize": 169.9,
+          "size": 170,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.725,
+          "clearanceEm": 0.215,
+          "lineWidthsPx": [
+            392,
+            708
+          ],
+          "longestLinePx": 708,
+          "fillOfField": 59,
+          "inkRunPx": 1100,
+          "areaIndex": 186949,
+          "areaVsHungarian": 100.1,
+          "blockHeightPx": 320,
+          "top": 252
+        }
+      }
+    },
+    "d2": {
+      "fill": 0.74,
+      "foot": 662,
+      "huSize": 162,
+      "K": 263137,
+      "locales": {
+        "hu": {
+          "lines": [
+            "Hat terület,",
+            "egy rendszer."
+          ],
+          "idealSize": 162,
+          "size": 162,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.675,
+          "clearanceEm": 0.265,
+          "lineWidthsPx": [
+            735,
+            889
+          ],
+          "longestLinePx": 889,
+          "fillOfField": 74.1,
+          "inkRunPx": 1624,
+          "areaIndex": 263137,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 305,
+          "top": 380
+        },
+        "en": {
+          "lines": [
+            "Six areas,",
+            "one system."
+          ],
+          "idealSize": 169.4,
+          "size": 169,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.685,
+          "clearanceEm": 0.255,
+          "lineWidthsPx": [
+            690,
+            860
+          ],
+          "longestLinePx": 860,
+          "fillOfField": 71.6,
+          "inkRunPx": 1550,
+          "areaIndex": 261960,
+          "areaVsHungarian": 99.6,
+          "blockHeightPx": 318,
+          "top": 368
+        },
+        "de": {
+          "lines": [
+            "Sechs Bereiche,",
+            "ein System."
+          ],
+          "idealSize": 149.6,
+          "size": 150,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.7,
+          "clearanceEm": 0.24,
+          "lineWidthsPx": [
+            1027,
+            736
+          ],
+          "longestLinePx": 1027,
+          "fillOfField": 85.6,
+          "inkRunPx": 1763,
+          "areaIndex": 264424,
+          "areaVsHungarian": 100.5,
+          "blockHeightPx": 282,
+          "top": 401
+        }
+      }
+    },
+    "d3": {
+      "fill": 0.88,
+      "foot": 748,
+      "huSize": 174,
+      "K": 340324,
+      "locales": {
+        "hu": {
+          "lines": [
+            "Innen már látni",
+            "a görbületet."
+          ],
+          "idealSize": 174,
+          "size": 174,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.735,
+          "clearanceEm": 0.205,
+          "lineWidthsPx": [
+            1057,
+            899
+          ],
+          "longestLinePx": 1057,
+          "fillOfField": 88.1,
+          "inkRunPx": 1956,
+          "areaIndex": 340324,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 327,
+          "top": 446
+        },
+        "en": {
+          "lines": [
+            "From here",
+            "you can see",
+            "the curvature."
+          ],
+          "idealSize": 150.9,
+          "size": 151,
+          "clampedBy": "none",
+          "leading": 0.98,
+          "gapConstantEm": -0.86,
+          "clearanceEm": 0.12,
+          "lineWidthsPx": [
+            649,
+            751,
+            858
+          ],
+          "longestLinePx": 858,
+          "fillOfField": 71.5,
+          "inkRunPx": 2258,
+          "areaIndex": 340993,
+          "areaVsHungarian": 100.2,
+          "blockHeightPx": 444,
+          "top": 328
+        },
+        "de": {
+          "lines": [
+            "Von hier aus ist",
+            "die Krümmung",
+            "zu sehen."
+          ],
+          "idealSize": 144,
+          "size": 144,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.73,
+          "clearanceEm": 0.21,
+          "lineWidthsPx": [
+            894,
+            888,
+            580
+          ],
+          "longestLinePx": 894,
+          "fillOfField": 74.5,
+          "inkRunPx": 2362,
+          "areaIndex": 340171,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 406,
+          "top": 362
+        }
+      }
+    }
+  },
+  "alts": {
+    "x1": {
+      "id": "x1",
+      "scene": "d1",
+      "loc": "en",
+      "alt": "messages.ts split",
+      "foot": 548,
+      "lines": [
+        "Altitude",
+        "is what we build."
+      ],
+      "size": 137,
+      "leading": 0.94,
+      "clampedBy": "none",
+      "longestLinePx": 918,
+      "lineWidthsPx": [
+        436,
+        918
+      ],
+      "fillOfField": 76.5,
+      "areaVsChosen": 100,
+      "blockHeightPx": 258,
+      "top": 310
+    },
+    "x2": {
+      "id": "x2",
+      "scene": "d3",
+      "loc": "hu",
+      "alt": "held breath",
+      "foot": 748,
+      "lines": [
+        "Innen már",
+        "látni a görbületet."
+      ],
+      "size": 166,
+      "leading": 0.94,
+      "clampedBy": "column",
+      "longestLinePx": 1173,
+      "lineWidthsPx": [
+        697,
+        1173
+      ],
+      "fillOfField": 97.7,
+      "areaVsChosen": 91.2,
+      "blockHeightPx": 312,
+      "top": 459
+    },
+    "x3": {
+      "id": "x3",
+      "scene": "d3",
+      "loc": "de",
+      "alt": "two lines",
+      "foot": 748,
+      "lines": [
+        "Von hier aus ist die",
+        "Krümmung zu sehen."
+      ],
+      "size": 132,
+      "leading": 0.94,
+      "clampedBy": "column",
+      "longestLinePx": 1180,
+      "lineWidthsPx": [
+        1009,
+        1180
+      ],
+      "fillOfField": 98.3,
+      "areaVsChosen": 85,
+      "blockHeightPx": 248,
+      "top": 518
+    },
+    "x4": {
+      "id": "x4",
+      "scene": "d3",
+      "loc": "en",
+      "alt": "messages.ts split",
+      "foot": 748,
+      "lines": [
+        "From here you can",
+        "see the curvature."
+      ],
+      "size": 150,
+      "leading": 0.94,
+      "clampedBy": "none",
+      "longestLinePx": 1163,
+      "lineWidthsPx": [
+        1163,
+        1108
+      ],
+      "fillOfField": 96.9,
+      "areaVsChosen": 99.9,
+      "blockHeightPx": 282,
+      "top": 487
+    }
+  },
+  "measured": {
+    "d1": {
+      "hu": {
+        "chosen": {
+          "text": [
+            "Magasságot",
+            "építünk."
+          ],
+          "lines": [
+            {
+              "text": "Magasságot",
+              "advPerPx": 5.198984375
+            },
+            {
+              "text": "építünk.",
+              "advPerPx": 3.3290625
+            }
+          ],
+          "sumAdvPerPx": 8.528046875000001,
+          "maxAdvPerPx": 5.198984375,
+          "pairs": [
+            {
+              "above": "Magasságot",
+              "below": "építünk.",
+              "D": -0.905,
+              "sharedColumns": 515,
+              "atX": 333,
+              "fontOk": true
+            }
+          ],
+          "gapConstantEm": -0.905,
+          "minLeadingEm": 1.03
+        },
+        "chosenLines": [
+          "Magasságot",
+          "építünk."
+        ],
+        "alts": {
+          "one line": {
+            "lines": [
+              {
+                "text": "Magasságot építünk.",
+                "advPerPx": 8.70921875
+              }
+            ],
+            "text": [
+              "Magasságot építünk."
+            ],
+            "sumAdvPerPx": 8.70921875,
+            "maxAdvPerPx": 8.70921875,
+            "pairs": [],
+            "gapConstantEm": null,
+            "minLeadingEm": null
+          }
+        }
+      },
+      "en": {
+        "chosen": {
+          "text": [
+            "Altitude is",
+            "what we build."
+          ],
+          "lines": [
+            {
+              "text": "Altitude is",
+              "advPerPx": 4.0396875
+            },
+            {
+              "text": "what we build.",
+              "advPerPx": 5.84359375
+            }
+          ],
+          "sumAdvPerPx": 9.88328125,
+          "maxAdvPerPx": 5.84359375,
+          "pairs": [
+            {
+              "above": "Altitude is",
+              "below": "what we build.",
+              "D": -0.735,
+              "sharedColumns": 583,
+              "atX": 747,
+              "fontOk": true
+            }
+          ],
+          "gapConstantEm": -0.735,
+          "minLeadingEm": 0.86
+        },
+        "chosenLines": [
+          "Altitude is",
+          "what we build."
+        ],
+        "alts": {
+          "messages.ts split": {
+            "lines": [
+              {
+                "text": "Altitude",
+                "advPerPx": 3.179375
+              },
+              {
+                "text": "is what we build.",
+                "advPerPx": 6.70390625
+              }
+            ],
+            "text": [
+              "Altitude",
+              "is what we build."
+            ],
+            "sumAdvPerPx": 9.88328125,
+            "maxAdvPerPx": 6.70390625,
+            "pairs": [
+              {
+                "above": "Altitude",
+                "below": "is what we build.",
+                "D": -0.725,
+                "sharedColumns": 461,
+                "atX": 13,
+                "fontOk": true
+              }
+            ],
+            "gapConstantEm": -0.725,
+            "minLeadingEm": 0.85
+          },
+          "one line": {
+            "lines": [
+              {
+                "text": "Altitude is what we build.",
+                "advPerPx": 10.064375
+              }
+            ],
+            "text": [
+              "Altitude is what we build."
+            ],
+            "sumAdvPerPx": 10.064375,
+            "maxAdvPerPx": 10.064375,
+            "pairs": [],
+            "gapConstantEm": null,
+            "minLeadingEm": null
+          }
+        }
+      },
+      "de": {
+        "chosen": {
+          "text": [
+            "Höhe",
+            "bauen wir."
+          ],
+          "lines": [
+            {
+              "text": "Höhe",
+              "advPerPx": 2.30375
+            },
+            {
+              "text": "bauen wir.",
+              "advPerPx": 4.165078125
+            }
+          ],
+          "sumAdvPerPx": 6.468828125,
+          "maxAdvPerPx": 4.165078125,
+          "pairs": [
+            {
+              "above": "Höhe",
+              "below": "bauen wir.",
+              "D": -0.725,
+              "sharedColumns": 350,
+              "atX": 17,
+              "fontOk": true
+            }
+          ],
+          "gapConstantEm": -0.725,
+          "minLeadingEm": 0.85
+        },
+        "chosenLines": [
+          "Höhe",
+          "bauen wir."
+        ],
+        "alts": {
+          "one line": {
+            "lines": [
+              {
+                "text": "Höhe bauen wir.",
+                "advPerPx": 6.65
+              }
+            ],
+            "text": [
+              "Höhe bauen wir."
+            ],
+            "sumAdvPerPx": 6.65,
+            "maxAdvPerPx": 6.65,
+            "pairs": [],
+            "gapConstantEm": null,
+            "minLeadingEm": null
+          }
+        }
+      }
+    },
+    "d2": {
+      "hu": {
+        "chosen": {
+          "text": [
+            "Hat terület,",
+            "egy rendszer."
+          ],
+          "lines": [
+            {
+              "text": "Hat terület,",
+              "advPerPx": 4.536171875
+            },
+            {
+              "text": "egy rendszer.",
+              "advPerPx": 5.490390625
+            }
+          ],
+          "sumAdvPerPx": 10.0265625,
+          "maxAdvPerPx": 5.490390625,
+          "pairs": [
+            {
+              "above": "Hat terület,",
+              "below": "egy rendszer.",
+              "D": -0.675,
+              "sharedColumns": 673,
+              "atX": 873,
+              "fontOk": true
+            }
+          ],
+          "gapConstantEm": -0.675,
+          "minLeadingEm": 0.8
+        },
+        "chosenLines": [
+          "Hat terület,",
+          "egy rendszer."
+        ],
+        "alts": {
+          "one line": {
+            "lines": [
+              {
+                "text": "Hat terület, egy rendszer.",
+                "advPerPx": 10.207734375
+              }
+            ],
+            "text": [
+              "Hat terület, egy rendszer."
+            ],
+            "sumAdvPerPx": 10.207734375,
+            "maxAdvPerPx": 10.207734375,
+            "pairs": [],
+            "gapConstantEm": null,
+            "minLeadingEm": null
+          }
+        }
+      },
+      "en": {
+        "chosen": {
+          "text": [
+            "Six areas,",
+            "one system."
+          ],
+          "lines": [
+            {
+              "text": "Six areas,",
+              "advPerPx": 4.085625
+            },
+            {
+              "text": "one system.",
+              "advPerPx": 5.086328125
+            }
+          ],
+          "sumAdvPerPx": 9.171953125,
+          "maxAdvPerPx": 5.086328125,
+          "pairs": [
+            {
+              "above": "Six areas,",
+              "below": "one system.",
+              "D": -0.685,
+              "sharedColumns": 605,
+              "atX": 663,
+              "fontOk": true
+            }
+          ],
+          "gapConstantEm": -0.685,
+          "minLeadingEm": 0.81
+        },
+        "chosenLines": [
+          "Six areas,",
+          "one system."
+        ],
+        "alts": {
+          "one line": {
+            "lines": [
+              {
+                "text": "Six areas, one system.",
+                "advPerPx": 9.353125
+              }
+            ],
+            "text": [
+              "Six areas, one system."
+            ],
+            "sumAdvPerPx": 9.353125,
+            "maxAdvPerPx": 9.353125,
+            "pairs": [],
+            "gapConstantEm": null,
+            "minLeadingEm": null
+          }
+        }
+      },
+      "de": {
+        "chosen": {
+          "text": [
+            "Sechs Bereiche,",
+            "ein System."
+          ],
+          "lines": [
+            {
+              "text": "Sechs Bereiche,",
+              "advPerPx": 6.847265625
+            },
+            {
+              "text": "ein System.",
+              "advPerPx": 4.904921875
+            }
+          ],
+          "sumAdvPerPx": 11.752187500000002,
+          "maxAdvPerPx": 6.847265625,
+          "pairs": [
+            {
+              "above": "Sechs Bereiche,",
+              "below": "ein System.",
+              "D": -0.7,
+              "sharedColumns": 687,
+              "atX": 352,
+              "fontOk": true
+            }
+          ],
+          "gapConstantEm": -0.7,
+          "minLeadingEm": 0.82
+        },
+        "chosenLines": [
+          "Sechs Bereiche,",
+          "ein System."
+        ],
+        "alts": {
+          "one line": {
+            "lines": [
+              {
+                "text": "Sechs Bereiche, ein System.",
+                "advPerPx": 11.93328125
+              }
+            ],
+            "text": [
+              "Sechs Bereiche, ein System."
+            ],
+            "sumAdvPerPx": 11.93328125,
+            "maxAdvPerPx": 11.93328125,
+            "pairs": [],
+            "gapConstantEm": null,
+            "minLeadingEm": null
+          }
+        }
+      }
+    },
+    "d3": {
+      "hu": {
+        "chosen": {
+          "text": [
+            "Innen már látni",
+            "a görbületet."
+          ],
+          "lines": [
+            {
+              "text": "Innen már látni",
+              "advPerPx": 6.072890625
+            },
+            {
+              "text": "a görbületet.",
+              "advPerPx": 5.1678125
+            }
+          ],
+          "sumAdvPerPx": 11.240703125,
+          "maxAdvPerPx": 6.072890625,
+          "pairs": [
+            {
+              "above": "Innen már látni",
+              "below": "a görbületet.",
+              "D": -0.735,
+              "sharedColumns": 669,
+              "atX": 312,
+              "fontOk": true
+            }
+          ],
+          "gapConstantEm": -0.735,
+          "minLeadingEm": 0.86
+        },
+        "chosenLines": [
+          "Innen már látni",
+          "a görbületet."
+        ],
+        "alts": {
+          "held breath": {
+            "lines": [
+              {
+                "text": "Innen már",
+                "advPerPx": 4.196640625
+              },
+              {
+                "text": "látni a görbületet.",
+                "advPerPx": 7.064140625
+              }
+            ],
+            "text": [
+              "Innen már",
+              "látni a görbületet."
+            ],
+            "sumAdvPerPx": 11.26078125,
+            "maxAdvPerPx": 7.064140625,
+            "pairs": [
+              {
+                "above": "Innen már",
+                "below": "látni a görbületet.",
+                "D": -0.74,
+                "sharedColumns": 578,
+                "atX": 317,
+                "fontOk": true
+              }
+            ],
+            "gapConstantEm": -0.74,
+            "minLeadingEm": 0.86
+          }
+        }
+      },
+      "en": {
+        "chosen": {
+          "text": [
+            "From here",
+            "you can see",
+            "the curvature."
+          ],
+          "lines": [
+            {
+              "text": "From here",
+              "advPerPx": 4.30015625
+            },
+            {
+              "text": "you can see",
+              "advPerPx": 4.972890625
+            },
+            {
+              "text": "the curvature.",
+              "advPerPx": 5.682109375
+            }
+          ],
+          "sumAdvPerPx": 14.955156249999998,
+          "maxAdvPerPx": 5.682109375,
+          "pairs": [
+            {
+              "above": "From here",
+              "below": "you can see",
+              "D": -0.54,
+              "sharedColumns": 592,
+              "atX": 226,
+              "fontOk": true
+            },
+            {
+              "above": "you can see",
+              "below": "the curvature.",
+              "D": -0.86,
+              "sharedColumns": 710,
+              "atX": 21,
+              "fontOk": true
+            }
+          ],
+          "gapConstantEm": -0.86,
+          "minLeadingEm": 0.98
+        },
+        "chosenLines": [
+          "From here",
+          "you can see",
+          "the curvature."
+        ],
+        "alts": {
+          "messages.ts split": {
+            "lines": [
+              {
+                "text": "From here you can",
+                "advPerPx": 7.751875
+              },
+              {
+                "text": "see the curvature.",
+                "advPerPx": 7.384453125
+              }
+            ],
+            "text": [
+              "From here you can",
+              "see the curvature."
+            ],
+            "sumAdvPerPx": 15.136328125,
+            "maxAdvPerPx": 7.751875,
+            "pairs": [
+              {
+                "above": "From here you can",
+                "below": "see the curvature.",
+                "D": -0.725,
+                "sharedColumns": 1005,
+                "atX": 425,
+                "fontOk": true
+              }
+            ],
+            "gapConstantEm": -0.725,
+            "minLeadingEm": 0.85
+          },
+          "held breath": {
+            "lines": [
+              {
+                "text": "From here",
+                "advPerPx": 4.30015625
+              },
+              {
+                "text": "you can see the curvature.",
+                "advPerPx": 10.836171875
+              }
+            ],
+            "text": [
+              "From here",
+              "you can see the curvature."
+            ],
+            "sumAdvPerPx": 15.136328124999999,
+            "maxAdvPerPx": 10.836171875,
+            "pairs": [
+              {
+                "above": "From here",
+                "below": "you can see the curvature.",
+                "D": -0.54,
+                "sharedColumns": 592,
+                "atX": 226,
+                "fontOk": true
+              }
+            ],
+            "gapConstantEm": -0.54,
+            "minLeadingEm": 0.66
+          },
+          "three, tapering": {
+            "lines": [
+              {
+                "text": "From here you",
+                "advPerPx": 6.028828125
+              },
+              {
+                "text": "can see the",
+                "advPerPx": 4.748984375
+              },
+              {
+                "text": "curvature.",
+                "advPerPx": 4.177421875
+              }
+            ],
+            "text": [
+              "From here you",
+              "can see the",
+              "curvature."
+            ],
+            "sumAdvPerPx": 14.955234375,
+            "maxAdvPerPx": 6.028828125,
+            "pairs": [
+              {
+                "above": "From here you",
+                "below": "can see the",
+                "D": -0.72,
+                "sharedColumns": 630,
+                "atX": 913,
+                "fontOk": true
+              },
+              {
+                "above": "can see the",
+                "below": "curvature.",
+                "D": -0.69,
+                "sharedColumns": 612,
+                "atX": 490,
+                "fontOk": true
+              }
+            ],
+            "gapConstantEm": -0.72,
+            "minLeadingEm": 0.84
+          }
+        }
+      },
+      "de": {
+        "chosen": {
+          "text": [
+            "Von hier aus ist",
+            "die Krümmung",
+            "zu sehen."
+          ],
+          "lines": [
+            {
+              "text": "Von hier aus ist",
+              "advPerPx": 6.21046875
+            },
+            {
+              "text": "die Krümmung",
+              "advPerPx": 6.169453125
+            },
+            {
+              "text": "zu sehen.",
+              "advPerPx": 4.024921875
+            }
+          ],
+          "sumAdvPerPx": 16.40484375,
+          "maxAdvPerPx": 6.21046875,
+          "pairs": [
+            {
+              "above": "Von hier aus ist",
+              "below": "die Krümmung",
+              "D": -0.73,
+              "sharedColumns": 826,
+              "atX": 555,
+              "fontOk": true
+            },
+            {
+              "above": "die Krümmung",
+              "below": "zu sehen.",
+              "D": -0.545,
+              "sharedColumns": 526,
+              "atX": 510,
+              "fontOk": true
+            }
+          ],
+          "gapConstantEm": -0.73,
+          "minLeadingEm": 0.85
+        },
+        "chosenLines": [
+          "Von hier aus ist",
+          "die Krümmung",
+          "zu sehen."
+        ],
+        "alts": {
+          "two lines": {
+            "lines": [
+              {
+                "text": "Von hier aus ist die",
+                "advPerPx": 7.647421875
+              },
+              {
+                "text": "Krümmung zu sehen.",
+                "advPerPx": 8.93859375
+              }
+            ],
+            "text": [
+              "Von hier aus ist die",
+              "Krümmung zu sehen."
+            ],
+            "sumAdvPerPx": 16.586015625,
+            "maxAdvPerPx": 8.93859375,
+            "pairs": [
+              {
+                "above": "Von hier aus ist die",
+                "below": "Krümmung zu sehen.",
+                "D": -0.72,
+                "sharedColumns": 983,
+                "atX": 253,
+                "fontOk": true
+              }
+            ],
+            "gapConstantEm": -0.72,
+            "minLeadingEm": 0.84
+          },
+          "two, own break": {
+            "lines": [
+              {
+                "text": "Von hier aus",
+                "advPerPx": 5.081171875
+              },
+              {
+                "text": "ist die Krümmung zu sehen.",
+                "advPerPx": 11.50484375
+              }
+            ],
+            "text": [
+              "Von hier aus",
+              "ist die Krümmung zu sehen."
+            ],
+            "sumAdvPerPx": 16.586015624999998,
+            "maxAdvPerPx": 11.50484375,
+            "pairs": [
+              {
+                "above": "Von hier aus",
+                "below": "ist die Krümmung zu sehen.",
+                "D": -0.73,
+                "sharedColumns": 701,
+                "atX": 742,
+                "fontOk": true
+              }
+            ],
+            "gapConstantEm": -0.73,
+            "minLeadingEm": 0.85
+          }
+        }
+      }
+    }
+  },
+  "dial": {
+    "source": "2400×2400",
+    "inkFractionOfBox": {
+      "l": 0.235,
+      "t": 0.23666666666666666,
+      "r": 0.7616666666666667,
+      "b": 0.7616666666666667
+    },
+    "inkWidthFraction": 0.5266666666666666,
+    "inkHeightFraction": 0.525
+  }
+}

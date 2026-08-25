@@ -1,0 +1,285 @@
+{
+  "takenAt": "phase 4 · pass 0",
+  "units": [
+    {
+      "id": "1n",
+      "checkpoint": 1,
+      "role": "name",
+      "hu": "Felderítés",
+      "en": "Discovery",
+      "de": "Erkundung"
+    },
+    {
+      "id": "1a",
+      "checkpoint": 1,
+      "role": "happens",
+      "hu": "Egy beszélgetés arról, hol tart a vállalkozás, és mi az, ami valóban akadályozza.",
+      "en": "A conversation about where the business stands, and what is genuinely holding it back.",
+      "de": "Ein Gespräch darüber, wo das Unternehmen steht und was es wirklich aufhält."
+    },
+    {
+      "id": "1b",
+      "checkpoint": 1,
+      "role": "weProduce",
+      "hu": "Írásos helyzetkép és egy őszinte válasz arra, hogy tudunk-e segíteni.",
+      "en": "A written assessment, and an honest answer on whether we can help.",
+      "de": "Eine schriftliche Bestandsaufnahme und eine ehrliche Antwort darauf, ob wir helfen können."
+    },
+    {
+      "id": "1c",
+      "checkpoint": 1,
+      "role": "youProvide",
+      "hu": "Hozzáférést a jelenlegi számokhoz és időt egy alapos beszélgetésre.",
+      "en": "Access to your current figures, and time for a thorough conversation.",
+      "de": "Zugang zu Ihren aktuellen Zahlen und Zeit für ein gründliches Gespräch."
+    },
+    {
+      "id": "1d",
+      "checkpoint": 1,
+      "role": "outcome",
+      "hu": "Közös kép a kiindulási pontról — vagy egy korrekt nem.",
+      "en": "A shared picture of the starting point — or a straight no.",
+      "de": "Ein gemeinsames Bild vom Ausgangspunkt — oder ein klares Nein."
+    },
+    {
+      "id": "2n",
+      "checkpoint": 2,
+      "role": "name",
+      "hu": "Kutatás",
+      "en": "Research",
+      "de": "Recherche"
+    },
+    {
+      "id": "2a",
+      "checkpoint": 2,
+      "role": "happens",
+      "hu": "Versenytárs- és keresési elemzés, a jelenlegi felületek technikai átvizsgálása.",
+      "en": "Competitor and search analysis, and a technical review of the current surfaces.",
+      "de": "Wettbewerbs- und Suchanalyse sowie eine technische Prüfung der bestehenden Flächen."
+    },
+    {
+      "id": "2b",
+      "checkpoint": 2,
+      "role": "weProduce",
+      "hu": "Kutatási összefoglaló: kereslet, versenyhelyzet, technikai hiányosságok.",
+      "en": "A research summary: demand, competitive position, technical gaps.",
+      "de": "Eine Rechercheübersicht: Nachfrage, Wettbewerbslage, technische Lücken."
+    },
+    {
+      "id": "2c",
+      "checkpoint": 2,
+      "role": "youProvide",
+      "hu": "Belső ismeretet az ügyfelekről, amit adat nem mutat meg.",
+      "en": "Inside knowledge about your customers that the data does not show.",
+      "de": "Internes Wissen über Ihre Kunden, das Daten nicht zeigen."
+    },
+    {
+      "id": "2d",
+      "checkpoint": 2,
+      "role": "outcome",
+      "hu": "Tényeken alapuló alap a stratégiához.",
+      "en": "A fact-based foundation for the strategy.",
+      "de": "Eine faktenbasierte Grundlage für die Strategie."
+    },
+    {
+      "id": "3n",
+      "checkpoint": 3,
+      "role": "name",
+      "hu": "Stratégia",
+      "en": "Strategy",
+      "de": "Strategie"
+    },
+    {
+      "id": "3a",
+      "checkpoint": 3,
+      "role": "happens",
+      "hu": "Eldöntjük a pozicionálást, az üzeneteket és a csatornák sorrendjét.",
+      "en": "We decide the positioning, the messages and the order of the channels.",
+      "de": "Wir entscheiden über Positionierung, Botschaften und die Reihenfolge der Kanäle."
+    },
+    {
+      "id": "3b",
+      "checkpoint": 3,
+      "role": "weProduce",
+      "hu": "Stratégiai dokumentum mérhető célokkal és ütemezéssel.",
+      "en": "A strategy document with measurable goals and a schedule.",
+      "de": "Ein Strategiedokument mit messbaren Zielen und Zeitplan."
+    },
+    {
+      "id": "3c",
+      "checkpoint": 3,
+      "role": "youProvide",
+      "hu": "Döntést. Ez az a pont, ahol a legtöbb múlik rajtad.",
+      "en": "A decision. This is the point where the most depends on you.",
+      "de": "Eine Entscheidung. Das ist der Punkt, an dem am meisten von Ihnen abhängt."
+    },
+    {
+      "id": "3d",
+      "checkpoint": 3,
+      "role": "outcome",
+      "hu": "Egy irány, amelyhez minden későbbi döntés mérhető.",
+      "en": "A direction every later decision can be measured against.",
+      "de": "Eine Richtung, an der sich jede spätere Entscheidung messen lässt."
+    },
+    {
+      "id": "4n",
+      "checkpoint": 4,
+      "role": "name",
+      "hu": "Tervezés",
+      "en": "Design",
+      "de": "Gestaltung"
+    },
+    {
+      "id": "4a",
+      "checkpoint": 4,
+      "role": "happens",
+      "hu": "Arculat és felületi tervek készülnek, valós tartalommal, nem kitöltő szöveggel.",
+      "en": "Branding and interface designs are produced, with real content, not filler text.",
+      "de": "Es entstehen Marken- und Oberflächenentwürfe, mit echten Inhalten, nicht mit Blindtext."
+    },
+    {
+      "id": "4b",
+      "checkpoint": 4,
+      "role": "weProduce",
+      "hu": "Jóváhagyható dizájnterv minden fontos nézetre.",
+      "en": "An approvable design for every important view.",
+      "de": "Ein freigabefähiger Entwurf für jede wichtige Ansicht."
+    },
+    {
+      "id": "4c",
+      "checkpoint": 4,
+      "role": "youProvide",
+      "hu": "Visszajelzést egy körben, összegyűjtve.",
+      "en": "Feedback in one round, collected together.",
+      "de": "Rückmeldungen in einer Runde, gesammelt."
+    },
+    {
+      "id": "4d",
+      "checkpoint": 4,
+      "role": "outcome",
+      "hu": "Jóváhagyott terv, amiből egyértelmű, mi épül.",
+      "en": "An approved design that makes it unambiguous what gets built.",
+      "de": "Ein freigegebener Entwurf, aus dem eindeutig hervorgeht, was gebaut wird."
+    },
+    {
+      "id": "5n",
+      "checkpoint": 5,
+      "role": "name",
+      "hu": "Fejlesztés",
+      "en": "Development",
+      "de": "Entwicklung"
+    },
+    {
+      "id": "5a",
+      "checkpoint": 5,
+      "role": "happens",
+      "hu": "Megépítjük. Menet közben látod, nem a végén.",
+      "en": "We build it. You see it as it goes, not at the end.",
+      "de": "Wir bauen es. Sie sehen es währenddessen, nicht erst am Ende."
+    },
+    {
+      "id": "5b",
+      "checkpoint": 5,
+      "role": "weProduce",
+      "hu": "Működő oldal tesztkörnyezetben, mérésekkel felszerelve.",
+      "en": "A working site in a test environment, fitted with measurement.",
+      "de": "Eine funktionierende Website in einer Testumgebung, mit Messung ausgestattet."
+    },
+    {
+      "id": "5c",
+      "checkpoint": 5,
+      "role": "youProvide",
+      "hu": "Tartalmat és a hozzáféréseket.",
+      "en": "Content, and the access you hold.",
+      "de": "Inhalte und die Zugänge."
+    },
+    {
+      "id": "5d",
+      "checkpoint": 5,
+      "role": "outcome",
+      "hu": "Élesíthető rendszer, nem bemutató.",
+      "en": "A system ready to go live, not a demo.",
+      "de": "Ein System, das live gehen kann, keine Vorführung."
+    },
+    {
+      "id": "6n",
+      "checkpoint": 6,
+      "role": "name",
+      "hu": "Indulás",
+      "en": "Launch",
+      "de": "Start"
+    },
+    {
+      "id": "6a",
+      "checkpoint": 6,
+      "role": "happens",
+      "hu": "Élesítés, átirányítások, mérés ellenőrzése, hirdetések indítása.",
+      "en": "Go-live, redirects, verification of the measurement, starting the advertising.",
+      "de": "Livegang, Weiterleitungen, Prüfung der Messung, Start der Werbung."
+    },
+    {
+      "id": "6b",
+      "checkpoint": 6,
+      "role": "weProduce",
+      "hu": "Élő rendszer és átadási dokumentáció.",
+      "en": "A live system, and handover documentation.",
+      "de": "Ein laufendes System und eine Übergabedokumentation."
+    },
+    {
+      "id": "6c",
+      "checkpoint": 6,
+      "role": "youProvide",
+      "hu": "Jóváhagyást az indulásra.",
+      "en": "Approval to launch.",
+      "de": "Die Freigabe für den Start."
+    },
+    {
+      "id": "6d",
+      "checkpoint": 6,
+      "role": "outcome",
+      "hu": "A rendszer működik és mér.",
+      "en": "The system runs, and measures.",
+      "de": "Das System läuft und misst."
+    },
+    {
+      "id": "7n",
+      "checkpoint": 7,
+      "role": "name",
+      "hu": "Optimalizálás",
+      "en": "Optimisation",
+      "de": "Optimierung"
+    },
+    {
+      "id": "7a",
+      "checkpoint": 7,
+      "role": "happens",
+      "hu": "Havonta: mérés, elemzés, módosítás. Ez nem projektzárás, hanem üzemeltetés.",
+      "en": "Every month: measure, analyse, adjust. This is not project closure, it is operation.",
+      "de": "Monatlich: messen, analysieren, anpassen. Das ist kein Projektabschluss, sondern Betrieb."
+    },
+    {
+      "id": "7b",
+      "checkpoint": 7,
+      "role": "weProduce",
+      "hu": "Havi riport és a végrehajtott módosítások listája.",
+      "en": "A monthly report, and the list of changes made.",
+      "de": "Ein Monatsbericht und die Liste der durchgeführten Änderungen."
+    },
+    {
+      "id": "7c",
+      "checkpoint": 7,
+      "role": "youProvide",
+      "hu": "Visszajelzést arról, milyen megkeresések érkeznek.",
+      "en": "Feedback on what kind of enquiries are coming in.",
+      "de": "Rückmeldung dazu, welche Anfragen eingehen."
+    },
+    {
+      "id": "7d",
+      "checkpoint": 7,
+      "role": "outcome",
+      "hu": "Rendszer, amely idővel jobb lesz, nem elavul.",
+      "en": "A system that gets better over time rather than going out of date.",
+      "de": "Ein System, das mit der Zeit besser wird, statt zu veralten."
+    }
+  ]
+}

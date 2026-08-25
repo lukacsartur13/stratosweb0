@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>Stratos — typography study, locale stress</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="typography.css">
+<style>
+  body{background:#000;}
+  /* The locale frames reuse the high-altitude scene, which is the binding
+     one: German's statement here is 47% wider than Hungarian's at the same
+     size, and it is the sentence that decides the ceiling of every direction's
+     monument scale. The system is NOT redesigned per locale — only the line
+     break moves, and in one case the size. (§24) */
+  #l3 .monument{outline:1px dashed rgba(242,242,240,.18);outline-offset:14px;}
+</style></head><body>
+
+<!-- B · EN — the authored English break, unchanged system -->
+<section class="frame b altitude-field" id="l1" lang="en">
+  <h1 class="monument"><span>From here you can</span><span>see the curvature.</span></h1>
+  <p class="editorial">At this altitude eighty per cent of the air is below you.</p>
+  <div class="micro stamp">27 000 m</div>
+</section>
+
+<!-- B · DE — same system, same size, DIFFERENT BREAK. The Hungarian break
+     "Von hier aus ist / die Krümmung zu sehen." measures 1 428 px against a
+     1 232 px measure and cannot be used. -->
+<section class="frame b altitude-field" id="l2" lang="de">
+  <h1 class="monument"><span>Von hier aus ist die</span><span>Krümmung zu sehen.</span></h1>
+  <p class="editorial">In dieser Höhe liegen achtzig Prozent der Luft unter Ihnen.</p>
+  <div class="micro stamp">27 000 m</div>
+</section>
+
+<!-- C · DE at C's own 168 px, on the best two-line German break. This frame is
+     the failure, printed rather than described: even the better break measures
+     1 344 px and the statement runs out of the frame. -->
+<section class="frame c altitude-field" id="l3" lang="de">
+  <p class="whisper">In dieser Höhe liegen achtzig Prozent der Luft unter Ihnen.</p>
+  <h1 class="monument"><span>Von hier aus ist die</span><span>Krümmung zu sehen.</span></h1>
+  <div class="stamp">27 000 m</div>
+</section>
+
+<!-- C · DE at 154 px — the largest size at which C's two-line composition
+     survives German. This is C's real ceiling, not 168 px. -->
+<section class="frame c altitude-field" id="l4" lang="de">
+  <p class="whisper">In dieser Höhe liegen achtzig Prozent der Luft unter Ihnen.</p>
+  <h1 class="monument" style="font-size:154px;top:492px;"><span>Von hier aus ist die</span><span>Krümmung zu sehen.</span></h1>
+  <div class="stamp">27 000 m</div>
+</section>
+
+</body></html>

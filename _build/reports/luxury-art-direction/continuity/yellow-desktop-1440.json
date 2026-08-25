@@ -1,0 +1,126 @@
+[
+  {
+    "stage": "(chrome)",
+    "level": "(chrome)",
+    "sel": "a.skip",
+    "props": [
+      "backgroundColor"
+    ],
+    "text": "Ugrás a tartalomra",
+    "area": 5445
+  },
+  {
+    "stage": "(chrome)",
+    "level": "(chrome)",
+    "sel": "a.skip",
+    "props": [
+      "backgroundColor"
+    ],
+    "text": "Ugrás a tartalomra",
+    "area": 5445
+  },
+  {
+    "stage": "selected-work",
+    "level": "master",
+    "sel": "h2.act__monument.act__monument--figure",
+    "props": [
+      "color",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "outlineColor",
+      "textDecorationColor"
+    ],
+    "text": "~15M Ft",
+    "area": 104604
+  },
+  {
+    "stage": "selected-work",
+    "level": "master",
+    "sel": "span",
+    "props": [
+      "color",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "outlineColor",
+      "textDecorationColor"
+    ],
+    "text": "~15M Ft",
+    "area": 104604
+  },
+  {
+    "stage": "destination",
+    "level": "master",
+    "sel": "a.act__action.act__action--signal",
+    "props": [
+      "color",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "outlineColor",
+      "textDecorationColor"
+    ],
+    "text": "Kezdjük az emelkedést",
+    "area": 7514
+  },
+  {
+    "stage": "(chrome)",
+    "level": "(chrome)",
+    "sel": "span",
+    "props": [
+      "color",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "outlineColor",
+      "textDecorationColor"
+    ],
+    "text": "30 000 M",
+    "area": 1600
+  },
+  {
+    "stage": "(chrome)",
+    "level": "(chrome)",
+    "sel": "a.btn",
+    "props": [
+      "backgroundColor",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor"
+    ],
+    "text": "Projekt indítása",
+    "area": 6661
+  },
+  {
+    "stage": "(chrome)",
+    "level": "(chrome)",
+    "sel": "button",
+    "props": [
+      "color",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "outlineColor",
+      "textDecorationColor"
+    ],
+    "text": "Szóljatok",
+    "area": 5423
+  },
+  {
+    "stage": "(chrome)",
+    "level": "(chrome)",
+    "sel": "a",
+    "props": [
+      "backgroundColor"
+    ],
+    "text": "HU",
+    "area": 751
+  }
+]

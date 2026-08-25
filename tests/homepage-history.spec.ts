@@ -1,5 +1,14 @@
 import { test, expect, type Page } from '@playwright/test';
-import { homepageReady, stageReadout } from './helpers/homepage';
+import { bootJourneyOnLoad, homepageReady, stageReadout } from './helpers/homepage';
+
+// The homepage waits for a first move before it mounts the journey — see
+// `bootJourneyOnLoad`. Every navigation in this file gets one, on every
+// document it loads, so what these tests assert about is a page a visitor is
+// reading rather than one they have only landed on.
+test.beforeEach(async ({ page }) => {
+  await bootJourneyOnLoad(page);
+});
+
 
 /**
  * Where the homepage lands when the visitor presses Back.

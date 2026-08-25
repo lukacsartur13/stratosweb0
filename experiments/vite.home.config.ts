@@ -1,9 +1,11 @@
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { siteAssets } from './vite-site-assets';
 import { siteOrigin } from '../scripts/site-origin.mjs';
+import { MESSAGES } from './src/full/locales/messages';
+import { pageHref, type Locale } from './src/full/i18n';
 
 /**
  * The homepage build: the Altimeter Meridian ascent, served at `/`, `/en/` and
@@ -125,6 +127,264 @@ function injectChrome(): Plugin {
   };
 }
 
+/**
+ * The document's opening frame, as static markup inside the mount host.
+ *
+ * WHY THE FIRST SCREEN IS IN THE HTML
+ * -----------------------------------
+ * `<main class="journey">` is where React renders, and until it does the
+ * document has nothing in its first viewport. That cost two of the five metrics
+ * outright: the largest contentful paint was whatever the *footer* managed to
+ * paint while waiting, and the first screen was blank for as long as the mount
+ * took. Neither is a rendering problem — the page simply had not said anything
+ * yet.
+ *
+ * It says it here instead. The headline and the lead sentence are the same two
+ * strings both compositions open with, read from the same `MESSAGES` table they
+ * read, so there is no second copy of the words to keep in step: a change to
+ * `act.i.monument` changes the opening frame on the next build. The primary
+ * action is the same `common.cta.ascend` link, resolved per locale through the
+ * same `pageHref` the compositions use.
+ *
+ * WHY IT IS NOT A RENDERED COPY OF EITHER COMPOSITION
+ * ---------------------------------------------------
+ * There are two of them and one shell. `main.tsx` picks between the portrait
+ * and the cinematic composition from `screen`'s short edge and the pointer
+ * type, neither of which is knowable at build time or from a media query — so
+ * prerendering one would be prerendering the wrong one for half the visitors.
+ *
+ * This is therefore a third thing, deliberately: the page's opening statement,
+ * set plainly, before it becomes either composition. It is a handful of
+ * elements with their own small block in `styles.css`, it reads correctly at
+ * every width, and `createRoot`'s first commit removes it — see `mount()` in
+ * `src/full/boot.tsx`.
+ *
+ * A shell that lost its slot is a build error, exactly as with the four chrome
+ * slots above, and for the same reason: it would ship as a page that looks
+ * finished and paints nothing.
+ */
+function openingFrame(): Plugin {
+  const escape = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const frame = (lang: Locale) => {
+    // `|` is the authored line break — the same separator `actLines()` splits
+    // on in both compositions, so the statement breaks where it was written to
+    // break rather than wherever the measure happens to run out.
+    const lines = MESSAGES['act.i.monument'][lang].split('|');
+    return [
+      '<div class="jboot" data-journey-opening>',
+      '  <h1 class="jboot__h">',
+      ...lines.map((line) => `    <span>${escape(line)}</span>`),
+      '  </h1>',
+      `  <p class="jboot__lede">${escape(MESSAGES['calibration.lead'][lang])}</p>`,
+      `  <p class="jboot__act"><a href="${pageHref('quote', lang)}">${escape(MESSAGES['common.cta.ascend'][lang])}</a></p>`,
+      '</div>',
+    ].join('\n');
+  };
+
+  return {
+    name: 'stratos-opening-frame',
+    enforce: 'pre',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, ctx) {
+        const lang = /home\/(hu|en|de)\.html$/.exec(ctx.filename.replace(/\\/g, '/'))?.[1] as
+          | Locale
+          | undefined;
+        if (!lang) throw new Error(`no locale for ${ctx.filename} — the homepage shells are home/{hu,en,de}.html`);
+        const token = '<!--stratos:opening-->';
+        if (!html.includes(token)) {
+          throw new Error(`${ctx.filename} has no ${token} — the homepage shell lost its opening frame`);
+        }
+        return html.split(token).join(frame(lang));
+      },
+    },
+  };
+}
+
+/**
+ * Publish the journey's chunk URLs so the entry can prefetch them at idle.
+ *
+ * `main.tsx` waits for the visitor to touch the page before it imports the
+ * journey, which is what keeps 300 KB of React and three.js off the critical
+ * path. Left there, the cost would simply have moved: the first `pointermove`
+ * would start a cold download and the mount would wait on the network.
+ *
+ * So the bytes are fetched at the browser's lowest priority after `load`, and
+ * the mount finds them in cache. The file names are content-hashed, so the only
+ * place that can know them is here, after the bundle is generated. They are
+ * emitted as JSON rather than as `<link>` tags in the markup because a `<link
+ * rel="prefetch">` in the HTML is requested during the load it is meant to stay
+ * out of.
+ *
+ * `application/json` is not executable, so `script-src 'self'` in netlify.toml
+ * has nothing to say about it — the same reason the `#i18n` block beside it is
+ * allowed to be inline.
+ */
+/**
+ * Put the homepage's render-blocking stylesheets into the document.
+ *
+ * WHY, WITH NUMBERS
+ * -----------------
+ * Four stylesheets stand between this route and its first paint: `type.css`,
+ * `chrome.css` and `transitions.css` from the shared static site, plus the
+ * journey's own bundle. Together they are about 16 KB compressed — small — but
+ * they are four separate requests that cannot even be *discovered* until the
+ * HTML has arrived, so on a phone they cost a whole round trip before anything
+ * can be drawn. Lighthouse's own estimate on the built page: 420 ms.
+ *
+ * Inlined, they arrive with the document that needs them and the first paint
+ * waits on one response instead of five. The HTML grows from about 6 KB
+ * compressed to about 20 KB, which is a fifth of a round trip's worth of extra
+ * bytes to remove an entire round trip.
+ *
+ * WHY ONLY HERE, AND NOT ON THE OTHER 66 ROUTES
+ * ---------------------------------------------
+ * Because they share those files with each other and this route does not share
+ * its own. `chrome.css` and `type.css` are one cache entry across the whole
+ * site: a visitor who arrives anywhere has them for everywhere. Inlining them
+ * into all 69 documents would trade one cached file for sixty-nine copies of it
+ * — better on the first page, worse on every page after.
+ *
+ * The homepage is the exception worth making because it is the page people
+ * arrive on, most often cold, most often on a phone, and it is the one route
+ * whose stylesheet nobody else uses. It keeps the shared files *available* —
+ * they are still on disk, still fingerprinted, still what every other route
+ * links to — so the second page a visitor opens costs exactly what it did.
+ *
+ * `style-src` in netlify.toml is already `'self' 'unsafe-inline'`, for the
+ * per-frame custom properties the journey writes onto style attributes, so this
+ * needs no policy change. Nothing here inlines a *script*: `script-src` stays
+ * `'self'` with no exceptions, which is the part of that policy worth keeping.
+ */
+function inlineCriticalCss(): Plugin {
+  // The shared stylesheets, taken from dist rather than from the source tree:
+  // `scripts/assemble.mjs` has already run by the time this build starts, and
+  // the copy it made is the minified one that would have shipped. Inlining the
+  // source would put 68 KB of comments into three documents.
+  const shared = resolve(__dirname, '../dist/assets/css');
+
+  return {
+    name: 'stratos-inline-critical-css',
+    enforce: 'post',
+    generateBundle(_options, bundle) {
+      const inlined = new Set<string>();
+
+      const styleFor = (href: string): string | null => {
+        const path = href.split('?')[0];
+
+        if (path.startsWith('/assets/css/')) {
+          const file = resolve(shared, path.slice('/assets/css/'.length));
+          if (!existsSync(file)) {
+            this.error(`${path} is not in dist — assemble.mjs did not run before build:home`);
+            return null;
+          }
+          // `@font-face` in type.css addresses its files as `../fonts/…`, which
+          // resolves against the *stylesheet* while it is a stylesheet and
+          // against the *document* once it is inlined — so at `/en/` it would
+          // become `/en/fonts/…` and every face would 404. Absolute is the only
+          // form that means the same thing in both places.
+          return readFileSync(file, 'utf8').split('url(../fonts/').join('url(/assets/fonts/');
+        }
+
+        if (path.startsWith('/assets/home/')) {
+          const asset = bundle[path.slice(1)];
+          if (!asset || asset.type !== 'asset') return null;
+          inlined.add(asset.fileName);
+          return String(asset.source);
+        }
+
+        return null;
+      };
+
+      const LINK = /[ \t]*<link rel="stylesheet"[^>]*href="([^"]+)"[^>]*>\n?/g;
+
+      for (const asset of Object.values(bundle)) {
+        if (asset.type !== 'asset' || !asset.fileName.endsWith('.html')) continue;
+        let count = 0;
+        const html = String(asset.source).replace(LINK, (tag, href: string) => {
+          const css = styleFor(href);
+          if (css === null) return tag;
+          count += 1;
+          return `    <style>${css}</style>\n`;
+        });
+        if (count === 0) this.error(`${asset.fileName} has no stylesheet to inline — the shell changed shape`);
+        asset.source = html;
+      }
+
+      // The emitted entry stylesheet is now a copy of bytes that are in all
+      // three documents, and nothing links to it. Left in place it would be
+      // dead weight in dist and — worse — a URL the prefetch manifest would
+      // hand the browser at idle. The async chunk's own stylesheet is untouched:
+      // that one is still fetched, by `__vitePreload`, when the journey mounts.
+      for (const fileName of inlined) {
+        delete bundle[fileName];
+        for (const chunk of Object.values(bundle)) {
+          if (chunk.type !== 'chunk') continue;
+          chunk.viteMetadata?.importedCss?.delete(fileName);
+        }
+      }
+    },
+  };
+}
+
+function journeyChunks(): Plugin {
+  return {
+    name: 'stratos-journey-chunks',
+    enforce: 'post',
+    generateBundle(_options, bundle) {
+      // The chunk and everything it imports statically. `facadeModuleId` is
+      // null on a chunk Rollup merged other modules into, so the dynamic entry
+      // is identified by its `name` — which is the source file's stem.
+      const chunkNamed = (name: string) =>
+        Object.values(bundle).find((c) => c.type === 'chunk' && c.isDynamicEntry && c.name === name);
+
+      const walk = (start: string | undefined, into = new Set<string>()) => {
+        if (!start) return into;
+        const chunk = bundle[start];
+        if (!chunk || chunk.type !== 'chunk' || into.has('/' + chunk.fileName)) return into;
+        into.add('/' + chunk.fileName);
+        for (const css of chunk.viteMetadata?.importedCss ?? []) into.add('/' + css);
+        for (const imported of chunk.imports) walk(imported, into);
+        return into;
+      };
+
+      const boot = chunkNamed('boot');
+      if (!boot) {
+        this.error('no dynamic boot chunk in the bundle — src/full/main.tsx stopped deferring the mount');
+        return;
+      }
+
+      // Three lists, because there are three answers. `core` is React and both
+      // compositions, which every visitor needs the moment they engage. The
+      // other two are the renderers, and a visitor needs exactly one of them —
+      // prefetching both would spend a phone's data on a scene it has no
+      // composition to draw. `main.tsx` asks `isMobileHomepage()` and takes one.
+      const manifest = {
+        core: [...walk(boot.fileName)],
+        mobile: [...walk(chunkNamed('MobileInstrument')?.fileName)],
+        desktop: [...walk(chunkNamed('JourneyScene')?.fileName)],
+      };
+      // A renderer that stopped being its own chunk would be a renderer on the
+      // critical path, which is the defect this whole arrangement exists to
+      // prevent — so it fails the build rather than quietly shipping.
+      for (const [key, list] of Object.entries(manifest)) {
+        if (!list.length) this.error(`the ${key} chunk list is empty — the homepage's code split changed shape`);
+      }
+
+      const tag =
+        `<script id="journey-chunks" type="application/json">${JSON.stringify(manifest)}</script>`;
+      for (const asset of Object.values(bundle)) {
+        if (asset.type !== 'asset' || !asset.fileName.endsWith('.html')) continue;
+        const html = String(asset.source);
+        if (!html.includes('</head>')) continue;
+        asset.source = html.replace('</head>', `  ${tag}\n  </head>`);
+      }
+    },
+  };
+}
+
 function emitLocaleIndexes(): Plugin {
   const ROUTES: Record<string, string> = {
     'home/hu.html': 'index.html',
@@ -160,7 +420,16 @@ export default defineConfig({
   // step and no second asset to keep in sync.
   publicDir: resolve(__dirname, '../public'),
 
-  plugins: [react(), injectChrome(), substituteOrigin(), emitLocaleIndexes(), siteAssets(resolve(__dirname, '../assets'))],
+  plugins: [
+    react(),
+    injectChrome(),
+    openingFrame(),
+    substituteOrigin(),
+    inlineCriticalCss(),
+    journeyChunks(),
+    emitLocaleIndexes(),
+    siteAssets(resolve(__dirname, '../assets')),
+  ],
   resolve: {
     alias: { '@': resolve(__dirname, 'src') },
   },

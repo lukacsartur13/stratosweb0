@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>Stratos — the six-act master study · Direction D applied to the whole homepage</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="six-act.css">
+<link rel="stylesheet" href="six-act-color.css">
+<link rel="stylesheet" href="six-act-scale.css">
+<style>body{background:#000;display:flex;flex-direction:column;align-items:center;gap:40px;padding:40px 0;}</style>
+</head>
+<body>
+
+<!-- ==========================================================================
+     EVERY WORD IN EVERY FRAME IS VERBATIM FROM THE CONTENT LAYER, in all
+     three languages. Nothing was written, re-translated or paraphrased.
+
+       calibration.title.em/.b, calibration.lead, common.cta.ascend
+       cloudEntry.title.a/.em, cloudEntry.note.d
+       lowerAtmosphere.title.a/.em, lowerAtmosphere.lead (second sentence)
+       CAPABILITIES_HU[].name, through locales/en.ts and locales/de.ts
+       WORK_HU[rapidkert].name + .metric.value + .metric.label
+       COLLABORATIONS_HU[].src — the six marks, as shipped
+       stratosphereTransition.title.a/.em, .note.a, .altitude
+       fullStratosphere.title.a/.em
+       destination.title.a/.em
+                                              (experiments/src/full/…)
+
+     THREE EDITORIAL DECISIONS THE CONTENT LAYER WOULD HAVE TO CARRY, and all
+     three are the same KIND of change Direction D already asked for — where a
+     line ends, or which of an existing sentence's sentences is used. No claim
+     is invented and no word is altered:
+
+       1. AUTHORED BREAKS. Act I English and all three of Act V's are Direction
+          D's, unchanged. Act II adds three new ones — the three-line stack is
+          the act's whole composition, not a wrap.
+       2. `lowerAtmosphere.lead` IS USED AS ITS SECOND SENTENCE ONLY.
+          "Egy sorrend, amiben egymásra épülnek." The first sentence restates
+          what the 162px monument above it already says. Split at its own
+          sentence boundary, which is the operation messages.ts already
+          performs on five other paragraphs.
+       3. `selectedWork.title` IS NOT IN ACT IV'S KEYFRAME. "Akikkel együtt
+          emelkedtünk." is good copy and it is a second voice in the one act
+          whose dominant thought is a number. It survives in the act's scroll
+          stages; it is not in its strongest still.
+
+     NO FONT-SIZE, NO WIDTH AXIS AND NO MONUMENT `top` APPEARS IN THIS FILE.
+     All three are solved per act per locale in six-act-scale.css.
+     ========================================================================== -->
+
+
+<!-- ################################################ ACT I · GROUND · 0 m -->
+<!-- Five objects. The statement, the field around it, and one precision
+     object alone in the upper right with 210px of measured air between them. -->
+<section class="frame a1 s-a1-hu" id="a1-hu" lang="hu">
+  <div class="ground"></div>
+  <div class="wordmark">STRATOS</div>
+  <img class="instrument" src="assets/lux-hero.png" alt="">
+  <h1 class="monument"><span>Magasságot</span><span>építünk.<i></i></span></h1>
+  <p class="editorial">Előbb megnézzük, hol tartasz — aztán megépítjük a rendszert, amivel feljebb kerülsz.</p>
+  <a class="act" href="#">Kezdjük az emelkedést</a>
+</section>
+
+<section class="frame a1 s-a1-en" id="a1-en" lang="en">
+  <div class="ground"></div>
+  <div class="wordmark">STRATOS</div>
+  <img class="instrument" src="assets/lux-hero.png" alt="">
+  <h1 class="monument"><span>Altitude is</span><span>what we build.<i></i></span></h1>
+  <p class="editorial">First we look at where you stand — then we build the system that takes you higher.</p>
+  <a class="act" href="#">Start the ascent</a>
+</section>
+
+<section class="frame a1 s-a1-de" id="a1-de" lang="de">
+  <div class="ground"></div>
+  <div class="wordmark">STRATOS</div>
+  <img class="instrument" src="assets/lux-hero.png" alt="">
+  <h1 class="monument"><span>Höhe</span><span>bauen wir.<i></i></span></h1>
+  <p class="editorial">Zuerst sehen wir uns an, wo Sie stehen — dann bauen wir das System, mit dem Sie höher kommen.</p>
+  <a class="act" href="#">Den Aufstieg beginnen</a>
+</section>
+
+
+<!-- ################################################ ACT II · NOISE · 6 000–8 500 m -->
+<!-- Two objects, no instrument, no altitude. The statement is right-aligned
+     to the right margin line and stacked into three lines, so the act's
+     subject — compression — is carried by the setting rather than by adding
+     anything to the picture. -->
+<section class="frame a2 s-a2-hu" id="a2-hu" lang="hu">
+  <div class="ground"></div>
+  <h2 class="monument"><span>Idelent</span><span>minden</span><span>zajos.<i></i></span></h2>
+  <p class="editorial">Ez a réteg mindenkinek ugyanolyan sűrű.</p>
+</section>
+
+<section class="frame a2 s-a2-en" id="a2-en" lang="en">
+  <div class="ground"></div>
+  <h2 class="monument"><span>Down here</span><span>everything</span><span>is noisy.<i></i></span></h2>
+  <p class="editorial">This layer is equally dense for everyone.</p>
+</section>
+
+<section class="frame a2 s-a2-de" id="a2-de" lang="de">
+  <div class="ground"></div>
+  <h2 class="monument"><span>Hier unten</span><span>ist alles</span><span>laut.<i></i></span></h2>
+  <p class="editorial">Diese Schicht ist für alle gleich dicht.</p>
+</section>
+
+
+<!-- ############################################### ACT III · SYSTEM · 3 000–6 000 m -->
+<!-- THREE objects on a diagonal, and no instrument. The six disciplines stay
+     fully readable as business structure and are set as a colophon, not as
+     six boxes. §21 permits a second, restrained Altimeter appearance here and
+     also says to remove it if the scene is stronger without it; it was built,
+     lit, placed and photographed, and the scene is stronger without it. The
+     rejected frame is `a3-hu-inst`, below. -->
+<section class="frame a3 s-a3-hu" id="a3-hu" lang="hu">
+  <div class="ground"></div>
+  <p class="editorial">Egy sorrend, amiben egymásra épülnek.</p>
+  <h2 class="monument"><span>Hat terület,</span><span>egy rendszer.<i></i></span></h2>
+  <p class="index">Stratégia<i>·</i>Dizájn<i>·</i>Fejlesztés<i>·</i>Hirdetés<i>·</i>Konverzió<i>·</i>Automatizálás</p>
+</section>
+
+<section class="frame a3 s-a3-en" id="a3-en" lang="en">
+  <div class="ground"></div>
+  <p class="editorial">One sequence, in which each builds on the one before it.</p>
+  <h2 class="monument"><span>Six areas,</span><span>one system.<i></i></span></h2>
+  <p class="index">Strategy<i>·</i>Design<i>·</i>Development<i>·</i>Advertising<i>·</i>Conversion<i>·</i>Automation</p>
+</section>
+
+<section class="frame a3 s-a3-de" id="a3-de" lang="de">
+  <div class="ground"></div>
+  <p class="editorial">Eine Reihenfolge, in der eines auf dem anderen aufbaut.</p>
+  <h2 class="monument"><span>Sechs Bereiche,</span><span>ein System.<i></i></span></h2>
+  <p class="index">Strategie<i>·</i>Design<i>·</i>Entwicklung<i>·</i>Werbung<i>·</i>Konversion<i>·</i>Automatisierung</p>
+</section>
+
+<!-- THE VARIANT THAT WAS REJECTED, kept because §21's instruction — "if the
+     scene is stronger without it, remove it" — is only honest if both were
+     built and photographed. This is Act III with the second Altimeter
+     appearance §34's suggested distribution asks for: a different pose, a
+     155px dial against the hero's 229px, its right edge on the right margin
+     line and its centre on the monument's own last baseline. It was placed
+     structurally, lit separately, measured, and cut. §I of the report argues
+     it and this frame is the evidence. -->
+<section class="frame a3 s-a3-hu" id="a3-hu-inst" lang="hu">
+  <div class="ground"></div>
+  <p class="editorial">Egy sorrend, amiben egymásra épülnek.</p>
+  <h2 class="monument"><span>Hat terület,</span><span>egy rendszer.<i></i></span></h2>
+  <img class="instrument" src="assets/lux-system.png" alt="">
+  <p class="index">Stratégia<i>·</i>Dizájn<i>·</i>Fejlesztés<i>·</i>Hirdetés<i>·</i>Konverzió<i>·</i>Automatizálás</p>
+</section>
+
+
+<!-- ################################################ ACT IV · PROOF · 11 000–17 000 m -->
+<!-- Four objects. The monument is a FIGURE, which is the one place in six
+     acts where the largest type on the frame is not a sentence — and the one
+     yellow event in the master sheet. The marks carry no heading; the capture
+     is cut by two edges of the frame so it cannot read as a card. -->
+<section class="frame a4 s-a4-hu" id="a4-hu" lang="hu">
+  <div class="ground"></div>
+  <div class="marks">
+    <img class="wide"   src="../../../assets/img/logo-kontyos.webp" alt="Kontyos.hu">
+    <img class="square" src="../../../assets/img/logo-grantool.png" alt="Grantool Kft.">
+    <img class="tall"   src="../../../assets/img/logo-synergy.png" alt="Synergy Digital Hungary Kft.">
+    <img class="wide"   src="../../../assets/img/logo-duna-hajok.png" alt="Duna Hajók">
+    <img class="wide"   src="../../../assets/img/logo-duna-enterior.png" alt="Duna Enterior">
+    <img class="square" src="../../../assets/img/client-barbershop.png" alt="Barbershop Győr">
+  </div>
+  <h2 class="monument figure"><span>~15M Ft<i></i></span></h2>
+  <p class="editorial"><span>Rapidkert Kft.</span><span>Szerződött projektérték keresésből</span></p>
+  <div class="shot"><img src="../../../assets/img/work-rapidkert.jpg" alt="A Rapidkert interaktív 3D kertépítő weboldala a Stratos Mediától"></div>
+</section>
+
+<section class="frame a4 s-a4-en" id="a4-en" lang="en">
+  <div class="ground"></div>
+  <div class="marks">
+    <img class="wide"   src="../../../assets/img/logo-kontyos.webp" alt="Kontyos.hu">
+    <img class="square" src="../../../assets/img/logo-grantool.png" alt="Grantool Kft.">
+    <img class="tall"   src="../../../assets/img/logo-synergy.png" alt="Synergy Digital Hungary Kft.">
+    <img class="wide"   src="../../../assets/img/logo-duna-hajok.png" alt="Duna Hajók">
+    <img class="wide"   src="../../../assets/img/logo-duna-enterior.png" alt="Duna Enterior">
+    <img class="square" src="../../../assets/img/client-barbershop.png" alt="Barbershop Győr">
+  </div>
+  <h2 class="monument figure"><span>~15M Ft<i></i></span></h2>
+  <p class="editorial"><span>Rapidkert Kft.</span><span>Contracted project value from search</span></p>
+  <div class="shot"><img src="../../../assets/img/work-rapidkert.jpg" alt="The Rapidkert interactive 3D landscaping website by Stratos Media"></div>
+</section>
+
+<section class="frame a4 s-a4-de" id="a4-de" lang="de">
+  <div class="ground"></div>
+  <div class="marks">
+    <img class="wide"   src="../../../assets/img/logo-kontyos.webp" alt="Kontyos.hu">
+    <img class="square" src="../../../assets/img/logo-grantool.png" alt="Grantool Kft.">
+    <img class="tall"   src="../../../assets/img/logo-synergy.png" alt="Synergy Digital Hungary Kft.">
+    <img class="wide"   src="../../../assets/img/logo-duna-hajok.png" alt="Duna Hajók">
+    <img class="wide"   src="../../../assets/img/logo-duna-enterior.png" alt="Duna Enterior">
+    <img class="square" src="../../../assets/img/client-barbershop.png" alt="Barbershop Győr">
+  </div>
+  <h2 class="monument figure"><span>~15M Ft<i></i></span></h2>
+  <p class="editorial"><span>Rapidkert Kft.</span><span>Beauftragter Projektwert aus der Suche</span></p>
+  <div class="shot"><img src="../../../assets/img/work-rapidkert.jpg" alt="Die interaktive 3D-Gartenbau-Website von Rapidkert, gebaut von Stratos Media"></div>
+</section>
+
+
+<!-- ####################################### ACT V · HIGH ALTITUDE · 25 500–28 000 m -->
+<!-- The benchmark, unchanged. Three objects, and the only altitude label in
+     the six master frames — this is the one sentence on the page that states
+     a measurement about the atmosphere, so the reading belongs with it. -->
+<section class="frame a5 s-a5-hu" id="a5-hu" lang="hu">
+  <div class="ground"></div>
+  <div class="micro">27 000 m</div>
+  <p class="editorial">Ebben a magasságban a levegő nyolcvan százaléka alattad van.</p>
+  <h2 class="monument"><span>Innen már látni</span><span>a görbületet.<i></i></span></h2>
+</section>
+
+<section class="frame a5 s-a5-en" id="a5-en" lang="en">
+  <div class="ground"></div>
+  <div class="micro">27,000 m</div>
+  <p class="editorial">At this altitude eighty per cent of the air is below you.</p>
+  <h2 class="monument"><span>From here</span><span>you can see</span><span>the curvature.<i></i></span></h2>
+</section>
+
+<section class="frame a5 s-a5-de" id="a5-de" lang="de">
+  <div class="ground"></div>
+  <div class="micro">27.000 m</div>
+  <p class="editorial">In dieser Höhe liegen achtzig Prozent der Luft unter Ihnen.</p>
+  <h2 class="monument"><span>Von hier aus ist</span><span>die Krümmung</span><span>zu sehen.<i></i></span></h2>
+</section>
+
+
+<!-- ############################################## ACT VI · ARRIVAL · 28 000–30 000 m -->
+<!-- Two objects and the sky — the sparsest frame in the study, and the only
+     symmetrical one. No altitude: by here the instrument states it better
+     than a label can. No action: arrival is a state, and the offer is the
+     next beat. -->
+<section class="frame a6 s-a6-hu" id="a6-hu" lang="hu">
+  <div class="ground"></div>
+  <h2 class="monument"><span>Üdv a</span><span>sztratoszférában.<i></i></span></h2>
+  <img class="instrument" src="assets/lux-arrival.png" alt="">
+</section>
+
+<section class="frame a6 s-a6-en" id="a6-en" lang="en">
+  <div class="ground"></div>
+  <h2 class="monument"><span>Welcome to the</span><span>stratosphere.<i></i></span></h2>
+  <img class="instrument" src="assets/lux-arrival.png" alt="">
+</section>
+
+<section class="frame a6 s-a6-de" id="a6-de" lang="de">
+  <div class="ground"></div>
+  <h2 class="monument"><span>Willkommen in der</span><span>Stratosphäre.<i></i></span></h2>
+  <img class="instrument" src="assets/lux-arrival.png" alt="">
+</section>
+
+
+<!-- ############################################# ACT VI · SECOND BEAT · 30 000 m -->
+<!-- Not one of the six master frames. §31 forbids fusing arrival and
+     conversion into one block, so the offer is a separate beat: one direct
+     question and one action, on the band Act I used for the same invitation. -->
+<section class="frame a6b s-a6b-hu" id="a6b-hu" lang="hu">
+  <div class="ground"></div>
+  <h2 class="monument"><span>Készen állsz</span><span>felemelkedni?<i></i></span></h2>
+  <a class="act" href="#">Kezdjük az emelkedést</a>
+</section>
+
+<section class="frame a6b s-a6b-en" id="a6b-en" lang="en">
+  <div class="ground"></div>
+  <h2 class="monument"><span>Are you ready to</span><span>ascend?<i></i></span></h2>
+  <a class="act" href="#">Start the ascent</a>
+</section>
+
+<section class="frame a6b s-a6b-de" id="a6b-de" lang="de">
+  <div class="ground"></div>
+  <h2 class="monument"><span>Sind Sie bereit</span><span>aufzusteigen?<i></i></span></h2>
+  <a class="act" href="#">Den Aufstieg beginnen</a>
+</section>
+
+</body>
+</html>

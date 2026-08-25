@@ -1,0 +1,887 @@
+{
+  "rules": {
+    "FIELD": 1200,
+    "MAXLINE": 0.98,
+    "SIZE_CAP": 210,
+    "CLEARANCE": 0.12
+  },
+  "acts": {
+    "a1": {
+      "fill": 0.64,
+      "foot": 548,
+      "wdth": 100,
+      "note": "ground — the smallest fill in the study"
+    },
+    "a2": {
+      "fill": 0.44,
+      "foot": 600,
+      "wdth": 100,
+      "note": "noise — three lines, right-aligned, hung from the top"
+    },
+    "a3": {
+      "fill": 0.74,
+      "foot": 662,
+      "wdth": 100,
+      "note": "system"
+    },
+    "a4": {
+      "fill": 0.52,
+      "foot": 440,
+      "wdth": 100,
+      "note": "proof — the monument is a figure, not a sentence"
+    },
+    "a5": {
+      "fill": 0.88,
+      "foot": 748,
+      "wdth": 100,
+      "note": "high altitude — the benchmark, unchanged from D3"
+    },
+    "a6": {
+      "fill": 0.86,
+      "foot": 386,
+      "wdth": 100,
+      "note": "arrival — centred"
+    },
+    "a6b": {
+      "fill": 0.66,
+      "foot": 548,
+      "wdth": 100,
+      "note": "the action beat — not one of the six"
+    }
+  },
+  "solved": {
+    "a1": {
+      "fill": 0.64,
+      "foot": 548,
+      "wdth": 100,
+      "note": "ground — the smallest fill in the study",
+      "huSize": 148,
+      "K": 186798,
+      "locales": {
+        "hu": {
+          "lines": [
+            "Magasságot",
+            "építünk."
+          ],
+          "idealSize": 148,
+          "size": 148,
+          "clampedBy": "none",
+          "leading": 1.03,
+          "gapConstantEm": -0.905,
+          "clearanceEm": 0.125,
+          "lineWidthsPx": [
+            769,
+            493
+          ],
+          "longestLinePx": 769,
+          "fillOfField": 64.1,
+          "areaIndex": 186798,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 305,
+          "top": 271
+        },
+        "en": {
+          "lines": [
+            "Altitude is",
+            "what we build."
+          ],
+          "idealSize": 137.5,
+          "size": 137,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.735,
+          "clearanceEm": 0.205,
+          "lineWidthsPx": [
+            553,
+            801
+          ],
+          "longestLinePx": 801,
+          "fillOfField": 66.7,
+          "areaIndex": 185499,
+          "areaVsHungarian": 99.3,
+          "blockHeightPx": 258,
+          "top": 310
+        },
+        "de": {
+          "lines": [
+            "Höhe",
+            "bauen wir."
+          ],
+          "idealSize": 169.9,
+          "size": 170,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.725,
+          "clearanceEm": 0.215,
+          "lineWidthsPx": [
+            392,
+            708
+          ],
+          "longestLinePx": 708,
+          "fillOfField": 59,
+          "areaIndex": 186949,
+          "areaVsHungarian": 100.1,
+          "blockHeightPx": 320,
+          "top": 252
+        }
+      }
+    },
+    "a2": {
+      "fill": 0.44,
+      "foot": 600,
+      "wdth": 100,
+      "note": "noise — three lines, right-aligned, hung from the top",
+      "huSize": 167,
+      "K": 234523,
+      "locales": {
+        "hu": {
+          "lines": [
+            "Idelent",
+            "minden",
+            "zajos."
+          ],
+          "idealSize": 167,
+          "size": 167,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.73,
+          "clearanceEm": 0.21,
+          "lineWidthsPx": [
+            471,
+            527,
+            406
+          ],
+          "longestLinePx": 527,
+          "fillOfField": 43.9,
+          "areaIndex": 234523,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 471,
+          "top": 152
+        },
+        "en": {
+          "lines": [
+            "Down here",
+            "everything",
+            "is noisy."
+          ],
+          "idealSize": 139.2,
+          "size": 139,
+          "clampedBy": "none",
+          "leading": 1.01,
+          "gapConstantEm": -0.89,
+          "clearanceEm": 0.12,
+          "lineWidthsPx": [
+            629,
+            605,
+            448
+          ],
+          "longestLinePx": 629,
+          "fillOfField": 52.4,
+          "areaIndex": 233746,
+          "areaVsHungarian": 99.7,
+          "blockHeightPx": 421,
+          "top": 203
+        },
+        "de": {
+          "lines": [
+            "Hier unten",
+            "ist alles",
+            "laut."
+          ],
+          "idealSize": 160.6,
+          "size": 161,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.725,
+          "clearanceEm": 0.215,
+          "lineWidthsPx": [
+            689,
+            490,
+            284
+          ],
+          "longestLinePx": 689,
+          "fillOfField": 57.5,
+          "areaIndex": 235638,
+          "areaVsHungarian": 100.5,
+          "blockHeightPx": 454,
+          "top": 168
+        }
+      }
+    },
+    "a3": {
+      "fill": 0.74,
+      "foot": 662,
+      "wdth": 100,
+      "note": "system",
+      "huSize": 162,
+      "K": 263137,
+      "locales": {
+        "hu": {
+          "lines": [
+            "Hat terület,",
+            "egy rendszer."
+          ],
+          "idealSize": 162,
+          "size": 162,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.675,
+          "clearanceEm": 0.265,
+          "lineWidthsPx": [
+            735,
+            889
+          ],
+          "longestLinePx": 889,
+          "fillOfField": 74.1,
+          "areaIndex": 263137,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 305,
+          "top": 380
+        },
+        "en": {
+          "lines": [
+            "Six areas,",
+            "one system."
+          ],
+          "idealSize": 169.4,
+          "size": 169,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.685,
+          "clearanceEm": 0.255,
+          "lineWidthsPx": [
+            690,
+            860
+          ],
+          "longestLinePx": 860,
+          "fillOfField": 71.6,
+          "areaIndex": 261960,
+          "areaVsHungarian": 99.6,
+          "blockHeightPx": 318,
+          "top": 368
+        },
+        "de": {
+          "lines": [
+            "Sechs Bereiche,",
+            "ein System."
+          ],
+          "idealSize": 149.6,
+          "size": 150,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.7,
+          "clearanceEm": 0.24,
+          "lineWidthsPx": [
+            1027,
+            736
+          ],
+          "longestLinePx": 1027,
+          "fillOfField": 85.6,
+          "areaIndex": 264424,
+          "areaVsHungarian": 100.5,
+          "blockHeightPx": 282,
+          "top": 401
+        }
+      }
+    },
+    "a4": {
+      "fill": 0.52,
+      "foot": 440,
+      "wdth": 100,
+      "note": "proof — the monument is a figure, not a sentence",
+      "huSize": 179,
+      "K": 111735,
+      "locales": {
+        "hu": {
+          "lines": [
+            "~15M Ft"
+          ],
+          "idealSize": 179,
+          "size": 179,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": null,
+          "clearanceEm": null,
+          "lineWidthsPx": [
+            624
+          ],
+          "longestLinePx": 624,
+          "fillOfField": 52,
+          "areaIndex": 111735,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 168,
+          "top": 297
+        },
+        "en": {
+          "lines": [
+            "~15M Ft"
+          ],
+          "idealSize": 179,
+          "size": 179,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": null,
+          "clearanceEm": null,
+          "lineWidthsPx": [
+            624
+          ],
+          "longestLinePx": 624,
+          "fillOfField": 52,
+          "areaIndex": 111735,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 168,
+          "top": 297
+        },
+        "de": {
+          "lines": [
+            "~15M Ft"
+          ],
+          "idealSize": 179,
+          "size": 179,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": null,
+          "clearanceEm": null,
+          "lineWidthsPx": [
+            624
+          ],
+          "longestLinePx": 624,
+          "fillOfField": 52,
+          "areaIndex": 111735,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 168,
+          "top": 297
+        }
+      }
+    },
+    "a5": {
+      "fill": 0.88,
+      "foot": 748,
+      "wdth": 100,
+      "note": "high altitude — the benchmark, unchanged from D3",
+      "huSize": 174,
+      "K": 340324,
+      "locales": {
+        "hu": {
+          "lines": [
+            "Innen már látni",
+            "a görbületet."
+          ],
+          "idealSize": 174,
+          "size": 174,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.735,
+          "clearanceEm": 0.205,
+          "lineWidthsPx": [
+            1057,
+            899
+          ],
+          "longestLinePx": 1057,
+          "fillOfField": 88.1,
+          "areaIndex": 340324,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 327,
+          "top": 446
+        },
+        "en": {
+          "lines": [
+            "From here",
+            "you can see",
+            "the curvature."
+          ],
+          "idealSize": 150.9,
+          "size": 151,
+          "clampedBy": "none",
+          "leading": 0.98,
+          "gapConstantEm": -0.86,
+          "clearanceEm": 0.12,
+          "lineWidthsPx": [
+            649,
+            751,
+            858
+          ],
+          "longestLinePx": 858,
+          "fillOfField": 71.5,
+          "areaIndex": 340993,
+          "areaVsHungarian": 100.2,
+          "blockHeightPx": 444,
+          "top": 328
+        },
+        "de": {
+          "lines": [
+            "Von hier aus ist",
+            "die Krümmung",
+            "zu sehen."
+          ],
+          "idealSize": 144,
+          "size": 144,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.73,
+          "clearanceEm": 0.21,
+          "lineWidthsPx": [
+            894,
+            888,
+            580
+          ],
+          "longestLinePx": 894,
+          "fillOfField": 74.5,
+          "areaIndex": 340171,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 406,
+          "top": 362
+        }
+      }
+    },
+    "a6": {
+      "fill": 0.86,
+      "foot": 386,
+      "wdth": 100,
+      "note": "arrival — centred",
+      "huSize": 143,
+      "K": 196815,
+      "locales": {
+        "hu": {
+          "lines": [
+            "Üdv a",
+            "sztratoszférában."
+          ],
+          "idealSize": 143,
+          "size": 143,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.685,
+          "clearanceEm": 0.255,
+          "lineWidthsPx": [
+            345,
+            1031
+          ],
+          "longestLinePx": 1031,
+          "fillOfField": 85.9,
+          "areaIndex": 196815,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 269,
+          "top": 137
+        },
+        "en": {
+          "lines": [
+            "Welcome to the",
+            "stratosphere."
+          ],
+          "idealSize": 128.3,
+          "size": 128,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.69,
+          "clearanceEm": 0.25,
+          "lineWidthsPx": [
+            825,
+            705
+          ],
+          "longestLinePx": 825,
+          "fillOfField": 68.8,
+          "areaIndex": 195887,
+          "areaVsHungarian": 99.5,
+          "blockHeightPx": 241,
+          "top": 164
+        },
+        "de": {
+          "lines": [
+            "Willkommen in der",
+            "Stratosphäre."
+          ],
+          "idealSize": 121.5,
+          "size": 122,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.735,
+          "clearanceEm": 0.205,
+          "lineWidthsPx": [
+            934,
+            692
+          ],
+          "longestLinePx": 934,
+          "fillOfField": 77.8,
+          "areaIndex": 198339,
+          "areaVsHungarian": 100.8,
+          "blockHeightPx": 229,
+          "top": 174
+        }
+      }
+    },
+    "a6b": {
+      "fill": 0.66,
+      "foot": 548,
+      "wdth": 100,
+      "note": "the action beat — not one of the six",
+      "huSize": 136,
+      "K": 203239,
+      "locales": {
+        "hu": {
+          "lines": [
+            "Készen állsz",
+            "felemelkedni?"
+          ],
+          "idealSize": 136,
+          "size": 136,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.74,
+          "clearanceEm": 0.2,
+          "lineWidthsPx": [
+            702,
+            792
+          ],
+          "longestLinePx": 792,
+          "fillOfField": 66,
+          "areaIndex": 203239,
+          "areaVsHungarian": 100,
+          "blockHeightPx": 256,
+          "top": 312
+        },
+        "en": {
+          "lines": [
+            "Are you ready to",
+            "ascend?"
+          ],
+          "idealSize": 140.2,
+          "size": 140,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.73,
+          "clearanceEm": 0.21,
+          "lineWidthsPx": [
+            940,
+            509
+          ],
+          "longestLinePx": 940,
+          "fillOfField": 78.3,
+          "areaIndex": 202777,
+          "areaVsHungarian": 99.8,
+          "blockHeightPx": 263,
+          "top": 304
+        },
+        "de": {
+          "lines": [
+            "Sind Sie bereit",
+            "aufzusteigen?"
+          ],
+          "idealSize": 130.8,
+          "size": 131,
+          "clampedBy": "none",
+          "leading": 0.94,
+          "gapConstantEm": -0.73,
+          "clearanceEm": 0.21,
+          "lineWidthsPx": [
+            783,
+            774
+          ],
+          "longestLinePx": 783,
+          "fillOfField": 65.3,
+          "areaIndex": 203961,
+          "areaVsHungarian": 100.4,
+          "blockHeightPx": 246,
+          "top": 320
+        }
+      }
+    }
+  },
+  "alts": {
+    "y1": {
+      "id": "y1",
+      "act": "a2",
+      "loc": "hu",
+      "alt": "two lines",
+      "foot": 600,
+      "wdth": 100,
+      "lines": [
+        "Idelent",
+        "minden zajos."
+      ],
+      "idealSize": 165.2,
+      "size": 165,
+      "clampedBy": "none",
+      "leading": 0.94,
+      "gapConstantEm": -0.73,
+      "clearanceEm": 0.21,
+      "lineWidthsPx": [
+        465,
+        952
+      ],
+      "longestLinePx": 952,
+      "fillOfField": 79.4,
+      "areaIndex": 233869,
+      "areaVsChosen": 99.7,
+      "blockHeightPx": 310,
+      "top": 313
+    },
+    "y2": {
+      "id": "y2",
+      "act": "a2",
+      "loc": "de",
+      "alt": "two lines",
+      "foot": 600,
+      "wdth": 100,
+      "lines": [
+        "Hier unten",
+        "ist alles laut."
+      ],
+      "idealSize": 159,
+      "size": 159,
+      "clampedBy": "none",
+      "leading": 0.94,
+      "gapConstantEm": -0.725,
+      "clearanceEm": 0.215,
+      "lineWidthsPx": [
+        681,
+        793
+      ],
+      "longestLinePx": 793,
+      "fillOfField": 66.1,
+      "areaIndex": 234400,
+      "areaVsChosen": 99.5,
+      "blockHeightPx": 299,
+      "top": 323
+    },
+    "y3": {
+      "id": "y3",
+      "act": "a6",
+      "loc": "hu",
+      "alt": "one line",
+      "foot": 386,
+      "wdth": 100,
+      "lines": [
+        "Üdv a sztratoszférában."
+      ],
+      "idealSize": 141.7,
+      "size": 120,
+      "clampedBy": "column",
+      "leading": 0.94,
+      "gapConstantEm": null,
+      "clearanceEm": null,
+      "lineWidthsPx": [
+        1177
+      ],
+      "longestLinePx": 1177,
+      "fillOfField": 98.1,
+      "areaIndex": 141204,
+      "areaVsChosen": 71.7,
+      "blockHeightPx": 113,
+      "top": 290
+    }
+  },
+  "widths": {
+    "a1": {
+      "fill": 0.64,
+      "foot": 548,
+      "ships": 100,
+      "states": {
+        "96": {
+          "lines": [
+            "Magasságot",
+            "építünk."
+          ],
+          "size": 153,
+          "leading": 1.03,
+          "longestLinePx": 767,
+          "fillOfField": 63.9,
+          "capHeightProxy": 153,
+          "areaIndex": 192603,
+          "atFixedSize": {
+            "size": 148,
+            "longestLinePx": 742
+          },
+          "areaVs100": 103.1,
+          "top": 261
+        },
+        "100": {
+          "lines": [
+            "Magasságot",
+            "építünk."
+          ],
+          "size": 148,
+          "leading": 1.03,
+          "longestLinePx": 769,
+          "fillOfField": 64.1,
+          "capHeightProxy": 148,
+          "areaIndex": 186798,
+          "atFixedSize": {
+            "size": 148,
+            "longestLinePx": 769
+          },
+          "areaVs100": 100,
+          "top": 271
+        },
+        "104": {
+          "lines": [
+            "Magasságot",
+            "építünk."
+          ],
+          "size": 141,
+          "leading": 1.03,
+          "longestLinePx": 767,
+          "fillOfField": 63.9,
+          "capHeightProxy": 141,
+          "areaIndex": 176935,
+          "atFixedSize": {
+            "size": 148,
+            "longestLinePx": 805
+          },
+          "areaVs100": 94.7,
+          "top": 284
+        }
+      }
+    },
+    "a3": {
+      "fill": 0.74,
+      "foot": 662,
+      "ships": 100,
+      "states": {
+        "96": {
+          "lines": [
+            "Hat terület,",
+            "egy rendszer."
+          ],
+          "size": 168,
+          "leading": 0.94,
+          "longestLinePx": 889,
+          "fillOfField": 74.1,
+          "capHeightProxy": 168,
+          "areaIndex": 272822,
+          "atFixedSize": {
+            "size": 162,
+            "longestLinePx": 857
+          },
+          "areaVs100": 103.7,
+          "top": 369
+        },
+        "100": {
+          "lines": [
+            "Hat terület,",
+            "egy rendszer."
+          ],
+          "size": 162,
+          "leading": 0.94,
+          "longestLinePx": 889,
+          "fillOfField": 74.1,
+          "capHeightProxy": 162,
+          "areaIndex": 263137,
+          "atFixedSize": {
+            "size": 162,
+            "longestLinePx": 889
+          },
+          "areaVs100": 100,
+          "top": 380
+        },
+        "104": {
+          "lines": [
+            "Hat terület,",
+            "egy rendszer."
+          ],
+          "size": 155,
+          "leading": 0.94,
+          "longestLinePx": 888,
+          "fillOfField": 74,
+          "capHeightProxy": 155,
+          "areaIndex": 251945,
+          "atFixedSize": {
+            "size": 162,
+            "longestLinePx": 928
+          },
+          "areaVs100": 95.7,
+          "top": 392
+        }
+      }
+    },
+    "a5": {
+      "fill": 0.88,
+      "foot": 748,
+      "ships": 100,
+      "states": {
+        "96": {
+          "lines": [
+            "Innen már látni",
+            "a görbületet."
+          ],
+          "size": 180,
+          "leading": 0.94,
+          "longestLinePx": 1055,
+          "fillOfField": 87.9,
+          "capHeightProxy": 180,
+          "areaIndex": 351386,
+          "atFixedSize": {
+            "size": 174,
+            "longestLinePx": 1020
+          },
+          "areaVs100": 103.3,
+          "top": 435
+        },
+        "100": {
+          "lines": [
+            "Innen már látni",
+            "a görbületet."
+          ],
+          "size": 174,
+          "leading": 0.94,
+          "longestLinePx": 1057,
+          "fillOfField": 88.1,
+          "capHeightProxy": 174,
+          "areaIndex": 340324,
+          "atFixedSize": {
+            "size": 174,
+            "longestLinePx": 1057
+          },
+          "areaVs100": 100,
+          "top": 446
+        },
+        "104": {
+          "lines": [
+            "Innen már látni",
+            "a görbületet."
+          ],
+          "size": 166,
+          "leading": 0.94,
+          "longestLinePx": 1054,
+          "fillOfField": 87.9,
+          "capHeightProxy": 166,
+          "areaIndex": 323988,
+          "atFixedSize": {
+            "size": 174,
+            "longestLinePx": 1105
+          },
+          "areaVs100": 95.2,
+          "top": 459
+        }
+      }
+    }
+  },
+  "widthDrift": {
+    "a1": {
+      "semi-condensed": -0.905,
+      "normal": -0.905,
+      "semi-expanded": -0.91
+    },
+    "a3": {
+      "semi-condensed": -0.725,
+      "normal": -0.675,
+      "semi-expanded": -0.725
+    },
+    "a5": {
+      "semi-condensed": -0.735,
+      "normal": -0.735,
+      "semi-expanded": -0.73
+    }
+  },
+  "dial": {
+    "source": "2400×2400",
+    "inkFractionOfBox": {
+      "l": 0.225,
+      "t": 0.23,
+      "r": 0.77,
+      "b": 0.7716666666666666
+    },
+    "inkWidthFraction": 0.545,
+    "inkHeightFraction": 0.5416666666666666
+  }
+}

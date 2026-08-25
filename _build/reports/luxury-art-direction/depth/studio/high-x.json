@@ -1,0 +1,67 @@
+[
+  {
+    "id": "x1",
+    "x": 1700,
+    "y": 500,
+    "dial": 900,
+    "occl": "1",
+    "rx": 534.9,
+    "ry": 513.5,
+    "hits": {
+      "act__editorial": 0.025,
+      "act__monument": 0.005
+    }
+  },
+  {
+    "id": "x2",
+    "x": 1620,
+    "y": 500,
+    "dial": 900,
+    "occl": "1",
+    "rx": 534.9,
+    "ry": 513.5,
+    "hits": {
+      "act__editorial": 0.214,
+      "act__monument": 0.067
+    }
+  },
+  {
+    "id": "x3",
+    "x": 1660,
+    "y": 540,
+    "dial": 980,
+    "occl": "1",
+    "rx": 582.5,
+    "ry": 559.2,
+    "hits": {
+      "act__editorial": 0.175,
+      "act__monument": 0.083
+    }
+  },
+  {
+    "id": "x2b",
+    "x": 1620,
+    "y": 500,
+    "dial": 900,
+    "occl": "1",
+    "rx": 534.9,
+    "ry": 513.5,
+    "hits": {
+      "act__editorial": 0.214,
+      "act__monument": 0.067
+    }
+  },
+  {
+    "id": "x2c",
+    "x": 1620,
+    "y": 500,
+    "dial": 900,
+    "occl": "1",
+    "rx": 534.9,
+    "ry": 513.5,
+    "hits": {
+      "act__editorial": 0.214,
+      "act__monument": 0.067
+    }
+  }
+]

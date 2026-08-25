@@ -1,0 +1,489 @@
+{
+  "a1": {
+    "problems": [],
+    "clearance": {
+      "fontSizePx": 116,
+      "lineHeightEm": 1.02,
+      "stretch": "100%",
+      "tracking": "-3.712px",
+      "pairs": [
+        {
+          "above": "Magasságot",
+          "below": "építünk.",
+          "sharedColumns": 307,
+          "minGapPx": 12.3,
+          "minGapEm": 0.106,
+          "atX": 191
+        }
+      ]
+    },
+    "occupied": 13.9,
+    "objects": 6,
+    "items": [
+      {
+        "sel": "wordmark",
+        "l": 104,
+        "t": 62,
+        "r": 230,
+        "b": 82
+      },
+      {
+        "sel": "body premise",
+        "l": 104,
+        "t": 224,
+        "r": 306,
+        "b": 252
+      },
+      {
+        "sel": "monument",
+        "l": 104,
+        "t": 266,
+        "r": 702,
+        "b": 503
+      },
+      {
+        "sel": "body lead",
+        "l": 104,
+        "t": 562,
+        "r": 406,
+        "b": 645
+      },
+      {
+        "sel": "action",
+        "l": 104,
+        "t": 706,
+        "r": 259,
+        "b": 735
+      },
+      {
+        "sel": "micro stamp",
+        "l": 104,
+        "t": 829,
+        "r": 129,
+        "b": 842
+      }
+    ]
+  },
+  "a2": {
+    "problems": [],
+    "clearance": {
+      "fontSizePx": 108,
+      "lineHeightEm": 0.96,
+      "stretch": "100%",
+      "tracking": "-3.456px",
+      "pairs": [
+        {
+          "above": "Hat terület,",
+          "below": "egy rendszer.",
+          "sharedColumns": 375,
+          "minGapPx": 26.7,
+          "minGapEm": 0.247,
+          "atX": 370
+        }
+      ]
+    },
+    "occupied": 13.4,
+    "objects": 5,
+    "items": [
+      {
+        "sel": "micro stamp",
+        "l": 104,
+        "t": 62,
+        "r": 227,
+        "b": 75
+      },
+      {
+        "sel": "monument",
+        "l": 104,
+        "t": 152,
+        "r": 691,
+        "b": 359
+      },
+      {
+        "sel": "body lead",
+        "l": 104,
+        "t": 432,
+        "r": 454,
+        "b": 515
+      },
+      {
+        "sel": "areas-rule",
+        "l": 104,
+        "t": 660,
+        "r": 1336,
+        "b": 661
+      },
+      {
+        "sel": "areas",
+        "l": 104,
+        "t": 690,
+        "r": 1336,
+        "b": 706
+      }
+    ]
+  },
+  "a3": {
+    "problems": [],
+    "clearance": {
+      "fontSizePx": 124,
+      "lineHeightEm": 0.96,
+      "stretch": "100%",
+      "tracking": "-3.968px",
+      "pairs": [
+        {
+          "above": "Innen már látni",
+          "below": "a görbületet.",
+          "sharedColumns": 430,
+          "minGapPx": 28,
+          "minGapEm": 0.226,
+          "atX": 191
+        }
+      ]
+    },
+    "occupied": 15.1,
+    "objects": 3,
+    "items": [
+      {
+        "sel": "monument",
+        "l": 104,
+        "t": 242,
+        "r": 850,
+        "b": 480
+      },
+      {
+        "sel": "body lead",
+        "l": 104,
+        "t": 566,
+        "r": 425,
+        "b": 621
+      },
+      {
+        "sel": "micro stamp",
+        "l": 104,
+        "t": 829,
+        "r": 170,
+        "b": 842
+      }
+    ]
+  },
+  "b1": {
+    "problems": [],
+    "clearance": {
+      "fontSizePx": 128,
+      "lineHeightEm": 1.02,
+      "stretch": "100%",
+      "tracking": "-4.608px",
+      "pairs": [
+        {
+          "above": "Magasságot",
+          "below": "építünk.",
+          "sharedColumns": 338,
+          "minGapPx": 14.6,
+          "minGapEm": 0.114,
+          "atX": 208
+        }
+      ]
+    },
+    "occupied": 16.1,
+    "objects": 6,
+    "items": [
+      {
+        "sel": "wordmark",
+        "l": 104,
+        "t": 62,
+        "r": 230,
+        "b": 82
+      },
+      {
+        "sel": "editorial",
+        "l": 288,
+        "t": 236,
+        "r": 549,
+        "b": 269
+      },
+      {
+        "sel": "monument",
+        "l": 104,
+        "t": 372,
+        "r": 759,
+        "b": 633
+      },
+      {
+        "sel": "body lead",
+        "l": 104,
+        "t": 672,
+        "r": 379,
+        "b": 751
+      },
+      {
+        "sel": "action",
+        "l": 104,
+        "t": 772,
+        "r": 258,
+        "b": 801
+      },
+      {
+        "sel": "micro stamp",
+        "l": 1311,
+        "t": 829,
+        "r": 1336,
+        "b": 842
+      }
+    ]
+  },
+  "b2": {
+    "problems": [],
+    "clearance": {
+      "fontSizePx": 132,
+      "lineHeightEm": 0.94,
+      "stretch": "100%",
+      "tracking": "-4.752px",
+      "pairs": [
+        {
+          "above": "Hat terület,",
+          "below": "egy rendszer.",
+          "sharedColumns": 457,
+          "minGapPx": 35.1,
+          "minGapEm": 0.266,
+          "atX": 564
+        }
+      ]
+    },
+    "occupied": 18.6,
+    "objects": 5,
+    "items": [
+      {
+        "sel": "micro stamp",
+        "l": 104,
+        "t": 62,
+        "r": 227,
+        "b": 75
+      },
+      {
+        "sel": "editorial",
+        "l": 1008,
+        "t": 146,
+        "r": 1336,
+        "b": 276
+      },
+      {
+        "sel": "monument",
+        "l": 104,
+        "t": 300,
+        "r": 815,
+        "b": 548
+      },
+      {
+        "sel": "areas-rule",
+        "l": 104,
+        "t": 700,
+        "r": 1336,
+        "b": 701
+      },
+      {
+        "sel": "areas",
+        "l": 104,
+        "t": 730,
+        "r": 1336,
+        "b": 746
+      }
+    ]
+  },
+  "b3": {
+    "problems": [],
+    "clearance": {
+      "fontSizePx": 140,
+      "lineHeightEm": 0.94,
+      "stretch": "100%",
+      "tracking": "-5.04px",
+      "pairs": [
+        {
+          "above": "Innen már",
+          "below": "látni a görbületet.",
+          "sharedColumns": 420,
+          "minGapPx": 28.6,
+          "minGapEm": 0.204,
+          "atX": 217
+        }
+      ]
+    },
+    "occupied": 22,
+    "objects": 3,
+    "items": [
+      {
+        "sel": "monument",
+        "l": 104,
+        "t": 288,
+        "r": 1072,
+        "b": 551
+      },
+      {
+        "sel": "editorial",
+        "l": 1034,
+        "t": 670,
+        "r": 1336,
+        "b": 768
+      },
+      {
+        "sel": "micro stamp",
+        "l": 104,
+        "t": 829,
+        "r": 170,
+        "b": 842
+      }
+    ]
+  },
+  "c1": {
+    "problems": [],
+    "clearance": {
+      "fontSizePx": 148,
+      "lineHeightEm": 1.02,
+      "stretch": "88%",
+      "tracking": "-3.848px",
+      "pairs": [
+        {
+          "above": "Magasságot",
+          "below": "építünk.",
+          "sharedColumns": 385,
+          "minGapPx": 17,
+          "minGapEm": 0.115,
+          "atX": 248
+        }
+      ]
+    },
+    "occupied": 18.6,
+    "objects": 5,
+    "items": [
+      {
+        "sel": "wordmark",
+        "l": 104,
+        "t": 62,
+        "r": 230,
+        "b": 82
+      },
+      {
+        "sel": "whisper",
+        "l": 104,
+        "t": 186,
+        "r": 416,
+        "b": 266
+      },
+      {
+        "sel": "action",
+        "l": 1175,
+        "t": 186,
+        "r": 1336,
+        "b": 215
+      },
+      {
+        "sel": "monument",
+        "l": 104,
+        "t": 522,
+        "r": 795,
+        "b": 824
+      },
+      {
+        "sel": "stamp",
+        "l": 1310,
+        "t": 825,
+        "r": 1336,
+        "b": 842
+      }
+    ]
+  },
+  "c2": {
+    "problems": [],
+    "clearance": {
+      "fontSizePx": 152,
+      "lineHeightEm": 0.94,
+      "stretch": "88%",
+      "tracking": "-3.952px",
+      "pairs": [
+        {
+          "above": "Hat terület,",
+          "below": "egy rendszer.",
+          "sharedColumns": 518,
+          "minGapPx": 32.9,
+          "minGapEm": 0.216,
+          "atX": 528
+        }
+      ]
+    },
+    "occupied": 20,
+    "objects": 4,
+    "items": [
+      {
+        "sel": "whisper",
+        "l": 104,
+        "t": 186,
+        "r": 416,
+        "b": 266
+      },
+      {
+        "sel": "areas-col",
+        "l": 925,
+        "t": 186,
+        "r": 1026,
+        "b": 368
+      },
+      {
+        "sel": "monument",
+        "l": 104,
+        "t": 478,
+        "r": 851,
+        "b": 764
+      },
+      {
+        "sel": "stamp",
+        "l": 1224,
+        "t": 825,
+        "r": 1336,
+        "b": 842
+      }
+    ]
+  },
+  "c3": {
+    "problems": [],
+    "clearance": {
+      "fontSizePx": 168,
+      "lineHeightEm": 0.94,
+      "stretch": "88%",
+      "tracking": "-4.368px",
+      "pairs": [
+        {
+          "above": "Innen már látni",
+          "below": "a görbületet.",
+          "sharedColumns": 564,
+          "minGapPx": 34.9,
+          "minGapEm": 0.208,
+          "atX": 263
+        }
+      ]
+    },
+    "occupied": 23.7,
+    "objects": 3,
+    "items": [
+      {
+        "sel": "whisper",
+        "l": 104,
+        "t": 186,
+        "r": 416,
+        "b": 239
+      },
+      {
+        "sel": "monument",
+        "l": 104,
+        "t": 450,
+        "r": 1022,
+        "b": 766
+      },
+      {
+        "sel": "stamp",
+        "l": 1270,
+        "t": 825,
+        "r": 1336,
+        "b": 842
+      }
+    ]
+  }
+}

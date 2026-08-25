@@ -1,0 +1,69 @@
+# p51-after  1440x900  23.80 screens  (22318px track)
+
+## CHAPTER EXTENTS (owning frame)
+stage                     level      screens     from→to (screens)          altitude
+calibration               master        1.43             0.00→1.39            0→120m
+initial-ascent            master        2.18             1.43→3.57         120→2580m
+lower-atmosphere          master        2.74             3.61→6.31        2640→5640m
+cloud-entry               passage       2.34             6.35→8.65        5700→8160m
+cloud-breakthrough        passage       1.51            8.69→10.15       8220→10440m
+selected-work             master        2.54           10.19→12.69      10500→16260m
+system                    passage       2.34           12.73→15.03      16380→21360m
+process                   passage       2.30           15.07→17.33      21420→24960m
+stratosphere-transition   master        2.42           17.37→19.75      25020→27660m
+full-stratosphere         master        2.97           19.79→22.73      27720→29880m
+destination               master        1.07           22.77→23.80      29880→30000m
+
+## STATEMENT LIFECYCLE (screens of scroll)
+statement                           arrive    full  depart    gone    HOLD    life    px
+calibration:monument                  0.00    0.08    1.11    1.11    1.03    1.11   148
+initial-ascent:monument               1.23    1.59    2.30    2.58    0.71    1.35   167
+lower-atmosphere:monument             3.65    4.01    4.72    5.00    0.71    1.35   162
+cloud-entry:statement                 6.35    6.62    6.98    7.18    0.36    0.83    72
+cloud-breakthrough:statement          8.69    8.96    9.32    9.52    0.36    0.83    58
+selected-work:monument               10.23   10.59   11.30   11.58    0.71    1.35   179
+system:statement                     12.73   12.97   13.33   13.56    0.36    0.83    66
+process:statement                    15.07   15.31   15.67   15.90    0.36    0.83    58
+stratosphere-transition:monument     17.41   17.77   18.48   18.76    0.71    1.35   174
+full-stratosphere:monument           19.79   20.15   20.86   21.14    0.71    1.35   143
+destination:monument                 22.77   22.96   23.80   23.80    0.83    1.03   136
+
+## TWO DISPLAY OBJECTS LEGIBLE AT ONCE  (>=0.35 opacity, >=40px)
+  none
+
+## PERCEPTUAL STILLNESS (frame, type and instrument all static)
+    0.20 →   0.48    0.28 screens   ['calibration']
+    1.90 →   2.26    0.36 screens   ['initial-ascent']
+    4.12 →   4.68    0.56 screens   ['lower-atmosphere']
+    6.78 →   6.94    0.16 screens   ['cloud-entry']
+   10.67 →  11.26    0.60 screens   ['selected-work']
+   13.17 →  13.33    0.16 screens   ['system']
+   15.51 →  15.67    0.16 screens   ['process']
+   17.81 →  18.44    0.63 screens   ['stratosphere-transition']
+   20.51 →  20.82    0.32 screens   ['full-stratosphere']
+   23.00 →  23.80    0.79 screens   ['destination']
+
+## LOW-INK FRAMES (<0.4% of the viewport in legible type)
+    7.22 →   7.42    0.20 screens   ['cloud-entry']   metres 6660→6840
+    8.49 →   8.73    0.24 screens   ['cloud-breakthrough', 'cloud-entry']   metres 7980→8220
+    9.56 →  10.27    0.71 screens   ['cloud-breakthrough', 'selected-work']   metres 9420→10620
+   19.71 →  19.83    0.12 screens   ['full-stratosphere', 'stratosphere-transition']   metres 27600→27720
+   22.57 →  22.81    0.24 screens   ['destination', 'full-stratosphere']   metres 29760→29940
+
+## INSTRUMENT PRESENCE
+  present from 0.00 to 21.62 screens
+  on     0.00 →   1.82  ( 1.82 screens)  peak 1.00
+  off    1.86 →  19.71  (17.85 screens)  peak 0.02
+  on    19.75 →  21.62  ( 1.86 screens)  peak 1.00
+  off   21.66 →  23.80  ( 2.14 screens)  peak 0.01
+
+## JOURNEY SHARE
+  master     15.35 screens    64.5%
+  passage     8.49 screens    35.7%
+  process     2.30 screens     9.7%   (of which passages)
+
+## THE SAME NUMBERS IN SECONDS (§28)
+  A screen of scroll, at three realistic paces on this viewport:
+    unhurried    520 px/s →  1.73 s per screen → whole journey   41.2 s
+    typical      950 px/s →  0.95 s per screen → whole journey   22.5 s
+    impatient   1800 px/s →  0.50 s per screen → whole journey   11.9 s

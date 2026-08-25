@@ -1,0 +1,182 @@
+[
+  {
+    "id": "01",
+    "stage": "calibration",
+    "at": 0.35,
+    "level": "master",
+    "name": "I · Ground",
+    "metres": 26,
+    "overflow": 0
+  },
+  {
+    "id": "02",
+    "stage": "calibration",
+    "at": 1.45,
+    "level": "silence",
+    "name": "silence — the ground leaves",
+    "metres": 110,
+    "overflow": 0
+  },
+  {
+    "id": "03",
+    "stage": "initial-ascent",
+    "at": 0.35,
+    "level": "master",
+    "name": "II · Noise",
+    "metres": 561,
+    "overflow": 0
+  },
+  {
+    "id": "04",
+    "stage": "initial-ascent",
+    "at": 1.55,
+    "level": "structure",
+    "name": "II · body — the diagnosis",
+    "metres": 1969,
+    "overflow": 0
+  },
+  {
+    "id": "05",
+    "stage": "lower-atmosphere",
+    "at": 0.35,
+    "level": "master",
+    "name": "III · System",
+    "metres": 3390,
+    "overflow": 0
+  },
+  {
+    "id": "06",
+    "stage": "lower-atmosphere",
+    "at": 1.9,
+    "level": "structure",
+    "name": "III · body — the ladder",
+    "metres": 5118,
+    "overflow": 0
+  },
+  {
+    "id": "07",
+    "stage": "cloud-entry",
+    "at": 0.2,
+    "level": "passage",
+    "name": "passage — a website on its own",
+    "metres": 6224,
+    "overflow": 0
+  },
+  {
+    "id": "08",
+    "stage": "cloud-entry",
+    "at": 1.05,
+    "level": "structure",
+    "name": "passage body — the symptoms",
+    "metres": 7175,
+    "overflow": 0
+  },
+  {
+    "id": "09",
+    "stage": "cloud-breakthrough",
+    "at": 0.2,
+    "level": "passage",
+    "name": "passage — the same direction",
+    "metres": 8862,
+    "overflow": 0
+  },
+  {
+    "id": "10",
+    "stage": "cloud-breakthrough",
+    "at": 0.95,
+    "level": "silence",
+    "name": "silence — before the proof",
+    "metres": 10218,
+    "overflow": 0
+  },
+  {
+    "id": "11",
+    "stage": "selected-work",
+    "at": 0.35,
+    "level": "master",
+    "name": "IV · Proof",
+    "metres": 11846,
+    "overflow": 0
+  },
+  {
+    "id": "12",
+    "stage": "selected-work",
+    "at": 1.85,
+    "level": "structure",
+    "name": "IV · body — the case",
+    "metres": 15471,
+    "overflow": 0
+  },
+  {
+    "id": "13",
+    "stage": "system",
+    "at": 0.2,
+    "level": "passage",
+    "name": "passage — nine areas",
+    "metres": 17295,
+    "overflow": 0
+  },
+  {
+    "id": "14",
+    "stage": "system",
+    "at": 1.5,
+    "level": "structure",
+    "name": "passage body — a layer",
+    "metres": 19210,
+    "overflow": 0
+  },
+  {
+    "id": "15",
+    "stage": "process",
+    "at": 0.2,
+    "level": "passage",
+    "name": "passage — seven checkpoints",
+    "metres": 22123,
+    "overflow": 0
+  },
+  {
+    "id": "16",
+    "stage": "process",
+    "at": 1.9,
+    "level": "structure",
+    "name": "passage body — a checkpoint",
+    "metres": 23164,
+    "overflow": 0
+  },
+  {
+    "id": "17",
+    "stage": "process",
+    "at": 4.6,
+    "level": "structure",
+    "name": "passage body — the last checkpoint",
+    "metres": 24818,
+    "overflow": 0
+  },
+  {
+    "id": "18",
+    "stage": "stratosphere-transition",
+    "at": 0.35,
+    "level": "master",
+    "name": "V · High altitude",
+    "metres": 25865,
+    "overflow": 0
+  },
+  {
+    "id": "19",
+    "stage": "full-stratosphere",
+    "at": 0.35,
+    "level": "master",
+    "name": "VI · Arrival",
+    "metres": 28248,
+    "overflow": 0
+  },
+  {
+    "id": "20",
+    "stage": "destination",
+    "at": 0.35,
+    "level": "master",
+    "name": "action — ready to ascend?",
+    "metres": 30000,
+    "overflow": 0
+  }
+]

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
+     role="img" aria-labelledby="cd-mark-title" fill="currentColor">
+  <title id="cd-mark-title">Claude Design</title>
+  <!--
+    The Ember mark.
+    Eight tapered rays on a shared core — four long on the cardinals, four
+    short on the diagonals. The alternation is what keeps it legible when it
+    shrinks; a uniform burst turns into a dot below about 20px.
+    Drawn with fill="currentColor" so it takes the colour of its context.
+    Clear space on every side = the radius of the core (4px at this scale).
+  -->
+  <defs>
+    <path id="cd-ray-long"
+          d="M24 3.5c.86 0 1.28.56 1.38 1.52l1.24 11.88c.21 1.92-1.07 3.2-2.62 3.2s-2.83-1.28-2.62-3.2L22.62 5.02C22.72 4.06 23.14 3.5 24 3.5Z"/>
+    <path id="cd-ray-short"
+          d="M24 10.5c.7 0 1.05.44 1.13 1.2l.89 5.6c.18 1.6-.78 2.8-2.02 2.8s-2.2-1.2-2.02-2.8l.89-5.6c.08-.76.43-1.2 1.13-1.2Z"/>
+  </defs>
+
+  <g>
+    <use href="#cd-ray-long"/>
+    <use href="#cd-ray-long" transform="rotate(90 24 24)"/>
+    <use href="#cd-ray-long" transform="rotate(180 24 24)"/>
+    <use href="#cd-ray-long" transform="rotate(270 24 24)"/>
+
+    <use href="#cd-ray-short" transform="rotate(45 24 24)"/>
+    <use href="#cd-ray-short" transform="rotate(135 24 24)"/>
+    <use href="#cd-ray-short" transform="rotate(225 24 24)"/>
+    <use href="#cd-ray-short" transform="rotate(315 24 24)"/>
+  </g>
+</svg>

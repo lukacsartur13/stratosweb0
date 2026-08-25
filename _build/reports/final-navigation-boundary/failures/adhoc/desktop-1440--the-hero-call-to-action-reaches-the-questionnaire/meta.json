@@ -1,0 +1,61 @@
+{
+  "runId": "adhoc",
+  "navId": "adhoc.desktop-1440.w4.the-hero-call-to-action-reaches-the-questionnaire.0",
+  "test": {
+    "file": "public-site.spec.ts",
+    "line": 181,
+    "title": "the hero call to action reaches the questionnaire",
+    "project": "desktop-1440",
+    "workerIndex": 4,
+    "repeatEachIndex": 0,
+    "retry": 0
+  },
+  "preceding": {
+    "urlBefore": "about:blank",
+    "contextPages": 1,
+    "openRequests": 0,
+    "navigationsInThisTest": 0,
+    "workerTestsBefore": 0,
+    "workerNavigationsBefore": 0,
+    "precedingTest": null,
+    "precedingNavigation": null
+  },
+  "status": "failed",
+  "expectedStatus": "passed",
+  "durationMs": 11636,
+  "timeoutMs": 30000,
+  "lastConfirmedState": "DESTINATION_READY",
+  "statesReached": [
+    "GOTO_CALLED",
+    "REQUEST_STARTED",
+    "RESPONSE_EVENT",
+    "NAV_COMMITTED",
+    "DOMCONTENTLOADED",
+    "LOAD",
+    "DESTINATION_READY"
+  ],
+  "screenshot": true,
+  "error": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cta-primary-hero')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cta-primary-hero')\u001b[22m\n"
+  ],
+  "errorIsPartial": false,
+  "frozenSubject": {
+    "source": "_build/reports/hermetic-gate/manifests/frozen-reference.json",
+    "dist": null,
+    "test": null,
+    "config": null,
+    "combined": null,
+    "commit": null
+  },
+  "system": {
+    "loadavg": [
+      26.7021484375,
+      8.99267578125,
+      5.31689453125
+    ],
+    "freememMB": 983,
+    "cpus": 10,
+    "platform": "darwin 25.6.0",
+    "arch": "arm64"
+  }
+}

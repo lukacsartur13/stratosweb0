@@ -411,6 +411,26 @@ const PAGE_FN = ({ altitude, railTolerance }) => {
   if (zone) {
     const sel = '.panel h1, .panel h2, .panel__lead, a.btn, .hud__digits, .hud__stage, .panel p';
     for (const el of document.querySelectorAll(sel)) {
+      // THE INTENTIONAL-DEPTH EXEMPTION, AND ITS EXACT WIDTH. §45, §46.
+      //
+      // This check used to say: the instrument may not overlap type. Full stop.
+      // That was the correct contract for a composition in which the object
+      // stood BESIDE the words, and it is the wrong one for a composition in
+      // which it stands in FRONT of one of them — the depth proof's whole
+      // premise is that the Monument and the object share space (§24).
+      //
+      // What replaces it is narrower than "disable the check", which §45 rules
+      // out in as many words. Exactly one pair is exempt:
+      //
+      //     a `.act__monument`, in a panel that DECLARES `data-occlusion`
+      //
+      // The declaration comes from the placement table by way of `FullAscent`,
+      // so an act cannot acquire the exemption by drifting into an overlap —
+      // someone has to have written the intent down. Everything else on this
+      // list is unchanged and still forbidden at every altitude: the support
+      // line, the lead, the action, the routes, the index, the readout, and any
+      // monument in an act that did not declare one.
+      if (el.classList.contains('act__monument') && el.closest('[data-occlusion="monument"]')) continue;
       const r = paintedRect(el);
       if (r.width <= 0 || r.height <= 0) continue;
       // Off-screen or straddling the edge: being scrolled past, not read.
@@ -714,8 +734,17 @@ for (const locale of LOCALES) {
       if (ringClipped) problems.push('ring clipped');
       if (!r.railOk)
         problems.push(
-          `rail ${(r.centre.at * 100).toFixed(1)}% vs ${(r.rail.intended * 100).toFixed(1)}% ` +
-            `(dx ${(r.centre.dx * 100).toFixed(1)}%, dy ${(r.centre.dy * 100).toFixed(1)}%)`,
+          // `centre` is null when the instrument is not in the picture at all,
+          // and the rail check reports that as a failure because it cannot
+          // measure a deviation from an intended rail for an object that is not
+          // there. Reporting it is right; CRASHING on it is not — a harness that
+          // throws instead of printing turns a design question into a stack
+          // trace, and the appearance budget puts the object out of the picture
+          // at seven chapters of eleven by design.
+          r.centre
+            ? `rail ${(r.centre.at * 100).toFixed(1)}% vs ${(r.rail.intended * 100).toFixed(1)}% ` +
+              `(dx ${(r.centre.dx * 100).toFixed(1)}%, dy ${(r.centre.dy * 100).toFixed(1)}%)`
+            : 'rail: the instrument is not in the picture here',
         );
       if (!marginOk)
         problems.push(`margin ${r.minMargin.essential?.toFixed(0)}px < ${m.label}`);

@@ -1,0 +1,266 @@
+/* ==========================================================================
+   PHASE 1.6 — DIRECTION D · CONTROLLED SWISS EDITORIAL.
+   Three static frames, 1440 × 900, in three locales. Study only.
+
+   Nothing here is production code and nothing here is imported by the site.
+   experiments/src/full/styles.css, scene.ts, composition.ts, journey.ts, the
+   scroll mechanics, the Altimeter choreography and the mobile route are all
+   untouched by this pass.
+
+   WHAT THIS FILE HOLDS AND WHAT IT DOES NOT
+   This file holds everything about Direction D that does NOT depend on the
+   length of a sentence: the palette, the four type roles, the margin system,
+   and where each object sits horizontally. Every font-size and every vertical
+   position of a monument is SOLVED per locale and lives in the generated
+   direction-d-scale.css, because §18 forbids defining luxury as a fixed pixel
+   value and §19 requires the system to be locale-aware. `solve-d.mjs` writes
+   that file from real measurements of real glyphs.
+
+   THE FOUR RULES DIRECTION D IMPOSES ON ITSELF
+   1. MONOCHROME. Near-black, off-white, neutral grey, and one tonal step.
+      There is no --signal in this file. Grep it. (§24)
+   2. ONE WEIGHT. 400, everywhere, including the action and the metadata.
+      Direction A used two weights and Direction C used one; D tests §16's
+      harder question — whether even Medium is required — and answers no.
+   3. ONE WIDTH. wdth 100%. Direction C's 88% coordinate is deliberately NOT
+      inherited: §5 asks for timeless, and a narrowed grotesk reads as
+      contemporary-condensed. D buys its compactness from the locale-aware
+      scale solve instead, which is a property of the system rather than of
+      the letterform. (§D of the report)
+   4. NO CRUTCHES. No glow, no particles, no rails, no coordinates, no
+      borders, no arrows, no word-level emphasis. (§25)
+   ========================================================================== */
+
+:root{
+  --ink:   #0a0b0d;
+  --lift:  #101216;
+  --paper: #f2f2f0;
+
+  --t-100: #f2f2f0;
+  --t-46:  rgba(242,242,240,.46);
+  --t-40:  rgba(242,242,240,.40);
+  --t-34:  rgba(242,242,240,.34);
+  --t-26:  rgba(242,242,240,.26);
+  --hair:  rgba(242,242,240,.11);
+
+  --archivo:'Archivo', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+
+  /* ---------------------------------------------------------- THE FRAME
+     §27 asks for a disciplined outer frame rather than a centred web
+     container, and one invisible architectural grid shared by all three
+     compositions. It is this:
+
+       1440 wide. A 120px margin on ALL FOUR sides — not a left spine with a
+       loose right edge, which is what Direction A had. The type field is
+       therefore 1200 × 660, and it is a real rectangle with four sides that
+       the frames are measured against.
+
+       The 1200 is divided into TWELVE 100px columns. Two axes are used and
+       no others: the SPINE at column 1 (x = 120), which every monument
+       begins on, and the COUNTER-AXIS at column 9 (x = 920), which every
+       quiet block begins on. The right margin line at x = 1320 is where
+       right-aligned metadata ends.
+
+     Consistency comes from this grid, from the type roles and from the scale
+     relationships — NOT from putting the headline in the same place three
+     times. Each frame uses the grid differently on purpose. (§14) */
+  --m:       120px;      /* outer margin, all four sides                    */
+  --edge:    1320px;     /* the right margin line                           */
+  --counter: 920px;      /* column 9 — the axis every quiet block sits on   */
+  --col:     1200px;     /* the type field's width                          */
+  --measure: 400px;      /* four columns. Every editorial block, all three  */
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#000;}
+body{font-family:var(--archivo);-webkit-font-smoothing:antialiased;
+     text-rendering:geometricPrecision;font-variant-ligatures:common-ligatures;}
+
+.frame{position:relative;width:1440px;height:900px;overflow:hidden;
+       background:var(--ink);color:var(--paper);isolation:isolate;}
+
+/* ==========================================================================
+   THE TYPE SYSTEM — THREE ROLES. There is no fourth.
+
+   §15 permits a Display level "only if testing proves it genuinely
+   necessary". It was tried in all three frames and deleted from all three:
+   every place it wanted to go, the honest answer was that the sentence
+   belonged in EDITORIAL or did not belong in the frame. So Direction D ships
+   MONUMENT, EDITORIAL, MICRO, and the ratio between the first and the second
+   is between 7:1 and 9:1 depending on locale.
+   ========================================================================== */
+
+/* 01 · MONUMENT ------------------------------------------------------------
+   Weight 400. Width 100%. Sentence case, always (§17). Its size is not
+   written here — it is solved per locale in direction-d-scale.css, and so is
+   its vertical position, because monuments are anchored by their LAST
+   BASELINE rather than by their top edge. That is what lets a 157px Hungarian
+   statement and a 137px German one occupy the same architectural line. */
+.monument{position:absolute;left:var(--m);z-index:2;
+  font-weight:400;font-stretch:100%;letter-spacing:-.028em;color:var(--t-100);}
+
+/* Authored breaks only. `nowrap` makes browser re-breaking impossible rather
+   than merely unlikely: without it an over-long line wraps silently, stays
+   inside the margins, and passes every automated check while the browser
+   quietly rewrites the art direction. With it, the line runs out of the frame
+   where both the eye and shoot-d.mjs can see it. (§22) */
+.monument span{display:block;white-space:nowrap;}
+/* A zero-size inline-block sits ON the text baseline — its bottom margin edge
+   IS the baseline. solve-d.mjs reads this to place the monument by baseline
+   rather than by box, which is the only way the foot line holds across three
+   locales at three different sizes. Invisible, and it changes no metric. */
+.monument i{display:inline-block;width:0;height:0;overflow:hidden;}
+
+/* 02 · EDITORIAL -----------------------------------------------------------
+   The quiet supporting voice. One block per frame, never two. Four columns
+   wide in all three frames and all three locales — a constant measure is one
+   of the things holding the system together while the compositions differ. */
+.editorial{position:absolute;z-index:2;width:var(--measure);
+  font-weight:400;font-size:17px;line-height:1.62;letter-spacing:-.002em;
+  color:var(--t-46);}
+
+/* 03 · MICRO ---------------------------------------------------------------
+   Rare metadata only, and in Direction D that means exactly one thing: an
+   altitude, which is an instrument reading. Mono and uppercase survive here
+   and NOWHERE else, and that is the point of keeping them — §17's distinction
+   between an editorial brand voice and technical instrumentation only means
+   something if the technical register appears once and is never borrowed for
+   anything that speaks. The hero has no micro at all: with the altimeter in
+   the frame reading zero, "0 m" answered §29's question with a no.
+
+   IT IS NOT UPPERCASED, and that is a correction rather than a preference.
+   The previous study set this role in caps, and since the only thing it ever
+   contains is an altitude, the only letter caps could reach was the unit:
+   every metadata line in the study reads `27 000 M`. `M` is not the symbol
+   for a metre. The technical register was making a technical error, which is
+   the worst possible place for one — so the mono, the tracking and the size
+   carry the instrument reading, and the case does not. */
+.micro{position:absolute;z-index:2;font-family:var(--mono);font-weight:400;
+  font-size:10px;letter-spacing:.2em;color:var(--t-34);}
+
+/* THE ACTION. Not a role — a single element, set in the editorial size at
+   weight 400, with one hairline under it. In the monochrome study it must
+   earn its place by position and space alone; if it only works once it is
+   filled yellow, it does not work. (§10) */
+.act{position:absolute;z-index:2;display:inline-block;
+  font-size:17px;font-weight:400;letter-spacing:-.002em;color:var(--t-46);
+  text-decoration:none;padding-bottom:12px;border-bottom:1px solid var(--hair);}
+
+/* THE WORDMARK. Aboreto, per the standing brand rule — the mark is always
+   Aboreto and never the display face. It appears ONCE in the three frames,
+   in the hero, and is absent from the other two: a brand does not need to
+   announce itself on every screen a reader scrolls past, and every frame that
+   repeats it is a frame where branding chrome competes with the monument.
+   (§28) */
+.wordmark{position:absolute;left:var(--m);top:var(--m);z-index:3;
+  font-family:'Aboreto', var(--archivo), serif;font-weight:400;
+  font-size:16px;letter-spacing:.42em;color:var(--t-46);}
+
+/* ==========================================================================
+   D1 · HERO — the typography controls the frame.
+
+   §7: the previous hero comparison was invalidated because the altimeter had
+   the same visual dominance in all three directions and was controlling the
+   frame. So D1 puts one object in each corner of the field and the mass in
+   between: wordmark and monument on the spine, the supporting line under the
+   monument, the action across on the counter-axis sharing that line's first
+   baseline, and the instrument alone in the upper right with nothing near it
+   in any direction. The eye reads statement, then space, then instrument.
+
+   The action sits opposite the supporting line rather than beneath it
+   because §9 asks the hero to stop stacking: two quiet objects on one
+   architectural line read as one band, and a band the eye crosses in a
+   single movement is one object's worth of attention rather than two.
+   ========================================================================== */
+
+/* The altimeter, as a precision object in space. (§8)
+   It is the same render the previous study used, so the comparison against A
+   and C has one fewer variable. What changed is everything about how it is
+   treated: C1 projected it at 700px, cropped by the right edge, at .62
+   opacity — half the layout. Here the DIAL is 226px across, the whole object
+   sits INSIDE the right margin instead of bleeding out of it, and it is
+   lifted into the upper right so that the gap between the end of the monument
+   and the start of the instrument is the widest empty run in the frame —
+   172px in English, 209px in Hungarian, 269px in German, and the English
+   figure is the reason D1 does not use the English break messages.ts already
+   carries. The dial's right edge lands ON the right margin line, so the
+   instrument is inside the architecture rather than bleeding out of it.
+   The source render is 2 400 × 2 400 with the dial occupying the middle; the
+   box below is scaled and offset so the dial's own circle lands on the grid.
+   Isolation is the whole treatment: an object with that much room around it
+   reads as valuable, and one that fills a third of the frame reads as
+   furniture.
+
+   It is held at .94 rather than the previous study's .62. Fading an object is
+   how you make it recede when it is too big; it is not how you make it
+   precious. Reduced to a 221px dial with 210px of air around it, the
+   instrument no longer needs to be dimmed to stop competing — and at full
+   strength it reads as a machined object that has been lit, which is the
+   point of §8. */
+.instrument{position:absolute;pointer-events:none;z-index:1;
+  filter:grayscale(1) brightness(1.04) contrast(1.02);opacity:.94;}
+
+/* ==========================================================================
+   D2 · SYSTEM — one system first, then the details.
+
+   The six disciplines are real content and the frame is not allowed to
+   pretend they do not exist (§34). But §11 and §12 forbid turning them into a
+   dashboard, and a six-across row on an even grid — which is what Direction A
+   did — is a navigation bar wearing a different hat. So they are set as ONE
+   RUNNING LINE at the foot, in the editorial size, separated by middots: the
+   shape of a colophon, not of an interface. It reads as structure, it takes
+   one line, and it cannot compete with a 152px monument.
+   ========================================================================== */
+.index{position:absolute;z-index:2;font-weight:400;font-size:17px;
+  line-height:1;letter-spacing:-.002em;color:var(--t-40);white-space:nowrap;}
+.index i{font-style:normal;color:var(--t-26);padding:0 .62em;}
+
+/* ==========================================================================
+   D3 · HIGH ALTITUDE — the purity test.
+
+   Two bands and an enormous void. The quiet line is pinned to the very top
+   of the field and the monument's last baseline to the very bottom of it,
+   which is what makes the empty middle the largest single area in the whole
+   direction. It is also what gives German room for a third line without the
+   frame becoming crowded.
+
+   One tonal step, and it is the only gradient in Direction D. Grey, not blue.
+   It is inherited unchanged from the previous study so that D3 can be
+   compared with C3 on typography alone — if the ground moved too, the
+   comparison would prove nothing. §13's "subtle horizon context", and no
+   hairline: a rule that has to dodge the type is decoration pretending to be
+   structure.
+   ========================================================================== */
+.altitude-field::before{content:'';position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg, #07080a 0%, #0a0b0d 46%, var(--lift) 100%);}
+
+/* ==========================================================================
+   HORIZONTAL PLACEMENT — the grid, used three different ways.
+
+   Vertical placement of the monuments is NOT here; it is solved. Everything
+   below is a column decision and holds in every locale.
+   ========================================================================== */
+
+/* --- D1 ------------------------------------------------------------------
+   One column on the spine, one object on the right. Nothing else. */
+.d1 .editorial {left:var(--m);top:648px;}
+.d1 .act       {left:var(--counter);top:648px;}
+.d1 .instrument{width:420px;height:420px;left:1000px;top:86px;}
+
+/* --- D2 ------------------------------------------------------------------
+   The quiet block crosses to the counter-axis and the monument stays on the
+   spine, so the frame reads as a diagonal the eye descends rather than a
+   stack it reads down. The altitude holds the top-left corner the editorial
+   block has vacated. */
+.d2 .micro     {left:var(--m);top:129px;}
+.d2 .editorial {left:var(--counter);top:196px;}
+.d2 .index     {left:var(--m);top:766px;}
+
+/* --- D3 ------------------------------------------------------------------
+   The same counter-axis rule as D2 — body treatment is one of the things
+   §14 lets the system be consistent about — over a monument that is allowed
+   to be the largest thing in the direction. The altitude goes to the far
+   corner, as far from the statement as the frame allows. */
+.d3 .editorial{left:var(--counter);top:var(--m);}
+.d3 .micro    {left:var(--m);top:129px;}

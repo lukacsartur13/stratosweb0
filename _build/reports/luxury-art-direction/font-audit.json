@@ -1,0 +1,128 @@
+{
+  "loaded": [
+    "Archivo normal 100 900 62% 125% loaded",
+    "Archivo normal 100 900 62% 125% loaded",
+    "Archivo italic 100 900 62% 125% loaded",
+    "Archivo italic 100 900 62% 125% loaded",
+    "Aboreto normal 400 normal loaded",
+    "Aboreto normal 400 normal loaded",
+    "JetBrains Mono normal 100 800 normal loaded",
+    "JetBrains Mono normal 100 800 normal loaded"
+  ],
+  "archivo_wdth_axis": {
+    "62%": 372.98,
+    "75%": 432.83,
+    "87.5%": 490.38,
+    "100%": 547.91,
+    "112.5%": 623.59,
+    "125%": 699.3
+  },
+  "archivo_wght_axis": {
+    "100": 523.31,
+    "200": 529.45,
+    "300": 538.06,
+    "400": 547.91,
+    "500": 557.73,
+    "600": 568.81,
+    "700": 589.47,
+    "900": 663.81
+  },
+  "archivo_italic_is_real": {
+    "normal": 450.11,
+    "italic": 450.11
+  },
+  "glyph_coverage": {
+    "Archivo": {
+      "present": "ÁÉÍÓÖŐÚÜŰáéíóöőúüűAaßäÄ",
+      "missing": "—"
+    },
+    "Aboreto": {
+      "present": "ÁÉÍÓÖŐÚÜŰáéíóöőúüűAaßäÄ",
+      "missing": "—"
+    },
+    "JetBrains Mono": {
+      "present": "ÁÉÍÓÖŐÚÜŰáéíóöőúüűAaßäÄ",
+      "missing": "—"
+    }
+  },
+  "aboreto_case": {
+    "M": {
+      "w": 91.9,
+      "asc": 71.4,
+      "desc": 0
+    },
+    "m": {
+      "w": 91.9,
+      "asc": 71.4,
+      "desc": 0
+    },
+    "g": {
+      "w": 83.2,
+      "asc": 71.4,
+      "desc": 1.4
+    }
+  },
+  "archivo_case": {
+    "M": {
+      "w": 84.72,
+      "asc": 68.6,
+      "desc": 0
+    },
+    "m": {
+      "w": 85.96,
+      "asc": 53.8,
+      "desc": 0
+    },
+    "g": {
+      "w": 55.61,
+      "asc": 61.12,
+      "desc": 18.2
+    }
+  },
+  "metrics_100px": {
+    "Archivo 400 wdth100": {
+      "capHeight": 69.8,
+      "xHeight": 52.6,
+      "descender": 18.2,
+      "doubleAcuteTop": 86.8,
+      "acuteTop": 86.8,
+      "accentOverCap": 17,
+      "fontAscent": 88,
+      "fontDescent": 21,
+      "minLeadingEm": 1.05
+    },
+    "Aboreto 400": {
+      "capHeight": 71.4,
+      "xHeight": 70,
+      "descender": 1.4,
+      "doubleAcuteTop": 89.9,
+      "acuteTop": 89.7,
+      "accentOverCap": 18.5,
+      "fontAscent": 93,
+      "fontDescent": 23,
+      "minLeadingEm": 0.913
+    },
+    "JetBrains Mono 400": {
+      "capHeight": 74,
+      "xHeight": 55,
+      "descender": 18,
+      "doubleAcuteTop": 95,
+      "acuteTop": 95,
+      "accentOverCap": 21,
+      "fontAscent": 102,
+      "fontDescent": 30,
+      "minLeadingEm": 1.13
+    }
+  },
+  "locale_setwidth_100px": {
+    "hu_hero": 867.13,
+    "en_hero": 1001.25,
+    "de_hero": 662,
+    "hu_alt": 702.61,
+    "en_alt": 734.84,
+    "de_alt": 1033.16,
+    "hu_sys": 451.22,
+    "en_sys": 406.56,
+    "de_sys": 681.73
+  }
+}

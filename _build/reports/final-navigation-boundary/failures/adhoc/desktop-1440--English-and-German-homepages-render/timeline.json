@@ -1,0 +1,70 @@
+{
+  "navId": "adhoc.desktop-1440.w10.English-and-German-homepages-render.0",
+  "target": "http://127.0.0.1:4322/en/index.html",
+  "gotoResolved": true,
+  "gotoError": null,
+  "preceding": {
+    "urlBefore": "about:blank",
+    "contextPages": 1,
+    "openRequests": 0,
+    "navigationsInThisTest": 0,
+    "workerTestsBefore": 7,
+    "workerNavigationsBefore": 7,
+    "precedingTest": "/arajanlat.html responds and has a title and description",
+    "precedingNavigation": "http://127.0.0.1:4322/arajanlat.html"
+  },
+  "events": [
+    {
+      "t": 4,
+      "event": "GOTO_CALLED",
+      "state": "GOTO_CALLED",
+      "url": "/en/index.html",
+      "resolvedTarget": "http://127.0.0.1:4322/en/index.html",
+      "urlBefore": "about:blank",
+      "waitUntil": "load (default)",
+      "timeout": "inherited from test timeout"
+    },
+    {
+      "t": 10,
+      "event": "REQUEST_STARTED",
+      "state": "REQUEST_STARTED",
+      "url": "http://127.0.0.1:4322/en/index.html"
+    },
+    {
+      "t": 13,
+      "event": "RESPONSE_EVENT",
+      "state": "RESPONSE_EVENT",
+      "url": "http://127.0.0.1:4322/en/index.html",
+      "status": 404
+    },
+    {
+      "t": 19,
+      "event": "NAV_COMMITTED",
+      "state": "NAV_COMMITTED",
+      "url": "http://127.0.0.1:4322/en/index.html"
+    },
+    {
+      "t": 25,
+      "event": "requestfinished(main document)",
+      "url": "http://127.0.0.1:4322/en/index.html"
+    },
+    {
+      "t": 25,
+      "event": "DOMCONTENTLOADED",
+      "state": "DOMCONTENTLOADED",
+      "url": "http://127.0.0.1:4322/en/index.html"
+    },
+    {
+      "t": 26,
+      "event": "LOAD",
+      "state": "LOAD",
+      "url": "http://127.0.0.1:4322/en/index.html"
+    },
+    {
+      "t": 26,
+      "event": "DESTINATION_READY",
+      "state": "DESTINATION_READY",
+      "status": 404
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "before": "http://localhost:4401",
+  "after": "http://localhost:4400",
+  "worst": 0.0007137345679012345,
+  "report": [
+    {
+      "viewport": "1440x900",
+      "stop": 0,
+      "differingPixels": 0,
+      "pct": 0
+    },
+    {
+      "viewport": "1440x900",
+      "stop": 0.12,
+      "differingPixels": 68,
+      "pct": 0.005
+    },
+    {
+      "viewport": "1440x900",
+      "stop": 0.3,
+      "differingPixels": 0,
+      "pct": 0
+    },
+    {
+      "viewport": "1440x900",
+      "stop": 0.5,
+      "differingPixels": 318,
+      "pct": 0.025
+    },
+    {
+      "viewport": "1440x900",
+      "stop": 0.7,
+      "differingPixels": 685,
+      "pct": 0.053
+    },
+    {
+      "viewport": "1440x900",
+      "stop": 0.88,
+      "differingPixels": 925,
+      "pct": 0.071
+    },
+    {
+      "viewport": "1440x900",
+      "stop": 1,
+      "differingPixels": 0,
+      "pct": 0
+    },
+    {
+      "viewport": "1280x800",
+      "stop": 0,
+      "differingPixels": 0,
+      "pct": 0
+    },
+    {
+      "viewport": "1280x800",
+      "stop": 0.12,
+      "differingPixels": 70,
+      "pct": 0.007
+    },
+    {
+      "viewport": "1280x800",
+      "stop": 0.3,
+      "differingPixels": 0,
+      "pct": 0
+    },
+    {
+      "viewport": "1280x800",
+      "stop": 0.5,
+      "differingPixels": 14,
+      "pct": 0.001
+    },
+    {
+      "viewport": "1280x800",
+      "stop": 0.7,
+      "differingPixels": 404,
+      "pct": 0.039
+    },
+    {
+      "viewport": "1280x800",
+      "stop": 0.88,
+      "differingPixels": 336,
+      "pct": 0.033
+    },
+    {
+      "viewport": "1280x800",
+      "stop": 1,
+      "differingPixels": 0,
+      "pct": 0
+    }
+  ]
+}

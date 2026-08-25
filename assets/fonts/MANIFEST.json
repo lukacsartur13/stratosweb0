@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T01:29:54.175Z",
+  "generatedAt": "2026-08-24T21:24:25.951Z",
   "families": [
     {
       "family": "Archivo",
@@ -8,6 +8,7 @@
       "licence": "SIL Open Font License 1.1",
       "licenceFile": "archivo/OFL.txt",
       "source": "https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900",
+      "latinExtText": "őŐűŰ→",
       "axes": {
         "weight": [
           "100 900"
@@ -22,16 +23,6 @@
       },
       "files": [
         {
-          "file": "archivo/archivo-italic-latin-ext.woff2",
-          "subset": "latin-ext",
-          "style": "italic",
-          "weight": "100 900",
-          "stretch": "62% 125%",
-          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
-          "bytes": 93252,
-          "sha256": "11b6dd9960cbffe2"
-        },
-        {
           "file": "archivo/archivo-italic-latin.woff2",
           "subset": "latin",
           "style": "italic",
@@ -42,16 +33,6 @@
           "sha256": "d2a3a083e983d78b"
         },
         {
-          "file": "archivo/archivo-normal-latin-ext.woff2",
-          "subset": "latin-ext",
-          "style": "normal",
-          "weight": "100 900",
-          "stretch": "62% 125%",
-          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
-          "bytes": 85856,
-          "sha256": "a75c792f980dc1db"
-        },
-        {
           "file": "archivo/archivo-normal-latin.woff2",
           "subset": "latin",
           "style": "normal",
@@ -60,9 +41,29 @@
           "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
           "bytes": 90096,
           "sha256": "4c98b9d490d1698e"
+        },
+        {
+          "file": "archivo/archivo-italic-latin-ext.woff2",
+          "subset": "latin-ext",
+          "style": "italic",
+          "weight": "100 900",
+          "stretch": "62% 125%",
+          "unicodeRange": "U+0150-0151, U+0170-0171, U+2192",
+          "bytes": 6384,
+          "sha256": "652e50e3c0c3b735"
+        },
+        {
+          "file": "archivo/archivo-normal-latin-ext.woff2",
+          "subset": "latin-ext",
+          "style": "normal",
+          "weight": "100 900",
+          "stretch": "62% 125%",
+          "unicodeRange": "U+0150-0151, U+0170-0171, U+2192",
+          "bytes": 5352,
+          "sha256": "6132361eaf0792fb"
         }
       ],
-      "totalBytes": 371092
+      "totalBytes": 203720
     },
     {
       "family": "Aboreto",
@@ -71,6 +72,7 @@
       "licence": "SIL Open Font License 1.1",
       "licenceFile": "aboreto/OFL.txt",
       "source": "https://fonts.googleapis.com/css2?family=Aboreto",
+      "latinExtText": "őŐűŰ→",
       "axes": {
         "weight": [
           "400"
@@ -82,16 +84,6 @@
       },
       "files": [
         {
-          "file": "aboreto/aboreto-normal-latin-ext.woff2",
-          "subset": "latin-ext",
-          "style": "normal",
-          "weight": "400",
-          "stretch": null,
-          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
-          "bytes": 4768,
-          "sha256": "42b480ebcf28fec5"
-        },
-        {
           "file": "aboreto/aboreto-normal-latin.woff2",
           "subset": "latin",
           "style": "normal",
@@ -100,9 +92,19 @@
           "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
           "bytes": 10636,
           "sha256": "b9663ceea4e706a8"
+        },
+        {
+          "file": "aboreto/aboreto-normal-latin-ext.woff2",
+          "subset": "latin-ext",
+          "style": "normal",
+          "weight": "400",
+          "stretch": null,
+          "unicodeRange": "U+0150-0151, U+0170-0171, U+2192",
+          "bytes": 1076,
+          "sha256": "30b06983c941ee12"
         }
       ],
-      "totalBytes": 15404
+      "totalBytes": 11712
     },
     {
       "family": "JetBrains Mono",
@@ -111,6 +113,7 @@
       "licence": "SIL Open Font License 1.1",
       "licenceFile": "jetbrains-mono/OFL.txt",
       "source": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800",
+      "latinExtText": "őŐűŰ→",
       "axes": {
         "weight": [
           "100 800"
@@ -122,16 +125,6 @@
       },
       "files": [
         {
-          "file": "jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
-          "subset": "latin-ext",
-          "style": "normal",
-          "weight": "100 800",
-          "stretch": null,
-          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
-          "bytes": 15204,
-          "sha256": "7db7affbce1fdee6"
-        },
-        {
           "file": "jetbrains-mono/jetbrains-mono-normal-latin.woff2",
           "subset": "latin",
           "style": "normal",
@@ -140,9 +133,19 @@
           "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
           "bytes": 40480,
           "sha256": "1e06740a02a443fb"
+        },
+        {
+          "file": "jetbrains-mono/jetbrains-mono-normal-latin-ext.woff2",
+          "subset": "latin-ext",
+          "style": "normal",
+          "weight": "100 800",
+          "stretch": null,
+          "unicodeRange": "U+0150-0151, U+0170-0171, U+2192",
+          "bytes": 1932,
+          "sha256": "29b06e323be155b9"
         }
       ],
-      "totalBytes": 55684
+      "totalBytes": 42412
     }
   ]
 }

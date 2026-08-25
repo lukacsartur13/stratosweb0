@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>Stratos — the six-act journey, as rhythm</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="six-act.css">
+<link rel="stylesheet" href="six-act-color.css">
+<link rel="stylesheet" href="six-act-scale.css">
+<style>
+/* ==========================================================================
+   THE STORYBOARD — §43. Fifteen frames, at a fifth of full size.
+
+   NOT sixteen mockups. §43 asks this sheet to prove four things and only
+   those four: the rhythm, the density changes, where the Altimeter appears
+   and disappears, and how the background progresses. So the six acts and the
+   action beat are the REAL frames — the same markup and the same solved
+   typography as the master sheet, scaled — and the crossings between
+   them are sketches, drawn here and nowhere else.
+
+   THE CROSSINGS ARE NOT INVENTED EITHER. Each is the `horizon.*` fragment the
+   content layer already carries for the chapter it leads into: one authored
+   word per chapter, lifted from that chapter's own title, shown while its
+   statement is still being held back. In production their presence is exactly
+   `1 − the presence of the statement they precede`, so the two can never be
+   legible at once. Here they are stills, at the moment they are fullest.
+
+   The one thing on this sheet that is not solved is the crossing fragment's
+   size. It is a sketch at a nominal 84px, declared in this file and nowhere
+   else, and it is not part of the type system.
+
+   IN COLOUR, deliberately: the background progression is the thing this sheet
+   exists to show, and a monochrome storyboard would show five sixths of it.
+   ========================================================================== */
+body{background:#000;margin:0;padding:0;}
+.board{padding:52px 56px 60px;width:1312px;background:#000;color:#f2f2f0;
+       font:400 13px/1.5 'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+.board h1{font-size:26px;font-weight:400;letter-spacing:-.02em;}
+.board .sub{color:rgba(242,242,240,.42);margin-top:8px;max-width:104ch;font-size:13.5px;line-height:1.62;}
+.board .rule{height:1px;background:rgba(242,242,240,.14);margin:26px 0 30px;}
+.grid{display:grid;grid-template-columns:repeat(4,288px);gap:20px 16px;}
+.cell .mini{width:288px;height:180px;position:relative;overflow:hidden;background:#000;}
+.cell .mini .frame{position:absolute;left:0;top:0;transform:scale(.2);transform-origin:0 0;}
+.cell .lab{margin-top:9px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(242,242,240,.44);line-height:1.7;}
+.cell .lab b{color:#f2f2f0;font-weight:500;}
+.cell .lab s{text-decoration:none;color:rgba(242,242,240,.26);}
+.legend{margin-top:30px;color:rgba(242,242,240,.30);font-size:12px;line-height:1.7;max-width:118ch;}
+
+/* THE CROSSING SKETCH. One fragment, on the spine, low in the frame, at the
+   opacity a held statement leaves behind. */
+.cx .monument{font-size:84px;line-height:1;top:590px;color:rgba(242,242,240,.24);}
+/* The beat where the hero's statement has yielded and the instrument has not
+   left yet — the only frame in the journey where the object is alone. */
+.hold .instrument{opacity:.86;}
+</style>
+</head>
+<body>
+<section class="board" id="storyboard">
+  <h1>The journey, as rhythm — sixteen frames at a fifth of full size</h1>
+  <p class="sub">Six acts, seven crossings, two held beats and one action beat, in the order a visitor meets them. The seven full frames are the real compositions, scaled; the crossings are sketches of the moment between two statements, and the word in each is the <code>horizon.*</code> fragment the content layer already carries for the chapter it leads into. Read this sheet for four things and nothing else: whether the density rises and falls or merely rises, whether the Altimeter appears rarely enough to matter, whether the type progression is a system or a ramp, and whether the background moves without announcing itself.</p>
+  <div class="rule"></div>
+  <div class="grid">
+
+    <!-- 1 -->
+    <div class="cell"><div class="mini"><section class="frame a1 s-a1-hu" lang="hu"><div class="ground"></div><div class="wordmark">STRATOS</div><img class="instrument" src="assets/lux-hero.png" alt=""><h1 class="monument"><span>Magasságot</span><span>építünk.<i></i></span></h1><p class="editorial">Előbb megnézzük, hol tartasz — aztán megépítjük a rendszert, amivel feljebb kerülsz.</p><a class="act" href="#">Kezdjük az emelkedést</a></section></div>
+      <p class="lab"><b>I · Ground</b><br>5 objects · <s>altimeter, strong</s></p></div>
+
+    <!-- 2 -->
+    <div class="cell"><div class="mini"><section class="frame a1 hold" lang="hu"><div class="ground"></div><div class="wordmark">STRATOS</div><img class="instrument" src="assets/lux-hero.png" alt=""></section></div>
+      <p class="lab">I · the statement yields<br><s>the instrument, alone</s></p></div>
+
+    <!-- 3 -->
+    <div class="cell"><div class="mini"><section class="frame a1 cx" lang="hu"><div class="ground"></div><h2 class="monument"><span>Egy alkatrész.<i></i></span></h2></section></div>
+      <p class="lab">crossing<br><s>the field alone</s></p></div>
+
+    <!-- 4 -->
+    <div class="cell"><div class="mini"><section class="frame a2 cx" lang="hu"><div class="ground"></div><h2 class="monument"><span>Zaj.<i></i></span></h2></section></div>
+      <p class="lab">crossing<br><s>density gathering low</s></p></div>
+
+    <!-- 5 -->
+    <div class="cell"><div class="mini"><section class="frame a2 s-a2-hu" lang="hu"><div class="ground"></div><h2 class="monument"><span>Idelent</span><span>minden</span><span>zajos.<i></i></span></h2><p class="editorial">Ez a réteg mindenkinek ugyanolyan sűrű.</p></section></div>
+      <p class="lab"><b>II · Noise</b><br>2 objects · <s>no altimeter</s></p></div>
+
+    <!-- 6 -->
+    <div class="cell"><div class="mini"><section class="frame a3 cx" lang="hu"><div class="ground"></div><h2 class="monument"><span>Hat terület.<i></i></span></h2></section></div>
+      <p class="lab">crossing<br><s>the air clearing</s></p></div>
+
+    <!-- 7 -->
+    <div class="cell"><div class="mini"><section class="frame a3 s-a3-hu" lang="hu"><div class="ground"></div><p class="editorial">Egy sorrend, amiben egymásra épülnek.</p><h2 class="monument"><span>Hat terület,</span><span>egy rendszer.<i></i></span></h2><p class="index">Stratégia<i>·</i>Dizájn<i>·</i>Fejlesztés<i>·</i>Hirdetés<i>·</i>Konverzió<i>·</i>Automatizálás</p></section></div>
+      <p class="lab"><b>III · System</b><br>3 objects · <s>no altimeter</s></p></div>
+
+    <!-- 8 -->
+    <div class="cell"><div class="mini"><section class="frame a4 cx" lang="hu"><div class="ground"></div><h2 class="monument"><span>Bizonyíték.<i></i></span></h2></section></div>
+      <p class="lab">crossing<br><s>the deepest field</s></p></div>
+
+    <!-- 9 -->
+    <div class="cell"><div class="mini"><section class="frame a4" lang="hu"><div class="ground"></div><div class="marks"><img class="wide" src="../../../assets/img/logo-kontyos.webp" alt=""><img class="square" src="../../../assets/img/logo-grantool.png" alt=""><img class="tall" src="../../../assets/img/logo-synergy.png" alt=""><img class="wide" src="../../../assets/img/logo-duna-hajok.png" alt=""><img class="wide" src="../../../assets/img/logo-duna-enterior.png" alt=""><img class="square" src="../../../assets/img/client-barbershop.png" alt=""></div></section></div>
+      <p class="lab">IV · the proof plate<br><s>six marks, no heading</s></p></div>
+
+    <!-- 10 -->
+    <div class="cell"><div class="mini"><section class="frame a4 s-a4-hu" lang="hu"><div class="ground"></div><div class="marks"><img class="wide" src="../../../assets/img/logo-kontyos.webp" alt=""><img class="square" src="../../../assets/img/logo-grantool.png" alt=""><img class="tall" src="../../../assets/img/logo-synergy.png" alt=""><img class="wide" src="../../../assets/img/logo-duna-hajok.png" alt=""><img class="wide" src="../../../assets/img/logo-duna-enterior.png" alt=""><img class="square" src="../../../assets/img/client-barbershop.png" alt=""></div><h2 class="monument figure"><span>~15M Ft<i></i></span></h2><p class="editorial"><span>Rapidkert Kft.</span><span>Szerződött projektérték keresésből</span></p><div class="shot"><img src="../../../assets/img/work-rapidkert.jpg" alt=""></div></section></div>
+      <p class="lab"><b>IV · Proof</b><br>4 objects · <s>the one yellow event</s></p></div>
+
+    <!-- 11 -->
+    <div class="cell"><div class="mini"><section class="frame a5 cx" lang="hu"><div class="ground"></div><h2 class="monument"><span>A görbület.<i></i></span></h2></section></div>
+      <p class="lab">crossing<br><s>the limb appears</s></p></div>
+
+    <!-- 12 -->
+    <div class="cell"><div class="mini"><section class="frame a5 s-a5-hu" lang="hu"><div class="ground"></div><div class="micro">27 000 m</div><p class="editorial">Ebben a magasságban a levegő nyolcvan százaléka alattad van.</p><h2 class="monument"><span>Innen már látni</span><span>a görbületet.<i></i></span></h2></section></div>
+      <p class="lab"><b>V · High altitude</b><br>3 objects · <s>the one altitude</s></p></div>
+
+    <!-- 13 -->
+    <div class="cell"><div class="mini"><section class="frame a6 cx" lang="hu"><div class="ground"></div><h2 class="monument"><span>Sztratoszféra.<i></i></span></h2></section></div>
+      <p class="lab">crossing<br><s>the ceiling</s></p></div>
+
+    <!-- 14 -->
+    <div class="cell"><div class="mini"><section class="frame a6 s-a6-hu" lang="hu"><div class="ground"></div><h2 class="monument"><span>Üdv a</span><span>sztratoszférában.<i></i></span></h2><img class="instrument" src="assets/lux-arrival.png" alt=""></section></div>
+      <p class="lab"><b>VI · Arrival</b><br>2 objects · <s>altimeter returns</s></p></div>
+
+    <!-- 15 -->
+    <div class="cell"><div class="mini"><section class="frame a6b cx" lang="hu"><div class="ground"></div><h2 class="monument"><span>Célmagasság.<i></i></span></h2></section></div>
+      <p class="lab">crossing<br><s>the last silence</s></p></div>
+
+    <!-- 16 -->
+    <div class="cell"><div class="mini"><section class="frame a6b s-a6b-hu" lang="hu"><div class="ground"></div><h2 class="monument"><span>Készen állsz</span><span>felemelkedni?<i></i></span></h2><a class="act" href="#">Kezdjük az emelkedést</a></section></div>
+      <p class="lab"><b>VI · Action</b><br>2 objects · <s>the last yellow</s></p></div>
+
+  </div>
+  <p class="legend"><b>Object count across the sixteen:</b> 5 · 2 · 1 · 1 · 2 · 1 · 3 · 1 · 1 · 4 · 1 · 3 · 1 · 2 · 1 · 2. The densest frame in the study has four things in it and it is the one whose job is evidence. <b>Altimeter:</b> frames 1, 2 and 14 — one appearance and its exit at the start, one return at the end. <b>Yellow:</b> frames 10 and 16 — twice in sixteen, with five consecutive frames between them containing none and nine before the first. <b>Background:</b> flat near-black, gathering low, clearing, deepest blue, distance, ceiling — six states over sixteen frames, and not one of them is announced at a boundary.</p>
+</section>
+</body>
+</html>

@@ -1,0 +1,76 @@
+[
+  {
+    "stage": "(chrome)",
+    "level": "(chrome)",
+    "sel": "a.skip",
+    "props": [
+      "backgroundColor"
+    ],
+    "text": "Ugrás a tartalomra",
+    "area": 5445
+  },
+  {
+    "stage": "selected-work",
+    "level": "master",
+    "sel": "h2.mv-title.mv-title--figure",
+    "props": [
+      "color",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "outlineColor",
+      "textDecorationColor"
+    ],
+    "text": "~15M Ft",
+    "area": 18002
+  },
+  {
+    "stage": "selected-work",
+    "level": "master",
+    "sel": "span.mv-lines",
+    "props": [
+      "color",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "outlineColor",
+      "textDecorationColor"
+    ],
+    "text": "~15M Ft",
+    "area": 18002
+  },
+  {
+    "stage": "selected-work",
+    "level": "master",
+    "sel": "span.mv-lines__in",
+    "props": [
+      "color",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "outlineColor",
+      "textDecorationColor"
+    ],
+    "text": "~15M Ft",
+    "area": 15713
+  },
+  {
+    "stage": "destination",
+    "level": "master",
+    "sel": "a.mv-act.mv-act--signal",
+    "props": [
+      "color",
+      "borderTopColor",
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "outlineColor",
+      "textDecorationColor"
+    ],
+    "text": "Kezdjük az emelkedést",
+    "area": 8386
+  }
+]

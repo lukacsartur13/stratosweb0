@@ -1,0 +1,19 @@
+<!doctype html><html lang="hu"><head><meta charset="utf-8">
+<title>Six-act study — measuring surface</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="six-act.css">
+<style>
+/* Not a study frame. This page exists only so solve-six.mjs measures glyphs
+   under exactly the styles six-act.css sets — same family, same weight, same
+   tracking — rather than under a reconstruction of them that could drift from
+   the real thing without anyone noticing. The WIDTH AXIS is the one property
+   the solve overrides per measurement, because §9 makes it a variable. */
+body{background:#0a0b0d;}
+/* Off-screen, but LAID OUT: `font-display:block` faces are only fetched when
+   something actually uses them, and a probe page with an empty body measures a
+   fallback while reporting no error at all. §J3 of the previous study. */
+#warm{position:absolute;left:-9999px;top:0;font-size:40px;}
+#warm b{font-family:'Aboreto';font-weight:400;}
+#warm i{font-family:'JetBrains Mono';font-style:normal;}
+#probe{position:relative;width:6000px;height:900px;}
+</style></head><body><div id="warm">Magasságot építünk Idelent minden zajos Hat terület egy rendszer Innen már látni a görbületet Üdv a sztratoszférában Készen állsz felemelkedni ~15M Ft ÁÉÍÓÖŐÚÜŰ Krümmung Höhe Bereiche Stratosphäre aufzusteigen<b>STRATOS</b><i>27 000 m</i></div><div id="probe"></div></body></html>

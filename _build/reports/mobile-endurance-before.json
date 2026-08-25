@@ -1,0 +1,24 @@
+{
+  "label": "before",
+  "origin": "http://localhost:4323",
+  "seconds": 60,
+  "viewport": "390x844",
+  "heapKbStart": 9728,
+  "heapKbEnd": 9868,
+  "heapKbGrowth": 140,
+  "firstThird": {
+    "frames": 33,
+    "medianMs": 18.7,
+    "p95Ms": 516.8,
+    "worstMs": 666.6,
+    "over32ms": 16
+  },
+  "lastThird": {
+    "frames": 35,
+    "medianMs": 416,
+    "p95Ms": 1116.7,
+    "worstMs": 1149.6,
+    "over32ms": 35
+  },
+  "medianDriftMs": 397.3
+}

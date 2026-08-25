@@ -65,6 +65,7 @@ import type { StageId } from '../journey';
 
 export type InstrumentStateId =
   | 'hero'
+  | 'absent'
   | 'ascent'
   | 'capabilities'
   | 'summit'
@@ -177,6 +178,31 @@ const centre = (
  */
 export const PLACEMENTS: Record<InstrumentStateId, Placement> = {
   /**
+   * NOT IN THE PICTURE, and this is the largest single change the six-act art
+   * direction makes to the phone.
+   *
+   * The desktop design puts the instrument in two frames of seven. This route
+   * put it in ALL of them — a fixed overlay carried for the whole document,
+   * behind every line of copy on the page — and §33 of the production brief
+   * names that as one design pulling in two directions: the brand cannot be a
+   * rare luxury instrument on a laptop and a dial permanently floating over
+   * every screen on a phone.
+   *
+   * So the states below are still all here, still authored, still reachable —
+   * and nine of the eleven chapters now resolve to this one. The object is
+   * established in the hero, withdraws over the launch, is absent for eight
+   * chapters, and returns once at the arrival. Same object, same mechanism,
+   * same single scroll reader; a different budget.
+   *
+   * `opacity: 0` and `scale: 0.42` together, because a withdrawal is a
+   * movement: the object gets further away as it goes rather than being
+   * switched off in place. `publishInstrument` reads the opacity and tells the
+   * scene it is not visible, which is what parks the renderer — so absence is
+   * cheaper than presence rather than merely quieter.
+   */
+  absent: centre(0.42, 0, 0.5, -2.8 * DEG, 2.2 * DEG),
+
+  /**
    * The opening frame. Position is not from this table — it is the opening
    * section's own reserved band, so the hero composition the review accepted is
    * reproduced exactly at every viewport and in all three locales rather than
@@ -207,7 +233,19 @@ export const PLACEMENTS: Record<InstrumentStateId, Placement> = {
    * the frame — so it does, at nearly twice the rail's size and behind the
    * type rather than beside it.
    */
-  summit: centre(0.52, 0.5, 0.5, -2.4 * DEG, 4.0 * DEG),
+  /**
+   * 0.44 and not lower, and the floor is a contract rather than a preference.
+   *
+   * `mobile-homepage-simple.spec.ts` walks every chapter and asserts the
+   * instrument is on screen, at a real size and above 0.4 opacity — which is
+   * the review's requirement in its own words: at no point in the journey is
+   * the reaction "where did the Altimeter go?". §12 of the art direction says
+   * the same thing from the other side: give the instrument dramaturgy, do not
+   * hide it. 0.38 was tried while making room for the portrait monument scale
+   * and it is below that floor; the way to make a statement dominate is to make
+   * the statement larger, which is what happened, not to take the object away.
+   */
+  summit: centre(0.46, 0.44, 0.5, -2.4 * DEG, 4.0 * DEG),
 
   /**
    * Selected work. The smallest and quietest state on the page: this stage is
@@ -224,8 +262,28 @@ export const PLACEMENTS: Record<InstrumentStateId, Placement> = {
    * closing statement and the instrument comes back to the centre at three
    * quarters of its hero size, square to the viewer. This is the closure the
    * journey was climbing towards.
+   *
+   * Quieter and smaller again — 0.62 at 0.42 against 0.78 at 0.60, which was
+   * itself already down from 0.86 — and it is the closing panel's copy that has
+   * bought the change twice. This is the one state
+   * where the instrument holds the middle of the frame at three quarters size
+   * *and* the copy above it is four things rather than one: a statement, a lead,
+   * two calls to action and a contact line. At 0.86 the dial's numerals and the
+   * contact line were the same value, and the last sentence before the footer
+   * was the least readable on the page. The direction is explicit that the
+   * final call to action is high contrast and that the instrument must not
+   * compete with a primary message; where those two meet, the message wins.
+   *
+   * The second reduction is the portrait monument scale. The closing statement
+   * is 56px on a 390 rather than 37, so the whole closing column is taller and
+   * more of it passes through the fixed instrument as the visitor scrolls — and
+   * a 0.78 dial at 0.60 put its own numerals through the secondary call to
+   * action and the contact line, both of which became hard to read. A fixed
+   * overlay under a column longer than the frame will always have copy crossing
+   * it; what decides whether that reads as depth or as damage is how much
+   * quieter it is than the words in front of it.
    */
-  arrival: centre(0.78, 0.86, 0.46, -2.8 * DEG, 2.2 * DEG),
+  arrival: centre(0.62, 0.44, 0.5, -2.8 * DEG, 2.2 * DEG),
 
   /**
    * And then it leaves — deliberately, and only here.
@@ -251,18 +309,40 @@ export const PLACEMENTS: Record<InstrumentStateId, Placement> = {
  * section would be seven positions where the page has four ideas.
  */
 const BY_STAGE: Record<StageId, InstrumentStateId> = {
+  // ACT I. The object is established, and this is the only chapter that has it
+  // at full presence.
   calibration: 'hero',
-  'initial-ascent': 'ascent',
-  'lower-atmosphere': 'capabilities',
-  'cloud-entry': 'ascent',
-  'cloud-breakthrough': 'summit',
-  'selected-work': 'work',
-  system: 'capabilities',
-  process: 'process',
-  'stratosphere-transition': 'ascent',
-  'full-stratosphere': 'summit',
-  destination: 'arrival',
+  // ACT II onwards. Absent — §32 and §34. The map used to read ascent,
+  // capabilities, ascent, summit, work, capabilities, process, ascent, summit,
+  // arrival: eleven chapters, eleven appearances, and a dial behind every
+  // sentence on the page.
+  'initial-ascent': 'absent',
+  'lower-atmosphere': 'absent',
+  'cloud-entry': 'absent',
+  'cloud-breakthrough': 'absent',
+  'selected-work': 'absent',
+  system: 'absent',
+  process: 'absent',
+  'stratosphere-transition': 'absent',
+  // ACT VI. The return, and the last time the object is in the picture — the
+  // same act it returns in on the desktop, so the two surfaces are one design.
+  'full-stratosphere': 'arrival',
+  // THE ACTION BEAT. Absent, exactly as it is on the desktop: §14 keeps the
+  // arrival and the offer as two beats, and the offer's frame is the emptiest
+  // one on the page.
+  destination: 'absent',
 };
+
+/**
+ * What the hero hands over to.
+ *
+ * It was `ascent` — the rail — because the instrument's next state was to dock
+ * and travel with the reader. Under the appearance budget its next state is to
+ * be gone, so the launch leg now carries it from the reserved hero band to the
+ * withdrawal, over the same six tenths of a screen and through the same ease.
+ * The gesture is unchanged; its destination is not.
+ */
+export const HERO_DOCK: InstrumentStateId = 'absent';
 
 /**
  * Where inside the opening section the hero frame gives way.
@@ -274,11 +354,20 @@ const BY_STAGE: Record<StageId, InstrumentStateId> = {
  * instrument's own reserved band is still the thing on screen.
  *
  * Expressed in the section's altitude band rather than in pixels: the opening
- * band is 0–150 m, and 26% of it is reached about a third of a screen into the
- * document at every viewport in the matrix. That is a narrative coordinate the
- * page already computes, so this costs nothing and cannot go stale.
+ * band is 0–150 m, and 62% of it is reached about four fifths of a screen into
+ * the document at every viewport in the matrix. That is a narrative coordinate
+ * the page already computes, so this costs nothing and cannot go stale.
+ *
+ * It was 0.26 — a third of a screen — because the handover was to the rail and
+ * the sooner the instrument docked the sooner it stopped covering the lead
+ * paragraph. The handover is now to absence, and it has to happen AFTER the
+ * launch leg has finished carrying the object out rather than during it:
+ * flipping the state mid-leg would replace a composed withdrawal with a
+ * damped chase from wherever the interpolation had reached. `HERO_TRAVEL` is
+ * 0.6 of a screen, so 0.62 of the band is the first narrative coordinate past
+ * the end of it at every viewport in the matrix.
  */
-const HERO_HANDOVER = 0.26;
+const HERO_HANDOVER = 0.62;
 
 /**
  * How much of a screen the hero transition takes.

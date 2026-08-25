@@ -48,6 +48,10 @@ import {
   type StageId,
 } from './journey';
 import { ALTITUDE_STOPS, smoothRange } from './meridian';
+import { SCENE, SCENE_PRESENCE, SCENE_RECEDE } from './scene';
+import { ACT_HOLD, FRAME_H, FRAME_W, INSTRUMENT, actOf, type Placement } from './acts';
+import { KINETIC_ATTR, prefersReducedMotion } from './kineticDom';
+import { widestSettings, type KineticAnchorId } from './kineticType';
 
 // =============================================================================
 // The camera frame.
@@ -188,14 +192,555 @@ export function denseAt(metres: number): number {
 }
 
 /**
+ * THE SCENE RECEDE — the instrument's dramaturgy, as a function of altitude.
+ *
+ * §12 of the art direction: the Meridian is an instrument, not the hero of
+ * every scene, and an object that is the same projected size in all eleven
+ * chapters has no dramaturgy of its own. `scene.ts` assigns each chapter a role
+ * and `SCENE_RECEDE` turns that role into a distance.
+ *
+ * ## Why it is a recede and not an opacity or a scale on the wrapper
+ *
+ * Because the copy's room is budgeted against the instrument's *projected*
+ * silhouette, and this is the one lever that both halves of §2's hierarchy read
+ * from. A chapter that pushes the instrument back is, by the same arithmetic
+ * and with no second declaration anywhere, a chapter whose statement may be
+ * wider and therefore larger — `copyRoom` and `statementRoom` both call
+ * `budgetRecede`, which calls this. Fading the object instead would have made
+ * it less visible while leaving the column exactly as narrow as before, which
+ * is how a page ends up with a small headline next to a ghost.
+ *
+ * ## Why it is smoothstepped across the whole stage rather than knotted
+ *
+ * The rails knot: the instrument holds a rail through a stage and crosses to
+ * the next over 0.9 screens, because a lateral move that never settles reads as
+ * a slider. Depth is the opposite case — a dolly that arrives and stops is a
+ * cut, and the visitor is *climbing*, so the object receding continuously as
+ * they pass it is the motion the page is already about. Ramped over
+ * `SCENE_RAMP` at each edge and interpolated between neighbours in between, so
+ * there is no altitude at which the size steps.
+ *
+ * Same rule as everything else in this module: a pure function of the altitude,
+ * so forward and reverse traversal are identical by construction.
+ */
+const SCENE_RAMP = 900;
+
+export function sceneRecedeAt(metres: number): number {
+  // The stage whose altitude range contains `metres`, and its neighbours, so
+  // the value crosses smoothly at every boundary rather than at the ones that
+  // happen to differ.
+  let value = SCENE_RECEDE[SCENE[STAGES[0].id].instrument];
+  for (let i = 1; i < STAGES.length; i++) {
+    const next = SCENE_RECEDE[SCENE[STAGES[i].id].instrument];
+    if (next === value) continue;
+    const at = STAGES[i].from;
+    if (metres <= at - SCENE_RAMP) return value;
+    if (metres < at + SCENE_RAMP) return lerp(value, next, ease(span(metres, at - SCENE_RAMP, at + SCENE_RAMP)));
+    value = next;
+  }
+  return value;
+}
+
+/**
  * The recede the instrument actually takes.
  *
- * `portrait` is the measured 0..1 portrait strength — 0 on every landscape and
- * desktop viewport, which is what confines this whole mechanism to portrait
- * without a second code path.
+ * Three terms, and they are three different arguments:
+ *
+ *   narrative  the round trip that has always been here — the instrument hands
+ *              the frame over through the case studies and comes back for the
+ *              Meridian state.
+ *   scene      the authored role, §12. Applies on every viewport, because the
+ *              hierarchy it serves is not a portrait problem.
+ *   dense      the measured portrait-only correction for copy that does not fit
+ *              the band pair. Unchanged, and still gated on `portrait`.
+ *
+ * Summed and clamped to 1, so the instrument can never go below the 0.62 scale
+ * the accepted composition already takes it to through the case studies. There
+ * is no altitude at which this makes it smaller than a state the page already
+ * contained.
  */
 export function recedeAt(metres: number, finalCalibration: number, portrait: number): number {
-  return clamp(narrativeRecede(metres, finalCalibration) + DENSE_RECEDE_MAX * denseAt(metres) * portrait);
+  return clamp(
+    narrativeRecede(metres, finalCalibration) +
+      sceneRecedeAt(metres) +
+      DENSE_RECEDE_MAX * denseAt(metres) * portrait,
+  );
+}
+
+/** Half the horizontal field of view, in radians. */
+const hFovHalf = (aspect: number) => Math.atan(Math.tan((FOV * Math.PI) / 360) * Math.max(aspect, 1e-3));
+
+// =============================================================================
+// THE ACT FRAME — where the approved 1440 x 900 composition lands on this
+// viewport, and where the instrument has to stand to be in it.
+//
+// The six master frames are absolute compositions in a fixed field, so the only
+// honest way to reproduce them on an arbitrary viewport is to fit the whole
+// field uniformly and keep every relationship inside it. `styles.css` computes
+// the same scale with `min(100vw / 1440, 100svh / 900)`; this is the script-side
+// copy of it, and the two are asserted equal by the regression suite rather
+// than assumed — a disagreement between them would put the type on one grid and
+// the instrument on another.
+//
+// Deliberately NOT a breakpoint ladder and NOT a re-solve. §18: the approved
+// optical scale and the approved placement come first, and the solver is a
+// guardrail. Scaling the frame is also what makes the composition free of
+// runtime text measurement entirely, which is the direct answer to §19's font
+// metric hazard: there is no measurement to be taken against the wrong face,
+// because there is no measurement.
+// =============================================================================
+
+export type ActFrame = {
+  /** Reference px -> CSS px. */
+  scale: number;
+  /** Where the reference frame's origin sits in the viewport, in CSS px. */
+  x: number;
+  y: number;
+};
+
+export function actFrame(at: Fit = fit): ActFrame {
+  const scale = Math.min(at.vw / FRAME_W, at.vh / FRAME_H);
+  return {
+    scale,
+    x: at.insetLeft + (at.vw - FRAME_W * scale) / 2,
+    y: (at.vh - FRAME_H * scale) / 2,
+  };
+}
+
+/**
+ * How much of the ramp between two chapters the instrument's arrival or
+ * departure takes, as a fraction of the whole track.
+ *
+ * 0.4 of a screen at the shipped stage shares. Long enough that the object
+ * reads as withdrawing rather than being switched off, short enough that it is
+ * unambiguously gone before the next act's frame settles.
+ */
+const PRESENCE_RAMP = 0.4 / TRACK_VH;
+
+/**
+ * Is the instrument in the picture, 0..1 — and if not, how far through leaving.
+ *
+ * Keyed on SCROLL PROGRESS rather than on altitude, which every other curve in
+ * this module is keyed on, and the exception is load-bearing: the destination
+ * stage holds at 30 000 m, so `from === to === 30 000` and an altitude-keyed
+ * ramp cannot tell the arrival from the beat after it. Progress can, it is the
+ * same deterministic number read a different way, and forward and reverse
+ * traversal stay identical because `journey.current` settles exactly (see
+ * SETTLE_EPSILON).
+ */
+export function instrumentPresenceAt(progress: number): number {
+  const p = clamp(progress);
+  let value = SCENE_PRESENCE[SCENE[STAGES[0].id].instrument];
+  for (let i = 1; i < STAGE_BOUNDS.length; i++) {
+    const next = SCENE_PRESENCE[SCENE[STAGE_BOUNDS[i].id].instrument];
+    if (next === value) {
+      // AN ACT THAT DECLARES WHEN IT LEAVES, LEAVES — EVEN IF THE NEXT ACT
+      // CARRIES THE OBJECT TOO. §31.
+      //
+      // Two chapters in a row with the object was impossible before the depth
+      // proof: the budget was Act I and Act VI, eight chapters apart. It is not
+      // impossible now, and Act V hands straight over to Act VI. With the roles
+      // equal on both sides this loop used to `continue`, which meant no ramp,
+      // which meant the object crossed the boundary at FULL presence while its
+      // placement was being interpolated from a 980px crop at the right edge to
+      // a 160px dial in the middle. Photographed: the arrival's statement fades
+      // up over an object that has already slid into the arrival's own position.
+      // That is a zoom-out, and §31 asks the arrival to be a RETURN.
+      //
+      // `leaves` is a statement about an act's composition ENDING, so it is
+      // honoured here on its own terms: the object withdraws where the act says
+      // it does, and the next chapter's own entrance brings it back. The guard
+      // is the PLACEMENT, not the act — two chapters that share a placement have
+      // nothing to hand over and must not blink.
+      const from = INSTRUMENT[actOf(STAGE_BOUNDS[i - 1].id)];
+      const to = INSTRUMENT[actOf(STAGE_BOUNDS[i].id)];
+      if (!from || !to || from === to || from.leaves === undefined || value === 0) continue;
+      const out = STAGE_BOUNDS[i - 1].start + from.leaves / TRACK_VH;
+      const back = STAGE_BOUNDS[i].start;
+      if (p <= out - PRESENCE_RAMP) return value;
+      if (p < out + PRESENCE_RAMP) return lerp(value, 0, ease(span(p, out - PRESENCE_RAMP, out + PRESENCE_RAMP)));
+      if (p <= back - PRESENCE_RAMP) return 0;
+      if (p < back + PRESENCE_RAMP) return lerp(0, next, ease(span(p, back - PRESENCE_RAMP, back + PRESENCE_RAMP)));
+      value = next;
+      continue;
+    }
+    let at = STAGE_BOUNDS[i].start;
+    if (next < value) {
+      // A WITHDRAWAL LEAVES WITH THE FRAME, NOT WITH THE CHAPTER — §15.
+      //
+      // An entrance is still centred on the chapter boundary: the object has to
+      // be fully in the picture by the time the frame it belongs to is
+      // composed, and the six-act contract asserts exactly that at 0.4 of a
+      // screen into the hold.
+      //
+      // An exit is a different question. The chapter ends when its BODY ends,
+      // and an act's body can run for two screens after its frame has let go —
+      // which is what left the arrival's instrument sitting behind editorial
+      // copy and the route list for 2.1 screens of the 3.5 it was present for.
+      // Where the act says when its composition finishes, use that instead.
+      //
+      // `leaves` is in screens and the conversion here is `/ TRACK_VH`, the
+      // same nominal-screens approximation `PRESENCE_RAMP` above already makes
+      // and for the same reason: the real track is measured per viewport and
+      // this curve is a pure function of progress. The error is the ratio
+      // between the nominal and the measured track — under a tenth of a screen
+      // on the shipped layout, against a ramp 0.8 of a screen wide.
+      const leaving = STAGE_BOUNDS[i - 1];
+      const leaves = INSTRUMENT[actOf(leaving.id)]?.leaves;
+      if (leaves !== undefined) at = Math.min(at, leaving.start + leaves / TRACK_VH);
+    }
+    if (p <= at - PRESENCE_RAMP) return value;
+    if (p < at + PRESENCE_RAMP) return lerp(value, next, ease(span(p, at - PRESENCE_RAMP, at + PRESENCE_RAMP)));
+    value = next;
+  }
+  return value;
+}
+
+/**
+ * THE HOUSING SILHOUETTE, AS A MULTIPLE OF THE AUTHORED DIAL. §8, §9, §10.
+ *
+ * The occlusion mask has to be the shape of the thing that does the occluding,
+ * and the thing that does the occluding is the CASE, not the drawn circle the
+ * art direction authors. `Placement.dial` is the circle a visitor reads a
+ * number off; the case around it is larger, and this is how much larger.
+ *
+ * MEASURED, not derived — `experiments/probe-silhouette.mjs` rasterises the
+ * shipped geometry's real projected silhouette out of the scene graph (every
+ * triangle of the `meridianRoot` subtree minus the gimbal, scan-converted into
+ * a coverage grid) and reports the radius at each of 360 angles. Two poses,
+ * eight kilometres and two authored sizes apart:
+ *
+ *     Act I    dial 221   silhouette 268 x 256 px   half-width / (dial/2) = 1.213
+ *     Act VI   dial 160   silhouette 194 x 190 px   half-width / (dial/2) = 1.213
+ *
+ * The same number to four figures at both, which is what makes it a property of
+ * the model rather than a fit. See §C and §D of the depth report.
+ */
+export const HOUSING_OF_DIAL = 1.213;
+
+/**
+ * How small the object is at the moment it stops being drawn.
+ *
+ * The renderer's own number, moved here because the mask has to apply it too —
+ * see the withdrawal note in `instrumentStateAt`. 0.18 at a presence of 0.05,
+ * which is where `AltimeterMeridian` cuts the object off, and the two hundredths
+ * of a screen between there and zero is what makes the cut invisible as a cut.
+ */
+export const WITHDRAW_FLOOR = 0.18;
+
+/** Below this presence the object is not drawn at all, so nothing may be cut. */
+export const INSTRUMENT_CUTOFF = 0.05;
+
+/** §8. Which way the mask's residual error falls. See the publication note. */
+export const MASK_EROSION = 0.02;
+
+/**
+ * THE SILHOUETTE'S ASPECT, AND WHY THE SIMPLE MASK SURVIVED §8.
+ *
+ * §8 says to try the simplest geometry first and then inspect it critically,
+ * and §9 warns that a generic radial mask may fail once the housing rotates.
+ * The measurement answers both, and the answer is unusually kind: across 360
+ * rays from the silhouette's own centroid the radius varies by ±4% of its mean
+ * at Act I's near-frontal pose and by ±3% at Act VI's, with the residual
+ * showing up as a slight horizontal stretch rather than as lumps.
+ *
+ *     Act I    268 x 256   aspect 0.955
+ *     Act VI   194 x 190   aspect 0.979
+ *
+ * That is not a coincidence and it is not the mask being flattered: the object
+ * IS a round case, seen nearly face-on in every pose the art direction asks
+ * for, and its silhouette is a circle squashed by the pose's own yaw. So the
+ * mask is an ELLIPSE — one more authored number than a circle, and it takes the
+ * worst-case radial error from 4.5% of the radius to about 1.5%, which on the
+ * largest dial in the proof is under four pixels.
+ *
+ * Where the error goes matters more than how big it is, and §8's real question
+ * — does it read as a hole cut in the text — turns on the SIGN. See the mask
+ * rule in `styles.css`: the published radius is eroded rather than dilated, so
+ * every pixel of residual error hides a glyph UNDER the dark case instead of
+ * ending a glyph in mid-air beside it. An eroded error is invisible on this
+ * object because the object is nearly black; a dilated one is the failure §8
+ * describes.
+ *
+ * The rings are deliberately NOT in this number. They are thin, they are open
+ * at exactly the altitudes where the housing is the composition, and cutting
+ * type along a thin gimbal arc is the "eleven handcrafted CSS hacks" §10 rules
+ * out. Type crossing a ring paints over a dark wire, which reads as the wire
+ * being behind it — see §C of the report for the measured cost.
+ */
+export const HOUSING_ASPECT = 0.96;
+
+/**
+ * The instrument's whole state at a scroll position — the ONE solved object
+ * that both the renderer and the occlusion mask consume. §11, §13.
+ *
+ * §11 is the reason this exists rather than the renderer keeping its own copy:
+ * a mask authored beside the object drifts from it, and the only way to make
+ * drift impossible rather than merely unlikely is for the two to be the same
+ * arithmetic on the same input. `AltimeterMeridian` inverts this into a world
+ * transform; `publishComposition` divides it by the frame scale and writes it
+ * out as the mask. Neither measures anything, neither reads the other back, and
+ * both are pure functions of `progress`.
+ *
+ * ## Why the projected geometry is exactly the authored geometry
+ *
+ * The renderer does not place the object and then discover where it landed. It
+ * solves the world position and scale that make it project ONTO `x`, `y` at
+ * diameter `dial` — `actWorldX`, `actWorldY` and `actInstrumentScale` are that
+ * solve, and they already existed. So at presence 1 the projected dial IS the
+ * authored dial, on every viewport, and the mask can be written straight off
+ * the authored numbers with no read-back and no lag. §28's alignment test is a
+ * check on that claim, not a calibration of it.
+ *
+ * ## Interpolation, and how little of it there is
+ *
+ * §12: enough to demonstrate one object moving continuously, changing pose and
+ * changing scale — not the full eleven-scene engine. So the authored placements
+ * are anchors on the scroll track, an anchor is HELD across its own act's peak
+ * stage, and between two anchors the state eases from one to the other. A
+ * placement that jumped at a stage boundary would move the object laterally in
+ * a single frame, which is the failure `railWorldX` exists to prevent, and it
+ * would tear the mask off the object for exactly as long as the jump lasted.
+ *
+ * The pose interpolates as two independent angles rather than as a quaternion,
+ * and §14 is satisfied by the authoring rather than by the machinery: the
+ * authored poses are within 16° of each other on one axis and 9° on the other,
+ * so there is no large rotation for a slerp to take the short way round. §14's
+ * hazard is real and this is simply not a case of it — see §J of the report.
+ */
+export type InstrumentState = {
+  /** Dial centre and diameter, in reference-frame px. */
+  x: number;
+  y: number;
+  dial: number;
+  /** The housing silhouette's centre and radii, in reference-frame px. */
+  maskX: number;
+  maskY: number;
+  rx: number;
+  ry: number;
+  /** Degrees off the object's base pose. */
+  yaw: number;
+  pitch: number;
+  /** 0..1. The analytic presence — the same curve the renderer damps toward. */
+  presence: number;
+  /** §46. Whether this position is allowed to stand in front of the monument. */
+  occlusion: 'none' | 'monument';
+};
+
+/** The authored placements, as anchors on the scroll track. Built once. */
+const ANCHORS: { start: number; end: number; at: Placement }[] = [];
+for (const bound of STAGE_BOUNDS) {
+  const at = INSTRUMENT[actOf(bound.id)];
+  // One anchor per authored PLACEMENT, spanning the stages that share it, so a
+  // two-stage act does not read as two anchors with a ramp between them.
+  if (!at) continue;
+  const last = ANCHORS[ANCHORS.length - 1];
+  if (last && last.at === at) last.end = bound.end;
+  else ANCHORS.push({ start: bound.start, end: bound.end, at });
+}
+
+const POSE_OF = (at: Placement) => at.pose ?? { yaw: 0, pitch: 0 };
+
+/** The model's nominal silhouette, for a placement that has not been measured. */
+const NOMINAL_MASK = {
+  dx: 0,
+  dy: 0,
+  rx: HOUSING_OF_DIAL / 2,
+  ry: (HOUSING_OF_DIAL * HOUSING_ASPECT) / 2,
+};
+const MASK_OF = (at: Placement) => at.mask ?? NOMINAL_MASK;
+
+export function instrumentStateAt(progress: number): InstrumentState | null {
+  if (ANCHORS.length === 0) return null;
+  const p = clamp(progress);
+  const presence = instrumentPresenceAt(p);
+
+  // The exploration override. Compiled out of nothing and read as one null
+  // check; see `journey.debug.placement` for why it exists at all.
+  const forced = journey.debug.placement;
+  if (forced) {
+    return {
+      x: forced.x,
+      y: forced.y,
+      dial: forced.dial,
+      maskX: forced.x + forced.dial * (forced.mask?.dx ?? NOMINAL_MASK.dx),
+      maskY: forced.y + forced.dial * (forced.mask?.dy ?? NOMINAL_MASK.dy),
+      rx: forced.dial * (forced.mask?.rx ?? NOMINAL_MASK.rx),
+      ry: forced.dial * (forced.mask?.ry ?? NOMINAL_MASK.ry),
+      yaw: forced.yaw ?? 0,
+      pitch: forced.pitch ?? 0,
+      presence: 1,
+      occlusion: 'monument',
+    };
+  }
+
+  // The anchor whose span contains `p`, or the last one before it.
+  let idx = ANCHORS.length - 1;
+  for (let i = 0; i < ANCHORS.length; i++) {
+    if (p <= ANCHORS[i].end) {
+      idx = i;
+      break;
+    }
+  }
+  const here = ANCHORS[idx];
+  const prev = idx > 0 ? ANCHORS[idx - 1] : null;
+  let a = here;
+  let b = here;
+  let t = 0;
+  if (prev) {
+    // THE TRANSITION WINDOW.
+    //
+    // Two anchors are crossed by EASING from one to the other, never by
+    // selecting between them: a placement that changed at a stage boundary
+    // would move the object laterally in a single frame, which is the failure
+    // `railWorldX` exists to prevent, and it would tear the mask off the object
+    // for exactly as long as the jump lasted.
+    //
+    // The window sits inside the gap the presence ramps leave, and its two ends
+    // are chosen rather than symmetrical:
+    //
+    //   it CLOSES one ramp before the next anchor takes hold, so an anchor's own
+    //   span is never inside a transition and the mask is live from the first
+    //   frame of the act. An evenly straddled window would have put its edge at
+    //   0.4 of a screen in, which is exactly where the composed frame sits.
+    //
+    //   it OPENS two ramps before the previous anchor releases, which is what
+    //   gives the one pair of anchors that TOUCH somewhere to move. Act V ends
+    //   where Act VI begins; without a window the placement would jump 880
+    //   reference pixels and 820 of dial in one frame there. With it, the move
+    //   happens across the 0.45 of a screen in which `leaves` has taken the
+    //   object out of the picture and the arrival has not yet brought it back —
+    //   so the slide is invisible, and what the visitor sees is the withdrawal
+    //   and the return the accepted arrival is built on (§31), not a zoom-out.
+    const windowFrom = Math.max(prev.start, prev.end - 2 * PRESENCE_RAMP);
+    const windowTo = Math.max(windowFrom, here.start - PRESENCE_RAMP);
+    if (p < windowTo) {
+      a = prev;
+      b = here;
+      t = ease(span(p, windowFrom, windowTo));
+    }
+  }
+
+  const at = a.at;
+  const to = b.at;
+  const pa = POSE_OF(at);
+  const pb = POSE_OF(to);
+
+  // THE WITHDRAWAL, AS A REFERENCE-FRAME SCALE ABOUT THE PRINCIPAL POINT.
+  //
+  // The renderer used to do this in two pieces — multiply the scale by
+  // `0.18 + 0.82 x presence` and subtract 0.9 world units from z — which is
+  // fine for an object nothing else has to agree with and is not fine now that
+  // a mask has to sit exactly on it. The z term moves the object toward the
+  // vanishing point by a factor the stylesheet has no way to know, so a mask
+  // written off the authored placement would slide off the object for exactly
+  // as long as the withdrawal lasted, which is §28's "mask leading the object".
+  //
+  // Receding along the view axis IS a uniform scale about the principal point,
+  // so both pieces are one operation: shrink the dial and pull its centre
+  // toward the frame's own centre by the same factor. The scale law is the
+  // renderer's own, unchanged — 0.18 at the cut-off, 1 at full presence — so
+  // the object withdraws exactly as far as it did, by a single arithmetic that
+  // the mask can perform too.
+  //
+  // The principal point is the frame's centre and not merely near it: the field
+  // is centred in the viewport by `.act`, and `actWorldY` measures its rows
+  // against the viewport's own half-height, so the camera axis lands on row 450
+  // of the reference frame at every viewport this composition is solved for.
+  const k = presence >= 1 ? 1 : WITHDRAW_FLOOR + (1 - WITHDRAW_FLOOR) * presence;
+  const x = FRAME_W / 2 + (lerp(at.x, to.x, t) - FRAME_W / 2) * k;
+  const y = FRAME_H / 2 + (lerp(at.y, to.y, t) - FRAME_H / 2) * k;
+  const dial = lerp(at.dial, to.dial, t) * k;
+
+  // The measured silhouette for this pose, or the model's nominal one. Four
+  // numbers, all fractions of the dial, so the mask scales with the object by
+  // construction and the withdrawal above needs no second expression here.
+  const ma = MASK_OF(at);
+  const mb = MASK_OF(to);
+  return {
+    x,
+    y,
+    dial,
+    // The housing's centre is not the dial's centre: the case is deeper than it
+    // is wide, so any yaw at all slides its silhouette off the face it wraps.
+    maskX: x + dial * lerp(ma.dx, mb.dx, t),
+    maskY: y + dial * lerp(ma.dy, mb.dy, t),
+    rx: dial * lerp(ma.rx, mb.rx, t),
+    ry: dial * lerp(ma.ry, mb.ry, t),
+    yaw: lerp(pa.yaw, pb.yaw, t),
+    pitch: lerp(pa.pitch, pb.pitch, t),
+    presence,
+    // The intent belongs to the anchor being COMPOSED, and in the gap between
+    // two anchors it belongs to neither: the object is on its way out of one
+    // frame and into the next, the monument it was standing in front of is
+    // leaving with its own frame, and an occlusion that outlived the frame it
+    // was authored for would cut a hole in a statement nothing is behind.
+    occlusion: t === 0 ? (at.occlusion ?? 'none') : t === 1 ? (to.occlusion ?? 'none') : 'none',
+  };
+}
+
+/**
+ * The scale the instrument group takes so that its dial measures `dial`
+ * reference pixels on this viewport.
+ *
+ * The inverse of `projectedEssentialHeight`, solved for scale instead of
+ * evaluated for height. `DIAL_OF_ESSENTIAL` converts between the two heights
+ * the two systems measure: `ESSENTIAL_LOCAL_HEIGHT` is the essential
+ * silhouette's world AABB, which is the box the copy has to clear, and the
+ * study's `dial` is the drawn circle inside it. The ratio is a property of the
+ * model and the pose, and it is MEASURED off the production render rather than
+ * derived: at 0.9 the Act I dial came out 175px against the approved 221, and
+ * 0.71 is what that measurement says. The essential AABB is conservative under
+ * the pose rotation — it has to be, because it is also what the copy budget
+ * clears — so it is meaningfully larger than the circle a visitor sees.
+ */
+export const DIAL_OF_ESSENTIAL = 0.71;
+
+export function actInstrumentScale(dialRefPx: number, at: Fit, frame: ActFrame, metres: number): number {
+  const targetPx = (dialRefPx / DIAL_OF_ESSENTIAL) * frame.scale;
+  // Solved at the dolly distance the camera is actually at, with no recede: the
+  // act placement replaces the recede for the two acts that have one, rather
+  // than being applied on top of it.
+  const distance = fitDistance(at.aspect) * dollyK(metres);
+  const worldHeight = 2 * distance * Math.tan((FOV * Math.PI) / 360);
+  return (targetPx / Math.max(at.vh, 1)) * (worldHeight / ESSENTIAL_LOCAL_HEIGHT);
+}
+
+/**
+ * Where the instrument has to stand vertically to project onto a given row of
+ * the frame.
+ *
+ * The mirror of `railWorldX`, and simpler because the camera never pitches for
+ * the composition — only the pointer parallax does, and that is a fraction of a
+ * degree either side of level. With the camera level, a point at distance D and
+ * height H above the view axis projects to `ndc = H / (D tan(vFov/2))`, which
+ * inverts directly.
+ *
+ * ## Why this exists at all, when the instrument used to be centred
+ *
+ * It used to ride at exactly the camera's height, so it was vertically centred
+ * by construction, and that was correct while the composition was *copy beside
+ * a centred object*. The approved art direction is not that: in Act I the dial
+ * is in the upper right with the statement below and left of it, and in Act VI
+ * it is low and under the statement. Neither is a centred object, and both are
+ * the composition rather than a decoration of it.
+ *
+ * The old vertical-centre tolerance is therefore a contract about a design that
+ * is no longer the design (§50). What replaces it is stricter, not looser: the
+ * object has to land on its AUTHORED row, which is a specific number per act,
+ * and the suite measures that instead of measuring ±3% of nothing in particular.
+ */
+export function actWorldY(rowPx: number, distance: number, at: Fit, frame: ActFrame): number {
+  const targetPx = frame.y + rowPx * frame.scale;
+  const ndc = 1 - (2 * targetPx) / Math.max(at.vh, 1);
+  return distance * ndc * Math.tan((FOV * Math.PI) / 360);
+}
+
+/** The horizontal twin of `actWorldY`, for a column of the reference frame. */
+export function actWorldX(colPx: number, distance: number, aspect: number, at: Fit, frame: ActFrame): number {
+  const targetPx = frame.x + colPx * frame.scale;
+  const ndc = (2 * targetPx) / Math.max(at.canvasWidth, 1) - 1;
+  return distance * ndc * Math.tan(hFovHalf(aspect));
 }
 
 // =============================================================================
@@ -405,7 +950,6 @@ function sampleWidth(table: readonly number[], metres: number): number {
 }
 
 /** Half the horizontal field of view, in radians, for a given aspect. */
-const hFovHalf = (aspect: number) => Math.atan(Math.tan((FOV * Math.PI) / 360) * Math.max(aspect, 1e-3));
 
 /** A tabulated extent's projected width, as a fraction of the usable width. */
 function projectedWidth(table: readonly number[], fit: Fit, metres: number, recede: number): number {
@@ -455,17 +999,37 @@ export const RAIL_TOLERANCE = 0.03;
 /**
  * The altitude-based composition, as §2 scripts it.
  *
- * −1 is the left rail, +1 the right, 0 the centre. Six compositional acts over
- * eleven stages, which is five handoffs — few enough that none of them is a
+ * −1 is the left rail, +1 the right, 0 the centre. Five compositional acts over
+ * eleven stages, which is four handoffs — few enough that none of them is a
  * reaction to a text change, and each one lands on a structural event the
  * instrument is already having:
  *
- *   0 m            centre    the object is established before anything moves
- *   150–6 000      right     the lower ascent; the narrative owns the left
+ *   0–6 000        right     the object is established, and the narrative owns
+ *                            the left from the first frame
  *   6 000–11 000   left      Ring 1 unseats at 7 000 and the cloud deck arrives
  *   11 000–17 000  right     the aperture breaks through at 12 000
  *   17 000–28 000  left      Rings 2 and 3 lock, at 18 000 and 24 000
  *   28 000–30 000  centre    the final calibration takes the frame back
+ *
+ * ## Why the opening is no longer on the centre rail
+ *
+ * It was, and the argument for it was that the object should be established
+ * before anything moves. What that costs is the whole of §A: on a centre rail
+ * the copy's budget is half the frame less the dial's half-width — 456px at
+ * 1440×900 — and the opening statement is the longest on the page, so it set as
+ * five lines of 67px and the dial was the largest object in the frame the page
+ * opens with. Measured against every other chapter, the opening carried the
+ * SMALLEST display type on the page apart from the two authored troughs.
+ *
+ * Railed right it takes 830px of measure and 106px of type, and the object is
+ * still whole, still lit, still the second thing in the frame. The direction is
+ * explicit that the opening does not need to carry the most information but does
+ * need to carry one of the strongest statements; this is the one decision on the
+ * page that was standing between it and that.
+ *
+ * The handoff at 150 m goes with it — the instrument used to move there while
+ * the copy stayed. What replaces it is a frame that is composed from the first
+ * pixel rather than one that recomposes a screen in.
  *
  * The copy side is deliberately *not* simply the mirror of this. It changes
  * three times against the instrument's five, because a rail change and a
@@ -476,7 +1040,7 @@ export const RAIL_TOLERANCE = 0.03;
  * as the layout dealing itself a new hand.
  */
 const RAIL_OF: Record<StageId, -1 | 0 | 1> = {
-  calibration: 0,
+  calibration: 1,
   'initial-ascent': 1,
   'lower-atmosphere': 1,
   'cloud-entry': -1,
@@ -832,6 +1396,136 @@ export function copyRoom(fit: Fit, stage: StageId): number {
 const roomOf = new Map<StageId, number>();
 
 /**
+ * The budgeted STATEMENT measure per stage, as a fraction of usable width.
+ *
+ * The same quantity `roomOf` holds for the prose column, for the box that is
+ * now materially wider than it. Fed by `statementRoom`, read by `leadPresence`.
+ */
+const statementOf = new Map<StageId, number>();
+
+/**
+ * How much WIDER than the column the statement may run, in CSS pixels.
+ *
+ * ## The problem this exists to solve
+ *
+ * A headline confined to the body's column can never be more than medium-sized,
+ * and that single fact is most of what made this page read as a stacked agency
+ * site rather than as an art-directed one. At 1440 the column is 472px; a
+ * genuinely monumental line needs more.
+ *
+ * ## Why there IS more, and why it is free
+ *
+ * `copyRoom` budgets against the instrument's projected **bounding box**, which
+ * is the right measure for a column that runs the height of the frame — the
+ * dial is at its widest across the middle, and that is where the body copy is.
+ *
+ * The statement is not there. It hangs in the sky band, above the dial's centre,
+ * and the dial is a CIRCLE: at a height `k` radii above the centre its
+ * half-width is only `sqrt(1 - k²)` of the radius. The room the bounding box
+ * reserves at that height is room the object does not occupy — at 17 000 m the
+ * band clears the dial's top altogether and the whole radius is free, while at
+ * 0 m the statement's own depth reaches the centre line and none of it is.
+ *
+ * So this is not a licence taken against the clearance rule. It is the same
+ * rule, evaluated against the shape the instrument actually has at the height
+ * the statement actually sits at.
+ *
+ * ## The rhythm falls out of it
+ *
+ * The gain is a different number in every chapter, because the instrument's
+ * size, its recede and the statement's own height all differ — 0px at the
+ * ground, ~58 at 3 800 m, ~100 above 17 000. The stylesheet sizes the type from
+ * the measure, so the chapters where the frame opens get a bigger statement
+ * than the chapters where it does not, and the scale rhythm the direction asks
+ * for is a consequence of the geometry rather than a table of exceptions.
+ *
+ * Sampled across the stage's settled range and reduced to the worst case, for
+ * the same reason `copyRoom` is: a measure that tracked the instrument would be
+ * visibly breathing.
+ */
+/**
+ * Whether a chapter's statement is composed OVER the instrument rather than
+ * beside it.
+ *
+ * The open frames — `field` and `arrival` — are the ones that can be, and the
+ * centre rail is what makes them so: it is the one rail that leaves the copy no
+ * side of the frame to take. Read by `statementRoom` for the measure and by
+ * `measureComposition` for the vertical cap, which are the two halves of one
+ * decision and must never disagree about it.
+ */
+export function overheadStatement(stage: StageId): boolean {
+  const frame = SCENE[stage].frame;
+  return (frame === 'field' || frame === 'arrival') && railOf(stage) === 'centre';
+}
+
+export function statementRoom(fit: Fit, stage: StageId): number {
+  const room = copyRoom(fit, stage);
+  if (room <= 0 || railLimit <= 0) return room;
+
+
+  // THE CHAPTERS WHOSE STATEMENT STANDS ABOVE THE INSTRUMENT RATHER THAN
+  // BESIDE IT — and the geometry decides which those are, not the frame name.
+  //
+  // `overhead` (below) is true for an open frame whose instrument is on the
+  // CENTRE rail. That pairing is the whole condition, and both halves of it
+  // matter:
+  //
+  //   * On a centre rail there is no side of the frame the copy can have, so a
+  //     statement confined to a column is a 550px column in a 1 440px frame
+  //     with the object it is about sitting in the other 890. The honest
+  //     measure is the frame less its own margins, and the statement is held in
+  //     the sky above the dial's top edge, which `--monument-cap` enforces.
+  //
+  //   * On a side rail the opposite is true. The dial is already out of the
+  //     way laterally, the statement has 800px beside it, and taking the frame
+  //     instead would buy fourteen pixels of width and cost the statement its
+  //     whole height — measured on the system chapter at 1440×900, 89px capped
+  //     against 173px uncapped, for a measure of 814px against 806.
+  //
+  // This is not a licence taken against §9's clearance rule. It is the same
+  // rule, evaluated for the two ways a statement can be clear of a circle: over
+  // the top of it, or beside it.
+  if (overheadStatement(stage)) {
+    const overhead = fit.vw * (1 - 2 * edgeMarginFraction(fit));
+    statementOf.set(stage, overhead / Math.max(fit.vw, 1));
+    return overhead;
+  }
+
+  // THE CURVATURE GAIN IS GONE, AND ITS ABSENCE IS THE POINT.
+  //
+  // This used to widen the measure by whatever the dial's curvature gave back
+  // at the height the statement sat at: a circle's half-width at `k` radii above
+  // its centre is only `sqrt(1 - k²)` of its radius, so a statement hanging high
+  // in the sky band has more room beside it than the bounding box reserves.
+  //
+  // It is sound geometry and it was never once the binding term. Measured across
+  // all eleven chapters at 1440×900, 1920×1080, 1280×800 and 1024×768, the reach
+  // came out at or below `room` every time — because a statement at the monument
+  // scale is tall enough that its lowest line reaches the dial's centre line,
+  // where the curvature gives back exactly nothing.
+  //
+  // And it was a MEASUREMENT LOOP. The reach was solved from the statement's own
+  // rendered height, which is solved from the measure, which is solved from the
+  // reach: a taller statement got a narrower measure got a smaller size got a
+  // shorter statement. Each pass converged a little — traced on WebKit, the
+  // document settled through 21 041 → 18 861 → 18 837 → 18 813 → 18 794 over
+  // successive frames — and a document whose height is still moving after the
+  // first paint is a back navigation landing somewhere the visitor never was.
+  // §33 rules out measurement feedback loops in as many words.
+  //
+  // So the measure is the room, less the guard below, and nothing here reads
+  // anything the type it sizes can change. The two chapters whose statement
+  // genuinely is clear of the dial take the whole frame instead, above, and
+  // their vertical cap is solved from the eyebrow and the band's padding — both
+  // of which are the same height whatever size the statement is set at.
+
+  const width = Math.max(0, room - 24);
+  statementOf.set(stage, width / Math.max(fit.vw, 1));
+  return width;
+}
+
+
+/**
  * The handoff, and the one number that makes it a composition rather than a
  * collision.
  *
@@ -882,13 +1576,241 @@ const roomOf = new Map<StageId, number>();
  * budget is the *worst* room over that range, so the ratio there is one by
  * construction, and every centre-rail stage is at one throughout.
  */
+/**
+ * A yield to an object that is not in the picture is not a yield.
+ *
+ * Both presence rules below fade a band because the instrument is about to be
+ * in the way of it. Nine chapters of eleven no longer have an instrument in
+ * them (§32, and `SCENE_PRESENCE` in `scene.ts`), and the first production
+ * capture of the six-act design showed exactly what that costs if nobody says
+ * so: the two crossing chapters were composed, measured, laid out, and then
+ * faded to zero opacity for a dial that had left eight thousand metres earlier.
+ * Two entirely empty screens in the middle of the journey — §49's "no giant
+ * dead stages", produced by the machinery that used to prevent them.
+ *
+ * Scaling the yield by the presence rather than switching it off keeps every
+ * property the yield had: it is continuous, it is a pure function of the
+ * altitude and the viewport, and forward and reverse traversal stay identical.
+ * At presence 1 the rule is exactly what it was; at 0 the band holds.
+ */
+const yieldTo = (metres: number, value: number) =>
+  1 - instrumentPresenceAt(progressAt(metres)) * (1 - value);
+
 export function copyPresence(stage: StageId, metres: number, recede: number): number {
   const budget = roomOf.get(stage) ?? 0;
   if (budget <= 0 || railLimit <= 0) return 1;
   const half = essentialWidthAt(fit, metres, recede) / 2;
   const centre = railAt(metres);
   const live = COPY_OF[stage] === 1 ? 1 - centre - half : centre - half;
-  return ease(clamp((live / budget - 0.9) / 0.1));
+  return yieldTo(metres, ease(clamp((live / budget - 0.9) / 0.1)));
+}
+
+/**
+ * The same yield, for a statement that hangs above the instrument.
+ *
+ * ## Why the horizontal rule is not the whole rule any more
+ *
+ * `copyPresence` is a measure of *lateral* room, and it was the whole story
+ * while every chapter's copy was a block centred in a panel: the column crossed
+ * the instrument's own centre line, so the only question was whether there was
+ * width for it beside the dial.
+ *
+ * The reverse-gravity composition hangs a chapter's statement from the sky
+ * band, which on every viewport in the matrix is *above* the instrument's
+ * projected silhouette for most of the journey — measured at 1440×900 and
+ * 17 000 m, the lead band spans 162–343px against a dial spanning 350–550. A
+ * rule that yields a box which is nowhere near the object it is yielding to
+ * costs the page the one thing this direction is for: at every boundary where
+ * the instrument changes rail, the incoming statement was faded out for the
+ * nine tenths of a screen during which it is supposed to be arriving overhead,
+ * and the frame at 17 000 m contained no copy at all — which is precisely the
+ * defect the composition was rebuilt to remove, reintroduced by the fix for a
+ * different one.
+ *
+ * ## The rule
+ *
+ * Take the lateral yield, and release it in proportion to how far the band is
+ * clear of the instrument vertically. Fully clear, the statement holds at full
+ * presence through the crossing; overlapping, it yields exactly as it did
+ * before. Both terms are pure functions of `(altitude, viewport)`, so this
+ * inherits §7's forward/reverse equality rather than needing its own argument
+ * for it.
+ *
+ * The 24px ramp is the same order as the visual safety margin the validator
+ * expands the instrument's bounds by, so the release completes only once the
+ * band is clear by more than the tolerance the check is written against.
+ */
+export function leadPresence(stage: StageId, metres: number, liveRecede: number): number {
+  const lead = leadOf.get(stage) ?? 0;
+  if (lead <= 0 || railLimit <= 0) return 1;
+
+  // THE LARGER OF THE TWO INSTRUMENTS, ALWAYS.
+  //
+  // `setLiveRecede`'s note is exact about the asymmetry: during a scroll the
+  // damped recede trails the analytic target, and it trails it LARGE — the
+  // instrument is still at the size it is leaving. For SIZING a band that is
+  // the conservative direction and the band uses it. For YIELDING a statement
+  // it is the wrong one, because a recede that is momentarily too large makes
+  // the dial look smaller than it is and holds the statement a frame longer
+  // than it should be held.
+  //
+  // The symptom was a check that failed in a different place on every run:
+  // 10–35px of display line on the dial at 280 m, or at 11 500, or at 6 312,
+  // depending on where the damping happened to be when the sample was taken.
+  // Taking the smaller recede — the larger dial — makes the yield a function of
+  // the altitude again rather than of the scroll velocity, which is what §7
+  // asks of everything in this module.
+  // WITHOUT THE SCENE TERM, and that is the second half of the same argument.
+  //
+  // `sceneRecedeAt` is authored art direction: it pushes the instrument back
+  // because the chapter wants the statement to be the subject. Letting the
+  // yield see it means the statement is budgeted against a smaller dial than
+  // the one the check measures whenever the two are a frame apart — at 11 560 m
+  // the scene term is 0.27 of the way to the far recede, which is 46px of dial
+  // radius, and 46px is the whole of the residual collision the check reports
+  // there.
+  //
+  // So the yield is solved against the NARRATIVE recede alone — the round trip
+  // that was always here — or against the live value, whichever describes the
+  // larger object. Never against a dial smaller than the one that might be
+  // drawn.
+  const narrative = narrativeRecede(metres, smoothRange(metres, ALTITUDE_STOPS.thirdRing, ALTITUDE_STOPS.meridian));
+  const recede = Math.min(liveRecede, narrative);
+
+  // The same visual safety margin the validator expands the instrument by
+  // before it tests for a collision, tripled so that the yield is complete
+  // rather than beginning at the moment of contact.
+  //
+  // Three rather than two, and the third one is the damping. The budget this is
+  // compared against is solved at the analytic recede; the instrument is drawn
+  // at the damped one, which during a scroll trails it LARGE. Doubled, the fade
+  // finished exactly as the two met and the lag put 21px of "emelkedtünk" on
+  // the dial at 11 560 m. Tripled, it finishes a margin early — which on a
+  // 40px band is a tenth of a screen of scroll, and is the direction the error
+  // has to be in.
+  const guard = Math.max(8, Math.min(fit.vw, fit.vh) * 0.015) * 3;
+
+  // The dial's projected radius, and how far the statement's own lowest line
+  // sits above its centre — the instrument rides the camera's height, so its
+  // centre is the frame's.
+  const height = projectedEssentialHeight(fit, metres, recede);
+  const radius = height / 2;
+  const band = skyBandOf(stage, fit.vh);
+  const bottom = band + lead;
+  const above = clamp((fit.vh / 2 - bottom) / Math.max(radius, 1));
+
+  // AN OVERHEAD STATEMENT IS TESTED VERTICALLY, BECAUSE THAT IS WHERE IT IS.
+  //
+  // `field` and `arrival` chapters on the centre rail take the whole frame for
+  // their statement and hold it above the dial's top edge; `--monument-cap`
+  // sizes them so that is true at the altitudes they are read at. Asking the
+  // lateral question there compares a full-frame measure against the room
+  // beside a centred object, finds it under half, and yields the statement to
+  // zero for the entire chapter — measured at 28 600 m, where the stratosphere
+  // frame held one grey paragraph and no headline.
+  //
+  // What it does have to yield to is the APPROACH. A statement is already
+  // hanging 0.18 screens before its own chapter, and there the instrument is
+  // still on the previous chapter's rail at the previous chapter's size — at
+  // 27 500 m, 232px of "Üdv a sztratoszférában." across a dial the cap was
+  // never solved against. So the test is the clearance itself: full presence
+  // once the band's bottom is a guard clear of the dial's top, nothing while it
+  // is not.
+  if (overheadStatement(stage)) {
+    // THE STATEMENT'S OWN BOTTOM, not the band's.
+    //
+    // `--monument-cap` sizes an overhead statement so that the eyebrow plus the
+    // headline clear the dial's top edge. The BAND also carries whatever the
+    // chapter puts under its headline — on the stratosphere that is a line and
+    // an annotation, 495px against the statement's own 283 — so a clearance test
+    // against the band asks whether a box two hundred pixels taller than the one
+    // that was sized clears the object it was sized against. It does not, at any
+    // altitude, and the statement was hidden for the whole chapter: measured at
+    // 28 600 m, the frame held the instrument, the earth's limb and no headline.
+    // WHERE THE STATEMENT ACTUALLY IS, including the approach.
+    //
+    // A chapter's statement is pinned in the sky band only once the chapter's
+    // own top has reached it. For the 0.18 screens before that it is NOT pinned:
+    // it sits at its natural position inside a panel whose top is still below
+    // the fold, which puts it `-pass × panelH` lower in the frame — a third of
+    // the way down it, over the instrument, while its own chapter is still
+    // approaching.
+    //
+    // Adding that term makes this a test of where the statement is rather than
+    // of where it will be, which is what the opacity ramp was standing in for.
+    // Measured at 1024×768 and 27 808 m, the last 3px of the stratosphere
+    // statement on the dial with the ramp doing all the work; here it is
+    // geometry.
+    const bounds = STAGE_BOUNDS.find((x) => x.id === stage);
+    const span = bounds ? bounds.end - bounds.start : 1;
+    const pass = bounds && span > 0 ? (progressAt(metres) - bounds.start) / span : 0;
+    const approach = pass < 0 ? -pass * (panelOf.get(stage) ?? fit.vh) : 0;
+    const statementBottom =
+      band + (hangOf.get(stage) ?? lead) + PASS_DRIFT_OVERHEAD * fit.vh + approach;
+    // Full presence at zero clearance, gone one guard INSIDE the dial — the same
+    // shape as the lateral test below, and the reason it has to be that shape
+    // is that `--monument-cap` has already spent the safety margin.
+    //
+    // The cap sizes the statement so its lowest line clears the dial's top by
+    // the validator's own margin at the chapter's settled altitudes. A presence
+    // test that then demanded a further guard of clearance before showing
+    // anything was asking for the margin twice, and the two budgets cancelled:
+    // measured at 28 600 and 30 000 m, the two colossus statements were sized
+    // correctly, positioned correctly and rendered at a tenth of their opacity.
+    //
+    // What is left for this to catch is the APPROACH — a statement hangs 0.18
+    // screens before its own chapter, where the instrument is still on the
+    // previous chapter's rail at the previous chapter's size, and the cap was
+    // never solved against that.
+    // AGAINST THE INSTRUMENT AS DRAWN, not against the conservative one.
+    //
+    // The narrative-only recede below is the right conservative choice for the
+    // lateral yield: there the question is whether a statement standing beside
+    // the dial has lost its room, and answering it against a dial that is never
+    // smaller than the drawn one errs toward yielding. Here the question is
+    // whether a statement standing ABOVE the dial clears its top edge, and the
+    // same substitution errs the other way — it inflates the object by the whole
+    // scene recede (0.55 at `trace`) and no overhead statement can ever clear a
+    // dial half again as large as the one on screen. Measured at 28 600 m: a
+    // statement sized, placed and positioned correctly, rendered at 3%.
+    const drawn = projectedEssentialHeight(fit, metres, liveRecede) / 2;
+    return ease(clamp((fit.vh / 2 - drawn - statementBottom + guard) / guard));
+  }
+
+  // ---------------------------------------------------------------- lateral
+  //
+  // Everywhere else the statement stands BESIDE the instrument, and the
+  // question is the one `statementRoom` budgeted: how much room is there on the
+  // copy's side of the dial, at the height the statement actually occupies.
+  //
+  // ## Why the half-width is taken at the statement's own height
+  //
+  // The dial is a circle. Its bounding box is widest across its centre line,
+  // and the statement is not there — it hangs in the sky band above it, where
+  // the circle has already curved away. `statementRoom` budgets against that
+  // curvature, so a live test that used the bounding box instead would be
+  // comparing two different measurements and would yield a statement that has
+  // not lost any room at all.
+  //
+  // ## Why the fade completes over a fixed distance
+  //
+  // `copyPresence` fades the column over the last tenth of its budget, which is
+  // the right shape for a column: a tenth of a 470px measure is 47px of prose,
+  // and prose that is 47px narrower than it was laid out for reflows rather
+  // than collides.
+  //
+  // A statement does not reflow. A tenth of an 785px display measure is 78px of
+  // the instrument standing in the last word — "emelkedtünk" over the dial at
+  // 11 600 m, at nine tenths opacity, which the check counts as a collision and
+  // so does the eye. So this completes over the guard instead: full presence
+  // while the measure is intact, gone by the time the instrument is one guard
+  // into it, whatever the measure happens to be.
+  const budget = statementOf.get(stage) ?? 0;
+  if (budget <= 0) return copyPresence(stage, metres, recede);
+  const halfHere = (essentialWidthAt(fit, metres, recede) / 2) * Math.sqrt(Math.max(0, 1 - above * above));
+  const centre = railAt(metres);
+  const live = COPY_OF[stage] === 1 ? 1 - centre - halfHere : centre - halfHere;
+  return yieldTo(metres, ease(clamp(((live - budget) * fit.vw + guard) / guard)));
 }
 
 // =============================================================================
@@ -1043,6 +1965,193 @@ function windowOf(id: StageId) {
 
 let panels: HTMLElement[] = [];
 
+
+/**
+ * THE WORD CAP — the largest size at which a statement's longest word still
+ * fits its measure.
+ *
+ * ## The failure this removes
+ *
+ * `overflow-wrap: break-word` is inherited from the panel and is right for
+ * prose: a long compound in a narrow column should break rather than overflow.
+ * Applied to a display line it is a fault, and it looks like one. At 92px in a
+ * 408px measure the opening set as "weboldalak / at építünk." and
+ * "Magasság / ot építünk." — two valid break points, and at that size the line
+ * is read as an image before it is read as words, so a word broken across two
+ * of them reads as a rendering error.
+ *
+ * The old answer was a ceiling per tier, hand-tuned against Hungarian at 1440,
+ * which is a number that is wrong in German, wrong at 1024 and wrong the day
+ * the copy changes. This is the same question asked of the actual glyphs: how
+ * wide is this chapter's longest word in this locale in this face, and what
+ * size makes it fit.
+ *
+ * ## Why it is measured here rather than solved in CSS
+ *
+ * CSS has no way to ask how wide a word is. `min-content` comes close and is
+ * the wrong shape — it sizes the BOX to the longest word, which is a narrower
+ * box, not a smaller face.
+ *
+ * One hidden span, reused for every panel, measured inside the same
+ * read-after-write batch the rest of the pass uses, on resize only.
+ */
+function wordCapOf(title: HTMLElement, probe: HTMLElement, whole: boolean): number {
+  // Text nodes joined with spaces rather than `textContent`, because a
+  // statement is authored as `a` + <br> + <em> + `b` and `textContent`
+  // concatenates across the break: the opening's longest "word" measured as
+  // "építünk.Magasságot", 8.3 em of something nobody will ever have to fit.
+  const words: string[] = [];
+  const walk = document.createTreeWalker(title, NodeFilter.SHOW_TEXT);
+  for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+    for (const w of (n.textContent ?? '').split(/\s+/)) if (w) words.push(w);
+  }
+  if (!words.length) return Infinity;
+
+  const cs = getComputedStyle(title);
+  probe.style.font = `${cs.fontStyle} ${cs.fontWeight} 100px/1 ${cs.fontFamily}`;
+  // TRACKING IN `em`, NOT IN THE PIXELS IT CURRENTLY RESOLVES TO.
+  //
+  // `getComputedStyle().letterSpacing` is an absolute length: `-0.05em` on a
+  // 148px display line comes back as `-7.4px`. Applied to a probe rendering at
+  // 100px that is 7.4 pixels of negative tracking per character on a font that
+  // should be getting 5 — the probe measures the line ~4% narrower than it will
+  // be set, the cap is 4% generous, and a statement authored as one line comes
+  // back as three.
+  //
+  // Converted to `em` it resolves against the probe's own size and the
+  // measurement is scale-free, which is the whole premise of measuring at 100px
+  // and dividing.
+  const tracking = parseFloat(cs.letterSpacing);
+  const size = parseFloat(cs.fontSize) || 1;
+  probe.style.letterSpacing = Number.isFinite(tracking) ? `${tracking / size}em` : 'normal';
+
+  let widest = 0;
+  if (whole) {
+    // A ONE-LINE CHAPTER IS CAPPED BY THE WHOLE LINE, NOT BY ITS LONGEST WORD.
+    //
+    // The two overhead statements are authored as a single full-frame line —
+    // `lines: 1` in the scene table — and for those the question is not "does
+    // the longest word fit", it is "does the sentence fit". A word cap lets the
+    // size run to where the sentence wraps, and the second line then descends
+    // into the instrument the vertical cap was solved to clear.
+    //
+    // ## Measured on the ELEMENT, not on the probe
+    //
+    // The probe is a bare span with the title's font on it, and for a run of
+    // words that is exact. It is not exact for this page's statements, because
+    // three of them carry `data-kinetic` and `kineticType` rewrites those into
+    // per-character spans — real boxes, with their own rounding. Measured at
+    // 1440, the probe said the stratosphere line fitted at 138px and the line
+    // breaker made it three lines.
+    //
+    // `white-space: nowrap` and `scrollWidth` asks the actual element, with
+    // whatever it actually contains, how wide it wants to be on one line. It is
+    // one write and one read inside a batch that is already doing both, and it
+    // is restored before anything else reads the box.
+    // A CLONE, at a known size, off to the side.
+    //
+    // Two things this cannot be. It cannot be the probe span with the text in
+    // it, because `kineticType` rewrites three of these statements into
+    // per-character spans and the probe would measure a string the page does
+    // not contain. And it cannot be `scrollWidth` on the element itself with
+    // `nowrap`: the arrival statement is centred, a centred box overflows in
+    // both directions, and `scrollWidth` reports only the right-hand overflow —
+    // which measured 713px of a 1 272px line and drove the size down to 48px on
+    // one pass and lower on the next, because every measurement fed the one
+    // after it.
+    //
+    // The clone carries the real markup, at 100px, tracked in `em` so the
+    // tracking scales with it, in a `max-content` box where nothing wraps and
+    // nothing is centred.
+    const clone = title.cloneNode(true) as HTMLElement;
+    clone.style.cssText =
+      `position:absolute;left:-9999px;top:0;white-space:nowrap;width:max-content;visibility:hidden;` +
+      `font:${cs.fontStyle} ${cs.fontWeight} 100px/1 ${cs.fontFamily};` +
+      `letter-spacing:${Number.isFinite(tracking) ? `${tracking / size}em` : 'normal'};max-width:none`;
+    // AT THE WIDEST KINETIC STATE, because that is the state the line has to fit.
+    //
+    // Three of these statements carry a `data-kinetic` anchor whose variable
+    // font axes move with altitude — `reserveKinetic` already measures the host
+    // at its widest settings and reserves a `min-height` for it, for exactly the
+    // same reason. A one-line cap solved against the CURRENT axes is a cap the
+    // line clears now and breaks under later, and "later" is a scroll position
+    // rather than an event, so it would look like a rendering fault that comes
+    // and goes.
+    const anchor = clone.querySelector<HTMLElement>(`[${KINETIC_ATTR}]`);
+    const anchorId = anchor?.getAttribute(KINETIC_ATTR) as KineticAnchorId | null;
+    if (anchor && anchorId && anchorId !== 'altitude-readout') {
+      const at = widestSettings(anchorId);
+      anchor.style.fontWeight = String(at.weight);
+      anchor.style.fontStretch = `${at.width}%`;
+      anchor.style.letterSpacing = `${at.tracking}em`;
+    }
+    document.body.appendChild(clone);
+    widest = clone.getBoundingClientRect().width;
+    clone.remove();
+  } else {
+    for (const w of words) {
+      probe.textContent = w;
+      widest = Math.max(widest, probe.getBoundingClientRect().width);
+    }
+  }
+  if (widest <= 0) return Infinity;
+  // The measure the word actually has to fit, read off the box rather than
+  // taken from `--statement-w`.
+  //
+  // They are not the same number and the difference is not a rounding: the
+  // title's box is `--statement-w` less the panel's own inline inset — 64px at
+  // 1440 — because the band adds its own padding back and the title sits inside
+  // that. Solving the cap against the intent rather than against the box made
+  // it 8% generous, which is exactly the margin a word needs to break in.
+  //
+  // Reading it here is not circular: the box is `min(100%, --statement-w)` and
+  // neither term depends on the font size this is about to bound.
+  const measure = title.clientWidth;
+  if (measure <= 0) return Infinity;
+  // A four per cent margin, and it is the line breaker rather than arithmetic.
+  //
+  // The measurement is of a `max-content` box; the real line is laid out by the
+  // breaker into a constrained one, with `text-wrap: pretty` allowed to move a
+  // word rather than leave a bad rag, and with the kinetic per-character spans
+  // rounding at every one of their own edges. A cap that lands exactly on the
+  // computed wrap point wraps anyway about half the time — measured on the
+  // stratosphere statement at 1440, 124px fitted on paper and set as two lines.
+  //
+  // Four per cent of a 124px display line is five pixels of size, and it is the
+  // difference between a statement authored as one line being one line and
+  // being two.
+  return (measure * 96) / widest;
+}
+
+/**
+ * The eyebrow's own height, in CSS pixels, as the monument cap budgets for it.
+ *
+ * A constant rather than a measurement, and deliberately: it is one line of the
+ * data face at a fixed size with a fixed margin under it — the one box on this
+ * page that genuinely does not vary with the locale, the chapter or the
+ * viewport — and measuring it per panel would add a read to a function that is
+ * already careful to do all its writes before all its reads.
+ */
+const EYEBROW_H = 44;
+
+/**
+ * The same descent, for a chapter whose statement hangs directly OVER the
+ * instrument rather than beside it.
+ *
+ * 9svh is 81px, and for a statement standing next to the dial that is exactly
+ * the slow, quiet downward motion the reverse-gravity grammar is for — it moves
+ * through empty sky. For an overhead statement it is 81px walked straight into
+ * the object: the clearance is solved once, at the top of the chapter, and then
+ * spent. Measured on the two summit chapters, the last 20px of a 102px display
+ * line ended on the dial's upper edge at the middle of the chapter.
+ *
+ * A third of the distance. The motion is still there and still downward — which
+ * is what the direction asks the composition to keep — and the clearance holds
+ * for the whole chapter rather than for its first frame. Mirrored in
+ * `styles.css` on `[data-overhead='1']`; the two must agree.
+ */
+const PASS_DRIFT_OVERHEAD = 0.03;
+
 /** The smallest flow band worth compositing into. Below it, the panel flows. */
 const MIN_FLOW_BAND = 120;
 
@@ -1080,6 +2189,237 @@ const MIN_FLOW_BAND = 120;
  * guards are cheap and either alone would do; keeping both means neither file
  * has to know the other is careful.
  */
+/**
+ * The sky band: how far down the frame a chapter's statement hangs, in CSS
+ * pixels.
+ *
+ * The reverse-gravity composition's one position, and it is computed here for
+ * the same reason `entryBudget` is — the stylesheet needs it as a length and
+ * `publishComposition` needs it as a number, and two expressions of one number
+ * is the drift this file warns about in four other places. It is published as
+ * `--sky-band` and the stylesheet reads it back.
+ *
+ * §2 of the direction asks for major copy between 20% and 45% of the viewport.
+ * 18% is the top of that range and the headline occupies the rest of it —
+ * measured at 1440×900 the hero's first line lands at 18% and its last at 39%.
+ *
+ * Bounded in pixels at both ends. 18svh is 152px on a 844-tall phone in
+ * landscape, which is most of the frame, and 259px on a 1440-tall desktop,
+ * which is a void. The floor clears the header's tallest state.
+ *
+ * Quantised to 4px, and for the same reason `entryBudget` quantises: it decides
+ * where a sticky box sits, and a value that changed with a pixel of measurement
+ * noise would step the whole chapter down the frame mid-scroll.
+ */
+export function skyBand(vh: number): number {
+  return Math.round(Math.max(104, Math.min(0.18 * vh, 168)) / 4) * 4;
+}
+
+/**
+ * THE LIFTED DECK — where a chapter's statement hangs, per frame.
+ *
+ * The band above is the general answer and it is right for the three frames
+ * whose statement stands BESIDE the instrument: there the statement's height is
+ * bounded by the column, not by the sky, and 18svh is the top of the 20–45% of
+ * viewport §2 asks major copy to occupy.
+ *
+ * `field` and `arrival` are the two frames whose statement stands ABOVE the
+ * instrument, and there the same 18svh is the difference between a monument and
+ * a headline. The statement's size is capped by the sky between the deck and
+ * the dial's top edge — see `--monument-cap` — and on a 1440×900 at 17 000 m
+ * that sky is 144px with the standard band and 216px with this one. Divided by
+ * two authored lines and the colossus leading, that is 83px against 124px:
+ * the same chapter, the same instrument, the same copy, and the difference
+ * between it reading as a large heading and reading as the scene.
+ *
+ * 0.58 rather than a second constant, so the two bands cannot drift apart: this
+ * is always a fixed proportion of the band everything else on the page uses,
+ * and the floor is the header's tallest state, which no composition may put
+ * copy inside.
+ *
+ * Published per panel by `measureComposition`, so the stylesheet's `--sky-band`
+ * and every calculation here read one number for a given chapter.
+ */
+export function skyBandOf(stage: StageId, vh: number): number {
+  const frame = SCENE[stage]?.frame;
+  if (frame !== 'field' && frame !== 'arrival') return skyBand(vh);
+  return Math.round(Math.max(96, 0.58 * skyBand(vh)) / 4) * 4;
+}
+
+/**
+ * The gap between a chapter's statement and its detail, in CSS pixels.
+ *
+ * One number, here, because three things have to agree about it: the stylesheet
+ * that draws it, the `whole`/`lead` decision that has to know whether the column
+ * fits in a frame, and `--col-h`, which the motion grammar measures the pinned
+ * range against. It is the sum of the lead band's bottom padding, the flow
+ * band's top margin and the flow band's top padding, at the middle of their
+ * clamps — see `.panel__band--flow` in styles.css.
+ */
+const FLOW_GAP = 40;
+
+/**
+ * HOW FAR BELOW ITS STATEMENT A CHAPTER'S DETAIL BEGINS, IN CSS PIXELS.
+ *
+ * This was a `clamp()` in the stylesheet, and it had to move for the same
+ * reason `entryBudget` and `skyBand` did: two things now have to agree about
+ * it. The stylesheet lays the detail out with it, and `contactPass` below
+ * solves the exact scroll position at which that detail reaches the statement —
+ * which is the moment the statement has to have finished dissolving. Two
+ * expressions of one number is the drift this file warns about in five other
+ * places, so there is one, here.
+ *
+ * ## Why a held statement is given more of it
+ *
+ * A `monument` or a `colossus` on a chapter whose detail cannot be pinned is
+ * HELD — see the hold in styles.css — because the chapter is about its
+ * statement and a statement that leaves a third of a screen in leaves four
+ * screens of sky behind it. The hold is authored in screens; the separation
+ * decides when the detail arrives. Authored at 0.34 screens against a hold of
+ * 1.3, the detail reached the statement roughly half a screen before the
+ * statement began to go, and the two were printed through each other:
+ * "Hat terület, egy rendszer." over its own lead paragraph at 3 600 m, and the
+ * same fault at 6 700, 13 400 and 18 400.
+ *
+ * The fix is not to shorten the hold — that is §20's frame going back to being
+ * empty — it is to put the detail where the hold says it should be. So a held
+ * chapter asks for the larger separation, which is also the composition the
+ * direction asks for in as many words: the statement owns the opening frame
+ * outright and the detail enters LOW beneath it.
+ *
+ * Bounded by the room the chapter already has, exactly as the `clamp()` was:
+ * the separation may never make a panel taller, because it is applied from a
+ * measured height and therefore lands one frame after the first paint. A margin
+ * that could extend a panel would make the document one height on the first
+ * frame and another on the second, which on WebKit is a back navigation landing
+ * hundreds of pixels short.
+ */
+/**
+ * THE HOLD, IN SCREENS — the one number the separation is solved against.
+ *
+ * Restated from the stylesheet's `--leave-from`, which is where the gesture is
+ * authored. A `monument` or a `colossus` whose detail cannot be pinned owns its
+ * chapter's opening outright for this long, and the separation below exists to
+ * make that literally true rather than nominally true.
+ */
+const HOLD_SCREENS = 1.3;
+
+/** How far `--pass-drift` walks a statement down its own chapter, as a fraction
+ *  of the frame. Two values because an overhead statement drifts less — see
+ *  `--pass-drift` in styles.css, which is where both are authored. */
+const driftOf = (stage: StageId) => (overheadStatement(stage) ? 0.03 : 0.09) * fit.vh;
+
+export function flowSeparation(
+  stage: StageId,
+  held: boolean,
+  bandTop: number,
+  leadH: number,
+  hangH: number,
+  flowH: number,
+  panelH: number,
+): number {
+  // `clamp(0.5rem, 1.2vh, 1rem)` — the floor, for a chapter with no room at all.
+  const min = Math.max(8, Math.min(0.012 * fit.vh, 16));
+  // What is left of the chapter once the deck, the statement and the detail
+  // itself have taken their share. The 48 is the 3rem tail: a chapter that spent
+  // its last pixel here would end flush against the next one.
+  const room = panelH - skyBandOf(stage, fit.vh) - leadH - flowH - 48;
+  // A chapter that is not held keeps the separation it always had: a third of a
+  // screen, which is the distance over which its statement dissolves.
+  const want = held
+    ? // THE SEPARATION THAT MAKES THE HOLD TRUE.
+      //
+      // Invert `contactPass`. The detail must not reach the statement before the
+      // hold is over, so put it exactly `HOLD_SCREENS` of scroll away — statement
+      // height, deck and drift all included, because all three are between the
+      // two boxes.
+      HOLD_SCREENS * fit.vh - bandTop - leadH + skyBandOf(stage, fit.vh) + hangH + driftOf(stage)
+    : 0.34 * fit.vh;
+  return Math.round(Math.max(min, Math.min(want, Math.max(min, room))));
+}
+
+/**
+ * The chapter progress at which the climbing detail reaches the held statement.
+ *
+ * The one number the hold was missing. Everything in it is already measured:
+ *
+ *   panelTop, in viewport pixels, is `-pass × panelH` — the lead band pins
+ *   exactly when the panel's top would rise above the deck, which is what makes
+ *   `--upcoming` 0.18 screens and is the same identity read backwards.
+ *
+ *   the detail's top is `bandTop + leadH + separation` below the panel's top,
+ *   because it is ordinary flow content under a sticky box that still occupies
+ *   its flow space.
+ *
+ *   the statement's bottom is `skyBand + hangH` down the frame while it is
+ *   pinned, plus whatever `--pass-drift` has walked it down by the end of the
+ *   chapter — taken at its worst, because the collision has to be impossible
+ *   rather than unlikely.
+ *
+ * Setting the two equal and solving for `pass` gives the contact. The stylesheet
+ * takes the statement off the frame by then.
+ *
+ * WHY IT IS PUBLISHED AS WELL AS SOLVED FOR. `flowSeparation` asks for the
+ * separation that would put this at the authored hold, and a chapter whose
+ * detail is taller than its own frame cannot be given it — the separation is
+ * bounded by the room the chapter has, and on the Rapidkert feature and the
+ * capability ladder the bound binds. So the hold is whatever the geometry
+ * actually delivered, reported back rather than assumed: a shorter hold on a
+ * dense chapter is a composition, and a statement printed through its own
+ * detail is not.
+ *
+ * PUBLISHED, BUT IT DRIVES NOTHING THAT HAS A BOX. `--contact` reaches exactly
+ * one declaration — `--leave-from`, an opacity and blur ramp — so a value that
+ * is a frame stale or a few pixels out changes how quickly a statement
+ * dissolves and can never change the height of the document. That is the
+ * property that lets it be measured at all.
+ */
+export function contactPass(
+  stage: StageId,
+  bandTop: number,
+  leadH: number,
+  hangH: number,
+  separation: number,
+  panelH: number,
+): number {
+  if (panelH <= 0) return 1;
+  const detailTop = bandTop + leadH + separation;
+  const statementBottom = skyBandOf(stage, fit.vh) + hangH + driftOf(stage);
+  return (detailTop - statementBottom) / panelH;
+}
+
+/**
+ * Each panel's measured STATEMENT bottom, as an offset from the top of its lead
+ * band — the eyebrow plus the headline, and nothing under them.
+ *
+ * A different number from the band's own height, and much smaller on the
+ * chapters whose lead also carries a line, two calls to action and an
+ * annotation. Both are needed and they answer different questions: the band's
+ * height decides when the sticky range ends, and this decides where the
+ * statement is in the frame.
+ */
+const hangOf = new Map<StageId, number>();
+
+/**
+ * Each panel's measured height, in CSS pixels — `--panel-h`, kept for the one
+ * calculation that needs it outside the stylesheet.
+ *
+ * A chapter's statement is pinned in the sky band only once the chapter's own
+ * top has reached it. Before that the band sits at its natural position inside
+ * a panel whose top is still below the fold, and how far below is exactly
+ * `-pass × panelH`.
+ */
+const panelOf = new Map<StageId, number>();
+
+/**
+ * Each panel's measured lead-band height, kept from the measurement pass.
+ *
+ * `publishComposition` needs it to decide whether a chapter's statement is
+ * clear of the instrument *vertically* — see `leadPresence` — and it runs on a
+ * frame, where it may not measure anything.
+ */
+const leadOf = new Map<StageId, number>();
+
 function entryBudget(vh: number): number {
   const design = Math.max(64, Math.min(0.1 * vh, 96));
   const deck = parseFloat(
@@ -1287,16 +2627,23 @@ function measureHud(root: HTMLElement) {
   // viewport with room to spare this constraint is simply not binding.
   root.style.setProperty('--hud-max-bottom', `${Math.max(8, Math.floor(clear - box.height - 8))}px`);
 
-  if (strip) {
-    // How far the strip may travel from the centre before it meets the inset.
-    // Measured from the rendered box rather than assumed, because the readout's
-    // width is a fact about the locale — a German stage name is not a Hungarian
-    // one — and a travel authored against one of them overshoots on the other.
-    const inset = Math.max(20, Math.min(fit.vw * 0.04, 56));
-    root.style.setProperty('--hud-travel', `${Math.max(0, Math.floor((fit.vw - box.width) / 2 - inset))}px`);
-  } else {
-    root.style.removeProperty('--hud-travel');
-  }
+  // How far the readout may travel from the centre before it meets the inset.
+  //
+  // Measured from the rendered box rather than assumed, because the readout's
+  // width is a fact about the locale — a German stage name is not a Hungarian
+  // one — and a travel authored against one of them overshoots on the other.
+  //
+  // Published for BOTH layouts now, and the reason is the sky band. The stack
+  // used to sit in the bottom-left corner unconditionally, which was safe while
+  // every chapter's copy was a block centred in the middle of the frame: at the
+  // bottom-left there was nothing but sky. The reverse-gravity composition hangs
+  // the copy from the top and lets its detail run down the column, so on the six
+  // chapters whose copy is on the left the readout is now underneath a paragraph
+  // — photographed at 13 317 m, the altitude printed through the Rapidkert
+  // result. The strip already solved this by tracking to the side the copy is
+  // not on; the stack now uses the same measurement and the same property.
+  const inset = Math.max(20, Math.min(fit.vw * 0.04, 56));
+  root.style.setProperty('--hud-travel', `${Math.max(0, Math.floor((fit.vw - box.width) / 2 - inset))}px`);
 }
 
 /**
@@ -1329,7 +2676,30 @@ export function measureComposition(root: HTMLElement = document.documentElement)
   // every rail function below reads `railLimit`, and at zero they all collapse
   // to the centred composition by arithmetic rather than by a second code path.
   railLimit = fit.portrait ? 0 : railBudget(fit);
+
+  // Written HERE, before anything is measured, and that ordering is
+  // load-bearing.
+  //
+  // It used to be written at the end of this function, next to
+  // `data-composition`, which was harmless while the attribute only selected
+  // the copy column's width and side — neither of which the measurement below
+  // reads. It stopped being harmless when the reverse-gravity composition put
+  // the lead band's padding behind the same attribute: on the FIRST measurement
+  // the attribute is not there yet, so the band is measured without its own
+  // padding, and `--lead-h` — which decides where the statement has to have
+  // faded out by — comes back ~67px short on every panel until something
+  // triggers a second pass.
+  //
+  // The measurement is of the composition, so the composition has to be in
+  // force before it is taken.
+  if (railLimit > 0) root.dataset.rails = 'on';
+  else delete root.dataset.rails;
+  root.dataset.composition = fit.portrait ? 'portrait' : 'landscape';
+
   roomOf.clear();
+  statementOf.clear();
+  hangOf.clear();
+  panelOf.clear();
   // Idempotent: the same function references, so repeated measurements do not
   // stack listeners.
   document.addEventListener('scroll', onAnyScroll, true);
@@ -1366,10 +2736,86 @@ export function measureComposition(root: HTMLElement = document.documentElement)
   const measured = panels.map((panel) => ({
     panel,
     leadH: panel.querySelector<HTMLElement>('.panel__band--lead')?.getBoundingClientRect().height ?? 0,
+    // How far down the lead band the STATEMENT ends — the eyebrow plus the
+    // headline, and nothing under it.
+    //
+    // `statementRoom` budgets the display measure against the dial's half-width
+    // *at the height the statement sits at*, and the dial is a circle: the
+    // higher the statement's lowest line, the less of the frame the dial
+    // occupies beside it. Passing the whole band's height instead answered that
+    // question about the wrong box. On the opening the band also carries the
+    // line, two calls to action and an annotation — 345px against the
+    // statement's own 200 — so the measure was solved as though the headline
+    // reached the dial's centre line, where the dial is at its widest and the
+    // gain is exactly zero. Every chapter with anything under its headline was
+    // budgeted the same way.
+    hangH: (() => {
+      const band = panel.querySelector<HTMLElement>('.panel__band--lead');
+      const title = panel.querySelector<HTMLElement>('.panel__title');
+      if (!band || !title) return 0;
+      return title.getBoundingClientRect().bottom - band.getBoundingClientRect().top;
+    })(),
+    // Everything above the statement inside the band — the band's own top
+    // padding and the eyebrow — measured rather than assumed.
+    //
+    // It was a 44px constant, on the argument that an eyebrow is one line of the
+    // data face at a fixed size and does not vary. The line does not; the box
+    // around it does. The band's top padding is a `1.9vh` clamp and the eyebrow
+    // carries a margin, so the real offset is 61px at 900 and the cap was
+    // solved 17px generous — which at the top of the colossus ramp is most of a
+    // line's descender on the instrument.
+    aboveH: (() => {
+      const band = panel.querySelector<HTMLElement>('.panel__band--lead');
+      const title = panel.querySelector<HTMLElement>('.panel__title');
+      if (!band || !title) return EYEBROW_H;
+      return Math.max(0, title.getBoundingClientRect().top - band.getBoundingClientRect().top);
+    })(),
+    // Where the lead band's FLOW POSITION is inside its own panel.
+    //
+    // Not `band.getBoundingClientRect().top`, and the difference is the whole
+    // measurement. The lead band is `position: sticky`, and a sticky box's
+    // client rect is where it is STUCK, not where it lays out — so that reading
+    // is a function of the scroll position at the instant the pass happens to
+    // run. Measured twice on the same viewport it answered 0.197 and 0.397 for
+    // the same chapter, which for a value that decides when a statement
+    // dissolves is not a measurement at all.
+    //
+    // The band is the first child of the inner column and the inner column is
+    // static on every chapter this is consumed by (`data-hang='lead'` — the
+    // `whole` branch is the one that makes the inner sticky, and it publishes no
+    // contact). So its flow top is the inner's content top, which is two boxes
+    // that do lay out: the inner's own offset in the panel, plus its top
+    // padding.
+    //
+    // Bounded, because it is an origin rather than a magnitude: a quarter of the
+    // frame of panel padding is already more than any composition here uses, and
+    // a wrong large value would move the dissolve by a fifth of a chapter.
+    bandTop: (() => {
+      const inner = panel.querySelector<HTMLElement>('.panel__inner');
+      if (!inner) return 0;
+      const pad = parseFloat(getComputedStyle(inner).paddingBlockStart);
+      const top =
+        inner.getBoundingClientRect().top -
+        panel.getBoundingClientRect().top +
+        (Number.isFinite(pad) ? pad : 0);
+      return Math.max(0, Math.min(top, 0.25 * fit.vh));
+    })(),
     flowH: panel.querySelector<HTMLElement>('.panel__band-inner')?.getBoundingClientRect().height ?? 0,
+    // The chapter's real height. Under the rails a panel is no longer
+    // `--share` screens tall — see the air cap in styles.css — so a stylesheet
+    // that derived "one screen, as a fraction of this chapter" from `--share`
+    // would be describing a box that is not there.
+    panelH: panel.getBoundingClientRect().height,
   }));
 
   for (const band of bands) if (band) band.style.removeProperty('display');
+
+  // One probe for every panel's word cap. Created before the loop and removed
+  // after it, so the pass adds one element to the document rather than eleven.
+  const probe = document.createElement('span');
+  probe.style.cssText =
+    'position:absolute;left:-9999px;top:0;white-space:pre;visibility:hidden;pointer-events:none';
+  document.body.appendChild(probe);
 
   const midOf = (stage: StageId | undefined) => {
     const meta = stage ? STAGES.find((s) => s.id === stage) : undefined;
@@ -1406,7 +2852,7 @@ export function measureComposition(root: HTMLElement = document.documentElement)
   // Pass two — window or flow, per panel, against the band it will actually be
   // composed at.
   const decisions: Record<string, unknown> = {};
-  for (const { panel, leadH, flowH } of measured) {
+  for (const { panel, leadH, hangH, aboveH, bandTop, flowH, panelH } of measured) {
     const stage = panel.dataset.stage as StageId | undefined;
     const mid = midOf(stage);
     if (!stage || mid === null) continue;
@@ -1449,18 +2895,270 @@ export function measureComposition(root: HTMLElement = document.documentElement)
     if (room > 0) panel.style.setProperty('--copy-room', `${Math.floor(room)}px`);
     else panel.style.removeProperty('--copy-room');
 
-    // The lead band's own measured height, for the entry cap in the portrait
-    // window — see the note on `.panel__band--lead` in styles.css. Published
-    // here rather than derived in CSS because CSS cannot read the height of a
-    // box in order to position it, and published *per panel* because every
+    // The lead band's own measured height. Two consumers now, and it is
+    // published for both rather than for whichever asked first.
+    //
+    //   portrait   the entry cap in the window composition — see the note on
+    //              `.panel__band--lead` in styles.css.
+    //   landscape  where the sticky band stops being sticky, which is the one
+    //              moment the reverse-gravity grammar cannot author. A band
+    //              runs out of column when its own bottom reaches the bottom of
+    //              the panel, and past that it travels UP with the document
+    //              like any other flow content. `--pinned` subtracts this from
+    //              the chapter to know when that is, so the statement is faded
+    //              out before it can be seen to rise.
+    //
+    // It used to be gated on `fits`, which is portrait-only, so on landscape
+    // nothing was published and the grammar fell back to a 220px guess — one
+    // number for a headline that is two lines in Hungarian and four in German.
+    //
+    // Published here rather than derived in CSS because CSS cannot read the
+    // height of a box in order to position it, and *per panel* because every
     // stage's headline is a different number of lines in every locale.
     //
     // Same lifecycle as `--copy-room` above: a per-stage constant, rewritten
     // only when this function runs, which is after the fonts settle and on
     // every resize. Rounded up so a subpixel measurement can never leave the
     // pair a fraction of a pixel lower than the budget it was capped to.
-    if (fits && leadH > 0) panel.style.setProperty('--lead-h', `${Math.ceil(leadH)}px`);
+    if (leadH > 0) panel.style.setProperty('--lead-h', `${Math.ceil(leadH)}px`);
     else panel.style.removeProperty('--lead-h');
+    leadOf.set(stage, Math.ceil(leadH));
+    hangOf.set(stage, Math.ceil(hangH > 0 ? hangH : leadH));
+    panelOf.set(stage, Math.round(panelH));
+
+    // ------------------------------------------- THE PANEL'S HEIGHT, IN SCREENS
+    //
+    // What `--act-in` and `--act-out` in `styles.css` multiply `--pass` by to
+    // get "how many screens of scroll into this chapter are we". They used to
+    // multiply by `--share`, which is the stage's share of the ALTITUDE CURVE
+    // and only approximately its height: a panel is at least `--share` screens
+    // tall and taller whenever its body says so. Measured on the production
+    // build the two already disagreed by up to 10% on the acts — 1.8 against
+    // 1.98 at the opening — so the departure never quite started at the moment
+    // the frame unpinned, which is the one thing the ramp is written to do.
+    //
+    // The continuity pass made the approximation break outright rather than
+    // merely drift. A passage that stages its structural layer under its frame
+    // is genuinely three to five screens tall against a share of two, so
+    // `pass × share` reported a third of the scroll that had actually
+    // happened and the frame never left at all: the statement was still at
+    // full strength with the reference detail already under it.
+    //
+    // It is the same number `panelOf` already holds, published, and it is a
+    // per-stage constant like `--copy-room` and `--lead-h` beside it — written
+    // when this function runs and not on a scroll frame. Quantised to a
+    // thousandth of a screen, which at 900px is under a pixel of ramp.
+    panel.style.setProperty('--screens', (panelH / fit.vh).toFixed(3));
+
+    // How wide the statement may run — see `statementRoom`. A per-stage
+    // constant like the others, and measured against the height the statement
+    // actually has in this locale at this viewport, because how far above the
+    // dial's centre it sits is the whole of what decides the gain.
+    const statement = railLimit > 0 ? statementRoom(fit, stage) : 0;
+    if (statement > 0) panel.style.setProperty('--statement-w', `${Math.floor(statement)}px`);
+    else panel.style.removeProperty('--statement-w');
+
+    // ------------------------------------------------------- the monument cap
+    //
+    // The vertical half of the frame-wide measure above, and the only thing
+    // standing between a `field` chapter's statement and the dial it hangs over.
+    //
+    // `--hang-room` is the sky between the bottom of the deck and the TOP of the
+    // instrument's essential silhouette, taken at its worst over the chapter's
+    // own altitudes. The stylesheet divides it by the chapter's authored line
+    // count and the tier's leading, which gives the largest size at which every
+    // line of this statement is still clear of the object — solved from the
+    // projection rather than tuned against a screenshot at one viewport.
+    //
+    // Published only for the two frames that need it. Everywhere else the
+    // statement is beside the instrument rather than above it, `copyRoom`
+    // already answers the clearance question, and a vertical cap would be a
+    // second, weaker answer to a question that is already settled.
+    const scene = SCENE[stage];
+    put(panel, '--monument-scale', `${scene.scale}`);
+
+    // The word cap — see `wordCapOf`. Published per panel because the longest
+    // word is a fact about this chapter's copy in this locale, and per
+    // measurement because the measure it has to fit is a fact about this
+    // viewport.
+    const title = panel.querySelector<HTMLElement>('.panel__title');
+    const cap = title && statement > 0 ? wordCapOf(title, probe, scene.lines === 1) : Infinity;
+    if (Number.isFinite(cap)) panel.style.setProperty('--word-cap', `${Math.floor(cap)}px`);
+    else panel.style.removeProperty('--word-cap');
+    put(panel, '--monument-lines', `${scene.lines}`);
+    // The chapter's own deck. Equal to the page's for three of the five frames
+    // and lifted for the two whose statement hangs above the instrument — see
+    // `skyBandOf`. Written per panel so the sticky offset the stylesheet uses
+    // and the clearance every calculation above solves against are one number.
+    put(panel, '--sky-band', `${skyBandOf(stage, fit.vh)}px`);
+    if (overheadStatement(stage)) {
+      const meta = STAGES.find((x) => x.id === stage);
+      let sky = Infinity;
+      if (meta) {
+        // The chapter's SETTLED altitudes, not its full range, and the same
+        // convention `copyRoom` established for the same reason: a stage
+        // boundary is the midpoint of a rail crossing, the statement is being
+        // yielded by `leadPresence` for the whole of it, and charging the
+        // chapter's display size for the frame at its own first metre spends
+        // the entire chapter paying for a state that lasts nine tenths of a
+        // screen and is half-transparent while it does.
+        //
+        // The upper bound stops where the statement does: `--leave-from` on a
+        // field frame begins the fall at two thirds of the pinned range, so
+        // beyond that the statement is going and the clearance stops being a
+        // question. Measured on the system chapter at 1440×900, the two
+        // together are the difference between an 89px cap and a 131px one, on
+        // an instrument that is receding throughout either way.
+        const settle = (meta.to - meta.from) * 0.12;
+        const from = meta.from + settle;
+        const to = meta.from + (meta.to - meta.from) * 0.7 || meta.to;
+        for (let i = 0; i <= 8; i++) {
+          const metres = lerp(from, Math.max(from, to), i / 8);
+          const recede = budgetRecede(fit, metres);
+          const top = fit.vh / 2 - projectedEssentialHeight(fit, metres, recede) / 2;
+          // The same visual safety margin the validator expands the instrument
+          // by before it tests for a collision.
+          const pad = Math.max(8, Math.min(fit.vw, fit.vh) * 0.015);
+          // THE DRIFT IS PART OF THE BUDGET.
+          //
+          // A pinned chapter does not hold still: `--pass-drift` walks it 9svh
+          // — 81px at 900 — down the frame across its own scroll, which is the
+          // slow descent the reverse-gravity grammar is built on. A cap solved
+          // against the statement's position at `--pass: 0` is a cap the
+          // statement clears when it arrives and fails in the middle of the
+          // chapter, which is where it is read.
+          //
+          // Measured at 29 000 m before this term: the stratosphere statement
+          // sat at y 314–403 against a cap solved for 140–229, and the last
+          // 89px of it were on the dial.
+          sky = Math.min(sky, top - pad - skyBandOf(stage, fit.vh) - aboveH - PASS_DRIFT_OVERHEAD * fit.vh);
+        }
+      }
+      // Never below a readable display size, because a chapter whose sky has
+      // closed up is a chapter whose statement should be re-authored rather
+      // than one whose statement should become body text. The floor is the
+      // tier's own `clamp()` minimum, which is what the cap then loses to.
+      put(panel, '--hang-room', `${Math.max(120, Math.floor(Number.isFinite(sky) ? sky : 0))}px`);
+
+      // THE ARRIVAL FLOOR — how far below the statement the closing action has
+      // to start so that it lands under the instrument rather than across it.
+      //
+      // Solved rather than guessed. It was `44svh`, which is right at 1440×900
+      // and wrong at 1920×1080: the dial's projected size depends on the aspect
+      // through `fitDistance`, so its lower edge is at 66% of the frame on one
+      // and 76% on the other, and a constant fraction of the viewport put the
+      // closing line 31px into it on the wider one.
+      //
+      // Measured from the same projection everything else here uses, taken at
+      // the worst case over the chapter, and expressed as the distance from the
+      // bottom of the statement — which is where the flow band actually starts.
+      if (scene.frame === 'arrival' && meta) {
+        let floor = 0;
+        for (let i = 0; i <= 4; i++) {
+          const metres = lerp(meta.from, meta.to, i / 4);
+          const recede = budgetRecede(fit, metres);
+          const pad = Math.max(8, Math.min(fit.vw, fit.vh) * 0.015);
+          floor = Math.max(floor, fit.vh / 2 + projectedEssentialHeight(fit, metres, recede) / 2 + pad);
+        }
+        const from = skyBandOf(stage, fit.vh) + (hangH > 0 ? hangH : leadH);
+        put(panel, '--arrival-gap', `${Math.max(64, Math.ceil(floor - from))}px`);
+      } else {
+        panel.style.removeProperty('--arrival-gap');
+      }
+    } else {
+      panel.style.removeProperty('--hang-room');
+    }
+
+    // The chapter's own height, for the motion grammar. A per-stage constant
+    // like `--copy-room` and `--lead-h`, rewritten only when this function
+    // runs, and quantised to 8px so a subpixel reflow does not rewrite it.
+    if (panelH > 0) panel.style.setProperty('--panel-h', `${Math.round(panelH / 8) * 8}px`);
+    else panel.style.removeProperty('--panel-h');
+
+    // The detail's own height, so the stylesheet can work out how much room
+    // there is above it — see `--flow-room` in styles.css. Published for the
+    // same reason `--lead-h` is: CSS cannot read the height of a box in order
+    // to position another one.
+    if (flowH > 0) panel.style.setProperty('--flow-h', `${Math.ceil(flowH)}px`);
+    else panel.style.removeProperty('--flow-h');
+
+    // ------------------------------------------------------------------ hang
+    //
+    // WHAT DESCENDS: the whole chapter, or only its statement.
+    //
+    // The reverse-gravity composition pins a chapter in the sky band so it can
+    // descend past the visitor instead of rising towards them. That works
+    // perfectly for a chapter that fits in a frame, and it cannot work for one
+    // that does not: a 1 350px case study on a 900px screen has to scroll,
+    // because there is no arrangement of pinned boxes that shows 1 350px of
+    // content in 900px of frame.
+    //
+    // So the fork is measured rather than declared, exactly as `data-fit` is in
+    // portrait, and both sides of it are a composition rather than a success and
+    // a failure:
+    //
+    //   whole  the statement AND its detail are pinned together and descend as
+    //          one composed frame. Nothing inside the chapter moves relative to
+    //          anything else, so nothing can collide. Seven of the eleven.
+    //
+    //   lead   only the statement is pinned. The detail — the capability
+    //          ladder, the marks and the Rapidkert feature, the nine areas, the
+    //          seven checkpoints — travels up through the frame beneath it, and
+    //          the statement dissolves into haze as the detail climbs into the
+    //          band it occupies. Four of the eleven, and they are exactly the
+    //          four dense stages.
+    //
+    // The tail is the room left under the column so a chapter that only just
+    // fits does not sit flush against the bottom edge of the frame. 48px is
+    // half a line of body copy at this scale.
+    //
+    // The closing panel is measured against its own two numbers, and both are
+    // the composition rather than a concession. It hangs 3% of the frame higher
+    // than a chapter title does — it is the whole call to action, not a marker —
+    // and it is allowed to reach the bottom edge, because there is no next
+    // chapter for a tail to separate it from. On a 1440×900 that is the
+    // difference between the arrival being one composed frame and being a
+    // headline whose contact line scrolls up through its own buttons.
+    const last = stage === STAGES[STAGES.length - 1].id;
+    const hangBand = skyBand(fit.vh) - (last ? 0.05 * fit.vh : 0);
+    // No tail on the closing panel: there is no next chapter for one to
+    // separate it from, and the eight pixels it used to reserve were the
+    // difference between the arrival being one composed frame and its contact
+    // line scrolling up through its own buttons.
+    const tail = last ? 0 : 32;
+    const columnH = leadH + FLOW_GAP + flowH;
+    panel.dataset.hang = hangBand + columnH + tail <= fit.vh ? 'whole' : 'lead';
+    if (columnH > 0) panel.style.setProperty('--col-h', `${Math.ceil(columnH)}px`);
+    else panel.style.removeProperty('--col-h');
+
+    // ------------------------------------------------- separation and contact
+    //
+    // Only the `lead` branch has either. On a `whole` chapter the detail is
+    // pinned WITH the statement and never climbs up to meet it, so there is
+    // nothing for a separation to separate and nothing for a contact to be the
+    // moment of — the stylesheet gives that branch the minimum gap and this
+    // publishes nothing, which is what makes the two branches read as two
+    // compositions rather than as one with an exception in it.
+    //
+    // `held` restates the stylesheet's hold selector — a `monument` or a
+    // `colossus` whose detail is not pinned — because the separation and the
+    // hold are two halves of one decision and neither is legible without the
+    // other. See `flowSeparation`.
+    if (panel.dataset.hang === 'lead') {
+      const held = scene.tier === 'monument' || scene.tier === 'colossus';
+      const sep = flowSeparation(stage, held, bandTop, leadH, hangH, flowH, panelH);
+      panel.style.setProperty('--flow-sep', `${sep}px`);
+      // Floored at a twentieth of a chapter so a panel whose detail is already
+      // at the statement — one whose column overruns the frame outright — asks
+      // for a dissolve that starts before its own chapter does. There the
+      // statement is gone almost immediately, which is the honest answer for a
+      // chapter that has no room for it, and it is bounded rather than negative.
+      const contact = Math.max(0.05, contactPass(stage, bandTop, leadH, hangH, sep, panelH));
+      put(panel, '--contact', contact.toFixed(3));
+    } else {
+      panel.style.removeProperty('--flow-sep');
+      panel.style.removeProperty('--contact');
+    }
     decisions[stage] = {
       band: Math.round(band),
       leadH: Math.round(leadH),
@@ -1472,6 +3170,8 @@ export function measureComposition(root: HTMLElement = document.documentElement)
       rail: railOf(stage),
     };
   }
+  probe.remove();
+
   // Kept so a harness can ask *why* a panel composed the way it did instead of
   // reconstructing this arithmetic and comparing two implementations of it.
   lastMeasurement = {
@@ -1484,12 +3184,11 @@ export function measureComposition(root: HTMLElement = document.documentElement)
 
   measureHud(root);
 
-  root.dataset.composition = fit.portrait ? 'portrait' : 'landscape';
-  // Present only while the rails are actually carrying the composition, so the
-  // stylesheet has one hook for "the instrument is off the centre and the copy
-  // owns a side" and cannot get it from a width breakpoint instead.
-  if (railLimit > 0) root.dataset.rails = 'on';
-  else delete root.dataset.rails;
+  // `data-rails` and `data-composition` are set at the top of this function
+  // rather than here — see the note there. `data-rails` is present only while
+  // the rails are actually carrying the composition, so the stylesheet has one
+  // hook for "the instrument is off the centre and the copy owns a side" and
+  // cannot get it from a width breakpoint instead.
   shown.clear();
   publishComposition(root);
 }
@@ -1505,6 +3204,109 @@ export function publishComposition(root: HTMLElement = document.documentElement)
     liveRecede ??
     recedeAt(metres, smoothRange(metres, ALTITUDE_STOPS.thirdRing, ALTITUDE_STOPS.meridian), fit.strength);
 
+  // The altitude, as one number the stylesheet can bind to.
+  //
+  // The atmosphere the visitor climbs through is not all in the shader. Two DOM
+  // layers sit in front of the canvas — the ground haze that has to fall away
+  // and the cold opening that has to widen — and both are pure functions of
+  // this. Publishing the altitude once here rather than giving either of them a
+  // clock of its own is the same arrangement `--rail-x` already uses.
+  //
+  // Quantised to a five-hundredth of the journey: 60 metres, which is below
+  // anything either gradient expresses, and it means the property is rewritten
+  // a few hundred times over 30 000 m rather than sixty times a second.
+  put(root, '--alt', (Math.round((metres / CEILING_M) * 500) / 500).toFixed(3));
+
+  // WHETHER THE INSTRUMENT IS IN THE PICTURE, 0..1.
+  //
+  // Published for three consumers, and the third is the reason it is a
+  // published value rather than a private one.
+  //
+  //   the stylesheet   nothing binds it today, and it is here so that anything
+  //                    which has to compose around the object's presence can
+  //                    read the same number the object does rather than
+  //                    inferring it from the altitude.
+  //   the audit        `scan-journey.mjs` and the report's captures.
+  //   the suite        `six-acts.spec.ts` asserts the appearance budget, and it
+  //                    runs against the PRODUCTION build, where the `__stratos`
+  //                    handle is compiled out on purpose. Without this the only
+  //                    way to ask "is the object in this frame" from outside
+  //                    the renderer is to read pixels back off a WebGL canvas
+  //                    that does not preserve its drawing buffer.
+  //
+  // Quantised to a hundredth, like every other published ramp here, so this is
+  // a comparison on almost every frame and a style write on very few.
+  put(root, '--instrument', instrumentPresenceAt(journey.current).toFixed(2));
+
+  // THE OCCLUSION MASK. §7, §8, §11, §46.
+  //
+  // Four numbers in the study's own reference frame — the housing's projected
+  // centre and its two radii — and one gate. The stylesheet multiplies them by
+  // `--u`, subtracts the monument's own authored origin and cuts the hole; see
+  // the mask rule in `styles.css`.
+  //
+  // Nothing is measured to produce these and nothing is read back off the
+  // canvas (§29). They are the SAME solved state the renderer inverts into a
+  // world transform one function call earlier in the same frame, which is the
+  // whole of §11: the mask cannot drift from the object because there is only
+  // one object to drift from.
+  //
+  // ## The erosion, and why the sign of the error is the design decision
+  //
+  // The measured silhouette is an ellipse to within about 1.5% of its radius
+  // (see `HOUSING_ASPECT`), and the residual has to fall on one side or the
+  // other. Eroding puts it inside the object: a glyph runs a couple of pixels
+  // past the mask edge and is painted over the case's own dark rim, where it
+  // is invisible on an object this dark. Dilating puts it outside: a glyph
+  // stops short and leaves a sliver of sky between the letter and the thing
+  // that is supposed to be covering it, which is §8's "a circle was cut out of
+  // the text" in miniature and on every letter at once.
+  //
+  // 2%, which is under three reference pixels on the largest dial in the proof.
+  //
+  // ## The gate
+  //
+  // Zero unless this position is authored to stand in front of the statement
+  // AND the object is actually being drawn. `AltimeterMeridian` stops drawing
+  // below a presence of 0.05; a mask that outlived it would be a hole in the
+  // words with nothing in front of them.
+  //
+  // OFF is a POSITION and not a zero radius. A radial gradient with no size is
+  // a corner of the specification nothing should be standing on; a gradient
+  // parked ten thousand reference pixels off the frame is an ordinary one whose
+  // every visible pixel is its last colour stop, which is opaque, which is an
+  // unmasked statement. `--occl` carries the intent for the suite and the
+  // probes and drives nothing.
+  const occl = instrumentStateAt(journey.current);
+  const cutting = !!occl && occl.occlusion === 'monument' && occl.presence > INSTRUMENT_CUTOFF;
+  put(root, '--occl', cutting ? '1' : '0');
+  put(root, '--occl-x', cutting ? occl!.maskX.toFixed(1) : '-9999');
+  put(root, '--occl-y', cutting ? occl!.maskY.toFixed(1) : '-9999');
+  put(root, '--occl-rx', cutting ? (occl!.rx * (1 - MASK_EROSION)).toFixed(1) : '1');
+  put(root, '--occl-ry', cutting ? (occl!.ry * (1 - MASK_EROSION)).toFixed(1) : '1');
+
+  // Where a chapter's statement hangs. Published rather than declared in CSS
+  // because `leadPresence` above has to reason about the same number, and two
+  // expressions of one number is the drift this file warns about elsewhere.
+  put(root, '--sky-band', `${skyBand(fit.vh)}px`);
+
+  // LIFT-OFF: 0 to 1 over the first two hundred metres.
+  //
+  // `--alt` is the whole journey, and over the opening screen it barely moves —
+  // deliberately, because the stage map gives the ground stage a full screen of
+  // scroll for 150 vertical metres so that the headline and the first call to
+  // action have room. The consequence is that anything keyed to `--alt` alone is
+  // still at 99% of its ground value after a whole screen of scrolling, and the
+  // direction is explicit that the first half-screen to screen of movement has
+  // to establish that the environment is ascending.
+  //
+  // So the ground haze gets a second, much steeper term. It is still a pure
+  // function of altitude — same rule, same forward/reverse equality — it simply
+  // reads the part of the altitude the opening actually covers. Measured at
+  // 1440×900: the lower air is at 57% of its ground density after one screen of
+  // scroll, against 98% on `--alt` alone.
+  put(root, '--lift', ease(span(metres, 0, 200)).toFixed(2));
+
   if (railLimit > 0) {
     // Where the instrument is, as a percentage of the usable width, and how far
     // between its rails. Neither drives layout — the column's width and side are
@@ -1517,12 +3319,16 @@ export function publishComposition(root: HTMLElement = document.documentElement)
     // this step is a change anyone can see, and above it nothing lags.
     put(root, '--rail-x', `${(Math.round(railAt(metres) * 1000) / 10).toFixed(1)}%`);
     put(root, '--rail-track', (Math.round(railTrack(metres) * 100) / 100).toFixed(2));
-    // The readout's side, when it is a strip: the negation of the copy's, so it
-    // sits where the narrative is not. Nothing reads it in the stack layout,
-    // and writing it there would be a property nobody consumes.
-    if (root.dataset.hud === 'strip') {
-      put(root, '--hud-track', (-Math.round(copyTrack(metres) * 100) / 100).toFixed(2));
-    }
+    // The readout's side: the negation of the copy's, so it sits where the
+    // narrative is not.
+    //
+    // Written for the stack as well as the strip. It used to be strip-only, on
+    // the grounds that nothing consumed it in the stack layout — which was true
+    // until the copy stopped being a block in the middle of the frame and
+    // started hanging from the sky band with its detail running down the
+    // column. Both layouts now track, through the same value and the same
+    // measured travel.
+    put(root, '--hud-track', (-Math.round(copyTrack(metres) * 100) / 100).toFixed(2));
   }
 
   if (!fit.portrait) {
@@ -1532,12 +3338,79 @@ export function publishComposition(root: HTMLElement = document.documentElement)
     for (const panel of panels) {
       const stage = panel.dataset.stage as StageId | undefined;
       if (!stage) continue;
+
+      // How far the visitor is through this chapter, and the whole of the
+      // reverse-gravity motion grammar.
+      //
+      // The lead band is sticky in the sky band, so it cannot travel upward with
+      // the document the way ordinary flow content does. What it does instead is
+      // a pure function of this number: it settles DOWN into legibility over the
+      // first tenth, holds, and then drifts DOWN out of the frame as the visitor
+      // climbs past it. Four states, one value, and the arithmetic is in
+      // `styles.css` next to the boxes it moves — see `--pass`.
+      //
+      // Unclamped, deliberately. `stageProgress` saturates at 0 and 1, which is
+      // right for everything that asks "how far through this stage are we" and
+      // wrong here: a chapter's copy has to know it is at −0.2 — approaching,
+      // not yet arrived, not yet painted — rather than at the same 0 it holds at
+      // the instant it becomes legible. Bounded to ±1 so a panel eight screens
+      // away is not writing a fresh value every frame.
+      //
+      // `journey.target`, not `journey.current`: this positions document content
+      // and document content belongs to the finger. The damped clock drives the
+      // fade below, for the reason §4.1 gives — a fade wants to arrive, a
+      // position wants to be exact.
+      const pass = Math.max(-1, Math.min(1.4, rawProgress(journey.target, stage)));
+      // A two-hundredth of a chapter. The shortest chapter is one screen, so
+      // this is 4.5 CSS pixels of travel at 900px — a third of the finest step
+      // anything downstream of it expresses.
+      put(panel, '--pass', (Math.round(pass * 200) / 200).toFixed(3));
+
+      // Two yields, because the two bands are in different parts of the frame
+      // and only one of them is beside the instrument. The statement hangs in
+      // the sky band above it and holds through a crossing whenever it is
+      // clear of it; the detail runs down the column past it and yields the way
+      // it always did.
       const presence = railLimit > 0 ? copyPresence(stage, metres, recede) : 1;
+      const lead = railLimit > 0 ? leadPresence(stage, metres, recede) : 1;
       put(panel, '--panel-veil', presence.toFixed(2));
+      put(panel, '--lead-veil', lead.toFixed(2));
       // A column nobody can see must not be able to take a click from the frame
       // behind it. A threshold rather than a ramp, because `pointer-events` has
-      // no in-between.
-      put(panel, '--panel-events', presence > 0.5 ? 'auto' : 'none');
+      // no in-between. Taken on the lead band, which is where the calls to
+      // action are.
+      put(panel, '--panel-events', Math.max(presence, lead) > 0.5 ? 'auto' : 'none');
+
+      // THE SAME GATE FOR AN ACT'S FRAME, AND HERE IT IS ABOUT THE KEYBOARD.
+      //
+      // A frame that has faded out is still in the document, and its action is
+      // still in the tab order — so a visitor tabbing through the page can land
+      // on an invisible link between two acts, which is the defect §43's
+      // "maintain keyboard behaviour" is written against. It is also a click
+      // target sitting on top of the act that replaced it.
+      //
+      // The stylesheet's `--act-presence` is the authority on whether a frame
+      // is in the picture, and this is the same arithmetic written once more,
+      // in the one place `--pass` is already being computed. It cannot be done
+      // in CSS: `visibility` and `pointer-events` have no in-between, so a
+      // number cannot drive them, and the frame's presence is a number.
+      if (panel.dataset.actRole === 'peak') {
+        const share = STAGES.find((x) => x.id === stage)?.share ?? 1;
+        const hold = panel.dataset.actDeparts === 'no' ? Math.max(ACT_HOLD, share) : ACT_HOLD;
+        const inRamp = clamp((pass * share + 0.3) / 0.42);
+        const outRamp = clamp((pass * share - (hold - 1)) / 0.32);
+        // Reduced motion has no ramp, so nothing is ever out of the picture on
+        // that path — §44, and the same decision the stylesheet makes for
+        // `--act-presence`. It has to be made here as well because this is
+        // written as an inline custom property and an inline property beats a
+        // media query.
+        const inPicture = prefersReducedMotion() || inRamp * (1 - outRamp) > 0.5;
+        // Pointer only. Focus is deliberately left alone — see the note beside
+        // `.act a` in `styles.css`: an action taken out of the tab order is an
+        // action a keyboard-only visitor can never reach, because tabbing
+        // cannot scroll a hidden element into view.
+        put(panel, '--act-events', inPicture ? 'auto' : 'none');
+      }
     }
     return;
   }
@@ -1607,6 +3480,9 @@ export function clearComposition(root: HTMLElement = document.documentElement) {
   document.removeEventListener('scroll', onAnyScroll, true);
   document.removeEventListener('focusin', onFocusIn);
   root.style.removeProperty('--meridian-gap');
+  root.style.removeProperty('--alt');
+  root.style.removeProperty('--sky-band');
+  root.style.removeProperty('--lift');
   root.style.removeProperty('--rail-x');
   root.style.removeProperty('--rail-track');
   root.style.removeProperty('--hud-max-bottom');
@@ -1617,21 +3493,33 @@ export function clearComposition(root: HTMLElement = document.documentElement) {
   delete root.dataset.hud;
   for (const panel of panels) {
     panel.style.removeProperty('--stage-flow');
+    panel.style.removeProperty('--pass');
+    panel.style.removeProperty('--lead-veil');
     panel.style.removeProperty('--panel-veil');
     panel.style.removeProperty('--panel-events');
     panel.style.removeProperty('--copy-room');
     panel.style.removeProperty('--lead-h');
+    panel.style.removeProperty('--screens');
+    panel.style.removeProperty('--panel-h');
+    panel.style.removeProperty('--col-h');
+    panel.style.removeProperty('--flow-h');
+    panel.style.removeProperty('--statement-w');
     delete panel.dataset.fit;
+    delete panel.dataset.hang;
     delete panel.dataset.dense;
     delete panel.dataset.copy;
   }
   panels = [];
   dense.clear();
+  leadOf.clear();
   roomOf.clear();
   shown.clear();
   railLimit = 0;
   liveRecede = null;
 }
+
+/** The budgeted statement measure per stage, 0..1 of usable width, for the harness. */
+export const statementFraction = (stage: StageId) => statementOf.get(stage) ?? 0;
 
 /** The measured fit, for the debug panel and the validation harness. */
 export const currentFit = () => fit;

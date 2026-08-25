@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>Stratos — Direction D, the three break studies that are decisions</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="direction-d.css">
+<link rel="stylesheet" href="direction-d-scale.css">
+<style>body{background:#000;display:flex;flex-direction:column;align-items:center;}</style>
+</head>
+<body>
+
+<!-- Three rejected line breaks, set by exactly the same two rules as the nine
+     frames and dropped into exactly the same compositions. Only the break
+     changes. Every word is verbatim from messages.ts, including the two
+     breaks that messages.ts itself already carries — which is the point of
+     x1: the split the content layer ships is not the one the frame wants. -->
+
+<!-- x1 · D1 EN on the break messages.ts already carries. Solves to the same
+     137px and the same presence as the chosen break — the type is indifferent.
+     The frame is not: the second line runs to 918px and the air between the
+     statement and the instrument collapses from 178px to 81px. -->
+<section class="frame d1" id="x1" lang="en">
+  <div class="wordmark">STRATOS</div>
+  <img class="instrument" src="assets/instrument-hero.png" alt="">
+  <h1 class="monument"><span>Altitude</span><span>is what we build.<i></i></span></h1>
+  <p class="editorial">First we look at where you stand — then we build the system that takes you higher.</p>
+  <a class="act" href="#">Start the ascent</a>
+</section>
+
+<!-- x2 · D3 HU held-breath break. A long second line is column-bound at
+     166px, and the statement gives up a quarter of its presence to gain a
+     rhetorical pause it does not need. -->
+<section class="frame d3 altitude-field" id="x2" lang="hu">
+  <div class="micro">27 000 m</div>
+  <p class="editorial">Ebben a magasságban a levegő nyolcvan százaléka alattad van.</p>
+  <h1 class="monument"><span>Innen már</span><span>látni a görbületet.<i></i></span></h1>
+</section>
+
+<!-- x3 · D3 DE on two lines. This is the frame the whole locale argument is
+     about: German's best two-line break is column-bound at 132px and holds
+     71% of the Hungarian frame's presence. The third line is what buys it
+     back. -->
+<section class="frame d3 altitude-field" id="x3" lang="de">
+  <div class="micro">27.000 m</div>
+  <p class="editorial">In dieser Höhe liegen achtzig Prozent der Luft unter Ihnen.</p>
+  <h1 class="monument"><span>Von hier aus ist die</span><span>Krümmung zu sehen.<i></i></span></h1>
+</section>
+
+<!-- x4 · D3 EN on the break messages.ts already carries. Reaches the same ink
+     area as the chosen three-line setting — 100.1% against 100.2% — so
+     presence does not decide this one. What decides it is that the second
+     line runs to 96.9% of the field, which is the cramped right edge D3
+     rejected in Hungarian when its fill came down from 0.96 to 0.88. -->
+<section class="frame d3 altitude-field" id="x4" lang="en">
+  <div class="micro">27,000 m</div>
+  <p class="editorial">At this altitude eighty per cent of the air is below you.</p>
+  <h1 class="monument"><span>From here you can</span><span>see the curvature.<i></i></span></h1>
+</section>
+
+</body>
+</html>

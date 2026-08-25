@@ -1,0 +1,124 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "trackScreens": null,
+  "documentScreens": 14.95,
+  "chapterScreens": 10.67,
+  "chapters": [
+    {
+      "stage": "calibration",
+      "level": "master",
+      "screens": 1.27,
+      "px": 1071,
+      "nodes": 16,
+      "leaves": 9,
+      "words": 53,
+      "shareOfJourney": 11.9
+    },
+    {
+      "stage": "initial-ascent",
+      "level": "master",
+      "screens": 0.75,
+      "px": 637,
+      "nodes": 15,
+      "leaves": 8,
+      "words": 72,
+      "shareOfJourney": 7
+    },
+    {
+      "stage": "lower-atmosphere",
+      "level": "master",
+      "screens": 1.55,
+      "px": 1308,
+      "nodes": 31,
+      "leaves": 15,
+      "words": 74,
+      "shareOfJourney": 14.5
+    },
+    {
+      "stage": "cloud-entry",
+      "level": "passage",
+      "screens": 0.6,
+      "px": 505,
+      "nodes": 12,
+      "leaves": 6,
+      "words": 63,
+      "shareOfJourney": 5.6
+    },
+    {
+      "stage": "cloud-breakthrough",
+      "level": "passage",
+      "screens": 0.48,
+      "px": 402,
+      "nodes": 7,
+      "leaves": 4,
+      "words": 31,
+      "shareOfJourney": 4.5
+    },
+    {
+      "stage": "selected-work",
+      "level": "master",
+      "screens": 1.24,
+      "px": 1048,
+      "nodes": 30,
+      "leaves": 21,
+      "words": 64,
+      "shareOfJourney": 11.6
+    },
+    {
+      "stage": "system",
+      "level": "passage",
+      "screens": 1.64,
+      "px": 1387,
+      "nodes": 38,
+      "leaves": 18,
+      "words": 155,
+      "shareOfJourney": 15.4
+    },
+    {
+      "stage": "process",
+      "level": "passage",
+      "screens": 1.17,
+      "px": 984,
+      "nodes": 19,
+      "leaves": 11,
+      "words": 75,
+      "shareOfJourney": 11
+    },
+    {
+      "stage": "stratosphere-transition",
+      "level": "master",
+      "screens": 0.43,
+      "px": 365,
+      "nodes": 9,
+      "leaves": 5,
+      "words": 45,
+      "shareOfJourney": 4
+    },
+    {
+      "stage": "full-stratosphere",
+      "level": "master",
+      "screens": 0.4,
+      "px": 340,
+      "nodes": 7,
+      "leaves": 2,
+      "words": 19,
+      "shareOfJourney": 3.7
+    },
+    {
+      "stage": "destination",
+      "level": "master",
+      "screens": 1.14,
+      "px": 965,
+      "nodes": 54,
+      "leaves": 29,
+      "words": 104,
+      "shareOfJourney": 10.7
+    }
+  ],
+  "tag": "after",
+  "locale": "hu",
+  "composition": "mobile"
+}

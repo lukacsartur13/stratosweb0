@@ -1,0 +1,257 @@
+/* ==========================================================================
+   Claude Design — base.css
+   Element defaults and the typography utility classes that mirror the
+   semantic.typography tokens. Load after reset.css, before components.css.
+   ========================================================================== */
+
+body {
+  background: var(--cd-surface-canvas);
+  color: var(--cd-text-primary);
+  font-family: var(--cd-font-sans);
+  font-size: var(--cd-text-md);
+  font-weight: var(--cd-weight-regular);
+  line-height: var(--cd-leading-relaxed);
+  letter-spacing: var(--cd-tracking-normal);
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   Each class is a token, not a suggestion. If you find yourself overriding
+   font-size on one of these, you want a different class — or the scale is
+   missing a step and that is a system change.
+   -------------------------------------------------------------------------- */
+
+.cd-display,
+.cd-display-lg,
+.cd-display-md,
+.cd-display-sm {
+  font-family: var(--cd-font-serif);
+  font-weight: var(--cd-weight-regular);
+  line-height: var(--cd-leading-tight);
+  letter-spacing: var(--cd-tracking-tight);
+  text-wrap: balance;
+}
+
+.cd-display-lg { font-size: var(--cd-text-display-lg); }
+.cd-display,
+.cd-display-md { font-size: var(--cd-text-display-md); }
+.cd-display-sm { font-size: var(--cd-text-display-sm); }
+
+.cd-h1,
+.cd-h2,
+.cd-h3,
+.cd-h4 {
+  font-family: var(--cd-font-sans);
+  font-weight: var(--cd-weight-semibold);
+  text-wrap: balance;
+}
+
+.cd-h1 {
+  font-size: var(--cd-text-4xl);
+  line-height: var(--cd-leading-tight);
+  letter-spacing: var(--cd-tracking-tight);
+}
+
+.cd-h2 {
+  font-size: var(--cd-text-2xl);
+  line-height: var(--cd-leading-snug);
+  letter-spacing: var(--cd-tracking-tight);
+}
+
+.cd-h3 {
+  font-size: var(--cd-text-lg);
+  line-height: var(--cd-leading-snug);
+}
+
+.cd-h4 {
+  font-size: var(--cd-text-md);
+  line-height: var(--cd-leading-normal);
+}
+
+.cd-body {
+  font-size: var(--cd-text-md);
+  line-height: var(--cd-leading-relaxed);
+}
+
+.cd-body-sm {
+  font-size: var(--cd-text-sm);
+  line-height: var(--cd-leading-normal);
+}
+
+/* Long-form reading. Serif, generous leading, measure capped — 45–75
+   characters is the readable band and 68ch lands in the middle of it. */
+.cd-prose {
+  font-family: var(--cd-font-serif);
+  font-size: var(--cd-text-lg);
+  line-height: var(--cd-leading-loose);
+  max-width: 68ch;
+}
+
+.cd-prose > * + * {
+  margin-block-start: var(--cd-space-5);
+}
+
+.cd-prose h2,
+.cd-prose h3 {
+  font-family: var(--cd-font-sans);
+  font-weight: var(--cd-weight-semibold);
+  line-height: var(--cd-leading-snug);
+  letter-spacing: var(--cd-tracking-tight);
+  margin-block-start: var(--cd-space-10);
+}
+
+.cd-prose h2 { font-size: var(--cd-text-2xl); }
+.cd-prose h3 { font-size: var(--cd-text-lg); }
+
+.cd-label {
+  font-size: var(--cd-text-sm);
+  font-weight: var(--cd-weight-medium);
+  line-height: var(--cd-leading-normal);
+}
+
+.cd-caption {
+  font-size: var(--cd-text-xs);
+  line-height: var(--cd-leading-normal);
+  color: var(--cd-text-secondary);
+}
+
+.cd-eyebrow {
+  font-size: var(--cd-text-2xs);
+  font-weight: var(--cd-weight-medium);
+  line-height: var(--cd-leading-normal);
+  letter-spacing: var(--cd-tracking-widest);
+  text-transform: uppercase;
+  color: var(--cd-text-secondary);
+}
+
+.cd-code,
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--cd-font-mono);
+  font-size: 0.9em;
+  font-variant-ligatures: none;
+}
+
+:not(pre) > code {
+  background: var(--cd-surface-sunken);
+  border: 1px solid var(--cd-border-subtle);
+  border-radius: var(--cd-radius-xs);
+  padding: 0.1em 0.36em;
+  white-space: nowrap;
+}
+
+pre {
+  background: var(--cd-surface-sunken);
+  border: 1px solid var(--cd-border-subtle);
+  border-radius: var(--cd-radius-lg);
+  padding: var(--cd-space-4);
+  overflow-x: auto;
+  font-size: var(--cd-text-sm);
+  line-height: var(--cd-leading-normal);
+}
+
+kbd {
+  background: var(--cd-surface-raised);
+  border: 1px solid var(--cd-border-default);
+  border-block-end-width: 2px;
+  border-radius: var(--cd-radius-xs);
+  padding: 0.1em 0.4em;
+  font-size: 0.85em;
+}
+
+/* Text colour utilities */
+.cd-text-primary   { color: var(--cd-text-primary); }
+.cd-text-secondary { color: var(--cd-text-secondary); }
+.cd-text-tertiary  { color: var(--cd-text-tertiary); }
+.cd-text-accent    { color: var(--cd-text-accent); }
+.cd-text-inverse   { color: var(--cd-text-inverse); }
+.cd-text-success   { color: var(--cd-status-success); }
+.cd-text-warning   { color: var(--cd-status-warning); }
+.cd-text-danger    { color: var(--cd-status-danger); }
+.cd-text-info      { color: var(--cd-status-info); }
+
+/* --------------------------------------------------------------------------
+   Links
+   Underlined by default in prose, because colour alone is not an affordance
+   and is invisible to a large share of readers.
+   -------------------------------------------------------------------------- */
+
+a {
+  color: var(--cd-text-link);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  transition: text-decoration-color var(--cd-duration-fast) var(--cd-ease-standard);
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Links inside navigation and UI chrome are structurally obvious, so they
+   drop the underline until hover. */
+nav a,
+.cd-link-plain {
+  text-decoration: none;
+}
+
+nav a:hover,
+.cd-link-plain:hover {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   Layout primitives
+   -------------------------------------------------------------------------- */
+
+.cd-container {
+  width: 100%;
+  max-width: var(--cd-layout-content-max);
+  margin-inline: auto;
+  padding-inline: var(--cd-layout-gutter);
+}
+
+.cd-container-prose {
+  width: 100%;
+  max-width: var(--cd-layout-prose-max);
+  margin-inline: auto;
+  padding-inline: var(--cd-layout-gutter);
+}
+
+.cd-section {
+  padding-block: var(--cd-space-16);
+}
+
+/* Vertical rhythm: space between siblings, owned by the parent. */
+.cd-stack       { display: flex; flex-direction: column; gap: var(--cd-space-4); }
+.cd-stack-sm    { display: flex; flex-direction: column; gap: var(--cd-space-2); }
+.cd-stack-lg    { display: flex; flex-direction: column; gap: var(--cd-space-8); }
+
+.cd-row {
+  display: flex;
+  align-items: center;
+  gap: var(--cd-space-3);
+  flex-wrap: wrap;
+}
+
+.cd-grid {
+  display: grid;
+  gap: var(--cd-space-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+}
+
+.cd-divider {
+  border: 0;
+  border-block-start: 1px solid var(--cd-border-subtle);
+  margin-block: var(--cd-space-8);
+}
+
+/* Anything wide enough to overflow scrolls inside its own box, so the page
+   body never scrolls sideways. */
+.cd-scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}

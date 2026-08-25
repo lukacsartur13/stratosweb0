@@ -1,0 +1,70 @@
+{
+  "navId": "adhoc.desktop-1440.w2.the-journey-initialises-track-stages-and-the-closing-call-to-action.0",
+  "target": "http://127.0.0.1:4322/index.html",
+  "gotoResolved": true,
+  "gotoError": null,
+  "preceding": {
+    "urlBefore": "about:blank",
+    "contextPages": 1,
+    "openRequests": 0,
+    "navigationsInThisTest": 0,
+    "workerTestsBefore": 1,
+    "workerNavigationsBefore": 1,
+    "precedingTest": "the page never scrolls sideways",
+    "precedingNavigation": "http://127.0.0.1:4322/index.html"
+  },
+  "events": [
+    {
+      "t": 10,
+      "event": "GOTO_CALLED",
+      "state": "GOTO_CALLED",
+      "url": "/index.html",
+      "resolvedTarget": "http://127.0.0.1:4322/index.html",
+      "urlBefore": "about:blank",
+      "waitUntil": "load (default)",
+      "timeout": "inherited from test timeout"
+    },
+    {
+      "t": 23,
+      "event": "REQUEST_STARTED",
+      "state": "REQUEST_STARTED",
+      "url": "http://127.0.0.1:4322/index.html"
+    },
+    {
+      "t": 59,
+      "event": "RESPONSE_EVENT",
+      "state": "RESPONSE_EVENT",
+      "url": "http://127.0.0.1:4322/index.html",
+      "status": 404
+    },
+    {
+      "t": 64,
+      "event": "NAV_COMMITTED",
+      "state": "NAV_COMMITTED",
+      "url": "http://127.0.0.1:4322/index.html"
+    },
+    {
+      "t": 69,
+      "event": "requestfinished(main document)",
+      "url": "http://127.0.0.1:4322/index.html"
+    },
+    {
+      "t": 69,
+      "event": "DOMCONTENTLOADED",
+      "state": "DOMCONTENTLOADED",
+      "url": "http://127.0.0.1:4322/index.html"
+    },
+    {
+      "t": 69,
+      "event": "LOAD",
+      "state": "LOAD",
+      "url": "http://127.0.0.1:4322/index.html"
+    },
+    {
+      "t": 87,
+      "event": "DESTINATION_READY",
+      "state": "DESTINATION_READY",
+      "status": 404
+    }
+  ]
+}

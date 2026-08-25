@@ -1,0 +1,185 @@
+$ npx playwright test --config playwright.full.config.ts
+(cwd: /Users/arturlukacs/stratos-hermetic/subject)
+
+
+Running 165 tests using 1 worker
+
+  ✓    1 [desktop] › experiments/tests/full-ascent.spec.ts:195:3 › the journey renders › loads the scene and the instrument with no console errors (1.9s)
+  ✓    2 [desktop] › experiments/tests/full-ascent.spec.ts:216:3 › the journey renders › the altitude climbs the whole way and reaches exactly 30 000 m (21.1s)
+  ✓    3 [desktop] › experiments/tests/full-ascent.spec.ts:243:3 › the journey renders › the rendered scene changes between every act (19.9s)
+  ✓    4 [desktop] › experiments/tests/full-ascent.spec.ts:271:3 › the journey renders › never scrolls sideways, at any altitude (9.7s)
+  ✓    5 [desktop] › experiments/tests/full-ascent.spec.ts:294:3 › the altitude clock is independent of the render loop › keeps time while the tab is hidden and the canvas is parked (6.2s)
+  ✓    6 [desktop] › experiments/tests/full-ascent.spec.ts:320:3 › the altitude clock is independent of the render loop › reaches the ceiling even if the canvas never renders again (2.4s)
+  ✓    7 [desktop] › experiments/tests/full-ascent.spec.ts:339:3 › the content survives without the canvas › every stage, case study and process step is real HTML (1.8s)
+  ✓    8 [desktop] › experiments/tests/full-ascent.spec.ts:391:3 › the content survives without the canvas › the calls to action are real anchors with real destinations (1.5s)
+  -    9 [desktop] › experiments/tests/full-ascent.spec.ts:416:3 › reduced motion › reads as a document and never downloads the renderer
+  -   10 [desktop] › experiments/tests/full-ascent.spec.ts:448:3 › reduced motion › hides no essential content and keeps every CTA usable
+  ✓   11 [desktop] › experiments/tests/full-ascent.spec.ts:481:3 › capability fallbacks › falls back to the static instrument when WebGL cannot be created (1.4s)
+  ✓   12 [desktop] › experiments/tests/full-ascent.spec.ts:520:3 › the build keeps the renderer lazy › three.js is absent from the eager entry and never preloaded (52ms)
+  ✓   13 [desktop] › experiments/tests/full-ascent.spec.ts:571:3 › the build keeps the renderer lazy › no secrets and no Web3Forms references reached the bundle (45ms)
+  ✓   14 [desktop] › experiments/tests/full-ascent.spec.ts:624:3 › the sticky handoff into the final CTA › the CTA arrives over the scene, with no gap and no footer collision (3.3s)
+  ✓   15 [desktop] › experiments/tests/full-ascent.spec.ts:676:3 › the sticky handoff into the final CTA › scrolling to the very end is not trapped and does not jump (604ms)
+  ✓   16 [desktop] › experiments/tests/full-ascent.spec.ts:714:3 › the sticky handoff into the final CTA › no canvas/text overlap and no viewport overflow at any stage (20.9s)
+  ✓   17 [desktop] › experiments/tests/full-ascent.spec.ts:836:3 › Altimeter Meridian — the instrument › the aperture holds three exact settings and nothing between them drifts (140ms)
+  ✓   18 [desktop] › experiments/tests/full-ascent.spec.ts:864:3 › Altimeter Meridian — the instrument › the iris closes without a gap and opens without one (61ms)
+  ✓   19 [desktop] › experiments/tests/full-ascent.spec.ts:887:3 › Altimeter Meridian — the instrument › the rings lock in order, one at a time, each at its own altitude (61ms)
+  ✓   20 [desktop] › experiments/tests/full-ascent.spec.ts:924:3 › Altimeter Meridian — the instrument › all three rings perform the same lock gesture, and none of them bounces (349ms)
+  ✓   21 [desktop] › experiments/tests/full-ascent.spec.ts:960:3 › Altimeter Meridian — the instrument › the whole instrument state is a pure function of altitude, in both directions (76ms)
+  ✓   22 [desktop] › experiments/tests/full-ascent.spec.ts:989:3 › Altimeter Meridian — the instrument › the six announced stages cover the range and never run backwards (171ms)
+  ✓   23 [desktop] › experiments/tests/full-ascent.spec.ts:1026:3 › the mountain range — the hide boundary and the root transform › the canonical root transform exists at every altitude the range is mounted at (773ms)
+  ✓   24 [desktop] › experiments/tests/full-ascent.spec.ts:1052:3 › the mountain range — the hide boundary and the root transform › just below, exactly at, and just above the hide boundary (45ms)
+  ✓   25 [desktop] › experiments/tests/full-ascent.spec.ts:1077:3 › the mountain range — the hide boundary and the root transform › crossing below 12 000 m introduces no discontinuity (170ms)
+  ✓   26 [desktop] › experiments/tests/full-ascent.spec.ts:1097:3 › the mountain range — the hide boundary and the root transform › reverse re-entry reconstructs the forward transform exactly (40ms)
+  ✓   27 [desktop] › experiments/tests/full-ascent.spec.ts:1120:3 › the mountain range — the hide boundary and the root transform › nothing is drawn while hidden, and nothing is mounted above the unmount threshold (446ms)
+  ✓   28 [desktop] › experiments/tests/full-ascent.spec.ts:1143:3 › the journey stage is a function of altitude alone › 3 000 m resolves the same way from either direction (46ms)
+  ✓   29 [desktop] › experiments/tests/full-ascent.spec.ts:1162:3 › the journey stage is a function of altitude alone › a forward sweep and a reverse sweep agree at every altitude (330ms)
+  ✓   30 [desktop] › experiments/tests/full-ascent.spec.ts:1191:3 › the journey stage is a function of altitude alone › the progress-keyed helper is the altitude rule, not a second copy of it (284ms)
+  ✓   31 [desktop] › experiments/tests/full-ascent.spec.ts:1213:3 › Altimeter Meridian — as the visitor gets it › scrolling down and back up returns the instrument to its 0 m baseline (23.2s)
+  ✓   32 [desktop] › experiments/tests/full-ascent.spec.ts:1246:3 › Altimeter Meridian — as the visitor gets it › the altitude climbs continuously, with no stage boundary that stalls it (36.9s)
+  ✓   33 [desktop] › experiments/tests/full-ascent.spec.ts:1274:3 › Altimeter Meridian — as the visitor gets it › the structural stages are announced in order, and unwound in reverse (25.6s)
+  ✓   34 [desktop] › experiments/tests/full-ascent.spec.ts:1342:3 › Altimeter Meridian — as the visitor gets it › the stage announced at a scroll position does not depend on the direction (2.2m)
+  ✓   35 [desktop] › experiments/tests/full-ascent.spec.ts:1500:3 › evaluation stills › captures every stage of the journey (41.5s)
+  ✓   36 [desktop] › experiments/tests/full-ascent.spec.ts:1526:3 › evaluation stills › captures the no-WebGL fallback (348ms)
+
+  full journey transfer (uncompressed):
+    document + css + app shell : 1419.8 KB
+    lazy 3D chunks             : 281.2 KB
+    altimeter GLB              : 387.6 KB
+    case-study imagery         : 0.0 KB
+
+  ✓   37 [desktop] › experiments/tests/full-ascent.spec.ts:1544:3 › cost › records what each path transfers (2.2s)
+  ✓   38 [mobile-390] › experiments/tests/portrait-journey.spec.ts:182:3 › portrait — the document does its own scrolling › the document is the scroller, untransformed and unsnapped @smoke (512ms)
+  ✓   39 [mobile-390] › experiments/tests/portrait-journey.spec.ts:207:3 › portrait — the document does its own scrolling › no element stands in for the document as a full-page scroller @smoke (386ms)
+  ✓   40 [mobile-390] › experiments/tests/portrait-journey.spec.ts:228:3 › portrait — the document does its own scrolling › nothing moves the scroll position on the page's behalf (3.3s)
+  ✓   41 [mobile-390] › experiments/tests/portrait-journey.spec.ts:277:3 › portrait — the document does its own scrolling › the composition stops when the scroll stops (3.1s)
+  ✓   42 [mobile-390] › experiments/tests/portrait-journey.spec.ts:302:3 › portrait — the document does its own scrolling › the document ends, and nothing takes the scroll back @smoke (4.5s)
+  ✓   43 [mobile-390] › experiments/tests/portrait-journey.spec.ts:335:3 › portrait — the content › every chapter is real HTML, present before any scrolling @smoke (510ms)
+  ✓   44 [mobile-390] › experiments/tests/portrait-journey.spec.ts:387:3 › portrait — the content › no chapter waits for a renderer to exist @smoke (441ms)
+  ✓   45 [mobile-390] › experiments/tests/portrait-journey.spec.ts:405:3 › portrait — the content › the skip link lands on the content @smoke (373ms)
+  ✓   46 [mobile-390] › experiments/tests/portrait-journey.spec.ts:428:3 › portrait — the content › the chapters are in reading order, and every in-page anchor resolves @smoke (396ms)
+  ✓   47 [mobile-390] › experiments/tests/portrait-journey.spec.ts:460:3 › portrait — the content › the first meaningful line of every chapter is near its own top (2.5s)
+  ✓   48 [mobile-390] › experiments/tests/portrait-journey.spec.ts:525:3 › portrait — the content › no chapter contains a tall run of nothing (2.5s)
+  ✓   49 [mobile-390] › experiments/tests/portrait-journey.spec.ts:626:3 › portrait — the content › the closing action is reachable, tappable and last @smoke (2.8s)
+  ✓   50 [mobile-390] › experiments/tests/portrait-journey.spec.ts:655:3 › portrait — the content › the calls to action are real anchors with real destinations @smoke (407ms)
+  ✓   51 [mobile-390] › experiments/tests/portrait-journey.spec.ts:665:3 › portrait — the content › the chapters are announced in reading order, and unwound in reverse (8.9s)
+  ✓   52 [mobile-390] › experiments/tests/portrait-journey.spec.ts:735:3 › portrait — the ascent › starts on the ground, never runs backwards, and arrives at the ceiling (2.1s)
+  ✓   53 [mobile-390] › experiments/tests/portrait-journey.spec.ts:774:3 › portrait — the ascent › the readout is not owned by the renderer (1.4s)
+  ✓   54 [mobile-390] › experiments/tests/portrait-journey.spec.ts:815:3 › portrait — the text arrives › every reveal completes, and nothing is left hidden @smoke (2.5s)
+  ✓   55 [mobile-390] › experiments/tests/portrait-journey.spec.ts:836:3 › portrait — the text arrives › scrolling back up does not un-reveal anything (3.6s)
+  ✓   56 [mobile-390] › experiments/tests/portrait-journey.spec.ts:858:3 › portrait — the text arrives › reduced motion shows everything immediately and moves nothing @smoke (413ms)
+  ✓   57 [mobile-390] › experiments/tests/portrait-journey.spec.ts:904:3 › portrait — the instrument › the real Altimeter loads, and nothing from the desktop scene does (567ms)
+  ✓   58 [mobile-390] › experiments/tests/portrait-journey.spec.ts:937:3 › portrait — the instrument › the instrument cannot change the layout it sits in (1.4s)
+  ✓   59 [mobile-390] › experiments/tests/portrait-journey.spec.ts:967:3 › portrait — the instrument › no WebGL falls back to the drawing, and downloads no renderer @smoke (2.2s)
+  ✓   60 [mobile-390] › experiments/tests/portrait-journey.spec.ts:1009:3 › portrait — the layout holds › the page never scrolls sideways, at any chapter @smoke (3.4s)
+  ✓   61 [mobile-390] › experiments/tests/portrait-journey.spec.ts:1022:3 › portrait — the layout holds › every action is hit-testable where it comes to rest (3.4s)
+  ✓   62 [mobile-390] › experiments/tests/portrait-journey.spec.ts:1067:3 › portrait — the layout holds › a viewport-height change moves no chapter (3.2s)
+  ✓   63 [mobile-390] › experiments/tests/portrait-journey.spec.ts:1096:3 › portrait — the layout holds › a rotation keeps the portrait composition and one context (1.3s)
+  ✓   64 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:182:3 › portrait — the document does its own scrolling › the document is the scroller, untransformed and unsnapped @smoke (650ms)
+  ✓   65 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:207:3 › portrait — the document does its own scrolling › no element stands in for the document as a full-page scroller @smoke (572ms)
+  ✓   66 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:228:3 › portrait — the document does its own scrolling › nothing moves the scroll position on the page's behalf (3.5s)
+  ✓   67 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:277:3 › portrait — the document does its own scrolling › the composition stops when the scroll stops (4.9s)
+  ✓   68 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:302:3 › portrait — the document does its own scrolling › the document ends, and nothing takes the scroll back @smoke (6.3s)
+  ✓   69 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:335:3 › portrait — the content › every chapter is real HTML, present before any scrolling @smoke (671ms)
+  ✓   70 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:387:3 › portrait — the content › no chapter waits for a renderer to exist @smoke (498ms)
+  ✓   71 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:405:3 › portrait — the content › the skip link lands on the content @smoke (526ms)
+  ✓   72 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:428:3 › portrait — the content › the chapters are in reading order, and every in-page anchor resolves @smoke (572ms)
+  ✓   73 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:460:3 › portrait — the content › the first meaningful line of every chapter is near its own top (4.4s)
+  ✓   74 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:525:3 › portrait — the content › no chapter contains a tall run of nothing (4.3s)
+  ✓   75 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:626:3 › portrait — the content › the closing action is reachable, tappable and last @smoke (4.5s)
+  ✓   76 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:655:3 › portrait — the content › the calls to action are real anchors with real destinations @smoke (411ms)
+  ✓   77 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:665:3 › portrait — the content › the chapters are announced in reading order, and unwound in reverse (19.0s)
+  ✓   78 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:735:3 › portrait — the ascent › starts on the ground, never runs backwards, and arrives at the ceiling (2.1s)
+  ✓   79 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:774:3 › portrait — the ascent › the readout is not owned by the renderer (1.3s)
+  ✓   80 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:815:3 › portrait — the text arrives › every reveal completes, and nothing is left hidden @smoke (4.3s)
+  ✓   81 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:836:3 › portrait — the text arrives › scrolling back up does not un-reveal anything (5.4s)
+  ✓   82 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:858:3 › portrait — the text arrives › reduced motion shows everything immediately and moves nothing @smoke (373ms)
+  ✓   83 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:904:3 › portrait — the instrument › the real Altimeter loads, and nothing from the desktop scene does (527ms)
+  ✓   84 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:937:3 › portrait — the instrument › the instrument cannot change the layout it sits in (1.4s)
+  ✓   85 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:967:3 › portrait — the instrument › no WebGL falls back to the drawing, and downloads no renderer @smoke (2.2s)
+  ✓   86 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:1009:3 › portrait — the layout holds › the page never scrolls sideways, at any chapter @smoke (5.2s)
+  ✓   87 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:1022:3 › portrait — the layout holds › every action is hit-testable where it comes to rest (5.2s)
+  ✓   88 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:1067:3 › portrait — the layout holds › a viewport-height change moves no chapter (4.9s)
+  ✓   89 [mobile-landscape] › experiments/tests/portrait-journey.spec.ts:1096:3 › portrait — the layout holds › a rotation keeps the portrait composition and one context (1.3s)
+  ✓   90 [mobile-430] › experiments/tests/portrait-journey.spec.ts:182:3 › portrait — the document does its own scrolling › the document is the scroller, untransformed and unsnapped @smoke (718ms)
+  ✓   91 [mobile-430] › experiments/tests/portrait-journey.spec.ts:207:3 › portrait — the document does its own scrolling › no element stands in for the document as a full-page scroller @smoke (577ms)
+  ✓   92 [mobile-430] › experiments/tests/portrait-journey.spec.ts:302:3 › portrait — the document does its own scrolling › the document ends, and nothing takes the scroll back @smoke (4.5s)
+  ✓   93 [mobile-430] › experiments/tests/portrait-journey.spec.ts:335:3 › portrait — the content › every chapter is real HTML, present before any scrolling @smoke (636ms)
+  ✓   94 [mobile-430] › experiments/tests/portrait-journey.spec.ts:387:3 › portrait — the content › no chapter waits for a renderer to exist @smoke (611ms)
+  ✓   95 [mobile-430] › experiments/tests/portrait-journey.spec.ts:405:3 › portrait — the content › the skip link lands on the content @smoke (553ms)
+  ✓   96 [mobile-430] › experiments/tests/portrait-journey.spec.ts:428:3 › portrait — the content › the chapters are in reading order, and every in-page anchor resolves @smoke (593ms)
+  ✓   97 [mobile-430] › experiments/tests/portrait-journey.spec.ts:626:3 › portrait — the content › the closing action is reachable, tappable and last @smoke (2.9s)
+  ✓   98 [mobile-430] › experiments/tests/portrait-journey.spec.ts:655:3 › portrait — the content › the calls to action are real anchors with real destinations @smoke (702ms)
+  ✓   99 [mobile-430] › experiments/tests/portrait-journey.spec.ts:815:3 › portrait — the text arrives › every reveal completes, and nothing is left hidden @smoke (2.6s)
+  ✓  100 [mobile-430] › experiments/tests/portrait-journey.spec.ts:858:3 › portrait — the text arrives › reduced motion shows everything immediately and moves nothing @smoke (625ms)
+  ✓  101 [mobile-430] › experiments/tests/portrait-journey.spec.ts:967:3 › portrait — the instrument › no WebGL falls back to the drawing, and downloads no renderer @smoke (2.4s)
+  ✓  102 [mobile-430] › experiments/tests/portrait-journey.spec.ts:1009:3 › portrait — the layout holds › the page never scrolls sideways, at any chapter @smoke (3.3s)
+  ✓  103 [mobile-375] › experiments/tests/portrait-journey.spec.ts:182:3 › portrait — the document does its own scrolling › the document is the scroller, untransformed and unsnapped @smoke (791ms)
+  ✓  104 [mobile-375] › experiments/tests/portrait-journey.spec.ts:207:3 › portrait — the document does its own scrolling › no element stands in for the document as a full-page scroller @smoke (564ms)
+  ✓  105 [mobile-375] › experiments/tests/portrait-journey.spec.ts:302:3 › portrait — the document does its own scrolling › the document ends, and nothing takes the scroll back @smoke (4.6s)
+  ✓  106 [mobile-375] › experiments/tests/portrait-journey.spec.ts:335:3 › portrait — the content › every chapter is real HTML, present before any scrolling @smoke (485ms)
+  ✓  107 [mobile-375] › experiments/tests/portrait-journey.spec.ts:387:3 › portrait — the content › no chapter waits for a renderer to exist @smoke (424ms)
+  ✓  108 [mobile-375] › experiments/tests/portrait-journey.spec.ts:405:3 › portrait — the content › the skip link lands on the content @smoke (476ms)
+  ✓  109 [mobile-375] › experiments/tests/portrait-journey.spec.ts:428:3 › portrait — the content › the chapters are in reading order, and every in-page anchor resolves @smoke (512ms)
+  ✓  110 [mobile-375] › experiments/tests/portrait-journey.spec.ts:626:3 › portrait — the content › the closing action is reachable, tappable and last @smoke (2.9s)
+  ✓  111 [mobile-375] › experiments/tests/portrait-journey.spec.ts:655:3 › portrait — the content › the calls to action are real anchors with real destinations @smoke (381ms)
+  ✓  112 [mobile-375] › experiments/tests/portrait-journey.spec.ts:815:3 › portrait — the text arrives › every reveal completes, and nothing is left hidden @smoke (2.5s)
+  ✓  113 [mobile-375] › experiments/tests/portrait-journey.spec.ts:858:3 › portrait — the text arrives › reduced motion shows everything immediately and moves nothing @smoke (414ms)
+  ✓  114 [mobile-375] › experiments/tests/portrait-journey.spec.ts:967:3 › portrait — the instrument › no WebGL falls back to the drawing, and downloads no renderer @smoke (2.2s)
+  ✓  115 [mobile-375] › experiments/tests/portrait-journey.spec.ts:1009:3 › portrait — the layout holds › the page never scrolls sideways, at any chapter @smoke (3.3s)
+  ✓  116 [mobile-360] › experiments/tests/portrait-journey.spec.ts:182:3 › portrait — the document does its own scrolling › the document is the scroller, untransformed and unsnapped @smoke (1.5s)
+  ✓  117 [mobile-360] › experiments/tests/portrait-journey.spec.ts:207:3 › portrait — the document does its own scrolling › no element stands in for the document as a full-page scroller @smoke (2.5s)
+  ✓  118 [mobile-360] › experiments/tests/portrait-journey.spec.ts:302:3 › portrait — the document does its own scrolling › the document ends, and nothing takes the scroll back @smoke (5.5s)
+  ✓  119 [mobile-360] › experiments/tests/portrait-journey.spec.ts:335:3 › portrait — the content › every chapter is real HTML, present before any scrolling @smoke (10.7s)
+  ✓  120 [mobile-360] › experiments/tests/portrait-journey.spec.ts:387:3 › portrait — the content › no chapter waits for a renderer to exist @smoke (437ms)
+  ✓  121 [mobile-360] › experiments/tests/portrait-journey.spec.ts:405:3 › portrait — the content › the skip link lands on the content @smoke (856ms)
+  ✓  122 [mobile-360] › experiments/tests/portrait-journey.spec.ts:428:3 › portrait — the content › the chapters are in reading order, and every in-page anchor resolves @smoke (917ms)
+  ✓  123 [mobile-360] › experiments/tests/portrait-journey.spec.ts:626:3 › portrait — the content › the closing action is reachable, tappable and last @smoke (7.0s)
+  ✓  124 [mobile-360] › experiments/tests/portrait-journey.spec.ts:655:3 › portrait — the content › the calls to action are real anchors with real destinations @smoke (565ms)
+  ✓  125 [mobile-360] › experiments/tests/portrait-journey.spec.ts:815:3 › portrait — the text arrives › every reveal completes, and nothing is left hidden @smoke (7.1s)
+  ✓  126 [mobile-360] › experiments/tests/portrait-journey.spec.ts:858:3 › portrait — the text arrives › reduced motion shows everything immediately and moves nothing @smoke (1.4s)
+  ✓  127 [mobile-360] › experiments/tests/portrait-journey.spec.ts:967:3 › portrait — the instrument › no WebGL falls back to the drawing, and downloads no renderer @smoke (2.3s)
+  ✓  128 [mobile-360] › experiments/tests/portrait-journey.spec.ts:1009:3 › portrait — the layout holds › the page never scrolls sideways, at any chapter @smoke (7.9s)
+  -  129 [reduced-motion] › experiments/tests/full-ascent.spec.ts:195:3 › the journey renders › loads the scene and the instrument with no console errors
+  -  130 [reduced-motion] › experiments/tests/full-ascent.spec.ts:216:3 › the journey renders › the altitude climbs the whole way and reaches exactly 30 000 m
+  -  131 [reduced-motion] › experiments/tests/full-ascent.spec.ts:243:3 › the journey renders › the rendered scene changes between every act
+  -  132 [reduced-motion] › experiments/tests/full-ascent.spec.ts:271:3 › the journey renders › never scrolls sideways, at any altitude
+  -  133 [reduced-motion] › experiments/tests/full-ascent.spec.ts:294:3 › the altitude clock is independent of the render loop › keeps time while the tab is hidden and the canvas is parked
+  -  134 [reduced-motion] › experiments/tests/full-ascent.spec.ts:320:3 › the altitude clock is independent of the render loop › reaches the ceiling even if the canvas never renders again
+  ✓  135 [reduced-motion] › experiments/tests/full-ascent.spec.ts:339:3 › the content survives without the canvas › every stage, case study and process step is real HTML (253ms)
+  ✓  136 [reduced-motion] › experiments/tests/full-ascent.spec.ts:391:3 › the content survives without the canvas › the calls to action are real anchors with real destinations (193ms)
+  ✓  137 [reduced-motion] › experiments/tests/full-ascent.spec.ts:416:3 › reduced motion › reads as a document and never downloads the renderer (1.7s)
+  ✓  138 [reduced-motion] › experiments/tests/full-ascent.spec.ts:448:3 › reduced motion › hides no essential content and keeps every CTA usable (185ms)
+  -  139 [reduced-motion] › experiments/tests/full-ascent.spec.ts:481:3 › capability fallbacks › falls back to the static instrument when WebGL cannot be created
+  -  140 [reduced-motion] › experiments/tests/full-ascent.spec.ts:520:3 › the build keeps the renderer lazy › three.js is absent from the eager entry and never preloaded
+  -  141 [reduced-motion] › experiments/tests/full-ascent.spec.ts:571:3 › the build keeps the renderer lazy › no secrets and no Web3Forms references reached the bundle
+  -  142 [reduced-motion] › experiments/tests/full-ascent.spec.ts:624:3 › the sticky handoff into the final CTA › the CTA arrives over the scene, with no gap and no footer collision
+  -  143 [reduced-motion] › experiments/tests/full-ascent.spec.ts:676:3 › the sticky handoff into the final CTA › scrolling to the very end is not trapped and does not jump
+  -  144 [reduced-motion] › experiments/tests/full-ascent.spec.ts:714:3 › the sticky handoff into the final CTA › no canvas/text overlap and no viewport overflow at any stage
+  -  145 [reduced-motion] › experiments/tests/full-ascent.spec.ts:836:3 › Altimeter Meridian — the instrument › the aperture holds three exact settings and nothing between them drifts
+  -  146 [reduced-motion] › experiments/tests/full-ascent.spec.ts:864:3 › Altimeter Meridian — the instrument › the iris closes without a gap and opens without one
+  -  147 [reduced-motion] › experiments/tests/full-ascent.spec.ts:887:3 › Altimeter Meridian — the instrument › the rings lock in order, one at a time, each at its own altitude
+  -  148 [reduced-motion] › experiments/tests/full-ascent.spec.ts:924:3 › Altimeter Meridian — the instrument › all three rings perform the same lock gesture, and none of them bounces
+  -  149 [reduced-motion] › experiments/tests/full-ascent.spec.ts:960:3 › Altimeter Meridian — the instrument › the whole instrument state is a pure function of altitude, in both directions
+  -  150 [reduced-motion] › experiments/tests/full-ascent.spec.ts:989:3 › Altimeter Meridian — the instrument › the six announced stages cover the range and never run backwards
+  -  151 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1026:3 › the mountain range — the hide boundary and the root transform › the canonical root transform exists at every altitude the range is mounted at
+  -  152 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1052:3 › the mountain range — the hide boundary and the root transform › just below, exactly at, and just above the hide boundary
+  -  153 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1077:3 › the mountain range — the hide boundary and the root transform › crossing below 12 000 m introduces no discontinuity
+  -  154 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1097:3 › the mountain range — the hide boundary and the root transform › reverse re-entry reconstructs the forward transform exactly
+  -  155 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1120:3 › the mountain range — the hide boundary and the root transform › nothing is drawn while hidden, and nothing is mounted above the unmount threshold
+  -  156 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1143:3 › the journey stage is a function of altitude alone › 3 000 m resolves the same way from either direction
+  -  157 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1162:3 › the journey stage is a function of altitude alone › a forward sweep and a reverse sweep agree at every altitude
+  -  158 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1191:3 › the journey stage is a function of altitude alone › the progress-keyed helper is the altitude rule, not a second copy of it
+  -  159 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1213:3 › Altimeter Meridian — as the visitor gets it › scrolling down and back up returns the instrument to its 0 m baseline
+  -  160 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1246:3 › Altimeter Meridian — as the visitor gets it › the altitude climbs continuously, with no stage boundary that stalls it
+  -  161 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1274:3 › Altimeter Meridian — as the visitor gets it › the structural stages are announced in order, and unwound in reverse
+  -  162 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1342:3 › Altimeter Meridian — as the visitor gets it › the stage announced at a scroll position does not depend on the direction
+  ✓  163 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1500:3 › evaluation stills › captures every stage of the journey (725ms)
+  -  164 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1526:3 › evaluation stills › captures the no-WebGL fallback
+  -  165 [reduced-motion] › experiments/tests/full-ascent.spec.ts:1544:3 › cost › records what each path transfers
+
+  Slow test file: [desktop] › experiments/tests/full-ascent.spec.ts (6.0m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  34 skipped
+  131 passed (10.0m)
+
+[exit 0] 597.5s

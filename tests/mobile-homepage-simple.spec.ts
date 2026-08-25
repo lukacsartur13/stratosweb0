@@ -1,5 +1,15 @@
 import { test, expect, type Page } from '@playwright/test';
 import { enableReducedMotion } from './helpers/reduced-motion';
+import { bootJourneyOnLoad } from './helpers/homepage';
+
+// The homepage waits for a first move before it mounts the journey — see
+// `bootJourneyOnLoad`. Every navigation in this file gets one, on every
+// document it loads, so what these tests assert about is a page a visitor is
+// reading rather than one they have only landed on.
+test.beforeEach(async ({ page }) => {
+  await bootJourneyOnLoad(page);
+});
+
 
 /**
  * The simplified portrait homepage — architecture, not pixels.
@@ -86,23 +96,71 @@ async function ready(page: Page) {
  * ends when the document says it has ended rather than when a number captured
  * beforehand says so.
  *
- * `REVEAL_LINE` is `mobile/reveal.ts`'s `rootMargin: '0px 0px -12% 0px'`
- * expressed the way a test can check it. Only elements whose *bottom* has
- * cleared the line are required to have arrived — one straddling it is
- * genuinely ambiguous, and demanding it would be asserting a rounding mode.
+ * THERE ARE TWO REVEAL LINES, and the difference is the reverse-gravity
+ * composition rather than an implementation detail this helper could ignore.
+ *
+ * `BODY_LINE` is `mobile/reveal.ts`'s `ROOT_MARGIN: '0px 0px -12% 0px'`: body
+ * copy, list items and the marks rail arrive as they enter the reading area,
+ * which is where they always arrived.
+ *
+ * `HEAD_LINE` is its `HEAD_MARGIN: '0px 0px -46% 0px'`, and it applies to a
+ * chapter marker — the `.mv-head` box holding the altitude label and the
+ * statement. A marker is not painted at all while it is in the lower half of
+ * the frame, so that it is never seen to climb into place from the bottom edge;
+ * it is revealed once it has reached the upper half and then settles DOWN into
+ * position. Checking a marker against the body line asserts the opposite of
+ * what the page is built to do, and it is what this helper did before the
+ * change: it waited twenty seconds for a headline that is deliberately not
+ * there yet.
+ *
+ * Each line is checked against the edge that decides it. A body element counts
+ * once its *bottom* has cleared the line it is revealed at; a marker counts
+ * once its *top* has, because that is the edge its own observer measures. In
+ * both cases something straddling the line is genuinely ambiguous, and
+ * demanding it would be asserting a rounding mode.
  */
 async function revealed(page: Page) {
-  const REVEAL_LINE = 0.88; // 1 - 12%, from ROOT_MARGIN in mobile/reveal.ts
+  const BODY_LINE = 0.88; // 1 - 12%, from ROOT_MARGIN in mobile/reveal.ts
+  const HEAD_LINE = 0.54; // 1 - 46%, from HEAD_MARGIN in mobile/reveal.ts
 
   const settledAbove = () =>
     page.waitForFunction(
-      (line) => {
-        const due = [...document.querySelectorAll('.mv-text, .mv-copy, .mv-lines')].filter(
-          (el) => el.getBoundingClientRect().bottom <= innerHeight * line,
-        );
+      ([body, head]) => {
+        const due = [...document.querySelectorAll('.mv-text, .mv-copy, .mv-lines')].filter((el) => {
+          const marker = el.closest('.mv-head');
+          if (!marker) return el.getBoundingClientRect().bottom <= innerHeight * body;
+          // The marker is what is observed, so the marker's box is what decides
+          // — and it decides on the observer's own terms. An IntersectionObserver
+          // with a shrunken root and `threshold: 0.08` does not fire the instant
+          // the top edge touches the line; it fires once eight per cent of the
+          // box is inside. Asserting on the edge alone demands the reveal one
+          // step of the scroll walk before the observer can possibly have given
+          // it, which is a race the test wins on Chromium and loses on WebKit.
+          const box = marker.getBoundingClientRect();
+          if (box.bottom <= 0) {
+            // Above the frame entirely, and this walk is not the place to
+            // insist on it.
+            //
+            // An `IntersectionObserver` reports crossings. This loop jumps four
+            // fifths of a screen at a time and WebKit coalesces deliveries, so a
+            // marker can be below the line on one sampled frame and off the top
+            // on the next, having crossed nothing either observer was watching
+            // for. `reveal.ts` resolves it on the next callback either way — but
+            // the next callback needs a scroll, and this assertion runs with the
+            // page held still, so demanding it here is a deadlock the walk
+            // cannot break out of. Measured: one run in three on WebKit, a
+            // different marker each time.
+            //
+            // Nothing is given up. The unconditional assertion after the loop
+            // still requires EVERY reveal to have completed, and it is the one
+            // the callers depend on.
+            return false;
+          }
+          return box.top + 0.08 * box.height <= innerHeight * head;
+        });
         return due.every((el) => el.classList.contains('is-in'));
       },
-      REVEAL_LINE,
+      [BODY_LINE, HEAD_LINE],
       { timeout: 20_000 },
     );
 
@@ -1191,7 +1249,7 @@ test.describe('portrait mobile — the 3D instrument', () => {
     expect((await draws(page)) - before).toBe(0);
   });
 
-  test('the instrument is still there, still reading, and never on the readout', async ({ page }) => {
+  test('the instrument follows the appearance budget, and never sits on the readout', async ({ page }) => {
     await page.goto('/');
     if (!(await mounted(page))) test.skip(true, 'desktop composition');
     await ready(page);
@@ -1230,7 +1288,28 @@ test.describe('portrait mobile — the 3D instrument', () => {
      * Together those are the review's requirement in its own words: at no point
      * in the primary journey is the reaction "where did the Altimeter go?".
      */
-    const authored = new Set(['hero', 'ascent', 'capabilities', 'summit', 'work', 'process', 'arrival']);
+    const authored = new Set(['hero', 'absent', 'ascent', 'capabilities', 'summit', 'work', 'process', 'arrival']);
+    /**
+     * WHICH CHAPTERS HAVE THE OBJECT IN THEM, AND WHICH DO NOT.
+     *
+     * THIS CONTRACT IS REPLACED RATHER THAN WEAKENED. What it asserted was that
+     * at no point in the journey is the reaction "where did the Altimeter go?"
+     * — the instrument on screen, above 0.4 opacity, at every one of eleven
+     * stops. That was the accepted requirement for the design this replaces,
+     * and §33 of the production brief overturns it in as many words: the brand
+     * cannot be a rare luxury instrument on a desktop and a dial permanently
+     * floating over every screen on a phone. The desktop budgets two
+     * appearances in seven frames; the phone now budgets two in eleven
+     * chapters, and they are the same two acts.
+     *
+     * So the walk still visits every section and still asks four questions at
+     * each stop — it asks a stricter version of the first one. "Present
+     * everywhere" is one bit of information; "present in exactly these two
+     * chapters and genuinely absent in the other nine" is eleven, and a design
+     * that drifted back to a persistent overlay fails it on the first stop that
+     * should have been empty.
+     */
+    const PRESENT = new Set(['calibration', 'full-stratosphere']);
     const stages = await page.$$eval('[data-stage]', (els) => els.map((el) => el.getAttribute('data-stage')!));
     expect(stages.length).toBeGreaterThan(8);
 
@@ -1256,11 +1335,21 @@ test.describe('portrait mobile — the 3D instrument', () => {
       const opacity = await stage.evaluate((el) => Number(getComputedStyle(el).opacity));
       const viewport = page.viewportSize()!;
 
-      expect(box, `${id} has the instrument on screen`).not.toBeNull();
-      expect(box!.width, `${id} instrument width`).toBeGreaterThan(60);
-      expect(box!.y + box!.height, `${id} instrument top edge`).toBeGreaterThan(0);
-      expect(box!.y, `${id} instrument bottom edge`).toBeLessThan(viewport.height);
-      expect(opacity, `${id} instrument opacity`).toBeGreaterThan(0.4);
+      if (PRESENT.has(id)) {
+        // The two acts that have it: on screen, at a real size, at a real
+        // opacity. Unchanged from what this asserted everywhere.
+        expect(box, `${id} has the instrument on screen`).not.toBeNull();
+        expect(box!.width, `${id} instrument width`).toBeGreaterThan(60);
+        expect(box!.y + box!.height, `${id} instrument top edge`).toBeGreaterThan(0);
+        expect(box!.y, `${id} instrument bottom edge`).toBeLessThan(viewport.height);
+        expect(opacity, `${id} instrument opacity`).toBeGreaterThan(0.4);
+      } else {
+        // The nine that do not. Absent means it contributes no pixels — not
+        // that it is small, and not that it is faint enough to look
+        // deliberate. §32: do not force an appearance because the old scene
+        // system expects one.
+        expect(opacity, `${id} must not carry the instrument`).toBeLessThan(0.05);
+      }
 
       /**
        * The page's two fixed objects, authored not to touch — in the DOCKED
@@ -1283,7 +1372,7 @@ test.describe('portrait mobile — the 3D instrument', () => {
        * clearance there would be asserting against the composition rather than
        * against this change.
        */
-      if (state !== 'hero') {
+      if (state !== 'hero' && PRESENT.has(id)) {
         const clash = await page.evaluate(() => {
           const instrument = document.querySelector('.mv-alt__stage')!.getBoundingClientRect();
           const rule = document.querySelector('.mv-telemetry__rule')!.getBoundingClientRect();

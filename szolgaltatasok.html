@@ -378,10 +378,132 @@
     </div>
   </section>
 
+  <!-- ============================================ a folyamat -->
+  <!-- A folyamat, teljes részletességgel. Phase 4 · content compression: ez a
+       hét ellenőrzőpont a főoldal leghosszabb fejezete volt — 5,6 képernyő —,
+       és a főoldalnak nem dokumentálnia kell a működési modellt, hanem
+       bemutatnia. A mondatok változatlanul kerültek ide; a főoldal a hét nevet,
+       három elvet és egy linket tart meg.
+
+       Nem új útvonal: ez az oldal már leírja, mi a négy szolgáltatás és hogyan
+       születik az ajánlat — a 04-es szakasz épp az "Indulás vagy nem"-mel zárul,
+       ahonnan a 01-es ellenőrzőpont indul. Az `id="folyamat"` a főoldali link
+       célpontja, és mindhárom nyelven ugyanaz.
+
+       Lásd: _build/reports/luxury-art-direction/07-process-editorialization.md
+       és a hiánytalanságot ellenőrző scripts/process-inventory.mjs. -->
+  <section class="band" id="folyamat">
+    <div class="wrap">
+      <p class="smark"><span class="smark__n" aria-hidden="true">05</span><span class="smark__t">A folyamat</span></p>
+      <div class="grid g-split" style="margin-bottom:clamp(1.5rem,4vw,2.5rem)">
+        <div>
+          <h2 class="display h-md" style="max-width:16ch">Hogyan dolgozunk egy projekten?</h2>
+        </div>
+        <p class="prose" style="align-self:end">
+          Minden ponton tudod, mi történik, mit kapsz tőlünk, mit várunk tőled, és mi lesz az eredménye.
+        </p>
+      </div>
+
+      <div class="steps">
+        <article class="step step--proc" data-reveal>
+          <h3>Felderítés</h3>
+          <dl class="proc">
+            <dt>Mi történik</dt>
+            <dd>Egy beszélgetés arról, hol tart a vállalkozás, és mi az, ami valóban akadályozza.</dd>
+            <dt>Amit átadunk</dt>
+            <dd>Írásos helyzetkép és egy őszinte válasz arra, hogy tudunk-e segíteni.</dd>
+            <dt>Amit tőled kérünk</dt>
+            <dd>Hozzáférést a jelenlegi számokhoz és időt egy alapos beszélgetésre.</dd>
+            <dt>Várható eredmény</dt>
+            <dd>Közös kép a kiindulási pontról — vagy egy korrekt nem.</dd>
+          </dl>
+        </article>
+        <article class="step step--proc" data-reveal>
+          <h3>Kutatás</h3>
+          <dl class="proc">
+            <dt>Mi történik</dt>
+            <dd>Versenytárs- és keresési elemzés, a jelenlegi felületek technikai átvizsgálása.</dd>
+            <dt>Amit átadunk</dt>
+            <dd>Kutatási összefoglaló: kereslet, versenyhelyzet, technikai hiányosságok.</dd>
+            <dt>Amit tőled kérünk</dt>
+            <dd>Belső ismeretet az ügyfelekről, amit adat nem mutat meg.</dd>
+            <dt>Várható eredmény</dt>
+            <dd>Tényeken alapuló alap a stratégiához.</dd>
+          </dl>
+        </article>
+        <article class="step step--proc" data-reveal>
+          <h3>Stratégia</h3>
+          <dl class="proc">
+            <dt>Mi történik</dt>
+            <dd>Eldöntjük a pozicionálást, az üzeneteket és a csatornák sorrendjét.</dd>
+            <dt>Amit átadunk</dt>
+            <dd>Stratégiai dokumentum mérhető célokkal és ütemezéssel.</dd>
+            <dt>Amit tőled kérünk</dt>
+            <dd>Döntést. Ez az a pont, ahol a legtöbb múlik rajtad.</dd>
+            <dt>Várható eredmény</dt>
+            <dd>Egy irány, amelyhez minden későbbi döntés mérhető.</dd>
+          </dl>
+        </article>
+        <article class="step step--proc" data-reveal>
+          <h3>Tervezés</h3>
+          <dl class="proc">
+            <dt>Mi történik</dt>
+            <dd>Arculat és felületi tervek készülnek, valós tartalommal, nem kitöltő szöveggel.</dd>
+            <dt>Amit átadunk</dt>
+            <dd>Jóváhagyható dizájnterv minden fontos nézetre.</dd>
+            <dt>Amit tőled kérünk</dt>
+            <dd>Visszajelzést egy körben, összegyűjtve.</dd>
+            <dt>Várható eredmény</dt>
+            <dd>Jóváhagyott terv, amiből egyértelmű, mi épül.</dd>
+          </dl>
+        </article>
+        <article class="step step--proc" data-reveal>
+          <h3>Fejlesztés</h3>
+          <dl class="proc">
+            <dt>Mi történik</dt>
+            <dd>Megépítjük. Menet közben látod, nem a végén.</dd>
+            <dt>Amit átadunk</dt>
+            <dd>Működő oldal tesztkörnyezetben, mérésekkel felszerelve.</dd>
+            <dt>Amit tőled kérünk</dt>
+            <dd>Tartalmat és a hozzáféréseket.</dd>
+            <dt>Várható eredmény</dt>
+            <dd>Élesíthető rendszer, nem bemutató.</dd>
+          </dl>
+        </article>
+        <article class="step step--proc" data-reveal>
+          <h3>Élesítés</h3>
+          <dl class="proc">
+            <dt>Mi történik</dt>
+            <dd>Élesítés, átirányítások, mérés ellenőrzése, hirdetések indítása.</dd>
+            <dt>Amit átadunk</dt>
+            <dd>Élő rendszer és átadási dokumentáció.</dd>
+            <dt>Amit tőled kérünk</dt>
+            <dd>Jóváhagyást az indulásra.</dd>
+            <dt>Várható eredmény</dt>
+            <dd>A rendszer működik és mér.</dd>
+          </dl>
+        </article>
+        <article class="step step--proc" data-reveal>
+          <h3>Optimalizálás</h3>
+          <dl class="proc">
+            <dt>Mi történik</dt>
+            <dd>Havonta: mérés, elemzés, módosítás. Ez nem projektzárás, hanem üzemeltetés.</dd>
+            <dt>Amit átadunk</dt>
+            <dd>Havi riport és a végrehajtott módosítások listája.</dd>
+            <dt>Amit tőled kérünk</dt>
+            <dd>Visszajelzést arról, milyen megkeresések érkeznek.</dd>
+            <dt>Várható eredmény</dt>
+            <dd>Rendszer, amely idővel jobb lesz, nem elavul.</dd>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================================ képességek -->
   <section class="band band--tight">
     <div class="wrap">
-      <p class="smark"><span class="smark__n" aria-hidden="true">05</span><span class="smark__t">Amit be tudunk vállalni</span></p>
+      <p class="smark"><span class="smark__n" aria-hidden="true">06</span><span class="smark__t">Amit be tudunk vállalni</span></p>
       <div class="grid g-split">
         <div>
           <h2 class="display h-sm" style="max-width:18ch">A négy szolgáltatás mögötti képességek</h2>
@@ -402,6 +524,55 @@
             <li>Mérés és riportálás: mi hozott megkeresést, és mi nem.</li>
             <li>Automatizálás és integráció ott, ahol valódi kézi munkát vált ki.</li>
           </ul>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           A KILENC TERÜLET, HÁROM RÉTEGBEN — a főoldal rendszerfejezetének
+           részlete, phase 5.1.
+
+           A főoldal rendszerfejezete három egymás utáni magyarázó állapotból
+           egyetlen komponált ütemre rövidült: ott a három réteg, a három
+           indoklás és a kilenc terület NEVE marad, a kilenc mondat pedig
+           ide költözött — szó szerint, mindhárom nyelven. Négy közülük
+           amúgy is azt ismételte, amit a főoldal III. felvonása nyolc
+           képernyővel korábban már kimond.
+
+           A `scripts/system-inventory.mjs` mind a huszonnyolc eredeti
+           egységet ellenőrzi, és hibával áll le, ha bármelyik nincs ott,
+           ahová a besorolása szerint került.
+           ============================================================ -->
+      <div class="svc__system">
+        <h3 class="display h-sm" style="max-width:18ch">Kilenc terület, három rétegben</h3>
+        <p class="note" style="margin-top:1.2rem;margin-bottom:clamp(1.6rem,4vw,2.4rem)">
+          A sorrend a lényeg, nem az, hogy kilenc van belőle.
+        </p>
+        <div class="svc__layer">
+          <h3 class="display h-sm">Mag</h3>
+          <p class="note">Ez dönti el a többit. Enélkül minden alatta lévő döntés találgatás.</p>
+          <dl class="caps">
+            <div><dt>Kutatás</dt><dd>Piac, versenytársak, keresési szándék. Mielőtt bármit építenénk.</dd></div>
+            <div><dt>Stratégia</dt><dd>Mit mondunk, kinek, és milyen sorrendben. Ez dönti el a többit.</dd></div>
+          </dl>
+        </div>
+        <div class="svc__layer">
+          <h3 class="display h-sm">Szerkezet</h3>
+          <p class="note">Amit a stratégia meghatároz, itt épül fel és itt kap formát.</p>
+          <dl class="caps">
+            <div><dt>Arculat</dt><dd>A vizuális nyelv, amely minden felületen ugyanaz marad.</dd></div>
+            <div><dt>Weboldal</dt><dd>A központ, ahová minden csatorna vezet, és ahol a döntés megszületik.</dd></div>
+            <div><dt>Fejlesztés</dt><dd>Egyedi funkciók, integrációk, sebesség. Nem sablon, nem plugin-halmaz.</dd></div>
+          </dl>
+        </div>
+        <div class="svc__layer">
+          <h3 class="display h-sm">Működés</h3>
+          <p class="note">Ami csak akkor működik, ha a két belső réteg már a helyén van.</p>
+          <dl class="caps">
+            <div><dt>Hirdetés</dt><dd>Fizetett forgalom oda, ahol már van mit fogadnia.</dd></div>
+            <div><dt>Analitika</dt><dd>Mérés, amely nem riportot termel, hanem döntést.</dd></div>
+            <div><dt>Optimalizálás</dt><dd>Havi finomhangolás a mért adatok alapján, nem megérzésből.</dd></div>
+            <div><dt>Automatizálás</dt><dd>Ami ismétlődik, azt nem embernek kell csinálnia.</dd></div>
+          </dl>
         </div>
       </div>
     </div>
@@ -499,7 +670,7 @@
         <p class="form__note" style="margin-top:.6rem" role="status"></p>
       </div>
       <div>
-        <h4>Linkek</h4>
+        <h3>Linkek</h3>
         <ul>
           <li><a href="rolunk.html">Rólunk</a></li>
           <li><a href="munkaink.html">Munkáink</a></li>
@@ -509,7 +680,7 @@
         </ul>
       </div>
       <div>
-        <h4>Szolgáltatások</h4>
+        <h3>Szolgáltatások</h3>
         <ul>
           <li><a href="szolgaltatasok.html">Minden szolgáltatás</a></li>
           <li><a href="kkv.html">Webdesign KKV-nak</a></li>
@@ -520,12 +691,12 @@
         </ul>
       </div>
       <div>
-        <h4>Kapcsolat</h4>
+        <h3>Kapcsolat</h3>
         <ul>
           <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
           <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
         </ul>
-        <h4 style="margin-top:1.6rem">Közösség</h4>
+        <h3 style="margin-top:1.6rem">Közösség</h3>
         <ul>
           <li><a href="https://www.linkedin.com/company/stratos-media-agency" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://www.instagram.com/stratosweb/" target="_blank" rel="noopener">Instagram</a></li>
@@ -538,7 +709,7 @@
            the languages are the three locales this build emits. Nothing here
            is an availability claim the site cannot support. -->
       <div>
-        <h4>Állapot</h4>
+        <h3>Állapot</h3>
         <ul class="foot__status">
           <li>Válasz jellemzően pár órán belül</li>
           <li>Győr és Budapest</li>
@@ -554,7 +725,7 @@
         <button class="foot__consent" type="button" data-consent-settings hidden>Süti-beállítások</button>
         <div class="lang" role="group" aria-label="Nyelvválasztás"><a href="szolgaltatasok.html" hreflang="hu" lang="hu" aria-current="true">HU</a><a href="en/services.html" hreflang="en" lang="en">EN</a><a href="de/leistungen.html" hreflang="de" lang="de">DE</a></div>
         <button class="foot__top" type="button" data-to-top>VISSZA 0 MÉTERRE</button>
-        <img src="assets/img/gdpr.png" alt="GDPR Ready" width="1800" height="1800">
+        <img src="assets/img/gdpr.png" alt="GDPR Ready" width="90" height="90">
       </span>
     </div>
   </div>

@@ -1,0 +1,10 @@
+$ npm run draco:check
+(cwd: /Users/arturlukacs/stratos-hermetic/subject)
+
+
+> stratos-web@1.0.0 draco:check
+> node scripts/sync-draco.mjs --check
+
+draco: public/draco/ matches three 0.171.0
+
+[exit 0] 0.1s

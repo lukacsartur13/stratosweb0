@@ -1,0 +1,2266 @@
+[
+  {
+    "id": "x1",
+    "stage": "cloud-entry",
+    "at": 0.25,
+    "metres": 6447,
+    "instrument": 0,
+    "objects": [
+      {
+        "sel": "p.panel__eyebrow",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          602,
+          196,
+          470,
+          16
+        ],
+        "text": "IV · Felhőréteg6 000 – 8 500 m"
+      },
+      {
+        "sel": "h2.panel__title",
+        "px": 72,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          602,
+          228,
+          660,
+          216
+        ],
+        "text": "Egy weboldal önmagában nem visz sehova."
+      },
+      {
+        "sel": "p.panel__lead",
+        "px": 16,
+        "colour": "rgba(244, 244, 244, 0.82)",
+        "box": [
+          866,
+          504,
+          318,
+          101
+        ],
+        "text": "Nem a zaj a probléma, hanem hogy a legtöbb rendszer benne is"
+      },
+      {
+        "sel": "li.notes__item",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          866,
+          624,
+          291,
+          24
+        ],
+        "text": "Öt ügynökség öt különböző dolgot mond."
+      },
+      {
+        "sel": "li.notes__item",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          866,
+          655,
+          291,
+          41
+        ],
+        "text": "A hirdetés más üzenetet visz, mint az oldal."
+      },
+      {
+        "sel": "li.notes__item",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          866,
+          702,
+          291,
+          41
+        ],
+        "text": "Az analitika mást mér, mint amit a vezetőség lát."
+      }
+    ],
+    "count": 6,
+    "old": {
+      "rails": 0,
+      "orbit / concentric geometry": 0,
+      "yellow index numerals": 0,
+      "multi-column technical grid": 0,
+      "chapter marker / eyebrow": 1,
+      "altitude decoration": 1,
+      "card-like information block": 0,
+      "notes cluster": 1,
+      "horizon fragment": 0
+    },
+    "yellow": 0,
+    "signal": "#ffee25",
+    "largestPx": 72,
+    "overflow": 0
+  },
+  {
+    "id": "x1b",
+    "stage": "cloud-entry",
+    "at": 0.75,
+    "metres": 7340,
+    "instrument": 0,
+    "objects": [
+      {
+        "sel": "p.panel__eyebrow",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          597,
+          734,
+          470,
+          16
+        ],
+        "text": "V · Áttörés8 500 – 11 000 m"
+      },
+      {
+        "sel": "h2.panel__title",
+        "px": 69,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          597,
+          766,
+          631,
+          345
+        ],
+        "text": "A tisztaság ott kezdődik, ahol minden digitális rendszered u"
+      }
+    ],
+    "count": 2,
+    "old": {
+      "rails": 0,
+      "orbit / concentric geometry": 0,
+      "yellow index numerals": 0,
+      "multi-column technical grid": 0,
+      "chapter marker / eyebrow": 1,
+      "altitude decoration": 1,
+      "card-like information block": 0,
+      "notes cluster": 0,
+      "horizon fragment": 0
+    },
+    "yellow": 0,
+    "signal": "#ffee25",
+    "largestPx": 69,
+    "overflow": 0
+  },
+  {
+    "id": "x2",
+    "stage": "cloud-breakthrough",
+    "at": 0.25,
+    "metres": 9022,
+    "instrument": 0,
+    "objects": [
+      {
+        "sel": "p.panel__eyebrow",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          597,
+          210,
+          470,
+          16
+        ],
+        "text": "V · Áttörés8 500 – 11 000 m"
+      },
+      {
+        "sel": "h2.panel__title",
+        "px": 69,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          597,
+          242,
+          631,
+          345
+        ],
+        "text": "A tisztaság ott kezdődik, ahol minden digitális rendszered u"
+      },
+      {
+        "sel": "p.panel__lead",
+        "px": 16,
+        "colour": "rgba(244, 244, 244, 0.82)",
+        "box": [
+          866,
+          647,
+          318,
+          51
+        ],
+        "text": "Nem több eszköz kell. Kevesebb, de egy irányba állítva."
+      }
+    ],
+    "count": 3,
+    "old": {
+      "rails": 0,
+      "orbit / concentric geometry": 0,
+      "yellow index numerals": 0,
+      "multi-column technical grid": 0,
+      "chapter marker / eyebrow": 1,
+      "altitude decoration": 1,
+      "card-like information block": 0,
+      "notes cluster": 0,
+      "horizon fragment": 0
+    },
+    "yellow": 0,
+    "signal": "#ffee25",
+    "largestPx": 69,
+    "overflow": 0
+  },
+  {
+    "id": "x3",
+    "stage": "system",
+    "at": 0.2,
+    "metres": 17499,
+    "instrument": 0,
+    "objects": [
+      {
+        "sel": "p.panel__eyebrow",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          582,
+          189,
+          470,
+          16
+        ],
+        "text": "VII · A rendszer17 000 – 22 000 m"
+      },
+      {
+        "sel": "h2.panel__title",
+        "px": 70,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          582,
+          221,
+          643,
+          141
+        ],
+        "text": "Kilenc terület, három rétegben."
+      },
+      {
+        "sel": "p.panel__lead",
+        "px": 16,
+        "colour": "rgba(244, 244, 244, 0.82)",
+        "box": [
+          595,
+          422,
+          318,
+          76
+        ],
+        "text": "A háttérben ugyanez látható: koncentrikus rétegek, nem hálóz"
+      },
+      {
+        "sel": "h3.system__ring-name",
+        "px": 21,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          541,
+          238,
+          23
+        ],
+        "text": "1 Mag"
+      },
+      {
+        "sel": "span.system__ring-index",
+        "px": 18,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          545,
+          8,
+          18
+        ],
+        "text": "1"
+      },
+      {
+        "sel": "p.system__ring-note",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          569,
+          238,
+          50
+        ],
+        "text": "Ez dönti el a többit. Enélkül minden alatta lévő döntés talá"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          633,
+          238,
+          61
+        ],
+        "text": "Kutatás — Piac, versenytársak, keresési szándék. Mielőtt bár"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          700,
+          238,
+          61
+        ],
+        "text": "Stratégia — Mit mondunk, kinek, és milyen sorrendben. Ez dön"
+      },
+      {
+        "sel": "h3.system__ring-name",
+        "px": 21,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          848,
+          541,
+          238,
+          23
+        ],
+        "text": "2 Szerkezet"
+      },
+      {
+        "sel": "span.system__ring-index",
+        "px": 18,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          848,
+          545,
+          10,
+          18
+        ],
+        "text": "2"
+      },
+      {
+        "sel": "p.system__ring-note",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          848,
+          569,
+          238,
+          34
+        ],
+        "text": "Amit a stratégia meghatároz, itt épül fel és itt kap formát."
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          848,
+          616,
+          238,
+          61
+        ],
+        "text": "Arculat — A vizuális nyelv, amely minden felületen ugyanaz m"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          848,
+          684,
+          238,
+          61
+        ],
+        "text": "Weboldal — A központ, ahová minden csatorna vezet, és ahol a"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          848,
+          752,
+          238,
+          61
+        ],
+        "text": "Fejlesztés — Egyedi funkciók, integrációk, sebesség. Nem sab"
+      },
+      {
+        "sel": "h3.system__ring-name",
+        "px": 21,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          1100,
+          541,
+          238,
+          23
+        ],
+        "text": "3 Működés"
+      },
+      {
+        "sel": "span.system__ring-index",
+        "px": 18,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          1100,
+          545,
+          10,
+          18
+        ],
+        "text": "3"
+      },
+      {
+        "sel": "p.system__ring-note",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          569,
+          238,
+          34
+        ],
+        "text": "Ami csak akkor működik, ha a két belső réteg már a helyén va"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          616,
+          238,
+          43
+        ],
+        "text": "Hirdetés — Fizetett forgalom oda, ahol már van mit fogadnia."
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          666,
+          238,
+          43
+        ],
+        "text": "Analitika — Mérés, amely nem riportot termel, hanem döntést."
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          716,
+          238,
+          61
+        ],
+        "text": "Optimalizálás — Havi finomhangolás a mért adatok alapján, ne"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          784,
+          238,
+          43
+        ],
+        "text": "Automatizálás — Ami ismétlődik, azt nem embernek kell csinál"
+      }
+    ],
+    "count": 21,
+    "old": {
+      "rails": 0,
+      "orbit / concentric geometry": 3,
+      "yellow index numerals": 3,
+      "multi-column technical grid": 1,
+      "chapter marker / eyebrow": 1,
+      "altitude decoration": 1,
+      "card-like information block": 3,
+      "notes cluster": 0,
+      "horizon fragment": 0
+    },
+    "yellow": 0,
+    "signal": "#ffee25",
+    "largestPx": 70,
+    "overflow": 0
+  },
+  {
+    "id": "x3b",
+    "stage": "system",
+    "at": 0.6,
+    "metres": 18499,
+    "instrument": 0,
+    "objects": [
+      {
+        "sel": "p.panel__eyebrow",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          582,
+          210,
+          470,
+          16
+        ],
+        "text": "VII · A rendszer17 000 – 22 000 m"
+      },
+      {
+        "sel": "h2.panel__title",
+        "px": 70,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          582,
+          242,
+          643,
+          141
+        ],
+        "text": "Kilenc terület, három rétegben."
+      },
+      {
+        "sel": "p.panel__lead",
+        "px": 16,
+        "colour": "rgba(244, 244, 244, 0.82)",
+        "box": [
+          595,
+          443,
+          318,
+          76
+        ],
+        "text": "A háttérben ugyanez látható: koncentrikus rétegek, nem hálóz"
+      },
+      {
+        "sel": "h3.system__ring-name",
+        "px": 21,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          562,
+          238,
+          23
+        ],
+        "text": "1 Mag"
+      },
+      {
+        "sel": "span.system__ring-index",
+        "px": 18,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          566,
+          8,
+          18
+        ],
+        "text": "1"
+      },
+      {
+        "sel": "p.system__ring-note",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          590,
+          238,
+          50
+        ],
+        "text": "Ez dönti el a többit. Enélkül minden alatta lévő döntés talá"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          653,
+          238,
+          61
+        ],
+        "text": "Kutatás — Piac, versenytársak, keresési szándék. Mielőtt bár"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          721,
+          238,
+          61
+        ],
+        "text": "Stratégia — Mit mondunk, kinek, és milyen sorrendben. Ez dön"
+      },
+      {
+        "sel": "h3.system__ring-name",
+        "px": 21,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          848,
+          562,
+          238,
+          23
+        ],
+        "text": "2 Szerkezet"
+      },
+      {
+        "sel": "span.system__ring-index",
+        "px": 18,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          848,
+          566,
+          10,
+          18
+        ],
+        "text": "2"
+      },
+      {
+        "sel": "p.system__ring-note",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          848,
+          590,
+          238,
+          34
+        ],
+        "text": "Amit a stratégia meghatároz, itt épül fel és itt kap formát."
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          848,
+          637,
+          238,
+          61
+        ],
+        "text": "Arculat — A vizuális nyelv, amely minden felületen ugyanaz m"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          848,
+          705,
+          238,
+          61
+        ],
+        "text": "Weboldal — A központ, ahová minden csatorna vezet, és ahol a"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          848,
+          772,
+          238,
+          61
+        ],
+        "text": "Fejlesztés — Egyedi funkciók, integrációk, sebesség. Nem sab"
+      },
+      {
+        "sel": "h3.system__ring-name",
+        "px": 21,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          1100,
+          562,
+          238,
+          23
+        ],
+        "text": "3 Működés"
+      },
+      {
+        "sel": "span.system__ring-index",
+        "px": 18,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          1100,
+          566,
+          10,
+          18
+        ],
+        "text": "3"
+      },
+      {
+        "sel": "p.system__ring-note",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          590,
+          238,
+          34
+        ],
+        "text": "Ami csak akkor működik, ha a két belső réteg már a helyén va"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          637,
+          238,
+          43
+        ],
+        "text": "Hirdetés — Fizetett forgalom oda, ahol már van mit fogadnia."
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          687,
+          238,
+          43
+        ],
+        "text": "Analitika — Mérés, amely nem riportot termel, hanem döntést."
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          737,
+          238,
+          61
+        ],
+        "text": "Optimalizálás — Havi finomhangolás a mért adatok alapján, ne"
+      },
+      {
+        "sel": "li",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          1100,
+          805,
+          238,
+          43
+        ],
+        "text": "Automatizálás — Ami ismétlődik, azt nem embernek kell csinál"
+      }
+    ],
+    "count": 21,
+    "old": {
+      "rails": 0,
+      "orbit / concentric geometry": 3,
+      "yellow index numerals": 3,
+      "multi-column technical grid": 1,
+      "chapter marker / eyebrow": 1,
+      "altitude decoration": 1,
+      "card-like information block": 3,
+      "notes cluster": 0,
+      "horizon fragment": 0
+    },
+    "yellow": 0,
+    "signal": "#ffee25",
+    "largestPx": 70,
+    "overflow": 0
+  },
+  {
+    "id": "x3c",
+    "stage": "system",
+    "at": 1.1,
+    "metres": 19749,
+    "instrument": 0,
+    "objects": [],
+    "count": 0,
+    "old": {
+      "rails": 0,
+      "orbit / concentric geometry": 0,
+      "yellow index numerals": 0,
+      "multi-column technical grid": 0,
+      "chapter marker / eyebrow": 0,
+      "altitude decoration": 0,
+      "card-like information block": 0,
+      "notes cluster": 0,
+      "horizon fragment": 0
+    },
+    "yellow": 0,
+    "signal": "#ffee25",
+    "largestPx": 0,
+    "overflow": 0
+  },
+  {
+    "id": "x4",
+    "stage": "process",
+    "at": 0.2,
+    "metres": 22291,
+    "instrument": 0,
+    "objects": [
+      {
+        "sel": "p.panel__eyebrow",
+        "px": 12,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          582,
+          214,
+          470,
+          16
+        ],
+        "text": "VIII · A folyamat22 000 – 25 500 m"
+      },
+      {
+        "sel": "h2.panel__title",
+        "px": 70,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          582,
+          246,
+          643,
+          141
+        ],
+        "text": "Hét ellenőrzőpont, találgatás nélkül."
+      },
+      {
+        "sel": "p.panel__lead",
+        "px": 16,
+        "colour": "rgba(244, 244, 244, 0.82)",
+        "box": [
+          595,
+          402,
+          318,
+          76
+        ],
+        "text": "Minden ponton tudod, mi történik, mit kapsz tőlünk, mit váru"
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          510,
+          743,
+          212
+        ],
+        "text": "01Felderítés22 300 mMi történikEgy beszélgetés arról, hol ta"
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          531,
+          26,
+          26
+        ],
+        "text": "01"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          635,
+          529,
+          111,
+          29
+        ],
+        "text": "Felderítés"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          584,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          605,
+          364,
+          41
+        ],
+        "text": "Egy beszélgetés arról, hol tart a vállalkozás, és mi az, ami"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          584,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          605,
+          364,
+          41
+        ],
+        "text": "Írásos helyzetkép és egy őszinte válasz arra, hogy tudunk-e "
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          660,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          681,
+          364,
+          41
+        ],
+        "text": "Hozzáférést a jelenlegi számokhoz és időt egy alapos beszélg"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          660,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          681,
+          364,
+          21
+        ],
+        "text": "Közös kép a kiindulási pontról — vagy egy korrekt nem."
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          738,
+          743,
+          191
+        ],
+        "text": "02Kutatás22 900 mMi történikVersenytárs- és keresési elemzés"
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          759,
+          28,
+          26
+        ],
+        "text": "02"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          636,
+          757,
+          87,
+          29
+        ],
+        "text": "Kutatás"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          813,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          833,
+          364,
+          41
+        ],
+        "text": "Versenytárs- és keresési elemzés, a jelenlegi felületek tech"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          813,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          833,
+          364,
+          41
+        ],
+        "text": "Kutatási összefoglaló: kereslet, versenyhelyzet, technikai h"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          888,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          888,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      }
+    ],
+    "count": 23,
+    "old": {
+      "rails": 0,
+      "orbit / concentric geometry": 0,
+      "yellow index numerals": 2,
+      "multi-column technical grid": 2,
+      "chapter marker / eyebrow": 1,
+      "altitude decoration": 3,
+      "card-like information block": 2,
+      "notes cluster": 0,
+      "horizon fragment": 0
+    },
+    "yellow": 0,
+    "signal": "#ffee25",
+    "largestPx": 70,
+    "overflow": 0
+  },
+  {
+    "id": "x4b",
+    "stage": "process",
+    "at": 0.7,
+    "metres": 23021,
+    "instrument": 0,
+    "objects": [
+      {
+        "sel": "p.panel__lead",
+        "px": 16,
+        "colour": "rgba(244, 244, 244, 0.82)",
+        "box": [
+          595,
+          -48,
+          318,
+          76
+        ],
+        "text": "Minden ponton tudod, mi történik, mit kapsz tőlünk, mit váru"
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          60,
+          743,
+          212
+        ],
+        "text": "01Felderítés22 300 mMi történikEgy beszélgetés arról, hol ta"
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          81,
+          26,
+          26
+        ],
+        "text": "01"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          635,
+          79,
+          111,
+          29
+        ],
+        "text": "Felderítés"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          134,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          155,
+          364,
+          41
+        ],
+        "text": "Egy beszélgetés arról, hol tart a vállalkozás, és mi az, ami"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          134,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          155,
+          364,
+          41
+        ],
+        "text": "Írásos helyzetkép és egy őszinte válasz arra, hogy tudunk-e "
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          210,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          231,
+          364,
+          41
+        ],
+        "text": "Hozzáférést a jelenlegi számokhoz és időt egy alapos beszélg"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          210,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          231,
+          364,
+          21
+        ],
+        "text": "Közös kép a kiindulási pontról — vagy egy korrekt nem."
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          288,
+          743,
+          191
+        ],
+        "text": "02Kutatás22 900 mMi történikVersenytárs- és keresési elemzés"
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          309,
+          28,
+          26
+        ],
+        "text": "02"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          636,
+          307,
+          87,
+          29
+        ],
+        "text": "Kutatás"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          363,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          383,
+          364,
+          41
+        ],
+        "text": "Versenytárs- és keresési elemzés, a jelenlegi felületek tech"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          363,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          383,
+          364,
+          41
+        ],
+        "text": "Kutatási összefoglaló: kereslet, versenyhelyzet, technikai h"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          438,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          459,
+          364,
+          21
+        ],
+        "text": "Belső ismeretet az ügyfelekről, amit adat nem mutat meg."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          438,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          459,
+          364,
+          21
+        ],
+        "text": "Tényeken alapuló alap a stratégiához."
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          495,
+          743,
+          191
+        ],
+        "text": "03Stratégia23 500 mMi történikEldöntjük a pozicionálást, az "
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          517,
+          28,
+          26
+        ],
+        "text": "03"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          637,
+          515,
+          102,
+          29
+        ],
+        "text": "Stratégia"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          570,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          590,
+          364,
+          41
+        ],
+        "text": "Eldöntjük a pozicionálást, az üzeneteket és a csatornák sorr"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          570,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          590,
+          364,
+          21
+        ],
+        "text": "Stratégiai dokumentum mérhető célokkal és ütemezéssel."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          646,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          666,
+          364,
+          21
+        ],
+        "text": "Döntést. Ez az a pont, ahol a legtöbb múlik rajtad."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          646,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          666,
+          364,
+          21
+        ],
+        "text": "Egy irány, amelyhez minden későbbi döntés mérhető."
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          703,
+          743,
+          191
+        ],
+        "text": "04Tervezés24 100 mMi történikArculat és felületi tervek kész"
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          724,
+          28,
+          26
+        ],
+        "text": "04"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          636,
+          722,
+          102,
+          29
+        ],
+        "text": "Tervezés"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          777,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          798,
+          364,
+          41
+        ],
+        "text": "Arculat és felületi tervek készülnek, valós tartalommal, nem"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          777,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          798,
+          364,
+          21
+        ],
+        "text": "Jóváhagyható dizájnterv minden fontos nézetre."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          853,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          874,
+          364,
+          21
+        ],
+        "text": "Visszajelzést egy körben, összegyűjtve."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          853,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          874,
+          364,
+          21
+        ],
+        "text": "Jóváhagyott terv, amiből egyértelmű, mi épül."
+      }
+    ],
+    "count": 45,
+    "old": {
+      "rails": 0,
+      "orbit / concentric geometry": 0,
+      "yellow index numerals": 4,
+      "multi-column technical grid": 4,
+      "chapter marker / eyebrow": 0,
+      "altitude decoration": 4,
+      "card-like information block": 4,
+      "notes cluster": 0,
+      "horizon fragment": 0
+    },
+    "yellow": 0,
+    "signal": "#ffee25",
+    "largestPx": 27,
+    "overflow": 0
+  },
+  {
+    "id": "x4c",
+    "stage": "process",
+    "at": 1.3,
+    "metres": 23896,
+    "instrument": 0,
+    "objects": [
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          -45,
+          743,
+          191
+        ],
+        "text": "03Stratégia23 500 mMi történikEldöntjük a pozicionálást, az "
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          30,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          50,
+          364,
+          41
+        ],
+        "text": "Eldöntjük a pozicionálást, az üzeneteket és a csatornák sorr"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          30,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          50,
+          364,
+          21
+        ],
+        "text": "Stratégiai dokumentum mérhető célokkal és ütemezéssel."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          106,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          126,
+          364,
+          21
+        ],
+        "text": "Döntést. Ez az a pont, ahol a legtöbb múlik rajtad."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          106,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          126,
+          364,
+          21
+        ],
+        "text": "Egy irány, amelyhez minden későbbi döntés mérhető."
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          163,
+          743,
+          191
+        ],
+        "text": "04Tervezés24 100 mMi történikArculat és felületi tervek kész"
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          184,
+          28,
+          26
+        ],
+        "text": "04"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          636,
+          182,
+          102,
+          29
+        ],
+        "text": "Tervezés"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          237,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          258,
+          364,
+          41
+        ],
+        "text": "Arculat és felületi tervek készülnek, valós tartalommal, nem"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          237,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          258,
+          364,
+          21
+        ],
+        "text": "Jóváhagyható dizájnterv minden fontos nézetre."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          313,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          334,
+          364,
+          21
+        ],
+        "text": "Visszajelzést egy körben, összegyűjtve."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          313,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          334,
+          364,
+          21
+        ],
+        "text": "Jóváhagyott terv, amiből egyértelmű, mi épül."
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          370,
+          743,
+          171
+        ],
+        "text": "05Fejlesztés24 700 mMi történikMegépítjük. Menet közben láto"
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          392,
+          28,
+          26
+        ],
+        "text": "05"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          636,
+          390,
+          114,
+          29
+        ],
+        "text": "Fejlesztés"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          445,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          465,
+          364,
+          21
+        ],
+        "text": "Megépítjük. Menet közben látod, nem a végén."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          445,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          465,
+          364,
+          21
+        ],
+        "text": "Működő oldal tesztkörnyezetben, mérésekkel felszerelve."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          500,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          521,
+          364,
+          21
+        ],
+        "text": "Tartalmat és a hozzáféréseket."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          500,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          521,
+          364,
+          21
+        ],
+        "text": "Élesíthető rendszer, nem bemutató."
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          557,
+          743,
+          191
+        ],
+        "text": "06Indulás25 100 mMi történikÉlesítés, átirányítások, mérés e"
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          579,
+          28,
+          26
+        ],
+        "text": "06"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          637,
+          577,
+          82,
+          29
+        ],
+        "text": "Indulás"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          632,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          652,
+          364,
+          41
+        ],
+        "text": "Élesítés, átirányítások, mérés ellenőrzése, hirdetések indít"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          632,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          652,
+          364,
+          21
+        ],
+        "text": "Élő rendszer és átadási dokumentáció."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          708,
+          364,
+          18
+        ],
+        "text": "Amit tőled kérünk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          728,
+          364,
+          21
+        ],
+        "text": "Jóváhagyást az indulásra."
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          708,
+          364,
+          18
+        ],
+        "text": "Várható eredmény"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          728,
+          364,
+          21
+        ],
+        "text": "A rendszer működik és mér."
+      },
+      {
+        "sel": "li.check",
+        "px": 17,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          595,
+          765,
+          743,
+          191
+        ],
+        "text": "07Optimalizálás25 400 mMi történikHavonta: mérés, elemzés, m"
+      },
+      {
+        "sel": "span.check__index",
+        "px": 26,
+        "colour": "rgba(244, 244, 244, 0.34)",
+        "box": [
+          595,
+          786,
+          27,
+          26
+        ],
+        "text": "07"
+      },
+      {
+        "sel": "h3.check__name",
+        "px": 27,
+        "colour": "rgb(244, 244, 244)",
+        "box": [
+          636,
+          784,
+          154,
+          29
+        ],
+        "text": "Optimalizálás"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          839,
+          364,
+          18
+        ],
+        "text": "Mi történik"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          595,
+          860,
+          364,
+          41
+        ],
+        "text": "Havonta: mérés, elemzés, módosítás. Ez nem projektzárás, han"
+      },
+      {
+        "sel": "dt",
+        "px": 11,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          839,
+          364,
+          18
+        ],
+        "text": "Amit átadunk"
+      },
+      {
+        "sel": "dd",
+        "px": 14,
+        "colour": "rgb(138, 146, 155)",
+        "box": [
+          974,
+          860,
+          364,
+          21
+        ],
+        "text": "Havi riport és a végrehajtott módosítások listája."
+      }
+    ],
+    "count": 49,
+    "old": {
+      "rails": 0,
+      "orbit / concentric geometry": 0,
+      "yellow index numerals": 4,
+      "multi-column technical grid": 5,
+      "chapter marker / eyebrow": 0,
+      "altitude decoration": 4,
+      "card-like information block": 5,
+      "notes cluster": 0,
+      "horizon fragment": 0
+    },
+    "yellow": 0,
+    "signal": "#ffee25",
+    "largestPx": 27,
+    "overflow": 0
+  }
+]

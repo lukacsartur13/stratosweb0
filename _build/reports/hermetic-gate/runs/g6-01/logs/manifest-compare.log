@@ -1,0 +1,6 @@
+$ node scripts/hermetic/manifest.mjs compare /Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/manifests/g6-01-before.json /Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/manifests/g6-01-after.json
+(cwd: /Users/arturlukacs/stratos-hermetic/subject)
+
+SUBJECT IDENTICAL  660f76198c30f6f9a843908ef2cf822b6b5701bfdacc93e6d630311b6b5db269
+
+[exit 0] 0.1s

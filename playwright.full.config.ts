@@ -27,6 +27,13 @@ import { defineConfig, devices } from '@playwright/test';
 // So the suite is split the same way, by `testMatch` rather than by a
 // `test.skip` inside a shared file:
 //
+//   six-acts.spec.ts         the approved art direction, as contracts: the
+//                            altitude order, the Altimeter appearance budget,
+//                            the yellow budget, the locale-authored monument
+//                            geometry, the statement collisions and the dead
+//                            stages. Collected by `desktop` and
+//                            `reduced-motion`, like the file below, because it
+//                            describes the same composition.
 //   full-ascent.spec.ts      the cinematic composition — canvas, sticky track,
 //                            damped altitude clock, the Meridian's six
 //                            structural states. Collected by `desktop` and
@@ -47,7 +54,7 @@ const PORT = 4327;
 const BASE = `http://127.0.0.1:${PORT}/experiments/stratos-ascent-full/`;
 
 /** The cinematic composition's spec, and the portrait composition's. */
-const CINEMATIC = /full-ascent\.spec\.ts/;
+const CINEMATIC = /(full-ascent|six-acts)\.spec\.ts/;
 const PORTRAIT = /portrait-journey\.spec\.ts/;
 
 /**
@@ -230,6 +237,24 @@ export default defineConfig({
       // measured against metrics the live site never uses. Fail loudly instead.
       `test -f dist/assets/css/type.css || ` +
       `{ echo "\\nmissing dist/assets/css/type.css — the route would render in a fallback serif. Run: npm run build\\n" >&2; exit 1; }; ` +
+      // AND THE THREE LOCALE HOMEPAGES, which are a different build from the
+      // one above and are asserted against by the per-locale contracts in
+      // `six-acts.spec.ts` — the monuments' authored geometry and the passage
+      // statements' measure, in Hungarian, English and German.
+      //
+      // `build:full` emits `/experiments/stratos-ascent-full/` and `build:home`
+      // emits `/`, `/en/` and `/de/`; they are deliberately two output trees
+      // with two chunk graphs (see `vite.home.config.ts`). So a run that built
+      // only the first tested six locale contracts against whatever homepage
+      // happened to be in `dist/` — which, on a working tree, is the last one
+      // anybody built. Measured: `dist/index.html` was two days stale while the
+      // suite reported those three tests green.
+      //
+      // The npm script now builds both, unconditionally and before Playwright
+      // decides anything about servers, which is the same remedy and the same
+      // argument as the note above. This guard is for the other entry point.
+      `test -f dist/index.html || ` +
+      `{ echo "\\nmissing dist/index.html — the per-locale contracts would run against a stale homepage. Run: npm run build:home\\n" >&2; exit 1; }; ` +
       `python3 -m http.server ${PORT} --directory dist`,
     url: BASE,
     reuseExistingServer: !process.env.CI,

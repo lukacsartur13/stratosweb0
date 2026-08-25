@@ -1,0 +1,223 @@
+{
+  "viewport": "390x844",
+  "checks": {
+    "visibleAfterHero": true,
+    "overlayFixed": true,
+    "pointerTransparent": true,
+    "paintsUnderCopy": true,
+    "fragmentNavOk": false,
+    "departureReached": true,
+    "historyBackRestores": true,
+    "historyBackInstrumentOk": true
+  },
+  "manifest": [
+    {
+      "shot": "01-hero",
+      "note": "opening frame, instrument in its reserved band",
+      "mode": "live",
+      "settled": true,
+      "opacity": 1,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 14,
+        "y": 322,
+        "w": 335,
+        "h": 335
+      },
+      "scrollY": 0,
+      "docH": 11757
+    },
+    {
+      "shot": "02-hero-transition",
+      "note": "mid hero->rail handover, the one scroll-linked leg",
+      "mode": "live",
+      "settled": false,
+      "opacity": 0.748,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 268,
+        "y": 659,
+        "w": 107,
+        "h": 107
+      },
+      "scrollY": 354,
+      "docH": 11791
+    },
+    {
+      "shot": "03-first-docked",
+      "note": "first docked state on the rail (ascent)",
+      "mode": "live",
+      "settled": true,
+      "opacity": 0.74,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 275,
+        "y": 669,
+        "w": 101,
+        "h": 101
+      },
+      "scrollY": 1126,
+      "docH": 11825
+    },
+    {
+      "shot": "04-mid-journey",
+      "note": "mid-journey centred statement (summit)",
+      "mode": "live",
+      "settled": false,
+      "opacity": 0.507,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 113,
+        "y": 345,
+        "w": 172,
+        "h": 172
+      },
+      "scrollY": 3217,
+      "docH": 11825
+    },
+    {
+      "shot": "05-process",
+      "note": "process stage",
+      "mode": "live",
+      "settled": false,
+      "opacity": 0.695,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 271,
+        "y": 660,
+        "w": 103,
+        "h": 103
+      },
+      "scrollY": 7760,
+      "docH": 11825
+    },
+    {
+      "shot": "06-work",
+      "note": "selected work, smallest quietest state",
+      "mode": "live",
+      "settled": false,
+      "opacity": 0.583,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 288,
+        "y": 682,
+        "w": 88,
+        "h": 88
+      },
+      "scrollY": 3658,
+      "docH": 11825
+    },
+    {
+      "shot": "07-arrival",
+      "note": "destination / arrival state",
+      "mode": "live",
+      "settled": false,
+      "opacity": 0.853,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 70,
+        "y": 269,
+        "w": 257,
+        "h": 257
+      },
+      "scrollY": 10727,
+      "docH": 11825
+    },
+    {
+      "shot": "08-departure",
+      "note": "scrollTo(scrollHeight) — departure/recede past the flow",
+      "mode": "live",
+      "settled": false,
+      "opacity": 0.003,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 44,
+        "y": 204,
+        "w": 302,
+        "h": 302
+      },
+      "scrollY": 10981,
+      "docH": 11825
+    },
+    {
+      "shot": "probe-fragment-stage-process",
+      "mode": "live",
+      "settled": false,
+      "opacity": 0.699,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 275,
+        "y": 669,
+        "w": 101,
+        "h": 101
+      },
+      "scrollY": 7644,
+      "docH": 11825
+    },
+    {
+      "shot": "probe-scrollHeight",
+      "mode": "live",
+      "settled": false,
+      "opacity": 0.012,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 44,
+        "y": 205,
+        "w": 302,
+        "h": 302
+      },
+      "scrollY": 10981,
+      "docH": 11825
+    },
+    {
+      "shot": "probe-history-back",
+      "before": 5064,
+      "after": 5064,
+      "mode": "live",
+      "settled": true,
+      "opacity": 0.58,
+      "position": "fixed",
+      "pointerEvents": "none",
+      "overlayZ": "1",
+      "flowZ": "2",
+      "rect": {
+        "x": 289,
+        "y": 683,
+        "w": 87,
+        "h": 87
+      },
+      "scrollY": 5064,
+      "docH": 11825
+    }
+  ]
+}

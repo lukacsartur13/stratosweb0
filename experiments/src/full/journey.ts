@@ -55,21 +55,82 @@ export type Stage = {
   label: string;
 };
 
+// THE SHARES ARE THE SIX-ACT RHYTHM, AND THEY MOVED. THE ALTITUDES DID NOT.
+//
+// Every `from` and `to` below is exactly what it was. What changed is how much
+// SCROLL each stage gets, and it changed for one structural reason: an act's
+// frame is a settled state, and a settled state needs scroll to be settled in.
+//
+// A peak act's panel now holds its frame pinned for most of a screen before
+// releasing it — `--act-hold` in `acts.ts` — so a share of 1.0 would mean the
+// frame arrives and leaves in the same movement and is never composed. The
+// seven acts are therefore 1.8 screens or more, of which the first 0.8 is the
+// frame held still, and the four crossings are shorter than they were, because
+// a crossing that takes as long to cross as an act takes to read is not a
+// crossing.
+//
+// The track is 24.0 screens against 21.6. That is 11% more scroll for a page
+// with 45% fewer objects in it, and it buys the one thing the whole design
+// depends on: the six frames are frames rather than moments.
+//
+// THE TEMPORAL PASS MOVED TWO OF THEM, AND IN OPPOSITE DIRECTIONS.
+//
+// `calibration` is 0.5 of a screen shorter and `cloud-breakthrough` is 0.2
+// longer, which nets out at 23.5 nominal against 24.0 — but the nominal total
+// has never been the journey's real length anyway. `calibrate()` below replaces
+// every one of these bounds with a measurement of the rendered layout, and on a
+// 1440x900 the rendered track is 25.4 screens against a nominal 24.0, because
+// three chapters carry bodies taller than their share. The shares are the
+// authored RHYTHM; the measurement is the journey.
 export const STAGES: readonly Stage[] = [
-  { id: 'calibration',             from: 0,      to: 150,    share: 1.0, label: m('stage.calibration') },
-  { id: 'initial-ascent',          from: 150,    to: 3_000,  share: 1.4, label: m('stage.initial-ascent') },
-  { id: 'lower-atmosphere',        from: 3_000,  to: 6_000,  share: 2.2, label: m('stage.lower-atmosphere') },
-  { id: 'cloud-entry',             from: 6_000,  to: 8_500,  share: 1.6, label: m('stage.cloud-entry') },
-  { id: 'cloud-breakthrough',      from: 8_500,  to: 11_000, share: 1.6, label: m('stage.cloud-breakthrough') },
-  { id: 'selected-work',           from: 11_000, to: 17_000, share: 4.4, label: m('stage.selected-work') },
-  { id: 'system',                  from: 17_000, to: 22_000, share: 2.4, label: m('stage.system') },
-  { id: 'process',                 from: 22_000, to: 25_500, share: 3.0, label: m('stage.process') },
-  { id: 'stratosphere-transition', from: 25_500, to: 28_000, share: 1.4, label: m('stage.stratosphere-transition') },
-  { id: 'full-stratosphere',       from: 28_000, to: 30_000, share: 1.4, label: m('stage.full-stratosphere') },
+  // 1.8 -> 1.3, and it is the ground act's hold that moved first: see
+  // `GROUND_HOLD` in `acts.ts`. The share follows the hold because the share is
+  // the panel's MINIMUM height, and a hold below the share would unpin the
+  // frame into empty panel instead of into Act II. This is the only chapter on
+  // the page whose altitude band (150 m of 30 000) is too small for the
+  // atmosphere to change under it, so it is the only chapter where held scroll
+  // buys nothing at all — 0.76 of a screen of measured stillness, starting 0.21
+  // of a screen into the page.
+  { id: 'calibration',             from: 0,      to: 150,    share: 1.3, label: m('stage.calibration') },
+  { id: 'initial-ascent',          from: 150,    to: 3_000,  share: 2.4, label: m('stage.initial-ascent') },
+  { id: 'lower-atmosphere',        from: 3_000,  to: 6_000,  share: 3.0, label: m('stage.lower-atmosphere') },
+  { id: 'cloud-entry',             from: 6_000,  to: 8_500,  share: 1.4, label: m('stage.cloud-entry') },
+  // 1.2 -> 1.4, and this share exists to stop a clamp rather than to buy
+  // scroll. A passage's hold is `min(PASSAGE_HOLD, share)`, so at 1.2 this
+  // chapter — and only this one — was pinned for 0.2 of a screen where the
+  // other three are pinned for 0.36. Its statement's composed window measured
+  // 0.13 screens against their 0.17, and it is the chapter §8 calls the
+  // quietest state on the homepage: quiet is the point, illegible is not. The
+  // panel already renders at 1.38 screens, so the share was below the truth
+  // before this moved.
+  { id: 'cloud-breakthrough',      from: 8_500,  to: 11_000, share: 1.4, label: m('stage.cloud-breakthrough') },
+  { id: 'selected-work',           from: 11_000, to: 17_000, share: 3.0, label: m('stage.selected-work') },
+  { id: 'system',                  from: 17_000, to: 22_000, share: 2.0, label: m('stage.system') },
+  // 2.4 -> 2.0, and it is the only share phase 4 touched. §31 asks for the
+  // passage's height to be RE-SOLVED from the compressed content rather than
+  // inherited, and the arithmetic is: 1.25 screens of held frame — `PASSAGE_HOLD`,
+  // the same for all four passages — plus one 58svh beat holding the three
+  // principles and the route, plus the passage body's own 200u foot. That is
+  // 2.05, measured, so a share of 2.4 was 0.35 of a screen the chapter had no
+  // content for and centred itself inside. See
+  // `_build/reports/luxury-art-direction/process/chapter-length-*.json`.
+  { id: 'process',                 from: 22_000, to: 25_500, share: 2.0, label: m('stage.process') },
+  { id: 'stratosphere-transition', from: 25_500, to: 28_000, share: 2.4, label: m('stage.stratosphere-transition') },
+  { id: 'full-stratosphere',       from: 28_000, to: 30_000, share: 2.2, label: m('stage.full-stratosphere') },
   // The destination holds at the ceiling. It is the CTA panel, and it is part
   // of the sticky container on purpose — see styles.css and FULL_ASCENT.md for
   // why the scene stays behind it rather than un-sticking into a footer.
-  { id: 'destination',             from: 30_000, to: 30_000, share: 1.2, label: m('stage.destination') },
+  //
+  // 2.2 -> 1.8, and this is the one chapter where held scroll cannot be
+  // anything but still. The altitude is 30 000 at both ends, so unlike every
+  // other frame on the page there is no atmosphere moving under it; the
+  // instrument has already withdrawn; and the frame does not depart, so it is
+  // composed for the panel's whole length. The scan measured 0.85 of a screen
+  // in which the frame, the type, the instrument AND the sky are all static —
+  // the longest such run on the page, at the end of it. 1.8 takes it to about
+  // 0.45 and leaves the closing invitation composed for roughly a screen, which
+  // is still the second-longest frame in the journey.
+  { id: 'destination',             from: 30_000, to: 30_000, share: 1.8, label: m('stage.destination') },
 ] as const;
 
 /** Total track height in viewport units. */
@@ -513,6 +574,45 @@ export const journey = {
     ringRotation: 1,
     /** Extra yaw on the instrument, radians — the three-quarter reveal. */
     instrumentYaw: 0,
+    /**
+     * Override the authored act placement — dial centre and diameter in
+     * reference-frame px, plus the pose in degrees off the base pose.
+     *
+     * The exploration harness for the depth proof writes this: §16, §18 and
+     * §21 all ask for several compositions to be TRIED and judged as images
+     * before any of them is authored, and the alternative to a hook is editing
+     * the placement table, rebuilding and re-photographing once per candidate.
+     * Read as a null check on the hot path, and the panel that writes it is
+     * never built into production — same rule as every override above it.
+     */
+    placement: null as {
+      x: number;
+      y: number;
+      dial: number;
+      yaw?: number;
+      pitch?: number;
+      mask?: { dx: number; dy: number; rx: number; ry: number };
+    } | null,
+    /**
+     * Take the instrument out of the picture entirely, without changing the
+     * scroll position, the altitude or anything else in the frame.
+     *
+     * The occlusion probes need a BACKGROUND PLATE — the same frame with the
+     * object removed — because the only honest way to ask "where is the object
+     * actually visible" on a near-black object is to subtract the picture
+     * without it from the picture with it. §29 forbids reading pixels back at
+     * runtime and this is not runtime: it is a measurement taken in a probe,
+     * once, off two screenshots.
+     */
+    hideInstrument: false,
+    /**
+     * §27's engineering view: draw the projected housing bounds, the mask edge
+     * and the instrument centre over the composition, so that the renderer, the
+     * mask and the authored placement can be seen to agree. Never shipped —
+     * the stylesheet's rule is gated on this attribute and the attribute is
+     * only ever written by the probes.
+     */
+    occlusionDebug: false,
     /** Multiplier on the aperture's breakthrough light. */
     lightGain: 1,
     /** Override the final calibrated stop-down, 0..1. */

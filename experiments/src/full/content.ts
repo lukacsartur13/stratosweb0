@@ -184,6 +184,36 @@ const WORK_HU: CaseStudy[] = [
 export const FEATURED_CASE_ID = 'rapidkert';
 
 /**
+ * The Proof act's plate.
+ *
+ * A SECOND FRAMING OF THE SAME REAL CAPTURE, not a second image. The homepage
+ * capture `work-rapidkert.jpg` is a screenshot of the Rapidkert site, so it
+ * carries that site's own display headline across its upper left — a second
+ * voice in the one frame whose dominant thought is a figure, and the reason the
+ * six-act study needed a mask running to 64% of the plate's width.
+ *
+ * The asset audit (§8 of the production brief) found no other Rapidkert
+ * material in the repository: one hero capture, one client mark, nothing else.
+ * It also found that the thing the project actually is — the interactive 3D
+ * cross-section of the garden and the ground under it — occupies the right half
+ * of that same capture with no typography on it at all.
+ *
+ * So this is a window on it. `scripts/rapidkert-section.mjs` records the exact
+ * rectangle and why it is that rectangle; nothing is painted, retouched,
+ * blurred, resampled non-uniformly, downloaded or generated. The case-study
+ * route keeps the whole capture, which is where the whole capture belongs.
+ *
+ * The remaining limitation, stated plainly: this is still a screenshot rather
+ * than a commissioned photograph of the work. It is now a screenshot of the
+ * part that is the work.
+ */
+export const PROOF_IMAGE = {
+  src: '/assets/img/work-rapidkert-section.jpg',
+  width: 640,
+  height: 458,
+} as const;
+
+/**
  * Marks shown in the homepage's collaboration rail.
  *
  * The same six the site already shows, and no more. Five come from `/work`'s
@@ -224,90 +254,122 @@ const COLLABORATIONS_HU: Mark[] = [
 export type SystemNode = {
   id: string;
   name: string;
-  /** Which concentric ring it sits on: 0 = core, 2 = outermost. */
+  /** Which concentric layer it sits on: 0 = core, 2 = outermost. */
   ring: 0 | 1 | 2;
-  blurb: string;
 };
 
 /**
  * The nine disciplines, arranged as three functional layers rather than a flat
- * list. The rings are the point: what a visitor should take away is that these
+ * list. The layers are the point: what a visitor should take away is that these
  * depend on each other in a particular order, not that there are nine of them.
+ *
+ * IT USED TO CARRY A `blurb` PER DISCIPLINE — read this before adding one back.
+ *
+ * Nine `name — sentence` pairs, staged three layers at a time down the
+ * passage's own scroll, is what made the system the longest chapter on the
+ * homepage at 3.5 screens. Phase 5.1's inventory found that four of the nine
+ * sentences restate a line Act III already says on the same page, eight screens
+ * earlier and in the same `name / sentence` idiom:
+ *
+ *   Hirdetés        `Fizetett forgalom oda, ahol már van mit fogadnia.`
+ *                vs `Forgalmat oda küldünk, ahol már van mit fogadnia.`
+ *   Automatizálás   `Ami ismétlődik, azt nem embernek kell csinálnia.`
+ *                vs `Ami ismétlődik, az fusson magától.`
+ *   Fejlesztés      `Egyedi funkciók, integrációk, sebesség. Nem sablon…`
+ *                vs `Egyedi kód, mérhető sebesség. Nem sablon…`
+ *   Stratégia       `…Ez dönti el a többit.` — which is also, verbatim, the
+ *                   first clause of the core layer's own note.
+ *
+ * The homepage was arguing the same nine capabilities twice, and the second
+ * time was three times as long. So the nine sentences moved, whole and
+ * unedited, to `06 · Amit be tudunk vállalni` on the services route — the
+ * section that already documents what is behind the four services — and the
+ * homepage keeps what only this chapter says: the three layers, their three
+ * notes, and which discipline is on which layer.
+ *
+ * Nothing was deleted without being classified.
+ * `_build/reports/luxury-art-direction/compression/inventory-source.json` is
+ * the twenty-eight original units in all three locales, snapshotted before the
+ * change; `content-audit.md` beside it is the generated table of where each one
+ * went, and `scripts/system-inventory.mjs` fails if any of them is not at its
+ * declared destination — including if a sentence classified as moved is still
+ * in the homepage source.
  */
 const SYSTEM_HU: SystemNode[] = [
-  { id: 'research',    name: 'Kutatás',     ring: 0, blurb: 'Piac, versenytársak, keresési szándék. Mielőtt bármit építenénk.' },
-  { id: 'strategy',    name: 'Stratégia',   ring: 0, blurb: 'Mit mondunk, kinek, és milyen sorrendben. Ez dönti el a többit.' },
-  { id: 'branding',    name: 'Arculat',     ring: 1, blurb: 'A vizuális nyelv, amely minden felületen ugyanaz marad.' },
-  { id: 'website',     name: 'Weboldal',    ring: 1, blurb: 'A központ, ahová minden csatorna vezet, és ahol a döntés megszületik.' },
-  { id: 'development', name: 'Fejlesztés',  ring: 1, blurb: 'Egyedi funkciók, integrációk, sebesség. Nem sablon, nem plugin-halmaz.' },
-  { id: 'ads',         name: 'Hirdetés',    ring: 2, blurb: 'Fizetett forgalom oda, ahol már van mit fogadnia.' },
-  { id: 'analytics',   name: 'Analitika',   ring: 2, blurb: 'Mérés, amely nem riportot termel, hanem döntést.' },
-  { id: 'optimisation',name: 'Optimalizálás',ring: 2, blurb: 'Havi finomhangolás a mért adatok alapján, nem megérzésből.' },
-  { id: 'automation',  name: 'Automatizálás',ring: 2, blurb: 'Ami ismétlődik, azt nem embernek kell csinálnia.' },
+  { id: 'research',    name: 'Kutatás',      ring: 0 },
+  { id: 'strategy',    name: 'Stratégia',    ring: 0 },
+  { id: 'branding',    name: 'Arculat',      ring: 1 },
+  { id: 'website',     name: 'Weboldal',     ring: 1 },
+  { id: 'development', name: 'Fejlesztés',   ring: 1 },
+  { id: 'ads',         name: 'Hirdetés',     ring: 2 },
+  { id: 'analytics',   name: 'Analitika',    ring: 2 },
+  { id: 'optimisation',name: 'Optimalizálás',ring: 2 },
+  { id: 'automation',  name: 'Automatizálás',ring: 2 },
 ];
 
 // -----------------------------------------------------------------------------
+/**
+ * A stage of the operating process, as the homepage now carries it: a name.
+ *
+ * IT USED TO CARRY FIVE FIELDS AND IT CARRIES ONE — read this before adding one
+ * back.
+ *
+ * Each checkpoint had `happens`, `weProduce`, `youProvide` and `outcome`: four
+ * sentences answering four questions, seven times, which is twenty-eight
+ * sentences plus seven names. Rendered one beat at a time down the passage's own
+ * scroll — the only arrangement that keeps a visitor from meeting a
+ * forty-nine-object grid — that came to 5.6 screens, and it made the process the
+ * longest chapter on a homepage whose six master acts are the destinations.
+ *
+ * The length was never the defect. The defect was the information DEPTH: the
+ * homepage was documenting the operating model where it only has to introduce
+ * it. So the twenty-eight sentences moved, whole and unedited, to
+ * `05 · A folyamat` on the services route, which is the page that already
+ * carries how a proposal is produced and what the four services can do — and
+ * the homepage kept the seven names, three principles derived from the same
+ * sentences, and one route to the rest.
+ *
+ * Nothing was deleted without being classified.
+ * `_build/reports/luxury-art-direction/process/inventory-source.json` is the
+ * thirty-five original units in all three locales, snapshotted before the
+ * change; `content-audit.md` beside it is the generated table of where each one
+ * went, and `scripts/process-inventory.mjs` fails if any of them is not at its
+ * declared destination.
+ *
+ * `altitude` went with them, and it is a removal rather than an oversight. It
+ * was read by two things and both are gone: the per-checkpoint altitude stamp,
+ * removed by the continuity pass as §6 "altitude decoration", and the seven 3D
+ * progress markers in `components/SystemRings.tsx`, which nothing has mounted
+ * since the same pass. The chapter's own band — 22 000 to 25 500 m — is in
+ * `journey.ts`, where every other chapter's is.
+ */
 export type Checkpoint = {
   index: number;
   name: string;
-  /** Altitude the checkpoint is passed at, in metres. */
-  altitude: number;
-  happens: string;
-  weProduce: string;
-  youProvide: string;
-  outcome: string;
 };
 
 const PROCESS_HU: Checkpoint[] = [
-  {
-    index: 1, name: 'Felderítés', altitude: 22_300,
-    happens: 'Egy beszélgetés arról, hol tart a vállalkozás, és mi az, ami valóban akadályozza.',
-    weProduce: 'Írásos helyzetkép és egy őszinte válasz arra, hogy tudunk-e segíteni.',
-    youProvide: 'Hozzáférést a jelenlegi számokhoz és időt egy alapos beszélgetésre.',
-    outcome: 'Közös kép a kiindulási pontról — vagy egy korrekt nem.',
-  },
-  {
-    index: 2, name: 'Kutatás', altitude: 22_900,
-    happens: 'Versenytárs- és keresési elemzés, a jelenlegi felületek technikai átvizsgálása.',
-    weProduce: 'Kutatási összefoglaló: kereslet, versenyhelyzet, technikai hiányosságok.',
-    youProvide: 'Belső ismeretet az ügyfelekről, amit adat nem mutat meg.',
-    outcome: 'Tényeken alapuló alap a stratégiához.',
-  },
-  {
-    index: 3, name: 'Stratégia', altitude: 23_500,
-    happens: 'Eldöntjük a pozicionálást, az üzeneteket és a csatornák sorrendjét.',
-    weProduce: 'Stratégiai dokumentum mérhető célokkal és ütemezéssel.',
-    youProvide: 'Döntést. Ez az a pont, ahol a legtöbb múlik rajtad.',
-    outcome: 'Egy irány, amelyhez minden későbbi döntés mérhető.',
-  },
-  {
-    index: 4, name: 'Tervezés', altitude: 24_100,
-    happens: 'Arculat és felületi tervek készülnek, valós tartalommal, nem kitöltő szöveggel.',
-    weProduce: 'Jóváhagyható dizájnterv minden fontos nézetre.',
-    youProvide: 'Visszajelzést egy körben, összegyűjtve.',
-    outcome: 'Jóváhagyott terv, amiből egyértelmű, mi épül.',
-  },
-  {
-    index: 5, name: 'Fejlesztés', altitude: 24_700,
-    happens: 'Megépítjük. Menet közben látod, nem a végén.',
-    weProduce: 'Működő oldal tesztkörnyezetben, mérésekkel felszerelve.',
-    youProvide: 'Tartalmat és a hozzáféréseket.',
-    outcome: 'Élesíthető rendszer, nem bemutató.',
-  },
-  {
-    index: 6, name: 'Indulás', altitude: 25_100,
-    happens: 'Élesítés, átirányítások, mérés ellenőrzése, hirdetések indítása.',
-    weProduce: 'Élő rendszer és átadási dokumentáció.',
-    youProvide: 'Jóváhagyást az indulásra.',
-    outcome: 'A rendszer működik és mér.',
-  },
-  {
-    index: 7, name: 'Optimalizálás', altitude: 25_400,
-    happens: 'Havonta: mérés, elemzés, módosítás. Ez nem projektzárás, hanem üzemeltetés.',
-    weProduce: 'Havi riport és a végrehajtott módosítások listája.',
-    youProvide: 'Visszajelzést arról, milyen megkeresések érkeznek.',
-    outcome: 'Rendszer, amely idővel jobb lesz, nem elavul.',
-  },
+  { index: 1, name: 'Felderítés' },
+  { index: 2, name: 'Kutatás' },
+  { index: 3, name: 'Stratégia' },
+  { index: 4, name: 'Tervezés' },
+  { index: 5, name: 'Fejlesztés' },
+  /* `Indulás` UNTIL PHASE 4, AND THE ONE SOURCE STRING THIS PHASE CHANGED.
+     
+     The stage is go-live, and `Élesítés` is the word the checkpoint's own
+     sentence already uses for it — `Élesítés, átirányítások, mérés
+     ellenőrzése, hirdetések indítása.` The rename is not a style preference:
+     `Indulás` is also the closing CTA's eyebrow on the ads route, where it
+     means "getting started with us" and the site dictionary translates it
+     `Starting out`. One Hungarian word, two senses, and a sentence-keyed
+     dictionary that can only hold one translation of it — so the detailed
+     process arriving on the services route would have renamed a CTA on an
+     unrelated page, or been given the wrong English itself.
+     
+     The Hungarian, English and German are all taken from the sentence above
+     rather than invented: `Élesítés` / `Go-live` / `Livegang`. */
+  { index: 6, name: 'Élesítés' },
+  { index: 7, name: 'Optimalizálás' },
 ];
 
 // -----------------------------------------------------------------------------

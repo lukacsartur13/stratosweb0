@@ -1,0 +1,11 @@
+$ npm run audit:seo:check
+(cwd: /Users/arturlukacs/stratos-hermetic/subject)
+
+
+> stratos-web@1.0.0 audit:seo:check
+> node scripts/seo-audit.mjs --check
+
+seo-audit: 72 documents — 60 indexable, 9 noindex, 3 not-found, 60 sitemap entries
+  0 failing, 43 warnings -> _build/reports/phase9-seo-audit.json
+
+[exit 0] 0.1s

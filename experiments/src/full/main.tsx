@@ -1,155 +1,213 @@
-import { Component, StrictMode, useState, type ErrorInfo, type ReactNode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { FullAscent } from './FullAscent';
-import { MobileHome } from './mobile/MobileHome';
-import { isMobileHomepage } from './mobile/device';
-import { JourneyFallback } from './components/JourneyFallback';
+// =============================================================================
+// The homepage entry, and the whole of what it does is decide WHEN the journey
+// is allowed to start.
+//
+// This is the entry for `/`, `/en/` and `/de/` only. The prototype at
+// /experiments/stratos-ascent-full/ has `prototype.tsx`, which mounts the same
+// journey immediately; see the note there for why one entry could not be both.
+//
+// WHY THE MOUNT IS NOT HERE ANY MORE
+// ----------------------------------
+// It used to be. `createRoot(main).render(<Homepage/>)` ran the moment this
+// module was evaluated, which meant React, both compositions and — one dynamic
+// import later — three.js all executed while the visitor was still waiting for
+// the first screen. Measured on the deployed site, on the device Lighthouse
+// emulates:
+//
+//     Total Blocking Time     1 470 ms   (budget: 200)
+//     Largest Contentful Paint  2 300 ms   (budget: 2 500, but see below)
+//     longest single task         839 ms
+//
+// and the largest contentful paint was the *footer's* headline, because for the
+// first two and a half seconds that was the biggest thing the document had.
+//
+// None of that is the journey being slow. It is the journey being early. A
+// scroll-driven ascent through 30 000 m is, by construction, a thing that
+// begins when the visitor begins it, and there is no reading of this page on
+// which a WebGL renderer has to exist before they have touched it.
+//
+// So the document now ships its own opening frame — the same headline and the
+// same lead sentence, as static markup in the shell (`openingFrame()` in
+// `experiments/vite.home.config.ts`) — and this file waits.
+//
+// WHAT COUNTS AS "BEGINNING"
+// --------------------------
+// Any of `EVENTS` below. They are chosen to fire *before* the visitor could
+// notice anything missing rather than after:
+//
+//   pointermove   a mouse crossing the document. On a laptop this is the first
+//                 thing that happens, usually before the page has finished
+//                 painting.
+//   wheel         fires before the scroll it causes.
+//   touchstart    fires when the finger lands, before it has moved.
+//   pointerdown   the same for a stylus or a mouse press.
+//   keydown       space, Page Down, Tab.
+//   focusin       a keyboard visitor reaching the skip link.
+//   scroll        the backstop, for scrolls none of the above preceded —
+//                 momentum, a fragment link, an assistive technology.
+//
+// Plus three states that mean the visitor is *already* past the opening and
+// waiting for the journey rather than about to ask for it: a restored scroll
+// position, a fragment aimed inside the journey, and a BFCache restore.
+//
+// WHAT IT COSTS, HONESTLY
+// -----------------------
+// A visitor who never interacts sees the opening frame, the Arrival and the
+// footer, and never the journey. That is the correct outcome — they read the
+// two sentences the page opens with and left — but it is a real difference from
+// before, and it is the reason the chunk is prefetched at idle: by the time the
+// first `pointermove` arrives, the bytes are usually already local, so what the
+// deferral costs at the moment of engagement is the mount, not the download.
+// =============================================================================
+
+// Eager, and the only thing in this file that is: `styles.css` carries the skip
+// link, the focus ring and the layer order, all of which have to be right for
+// the static opening frame that ships in the HTML. `mobile.css` is NOT imported
+// here on purpose — it belongs to a composition that has not been chosen yet,
+// so it travels with the chunk that chooses.
 import './styles.css';
-
-/**
- * The last-resort net, and deliberately not the first one.
- *
- * WebGL failures — a bad driver, a lost context, a model that decodes wrong —
- * are caught much closer to where they happen, by `SceneBoundary` around the
- * canvas subtree, precisely so that they cost the visitor the canvas and not
- * the page. React cannot render half of a subtree that threw, so a boundary at
- * this level is all-or-nothing: it was catching context losses and replacing
- * the entire journey with a static dial, taking the headline, the case studies
- * and the call to action with it.
- *
- * What remains here catches the things that genuinely leave nothing to render —
- * a throw in the narrative itself, or during the initial mount — where a static
- * instrument really is better than a blank page.
- */
-class JourneyBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
-  state = { failed: false };
-
-  static getDerivedStateFromError() {
-    return { failed: true };
-  }
-
-  componentDidCatch(error: Error, info: ErrorInfo) {
-    console.error('Full ascent crashed:', error, info.componentStack);
-  }
-
-  render() {
-    if (!this.state.failed) return this.props.children;
-    // No <main> of its own: the landmark is the mount host in the HTML shell,
-    // and this renders *inside* it. Wrapping this in a second <main> would give
-    // the crashed page two main landmarks, one nested in the other.
-    return (
-      <div className="journey__stage" style={{ position: 'relative' }}>
-        <JourneyFallback reason="context-lost" />
-      </div>
-    );
-  }
-}
-
-/**
- * Development handle on the two singletons.
- *
- * The debug panel is the interface a person uses; this is the one a script
- * uses, and having it is what makes it possible to screenshot an exact altitude
- * state from a test without scrolling eleven screens to it or guessing a slider
- * position. `import.meta.env.DEV` is statically replaced, so neither the import
- * nor the assignment survives a production build.
- *
- * Merged into whatever is already there rather than assigned over it.
- * `JourneyScene`'s `DevSceneHandle` publishes the renderer's scene, camera and
- * context onto the same object, and the two have no ordering relationship: this
- * one waits on a dynamic import, that one waits on the canvas mounting, and
- * either can land first. Assigning a fresh object here — which is what this did
- * — silently dropped the scene whenever the canvas won the race, and the
- * validation script then timed out waiting for a handle that had existed and
- * been overwritten.
- */
-if (import.meta.env.DEV) {
-  void Promise.all([import('./journey'), import('./meridian'), import('./composition')]).then(([j, m, c]) => {
-    const g = globalThis as { __stratos?: Record<string, unknown> };
-    g.__stratos = {
-      ...(g.__stratos ?? {}),
-      journey: j.journey,
-      meridian: m.meridian,
-      // The portrait composition's own answers: which stages measured dense on
-      // this viewport in this locale, and what usable box they were measured
-      // against. A capture script that has to *infer* which stages recede picks
-      // its own altitudes and then photographs whatever it guessed, which is
-      // how a still set ends up not showing the thing it was made to show.
-      composition: {
-        denseStages: c.denseStages,
-        fit: c.currentFit,
-        measurement: c.measurement,
-        stages: j.STAGES,
-        // The rails, for the validator.
-        //
-        // §13 replaced the global centre tolerance with a deviation from the
-        // *intended* rail, which means the check needs to know what the
-        // composition intended — and it must not be allowed to work that out
-        // for itself. A harness that reimplements `railAt` is a second
-        // implementation of the thing under test, and the two agreeing proves
-        // only that the same mistake was made twice. Reading the number the
-        // page actually composed against is what makes the ±3% meaningful.
-        railAt: c.railAt,
-        railTrack: c.railTrack,
-        railBudget: c.railBudgetNow,
-        railOf: c.railOf,
-        copySideOf: c.copySideOf,
-        railTolerance: c.RAIL_TOLERANCE,
-      },
-    };
-  });
-}
-
-/**
- * The mount host is the `<main id="main" tabindex="-1">` in the locale shell,
- * not a `<div id="root">`.
- *
- * React owns a container's *children*; the container element itself is never
- * replaced, re-created or unmounted. Mounting onto the landmark therefore makes
- * it a fixed point: it is in the parsed HTML before the first module request,
- * it is still the same node after hydration, after every re-render, and after
- * the error boundary above swaps the whole tree for a static instrument.
- *
- * That is what the transition controller needs. `assets/js/transitions.js`
- * moves focus to `#main` the moment the destination document is revealed, and
- * before this change the homepage had nothing there to move focus to for the
- * second or so it took React and a 1 MB scene chunk to arrive. The only fix
- * available on the old structure was to poll until the landmark appeared, which
- * lands a focus change on a visitor who has already started reading.
- */
-/**
- * The one fork between the two homepages.
- *
- * `if portrait mobile: simple mobile homepage / else: existing desktop
- * cinematic homepage`, which is §4 of the mobile brief in its own words. The
- * two are separate compositions rather than one component full of breakpoint
- * conditionals: they share the content tables, the locale messages and the
- * Meridian drawing, and nothing else. `FullAscent` is untouched.
- *
- * ## Why the decision is taken once and never revisited
- *
- * `useState` with an initialiser, not an effect and not a media-query
- * subscription. The answer comes from `screen`'s short edge and the pointer
- * type — see `mobile/device.ts` — neither of which can change while the page is
- * open, so there is nothing to subscribe to. Re-deciding would mean unmounting
- * a live React tree and mounting the other one underneath a finger that is
- * still moving, which is precisely the Safari-toolbar thrash §23 forbids.
- *
- * A rotation therefore keeps the mobile composition, which is what §23 asks
- * for: mobile landscape gets the simple editorial page, not the cinematic one.
- */
-function Homepage() {
-  const [mobile] = useState(isMobileHomepage);
-  return mobile ? <MobileHome /> : <FullAscent />;
-}
+// The one module this entry pulls in beyond its stylesheet: forty lines of
+// `matchMedia` and `screen`, no React and no composition. It is here so the
+// prefetch below asks the same question `boot.tsx` will ask, rather than a
+// second copy of it that could answer differently.
+import { isMobileHomepage } from './mobile/device';
 
 const host = document.getElementById('main');
-if (host) {
-  createRoot(host).render(
-    <StrictMode>
-      <JourneyBoundary>
-        <Homepage />
-      </JourneyBoundary>
-    </StrictMode>,
-  );
+
+/** See the note above. `capture` so nothing inside can stop one first. */
+const EVENTS = [
+  'pointermove',
+  'pointerdown',
+  'touchstart',
+  'wheel',
+  'keydown',
+  'focusin',
+  'scroll',
+] as const;
+
+const LISTEN: AddEventListenerOptions = { passive: true, capture: true };
+
+let started = false;
+
+function start(): void {
+  if (started || !host) return;
+  started = true;
+  for (const type of EVENTS) removeEventListener(type, start, LISTEN);
+  void import('./boot').then((boot) => boot.mount(host));
 }
+
+for (const type of EVENTS) addEventListener(type, start, LISTEN);
+
+/**
+ * When there is nothing to wait for.
+ *
+ * The dev server is one: `vite dev` serves the shell with its opening-frame
+ * placeholder unsubstituted, so waiting there would mean developing against a
+ * blank page. (The prototype at `/experiments/stratos-ascent-full/` is not on
+ * this list any more — it has an entry of its own, `prototype.tsx`, for
+ * reasons worth reading there.)
+ *
+ * The rest are the "already past the opening" cases — a visitor who is not
+ * about to ask for the journey but is already inside it:
+ *
+ *   a restored scroll position   `scrollY` is read at module evaluation, which
+ *                                for a `type="module"` script is after the
+ *                                document is parsed and after the browser has
+ *                                applied its scroll restoration. A Back
+ *                                navigation into the middle of the journey
+ *                                finds a non-zero offset here and mounts with
+ *                                no interaction to wait for.
+ *                                `assets/js/home-history.js` is what made the
+ *                                document tall enough for that offset to
+ *                                survive; this is the other half of it.
+ *   a fragment                   `/#stage-selected-work` is a request for
+ *                                something only the journey renders. `#main` is
+ *                                excluded: that is the skip link, and it points
+ *                                at the opening frame, which is already there.
+ *   a BFCache restore            the same document handed back with a life
+ *                                ahead of it, and a scroll position it had
+ *                                before.
+ */
+if (import.meta.env.DEV) {
+  start();
+} else if (scrollY > 0 || (location.hash && location.hash !== '#main')) {
+  start();
+}
+
+addEventListener('pageshow', (event) => {
+  if (event.persisted) start();
+});
+
+/* --------------------------------------------------------------- prefetching
+
+   The chunk list is emitted by `journeyChunks()` in
+   `experiments/vite.home.config.ts`, because the file names are hashed and this
+   file cannot know them.
+
+   `rel="prefetch"` and not `rel="modulepreload"`, and the difference is the
+   whole point: `modulepreload` compiles the module as well as fetching it, and
+   compiling 300 KB of React and three.js is exactly the main-thread work this
+   file exists to keep out of the load. `prefetch` puts the bytes in the HTTP
+   cache at the lowest priority the browser has and does not touch them again.
+
+   WHY IT WAITS TWICE, AND WHY THE SECOND WAIT IS A CLOCK
+
+   `load` alone was not late enough, and the way it failed is worth writing
+   down. On a fast machine the whole document lands in about 250 ms, so `load`
+   fired *before* the browser had reported its largest contentful paint — and a
+   prefetch issued in that window is, to anything reconstructing the load, a
+   request the page made while it was still painting. Lighthouse put 300 KB of
+   renderer into the dependency graph of a headline that was already on screen
+   and simulated the paint at 4.3 s instead of 1.9 s. Nothing was slower; the
+   measurement was simply told the wrong story.
+
+   Two seconds past `load` is well clear of the largest contentful paint on any
+   device — on a slow one the paint happens long before the load event, and on a
+   fast one two seconds is an age — and then the browser's own idle callback
+   decides the exact moment. `saveData` and a 2G connection opt out entirely:
+   this is a convenience for the scroll that is probably coming, and it is not
+   worth a metered megabyte to someone who has said so. */
+const PREFETCH_DELAY_MS = 2_000;
+
+addEventListener(
+  'load',
+  () => {
+    if (started) return;
+    const link = (navigator as { connection?: { saveData?: boolean; effectiveType?: string } })
+      .connection;
+    if (link?.saveData || /^(slow-)?2g$/.test(link?.effectiveType ?? '')) return;
+    const source = document.getElementById('journey-chunks');
+    if (!source?.textContent) return;
+    let manifest: { core: string[]; mobile: string[]; desktop: string[] };
+    try {
+      manifest = JSON.parse(source.textContent);
+    } catch {
+      return;
+    }
+    // React and both compositions, then the renderer for the composition this
+    // device will actually choose — never both renderers.
+    const chunks = [
+      ...manifest.core,
+      ...(isMobileHomepage() ? manifest.mobile : manifest.desktop),
+    ];
+
+    const fetchThem = () => {
+      // A visitor who engaged during the wait already has the real import in
+      // flight; a prefetch behind it would be a second request for the same
+      // bytes.
+      if (started) return;
+      for (const href of chunks) {
+        const tag = document.createElement('link');
+        tag.rel = 'prefetch';
+        tag.href = href;
+        document.head.appendChild(tag);
+      }
+    };
+
+    setTimeout(() => {
+      if (typeof requestIdleCallback === 'function') requestIdleCallback(fetchThem, { timeout: 4_000 });
+      else fetchThem();
+    }, PREFETCH_DELAY_MS);
+  },
+  { once: true },
+);

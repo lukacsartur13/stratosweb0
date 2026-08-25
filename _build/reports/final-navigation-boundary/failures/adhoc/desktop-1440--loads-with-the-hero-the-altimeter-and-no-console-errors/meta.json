@@ -1,0 +1,61 @@
+{
+  "runId": "adhoc",
+  "navId": "adhoc.desktop-1440.w0.loads-with-the-hero-the-altimeter-and-no-console-errors.0",
+  "test": {
+    "file": "public-site.spec.ts",
+    "line": 79,
+    "title": "loads with the hero, the altimeter and no console errors",
+    "project": "desktop-1440",
+    "workerIndex": 0,
+    "repeatEachIndex": 0,
+    "retry": 0
+  },
+  "preceding": {
+    "urlBefore": "about:blank",
+    "contextPages": 1,
+    "openRequests": 0,
+    "navigationsInThisTest": 0,
+    "workerTestsBefore": 0,
+    "workerNavigationsBefore": 0,
+    "precedingTest": null,
+    "precedingNavigation": null
+  },
+  "status": "failed",
+  "expectedStatus": "passed",
+  "durationMs": 7403,
+  "timeoutMs": 30000,
+  "lastConfirmedState": "DESTINATION_READY",
+  "statesReached": [
+    "GOTO_CALLED",
+    "REQUEST_STARTED",
+    "RESPONSE_EVENT",
+    "NAV_COMMITTED",
+    "DOMCONTENTLOADED",
+    "LOAD",
+    "DESTINATION_READY"
+  ],
+  "screenshot": true,
+  "error": [
+    "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Stratos/\u001b[39m\nReceived string:  \u001b[31m\"Error response\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"Error response\"\u001b[22m\n"
+  ],
+  "errorIsPartial": false,
+  "frozenSubject": {
+    "source": "_build/reports/hermetic-gate/manifests/frozen-reference.json",
+    "dist": null,
+    "test": null,
+    "config": null,
+    "combined": null,
+    "commit": null
+  },
+  "system": {
+    "loadavg": [
+      21.36669921875,
+      7.6591796875,
+      4.82958984375
+    ],
+    "freememMB": 90,
+    "cpus": 10,
+    "platform": "darwin 25.6.0",
+    "arch": "arm64"
+  }
+}

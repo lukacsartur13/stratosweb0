@@ -88,3 +88,11 @@ _build/reports/phase8-review/
 # so the review captures can show a populated dashboard; it is never published,
 # is not `dist/`, and is rebuilt from scratch on every run.
 _build/.portal-mock/
+
+# Review scratch for the instrument studies. Staged by
+# `_build/reports/luxury-art-direction/stage-studio.sh`, served as its own
+# document root, and deliberately OUTSIDE `dist/`: anything under dist/ is
+# crawled by the route, SEO and conversion audits as a public route, and a
+# review page that has to be deleted by hand before `npm test` tells the truth
+# is a gate that has stopped being one.
+/_studio/

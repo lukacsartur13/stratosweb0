@@ -1,0 +1,8 @@
+# Font binaries are never committed.
+#
+# The open faces (Inter, Source Serif 4, JetBrains Mono) are fetched on demand
+# by fonts/fetch-fonts.mjs. The licensed faces (Styrene, Tiempos, Berkeley
+# Mono) are commercial and must not enter version control at all — a webfont
+# licence does not survive a public repo.
+fonts/files/
+!fonts/files/.gitkeep

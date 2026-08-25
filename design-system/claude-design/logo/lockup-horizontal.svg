@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 252 48" width="252" height="48"
+     role="img" aria-labelledby="cd-lockup-h-title" fill="currentColor">
+  <title id="cd-lockup-h-title">Claude Design</title>
+  <!--
+    Horizontal lockup. Mark and wordmark are locked at this ratio — never
+    re-space them by hand.
+
+    The wordmark is live <text>, so it renders in whatever the brand sans
+    resolves to on the host. That is deliberate for web use. For print, PDF,
+    or any handoff to someone outside the font licence, convert to outlines
+    first (see logo/README.md) — otherwise it silently falls back to Arial.
+  -->
+  <defs>
+    <path id="cd-ray-long-h"
+          d="M24 3.5c.86 0 1.28.56 1.38 1.52l1.24 11.88c.21 1.92-1.07 3.2-2.62 3.2s-2.83-1.28-2.62-3.2L22.62 5.02C22.72 4.06 23.14 3.5 24 3.5Z"/>
+    <path id="cd-ray-short-h"
+          d="M24 10.5c.7 0 1.05.44 1.13 1.2l.89 5.6c.18 1.6-.78 2.8-2.02 2.8s-2.2-1.2-2.02-2.8l.89-5.6c.08-.76.43-1.2 1.13-1.2Z"/>
+  </defs>
+
+  <g>
+    <use href="#cd-ray-long-h"/>
+    <use href="#cd-ray-long-h" transform="rotate(90 24 24)"/>
+    <use href="#cd-ray-long-h" transform="rotate(180 24 24)"/>
+    <use href="#cd-ray-long-h" transform="rotate(270 24 24)"/>
+    <use href="#cd-ray-short-h" transform="rotate(45 24 24)"/>
+    <use href="#cd-ray-short-h" transform="rotate(135 24 24)"/>
+    <use href="#cd-ray-short-h" transform="rotate(225 24 24)"/>
+    <use href="#cd-ray-short-h" transform="rotate(315 24 24)"/>
+  </g>
+
+  <text x="62" y="32.5"
+        font-family="'Styrene A', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="25" font-weight="600" letter-spacing="-0.4">Claude<tspan
+        font-weight="400" fill-opacity="0.62"> Design</tspan></text>
+</svg>

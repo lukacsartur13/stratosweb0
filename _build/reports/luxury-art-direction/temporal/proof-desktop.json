@@ -1,0 +1,10846 @@
+{
+ "meta": {
+  "W": 1440,
+  "H": 900,
+  "STEPS": 300,
+  "screens": 24.95777777777778
+ },
+ "rows": [
+  {
+   "screens": 0,
+   "metric": {
+    "o": 0,
+    "top": 9900,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 10073,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 10073,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0.714,
+    "top": 812,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 10179,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.083,
+   "metric": {
+    "o": 0,
+    "top": 9825,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9998,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9998,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0.908,
+    "top": 737,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 10104,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.166,
+   "metric": {
+    "o": 0,
+    "top": 9750,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9923,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9923,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 662,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 10029,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.25,
+   "metric": {
+    "o": 0,
+    "top": 9675,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9848,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9848,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 648,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9954,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.333,
+   "metric": {
+    "o": 0,
+    "top": 9601,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9774,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9774,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 648,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9880,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.416,
+   "metric": {
+    "o": 0,
+    "top": 9526,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9699,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9699,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 648,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9805,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.499,
+   "metric": {
+    "o": 0,
+    "top": 9451,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9624,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9624,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 633,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9730,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.582,
+   "metric": {
+    "o": 0,
+    "top": 9376,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9549,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9549,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 558,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9655,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.666,
+   "metric": {
+    "o": 0,
+    "top": 9301,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9474,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9474,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 483,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9580,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.749,
+   "metric": {
+    "o": 0,
+    "top": 9226,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9399,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9399,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 408,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9505,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.832,
+   "metric": {
+    "o": 0,
+    "top": 9151,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9324,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9324,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 333,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9430,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.915,
+   "metric": {
+    "o": 0,
+    "top": 9076,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9249,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9249,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 258,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9355,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 0.998,
+   "metric": {
+    "o": 0,
+    "top": 9002,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9175,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9175,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 184,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9281,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.082,
+   "metric": {
+    "o": 0,
+    "top": 8927,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9100,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9100,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 109,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9206,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.165,
+   "metric": {
+    "o": 0,
+    "top": 8852,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 9025,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 9025,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": 34,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9131,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.248,
+   "metric": {
+    "o": 0,
+    "top": 8777,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8950,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8950,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 1,
+    "top": -41,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 9056,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.331,
+   "metric": {
+    "o": 0,
+    "top": 8702,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8875,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8875,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -116,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8981,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.414,
+   "metric": {
+    "o": 0,
+    "top": 8627,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8800,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8800,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -191,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8906,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.497,
+   "metric": {
+    "o": 0,
+    "top": 8552,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8725,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8725,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -266,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8831,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.581,
+   "metric": {
+    "o": 0,
+    "top": 8477,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8650,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8650,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -341,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8756,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.664,
+   "metric": {
+    "o": 0,
+    "top": 8403,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8576,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8576,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -415,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8682,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.747,
+   "metric": {
+    "o": 0,
+    "top": 8328,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8501,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8501,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -490,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8607,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.83,
+   "metric": {
+    "o": 0,
+    "top": 8253,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8426,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8426,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -565,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8532,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.913,
+   "metric": {
+    "o": 0,
+    "top": 8178,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8351,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8351,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -640,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8457,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 1.997,
+   "metric": {
+    "o": 0,
+    "top": 8103,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8276,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8276,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -715,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8382,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.08,
+   "metric": {
+    "o": 0,
+    "top": 8028,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8201,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8201,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -790,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8307,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.163,
+   "metric": {
+    "o": 0,
+    "top": 7953,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8126,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8126,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -865,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8232,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.246,
+   "metric": {
+    "o": 0,
+    "top": 7878,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 8051,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 8051,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -940,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8157,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.329,
+   "metric": {
+    "o": 0,
+    "top": 7804,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7977,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7977,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1014,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8083,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.413,
+   "metric": {
+    "o": 0,
+    "top": 7729,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7902,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7902,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1089,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8008,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.496,
+   "metric": {
+    "o": 0,
+    "top": 7654,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7827,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7827,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1164,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7933,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.579,
+   "metric": {
+    "o": 0,
+    "top": 7579,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7752,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7752,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1239,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7858,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.662,
+   "metric": {
+    "o": 0,
+    "top": 7504,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7677,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7677,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1314,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7783,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.745,
+   "metric": {
+    "o": 0,
+    "top": 7429,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7602,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7602,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1389,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7708,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.829,
+   "metric": {
+    "o": 0,
+    "top": 7354,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7527,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7527,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1464,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7633,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.912,
+   "metric": {
+    "o": 0,
+    "top": 7279,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7452,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7452,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1539,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7558,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 2.995,
+   "metric": {
+    "o": 0,
+    "top": 7205,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7378,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7378,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1613,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7484,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.078,
+   "metric": {
+    "o": 0,
+    "top": 7130,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7303,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7303,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1688,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7409,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.161,
+   "metric": {
+    "o": 0,
+    "top": 7055,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7228,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7228,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1763,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7334,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.245,
+   "metric": {
+    "o": 0,
+    "top": 6980,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7153,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7153,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1838,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7259,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.328,
+   "metric": {
+    "o": 0,
+    "top": 6905,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7078,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7078,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1913,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7184,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.411,
+   "metric": {
+    "o": 0,
+    "top": 6830,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 7003,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 7003,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -1988,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7109,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.494,
+   "metric": {
+    "o": 0,
+    "top": 6755,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6928,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6928,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2063,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 7034,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.577,
+   "metric": {
+    "o": 0,
+    "top": 6680,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6853,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6853,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2138,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6959,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.66,
+   "metric": {
+    "o": 0,
+    "top": 6606,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6779,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6779,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2212,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6885,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.744,
+   "metric": {
+    "o": 0,
+    "top": 6531,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6704,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6704,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2287,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6810,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.827,
+   "metric": {
+    "o": 0,
+    "top": 6456,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6629,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6629,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2362,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6735,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.91,
+   "metric": {
+    "o": 0,
+    "top": 6381,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6554,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6554,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2437,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6660,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 3.993,
+   "metric": {
+    "o": 0,
+    "top": 6306,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6479,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6479,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2512,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6585,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.076,
+   "metric": {
+    "o": 0,
+    "top": 6231,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6404,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6404,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2587,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6510,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.16,
+   "metric": {
+    "o": 0,
+    "top": 6156,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6329,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6329,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2662,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6435,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.243,
+   "metric": {
+    "o": 0,
+    "top": 6081,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6254,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6254,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2737,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6360,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.326,
+   "metric": {
+    "o": 0,
+    "top": 6007,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6180,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6180,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2811,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6286,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.409,
+   "metric": {
+    "o": 0,
+    "top": 5932,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6105,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6105,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2886,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6211,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.492,
+   "metric": {
+    "o": 0,
+    "top": 5857,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 6030,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 6030,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -2961,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6136,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.576,
+   "metric": {
+    "o": 0,
+    "top": 5782,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5955,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5955,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3036,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 6061,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.659,
+   "metric": {
+    "o": 0,
+    "top": 5707,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5880,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5880,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3111,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5986,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.742,
+   "metric": {
+    "o": 0,
+    "top": 5632,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5805,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5805,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3186,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5911,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.825,
+   "metric": {
+    "o": 0,
+    "top": 5557,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5730,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5730,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3261,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5836,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.908,
+   "metric": {
+    "o": 0,
+    "top": 5482,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5655,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5655,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3336,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5761,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 4.992,
+   "metric": {
+    "o": 0,
+    "top": 5408,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5581,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5581,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3410,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5687,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.075,
+   "metric": {
+    "o": 0,
+    "top": 5333,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5506,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5506,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3485,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5612,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.158,
+   "metric": {
+    "o": 0,
+    "top": 5258,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5431,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5431,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3560,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5537,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.241,
+   "metric": {
+    "o": 0,
+    "top": 5183,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5356,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5356,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3635,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5462,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.324,
+   "metric": {
+    "o": 0,
+    "top": 5108,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5281,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5281,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3710,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5387,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.408,
+   "metric": {
+    "o": 0,
+    "top": 5033,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5206,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5206,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3785,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5312,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.491,
+   "metric": {
+    "o": 0,
+    "top": 4958,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5131,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5131,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3860,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5237,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.574,
+   "metric": {
+    "o": 0,
+    "top": 4883,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 5056,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 5056,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -3935,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5162,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.657,
+   "metric": {
+    "o": 0,
+    "top": 4809,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4982,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4982,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4009,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5088,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.74,
+   "metric": {
+    "o": 0,
+    "top": 4734,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4907,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4907,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4084,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 5013,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.823,
+   "metric": {
+    "o": 0,
+    "top": 4659,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4832,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4832,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4159,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4938,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.907,
+   "metric": {
+    "o": 0,
+    "top": 4584,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4757,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4757,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4234,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4863,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 5.99,
+   "metric": {
+    "o": 0,
+    "top": 4509,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4682,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4682,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4309,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4788,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.073,
+   "metric": {
+    "o": 0,
+    "top": 4434,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4607,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4607,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4384,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4713,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.156,
+   "metric": {
+    "o": 0,
+    "top": 4359,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4532,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4532,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4459,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4638,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.239,
+   "metric": {
+    "o": 0,
+    "top": 4284,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4457,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4457,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4534,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4563,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.323,
+   "metric": {
+    "o": 0,
+    "top": 4210,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4383,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4383,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4608,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4489,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.406,
+   "metric": {
+    "o": 0,
+    "top": 4135,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4308,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4308,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4683,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4414,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.489,
+   "metric": {
+    "o": 0,
+    "top": 4060,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4233,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4233,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4758,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4339,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.572,
+   "metric": {
+    "o": 0,
+    "top": 3985,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4158,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4158,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4833,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4264,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.655,
+   "metric": {
+    "o": 0,
+    "top": 3910,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4083,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4083,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4908,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4189,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.739,
+   "metric": {
+    "o": 0,
+    "top": 3835,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 4008,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 4008,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -4983,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4114,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.822,
+   "metric": {
+    "o": 0,
+    "top": 3760,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3933,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3933,
+    "h": 526,
+    "loaded": false
+   },
+   "define": {
+    "o": 0,
+    "top": -5058,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 4039,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.905,
+   "metric": {
+    "o": 0,
+    "top": 3686,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3859,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3859,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5132,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3965,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 6.988,
+   "metric": {
+    "o": 0,
+    "top": 3611,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3784,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3784,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5207,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3890,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.071,
+   "metric": {
+    "o": 0,
+    "top": 3536,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3709,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3709,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5282,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3815,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.155,
+   "metric": {
+    "o": 0,
+    "top": 3461,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3634,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3634,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5357,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3740,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.238,
+   "metric": {
+    "o": 0,
+    "top": 3386,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3559,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3559,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5432,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3665,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.321,
+   "metric": {
+    "o": 0,
+    "top": 3311,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3484,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3484,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5507,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3590,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.404,
+   "metric": {
+    "o": 0,
+    "top": 3236,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3409,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3409,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5582,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3515,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.487,
+   "metric": {
+    "o": 0,
+    "top": 3161,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3334,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3334,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5657,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3440,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.571,
+   "metric": {
+    "o": 0,
+    "top": 3087,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3260,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3260,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5731,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3366,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.654,
+   "metric": {
+    "o": 0,
+    "top": 3012,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3185,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3185,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5806,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3291,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.737,
+   "metric": {
+    "o": 0,
+    "top": 2937,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3110,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3110,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5881,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3216,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.82,
+   "metric": {
+    "o": 0,
+    "top": 2862,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 3035,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 3035,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -5956,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3141,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.903,
+   "metric": {
+    "o": 0,
+    "top": 2787,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2960,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2960,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6031,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 3066,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 7.986,
+   "metric": {
+    "o": 0,
+    "top": 2712,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2885,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2885,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6106,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2991,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.07,
+   "metric": {
+    "o": 0,
+    "top": 2637,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2810,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2810,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6181,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2916,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.153,
+   "metric": {
+    "o": 0,
+    "top": 2562,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2735,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2735,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6256,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2841,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.236,
+   "metric": {
+    "o": 0,
+    "top": 2488,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2661,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2661,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6330,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2767,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.319,
+   "metric": {
+    "o": 0,
+    "top": 2413,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2586,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2586,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6405,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2692,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.402,
+   "metric": {
+    "o": 0,
+    "top": 2338,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2511,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2511,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6480,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2617,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.486,
+   "metric": {
+    "o": 0,
+    "top": 2263,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2436,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2436,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6555,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2542,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.569,
+   "metric": {
+    "o": 0,
+    "top": 2188,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2361,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2361,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6630,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2467,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.652,
+   "metric": {
+    "o": 0,
+    "top": 2113,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2286,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2286,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6705,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2392,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.735,
+   "metric": {
+    "o": 0,
+    "top": 2038,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2211,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2211,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6780,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2317,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.818,
+   "metric": {
+    "o": 0,
+    "top": 1963,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2136,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2136,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6855,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2242,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.902,
+   "metric": {
+    "o": 0,
+    "top": 1889,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 2062,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 2062,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -6929,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2168,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 8.985,
+   "metric": {
+    "o": 0,
+    "top": 1814,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1987,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1987,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7004,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2093,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.068,
+   "metric": {
+    "o": 0,
+    "top": 1739,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1912,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1912,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7079,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 2018,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.151,
+   "metric": {
+    "o": 0,
+    "top": 1664,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1837,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1837,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7154,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1943,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.234,
+   "metric": {
+    "o": 0,
+    "top": 1589,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1762,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1762,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7229,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1868,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.318,
+   "metric": {
+    "o": 0,
+    "top": 1514,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1687,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1687,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7304,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1793,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.401,
+   "metric": {
+    "o": 0,
+    "top": 1439,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1612,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1612,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7379,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1718,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.484,
+   "metric": {
+    "o": 0,
+    "top": 1364,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1537,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1537,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7454,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1643,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.567,
+   "metric": {
+    "o": 0,
+    "top": 1290,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1463,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1463,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7528,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1569,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.65,
+   "metric": {
+    "o": 0,
+    "top": 1215,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1388,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1388,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7603,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1494,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.734,
+   "metric": {
+    "o": 0,
+    "top": 1140,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1313,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1313,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7678,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1419,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.817,
+   "metric": {
+    "o": 0,
+    "top": 1065,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1238,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1238,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7753,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1344,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.9,
+   "metric": {
+    "o": 0,
+    "top": 990,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1163,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1163,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7828,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1269,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 9.983,
+   "metric": {
+    "o": 0,
+    "top": 915,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1088,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1088,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7903,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1194,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.066,
+   "metric": {
+    "o": 0,
+    "top": 840,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 1013,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 1013,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -7978,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1119,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.149,
+   "metric": {
+    "o": 0,
+    "top": 765,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 938,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 938,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8053,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 1044,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.233,
+   "metric": {
+    "o": 0.094,
+    "top": 691,
+    "h": 168
+   },
+   "shot": {
+    "o": 0.094,
+    "top": 864,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0.094,
+    "top": 864,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8127,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 970,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.316,
+   "metric": {
+    "o": 0.3,
+    "top": 616,
+    "h": 168
+   },
+   "shot": {
+    "o": 0.3,
+    "top": 789,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0.3,
+    "top": 789,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8202,
+    "h": 55
+   },
+   "routes": {
+    "o": 0.3,
+    "top": 895,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.399,
+   "metric": {
+    "o": 0.507,
+    "top": 541,
+    "h": 168
+   },
+   "shot": {
+    "o": 0.507,
+    "top": 714,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0.507,
+    "top": 714,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8277,
+    "h": 55
+   },
+   "routes": {
+    "o": 0.507,
+    "top": 820,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.482,
+   "metric": {
+    "o": 0.714,
+    "top": 466,
+    "h": 168
+   },
+   "shot": {
+    "o": 0.714,
+    "top": 639,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0.714,
+    "top": 639,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8352,
+    "h": 55
+   },
+   "routes": {
+    "o": 0.714,
+    "top": 745,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.565,
+   "metric": {
+    "o": 0.892,
+    "top": 391,
+    "h": 168
+   },
+   "shot": {
+    "o": 0.892,
+    "top": 564,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0.892,
+    "top": 564,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8427,
+    "h": 55
+   },
+   "routes": {
+    "o": 0.892,
+    "top": 670,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.649,
+   "metric": {
+    "o": 1,
+    "top": 316,
+    "h": 168
+   },
+   "shot": {
+    "o": 1,
+    "top": 489,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 1,
+    "top": 489,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8502,
+    "h": 55
+   },
+   "routes": {
+    "o": 1,
+    "top": 595,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.732,
+   "metric": {
+    "o": 1,
+    "top": 297,
+    "h": 168
+   },
+   "shot": {
+    "o": 1,
+    "top": 470,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 1,
+    "top": 470,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8577,
+    "h": 55
+   },
+   "routes": {
+    "o": 1,
+    "top": 576,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.815,
+   "metric": {
+    "o": 1,
+    "top": 297,
+    "h": 168
+   },
+   "shot": {
+    "o": 1,
+    "top": 470,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 1,
+    "top": 470,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8652,
+    "h": 55
+   },
+   "routes": {
+    "o": 1,
+    "top": 576,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.898,
+   "metric": {
+    "o": 1,
+    "top": 297,
+    "h": 168
+   },
+   "shot": {
+    "o": 1,
+    "top": 470,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 1,
+    "top": 470,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8726,
+    "h": 55
+   },
+   "routes": {
+    "o": 1,
+    "top": 576,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 10.981,
+   "metric": {
+    "o": 1,
+    "top": 297,
+    "h": 168
+   },
+   "shot": {
+    "o": 1,
+    "top": 470,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 1,
+    "top": 470,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8801,
+    "h": 55
+   },
+   "routes": {
+    "o": 1,
+    "top": 576,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.065,
+   "metric": {
+    "o": 1,
+    "top": 297,
+    "h": 168
+   },
+   "shot": {
+    "o": 1,
+    "top": 470,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 1,
+    "top": 470,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8876,
+    "h": 55
+   },
+   "routes": {
+    "o": 1,
+    "top": 576,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.148,
+   "metric": {
+    "o": 1,
+    "top": 297,
+    "h": 168
+   },
+   "shot": {
+    "o": 1,
+    "top": 470,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 1,
+    "top": 470,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -8951,
+    "h": 55
+   },
+   "routes": {
+    "o": 1,
+    "top": 576,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.231,
+   "metric": {
+    "o": 1,
+    "top": 297,
+    "h": 168
+   },
+   "shot": {
+    "o": 1,
+    "top": 470,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 1,
+    "top": 470,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9026,
+    "h": 55
+   },
+   "routes": {
+    "o": 1,
+    "top": 576,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.314,
+   "metric": {
+    "o": 0.901,
+    "top": 294,
+    "h": 168
+   },
+   "shot": {
+    "o": 0.901,
+    "top": 467,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0.901,
+    "top": 467,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9101,
+    "h": 55
+   },
+   "routes": {
+    "o": 0.901,
+    "top": 573,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.397,
+   "metric": {
+    "o": 0.668,
+    "top": 286,
+    "h": 168
+   },
+   "shot": {
+    "o": 0.668,
+    "top": 459,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0.668,
+    "top": 459,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9176,
+    "h": 55
+   },
+   "routes": {
+    "o": 0.668,
+    "top": 565,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.481,
+   "metric": {
+    "o": 0.396,
+    "top": 266,
+    "h": 168
+   },
+   "shot": {
+    "o": 0.396,
+    "top": 439,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0.396,
+    "top": 439,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9251,
+    "h": 55
+   },
+   "routes": {
+    "o": 0.396,
+    "top": 545,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.564,
+   "metric": {
+    "o": 0.125,
+    "top": 183,
+    "h": 168
+   },
+   "shot": {
+    "o": 0.125,
+    "top": 356,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0.125,
+    "top": 356,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9325,
+    "h": 55
+   },
+   "routes": {
+    "o": 0.125,
+    "top": 462,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.647,
+   "metric": {
+    "o": 0,
+    "top": 104,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 277,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 277,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9400,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 383,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.73,
+   "metric": {
+    "o": 0,
+    "top": 29,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 202,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 202,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9475,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 308,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.813,
+   "metric": {
+    "o": 0,
+    "top": -46,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 127,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 127,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9550,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 233,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.897,
+   "metric": {
+    "o": 0,
+    "top": -121,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": 52,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": 52,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9625,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 158,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 11.98,
+   "metric": {
+    "o": 0,
+    "top": -196,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -23,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -23,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9700,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 83,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.063,
+   "metric": {
+    "o": 0,
+    "top": -271,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -98,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -98,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9775,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": 8,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.146,
+   "metric": {
+    "o": 0,
+    "top": -346,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -173,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -173,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9850,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -67,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.229,
+   "metric": {
+    "o": 0,
+    "top": -420,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -247,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -247,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9924,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -141,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.313,
+   "metric": {
+    "o": 0,
+    "top": -495,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -322,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -322,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -9999,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -216,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.396,
+   "metric": {
+    "o": 0,
+    "top": -570,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -397,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -397,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10074,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -291,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.479,
+   "metric": {
+    "o": 0,
+    "top": -645,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -472,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -472,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10149,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -366,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.562,
+   "metric": {
+    "o": 0,
+    "top": -720,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -547,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -547,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10224,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -441,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.645,
+   "metric": {
+    "o": 0,
+    "top": -795,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -622,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -622,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10299,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -516,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.728,
+   "metric": {
+    "o": 0,
+    "top": -870,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -697,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -697,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10374,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -591,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.812,
+   "metric": {
+    "o": 0,
+    "top": -944,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -771,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -771,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10448,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -665,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.895,
+   "metric": {
+    "o": 0,
+    "top": -1019,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -846,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -846,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10523,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -740,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 12.978,
+   "metric": {
+    "o": 0,
+    "top": -1094,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -921,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -921,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10598,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -815,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.061,
+   "metric": {
+    "o": 0,
+    "top": -1169,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -996,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -996,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10673,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -890,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.144,
+   "metric": {
+    "o": 0,
+    "top": -1244,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1071,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1071,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10748,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -965,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.228,
+   "metric": {
+    "o": 0,
+    "top": -1319,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1146,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1146,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10823,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1040,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.311,
+   "metric": {
+    "o": 0,
+    "top": -1394,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1221,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1221,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10898,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1115,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.394,
+   "metric": {
+    "o": 0,
+    "top": -1469,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1296,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1296,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -10973,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1190,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.477,
+   "metric": {
+    "o": 0,
+    "top": -1543,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1370,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1370,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11047,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1264,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.56,
+   "metric": {
+    "o": 0,
+    "top": -1618,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1445,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1445,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11122,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1339,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.644,
+   "metric": {
+    "o": 0,
+    "top": -1693,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1520,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1520,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11197,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1414,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.727,
+   "metric": {
+    "o": 0,
+    "top": -1768,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1595,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1595,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11272,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1489,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.81,
+   "metric": {
+    "o": 0,
+    "top": -1843,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1670,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1670,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11347,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1564,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.893,
+   "metric": {
+    "o": 0,
+    "top": -1918,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1745,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1745,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11422,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1639,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 13.976,
+   "metric": {
+    "o": 0,
+    "top": -1993,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1820,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1820,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11497,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1714,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.06,
+   "metric": {
+    "o": 0,
+    "top": -2068,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1895,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1895,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11572,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1789,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.143,
+   "metric": {
+    "o": 0,
+    "top": -2142,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -1969,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -1969,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11646,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1863,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.226,
+   "metric": {
+    "o": 0,
+    "top": -2217,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2044,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2044,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11721,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -1938,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.309,
+   "metric": {
+    "o": 0,
+    "top": -2292,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2119,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2119,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11796,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2013,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.392,
+   "metric": {
+    "o": 0,
+    "top": -2367,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2194,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2194,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11871,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2088,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.476,
+   "metric": {
+    "o": 0,
+    "top": -2442,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2269,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2269,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -11946,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2163,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.559,
+   "metric": {
+    "o": 0,
+    "top": -2517,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2344,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2344,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12021,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2238,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.642,
+   "metric": {
+    "o": 0,
+    "top": -2592,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2419,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2419,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12096,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2313,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.725,
+   "metric": {
+    "o": 0,
+    "top": -2667,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2494,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2494,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12171,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2388,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.808,
+   "metric": {
+    "o": 0,
+    "top": -2741,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2568,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2568,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12245,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2462,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.891,
+   "metric": {
+    "o": 0,
+    "top": -2816,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2643,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2643,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12320,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2537,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 14.975,
+   "metric": {
+    "o": 0,
+    "top": -2891,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2718,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2718,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12395,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2612,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.058,
+   "metric": {
+    "o": 0,
+    "top": -2966,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2793,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2793,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12470,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2687,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.141,
+   "metric": {
+    "o": 0,
+    "top": -3041,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2868,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2868,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12545,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2762,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.224,
+   "metric": {
+    "o": 0,
+    "top": -3116,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -2943,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -2943,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12620,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2837,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.307,
+   "metric": {
+    "o": 0,
+    "top": -3191,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3018,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3018,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12695,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2912,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.391,
+   "metric": {
+    "o": 0,
+    "top": -3266,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3093,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3093,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12770,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -2987,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.474,
+   "metric": {
+    "o": 0,
+    "top": -3340,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3167,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3167,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12844,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3061,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.557,
+   "metric": {
+    "o": 0,
+    "top": -3415,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3242,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3242,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12919,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3136,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.64,
+   "metric": {
+    "o": 0,
+    "top": -3490,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3317,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3317,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -12994,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3211,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.723,
+   "metric": {
+    "o": 0,
+    "top": -3565,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3392,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3392,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13069,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3286,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.807,
+   "metric": {
+    "o": 0,
+    "top": -3640,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3467,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3467,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13144,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3361,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.89,
+   "metric": {
+    "o": 0,
+    "top": -3715,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3542,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3542,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13219,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3436,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 15.973,
+   "metric": {
+    "o": 0,
+    "top": -3790,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3617,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3617,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13294,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3511,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.056,
+   "metric": {
+    "o": 0,
+    "top": -3865,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3692,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3692,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13369,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3586,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.139,
+   "metric": {
+    "o": 0,
+    "top": -3939,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3766,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3766,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13443,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3660,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.223,
+   "metric": {
+    "o": 0,
+    "top": -4014,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3841,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3841,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13518,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3735,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.306,
+   "metric": {
+    "o": 0,
+    "top": -4089,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3916,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3916,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13593,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3810,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.389,
+   "metric": {
+    "o": 0,
+    "top": -4164,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -3991,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -3991,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13668,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3885,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.472,
+   "metric": {
+    "o": 0,
+    "top": -4239,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4066,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4066,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13743,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -3960,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.555,
+   "metric": {
+    "o": 0,
+    "top": -4314,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4141,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4141,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13818,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4035,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.639,
+   "metric": {
+    "o": 0,
+    "top": -4389,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4216,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4216,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13893,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4110,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.722,
+   "metric": {
+    "o": 0,
+    "top": -4464,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4291,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4291,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -13968,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4185,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.805,
+   "metric": {
+    "o": 0,
+    "top": -4538,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4365,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4365,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14042,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4259,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.888,
+   "metric": {
+    "o": 0,
+    "top": -4613,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4440,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4440,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14117,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4334,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 16.971,
+   "metric": {
+    "o": 0,
+    "top": -4688,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4515,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4515,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14192,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4409,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.054,
+   "metric": {
+    "o": 0,
+    "top": -4763,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4590,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4590,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14267,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4484,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.138,
+   "metric": {
+    "o": 0,
+    "top": -4838,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4665,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4665,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14342,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4559,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.221,
+   "metric": {
+    "o": 0,
+    "top": -4913,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4740,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4740,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14417,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4634,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.304,
+   "metric": {
+    "o": 0,
+    "top": -4988,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4815,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4815,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14492,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4709,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.387,
+   "metric": {
+    "o": 0,
+    "top": -5063,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4890,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4890,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14567,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4784,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.47,
+   "metric": {
+    "o": 0,
+    "top": -5137,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -4964,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -4964,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14641,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4858,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.554,
+   "metric": {
+    "o": 0,
+    "top": -5212,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5039,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5039,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14716,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -4933,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.637,
+   "metric": {
+    "o": 0,
+    "top": -5287,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5114,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5114,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14791,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5008,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.72,
+   "metric": {
+    "o": 0,
+    "top": -5362,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5189,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5189,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14866,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5083,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.803,
+   "metric": {
+    "o": 0,
+    "top": -5437,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5264,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5264,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -14941,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5158,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.886,
+   "metric": {
+    "o": 0,
+    "top": -5512,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5339,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5339,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15016,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5233,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 17.97,
+   "metric": {
+    "o": 0,
+    "top": -5587,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5414,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5414,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15091,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5308,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.053,
+   "metric": {
+    "o": 0,
+    "top": -5662,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5489,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5489,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15166,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5383,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.136,
+   "metric": {
+    "o": 0,
+    "top": -5736,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5563,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5563,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15240,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5457,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.219,
+   "metric": {
+    "o": 0,
+    "top": -5811,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5638,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5638,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15315,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5532,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.302,
+   "metric": {
+    "o": 0,
+    "top": -5886,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5713,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5713,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15390,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5607,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.386,
+   "metric": {
+    "o": 0,
+    "top": -5961,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5788,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5788,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15465,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5682,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.469,
+   "metric": {
+    "o": 0,
+    "top": -6036,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5863,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5863,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15540,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5757,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.552,
+   "metric": {
+    "o": 0,
+    "top": -6111,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -5938,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -5938,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15615,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5832,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.635,
+   "metric": {
+    "o": 0,
+    "top": -6186,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6013,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6013,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15690,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5907,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.718,
+   "metric": {
+    "o": 0,
+    "top": -6261,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6088,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6088,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15765,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -5982,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.802,
+   "metric": {
+    "o": 0,
+    "top": -6335,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6162,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6162,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15839,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6056,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.885,
+   "metric": {
+    "o": 0,
+    "top": -6410,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6237,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6237,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15914,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6131,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 18.968,
+   "metric": {
+    "o": 0,
+    "top": -6485,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6312,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6312,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -15989,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6206,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.051,
+   "metric": {
+    "o": 0,
+    "top": -6560,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6387,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6387,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16064,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6281,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.134,
+   "metric": {
+    "o": 0,
+    "top": -6635,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6462,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6462,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16139,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6356,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.217,
+   "metric": {
+    "o": 0,
+    "top": -6710,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6537,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6537,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16214,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6431,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.301,
+   "metric": {
+    "o": 0,
+    "top": -6785,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6612,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6612,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16289,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6506,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.384,
+   "metric": {
+    "o": 0,
+    "top": -6859,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6686,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6686,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16363,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6580,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.467,
+   "metric": {
+    "o": 0,
+    "top": -6934,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6761,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6761,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16438,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6655,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.55,
+   "metric": {
+    "o": 0,
+    "top": -7009,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6836,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6836,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16513,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6730,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.633,
+   "metric": {
+    "o": 0,
+    "top": -7084,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6911,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6911,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16588,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6805,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.717,
+   "metric": {
+    "o": 0,
+    "top": -7159,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -6986,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -6986,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16663,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6880,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.8,
+   "metric": {
+    "o": 0,
+    "top": -7234,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7061,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7061,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16738,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -6955,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.883,
+   "metric": {
+    "o": 0,
+    "top": -7309,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7136,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7136,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16813,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7030,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 19.966,
+   "metric": {
+    "o": 0,
+    "top": -7384,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7211,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7211,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16888,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7105,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.049,
+   "metric": {
+    "o": 0,
+    "top": -7458,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7285,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7285,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -16962,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7179,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.133,
+   "metric": {
+    "o": 0,
+    "top": -7533,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7360,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7360,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17037,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7254,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.216,
+   "metric": {
+    "o": 0,
+    "top": -7608,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7435,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7435,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17112,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7329,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.299,
+   "metric": {
+    "o": 0,
+    "top": -7683,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7510,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7510,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17187,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7404,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.382,
+   "metric": {
+    "o": 0,
+    "top": -7758,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7585,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7585,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17262,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7479,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.465,
+   "metric": {
+    "o": 0,
+    "top": -7833,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7660,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7660,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17337,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7554,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.549,
+   "metric": {
+    "o": 0,
+    "top": -7908,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7735,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7735,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17412,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7629,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.632,
+   "metric": {
+    "o": 0,
+    "top": -7983,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7810,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7810,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17487,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7704,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.715,
+   "metric": {
+    "o": 0,
+    "top": -8057,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7884,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7884,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17561,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7778,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.798,
+   "metric": {
+    "o": 0,
+    "top": -8132,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -7959,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -7959,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17636,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7853,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.881,
+   "metric": {
+    "o": 0,
+    "top": -8207,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8034,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8034,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17711,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -7928,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 20.965,
+   "metric": {
+    "o": 0,
+    "top": -8282,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8109,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8109,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17786,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8003,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.048,
+   "metric": {
+    "o": 0,
+    "top": -8357,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8184,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8184,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17861,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8078,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.131,
+   "metric": {
+    "o": 0,
+    "top": -8432,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8259,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8259,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -17936,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8153,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.214,
+   "metric": {
+    "o": 0,
+    "top": -8507,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8334,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8334,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18011,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8228,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.297,
+   "metric": {
+    "o": 0,
+    "top": -8582,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8409,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8409,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18086,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8303,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.38,
+   "metric": {
+    "o": 0,
+    "top": -8656,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8483,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8483,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18160,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8377,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.464,
+   "metric": {
+    "o": 0,
+    "top": -8731,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8558,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8558,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18235,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8452,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.547,
+   "metric": {
+    "o": 0,
+    "top": -8806,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8633,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8633,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18310,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8527,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.63,
+   "metric": {
+    "o": 0,
+    "top": -8881,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8708,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8708,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18385,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8602,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.713,
+   "metric": {
+    "o": 0,
+    "top": -8956,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8783,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8783,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18460,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8677,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.796,
+   "metric": {
+    "o": 0,
+    "top": -9031,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8858,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8858,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18535,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8752,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.88,
+   "metric": {
+    "o": 0,
+    "top": -9106,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -8933,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -8933,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18610,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8827,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 21.963,
+   "metric": {
+    "o": 0,
+    "top": -9181,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9008,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9008,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18685,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8902,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.046,
+   "metric": {
+    "o": 0,
+    "top": -9255,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9082,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9082,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18759,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -8976,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.129,
+   "metric": {
+    "o": 0,
+    "top": -9330,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9157,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9157,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18834,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9051,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.212,
+   "metric": {
+    "o": 0,
+    "top": -9405,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9232,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9232,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18909,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9126,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.296,
+   "metric": {
+    "o": 0,
+    "top": -9480,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9307,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9307,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -18984,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9201,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.379,
+   "metric": {
+    "o": 0,
+    "top": -9555,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9382,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9382,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19059,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9276,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.462,
+   "metric": {
+    "o": 0,
+    "top": -9630,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9457,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9457,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19134,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9351,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.545,
+   "metric": {
+    "o": 0,
+    "top": -9705,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9532,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9532,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19209,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9426,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.628,
+   "metric": {
+    "o": 0,
+    "top": -9780,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9607,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9607,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19284,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9501,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.712,
+   "metric": {
+    "o": 0,
+    "top": -9854,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9681,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9681,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19358,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9575,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.795,
+   "metric": {
+    "o": 0,
+    "top": -9929,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9756,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9756,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19433,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9650,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.878,
+   "metric": {
+    "o": 0,
+    "top": -10004,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9831,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9831,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19508,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9725,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 22.961,
+   "metric": {
+    "o": 0,
+    "top": -10079,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9906,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9906,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19583,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9800,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.044,
+   "metric": {
+    "o": 0,
+    "top": -10154,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -9981,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -9981,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19658,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9875,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.128,
+   "metric": {
+    "o": 0,
+    "top": -10229,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10056,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10056,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19733,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -9950,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.211,
+   "metric": {
+    "o": 0,
+    "top": -10304,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10131,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10131,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19808,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10025,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.294,
+   "metric": {
+    "o": 0,
+    "top": -10379,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10206,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10206,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19883,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10100,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.377,
+   "metric": {
+    "o": 0,
+    "top": -10453,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10280,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10280,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -19957,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10174,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.46,
+   "metric": {
+    "o": 0,
+    "top": -10528,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10355,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10355,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20032,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10249,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.544,
+   "metric": {
+    "o": 0,
+    "top": -10603,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10430,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10430,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20107,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10324,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.627,
+   "metric": {
+    "o": 0,
+    "top": -10678,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10505,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10505,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20182,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10399,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.71,
+   "metric": {
+    "o": 0,
+    "top": -10753,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10580,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10580,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20257,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10474,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.793,
+   "metric": {
+    "o": 0,
+    "top": -10828,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10655,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10655,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20332,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10549,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.876,
+   "metric": {
+    "o": 0,
+    "top": -10903,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10730,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10730,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20407,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10624,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 23.959,
+   "metric": {
+    "o": 0,
+    "top": -10978,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10805,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10805,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20482,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10699,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.043,
+   "metric": {
+    "o": 0,
+    "top": -11052,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10879,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10879,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20556,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10773,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.126,
+   "metric": {
+    "o": 0,
+    "top": -11127,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -10954,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -10954,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20631,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10848,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.209,
+   "metric": {
+    "o": 0,
+    "top": -11202,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11029,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11029,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20706,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10923,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.292,
+   "metric": {
+    "o": 0,
+    "top": -11277,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11104,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11104,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20781,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -10998,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.375,
+   "metric": {
+    "o": 0,
+    "top": -11352,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11179,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11179,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20856,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -11073,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.459,
+   "metric": {
+    "o": 0,
+    "top": -11427,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11254,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11254,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -20931,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -11148,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.542,
+   "metric": {
+    "o": 0,
+    "top": -11502,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11329,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11329,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -21006,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -11223,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.625,
+   "metric": {
+    "o": 0,
+    "top": -11577,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11404,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11404,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -21081,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -11298,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.708,
+   "metric": {
+    "o": 0,
+    "top": -11651,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11478,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11478,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -21155,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -11372,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.791,
+   "metric": {
+    "o": 0,
+    "top": -11726,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11553,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11553,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -21230,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -11447,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.875,
+   "metric": {
+    "o": 0,
+    "top": -11801,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11628,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11628,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -21305,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -11522,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  },
+  {
+   "screens": 24.958,
+   "metric": {
+    "o": 0,
+    "top": -11876,
+    "h": 168
+   },
+   "shot": {
+    "o": 0,
+    "top": -11703,
+    "h": 526
+   },
+   "shotImg": {
+    "o": 0,
+    "top": -11703,
+    "h": 526,
+    "loaded": true
+   },
+   "define": {
+    "o": 0,
+    "top": -21380,
+    "h": 55
+   },
+   "routes": {
+    "o": 0,
+    "top": -11597,
+    "h": 44
+   },
+   "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(244, 244, 244)",
+    "border": "rgba(244, 244, 244, 0.14)",
+    "text": "Árajánlat"
+   },
+   "deck": null
+  }
+ ]
+}

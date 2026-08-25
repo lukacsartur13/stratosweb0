@@ -1,0 +1,56 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>studio</title>
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<script type="importmap">
+{"imports":{"three":"/_studio/three/three.module.js","three/addons/":"/_studio/three/examples/jsm/"}}
+</script>
+</head><body>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const SIZE = 1200;
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(SIZE, SIZE);
+renderer.setClearAlpha(0);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
+
+scene.add(new THREE.AmbientLight(0x8ea3bd, 0.62));
+const key = new THREE.DirectionalLight(0xeef4ff, 4.6); key.position.set(-2.4, 3.2, 2.6); scene.add(key);
+const fill = new THREE.DirectionalLight(0x5b7ba8, 1.7); fill.position.set(3.0, -1.4, -1.8); scene.add(fill);
+const rim  = new THREE.DirectionalLight(0xc3d6ef, 2.2); rim.position.set(1.6, 2.2, -3.0); scene.add(rim);
+
+const root = new THREE.Group(); scene.add(root);
+window.__ready = false;
+
+new GLTFLoader().load('/models/stratos-altimeter.glb', (g) => {
+  const obj = g.scene;
+  const box = new THREE.Box3().setFromObject(obj);
+  const c = box.getCenter(new THREE.Vector3());
+  obj.position.sub(c);
+  const size = box.getSize(new THREE.Vector3());
+  window.__size = [size.x, size.y, size.z];
+  root.add(obj);
+  window.__ready = true;
+});
+
+window.__render = (opts) => {
+  const o = Object.assign({ rx: 0, ry: 0, rz: 0, dist: 4.2, exposure: 1.0, keyI: 4.6, rimI: 2.2, ambI: 0.62 }, opts || {});
+  root.rotation.set(o.rx, o.ry, o.rz);
+  camera.position.set(0, 0, o.dist);
+  camera.lookAt(0, 0, 0);
+  renderer.toneMappingExposure = o.exposure;
+  key.intensity = o.keyI; rim.intensity = o.rimI; scene.children.find(x=>x.isAmbientLight).intensity = o.ambI;
+  renderer.render(scene, camera);
+  return true;
+};
+window.__png = () => renderer.domElement.toDataURL('image/png');
+</script>
+</body></html>

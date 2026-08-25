@@ -66,15 +66,44 @@ const HYSTERESIS = 0.015;
 let edges: number[][] = [];
 let seed = '';
 
+/**
+ * TWO EDGES BECAME ONE, AND THE ONE THAT WENT IS THE HEADER'S DESTINATION STATE.
+ *
+ * The deck has three states. `top` is the full site header — brand, five links,
+ * the locale switch and the quote button. `journey` collapses it to the mark
+ * and the menu. `destination` opens it back up and adds a second call to
+ * action, on the argument that a visitor who has read the whole page should be
+ * given somewhere to go.
+ *
+ * That argument is now made by the page itself, and made better. The action
+ * beat IS the somewhere to go: one question and one invitation in the emptiest
+ * frame on the site (§14, §15). Re-expanding the header over it puts a nav bar
+ * and a yellow button across the arrival — the one frame whose whole subject is
+ * that the offer is being held back — and it spends the page's second and last
+ * yellow event on chrome.
+ *
+ * So the homepage publishes one edge. The header collapses as the ascent begins
+ * and stays collapsed to the foot of the track, which is also the only state in
+ * which §21's "minimal Stratos identity" is true of the frames the acts are
+ * composed in. Nothing is unreachable: every link the expanded header carries is
+ * in the menu, the quote route is the action beat's own, and the other 66 routes
+ * are untouched — this function is the homepage's adapter and always was.
+ */
 function currentEdges(): number[][] {
   const toJourney = stageStart('initial-ascent');
-  const toDestination = stageStart('full-stratosphere');
-  const key = `${toJourney}|${toDestination}`;
+  const key = `${toJourney}`;
   if (key !== seed) {
     seed = key;
     edges = [
       [toJourney, Math.max(0, toJourney - HYSTERESIS)],
-      [toDestination, Math.max(toJourney, toDestination - HYSTERESIS)],
+      // The destination edge is put beyond the end of the track rather than
+      // removed. `header.js` indexes `EDGES[i]` for the state it is in and a
+      // one-entry array throws on the first frame past the journey edge — the
+      // shared file is not this route's to change, and a threshold that cannot
+      // be crossed is the honest way to say "this route has two states". The
+      // back edge is the journey edge, so there is no window in which the
+      // machine could fall between them.
+      [1.01, toJourney],
     ];
   }
   return edges;

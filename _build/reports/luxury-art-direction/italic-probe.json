@@ -1,0 +1,33 @@
+{
+  "fontface_check": {
+    "italic 400 Archivo": true,
+    "normal 400 Archivo": true
+  },
+  "italic_load_matched": [
+    "Archivo|italic|100 900|loaded"
+  ],
+  "italic_vs_upright_setwidth": {
+    "görbületet": {
+      "upright": 900.22,
+      "italic": 900.22
+    },
+    "agya": {
+      "upright": 427.95,
+      "italic": 436.58
+    },
+    "Magasságot": {
+      "upright": 1095.8,
+      "italic": 1105.86
+    },
+    "ffi": {
+      "upright": 153.05,
+      "italic": 153.14
+    }
+  },
+  "italic_canvas_pixels_differing": 12392,
+  "min_leading_em_before_collision": {
+    "Archivo sentence case": 0.905,
+    "Archivo all caps": 0.88,
+    "Aboreto all caps": 0.913
+  }
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "01",
+    "stage": "calibration",
+    "at": 0,
+    "level": "master",
+    "name": "I · Ground"
+  },
+  {
+    "id": "02",
+    "stage": "initial-ascent",
+    "at": 0,
+    "level": "master",
+    "name": "II · Noise"
+  },
+  {
+    "id": "03",
+    "stage": "initial-ascent",
+    "at": 0.85,
+    "level": "structure",
+    "name": "II · body"
+  },
+  {
+    "id": "04",
+    "stage": "lower-atmosphere",
+    "at": 0,
+    "level": "master",
+    "name": "III · System"
+  },
+  {
+    "id": "05",
+    "stage": "lower-atmosphere",
+    "at": 1.1,
+    "level": "structure",
+    "name": "III · the ladder"
+  },
+  {
+    "id": "06",
+    "stage": "cloud-entry",
+    "at": 0,
+    "level": "passage",
+    "name": "passage — a website on its own"
+  },
+  {
+    "id": "07",
+    "stage": "cloud-breakthrough",
+    "at": 0,
+    "level": "passage",
+    "name": "passage — the same direction"
+  },
+  {
+    "id": "08",
+    "stage": "selected-work",
+    "at": 0,
+    "level": "master",
+    "name": "IV · Proof"
+  },
+  {
+    "id": "09",
+    "stage": "selected-work",
+    "at": 1,
+    "level": "structure",
+    "name": "IV · the case"
+  },
+  {
+    "id": "10",
+    "stage": "system",
+    "at": 0,
+    "level": "passage",
+    "name": "passage — nine areas"
+  },
+  {
+    "id": "11",
+    "stage": "system",
+    "at": 0.9,
+    "level": "structure",
+    "name": "passage body — a layer"
+  },
+  {
+    "id": "12",
+    "stage": "process",
+    "at": 0,
+    "level": "passage",
+    "name": "passage — seven checkpoints"
+  },
+  {
+    "id": "13",
+    "stage": "process",
+    "at": 1.1,
+    "level": "structure",
+    "name": "passage body — a checkpoint"
+  },
+  {
+    "id": "14",
+    "stage": "process",
+    "at": 2.4,
+    "level": "structure",
+    "name": "passage body — later"
+  },
+  {
+    "id": "15",
+    "stage": "stratosphere-transition",
+    "at": 0,
+    "level": "master",
+    "name": "V · High altitude"
+  },
+  {
+    "id": "16",
+    "stage": "full-stratosphere",
+    "at": 0,
+    "level": "master",
+    "name": "VI · Arrival"
+  },
+  {
+    "id": "17",
+    "stage": "full-stratosphere",
+    "at": 1,
+    "level": "structure",
+    "name": "VI · the closing matter"
+  },
+  {
+    "id": "18",
+    "stage": "destination",
+    "at": 0,
+    "level": "master",
+    "name": "action — ready to ascend?"
+  }
+]

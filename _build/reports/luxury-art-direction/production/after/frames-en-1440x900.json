@@ -1,0 +1,90 @@
+[
+  {
+    "id": "a1",
+    "act": "I · ground",
+    "stage": "calibration",
+    "at": 0.4,
+    "metres": 30,
+    "overflow": 0
+  },
+  {
+    "id": "a2",
+    "act": "II · noise",
+    "stage": "initial-ascent",
+    "at": 0.4,
+    "metres": 549,
+    "overflow": 0
+  },
+  {
+    "id": "a3",
+    "act": "III · system",
+    "stage": "lower-atmosphere",
+    "at": 0.4,
+    "metres": 3395,
+    "overflow": 0
+  },
+  {
+    "id": "x1",
+    "act": "crossing · cloud entry",
+    "stage": "cloud-entry",
+    "at": 0.25,
+    "metres": 6430,
+    "overflow": 0
+  },
+  {
+    "id": "x2",
+    "act": "crossing · breakthrough",
+    "stage": "cloud-breakthrough",
+    "at": 0.25,
+    "metres": 9015,
+    "overflow": 0
+  },
+  {
+    "id": "a4",
+    "act": "IV · proof",
+    "stage": "selected-work",
+    "at": 0.4,
+    "metres": 11964,
+    "overflow": 0
+  },
+  {
+    "id": "x3",
+    "act": "crossing · nine areas",
+    "stage": "system",
+    "at": 0.35,
+    "metres": 17876,
+    "overflow": 0
+  },
+  {
+    "id": "x4",
+    "act": "crossing · process",
+    "stage": "process",
+    "at": 0.35,
+    "metres": 22511,
+    "overflow": 0
+  },
+  {
+    "id": "a5",
+    "act": "V · high altitude",
+    "stage": "stratosphere-transition",
+    "at": 0.4,
+    "metres": 25917,
+    "overflow": 0
+  },
+  {
+    "id": "a6",
+    "act": "VI · arrival",
+    "stage": "full-stratosphere",
+    "at": 0.4,
+    "metres": 28283,
+    "overflow": 0
+  },
+  {
+    "id": "a6b",
+    "act": "VI · action",
+    "stage": "destination",
+    "at": 0.4,
+    "metres": 30000,
+    "overflow": 0
+  }
+]

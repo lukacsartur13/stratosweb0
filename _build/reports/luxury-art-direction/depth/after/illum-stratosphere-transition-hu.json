@@ -1,0 +1,92 @@
+[
+  {
+    "read": 0,
+    "lines": [
+      {
+        "line": "Innen már látni",
+        "ink": 90,
+        "field": 9,
+        "contrast": 0.319
+      },
+      {
+        "line": "a görbületet.",
+        "ink": 90,
+        "field": 3,
+        "contrast": 0.34
+      }
+    ],
+    "path": "_build/reports/luxury-art-direction/depth/after/illum-stratosphere-transition-0-hu.png"
+  },
+  {
+    "read": 0.25,
+    "lines": [
+      {
+        "line": "Innen már látni",
+        "ink": 152,
+        "field": 9,
+        "contrast": 0.563
+      },
+      {
+        "line": "a görbületet.",
+        "ink": 90,
+        "field": 3,
+        "contrast": 0.34
+      }
+    ],
+    "path": "_build/reports/luxury-art-direction/depth/after/illum-stratosphere-transition-025-hu.png"
+  },
+  {
+    "read": 0.5,
+    "lines": [
+      {
+        "line": "Innen már látni",
+        "ink": 244,
+        "field": 9,
+        "contrast": 0.923
+      },
+      {
+        "line": "a görbületet.",
+        "ink": 128,
+        "field": 3,
+        "contrast": 0.49
+      }
+    ],
+    "path": "_build/reports/luxury-art-direction/depth/after/illum-stratosphere-transition-05-hu.png"
+  },
+  {
+    "read": 0.75,
+    "lines": [
+      {
+        "line": "Innen már látni",
+        "ink": 244,
+        "field": 9,
+        "contrast": 0.923
+      },
+      {
+        "line": "a görbületet.",
+        "ink": 230,
+        "field": 3,
+        "contrast": 0.89
+      }
+    ],
+    "path": "_build/reports/luxury-art-direction/depth/after/illum-stratosphere-transition-075-hu.png"
+  },
+  {
+    "read": 1,
+    "lines": [
+      {
+        "line": "Innen már látni",
+        "ink": 244,
+        "field": 9,
+        "contrast": 0.923
+      },
+      {
+        "line": "a görbületet.",
+        "ink": 244,
+        "field": 3,
+        "contrast": 0.945
+      }
+    ],
+    "path": "_build/reports/luxury-art-direction/depth/after/illum-stratosphere-transition-1-hu.png"
+  }
+]

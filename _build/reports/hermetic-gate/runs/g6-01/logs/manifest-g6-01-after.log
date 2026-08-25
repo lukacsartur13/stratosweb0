@@ -1,0 +1,6 @@
+$ node scripts/hermetic/manifest.mjs capture --root /Users/arturlukacs/stratos-hermetic/subject --label g6-01-after --out /Users/arturlukacs/stratos-hermetic/subject/_build/reports/hermetic-gate/manifests/g6-01-after.json
+(cwd: /Users/arturlukacs/stratos-hermetic/subject)
+
+manifest 660f76198c30  product=088c0284(304) test=2d561c33(66) config=94c5bf52(14) dist=2538acb4(186)
+
+[exit 0] 0.3s

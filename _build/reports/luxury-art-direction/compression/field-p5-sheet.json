@@ -1,0 +1,515 @@
+{
+ "meta": {
+  "tag": "p5-sheet",
+  "width": 1440,
+  "height": 900,
+  "steps": 71,
+  "dir": "field-p5-sheet"
+ },
+ "rows": [
+  {
+   "i": 0,
+   "screens": 0,
+   "metres": 0,
+   "instrument": 1,
+   "stage": "calibration"
+  },
+  {
+   "i": 1,
+   "screens": 0.352,
+   "metres": 0,
+   "instrument": 1,
+   "stage": "calibration"
+  },
+  {
+   "i": 2,
+   "screens": 0.703,
+   "metres": 60,
+   "instrument": 1,
+   "stage": "calibration"
+  },
+  {
+   "i": 3,
+   "screens": 1.055,
+   "metres": 120,
+   "instrument": 1,
+   "stage": "initial-ascent"
+  },
+  {
+   "i": 4,
+   "screens": 1.406,
+   "metres": 120,
+   "instrument": 0.82,
+   "stage": "initial-ascent"
+  },
+  {
+   "i": 5,
+   "screens": 1.758,
+   "metres": 360,
+   "instrument": 0.24,
+   "stage": "initial-ascent"
+  },
+  {
+   "i": 6,
+   "screens": 2.109,
+   "metres": 720,
+   "instrument": 0,
+   "stage": "initial-ascent"
+  },
+  {
+   "i": 7,
+   "screens": 2.461,
+   "metres": 1140,
+   "instrument": 0,
+   "stage": "initial-ascent"
+  },
+  {
+   "i": 8,
+   "screens": 2.812,
+   "metres": 1560,
+   "instrument": 0,
+   "stage": "initial-ascent"
+  },
+  {
+   "i": 9,
+   "screens": 3.164,
+   "metres": 1920,
+   "instrument": 0,
+   "stage": "initial-ascent"
+  },
+  {
+   "i": 10,
+   "screens": 3.515,
+   "metres": 2400,
+   "instrument": 0,
+   "stage": "lower-atmosphere"
+  },
+  {
+   "i": 11,
+   "screens": 3.867,
+   "metres": 2820,
+   "instrument": 0,
+   "stage": "lower-atmosphere"
+  },
+  {
+   "i": 12,
+   "screens": 4.218,
+   "metres": 3180,
+   "instrument": 0,
+   "stage": "lower-atmosphere"
+  },
+  {
+   "i": 13,
+   "screens": 4.57,
+   "metres": 3600,
+   "instrument": 0,
+   "stage": "lower-atmosphere"
+  },
+  {
+   "i": 14,
+   "screens": 4.921,
+   "metres": 4020,
+   "instrument": 0,
+   "stage": "lower-atmosphere"
+  },
+  {
+   "i": 15,
+   "screens": 5.273,
+   "metres": 4380,
+   "instrument": 0,
+   "stage": "lower-atmosphere"
+  },
+  {
+   "i": 16,
+   "screens": 5.624,
+   "metres": 4800,
+   "instrument": 0,
+   "stage": "lower-atmosphere"
+  },
+  {
+   "i": 17,
+   "screens": 5.976,
+   "metres": 5160,
+   "instrument": 0,
+   "stage": "lower-atmosphere"
+  },
+  {
+   "i": 18,
+   "screens": 6.327,
+   "metres": 5580,
+   "instrument": 0,
+   "stage": "cloud-entry"
+  },
+  {
+   "i": 19,
+   "screens": 6.679,
+   "metres": 5940,
+   "instrument": 0,
+   "stage": "cloud-entry"
+  },
+  {
+   "i": 20,
+   "screens": 7.03,
+   "metres": 6360,
+   "instrument": 0,
+   "stage": "cloud-entry"
+  },
+  {
+   "i": 21,
+   "screens": 7.382,
+   "metres": 6720,
+   "instrument": 0,
+   "stage": "cloud-entry"
+  },
+  {
+   "i": 22,
+   "screens": 7.733,
+   "metres": 7080,
+   "instrument": 0,
+   "stage": "cloud-entry"
+  },
+  {
+   "i": 23,
+   "screens": 8.085,
+   "metres": 7440,
+   "instrument": 0,
+   "stage": "cloud-entry"
+  },
+  {
+   "i": 24,
+   "screens": 8.436,
+   "metres": 7800,
+   "instrument": 0,
+   "stage": "cloud-entry"
+  },
+  {
+   "i": 25,
+   "screens": 8.788,
+   "metres": 8220,
+   "instrument": 0,
+   "stage": "cloud-breakthrough"
+  },
+  {
+   "i": 26,
+   "screens": 9.139,
+   "metres": 8580,
+   "instrument": 0,
+   "stage": "cloud-breakthrough"
+  },
+  {
+   "i": 27,
+   "screens": 9.491,
+   "metres": 9120,
+   "instrument": 0,
+   "stage": "cloud-breakthrough"
+  },
+  {
+   "i": 28,
+   "screens": 9.843,
+   "metres": 9720,
+   "instrument": 0,
+   "stage": "cloud-breakthrough"
+  },
+  {
+   "i": 29,
+   "screens": 10.194,
+   "metres": 10320,
+   "instrument": 0,
+   "stage": "selected-work"
+  },
+  {
+   "i": 30,
+   "screens": 10.546,
+   "metres": 10860,
+   "instrument": 0,
+   "stage": "selected-work"
+  },
+  {
+   "i": 31,
+   "screens": 10.897,
+   "metres": 11700,
+   "instrument": 0,
+   "stage": "selected-work"
+  },
+  {
+   "i": 32,
+   "screens": 11.249,
+   "metres": 12540,
+   "instrument": 0,
+   "stage": "selected-work"
+  },
+  {
+   "i": 33,
+   "screens": 11.6,
+   "metres": 13380,
+   "instrument": 0,
+   "stage": "selected-work"
+  },
+  {
+   "i": 34,
+   "screens": 11.952,
+   "metres": 14280,
+   "instrument": 0,
+   "stage": "selected-work"
+  },
+  {
+   "i": 35,
+   "screens": 12.303,
+   "metres": 15120,
+   "instrument": 0,
+   "stage": "selected-work"
+  },
+  {
+   "i": 36,
+   "screens": 12.655,
+   "metres": 15960,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 37,
+   "screens": 13.006,
+   "metres": 16740,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 38,
+   "screens": 13.358,
+   "metres": 17400,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 39,
+   "screens": 13.709,
+   "metres": 17880,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 40,
+   "screens": 14.061,
+   "metres": 18420,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 41,
+   "screens": 14.412,
+   "metres": 18900,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 42,
+   "screens": 14.764,
+   "metres": 19380,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 43,
+   "screens": 15.115,
+   "metres": 19860,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 44,
+   "screens": 15.467,
+   "metres": 20400,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 45,
+   "screens": 15.818,
+   "metres": 20880,
+   "instrument": 0,
+   "stage": "system"
+  },
+  {
+   "i": 46,
+   "screens": 16.17,
+   "metres": 21360,
+   "instrument": 0,
+   "stage": "process"
+  },
+  {
+   "i": 47,
+   "screens": 16.521,
+   "metres": 21900,
+   "instrument": 0,
+   "stage": "process"
+  },
+  {
+   "i": 48,
+   "screens": 16.873,
+   "metres": 22380,
+   "instrument": 0,
+   "stage": "process"
+  },
+  {
+   "i": 49,
+   "screens": 17.224,
+   "metres": 22920,
+   "instrument": 0,
+   "stage": "process"
+  },
+  {
+   "i": 50,
+   "screens": 17.576,
+   "metres": 23460,
+   "instrument": 0,
+   "stage": "process"
+  },
+  {
+   "i": 51,
+   "screens": 17.927,
+   "metres": 24000,
+   "instrument": 0,
+   "stage": "process"
+  },
+  {
+   "i": 52,
+   "screens": 18.279,
+   "metres": 24480,
+   "instrument": 0,
+   "stage": "process"
+  },
+  {
+   "i": 53,
+   "screens": 18.63,
+   "metres": 25080,
+   "instrument": 0,
+   "stage": "stratosphere-transition"
+  },
+  {
+   "i": 54,
+   "screens": 18.982,
+   "metres": 25500,
+   "instrument": 0,
+   "stage": "stratosphere-transition"
+  },
+  {
+   "i": 55,
+   "screens": 19.333,
+   "metres": 25920,
+   "instrument": 0,
+   "stage": "stratosphere-transition"
+  },
+  {
+   "i": 56,
+   "screens": 19.685,
+   "metres": 26280,
+   "instrument": 0,
+   "stage": "stratosphere-transition"
+  },
+  {
+   "i": 57,
+   "screens": 20.037,
+   "metres": 26640,
+   "instrument": 0,
+   "stage": "stratosphere-transition"
+  },
+  {
+   "i": 58,
+   "screens": 20.388,
+   "metres": 27000,
+   "instrument": 0,
+   "stage": "stratosphere-transition"
+  },
+  {
+   "i": 59,
+   "screens": 20.74,
+   "metres": 27360,
+   "instrument": 0,
+   "stage": "full-stratosphere"
+  },
+  {
+   "i": 60,
+   "screens": 21.091,
+   "metres": 27720,
+   "instrument": 0.1,
+   "stage": "full-stratosphere"
+  },
+  {
+   "i": 61,
+   "screens": 21.443,
+   "metres": 28080,
+   "instrument": 0.65,
+   "stage": "full-stratosphere"
+  },
+  {
+   "i": 62,
+   "screens": 21.794,
+   "metres": 28320,
+   "instrument": 1,
+   "stage": "full-stratosphere"
+  },
+  {
+   "i": 63,
+   "screens": 22.146,
+   "metres": 28560,
+   "instrument": 1,
+   "stage": "full-stratosphere"
+  },
+  {
+   "i": 64,
+   "screens": 22.497,
+   "metres": 28800,
+   "instrument": 0.65,
+   "stage": "full-stratosphere"
+  },
+  {
+   "i": 65,
+   "screens": 22.849,
+   "metres": 29100,
+   "instrument": 0.1,
+   "stage": "full-stratosphere"
+  },
+  {
+   "i": 66,
+   "screens": 23.2,
+   "metres": 29280,
+   "instrument": 0,
+   "stage": "full-stratosphere"
+  },
+  {
+   "i": 67,
+   "screens": 23.552,
+   "metres": 29580,
+   "instrument": 0,
+   "stage": "destination"
+  },
+  {
+   "i": 68,
+   "screens": 23.903,
+   "metres": 29820,
+   "instrument": 0,
+   "stage": "destination"
+  },
+  {
+   "i": 69,
+   "screens": 24.255,
+   "metres": 30000,
+   "instrument": 0,
+   "stage": "destination"
+  },
+  {
+   "i": 70,
+   "screens": 24.606,
+   "metres": 30000,
+   "instrument": 0,
+   "stage": "destination"
+  },
+  {
+   "i": 71,
+   "screens": 24.958,
+   "metres": 30000,
+   "instrument": 0,
+   "stage": "destination"
+  }
+ ]
+}

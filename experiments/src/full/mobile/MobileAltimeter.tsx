@@ -8,6 +8,7 @@ import { prefersReducedMotion } from './device';
 import type { StageId } from '../journey';
 import { MOVED_PX, MOVED_UNIT, RETAIN } from './instrument';
 import {
+  HERO_DOCK,
   PLACEMENTS,
   heroLeg,
   heroPlacement,
@@ -342,7 +343,7 @@ export function AltimeterInstrument() {
         // arrives on the rail. `heroLeg` is the only scroll-linked quantity in
         // the instrument's composition and it is finished within six tenths of
         // a screen.
-        const dock = PLACEMENTS.ascent;
+        const dock = PLACEMENTS[HERO_DOCK];
         const dockDrawn = size * dock.scale;
         const t = still ? 0 : heroLeg(scrollTop, h);
         const from = heroAnchor.known

@@ -1,0 +1,56 @@
+{
+  "label": "g6-01:playwright-main",
+  "commit": "48811e991089dd8cb73f23ec1c6ae880446cff6f",
+  "dirtyTrackedFiles": [],
+  "timestamp": "2026-08-20T03:34:15.497Z",
+  "environment": {
+    "node": "v24.18.1",
+    "platform": "darwin-arm64",
+    "playwright": "1.62.1",
+    "workers": 5,
+    "projects": [
+      "node",
+      "desktop-1440",
+      "desktop-1920",
+      "mobile-390",
+      "mobile-430",
+      "desktop-webkit",
+      "portrait-chromium",
+      "reduced-motion"
+    ]
+  },
+  "duration": 252315.221,
+  "startTime": "2026-08-20T03:30:03.063Z",
+  "collected": 1285,
+  "accounted": 1285,
+  "arithmeticReconciles": true,
+  "passed": 1163,
+  "failed": 1,
+  "flaky": 0,
+  "skipped": 121,
+  "unclassified": 0,
+  "reporterStats": {
+    "startTime": "2026-08-20T03:30:03.063Z",
+    "duration": 252315.221,
+    "expected": 1163,
+    "skipped": 121,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "failingTests": [
+    {
+      "title": "/nagyvallalat.html responds and has a title and description",
+      "file": "public-site.spec.ts",
+      "line": 264,
+      "project": "mobile-390",
+      "status": "unexpected",
+      "duration": 30065,
+      "retries": 0,
+      "classification": "UNCLASSIFIED",
+      "errors": [
+        "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+        "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4322/nagyvallalat.html\", waiting until \"load\"\u001b[22m\n\n\n   at helpers/navigation-boundary.ts:412"
+      ]
+    }
+  ]
+}
