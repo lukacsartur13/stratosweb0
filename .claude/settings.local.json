@@ -3,7 +3,11 @@
     "allow": [
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5177/home/hu.html)",
       "Bash(curl -s http://localhost:5177/home/hu.html)",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(npm run *)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(python3 -c \"import json;print\\(json.dumps\\(json.load\\(open\\('package.json'\\)\\).get\\('scripts',{}\\),indent=1\\)\\)\")",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

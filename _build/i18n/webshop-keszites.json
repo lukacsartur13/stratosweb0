@@ -394,5 +394,13 @@
  "Egy tipikus bolt hat-tíz hét a szerződéstől az élesítésig. A leghosszabb szakasz nem a fejlesztés, hanem a terméktörzs: a fotók, a leírások és a variánsok rendbetétele. Ha ez megvan, gyorsabban végzünk; ha nincs, ebben is segítünk.": [
   "A typical store is six to ten weeks from signature to launch. The longest stage is not the engineering but the product data: the photography, the descriptions and the variants. If that is ready we finish sooner; if it is not, we help with it.",
   "Ein typischer Shop dauert sechs bis zehn Wochen von der Unterschrift bis zum Launch. Die längste Phase ist nicht die Entwicklung, sondern die Produktdaten: Fotos, Beschreibungen und Varianten. Liegen die vor, sind wir schneller fertig; wenn nicht, helfen wir dabei."
+ ],
+ "Webshop készítés és webáruház fejlesztés | Stratos": [
+  "Online store development | Stratos",
+  "Onlineshop-Erstellung und Entwicklung | Stratos"
+ ],
+ "Webshop készítés kódból, sablon nélkül: terméktörzs, fizetés, szállítás és készletkapcsolat. Havidíjban vagy projektalapon, méréssel együtt.": [
+  "Online stores built from code, without a template: product data, payment, delivery and stock integration. Monthly fee or per project, measured from day one.",
+  "Onlineshops aus Code statt Vorlage: Produktdaten, Zahlung, Versand und Bestandsanbindung. Zur Monatsgebühr oder pro Projekt, von Anfang an gemessen."
  ]
 }
