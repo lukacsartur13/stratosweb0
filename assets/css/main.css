@@ -599,10 +599,26 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
   border-left: 1px solid var(--hair);
 }
 .stat:first-child { border-left: 0; padding-left: 0; }
+/* Same argument as `.metric__v` above: "< 4 Stunden" and "Dutzende" are
+   German figures in a quarter-width column and left it by 26px and 12px. */
+.stat { container-type: inline-size; }
 .stat__n {
-  font-family: var(--display); font-size: var(--step-3);
+  font-family: var(--display); font-size: min(var(--step-3), 19cqi);
   color: var(--signal); line-height: 1; display: block;
   font-variant-numeric: tabular-nums;
+}
+/* The labels are spans, so the blanket protection in type.css — which lists
+   the elements that hold a line of text, and cannot list `span` without
+   catching every inline in the site — does not reach them. Stated here
+   instead, on the two classes that are a line of text in a narrow column:
+   "Jahre Entwicklungserfahrung" left its quarter-width column by 30px at
+   1024. */
+.stat__l, .metric__l {
+  overflow-wrap: break-word;
+}
+[lang='de'] :where(.stat__l, .metric__l),
+[lang='hu'] :where(.stat__l, .metric__l) {
+  hyphens: auto;
 }
 .stat__l {
   font-family: var(--data); font-size: var(--step--1); color: var(--haze);
@@ -1249,8 +1265,15 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
   padding: clamp(1.4rem, 3vw, 2.2rem) clamp(1rem, 2vw, 2rem) clamp(1.4rem, 3vw, 2.2rem) 0;
   border-bottom: 1px solid var(--hair);
 }
+/* The value sizes to its COLUMN, not to the viewport.
+   `--step-3` is a viewport clamp, so at 1920 it resolves to 4rem inside a
+   column the `minmax(180px, 1fr)` track may still be holding at 220px — and
+   "~201E Ft" left it by 51px. `cqi` is the container's own inline size, so the
+   figure shrinks when its column does and never exceeds the step above. */
+.metric { container-type: inline-size; }
 .metric__v {
-  display: block; font-family: var(--display); font-size: var(--step-3);
+  display: block; font-family: var(--display);
+  font-size: min(var(--step-3), 17cqi);
   font-variation-settings: 'wdth' var(--wd), 'wght' var(--wt);
   line-height: .9; color: var(--signal);
 }

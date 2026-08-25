@@ -379,27 +379,28 @@
    a hyphen is the fallback this rule exists to provide rather than a defect —
    which is why the `hyphens: manual` exception below names only the two
    display roles and not these. */
-[lang='de'] h1,
-[lang='de'] h2,
-[lang='de'] h3,
-[lang='de'] h4,
-[lang='hu'] h1,
-[lang='hu'] h2,
-[lang='hu'] h3,
-[lang='hu'] h4 {
-  hyphens: auto;
+/* Two rules, because they are two different things and only one of them is
+   about language.
+   
+   `overflow-wrap` is a safety net: it does nothing until a word genuinely
+   cannot fit, and then it prevents text leaving its box. There is no language
+   for which that is the wrong outcome, and scoping it to de and hu is what let
+   an English heading run 22px past its column on /en/impact-program.html and a
+   German paragraph 24px past its card. It applies to everything that holds a
+   line of text now. */
+:where(h1, h2, h3, h4, h5, h6, p, li, dd, dt, summary, figcaption, blockquote) {
   overflow-wrap: break-word;
 }
 
-/* Body text that sets its own measure has the same exposure and none of the
-   headline nuance: `.article__key` is a pull quote at --step-1 and a long
-   Hungarian compound pushed it 22px past the column at 390. Breaking a word
-   is always better than a line that leaves the screen. */
-[lang='de'] .article__key,
-[lang='hu'] .article__key {
+/* `hyphens: auto` IS about language — it needs a dictionary, and it is the
+   compounding languages that need it. English rarely produces a word long
+   enough to want one, and would take a break where a reader does not expect
+   it. */
+[lang='de'] :where(h1, h2, h3, h4, p, li, dd),
+[lang='hu'] :where(h1, h2, h3, h4, p, li, dd) {
   hyphens: auto;
-  overflow-wrap: break-word;
 }
+
 
 /* Except at signature size, where a hyphen is a defect rather than a fallback.
    `hyphens: auto` is the right answer for a section heading in a narrow column —
