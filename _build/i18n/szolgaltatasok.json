@@ -3,9 +3,9 @@
   "Phase 8 — the services overview route, which did not exist before.",
   ""
  ],
- "Weboldal készítés, branding, hirdetés | Stratos": [
-  "Web design, branding and advertising | Stratos",
-  "Webdesign, Branding und Werbung | Stratos"
+ "Weboldal készítés, branding, SEO, hirdetés | Stratos": [
+  "Web design, branding, SEO and advertising | Stratos",
+  "Webdesign, Branding, SEO und Werbung | Stratos"
  ],
  "Weboldal készítés KKV-nak és nagyvállalatnak, branding, valamint Google és Meta hirdetéskezelés — négy szolgáltatás, egy rendszerben.": [
   "Web design for SMEs and enterprises, branding, and Google and Meta ads management — four services in one system.",
@@ -349,5 +349,37 @@
  "<b>Innen tovább:</b> amit a mérés megmutat, az visszamegy az oldalba.": [
   "<b>What follows:</b> what the measurement shows goes back into the site.",
   "<b>Und danach:</b> was die Messung zeigt, fließt zurück in die Website."
+ ],
+ "05 — Keresés": [
+  "05 — Search",
+  "05 — Suche"
+ ],
+ "Keresőoptimalizálás": [
+  "SEO",
+  "SEO"
+ ],
+ "A hirdetés akkor áll le, amikor kifogy a keret. A keresés nem áll le. Technikai javítás, tartalom és helyi jelenlét, havi méréssel — az első mérhető elmozdulás jellemzően a harmadik hónap környékén jön.": [
+  "Advertising stops when the budget runs out. Search does not. Technical fixes, content and local presence, measured monthly — the first measurable movement usually arrives around the third month.",
+  "Werbung endet, wenn das Budget aufgebraucht ist. Die Suche nicht. Technische Korrekturen, Inhalte und lokale Präsenz, monatlich gemessen — die erste messbare Bewegung kommt meist um den dritten Monat."
+ ],
+ "Akkor éri meg, ha van türelmed négy hónapra. Ha nincs, előbb hirdess.": [
+  "Worth it if you have four months of patience. If you do not, advertise first.",
+  "Lohnt sich, wenn Sie vier Monate Geduld haben. Wenn nicht, werben Sie zuerst."
+ ],
+ "amit a keresés megtanít a szándékról, azt a hirdetés is használja.": [
+  "what search teaches you about intent, advertising uses too.",
+  "was die Suche über die Absicht lehrt, nutzt auch die Werbung."
+ ],
+ "<a href=\"keresooptimalizalas.html\"><span class=\"branch__k\">05 — Keresés</span><span class=\"branch__t\">Keresőoptimalizálás</span></a>": [
+  "<a href=\"seo.html\"><span class=\"branch__k\">05 — Search</span><span class=\"branch__t\">SEO</span></a>",
+  "<a href=\"suchmaschinenoptimierung.html\"><span class=\"branch__k\">05 — Suche</span><span class=\"branch__t\">SEO</span></a>"
+ ],
+ "Az öt szolgáltatás": [
+  "The five services",
+  "Die fünf Leistungen"
+ ],
+ "<b>Innen tovább:</b> amit a keresés megtanít a szándékról, azt a hirdetés is használja.": [
+  "<b>Where next:</b> what search teaches you about intent, advertising uses too.",
+  "<b>Weiter geht es:</b> was die Suche über die Absicht lehrt, nutzt auch die Werbung."
  ]
 }

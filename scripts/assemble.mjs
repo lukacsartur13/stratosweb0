@@ -249,6 +249,9 @@ const SLUGS = Object.fromEntries(
 
 const PRIORITY = {
   index: '1.0', quote: '0.9', contact: '0.8', services: '0.8', work: '0.7',
+  // The two acquisition pages: the fifth service, and the city page that is the
+  // only route stating where the company actually is in body copy.
+  seo: '0.8', gyor: '0.8',
   privacy: '0.3', imprint: '0.3',
 };
 

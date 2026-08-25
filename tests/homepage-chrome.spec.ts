@@ -205,11 +205,32 @@ async function atRest(
  * document and left to the browser to clamp — not as `h * 1` from a height this
  * side of the process might already be wrong about.
  */
+/**
+ * Scroll to a fraction of the JOURNEY, not of the document.
+ *
+ * These callers mean "half way up the mountain", and until the homepage grew a
+ * written statement and an FAQ after `</main>` those were the same thing. They
+ * are not any more: content after the track means document position 0.6 lands
+ * past the end of the journey, `journey.current` reads 1.0, and the header sits
+ * in `destination` — correctly — while the test asks it for `journey`. The
+ * assertion was right and the coordinate it was given had quietly changed
+ * meaning underneath it.
+ *
+ * `f >= 1` still means the very bottom of the DOCUMENT, because the five
+ * callers that pass 1 want the Arrival and the footer, which are down there.
+ */
 async function scrollToFraction(page: Page, f: number) {
   await settle(page);
   await page.evaluate((fraction) => {
+    if (fraction >= 1) { window.scrollTo(0, 1e7); return; }
+    const track = document.querySelector('main.journey') as HTMLElement | null;
+    if (track && track.offsetHeight > innerHeight) {
+      const travel = track.offsetHeight - innerHeight;
+      window.scrollTo(0, track.offsetTop + travel * fraction);
+      return;
+    }
     const h = document.documentElement.scrollHeight - innerHeight;
-    window.scrollTo(0, fraction >= 1 ? 1e7 : h * fraction);
+    window.scrollTo(0, h * fraction);
   }, f);
   await page.waitForTimeout(120);
 }

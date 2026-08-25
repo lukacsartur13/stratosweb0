@@ -176,6 +176,18 @@ test('no Wix and no localhost origin is ever published', () => {
   }
 });
 
+/**
+ * The organisation node of a document, found by identity rather than by type.
+ *
+ * It used to be `n['@type'] === 'Organization'`, which is a narrower claim than
+ * these tests mean to make: the site now publishes it as `ProfessionalService`,
+ * a subtype of LocalBusiness and therefore of Organization, so an exact-match
+ * lookup silently found nothing and four assertions failed on a graph that was
+ * correct. `@id` is the thing that never changes when the subtype does.
+ */
+const organisation = (doc: Doc) =>
+  doc.graph.find((n) => typeof n['@id'] === 'string' && /#organization$/.test(n['@id']))!;
+
 test('every own-site URL is on the one origin this build resolved', async () => {
   // Not a hardcoded hostname. Pre-cutover the site is legitimately served from
   // stratosweb1.netlify.app, and a test that banned that would fail on the only
@@ -188,7 +200,7 @@ test('every own-site URL is on the one origin this build resolved', async () => 
   expect(origin).toMatch(/^https:\/\/[^/]+$/);
 
   const offSite = new Set(
-    (docs[0].graph.find((n) => n['@type'] === 'Organization')!.sameAs as string[]),
+    (organisation(docs[0]).sameAs as string[]),
   );
 
   for (const doc of docs) {
@@ -228,8 +240,10 @@ test('the page name and description are the ones the page shows', () => {
 test('organisation identity is one entity, identical on every page', () => {
   const seen = new Map<string, string>();
   for (const doc of docs) {
-    const orgs = nodesOfType(doc, 'Organization');
-    expect(orgs, `${doc.file} declares one Organization`).toHaveLength(1);
+    const orgs = doc.graph.filter(
+      (n) => typeof n['@id'] === 'string' && /#organization$/.test(n['@id']),
+    );
+    expect(orgs, `${doc.file} declares one organisation`).toHaveLength(1);
     const org = orgs[0];
     expect(org['@id']).toMatch(/#organization$/);
     expect(org.name).toBe('Stratos');
@@ -268,10 +282,18 @@ test('nothing claims a rating, a review, a price or an award', () => {
     'aggregateRating', 'review', 'reviewRating', 'ratingValue', 'reviewCount',
     'offers', 'price', 'priceRange', 'priceSpecification',
     'award', 'awards', 'numberOfEmployees', 'foundingDate', 'founder',
-    'address', 'PostalAddress', 'geo', 'openingHours', 'openingHoursSpecification',
+    'geo', 'openingHours', 'openingHoursSpecification',
     'taxID', 'vatID', 'legalName', 'duns', 'leiCode', 'naics', 'isicV4',
-    'areaServed', 'employee', 'member', 'potentialAction',
+    'employee', 'member', 'potentialAction',
   ];
+  // `address` and `areaServed` came OFF this list, and the distinction is the
+  // point of the test rather than an exception to it. Everything above is a
+  // claim no page of this site makes: there is no rating, no price, no award,
+  // no headcount. The seat IS published — /impresszum.html states it because a
+  // Hungarian sole trader is required to — and "Győr és Budapest" is in the
+  // footer of all 69 routes. Marking up a fact the site already states is what
+  // structured data is for; `geo`, `openingHours` and `priceRange` stay
+  // forbidden because those the site genuinely does not publish anywhere.
   for (const doc of docs) {
     const serialised = JSON.stringify(doc.graph);
     for (const key of forbidden) {
@@ -338,11 +360,11 @@ test('a Service node describes a service and offers no price', () => {
       expect(service, `${doc.file}`).not.toHaveProperty('offers');
     }
   }
-  expect(services, 'four service pages in three languages').toBe(12);
+  expect(services, 'five service pages in three languages').toBe(15);
 });
 
 test('sameAs lists only profiles the site itself links to', () => {
-  const org = docs[0].graph.find((n) => n['@type'] === 'Organization')!;
+  const org = organisation(docs[0]);
   for (const profile of org.sameAs as string[]) {
     expect(profile).toMatch(/^https:\/\//);
     // The footer of every page links it, which is what makes it a supported
@@ -376,5 +398,5 @@ test('the breadcrumb trail matches the one the page renders', () => {
       expect(item.item, `${doc.file} item`).toMatch(/^https:\/\//);
     });
   }
-  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(63);
+  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(69);
 });

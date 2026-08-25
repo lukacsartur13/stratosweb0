@@ -43,7 +43,14 @@ SLUGS = {
     "enterprise":  {"hu": "nagyvallalat.html",             "en": "web-design-enterprise.html", "de": "webdesign-grossunternehmen.html"},
     "branding":    {"hu": "branding.html",                 "en": "branding.html",              "de": "branding.html"},
     "ads":         {"hu": "hirdeteskezeles.html",          "en": "ads-management.html",        "de": "werbeanzeigen.html"},
+    "seo":         {"hu": "keresooptimalizalas.html",      "en": "seo.html",                   "de": "suchmaschinenoptimierung.html"},
     "impact":      {"hu": "impact-program.html",           "en": "impact-program.html",        "de": "impact-programm.html"},
+    # The city page. Not in SERVICES and not in the dropdown: it is the same
+    # four services stated for one place, so listing it beside them would offer
+    # the reader a sixth thing to buy that does not exist. It is reached from
+    # the services index, the footer and search — which is where a local query
+    # arrives from anyway.
+    "gyor":        {"hu": "weboldal-keszites-gyor.html",   "en": "web-design-gyor.html",       "de": "webdesign-gyor.html"},
     "work":        {"hu": "munkaink.html",                 "en": "work.html",                  "de": "projekte.html"},
     "case-rapidkert":    {"hu": "munka-rapidkert.html",    "en": "work-rapidkert.html",        "de": "projekt-rapidkert.html"},
     "case-barbershop":   {"hu": "munka-barbershop.html",   "en": "work-barbershop.html",       "de": "projekt-barbershop.html"},
@@ -63,12 +70,12 @@ SLUGS = {
 BY_HU = {v["hu"]: k for k, v in SLUGS.items()}
 
 NAV = ("about", "work", "blog", "contact")
-SERVICES = ("sme", "enterprise", "branding", "ads", "impact")
+SERVICES = ("sme", "enterprise", "branding", "ads", "seo", "impact")
 # The case studies and the six articles are reachable from their index routes
 # and from the pages they belong to, not from the global menu — a nav that
 # lists every leaf is a sitemap, not a navigation.
 MENU = ("index", "about", "services", "sme", "enterprise", "branding", "ads",
-        "impact", "work", "blog", "contact", "quote")
+        "seo", "impact", "work", "blog", "contact", "quote")
 CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening")
 
 # ---------------------------------------------------------- case-study status
@@ -309,12 +316,14 @@ UI = {
             "enterprise": ("Webdesign nagyvállalatoknak", "9 400 M"),
             "branding": ("Branding", "4 800 M"),
             "ads": ("Hirdetéskezelés", "17 000 M"),
+            "seo": ("Keresőoptimalizálás", "6 200 M"),
             "impact": ("Impact Program", "30 000 M"),
         },
         "menu": {
             "index": "Főoldal", "about": "Rólunk", "services": "Szolgáltatások",
             "sme": "KKV", "enterprise": "Nagyvállalat", "branding": "Branding",
-            "ads": "Hirdetés", "impact": "Impact", "work": "Munkáink",
+            "ads": "Hirdetés", "seo": "SEO", "impact": "Impact", "work": "Munkáink",
+            "gyor": "Weboldal készítés Győr",
             "blog": "Blog", "contact": "Kapcsolat", "quote": "Árajánlat",
         },
         # A hírlevél még nem létezik: a beküldés eltárolja a címet, és semmi
@@ -413,12 +422,14 @@ UI = {
             "enterprise": ("Web design for enterprises", "9,400 M"),
             "branding": ("Branding", "4,800 M"),
             "ads": ("Ads management", "17,000 M"),
+            "seo": ("SEO", "6,200 M"),
             "impact": ("Impact Program", "30,000 M"),
         },
         "menu": {
             "index": "Home", "about": "About", "services": "Services",
             "sme": "SME", "enterprise": "Enterprise", "branding": "Branding",
-            "ads": "Ads", "impact": "Impact", "work": "Work", "blog": "Blog",
+            "ads": "Ads", "seo": "SEO", "impact": "Impact", "work": "Work",
+            "gyor": "Web design in Győr", "blog": "Blog",
             "contact": "Contact", "quote": "Get a quote",
         },
         "nl_lede": "Our newsletter is still being built. Leave your address and we'll tell you when it starts.",
@@ -504,12 +515,14 @@ UI = {
             "enterprise": ("Webdesign für Großunternehmen", "9.400 M"),
             "branding": ("Branding", "4.800 M"),
             "ads": ("Werbeanzeigen", "17.000 M"),
+            "seo": ("SEO", "6.200 M"),
             "impact": ("Impact-Programm", "30.000 M"),
         },
         "menu": {
             "index": "Start", "about": "Über uns", "services": "Leistungen",
             "sme": "KMU", "enterprise": "Konzerne", "branding": "Branding",
-            "ads": "Werbung", "impact": "Impact", "work": "Projekte",
+            "ads": "Werbung", "seo": "SEO", "impact": "Impact", "work": "Projekte",
+            "gyor": "Webdesign in Győr",
             "blog": "Blog", "contact": "Kontakt", "quote": "Angebot",
         },
         "nl_lede": "Unser Newsletter entsteht gerade. Hinterlasse deine Adresse, dann sagen wir Bescheid, sobald er startet.",
@@ -1121,7 +1134,13 @@ PAGE_TYPE_SCHEMA = {
 # already render; `breadcrumb()` refuses to emit anything if the two disagree.
 BREADCRUMB_PARENT = {
     "sme": "services", "enterprise": "services",
-    "branding": "services", "ads": "services",
+    "branding": "services", "ads": "services", "seo": "services",
+    # The city page's visible trail reads Stratos / Szolgáltatások / … , so its
+    # chain has to say the same. Without an entry here `crumb_chain` returns a
+    # two-step chain against a three-step trail and `breadcrumb()` refuses to
+    # emit anything — correctly, and silently, which is how a page ends up with
+    # crumbs on screen and none in the structured data.
+    "gyor": "services",
 }
 
 SCHEMA_LANG = {"hu": "hu-HU", "en": "en-GB", "de": "de-DE"}
@@ -1164,6 +1183,37 @@ def crumb_labels(body):
              for p in TAG_RE.sub("", match.group(1)).split("/")]
     parts = [p for p in parts if p]
     return parts or None
+
+
+# The `<details>` pairs of a page's FAQ block, read from the rendered body.
+#
+# READ, NOT DECLARED — the same argument `breadcrumb()` makes above. Six routes
+# carry a written GYIK and none of them carried the markup for it; the fix
+# could have been a table of questions in this file, and that table would have
+# been a second copy of six pages' worth of prose, drifting a sentence at a
+# time. Parsing the body means a question edited on the page is the question in
+# the JSON-LD on the next build, in whichever language the page was translated
+# into, with no third place to keep in step.
+#
+# Anything that is not a plain `<summary>` + `<p class="faq__a">` pair is
+# skipped rather than guessed at, and a page whose block does not parse simply
+# gets no FAQPage — which is the honest outcome, not a defect.
+_FAQ_RE = re.compile(
+    r"<details[^>]*>\s*<summary[^>]*>(.*?)</summary>\s*"
+    r"<p class=\"faq__a\"[^>]*>(.*?)</p>",
+    re.S)
+
+
+def faq_pairs(body):
+    """[(question, answer), ...] from a rendered page body, in document order."""
+    out = []
+    for q, a in _FAQ_RE.findall(body):
+        q = html_mod.unescape(re.sub(r"<[^>]+>", "", q)).strip()
+        a = html_mod.unescape(re.sub(r"<[^>]+>", " ", a))
+        a = re.sub(r"\s+", " ", a).strip()
+        if q and a:
+            out.append((q, a))
+    return out
 
 
 def breadcrumb(lang, key, body, page_url):
@@ -1292,6 +1342,21 @@ def build_structured_data(lang, key, title, desc, meta, body):
         webpage["breadcrumb"] = {"@id": trail["@id"]}
         graph.append(trail)
 
+    pairs = faq_pairs(body)
+    if pairs:
+        graph.append({
+            "@type": "FAQPage",
+            "@id": page_url + "#faq",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": q,
+                    "acceptedAnswer": {"@type": "Answer", "text": a},
+                }
+                for q, a in pairs
+            ],
+        })
+
     if key == "index":
         graph.append({
             "@type": "FAQPage",
@@ -1306,7 +1371,7 @@ def build_structured_data(lang, key, title, desc, meta, body):
             ],
         })
 
-    if key in ("sme", "enterprise", "branding", "ads"):
+    if key in ("sme", "enterprise", "branding", "ads", "seo"):
         # No `offers`, no `priceRange`, no `areaServed`. The site publishes no
         # price for any of the four, and a Service node without an Offer is a
         # complete and valid description of a service that is quoted rather
@@ -1573,15 +1638,25 @@ ARCHETYPE_CTA = {
 # number the altimeter rail has been climbing towards all the way down — so the
 # footer closes the instrument rather than announcing an unrelated figure.
 CEILINGS = {"impact": 30000, "ads": 17000, "enterprise": 9400,
-            "branding": 4800, "sme": 1200}
+            "seo": 6200, "branding": 4800, "sme": 1200,
+            # 420 m is the altitude the subpage rail already reads at rest, and
+            # the city page is the one route where that is the literal answer:
+            # it is about the ground, not the climb.
+            "gyor": 420}
 
 
 def build_footer(lang, key):
     u = UI[lang]
     p = u["p85"]
+    # `gyor` is in this list and not in the services dropdown, for the reason
+    # given at the slug table: it is the same four services stated for one
+    # place, so it belongs where a reader looks for *where you are*, not where
+    # they choose *what to buy*. Without a link here it would be an orphan —
+    # reachable only from the sitemap, which is how a page gets crawled and
+    # never ranked.
     pages = "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["menu"][k]}</a></li>'
-        for k in ("about", "work", "contact", "blog", "quote"))
+        for k in ("about", "work", "gyor", "contact", "blog", "quote"))
     svc = f'\n          <li><a href="{href(lang, "services")}">{u["svc_all"]}</a></li>'
     svc += "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
@@ -2104,7 +2179,9 @@ GROUND_COPY = {
                "mérés és a havi riport ugyanannak a szerződésnek a része.",
         "where_h": "Hol dolgozunk",
         "where": "Az irodánk Győr mellett van, és a Győr-Moson-Sopron vármegyei "
-                 "vállalkozásokkal szívesen leülünk személyesen is. Budapesti és külföldi "
+                 "vállalkozásokkal szívesen leülünk személyesen is — erről külön oldalunk is van: "
+                 "<a href=\"/weboldal-keszites-gyor.html\">weboldal készítés Győrben</a>. "
+                 "Budapesti és külföldi "
                  "ügyfeleinkkel online dolgozunk, ami az elmúlt években semmivel sem "
                  "bizonyult lassabbnak. Ha nem tudod eldönteni, melyik szolgáltatás kellene, "
                  "írj nekünk: a beszélgetés ingyenes, és a végén akkor is okosabb leszel, ha "
@@ -2186,7 +2263,9 @@ GROUND_COPY = {
                "measurement and the monthly report are part of the same agreement.",
         "where_h": "Where we work",
         "where": "Our office is just outside Győr, and we are happy to meet businesses across "
-                 "Győr-Moson-Sopron county in person. We work with clients in Budapest and "
+                 "Győr-Moson-Sopron county in person — there is a "
+                 "<a href=\"/en/web-design-gyor.html\">page of its own</a> about that. "
+                 "We work with clients in Budapest and "
                  "abroad online, which over the past years has proved no slower at all. If "
                  "you cannot tell which service you need, write to us: the conversation is "
                  "free, and you will know more at the end of it either way.",
@@ -2265,7 +2344,8 @@ GROUND_COPY = {
                "nicht: Wartung, Messung und der monatliche Report gehören zum selben Vertrag.",
         "where_h": "Wo wir arbeiten",
         "where": "Unser Büro liegt bei Győr, und mit Unternehmen aus dem Komitat "
-                 "Győr-Moson-Sopron treffen wir uns gerne persönlich. Mit Kundinnen und Kunden "
+                 "Győr-Moson-Sopron treffen wir uns gerne persönlich — dazu gibt es eine "
+                 "<a href=\"/de/webdesign-gyor.html\">eigene Seite</a>. Mit Kundinnen und Kunden "
                  "in Budapest und im Ausland arbeiten wir online, was sich in den letzten "
                  "Jahren als keineswegs langsamer erwiesen hat. Wenn Sie nicht wissen, welche "
                  "Leistung Sie brauchen, schreiben Sie uns: Das Gespräch ist kostenlos, und "

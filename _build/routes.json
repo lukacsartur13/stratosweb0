@@ -40,10 +40,20 @@
    "en": "ads-management.html",
    "de": "werbeanzeigen.html"
   },
+  "seo": {
+   "hu": "keresooptimalizalas.html",
+   "en": "seo.html",
+   "de": "suchmaschinenoptimierung.html"
+  },
   "impact": {
    "hu": "impact-program.html",
    "en": "impact-program.html",
    "de": "impact-programm.html"
+  },
+  "gyor": {
+   "hu": "weboldal-keszites-gyor.html",
+   "en": "web-design-gyor.html",
+   "de": "webdesign-gyor.html"
   },
   "work": {
    "hu": "munkaink.html",
@@ -157,10 +167,20 @@
    "en": "/en/ads-management.html",
    "de": "/de/werbeanzeigen.html"
   },
+  "seo": {
+   "hu": "/keresooptimalizalas.html",
+   "en": "/en/seo.html",
+   "de": "/de/suchmaschinenoptimierung.html"
+  },
   "impact": {
    "hu": "/impact-program.html",
    "en": "/en/impact-program.html",
    "de": "/de/impact-programm.html"
+  },
+  "gyor": {
+   "hu": "/weboldal-keszites-gyor.html",
+   "en": "/en/web-design-gyor.html",
+   "de": "/de/webdesign-gyor.html"
   },
   "work": {
    "hu": "/munkaink.html",
@@ -246,7 +266,9 @@
   "enterprise": "full",
   "branding": "full",
   "ads": "full",
+  "seo": "full",
   "impact": "full",
+  "gyor": "full",
   "work": "full",
   "case-rapidkert": "full",
   "case-barbershop": "summary",

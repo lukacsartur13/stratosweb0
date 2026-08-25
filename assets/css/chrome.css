@@ -104,6 +104,24 @@
    resolves to the initial value and changes nothing. */
 body.journey-home { min-height: var(--home-reserve, auto); }
 
+/* Scroll anchoring must not latch onto anything BELOW the journey.
+   `<main class="journey">` is empty at first layout and grows to some fourteen
+   thousand pixels when React mounts. Everything after it — the written
+   statement, the Arrival, the footer — is real, painted content from the first
+   frame, so on a Back navigation the browser can pick an anchor down there and
+   then faithfully hold it still while `<main>` grows above it. Holding it still
+   means pushing the scroll position down by the whole growth, which lands the
+   visitor at the bottom of the document instead of where they left.
+   Measured on mobile-390: left at 4 205, came back to 13 805.
+   This is the same defect assets/js/home-history.js exists to prevent, arriving
+   by a second route once there was painted content between the mount host and
+   the footer. The reserve fixes the height; this stops the compensation.
+   Homepage only — the other 68 routes parse their full height and want
+   anchoring exactly as the browser does it. */
+body.journey-home > .ground,
+body.journey-home > .arrival,
+body.journey-home > .foot { overflow-anchor: none; }
+
 a { color: inherit; text-decoration: none; }
 
 .vh {
