@@ -393,6 +393,7 @@
    Two qualifiers, because `[lang='hu'] h1` above is (0,1,1) and a bare class
    would tie-and-lose to it. */
 [lang] h1.panel__title--hero,
+[lang] h2.ground__h,
 [lang] .type-display-signature {
   hyphens: manual;
 }

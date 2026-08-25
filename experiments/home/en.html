@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="dark" />
 
-    <title>Stratos — Digital systems that drive growth | Győr &amp; Budapest</title>
-    <meta name="description" content="Website, branding and ad management from one team, on a monthly fee. From SMEs to enterprises — Győr and Budapest." />
+    <title>Web design and development in Hungary | Stratos</title>
+    <meta name="description" content="Web design, branding and ads management from one team, on a monthly fee. From small businesses to enterprises, in Győr and Budapest." />
 
     <!-- Canonical and Open Graph are NEW, not migrated: the previous homepage
          carried neither, on any of the three languages. The alternates below
@@ -24,17 +24,18 @@
     <meta property="og:locale:alternate" content="hu_HU" />
     <meta property="og:locale:alternate" content="de_DE" />
     <meta property="og:url" content="%SITE_ORIGIN%/en/" />
-    <meta property="og:title" content="Stratos — Digital systems that drive growth | Győr &amp; Budapest" />
-    <meta property="og:description" content="Website, branding and ad management from one team, on a monthly fee. From SMEs to enterprises — Győr and Budapest." />
+    <meta property="og:title" content="Web design and development in Hungary | Stratos" />
+    <meta property="og:description" content="Web design, branding and ads management from one team, on a monthly fee. From small businesses to enterprises, in Győr and Budapest." />
     <meta property="og:image" content="%SITE_ORIGIN%/assets/img/hero.jpg" />
     <meta property="og:image:width" content="1800" />
     <meta property="og:image:height" content="1012" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Stratos — Digital systems that drive growth | Győr &amp; Budapest" />
-    <meta name="twitter:description" content="Website, branding and ad management from one team, on a monthly fee. From SMEs to enterprises — Győr and Budapest." />
+    <meta name="twitter:title" content="Web design and development in Hungary | Stratos" />
+    <meta name="twitter:description" content="Web design, branding and ads management from one team, on a monthly fee. From small businesses to enterprises, in Győr and Budapest." />
     <meta name="twitter:image" content="%SITE_ORIGIN%/assets/img/hero.jpg" />
 
     <link rel="icon" href="/assets/img/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/img/favicon.png" />
     <!-- Typography is self-hosted and shared with the eleven static pages: one
          file, one cache entry, no third-party origin in the critical path. The
          preconnects that used to sit here pointed at a Google Fonts stylesheet
@@ -78,6 +79,11 @@
     <main class="journey" id="main" tabindex="-1" data-motion-external>
       <!--stratos:opening-->
     </main>
+
+    <!-- The homepage's written statement. Outside <main> because <main> is
+         React's container and its first commit empties it; see `GROUND` in
+         _build/build.py. -->
+    <!--stratos:ground-->
 
     <!-- Arrival, then the shared ground-control footer. Outside <main>, after
          it, so the landmark React owns stays exactly one element. -->

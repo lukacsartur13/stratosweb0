@@ -287,6 +287,7 @@ UI = {
         "name": "Magyar",
         "skip": "Ugrás a tartalomra",
         "brand_aria": "Stratos — főoldal",
+        "brand_alt": "Stratos — weboldal készítés és digitális ügynökség Győrben",
         "nav_aria": "Fő navigáció",
         "menu_aria": "Mobil navigáció",
         "burger_aria": "Menü",
@@ -390,6 +391,7 @@ UI = {
         "name": "English",
         "skip": "Skip to content",
         "brand_aria": "Stratos — home",
+        "brand_alt": "Stratos — web design and digital agency in Győr, Hungary",
         "nav_aria": "Main navigation",
         "menu_aria": "Mobile navigation",
         "burger_aria": "Menu",
@@ -480,6 +482,7 @@ UI = {
         "name": "Deutsch",
         "skip": "Zum Inhalt springen",
         "brand_aria": "Stratos — Startseite",
+        "brand_alt": "Stratos — Webdesign und Digitalagentur in Győr, Ungarn",
         "nav_aria": "Hauptnavigation",
         "menu_aria": "Mobile Navigation",
         "burger_aria": "Menü",
@@ -747,8 +750,8 @@ def build_menu(lang, key):
     <ul class="menu__primary">{primary}
     </ul>
     <div class="menu__svc">
-      <h2 class="menu__h">{u['services']}</h2>
-      <ul>{svc}
+      <p class="menu__h" id="menu-svc-h">{u['services']}</p>
+      <ul aria-labelledby="menu-svc-h">{svc}
       </ul>
     </div>"""
 
@@ -1008,7 +1011,7 @@ DECK = """<!-- Flight deck. Three deterministic states — opening, journey, des
      navigation. -->
 <header class="nav" data-state="opening">
   <a class="brand" href="{{home}}" aria-label="{{brand_aria}}">
-    <img src="{{base}}assets/img/plane-cursor.png" alt="">
+    <img src="{{base}}assets/img/plane-cursor.png" alt="{{brand_alt}}">
     <span class="brand__wm"><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
   </a>
   <p class="nav__alt" aria-hidden="true"><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></p>
@@ -1212,10 +1215,25 @@ def build_structured_data(lang, key, title, desc, meta, body):
     title = html_mod.unescape(title)
     desc = html_mod.unescape(desc)
 
+    # `ProfessionalService` rather than plain `Organization`, and with a postal
+    # address on it.
+    #
+    # The address is not new information: it is the seat already published on
+    # /impresszum.html, which is where a Hungarian e.v. is required to state it.
+    # It was simply never in the structured data, so every local signal the site
+    # had was the phrase "Győr és Budapest" in the footer's status list — one
+    # occurrence of the city in body copy across 21 Hungarian routes, while the
+    # <title> claimed it on all of them. `areaServed` says the same thing in the
+    # form a search engine can act on.
+    #
+    # No `openingHours` and no `priceRange`: the site publishes neither, and a
+    # LocalBusiness that invents them is a LocalBusiness making a claim its own
+    # pages do not support.
     organisation = {
-        "@type": "Organization",
+        "@type": "ProfessionalService",
         "@id": SITE + "/#organization",
         "name": "Stratos",
+        "alternateName": "Stratos Media Agency",
         "url": SITE + "/",
         "logo": {
             "@type": "ImageObject",
@@ -1223,8 +1241,24 @@ def build_structured_data(lang, key, title, desc, meta, body):
             "width": 512,
             "height": 512,
         },
+        "image": SITE + "/assets/img/logo.png",
         "email": CONTACT_EMAIL,
         "telephone": "+36 30 584 8024",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Arany János utca 13.",
+            "addressLocality": "Abda",
+            "addressRegion": "Győr-Moson-Sopron",
+            "postalCode": "9151",
+            "addressCountry": "HU",
+        },
+        "areaServed": [
+            {"@type": "City", "name": "Győr"},
+            {"@type": "City", "name": "Budapest"},
+            {"@type": "AdministrativeArea", "name": "Győr-Moson-Sopron"},
+            {"@type": "Country", "name": "Magyarország"},
+        ],
+        "knowsLanguage": ["hu", "en", "de"],
         "sameAs": SOCIAL_PROFILES,
     }
 
@@ -1306,8 +1340,8 @@ def build_deck(lang, key, base, home):
     quote = root_href(lang, "quote") if base == "/" else href(lang, "quote")
     return render(DECK, dict(
         base=base, home=home,
-        brand_aria=u["brand_aria"], nav_aria=u["nav_aria"],
-        burger_aria=u["burger_aria"],
+        brand_aria=u["brand_aria"], brand_alt=u["brand_alt"],
+        nav_aria=u["nav_aria"], burger_aria=u["burger_aria"],
         alt_k=u["p85"]["alt"], unit_short=u["unit_short"],
         quote_href=quote, start=u["p85"]["start"],
         menu_label=u["p85"]["menu"], close=u["p85"]["close"],
@@ -1324,7 +1358,8 @@ SHELL = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{desc}}">
-<link rel="icon" href="{{base}}assets/img/favicon.png">{{robots}}{{alternates}}{{social}}{{jsonld}}
+<link rel="icon" href="{{base}}assets/img/favicon.png">
+<link rel="apple-touch-icon" href="{{base}}assets/img/favicon.png">{{robots}}{{alternates}}{{social}}{{jsonld}}
 {{fontpreload}}
 <link rel="stylesheet" href="{{base}}assets/css/type.css">
 <!-- The site chrome — tokens, flight deck, full-screen menu, Arrival, footer.
@@ -1352,7 +1387,7 @@ SHELL = """<!DOCTYPE html>
 <a class="skip" href="#main">{{skip}}</a>
 <div class="grain" aria-hidden="true"></div>
 <canvas class="contrail" aria-hidden="true"></canvas>
-<div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt=""></div>
+<div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt="{{brand_alt}}"></div>
 {{instruments}}
 
 {{deck}}
@@ -1386,7 +1421,7 @@ SHELL = """<!DOCTYPE html>
 # panel, because there the climb *is* the page.
 RAIL = """
 <aside class="rail" aria-hidden="true">
-  <img class="rail__mark" src="{{base}}assets/img/plane-cursor.png" alt="">
+  <img class="rail__mark" src="{{base}}assets/img/plane-cursor.png" alt="{{brand_alt}}">
   <div class="rail__tape"><div class="rail__ticks"></div></div>
   <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">{{unit}}</span></div>
   <div class="rail__layer">{{layer0}}</div>
@@ -1437,7 +1472,7 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
   <div class="wrap">
     <div class="foot__grid">
       <div>
-        <a class="brand" href="{{home}}" style="margin-bottom:1.4rem"><img src="{{base}}assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
+        <a class="brand" href="{{home}}" style="margin-bottom:1.4rem" aria-label="{{brand_aria}}"><img src="{{base}}assets/img/plane-cursor.png" alt="{{brand_alt}}"><span>Stratos</span></a>
         <p class="muted" style="max-width:32ch;font-size:var(--step--1)">{{nl_lede}}</p>
         <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
           <label class="vh" for="nl">{{nl_label}}</label>
@@ -1546,6 +1581,7 @@ def build_footer(lang, key):
 
     return render(FOOTER, dict(
         home=href(lang, "index"),
+        brand_aria=u["brand_aria"], brand_alt=u["brand_alt"],
         # Root-absolute on the homepage, for the reason root_href gives: one
         # application, three URLs, and a dev server that serves it from a fourth.
         base="/" if _ROOT_LINKS else ("" if lang == "hu" else "../"),
@@ -1948,8 +1984,226 @@ def home_meta(lang):
     return unescape(title.group(1).strip()), unescape(desc.group(1).strip())
 
 
+# ==================================================================== ground
+#
+# The homepage's written statement, between the ascent and the arrival.
+#
+# WHY IT EXISTS AT ALL
+# --------------------
+# `<main class="journey">` is React's container and `mount()` empties it, so
+# the opening frame inside it is gone the moment the first commit lands. What
+# survived to a crawl was the chrome and little else: 194 rendered words, one
+# content heading, and a page whose <title> promised "Győr & Budapest" while
+# the body said it once, in the footer's status list. An external audit put
+# page quality at 44% on exactly that — under 250 words, one paragraph, and no
+# overlap between the title, the H1 and the text underneath them.
+#
+# So this is the part of the homepage that is written rather than flown. It
+# sits OUTSIDE the mount host — after `</main>`, before the arrival — which is
+# the only reason it survives; anything inside the journey is React's to
+# discard on its first commit. It is generated here rather than authored in
+# the three shells for the same reason the header and the footer are: one slug
+# table, one set of service names, three locales that must not drift apart.
+#
+# WHY THE COPY IS WHAT IT IS
+# --------------------------
+# Every service name links to its own route with the words a visitor would
+# actually search for, never "read more" — the four service pages had 6, 4, 2
+# and 2 in-copy inbound links between them while the contact page had 40, so
+# the internal link graph was feeding the pages that do not need to rank. And
+# the vocabulary is deliberately the customer's: "weboldal készítés" and
+# "honlapkészítés" appear here because the site said "webdesign" 141 times and
+# those two once and never — a Hungarian market the site had written itself
+# out of one word at a time.
+
+GROUND = """<section class="ground" aria-labelledby="ground-h">
+  <div class="wrap">
+    <p class="ground__eyebrow">{{eyebrow}}</p>
+    <h2 class="ground__h display" id="ground-h">{{h}}</h2>
+    <div class="ground__cols">
+      <div class="ground__lede">
+        <p>{{p1}}</p>
+        <p>{{p2}}</p>
+      </div>
+      <div class="ground__body">
+        <h3>{{svc_h}}</h3>
+        <ul class="ground__svc">{{svc}}
+        </ul>
+        <h3>{{why_h}}</h3>
+        <p>{{why}}</p>
+        <h3>{{how_h}}</h3>
+        <p>{{how}}</p>
+        <h3>{{where_h}}</h3>
+        <p>{{where}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+"""
+
+GROUND_COPY = {
+    "hu": {
+        "eyebrow": "FÖLDI IRÁNYÍTÁS",
+        "h": "Weboldal készítés Győrben és Budapesten",
+        "p1": "A Stratos digitális ügynökség: weboldalt tervezünk és fejlesztünk, "
+              "arculatot építünk, és Google- meg Meta-hirdetéseket kezelünk. Magyar, "
+              "angol és német nyelven dolgozunk, és ugyanaz a csapat viszi végig a "
+              "munkát az első beszélgetéstől az élesítésig, majd azon is túl.",
+        "p2": "Amikor azt mondjuk, hogy nem weboldalakat építünk, hanem magasságot, "
+              "akkor arra gondolunk, hogy a látható felület mögött mindig egy mérhető "
+              "rendszer áll. Egy honlapkészítés önmagában még nem hoz ügyfelet: ahhoz a "
+              "szerkezetnek, a szövegnek, a keresőoptimalizálásnak és a hirdetéseknek "
+              "együtt kell működniük, különben a legszebb oldal is csak egy névjegykártya marad.",
+        "svc_h": "Négy szolgáltatás, egy rendszer",
+        "svc": [
+            ("sme", "Weboldal készítés KKV-nak",
+             "tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban, "
+             "nagy egyszeri költség nélkül."),
+            ("enterprise", "Weboldal és rendszerfejlesztés nagyvállalatoknak",
+             "egyedi platformok, belső rendszerek, integrációk és üzemeltetés dedikált "
+             "fejlesztőcsapattal."),
+            ("branding", "Branding és arculattervezés",
+             "logó, színvilág, tipográfia, képi stílus és hangnem egyetlen rendszerbe rendezve."),
+            ("ads", "Google és Meta hirdetéskezelés",
+             "célközönség-kutatás, kreatív, licitstratégia és konverziómérés — kampányok, "
+             "amelyek nem elérést, hanem valódi megkeresést hoznak."),
+        ],
+        "why_h": "Miért havidíjas konstrukcióban?",
+        "why": "A legtöbb magyar ügynökség egyszeri projektdíjban árazik, ami azt jelenti, "
+               "hogy a legnagyobb költség pont a legbizonytalanabb pillanatban, az elején "
+               "jelentkezik. Nálunk a tervezés, a fejlesztés, a tárhely és a karbantartás "
+               "egyetlen fix havidíjban van, így a weboldal nem egyszeri beruházás, hanem "
+               "működő eszköz, aminek kiszámítható a fenntartása. Ha egy év múlva változik "
+               "az üzleted, változik vele az oldal is, és nem kell újra nulláról kezdeni.",
+        "how_h": "Hogyan dolgozunk",
+        "how": "Minden projekt egy díjmentes konzultációval indul, ahol megnézzük, hol tart "
+               "most a vállalkozásod, és mi az az egy dolog, ami a legtöbbet mozdítana rajta. "
+               "Ebből készül a személyre szabott árajánlat — árlistánk azért nincs, mert két "
+               "egyforma feladat sincs. Az élesítés után nem tűnünk el: a karbantartás, a "
+               "mérés és a havi riport ugyanannak a szerződésnek a része.",
+        "where_h": "Hol dolgozunk",
+        "where": "Az irodánk Győr mellett van, és a Győr-Moson-Sopron vármegyei "
+                 "vállalkozásokkal szívesen leülünk személyesen is. Budapesti és külföldi "
+                 "ügyfeleinkkel online dolgozunk, ami az elmúlt években semmivel sem "
+                 "bizonyult lassabbnak. Ha nem tudod eldönteni, melyik szolgáltatás kellene, "
+                 "írj nekünk: a beszélgetés ingyenes, és a végén akkor is okosabb leszel, ha "
+                 "nem velünk dolgozol tovább.",
+    },
+    "en": {
+        "eyebrow": "GROUND CONTROL",
+        "h": "Web design and development from Győr and Budapest",
+        "p1": "Stratos is a digital agency: we design and build websites, develop brand "
+              "identities, and run Google and Meta advertising campaigns. We work in "
+              "Hungarian, English and German, and the same team carries a project from the "
+              "first conversation through launch and well past it.",
+        "p2": "When we say we do not build websites but altitude, we mean that there is "
+              "always a measurable system behind the visible surface. A website on its own "
+              "does not bring you customers: the structure, the copy, the search engine "
+              "optimisation and the advertising have to work together, or even the most "
+              "beautiful page stays a business card.",
+        "svc_h": "Four services, one system",
+        "svc": [
+            ("sme", "Web design for small and medium businesses",
+             "design, development, hosting and continuous maintenance in one fixed monthly "
+             "fee, with no large upfront cost."),
+            ("enterprise", "Web and systems development for enterprises",
+             "custom platforms, internal systems, integrations and operations with a "
+             "dedicated development team."),
+            ("branding", "Branding and identity design",
+             "logo, colour, typography, image style and tone of voice arranged into a single "
+             "system."),
+            ("ads", "Google and Meta ads management",
+             "audience research, creative, bidding strategy and conversion tracking — "
+             "campaigns that bring enquiries rather than reach."),
+        ],
+        "why_h": "Why a monthly fee?",
+        "why": "Most agencies price a website as a one-off project, which puts the largest "
+               "cost at the most uncertain moment: the very beginning. With us, design, "
+               "development, hosting and maintenance sit in one fixed monthly fee, so the "
+               "site is not a single investment but a working tool with a predictable running "
+               "cost. When your business changes a year from now, the site changes with it, "
+               "and nothing starts from zero again.",
+        "how_h": "How we work",
+        "how": "Every project starts with a free consultation, where we look at where your "
+               "business stands today and which single change would move it furthest. The "
+               "quote is written from that conversation — we publish no price list, because "
+               "no two briefs are the same. We do not disappear after launch: maintenance, "
+               "measurement and the monthly report are part of the same agreement.",
+        "where_h": "Where we work",
+        "where": "Our office is just outside Győr, and we are happy to meet businesses across "
+                 "Győr-Moson-Sopron county in person. We work with clients in Budapest and "
+                 "abroad online, which over the past years has proved no slower at all. If "
+                 "you cannot tell which service you need, write to us: the conversation is "
+                 "free, and you will know more at the end of it either way.",
+    },
+    "de": {
+        "eyebrow": "BODENKONTROLLE",
+        "h": "Webdesign und Entwicklung aus Győr und Budapest",
+        "p1": "Stratos ist eine Digitalagentur: Wir gestalten und entwickeln Websites, bauen "
+              "Markenauftritte auf und betreuen Google- und Meta-Kampagnen. Wir arbeiten auf "
+              "Ungarisch, Englisch und Deutsch, und dasselbe Team begleitet ein Projekt vom "
+              "ersten Gespräch bis zum Launch und weit darüber hinaus.",
+        "p2": "Wenn wir sagen, dass wir keine Websites bauen, sondern Höhe, dann meinen wir "
+              "damit, dass hinter der sichtbaren Oberfläche immer ein messbares System steht. "
+              "Eine Website allein bringt noch keine Kunden: Struktur, Text, "
+              "Suchmaschinenoptimierung und Werbung müssen zusammenspielen, sonst bleibt auch "
+              "die schönste Seite eine Visitenkarte.",
+        "svc_h": "Vier Leistungen, ein System",
+        "svc": [
+            ("sme", "Webdesign für kleine und mittlere Unternehmen",
+             "Konzept, Entwicklung, Hosting und laufende Wartung in einer festen "
+             "Monatsgebühr, ohne hohe Einmalkosten."),
+            ("enterprise", "Web- und Systementwicklung für Großunternehmen",
+             "individuelle Plattformen, interne Systeme, Integrationen und Betrieb mit einem "
+             "festen Entwicklungsteam."),
+            ("branding", "Branding und Corporate Design",
+             "Logo, Farbwelt, Typografie, Bildsprache und Tonalität in einem einzigen System."),
+            ("ads", "Google- und Meta-Werbeanzeigen",
+             "Zielgruppenrecherche, Kreation, Gebotsstrategie und Conversion-Messung — "
+             "Kampagnen, die Anfragen bringen statt Reichweite."),
+        ],
+        "why_h": "Warum eine Monatsgebühr?",
+        "why": "Die meisten Agenturen rechnen eine Website als einmaliges Projekt ab, wodurch "
+               "die größten Kosten genau im unsichersten Moment anfallen: ganz am Anfang. Bei "
+               "uns stecken Konzept, Entwicklung, Hosting und Wartung in einer festen "
+               "Monatsgebühr, damit die Website keine einmalige Investition ist, sondern ein "
+               "funktionierendes Werkzeug mit kalkulierbaren Betriebskosten. Ändert sich Ihr "
+               "Geschäft in einem Jahr, ändert sich die Seite mit, und nichts beginnt wieder "
+               "bei null.",
+        "how_h": "Wie wir arbeiten",
+        "how": "Jedes Projekt beginnt mit einer kostenlosen Beratung, in der wir ansehen, wo "
+               "Ihr Unternehmen heute steht und welche eine Änderung es am weitesten bringen "
+               "würde. Daraus entsteht das individuelle Angebot — eine Preisliste gibt es "
+               "nicht, weil keine zwei Aufgaben gleich sind. Nach dem Launch verschwinden wir "
+               "nicht: Wartung, Messung und der monatliche Report gehören zum selben Vertrag.",
+        "where_h": "Wo wir arbeiten",
+        "where": "Unser Büro liegt bei Győr, und mit Unternehmen aus dem Komitat "
+                 "Győr-Moson-Sopron treffen wir uns gerne persönlich. Mit Kundinnen und Kunden "
+                 "in Budapest und im Ausland arbeiten wir online, was sich in den letzten "
+                 "Jahren als keineswegs langsamer erwiesen hat. Wenn Sie nicht wissen, welche "
+                 "Leistung Sie brauchen, schreiben Sie uns: Das Gespräch ist kostenlos, und "
+                 "Sie wissen danach in jedem Fall mehr.",
+    },
+}
+
+
+def build_ground(lang):
+    """The homepage's written statement for one locale."""
+    g = GROUND_COPY[lang]
+    svc = "".join(
+        f'\n          <li><a href="{root_href(lang, k)}">{name}</a> — {line}</li>'
+        for k, name, line in g["svc"])
+    return render(GROUND, dict(
+        eyebrow=g["eyebrow"], h=g["h"], p1=g["p1"], p2=g["p2"],
+        svc_h=g["svc_h"], svc=svc,
+        why_h=g["why_h"], why=g["why"],
+        how_h=g["how_h"], how=g["how"],
+        where_h=g["where_h"], where=g["where"],
+    ))
+
+
 def build_home_chrome(lang):
-    """The four chrome strings for one homepage locale."""
+    """The five chrome strings for one homepage locale."""
     home_title, home_desc = home_meta(lang)
     u = UI[lang]
     js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
@@ -1978,6 +2232,9 @@ def build_home_chrome(lang):
             # each one landed into a layout that was already moving. Lighthouse
             # named all three under `unsized-images` on the deployed site.
             "deck": stamp_images(build_deck(lang, "index", "/", HOME_PATH[lang])),
+            # The written statement, substituted after `</main>`. Outside the
+            # mount host on purpose — see the note above `GROUND`.
+            "ground": build_ground(lang),
             "footer": stamp_images(build_footer(lang, "index")),
             "scripts": HOME_SCRIPTS,
         }
@@ -2073,11 +2330,12 @@ def build_not_found(lang):
     chrome = render(RAIL, dict(
         base=base, unit=u["unit"], unit_short=u["unit_short"],
         layer0=u["layers"][0], boot=u["boot"], skip_top=u["skip_top"],
-        rail_aria=u["rail_aria"],
+        rail_aria=u["rail_aria"], brand_alt=u["brand_alt"],
         **{f"hud{i}": v for i, v in enumerate(u["hud"])}))
 
     return render(SHELL, dict(
         lang=lang, title=t["title"], desc=t["lede"], base=base,
+        brand_alt=u["brand_alt"],
         # No alternates, no canonical, no Open Graph, no JSON-LD. See above.
         alternates="", social="", jsonld="",
         robots='\n<meta name="robots" content="noindex, follow">',
@@ -2185,11 +2443,11 @@ def main():
             chrome = render(RAIL, dict(
                 base=base, unit=u["unit"], unit_short=u["unit_short"],
                 layer0=u["layers"][0], boot=u["boot"], skip_top=u["skip_top"],
-                rail_aria=u["rail_aria"],
+                rail_aria=u["rail_aria"], brand_alt=u["brand_alt"],
                 **{f"hud{i}": v for i, v in enumerate(u["hud"])}))
             html = render(SHELL, dict(
                 lang=lang, title=title, desc=desc,
-                base=base,
+                base=base, brand_alt=u["brand_alt"],
                 alternates=build_alternates(key),
                 social=build_social(lang, key, title, desc, meta),
                 # After translation and after the legal note, so the breadcrumb

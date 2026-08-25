@@ -622,6 +622,89 @@ a { color: inherit; text-decoration: none; }
 html:not(.motion-ready) [data-converge] .converge__cta { opacity: 1; transform: none; }
 html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
 
+/* ------------------------------------------------------- GROUND / STATEMENT
+   The homepage's written statement, between the ascent and the Arrival.
+
+   It exists because <main> is React's container and its first commit empties
+   it, so the only prose that survives a rendered crawl is whatever sits
+   outside the mount host. See `GROUND` in _build/build.py for why.
+
+   Read as the briefing after the flight: left-aligned against the Arrival's
+   centring, quiet, and on the same void the ascent closed over — so it lands
+   as the page continuing to speak rather than as a second page bolted on.
+   Homepage-only; nothing else emits `.ground`. */
+.ground {
+  background: var(--void);
+  border-top: 1px solid var(--hair);
+  padding-block: clamp(4rem, 11vh, 8rem);
+}
+
+.ground__eyebrow {
+  margin: 0;
+  font-family: var(--data); font-size: var(--step--1);
+  text-transform: uppercase; letter-spacing: .24em; color: var(--signal);
+}
+
+.ground__h {
+  margin: 1.2rem 0 0; max-width: 20ch;
+  font-size: var(--step-3); line-height: 1.04;
+  text-wrap: balance;
+}
+
+/* Two columns from 900px: the two lede paragraphs hold the left, the four
+   headed blocks the right. One column below it, in source order, which is
+   already the reading order. */
+.ground__cols {
+  display: grid; gap: clamp(2rem, 5vw, 4.5rem);
+  margin-top: clamp(2.4rem, 6vh, 4rem);
+}
+@media (min-width: 900px) {
+  .ground__cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+}
+
+.ground__lede p {
+  margin: 0 0 1.1rem; max-width: 46ch;
+  font-size: var(--step-1); line-height: 1.5;
+  color: rgba(244, 244, 244, .78);
+}
+.ground__lede p:last-child { margin-bottom: 0; }
+
+.ground__body h3 {
+  margin: 2.2rem 0 .7rem;
+  font-family: var(--display); font-weight: 600;
+  font-size: var(--step-0); letter-spacing: .01em;
+  text-transform: uppercase; color: var(--paper);
+}
+.ground__body h3:first-child { margin-top: 0; }
+
+.ground__body p {
+  margin: 0; max-width: 62ch;
+  font-size: var(--step-0); line-height: 1.62;
+  color: rgba(244, 244, 244, .64);
+}
+
+.ground__svc { margin: 0; padding: 0; list-style: none; }
+.ground__svc li {
+  padding: .7rem 0; border-bottom: 1px solid var(--hair);
+  max-width: 62ch;
+  font-size: var(--step-0); line-height: 1.55;
+  color: rgba(244, 244, 244, .64);
+}
+.ground__svc li:last-child { border-bottom: none; }
+
+/* The four service links are the point of the block — they are the only
+   keyword-bearing in-copy links the homepage has ever had. Underlined at rest,
+   because a link a crawler follows should also look like one to a reader. */
+.ground__svc a {
+  color: var(--paper); font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 238, 37, .45);
+  text-underline-offset: 3px;
+  transition: color .2s var(--ease), text-decoration-color .2s var(--ease);
+}
+.ground__svc a:hover,
+.ground__svc a:focus-visible { color: var(--signal); text-decoration-color: var(--signal); }
+
 /* ------------------------------------------------- ARRIVAL / GROUND CONTROL
    The §8 finale. Three movements: the trace converges, the page asks its own
    closing question, then — and only then — the information grid.

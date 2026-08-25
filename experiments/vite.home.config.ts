@@ -90,7 +90,7 @@ function substituteOrigin(): Plugin {
  * actually is.
  */
 function injectChrome(): Plugin {
-  const SLOTS = ['head', 'deck', 'footer', 'scripts'] as const;
+  const SLOTS = ['head', 'deck', 'ground', 'footer', 'scripts'] as const;
   const source = resolve(__dirname, '../_build/home-chrome.json');
   let chrome: Record<string, Record<string, string>> | null = null;
 

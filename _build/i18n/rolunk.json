@@ -179,7 +179,6 @@
   "Selected collaborations",
   "Ausgewählte Kooperationen"
  ],
-
  "_p85": [
   "Phase 8.5 — the braided-path section (brief §18). Tervezés, Fejlesztés",
   "and Hirdetés already resolve from the shared table."
@@ -195,5 +194,9 @@
  "A négy szál külön is megáll, de egy projektben ugyanaz a kéz fogja össze őket. Ezért nem kell négy beszállítót egyeztetned.": [
   "Each of the four stands on its own, but on a project the same hands braid them together. That is why you are not co-ordinating four suppliers.",
   "Jeder der vier Stränge steht für sich, aber in einem Projekt führt sie dieselbe Hand zusammen. Deshalb musst du nicht vier Dienstleister koordinieren."
+ ],
+ "Hegyvonulat a felhők fölött — a Stratos névadó sztratoszférája.": [
+  "A mountain range above the clouds — the stratosphere Stratos is named after.",
+  "Eine Bergkette über den Wolken — die Stratosphäre, die Stratos den Namen gab."
  ]
 }
