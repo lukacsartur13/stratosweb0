@@ -1,66 +1,72 @@
 # The homepage's Lighthouse scores, and what each number was actually made of
 
-The starting point is a Lighthouse 13.4.1 run against `https://stratosweb1.netlify.app/en/`,
-emulated Moto G Power, slow-4G throttling.
+The starting point is a Lighthouse 13.4.1 run against the deployed site,
+emulated Moto G Power, slow-4G throttling. The finishing point is the same
+audit against `https://stratosweb.hu/`, median of three runs.
 
-| Category | Before | After |
+| Category | Before | After (live) |
 |---|---|---|
-| Performance | **46** | **97** |
+| Performance | **46** | **100** |
 | Accessibility | **96** | **100** |
 | Best Practices | **92** | **100** |
-| SEO | **69** | **100** on the production origin — see §5 |
-| Agentic Browsing | **1 / 2** | **2 / 2** |
+| SEO | **69** | **100** |
+| Agentic Browsing | **1 / 2** | **100** (2 / 2) |
 
-| Metric | Before | After | Budget for 100 |
+| Metric | Before | After (live) | Budget for 100 |
 |---|---|---|---|
-| First Contentful Paint | 1.5 s | 1.50 s | < 0.93 s |
-| Largest Contentful Paint | 2.3 s | 2.40 s | < 1.2 s |
-| Total Blocking Time | 1 470 ms | **9 ms** | < 150 ms |
+| First Contentful Paint | 1.5 s | **1.11 s** | < 0.93 s |
+| Largest Contentful Paint | 2.3 s | **1.67 s** | < 1.2 s |
+| Total Blocking Time | 1 470 ms | **0 ms** | < 150 ms |
 | Cumulative Layout Shift | 1.013 | **0** | < 0.1 |
-| Speed Index | 3.4 s | 1.50 s | < 1.31 s |
+| Speed Index | 3.4 s | **1.20 s** | < 1.31 s |
 
-## How the "after" column was measured, and why it is not directly comparable
+`https://stratosweb.hu/en/` scores 100 in all five categories on a single run,
+with FCP 0.9 s, LCP 1.5 s, TBT 0 ms, CLS 0, Speed Index 1.4 s, and no console
+errors.
 
-The before column is the deployed site. The after column is the same Lighthouse
-version and the same emulation against `dist/` on a local HTTP/1.1 server with
-brotli and the `netlify.toml` headers — the harness in the scratchpad, three
-runs, median. Two things follow from that, and both matter when reading the
-numbers:
+FCP and LCP sit above the "100" budget in the table and the category still
+reads 100: the score is a weighted curve over all five metrics, not a set of
+gates, and TBT, CLS and Speed Index are far enough inside theirs to carry them.
+The three points identified below are therefore not visible in the score any
+more — but they are still real, and they are still the next thing to do if the
+margin is ever wanted back.
 
-* **The local harness reads slower than the deployed host on the paint
-  metrics.** Same build, same day, the unchanged site measured 2.41 s FCP
-  locally against the deployed 1.5 s, and 4.1 s LCP against 2.3 s — no HTTP/2,
-  so five render-blocking resources cost five round trips instead of one
-  multiplexed set. Whatever the deployed numbers turn out to be, they should be
-  better than these, not worse. The scores were tuned at
-  `--throttling.cpuSlowdownMultiplier=20`, which is what reproduces the deployed
-  46 on this machine; the default 4× reads far too fast to tell anything apart.
-* **The blocking metrics are directly comparable, because they are not the
-  network.** TBT and CLS are main-thread and layout facts, and 1 470 ms → 9 ms
-  and 1.013 → 0 are the same measurement on both.
+## On measuring this locally
 
-## The three points that are left, exactly
+The build was tuned against `dist/` on a local HTTP/1.1 server with brotli and
+the `netlify.toml` headers, at `--throttling.cpuSlowdownMultiplier=20`, which is
+what reproduces the deployed 46 on that machine. That harness reads **slower**
+than the deployed host on the paint metrics — same build, same day, the
+unchanged site measured 2.41 s FCP locally against the deployed 1.5 s, because
+there is no HTTP/2 and five render-blocking resources cost five round trips
+instead of one multiplexed set. Local at the end: 98. Live: 100.
 
-`--blocked-url-patterns="*/assets/fonts/*"`, same build, same harness:
-**performance 100**, FCP 1.33 s, LCP 1.52 s. So the whole of the remaining gap
-is one file — `archivo-normal-latin.woff2`, 88 KB, which is Archivo carrying
-both a weight axis (100–900) and a width axis (62–125%). The largest contentful
-element on a phone is the opening frame's lead sentence, and it is set in it.
+The gap ran the other way once, and that is worth remembering: see §2 on
+`focusin`. A defect that costs nothing locally and 489 ms on the deployed site
+is the reason nothing here is called finished until it has been measured where
+it runs.
+
+## The three points that were left
+
+`--blocked-url-patterns="*/assets/fonts/*"`, same build, local harness:
+FCP 1.33 s, LCP 1.52 s. The whole of the remaining local gap was one file —
+`archivo-normal-latin.woff2`, 88 KB, Archivo carrying both a weight axis
+(100–900) and a width axis (62–125%) — and the largest contentful element on a
+phone is body text set in it.
 
 Two things were measured before writing this down rather than guessed at:
 
-* **Dropping the two font preloads makes it worse, not better.** 96, not 97:
+* **Dropping the two font preloads makes it worse, not better.** 96, not 98:
   first paint goes from 1.50 s to 2.10 s and the largest paint only improves
   from 2.40 s to 2.33 s. The preloads are earning their priority.
 * **A weight-only Archivo would close most of it.** Swapping the same file for
-  `Archivo:wght@100..900` — 34,940 bytes against 90,096 — scores **99**, with
-  LCP at 1.95 s. That is not a change that can be made by swapping a file,
-  though: the width axis is real and used, by the kinetic typography on this
-  route and by the `wdth 96` headings on the other 66. Doing it properly means
-  two faces — weight-only for body and UI, weight-and-width for display and
-  kinetic — and then the display face still has to load, so the measured 99 is
-  an upper bound rather than a promise. It is a typography decision, so it is
-  written down here rather than taken.
+  `Archivo:wght@100..900` — 34,940 bytes against 90,096 — scored 99 locally.
+  That is not a change that can be made by swapping a file: the width axis is
+  real and used, by the `wdth 96` headings across the site. Doing it properly
+  means two faces — weight-only for body and UI, weight-and-width for display —
+  and then the display face still has to load, so the measured 99 is an upper
+  bound rather than a promise. It is a typography decision, so it is written
+  down here rather than taken.
 
 Every change below is in the source tree with its own note; this file is the
 argument that connects them, and the record of what was measured rather than
