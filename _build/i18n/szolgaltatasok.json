@@ -55,9 +55,9 @@
   "Which business problem does it answer?",
   "Auf welches geschäftliche Problem antwortet sie?"
  ],
- "01 — Webdesign": [
-  "01 — Web design",
-  "01 — Webdesign"
+ "01 — Weboldal": [
+  "01 — Website",
+  "01 — Website"
  ],
  "Weboldal KKV-nak": [
   "A website for SMEs",
@@ -71,9 +71,9 @@
   "For sole traders and small to medium businesses. Custom design, built from code, not with a page builder.",
   "Für Einzelunternehmen sowie kleine und mittlere Betriebe. Individuelles Design, aus Code gebaut, nicht mit einem Baukasten."
  ],
- "02 — Webdesign": [
-  "02 — Web design",
-  "02 — Webdesign"
+ "02 — Weboldal": [
+  "02 — Website",
+  "02 — Website"
  ],
  "Weboldal nagyvállalatnak": [
   "A website for enterprises",
@@ -314,13 +314,13 @@
   "English filename written here would be looked up, missed and left as a",
   "dead link."
  ],
- "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Webdesign</span><span class=\"branch__t\">Weboldal KKV-nak</span></a>": [
-  "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Web design</span><span class=\"branch__t\">Website for an SME</span></a>",
-  "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Webdesign</span><span class=\"branch__t\">Website für KMU</span></a>"
+ "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Weboldal</span><span class=\"branch__t\">Weboldal KKV-nak</span></a>": [
+  "<a href=\"web-design-sme.html\"><span class=\"branch__k\">01 — Website</span><span class=\"branch__t\">Websites for SMEs</span></a>",
+  "<a href=\"webdesign-kmu.html\"><span class=\"branch__k\">01 — Website</span><span class=\"branch__t\">Websites für KMU</span></a>"
  ],
- "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Webdesign</span><span class=\"branch__t\">Weboldal nagyvállalatnak</span></a>": [
-  "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Web design</span><span class=\"branch__t\">Website for a large company</span></a>",
-  "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Webdesign</span><span class=\"branch__t\">Website für Großunternehmen</span></a>"
+ "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Weboldal</span><span class=\"branch__t\">Weboldal nagyvállalatnak</span></a>": [
+  "<a href=\"web-design-enterprise.html\"><span class=\"branch__k\">02 — Website</span><span class=\"branch__t\">Websites for enterprises</span></a>",
+  "<a href=\"webdesign-grossunternehmen.html\"><span class=\"branch__k\">02 — Website</span><span class=\"branch__t\">Websites für Großunternehmen</span></a>"
  ],
  "<a href=\"branding.html\"><span class=\"branch__k\">03 — Arculat</span><span class=\"branch__t\">Branding és szövegezés</span></a>": [
   "<a href=\"branding.html\"><span class=\"branch__k\">03 — Identity</span><span class=\"branch__t\">Branding and copywriting</span></a>",

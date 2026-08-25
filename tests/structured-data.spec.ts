@@ -318,7 +318,7 @@ test('an article carries no invented publication date', () => {
     }
   }
   const articles = docs.filter((d) => nodesOfType(d, 'Article').length).length;
-  expect(articles, 'six posts in three languages').toBe(18);
+  expect(articles, 'ten posts in three languages').toBe(30);
 });
 
 test('a draft or summary case study is never presented as a full case study', async () => {
@@ -360,7 +360,7 @@ test('a Service node describes a service and offers no price', () => {
       expect(service, `${doc.file}`).not.toHaveProperty('offers');
     }
   }
-  expect(services, 'five service pages in three languages').toBe(15);
+  expect(services, 'six service pages in three languages').toBe(18);
 });
 
 test('sameAs lists only profiles the site itself links to', () => {
@@ -398,5 +398,5 @@ test('the breadcrumb trail matches the one the page renders', () => {
       expect(item.item, `${doc.file} item`).toMatch(/^https:\/\//);
     });
   }
-  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(66);
+  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(81);
 });

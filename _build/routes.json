@@ -45,6 +45,11 @@
    "en": "seo.html",
    "de": "suchmaschinenoptimierung.html"
   },
+  "shop": {
+   "hu": "webshop-keszites.html",
+   "en": "online-store.html",
+   "de": "onlineshop-erstellung.html"
+  },
   "impact": {
    "hu": "impact-program.html",
    "en": "impact-program.html",
@@ -104,6 +109,26 @@
    "hu": "blog-miert-nem-hoz-ugyfelet.html",
    "en": "blog-no-enquiries.html",
    "de": "blog-keine-anfragen.html"
+  },
+  "post-seo-alap": {
+   "hu": "blog-keresooptimalizalas.html",
+   "en": "blog-what-is-seo.html",
+   "de": "blog-was-ist-seo.html"
+  },
+  "post-marketing": {
+   "hu": "blog-online-marketing.html",
+   "en": "blog-online-marketing.html",
+   "de": "blog-online-marketing.html"
+  },
+  "post-logo": {
+   "hu": "blog-logo-keszites.html",
+   "en": "blog-logo-design.html",
+   "de": "blog-logo-gestaltung.html"
+  },
+  "post-webdesign": {
+   "hu": "blog-webdesign.html",
+   "en": "blog-web-design.html",
+   "de": "blog-webdesign.html"
   },
   "contact": {
    "hu": "ugyfelszolgalat.html",
@@ -167,6 +192,11 @@
    "en": "/en/seo.html",
    "de": "/de/suchmaschinenoptimierung.html"
   },
+  "shop": {
+   "hu": "/webshop-keszites.html",
+   "en": "/en/online-store.html",
+   "de": "/de/onlineshop-erstellung.html"
+  },
   "impact": {
    "hu": "/impact-program.html",
    "en": "/en/impact-program.html",
@@ -227,6 +257,26 @@
    "en": "/en/blog-no-enquiries.html",
    "de": "/de/blog-keine-anfragen.html"
   },
+  "post-seo-alap": {
+   "hu": "/blog-keresooptimalizalas.html",
+   "en": "/en/blog-what-is-seo.html",
+   "de": "/de/blog-was-ist-seo.html"
+  },
+  "post-marketing": {
+   "hu": "/blog-online-marketing.html",
+   "en": "/en/blog-online-marketing.html",
+   "de": "/de/blog-online-marketing.html"
+  },
+  "post-logo": {
+   "hu": "/blog-logo-keszites.html",
+   "en": "/en/blog-logo-design.html",
+   "de": "/de/blog-logo-gestaltung.html"
+  },
+  "post-webdesign": {
+   "hu": "/blog-webdesign.html",
+   "en": "/en/blog-web-design.html",
+   "de": "/de/blog-webdesign.html"
+  },
   "contact": {
    "hu": "/ugyfelszolgalat.html",
    "en": "/en/contact.html",
@@ -257,6 +307,7 @@
   "branding": "full",
   "ads": "full",
   "seo": "full",
+  "shop": "full",
   "impact": "full",
   "work": "full",
   "case-rapidkert": "full",
@@ -269,6 +320,10 @@
   "post-hirdetes": "full",
   "post-elavult": "full",
   "post-konverzio": "full",
+  "post-seo-alap": "full",
+  "post-marketing": "full",
+  "post-logo": "full",
+  "post-webdesign": "full",
   "contact": "full",
   "quote": "full",
   "privacy": "full",

@@ -44,6 +44,7 @@ SLUGS = {
     "branding":    {"hu": "branding.html",                 "en": "branding.html",              "de": "branding.html"},
     "ads":         {"hu": "hirdeteskezeles.html",          "en": "ads-management.html",        "de": "werbeanzeigen.html"},
     "seo":         {"hu": "keresooptimalizalas.html",      "en": "seo.html",                   "de": "suchmaschinenoptimierung.html"},
+    "shop":        {"hu": "webshop-keszites.html",         "en": "online-store.html",          "de": "onlineshop-erstellung.html"},
     "impact":      {"hu": "impact-program.html",           "en": "impact-program.html",        "de": "impact-programm.html"},
     "work":        {"hu": "munkaink.html",                 "en": "work.html",                  "de": "projekte.html"},
     "case-rapidkert":    {"hu": "munka-rapidkert.html",    "en": "work-rapidkert.html",        "de": "projekt-rapidkert.html"},
@@ -56,6 +57,10 @@ SLUGS = {
     "post-hirdetes":  {"hu": "blog-google-vagy-facebook.html",  "en": "blog-google-or-facebook.html",      "de": "blog-google-oder-facebook.html"},
     "post-elavult":   {"hu": "blog-elavult-weboldal.html",      "en": "blog-outdated-website.html",        "de": "blog-veraltete-website.html"},
     "post-konverzio": {"hu": "blog-miert-nem-hoz-ugyfelet.html", "en": "blog-no-enquiries.html",           "de": "blog-keine-anfragen.html"},
+    "post-seo-alap":  {"hu": "blog-keresooptimalizalas.html",   "en": "blog-what-is-seo.html",             "de": "blog-was-ist-seo.html"},
+    "post-marketing": {"hu": "blog-online-marketing.html",      "en": "blog-online-marketing.html",        "de": "blog-online-marketing.html"},
+    "post-logo":      {"hu": "blog-logo-keszites.html",         "en": "blog-logo-design.html",             "de": "blog-logo-gestaltung.html"},
+    "post-webdesign": {"hu": "blog-webdesign.html",             "en": "blog-web-design.html",              "de": "blog-webdesign.html"},
     "contact":     {"hu": "ugyfelszolgalat.html",          "en": "contact.html",               "de": "kontakt.html"},
     "quote":       {"hu": "arajanlat.html",                "en": "quote.html",                 "de": "angebot.html"},
     "privacy":     {"hu": "adatkezelesi-tajekoztato.html", "en": "privacy-policy.html",        "de": "datenschutz.html"},
@@ -64,12 +69,12 @@ SLUGS = {
 BY_HU = {v["hu"]: k for k, v in SLUGS.items()}
 
 NAV = ("about", "work", "blog", "contact")
-SERVICES = ("sme", "enterprise", "branding", "ads", "seo", "impact")
+SERVICES = ("sme", "enterprise", "shop", "branding", "ads", "seo", "impact")
 # The case studies and the six articles are reachable from their index routes
 # and from the pages they belong to, not from the global menu — a nav that
 # lists every leaf is a sitemap, not a navigation.
-MENU = ("index", "about", "services", "sme", "enterprise", "branding", "ads",
-        "seo", "impact", "work", "blog", "contact", "quote")
+MENU = ("index", "about", "services", "sme", "enterprise", "shop", "branding",
+        "ads", "seo", "impact", "work", "blog", "contact", "quote")
 CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening")
 
 # ---------------------------------------------------------- case-study status
@@ -129,7 +134,8 @@ def indexable(key):
 
 
 POSTS = ("post-seo", "post-arak", "post-cegprofil", "post-hirdetes",
-         "post-elavult", "post-konverzio")
+         "post-elavult", "post-konverzio", "post-seo-alap", "post-marketing",
+         "post-logo", "post-webdesign")
 
 # ------------------------------------------------- organisations and their marks
 #
@@ -306,17 +312,18 @@ UI = {
                 "contact": "Kapcsolat"},
         "svc_all": "Minden szolgáltatás",
         "svc": {
-            "sme": ("Webdesign KKV-nak", "1 200 M"),
-            "enterprise": ("Webdesign nagyvállalatoknak", "9 400 M"),
+            "sme": ("Weboldal készítés KKV-nak", "1 200 M"),
+            "enterprise": ("Weboldal nagyvállalatoknak", "9 400 M"),
             "branding": ("Branding", "4 800 M"),
             "ads": ("Hirdetéskezelés", "17 000 M"),
             "seo": ("Keresőoptimalizálás", "6 200 M"),
+            "shop": ("Webshop készítés", "3 400 M"),
             "impact": ("Impact Program", "30 000 M"),
         },
         "menu": {
             "index": "Főoldal", "about": "Rólunk", "services": "Szolgáltatások",
             "sme": "KKV", "enterprise": "Nagyvállalat", "branding": "Branding",
-            "ads": "Hirdetés", "seo": "SEO", "impact": "Impact", "work": "Munkáink",
+            "ads": "Hirdetés", "seo": "SEO", "shop": "Webshop", "impact": "Impact", "work": "Munkáink",
             "blog": "Blog", "contact": "Kapcsolat", "quote": "Árajánlat",
         },
         # A hírlevél még nem létezik: a beküldés eltárolja a címet, és semmi
@@ -416,12 +423,13 @@ UI = {
             "branding": ("Branding", "4,800 M"),
             "ads": ("Ads management", "17,000 M"),
             "seo": ("SEO", "6,200 M"),
+            "shop": ("Online stores", "3,400 M"),
             "impact": ("Impact Program", "30,000 M"),
         },
         "menu": {
             "index": "Home", "about": "About", "services": "Services",
             "sme": "SME", "enterprise": "Enterprise", "branding": "Branding",
-            "ads": "Ads", "seo": "SEO", "impact": "Impact", "work": "Work",
+            "ads": "Ads", "seo": "SEO", "shop": "Stores", "impact": "Impact", "work": "Work",
             "blog": "Blog",
             "contact": "Contact", "quote": "Get a quote",
         },
@@ -509,12 +517,13 @@ UI = {
             "branding": ("Branding", "4.800 M"),
             "ads": ("Werbeanzeigen", "17.000 M"),
             "seo": ("SEO", "6.200 M"),
+            "shop": ("Onlineshop", "3.400 M"),
             "impact": ("Impact-Programm", "30.000 M"),
         },
         "menu": {
             "index": "Start", "about": "Über uns", "services": "Leistungen",
             "sme": "KMU", "enterprise": "Konzerne", "branding": "Branding",
-            "ads": "Werbung", "seo": "SEO", "impact": "Impact", "work": "Projekte",
+            "ads": "Werbung", "seo": "SEO", "shop": "Shop", "impact": "Impact", "work": "Projekte",
             "blog": "Blog", "contact": "Kontakt", "quote": "Angebot",
         },
         "nl_lede": "Unser Newsletter entsteht gerade. Hinterlasse deine Adresse, dann sagen wir Bescheid, sobald er startet.",
@@ -1127,6 +1136,7 @@ PAGE_TYPE_SCHEMA = {
 BREADCRUMB_PARENT = {
     "sme": "services", "enterprise": "services",
     "branding": "services", "ads": "services", "seo": "services",
+    "shop": "services",
 }
 
 SCHEMA_LANG = {"hu": "hu-HU", "en": "en-GB", "de": "de-DE"}
@@ -1365,7 +1375,7 @@ def build_structured_data(lang, key, title, desc, meta, body):
             ],
         })
 
-    if key in ("sme", "enterprise", "branding", "ads", "seo"):
+    if key in ("sme", "enterprise", "shop", "branding", "ads", "seo"):
         # No `offers`, no `priceRange`, no `areaServed`. The site publishes no
         # price for any of the four, and a Service node without an Offer is a
         # complete and valid description of a service that is quoted rather

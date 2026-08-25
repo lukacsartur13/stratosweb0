@@ -1,0 +1,142 @@
+{
+ "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Arculat</b>": [
+  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Identity</b>",
+  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Identität</b>"
+ ],
+ "Logó készítés: mit kérj, és mit ne fogadj el?": [
+  "Getting a logo made: what to ask for, what not to accept",
+  "Ein Logo erstellen lassen: was Sie verlangen und was Sie nicht akzeptieren sollten"
+ ],
+ "Logó készítés: mit kérj, és mit ne fogadj el? | Stratos": [
+  "Getting a logo made: what to ask for | Stratos",
+  "Ein Logo erstellen lassen: was verlangen? | Stratos"
+ ],
+ "Mennyibe kerül a logó készítés, mit kell megkapnod a végén, és mi az a három hiba, amitől a legtöbb logó használhatatlan lesz a gyakorlatban.": [
+  "What getting a logo made costs, what you must receive at the end, and the three mistakes that leave most logos unusable in practice.",
+  "Was ein Logo kostet, was Sie am Ende erhalten müssen, und die drei Fehler, die die meisten Logos praktisch unbrauchbar machen."
+ ],
+ "A logó készítés az a projekt, ahol a legkönnyebb rosszul járni, mert az eredményt mindenki meg tudja ítélni — de azt, hogy használható-e, senki nem nézi meg átadás előtt.": [
+  "A logo project is the easiest one to get wrong, because everyone can judge the result — but nobody checks whether it is usable before handover.",
+  "Ein Logo-Projekt ist am leichtesten zu vermasseln, weil jeder das Ergebnis beurteilen kann — aber niemand vor der Übergabe prüft, ob es brauchbar ist."
+ ],
+ "<span>Kategória <b>Arculat</b></span> <span>Írta <b>Stratos</b></span>": [
+  "<span>Category <b>Identity</b></span> <span>Written by <b>Stratos</b></span>",
+  "<span>Kategorie <b>Identität</b></span> <span>Von <b>Stratos</b></span>"
+ ],
+ "A jó logók unalmasak közelről. Nem azért emlékszel rájuk, mert szépek, hanem mert elégszer láttad őket ugyanabban a formában. Ez a cikk arról szól, hogyan jutsz el egy olyanig, ami kibírja a következő öt évet.": [
+  "Good logos are boring up close. You remember them not because they are beautiful but because you have seen them often enough in the same form. This is about getting to one that survives the next five years.",
+  "Gute Logos sind aus der Nähe langweilig. Man erinnert sich an sie nicht, weil sie schön sind, sondern weil man sie oft genug in derselben Form gesehen hat. Hier geht es darum, zu einem zu kommen, das die nächsten fünf Jahre übersteht."
+ ],
+ "A logó nem műalkotás, hanem munkaeszköz. Az a jó, amelyik bélyegméretben is felismerhető, egy színnel is működik, és nem kell hozzá magyarázat.": [
+  "A logo is not artwork but a working tool. A good one is recognisable at thumbnail size, works in a single colour, and needs no explanation.",
+  "Ein Logo ist kein Kunstwerk, sondern ein Werkzeug. Ein gutes ist in Briefmarkengröße erkennbar, funktioniert einfarbig und braucht keine Erklärung."
+ ],
+ "Mit kell megkapnod a végén?": [
+  "What you must receive at the end",
+  "Was Sie am Ende erhalten müssen"
+ ],
+ "Ez az a lista, amit érdemes még a megrendelés előtt tisztázni. A félbemaradt logó készítés jellemzően nem attól rossz, hogy a jel csúnya, hanem attól, hogy három hónappal később nincs olyan fájl, amit a nyomdának oda tudnál adni.": [
+  "This is the list worth settling before you order. A half-finished logo project usually fails not because the mark is ugly but because three months later there is no file you can hand a printer.",
+  "Diese Liste sollten Sie vor der Beauftragung klären. Ein halbfertiges Logo-Projekt scheitert meist nicht am hässlichen Zeichen, sondern daran, dass es drei Monate später keine Datei gibt, die man einer Druckerei geben kann."
+ ],
+ "<b>Vektoros forrásfájl.</b> SVG, AI vagy EPS. Ebből minden más előállítható, és ez az, amit a nyomda kér. Ha csak PNG-t kapsz, nem logót kaptál, hanem egy képet a logóról.": [
+  "<b>A vector source file.</b> SVG, AI or EPS. Everything else derives from it, and it is what a printer asks for. If you only get a PNG, you did not get a logo — you got a picture of one.",
+  "<b>Eine Vektor-Quelldatei.</b> SVG, AI oder EPS. Alles andere leitet sich daraus ab, und die Druckerei fragt danach. Wenn Sie nur ein PNG bekommen, haben Sie kein Logo bekommen, sondern ein Bild davon."
+ ],
+ "<b>Változatok.</b> Vízszintes, függőleges és jel-önmagában verzió, világos és sötét háttérre. A legtöbb felület nem olyan alakú, mint a fő verzió: a profilkép négyzet, a fejléc fekvő, a bélyegző kerek.": [
+  "<b>Variants.</b> Horizontal, vertical and mark-only versions, for light and dark grounds. Most surfaces are not the shape of the primary version: a profile picture is square, a header is wide, a stamp is round.",
+  "<b>Varianten.</b> Horizontal, vertikal und nur das Zeichen, für helle und dunkle Untergründe. Die meisten Flächen haben nicht die Form der Hauptversion: Ein Profilbild ist quadratisch, ein Header breit, ein Stempel rund."
+ ],
+ "<b>Egyszínű változat.</b> Ha a jel csak színátmenettel működik, akkor nem működik faxon, hímzésen, gravírozáson és fekete-fehér nyomtatásban.": [
+  "<b>A single-colour version.</b> If the mark only works as a gradient, it does not work on embroidery, engraving or black-and-white print.",
+  "<b>Eine einfarbige Version.</b> Wenn das Zeichen nur mit Verlauf funktioniert, funktioniert es nicht auf Stickerei, Gravur oder im Schwarzweißdruck."
+ ],
+ "<b>Minimális méret.</b> Egy szám: hány milliméter alatt nem szabad használni. Enélkül valaki egyszer beteszi egy 12 pixeles helyre, és ott már csak egy folt.": [
+  "<b>A minimum size.</b> One number: below how many millimetres it must not be used. Without it somebody will drop it into a 12-pixel slot, where it is just a smudge.",
+  "<b>Eine Mindestgröße.</b> Eine Zahl: unter wie vielen Millimetern es nicht verwendet werden darf. Sonst setzt es jemand in einen 12-Pixel-Platz, wo es nur ein Fleck ist."
+ ],
+ "<b>Használati útmutató.</b> Nem kell hozzá ötvenoldalas kézikönyv. Egy oldal elég: mekkora védőtávolság kell körülötte, milyen háttéren használható, és mit nem szabad vele csinálni.": [
+  "<b>A usage guide.</b> No fifty-page manual needed. One page will do: how much clear space it needs, which grounds it works on, and what must not be done to it.",
+  "<b>Ein Anwendungsleitfaden.</b> Kein fünfzigseitiges Handbuch nötig. Eine Seite reicht: wie viel Schutzraum es braucht, auf welchen Untergründen es funktioniert und was man damit nicht tun darf."
+ ],
+ "Mennyibe kerül?": [
+  "What does it cost?",
+  "Was kostet es?"
+ ],
+ "A szórás óriási, és nagyrészt nem a rajz minőségéből fakad, hanem abból, mennyi munka van körülötte.": [
+  "The spread is enormous, and it comes mostly not from the quality of the drawing but from how much work surrounds it.",
+  "Die Streuung ist riesig und kommt meist nicht von der Qualität der Zeichnung, sondern davon, wie viel Arbeit darum herum steckt."
+ ],
+ "Néhány ezer forintért kapsz sablont egy generátorból. Ez néha elég egy hobbiprojektnek, de a jelet más is használja, és a forrásfájl gyakran nem a tiéd.": [
+  "A few thousand forints buys a template from a generator. Sometimes that is enough for a hobby project, but somebody else uses the same mark, and the source file often is not yours.",
+  "Für ein paar tausend Forint bekommen Sie eine Vorlage aus einem Generator. Für ein Hobbyprojekt reicht das manchmal, aber jemand anders nutzt dasselbe Zeichen, und die Quelldatei gehört oft nicht Ihnen."
+ ],
+ "Egy szabadúszó logó tervező jellemzően pár tíztől pár százezerig dolgozik, a tapasztalattól és a kidolgozás mélységétől függően. Ebben általában benne van néhány irány és egy kör javítás.": [
+  "A freelance logo designer typically works from tens to a few hundred thousand forints, depending on experience and depth. That usually covers a few directions and one round of revisions.",
+  "Eine freiberufliche Logo-Designerin arbeitet meist zwischen Zehn- und einigen Hunderttausend Forint, je nach Erfahrung und Tiefe. Darin sind meist einige Richtungen und eine Korrekturrunde enthalten."
+ ],
+ "Ügynökségnél a logó ritkán önálló tétel: része egy arculatnak, amiben a szín, a tipográfia, a képi világ és a hangnem is benne van. Ez drágább, cserébe nem neked kell utólag kitalálnod, milyen betűtípussal menjen mellé a szöveg.": [
+  "At an agency the logo is rarely a standalone item: it is part of an identity that also covers colour, typography, image style and tone. That costs more, but you are not left working out afterwards which typeface goes with it.",
+  "In einer Agentur ist das Logo selten ein Einzelposten: Es gehört zu einem Auftritt, der auch Farbe, Typografie, Bildsprache und Tonalität umfasst. Das kostet mehr, dafür müssen Sie nicht nachträglich herausfinden, welche Schrift dazu passt."
+ ],
+ "Három hiba, amitől a legtöbb logó használhatatlan lesz": [
+  "Three mistakes that leave most logos unusable",
+  "Drei Fehler, die die meisten Logos unbrauchbar machen"
+ ],
+ "<b>1. Túl sok részlet.</b> Ami A4-en gyönyörű, az egy böngészőfülön egy szürke pötty. Nézd meg minden vázlatot 16 pixelesre kicsinyítve, mielőtt döntesz.": [
+  "<b>1. Too much detail.</b> What is gorgeous on A4 is a grey dot on a browser tab. Shrink every sketch to 16 pixels before you decide.",
+  "<b>1. Zu viele Details.</b> Was auf A4 großartig aussieht, ist auf einem Browser-Tab ein grauer Punkt. Verkleinern Sie jeden Entwurf auf 16 Pixel, bevor Sie entscheiden."
+ ],
+ "<b>2. A jel elmagyarázza a szakmát.</b> Fogorvosnál fog, pékségnél kifli, könyvelőnél számológép. Ezekből tízezer van, és pont attól nem fogsz megkülönböztethető lenni, amitől szeretnél. A legjobb logók jellemzően nem mondják meg, mit csinál a cég — a név mondja meg.": [
+  "<b>2. The mark explains the trade.</b> A tooth for a dentist, a loaf for a bakery, a calculator for an accountant. There are ten thousand of each, and the very thing meant to identify you makes you indistinguishable. The best logos usually do not say what the company does — the name does.",
+  "<b>2. Das Zeichen erklärt die Branche.</b> Ein Zahn für die Zahnärztin, ein Brot für die Bäckerei, ein Taschenrechner für die Buchhaltung. Davon gibt es zehntausend, und genau das, was Sie kennzeichnen soll, macht Sie ununterscheidbar. Die besten Logos sagen meist nicht, was die Firma tut — der Name sagt es."
+ ],
+ "<b>3. Divatos megoldás.</b> Ami idén trendi — színátmenet, geometriai rács, egy adott betűtípus —, azt jövőre pontosan a dátumáról fogják felismerni. Egy logó öt évig él, egy trend tizennyolc hónapig.": [
+  "<b>3. A fashionable solution.</b> Whatever is on trend this year — a gradient, a geometric grid, one particular typeface — will next year be recognised precisely by its date. A logo lives five years; a trend lives eighteen months.",
+  "<b>3. Eine modische Lösung.</b> Was dieses Jahr im Trend liegt — ein Verlauf, ein geometrisches Raster, eine bestimmte Schrift —, wird nächstes Jahr genau an seinem Datum erkannt. Ein Logo lebt fünf Jahre, ein Trend achtzehn Monate."
+ ],
+ "Hogyan válassz a vázlatok közül?": [
+  "How to choose between the sketches",
+  "Wie Sie zwischen den Entwürfen wählen"
+ ],
+ "Ne úgy, hogy melyik tetszik. Úgy, hogy melyiket látod öt év múlva is a számláidon. Három kérdés segít:": [
+  "Not by which you like. By which you can still see on your invoices in five years. Three questions help:",
+  "Nicht danach, welches Ihnen gefällt. Danach, welches Sie in fünf Jahren noch auf Ihren Rechnungen sehen. Drei Fragen helfen:"
+ ],
+ "Felismerhető-e egy centiméteresen? Működik-e egyetlen színnel? Elmondható-e telefonban egy mondatban, mit ábrázol? Ha mindháromra igen a válasz, jó eséllyel eltalálta a tervező.": [
+  "Is it recognisable at one centimetre? Does it work in a single colour? Can you describe what it shows in one sentence over the phone? If all three are yes, the designer probably got it right.",
+  "Ist es bei einem Zentimeter erkennbar? Funktioniert es einfarbig? Können Sie am Telefon in einem Satz sagen, was es zeigt? Wenn alle drei Ja lauten, hat die Gestalterin es wahrscheinlich getroffen."
+ ],
+ "És egy praktikus tanács: a döntést ne bízd szavazásra. A logók bizottságban válnak átlagossá — mindenki lecsípi róla azt az egy dolgot, ami zavarja, és a végén nem marad rajta semmi.": [
+  "And one practical note: do not put the decision to a vote. Logos become average by committee — everyone trims the one thing that bothers them, and in the end nothing is left.",
+  "Und ein praktischer Hinweis: Lassen Sie nicht abstimmen. Logos werden im Gremium durchschnittlich — jeder schneidet die eine Sache weg, die ihn stört, und am Ende bleibt nichts übrig."
+ ],
+ "A logó nem attól lesz jó, hogy tetszik. Attól, hogy háromszáz apró helyen működik, ahol nem fogsz ott lenni, hogy megmagyarázd.": [
+  "A logo is not good because you like it. It is good because it works in three hundred small places where you will not be there to explain it.",
+  "Ein Logo ist nicht gut, weil es Ihnen gefällt. Es ist gut, weil es an dreihundert kleinen Stellen funktioniert, an denen Sie nicht sein werden, um es zu erklären."
+ ],
+ "Ha a jel megvan, és a felület következik.": [
+  "If the mark is done and the interface comes next.",
+  "Wenn das Zeichen steht und die Oberfläche folgt."
+ ],
+ "A megjelenés csak az egyik ok a hétből.": [
+  "Appearance is only one of the seven reasons.",
+  "Das Erscheinungsbild ist nur einer von sieben Gründen."
+ ],
+ "Ha nem csak jel kell, hanem egy rendszer, ami köré épül.": [
+  "If you need more than a mark — a system built around it.",
+  "Wenn Sie mehr brauchen als ein Zeichen — ein System darum herum."
+ ],
+ "Miért nem hoz ügyfelet a weboldalad?": [
+  "Why isn't your website bringing clients?",
+  "Warum bringt Ihre Website keine Kunden?"
+ ],
+ "Branding és arculattervezés": [
+  "Branding and identity design",
+  "Branding und Corporate Design"
+ ],
+ "Weboldal készítés KKV-nak": [
+  "Web design for SMEs",
+  "Webdesign für KMU"
+ ]
+}

@@ -1,0 +1,130 @@
+{
+ "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Keresőoptimalizálás</b>": [
+  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>SEO</b>",
+  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>SEO</b>"
+ ],
+ "Keresőoptimalizálás: mi ez és mennyibe kerül?": [
+  "What is SEO, and what does it cost?",
+  "Was ist SEO, und was kostet es?"
+ ],
+ "Keresőoptimalizálás: mi ez és mennyibe kerül? | Stratos": [
+  "What is SEO, and what does it cost? | Stratos",
+  "Was ist SEO, und was kostet es? | Stratos"
+ ],
+ "Mi az a keresőoptimalizálás, mit tudsz belőle ingyen megcsinálni, mennyibe kerül, ha nem magad csinálod, és mi a helyzet a mobilalkalmazásokkal.": [
+  "What SEO actually is, how much of it you can do for free, what it costs if you don't, and how app stores differ.",
+  "Was SEO wirklich ist, wie viel davon Sie kostenlos erledigen können, was es sonst kostet und wie es in App-Stores läuft."
+ ],
+ "A keresőoptimalizálás nem egy titkos technika, hanem néhány unalmas döntés, amit vagy meghozol, vagy nem. Ez a cikk arról szól, melyiket tudod magad meghozni, és melyikért érdemes fizetni.": [
+  "SEO is not a secret technique but a handful of dull decisions you either make or don't. This is about which ones you can make yourself and which are worth paying for.",
+  "SEO ist keine Geheimtechnik, sondern eine Handvoll langweiliger Entscheidungen, die Sie treffen oder nicht. Hier geht es darum, welche Sie selbst treffen können und für welche sich Bezahlen lohnt."
+ ],
+ "<span>Kategória <b>Keresőoptimalizálás</b></span> <span>Írta <b>Stratos</b></span>": [
+  "<span>Category <b>SEO</b></span> <span>Written by <b>Stratos</b></span>",
+  "<span>Kategorie <b>SEO</b></span> <span>Von <b>Stratos</b></span>"
+ ],
+ "A keresőoptimalizálás az a munka, amitől a Google azt gondolja, hogy a te oldalad válaszol legjobban arra, amit valaki beírt. Nem trükk és nem alku: a Google nem tudja, mit árulsz, csak azt látja, mit írtál le, hogy épül fel az oldalad, és mennyien találták hasznosnak.": [
+  "SEO is the work that makes Google think your page answers best what somebody typed. It is neither a trick nor a deal: Google does not know what you sell, it only sees what you wrote, how the site is built, and how many people found it useful.",
+  "SEO ist die Arbeit, die Google glauben lässt, dass Ihre Seite am besten beantwortet, was jemand eingetippt hat. Kein Trick und kein Handel: Google weiß nicht, was Sie verkaufen, es sieht nur, was Sie geschrieben haben, wie die Seite aufgebaut ist und wie viele sie nützlich fanden."
+ ],
+ "A keresőoptimalizálásnak három rétege van: technika, tartalom és idő. Az elsőt egy délután alatt meg lehet javítani, a másodikat hónapokig írod, a harmadikat pedig nem lehet megvenni.": [
+  "SEO has three layers: technology, content and time. The first can be fixed in an afternoon, the second takes months of writing, and the third cannot be bought.",
+  "SEO hat drei Ebenen: Technik, Inhalt und Zeit. Die erste lässt sich an einem Nachmittag richten, die zweite schreiben Sie monatelang, und die dritte ist nicht käuflich."
+ ],
+ "Mit tudsz megcsinálni fizetés nélkül?": [
+  "What can you do without paying?",
+  "Was können Sie ohne Bezahlung tun?"
+ ],
+ "Többet, mint gondolnád. A google keresőoptimalizálás ingyen része nem egy lebutított változat, hanem ugyanaz a munka, csak te végzed el. Négy dolog, amihez semmilyen eszközt nem kell megvenned:": [
+  "More than you think. The free part of Google SEO is not a watered-down version — it is the same work, done by you. Four things that need no paid tool at all:",
+  "Mehr, als Sie denken. Der kostenlose Teil von Google-SEO ist keine abgespeckte Version, sondern dieselbe Arbeit, nur von Ihnen erledigt. Vier Dinge, für die Sie kein Werkzeug kaufen müssen:"
+ ],
+ "<b>Google Search Console.</b> Ingyenes, a Google adja, és megmutatja, milyen kifejezésekre jelensz meg, hányan kattintanak, és mely oldalakat nem tudta bejárni. Aki keresőoptimalizálásról beszél anélkül, hogy ezt megnyitná, találgat.": [
+  "<b>Google Search Console.</b> Free, from Google, and it shows which terms you appear for, how many click, and which pages it could not crawl. Anyone discussing SEO without opening this is guessing.",
+  "<b>Google Search Console.</b> Kostenlos, von Google, und zeigt, für welche Begriffe Sie erscheinen, wie viele klicken und welche Seiten nicht gecrawlt werden konnten. Wer über SEO spricht, ohne das zu öffnen, rät."
+ ],
+ "<b>Google Cégprofil.</b> Ha van fizikai helyed vagy szolgáltatási területed, ez gyakran több megkeresést hoz, mint maga a weboldal. Ingyenes, és a beállítását <a class=\"tlink\" href=\"blog-google-cegprofil.html\">nyolc lépésben leírtuk</a>.": [
+  "<b>Google Business Profile.</b> If you have premises or a service area, this often brings more enquiries than the website itself. It is free, and we have <a class=\"tlink\" href=\"blog-google-business-profile.html\">written up the setup in eight steps</a>.",
+  "<b>Google-Unternehmensprofil.</b> Wenn Sie Räume oder ein Einzugsgebiet haben, bringt das oft mehr Anfragen als die Website selbst. Es ist kostenlos, und die Einrichtung haben wir <a class=\"tlink\" href=\"blog-google-unternehmensprofil.html\">in acht Schritten beschrieben</a>."
+ ],
+ "<b>Címsorok és címek rendbetétele.</b> Minden oldalnak legyen egyedi <code>&lt;title&gt;</code>-je, ami azt a kérdést nevezi meg, amire az oldal válaszol. Ez szövegszerkesztésnyi munka, és a leggyakoribb elmulasztott lépés.": [
+  "<b>Sorting out titles and headings.</b> Every page needs its own <code>&lt;title&gt;</code> naming the question that page answers. It is word-processing-level work and the most commonly skipped step.",
+  "<b>Titel und Überschriften in Ordnung bringen.</b> Jede Seite braucht einen eigenen <code>&lt;title&gt;</code>, der die Frage benennt, die sie beantwortet. Das ist Textverarbeitungsarbeit und der am häufigsten übersprungene Schritt."
+ ],
+ "<b>Sebesség.</b> A PageSpeed Insights ingyen megmondja, mi lassítja az oldalad. A javítások fele — túl nagy képek, felesleges betűkészletek — fejlesztő nélkül is megoldható.": [
+  "<b>Speed.</b> PageSpeed Insights tells you free of charge what is slowing the site down. Half the fixes — oversized images, unused fonts — need no developer.",
+  "<b>Geschwindigkeit.</b> PageSpeed Insights sagt Ihnen kostenlos, was die Seite bremst. Die Hälfte der Korrekturen — zu große Bilder, ungenutzte Schriften — braucht keinen Entwickler."
+ ],
+ "Mennyibe kerül, ha nem magad csinálod?": [
+  "What does it cost if you don't do it yourself?",
+  "Was kostet es, wenn Sie es nicht selbst machen?"
+ ],
+ "A google keresőoptimalizálás árak Magyarországon nagyjából három sávban mozognak, és a különbség nem a minőség, hanem a terjedelem.": [
+  "Google SEO prices in Hungary sit in roughly three bands, and what separates them is scope, not quality.",
+  "Google-SEO-Preise in Ungarn bewegen sich in etwa drei Bändern, und der Unterschied ist der Umfang, nicht die Qualität."
+ ],
+ "<b>Egyszeri auditra</b> jellemzően pár tíz- vagy százezer forint megy el. Kapsz egy listát arról, mi a baj, és onnan magad dolgozol. Akkor jó, ha van saját fejlesztőd vagy marketingesed, aki elvégzi.": [
+  "<b>A one-off audit</b> typically costs tens to hundreds of thousands of forints. You get a list of what is wrong and work from there yourself. Good if you have a developer or marketer of your own to do it.",
+  "<b>Ein einmaliges Audit</b> kostet meist Zehn- bis Hunderttausende Forint. Sie bekommen eine Liste der Probleme und arbeiten selbst weiter. Sinnvoll, wenn Sie eigene Entwickler oder Marketer haben."
+ ],
+ "<b>Folyamatos munkára</b> havidíjas konstrukciók vannak. Egy helyi szolgáltatónál ez lényegesen kevesebb, mint egy országos webáruháznál, mert kevesebb oldalt kell rendbe tenni és kisebb a mező, amiben versenyzel.": [
+  "<b>Ongoing work</b> runs on monthly retainers. For a local service business this is considerably less than for a national online store, because there are fewer pages to fix and a smaller field to compete in.",
+  "<b>Laufende Arbeit</b> läuft über monatliche Pauschalen. Für einen lokalen Dienstleister ist das deutlich weniger als für einen landesweiten Onlineshop, weil weniger Seiten zu richten sind und das Feld kleiner ist."
+ ],
+ "<b>Kampányszerű, nagy projektnél</b> — költözés, nyelvesítés, újraépítés — projektalapon árazzák. Itt a legnagyobb a szórás, mert a munka nagy része a régi rendszer kibogozása.": [
+  "<b>Large one-off projects</b> — a migration, adding languages, a rebuild — are priced per project. The spread is widest here, because most of the work is untangling the old system.",
+  "<b>Große Einzelprojekte</b> — Migration, Sprachversionen, Neuaufbau — werden pro Projekt kalkuliert. Hier ist die Streuung am größten, weil der Großteil der Arbeit im Entwirren des Altsystems liegt."
+ ],
+ "Amit egyik sávban sem szabad hallanod: garantált első hely. Az első helyet a Google rangsorolása dönti el, ami folyamatosan változik. Aki garantálja, az vagy nem érti, vagy tudja és mégis kimondja.": [
+  "What you should not hear in any band: a guaranteed first position. First place is decided by Google's ranking, which changes constantly. Anyone guaranteeing it either does not understand, or does and says it anyway.",
+  "Was Sie in keinem Band hören sollten: ein garantierter erster Platz. Den entscheidet Googles Ranking, das sich ständig ändert. Wer ihn garantiert, versteht es entweder nicht — oder versteht es und sagt es trotzdem."
+ ],
+ "Mennyi idő, mire látszik?": [
+  "How long before it shows?",
+  "Wie lange, bis es sich zeigt?"
+ ],
+ "A technikai javítások hatása néhány héten belül megjelenhet, mert a Google újra bejárja az oldalt. A tartalomból származó elmozdulás jellemzően a harmadik-negyedik hónap környékén válik mérhetővé. Ez nem lassúság, hanem a rendszer működése: a Google előbb megnézi, hogy az emberek mit kezdenek a te oldaladdal, és csak utána dönt.": [
+  "Technical fixes can show within weeks, because Google re-crawls the site. Movement from content usually becomes measurable around the third or fourth month. That is not slowness but how the system works: Google first watches what people do with your page, and only then decides.",
+  "Technische Korrekturen können sich in Wochen zeigen, weil Google die Seite neu crawlt. Bewegung aus Inhalten wird meist im dritten bis vierten Monat messbar. Das ist keine Langsamkeit, sondern die Funktionsweise: Google sieht erst zu, was Menschen mit Ihrer Seite tun, und entscheidet dann."
+ ],
+ "Ezért is rossz ötlet háromhavonta ügynökséget váltani. A negyedik hónap az, amikor kiderül, hogy az első három ért-e valamit.": [
+  "Which is also why switching provider every three months is a bad idea. Month four is when you find out whether the first three were worth anything.",
+  "Auch deshalb ist ein Anbieterwechsel alle drei Monate keine gute Idee. Im vierten Monat zeigt sich, ob die ersten drei etwas wert waren."
+ ],
+ "És ha nem weboldalad van, hanem alkalmazásod?": [
+  "And if you have an app rather than a website?",
+  "Und wenn Sie eine App statt einer Website haben?"
+ ],
+ "Az alkalmazás keresőoptimalizálás — angolul ASO — külön szakma, mert nem a Google-ban, hanem az App Store-ban és a Play áruházban zajlik. A logika hasonló, az eszközök viszont mások: itt a cím, a rövid leírás, a kulcsszómező, a képernyőképek és az értékelések döntenek.": [
+  "App store optimisation — ASO — is its own trade, because it happens in the App Store and Play Store rather than in Google. The logic is similar but the levers differ: title, short description, keyword field, screenshots and reviews decide it.",
+  "App-Store-Optimierung — ASO — ist ein eigenes Handwerk, weil sie im App Store und im Play Store stattfindet, nicht bei Google. Die Logik ist ähnlich, die Hebel sind andere: Titel, Kurzbeschreibung, Keyword-Feld, Screenshots und Bewertungen entscheiden."
+ ],
+ "Ami a kettőben közös: a boltok is azt figyelik, mit csinál a felhasználó azután, hogy megtalálta. Egy alkalmazás, amit letöltenek és két nap múlva törölnek, lejjebb kerül — akárcsak egy weboldal, amiről mindenki visszalép.": [
+  "What they share: the stores also watch what the user does after finding you. An app that is downloaded and deleted two days later slides down — like a page everyone bounces off.",
+  "Gemeinsam ist beiden: Auch die Stores beobachten, was Nutzer nach dem Fund tun. Eine App, die heruntergeladen und zwei Tage später gelöscht wird, rutscht ab — wie eine Seite, von der alle zurückspringen."
+ ],
+ "Ha az alkalmazásod mellett weboldal is van, a kettő segíti egymást: a weboldalra érkező keresési forgalom letöltéssé válik, és fordítva.": [
+  "If you have a website alongside the app, the two help each other: search traffic arriving at the site turns into downloads, and the other way round.",
+  "Wenn neben der App eine Website existiert, helfen sich beide: Suchtraffic auf der Website wird zu Downloads — und umgekehrt."
+ ],
+ "Ne vegyél linkeket. Ne másolj szöveget a versenytársadtól. Ne pakold tele a szöveget ugyanazzal a kifejezéssel — a Google 2011 óta érti a szinonimákat, és a kulcsszóhalmozás ma már inkább árt. És ne kezdj bele, ha az oldalad annyira lassú vagy zavaros, hogy a felhozott látogató úgyis visszalép: akkor előbb az oldalt kell rendbe tenni.": [
+  "Do not buy links. Do not copy your competitor's copy. Do not stuff the same phrase everywhere — Google has understood synonyms since 2011, and keyword stuffing now does more harm than good. And do not start at all if the site is so slow or confusing that the visitor bounces anyway: fix the site first.",
+  "Kaufen Sie keine Links. Kopieren Sie keine Texte vom Wettbewerb. Stopfen Sie nicht überall denselben Begriff hinein — Google versteht Synonyme seit 2011, und Keyword-Stuffing schadet heute eher. Und fangen Sie gar nicht erst an, wenn die Seite so langsam oder unübersichtlich ist, dass Besucher ohnehin abspringen."
+ ],
+ "A keresőoptimalizálás nem a forgalomról szól, hanem arról, hogy a megfelelő kérdésre kerülj oda. Száz látogató, aki keres valamit, amit te árulsz, többet ér tízezernél, aki nem.": [
+  "SEO is not about traffic but about turning up for the right question. A hundred visitors looking for what you sell are worth more than ten thousand who are not.",
+  "Bei SEO geht es nicht um Traffic, sondern darum, bei der richtigen Frage aufzutauchen. Hundert Besucher, die suchen, was Sie verkaufen, sind mehr wert als zehntausend, die es nicht tun."
+ ],
+ "A hét lépés sorrendben, amiből ez a cikk a miértet magyarázza.": [
+  "The seven steps in order; this article explains the why behind them.",
+  "Die sieben Schritte der Reihe nach; dieser Artikel erklärt das Warum dahinter."
+ ],
+ "Ha a szerkezet a baj, nem a kulcsszavak.": [
+  "If the structure is the problem, not the keywords.",
+  "Wenn die Struktur das Problem ist, nicht die Keywords."
+ ],
+ "Ha nem magad csinálnád végig, hanem valakivel, aki méri is.": [
+  "If you would rather not do it all yourself, but with someone who measures it too.",
+  "Wenn Sie es nicht allein machen wollen, sondern mit jemandem, der auch misst."
+ ]
+}

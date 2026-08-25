@@ -250,7 +250,8 @@ const SLUGS = Object.fromEntries(
 const PRIORITY = {
   index: '1.0', quote: '0.9', contact: '0.8', services: '0.8', work: '0.7',
   // The fifth service.
-  seo: '0.8',
+  seo: '0.8', shop: '0.8',
+  'post-seo-alap': '0.7', 'post-marketing': '0.7', 'post-logo': '0.7', 'post-webdesign': '0.7',
   privacy: '0.3', imprint: '0.3',
 };
 

@@ -1,0 +1,398 @@
+{
+ "A jel": [
+  "The mark",
+  "Das Zeichen"
+ ],
+ "Logó tervezés,<br>ami <span class=\"sig\">bélyegméretben<br>is működik.</span>": [
+  "Logo design that<br><span class=\"sig\">works at thumbnail<br>size too.</span>",
+  "Logo-Design, das<br><span class=\"sig\">auch in Briefmarken-<br>größe funktioniert.</span>"
+ ],
+ "A logó tervezés nem rajzolással kezdődik, hanem azzal, hogy hol fogják látni: profilképen, számlán, autón, egy 16 pixeles böngészőfülön.": [
+  "Logo design does not start with drawing. It starts with where the mark will be seen: a profile picture, an invoice, a van, a 16-pixel browser tab.",
+  "Logo-Design beginnt nicht mit dem Zeichnen, sondern damit, wo das Zeichen zu sehen sein wird: Profilbild, Rechnung, Firmenwagen, ein 16 Pixel großer Browser-Tab."
+ ],
+ "Mit kell jelentenie": [
+  "What it has to mean",
+  "Was es bedeuten muss"
+ ],
+ "Végigvesszük, kinek szól, mitől kell megkülönböztetnie, és milyen felületeken él majd. Ebből lesz a brief, amire a logó tervezés épül — nem ízlésvitából.": [
+  "We work through who it speaks to, what it has to set you apart from, and where it will live. That becomes the brief the logo design is built on — not an argument about taste.",
+  "Wir gehen durch, wen es anspricht, wovon es Sie abheben soll und wo es leben wird. Daraus entsteht das Briefing, auf dem das Logo-Design aufbaut — nicht ein Streit über Geschmack."
+ ],
+ "Irányok": [
+  "Directions",
+  "Richtungen"
+ ],
+ "Három út, nem harminc": [
+  "Three routes, not thirty",
+  "Drei Wege, nicht dreißig"
+ ],
+ "Három kidolgozott irányt mutatunk, mindegyiket valódi környezetben: weboldalon, névjegyen, közösségi profilon. Harminc vázlat közül választani nem szabadság, hanem döntéskényszer.": [
+  "We show three developed directions, each in a real setting: on a website, a business card, a social profile. Choosing from thirty sketches is not freedom, it is pressure.",
+  "Wir zeigen drei ausgearbeitete Richtungen, jede in echter Umgebung: auf einer Website, einer Visitenkarte, einem Social-Profil. Aus dreißig Skizzen zu wählen ist keine Freiheit, sondern Druck."
+ ],
+ "Kidolgozás": [
+  "Development",
+  "Ausarbeitung"
+ ],
+ "Változatok minden méretre": [
+  "A version for every size",
+  "Eine Variante für jede Größe"
+ ],
+ "Vízszintes, függőleges és jel-önmagában verzió, világos és sötét háttérre, minimális méretekkel. A logó tervezés akkor kész, ha egyik felületen sem kell kompromisszumot kötni.": [
+  "Horizontal, vertical and mark-only versions, for light and dark grounds, with minimum sizes. Logo design is finished when no surface asks you to compromise.",
+  "Horizontale, vertikale und reine Zeichen-Variante, für helle und dunkle Untergründe, mit Mindestgrößen. Logo-Design ist fertig, wenn keine Fläche einen Kompromiss verlangt."
+ ],
+ "Átadás": [
+  "Handover",
+  "Übergabe"
+ ],
+ "Forrásfájlok, a tiéd": [
+  "The source files are yours",
+  "Die Quelldateien gehören Ihnen"
+ ],
+ "Vektoros forrás, exportált változatok és egy rövid használati útmutató. A fájlok a tiéd maradnak, akkor is, ha később valaki mással dolgozol tovább.": [
+  "Vector sources, exported variants and a short usage guide. The files stay yours, including if you later work with someone else.",
+  "Vektorquellen, exportierte Varianten und ein kurzer Anwendungsleitfaden. Die Dateien bleiben Ihre — auch wenn Sie später mit jemand anderem arbeiten."
+ ],
+ "Helyi keresőoptimalizálás": [
+  "Local SEO",
+  "Lokales SEO"
+ ],
+ "Webáruház keresőoptimalizálás": [
+  "E-commerce SEO",
+  "Onlineshop-SEO"
+ ],
+ "Kinek szól": [
+  "Who it is for",
+  "Für wen"
+ ],
+ "Ügynökség<br>vagy szakértő?<br><span class=\"sig\">Mindkettő.</span>": [
+  "An agency<br>or a specialist?<br><span class=\"sig\">Both.</span>",
+  "Agentur<br>oder Spezialist?<br><span class=\"sig\">Beides.</span>"
+ ],
+ "Kis csapat vagyunk, ezért azzal beszélsz, aki a munkát csinálja — nem egy account managerrel, aki továbbítja.": [
+  "We are a small team, so you talk to the person doing the work — not an account manager who forwards it.",
+  "Wir sind ein kleines Team, deshalb sprechen Sie mit der Person, die die Arbeit macht — nicht mit einem Account Manager, der sie weiterleitet."
+ ],
+ "Ügynökség": [
+  "Agency",
+  "Agentur"
+ ],
+ "Keresőoptimalizálás ügynökség, ami nem albérletbe adja a munkát": [
+  "An SEO agency that does not sublet the work",
+  "Eine SEO-Agentur, die die Arbeit nicht weitervergibt"
+ ],
+ "Egy keresőoptimalizálás ügynökség akkor ér valamit, ha ugyanaz a csapat méri, írja és javítja az oldalt. Nálunk a fejlesztő és a szövegíró egy asztalnál ül, így a technikai javítás nem egy külön szolgáltató jegyrendszerében landol.": [
+  "An SEO agency is worth something when the same team measures, writes and fixes the site. Here the developer and the copywriter sit at one table, so a technical fix does not land in another supplier's ticket queue.",
+  "Eine SEO-Agentur ist etwas wert, wenn dasselbe Team misst, schreibt und korrigiert. Bei uns sitzen Entwickler und Texter an einem Tisch, sodass eine technische Korrektur nicht im Ticketsystem eines anderen Dienstleisters landet."
+ ],
+ "Szakértő": [
+  "Specialist",
+  "Spezialist"
+ ],
+ "Keresőoptimalizálás szakértő, akit név szerint ismersz": [
+  "An SEO specialist you know by name",
+  "Ein SEO-Spezialist, den Sie beim Namen kennen"
+ ],
+ "Ha egyetlen kérdésre kell válasz, nem kell szerződést kötnöd: keresőoptimalizálás szakértő konzultáció is kérhető, egy alkalomra. Megnézzük az oldalt, elmondjuk, mi a három legfontosabb tennivaló, és utána eldöntöd, mit csinálsz vele.": [
+  "If you need one question answered you do not have to sign anything: a one-off SEO specialist consultation is available. We look at the site, name the three things that matter most, and then you decide what to do with them.",
+  "Wenn Sie nur eine Frage beantwortet haben wollen, müssen Sie nichts unterschreiben: Eine einmalige SEO-Spezialisten-Beratung ist möglich. Wir sehen uns die Seite an, nennen die drei wichtigsten Punkte, und dann entscheiden Sie."
+ ],
+ "Helyi keresőoptimalizálás szolgáltatóknak": [
+  "Local SEO for service businesses",
+  "Lokales SEO für Dienstleister"
+ ],
+ "A helyi keresőoptimalizálás más játék: kevesebben keresnek, de aki keres, az néhány kilométerre van, és jellemzően aznap dönt. Cégprofil, szolgáltatási terület, értékelések és olyan oldalak, amik a „hozzám közel” kérdésre válaszolnak.": [
+  "Local SEO is a different game: fewer people search, but the ones who do are a few kilometres away and usually decide the same day. Business profile, service area, reviews, and pages that answer the „near me” question.",
+  "Lokales SEO ist ein anderes Spiel: Es suchen weniger Menschen, aber wer sucht, ist ein paar Kilometer entfernt und entscheidet meist am selben Tag. Unternehmensprofil, Einzugsgebiet, Bewertungen und Seiten, die die Frage „in meiner Nähe“ beantworten."
+ ],
+ "Webáruház": [
+  "E-commerce",
+  "Onlineshop"
+ ],
+ "A webáruház keresőoptimalizálás nem a nyitóoldalon dől el, hanem a kategória- és termékoldalakon: egyedi leírás sablon helyett, tiszta szűrő-URL-ek, strukturált termékadat és olyan belső linkelés, ami nem hagyja árván a mély oldalakat.": [
+  "E-commerce SEO is not decided on the home page but on the category and product pages: real descriptions instead of a template, clean filter URLs, structured product data, and internal linking that does not orphan the deep pages.",
+  "Onlineshop-SEO entscheidet sich nicht auf der Startseite, sondern auf den Kategorie- und Produktseiten: echte Beschreibungen statt Vorlage, saubere Filter-URLs, strukturierte Produktdaten und interne Verlinkung, die tiefe Seiten nicht verwaisen lässt."
+ ],
+ "A havidíjon belül": [
+  "Inside the monthly fee",
+  "In der Monatsgebühr"
+ ],
+ "Keresőoptimalizált<br>weboldal készítés,<br><span class=\"sig\">karbantartással.</span>": [
+  "Search-optimised<br>web design,<br><span class=\"sig\">maintenance included.</span>",
+  "Suchmaschinen-<br>optimiertes Webdesign,<br><span class=\"sig\">inklusive Wartung.</span>"
+ ],
+ "Nem külön tétel és nem felár. Egy oldal, amit a Google nem talál meg, félkész oldal — akkor is, ha egyébként szép.": [
+  "Not a line item and not a surcharge. A site Google cannot find is a half-finished site, however good it looks.",
+  "Kein Zusatzposten und kein Aufpreis. Eine Seite, die Google nicht findet, ist eine halbfertige Seite — auch wenn sie gut aussieht."
+ ],
+ "Keresőoptimalizált weboldal készítés": [
+  "Search-optimised web design",
+  "Suchmaschinenoptimiertes Webdesign"
+ ],
+ "A keresőoptimalizált weboldal készítés nálunk azt jelenti, hogy a szerkezet, a címsorok, a sebesség és a strukturált adat már az első verzióban rendben van — nem egy későbbi projekt javítja meg.": [
+  "Search-optimised web design here means the structure, the headings, the speed and the structured data are right in the first version — not fixed by a later project.",
+  "Suchmaschinenoptimiertes Webdesign heißt bei uns: Struktur, Überschriften, Geschwindigkeit und strukturierte Daten stimmen schon in der ersten Version — nicht erst durch ein späteres Projekt."
+ ],
+ "Utána": [
+  "Afterwards",
+  "Danach"
+ ],
+ "Weboldal karbantartás": [
+  "Website maintenance",
+  "Website-Wartung"
+ ],
+ "A weboldal karbantartás a havidíj része: biztonsági frissítés, mentés, tárhely, tartalommódosítás és hibajavítás. Nem kell külön megrendelned, és nem érkezik róla külön számla.": [
+  "Website maintenance is part of the monthly fee: security updates, backups, hosting, content changes and bug fixes. You do not order it separately and no separate invoice arrives for it.",
+  "Website-Wartung ist Teil der Monatsgebühr: Sicherheitsupdates, Backups, Hosting, Inhaltsänderungen und Fehlerbehebungen. Sie bestellen sie nicht extra, und es kommt keine gesonderte Rechnung."
+ ],
+ "Árazás": [
+  "Pricing",
+  "Preise"
+ ],
+ "Weboldal készítés árak, kiszámíthatóan": [
+  "Website pricing you can plan around",
+  "Website-Preise, mit denen Sie planen können"
+ ],
+ "A weboldal készítés árak nálunk nem egy nagy egyszeri szám, hanem egy fix havidíj. Árlistánk azért nincs, mert két egyforma feladat sincs — a díjmentes konzultáció után kapsz konkrét összeget.": [
+  "Website pricing here is not one large upfront number but a fixed monthly fee. We publish no price list because no two briefs are the same — you get a concrete figure after the free consultation.",
+  "Website-Preise sind bei uns keine große Einmalsumme, sondern eine feste Monatsgebühr. Eine Preisliste gibt es nicht, weil keine zwei Aufgaben gleich sind — nach der kostenlosen Beratung erhalten Sie eine konkrete Zahl."
+ ],
+ "Bővítés": [
+  "Growth",
+  "Erweiterung"
+ ],
+ "Ha később webshop kell": [
+  "If a store comes later",
+  "Wenn später ein Shop dazukommt"
+ ],
+ "Az oldal moduláris, így a <a class=\"tlink\" href=\"webshop-keszites.html\">webshop készítés</a> később rákerülhet anélkül, hogy elölről kellene kezdeni. Nem kell mindent az elején eldöntened.": [
+  "The site is modular, so <a class=\"tlink\" href=\"online-store.html\">an online store</a> can be added later without starting over. You do not have to decide everything at the beginning.",
+  "Die Seite ist modular, sodass <a class=\"tlink\" href=\"onlineshop-erstellung.html\">ein Onlineshop</a> später dazukommen kann, ohne von vorn zu beginnen. Sie müssen nicht alles am Anfang entscheiden."
+ ],
+ "Innen,<br>de nem<br>csak ide.": [
+  "From here,<br>but not<br>only for here.",
+  "Von hier,<br>aber nicht<br>nur für hier."
+ ],
+ "Az irodánk Győr mellett van, így a weboldal készítés Győrben azt is jelentheti, hogy indulás előtt leülünk egy kávéra. A megyei ügyfelekkel ez a szokásos menet, és tapasztalatunk szerint az első negyvenöt perc személyesen többet ad, mint három e-mail.": [
+  "Our office is just outside Győr, so web design in Győr can also mean sitting down over a coffee before anything starts. With clients in the county that is the usual route, and in our experience the first forty-five minutes in person are worth more than three emails.",
+  "Unser Büro liegt bei Győr, sodass Webdesign in Győr auch heißen kann, dass wir uns vor dem Start auf einen Kaffee treffen. Mit Kunden im Komitat ist das der übliche Weg, und nach unserer Erfahrung bringen die ersten fünfundvierzig Minuten persönlich mehr als drei E-Mails."
+ ],
+ "A weboldal készítés Budapesten és az ország bármely pontján ugyanígy működik, csak a beszélgetés videóhívás. Dolgozunk osztrák és német cégeknek is — magyarul, angolul és németül. Az elmúlt években ez semmivel sem bizonyult lassabbnak a személyesnél.": [
+  "Web design in Budapest and anywhere else in the country works the same way, only the conversation is a video call. We also work for Austrian and German companies, in Hungarian, English and German. Over the past years that has proved no slower than meeting in person.",
+  "Webdesign in Budapest und überall sonst im Land funktioniert genauso, nur ist das Gespräch ein Videocall. Wir arbeiten auch für österreichische und deutsche Unternehmen — auf Ungarisch, Englisch und Deutsch. Das hat sich in den letzten Jahren als nicht langsamer erwiesen."
+ ],
+ "Céges weboldal<br>készítés és<br><span class=\"sig\">weboldal fejlesztés.</span>": [
+  "Corporate websites<br>and <span class=\"sig\">custom web<br>development.</span>",
+  "Firmenwebsites<br>und <span class=\"sig\">individuelle Web-<br>entwicklung.</span>"
+ ],
+ "A kettő nem ugyanaz. Az egyik egy megjelenés, a másik egy rendszer, ami a cég belső folyamataihoz kapcsolódik.": [
+  "They are not the same thing. One is a presence; the other is a system wired into how the company actually runs.",
+  "Das ist nicht dasselbe. Das eine ist ein Auftritt, das andere ein System, das an die internen Abläufe angebunden ist."
+ ],
+ "Megjelenés": [
+  "Presence",
+  "Auftritt"
+ ],
+ "Céges weboldal készítés": [
+  "Corporate website design",
+  "Firmenwebsite-Erstellung"
+ ],
+ "A céges weboldal készítés a bemutatkozó felület: szolgáltatások, referenciák, karrieroldal, sajtószoba. Több nyelven, több országra, egy szerkeszthető rendszerben — hogy ne kelljen fejlesztőt hívni egy állásajánlat kitételéhez.": [
+  "Corporate website design is the public face: services, references, careers, a press room. Several languages, several markets, in one editable system — so nobody has to call a developer to post a job ad.",
+  "Firmenwebsite-Erstellung ist das öffentliche Gesicht: Leistungen, Referenzen, Karriereseite, Pressebereich. Mehrere Sprachen, mehrere Märkte, in einem redigierbaren System — damit niemand einen Entwickler anrufen muss, um eine Stellenanzeige zu veröffentlichen."
+ ],
+ "Rendszer": [
+  "System",
+  "System"
+ ],
+ "Egyedi weboldal fejlesztés": [
+  "Custom web development",
+  "Individuelle Webentwicklung"
+ ],
+ "A weboldal fejlesztés ott kezdődik, ahol a sablon elfogy: ügyfélportál, kalkulátor, foglalási rendszer, belső adminfelület. Kódból építjük, mert egy bővítménnyel összerakott megoldást a harmadik integrációnál úgyis újra kell írni.": [
+  "Web development starts where the template runs out: a client portal, a calculator, a booking system, an internal admin. We build it from code, because a solution assembled from plugins has to be rewritten at the third integration anyway.",
+  "Webentwicklung beginnt dort, wo die Vorlage endet: Kundenportal, Kalkulator, Buchungssystem, internes Admin. Wir bauen aus Code, weil eine aus Plugins zusammengesetzte Lösung spätestens bei der dritten Integration ohnehin neu geschrieben werden muss."
+ ],
+ "Integrációk": [
+  "Integrations",
+  "Integrationen"
+ ],
+ "ERP, CRM, számlázó, raktárkészlet, egyedi API. Ha az adat már létezik valahol a cégnél, nem gépeljük be másodszor — a weboldal fejlesztés része, hogy a rendszerek beszéljenek egymással.": [
+  "ERP, CRM, invoicing, stock, a bespoke API. If the data already exists somewhere in the company we do not type it in twice — part of web development is making the systems talk to each other.",
+  "ERP, CRM, Rechnungswesen, Lagerbestand, eigene API. Wenn die Daten im Unternehmen schon existieren, tippen wir sie nicht ein zweites Mal — zur Webentwicklung gehört, dass die Systeme miteinander sprechen."
+ ],
+ "SLA és felügyelet": [
+  "SLA and monitoring",
+  "SLA und Monitoring"
+ ],
+ "Monitorozás, mentés, biztonsági frissítés és definiált válaszidő. A céges weboldal készítés akkor kész, amikor van, aki felveszi a telefont, ha éjjel elszáll valami.": [
+  "Monitoring, backups, security updates and a defined response time. Corporate website design is finished when somebody answers the phone if something falls over at night.",
+  "Monitoring, Backups, Sicherheitsupdates und eine definierte Reaktionszeit. Firmenwebsite-Erstellung ist fertig, wenn jemand ans Telefon geht, falls nachts etwas ausfällt."
+ ],
+ "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Webshop készítés</b>": [
+  "<a href=\"index.html\">Stratos</a> / Services / <b>Online stores</b>",
+  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Onlineshop-Erstellung</b>"
+ ],
+ "A kosár<br>nem a végállomás.<br><span class=\"sig\">A kezdet.</span>": [
+  "The basket<br>is not the finish line.<br><span class=\"sig\">It is the start.</span>",
+  "Der Warenkorb<br>ist nicht das Ziel.<br><span class=\"sig\">Er ist der Anfang.</span>"
+ ],
+ "Egy webáruháznál a dizájn a legkevesebb. A vevő ott dönt, ahol a szállítási költség kiderül, és ott hagyja ott, ahol egy mezőt nem ért.": [
+  "In an online store the design is the least of it. The customer decides where the shipping cost appears, and leaves where a form field makes no sense.",
+  "Bei einem Onlineshop ist das Design das Geringste. Die Kundin entscheidet dort, wo die Versandkosten erscheinen, und geht dort, wo ein Feld unverständlich ist."
+ ],
+ "Webshop készítés": [
+  "Online store development",
+  "Onlineshop-Erstellung"
+ ],
+ "Fizetés és szállítás": [
+  "Payment and delivery",
+  "Zahlung und Versand"
+ ],
+ "Készletkapcsolat": [
+  "Stock integration",
+  "Bestandsanbindung"
+ ],
+ "Nem boltot nyitunk. <span class=\"sig\">Eladási folyamatot építünk.</span>": [
+  "We do not open a shop. <span class=\"sig\">We build a selling process.</span>",
+  "Wir eröffnen keinen Laden. <span class=\"sig\">Wir bauen einen Verkaufsprozess.</span>"
+ ],
+ "A webshop készítés fele fejlesztés, fele döntés arról, mit lát a vevő és mikor. Az utóbbiban is segítünk, mert abból lesz a forgalom.": [
+  "Half of online store development is engineering; the other half is deciding what the customer sees and when. We help with that half too, because that is where the revenue comes from.",
+  "Die Hälfte der Onlineshop-Erstellung ist Entwicklung, die andere Hälfte die Entscheidung, was die Kundin wann sieht. Bei dieser Hälfte helfen wir auch — dort entsteht der Umsatz."
+ ],
+ "A rendszer": [
+  "The system",
+  "Das System"
+ ],
+ "Miből áll<br>egy webshop<br>készítés?": [
+  "What goes into<br>building an<br>online store?",
+  "Woraus besteht<br>eine Onlineshop-<br>Erstellung?"
+ ],
+ "Termék": [
+  "Products",
+  "Produkte"
+ ],
+ "Terméktörzs és katalógus": [
+  "Catalogue and product data",
+  "Katalog und Produktdaten"
+ ],
+ "Variánsok, méretek, színek, csomagajánlatok. A kategóriaszerkezetet úgy építjük, ahogy a vevő keres, nem ahogy a raktár tárolja — a kettő ritkán ugyanaz.": [
+  "Variants, sizes, colours, bundles. We build the category structure the way a customer searches, not the way the warehouse stores things — the two are rarely the same.",
+  "Varianten, Größen, Farben, Bundles. Wir bauen die Kategoriestruktur so, wie Kundinnen suchen, nicht so, wie das Lager sortiert — die beiden sind selten identisch."
+ ],
+ "Pénz": [
+  "Money",
+  "Geld"
+ ],
+ "Bankkártya, utánvét, átutalás, futárszolgálatok és csomagpontok. A szállítási költség a kosárban derül ki, nem a fizetés előtti utolsó lépésben — ott veszik el a legtöbb megrendelés.": [
+  "Card, cash on delivery, transfer, couriers and pickup points. The shipping cost appears in the basket, not in the last step before payment — that is where most orders are lost.",
+  "Karte, Nachnahme, Überweisung, Paketdienste und Abholpunkte. Die Versandkosten erscheinen im Warenkorb, nicht im letzten Schritt vor der Zahlung — dort gehen die meisten Bestellungen verloren."
+ ],
+ "Készlet": [
+  "Stock",
+  "Bestand"
+ ],
+ "Számlázó- és készletkapcsolat": [
+  "Invoicing and stock integration",
+  "Rechnungs- und Bestandsanbindung"
+ ],
+ "Ha van számlázód vagy raktárprogramod, összekötjük. A készlet, az ár és a megrendelés egy helyen keletkezik, és nem kell senkinek kétszer begépelnie.": [
+  "If you have invoicing or warehouse software, we connect it. Stock, price and orders originate in one place, and nobody types anything twice.",
+  "Wenn Sie eine Rechnungs- oder Lagersoftware haben, binden wir sie an. Bestand, Preis und Bestellung entstehen an einer Stelle, und niemand tippt etwas zweimal."
+ ],
+ "Konverziómérés az elejétől": [
+  "Conversion tracking from day one",
+  "Conversion-Messung von Anfang an"
+ ],
+ "Nem utólag rakjuk rá. Kosárba tétel, megkezdett fizetés, elhagyott kosár és tranzakció — hogy az első hónap után is tudd, hol vesztetted el a vevőt.": [
+  "Not bolted on afterwards. Add to basket, checkout started, basket abandoned and purchase — so that after the first month you know where the customer was lost.",
+  "Nicht nachträglich aufgesetzt. In den Warenkorb, Checkout begonnen, Warenkorb abgebrochen und Kauf — damit Sie nach dem ersten Monat wissen, wo die Kundin verloren ging."
+ ],
+ "Miért kódból": [
+  "Why from code",
+  "Warum aus Code"
+ ],
+ "Sablon nélkül,<br>bővítmény nélkül.": [
+  "No template,<br>no plugins.",
+  "Keine Vorlage,<br>keine Plugins."
+ ],
+ "A legtöbb webshop készítés úgy indul, hogy egy sablonra rákerül nyolc bővítmény. Működik is, amíg valami olyat nem kérsz, amit egyik sem tud — onnantól a kilencedik bővítmény írja felül az elsőt.": [
+  "Most online store projects start with a template and eight plugins on top. That works until you ask for something none of them does — from there the ninth plugin overrides the first.",
+  "Die meisten Onlineshop-Projekte starten mit einer Vorlage und acht Plugins darauf. Das funktioniert, bis Sie etwas verlangen, das keines davon kann — ab dort überschreibt das neunte Plugin das erste."
+ ],
+ "Mi kódból építünk, ezért a bolt pontosan annyit tud, amennyire szükség van, és nem érkezik havonta biztonsági frissítés, amit valakinek le kell futtatnia. Cserébe gyorsabb: nem hoz magával olyan kódot, amit soha nem használsz.": [
+  "We build from code, so the store does exactly what it needs to and no monthly security update arrives for somebody to run. In return it is faster: it carries no code you will never use.",
+  "Wir bauen aus Code, deshalb kann der Shop genau das, was nötig ist, und es kommt kein monatliches Sicherheitsupdate, das jemand einspielen muss. Dafür ist er schneller: Er schleppt keinen Code mit, den Sie nie nutzen."
+ ],
+ "Ha a bolt már létezik és csak a láthatóság hiányzik, arra nem ez az oldal a válasz, hanem a <a class=\"tlink\" href=\"keresooptimalizalas.html\">keresőoptimalizálás</a> — ott a kategória- és termékoldalak rendbetétele a munka.": [
+  "If the store already exists and only the visibility is missing, this page is not the answer — <a class=\"tlink\" href=\"seo.html\">SEO</a> is, and the work there is putting the category and product pages right.",
+  "Wenn der Shop schon existiert und nur die Sichtbarkeit fehlt, ist nicht diese Seite die Antwort, sondern <a class=\"tlink\" href=\"suchmaschinenoptimierung.html\">SEO</a> — dort geht es darum, Kategorie- und Produktseiten in Ordnung zu bringen."
+ ],
+ "Nézzük meg, mit kell tudnia a boltodnak.": [
+  "Let's work out what your store has to do.",
+  "Sehen wir uns an, was Ihr Shop können muss."
+ ],
+ "Mennyibe kerül egy webshop készítés?": [
+  "What does an online store cost?",
+  "Was kostet ein Onlineshop?"
+ ],
+ "Attól függ, hány terméked van, hány variánssal, és mihez kell kapcsolódnia. Egy néhány száz termékes bolt havidíjas konstrukcióban is mehet, egy több ezer tételes, ERP-hez kötött rendszer projektalapon árazódik. A díjmentes konzultáció után kapsz konkrét számot.": [
+  "It depends on how many products you have, with how many variants, and what it has to connect to. A few-hundred-product store can run on the monthly fee; a several-thousand-item system tied to an ERP is priced per project. You get a concrete figure after the free consultation.",
+  "Das hängt davon ab, wie viele Produkte Sie haben, mit wie vielen Varianten und woran der Shop angebunden sein muss. Ein Shop mit einigen hundert Produkten läuft auch im Monatsmodell; ein System mit mehreren tausend Artikeln und ERP-Anbindung wird pro Projekt kalkuliert."
+ ],
+ "Át tudtok venni egy meglévő webáruházat?": [
+  "Can you take over an existing store?",
+  "Können Sie einen bestehenden Shop übernehmen?"
+ ],
+ "Igen. Először átnézzük, mi menthető belőle — a terméktörzs és a rendelési előzmény szinte mindig átvihető, a sablon és a bővítmények ritkán. Ha a meglévő rendszer működik és csak a láthatóság hiányzik, azt is megmondjuk, mielőtt bármit újraépítenénk.": [
+  "Yes. First we look at what can be saved — product data and order history almost always migrate, the template and the plugins rarely do. If the existing system works and only visibility is missing, we say so before rebuilding anything.",
+  "Ja. Zuerst prüfen wir, was zu retten ist — Produktdaten und Bestellhistorie lassen sich fast immer migrieren, Vorlage und Plugins selten. Wenn das bestehende System funktioniert und nur die Sichtbarkeit fehlt, sagen wir das, bevor wir etwas neu bauen."
+ ],
+ "Kapok hozzá adminfelületet?": [
+  "Do I get an admin interface?",
+  "Bekomme ich ein Admin-Interface?"
+ ],
+ "Igen, és arra a néhány dologra szabjuk, amit ténylegesen csinálni fogsz: termék felvitele, ár- és készletmódosítás, rendeléskezelés, kuponok. Nem egy húsz menüpontos panel, amiből hármat használsz.": [
+  "Yes, and it is cut down to the few things you will actually do: adding products, changing price and stock, handling orders, coupons. Not a twenty-item panel of which you use three.",
+  "Ja, und es ist auf die wenigen Dinge zugeschnitten, die Sie wirklich tun: Produkte anlegen, Preis und Bestand ändern, Bestellungen bearbeiten, Gutscheine. Kein Panel mit zwanzig Menüpunkten, von denen Sie drei nutzen."
+ ],
+ "Ki felel a jogi megfelelésért?": [
+  "Who is responsible for legal compliance?",
+  "Wer ist für die rechtliche Konformität verantwortlich?"
+ ],
+ "A kötelező tartalmakat — ÁSZF, elállási tájékoztató, adatkezelés, cookie-kezelés — beépítjük, és megmondjuk, mi hiányzik. A szövegek tartalmi helyességéért viszont jogász felel, nem mi; ha nincs, szólunk időben, hogy legyen.": [
+  "We build in the required material — terms, right of withdrawal, privacy, cookie handling — and tell you what is missing. The substance of those texts is a lawyer's responsibility, not ours; if you do not have one, we say so in time.",
+  "Die Pflichtinhalte — AGB, Widerrufsbelehrung, Datenschutz, Cookie-Verwaltung — bauen wir ein und sagen Ihnen, was fehlt. Für die inhaltliche Richtigkeit dieser Texte haftet eine Anwältin, nicht wir; falls Sie keine haben, sagen wir rechtzeitig Bescheid."
+ ],
+ "Mi van, ha nő a bolt?": [
+  "What if the store grows?",
+  "Was, wenn der Shop wächst?"
+ ],
+ "Erre épül. Új nyelv, új piac, új fizetési mód vagy egy raktárintegráció később is rákerülhet, mert kódból van és nem egy sablon korlátain belül mozog. Nem kell mindent az elején eldöntened.": [
+  "It is built for that. A new language, a new market, a new payment method or a warehouse integration can be added later, because it is code and not bounded by a template. You do not have to decide everything at the start.",
+  "Dafür ist er gebaut. Eine neue Sprache, ein neuer Markt, eine neue Zahlungsart oder eine Lageranbindung lassen sich später ergänzen, weil er aus Code besteht und nicht an eine Vorlage gebunden ist."
+ ],
+ "Ha a bolt megvan, de a kategóriaoldalakat nem találja meg senki.": [
+  "If the store exists but nobody finds the category pages.",
+  "Wenn der Shop steht, aber niemand die Kategorieseiten findet."
+ ],
+ "Ha előbb a bemutatkozó oldal kell, és a bolt csak később.": [
+  "If the presentation site comes first and the store later.",
+  "Wenn zuerst die Präsenzseite kommt und der Shop später."
+ ],
+ "Ha a boltba forgalom kell, és nem akarsz hónapokat várni rá.": [
+  "If the store needs traffic and you do not want to wait months for it.",
+  "Wenn der Shop Traffic braucht und Sie nicht Monate warten wollen."
+ ],
+ "Mennyi idő alatt készül el?": [
+  "How long does it take?",
+  "Wie lange dauert es?"
+ ],
+ "Egy tipikus bolt hat-tíz hét a szerződéstől az élesítésig. A leghosszabb szakasz nem a fejlesztés, hanem a terméktörzs: a fotók, a leírások és a variánsok rendbetétele. Ha ez megvan, gyorsabban végzünk; ha nincs, ebben is segítünk.": [
+  "A typical store is six to ten weeks from signature to launch. The longest stage is not the engineering but the product data: the photography, the descriptions and the variants. If that is ready we finish sooner; if it is not, we help with it.",
+  "Ein typischer Shop dauert sechs bis zehn Wochen von der Unterschrift bis zum Launch. Die längste Phase ist nicht die Entwicklung, sondern die Produktdaten: Fotos, Beschreibungen und Varianten. Liegen die vor, sind wir schneller fertig; wenn nicht, helfen wir dabei."
+ ]
+}
