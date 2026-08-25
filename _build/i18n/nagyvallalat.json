@@ -35,14 +35,6 @@
   "Guaranteed uptime",
   "Garantierte Verfügbarkeit"
  ],
- "Bármilyen": [
-  "Any",
-  "Beliebig"
- ],
- "Piac, több nyelven": [
-  "Markets, in several languages",
-  "Märkte, mehrsprachig"
- ],
  "&lt; 4 óra": [
   "&lt; 4 hours",
   "&lt; 4 Stunden"
@@ -277,5 +269,9 @@
  "Egyedi platformok, belső rendszerek, integrációk és üzemeltetés. Nagyvállalati szintű minőség, SLA és biztonság — a stratégiától az élesítésig.": [
   "Bespoke platforms, internal systems, integrations and operations. Enterprise-grade quality, SLA and security — from strategy to launch.",
   "Individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live."
+ ],
+ "Nyelven, több piacra": [
+  "Languages, several markets",
+  "Sprachen, mehrere Märkte"
  ]
 }

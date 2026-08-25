@@ -250,5 +250,17 @@
  "A hirdetés leáll a kerettel. A keresés <span class=\"sig\">nem áll le.</span>": [
   "Ads stop with the budget. Search <span class=\"sig\">does not stop.</span>",
   "Werbung endet mit dem Budget. Die Suche <span class=\"sig\">endet nicht.</span>"
+ ],
+ "Keresőoptimalizálás ügynökség": [
+  "SEO agency",
+  "SEO-Agentur"
+ ],
+ "Keresőoptimalizálás szakértő": [
+  "SEO specialist",
+  "SEO-Spezialist"
+ ],
+ "Helyi keresőoptimalizálás": [
+  "Local SEO",
+  "Lokales SEO"
  ]
 }

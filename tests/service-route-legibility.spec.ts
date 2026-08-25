@@ -266,16 +266,36 @@ test.describe('the FAQ on a pale band', () => {
     const det = page.locator('.faq details').first();
     const sum = det.locator('summary');
 
-    const snapshot = () => sum.evaluate((el) => ({
+    const read = () => sum.evaluate((el) => ({
       mark: getComputedStyle(el, '::after').backgroundImage,
       spin: getComputedStyle(el, '::after').transform,
       rule: getComputedStyle(el.parentElement as Element).borderBottomColor,
     }));
 
-    const closed = await snapshot();
+    /* Settled, not immediate — the same reason `readSettled` exists above.
+       All three of these properties are transitioned: the mark's background
+       over .3s, its transform over .4s. Read the frame after the click and you
+       are sampling the animation rather than the state it is animating to, and
+       whether that frame has moved yet depends on how busy the machine is.
+       Measured on mobile-390: three runs in a row read the mark still at its
+       closed value while `[open]` was already on the element. Polling until the
+       value stops changing is what the sibling test does with colour. */
+    const settledSnapshot = async () => {
+      let last = '';
+      for (let i = 0; i < 40; i++) {
+        const r = await read();
+        const key = `${r.mark}|${r.spin}|${r.rule}`;
+        if (key === last) return r;
+        last = key;
+        await page.waitForTimeout(50);
+      }
+      throw new Error('the FAQ mark never settled');
+    };
+
+    const closed = await settledSnapshot();
     await sum.click();
     await expect(det).toHaveAttribute('open', '');
-    const open = await snapshot();
+    const open = await settledSnapshot();
 
     expect(open.mark, 'the mark takes the accent when the entry opens').not.toBe(closed.mark);
     expect(open.spin, 'the mark rotates from + to x').not.toBe(closed.spin);

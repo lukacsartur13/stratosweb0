@@ -371,10 +371,32 @@
   --type-display-signature-width: 92%;
 }
 
+/* h3 and h4 are in this list, and were the reason it had to be revisited.
+   The rule was written for headline sizes and stopped at h2, but the words
+   that actually overflow are compounds in CARD titles, which are h3:
+   "Keresőoptimalizálás ügynökség" ran 81px past its card at 1440 and clipped
+   mid-word. A card title is set at --step-1, well below signature size, where
+   a hyphen is the fallback this rule exists to provide rather than a defect —
+   which is why the `hyphens: manual` exception below names only the two
+   display roles and not these. */
 [lang='de'] h1,
 [lang='de'] h2,
+[lang='de'] h3,
+[lang='de'] h4,
 [lang='hu'] h1,
-[lang='hu'] h2 {
+[lang='hu'] h2,
+[lang='hu'] h3,
+[lang='hu'] h4 {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* Body text that sets its own measure has the same exposure and none of the
+   headline nuance: `.article__key` is a pull quote at --step-1 and a long
+   Hungarian compound pushed it 22px past the column at 390. Breaking a word
+   is always better than a line that leaves the screen. */
+[lang='de'] .article__key,
+[lang='hu'] .article__key {
   hyphens: auto;
   overflow-wrap: break-word;
 }
@@ -390,10 +412,24 @@
    The overflow protection stays. Only the automatic break is withdrawn, so a
    word that genuinely cannot fit still wraps rather than escaping its column.
 
-   Two qualifiers, because `[lang='hu'] h1` above is (0,1,1) and a bare class
-   would tie-and-lose to it. */
+   `.display` is on this list and is the general form of the other three: it is
+   the class every headline set at signature size carries, so naming it covers
+   the section headings too. It had to be added the moment h3 joined the rule
+   above — "Ügynökség vagy szakértő?" came back as "SZAKÉR-TŐ" at 1920, which
+   is the same defect the homepage headline had, one heading level down.
+
+   Card titles are deliberately NOT covered: `.card h3` uses the display FACE
+   through `font-family: var(--display)` but carries no `.display` class, sits
+   at --step-1, and is the place a Hungarian compound genuinely has to break.
+
+   Two qualifiers on each, because `[lang='hu'] h1` above is (0,1,1) and a bare
+   class would tie-and-lose to it. */
 [lang] h1.panel__title--hero,
 [lang] h2.ground__h,
+[lang] h1.display,
+[lang] h2.display,
+[lang] h3.display,
+[lang] p.display,
 [lang] .type-display-signature {
   hyphens: manual;
 }
