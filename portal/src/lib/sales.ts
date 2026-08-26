@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { defaultProbability, isOpen, OPEN_STAGES, type Stage } from '@/lib/pipeline';
+import { refusal as classify, type DbFailure } from '@/lib/dbError';
 import type { OpportunityDraft } from '@/lib/business';
 
 // Re-exported so a screen that already imports the opportunity type does not
@@ -74,7 +75,29 @@ export const OPPORTUNITY_COLUMNS =
   + 'next_action, next_action_on, lead_id, source, medium, campaign, landing_route, '
   + 'locale, form_type, owner_id, lost_reason, lost_note, won_at, lost_at, archived_at, '
   + 'created_at, updated_at, '
-  + 'client:organizations(id, name), owner:profiles(id, full_name, email)';
+  + 'client:organizations(id, name), '
+  // THE FOREIGN KEY IS NAMED, AND IT HAS TO BE.
+  //
+  // `opportunities` has TWO foreign keys to `profiles` — `owner_id` and
+  // `created_by` — so a bare `owner:profiles(...)` is ambiguous and PostgREST
+  // refuses to guess which one is meant. It answers 300 Multiple Choices:
+  //
+  //     PGRST201  Could not embed because more than one relationship was found
+  //               for 'opportunities' and 'profiles'
+  //
+  // Which is a whole-screen failure, not a missing column: the request never
+  // runs, so the Sales board renders its error state and no deal is readable.
+  //
+  // This could not have been caught before the table existed. The query was
+  // written against the migration and the migration had never been applied, so
+  // this select had never once been resolved against a real schema — the table
+  // was absent, PostgREST answered PGRST205 first, and the ambiguity behind it
+  // was invisible. Applying the migration is what surfaced it.
+  //
+  // The constraint name is Postgres's own, from the inline `references` in
+  // 20260816000100_revenue_operations.sql, and is what production's own error
+  // hint names.
+  + 'owner:profiles!opportunities_owner_id_fkey(id, full_name, email)';
 
 /** Who a deal is with, whether or not it has become a client yet. */
 export const dealParty = (o: Opportunity): string =>
@@ -106,12 +129,22 @@ export const dealSource = (o: Opportunity): string => {
  * to rewrite the screen.
  */
 export function useOpportunities(reloadToken = 0, includeArchived = false) {
+  const { session } = useAuth();
   const [rows, setRows] = useState<Opportunity[]>([]);
   const [state, setState] = useState<'loading' | 'ready' | 'error' | 'unconfigured'>(
     isConfigured ? 'loading' : 'unconfigured',
   );
   const [message, setMessage] = useState('');
+  // The internal cause, kept beside the sentence. The screen shows `message`;
+  // this is what a retry button and a test can branch on without matching prose.
+  const [failure, setFailure] = useState<DbFailure | null>(null);
   const [capped, setCapped] = useState(false);
+
+  // A BOOLEAN, not the session object. supabase-js hands back a NEW session on
+  // every token refresh, so depending on the object would re-run this select
+  // roughly hourly for no reason. What the classification needs is only whether
+  // there is one.
+  const hasSession = Boolean(session);
 
   const LIMIT = 200;
 
@@ -130,27 +163,37 @@ export function useOpportunities(reloadToken = 0, includeArchived = false) {
     const { data, error } = await query;
 
     if (error) {
-      console.error('[opportunities]', error);
-      setState('error');
-      setMessage(
-        error.code === '42P01'
-          ? 'The opportunities table does not exist yet. Run the migrations in supabase/migrations.'
-          : 'The database refused the request. Check that your account may read the pipeline.',
+      // WHAT THIS REPLACED, AND WHY IT MATTERED
+      // ---------------------------------------
+      // `error.code === '42P01' ? "run the migrations" : "the database refused
+      // the request"`. PostgREST does not return `42P01`; a table missing from
+      // the schema cache is a 404 `PGRST205`. So a production database that had
+      // never had the P2 migration applied reported itself as a PERMISSIONS
+      // problem, in a sentence naming the reader's own account — and an RLS
+      // denial, the thing it named, cannot produce an error on SELECT at all.
+      // It answers `200 []`. See lib/dbError.ts.
+      const { failure: cause, message: sentence } = classify(
+        'opportunities', error, 'the pipeline', hasSession,
       );
+      setState('error');
+      setFailure(cause);
+      setMessage(sentence);
       return;
     }
 
     const list = (data ?? []) as unknown as Opportunity[];
     setRows(list);
     setCapped(list.length === LIMIT);
+    setFailure(null);
+    setMessage('');
     setState('ready');
-  }, [reloadToken, includeArchived]);
+  }, [reloadToken, includeArchived, hasSession]);
 
   useEffect(() => { void load(); }, [load]);
 
   return useMemo(
-    () => ({ rows, state, message, capped, limit: LIMIT, reload: load }),
-    [rows, state, message, capped, load],
+    () => ({ rows, state, message, failure, capped, limit: LIMIT, reload: load }),
+    [rows, state, message, failure, capped, load],
   );
 }
 
@@ -180,10 +223,12 @@ export function useOpportunity(id: string | undefined, reloadToken = 0) {
       .maybeSingle();
 
     if (error) {
-      console.error('[opportunities.detail]', error);
       // A malformed id is a 22P02 from Postgres, which is a "no such record" in
-      // every sense that matters to a reader — not an outage.
-      setState(error.code === '22P02' ? 'missing' : 'error');
+      // every sense that matters to a reader — not an outage. `classify` calls
+      // that `invalid_query`; this screen calls it `missing`, which is the same
+      // fact told in the vocabulary of a page that either has a deal or does not.
+      const { failure } = classify('opportunities.detail', error, 'this opportunity');
+      setState(failure === 'invalid_query' ? 'missing' : 'error');
       return;
     }
     setDeal((data ?? null) as unknown as Opportunity | null);
@@ -197,20 +242,15 @@ export function useOpportunity(id: string | undefined, reloadToken = 0) {
 
 /* ============================================================= mutations == */
 
-/** Turn a PostgREST failure into a sentence, without repeating the database. */
+/**
+ * Turn a PostgREST failure into a sentence, without repeating the database.
+ *
+ * Every branch this used to hold now lives in `lib/dbError.ts`, tested and
+ * shared with the reads above — including the `42P01` check that never once
+ * matched, because PostgREST answers `PGRST205` for a table it cannot find.
+ */
 function refusal(error: { code?: string; message?: string }, what: string): string {
-  console.error(`[opportunities.${what}]`, error);
-  if (error.code === '42P01') {
-    return 'The pipeline tables do not exist yet. Run the migrations in supabase/migrations.';
-  }
-  if (error.code === '23514') {
-    // A check constraint. The database names columns and constraints in its
-    // message, which is useful in the console and not something to paint across
-    // an operator's screen.
-    return 'The database refused those values. Check the amount, the probability and the stage.';
-  }
-  if (error.code === '23503') return 'That record no longer exists.';
-  return 'The database refused that change. Check that your account may edit the pipeline.';
+  return classify(`opportunities.${what}`, error, 'the pipeline', true, 'write').message;
 }
 
 export function useOpportunityMutations(onChanged: () => void) {

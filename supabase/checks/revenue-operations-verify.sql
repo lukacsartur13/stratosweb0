@@ -50,8 +50,15 @@ order by 1, 2;
 
 -- 4. The enums carry what they should, and `project_status` kept its old values.
 --
---    Expected: project_status has ELEVEN labels — the original six plus the six
---    operational ones, minus the overlap ('archived' is in both lists only once).
+--    Expected: project_status has TWELVE labels — the original six (discovery,
+--    design, build, launch, care, archived) plus the six operational ones
+--    (planned, active, client_review, blocked, on_hold, completed).
+--
+--    This comment used to say ELEVEN, "minus the overlap ('archived' is in both
+--    lists only once)". There is no overlap: the operational list does not
+--    contain `archived`. Nothing was ever deduplicated, so nothing was ever
+--    subtracted, and a verification step whose stated expectation is off by one
+--    is a step that either gets ignored or reports a correct migration as broken.
 select t.typname, array_agg(e.enumlabel order by e.enumsortorder) as labels
 from pg_type t join pg_enum e on e.enumtypid = t.oid
 where t.typname in ('opportunity_stage', 'opportunity_lost_reason', 'milestone_state',

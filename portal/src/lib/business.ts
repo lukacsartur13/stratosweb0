@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { defaultProbability, type SummaryRow } from '@/lib/pipeline';
+import { refusal as classify, type DbFailure } from '@/lib/dbError';
 import { metaText, type Lead } from '@/lib/leads';
 
 /**
@@ -80,6 +81,11 @@ export function useSalesSummary(enabled = true, reloadToken = 0) {
   const [state, setState] = useState<'loading' | 'ready' | 'error' | 'unconfigured' | 'idle'>(
     enabled ? (isConfigured ? 'loading' : 'unconfigured') : 'idle',
   );
+  // This hook used to set `error` and say nothing else, so a failing aggregate
+  // rendered as four `—` cells forever with no way to tell "nothing in the
+  // pipeline" from "the function does not exist". Both are now carried out.
+  const [message, setMessage] = useState('');
+  const [failure, setFailure] = useState<DbFailure | null>(null);
 
   const load = useCallback(async () => {
     if (!enabled) return setState('idle');
@@ -88,8 +94,15 @@ export function useSalesSummary(enabled = true, reloadToken = 0) {
 
     const { data, error } = await supabase.rpc('portal_sales_summary');
     if (error) {
-      console.error('[portal_sales_summary]', error);
+      // A missing function is `PGRST202`, which classifies as
+      // `migration_missing` — the honest answer, and the one the Portal spent
+      // this whole phase not giving.
+      const { failure: cause, message: sentence } = classify(
+        'portal_sales_summary', error, 'the pipeline summary',
+      );
       setState('error');
+      setFailure(cause);
+      setMessage(sentence);
       return;
     }
     setRows(
@@ -101,12 +114,14 @@ export function useSalesSummary(enabled = true, reloadToken = 0) {
         weighted: Number(row.weighted ?? 0),
       })),
     );
+    setFailure(null);
+    setMessage('');
     setState('ready');
   }, [enabled, reloadToken]);
 
   useEffect(() => { void load(); }, [load]);
 
-  return { rows, state, reload: load };
+  return { rows, state, message, failure, reload: load };
 }
 
 /* ==================================================== source → revenue == */

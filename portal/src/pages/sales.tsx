@@ -80,7 +80,12 @@ export function SalesScreen() {
 
   return (
     <div className="grid gap-4">
-      <PipelineStrip rows={summary.rows} state={summary.state} />
+      <PipelineStrip
+        rows={summary.rows}
+        state={summary.state}
+        message={summary.message}
+        onRetry={summary.reload}
+      />
 
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <nav aria-label="Sales views" className="flex flex-wrap items-center gap-px">
@@ -132,7 +137,14 @@ export function SalesScreen() {
           {view === 'pipeline' && <Board rows={filter.filtered} filter={filter} mayEdit={mayEdit} onChanged={reload} />}
           {view === 'table' && <TableView filter={filter} capped={list.capped} limit={list.limit} />}
           {view === 'followups' && <FollowUpView rows={list.rows} />}
-          {view === 'performance' && <Performance rows={summary.rows} state={summary.state} />}
+          {view === 'performance' && (
+            <Performance
+              rows={summary.rows}
+              state={summary.state}
+              message={summary.message}
+              onRetry={summary.reload}
+            />
+          )}
         </>
       )}
 
@@ -156,7 +168,14 @@ export function SalesScreen() {
  * many records are not in it. Nothing here adds two currencies together,
  * because nothing in this system knows a rate (§4).
  */
-function PipelineStrip({ rows, state }: { rows: ReturnType<typeof useSalesSummary>['rows']; state: string }) {
+function PipelineStrip({
+  rows, state, message, onRetry,
+}: {
+  rows: ReturnType<typeof useSalesSummary>['rows'];
+  state: string;
+  message: string;
+  onRetry: () => void;
+}) {
   const open = sumByCurrency(bucket(rows, 'open'));
   const closing = sumByCurrency(bucket(rows, 'closing_month'));
   const wonMtd = sumByCurrency(bucket(rows, 'won_mtd'));
@@ -169,6 +188,7 @@ function PipelineStrip({ rows, state }: { rows: ReturnType<typeof useSalesSummar
   ];
 
   return (
+    <>
     <Panel
       aria-label="Pipeline value"
       className="grid grid-cols-2 divide-x divide-y divide-hairline bg-panel xl:grid-cols-4 xl:divide-y-0"
@@ -200,6 +220,27 @@ function PipelineStrip({ rows, state }: { rows: ReturnType<typeof useSalesSummar
         );
       })}
     </Panel>
+
+    {/*
+      Four `—` cells are what "nothing has been recorded yet" looks like, and
+      until this line they were also what "the aggregate function does not
+      exist" looked like. One is a new business; the other is a broken one. The
+      strip keeps its layout — this is a sibling line, not a fifth cell — and
+      says which.
+    */}
+    {state === 'error' && (
+      <p role="status" className="t-note flex flex-wrap items-baseline gap-x-2 text-danger">
+        <span>{message}</span>
+        <button
+          type="button"
+          onClick={onRetry}
+          className="underline underline-offset-2 hover:text-paper"
+        >
+          Retry
+        </button>
+      </p>
+    )}
+    </>
   );
 }
 
@@ -596,12 +637,22 @@ function FollowUpView({ rows }: { rows: Opportunity[] }) {
  * computed from no closed deals is unknown, and printing `0%` would be the first
  * number somebody read on a new account and the first one that was wrong.
  */
-function Performance({ rows, state }: { rows: ReturnType<typeof useSalesSummary>['rows']; state: string }) {
+function Performance({
+  rows, state, message, onRetry,
+}: {
+  rows: ReturnType<typeof useSalesSummary>['rows'];
+  state: string;
+  message: string;
+  onRetry: () => void;
+}) {
   if (state === 'loading') return <Skeleton className="h-64 w-full" />;
   if (state === 'error') {
+    // Was: "It may need the P2 migration." A guess, hedged, and printed whether
+    // the cause was a missing function, an expired session or an unplugged
+    // network cable. `classify` knows which; this prints what it knows.
     return (
       <Panel>
-        <ErrorState message="The pipeline summary could not be read. It may need the P2 migration." />
+        <ErrorState message={message} onRetry={onRetry} />
       </Panel>
     );
   }

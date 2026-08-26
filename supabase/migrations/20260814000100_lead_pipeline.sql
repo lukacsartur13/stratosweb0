@@ -38,9 +38,22 @@
 -- and it is not offered as a status anyone can set from the UI, but rows
 -- already carry it and dropping a value from an enum is not possible without
 -- the table rewrite this migration exists to avoid.
-do $$ begin
-  alter type lead_status add value if not exists 'proposal' after 'qualified';
-exception when others then null; end $$;
+-- NO EXCEPTION HANDLER, and this is a correction rather than a style choice.
+--
+-- This statement used to be wrapped in `do $$ begin ... exception when others
+-- then null; end $$;`. A PL/pgSQL block that HAS an exception handler runs its
+-- body in a SUBTRANSACTION, and a subtransaction is the one context in which
+-- Postgres still refuses `ALTER TYPE ... ADD VALUE`:
+--
+--     ERROR:  ALTER TYPE ... ADD cannot run inside a transaction block
+--
+-- The handler then caught that error and discarded it. The migration reported
+-- success, `proposal` was never added, and nothing said so. A guard that
+-- converts a hard failure into a silent no-op is worse than no guard.
+--
+-- `if not exists` does everything the handler was there for, and a bare
+-- top-level statement takes no subtransaction. It must not be re-wrapped.
+alter type lead_status add value if not exists 'proposal' after 'qualified';
 
 -- ------------------------------------------------------------------ 2. notes
 -- Private working notes on a lead.

@@ -20,7 +20,12 @@
     {
       "name": "full-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "experiments", "run", "dev:full"],
+      "runtimeArgs": [
+        "--prefix",
+        "experiments",
+        "run",
+        "dev:full"
+      ],
       "port": 5176
     },
     {
@@ -33,6 +38,17 @@
         "dev:home"
       ],
       "port": 5177
+    },
+    {
+      "name": "portal",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "portal",
+        "run",
+        "dev"
+      ],
+      "port": 5174
     }
   ]
 }
