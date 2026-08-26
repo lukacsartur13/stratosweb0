@@ -130,6 +130,56 @@ test('the hreflang set is reciprocal and complete', () => {
     // The page names itself in its own language slot.
     const self = alts.find((a) => a.lang === doc.lang);
     expect(self, `${doc.file} does not list its own language (${doc.lang})`).toBeTruthy();
+
+    /* And the self-reference is the SAME STRING as the canonical.
+   
+       This is the assertion the previous version of this file was missing, and
+       missing it is how the relative-hreflang defect produced two more crawler
+       findings than it looked like it should. With `href="/kkv.html"` beside
+       `<link rel="canonical" href="https://…/kkv.html">`, a crawler comparing
+       the two sees a conflict AND no self-reference — one root cause, three
+       reported symptoms. Checking that the page lists its own language was
+       true throughout and told me nothing. */
+    const canonical = /<link[^>]*rel="canonical"[^>]*href="([^"]*)"/.exec(doc.html)?.[1];
+    if (canonical) {
+      expect(self!.href,
+        `${doc.file}: hreflang="${doc.lang}" and rel=canonical disagree`).toBe(canonical);
+    }
+
+    /* No two languages may claim the same URL. A page declared as both the
+       Hungarian and the German version is a set the crawler cannot act on, so
+       it acts on none of it. */
+    const byHref = new Map<string, string[]>();
+    for (const a of alts) {
+      if (a.lang === 'x-default') continue;   // x-default duplicates hu on purpose
+      byHref.set(a.href, [...(byHref.get(a.href) ?? []), a.lang]);
+    }
+    for (const [href, langs] of byHref) {
+      expect(langs.length, `${doc.file}: ${href} is claimed by ${langs.join(' and ')}`).toBe(1);
+    }
+  }
+});
+
+test('each hreflang target declares the same set back', () => {
+  // Reciprocity across pages, not within one. Google ignores a one-way
+  // annotation, so a set that is internally tidy but not mirrored by its own
+  // targets does nothing at all.
+  const byUrl = new Map<string, Doc>();
+  for (const doc of docs) {
+    const canonical = /<link[^>]*rel="canonical"[^>]*href="([^"]*)"/.exec(doc.html)?.[1];
+    if (canonical) byUrl.set(canonical, doc);
+  }
+  for (const doc of docs) {
+    const alts = alternates(doc.html);
+    if (!alts.length) continue;
+    const mine = alts.map((a) => `${a.lang}=${a.href}`).sort().join('|');
+    for (const a of alts) {
+      if (a.lang === 'x-default') continue;
+      const target = byUrl.get(a.href);
+      expect(target, `${doc.file}: hreflang="${a.lang}" -> ${a.href} is not a page in this build`).toBeTruthy();
+      const theirs = alternates(target!.html).map((x) => `${x.lang}=${x.href}`).sort().join('|');
+      expect(theirs, `${doc.file} and ${target!.file} declare different sets`).toBe(mine);
+    }
   }
 });
 
