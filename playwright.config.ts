@@ -12,6 +12,9 @@ const BASE = `http://127.0.0.1:${PORT}`;
 // and running either five times over is five times the same answer.
 const NODE_ONLY = [
   /lead-endpoint\.spec\.ts/, /structured-data\.spec\.ts/, /portal-analytics\.spec\.ts/,
+  // Reads the built HTML off disk and checks the <head> link values. No page,
+  // no viewport — the same answer in every browser.
+  /head-links\.spec\.ts/,
   /portal-health\.spec\.ts/, /lead-notify\.spec\.ts/, /redirects\.spec\.ts/,
   // Runs the repository secret scan as a child process and asserts what it does
   // and does not read. No page, no viewport, and running it five times over is

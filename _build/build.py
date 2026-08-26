@@ -812,10 +812,27 @@ def build_font_preload(lang, base):
 
 
 def build_alternates(key):
+    """The hreflang set for one route, as ABSOLUTE URLs.
+
+    `absolute()` returns a root-relative path — every other consumer in this
+    file prefixes it with `SITE`, and this function was the one that did not.
+    That shipped `href="/kkv.html"` on all 78 generated routes while the three
+    Vite-built homepage shells, which interpolate `%SITE_ORIGIN%` themselves,
+    correctly said `https://…/`.
+
+    Google's requirement is a fully-qualified URL, scheme included; a relative
+    one is not interpreted, so the annotation is silently ignored and the
+    language versions never get connected. It survived six rounds of auditing
+    because the check I was running counted the tags and verified they were
+    reciprocal — both of which were true — and never looked at what was in the
+    href. Semrush's crawler did.
+
+    `tests/head-links.spec.ts` now asserts absoluteness on every built page.
+    """
     tags = "".join(
-        f'\n<link rel="alternate" hreflang="{l}" href="{absolute(l, key)}">'
+        f'\n<link rel="alternate" hreflang="{l}" href="{SITE}{absolute(l, key)}">'
         for l in LANGS)
-    return tags + f'\n<link rel="alternate" hreflang="x-default" href="{absolute("hu", key)}">'
+    return tags + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}{absolute("hu", key)}">'
 
 
 # The origin every absolute URL in <head> is built from.
