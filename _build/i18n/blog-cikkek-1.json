@@ -496,10 +496,6 @@
   "Google and Meta campaigns, with measurement and a report you can read.",
   "Google- und Meta-Kampagnen, mit Messung und verständlichem Bericht."
  ],
- "Keresőoptimalizálás: mi ez és mennyibe kerül?": [
-  "What is SEO, and what does it cost?",
-  "Was ist SEO, und was kostet es?"
- ],
  "A másik nagy költségtétel, ugyanígy tartományban.": [
   "The other big cost item, also in a range.",
   "Der andere große Kostenblock, ebenfalls als Spanne."
@@ -511,5 +507,9 @@
  "Írd össze, mit kérdeznek tőled telefonon. Ezek a kifejezések a kiindulópontod, nem az, amit a szakmai konferencián mondanál. Ha még az alapoknál tartasz, előbb a <a class=\"tlink\" href=\"blog-keresooptimalizalas.html\">keresőoptimalizálás</a> egészéről szóló cikkünk ad hozzá keretet.": [
   "Write down what people ask you on the phone. Those phrases are your starting point, not the ones you would use at a trade conference. If you are still at the basics, our article on <a class=\"tlink\" href=\"blog-what-is-seo.html\">what SEO is</a> gives you the frame first.",
   "Schreiben Sie auf, was man Sie am Telefon fragt. Diese Formulierungen sind Ihr Ausgangspunkt, nicht die von einer Fachkonferenz. Wenn Sie noch bei den Grundlagen sind, gibt unser Artikel <a class=\"tlink\" href=\"blog-was-ist-seo.html\">Was ist SEO</a> zuerst den Rahmen."
+ ],
+ "Mi az a keresőoptimalizálás, és mennyibe kerül?": [
+  "What is SEO, and what does it cost?",
+  "Was ist SEO, und was kostet es?"
  ]
 }

@@ -3,14 +3,6 @@
   "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Identity</b>",
   "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Identität</b>"
  ],
- "Logó készítés: mit kérj, és mit ne fogadj el?": [
-  "Getting a logo made: what to ask for, what not to accept",
-  "Ein Logo erstellen lassen: was Sie verlangen und was Sie nicht akzeptieren sollten"
- ],
- "Logó készítés: mit kérj, és mit ne fogadj el? | Stratos": [
-  "Getting a logo made: what to ask for | Stratos",
-  "Ein Logo erstellen lassen: was verlangen? | Stratos"
- ],
  "Mennyibe kerül a logó készítés, mit kell megkapnod a végén, és mi az a három hiba, amitől a legtöbb logó használhatatlan lesz a gyakorlatban.": [
   "What getting a logo made costs, what you must receive at the end, and the three mistakes that leave most logos unusable in practice.",
   "Was ein Logo kostet, was Sie am Ende erhalten müssen, und die drei Fehler, die die meisten Logos praktisch unbrauchbar machen."
@@ -138,5 +130,17 @@
  "Weboldal készítés KKV-nak": [
   "Web design for SMEs",
   "Webdesign für KMU"
+ ],
+ "Mire figyelj logó készítésnél: mit kérj, mit ne? | Stratos": [
+  "Getting a logo made: what to ask for | Stratos",
+  "Ein Logo erstellen lassen: was verlangen? | Stratos"
+ ],
+ "Mire figyelj logó készítésnél: mit kérj, mit ne?": [
+  "Getting a logo made: what to ask for, what not to accept",
+  "Ein Logo erstellen lassen: was Sie verlangen und was Sie nicht akzeptieren sollten"
+ ],
+ "Logó tervezés és arculat": [
+  "Logo and identity design",
+  "Logodesign und Erscheinungsbild"
  ]
 }

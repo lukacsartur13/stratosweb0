@@ -1,11 +1,11 @@
 {
  "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Keresőoptimalizálás</b>": [
-  "<a href=\"index.html\">Stratos</a> / Services / <b>SEO</b>",
-  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>SEO</b>"
+  "<a href=\"index.html\">Stratos</a> / Services / <b>SEO consultancy</b>",
+  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>SEO Betreuung</b>"
  ],
  "Minden nap beírják a Google-be, amit te árulsz. A keresőoptimalizálás arról szól, hogy ilyenkor a te oldalad jöjjön elő.": [
-  "Every day someone types what you sell into Google. Search engine optimisation is about making sure your page is what comes back.",
-  "Jeden Tag tippt jemand bei Google ein, was Sie verkaufen. Suchmaschinenoptimierung sorgt dafür, dass dann Ihre Seite erscheint."
+  "Every day someone types what you sell into Google. SEO consultancy is the work of making sure your page is what comes back.",
+  "Jeden Tag tippt jemand bei Google ein, was Sie verkaufen. SEO Betreuung sorgt dafür, dass dann Ihre Seite erscheint."
  ],
  "Technikai SEO": [
   "Technical SEO",
@@ -235,13 +235,9 @@
   "Case study",
   "Fallstudie"
  ],
- "Keresőoptimalizálás (SEO) | Stratos": [
-  "Search engine optimisation (SEO) | Stratos",
-  "Suchmaschinenoptimierung (SEO) | Stratos"
- ],
  "Keresőoptimalizálás, ami nem helyezést ígér, hanem megkeresést hoz. Technikai SEO, tartalom és helyi keresés, havi méréssel és érthető riporttal.": [
-  "SEO that promises enquiries rather than rankings. Technical SEO, content and local search, measured monthly with a report you can read.",
-  "SEO, das Anfragen verspricht statt Platzierungen. Technisches SEO, Inhalte und lokale Suche, monatlich gemessen und verständlich berichtet."
+  "SEO consultancy that reports enquiries rather than rankings: technical SEO, content architecture, keyword research and local search, measured monthly.",
+  "SEO Betreuung, die Anfragen ausweist statt Platzierungen: technisches SEO, Inhaltsarchitektur, Keyword-Recherche und lokale Suche, monatlich gemessen."
  ],
  "A kereslet<br>már megvan.<br><span class=\"sig\">Téged nem talál.</span>": [
   "The demand<br>is already there.<br><span class=\"sig\">It isn't finding you.</span>",
@@ -262,5 +258,9 @@
  "Helyi keresőoptimalizálás": [
   "Local SEO",
   "Lokales SEO"
+ ],
+ "Keresőoptimalizálás | SEO ügynökség és szakértő | Stratos": [
+  "SEO Consultancy | Technical, Content & Local SEO | Stratos",
+  "SEO Betreuung | Technik, Inhalte und lokale Suche | Stratos"
  ]
 }

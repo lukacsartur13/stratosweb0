@@ -3,29 +3,9 @@
   "Phase 8 — the services overview route, which did not exist before.",
   ""
  ],
- "Weboldal készítés, branding, SEO, hirdetés | Stratos": [
-  "Web design, branding, SEO and advertising | Stratos",
-  "Webdesign, Branding, SEO und Werbung | Stratos"
- ],
  "Weboldal készítés KKV-nak és nagyvállalatnak, branding, valamint Google és Meta hirdetéskezelés — négy szolgáltatás, egy rendszerben.": [
-  "Web design for SMEs and enterprises, branding, and Google and Meta ads management — four services in one system.",
-  "Webdesign für KMU und Großunternehmen, Branding sowie Google- und Meta-Werbung — vier Leistungen in einem System."
- ],
- "<a href=\"index.html\">Stratos</a> / <b>Szolgáltatások</b>": [
-  "<a href=\"index.html\">Stratos</a> / <b>Services</b>",
-  "<a href=\"index.html\">Stratos</a> / <b>Leistungen</b>"
- ],
- "Négy szolgáltatás,<br>egy <span class=\"sig\">rendszer.</span>": [
-  "Four services,<br>one <span class=\"sig\">system.</span>",
-  "Vier Leistungen,<br>ein <span class=\"sig\">System.</span>"
- ],
- "Egy weboldal önmagában nem hoz ügyfelet. Akkor hoz, ha van mit mondania, megtalálják, és valaki figyeli, mi történik utána. Ezért négy szolgáltatásunk van, és ezért ritkán kell mind a négy.": [
-  "A website on its own doesn't bring clients. It brings them when it has something to say, when people find it, and when somebody watches what happens next. That's why there are four services — and why you rarely need all four.",
-  "Eine Website allein bringt keine Kunden. Sie bringt welche, wenn sie etwas zu sagen hat, wenn man sie findet und wenn jemand beobachtet, was danach passiert. Deshalb gibt es vier Leistungen — und deshalb braucht man selten alle vier."
- ],
- "Nincsenek előre meghirdetett csomagok. A terjedelmet és az árat a feladat összetettsége, a követelmények és az üzleti cél határozza meg, konzultáció után.": [
-  "There are no published packages. Scope and price follow the complexity of the work, the requirements and the business objective, decided after a consultation.",
-  "Es gibt keine vorgefertigten Pakete. Umfang und Preis richten sich nach der Komplexität der Aufgabe, den Anforderungen und dem Geschäftsziel — festgelegt nach der Beratung."
+  "Bespoke web design and custom website development, built from code rather than templates — with branding, SEO and paid media working as one system.",
+  "Website erstellen lassen bei einer Webdesign Agentur: individuelles Webdesign aus Code statt Baukasten, dazu Branding, SEO und Werbung als ein System."
  ],
  "<span><b>Egyedi</b> HTML, CSS, JavaScript</span> <span><b>Három nyelven</b> magyar, angol, német</span> <span><b>Projektalapú</b> nem ügynökségi óradíj</span>": [
   "<span><b>Custom</b> HTML, CSS, JavaScript</span> <span><b>Three languages</b> Hungarian, English, German</span> <span><b>Project-based</b> not an agency hourly rate</span>",
@@ -60,8 +40,8 @@
   "01 — Website"
  ],
  "Weboldal KKV-nak": [
-  "A website for SMEs",
-  "Website für KMU"
+  "Web design for small businesses",
+  "Website für kleine Unternehmen"
  ],
  "Nincs weboldalad, vagy van, de kínos megmutatni. Nem akarsz egyszerre több százezer forintot kifizetni egy olyan dologért, aminek a működéséhez utána is kell valaki. Tervezés, fejlesztés, tárhely és karbantartás egy fix havidíjban.": [
   "You don't have a website, or you have one you'd rather not show anyone. You don't want to pay a large sum up front for something that still needs looking after afterwards. Design, development, hosting and maintenance in one fixed monthly fee.",
@@ -76,8 +56,8 @@
   "02 — Website"
  ],
  "Weboldal nagyvállalatnak": [
-  "A website for enterprises",
-  "Website für Großunternehmen"
+  "Web development for enterprises",
+  "Webentwicklung für Großunternehmen"
  ],
  "Több döntéshozó, meglévő rendszerek, jóváhagyási körök és olyan követelmények, amiket egy sablon nem tud teljesíteni. Egyedi fejlesztés, integrációk és dokumentált átadás.": [
   "Several decision-makers, existing systems, approval rounds and requirements a template can't meet. Custom development, integrations and a documented handover.",
@@ -219,17 +199,9 @@
   "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">What we can take on</span>",
   "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Was wir übernehmen können</span>"
  ],
- "A négy szolgáltatás mögötti képességek": [
+ "Keresőoptimalizált weboldal készítés": [
   "The capabilities behind the four services",
   "Die Fähigkeiten hinter den vier Leistungen"
- ],
- "Ez a lista arról szól, mit tudunk megcsinálni — nem arról, hogy minden projektben mindegyikre szükség van.": [
-  "This list is about what we can do — not about every project needing all of it.",
-  "Diese Liste sagt, was wir können — nicht, dass jedes Projekt alles davon braucht."
- ],
- "Egyedi HTML, CSS és JavaScript fejlesztés, sablon és oldalépítő nélkül.": [
-  "Custom HTML, CSS and JavaScript development, without templates or page builders.",
-  "Individuelle HTML-, CSS- und JavaScript-Entwicklung, ohne Vorlage und ohne Baukasten."
  ],
  "Reszponzív kialakítás, mobilon, tableten és asztali gépen tesztelve.": [
   "Responsive layouts, tested on phone, tablet and desktop.",
@@ -315,12 +287,12 @@
   "dead link."
  ],
  "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Weboldal</span><span class=\"branch__t\">Weboldal KKV-nak</span></a>": [
-  "<a href=\"web-design-sme.html\"><span class=\"branch__k\">01 — Website</span><span class=\"branch__t\">Websites for SMEs</span></a>",
+  "<a href=\"kkv.html\"><span class=\"branch__k\">01 — Website</span><span class=\"branch__t\">Websites for SMEs</span></a>",
   "<a href=\"webdesign-kmu.html\"><span class=\"branch__k\">01 — Website</span><span class=\"branch__t\">Websites für KMU</span></a>"
  ],
  "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Weboldal</span><span class=\"branch__t\">Weboldal nagyvállalatnak</span></a>": [
-  "<a href=\"web-design-enterprise.html\"><span class=\"branch__k\">02 — Website</span><span class=\"branch__t\">Websites for enterprises</span></a>",
-  "<a href=\"webdesign-grossunternehmen.html\"><span class=\"branch__k\">02 — Website</span><span class=\"branch__t\">Websites für Großunternehmen</span></a>"
+  "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Website</span><span class=\"branch__t\">Websites for enterprises</span></a>",
+  "<a href=\"nagyvallalat.html\"><span class=\"branch__k\">02 — Website</span><span class=\"branch__t\">Websites für Großunternehmen</span></a>"
  ],
  "<a href=\"branding.html\"><span class=\"branch__k\">03 — Arculat</span><span class=\"branch__t\">Branding és szövegezés</span></a>": [
   "<a href=\"branding.html\"><span class=\"branch__k\">03 — Identity</span><span class=\"branch__t\">Branding and copywriting</span></a>",
@@ -371,8 +343,8 @@
   "was die Suche über die Absicht lehrt, nutzt auch die Werbung."
  ],
  "<a href=\"keresooptimalizalas.html\"><span class=\"branch__k\">05 — Keresés</span><span class=\"branch__t\">Keresőoptimalizálás</span></a>": [
-  "<a href=\"seo.html\"><span class=\"branch__k\">05 — Search</span><span class=\"branch__t\">SEO</span></a>",
-  "<a href=\"suchmaschinenoptimierung.html\"><span class=\"branch__k\">05 — Suche</span><span class=\"branch__t\">SEO</span></a>"
+  "<a href=\"keresooptimalizalas.html\"><span class=\"branch__k\">05 — Search</span><span class=\"branch__t\">SEO</span></a>",
+  "<a href=\"keresooptimalizalas.html\"><span class=\"branch__k\">05 — Suche</span><span class=\"branch__t\">SEO</span></a>"
  ],
  "Az öt szolgáltatás": [
   "The five services",
@@ -381,5 +353,33 @@
  "<b>Innen tovább:</b> amit a keresés megtanít a szándékról, azt a hirdetés is használja.": [
   "<b>Where next:</b> what search teaches you about intent, advertising uses too.",
   "<b>Weiter geht es:</b> was die Suche über die Absicht lehrt, nutzt auch die Werbung."
+ ],
+ "Weboldal készítés — négy szolgáltatás, egy rendszer | Stratos": [
+  "Bespoke Web Design Agency | Custom Websites | Stratos",
+  "Website erstellen lassen | Webdesign Agentur | Stratos"
+ ],
+ "Weboldal készítés,<br>és a <span class=\"sig\">rendszer körülötte.</span>": [
+  "Bespoke web design,<br>and the <span class=\"sig\">system around it.</span>",
+  "Website erstellen lassen,<br>mit <span class=\"sig\">System.</span>"
+ ],
+ "<a href=\"index.html\">Stratos</a> / <b>Weboldal készítés</b>": [
+  "<a href=\"index.html\">Stratos</a> / <b>Bespoke web design</b>",
+  "<a href=\"index.html\">Stratos</a> / <b>Website erstellen lassen</b>"
+ ],
+ "Egy weboldal önmagában nem hoz ügyfelet. Akkor hoz, ha van mit mondania, megtalálják, és valaki figyeli, mi történik utána. Ezért áll a weboldal készítés a négy szolgáltatásunk közepén, és ezért ritkán kell mind a négy.": [
+  "A website on its own doesn't bring clients. It brings them when it has something to say, when people find it, and when somebody watches what happens next. That's why bespoke web design sits at the centre of four services — and why you rarely need all four.",
+  "Eine Website allein bringt keine Kunden. Sie bringt welche, wenn sie etwas zu sagen hat, wenn man sie findet und wenn jemand beobachtet, was danach passiert. Wer eine Website erstellen lassen möchte, bekommt bei uns deshalb vier Leistungen — und braucht selten alle vier."
+ ],
+ "Egyedi weboldal készítés HTML, CSS és JavaScript alapon, sablon és oldalépítő nélkül.": [
+  "Custom HTML, CSS and JavaScript development, without templates or page builders.",
+  "Individuelle HTML-, CSS- und JavaScript-Entwicklung, ohne Vorlage und ohne Baukasten."
+ ],
+ "Ez a lista arról szól, mit tudunk megcsinálni a céges weboldal készítéstől a kampányokig — nem arról, hogy minden projektben mindegyikre szükség van.": [
+  "This list is about what we can do — not about every project needing all of it.",
+  "Diese Liste sagt, was wir können — nicht, dass jedes Projekt alles davon braucht."
+ ],
+ "Nincsenek előre meghirdetett csomagok. A professzionális weboldal készítés terjedelmét és árát a feladat összetettsége, a követelmények és az üzleti cél határozza meg, konzultáció után.": [
+  "There are no published packages. Scope and price follow the complexity of the work, the requirements and the business objective, decided after a consultation.",
+  "Es gibt keine vorgefertigten Pakete. Umfang und Preis richten sich nach der Komplexität der Aufgabe, den Anforderungen und dem Geschäftsziel — festgelegt nach der Beratung."
  ]
 }

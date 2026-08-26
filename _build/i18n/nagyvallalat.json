@@ -1,20 +1,4 @@
 {
- "Weboldal készítés nagyvállalatoknak | Stratos": [
-  "Web design for enterprises | Stratos",
-  "Webdesign für Großunternehmen | Stratos"
- ],
- "Weboldal és rendszerfejlesztés nagyvállalatoknak: egyedi platformok, integrációk és üzemeltetés, SLA-val, a stratégiától az élesítésig.": [
-  "Web and systems development for enterprises: custom platforms, integrations and operations with an SLA, from strategy to launch.",
-  "Web- und Systementwicklung für Großunternehmen: Plattformen, Integrationen und Betrieb mit SLA, von der Strategie bis zum Launch."
- ],
- "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Weboldal nagyvállalatoknak</b>": [
-  "<a href=\"index.html\">Stratos</a> / Services / <b>Web design for enterprises</b>",
-  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Webdesign für Großunternehmen</b>"
- ],
- "Minden fejlesztés,<br><span class=\"sig\">egy partnerrel.</span>": [
-  "Every build,<br><span class=\"sig\">one partner.</span>",
-  "Jede Entwicklung,<br><span class=\"sig\">ein Partner.</span>"
- ],
  "Dedikált fejlesztőcsapat": [
   "Dedicated development team",
   "Dediziertes Entwicklungsteam"
@@ -267,11 +251,27 @@
   "Ein Unternehmensprojekt in der Umsetzung."
  ],
  "Egyedi platformok, belső rendszerek, integrációk és üzemeltetés. Nagyvállalati szintű minőség, SLA és biztonság — a stratégiától az élesítésig.": [
-  "Bespoke platforms, internal systems, integrations and operations. Enterprise-grade quality, SLA and security — from strategy to launch.",
-  "Individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live."
+  "Bespoke web development for custom platforms, internal systems, integrations and operations. Enterprise-grade quality, SLA and security — from strategy to launch.",
+  "Webentwicklung für individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live."
  ],
  "Nyelven, több piacra": [
   "Languages, several markets",
   "Sprachen, mehrere Märkte"
+ ],
+ "Weboldal fejlesztés nagyvállalatoknak | Stratos": [
+  "Bespoke Web Development Agency | Custom Platforms | Stratos",
+  "Webentwicklung Agentur | Individuelle Plattformen | Stratos"
+ ],
+ "Weboldal fejlesztés nagyvállalatoknak: egyedi platformok, integrációk és üzemeltetés, SLA-val, a stratégiától az élesítésig.": [
+  "Bespoke web development for organisations that have outgrown templates: custom platforms and web apps, integrations, and operations under an SLA.",
+  "Webentwicklung Agentur für Organisationen jenseits von Baukästen: individuelle Plattformen und Web-Apps, Systemintegrationen und Betrieb mit SLA."
+ ],
+ "Minden webfejlesztés,<br><span class=\"sig\">egy partnerrel.</span>": [
+  "Bespoke web development,<br><span class=\"sig\">one partner.</span>",
+  "Individuelle Webentwicklung,<br><span class=\"sig\">ein Partner.</span>"
+ ],
+ "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Weboldal fejlesztés</b>": [
+  "<a href=\"index.html\">Stratos</a> / Services / <b>Bespoke web development</b>",
+  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Webentwicklung</b>"
  ]
 }

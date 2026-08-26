@@ -113,12 +113,84 @@
 
 [[redirects]]
   from = "/en/web-design-gyor*"
-  to = "/en/services.html"
+  to = "/en/bespoke-web-design"
   status = 301
 
 [[redirects]]
   from = "/de/webdesign-gyor*"
-  to = "/de/leistungen.html"
+  to = "/de/website-erstellen-lassen"
+  status = 301
+
+# ------------------------------------------------------- RENAMED EN/DE ROUTES
+# The SEO ownership pass renamed five English and three German service routes so
+# the URL states the commercial intent the page now owns. Every one of these is
+# a route that WAS live, indexable and in the sitemap, so every one gets a
+# permanent redirect rather than being allowed to 404.
+#
+# The targets are EXTENSIONLESS on purpose, and that is the whole subtlety here.
+# Netlify's "Pretty URLs" 301s `/en/bespoke-web-design.html` to
+# `/en/bespoke-web-design`. A rule pointing at the `.html` form would therefore
+# resolve as old -> .html -> extensionless: two hops, and the second one is
+# invisible in this file. Pointing straight at the extensionless form — which is
+# also exactly what `absolute()` in _build/build.py emits as the canonical, the
+# hreflang and the sitemap entry — makes each of these a single hop that lands
+# on a 200 whether or not that dashboard setting is on.
+#
+# A splat is used for the same reason it is used on the Győr rules above: it
+# catches both the `.html` form the old sitemap named and the extensionless form
+# the old internal links used.
+
+# English.
+[[redirects]]
+  from = "/en/services*"
+  to = "/en/bespoke-web-design"
+  status = 301
+
+[[redirects]]
+  from = "/en/web-design-enterprise*"
+  to = "/en/bespoke-web-development"
+  status = 301
+
+# NOT a splat, unlike its neighbours. `/en/seo*` would match `/en/seo-consultancy`
+# — its own target — and the only thing standing between that rule and a redirect
+# loop would be Netlify's static-file-wins precedence. The two forms the old route
+# could be held as are named explicitly instead, so the rule cannot match the new
+# URL at all. The other renames above keep their splat because no new slug shares
+# a prefix with the old one it replaces.
+[[redirects]]
+  from = "/en/seo"
+  to = "/en/seo-consultancy"
+  status = 301
+
+[[redirects]]
+  from = "/en/seo.html"
+  to = "/en/seo-consultancy"
+  status = 301
+
+[[redirects]]
+  from = "/en/online-store*"
+  to = "/en/ecommerce-web-design"
+  status = 301
+
+[[redirects]]
+  from = "/en/web-design-sme*"
+  to = "/en/web-design-small-business"
+  status = 301
+
+# German.
+[[redirects]]
+  from = "/de/leistungen*"
+  to = "/de/website-erstellen-lassen"
+  status = 301
+
+[[redirects]]
+  from = "/de/webdesign-grossunternehmen*"
+  to = "/de/webentwicklung-agentur"
+  status = 301
+
+[[redirects]]
+  from = "/de/suchmaschinenoptimierung*"
+  to = "/de/seo-betreuung"
   status = 301
 
 # The six Wix blog posts. Wix used /post/<slug>; this site uses /blog-<slug>.html

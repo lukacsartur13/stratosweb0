@@ -98,6 +98,30 @@ async function routes() {
 /** The route path a crawler would use, from a file path in dist/. */
 const routeOf = (file) => '/' + relative(DIST, file).split('\\').join('/');
 
+/**
+ * The URL that SERVES a file, as opposed to the file's own path.
+ *
+ * Netlify's pretty URLs answer `/rolunk` with `dist/rolunk.html` and 301
+ * `/rolunk.html` to `/rolunk`, so `/rolunk` is the address the page has and
+ * `/rolunk.html` is an implementation detail that redirects. Every claim a
+ * document makes about itself — its canonical, its hreflang set, the links
+ * other pages point at it with — is about the served URL.
+ *
+ * This script used to compare those claims against the FILE path, which was
+ * true only while the canonicals still carried `.html`. The commit that made
+ * every canonical name the served URL turned all 81 of them into
+ * `canonical-self` failures here, plus four `hreflang-404`s each, because a
+ * correct `/en/about` does not match a file called `/en/about.html`. Four
+ * hundred findings, none of them a defect, in the one report whose job is to
+ * be read when something IS wrong.
+ *
+ * The homepage was already the exception the old code handled by hand
+ * (`/index.html` is served at `/`); it is the same rule as the other 80,
+ * applied to a file that happens to be named index.
+ */
+const publicPath = (route) =>
+  route.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+
 async function main() {
   if (!existsSync(DIST)) {
     console.error('seo-audit: no dist/ — run `npm run build` first.');
@@ -119,6 +143,7 @@ async function main() {
   for (const file of files) {
     const html = await readFile(file, 'utf8');
     const route = routeOf(file);
+    const served = publicPath(route);
     const is404 = basename(file) === '404.html';
 
     const canonical = one(html, /<link rel="canonical" href="([^"]+)"/);
@@ -134,14 +159,20 @@ async function main() {
 
     for (const href of all(html, /\shref="([^"#][^"]*)"/g)) {
       if (/^(https?:|mailto:|tel:|javascript:)/i.test(href)) continue;
-      const target = new URL(href, `${ORIGIN}${route}`).pathname;
+      // Normalised to the served URL, because the site links to both forms:
+      // the generated pages still write `href="rolunk.html"` while the
+      // canonicals and the sitemap name `/rolunk`. Two spellings of one page
+      // split its inbound links across two buckets, and a page whose only
+      // links landed in the other bucket reads here as an orphan.
+      const target = publicPath(new URL(href, `${ORIGIN}${route}`).pathname);
       if (!inbound.has(target)) inbound.set(target, new Set());
       // A page linking to itself is not an inbound link.
-      if (target !== route && target !== canonicalPath) inbound.get(target).add(route);
+      if (target !== served && target !== canonicalPath) inbound.get(target).add(served);
     }
 
     pages.push({
       route,
+      served,
       file: relative(ROOT, file),
       bytes: Buffer.byteLength(html),
       is404,
@@ -170,11 +201,17 @@ async function main() {
         && /<script[^>]*type="module"/.test(html),
       jsonLd: (html.match(/<script type="application\/ld\+json">/g) ?? []).length,
       breadcrumb: html.includes('"BreadcrumbList"'),
-      inSitemap: sitemapPaths.has(route) || (canonicalPath && sitemapPaths.has(canonicalPath)),
+      inSitemap: sitemapPaths.has(route) || sitemapPaths.has(served)
+        || (canonicalPath && sitemapPaths.has(canonicalPath)),
     });
   }
 
   const byRoute = new Map(pages.map((p) => [p.route, p]));
+  const byServed = new Map(pages.map((p) => [p.served, p]));
+  /** The page a same-site path would reach, in either spelling. */
+  const resolve = (path) =>
+    byServed.get(path) ?? byRoute.get(path)
+      ?? byServed.get(`${path}/`) ?? byRoute.get(`${path}index.html`);
   const failures = [];
   const warnings = [];
   const fail = (route, rule, detail) => failures.push({ route, rule, detail });
@@ -236,10 +273,11 @@ async function main() {
       if (/media-stratos\.com|wixsite|wixstatic/i.test(p.canonical)) {
         fail(p.route, 'canonical-wix', `points at the old Wix site: ${p.canonical}`);
       }
-      // Self-referential: the canonical of /en/about.html must be /en/about.html
-      // or the URL that serves it. The homepages are the one legitimate case
-      // where the two differ, and the redirect table closes it.
-      const expected = p.route.replace(/\/index\.html$/, '/');
+      // Self-referential: the canonical of dist/en/about.html must name the URL
+      // that serves it, /en/about. The file's own path is accepted too, since
+      // it 301s to the same place — a canonical that points at a redirect is
+      // worth tightening, not worth failing a build over.
+      const expected = p.served;
       if (p.canonicalPath !== p.route && p.canonicalPath !== expected) {
         fail(p.route, 'canonical-self',
           `canonical is ${p.canonicalPath}, expected ${expected}`);
@@ -265,7 +303,7 @@ async function main() {
 
     for (const alt of p.alternates) {
       const target = new URL(alt.href, `${ORIGIN}${p.route}`).pathname;
-      const targetPage = byRoute.get(target) ?? byRoute.get(`${target}index.html`);
+      const targetPage = resolve(target);
       if (!targetPage) {
         fail(p.route, 'hreflang-404', `hreflang="${alt.hreflang}" -> ${target} does not exist`);
         continue;
@@ -281,7 +319,7 @@ async function main() {
           ? new URL(back.href, `${ORIGIN}${targetPage.route}`).pathname : null;
         if (!back) {
           fail(p.route, 'hreflang-reciprocal', `${target} declares no hreflang="${p.lang}"`);
-        } else if (backTarget !== p.route && backTarget !== p.canonicalPath) {
+        } else if (![p.route, p.served, p.canonicalPath].includes(backTarget)) {
           fail(p.route, 'hreflang-reciprocal',
             `${target} points hreflang="${p.lang}" at ${backTarget}, not at ${p.route}`);
         }
@@ -329,7 +367,7 @@ async function main() {
   // ---- orphans --------------------------------------------------------------
   for (const p of pages) {
     if (p.is404 || !p.indexable) continue;
-    const links = inbound.get(p.route) ?? inbound.get(p.canonicalPath ?? '') ?? new Set();
+    const links = inbound.get(p.served) ?? inbound.get(p.canonicalPath ?? '') ?? new Set();
     p.inboundLinks = links.size;
     if (links.size === 0) fail(p.route, 'orphan', 'no other page links to it');
   }

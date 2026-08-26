@@ -24,6 +24,9 @@ const NODE_ONLY = [
   // No page, no viewport, and running it five times over is five identical
   // walks of the repository for the same answer.
   /asset-packaging\.spec\.ts/,
+  // Runs the Hungarian keyword-ownership guard as a child process against
+  // dist. Reads markup, no page, no viewport.
+  /seo-ownership\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are

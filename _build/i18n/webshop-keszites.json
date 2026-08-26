@@ -7,10 +7,6 @@
   "Logo design that<br><span class=\"sig\">works at thumbnail<br>size too.</span>",
   "Logo-Design, das<br><span class=\"sig\">auch in Briefmarken-<br>größe funktioniert.</span>"
  ],
- "A logó tervezés nem rajzolással kezdődik, hanem azzal, hogy hol fogják látni: profilképen, számlán, autón, egy 16 pixeles böngészőfülön.": [
-  "Logo design does not start with drawing. It starts with where the mark will be seen: a profile picture, an invoice, a van, a 16-pixel browser tab.",
-  "Logo-Design beginnt nicht mit dem Zeichnen, sondern damit, wo das Zeichen zu sehen sein wird: Profilbild, Rechnung, Firmenwagen, ein 16 Pixel großer Browser-Tab."
- ],
  "Mit kell jelentenie": [
   "What it has to mean",
   "Was es bedeuten muss"
@@ -35,10 +31,6 @@
   "Development",
   "Ausarbeitung"
  ],
- "Változatok minden méretre": [
-  "A version for every size",
-  "Eine Variante für jede Größe"
- ],
  "Vízszintes, függőleges és jel-önmagában verzió, világos és sötét háttérre, minimális méretekkel. A logó tervezés akkor kész, ha egyik felületen sem kell kompromisszumot kötni.": [
   "Horizontal, vertical and mark-only versions, for light and dark grounds, with minimum sizes. Logo design is finished when no surface asks you to compromise.",
   "Horizontale, vertikale und reine Zeichen-Variante, für helle und dunkle Untergründe, mit Mindestgrößen. Logo-Design ist fertig, wenn keine Fläche einen Kompromiss verlangt."
@@ -62,14 +54,6 @@
  "Webáruház keresőoptimalizálás": [
   "E-commerce SEO",
   "Onlineshop-SEO"
- ],
- "Kinek szól": [
-  "Who it is for",
-  "Für wen"
- ],
- "Ügynökség<br>vagy szakértő?<br><span class=\"sig\">Mindkettő.</span>": [
-  "An agency<br>or a specialist?<br><span class=\"sig\">Both.</span>",
-  "Agentur<br>oder Spezialist?<br><span class=\"sig\">Beides.</span>"
  ],
  "Kis csapat vagyunk, ezért azzal beszélsz, aki a munkát csinálja — nem egy account managerrel, aki továbbítja.": [
   "We are a small team, so you talk to the person doing the work — not an account manager who forwards it.",
@@ -115,11 +99,11 @@
   "E-commerce SEO is not decided on the home page but on the category and product pages: real descriptions instead of a template, clean filter URLs, structured product data, and internal linking that does not orphan the deep pages.",
   "Onlineshop-SEO entscheidet sich nicht auf der Startseite, sondern auf den Kategorie- und Produktseiten: echte Beschreibungen statt Vorlage, saubere Filter-URLs, strukturierte Produktdaten und interne Verlinkung, die tiefe Seiten nicht verwaisen lässt."
  ],
- "A havidíjon belül": [
+ "Ami benne van": [
   "Inside the monthly fee",
   "In der Monatsgebühr"
  ],
- "Keresőoptimalizált<br>weboldal készítés,<br><span class=\"sig\">karbantartással.</span>": [
+ "Havidíjas<br>weboldal készítés,<br><span class=\"sig\">karbantartással.</span>": [
   "Search-optimised<br>web design,<br><span class=\"sig\">maintenance included.</span>",
   "Suchmaschinen-<br>optimiertes Webdesign,<br><span class=\"sig\">inklusive Wartung.</span>"
  ],
@@ -127,7 +111,7 @@
   "Not a line item and not a surcharge. A site Google cannot find is a half-finished site, however good it looks.",
   "Kein Zusatzposten und kein Aufpreis. Eine Seite, die Google nicht findet, ist eine halbfertige Seite — auch wenn sie gut aussieht."
  ],
- "Keresőoptimalizált weboldal készítés": [
+ "SEO már az első verzióban": [
   "Search-optimised web design",
   "Suchmaschinenoptimiertes Webdesign"
  ],
@@ -168,7 +152,7 @@
   "Wenn später ein Shop dazukommt"
  ],
  "Az oldal moduláris, így a <a class=\"tlink\" href=\"webshop-keszites.html\">webshop készítés</a> később rákerülhet anélkül, hogy elölről kellene kezdeni. Nem kell mindent az elején eldöntened.": [
-  "The site is modular, so <a class=\"tlink\" href=\"online-store.html\">an online store</a> can be added later without starting over. You do not have to decide everything at the beginning.",
+  "The site is modular, so <a class=\"tlink\" href=\"webshop-keszites.html\">an online store</a> can be added later without starting over. You do not have to decide everything at the beginning.",
   "Die Seite ist modular, sodass <a class=\"tlink\" href=\"onlineshop-erstellung.html\">ein Onlineshop</a> später dazukommen kann, ohne von vorn zu beginnen. Sie müssen nicht alles am Anfang entscheiden."
  ],
  "Innen,<br>de nem<br>csak ide.": [
@@ -183,10 +167,6 @@
   "Web design in Budapest and anywhere else in the country works the same way, only the conversation is a video call. We also work for Austrian and German companies, in Hungarian, English and German. Over the past years that has proved no slower than meeting in person.",
   "Webdesign in Budapest und überall sonst im Land funktioniert genauso, nur ist das Gespräch ein Videocall. Wir arbeiten auch für österreichische und deutsche Unternehmen — auf Ungarisch, Englisch und Deutsch. Das hat sich in den letzten Jahren als nicht langsamer erwiesen."
  ],
- "Céges weboldal<br>készítés és<br><span class=\"sig\">weboldal fejlesztés.</span>": [
-  "Corporate websites<br>and <span class=\"sig\">custom web<br>development.</span>",
-  "Firmenwebsites<br>und <span class=\"sig\">individuelle Web-<br>entwicklung.</span>"
- ],
  "A kettő nem ugyanaz. Az egyik egy megjelenés, a másik egy rendszer, ami a cég belső folyamataihoz kapcsolódik.": [
   "They are not the same thing. One is a presence; the other is a system wired into how the company actually runs.",
   "Das ist nicht dasselbe. Das eine ist ein Auftritt, das andere ein System, das an die internen Abläufe angebunden ist."
@@ -194,14 +174,6 @@
  "Megjelenés": [
   "Presence",
   "Auftritt"
- ],
- "Céges weboldal készítés": [
-  "Corporate website design",
-  "Firmenwebsite-Erstellung"
- ],
- "A céges weboldal készítés a bemutatkozó felület: szolgáltatások, referenciák, karrieroldal, sajtószoba. Több nyelven, több országra, egy szerkeszthető rendszerben — hogy ne kelljen fejlesztőt hívni egy állásajánlat kitételéhez.": [
-  "Corporate website design is the public face: services, references, careers, a press room. Several languages, several markets, in one editable system — so nobody has to call a developer to post a job ad.",
-  "Firmenwebsite-Erstellung ist das öffentliche Gesicht: Leistungen, Referenzen, Karriereseite, Pressebereich. Mehrere Sprachen, mehrere Märkte, in einem redigierbaren System — damit niemand einen Entwickler anrufen muss, um eine Stellenanzeige zu veröffentlichen."
  ],
  "Rendszer": [
   "System",
@@ -227,12 +199,8 @@
   "SLA and monitoring",
   "SLA und Monitoring"
  ],
- "Monitorozás, mentés, biztonsági frissítés és definiált válaszidő. A céges weboldal készítés akkor kész, amikor van, aki felveszi a telefont, ha éjjel elszáll valami.": [
-  "Monitoring, backups, security updates and a defined response time. Corporate website design is finished when somebody answers the phone if something falls over at night.",
-  "Monitoring, Backups, Sicherheitsupdates und eine definierte Reaktionszeit. Firmenwebsite-Erstellung ist fertig, wenn jemand ans Telefon geht, falls nachts etwas ausfällt."
- ],
  "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Webshop készítés</b>": [
-  "<a href=\"index.html\">Stratos</a> / Services / <b>Online stores</b>",
+  "<a href=\"index.html\">Stratos</a> / Services / <b>Ecommerce web design</b>",
   "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Onlineshop-Erstellung</b>"
  ],
  "A kosár<br>nem a végállomás.<br><span class=\"sig\">A kezdet.</span>": [
@@ -240,7 +208,7 @@
   "Der Warenkorb<br>ist nicht das Ziel.<br><span class=\"sig\">Er ist der Anfang.</span>"
  ],
  "Egy webáruháznál a dizájn a legkevesebb. A vevő ott dönt, ahol a szállítási költség kiderül, és ott hagyja ott, ahol egy mezőt nem ért.": [
-  "In an online store the design is the least of it. The customer decides where the shipping cost appears, and leaves where a form field makes no sense.",
+  "In ecommerce, design is the least of it. The customer decides where the shipping cost appears, and leaves where a form field makes no sense.",
   "Bei einem Onlineshop ist das Design das Geringste. Die Kundin entscheidet dort, wo die Versandkosten erscheinen, und geht dort, wo ein Feld unverständlich ist."
  ],
  "Webshop készítés": [
@@ -328,8 +296,8 @@
   "Wir bauen aus Code, deshalb kann der Shop genau das, was nötig ist, und es kommt kein monatliches Sicherheitsupdate, das jemand einspielen muss. Dafür ist er schneller: Er schleppt keinen Code mit, den Sie nie nutzen."
  ],
  "Ha a bolt már létezik és csak a láthatóság hiányzik, arra nem ez az oldal a válasz, hanem a <a class=\"tlink\" href=\"keresooptimalizalas.html\">keresőoptimalizálás</a> — ott a kategória- és termékoldalak rendbetétele a munka.": [
-  "If the store already exists and only the visibility is missing, this page is not the answer — <a class=\"tlink\" href=\"seo.html\">SEO</a> is, and the work there is putting the category and product pages right.",
-  "Wenn der Shop schon existiert und nur die Sichtbarkeit fehlt, ist nicht diese Seite die Antwort, sondern <a class=\"tlink\" href=\"suchmaschinenoptimierung.html\">SEO</a> — dort geht es darum, Kategorie- und Produktseiten in Ordnung zu bringen."
+  "If the store already exists and only the visibility is missing, this page is not the answer — <a class=\"tlink\" href=\"keresooptimalizalas.html\">SEO</a> is, and the work there is putting the category and product pages right.",
+  "Wenn der Shop schon existiert und nur die Sichtbarkeit fehlt, ist nicht diese Seite die Antwort, sondern <a class=\"tlink\" href=\"keresooptimalizalas.html\">SEO</a> — dort geht es darum, Kategorie- und Produktseiten in Ordnung zu bringen."
  ],
  "Nézzük meg, mit kell tudnia a boltodnak.": [
   "Let's work out what your store has to do.",
@@ -396,11 +364,43 @@
   "Ein typischer Shop dauert sechs bis zehn Wochen von der Unterschrift bis zum Launch. Die längste Phase ist nicht die Entwicklung, sondern die Produktdaten: Fotos, Beschreibungen und Varianten. Liegen die vor, sind wir schneller fertig; wenn nicht, helfen wir dabei."
  ],
  "Webshop készítés és webáruház fejlesztés | Stratos": [
-  "Online store development | Stratos",
+  "Ecommerce Web Design Agency | Custom Online Stores | Stratos",
   "Onlineshop-Erstellung und Entwicklung | Stratos"
  ],
  "Webshop készítés kódból, sablon nélkül: terméktörzs, fizetés, szállítás és készletkapcsolat. Havidíjban vagy projektalapon, méréssel együtt.": [
-  "Online stores built from code, not a template: product data, payment, delivery and stock integration. Monthly fee or per project, measured from day one.",
+  "Ecommerce web design and development from code, not a template: product data, payments, delivery and stock integration, measured end to end.",
   "Onlineshops aus Code statt Vorlage: Produktdaten, Zahlung, Versand und Bestandsanbindung. Zur Monatsgebühr oder pro Projekt, von Anfang an gemessen."
+ ],
+ "Céges weboldal<br>fejlesztés és<br><span class=\"sig\">egyedi platformok.</span>": [
+  "Corporate websites<br>and <span class=\"sig\">custom web<br>development.</span>",
+  "Firmenwebsites<br>und <span class=\"sig\">individuelle Web-<br>entwicklung.</span>"
+ ],
+ "Vállalati weboldal": [
+  "Corporate website design",
+  "Firmenwebsite-Erstellung"
+ ],
+ "A vállalati weboldal a bemutatkozó felület: szolgáltatások, referenciák, karrieroldal, sajtószoba. Több nyelven, több országra, egy szerkeszthető rendszerben — hogy ne kelljen fejlesztőt hívni egy állásajánlat kitételéhez.": [
+  "Corporate website design is the public face: services, references, careers, a press room. Several languages, several markets, in one editable system — so nobody has to call a developer to post a job ad.",
+  "Firmenwebsite-Erstellung ist das öffentliche Gesicht: Leistungen, Referenzen, Karriereseite, Pressebereich. Mehrere Sprachen, mehrere Märkte, in einem redigierbaren System — damit niemand einen Entwickler anrufen muss, um eine Stellenanzeige zu veröffentlichen."
+ ],
+ "Monitorozás, mentés, biztonsági frissítés és definiált válaszidő. A céges weboldal fejlesztés akkor kész, amikor van, aki felveszi a telefont, ha éjjel elszáll valami.": [
+  "Monitoring, backups, security updates and a defined response time. Corporate website design is finished when somebody answers the phone if something falls over at night.",
+  "Monitoring, Backups, Sicherheitsupdates und eine definierte Reaktionszeit. Firmenwebsite-Erstellung ist fertig, wenn jemand ans Telefon geht, falls nachts etwas ausfällt."
+ ],
+ "Ügynökség, szakértő,<br>helyi vagy <span class=\"sig\">webáruház?</span>": [
+  "An agency<br>or a specialist?<br><span class=\"sig\">Both.</span>",
+  "Agentur<br>oder Spezialist?<br><span class=\"sig\">Beides.</span>"
+ ],
+ "Melyikre van szükséged": [
+  "Who it is for",
+  "Für wen"
+ ],
+ "A logó készítés nem rajzolással kezdődik, hanem azzal, hogy hol fogják látni: profilképen, számlán, autón, egy 16 pixeles böngészőfülön.": [
+  "Logo design does not start with drawing. It starts with where the mark will be seen: a profile picture, an invoice, a van, a 16-pixel browser tab.",
+  "Logo-Design beginnt nicht mit dem Zeichnen, sondern damit, wo das Zeichen zu sehen sein wird: Profilbild, Rechnung, Firmenwagen, ein 16 Pixel großer Browser-Tab."
+ ],
+ "Logó készítés minden méretre": [
+  "A version for every size",
+  "Eine Variante für jede Größe"
  ]
 }

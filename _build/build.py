@@ -38,13 +38,13 @@ LANGS = ("hu", "en", "de")
 SLUGS = {
     "index":       {"hu": "index.html",                    "en": "index.html",                 "de": "index.html"},
     "about":       {"hu": "rolunk.html",                   "en": "about.html",                 "de": "ueber-uns.html"},
-    "services":    {"hu": "szolgaltatasok.html",           "en": "services.html",              "de": "leistungen.html"},
-    "sme":         {"hu": "kkv.html",                      "en": "web-design-sme.html",        "de": "webdesign-kmu.html"},
-    "enterprise":  {"hu": "nagyvallalat.html",             "en": "web-design-enterprise.html", "de": "webdesign-grossunternehmen.html"},
+    "services":    {"hu": "szolgaltatasok.html",           "en": "bespoke-web-design.html",              "de": "website-erstellen-lassen.html"},
+    "sme":         {"hu": "kkv.html",                      "en": "web-design-small-business.html",        "de": "webdesign-kmu.html"},
+    "enterprise":  {"hu": "nagyvallalat.html",             "en": "bespoke-web-development.html", "de": "webentwicklung-agentur.html"},
     "branding":    {"hu": "branding.html",                 "en": "branding.html",              "de": "branding.html"},
     "ads":         {"hu": "hirdeteskezeles.html",          "en": "ads-management.html",        "de": "werbeanzeigen.html"},
-    "seo":         {"hu": "keresooptimalizalas.html",      "en": "seo.html",                   "de": "suchmaschinenoptimierung.html"},
-    "shop":        {"hu": "webshop-keszites.html",         "en": "online-store.html",          "de": "onlineshop-erstellung.html"},
+    "seo":         {"hu": "keresooptimalizalas.html",      "en": "seo-consultancy.html",                   "de": "seo-betreuung.html"},
+    "shop":        {"hu": "webshop-keszites.html",         "en": "ecommerce-web-design.html",          "de": "onlineshop-erstellung.html"},
     "impact":      {"hu": "impact-program.html",           "en": "impact-program.html",        "de": "impact-programm.html"},
     "work":        {"hu": "munkaink.html",                 "en": "work.html",                  "de": "projekte.html"},
     "case-rapidkert":    {"hu": "munka-rapidkert.html",    "en": "work-rapidkert.html",        "de": "projekt-rapidkert.html"},
@@ -67,6 +67,27 @@ SLUGS = {
     "imprint":     {"hu": "impresszum.html",               "en": "imprint.html",               "de": "impressum.html"},
 }
 BY_HU = {v["hu"]: k for k, v in SLUGS.items()}
+# Every filename any language serves a route under, back to the route key.
+#
+# `relink()` used to resolve through BY_HU alone, which quietly assumed that the
+# only page filenames in a body are Hungarian ones. They are not. A dictionary
+# VALUE can contain markup, and eight of them contain a whole <a> — so the
+# English string for a link carried `href="web-design-sme.html"` and the German
+# one `href="suchmaschinenoptimierung.html"`, already-translated filenames baked
+# in by whoever wrote the translation. relink() runs after tr.apply(), so it saw
+# those hrefs and skipped every one of them: not Hungarian, not in BY_HU, left
+# alone. They survived because they happened to be right.
+#
+# The SEO ownership pass renamed five of the eight routes they name, and all
+# eight became 404s in one edit — links no HU page and no test could show as
+# broken, because the Hungarian source they are translations OF was still
+# correct. Resolving through every language's filename fixes them and makes the
+# next rename incapable of reintroducing the class.
+#
+# Asserted unambiguous: no filename serves two different routes.
+BY_ANY = {fn: k for k, v in SLUGS.items() for fn in v.values()}
+assert len(BY_ANY) == len({(k, fn) for k, v in SLUGS.items() for fn in v.values()}), \
+    "two routes share a filename — relink() can no longer resolve one"
 
 NAV = ("about", "work", "blog", "contact")
 SERVICES = ("sme", "enterprise", "shop", "branding", "ads", "seo", "impact")
@@ -418,12 +439,12 @@ UI = {
                 "contact": "Contact"},
         "svc_all": "All services",
         "svc": {
-            "sme": ("Web design for SMEs", "1,200 M"),
-            "enterprise": ("Web design for enterprises", "9,400 M"),
+            "sme": ("Web design for small business", "1,200 M"),
+            "enterprise": ("Web development", "9,400 M"),
             "branding": ("Branding", "4,800 M"),
             "ads": ("Ads management", "17,000 M"),
-            "seo": ("SEO", "6,200 M"),
-            "shop": ("Online stores", "3,400 M"),
+            "seo": ("SEO consultancy", "6,200 M"),
+            "shop": ("Ecommerce", "3,400 M"),
             "impact": ("Impact Program", "30,000 M"),
         },
         "menu": {
@@ -513,10 +534,10 @@ UI = {
         "svc_all": "Alle Leistungen",
         "svc": {
             "sme": ("Webdesign für KMU", "1.200 M"),
-            "enterprise": ("Webdesign für Großunternehmen", "9.400 M"),
+            "enterprise": ("Webentwicklung", "9.400 M"),
             "branding": ("Branding", "4.800 M"),
             "ads": ("Werbeanzeigen", "17.000 M"),
-            "seo": ("SEO", "6.200 M"),
+            "seo": ("SEO Betreuung", "6.200 M"),
             "shop": ("Onlineshop", "3.400 M"),
             "impact": ("Impact-Programm", "30.000 M"),
         },
@@ -1509,7 +1530,7 @@ SHELL = """<!DOCTYPE html>
 <script src="{{base}}assets/js/lead.js" defer></script>{{analytics}}
 </head>
 <!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
-     is translated, so /en/web-design-sme.html and /de/webdesign-kmu.html are
+     is translated, so /en/web-design-small-business.html and /de/webdesign-kmu.html are
      both `sme`. Anything that needs to know what a page *is* should read this
      rather than parse the URL. -->
 <body data-ceiling="{{ceiling}}" data-page-key="{{pagekey}}"{{body_class}}>
@@ -1946,7 +1967,7 @@ def gate_case_links(html):
 def relink(html, lang):
     """Point every in-site link at this language's filenames and asset depth."""
     def swap(m):
-        target = BY_HU.get(m.group(2))
+        target = BY_ANY.get(m.group(2))
         if target is None:
             return m.group(0)
         return f'{m.group(1)}="{SLUGS[target][lang]}{m.group(3)}"'
@@ -2013,6 +2034,38 @@ def parse(path):
     return meta, body.strip()
 
 
+DICT_HREF_RE = re.compile(r'href="([^"/#?:][^"#?:]*\.html)"')
+
+
+def check_dict_links(table, lang):
+    """Refuse to build if a translation hardcodes a page filename we cannot resolve.
+
+    A dictionary value may contain markup, and several contain a whole <a>. When
+    a translator writes the href in the language they are translating INTO, the
+    link stops being a Hungarian filename and relink() can no longer place it:
+    it is not in the slug table, so it is passed through untouched and ships as
+    whatever string was typed. That is invisible until the route is renamed —
+    the Hungarian source stays correct, so nothing in HU or in the fragments
+    looks wrong — and then it is a 404 on a page nobody edited.
+
+    Eight links were in exactly that state before the SEO ownership pass renamed
+    five of the routes they named. The fix is to write the HUNGARIAN filename in
+    the translation, the same one the fragment uses, and let relink() localise
+    it; this check is what makes that a rule rather than a convention.
+    """
+    bad = []
+    for hu, val in table.items():
+        if not isinstance(val, str):
+            continue
+        for m in DICT_HREF_RE.finditer(val):
+            if m.group(1) not in BY_ANY:
+                bad.append((m.group(1), hu))
+    if bad:
+        lines = "\n".join(f"    href=\"{t}\"  in: {k[:60]}" for t, k in sorted(set(bad)))
+        sys.exit(f"{lang}: {len(set(bad))} translated link(s) name no known route.\n"
+                 f"  Write the Hungarian filename instead — relink() localises it.\n{lines}")
+
+
 def load_dict(lang):
     """Merge every _build/i18n/*.json. Each file maps a Hungarian string to
     ["<english>", "<german>"]; one file per page keeps them reviewable."""
@@ -2042,6 +2095,7 @@ def load_dict(lang):
                 owner[key] = path.name
     if not table:
         print(f"  ! no strings in {DICTS.relative_to(ROOT)} — {lang} stays Hungarian")
+    check_dict_links(table, lang)
     return table
 
 
@@ -2277,7 +2331,7 @@ GROUND_COPY = {
             ("sme", "Web design for small and medium businesses",
              "design, development, hosting and continuous maintenance in one fixed monthly "
              "fee, with no large upfront cost."),
-            ("enterprise", "Web and systems development for enterprises",
+            ("enterprise", "Bespoke web development for enterprises",
              "custom platforms, internal systems, integrations and operations with a "
              "dedicated development team."),
             ("branding", "Branding and identity design",
@@ -2356,7 +2410,7 @@ GROUND_COPY = {
             ("sme", "Webdesign für kleine und mittlere Unternehmen",
              "Konzept, Entwicklung, Hosting und laufende Wartung in einer festen "
              "Monatsgebühr, ohne hohe Einmalkosten."),
-            ("enterprise", "Web- und Systementwicklung für Großunternehmen",
+            ("enterprise", "Webentwicklung für Großunternehmen",
              "individuelle Plattformen, interne Systeme, Integrationen und Betrieb mit einem "
              "festen Entwicklungsteam."),
             ("branding", "Branding und Corporate Design",
@@ -2607,6 +2661,38 @@ def write_not_found():
     print(f"404: {len(LANGS)} pages")
 
 
+_PAGEKEY_RE = re.compile(rb'data-page-key="([^"]+)"')
+
+
+def prune_renamed(outdir, lang):
+    """Delete pages this generator wrote under a slug it no longer uses.
+
+    Renaming a slug writes the new file and leaves the old one sitting there,
+    and on Netlify a leftover file is worse than untidy: static files win over
+    redirects, so `/en/services` kept answering 200 from the stale copy and the
+    301 declared for it never fired. The stale copy also still carried
+    `<link rel="canonical" href=".../en/services">`, so the old URL went on
+    nominating itself while the new one nominated itself too — the exact
+    duplicate the rename existed to remove. Five English and three German
+    routes were in that state after the SEO ownership pass.
+
+    The test is the page's own `data-page-key`, not the filename: a file is
+    stale only if THIS generator wrote it (the attribute is in SHELL and
+    nothing else emits it) and the route it names is now served from a
+    different filename. That is why a hand-written page, an asset, or one of
+    the `<name> 2.html` copies iCloud leaves behind is never a candidate —
+    none of them carry the attribute at all.
+    """
+    live = {SLUGS[k][lang] for k in SLUGS} | {"404.html"}
+    for f in sorted(outdir.glob("*.html")):
+        if f.name in live:
+            continue
+        m = _PAGEKEY_RE.search(f.read_bytes())
+        if m and m.group(1).decode() in SLUGS:
+            f.unlink()
+            print(f"  pruned {lang}/{f.name} -> now {SLUGS[m.group(1).decode()][lang]}")
+
+
 def write_route_manifest():
     """The slug table, as data, for the tools downstream of this script.
 
@@ -2656,6 +2742,9 @@ def main():
         scripts = []
         outdir = ROOT if lang == "hu" else ROOT / lang
         outdir.mkdir(exist_ok=True)
+        # HU output shares the repository root with hand-written files, so it is
+        # pruned by the same key test rather than being exempt from it.
+        prune_renamed(outdir, lang)
         u = UI[lang]
         js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
 

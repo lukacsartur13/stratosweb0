@@ -1,19 +1,18 @@
 {
- "generated": "2026-08-09T14:34:01.416Z",
+ "generated": "2026-08-26T23:05:58.562Z",
  "origin": "https://stratosweb.hu",
  "previewOrigin": false,
  "excludedFromAudit": [
-  "/experiments/",
   "/portal/"
  ],
  "counts": {
-  "documents": 72,
-  "indexable": 60,
-  "noindex": 9,
+  "documents": 90,
+  "indexable": 81,
+  "noindex": 6,
   "notFound": 3,
-  "sitemapEntries": 60,
+  "sitemapEntries": 81,
   "failures": 0,
-  "warnings": 43
+  "warnings": 18
  },
  "robots": {
   "disallow": [
@@ -25,226 +24,102 @@
  "failures": [],
  "warnings": [
   {
-   "route": "/de/blog-google-unternehmensprofil.html",
-   "rule": "title-length",
-   "detail": "66 characters (over 65)"
-  },
-  {
-   "route": "/de/blog-google-unternehmensprofil.html",
-   "rule": "description-length",
-   "detail": "170 characters (outside 70–165)"
-  },
-  {
-   "route": "/de/blog-keine-anfragen.html",
-   "rule": "title-length",
-   "detail": "67 characters (over 65)"
-  },
-  {
-   "route": "/de/impact-programm.html",
-   "rule": "title-length",
-   "detail": "71 characters (over 65)"
-  },
-  {
-   "route": "/de/index.html",
-   "rule": "title-length",
-   "detail": "66 characters (over 65)"
-  },
-  {
-   "route": "/de/kontakt.html",
-   "rule": "description-length",
-   "detail": "173 characters (outside 70–165)"
-  },
-  {
-   "route": "/de/leistungen.html",
-   "rule": "description-length",
-   "detail": "176 characters (outside 70–165)"
+   "route": "/de/projekt-barbershop.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"hu\" -> /munka-barbershop is noindex"
   },
   {
    "route": "/de/projekt-barbershop.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"hu\" -> /munka-barbershop.html is noindex"
+   "detail": "hreflang=\"en\" -> /en/work-barbershop is noindex"
   },
   {
    "route": "/de/projekt-barbershop.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"en\" -> /en/work-barbershop.html is noindex"
-  },
-  {
-   "route": "/de/projekt-barbershop.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"de\" -> /de/projekt-barbershop.html is noindex"
+   "detail": "hreflang=\"de\" -> /de/projekt-barbershop is noindex"
   },
   {
    "route": "/de/projekt-mentaltrening.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"hu\" -> /munka-mentaltrening.html is noindex"
+   "detail": "hreflang=\"hu\" -> /munka-mentaltrening is noindex"
   },
   {
    "route": "/de/projekt-mentaltrening.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"en\" -> /en/work-mentaltrening.html is noindex"
+   "detail": "hreflang=\"en\" -> /en/work-mentaltrening is noindex"
   },
   {
    "route": "/de/projekt-mentaltrening.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"de\" -> /de/projekt-mentaltrening.html is noindex"
-  },
-  {
-   "route": "/de/projekt-rapidkert.html",
-   "rule": "description-length",
-   "detail": "176 characters (outside 70–165)"
-  },
-  {
-   "route": "/de/projekt-rapidkert.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"hu\" -> /munka-rapidkert.html is noindex"
-  },
-  {
-   "route": "/de/projekt-rapidkert.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"en\" -> /en/work-rapidkert.html is noindex"
-  },
-  {
-   "route": "/de/projekt-rapidkert.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"de\" -> /de/projekt-rapidkert.html is noindex"
-  },
-  {
-   "route": "/de/webdesign-grossunternehmen.html",
-   "rule": "title-length",
-   "detail": "70 characters (over 65)"
-  },
-  {
-   "route": "/en/blog-no-enquiries.html",
-   "rule": "title-length",
-   "detail": "68 characters (over 65)"
-  },
-  {
-   "route": "/en/services.html",
-   "rule": "title-length",
-   "detail": "67 characters (over 65)"
-  },
-  {
-   "route": "/en/web-design-enterprise.html",
-   "rule": "title-length",
-   "detail": "67 characters (over 65)"
+   "detail": "hreflang=\"de\" -> /de/projekt-mentaltrening is noindex"
   },
   {
    "route": "/en/work-barbershop.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"hu\" -> /munka-barbershop.html is noindex"
+   "detail": "hreflang=\"hu\" -> /munka-barbershop is noindex"
   },
   {
    "route": "/en/work-barbershop.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"en\" -> /en/work-barbershop.html is noindex"
+   "detail": "hreflang=\"en\" -> /en/work-barbershop is noindex"
   },
   {
    "route": "/en/work-barbershop.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"de\" -> /de/projekt-barbershop.html is noindex"
+   "detail": "hreflang=\"de\" -> /de/projekt-barbershop is noindex"
   },
   {
    "route": "/en/work-mentaltrening.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"hu\" -> /munka-mentaltrening.html is noindex"
+   "detail": "hreflang=\"hu\" -> /munka-mentaltrening is noindex"
   },
   {
    "route": "/en/work-mentaltrening.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"en\" -> /en/work-mentaltrening.html is noindex"
+   "detail": "hreflang=\"en\" -> /en/work-mentaltrening is noindex"
   },
   {
    "route": "/en/work-mentaltrening.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"de\" -> /de/projekt-mentaltrening.html is noindex"
-  },
-  {
-   "route": "/en/work-rapidkert.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"hu\" -> /munka-rapidkert.html is noindex"
-  },
-  {
-   "route": "/en/work-rapidkert.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"en\" -> /en/work-rapidkert.html is noindex"
-  },
-  {
-   "route": "/en/work-rapidkert.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"de\" -> /de/projekt-rapidkert.html is noindex"
-  },
-  {
-   "route": "/impact-program.html",
-   "rule": "title-length",
-   "detail": "67 characters (over 65)"
-  },
-  {
-   "route": "/index.html",
-   "rule": "title-length",
-   "detail": "72 characters (over 65)"
+   "detail": "hreflang=\"de\" -> /de/projekt-mentaltrening is noindex"
   },
   {
    "route": "/munka-barbershop.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"hu\" -> /munka-barbershop.html is noindex"
+   "detail": "hreflang=\"hu\" -> /munka-barbershop is noindex"
   },
   {
    "route": "/munka-barbershop.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"en\" -> /en/work-barbershop.html is noindex"
+   "detail": "hreflang=\"en\" -> /en/work-barbershop is noindex"
   },
   {
    "route": "/munka-barbershop.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"de\" -> /de/projekt-barbershop.html is noindex"
+   "detail": "hreflang=\"de\" -> /de/projekt-barbershop is noindex"
   },
   {
    "route": "/munka-mentaltrening.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"hu\" -> /munka-mentaltrening.html is noindex"
+   "detail": "hreflang=\"hu\" -> /munka-mentaltrening is noindex"
   },
   {
    "route": "/munka-mentaltrening.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"en\" -> /en/work-mentaltrening.html is noindex"
+   "detail": "hreflang=\"en\" -> /en/work-mentaltrening is noindex"
   },
   {
    "route": "/munka-mentaltrening.html",
    "rule": "hreflang-noindex",
-   "detail": "hreflang=\"de\" -> /de/projekt-mentaltrening.html is noindex"
-  },
-  {
-   "route": "/munka-rapidkert.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"hu\" -> /munka-rapidkert.html is noindex"
-  },
-  {
-   "route": "/munka-rapidkert.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"en\" -> /en/work-rapidkert.html is noindex"
-  },
-  {
-   "route": "/munka-rapidkert.html",
-   "rule": "hreflang-noindex",
-   "detail": "hreflang=\"de\" -> /de/projekt-rapidkert.html is noindex"
-  },
-  {
-   "route": "/szolgaltatasok.html",
-   "rule": "title-length",
-   "detail": "68 characters (over 65)"
-  },
-  {
-   "route": "/szolgaltatasok.html",
-   "rule": "description-length",
-   "detail": "166 characters (outside 70–165)"
+   "detail": "hreflang=\"de\" -> /de/projekt-mentaltrening is noindex"
   }
  ],
  "pages": [
   {
    "route": "/404.html",
+   "served": "/404",
    "file": "dist/404.html",
-   "bytes": 16139,
+   "bytes": 14475,
    "is404": true,
    "lang": "hu",
    "title": "Az oldal nem található | Stratos",
@@ -272,8 +147,9 @@
   },
   {
    "route": "/adatkezelesi-tajekoztato.html",
+   "served": "/adatkezelesi-tajekoztato",
    "file": "dist/adatkezelesi-tajekoztato.html",
-   "bytes": 35340,
+   "bytes": 30819,
    "is404": false,
    "lang": "hu",
    "title": "Adatkezelési tájékoztató | Stratos",
@@ -281,24 +157,24 @@
    "h1": [
     "Adatkezelésitájékoztató"
    ],
-   "canonical": "https://stratosweb.hu/adatkezelesi-tajekoztato.html",
-   "canonicalPath": "/adatkezelesi-tajekoztato.html",
+   "canonical": "https://stratosweb.hu/adatkezelesi-tajekoztato",
+   "canonicalPath": "/adatkezelesi-tajekoztato",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/adatkezelesi-tajekoztato.html"
+     "href": "https://stratosweb.hu/adatkezelesi-tajekoztato"
     },
     {
      "hreflang": "en",
-     "href": "/en/privacy-policy.html"
+     "href": "https://stratosweb.hu/en/privacy-policy"
     },
     {
      "hreflang": "de",
-     "href": "/de/datenschutz.html"
+     "href": "https://stratosweb.hu/de/datenschutz"
     },
     {
      "hreflang": "x-default",
-     "href": "/adatkezelesi-tajekoztato.html"
+     "href": "https://stratosweb.hu/adatkezelesi-tajekoztato"
     }
    ],
    "robotsMeta": null,
@@ -307,7 +183,7 @@
     "title": "Adatkezelési tájékoztató | Stratos",
     "description": "Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR szerint — és milyen jogaid vannak.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/adatkezelesi-tajekoztato.html",
+    "url": "https://stratosweb.hu/adatkezelesi-tajekoztato",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -315,12 +191,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 24
+   "inboundLinks": 30
   },
   {
    "route": "/arajanlat.html",
+   "served": "/arajanlat",
    "file": "dist/arajanlat.html",
-   "bytes": 15301,
+   "bytes": 13382,
    "is404": false,
    "lang": "hu",
    "title": "Weboldal igényfelmérő kérdőív | Stratos",
@@ -328,24 +205,24 @@
    "h1": [
     "Weboldaligényfelmérőkérdőív"
    ],
-   "canonical": "https://stratosweb.hu/arajanlat.html",
-   "canonicalPath": "/arajanlat.html",
+   "canonical": "https://stratosweb.hu/arajanlat",
+   "canonicalPath": "/arajanlat",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/arajanlat.html"
+     "href": "https://stratosweb.hu/arajanlat"
     },
     {
      "hreflang": "en",
-     "href": "/en/quote.html"
+     "href": "https://stratosweb.hu/en/quote"
     },
     {
      "hreflang": "de",
-     "href": "/de/angebot.html"
+     "href": "https://stratosweb.hu/de/angebot"
     },
     {
      "hreflang": "x-default",
-     "href": "/arajanlat.html"
+     "href": "https://stratosweb.hu/arajanlat"
     }
    ],
    "robotsMeta": null,
@@ -354,7 +231,7 @@
     "title": "Weboldal igényfelmérő kérdőív | Stratos",
     "description": "Töltsd ki a kérdőívet pár perc alatt, és a válaszaid alapján személyre szabott árajánlattal keresünk.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/arajanlat.html",
+    "url": "https://stratosweb.hu/arajanlat",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -362,46 +239,47 @@
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/blog-elavult-weboldal.html",
+   "served": "/blog-elavult-weboldal",
    "file": "dist/blog-elavult-weboldal.html",
-   "bytes": 27723,
+   "bytes": 25896,
    "is404": false,
    "lang": "hu",
-   "title": "Mennyi ügyfelet veszítesz egy elavult weboldal miatt? | Stratos",
+   "title": "Mit veszítesz egy elavult weboldallal? | Stratos",
    "description": "Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Végigvezetünk a számoláson, és megmutatjuk, mit érdemes megmérni előtte.",
    "h1": [
     "Mennyi ügyfelet veszítesz egy elavult weboldal miatt?"
    ],
-   "canonical": "https://stratosweb.hu/blog-elavult-weboldal.html",
-   "canonicalPath": "/blog-elavult-weboldal.html",
+   "canonical": "https://stratosweb.hu/blog-elavult-weboldal",
+   "canonicalPath": "/blog-elavult-weboldal",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-elavult-weboldal.html"
+     "href": "https://stratosweb.hu/blog-elavult-weboldal"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-outdated-website.html"
+     "href": "https://stratosweb.hu/en/blog-outdated-website"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-veraltete-website.html"
+     "href": "https://stratosweb.hu/de/blog-veraltete-website"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-elavult-weboldal.html"
+     "href": "https://stratosweb.hu/blog-elavult-weboldal"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Mennyi ügyfelet veszítesz egy elavult weboldal miatt? | Stratos",
+    "title": "Mit veszítesz egy elavult weboldallal? | Stratos",
     "description": "Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Végigvezetünk a számoláson, és megmutatjuk, mit érdemes megmérni előtte.",
     "image": "https://stratosweb.hu/assets/img/blog-5.jpg",
-    "url": "https://stratosweb.hu/blog-elavult-weboldal.html",
+    "url": "https://stratosweb.hu/blog-elavult-weboldal",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -413,42 +291,43 @@
   },
   {
    "route": "/blog-google-cegprofil.html",
+   "served": "/blog-google-cegprofil",
    "file": "dist/blog-google-cegprofil.html",
-   "bytes": 28222,
+   "bytes": 26396,
    "is404": false,
    "lang": "hu",
    "title": "Google Cégprofil beállítása lépésről lépésre | Stratos",
-   "description": "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Nyolc lépés a beállításától a rendszeres karbantartásáig.",
+   "description": "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásnak. Nyolc lépés a beállítástól a karbantartásig.",
    "h1": [
     "Google Cégprofil beállítása lépésről lépésre"
    ],
-   "canonical": "https://stratosweb.hu/blog-google-cegprofil.html",
-   "canonicalPath": "/blog-google-cegprofil.html",
+   "canonical": "https://stratosweb.hu/blog-google-cegprofil",
+   "canonicalPath": "/blog-google-cegprofil",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-google-cegprofil.html"
+     "href": "https://stratosweb.hu/blog-google-cegprofil"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-google-business-profile.html"
+     "href": "https://stratosweb.hu/en/blog-google-business-profile"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-google-unternehmensprofil.html"
+     "href": "https://stratosweb.hu/de/blog-google-unternehmensprofil"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-google-cegprofil.html"
+     "href": "https://stratosweb.hu/blog-google-cegprofil"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Google Cégprofil beállítása lépésről lépésre | Stratos",
-    "description": "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Nyolc lépés a beállításától a rendszeres karbantartásáig.",
+    "description": "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásnak. Nyolc lépés a beállítástól a karbantartásig.",
     "image": "https://stratosweb.hu/assets/img/blog-3.jpg",
-    "url": "https://stratosweb.hu/blog-google-cegprofil.html",
+    "url": "https://stratosweb.hu/blog-google-cegprofil",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -456,46 +335,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 6
+   "inboundLinks": 7
   },
   {
    "route": "/blog-google-elso-oldal.html",
+   "served": "/blog-google-elso-oldal",
    "file": "dist/blog-google-elso-oldal.html",
-   "bytes": 28549,
+   "bytes": 26588,
    "is404": false,
    "lang": "hu",
    "title": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
-   "description": "Nem varázslat kell a Google első oldalához, hanem rendszer. Hét lépés, amit egy kisvállalkozás magától is végig tud csinálni, szakzsargon nélkül.",
+   "description": "Nem varázslat kell a Google első oldalához, hanem rendszer. Hét lépés, amit egy kisvállalkozás magától is végig tud csinálni.",
    "h1": [
     "Hogyan kerülj a Google első oldalára? 7 lépés"
    ],
-   "canonical": "https://stratosweb.hu/blog-google-elso-oldal.html",
-   "canonicalPath": "/blog-google-elso-oldal.html",
+   "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
+   "canonicalPath": "/blog-google-elso-oldal",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-google-elso-oldal.html"
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-google-first-page.html"
+     "href": "https://stratosweb.hu/en/blog-google-first-page"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-google-erste-seite.html"
+     "href": "https://stratosweb.hu/de/blog-google-erste-seite"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-google-elso-oldal.html"
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
-    "description": "Nem varázslat kell a Google első oldalához, hanem rendszer. Hét lépés, amit egy kisvállalkozás magától is végig tud csinálni, szakzsargon nélkül.",
+    "description": "Nem varázslat kell a Google első oldalához, hanem rendszer. Hét lépés, amit egy kisvállalkozás magától is végig tud csinálni.",
     "image": "https://stratosweb.hu/assets/img/blog-1.jpg",
-    "url": "https://stratosweb.hu/blog-google-elso-oldal.html",
+    "url": "https://stratosweb.hu/blog-google-elso-oldal",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -503,93 +383,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 5
+   "inboundLinks": 7
   },
   {
    "route": "/blog-google-vagy-facebook.html",
+   "served": "/blog-google-vagy-facebook",
    "file": "dist/blog-google-vagy-facebook.html",
-   "bytes": 27454,
+   "bytes": 25631,
    "is404": false,
    "lang": "hu",
-   "title": "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban | Stratos",
+   "title": "Google vagy Facebook hirdetés 2026-ban? | Stratos",
    "description": "Rossz a kérdés. Megmutatjuk, melyik platform mire való, mikor melyiket érdemes választani, és miért a rendszer hozza az ügyfeleket, nem a platform.",
    "h1": [
     "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban"
    ],
-   "canonical": "https://stratosweb.hu/blog-google-vagy-facebook.html",
-   "canonicalPath": "/blog-google-vagy-facebook.html",
+   "canonical": "https://stratosweb.hu/blog-google-vagy-facebook",
+   "canonicalPath": "/blog-google-vagy-facebook",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-google-vagy-facebook.html"
+     "href": "https://stratosweb.hu/blog-google-vagy-facebook"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-google-or-facebook.html"
+     "href": "https://stratosweb.hu/en/blog-google-or-facebook"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-google-oder-facebook.html"
+     "href": "https://stratosweb.hu/de/blog-google-oder-facebook"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-google-vagy-facebook.html"
+     "href": "https://stratosweb.hu/blog-google-vagy-facebook"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban | Stratos",
+    "title": "Google vagy Facebook hirdetés 2026-ban? | Stratos",
     "description": "Rossz a kérdés. Megmutatjuk, melyik platform mire való, mikor melyiket érdemes választani, és miért a rendszer hozza az ügyfeleket, nem a platform.",
     "image": "https://stratosweb.hu/assets/img/blog-4.jpg",
-    "url": "https://stratosweb.hu/blog-google-vagy-facebook.html",
-    "type": "website"
-   },
-   "twitterCard": "summary_large_image",
-   "clientRendered": false,
-   "jsonLd": 1,
-   "breadcrumb": true,
-   "inSitemap": true,
-   "inboundLinks": 5
-  },
-  {
-   "route": "/blog-miert-nem-hoz-ugyfelet.html",
-   "file": "dist/blog-miert-nem-hoz-ugyfelet.html",
-   "bytes": 27586,
-   "is404": false,
-   "lang": "hu",
-   "title": "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba | Stratos",
-   "description": "Van weboldalad, mégsem jönnek az ügyfelek. A hét leggyakoribb ok, amit a legtöbb vállalkozás elkövet — és hogyan javítsd ki mindegyiket.",
-   "h1": [
-    "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba"
-   ],
-   "canonical": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet.html",
-   "canonicalPath": "/blog-miert-nem-hoz-ugyfelet.html",
-   "alternates": [
-    {
-     "hreflang": "hu",
-     "href": "/blog-miert-nem-hoz-ugyfelet.html"
-    },
-    {
-     "hreflang": "en",
-     "href": "/en/blog-no-enquiries.html"
-    },
-    {
-     "hreflang": "de",
-     "href": "/de/blog-keine-anfragen.html"
-    },
-    {
-     "hreflang": "x-default",
-     "href": "/blog-miert-nem-hoz-ugyfelet.html"
-    }
-   ],
-   "robotsMeta": null,
-   "indexable": true,
-   "og": {
-    "title": "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba | Stratos",
-    "description": "Van weboldalad, mégsem jönnek az ügyfelek. A hét leggyakoribb ok, amit a legtöbb vállalkozás elkövet — és hogyan javítsd ki mindegyiket.",
-    "image": "https://stratosweb.hu/assets/img/blog-6.jpg",
-    "url": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet.html",
+    "url": "https://stratosweb.hu/blog-google-vagy-facebook",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -600,43 +434,284 @@
    "inboundLinks": 6
   },
   {
-   "route": "/blog-weboldal-arak.html",
-   "file": "dist/blog-weboldal-arak.html",
-   "bytes": 28112,
+   "route": "/blog-keresooptimalizalas.html",
+   "served": "/blog-keresooptimalizalas",
+   "file": "dist/blog-keresooptimalizalas.html",
+   "bytes": 27225,
    "is404": false,
    "lang": "hu",
-   "title": "Mennyibe kerül egy weboldal 2026-ban? | Stratos",
-   "description": "A weboldal ára nem egy szám, hanem egy tartomány. Megmutatjuk, mi hajtja fel a költséget, mi nincs benne az ajánlatokban, és hogyan számold ki, mennyit ér neked.",
+   "title": "Mi az a keresőoptimalizálás, és mennyibe kerül? | Stratos",
+   "description": "Mi az a keresőoptimalizálás, mit tudsz belőle ingyen megcsinálni, mennyibe kerül, ha nem magad csinálod, és mi a helyzet a mobilalkalmazásokkal.",
    "h1": [
-    "Mennyibe kerül egy weboldal 2026-ban?"
+    "Mi az a keresőoptimalizálás, és mennyibe kerül?"
    ],
-   "canonical": "https://stratosweb.hu/blog-weboldal-arak.html",
-   "canonicalPath": "/blog-weboldal-arak.html",
+   "canonical": "https://stratosweb.hu/blog-keresooptimalizalas",
+   "canonicalPath": "/blog-keresooptimalizalas",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-weboldal-arak.html"
+     "href": "https://stratosweb.hu/blog-keresooptimalizalas"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-website-cost.html"
+     "href": "https://stratosweb.hu/en/blog-what-is-seo"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-website-kosten.html"
+     "href": "https://stratosweb.hu/de/blog-was-ist-seo"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-weboldal-arak.html"
+     "href": "https://stratosweb.hu/blog-keresooptimalizalas"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Mi az a keresőoptimalizálás, és mennyibe kerül? | Stratos",
+    "description": "Mi az a keresőoptimalizálás, mit tudsz belőle ingyen megcsinálni, mennyibe kerül, ha nem magad csinálod, és mi a helyzet a mobilalkalmazásokkal.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/blog-keresooptimalizalas",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 7
+  },
+  {
+   "route": "/blog-logo-keszites.html",
+   "served": "/blog-logo-keszites",
+   "file": "dist/blog-logo-keszites.html",
+   "bytes": 26216,
+   "is404": false,
+   "lang": "hu",
+   "title": "Mire figyelj logó készítésnél: mit kérj, mit ne? | Stratos",
+   "description": "Mennyibe kerül a logó készítés, mit kell megkapnod a végén, és mi az a három hiba, amitől a legtöbb logó használhatatlan lesz a gyakorlatban.",
+   "h1": [
+    "Mire figyelj logó készítésnél: mit kérj, mit ne?"
+   ],
+   "canonical": "https://stratosweb.hu/blog-logo-keszites",
+   "canonicalPath": "/blog-logo-keszites",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-logo-keszites"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-logo-design"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-logo-gestaltung"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-logo-keszites"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Mire figyelj logó készítésnél: mit kérj, mit ne? | Stratos",
+    "description": "Mennyibe kerül a logó készítés, mit kell megkapnod a végén, és mi az a három hiba, amitől a legtöbb logó használhatatlan lesz a gyakorlatban.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/blog-logo-keszites",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 4
+  },
+  {
+   "route": "/blog-miert-nem-hoz-ugyfelet.html",
+   "served": "/blog-miert-nem-hoz-ugyfelet",
+   "file": "dist/blog-miert-nem-hoz-ugyfelet.html",
+   "bytes": 25747,
+   "is404": false,
+   "lang": "hu",
+   "title": "Miért nem hoz ügyfelet a weboldalad? | Stratos",
+   "description": "Van weboldalad, mégsem jönnek az ügyfelek. A hét leggyakoribb ok, amit a legtöbb vállalkozás elkövet — és hogyan javítsd ki mindegyiket.",
+   "h1": [
+    "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba"
+   ],
+   "canonical": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet",
+   "canonicalPath": "/blog-miert-nem-hoz-ugyfelet",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-no-enquiries"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-keine-anfragen"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Miért nem hoz ügyfelet a weboldalad? | Stratos",
+    "description": "Van weboldalad, mégsem jönnek az ügyfelek. A hét leggyakoribb ok, amit a legtöbb vállalkozás elkövet — és hogyan javítsd ki mindegyiket.",
+    "image": "https://stratosweb.hu/assets/img/blog-6.jpg",
+    "url": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 8
+  },
+  {
+   "route": "/blog-online-marketing.html",
+   "served": "/blog-online-marketing",
+   "file": "dist/blog-online-marketing.html",
+   "bytes": 26157,
+   "is404": false,
+   "lang": "hu",
+   "title": "Online marketing kisvállalkozásnak: mivel kezdd? | Stratos",
+   "description": "Melyik marketing eszközök érik meg egy kisvállalkozásnak, mikor kell social media ügynökség, és megéri-e digitális marketing képzésre menni.",
+   "h1": [
+    "Online marketing kisvállalkozásnak: mivel kezdd?"
+   ],
+   "canonical": "https://stratosweb.hu/blog-online-marketing",
+   "canonicalPath": "/blog-online-marketing",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-online-marketing"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-online-marketing"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-online-marketing"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-online-marketing"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Online marketing kisvállalkozásnak: mivel kezdd? | Stratos",
+    "description": "Melyik marketing eszközök érik meg egy kisvállalkozásnak, mikor kell social media ügynökség, és megéri-e digitális marketing képzésre menni.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/blog-online-marketing",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 4
+  },
+  {
+   "route": "/blog-webdesign.html",
+   "served": "/blog-webdesign",
+   "file": "dist/blog-webdesign.html",
+   "bytes": 25851,
+   "is404": false,
+   "lang": "hu",
+   "title": "Webdesign: mitől jó egy weboldal design? | Stratos",
+   "description": "Mi különbözteti meg a jó webdesignt a széptől, mit nézz meg egy honlap designon, mielőtt jóváhagyod, és miért nem ízlés kérdése a döntés.",
+   "h1": [
+    "Webdesign: mitől jó egy weboldal design?"
+   ],
+   "canonical": "https://stratosweb.hu/blog-webdesign",
+   "canonicalPath": "/blog-webdesign",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-webdesign"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-web-design"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-webdesign"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-webdesign"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Webdesign: mitől jó egy weboldal design? | Stratos",
+    "description": "Mi különbözteti meg a jó webdesignt a széptől, mit nézz meg egy honlap designon, mielőtt jóváhagyod, és miért nem ízlés kérdése a döntés.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/blog-webdesign",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 7
+  },
+  {
+   "route": "/blog-weboldal-arak.html",
+   "served": "/blog-weboldal-arak",
+   "file": "dist/blog-weboldal-arak.html",
+   "bytes": 26210,
+   "is404": false,
+   "lang": "hu",
+   "title": "Mennyibe kerül egy weboldal 2026-ban? | Stratos",
+   "description": "A weboldal ára nem egy szám, hanem egy tartomány. Mi hajtja fel a költséget, mi nincs benne az ajánlatokban, és mennyit ér neked?",
+   "h1": [
+    "Mennyibe kerül egy weboldal 2026-ban?"
+   ],
+   "canonical": "https://stratosweb.hu/blog-weboldal-arak",
+   "canonicalPath": "/blog-weboldal-arak",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-weboldal-arak"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-website-cost"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-website-kosten"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-weboldal-arak"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Mennyibe kerül egy weboldal 2026-ban? | Stratos",
-    "description": "A weboldal ára nem egy szám, hanem egy tartomány. Megmutatjuk, mi hajtja fel a költséget, mi nincs benne az ajánlatokban, és hogyan számold ki, mennyit ér neked.",
+    "description": "A weboldal ára nem egy szám, hanem egy tartomány. Mi hajtja fel a költséget, mi nincs benne az ajánlatokban, és mennyit ér neked?",
     "image": "https://stratosweb.hu/assets/img/blog-2.jpg",
-    "url": "https://stratosweb.hu/blog-weboldal-arak.html",
+    "url": "https://stratosweb.hu/blog-weboldal-arak",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -648,8 +723,9 @@
   },
   {
    "route": "/blog.html",
+   "served": "/blog",
    "file": "dist/blog.html",
-   "bytes": 27948,
+   "bytes": 27641,
    "is404": false,
    "lang": "hu",
    "title": "Blog — webdesign és online marketing tippek | Stratos",
@@ -657,24 +733,24 @@
    "h1": [
     "Amit tudnodkell, érthetően."
    ],
-   "canonical": "https://stratosweb.hu/blog.html",
-   "canonicalPath": "/blog.html",
+   "canonical": "https://stratosweb.hu/blog",
+   "canonicalPath": "/blog",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog.html"
+     "href": "https://stratosweb.hu/blog"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog.html"
+     "href": "https://stratosweb.hu/en/blog"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog.html"
+     "href": "https://stratosweb.hu/de/blog"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog.html"
+     "href": "https://stratosweb.hu/blog"
     }
    ],
    "robotsMeta": null,
@@ -683,7 +759,7 @@
     "title": "Blog — webdesign és online marketing tippek | Stratos",
     "description": "Érthető, szakzsargon nélküli útmutatók vállalkozóknak: SEO, weboldal árak, Google Cégprofil, hirdetések és a leggyakoribb weboldal-hibák.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/blog.html",
+    "url": "https://stratosweb.hu/blog",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -691,46 +767,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/branding.html",
+   "served": "/branding",
    "file": "dist/branding.html",
-   "bytes": 34539,
+   "bytes": 38642,
    "is404": false,
    "lang": "hu",
-   "title": "Branding és arculattervezés | Stratos",
-   "description": "Logó, színvilág, tipográfia, képi stílus és hangnem — egy rendszerben. Építs olyan márkát, ami egy színről is eszébe jut az embereknek.",
+   "title": "Logó tervezés és arculattervezés | Stratos",
+   "description": "Logó tervezés és teljes arculat: színvilág, tipográfia, képi stílus és hangnem egy rendszerben. Építs olyan márkát, ami egy színről is eszébe jut az embereknek.",
    "h1": [
     "Egy szín.Egy szlogen.És te jutsz eszükbe."
    ],
-   "canonical": "https://stratosweb.hu/branding.html",
-   "canonicalPath": "/branding.html",
+   "canonical": "https://stratosweb.hu/branding",
+   "canonicalPath": "/branding",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/branding.html"
+     "href": "https://stratosweb.hu/branding"
     },
     {
      "hreflang": "en",
-     "href": "/en/branding.html"
+     "href": "https://stratosweb.hu/en/branding"
     },
     {
      "hreflang": "de",
-     "href": "/de/branding.html"
+     "href": "https://stratosweb.hu/de/branding"
     },
     {
      "hreflang": "x-default",
-     "href": "/branding.html"
+     "href": "https://stratosweb.hu/branding"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Branding és arculattervezés | Stratos",
-    "description": "Logó, színvilág, tipográfia, képi stílus és hangnem — egy rendszerben. Építs olyan márkát, ami egy színről is eszébe jut az embereknek.",
+    "title": "Logó tervezés és arculattervezés | Stratos",
+    "description": "Logó tervezés és teljes arculat: színvilág, tipográfia, képi stílus és hangnem egy rendszerben. Építs olyan márkát, ami egy színről is eszébe jut az embereknek.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/branding.html",
+    "url": "https://stratosweb.hu/branding",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -738,12 +815,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/de/404.html",
+   "served": "/de/404",
    "file": "dist/de/404.html",
-   "bytes": 16028,
+   "bytes": 14241,
    "is404": true,
    "lang": "de",
    "title": "Seite nicht gefunden | Stratos",
@@ -771,8 +849,9 @@
   },
   {
    "route": "/de/angebot.html",
+   "served": "/de/angebot",
    "file": "dist/de/angebot.html",
-   "bytes": 15226,
+   "bytes": 13216,
    "is404": false,
    "lang": "de",
    "title": "Fragebogen zur Website-Anforderung | Stratos",
@@ -780,24 +859,24 @@
    "h1": [
     "Website-Bedarfs-fragebogen"
    ],
-   "canonical": "https://stratosweb.hu/de/angebot.html",
-   "canonicalPath": "/de/angebot.html",
+   "canonical": "https://stratosweb.hu/de/angebot",
+   "canonicalPath": "/de/angebot",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/arajanlat.html"
+     "href": "https://stratosweb.hu/arajanlat"
     },
     {
      "hreflang": "en",
-     "href": "/en/quote.html"
+     "href": "https://stratosweb.hu/en/quote"
     },
     {
      "hreflang": "de",
-     "href": "/de/angebot.html"
+     "href": "https://stratosweb.hu/de/angebot"
     },
     {
      "hreflang": "x-default",
-     "href": "/arajanlat.html"
+     "href": "https://stratosweb.hu/arajanlat"
     }
    ],
    "robotsMeta": null,
@@ -806,7 +885,7 @@
     "title": "Fragebogen zur Website-Anforderung | Stratos",
     "description": "Füll den Fragebogen in wenigen Minuten aus, und wir melden uns mit einem auf deine Antworten zugeschnittenen Angebot.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/angebot.html",
+    "url": "https://stratosweb.hu/de/angebot",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -814,46 +893,47 @@
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/de/blog-google-erste-seite.html",
+   "served": "/de/blog-google-erste-seite",
    "file": "dist/de/blog-google-erste-seite.html",
-   "bytes": 28026,
+   "bytes": 25798,
    "is404": false,
    "lang": "de",
    "title": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
-   "description": "Auf Googles erste Seite zu kommen braucht keine Magie, sondern ein System. Sieben Schritte, die ein kleines Unternehmen selbst durchgehen kann, ohne Fachjargon.",
+   "description": "Für Googles erste Seite braucht es System, keine Magie. Sieben Schritte, die ein kleines Unternehmen selbst gehen kann.",
    "h1": [
     "Wie kommst du auf Googles erste Seite? 7 Schritte"
    ],
-   "canonical": "https://stratosweb.hu/de/blog-google-erste-seite.html",
-   "canonicalPath": "/de/blog-google-erste-seite.html",
+   "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
+   "canonicalPath": "/de/blog-google-erste-seite",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-google-elso-oldal.html"
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-google-first-page.html"
+     "href": "https://stratosweb.hu/en/blog-google-first-page"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-google-erste-seite.html"
+     "href": "https://stratosweb.hu/de/blog-google-erste-seite"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-google-elso-oldal.html"
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
-    "description": "Auf Googles erste Seite zu kommen braucht keine Magie, sondern ein System. Sieben Schritte, die ein kleines Unternehmen selbst durchgehen kann, ohne Fachjargon.",
+    "description": "Für Googles erste Seite braucht es System, keine Magie. Sieben Schritte, die ein kleines Unternehmen selbst gehen kann.",
     "image": "https://stratosweb.hu/assets/img/blog-1.jpg",
-    "url": "https://stratosweb.hu/de/blog-google-erste-seite.html",
+    "url": "https://stratosweb.hu/de/blog-google-erste-seite",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -861,93 +941,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 5
+   "inboundLinks": 7
   },
   {
    "route": "/de/blog-google-oder-facebook.html",
+   "served": "/de/blog-google-oder-facebook",
    "file": "dist/de/blog-google-oder-facebook.html",
-   "bytes": 27032,
+   "bytes": 25075,
    "is404": false,
    "lang": "de",
-   "title": "Google- oder Facebook-Werbung? Was lohnt sich 2026? | Stratos",
+   "title": "Google- oder Facebook-Werbung 2026? | Stratos",
    "description": "Falsche Frage. Wir zeigen, wofür welche Plattform gut ist, wann sich welche lohnt und warum die Kunden vom System kommen, nicht von der Plattform.",
    "h1": [
     "Google- oder Facebook-Werbung? Was lohnt sich 2026?"
    ],
-   "canonical": "https://stratosweb.hu/de/blog-google-oder-facebook.html",
-   "canonicalPath": "/de/blog-google-oder-facebook.html",
+   "canonical": "https://stratosweb.hu/de/blog-google-oder-facebook",
+   "canonicalPath": "/de/blog-google-oder-facebook",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-google-vagy-facebook.html"
+     "href": "https://stratosweb.hu/blog-google-vagy-facebook"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-google-or-facebook.html"
+     "href": "https://stratosweb.hu/en/blog-google-or-facebook"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-google-oder-facebook.html"
+     "href": "https://stratosweb.hu/de/blog-google-oder-facebook"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-google-vagy-facebook.html"
+     "href": "https://stratosweb.hu/blog-google-vagy-facebook"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Google- oder Facebook-Werbung? Was lohnt sich 2026? | Stratos",
+    "title": "Google- oder Facebook-Werbung 2026? | Stratos",
     "description": "Falsche Frage. Wir zeigen, wofür welche Plattform gut ist, wann sich welche lohnt und warum die Kunden vom System kommen, nicht von der Plattform.",
     "image": "https://stratosweb.hu/assets/img/blog-4.jpg",
-    "url": "https://stratosweb.hu/de/blog-google-oder-facebook.html",
-    "type": "website"
-   },
-   "twitterCard": "summary_large_image",
-   "clientRendered": false,
-   "jsonLd": 1,
-   "breadcrumb": true,
-   "inSitemap": true,
-   "inboundLinks": 5
-  },
-  {
-   "route": "/de/blog-google-unternehmensprofil.html",
-   "file": "dist/de/blog-google-unternehmensprofil.html",
-   "bytes": 27862,
-   "is404": false,
-   "lang": "de",
-   "title": "Google-Unternehmensprofil Schritt für Schritt einrichten | Stratos",
-   "description": "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Acht Schritte von der Einrichtung bis zur laufenden Pflege.",
-   "h1": [
-    "Google-Unternehmensprofil Schritt für Schritt einrichten"
-   ],
-   "canonical": "https://stratosweb.hu/de/blog-google-unternehmensprofil.html",
-   "canonicalPath": "/de/blog-google-unternehmensprofil.html",
-   "alternates": [
-    {
-     "hreflang": "hu",
-     "href": "/blog-google-cegprofil.html"
-    },
-    {
-     "hreflang": "en",
-     "href": "/en/blog-google-business-profile.html"
-    },
-    {
-     "hreflang": "de",
-     "href": "/de/blog-google-unternehmensprofil.html"
-    },
-    {
-     "hreflang": "x-default",
-     "href": "/blog-google-cegprofil.html"
-    }
-   ],
-   "robotsMeta": null,
-   "indexable": true,
-   "og": {
-    "title": "Google-Unternehmensprofil Schritt für Schritt einrichten | Stratos",
-    "description": "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Acht Schritte von der Einrichtung bis zur laufenden Pflege.",
-    "image": "https://stratosweb.hu/assets/img/blog-3.jpg",
-    "url": "https://stratosweb.hu/de/blog-google-unternehmensprofil.html",
+    "url": "https://stratosweb.hu/de/blog-google-oder-facebook",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -958,43 +992,92 @@
    "inboundLinks": 6
   },
   {
-   "route": "/de/blog-keine-anfragen.html",
-   "file": "dist/de/blog-keine-anfragen.html",
-   "bytes": 27200,
+   "route": "/de/blog-google-unternehmensprofil.html",
+   "served": "/de/blog-google-unternehmensprofil",
+   "file": "dist/de/blog-google-unternehmensprofil.html",
+   "bytes": 25696,
    "is404": false,
    "lang": "de",
-   "title": "Warum bringt deine Website keine Kunden? 7 häufige Fehler | Stratos",
+   "title": "Google-Unternehmensprofil einrichten | Stratos",
+   "description": "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug lokaler Unternehmen. Acht Schritte von der Einrichtung bis zur Pflege.",
+   "h1": [
+    "Google-Unternehmensprofil Schritt für Schritt einrichten"
+   ],
+   "canonical": "https://stratosweb.hu/de/blog-google-unternehmensprofil",
+   "canonicalPath": "/de/blog-google-unternehmensprofil",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-google-cegprofil"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-google-business-profile"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-google-unternehmensprofil"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-google-cegprofil"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Google-Unternehmensprofil einrichten | Stratos",
+    "description": "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug lokaler Unternehmen. Acht Schritte von der Einrichtung bis zur Pflege.",
+    "image": "https://stratosweb.hu/assets/img/blog-3.jpg",
+    "url": "https://stratosweb.hu/de/blog-google-unternehmensprofil",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 7
+  },
+  {
+   "route": "/de/blog-keine-anfragen.html",
+   "served": "/de/blog-keine-anfragen",
+   "file": "dist/de/blog-keine-anfragen.html",
+   "bytes": 25225,
+   "is404": false,
+   "lang": "de",
+   "title": "Warum Ihre Website keine Kunden bringt | Stratos",
    "description": "Du hast eine Website, aber die Kunden bleiben aus. Die sieben häufigsten Ursachen, in die die meisten Unternehmen laufen — und wie du jede behebst.",
    "h1": [
     "Warum bringt deine Website keine Kunden? 7 häufige Fehler"
    ],
-   "canonical": "https://stratosweb.hu/de/blog-keine-anfragen.html",
-   "canonicalPath": "/de/blog-keine-anfragen.html",
+   "canonical": "https://stratosweb.hu/de/blog-keine-anfragen",
+   "canonicalPath": "/de/blog-keine-anfragen",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-miert-nem-hoz-ugyfelet.html"
+     "href": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-no-enquiries.html"
+     "href": "https://stratosweb.hu/en/blog-no-enquiries"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-keine-anfragen.html"
+     "href": "https://stratosweb.hu/de/blog-keine-anfragen"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-miert-nem-hoz-ugyfelet.html"
+     "href": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Warum bringt deine Website keine Kunden? 7 häufige Fehler | Stratos",
+    "title": "Warum Ihre Website keine Kunden bringt | Stratos",
     "description": "Du hast eine Website, aber die Kunden bleiben aus. Die sieben häufigsten Ursachen, in die die meisten Unternehmen laufen — und wie du jede behebst.",
     "image": "https://stratosweb.hu/assets/img/blog-6.jpg",
-    "url": "https://stratosweb.hu/de/blog-keine-anfragen.html",
+    "url": "https://stratosweb.hu/de/blog-keine-anfragen",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1002,46 +1085,143 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 6
+   "inboundLinks": 8
   },
   {
-   "route": "/de/blog-veraltete-website.html",
-   "file": "dist/de/blog-veraltete-website.html",
-   "bytes": 27296,
+   "route": "/de/blog-logo-gestaltung.html",
+   "served": "/de/blog-logo-gestaltung",
+   "file": "dist/de/blog-logo-gestaltung.html",
+   "bytes": 25144,
    "is404": false,
    "lang": "de",
-   "title": "Wie viele Kunden kostet dich eine veraltete Website? | Stratos",
-   "description": "Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Wir gehen die Rechnung durch und zeigen, was du vorher messen solltest.",
+   "title": "Ein Logo erstellen lassen: was verlangen? | Stratos",
+   "description": "Was ein Logo kostet, was Sie am Ende erhalten müssen, und die drei Fehler, die die meisten Logos praktisch unbrauchbar machen.",
    "h1": [
-    "Wie viele Kunden kostet dich eine veraltete Website?"
+    "Ein Logo erstellen lassen: was Sie verlangen und was Sie nicht akzeptieren sollten"
    ],
-   "canonical": "https://stratosweb.hu/de/blog-veraltete-website.html",
-   "canonicalPath": "/de/blog-veraltete-website.html",
+   "canonical": "https://stratosweb.hu/de/blog-logo-gestaltung",
+   "canonicalPath": "/de/blog-logo-gestaltung",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-elavult-weboldal.html"
+     "href": "https://stratosweb.hu/blog-logo-keszites"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-outdated-website.html"
+     "href": "https://stratosweb.hu/en/blog-logo-design"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-veraltete-website.html"
+     "href": "https://stratosweb.hu/de/blog-logo-gestaltung"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-elavult-weboldal.html"
+     "href": "https://stratosweb.hu/blog-logo-keszites"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Wie viele Kunden kostet dich eine veraltete Website? | Stratos",
+    "title": "Ein Logo erstellen lassen: was verlangen? | Stratos",
+    "description": "Was ein Logo kostet, was Sie am Ende erhalten müssen, und die drei Fehler, die die meisten Logos praktisch unbrauchbar machen.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/de/blog-logo-gestaltung",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 4
+  },
+  {
+   "route": "/de/blog-online-marketing.html",
+   "served": "/de/blog-online-marketing",
+   "file": "dist/de/blog-online-marketing.html",
+   "bytes": 24996,
+   "is404": false,
+   "lang": "de",
+   "title": "Online-Marketing für kleine Unternehmen | Stratos",
+   "description": "Welche Marketingkanäle sich für ein kleines Unternehmen lohnen, wann eine Social-Media-Agentur sinnvoll ist und ob sich eine Weiterbildung auszahlt.",
+   "h1": [
+    "Online-Marketing für kleine Unternehmen: womit anfangen?"
+   ],
+   "canonical": "https://stratosweb.hu/de/blog-online-marketing",
+   "canonicalPath": "/de/blog-online-marketing",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-online-marketing"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-online-marketing"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-online-marketing"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-online-marketing"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Online-Marketing für kleine Unternehmen | Stratos",
+    "description": "Welche Marketingkanäle sich für ein kleines Unternehmen lohnen, wann eine Social-Media-Agentur sinnvoll ist und ob sich eine Weiterbildung auszahlt.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/de/blog-online-marketing",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 4
+  },
+  {
+   "route": "/de/blog-veraltete-website.html",
+   "served": "/de/blog-veraltete-website",
+   "file": "dist/de/blog-veraltete-website.html",
+   "bytes": 25341,
+   "is404": false,
+   "lang": "de",
+   "title": "Was eine veraltete Website kostet | Stratos",
+   "description": "Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Wir gehen die Rechnung durch und zeigen, was du vorher messen solltest.",
+   "h1": [
+    "Wie viele Kunden kostet dich eine veraltete Website?"
+   ],
+   "canonical": "https://stratosweb.hu/de/blog-veraltete-website",
+   "canonicalPath": "/de/blog-veraltete-website",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-elavult-weboldal"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-outdated-website"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-veraltete-website"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-elavult-weboldal"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Was eine veraltete Website kostet | Stratos",
     "description": "Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Wir gehen die Rechnung durch und zeigen, was du vorher messen solltest.",
     "image": "https://stratosweb.hu/assets/img/blog-5.jpg",
-    "url": "https://stratosweb.hu/de/blog-veraltete-website.html",
+    "url": "https://stratosweb.hu/de/blog-veraltete-website",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1052,43 +1232,140 @@
    "inboundLinks": 5
   },
   {
-   "route": "/de/blog-website-kosten.html",
-   "file": "dist/de/blog-website-kosten.html",
-   "bytes": 27697,
+   "route": "/de/blog-was-ist-seo.html",
+   "served": "/de/blog-was-ist-seo",
+   "file": "dist/de/blog-was-ist-seo.html",
+   "bytes": 25415,
    "is404": false,
    "lang": "de",
-   "title": "Was kostet eine Website 2026? | Stratos",
-   "description": "Der Preis einer Website ist keine Zahl, sondern eine Spanne. Wir zeigen, was die Kosten treibt, was in Angeboten fehlt und wie du berechnest, was sie dir wert ist.",
+   "title": "Was ist SEO, und was kostet es? | Stratos",
+   "description": "Was SEO wirklich ist, wie viel davon Sie kostenlos erledigen können, was es sonst kostet und wie es in App-Stores läuft.",
    "h1": [
-    "Was kostet eine Website 2026?"
+    "Was ist SEO, und was kostet es?"
    ],
-   "canonical": "https://stratosweb.hu/de/blog-website-kosten.html",
-   "canonicalPath": "/de/blog-website-kosten.html",
+   "canonical": "https://stratosweb.hu/de/blog-was-ist-seo",
+   "canonicalPath": "/de/blog-was-ist-seo",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-weboldal-arak.html"
+     "href": "https://stratosweb.hu/blog-keresooptimalizalas"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-website-cost.html"
+     "href": "https://stratosweb.hu/en/blog-what-is-seo"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-website-kosten.html"
+     "href": "https://stratosweb.hu/de/blog-was-ist-seo"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-weboldal-arak.html"
+     "href": "https://stratosweb.hu/blog-keresooptimalizalas"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Was ist SEO, und was kostet es? | Stratos",
+    "description": "Was SEO wirklich ist, wie viel davon Sie kostenlos erledigen können, was es sonst kostet und wie es in App-Stores läuft.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/de/blog-was-ist-seo",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 7
+  },
+  {
+   "route": "/de/blog-webdesign.html",
+   "served": "/de/blog-webdesign",
+   "file": "dist/de/blog-webdesign.html",
+   "bytes": 24747,
+   "is404": false,
+   "lang": "de",
+   "title": "Webdesign: was macht ein gutes aus? | Stratos",
+   "description": "Was gutes Webdesign von hübschem unterscheidet, was Sie vor der Freigabe prüfen sollten und warum die Entscheidung keine Geschmacksfrage ist.",
+   "h1": [
+    "Webdesign: was macht ein gutes aus?"
+   ],
+   "canonical": "https://stratosweb.hu/de/blog-webdesign",
+   "canonicalPath": "/de/blog-webdesign",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-webdesign"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-web-design"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-webdesign"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-webdesign"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Webdesign: was macht ein gutes aus? | Stratos",
+    "description": "Was gutes Webdesign von hübschem unterscheidet, was Sie vor der Freigabe prüfen sollten und warum die Entscheidung keine Geschmacksfrage ist.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/de/blog-webdesign",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 7
+  },
+  {
+   "route": "/de/blog-website-kosten.html",
+   "served": "/de/blog-website-kosten",
+   "file": "dist/de/blog-website-kosten.html",
+   "bytes": 25609,
+   "is404": false,
+   "lang": "de",
+   "title": "Was kostet eine Website 2026? | Stratos",
+   "description": "Der Preis einer Website ist eine Spanne, keine Zahl. Was ihn treibt, was Angebote auslassen, und was sie Ihnen wert ist.",
+   "h1": [
+    "Was kostet eine Website 2026?"
+   ],
+   "canonical": "https://stratosweb.hu/de/blog-website-kosten",
+   "canonicalPath": "/de/blog-website-kosten",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-weboldal-arak"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-website-cost"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-website-kosten"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-weboldal-arak"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Was kostet eine Website 2026? | Stratos",
-    "description": "Der Preis einer Website ist keine Zahl, sondern eine Spanne. Wir zeigen, was die Kosten treibt, was in Angeboten fehlt und wie du berechnest, was sie dir wert ist.",
+    "description": "Der Preis einer Website ist eine Spanne, keine Zahl. Was ihn treibt, was Angebote auslassen, und was sie Ihnen wert ist.",
     "image": "https://stratosweb.hu/assets/img/blog-2.jpg",
-    "url": "https://stratosweb.hu/de/blog-website-kosten.html",
+    "url": "https://stratosweb.hu/de/blog-website-kosten",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1100,8 +1377,9 @@
   },
   {
    "route": "/de/blog.html",
+   "served": "/de/blog",
    "file": "dist/de/blog.html",
-   "bytes": 27833,
+   "bytes": 27358,
    "is404": false,
    "lang": "de",
    "title": "Blog — Tipps zu Webdesign und Online-Marketing | Stratos",
@@ -1109,24 +1387,24 @@
    "h1": [
     "Was du wissenmusst, verständlich."
    ],
-   "canonical": "https://stratosweb.hu/de/blog.html",
-   "canonicalPath": "/de/blog.html",
+   "canonical": "https://stratosweb.hu/de/blog",
+   "canonicalPath": "/de/blog",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog.html"
+     "href": "https://stratosweb.hu/blog"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog.html"
+     "href": "https://stratosweb.hu/en/blog"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog.html"
+     "href": "https://stratosweb.hu/de/blog"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog.html"
+     "href": "https://stratosweb.hu/blog"
     }
    ],
    "robotsMeta": null,
@@ -1135,7 +1413,7 @@
     "title": "Blog — Tipps zu Webdesign und Online-Marketing | Stratos",
     "description": "Verständliche Leitfäden ohne Fachjargon für Unternehmer: SEO, Website-Preise, Google-Unternehmensprofil, Werbung und die häufigsten Website-Fehler.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/blog.html",
+    "url": "https://stratosweb.hu/de/blog",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1143,12 +1421,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/de/branding.html",
+   "served": "/de/branding",
    "file": "dist/de/branding.html",
-   "bytes": 34319,
+   "bytes": 38170,
    "is404": false,
    "lang": "de",
    "title": "Branding und Corporate Design | Stratos",
@@ -1156,24 +1435,24 @@
    "h1": [
     "Eine Farbe.Ein Satz.Und man denkt an dich."
    ],
-   "canonical": "https://stratosweb.hu/de/branding.html",
-   "canonicalPath": "/de/branding.html",
+   "canonical": "https://stratosweb.hu/de/branding",
+   "canonicalPath": "/de/branding",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/branding.html"
+     "href": "https://stratosweb.hu/branding"
     },
     {
      "hreflang": "en",
-     "href": "/en/branding.html"
+     "href": "https://stratosweb.hu/en/branding"
     },
     {
      "hreflang": "de",
-     "href": "/de/branding.html"
+     "href": "https://stratosweb.hu/de/branding"
     },
     {
      "hreflang": "x-default",
-     "href": "/branding.html"
+     "href": "https://stratosweb.hu/branding"
     }
    ],
    "robotsMeta": null,
@@ -1182,7 +1461,7 @@
     "title": "Branding und Corporate Design | Stratos",
     "description": "Logo, Farbwelt, Typografie, Bildsprache und Tonalität — in einem System. Bau eine Marke, an die man schon bei einer Farbe denkt.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/branding.html",
+    "url": "https://stratosweb.hu/de/branding",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1190,12 +1469,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/de/datenschutz.html",
+   "served": "/de/datenschutz",
    "file": "dist/de/datenschutz.html",
-   "bytes": 34435,
+   "bytes": 29794,
    "is404": false,
    "lang": "de",
    "title": "Datenschutzerklärung | Stratos",
@@ -1203,24 +1483,24 @@
    "h1": [
     "Datenschutz­erklärung"
    ],
-   "canonical": "https://stratosweb.hu/de/datenschutz.html",
-   "canonicalPath": "/de/datenschutz.html",
+   "canonical": "https://stratosweb.hu/de/datenschutz",
+   "canonicalPath": "/de/datenschutz",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/adatkezelesi-tajekoztato.html"
+     "href": "https://stratosweb.hu/adatkezelesi-tajekoztato"
     },
     {
      "hreflang": "en",
-     "href": "/en/privacy-policy.html"
+     "href": "https://stratosweb.hu/en/privacy-policy"
     },
     {
      "hreflang": "de",
-     "href": "/de/datenschutz.html"
+     "href": "https://stratosweb.hu/de/datenschutz"
     },
     {
      "hreflang": "x-default",
-     "href": "/adatkezelesi-tajekoztato.html"
+     "href": "https://stratosweb.hu/adatkezelesi-tajekoztato"
     }
    ],
    "robotsMeta": null,
@@ -1229,7 +1509,7 @@
     "title": "Datenschutzerklärung | Stratos",
     "description": "Wie wir personenbezogene Daten nach DSGVO erheben, nutzen und verarbeiten — und welche Rechte du hast.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/datenschutz.html",
+    "url": "https://stratosweb.hu/de/datenschutz",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1237,46 +1517,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 24
+   "inboundLinks": 30
   },
   {
    "route": "/de/impact-programm.html",
+   "served": "/de/impact-programm",
    "file": "dist/de/impact-programm.html",
-   "bytes": 40786,
+   "bytes": 39665,
    "is404": false,
    "lang": "de",
-   "title": "Stratos Impact-Programm — kostenlose Websites für Non-Profits | Stratos",
+   "title": "Kostenlose Websites für Non-Profits | Stratos",
    "description": "Jedes Jahr bauen wir einigen Non-Profit-Organisationen eine professionelle Website — komplett kostenlos, ohne versteckte Kosten.",
    "h1": [
     "Erstklassige Websitesfür die Menschen, dieLeben verändern."
    ],
-   "canonical": "https://stratosweb.hu/de/impact-programm.html",
-   "canonicalPath": "/de/impact-programm.html",
+   "canonical": "https://stratosweb.hu/de/impact-programm",
+   "canonicalPath": "/de/impact-programm",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/impact-program.html"
+     "href": "https://stratosweb.hu/impact-program"
     },
     {
      "hreflang": "en",
-     "href": "/en/impact-program.html"
+     "href": "https://stratosweb.hu/en/impact-program"
     },
     {
      "hreflang": "de",
-     "href": "/de/impact-programm.html"
+     "href": "https://stratosweb.hu/de/impact-programm"
     },
     {
      "hreflang": "x-default",
-     "href": "/impact-program.html"
+     "href": "https://stratosweb.hu/impact-program"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Stratos Impact-Programm — kostenlose Websites für Non-Profits | Stratos",
+    "title": "Kostenlose Websites für Non-Profits | Stratos",
     "description": "Jedes Jahr bauen wir einigen Non-Profit-Organisationen eine professionelle Website — komplett kostenlos, ohne versteckte Kosten.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/impact-programm.html",
+    "url": "https://stratosweb.hu/de/impact-programm",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1284,12 +1565,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/de/impressum.html",
+   "served": "/de/impressum",
    "file": "dist/de/impressum.html",
-   "bytes": 20626,
+   "bytes": 19301,
    "is404": false,
    "lang": "de",
    "title": "Impressum | Stratos",
@@ -1297,24 +1579,24 @@
    "h1": [
     "Impressum"
    ],
-   "canonical": "https://stratosweb.hu/de/impressum.html",
-   "canonicalPath": "/de/impressum.html",
+   "canonical": "https://stratosweb.hu/de/impressum",
+   "canonicalPath": "/de/impressum",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/impresszum.html"
+     "href": "https://stratosweb.hu/impresszum"
     },
     {
      "hreflang": "en",
-     "href": "/en/imprint.html"
+     "href": "https://stratosweb.hu/en/imprint"
     },
     {
      "hreflang": "de",
-     "href": "/de/impressum.html"
+     "href": "https://stratosweb.hu/de/impressum"
     },
     {
      "hreflang": "x-default",
-     "href": "/impresszum.html"
+     "href": "https://stratosweb.hu/impresszum"
     }
    ],
    "robotsMeta": null,
@@ -1323,7 +1605,7 @@
     "title": "Impressum | Stratos",
     "description": "Angaben zum Betreiber von Stratos Media, Kontaktdaten und Hosting-Anbieter.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/impressum.html",
+    "url": "https://stratosweb.hu/de/impressum",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1331,17 +1613,20 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 24
+   "inboundLinks": 30
   },
   {
    "route": "/de/index.html",
+   "served": "/de/",
    "file": "dist/de/index.html",
-   "bytes": 19157,
+   "bytes": 79142,
    "is404": false,
    "lang": "de",
-   "title": "Stratos — Digitale Systeme, die Wachstum bringen | Győr & Budapest",
-   "description": "Website, Branding und Werbebetreuung aus einer Hand, im Monatsmodell. Vom KMU bis zum Großunternehmen — Győr und Budapest.",
-   "h1": [],
+   "title": "Webdesign und Entwicklung | Stratos",
+   "description": "Webdesign, Branding und Werbeanzeigen aus einer Hand, zur festen Monatsgebühr. Vom Kleinunternehmen bis zum Konzern, in drei Sprachen.",
+   "h1": [
+    "Wir bauen keine Websites.\n    Höhe bauen wir.\n    Stratos · Webdesign und Digitalagentur"
+   ],
    "canonical": "https://stratosweb.hu/de/",
    "canonicalPath": "/de/",
    "alternates": [
@@ -1365,58 +1650,58 @@
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Stratos — Digitale Systeme, die Wachstum bringen | Győr & Budapest",
-    "description": "Website, Branding und Werbebetreuung aus einer Hand, im Monatsmodell. Vom KMU bis zum Großunternehmen — Győr und Budapest.",
+    "title": "Webdesign und Entwicklung | Stratos",
+    "description": "Webdesign, Branding und Werbeanzeigen aus einer Hand, zur festen Monatsgebühr. Vom Kleinunternehmen bis zum Konzern, in drei Sprachen.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
     "url": "https://stratosweb.hu/de/",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
-   "clientRendered": true,
+   "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "h1Source": "rendered — see tests/public-site.spec.ts \"has one h1 and a skip link\"",
-   "inboundLinks": 21
+   "inboundLinks": 33
   },
   {
    "route": "/de/kontakt.html",
+   "served": "/de/kontakt",
    "file": "dist/de/kontakt.html",
-   "bytes": 32410,
+   "bytes": 30067,
    "is404": false,
    "lang": "de",
    "title": "Kontakt und Projektstart | Stratos",
-   "description": "So beginnt ein Stratos-Projekt: kurze Anfrage oder ausführlicher Fragebogen, kostenlose Beratung, dann ein individuelles Angebot. Schreib, ruf an oder füll das Formular aus.",
+   "description": "So startet ein Stratos-Projekt: kurze Anfrage oder Fragebogen, kostenlose Beratung, dann ein individuelles Angebot. Schreib oder ruf an.",
    "h1": [
     "Es beginnt damit,dass du es erzählst."
    ],
-   "canonical": "https://stratosweb.hu/de/kontakt.html",
-   "canonicalPath": "/de/kontakt.html",
+   "canonical": "https://stratosweb.hu/de/kontakt",
+   "canonicalPath": "/de/kontakt",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/ugyfelszolgalat.html"
+     "href": "https://stratosweb.hu/ugyfelszolgalat"
     },
     {
      "hreflang": "en",
-     "href": "/en/contact.html"
+     "href": "https://stratosweb.hu/en/contact"
     },
     {
      "hreflang": "de",
-     "href": "/de/kontakt.html"
+     "href": "https://stratosweb.hu/de/kontakt"
     },
     {
      "hreflang": "x-default",
-     "href": "/ugyfelszolgalat.html"
+     "href": "https://stratosweb.hu/ugyfelszolgalat"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Kontakt und Projektstart | Stratos",
-    "description": "So beginnt ein Stratos-Projekt: kurze Anfrage oder ausführlicher Fragebogen, kostenlose Beratung, dann ein individuelles Angebot. Schreib, ruf an oder füll das Formular aus.",
+    "description": "So startet ein Stratos-Projekt: kurze Anfrage oder Fragebogen, kostenlose Beratung, dann ein individuelles Angebot. Schreib oder ruf an.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/kontakt.html",
+    "url": "https://stratosweb.hu/de/kontakt",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1424,46 +1709,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
-   "route": "/de/leistungen.html",
-   "file": "dist/de/leistungen.html",
-   "bytes": 35388,
+   "route": "/de/onlineshop-erstellung.html",
+   "served": "/de/onlineshop-erstellung",
+   "file": "dist/de/onlineshop-erstellung.html",
+   "bytes": 30392,
    "is404": false,
    "lang": "de",
-   "title": "Leistungen — Webdesign, Entwicklung, Branding, Werbung | Stratos",
-   "description": "Vier Leistungen, ein System: individuelle Websites für KMU und Großunternehmen, Erscheinungsbild und Texte sowie Google- und Meta-Werbebetreuung. Jedes Angebot ist individuell.",
+   "title": "Onlineshop-Erstellung und Entwicklung | Stratos",
+   "description": "Onlineshops aus Code statt Vorlage: Produktdaten, Zahlung, Versand und Bestandsanbindung. Zur Monatsgebühr oder pro Projekt, von Anfang an gemessen.",
    "h1": [
-    "Vier Leistungen,ein System."
+    "Der Warenkorbist nicht das Ziel.Er ist der Anfang."
    ],
-   "canonical": "https://stratosweb.hu/de/leistungen.html",
-   "canonicalPath": "/de/leistungen.html",
+   "canonical": "https://stratosweb.hu/de/onlineshop-erstellung",
+   "canonicalPath": "/de/onlineshop-erstellung",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/szolgaltatasok.html"
+     "href": "https://stratosweb.hu/webshop-keszites"
     },
     {
      "hreflang": "en",
-     "href": "/en/services.html"
+     "href": "https://stratosweb.hu/en/ecommerce-web-design"
     },
     {
      "hreflang": "de",
-     "href": "/de/leistungen.html"
+     "href": "https://stratosweb.hu/de/onlineshop-erstellung"
     },
     {
      "hreflang": "x-default",
-     "href": "/szolgaltatasok.html"
+     "href": "https://stratosweb.hu/webshop-keszites"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Leistungen — Webdesign, Entwicklung, Branding, Werbung | Stratos",
-    "description": "Vier Leistungen, ein System: individuelle Websites für KMU und Großunternehmen, Erscheinungsbild und Texte sowie Google- und Meta-Werbebetreuung. Jedes Angebot ist individuell.",
+    "title": "Onlineshop-Erstellung und Entwicklung | Stratos",
+    "description": "Onlineshops aus Code statt Vorlage: Produktdaten, Zahlung, Versand und Bestandsanbindung. Zur Monatsgebühr oder pro Projekt, von Anfang an gemessen.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/leistungen.html",
+    "url": "https://stratosweb.hu/de/onlineshop-erstellung",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1471,12 +1757,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/de/projekt-barbershop.html",
+   "served": "/de/projekt-barbershop",
    "file": "dist/de/projekt-barbershop.html",
-   "bytes": 26605,
+   "bytes": 25290,
    "is404": false,
    "lang": "de",
    "title": "Barbershop Győr — buchungsgesteuerte Website | Stratos",
@@ -1484,24 +1771,24 @@
    "h1": [
     "Eine Seite, deren einzige Aufgabe der Termin ist."
    ],
-   "canonical": "https://stratosweb.hu/de/projekt-barbershop.html",
-   "canonicalPath": "/de/projekt-barbershop.html",
+   "canonical": "https://stratosweb.hu/de/projekt-barbershop",
+   "canonicalPath": "/de/projekt-barbershop",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munka-barbershop.html"
+     "href": "https://stratosweb.hu/munka-barbershop"
     },
     {
      "hreflang": "en",
-     "href": "/en/work-barbershop.html"
+     "href": "https://stratosweb.hu/en/work-barbershop"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekt-barbershop.html"
+     "href": "https://stratosweb.hu/de/projekt-barbershop"
     },
     {
      "hreflang": "x-default",
-     "href": "/munka-barbershop.html"
+     "href": "https://stratosweb.hu/munka-barbershop"
     }
    ],
    "robotsMeta": "noindex, follow",
@@ -1510,7 +1797,7 @@
     "title": "Barbershop Győr — buchungsgesteuerte Website | Stratos",
     "description": "Fallstudie: die Website eines Barbershops, deren Startbildschirm nur eine Aufgabe hat — die Terminbuchung. Echte Google-Bewertungen, zweisprachige Oberfläche.",
     "image": "https://stratosweb.hu/assets/img/work-1.jpg",
-    "url": "https://stratosweb.hu/de/projekt-barbershop.html",
+    "url": "https://stratosweb.hu/de/projekt-barbershop",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1521,8 +1808,9 @@
   },
   {
    "route": "/de/projekt-mentaltrening.html",
+   "served": "/de/projekt-mentaltrening",
    "file": "dist/de/projekt-mentaltrening.html",
-   "bytes": 26539,
+   "bytes": 25209,
    "is404": false,
    "lang": "de",
    "title": "mentáliserő.hu — Website für Mentaltraining | Stratos",
@@ -1530,24 +1818,24 @@
    "h1": [
     "Ein Experte, ein Versprechen, ein Button."
    ],
-   "canonical": "https://stratosweb.hu/de/projekt-mentaltrening.html",
-   "canonicalPath": "/de/projekt-mentaltrening.html",
+   "canonical": "https://stratosweb.hu/de/projekt-mentaltrening",
+   "canonicalPath": "/de/projekt-mentaltrening",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munka-mentaltrening.html"
+     "href": "https://stratosweb.hu/munka-mentaltrening"
     },
     {
      "hreflang": "en",
-     "href": "/en/work-mentaltrening.html"
+     "href": "https://stratosweb.hu/en/work-mentaltrening"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekt-mentaltrening.html"
+     "href": "https://stratosweb.hu/de/projekt-mentaltrening"
     },
     {
      "hreflang": "x-default",
-     "href": "/munka-mentaltrening.html"
+     "href": "https://stratosweb.hu/munka-mentaltrening"
     }
    ],
    "robotsMeta": "noindex, follow",
@@ -1556,7 +1844,7 @@
     "title": "mentáliserő.hu — Website für Mentaltraining | Stratos",
     "description": "Fallstudie: eine Website für Mentaltraining im Sport. Eine Ein-Personen-Praxis, ein persönlicher Ton, eine einzige Entscheidung auf dem Startbildschirm.",
     "image": "https://stratosweb.hu/assets/img/work-2.jpg",
-    "url": "https://stratosweb.hu/de/projekt-mentaltrening.html",
+    "url": "https://stratosweb.hu/de/projekt-mentaltrening",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1567,88 +1855,43 @@
   },
   {
    "route": "/de/projekt-rapidkert.html",
+   "served": "/de/projekt-rapidkert",
    "file": "dist/de/projekt-rapidkert.html",
-   "bytes": 27141,
+   "bytes": 32032,
    "is404": false,
    "lang": "de",
-   "title": "Rapidkert Kft. — Website für Gartenbau | Stratos",
-   "description": "Fallstudie: eine Website für automatische Bewässerung und Gartenbau. Ein abendliches Gartenfoto, eine klar benannte Leistung, eine kostenlose Beratung als einzige Aufforderung.",
+   "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+   "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 15 Mio. HUF Auftragswert aus der Suche.",
    "h1": [
-    "Ein Garten, den du auch abends ansehen willst."
+    "Ein großartiger Garten beginnt unter der Oberfläche."
    ],
-   "canonical": "https://stratosweb.hu/de/projekt-rapidkert.html",
-   "canonicalPath": "/de/projekt-rapidkert.html",
+   "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
+   "canonicalPath": "/de/projekt-rapidkert",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munka-rapidkert.html"
+     "href": "https://stratosweb.hu/munka-rapidkert"
     },
     {
      "hreflang": "en",
-     "href": "/en/work-rapidkert.html"
+     "href": "https://stratosweb.hu/en/work-rapidkert"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekt-rapidkert.html"
+     "href": "https://stratosweb.hu/de/projekt-rapidkert"
     },
     {
      "hreflang": "x-default",
-     "href": "/munka-rapidkert.html"
-    }
-   ],
-   "robotsMeta": "noindex, follow",
-   "indexable": false,
-   "og": {
-    "title": "Rapidkert Kft. — Website für Gartenbau | Stratos",
-    "description": "Fallstudie: eine Website für automatische Bewässerung und Gartenbau. Ein abendliches Gartenfoto, eine klar benannte Leistung, eine kostenlose Beratung als einzige Aufforderung.",
-    "image": "https://stratosweb.hu/assets/img/work-3.jpg",
-    "url": "https://stratosweb.hu/de/projekt-rapidkert.html",
-    "type": "website"
-   },
-   "twitterCard": "summary_large_image",
-   "clientRendered": false,
-   "jsonLd": 1,
-   "breadcrumb": true,
-   "inSitemap": false
-  },
-  {
-   "route": "/de/projekte.html",
-   "file": "dist/de/projekte.html",
-   "bytes": 28790,
-   "is404": false,
-   "lang": "de",
-   "title": "Projekte — Live-Websites und Kundenprojekte | Stratos",
-   "description": "Gartenbau, Barbershop, Mentaltraining — Live-Websites, die wir gebaut haben. Was der Kunde bekommen hat, mit welcher Struktur und in welcher visuellen Richtung.",
-   "h1": [
-    "Live-Websites,keine Portfoliobilder."
-   ],
-   "canonical": "https://stratosweb.hu/de/projekte.html",
-   "canonicalPath": "/de/projekte.html",
-   "alternates": [
-    {
-     "hreflang": "hu",
-     "href": "/munkaink.html"
-    },
-    {
-     "hreflang": "en",
-     "href": "/en/work.html"
-    },
-    {
-     "hreflang": "de",
-     "href": "/de/projekte.html"
-    },
-    {
-     "hreflang": "x-default",
-     "href": "/munkaink.html"
+     "href": "https://stratosweb.hu/munka-rapidkert"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Projekte — Live-Websites und Kundenprojekte | Stratos",
-    "description": "Gartenbau, Barbershop, Mentaltraining — Live-Websites, die wir gebaut haben. Was der Kunde bekommen hat, mit welcher Struktur und in welcher visuellen Richtung.",
-    "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/projekte.html",
+    "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+    "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 15 Mio. HUF Auftragswert aus der Suche.",
+    "image": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
+    "url": "https://stratosweb.hu/de/projekt-rapidkert",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1656,12 +1899,109 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 6
+  },
+  {
+   "route": "/de/projekte.html",
+   "served": "/de/projekte",
+   "file": "dist/de/projekte.html",
+   "bytes": 25543,
+   "is404": false,
+   "lang": "de",
+   "title": "Projekte — Live-Websites und Kundenprojekte | Stratos",
+   "description": "Gartenbau, Barbershop, Mentaltraining — Websites, die wir gebaut haben, und was die Kunden bekommen haben.",
+   "h1": [
+    "Live-Websites,keine Portfoliobilder."
+   ],
+   "canonical": "https://stratosweb.hu/de/projekte",
+   "canonicalPath": "/de/projekte",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/munkaink"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/work"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/projekte"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/munkaink"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Projekte — Live-Websites und Kundenprojekte | Stratos",
+    "description": "Gartenbau, Barbershop, Mentaltraining — Websites, die wir gebaut haben, und was die Kunden bekommen haben.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/de/projekte",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 31
+  },
+  {
+   "route": "/de/seo-betreuung.html",
+   "served": "/de/seo-betreuung",
+   "file": "dist/de/seo-betreuung.html",
+   "bytes": 35451,
+   "is404": false,
+   "lang": "de",
+   "title": "SEO Betreuung | Technik, Inhalte und lokale Suche | Stratos",
+   "description": "SEO Betreuung, die Anfragen ausweist statt Platzierungen: technisches SEO, Inhaltsarchitektur, Keyword-Recherche und lokale Suche, monatlich gemessen.",
+   "h1": [
+    "Die Nachfrageist längst da.Sie findet Sie nicht."
+   ],
+   "canonical": "https://stratosweb.hu/de/seo-betreuung",
+   "canonicalPath": "/de/seo-betreuung",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/keresooptimalizalas"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/seo-consultancy"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/seo-betreuung"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/keresooptimalizalas"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "SEO Betreuung | Technik, Inhalte und lokale Suche | Stratos",
+    "description": "SEO Betreuung, die Anfragen ausweist statt Platzierungen: technisches SEO, Inhaltsarchitektur, Keyword-Recherche und lokale Suche, monatlich gemessen.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/de/seo-betreuung",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 31
   },
   {
    "route": "/de/ueber-uns.html",
+   "served": "/de/ueber-uns",
    "file": "dist/de/ueber-uns.html",
-   "bytes": 47925,
+   "bytes": 47577,
    "is404": false,
    "lang": "de",
    "title": "Über uns — die Geschichte von Stratos | Stratos Media",
@@ -1669,24 +2009,24 @@
    "h1": [
     "Die Geschichtevon Stratos"
    ],
-   "canonical": "https://stratosweb.hu/de/ueber-uns.html",
-   "canonicalPath": "/de/ueber-uns.html",
+   "canonical": "https://stratosweb.hu/de/ueber-uns",
+   "canonicalPath": "/de/ueber-uns",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/rolunk.html"
+     "href": "https://stratosweb.hu/rolunk"
     },
     {
      "hreflang": "en",
-     "href": "/en/about.html"
+     "href": "https://stratosweb.hu/en/about"
     },
     {
      "hreflang": "de",
-     "href": "/de/ueber-uns.html"
+     "href": "https://stratosweb.hu/de/ueber-uns"
     },
     {
      "hreflang": "x-default",
-     "href": "/rolunk.html"
+     "href": "https://stratosweb.hu/rolunk"
     }
    ],
    "robotsMeta": null,
@@ -1695,7 +2035,7 @@
     "title": "Über uns — die Geschichte von Stratos | Stratos Media",
     "description": "Der Name Stratos stammt aus der Stratosphäre. Hier erfährst du, wer wir sind, wie wir denken und warum uns die alltägliche Höhe nie reicht.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/ueber-uns.html",
+    "url": "https://stratosweb.hu/de/ueber-uns",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1703,93 +2043,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
-  },
-  {
-   "route": "/de/webdesign-grossunternehmen.html",
-   "file": "dist/de/webdesign-grossunternehmen.html",
-   "bytes": 39449,
-   "is404": false,
-   "lang": "de",
-   "title": "Webdesign für Großunternehmen — dediziertes Entwicklungsteam | Stratos",
-   "description": "Individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live.",
-   "h1": [
-    "Jede Entwicklung,ein Partner."
-   ],
-   "canonical": "https://stratosweb.hu/de/webdesign-grossunternehmen.html",
-   "canonicalPath": "/de/webdesign-grossunternehmen.html",
-   "alternates": [
-    {
-     "hreflang": "hu",
-     "href": "/nagyvallalat.html"
-    },
-    {
-     "hreflang": "en",
-     "href": "/en/web-design-enterprise.html"
-    },
-    {
-     "hreflang": "de",
-     "href": "/de/webdesign-grossunternehmen.html"
-    },
-    {
-     "hreflang": "x-default",
-     "href": "/nagyvallalat.html"
-    }
-   ],
-   "robotsMeta": null,
-   "indexable": true,
-   "og": {
-    "title": "Webdesign für Großunternehmen — dediziertes Entwicklungsteam | Stratos",
-    "description": "Individuelle Plattformen, interne Systeme, Integrationen und Betrieb. Qualität, SLA und Sicherheit auf Konzernniveau — von der Strategie bis zum Go-live.",
-    "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/webdesign-grossunternehmen.html",
-    "type": "website"
-   },
-   "twitterCard": "summary_large_image",
-   "clientRendered": false,
-   "jsonLd": 1,
-   "breadcrumb": true,
-   "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/de/webdesign-kmu.html",
+   "served": "/de/webdesign-kmu",
    "file": "dist/de/webdesign-kmu.html",
-   "bytes": 39441,
+   "bytes": 43228,
    "is404": false,
    "lang": "de",
    "title": "Webdesign für KMU — Website zur Monatsgebühr | Stratos",
-   "description": "Konzeption, Entwicklung, Hosting und laufende Wartung in einer festen Monatsgebühr. Eine Website für Selbstständige und kleine Unternehmen — ohne hohe Einmalkosten.",
+   "description": "Webdesign für kleine Unternehmen: Konzept, Entwicklung, Hosting und Wartung zu einer festen Monatsgebühr, ohne hohe Einmalkosten.",
    "h1": [
     "Eine Websiteohne hoheEinmalkosten."
    ],
-   "canonical": "https://stratosweb.hu/de/webdesign-kmu.html",
-   "canonicalPath": "/de/webdesign-kmu.html",
+   "canonical": "https://stratosweb.hu/de/webdesign-kmu",
+   "canonicalPath": "/de/webdesign-kmu",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/kkv.html"
+     "href": "https://stratosweb.hu/kkv"
     },
     {
      "hreflang": "en",
-     "href": "/en/web-design-sme.html"
+     "href": "https://stratosweb.hu/en/web-design-small-business"
     },
     {
      "hreflang": "de",
-     "href": "/de/webdesign-kmu.html"
+     "href": "https://stratosweb.hu/de/webdesign-kmu"
     },
     {
      "hreflang": "x-default",
-     "href": "/kkv.html"
+     "href": "https://stratosweb.hu/kkv"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Webdesign für KMU — Website zur Monatsgebühr | Stratos",
-    "description": "Konzeption, Entwicklung, Hosting und laufende Wartung in einer festen Monatsgebühr. Eine Website für Selbstständige und kleine Unternehmen — ohne hohe Einmalkosten.",
+    "description": "Webdesign für kleine Unternehmen: Konzept, Entwicklung, Hosting und Wartung zu einer festen Monatsgebühr, ohne hohe Einmalkosten.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/webdesign-kmu.html",
+    "url": "https://stratosweb.hu/de/webdesign-kmu",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1797,46 +2091,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
-   "route": "/de/werbeanzeigen.html",
-   "file": "dist/de/werbeanzeigen.html",
-   "bytes": 39921,
+   "route": "/de/webentwicklung-agentur.html",
+   "served": "/de/webentwicklung-agentur",
+   "file": "dist/de/webentwicklung-agentur.html",
+   "bytes": 43040,
    "is404": false,
    "lang": "de",
-   "title": "Werbebetreuung — Google & Meta Ads | Stratos",
-   "description": "Google- und Meta-Kampagnen, die Kunden bringen statt Reichweite. Zielgruppenrecherche, Kreation, Gebotsstrategie, Conversion-Tracking und Monatsreport.",
+   "title": "Webentwicklung Agentur | Individuelle Plattformen | Stratos",
+   "description": "Webentwicklung Agentur für Organisationen jenseits von Baukästen: individuelle Plattformen und Web-Apps, Systemintegrationen und Betrieb mit SLA.",
    "h1": [
-    "Du kaufst keineReichweite.Du kaufst Kunden."
+    "Individuelle Webentwicklung,ein Partner."
    ],
-   "canonical": "https://stratosweb.hu/de/werbeanzeigen.html",
-   "canonicalPath": "/de/werbeanzeigen.html",
+   "canonical": "https://stratosweb.hu/de/webentwicklung-agentur",
+   "canonicalPath": "/de/webentwicklung-agentur",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/hirdeteskezeles.html"
+     "href": "https://stratosweb.hu/nagyvallalat"
     },
     {
      "hreflang": "en",
-     "href": "/en/ads-management.html"
+     "href": "https://stratosweb.hu/en/bespoke-web-development"
     },
     {
      "hreflang": "de",
-     "href": "/de/werbeanzeigen.html"
+     "href": "https://stratosweb.hu/de/webentwicklung-agentur"
     },
     {
      "hreflang": "x-default",
-     "href": "/hirdeteskezeles.html"
+     "href": "https://stratosweb.hu/nagyvallalat"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Werbebetreuung — Google & Meta Ads | Stratos",
-    "description": "Google- und Meta-Kampagnen, die Kunden bringen statt Reichweite. Zielgruppenrecherche, Kreation, Gebotsstrategie, Conversion-Tracking und Monatsreport.",
+    "title": "Webentwicklung Agentur | Individuelle Plattformen | Stratos",
+    "description": "Webentwicklung Agentur für Organisationen jenseits von Baukästen: individuelle Plattformen und Web-Apps, Systemintegrationen und Betrieb mit SLA.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/de/werbeanzeigen.html",
+    "url": "https://stratosweb.hu/de/webentwicklung-agentur",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1844,12 +2139,109 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
+  },
+  {
+   "route": "/de/website-erstellen-lassen.html",
+   "served": "/de/website-erstellen-lassen",
+   "file": "dist/de/website-erstellen-lassen.html",
+   "bytes": 33718,
+   "is404": false,
+   "lang": "de",
+   "title": "Website erstellen lassen | Webdesign Agentur | Stratos",
+   "description": "Website erstellen lassen bei einer Webdesign Agentur: individuelles Webdesign aus Code statt Baukasten, dazu Branding, SEO und Werbung als ein System.",
+   "h1": [
+    "Website erstellen lassen,mit System."
+   ],
+   "canonical": "https://stratosweb.hu/de/website-erstellen-lassen",
+   "canonicalPath": "/de/website-erstellen-lassen",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/szolgaltatasok"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/bespoke-web-design"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/website-erstellen-lassen"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/szolgaltatasok"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Website erstellen lassen | Webdesign Agentur | Stratos",
+    "description": "Website erstellen lassen bei einer Webdesign Agentur: individuelles Webdesign aus Code statt Baukasten, dazu Branding, SEO und Werbung als ein System.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/de/website-erstellen-lassen",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 31
+  },
+  {
+   "route": "/de/werbeanzeigen.html",
+   "served": "/de/werbeanzeigen",
+   "file": "dist/de/werbeanzeigen.html",
+   "bytes": 40937,
+   "is404": false,
+   "lang": "de",
+   "title": "Google- und Meta-Werbeanzeigen | Stratos",
+   "description": "Google- und Meta-Werbebetreuung für Anfragen statt Reichweite: Zielgruppen, Kreation, Gebotsstrategie und Conversion-Messung.",
+   "h1": [
+    "Du kaufst keineReichweite.Du kaufst Kunden."
+   ],
+   "canonical": "https://stratosweb.hu/de/werbeanzeigen",
+   "canonicalPath": "/de/werbeanzeigen",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/hirdeteskezeles"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/ads-management"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/werbeanzeigen"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/hirdeteskezeles"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Google- und Meta-Werbeanzeigen | Stratos",
+    "description": "Google- und Meta-Werbebetreuung für Anfragen statt Reichweite: Zielgruppen, Kreation, Gebotsstrategie und Conversion-Messung.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/de/werbeanzeigen",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 31
   },
   {
    "route": "/en/404.html",
+   "served": "/en/404",
    "file": "dist/en/404.html",
-   "bytes": 15674,
+   "bytes": 13974,
    "is404": true,
    "lang": "en",
    "title": "Page not found | Stratos",
@@ -1877,8 +2269,9 @@
   },
   {
    "route": "/en/about.html",
+   "served": "/en/about",
    "file": "dist/en/about.html",
-   "bytes": 47018,
+   "bytes": 46655,
    "is404": false,
    "lang": "en",
    "title": "About us — the Stratos story | Stratos Media",
@@ -1886,24 +2279,24 @@
    "h1": [
     "The Stratosstory"
    ],
-   "canonical": "https://stratosweb.hu/en/about.html",
-   "canonicalPath": "/en/about.html",
+   "canonical": "https://stratosweb.hu/en/about",
+   "canonicalPath": "/en/about",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/rolunk.html"
+     "href": "https://stratosweb.hu/rolunk"
     },
     {
      "hreflang": "en",
-     "href": "/en/about.html"
+     "href": "https://stratosweb.hu/en/about"
     },
     {
      "hreflang": "de",
-     "href": "/de/ueber-uns.html"
+     "href": "https://stratosweb.hu/de/ueber-uns"
     },
     {
      "hreflang": "x-default",
-     "href": "/rolunk.html"
+     "href": "https://stratosweb.hu/rolunk"
     }
    ],
    "robotsMeta": null,
@@ -1912,7 +2305,7 @@
     "title": "About us — the Stratos story | Stratos Media",
     "description": "The name Stratos comes from the stratosphere. Here's who we are, how we think, and why the everyday altitude is never enough for us.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/about.html",
+    "url": "https://stratosweb.hu/en/about",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1920,46 +2313,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/en/ads-management.html",
+   "served": "/en/ads-management",
    "file": "dist/en/ads-management.html",
-   "bytes": 38954,
+   "bytes": 39905,
    "is404": false,
    "lang": "en",
-   "title": "Ads management — Google & Meta Ads | Stratos",
-   "description": "Google and Meta campaigns that bring clients, not reach. Audience research, creative, bidding strategy, conversion tracking and a monthly report.",
+   "title": "Google and Meta ads management | Stratos",
+   "description": "Google and Meta ads management that brings clients, not reach: audience research, creative, bidding strategy and conversion tracking.",
    "h1": [
     "You're notbuying reach.You're buying clients."
    ],
-   "canonical": "https://stratosweb.hu/en/ads-management.html",
-   "canonicalPath": "/en/ads-management.html",
+   "canonical": "https://stratosweb.hu/en/ads-management",
+   "canonicalPath": "/en/ads-management",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/hirdeteskezeles.html"
+     "href": "https://stratosweb.hu/hirdeteskezeles"
     },
     {
      "hreflang": "en",
-     "href": "/en/ads-management.html"
+     "href": "https://stratosweb.hu/en/ads-management"
     },
     {
      "hreflang": "de",
-     "href": "/de/werbeanzeigen.html"
+     "href": "https://stratosweb.hu/de/werbeanzeigen"
     },
     {
      "hreflang": "x-default",
-     "href": "/hirdeteskezeles.html"
+     "href": "https://stratosweb.hu/hirdeteskezeles"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Ads management — Google & Meta Ads | Stratos",
-    "description": "Google and Meta campaigns that bring clients, not reach. Audience research, creative, bidding strategy, conversion tracking and a monthly report.",
+    "title": "Google and Meta ads management | Stratos",
+    "description": "Google and Meta ads management that brings clients, not reach: audience research, creative, bidding strategy and conversion tracking.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/ads-management.html",
+    "url": "https://stratosweb.hu/en/ads-management",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -1967,46 +2361,143 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
+  },
+  {
+   "route": "/en/bespoke-web-design.html",
+   "served": "/en/bespoke-web-design",
+   "file": "dist/en/bespoke-web-design.html",
+   "bytes": 32918,
+   "is404": false,
+   "lang": "en",
+   "title": "Bespoke Web Design Agency | Custom Websites | Stratos",
+   "description": "Bespoke web design and custom website development, built from code rather than templates — with branding, SEO and paid media working as one system.",
+   "h1": [
+    "Bespoke web design,and the system around it."
+   ],
+   "canonical": "https://stratosweb.hu/en/bespoke-web-design",
+   "canonicalPath": "/en/bespoke-web-design",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/szolgaltatasok"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/bespoke-web-design"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/website-erstellen-lassen"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/szolgaltatasok"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Bespoke Web Design Agency | Custom Websites | Stratos",
+    "description": "Bespoke web design and custom website development, built from code rather than templates — with branding, SEO and paid media working as one system.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/en/bespoke-web-design",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 31
+  },
+  {
+   "route": "/en/bespoke-web-development.html",
+   "served": "/en/bespoke-web-development",
+   "file": "dist/en/bespoke-web-development.html",
+   "bytes": 41885,
+   "is404": false,
+   "lang": "en",
+   "title": "Bespoke Web Development Agency | Custom Platforms | Stratos",
+   "description": "Bespoke web development for organisations that have outgrown templates: custom platforms and web apps, integrations, and operations under an SLA.",
+   "h1": [
+    "Bespoke web development,one partner."
+   ],
+   "canonical": "https://stratosweb.hu/en/bespoke-web-development",
+   "canonicalPath": "/en/bespoke-web-development",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/nagyvallalat"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/bespoke-web-development"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/webentwicklung-agentur"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/nagyvallalat"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Bespoke Web Development Agency | Custom Platforms | Stratos",
+    "description": "Bespoke web development for organisations that have outgrown templates: custom platforms and web apps, integrations, and operations under an SLA.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/en/bespoke-web-development",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 31
   },
   {
    "route": "/en/blog-google-business-profile.html",
+   "served": "/en/blog-google-business-profile",
    "file": "dist/en/blog-google-business-profile.html",
-   "bytes": 26960,
+   "bytes": 24866,
    "is404": false,
    "lang": "en",
-   "title": "Setting up a Google Business Profile, step by step | Stratos",
-   "description": "A Google Business Profile is the most powerful free client acquisition tool for local businesses. Eight steps from setting it up to keeping it current.",
+   "title": "Setting up a Google Business Profile | Stratos",
+   "description": "A Google Business Profile is the strongest free tool a local business has. Eight steps from setup to upkeep.",
    "h1": [
     "Setting up a Google Business Profile, step by step"
    ],
-   "canonical": "https://stratosweb.hu/en/blog-google-business-profile.html",
-   "canonicalPath": "/en/blog-google-business-profile.html",
+   "canonical": "https://stratosweb.hu/en/blog-google-business-profile",
+   "canonicalPath": "/en/blog-google-business-profile",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-google-cegprofil.html"
+     "href": "https://stratosweb.hu/blog-google-cegprofil"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-google-business-profile.html"
+     "href": "https://stratosweb.hu/en/blog-google-business-profile"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-google-unternehmensprofil.html"
+     "href": "https://stratosweb.hu/de/blog-google-unternehmensprofil"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-google-cegprofil.html"
+     "href": "https://stratosweb.hu/blog-google-cegprofil"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Setting up a Google Business Profile, step by step | Stratos",
-    "description": "A Google Business Profile is the most powerful free client acquisition tool for local businesses. Eight steps from setting it up to keeping it current.",
+    "title": "Setting up a Google Business Profile | Stratos",
+    "description": "A Google Business Profile is the strongest free tool a local business has. Eight steps from setup to upkeep.",
     "image": "https://stratosweb.hu/assets/img/blog-3.jpg",
-    "url": "https://stratosweb.hu/en/blog-google-business-profile.html",
+    "url": "https://stratosweb.hu/en/blog-google-business-profile",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2014,46 +2505,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 6
+   "inboundLinks": 7
   },
   {
    "route": "/en/blog-google-first-page.html",
+   "served": "/en/blog-google-first-page",
    "file": "dist/en/blog-google-first-page.html",
-   "bytes": 27088,
+   "bytes": 25053,
    "is404": false,
    "lang": "en",
    "title": "How to reach Google's first page — 7 steps | Stratos",
-   "description": "Getting onto Google's first page doesn't take magic, it takes a system. Seven steps a small business can work through on its own, without jargon.",
+   "description": "Getting onto Google's first page takes a system, not magic. Seven steps a small business can work through on its own.",
    "h1": [
     "How to reach Google's first page — 7 steps"
    ],
-   "canonical": "https://stratosweb.hu/en/blog-google-first-page.html",
-   "canonicalPath": "/en/blog-google-first-page.html",
+   "canonical": "https://stratosweb.hu/en/blog-google-first-page",
+   "canonicalPath": "/en/blog-google-first-page",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-google-elso-oldal.html"
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-google-first-page.html"
+     "href": "https://stratosweb.hu/en/blog-google-first-page"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-google-erste-seite.html"
+     "href": "https://stratosweb.hu/de/blog-google-erste-seite"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-google-elso-oldal.html"
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "How to reach Google's first page — 7 steps | Stratos",
-    "description": "Getting onto Google's first page doesn't take magic, it takes a system. Seven steps a small business can work through on its own, without jargon.",
+    "description": "Getting onto Google's first page takes a system, not magic. Seven steps a small business can work through on its own.",
     "image": "https://stratosweb.hu/assets/img/blog-1.jpg",
-    "url": "https://stratosweb.hu/en/blog-google-first-page.html",
+    "url": "https://stratosweb.hu/en/blog-google-first-page",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2061,93 +2553,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 5
+   "inboundLinks": 7
   },
   {
    "route": "/en/blog-google-or-facebook.html",
+   "served": "/en/blog-google-or-facebook",
    "file": "dist/en/blog-google-or-facebook.html",
-   "bytes": 26385,
+   "bytes": 24486,
    "is404": false,
    "lang": "en",
-   "title": "Google or Facebook ads — which is worth it in 2026? | Stratos",
+   "title": "Google or Facebook ads in 2026? | Stratos",
    "description": "It's the wrong question. We show what each platform is for, when to choose which, and why clients come from the system, not the platform.",
    "h1": [
     "Google or Facebook ads — which is worth it in 2026?"
    ],
-   "canonical": "https://stratosweb.hu/en/blog-google-or-facebook.html",
-   "canonicalPath": "/en/blog-google-or-facebook.html",
+   "canonical": "https://stratosweb.hu/en/blog-google-or-facebook",
+   "canonicalPath": "/en/blog-google-or-facebook",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-google-vagy-facebook.html"
+     "href": "https://stratosweb.hu/blog-google-vagy-facebook"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-google-or-facebook.html"
+     "href": "https://stratosweb.hu/en/blog-google-or-facebook"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-google-oder-facebook.html"
+     "href": "https://stratosweb.hu/de/blog-google-oder-facebook"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-google-vagy-facebook.html"
+     "href": "https://stratosweb.hu/blog-google-vagy-facebook"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Google or Facebook ads — which is worth it in 2026? | Stratos",
+    "title": "Google or Facebook ads in 2026? | Stratos",
     "description": "It's the wrong question. We show what each platform is for, when to choose which, and why clients come from the system, not the platform.",
     "image": "https://stratosweb.hu/assets/img/blog-4.jpg",
-    "url": "https://stratosweb.hu/en/blog-google-or-facebook.html",
-    "type": "website"
-   },
-   "twitterCard": "summary_large_image",
-   "clientRendered": false,
-   "jsonLd": 1,
-   "breadcrumb": true,
-   "inSitemap": true,
-   "inboundLinks": 5
-  },
-  {
-   "route": "/en/blog-no-enquiries.html",
-   "file": "dist/en/blog-no-enquiries.html",
-   "bytes": 26265,
-   "is404": false,
-   "lang": "en",
-   "title": "Why isn't your website bringing clients? 7 common mistakes | Stratos",
-   "description": "You have a website but the clients aren't coming. The seven most common causes most businesses run into — and how to fix each one.",
-   "h1": [
-    "Why isn't your website bringing clients? 7 common mistakes"
-   ],
-   "canonical": "https://stratosweb.hu/en/blog-no-enquiries.html",
-   "canonicalPath": "/en/blog-no-enquiries.html",
-   "alternates": [
-    {
-     "hreflang": "hu",
-     "href": "/blog-miert-nem-hoz-ugyfelet.html"
-    },
-    {
-     "hreflang": "en",
-     "href": "/en/blog-no-enquiries.html"
-    },
-    {
-     "hreflang": "de",
-     "href": "/de/blog-keine-anfragen.html"
-    },
-    {
-     "hreflang": "x-default",
-     "href": "/blog-miert-nem-hoz-ugyfelet.html"
-    }
-   ],
-   "robotsMeta": null,
-   "indexable": true,
-   "og": {
-    "title": "Why isn't your website bringing clients? 7 common mistakes | Stratos",
-    "description": "You have a website but the clients aren't coming. The seven most common causes most businesses run into — and how to fix each one.",
-    "image": "https://stratosweb.hu/assets/img/blog-6.jpg",
-    "url": "https://stratosweb.hu/en/blog-no-enquiries.html",
+    "url": "https://stratosweb.hu/en/blog-google-or-facebook",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2158,43 +2604,188 @@
    "inboundLinks": 6
   },
   {
-   "route": "/en/blog-outdated-website.html",
-   "file": "dist/en/blog-outdated-website.html",
-   "bytes": 26620,
+   "route": "/en/blog-logo-design.html",
+   "served": "/en/blog-logo-design",
+   "file": "dist/en/blog-logo-design.html",
+   "bytes": 24426,
    "is404": false,
    "lang": "en",
-   "title": "How many clients is an outdated website costing you? | Stratos",
-   "description": "There's one number no business owner ever sees: the clients they lost. We walk through the calculation and show what to measure first.",
+   "title": "Getting a logo made: what to ask for | Stratos",
+   "description": "What getting a logo made costs, what you must receive at the end, and the three mistakes that leave most logos unusable in practice.",
    "h1": [
-    "How many clients is an outdated website costing you?"
+    "Getting a logo made: what to ask for, what not to accept"
    ],
-   "canonical": "https://stratosweb.hu/en/blog-outdated-website.html",
-   "canonicalPath": "/en/blog-outdated-website.html",
+   "canonical": "https://stratosweb.hu/en/blog-logo-design",
+   "canonicalPath": "/en/blog-logo-design",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-elavult-weboldal.html"
+     "href": "https://stratosweb.hu/blog-logo-keszites"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-outdated-website.html"
+     "href": "https://stratosweb.hu/en/blog-logo-design"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-veraltete-website.html"
+     "href": "https://stratosweb.hu/de/blog-logo-gestaltung"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-elavult-weboldal.html"
+     "href": "https://stratosweb.hu/blog-logo-keszites"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "How many clients is an outdated website costing you? | Stratos",
+    "title": "Getting a logo made: what to ask for | Stratos",
+    "description": "What getting a logo made costs, what you must receive at the end, and the three mistakes that leave most logos unusable in practice.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/en/blog-logo-design",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 4
+  },
+  {
+   "route": "/en/blog-no-enquiries.html",
+   "served": "/en/blog-no-enquiries",
+   "file": "dist/en/blog-no-enquiries.html",
+   "bytes": 24366,
+   "is404": false,
+   "lang": "en",
+   "title": "Why your website brings no clients | Stratos",
+   "description": "You have a website but the clients aren't coming. The seven most common causes most businesses run into — and how to fix each one.",
+   "h1": [
+    "Why isn't your website bringing clients? 7 common mistakes"
+   ],
+   "canonical": "https://stratosweb.hu/en/blog-no-enquiries",
+   "canonicalPath": "/en/blog-no-enquiries",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-no-enquiries"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-keine-anfragen"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Why your website brings no clients | Stratos",
+    "description": "You have a website but the clients aren't coming. The seven most common causes most businesses run into — and how to fix each one.",
+    "image": "https://stratosweb.hu/assets/img/blog-6.jpg",
+    "url": "https://stratosweb.hu/en/blog-no-enquiries",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 8
+  },
+  {
+   "route": "/en/blog-online-marketing.html",
+   "served": "/en/blog-online-marketing",
+   "file": "dist/en/blog-online-marketing.html",
+   "bytes": 24554,
+   "is404": false,
+   "lang": "en",
+   "title": "Online marketing for a small business | Stratos",
+   "description": "Which marketing channels are worth it for a small business, when a social media agency makes sense, and whether a digital marketing course pays off.",
+   "h1": [
+    "Online marketing for a small business: where to start"
+   ],
+   "canonical": "https://stratosweb.hu/en/blog-online-marketing",
+   "canonicalPath": "/en/blog-online-marketing",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-online-marketing"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-online-marketing"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-online-marketing"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-online-marketing"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Online marketing for a small business | Stratos",
+    "description": "Which marketing channels are worth it for a small business, when a social media agency makes sense, and whether a digital marketing course pays off.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/en/blog-online-marketing",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 4
+  },
+  {
+   "route": "/en/blog-outdated-website.html",
+   "served": "/en/blog-outdated-website",
+   "file": "dist/en/blog-outdated-website.html",
+   "bytes": 24770,
+   "is404": false,
+   "lang": "en",
+   "title": "What an outdated website costs you | Stratos",
+   "description": "There's one number no business owner ever sees: the clients they lost. We walk through the calculation and show what to measure first.",
+   "h1": [
+    "How many clients is an outdated website costing you?"
+   ],
+   "canonical": "https://stratosweb.hu/en/blog-outdated-website",
+   "canonicalPath": "/en/blog-outdated-website",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-elavult-weboldal"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-outdated-website"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-veraltete-website"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-elavult-weboldal"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "What an outdated website costs you | Stratos",
     "description": "There's one number no business owner ever sees: the clients they lost. We walk through the calculation and show what to measure first.",
     "image": "https://stratosweb.hu/assets/img/blog-5.jpg",
-    "url": "https://stratosweb.hu/en/blog-outdated-website.html",
+    "url": "https://stratosweb.hu/en/blog-outdated-website",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2205,43 +2796,92 @@
    "inboundLinks": 5
   },
   {
-   "route": "/en/blog-website-cost.html",
-   "file": "dist/en/blog-website-cost.html",
-   "bytes": 27045,
+   "route": "/en/blog-web-design.html",
+   "served": "/en/blog-web-design",
+   "file": "dist/en/blog-web-design.html",
+   "bytes": 24232,
    "is404": false,
    "lang": "en",
-   "title": "How much does a website cost in 2026? | Stratos",
-   "description": "A website's price isn't a number, it's a range. We show what drives the cost, what proposals leave out, and how to work out what it's worth to you.",
+   "title": "Web design: what makes one good? | Stratos",
+   "description": "What separates good web design from pretty web design, what to check before approving a layout, and why the decision is not a matter of taste.",
    "h1": [
-    "How much does a website cost in 2026?"
+    "Web design: what makes one good?"
    ],
-   "canonical": "https://stratosweb.hu/en/blog-website-cost.html",
-   "canonicalPath": "/en/blog-website-cost.html",
+   "canonical": "https://stratosweb.hu/en/blog-web-design",
+   "canonicalPath": "/en/blog-web-design",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog-weboldal-arak.html"
+     "href": "https://stratosweb.hu/blog-webdesign"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog-website-cost.html"
+     "href": "https://stratosweb.hu/en/blog-web-design"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog-website-kosten.html"
+     "href": "https://stratosweb.hu/de/blog-webdesign"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog-weboldal-arak.html"
+     "href": "https://stratosweb.hu/blog-webdesign"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Web design: what makes one good? | Stratos",
+    "description": "What separates good web design from pretty web design, what to check before approving a layout, and why the decision is not a matter of taste.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/en/blog-web-design",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 7
+  },
+  {
+   "route": "/en/blog-website-cost.html",
+   "served": "/en/blog-website-cost",
+   "file": "dist/en/blog-website-cost.html",
+   "bytes": 25124,
+   "is404": false,
+   "lang": "en",
+   "title": "How much does a website cost in 2026? | Stratos",
+   "description": "A website's price is a range, not a number. What drives the cost, what quotes leave out, and what it is worth to you.",
+   "h1": [
+    "How much does a website cost in 2026?"
+   ],
+   "canonical": "https://stratosweb.hu/en/blog-website-cost",
+   "canonicalPath": "/en/blog-website-cost",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-weboldal-arak"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-website-cost"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-website-kosten"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-weboldal-arak"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "How much does a website cost in 2026? | Stratos",
-    "description": "A website's price isn't a number, it's a range. We show what drives the cost, what proposals leave out, and how to work out what it's worth to you.",
+    "description": "A website's price is a range, not a number. What drives the cost, what quotes leave out, and what it is worth to you.",
     "image": "https://stratosweb.hu/assets/img/blog-2.jpg",
-    "url": "https://stratosweb.hu/en/blog-website-cost.html",
+    "url": "https://stratosweb.hu/en/blog-website-cost",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2252,9 +2892,58 @@
    "inboundLinks": 5
   },
   {
+   "route": "/en/blog-what-is-seo.html",
+   "served": "/en/blog-what-is-seo",
+   "file": "dist/en/blog-what-is-seo.html",
+   "bytes": 24786,
+   "is404": false,
+   "lang": "en",
+   "title": "What is SEO, and what does it cost? | Stratos",
+   "description": "What SEO actually is, how much of it you can do for free, what it costs if you don't, and how app stores differ.",
+   "h1": [
+    "What is SEO, and what does it cost?"
+   ],
+   "canonical": "https://stratosweb.hu/en/blog-what-is-seo",
+   "canonicalPath": "/en/blog-what-is-seo",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-keresooptimalizalas"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-what-is-seo"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-was-ist-seo"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-keresooptimalizalas"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "What is SEO, and what does it cost? | Stratos",
+    "description": "What SEO actually is, how much of it you can do for free, what it costs if you don't, and how app stores differ.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/en/blog-what-is-seo",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 7
+  },
+  {
    "route": "/en/blog.html",
+   "served": "/en/blog",
    "file": "dist/en/blog.html",
-   "bytes": 27229,
+   "bytes": 26772,
    "is404": false,
    "lang": "en",
    "title": "Blog — web design and online marketing tips | Stratos",
@@ -2262,24 +2951,24 @@
    "h1": [
     "What you needto know, in plain words."
    ],
-   "canonical": "https://stratosweb.hu/en/blog.html",
-   "canonicalPath": "/en/blog.html",
+   "canonical": "https://stratosweb.hu/en/blog",
+   "canonicalPath": "/en/blog",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/blog.html"
+     "href": "https://stratosweb.hu/blog"
     },
     {
      "hreflang": "en",
-     "href": "/en/blog.html"
+     "href": "https://stratosweb.hu/en/blog"
     },
     {
      "hreflang": "de",
-     "href": "/de/blog.html"
+     "href": "https://stratosweb.hu/de/blog"
     },
     {
      "hreflang": "x-default",
-     "href": "/blog.html"
+     "href": "https://stratosweb.hu/blog"
     }
    ],
    "robotsMeta": null,
@@ -2288,7 +2977,7 @@
     "title": "Blog — web design and online marketing tips | Stratos",
     "description": "Clear, jargon-free guides for business owners: SEO, website pricing, Google Business Profile, advertising and the most common website mistakes.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/blog.html",
+    "url": "https://stratosweb.hu/en/blog",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2296,46 +2985,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/en/branding.html",
+   "served": "/en/branding",
    "file": "dist/en/branding.html",
-   "bytes": 33509,
+   "bytes": 37086,
    "is404": false,
    "lang": "en",
-   "title": "Branding and visual identity design | Stratos",
+   "title": "Branding and identity design | Stratos",
    "description": "Logo, colour system, typography, image style and tone of voice — in one system. Build a brand people recall from a single colour.",
    "h1": [
     "One colour.One line.And they think of you."
    ],
-   "canonical": "https://stratosweb.hu/en/branding.html",
-   "canonicalPath": "/en/branding.html",
+   "canonical": "https://stratosweb.hu/en/branding",
+   "canonicalPath": "/en/branding",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/branding.html"
+     "href": "https://stratosweb.hu/branding"
     },
     {
      "hreflang": "en",
-     "href": "/en/branding.html"
+     "href": "https://stratosweb.hu/en/branding"
     },
     {
      "hreflang": "de",
-     "href": "/de/branding.html"
+     "href": "https://stratosweb.hu/de/branding"
     },
     {
      "hreflang": "x-default",
-     "href": "/branding.html"
+     "href": "https://stratosweb.hu/branding"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Branding and visual identity design | Stratos",
+    "title": "Branding and identity design | Stratos",
     "description": "Logo, colour system, typography, image style and tone of voice — in one system. Build a brand people recall from a single colour.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/branding.html",
+    "url": "https://stratosweb.hu/en/branding",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2343,46 +3033,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/en/contact.html",
+   "served": "/en/contact",
    "file": "dist/en/contact.html",
-   "bytes": 31493,
+   "bytes": 29313,
    "is404": false,
    "lang": "en",
    "title": "Contact and starting a project | Stratos",
-   "description": "How a Stratos project starts: a short enquiry or a detailed questionnaire, a free consultation, then a tailored proposal. Write, call, or fill in the form.",
+   "description": "How a Stratos project starts: a short enquiry or a full brief, a free consultation, then a tailored quote. Write, call or use the form.",
    "h1": [
     "It starts whenyou tell us."
    ],
-   "canonical": "https://stratosweb.hu/en/contact.html",
-   "canonicalPath": "/en/contact.html",
+   "canonical": "https://stratosweb.hu/en/contact",
+   "canonicalPath": "/en/contact",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/ugyfelszolgalat.html"
+     "href": "https://stratosweb.hu/ugyfelszolgalat"
     },
     {
      "hreflang": "en",
-     "href": "/en/contact.html"
+     "href": "https://stratosweb.hu/en/contact"
     },
     {
      "hreflang": "de",
-     "href": "/de/kontakt.html"
+     "href": "https://stratosweb.hu/de/kontakt"
     },
     {
      "hreflang": "x-default",
-     "href": "/ugyfelszolgalat.html"
+     "href": "https://stratosweb.hu/ugyfelszolgalat"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Contact and starting a project | Stratos",
-    "description": "How a Stratos project starts: a short enquiry or a detailed questionnaire, a free consultation, then a tailored proposal. Write, call, or fill in the form.",
+    "description": "How a Stratos project starts: a short enquiry or a full brief, a free consultation, then a tailored quote. Write, call or use the form.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/contact.html",
+    "url": "https://stratosweb.hu/en/contact",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2390,46 +3081,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
-   "route": "/en/impact-program.html",
-   "file": "dist/en/impact-program.html",
-   "bytes": 39537,
+   "route": "/en/ecommerce-web-design.html",
+   "served": "/en/ecommerce-web-design",
+   "file": "dist/en/ecommerce-web-design.html",
+   "bytes": 29789,
    "is404": false,
    "lang": "en",
-   "title": "Stratos Impact Program — free websites for nonprofits | Stratos",
-   "description": "Every year we build a handful of nonprofit organisations a fully professional website, completely free. No fee, no hidden costs.",
+   "title": "Ecommerce Web Design Agency | Custom Online Stores | Stratos",
+   "description": "Ecommerce web design and development from code, not a template: product data, payments, delivery and stock integration, measured end to end.",
    "h1": [
-    "Premium websitesfor the people whochange lives."
+    "The basketis not the finish line.It is the start."
    ],
-   "canonical": "https://stratosweb.hu/en/impact-program.html",
-   "canonicalPath": "/en/impact-program.html",
+   "canonical": "https://stratosweb.hu/en/ecommerce-web-design",
+   "canonicalPath": "/en/ecommerce-web-design",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/impact-program.html"
+     "href": "https://stratosweb.hu/webshop-keszites"
     },
     {
      "hreflang": "en",
-     "href": "/en/impact-program.html"
+     "href": "https://stratosweb.hu/en/ecommerce-web-design"
     },
     {
      "hreflang": "de",
-     "href": "/de/impact-programm.html"
+     "href": "https://stratosweb.hu/de/onlineshop-erstellung"
     },
     {
      "hreflang": "x-default",
-     "href": "/impact-program.html"
+     "href": "https://stratosweb.hu/webshop-keszites"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Stratos Impact Program — free websites for nonprofits | Stratos",
-    "description": "Every year we build a handful of nonprofit organisations a fully professional website, completely free. No fee, no hidden costs.",
+    "title": "Ecommerce Web Design Agency | Custom Online Stores | Stratos",
+    "description": "Ecommerce web design and development from code, not a template: product data, payments, delivery and stock integration, measured end to end.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/impact-program.html",
+    "url": "https://stratosweb.hu/en/ecommerce-web-design",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2437,12 +3129,61 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
+  },
+  {
+   "route": "/en/impact-program.html",
+   "served": "/en/impact-program",
+   "file": "dist/en/impact-program.html",
+   "bytes": 38395,
+   "is404": false,
+   "lang": "en",
+   "title": "Free websites for nonprofits | Stratos",
+   "description": "Every year we build a handful of nonprofit organisations a fully professional website, completely free. No fee, no hidden costs.",
+   "h1": [
+    "Premium websitesfor the people whochange lives."
+   ],
+   "canonical": "https://stratosweb.hu/en/impact-program",
+   "canonicalPath": "/en/impact-program",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/impact-program"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/impact-program"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/impact-programm"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/impact-program"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Free websites for nonprofits | Stratos",
+    "description": "Every year we build a handful of nonprofit organisations a fully professional website, completely free. No fee, no hidden costs.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/en/impact-program",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 31
   },
   {
    "route": "/en/imprint.html",
+   "served": "/en/imprint",
    "file": "dist/en/imprint.html",
-   "bytes": 20291,
+   "bytes": 19057,
    "is404": false,
    "lang": "en",
    "title": "Imprint | Stratos",
@@ -2450,24 +3191,24 @@
    "h1": [
     "Imprint"
    ],
-   "canonical": "https://stratosweb.hu/en/imprint.html",
-   "canonicalPath": "/en/imprint.html",
+   "canonical": "https://stratosweb.hu/en/imprint",
+   "canonicalPath": "/en/imprint",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/impresszum.html"
+     "href": "https://stratosweb.hu/impresszum"
     },
     {
      "hreflang": "en",
-     "href": "/en/imprint.html"
+     "href": "https://stratosweb.hu/en/imprint"
     },
     {
      "hreflang": "de",
-     "href": "/de/impressum.html"
+     "href": "https://stratosweb.hu/de/impressum"
     },
     {
      "hreflang": "x-default",
-     "href": "/impresszum.html"
+     "href": "https://stratosweb.hu/impresszum"
     }
    ],
    "robotsMeta": null,
@@ -2476,7 +3217,7 @@
     "title": "Imprint | Stratos",
     "description": "Details of the operator of Stratos Media, contact information and hosting provider.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/imprint.html",
+    "url": "https://stratosweb.hu/en/imprint",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2484,17 +3225,20 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 24
+   "inboundLinks": 30
   },
   {
    "route": "/en/index.html",
+   "served": "/en/",
    "file": "dist/en/index.html",
-   "bytes": 18786,
+   "bytes": 78376,
    "is404": false,
    "lang": "en",
-   "title": "Stratos — Digital systems that drive growth | Győr & Budapest",
-   "description": "Website, branding and ad management from one team, on a monthly fee. From SMEs to enterprises — Győr and Budapest.",
-   "h1": [],
+   "title": "Web design and development | Stratos",
+   "description": "Web design, branding and ads management from one team, on a monthly fee. From small businesses to enterprises, in three languages.",
+   "h1": [
+    "We do not build websites.\n    Altitude is what we build.\n    Stratos · Web design and digital agency"
+   ],
    "canonical": "https://stratosweb.hu/en/",
    "canonicalPath": "/en/",
    "alternates": [
@@ -2518,24 +3262,24 @@
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Stratos — Digital systems that drive growth | Győr & Budapest",
-    "description": "Website, branding and ad management from one team, on a monthly fee. From SMEs to enterprises — Győr and Budapest.",
+    "title": "Web design and development | Stratos",
+    "description": "Web design, branding and ads management from one team, on a monthly fee. From small businesses to enterprises, in three languages.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
     "url": "https://stratosweb.hu/en/",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
-   "clientRendered": true,
+   "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "h1Source": "rendered — see tests/public-site.spec.ts \"has one h1 and a skip link\"",
-   "inboundLinks": 21
+   "inboundLinks": 33
   },
   {
    "route": "/en/privacy-policy.html",
+   "served": "/en/privacy-policy",
    "file": "dist/en/privacy-policy.html",
-   "bytes": 32881,
+   "bytes": 28331,
    "is404": false,
    "lang": "en",
    "title": "Privacy policy | Stratos",
@@ -2543,24 +3287,24 @@
    "h1": [
     "Privacypolicy"
    ],
-   "canonical": "https://stratosweb.hu/en/privacy-policy.html",
-   "canonicalPath": "/en/privacy-policy.html",
+   "canonical": "https://stratosweb.hu/en/privacy-policy",
+   "canonicalPath": "/en/privacy-policy",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/adatkezelesi-tajekoztato.html"
+     "href": "https://stratosweb.hu/adatkezelesi-tajekoztato"
     },
     {
      "hreflang": "en",
-     "href": "/en/privacy-policy.html"
+     "href": "https://stratosweb.hu/en/privacy-policy"
     },
     {
      "hreflang": "de",
-     "href": "/de/datenschutz.html"
+     "href": "https://stratosweb.hu/de/datenschutz"
     },
     {
      "hreflang": "x-default",
-     "href": "/adatkezelesi-tajekoztato.html"
+     "href": "https://stratosweb.hu/adatkezelesi-tajekoztato"
     }
    ],
    "robotsMeta": null,
@@ -2569,7 +3313,7 @@
     "title": "Privacy policy | Stratos",
     "description": "How we collect, use and process personal data under the GDPR — and what rights you have.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/privacy-policy.html",
+    "url": "https://stratosweb.hu/en/privacy-policy",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2577,12 +3321,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 24
+   "inboundLinks": 30
   },
   {
    "route": "/en/quote.html",
+   "served": "/en/quote",
    "file": "dist/en/quote.html",
-   "bytes": 14909,
+   "bytes": 12963,
    "is404": false,
    "lang": "en",
    "title": "Website requirements questionnaire | Stratos",
@@ -2590,24 +3335,24 @@
    "h1": [
     "Websiterequirementsquestionnaire"
    ],
-   "canonical": "https://stratosweb.hu/en/quote.html",
-   "canonicalPath": "/en/quote.html",
+   "canonical": "https://stratosweb.hu/en/quote",
+   "canonicalPath": "/en/quote",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/arajanlat.html"
+     "href": "https://stratosweb.hu/arajanlat"
     },
     {
      "hreflang": "en",
-     "href": "/en/quote.html"
+     "href": "https://stratosweb.hu/en/quote"
     },
     {
      "hreflang": "de",
-     "href": "/de/angebot.html"
+     "href": "https://stratosweb.hu/de/angebot"
     },
     {
      "hreflang": "x-default",
-     "href": "/arajanlat.html"
+     "href": "https://stratosweb.hu/arajanlat"
     }
    ],
    "robotsMeta": null,
@@ -2616,7 +3361,7 @@
     "title": "Website requirements questionnaire | Stratos",
     "description": "Fill in the questionnaire in a few minutes and we'll come back with a quote tailored to your answers.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/quote.html",
+    "url": "https://stratosweb.hu/en/quote",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2624,46 +3369,47 @@
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
-   "route": "/en/services.html",
-   "file": "dist/en/services.html",
-   "bytes": 34486,
+   "route": "/en/seo-consultancy.html",
+   "served": "/en/seo-consultancy",
+   "file": "dist/en/seo-consultancy.html",
+   "bytes": 34541,
    "is404": false,
    "lang": "en",
-   "title": "Services — web design, development, branding, advertising | Stratos",
-   "description": "Four services, one system: custom websites for SMEs and enterprises, brand identity and copywriting, and Google and Meta ads management. Every proposal is tailored.",
+   "title": "SEO Consultancy | Technical, Content & Local SEO | Stratos",
+   "description": "SEO consultancy that reports enquiries rather than rankings: technical SEO, content architecture, keyword research and local search, measured monthly.",
    "h1": [
-    "Four services,one system."
+    "The demandis already there.It isn't finding you."
    ],
-   "canonical": "https://stratosweb.hu/en/services.html",
-   "canonicalPath": "/en/services.html",
+   "canonical": "https://stratosweb.hu/en/seo-consultancy",
+   "canonicalPath": "/en/seo-consultancy",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/szolgaltatasok.html"
+     "href": "https://stratosweb.hu/keresooptimalizalas"
     },
     {
      "hreflang": "en",
-     "href": "/en/services.html"
+     "href": "https://stratosweb.hu/en/seo-consultancy"
     },
     {
      "hreflang": "de",
-     "href": "/de/leistungen.html"
+     "href": "https://stratosweb.hu/de/seo-betreuung"
     },
     {
      "hreflang": "x-default",
-     "href": "/szolgaltatasok.html"
+     "href": "https://stratosweb.hu/keresooptimalizalas"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Services — web design, development, branding, advertising | Stratos",
-    "description": "Four services, one system: custom websites for SMEs and enterprises, brand identity and copywriting, and Google and Meta ads management. Every proposal is tailored.",
+    "title": "SEO Consultancy | Technical, Content & Local SEO | Stratos",
+    "description": "SEO consultancy that reports enquiries rather than rankings: technical SEO, content architecture, keyword research and local search, measured monthly.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/services.html",
+    "url": "https://stratosweb.hu/en/seo-consultancy",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2671,93 +3417,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
-   "route": "/en/web-design-enterprise.html",
-   "file": "dist/en/web-design-enterprise.html",
-   "bytes": 38312,
+   "route": "/en/web-design-small-business.html",
+   "served": "/en/web-design-small-business",
+   "file": "dist/en/web-design-small-business.html",
+   "bytes": 42120,
    "is404": false,
    "lang": "en",
-   "title": "Web design for enterprises — a dedicated development team | Stratos",
-   "description": "Bespoke platforms, internal systems, integrations and operations. Enterprise-grade quality, SLA and security — from strategy to launch.",
-   "h1": [
-    "Every build,one partner."
-   ],
-   "canonical": "https://stratosweb.hu/en/web-design-enterprise.html",
-   "canonicalPath": "/en/web-design-enterprise.html",
-   "alternates": [
-    {
-     "hreflang": "hu",
-     "href": "/nagyvallalat.html"
-    },
-    {
-     "hreflang": "en",
-     "href": "/en/web-design-enterprise.html"
-    },
-    {
-     "hreflang": "de",
-     "href": "/de/webdesign-grossunternehmen.html"
-    },
-    {
-     "hreflang": "x-default",
-     "href": "/nagyvallalat.html"
-    }
-   ],
-   "robotsMeta": null,
-   "indexable": true,
-   "og": {
-    "title": "Web design for enterprises — a dedicated development team | Stratos",
-    "description": "Bespoke platforms, internal systems, integrations and operations. Enterprise-grade quality, SLA and security — from strategy to launch.",
-    "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/web-design-enterprise.html",
-    "type": "website"
-   },
-   "twitterCard": "summary_large_image",
-   "clientRendered": false,
-   "jsonLd": 1,
-   "breadcrumb": true,
-   "inSitemap": true,
-   "inboundLinks": 25
-  },
-  {
-   "route": "/en/web-design-sme.html",
-   "file": "dist/en/web-design-sme.html",
-   "bytes": 38453,
-   "is404": false,
-   "lang": "en",
-   "title": "Web design for SMEs — a website on a monthly fee | Stratos",
-   "description": "Design, development, hosting and ongoing maintenance in one fixed monthly fee. A website for sole traders and small businesses, without a large upfront cost.",
+   "title": "Web Design Services for Small Business | Stratos",
+   "description": "Web design services for small businesses: design, build, hosting and ongoing maintenance in one fixed monthly fee, with no large upfront cost.",
    "h1": [
     "A websitewithout the bigupfront cost."
    ],
-   "canonical": "https://stratosweb.hu/en/web-design-sme.html",
-   "canonicalPath": "/en/web-design-sme.html",
+   "canonical": "https://stratosweb.hu/en/web-design-small-business",
+   "canonicalPath": "/en/web-design-small-business",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/kkv.html"
+     "href": "https://stratosweb.hu/kkv"
     },
     {
      "hreflang": "en",
-     "href": "/en/web-design-sme.html"
+     "href": "https://stratosweb.hu/en/web-design-small-business"
     },
     {
      "hreflang": "de",
-     "href": "/de/webdesign-kmu.html"
+     "href": "https://stratosweb.hu/de/webdesign-kmu"
     },
     {
      "hreflang": "x-default",
-     "href": "/kkv.html"
+     "href": "https://stratosweb.hu/kkv"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Web design for SMEs — a website on a monthly fee | Stratos",
-    "description": "Design, development, hosting and ongoing maintenance in one fixed monthly fee. A website for sole traders and small businesses, without a large upfront cost.",
+    "title": "Web Design Services for Small Business | Stratos",
+    "description": "Web design services for small businesses: design, build, hosting and ongoing maintenance in one fixed monthly fee, with no large upfront cost.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/web-design-sme.html",
+    "url": "https://stratosweb.hu/en/web-design-small-business",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2765,12 +3465,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/en/work-barbershop.html",
+   "served": "/en/work-barbershop",
    "file": "dist/en/work-barbershop.html",
-   "bytes": 25773,
+   "bytes": 24558,
    "is404": false,
    "lang": "en",
    "title": "Barbershop Győr — a booking-led website | Stratos",
@@ -2778,24 +3479,24 @@
    "h1": [
     "A site whose only job is the appointment."
    ],
-   "canonical": "https://stratosweb.hu/en/work-barbershop.html",
-   "canonicalPath": "/en/work-barbershop.html",
+   "canonical": "https://stratosweb.hu/en/work-barbershop",
+   "canonicalPath": "/en/work-barbershop",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munka-barbershop.html"
+     "href": "https://stratosweb.hu/munka-barbershop"
     },
     {
      "hreflang": "en",
-     "href": "/en/work-barbershop.html"
+     "href": "https://stratosweb.hu/en/work-barbershop"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekt-barbershop.html"
+     "href": "https://stratosweb.hu/de/projekt-barbershop"
     },
     {
      "hreflang": "x-default",
-     "href": "/munka-barbershop.html"
+     "href": "https://stratosweb.hu/munka-barbershop"
     }
    ],
    "robotsMeta": "noindex, follow",
@@ -2804,7 +3505,7 @@
     "title": "Barbershop Győr — a booking-led website | Stratos",
     "description": "Case study: a barbershop website where the opening screen has one job — booking. Real Google reviews, a bilingual interface.",
     "image": "https://stratosweb.hu/assets/img/work-1.jpg",
-    "url": "https://stratosweb.hu/en/work-barbershop.html",
+    "url": "https://stratosweb.hu/en/work-barbershop",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2815,8 +3516,9 @@
   },
   {
    "route": "/en/work-mentaltrening.html",
+   "served": "/en/work-mentaltrening",
    "file": "dist/en/work-mentaltrening.html",
-   "bytes": 25821,
+   "bytes": 24582,
    "is404": false,
    "lang": "en",
    "title": "mentáliserő.hu — mental coaching website | Stratos",
@@ -2824,24 +3526,24 @@
    "h1": [
     "One practitioner, one promise, one button."
    ],
-   "canonical": "https://stratosweb.hu/en/work-mentaltrening.html",
-   "canonicalPath": "/en/work-mentaltrening.html",
+   "canonical": "https://stratosweb.hu/en/work-mentaltrening",
+   "canonicalPath": "/en/work-mentaltrening",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munka-mentaltrening.html"
+     "href": "https://stratosweb.hu/munka-mentaltrening"
     },
     {
      "hreflang": "en",
-     "href": "/en/work-mentaltrening.html"
+     "href": "https://stratosweb.hu/en/work-mentaltrening"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekt-mentaltrening.html"
+     "href": "https://stratosweb.hu/de/projekt-mentaltrening"
     },
     {
      "hreflang": "x-default",
-     "href": "/munka-mentaltrening.html"
+     "href": "https://stratosweb.hu/munka-mentaltrening"
     }
    ],
    "robotsMeta": "noindex, follow",
@@ -2850,7 +3552,7 @@
     "title": "mentáliserő.hu — mental coaching website | Stratos",
     "description": "Case study: a mental coaching website for athletes. A one-person practice, a personal tone of voice, a single decision on the opening screen.",
     "image": "https://stratosweb.hu/assets/img/work-2.jpg",
-    "url": "https://stratosweb.hu/en/work-mentaltrening.html",
+    "url": "https://stratosweb.hu/en/work-mentaltrening",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2861,88 +3563,91 @@
   },
   {
    "route": "/en/work-rapidkert.html",
+   "served": "/en/work-rapidkert",
    "file": "dist/en/work-rapidkert.html",
-   "bytes": 26464,
+   "bytes": 31237,
    "is404": false,
    "lang": "en",
-   "title": "Rapidkert Kft. — landscaping website | Stratos",
-   "description": "Case study: a website for automatic irrigation and landscaping. One evening garden photograph, one service named out loud, one free consultation as the only request.",
+   "title": "Rapidkert — 3D website and SEO case study | Stratos",
+   "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 15 million in contracted project value from search.",
    "h1": [
-    "A garden you want to look at after dark, too."
+    "A great garden starts below the surface."
    ],
-   "canonical": "https://stratosweb.hu/en/work-rapidkert.html",
-   "canonicalPath": "/en/work-rapidkert.html",
+   "canonical": "https://stratosweb.hu/en/work-rapidkert",
+   "canonicalPath": "/en/work-rapidkert",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munka-rapidkert.html"
+     "href": "https://stratosweb.hu/munka-rapidkert"
     },
     {
      "hreflang": "en",
-     "href": "/en/work-rapidkert.html"
+     "href": "https://stratosweb.hu/en/work-rapidkert"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekt-rapidkert.html"
+     "href": "https://stratosweb.hu/de/projekt-rapidkert"
     },
     {
      "hreflang": "x-default",
-     "href": "/munka-rapidkert.html"
+     "href": "https://stratosweb.hu/munka-rapidkert"
     }
    ],
-   "robotsMeta": "noindex, follow",
-   "indexable": false,
+   "robotsMeta": null,
+   "indexable": true,
    "og": {
-    "title": "Rapidkert Kft. — landscaping website | Stratos",
-    "description": "Case study: a website for automatic irrigation and landscaping. One evening garden photograph, one service named out loud, one free consultation as the only request.",
-    "image": "https://stratosweb.hu/assets/img/work-3.jpg",
-    "url": "https://stratosweb.hu/en/work-rapidkert.html",
+    "title": "Rapidkert — 3D website and SEO case study | Stratos",
+    "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 15 million in contracted project value from search.",
+    "image": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
+    "url": "https://stratosweb.hu/en/work-rapidkert",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
    "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": true,
-   "inSitemap": false
+   "inSitemap": true,
+   "inboundLinks": 6
   },
   {
    "route": "/en/work.html",
+   "served": "/en/work",
    "file": "dist/en/work.html",
-   "bytes": 28046,
+   "bytes": 24967,
    "is404": false,
    "lang": "en",
    "title": "Work — live websites and client projects | Stratos",
-   "description": "Landscaping, a barbershop, mental coaching — live websites we built. What the client got, with what structure, and in what visual direction.",
+   "description": "Landscaping, a barbershop, mental training — live websites we built, and what each client actually got.",
    "h1": [
     "Live sites,not portfolio pictures."
    ],
-   "canonical": "https://stratosweb.hu/en/work.html",
-   "canonicalPath": "/en/work.html",
+   "canonical": "https://stratosweb.hu/en/work",
+   "canonicalPath": "/en/work",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munkaink.html"
+     "href": "https://stratosweb.hu/munkaink"
     },
     {
      "hreflang": "en",
-     "href": "/en/work.html"
+     "href": "https://stratosweb.hu/en/work"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekte.html"
+     "href": "https://stratosweb.hu/de/projekte"
     },
     {
      "hreflang": "x-default",
-     "href": "/munkaink.html"
+     "href": "https://stratosweb.hu/munkaink"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Work — live websites and client projects | Stratos",
-    "description": "Landscaping, a barbershop, mental coaching — live websites we built. What the client got, with what structure, and in what visual direction.",
+    "description": "Landscaping, a barbershop, mental training — live websites we built, and what each client actually got.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/en/work.html",
+    "url": "https://stratosweb.hu/en/work",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2950,46 +3655,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/hirdeteskezeles.html",
+   "served": "/hirdeteskezeles",
    "file": "dist/hirdeteskezeles.html",
-   "bytes": 40763,
+   "bytes": 42052,
    "is404": false,
    "lang": "hu",
-   "title": "Hirdetéskezelés — Google & Meta Ads | Stratos",
-   "description": "Google és Meta kampányok, amelyek nem elérést, hanem ügyfeleket hoznak. Célközönség-kutatás, kreatív, licitstratégia, konverziómérés és havi riport.",
+   "title": "Google és Meta hirdetéskezelés | Stratos",
+   "description": "Google és Meta hirdetéskezelés, ami nem elérést, hanem ügyfelet hoz: célközönség-kutatás, kreatív, licitstratégia és konverziómérés.",
    "h1": [
     "Nem eléréstveszel.Ügyfelet."
    ],
-   "canonical": "https://stratosweb.hu/hirdeteskezeles.html",
-   "canonicalPath": "/hirdeteskezeles.html",
+   "canonical": "https://stratosweb.hu/hirdeteskezeles",
+   "canonicalPath": "/hirdeteskezeles",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/hirdeteskezeles.html"
+     "href": "https://stratosweb.hu/hirdeteskezeles"
     },
     {
      "hreflang": "en",
-     "href": "/en/ads-management.html"
+     "href": "https://stratosweb.hu/en/ads-management"
     },
     {
      "hreflang": "de",
-     "href": "/de/werbeanzeigen.html"
+     "href": "https://stratosweb.hu/de/werbeanzeigen"
     },
     {
      "hreflang": "x-default",
-     "href": "/hirdeteskezeles.html"
+     "href": "https://stratosweb.hu/hirdeteskezeles"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Hirdetéskezelés — Google & Meta Ads | Stratos",
-    "description": "Google és Meta kampányok, amelyek nem elérést, hanem ügyfeleket hoznak. Célközönség-kutatás, kreatív, licitstratégia, konverziómérés és havi riport.",
+    "title": "Google és Meta hirdetéskezelés | Stratos",
+    "description": "Google és Meta hirdetéskezelés, ami nem elérést, hanem ügyfelet hoz: célközönség-kutatás, kreatív, licitstratégia és konverziómérés.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/hirdeteskezeles.html",
+    "url": "https://stratosweb.hu/hirdeteskezeles",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -2997,46 +3703,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/impact-program.html",
+   "served": "/impact-program",
    "file": "dist/impact-program.html",
-   "bytes": 41316,
+   "bytes": 40378,
    "is404": false,
    "lang": "hu",
-   "title": "Stratos Impact Program — ingyenes weboldal nonprofitoknak | Stratos",
+   "title": "Ingyenes weboldal nonprofitoknak | Stratos",
    "description": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
    "h1": [
     "Prémium weboldalakazoknak, akikéleteket változtatnak meg."
    ],
-   "canonical": "https://stratosweb.hu/impact-program.html",
-   "canonicalPath": "/impact-program.html",
+   "canonical": "https://stratosweb.hu/impact-program",
+   "canonicalPath": "/impact-program",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/impact-program.html"
+     "href": "https://stratosweb.hu/impact-program"
     },
     {
      "hreflang": "en",
-     "href": "/en/impact-program.html"
+     "href": "https://stratosweb.hu/en/impact-program"
     },
     {
      "hreflang": "de",
-     "href": "/de/impact-programm.html"
+     "href": "https://stratosweb.hu/de/impact-programm"
     },
     {
      "hreflang": "x-default",
-     "href": "/impact-program.html"
+     "href": "https://stratosweb.hu/impact-program"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Stratos Impact Program — ingyenes weboldal nonprofitoknak | Stratos",
+    "title": "Ingyenes weboldal nonprofitoknak | Stratos",
     "description": "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/impact-program.html",
+    "url": "https://stratosweb.hu/impact-program",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3044,12 +3751,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/impresszum.html",
+   "served": "/impresszum",
    "file": "dist/impresszum.html",
-   "bytes": 20712,
+   "bytes": 19524,
    "is404": false,
    "lang": "hu",
    "title": "Impresszum | Stratos",
@@ -3057,24 +3765,24 @@
    "h1": [
     "Impresszum"
    ],
-   "canonical": "https://stratosweb.hu/impresszum.html",
-   "canonicalPath": "/impresszum.html",
+   "canonical": "https://stratosweb.hu/impresszum",
+   "canonicalPath": "/impresszum",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/impresszum.html"
+     "href": "https://stratosweb.hu/impresszum"
     },
     {
      "hreflang": "en",
-     "href": "/en/imprint.html"
+     "href": "https://stratosweb.hu/en/imprint"
     },
     {
      "hreflang": "de",
-     "href": "/de/impressum.html"
+     "href": "https://stratosweb.hu/de/impressum"
     },
     {
      "hreflang": "x-default",
-     "href": "/impresszum.html"
+     "href": "https://stratosweb.hu/impresszum"
     }
    ],
    "robotsMeta": null,
@@ -3083,7 +3791,7 @@
     "title": "Impresszum | Stratos",
     "description": "A Stratos Media üzemeltetőjének adatai, elérhetőségek és tárhelyszolgáltató.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/impresszum.html",
+    "url": "https://stratosweb.hu/impresszum",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3091,17 +3799,20 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 24
+   "inboundLinks": 30
   },
   {
    "route": "/index.html",
+   "served": "/",
    "file": "dist/index.html",
-   "bytes": 19919,
+   "bytes": 79733,
    "is404": false,
    "lang": "hu",
-   "title": "Stratos — Digitális rendszerek, amik növekedést hoznak | Győr & Budapest",
-   "description": "Weboldal, branding és hirdetéskezelés egy kézben, havidíjas konstrukcióban. KKV-tól nagyvállalatig — Győr és Budapest.",
-   "h1": [],
+   "title": "Weboldal készítés és fejlesztés | Stratos",
+   "description": "Weboldal készítés, branding és hirdetéskezelés egy kézben, havidíjas konstrukcióban. KKV-tól nagyvállalatig, magyarul, angolul és németül.",
+   "h1": [
+    "Nem weboldalakat építünk.\n    Magasságot építünk.\n    Stratos · Weboldal készítés és digitális ügynökség"
+   ],
    "canonical": "https://stratosweb.hu/",
    "canonicalPath": "/",
    "alternates": [
@@ -3125,58 +3836,58 @@
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Stratos — Digitális rendszerek, amik növekedést hoznak | Győr & Budapest",
-    "description": "Weboldal, branding és hirdetéskezelés egy kézben, havidíjas konstrukcióban. KKV-tól nagyvállalatig — Győr és Budapest.",
+    "title": "Weboldal készítés és fejlesztés | Stratos",
+    "description": "Weboldal készítés, branding és hirdetéskezelés egy kézben, havidíjas konstrukcióban. KKV-tól nagyvállalatig, magyarul, angolul és németül.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
     "url": "https://stratosweb.hu/",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
-   "clientRendered": true,
+   "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "h1Source": "rendered — see tests/public-site.spec.ts \"has one h1 and a skip link\"",
-   "inboundLinks": 21
+   "inboundLinks": 33
   },
   {
-   "route": "/kkv.html",
-   "file": "dist/kkv.html",
-   "bytes": 39816,
+   "route": "/keresooptimalizalas.html",
+   "served": "/keresooptimalizalas",
+   "file": "dist/keresooptimalizalas.html",
+   "bytes": 36716,
    "is404": false,
    "lang": "hu",
-   "title": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
-   "description": "Tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban. Weboldal egyéni és kisvállalkozóknak, nagy egyszeri költség nélkül.",
+   "title": "Keresőoptimalizálás | SEO ügynökség és szakértő | Stratos",
+   "description": "Keresőoptimalizálás, ami nem helyezést ígér, hanem megkeresést hoz. Technikai SEO, tartalom és helyi keresés, havi méréssel és érthető riporttal.",
    "h1": [
-    "Weboldal,nagy egyszeriköltség nélkül."
+    "A keresletmár megvan.Téged nem talál."
    ],
-   "canonical": "https://stratosweb.hu/kkv.html",
-   "canonicalPath": "/kkv.html",
+   "canonical": "https://stratosweb.hu/keresooptimalizalas",
+   "canonicalPath": "/keresooptimalizalas",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/kkv.html"
+     "href": "https://stratosweb.hu/keresooptimalizalas"
     },
     {
      "hreflang": "en",
-     "href": "/en/web-design-sme.html"
+     "href": "https://stratosweb.hu/en/seo-consultancy"
     },
     {
      "hreflang": "de",
-     "href": "/de/webdesign-kmu.html"
+     "href": "https://stratosweb.hu/de/seo-betreuung"
     },
     {
      "hreflang": "x-default",
-     "href": "/kkv.html"
+     "href": "https://stratosweb.hu/keresooptimalizalas"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Webdesign KKV-nak — havidíjas weboldal | Stratos",
-    "description": "Tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban. Weboldal egyéni és kisvállalkozóknak, nagy egyszeri költség nélkül.",
+    "title": "Keresőoptimalizálás | SEO ügynökség és szakértő | Stratos",
+    "description": "Keresőoptimalizálás, ami nem helyezést ígér, hanem megkeresést hoz. Technikai SEO, tartalom és helyi keresés, havi méréssel és érthető riporttal.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/kkv.html",
+    "url": "https://stratosweb.hu/keresooptimalizalas",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3184,12 +3895,61 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
+  },
+  {
+   "route": "/kkv.html",
+   "served": "/kkv",
+   "file": "dist/kkv.html",
+   "bytes": 44352,
+   "is404": false,
+   "lang": "hu",
+   "title": "Havidíjas weboldal készítés KKV-knak | Stratos",
+   "description": "Havidíjas weboldal kisvállalkozásoknak: tervezés, fejlesztés, tárhely és karbantartás egy fix havidíjban, nagy egyszeri költség nélkül.",
+   "h1": [
+    "Weboldal,nagy egyszeriköltség nélkül."
+   ],
+   "canonical": "https://stratosweb.hu/kkv",
+   "canonicalPath": "/kkv",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/kkv"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/web-design-small-business"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/webdesign-kmu"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/kkv"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Havidíjas weboldal készítés KKV-knak | Stratos",
+    "description": "Havidíjas weboldal kisvállalkozásoknak: tervezés, fejlesztés, tárhely és karbantartás egy fix havidíjban, nagy egyszeri költség nélkül.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/kkv",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 31
   },
   {
    "route": "/munka-barbershop.html",
+   "served": "/munka-barbershop",
    "file": "dist/munka-barbershop.html",
-   "bytes": 26944,
+   "bytes": 25751,
    "is404": false,
    "lang": "hu",
    "title": "Barbershop Győr — foglalásvezérelt weboldal | Stratos",
@@ -3197,24 +3957,24 @@
    "h1": [
     "Egy oldal, aminek egyetlen dolga az időpont."
    ],
-   "canonical": "https://stratosweb.hu/munka-barbershop.html",
-   "canonicalPath": "/munka-barbershop.html",
+   "canonical": "https://stratosweb.hu/munka-barbershop",
+   "canonicalPath": "/munka-barbershop",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munka-barbershop.html"
+     "href": "https://stratosweb.hu/munka-barbershop"
     },
     {
      "hreflang": "en",
-     "href": "/en/work-barbershop.html"
+     "href": "https://stratosweb.hu/en/work-barbershop"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekt-barbershop.html"
+     "href": "https://stratosweb.hu/de/projekt-barbershop"
     },
     {
      "hreflang": "x-default",
-     "href": "/munka-barbershop.html"
+     "href": "https://stratosweb.hu/munka-barbershop"
     }
    ],
    "robotsMeta": "noindex, follow",
@@ -3223,7 +3983,7 @@
     "title": "Barbershop Győr — foglalásvezérelt weboldal | Stratos",
     "description": "Esettanulmány: borbélyüzlet weboldala, ahol a nyitóképernyő egyetlen dolga az időpontfoglalás. Valódi Google-értékelések, kétnyelvű felület.",
     "image": "https://stratosweb.hu/assets/img/work-1.jpg",
-    "url": "https://stratosweb.hu/munka-barbershop.html",
+    "url": "https://stratosweb.hu/munka-barbershop",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3234,8 +3994,9 @@
   },
   {
    "route": "/munka-mentaltrening.html",
+   "served": "/munka-mentaltrening",
    "file": "dist/munka-mentaltrening.html",
-   "bytes": 26963,
+   "bytes": 25770,
    "is404": false,
    "lang": "hu",
    "title": "mentáliserő.hu — mentáltréning weboldal | Stratos",
@@ -3243,24 +4004,24 @@
    "h1": [
     "Egy szakember, egy ígéret, egy gomb."
    ],
-   "canonical": "https://stratosweb.hu/munka-mentaltrening.html",
-   "canonicalPath": "/munka-mentaltrening.html",
+   "canonical": "https://stratosweb.hu/munka-mentaltrening",
+   "canonicalPath": "/munka-mentaltrening",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munka-mentaltrening.html"
+     "href": "https://stratosweb.hu/munka-mentaltrening"
     },
     {
      "hreflang": "en",
-     "href": "/en/work-mentaltrening.html"
+     "href": "https://stratosweb.hu/en/work-mentaltrening"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekt-mentaltrening.html"
+     "href": "https://stratosweb.hu/de/projekt-mentaltrening"
     },
     {
      "hreflang": "x-default",
-     "href": "/munka-mentaltrening.html"
+     "href": "https://stratosweb.hu/munka-mentaltrening"
     }
    ],
    "robotsMeta": "noindex, follow",
@@ -3269,7 +4030,7 @@
     "title": "mentáliserő.hu — mentáltréning weboldal | Stratos",
     "description": "Esettanulmány: sportolóknak szóló mentáltréning weboldala. Egyszemélyes szolgáltatás, személyes hangvétel, egyetlen döntés a nyitóképernyőn.",
     "image": "https://stratosweb.hu/assets/img/work-2.jpg",
-    "url": "https://stratosweb.hu/munka-mentaltrening.html",
+    "url": "https://stratosweb.hu/munka-mentaltrening",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3280,88 +4041,91 @@
   },
   {
    "route": "/munka-rapidkert.html",
+   "served": "/munka-rapidkert",
    "file": "dist/munka-rapidkert.html",
-   "bytes": 27655,
+   "bytes": 33005,
    "is404": false,
    "lang": "hu",
-   "title": "Rapidkert Kft. — kertépítés weboldal | Stratos",
-   "description": "Esettanulmány: automata öntözőrendszer és kertépítés weboldala. Egy esti kertfotó, egy kimondott szolgáltatás, egy díjmentes konzultáció mint egyetlen kérés.",
+   "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+   "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 15 millió Ft szerződött projektérték keresésből.",
    "h1": [
-    "Egy kert, amit este is meg akarsz nézni."
+    "Egy nagyszerű kert a felszín alatt kezdődik."
    ],
-   "canonical": "https://stratosweb.hu/munka-rapidkert.html",
-   "canonicalPath": "/munka-rapidkert.html",
+   "canonical": "https://stratosweb.hu/munka-rapidkert",
+   "canonicalPath": "/munka-rapidkert",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munka-rapidkert.html"
+     "href": "https://stratosweb.hu/munka-rapidkert"
     },
     {
      "hreflang": "en",
-     "href": "/en/work-rapidkert.html"
+     "href": "https://stratosweb.hu/en/work-rapidkert"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekt-rapidkert.html"
+     "href": "https://stratosweb.hu/de/projekt-rapidkert"
     },
     {
      "hreflang": "x-default",
-     "href": "/munka-rapidkert.html"
+     "href": "https://stratosweb.hu/munka-rapidkert"
     }
    ],
-   "robotsMeta": "noindex, follow",
-   "indexable": false,
+   "robotsMeta": null,
+   "indexable": true,
    "og": {
-    "title": "Rapidkert Kft. — kertépítés weboldal | Stratos",
-    "description": "Esettanulmány: automata öntözőrendszer és kertépítés weboldala. Egy esti kertfotó, egy kimondott szolgáltatás, egy díjmentes konzultáció mint egyetlen kérés.",
-    "image": "https://stratosweb.hu/assets/img/work-3.jpg",
-    "url": "https://stratosweb.hu/munka-rapidkert.html",
+    "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+    "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 15 millió Ft szerződött projektérték keresésből.",
+    "image": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
+    "url": "https://stratosweb.hu/munka-rapidkert",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
    "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": true,
-   "inSitemap": false
+   "inSitemap": true,
+   "inboundLinks": 6
   },
   {
    "route": "/munkaink.html",
+   "served": "/munkaink",
    "file": "dist/munkaink.html",
-   "bytes": 29268,
+   "bytes": 26239,
    "is404": false,
    "lang": "hu",
    "title": "Munkáink — élő weboldalak és ügyfélprojektek | Stratos",
-   "description": "Kertépítés, borbélyüzlet, mentáltréning — élő weboldalak, amiket építettünk. Mit kapott az ügyfél, milyen szerkezettel, és milyen vizuális irányban.",
+   "description": "Kertépítés, borbélyüzlet, mentáltréning — élő weboldalak, amiket építettünk, és amit az ügyfél ténylegesen kapott.",
    "h1": [
     "Élő oldalak,nem portfólió-képek."
    ],
-   "canonical": "https://stratosweb.hu/munkaink.html",
-   "canonicalPath": "/munkaink.html",
+   "canonical": "https://stratosweb.hu/munkaink",
+   "canonicalPath": "/munkaink",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/munkaink.html"
+     "href": "https://stratosweb.hu/munkaink"
     },
     {
      "hreflang": "en",
-     "href": "/en/work.html"
+     "href": "https://stratosweb.hu/en/work"
     },
     {
      "hreflang": "de",
-     "href": "/de/projekte.html"
+     "href": "https://stratosweb.hu/de/projekte"
     },
     {
      "hreflang": "x-default",
-     "href": "/munkaink.html"
+     "href": "https://stratosweb.hu/munkaink"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Munkáink — élő weboldalak és ügyfélprojektek | Stratos",
-    "description": "Kertépítés, borbélyüzlet, mentáltréning — élő weboldalak, amiket építettünk. Mit kapott az ügyfél, milyen szerkezettel, és milyen vizuális irányban.",
+    "description": "Kertépítés, borbélyüzlet, mentáltréning — élő weboldalak, amiket építettünk, és amit az ügyfél ténylegesen kapott.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/munkaink.html",
+    "url": "https://stratosweb.hu/munkaink",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3369,46 +4133,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/nagyvallalat.html",
+   "served": "/nagyvallalat",
    "file": "dist/nagyvallalat.html",
-   "bytes": 39802,
+   "bytes": 43644,
    "is404": false,
    "lang": "hu",
-   "title": "Webdesign nagyvállalatoknak — dedikált fejlesztőcsapat | Stratos",
-   "description": "Egyedi platformok, belső rendszerek, integrációk és üzemeltetés. Nagyvállalati szintű minőség, SLA és biztonság — a stratégiától az élesítésig.",
+   "title": "Weboldal fejlesztés nagyvállalatoknak | Stratos",
+   "description": "Weboldal fejlesztés nagyvállalatoknak: egyedi platformok, integrációk és üzemeltetés, SLA-val, a stratégiától az élesítésig.",
    "h1": [
-    "Minden fejlesztés,egy partnerrel."
+    "Minden webfejlesztés,egy partnerrel."
    ],
-   "canonical": "https://stratosweb.hu/nagyvallalat.html",
-   "canonicalPath": "/nagyvallalat.html",
+   "canonical": "https://stratosweb.hu/nagyvallalat",
+   "canonicalPath": "/nagyvallalat",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/nagyvallalat.html"
+     "href": "https://stratosweb.hu/nagyvallalat"
     },
     {
      "hreflang": "en",
-     "href": "/en/web-design-enterprise.html"
+     "href": "https://stratosweb.hu/en/bespoke-web-development"
     },
     {
      "hreflang": "de",
-     "href": "/de/webdesign-grossunternehmen.html"
+     "href": "https://stratosweb.hu/de/webentwicklung-agentur"
     },
     {
      "hreflang": "x-default",
-     "href": "/nagyvallalat.html"
+     "href": "https://stratosweb.hu/nagyvallalat"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Webdesign nagyvállalatoknak — dedikált fejlesztőcsapat | Stratos",
-    "description": "Egyedi platformok, belső rendszerek, integrációk és üzemeltetés. Nagyvállalati szintű minőség, SLA és biztonság — a stratégiától az élesítésig.",
+    "title": "Weboldal fejlesztés nagyvállalatoknak | Stratos",
+    "description": "Weboldal fejlesztés nagyvállalatoknak: egyedi platformok, integrációk és üzemeltetés, SLA-val, a stratégiától az élesítésig.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/nagyvallalat.html",
+    "url": "https://stratosweb.hu/nagyvallalat",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3416,12 +4181,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/rolunk.html",
+   "served": "/rolunk",
    "file": "dist/rolunk.html",
-   "bytes": 48885,
+   "bytes": 49110,
    "is404": false,
    "lang": "hu",
    "title": "Rólunk — A Stratos története | Stratos Media",
@@ -3429,24 +4195,24 @@
    "h1": [
     "A Stratostörténete"
    ],
-   "canonical": "https://stratosweb.hu/rolunk.html",
-   "canonicalPath": "/rolunk.html",
+   "canonical": "https://stratosweb.hu/rolunk",
+   "canonicalPath": "/rolunk",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/rolunk.html"
+     "href": "https://stratosweb.hu/rolunk"
     },
     {
      "hreflang": "en",
-     "href": "/en/about.html"
+     "href": "https://stratosweb.hu/en/about"
     },
     {
      "hreflang": "de",
-     "href": "/de/ueber-uns.html"
+     "href": "https://stratosweb.hu/de/ueber-uns"
     },
     {
      "hreflang": "x-default",
-     "href": "/rolunk.html"
+     "href": "https://stratosweb.hu/rolunk"
     }
    ],
    "robotsMeta": null,
@@ -3455,7 +4221,7 @@
     "title": "Rólunk — A Stratos története | Stratos Media",
     "description": "A Stratos név a sztratoszférából ered. Megmutatjuk, kik vagyunk, hogyan gondolkodunk, és miért nem elégszünk meg a hétköznapi szinttel.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/rolunk.html",
+    "url": "https://stratosweb.hu/rolunk",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3463,46 +4229,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/szolgaltatasok.html",
+   "served": "/szolgaltatasok",
    "file": "dist/szolgaltatasok.html",
-   "bytes": 35985,
+   "bytes": 34518,
    "is404": false,
    "lang": "hu",
-   "title": "Szolgáltatások — webdesign, fejlesztés, branding, hirdetés | Stratos",
-   "description": "Négy szolgáltatás, egy rendszer: egyedi weboldal KKV-nak és nagyvállalatnak, arculat és szövegezés, valamint Google és Meta hirdetéskezelés. Az ajánlat mindig egyedi.",
+   "title": "Weboldal készítés — négy szolgáltatás, egy rendszer | Stratos",
+   "description": "Weboldal készítés KKV-nak és nagyvállalatnak, branding, valamint Google és Meta hirdetéskezelés — négy szolgáltatás, egy rendszerben.",
    "h1": [
-    "Négy szolgáltatás,egy rendszer."
+    "Weboldal készítés,és a rendszer körülötte."
    ],
-   "canonical": "https://stratosweb.hu/szolgaltatasok.html",
-   "canonicalPath": "/szolgaltatasok.html",
+   "canonical": "https://stratosweb.hu/szolgaltatasok",
+   "canonicalPath": "/szolgaltatasok",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/szolgaltatasok.html"
+     "href": "https://stratosweb.hu/szolgaltatasok"
     },
     {
      "hreflang": "en",
-     "href": "/en/services.html"
+     "href": "https://stratosweb.hu/en/bespoke-web-design"
     },
     {
      "hreflang": "de",
-     "href": "/de/leistungen.html"
+     "href": "https://stratosweb.hu/de/website-erstellen-lassen"
     },
     {
      "hreflang": "x-default",
-     "href": "/szolgaltatasok.html"
+     "href": "https://stratosweb.hu/szolgaltatasok"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Szolgáltatások — webdesign, fejlesztés, branding, hirdetés | Stratos",
-    "description": "Négy szolgáltatás, egy rendszer: egyedi weboldal KKV-nak és nagyvállalatnak, arculat és szövegezés, valamint Google és Meta hirdetéskezelés. Az ajánlat mindig egyedi.",
+    "title": "Weboldal készítés — négy szolgáltatás, egy rendszer | Stratos",
+    "description": "Weboldal készítés KKV-nak és nagyvállalatnak, branding, valamint Google és Meta hirdetéskezelés — négy szolgáltatás, egy rendszerben.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/szolgaltatasok.html",
+    "url": "https://stratosweb.hu/szolgaltatasok",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3510,46 +4277,47 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
   },
   {
    "route": "/ugyfelszolgalat.html",
+   "served": "/ugyfelszolgalat",
    "file": "dist/ugyfelszolgalat.html",
-   "bytes": 33072,
+   "bytes": 30924,
    "is404": false,
    "lang": "hu",
    "title": "Kapcsolat és projektindítás | Stratos",
-   "description": "Így indul egy Stratos projekt: rövid megkeresés vagy részletes igényfelmérő, díjmentes konzultáció, majd egyedi ajánlat. Írj, hívj, vagy töltsd ki az űrlapot.",
+   "description": "Így indul egy Stratos projekt: rövid megkeresés vagy igényfelmérő, díjmentes konzultáció, majd egyedi ajánlat. Írj, hívj vagy írj űrlapon.",
    "h1": [
     "Kezdjük ott,hogy elmondod."
    ],
-   "canonical": "https://stratosweb.hu/ugyfelszolgalat.html",
-   "canonicalPath": "/ugyfelszolgalat.html",
+   "canonical": "https://stratosweb.hu/ugyfelszolgalat",
+   "canonicalPath": "/ugyfelszolgalat",
    "alternates": [
     {
      "hreflang": "hu",
-     "href": "/ugyfelszolgalat.html"
+     "href": "https://stratosweb.hu/ugyfelszolgalat"
     },
     {
      "hreflang": "en",
-     "href": "/en/contact.html"
+     "href": "https://stratosweb.hu/en/contact"
     },
     {
      "hreflang": "de",
-     "href": "/de/kontakt.html"
+     "href": "https://stratosweb.hu/de/kontakt"
     },
     {
      "hreflang": "x-default",
-     "href": "/ugyfelszolgalat.html"
+     "href": "https://stratosweb.hu/ugyfelszolgalat"
     }
    ],
    "robotsMeta": null,
    "indexable": true,
    "og": {
     "title": "Kapcsolat és projektindítás | Stratos",
-    "description": "Így indul egy Stratos projekt: rövid megkeresés vagy részletes igényfelmérő, díjmentes konzultáció, majd egyedi ajánlat. Írj, hívj, vagy töltsd ki az űrlapot.",
+    "description": "Így indul egy Stratos projekt: rövid megkeresés vagy igényfelmérő, díjmentes konzultáció, majd egyedi ajánlat. Írj, hívj vagy írj űrlapon.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
-    "url": "https://stratosweb.hu/ugyfelszolgalat.html",
+    "url": "https://stratosweb.hu/ugyfelszolgalat",
     "type": "website"
    },
    "twitterCard": "summary_large_image",
@@ -3557,7 +4325,55 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 25
+   "inboundLinks": 31
+  },
+  {
+   "route": "/webshop-keszites.html",
+   "served": "/webshop-keszites",
+   "file": "dist/webshop-keszites.html",
+   "bytes": 31007,
+   "is404": false,
+   "lang": "hu",
+   "title": "Webshop készítés és webáruház fejlesztés | Stratos",
+   "description": "Webshop készítés kódból, sablon nélkül: terméktörzs, fizetés, szállítás és készletkapcsolat. Havidíjban vagy projektalapon, méréssel együtt.",
+   "h1": [
+    "A kosárnem a végállomás.A kezdet."
+   ],
+   "canonical": "https://stratosweb.hu/webshop-keszites",
+   "canonicalPath": "/webshop-keszites",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/webshop-keszites"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/ecommerce-web-design"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/onlineshop-erstellung"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/webshop-keszites"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
+   "og": {
+    "title": "Webshop készítés és webáruház fejlesztés | Stratos",
+    "description": "Webshop készítés kódból, sablon nélkül: terméktörzs, fizetés, szállítás és készletkapcsolat. Havidíjban vagy projektalapon, méréssel együtt.",
+    "image": "https://stratosweb.hu/assets/img/hero.jpg",
+    "url": "https://stratosweb.hu/webshop-keszites",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": true,
+   "inboundLinks": 31
   }
  ]
 }

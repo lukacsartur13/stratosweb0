@@ -88,3 +88,22 @@ _build/reports/phase8-review/
 # so the review captures can show a populated dashboard; it is never published,
 # is not `dist/`, and is rebuilt from scratch on every run.
 _build/.portal-mock/
+
+# Ad-hoc probe scripts. Every investigation in this repo leaves a few behind —
+# `.tmp-mhf-drift.mjs`, `.tmp-ovf.mjs` — written to answer one question against
+# a running page and never read again. By Phase 9 there were 113 of them. They
+# are the working, not the work; the finding they produced is in the report.
+.tmp-*
+
+# Per-run Playwright JSON from the regression harness. The written reports
+# beside it are the deliverable and stay tracked; this one records the argv and
+# absolute paths of whichever machine last ran the suite, so it conflicts on
+# every run and means nothing to another checkout.
+_build/reports/regression-harness/last-run.json
+
+# Failure artefacts captured by the navigation-boundary harness: a screenshot,
+# a DOM dump, a network log and a timeline per failing test. Same reasoning as
+# the review imagery above — regenerable evidence, not the record. The .png
+# rule already excluded the stills; this covers the JSON beside them, which was
+# 168 files.
+_build/reports/**/failures/

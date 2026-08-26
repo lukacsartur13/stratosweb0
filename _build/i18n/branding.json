@@ -1,12 +1,4 @@
 {
- "Branding és arculattervezés | Stratos": [
-  "Branding and identity design | Stratos",
-  "Branding und Corporate Design | Stratos"
- ],
- "Logó, színvilág, tipográfia, képi stílus és hangnem — egy rendszerben. Építs olyan márkát, ami egy színről is eszébe jut az embereknek.": [
-  "Logo, colour system, typography, image style and tone of voice — in one system. Build a brand people recall from a single colour.",
-  "Logo, Farbwelt, Typografie, Bildsprache und Tonalität — in einem System. Bau eine Marke, an die man schon bei einer Farbe denkt."
- ],
  "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Branding</b>": [
   "<a href=\"index.html\">Stratos</a> / Services / <b>Branding</b>",
   "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Branding</b>"
@@ -230,5 +222,13 @@
  "Kezdjük egy őszinte átnézéssel: megmondjuk, mit érdemes megtartani a mostani megjelenésedből, és min változtatnánk.": [
   "Let's start with an honest review: we'll tell you what's worth keeping from your current look and what we'd change.",
   "Beginnen wir mit einer ehrlichen Bestandsaufnahme: Wir sagen dir, was von deinem jetzigen Auftritt bleiben sollte und was wir ändern würden."
+ ],
+ "Logó tervezés és arculattervezés | Stratos": [
+  "Branding and identity design | Stratos",
+  "Branding und Corporate Design | Stratos"
+ ],
+ "Logó tervezés és teljes arculat: színvilág, tipográfia, képi stílus és hangnem egy rendszerben. Építs olyan márkát, ami egy színről is eszébe jut az embereknek.": [
+  "Logo, colour system, typography, image style and tone of voice — in one system. Build a brand people recall from a single colour.",
+  "Logo, Farbwelt, Typografie, Bildsprache und Tonalität — in einem System. Bau eine Marke, an die man schon bei einer Farbe denkt."
  ]
 }

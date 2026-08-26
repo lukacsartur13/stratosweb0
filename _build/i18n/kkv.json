@@ -1,23 +1,7 @@
 {
- "Weboldal készítés KKV-nak havidíjban | Stratos": [
-  "Web design for SMEs — a website on a monthly fee | Stratos",
-  "Webdesign für KMU — Website zur Monatsgebühr | Stratos"
- ],
- "Weboldal készítés kisvállalkozásoknak: tervezés, fejlesztés, tárhely és karbantartás egy fix havidíjban, nagy egyszeri költség nélkül.": [
-  "Web design for small businesses: design, development, hosting and maintenance in one fixed monthly fee, with no large upfront cost.",
-  "Webdesign für kleine Unternehmen: Konzept, Entwicklung, Hosting und Wartung zu einer festen Monatsgebühr, ohne hohe Einmalkosten."
- ],
- "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Weboldal készítés KKV-nak</b>": [
-  "<a href=\"index.html\">Stratos</a> / Services / <b>Web design for SMEs</b>",
-  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Webdesign für KMU</b>"
- ],
  "Weboldal,<br>nagy egyszeri<br><span class=\"sig\">költség nélkül.</span>": [
   "A website<br>without the big<br><span class=\"sig\">upfront cost.</span>",
   "Eine Website<br>ohne hohe<br><span class=\"sig\">Einmalkosten.</span>"
- ],
- "Tervezés, fejlesztés, tárhely és folyamatos karbantartás. Minden egy fix havidíjban.": [
-  "Design, development, hosting and ongoing maintenance. All in one fixed monthly fee.",
-  "Konzeption, Entwicklung, Hosting und laufende Wartung. Alles in einer festen Monatsgebühr."
  ],
  "Havidíjas weboldal": [
   "Website on a monthly fee",
@@ -245,5 +229,21 @@
  "<a href=\"munka-mentaltrening.html\"><span class=\"proofidx__n\">mentaltrening.com</span><span class=\"proofidx__s\">Személyes márka, egy döntés</span></a>": [
   "<a href=\"munka-mentaltrening.html\"><span class=\"proofidx__n\">mentaltrening.com</span><span class=\"proofidx__s\">Personal brand, one decision</span></a>",
   "<a href=\"munka-mentaltrening.html\"><span class=\"proofidx__n\">mentaltrening.com</span><span class=\"proofidx__s\">Persönliche Marke, eine Entscheidung</span></a>"
+ ],
+ "Havidíjas weboldal készítés KKV-knak | Stratos": [
+  "Web Design Services for Small Business | Stratos",
+  "Webdesign für KMU — Website zur Monatsgebühr | Stratos"
+ ],
+ "Havidíjas weboldal kisvállalkozásoknak: tervezés, fejlesztés, tárhely és karbantartás egy fix havidíjban, nagy egyszeri költség nélkül.": [
+  "Web design services for small businesses: design, build, hosting and ongoing maintenance in one fixed monthly fee, with no large upfront cost.",
+  "Webdesign für kleine Unternehmen: Konzept, Entwicklung, Hosting und Wartung zu einer festen Monatsgebühr, ohne hohe Einmalkosten."
+ ],
+ "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Havidíjas weboldal KKV-knak</b>": [
+  "<a href=\"index.html\">Stratos</a> / Services / <b>Web design for small business</b>",
+  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Webdesign für KMU</b>"
+ ],
+ "Weboldal kisvállalkozásoknak: tervezés, fejlesztés, tárhely és folyamatos karbantartás. Minden egy fix havidíjban.": [
+  "Design, development, hosting and ongoing maintenance. All in one fixed monthly fee.",
+  "Konzeption, Entwicklung, Hosting und laufende Wartung. Alles in einer festen Monatsgebühr."
  ]
 }

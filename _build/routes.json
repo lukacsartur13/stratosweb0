@@ -17,18 +17,18 @@
   },
   "services": {
    "hu": "szolgaltatasok.html",
-   "en": "services.html",
-   "de": "leistungen.html"
+   "en": "bespoke-web-design.html",
+   "de": "website-erstellen-lassen.html"
   },
   "sme": {
    "hu": "kkv.html",
-   "en": "web-design-sme.html",
+   "en": "web-design-small-business.html",
    "de": "webdesign-kmu.html"
   },
   "enterprise": {
    "hu": "nagyvallalat.html",
-   "en": "web-design-enterprise.html",
-   "de": "webdesign-grossunternehmen.html"
+   "en": "bespoke-web-development.html",
+   "de": "webentwicklung-agentur.html"
   },
   "branding": {
    "hu": "branding.html",
@@ -42,12 +42,12 @@
   },
   "seo": {
    "hu": "keresooptimalizalas.html",
-   "en": "seo.html",
-   "de": "suchmaschinenoptimierung.html"
+   "en": "seo-consultancy.html",
+   "de": "seo-betreuung.html"
   },
   "shop": {
    "hu": "webshop-keszites.html",
-   "en": "online-store.html",
+   "en": "ecommerce-web-design.html",
    "de": "onlineshop-erstellung.html"
   },
   "impact": {
@@ -164,18 +164,18 @@
   },
   "services": {
    "hu": "/szolgaltatasok",
-   "en": "/en/services",
-   "de": "/de/leistungen"
+   "en": "/en/bespoke-web-design",
+   "de": "/de/website-erstellen-lassen"
   },
   "sme": {
    "hu": "/kkv",
-   "en": "/en/web-design-sme",
+   "en": "/en/web-design-small-business",
    "de": "/de/webdesign-kmu"
   },
   "enterprise": {
    "hu": "/nagyvallalat",
-   "en": "/en/web-design-enterprise",
-   "de": "/de/webdesign-grossunternehmen"
+   "en": "/en/bespoke-web-development",
+   "de": "/de/webentwicklung-agentur"
   },
   "branding": {
    "hu": "/branding",
@@ -189,12 +189,12 @@
   },
   "seo": {
    "hu": "/keresooptimalizalas",
-   "en": "/en/seo",
-   "de": "/de/suchmaschinenoptimierung"
+   "en": "/en/seo-consultancy",
+   "de": "/de/seo-betreuung"
   },
   "shop": {
    "hu": "/webshop-keszites",
-   "en": "/en/online-store",
+   "en": "/en/ecommerce-web-design",
    "de": "/de/onlineshop-erstellung"
   },
   "impact": {
