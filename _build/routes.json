@@ -158,144 +158,144 @@
    "de": "/de/"
   },
   "about": {
-   "hu": "/rolunk.html",
-   "en": "/en/about.html",
-   "de": "/de/ueber-uns.html"
+   "hu": "/rolunk",
+   "en": "/en/about",
+   "de": "/de/ueber-uns"
   },
   "services": {
-   "hu": "/szolgaltatasok.html",
-   "en": "/en/services.html",
-   "de": "/de/leistungen.html"
+   "hu": "/szolgaltatasok",
+   "en": "/en/services",
+   "de": "/de/leistungen"
   },
   "sme": {
-   "hu": "/kkv.html",
-   "en": "/en/web-design-sme.html",
-   "de": "/de/webdesign-kmu.html"
+   "hu": "/kkv",
+   "en": "/en/web-design-sme",
+   "de": "/de/webdesign-kmu"
   },
   "enterprise": {
-   "hu": "/nagyvallalat.html",
-   "en": "/en/web-design-enterprise.html",
-   "de": "/de/webdesign-grossunternehmen.html"
+   "hu": "/nagyvallalat",
+   "en": "/en/web-design-enterprise",
+   "de": "/de/webdesign-grossunternehmen"
   },
   "branding": {
-   "hu": "/branding.html",
-   "en": "/en/branding.html",
-   "de": "/de/branding.html"
+   "hu": "/branding",
+   "en": "/en/branding",
+   "de": "/de/branding"
   },
   "ads": {
-   "hu": "/hirdeteskezeles.html",
-   "en": "/en/ads-management.html",
-   "de": "/de/werbeanzeigen.html"
+   "hu": "/hirdeteskezeles",
+   "en": "/en/ads-management",
+   "de": "/de/werbeanzeigen"
   },
   "seo": {
-   "hu": "/keresooptimalizalas.html",
-   "en": "/en/seo.html",
-   "de": "/de/suchmaschinenoptimierung.html"
+   "hu": "/keresooptimalizalas",
+   "en": "/en/seo",
+   "de": "/de/suchmaschinenoptimierung"
   },
   "shop": {
-   "hu": "/webshop-keszites.html",
-   "en": "/en/online-store.html",
-   "de": "/de/onlineshop-erstellung.html"
+   "hu": "/webshop-keszites",
+   "en": "/en/online-store",
+   "de": "/de/onlineshop-erstellung"
   },
   "impact": {
-   "hu": "/impact-program.html",
-   "en": "/en/impact-program.html",
-   "de": "/de/impact-programm.html"
+   "hu": "/impact-program",
+   "en": "/en/impact-program",
+   "de": "/de/impact-programm"
   },
   "work": {
-   "hu": "/munkaink.html",
-   "en": "/en/work.html",
-   "de": "/de/projekte.html"
+   "hu": "/munkaink",
+   "en": "/en/work",
+   "de": "/de/projekte"
   },
   "case-rapidkert": {
-   "hu": "/munka-rapidkert.html",
-   "en": "/en/work-rapidkert.html",
-   "de": "/de/projekt-rapidkert.html"
+   "hu": "/munka-rapidkert",
+   "en": "/en/work-rapidkert",
+   "de": "/de/projekt-rapidkert"
   },
   "case-barbershop": {
-   "hu": "/munka-barbershop.html",
-   "en": "/en/work-barbershop.html",
-   "de": "/de/projekt-barbershop.html"
+   "hu": "/munka-barbershop",
+   "en": "/en/work-barbershop",
+   "de": "/de/projekt-barbershop"
   },
   "case-mentaltrening": {
-   "hu": "/munka-mentaltrening.html",
-   "en": "/en/work-mentaltrening.html",
-   "de": "/de/projekt-mentaltrening.html"
+   "hu": "/munka-mentaltrening",
+   "en": "/en/work-mentaltrening",
+   "de": "/de/projekt-mentaltrening"
   },
   "blog": {
-   "hu": "/blog.html",
-   "en": "/en/blog.html",
-   "de": "/de/blog.html"
+   "hu": "/blog",
+   "en": "/en/blog",
+   "de": "/de/blog"
   },
   "post-seo": {
-   "hu": "/blog-google-elso-oldal.html",
-   "en": "/en/blog-google-first-page.html",
-   "de": "/de/blog-google-erste-seite.html"
+   "hu": "/blog-google-elso-oldal",
+   "en": "/en/blog-google-first-page",
+   "de": "/de/blog-google-erste-seite"
   },
   "post-arak": {
-   "hu": "/blog-weboldal-arak.html",
-   "en": "/en/blog-website-cost.html",
-   "de": "/de/blog-website-kosten.html"
+   "hu": "/blog-weboldal-arak",
+   "en": "/en/blog-website-cost",
+   "de": "/de/blog-website-kosten"
   },
   "post-cegprofil": {
-   "hu": "/blog-google-cegprofil.html",
-   "en": "/en/blog-google-business-profile.html",
-   "de": "/de/blog-google-unternehmensprofil.html"
+   "hu": "/blog-google-cegprofil",
+   "en": "/en/blog-google-business-profile",
+   "de": "/de/blog-google-unternehmensprofil"
   },
   "post-hirdetes": {
-   "hu": "/blog-google-vagy-facebook.html",
-   "en": "/en/blog-google-or-facebook.html",
-   "de": "/de/blog-google-oder-facebook.html"
+   "hu": "/blog-google-vagy-facebook",
+   "en": "/en/blog-google-or-facebook",
+   "de": "/de/blog-google-oder-facebook"
   },
   "post-elavult": {
-   "hu": "/blog-elavult-weboldal.html",
-   "en": "/en/blog-outdated-website.html",
-   "de": "/de/blog-veraltete-website.html"
+   "hu": "/blog-elavult-weboldal",
+   "en": "/en/blog-outdated-website",
+   "de": "/de/blog-veraltete-website"
   },
   "post-konverzio": {
-   "hu": "/blog-miert-nem-hoz-ugyfelet.html",
-   "en": "/en/blog-no-enquiries.html",
-   "de": "/de/blog-keine-anfragen.html"
+   "hu": "/blog-miert-nem-hoz-ugyfelet",
+   "en": "/en/blog-no-enquiries",
+   "de": "/de/blog-keine-anfragen"
   },
   "post-seo-alap": {
-   "hu": "/blog-keresooptimalizalas.html",
-   "en": "/en/blog-what-is-seo.html",
-   "de": "/de/blog-was-ist-seo.html"
+   "hu": "/blog-keresooptimalizalas",
+   "en": "/en/blog-what-is-seo",
+   "de": "/de/blog-was-ist-seo"
   },
   "post-marketing": {
-   "hu": "/blog-online-marketing.html",
-   "en": "/en/blog-online-marketing.html",
-   "de": "/de/blog-online-marketing.html"
+   "hu": "/blog-online-marketing",
+   "en": "/en/blog-online-marketing",
+   "de": "/de/blog-online-marketing"
   },
   "post-logo": {
-   "hu": "/blog-logo-keszites.html",
-   "en": "/en/blog-logo-design.html",
-   "de": "/de/blog-logo-gestaltung.html"
+   "hu": "/blog-logo-keszites",
+   "en": "/en/blog-logo-design",
+   "de": "/de/blog-logo-gestaltung"
   },
   "post-webdesign": {
-   "hu": "/blog-webdesign.html",
-   "en": "/en/blog-web-design.html",
-   "de": "/de/blog-webdesign.html"
+   "hu": "/blog-webdesign",
+   "en": "/en/blog-web-design",
+   "de": "/de/blog-webdesign"
   },
   "contact": {
-   "hu": "/ugyfelszolgalat.html",
-   "en": "/en/contact.html",
-   "de": "/de/kontakt.html"
+   "hu": "/ugyfelszolgalat",
+   "en": "/en/contact",
+   "de": "/de/kontakt"
   },
   "quote": {
-   "hu": "/arajanlat.html",
-   "en": "/en/quote.html",
-   "de": "/de/angebot.html"
+   "hu": "/arajanlat",
+   "en": "/en/quote",
+   "de": "/de/angebot"
   },
   "privacy": {
-   "hu": "/adatkezelesi-tajekoztato.html",
-   "en": "/en/privacy-policy.html",
-   "de": "/de/datenschutz.html"
+   "hu": "/adatkezelesi-tajekoztato",
+   "en": "/en/privacy-policy",
+   "de": "/de/datenschutz"
   },
   "imprint": {
-   "hu": "/impresszum.html",
-   "en": "/en/imprint.html",
-   "de": "/de/impressum.html"
+   "hu": "/impresszum",
+   "en": "/en/imprint",
+   "de": "/de/impressum"
   }
  },
  "status": {

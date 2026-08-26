@@ -668,7 +668,23 @@ def absolute(lang, key):
     """
     if key == "index":
         return HOME_PATH[lang]
-    return "/" + ("" if lang == "hu" else lang + "/") + SLUGS[key][lang]
+    # WITHOUT the `.html`, because that is the URL the site is actually served
+    # and linked at.
+    #
+    # Netlify serves `/kkv` and `/kkv.html` alike, and its Pretty URLs rewrites
+    # every internal link in the delivered HTML to the extensionless form. So a
+    # crawler following the site's own links only ever arrives at `/kkv` — and
+    # every canonical, hreflang and sitemap entry there named `/kkv.html`. The
+    # page a crawler fetched was absent from its own hreflang set, which is
+    # reported as "no self-referencing hreflang URLs" and "conflicting hreflang
+    # and rel=canonical URLs". Measured: 72 of 120 crawled URLs.
+    #
+    # Naming the extensionless form makes the four statements agree — the link
+    # the visitor follows, the canonical the page declares, the hreflang set it
+    # publishes, and the sitemap entry that lists it. `scripts/test-server.mjs`
+    # resolves extensionless paths the same way, so the suite measures the URLs
+    # production actually answers on rather than the filenames on disk.
+    return "/" + ("" if lang == "hu" else lang + "/") + SLUGS[key][lang].removesuffix(".html")
 
 
 # The three homepage routes, as the homepage itself spells them. Kept in step
@@ -687,8 +703,22 @@ def root_href(lang, key):
     `/home/hu.html`, where a relative link resolves to `/home/rolunk.html` and
     404s. The index is `/` rather than `/index.html` because that is what the
     homepage's own canonical says it is.
+
+    NOT `absolute()`, and the difference is now load-bearing. `absolute()` is
+    the route's CANONICAL public URL, which is extensionless; this is a LINK,
+    and a link has to say the same thing the 68 generated routes say in their
+    own chrome — `rolunk.html`, root-absolute. They were the same function
+    until the canonical dropped its extension, and for one build the homepage
+    linked `/rolunk` while every subpage linked `rolunk.html`, which
+    `homepage-chrome.spec.ts` correctly refused: the two navigations have to be
+    the same navigation.
+
+    The host resolves both forms, so a visitor never notices; the crawler
+    notices, and what it should see is one link target per destination.
     """
-    return HOME_PATH[lang] if key == "index" else absolute(lang, key)
+    if key == "index":
+        return HOME_PATH[lang]
+    return "/" + ("" if lang == "hu" else lang + "/") + SLUGS[key][lang]
 
 
 # --------------------------------------------------------------------- chrome

@@ -101,8 +101,16 @@ test('every hreflang target is a page this build actually contains', async () =>
   for (const doc of docs) {
     for (const { lang, href } of alternates(doc.html)) {
       const path = href.slice(origin.length);
-      // `/`, `/en/` and `/de/` are directories served as index.html.
-      const file = path.endsWith('/') ? `${path}index.html` : path;
+      /* Resolve the way the host does, not the way a filesystem does.
+     
+         `/`, `/en/` and `/de/` are directories served as index.html, and an
+         extensionless path is served from `<path>.html` — which is what these
+         URLs are, because the canonical, hreflang and sitemap all name the
+         extensionless form the site is actually linked and served at. Checking
+         for a literal `dist/kkv` would fail on a build that is correct, and
+         checking for `dist/kkv.html` while the tag says `/kkv` would be the
+         same kind of near-miss this file exists to catch. */
+      const file = path.endsWith('/') ? `${path}index.html` : `${path}.html`;
       try {
         await access(join(DIST, file.replace(/^\//, '')));
       } catch {

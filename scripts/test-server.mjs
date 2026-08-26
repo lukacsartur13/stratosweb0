@@ -162,6 +162,21 @@ const server = createServer(async (req, res) => {
       filePath = join(filePath, 'index.html');
       info = await stat(filePath).catch(() => null);
     }
+    /* Extensionless paths resolve to `<path>.html`, the way a static host does.
+   
+       Not a convenience. The site's canonical, hreflang and sitemap all name
+       the extensionless form, because that is the URL the deployed host serves
+       and the one a crawler following the site's own links arrives at. A test
+       server that 404s on `/kkv` measures a site that does not exist, and the
+       gap between the two is exactly where the hreflang defect lived: every
+       local sweep this session fetched `/kkv.html` and found it consistent,
+       while an external crawler fetched `/kkv` and found no self-referencing
+       hreflang on 72 URLs. Local now resolves what production resolves. */
+    if (!info?.isFile() && !extname(filePath)) {
+      const asHtml = `${filePath}.html`;
+      const html = await stat(asHtml).catch(() => null);
+      if (html?.isFile()) { filePath = asHtml; info = html; }
+    }
     if (!info?.isFile()) return notFound(res);
 
     res.writeHead(200, {
