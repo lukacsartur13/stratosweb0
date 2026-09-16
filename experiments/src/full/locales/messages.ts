@@ -313,9 +313,9 @@ export const MESSAGES = {
     de: 'Ausgewählte Kooperationen',
   },
   'collaborations.note': {
-    hu: 'Nem mindegyikről van esettanulmány.',
-    en: 'Not every one of them has a case study.',
-    de: 'Nicht zu jeder davon gibt es eine Fallstudie.',
+    hu: 'Még nem mindegyikről van esettanulmány.',
+    en: 'Not every one of them has a case study yet.',
+    de: 'Noch nicht zu jeder davon gibt es eine Fallstudie.',
   },
   // --- the one featured case --------------------------------------------------
   'featured.label': {
