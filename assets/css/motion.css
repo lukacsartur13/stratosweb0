@@ -218,21 +218,27 @@
    goes. */
 .band--pale .logoset [data-logo] img { --plate: transparent; }
 
-/* The two support marks are the opposite polarity from the five collaborations.
-   FICE was supplied as pure white artwork — every opaque pixel reads luminance
-   255 — and HAIO's wordmark and "HUNGARIAN AI OLYMPIAD" subline are white
-   beside a navy boat. On the #DCE4EA plate FICE disappears completely and
-   HAIO's subline is unreadable; on the void, with no plate, both are crisp.
+/* The two support marks both fail on the plate, for opposite reasons. HAIO's
+   wordmark and "HUNGARIAN AI OLYMPIAD" subline are white beside a navy boat,
+   so on #DCE4EA the subline is unreadable. DPA is the other extreme: saturated
+   colour, and it is the LIGHT plate that swallows it — its yellow measures
+   1.41:1 and its teal 1.73:1 against #DCE4EA, both under the 3:1 floor for
+   graphics, while against the void they measure 11.54:1 and 9.43:1. Its
+   crimson is the only ink that survives either way, and one legible letter out
+   of three is not a logo.
 
    So the plate is not a constant of the system, the *reason* for it is: a mark
    is given a background only when its own ink would otherwise be lost. Dark
-   artwork gets the plate, light artwork gets the void. The box still exists in
-   both cases, which is what keeps differently-shaped marks optically equal.
+   artwork gets the plate; white and saturated-colour artwork get the void. The
+   box still exists in every case, which is what keeps differently-shaped marks
+   optically equal.
 
-   The consequence is that a knockout mark cannot appear in a `band--pale`
-   section — white on #F4F4F4 is invisible with or without a plate. Both are
-   placed on dark bands, and build.py refuses to render one anywhere else. */
-.logoset [data-logo][data-ink="light"] img { --plate: transparent; }
+   The consequence is that neither can appear in a `band--pale` section — white
+   on #F4F4F4 is invisible, and DPA's yellow on #F4F4F4 is worse than it is on
+   the plate. Both are placed on dark bands, and build.py refuses to render
+   either anywhere else. See PLATELESS in _build/build.py. */
+.logoset [data-logo][data-ink="light"] img,
+.logoset [data-logo][data-ink="colour"] img { --plate: transparent; }
 
 /* The trace reaching a mark lifts it very slightly off the page. That is the
    whole of §10.7's motion: no marquee, no carousel, no rotation, no scaling. */

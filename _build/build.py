@@ -185,7 +185,7 @@ POSTS = ("post-seo", "post-arak", "post-cegprofil", "post-hirdetes",
 # `sponsor` and `impact` are the two exceptions, and they were not invented
 # here: both were stated directly by the owner of the relationship. They are
 # also the two claims the neutral heading would get *wrong* rather than merely
-# leave vague — Stratos pays HAIO and works for FICE for nothing, so filing
+# leave vague — Stratos pays HAIO and works for DPA for nothing, so filing
 # either as a collaboration would overstate one and understate the other. They
 # are named on the single page where each is the subject, and nowhere else.
 ORGS = {
@@ -229,9 +229,11 @@ ORGS = {
     # rail from collaborations only and these are addressed by name, on the one
     # page where each is the subject.
     #
-    # Both were supplied as knockout artwork — see `ink` — which is also the
-    # opposite of the five. That is a coincidence, but a convenient one: their
-    # placements are dark bands anyway.
+    # Neither can take a plate — see `ink` — which is also the opposite of the
+    # five. HAIO is knockout white; DPA is saturated colour whose yellow and
+    # teal measure 1.4:1 and 1.7:1 against the #DCE4EA plate and 11.5:1 and
+    # 9.4:1 against the void. Different reasons, same placement: dark bands,
+    # no plate.
     "haio": {
         "name": "HAIO",
         "asset": "assets/img/logo-haio.png",
@@ -239,20 +241,21 @@ ORGS = {
         "relationship": "sponsor",
         "ink": "light",
     },
-    "fice": {
-        "name": "FICE",
-        "asset": "assets/img/logo-fice.png",
+    "dpa": {
+        "name": "DPA",
+        "asset": "assets/img/logo-dpa.png",
         "ready": True,
         "relationship": "impact",
-        "ink": "light",
+        "ink": "colour",
     },
 }
 
-# Marks whose own ink is light. They are given no plate and may only be placed
-# on a dark band; `logoset()` raises rather than render one on paper, because a
-# white mark on #F4F4F4 is not a subtle regression, it is a blank rectangle that
-# passes every test that only counts <img> elements.
-LIGHT_INK = {k for k, v in ORGS.items() if v.get("ink") == "light"}
+# Marks that take no plate, for either of two reasons: the ink is white
+# (HAIO), or the ink is saturated colour that the pale plate swallows (DPA).
+# Both may only be placed on a dark band; `logoset()` raises rather than render
+# one on paper, because such a mark on #F4F4F4 is not a subtle regression, it is
+# a blank rectangle that passes every test that only counts <img> elements.
+PLATELESS = {k for k, v in ORGS.items() if v.get("ink") in ("light", "colour")}
 
 
 # Clients with a live project route. Separate from ORGS because these are
@@ -286,7 +289,7 @@ def logoset(lang, kind="rail", keys=None, base=""):
     place. Nothing is stretched, cropped or recoloured.
 
     The default set is the collaborations, not everything that happens to be
-    ready. HAIO and FICE are support relationships and must be asked for by
+    ready. HAIO and DPA are support relationships and must be asked for by
     name; letting them fall into an unqualified rail is the one mistake this
     function is in a position to prevent.
     """
@@ -297,8 +300,8 @@ def logoset(lang, kind="rail", keys=None, base=""):
         o = ORGS.get(k)
         if not o or not o["ready"] or not o["asset"]:
             continue
-        # A light mark has no plate, so the band under it is the only thing it
-        # is legible against. See LIGHT_INK.
+        # A plateless mark has only the band under it to be legible against.
+        # See PLATELESS.
         ink = f' data-ink="{o["ink"]}"' if o.get("ink") else ""
         items.append(
             f'\n        <li data-logo{ink}>'
@@ -1915,10 +1918,10 @@ def expand_logosets(html, lang, base):
     withdrawn. One table, one renderer, every appearance.
 
     An optional comma-separated key list after the kind names the marks. Without
-    it the set is the collaborations; `{{logoset:index:fice}}` is how a page
+    it the set is the collaborations; `{{logoset:index:dpa}}` is how a page
     asks for one specific organisation because that page is about it.
 
-    A light-ink mark is refused on a pale band. It has no plate — that is the
+    A plateless mark is refused on a pale band. It has no plate — that is the
     whole point of it — so on #F4F4F4 it renders as nothing at all, and nothing
     at all is precisely what an <img> assertion cannot see. Better to fail the
     build than to ship a section whose subject is an invisible rectangle.
@@ -1930,12 +1933,12 @@ def expand_logosets(html, lang, base):
             unknown = [k for k in keys if k not in ORGS]
             if unknown:
                 raise SystemExit(f"logoset names no such organisation: {unknown}")
-            lit = [k for k in keys if k in LIGHT_INK]
+            lit = [k for k in keys if k in PLATELESS]
             if lit:
                 opens = SECTION_RE.findall(html[:m.start()])
                 if opens and "band--pale" in opens[-1]:
                     raise SystemExit(
-                        f"logoset: {lit} is light-ink artwork and cannot sit on "
+                        f"logoset: {lit} takes no plate and cannot sit on "
                         f"a band--pale section — it would render invisible. "
                         f"Move the placeholder to a dark band.")
         return logoset(lang, kind, keys=keys, base=base)

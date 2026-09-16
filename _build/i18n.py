@@ -64,7 +64,7 @@ SKIP_EXACT = {
     # translated into German, and the alt text has to match the mark it
     # describes in every locale.
     'Kontyos.hu', 'Grantool Kft.', 'Synergy Digital Hungary Kft.', 'HAIO',
-    'FICE', 'Duna Hajók', 'Duna Enterior', 'Rapidkert Kft.',
+    'DPA', 'Duna Hajók', 'Duna Enterior', 'Rapidkert Kft.',
     'Barbershop Győr',
     # Identifiers from the questionnaire's inline wizard, not copy. The
     # extractor deliberately reads <script> because the wizard's buttons and

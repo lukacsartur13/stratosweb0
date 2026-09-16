@@ -187,14 +187,14 @@ export const FEATURED_CASE_ID = 'rapidkert';
  * Marks shown in the homepage's collaboration rail.
  *
  * The same six the site already shows, and no more. Five come from `/work`'s
- * "Akikkel dolgoztunk, de nincs róluk esettanulmány" group; Barbershop joins
+ * "Akikkel dolgoztunk, de még nincs róluk esettanulmány" group; Barbershop joins
  * them from the case table. Nothing here is new, and nothing here is a claim:
  * a mark says a collaboration existed, not that a case study exists for it, and
  * that is exactly why the rail is marks and not cards.
  *
  * DELIBERATELY ABSENT, and not an oversight in either case:
  *
- *   * `logo-fice.png` — the Impact Program build, which impact-program.html
+ *   * `logo-dpa.png` — the Impact Program build, which impact-program.html
  *     describes in its own words as "nem is együttműködés": the site says it is
  *     not a collaboration, so it cannot be in a collaboration rail.
  *   * `logo-haio.png` — a sponsorship, where hirdeteskezeles.html says "itt
