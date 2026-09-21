@@ -1442,6 +1442,25 @@ def build_structured_data(lang, key, title, desc, meta, body):
         "image": SITE + "/assets/img/logo.png",
         "email": CONTACT_EMAIL,
         "telephone": "+36 30 584 8024",
+        # The SEAT, and it deliberately does not match the Google Business
+        # Profile. Do not "fix" this.
+        #
+        # The profile publishes 9027 Győr, Gesztenyefa út 4 — the office, where
+        # clients actually go. This is 9151 Abda, the székhely, which is the
+        # address /impresszum.html is required by law to state and the one this
+        # markup has always carried. Both are real and the owner has confirmed
+        # the split: seat in Abda, office in Győr.
+        #
+        # It was raised as a NAP inconsistency, because that is what it looks
+        # like from outside — two of the four elements disagree, 11.6km apart,
+        # while phone and website match — and the owner's answer was to keep
+        # both as they are. Recorded here so the next audit reads a decision
+        # rather than a defect and does not quietly rewrite 90 pages.
+        #
+        # If it is ever revisited, the schema.org way to say both at once is an
+        # `address` for the seat plus a `location` Place for the office; that
+        # was not done here because it changes what the pages claim, and the
+        # instruction was to leave it alone.
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Arany János utca 13.",

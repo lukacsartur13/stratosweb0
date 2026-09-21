@@ -168,7 +168,16 @@ gyártanék:
    | Webhely | stratosweb.hu | stratosweb.hu ✓ |
 
    A **cím 11,6 km-rel tér el**, és ez a NAP négy eleméből a második, ami nem
-   stimmel. Lásd lent, a nyitott döntéseknél.
+   stimmel. **Döntés: marad így** — az abdai a székhely, a győri az iroda,
+   mindkettő valós. Ezt a `_build/build.py` `address` blokkjánál rögzítettem is,
+   hogy egy későbbi audit döntést olvasson és ne hibát, és ne írja át magától a
+   90 oldalt.
+
+   Amivel ennek az ára jár: a helyi rangsorolásnál a Google elsősorban a
+   Cégprofil címét használja, a weboldalon szereplő cím gyengébb, megerősítő
+   jelzés — most ez a megerősítés hiányzik. Ha egyszer mégis egyesíteni akarod,
+   a schema.org módja az `address` (székhely) + egy `location` Place (iroda),
+   és szólj, mert az a 90 oldal állítását változtatja meg.
 
    A profil neve ezen felül **kulcsszavazva van**. A Google Cégprofil szabályzata
    szerint a névmezőbe a valós cégnév való; a „| Weboldal és hirdetéskezelés |
@@ -181,20 +190,6 @@ gyártanék:
    egy 301-re küldene.
 
 ## Amit rád hagytam
-
-- **Melyik cím kerüljön a strukturált adatba és a footerbe.** Ez a legfontosabb
-  nyitott kérdés, mert most 90 oldal mond mást, mint a Cégprofil. Két valós
-  adatról van szó: a `9151 Abda` az egyéni vállalkozó **székhelye**, amit az
-  impresszumnak jogszabály szerint közölnie kell, a `9027 Győr, Gesztenyefa út 4`
-  pedig az, ahol a Cégprofil szerint megtalálhatók vagytok.
-
-  A javaslatom: a **LocalBusiness `address` és a footer a győri címet mondja** —
-  ez az, amit az ügyfél keres és amit a Google a helyi találathoz párosít —, az
-  **impresszum pedig maradjon a székhelynél**, külön megjelölve. A kettő
-  párhuzamosan helyes, csak nem ugyanarra a kérdésre válasz.
-
-  Ha rábólintasz, egy commitban átírom mind a 90 oldalt; a `build.py` egyetlen
-  `address` blokkjából jön az összes.
 
 - **Városi landing oldalak** (`/keresooptimalizalas-gyor`, `/weboldal-keszites-gyor`):
   nem készültek el, és a javaslatom, hogy ne is készüljenek. A korábbi döntés
