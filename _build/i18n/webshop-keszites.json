@@ -402,5 +402,13 @@
  "Logó készítés minden méretre": [
   "A version for every size",
   "Eine Variante für jede Größe"
+ ],
+ "Webshop készítés,<br>ami el is ad.<br><span class=\"sig\">Nem csak kinéz.</span>": [
+  "An online store<br>that actually sells.<br><span class=\"sig\">Not just looks good.</span>",
+  "Ein Onlineshop,<br>der auch verkauft.<br><span class=\"sig\">Nicht nur aussieht.</span>"
+ ],
+ "A kosár nem a végállomás, hanem a kezdet. Egy webáruháznál a dizájn a legkevesebb: a vevő ott dönt, ahol a szállítási költség kiderül, és ott hagyja ott, ahol egy mezőt nem ért.": [
+  "The basket is not the finish line, it is the start. In an online store the design is the least of it: the customer decides where the shipping cost appears, and leaves where a field does not make sense.",
+  "Der Warenkorb ist nicht das Ziel, sondern der Anfang. Bei einem Onlineshop ist das Design das Wenigste: Der Kunde entscheidet dort, wo die Versandkosten erscheinen, und bricht dort ab, wo ein Feld unverständlich ist."
  ]
 }
