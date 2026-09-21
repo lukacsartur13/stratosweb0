@@ -207,9 +207,22 @@
       </div>
       <div>
         <h3>Contact</h3>
+        <!-- Name, address, phone, in text, on every page.
+             The address is the third of those and it was the missing one: the
+             footer had the mail and the number, and the seat existed only in
+             the JSON-LD and on /impresszum.html. A local result wants the three
+             to agree wherever they appear, and a crawler reads the visible
+             copy as readily as the graph. The wording is the imprint's own
+             line — "9151 Abda, Arany János utca 13." — not a second rendering
+             of it, so there is one string to keep true.
+             `address` rather than a third <li>: this IS the contact address of
+             the nearest article, which is what the element is for, and it
+             carries the microformat class the same way the JSON-LD carries the
+             PostalAddress. -->
         <ul>
           <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
           <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+          <li><address class="foot__nap">9151 Abda, Arany János utca 13.</address></li>
         </ul>
         <h3 style="margin-top:1.6rem">Social</h3>
         <ul>

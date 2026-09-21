@@ -876,6 +876,14 @@ html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
   display: inline-block;
 }
 .foot ul a:hover { color: var(--signal); padding-left: .4rem; }
+/* The seat, set to match the two contact lines above it rather than to stand
+   out. <address> is the right element for it — that is what the element is for
+   — and it arrives with the browser's italic and with full opacity, neither of
+   which the two links beside it have. This says the same thing they say; it is
+   a normalisation, not a style. */
+.foot__nap {
+  font-style: normal; font-size: var(--step-0); color: rgba(244,244,244,.72);
+}
 .foot__bottom {
   margin-top: clamp(2.5rem, 5vw, 4rem); padding-top: 1.4rem;
   border-top: 1px solid var(--hair);

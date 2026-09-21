@@ -1369,16 +1369,32 @@ def build_structured_data(lang, key, title, desc, meta, body):
             "postalCode": "9151",
             "addressCountry": "HU",
         },
-        # Countries, not cities.
+        # Cities AND countries, which is the third position this field has held
+        # and the first one that is not a trade.
         #
-        # This was Győr, Budapest and the county for one deploy, alongside a
-        # route dedicated to the city. Both are withdrawn for the same reason:
-        # naming a town as the area served is a claim about how far the company
-        # reaches, and this one reaches as far as it has languages. The seat
-        # above stays — that is a legal fact /impresszum.html has to state, and
-        # it is what makes a local result possible without the site telling
-        # everyone else it is not for them.
+        # It was Győr, Budapest and the county once, alongside a route dedicated
+        # to the city, and both were withdrawn together: naming a town as the
+        # area served reads as a claim about how far the company reaches, and
+        # this one reaches as far as it has languages. That reasoning was right
+        # about the ROUTE — /weboldal-keszites-gyor is still 301'd in
+        # netlify.toml and is not coming back — and wrong about this list.
+        #
+        # areaServed is not exclusive. A ProfessionalService that serves three
+        # countries and names two cities inside one of them has said more than
+        # one that names only the countries, not less; the country entries below
+        # are untouched, so nothing the previous position protected is given up.
+        # What the narrow version cost is measurable: Search Console has
+        # "keresőoptimalizálás győr" at position 83 with the seat two towns away
+        # from the city in question.
+        #
+        # The county is an AdministrativeArea rather than a City because it is
+        # one, and it is here because the seat in Abda is inside it — a local
+        # result for the wider area is the one claim here the address by itself
+        # already supports.
         "areaServed": [
+            {"@type": "City", "name": "Győr"},
+            {"@type": "City", "name": "Budapest"},
+            {"@type": "AdministrativeArea", "name": "Győr-Moson-Sopron vármegye"},
             {"@type": "Country", "name": "Magyarország"},
             {"@type": "Country", "name": "Österreich"},
             {"@type": "Country", "name": "Deutschland"},
@@ -1651,9 +1667,22 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
       </div>
       <div>
         <h3>{{f_contact}}</h3>
+        <!-- Name, address, phone, in text, on every page.
+             The address is the third of those and it was the missing one: the
+             footer had the mail and the number, and the seat existed only in
+             the JSON-LD and on /impresszum.html. A local result wants the three
+             to agree wherever they appear, and a crawler reads the visible
+             copy as readily as the graph. The wording is the imprint's own
+             line — "9151 Abda, Arany János utca 13." — not a second rendering
+             of it, so there is one string to keep true.
+             `address` rather than a third <li>: this IS the contact address of
+             the nearest article, which is what the element is for, and it
+             carries the microformat class the same way the JSON-LD carries the
+             PostalAddress. -->
         <ul>
           <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
           <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+          <li><address class="foot__nap">9151 Abda, Arany János utca 13.</address></li>
         </ul>
         <h3 style="margin-top:1.6rem">{{f_social}}</h3>
         <ul>
