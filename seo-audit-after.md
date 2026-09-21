@@ -1,4 +1,4 @@
-# SEO audit snapshot — `before`
+# SEO audit snapshot — `after`
 
 Generated from the committed build output (87 pages).
 
@@ -8,7 +8,7 @@ Generated from the committed build output (87 pages).
 - Több mint egy H1: 0
 - H1 nélkül: 0
 - Canonical nélkül: 3
-- noindex: 9
+- noindex: 11
 - FAQPage schema: 24
 
 ## `404.html`
@@ -20,7 +20,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: —
 - **H1** (1): Ez az oldal nincs meg.
 - **JSON-LD**: —
-- **szavak**: 253
+- **szavak**: 259
 - **H2:**
   - A következő szint innen indul.
 
@@ -33,7 +33,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/adatkezelesi-tajekoztato, en→https://stratosweb.hu/en/privacy-policy, de→https://stratosweb.hu/de/datenschutz, x-default→https://stratosweb.hu/adatkezelesi-tajekoztato
 - **H1** (1): Adatkezelési tájékoztató
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 1298
+- **szavak**: 1304
 - **H2:**
   - Az Adatkezelő felelőssége és elérhetősége
   - Az adatkezelés célja
@@ -67,7 +67,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-elavult-weboldal, en→https://stratosweb.hu/en/blog-outdated-website, de→https://stratosweb.hu/de/blog-veraltete-website, x-default→https://stratosweb.hu/blog-elavult-weboldal
 - **H1** (1): Mennyi ügyfelet veszítesz egy elavult weboldal miatt?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 738
+- **szavak**: 744
 - **H2:**
   - A számolás
   - Ha nem tudod a számokat
@@ -85,7 +85,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-google-cegprofil, en→https://stratosweb.hu/en/blog-google-business-profile, de→https://stratosweb.hu/de/blog-google-unternehmensprofil, x-default→https://stratosweb.hu/blog-google-cegprofil
 - **H1** (1): Google Cégprofil beállítása lépésről lépésre
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 787
+- **szavak**: 793
 - **H2:**
   - 1. Igényeld vagy hozd létre a profilt
   - 2. Válaszd ki a fő kategóriát pontosan
@@ -105,10 +105,10 @@ Generated from the committed build output (87 pages).
 - **desc** (125): Nem varázslat kell a Google első oldalához, hanem rendszer. Hét lépés, amit egy kisvállalkozás magától is végig tud csinálni.
 - **canonical**: https://stratosweb.hu/blog-google-elso-oldal
 - **robots**: —
-- **hreflang**: hu→https://stratosweb.hu/blog-google-elso-oldal, en→https://stratosweb.hu/en/blog-google-first-page, de→https://stratosweb.hu/de/blog-google-erste-seite, x-default→https://stratosweb.hu/blog-google-elso-oldal
+- **hreflang**: hu→https://stratosweb.hu/blog-google-elso-oldal, x-default→https://stratosweb.hu/blog-google-elso-oldal
 - **H1** (1): Hogyan kerülj a Google első oldalára? 7 lépés
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 839
+- **szavak**: 845
 - **H2:**
   - 1. Döntsd el, milyen kérdésre akarsz válaszolni
   - 2. Egy kérdés, egy oldal
@@ -130,7 +130,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-google-vagy-facebook, en→https://stratosweb.hu/en/blog-google-or-facebook, de→https://stratosweb.hu/de/blog-google-oder-facebook, x-default→https://stratosweb.hu/blog-google-vagy-facebook
 - **H1** (1): Google vagy Facebook hirdetés? Melyik éri meg 2026-ban
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 699
+- **szavak**: 705
 - **H2:**
   - Mikor a Google a jó válasz?
   - Mikor a Meta a jó válasz?
@@ -149,7 +149,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-keresooptimalizalas, en→https://stratosweb.hu/en/blog-what-is-seo, de→https://stratosweb.hu/de/blog-was-ist-seo, x-default→https://stratosweb.hu/blog-keresooptimalizalas
 - **H1** (1): Mi az a keresőoptimalizálás, és mennyibe kerül?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 940
+- **szavak**: 946
 - **H2:**
   - Mit tudsz megcsinálni fizetés nélkül?
   - Mennyibe kerül, ha nem magad csinálod?
@@ -168,7 +168,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-logo-keszites, en→https://stratosweb.hu/en/blog-logo-design, de→https://stratosweb.hu/de/blog-logo-gestaltung, x-default→https://stratosweb.hu/blog-logo-keszites
 - **H1** (1): Mire figyelj logó készítésnél: mit kérj, mit ne?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 858
+- **szavak**: 864
 - **H2:**
   - Mit kell megkapnod a végén?
   - Mennyibe kerül?
@@ -186,7 +186,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet, en→https://stratosweb.hu/en/blog-no-enquiries, de→https://stratosweb.hu/de/blog-keine-anfragen, x-default→https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet
 - **H1** (1): Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 746
+- **szavak**: 752
 - **H2:**
   - 1. Nem derül ki az első képernyőn, mit csinálsz
   - 2. Nincs egyértelmű következő lépés
@@ -208,7 +208,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-online-marketing, en→https://stratosweb.hu/en/blog-online-marketing, de→https://stratosweb.hu/de/blog-online-marketing, x-default→https://stratosweb.hu/blog-online-marketing
 - **H1** (1): Online marketing kisvállalkozásnak: mivel kezdd?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 842
+- **szavak**: 848
 - **H2:**
   - Az alap: legyen hova küldeni az embereket
   - A marketing eszközök, sorrendben
@@ -227,7 +227,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-webdesign, en→https://stratosweb.hu/en/blog-web-design, de→https://stratosweb.hu/de/blog-webdesign, x-default→https://stratosweb.hu/blog-webdesign
 - **H1** (1): Webdesign: mitől jó egy weboldal design?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 869
+- **szavak**: 875
 - **H2:**
   - 1. Az első képernyő megmondja, mi ez
   - 2. Egy képernyőn egy döntés
@@ -248,7 +248,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-weboldal-arak, en→https://stratosweb.hu/en/blog-website-cost, de→https://stratosweb.hu/de/blog-website-kosten, x-default→https://stratosweb.hu/blog-weboldal-arak
 - **H1** (1): Mennyibe kerül egy weboldal 2026-ban?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 773
+- **szavak**: 779
 - **H2:**
   - Mi hajtja fel az árat?
   - Ami rendszerint nincs benne az árban
@@ -267,7 +267,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog, en→https://stratosweb.hu/en/blog, de→https://stratosweb.hu/de/blog, x-default→https://stratosweb.hu/blog
 - **H1** (1): Amit tudnod kell, érthetően.
 - **JSON-LD**: ProfessionalService, WebSite, CollectionPage, BreadcrumbList
-- **szavak**: 621
+- **szavak**: 627
 - **H2:**
   - Hogyan kerülj a Google első oldalára? 7 lépés
   - Hova tovább
@@ -281,9 +281,9 @@ Generated from the committed build output (87 pages).
 - **canonical**: https://stratosweb.hu/branding
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/branding, en→https://stratosweb.hu/en/branding, de→https://stratosweb.hu/de/branding, x-default→https://stratosweb.hu/branding
-- **H1** (1): Egy szín. Egy szlogen. És te jutsz eszükbe.
+- **H1** (1): Logó tervezés és arculat, amire emlékeznek.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1268
+- **szavak**: 1284
 - **H2:**
   - A logó egy jel. Az arculat egy rendszer.
   - Brandépítés A-tól Z-ig
@@ -296,18 +296,19 @@ Generated from the committed build output (87 pages).
 ## `hirdeteskezeles.html`
 
 - **title** (40): Google és Meta hirdetéskezelés | Stratos
-- **desc** (132): Google és Meta hirdetéskezelés, ami nem elérést, hanem ügyfelet hoz: célközönség-kutatás, kreatív, licitstratégia és konverziómérés.
+- **desc** (147): Google Ads és Meta hirdetéskezelés havidíjért, a hirdetési kerettől elkülönítve. Célközönség, kreatív, licit, konverziómérés. Ingyenes konzultáció.
 - **canonical**: https://stratosweb.hu/hirdeteskezeles
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/hirdeteskezeles, en→https://stratosweb.hu/en/ads-management, de→https://stratosweb.hu/de/werbeanzeigen, x-default→https://stratosweb.hu/hirdeteskezeles
-- **H1** (1): Nem elérést veszel. Ügyfelet.
+- **H1** (1): Google és Meta hirdetéskezelés, ami ügyfelet hoz.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1454
+- **szavak**: 1758
 - **H2:**
   - A hirdetéstől a megkeresésig hat állomás van.
   - A figyelem a legértékesebb erőforrás
   - Keres rád, vagy neked kell megtalálnod?
-  - A hirdetés­kezelés folyamata
+  - Hogyan zajlik a hirdetéskezelés?
+  - Mennyibe kerül a hirdetéskezelés?
   - Nem a lájkokat nézzük, hanem az üzleti eredményt.
   - Egy kampány, amit nem számlázunk ki
   - Gyakori kérdések
@@ -324,7 +325,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/impact-program, en→https://stratosweb.hu/en/impact-program, de→https://stratosweb.hu/de/impact-programm, x-default→https://stratosweb.hu/impact-program
 - **H1** (1): Prémium weboldalak azoknak, akik életeket változtatnak meg.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage
-- **szavak**: 1123
+- **szavak**: 1129
 - **H2:**
   - Ez a projekt személyes.
   - Két ügy, ami közel áll hozzánk
@@ -348,7 +349,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/impresszum, en→https://stratosweb.hu/en/imprint, de→https://stratosweb.hu/de/impressum, x-default→https://stratosweb.hu/impresszum
 - **H1** (1): Impresszum
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 334
+- **szavak**: 340
 - **H2:**
   - Tárhelyszolgáltató
   - Adatbázis-szolgáltató
@@ -358,19 +359,21 @@ Generated from the committed build output (87 pages).
 ## `keresooptimalizalas.html`
 
 - **title** (57): Keresőoptimalizálás | SEO ügynökség és szakértő | Stratos
-- **desc** (145): Keresőoptimalizálás, ami nem helyezést ígér, hanem megkeresést hoz. Technikai SEO, tartalom és helyi keresés, havi méréssel és érthető riporttal.
+- **desc** (152): Keresőoptimalizálás Győrben és Budapesten, havidíjas konstrukcióban. Technikai SEO, tartalom és helyi keresés, havi riporttal. Kérj díjmentes feltárást.
 - **canonical**: https://stratosweb.hu/keresooptimalizalas
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/keresooptimalizalas, en→https://stratosweb.hu/en/seo-consultancy, de→https://stratosweb.hu/de/seo-betreuung, x-default→https://stratosweb.hu/keresooptimalizalas
-- **H1** (1): A kereslet már megvan. Téged nem talál.
+- **H1** (1): Keresőoptimalizálás, ami ügyfelet hoz. Nem csak helyezést.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1168
+- **szavak**: 1656
 - **H2:**
   - Miből áll a keresőoptimalizálás?
+  - Mennyibe kerül a keresőoptimalizálás?
   - 6 millió forint, nulla forint hirdetésből.
-  - Négy hónap, négy szakasz
+  - Mennyi idő, amíg a keresőoptimalizálás eredményt hoz?
   - Amit nem ígérünk meg.
   - Ügynökség, szakértő, helyi vagy webáruház?
+  - Keresőoptimalizálás Győrben és Budapesten
   - Gyakori kérdések
   - Hova tovább
   - Hasonló feladatod van?
@@ -384,7 +387,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/kkv, en→https://stratosweb.hu/en/web-design-small-business, de→https://stratosweb.hu/de/webdesign-kmu, x-default→https://stratosweb.hu/kkv
 - **H1** (1): Weboldal, nagy egyszeri költség nélkül.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1312
+- **szavak**: 1318
 - **H2:**
   - Mit kapsz a havidíjért?
   - Így jutsz el az élő oldaladig
@@ -405,7 +408,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munka-barbershop, en→https://stratosweb.hu/en/work-barbershop, de→https://stratosweb.hu/de/projekt-barbershop, x-default→https://stratosweb.hu/munka-barbershop
 - **H1** (1): Egy oldal, aminek egyetlen dolga az időpont.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 622
+- **szavak**: 628
 - **H2:**
   - Mit tartalmaz a kész oldal
   - Monokróm háttér, egyetlen arany akcentus
@@ -422,7 +425,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munka-mentaltrening, en→https://stratosweb.hu/en/work-mentaltrening, de→https://stratosweb.hu/de/projekt-mentaltrening, x-default→https://stratosweb.hu/munka-mentaltrening
 - **H1** (1): Egy szakember, egy ígéret, egy gomb.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 603
+- **szavak**: 609
 - **H2:**
   - Mit tartalmaz a kész oldal
   - Egy szín, egy fotó, semmi felesleges
@@ -439,7 +442,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munka-rapidkert, en→https://stratosweb.hu/en/work-rapidkert, de→https://stratosweb.hu/de/projekt-rapidkert, x-default→https://stratosweb.hu/munka-rapidkert
 - **H1** (1): Egy nagyszerű kert a felszín alatt kezdődik.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 1016
+- **szavak**: 1022
 - **H2:**
   - A keresletet ott fogtuk el, ahol keletkezik
   - A keresés kamatozik.
@@ -458,7 +461,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munkaink, en→https://stratosweb.hu/en/work, de→https://stratosweb.hu/de/projekte, x-default→https://stratosweb.hu/munkaink
 - **H1** (1): Élő oldalak, nem portfólió-képek.
 - **JSON-LD**: ProfessionalService, WebSite, CollectionPage, BreadcrumbList
-- **szavak**: 571
+- **szavak**: 577
 - **H2:**
   - Három projekt, három szerkezet
   - Akikkel dolgoztunk, de még nincs róluk esettanulmány
@@ -474,7 +477,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/nagyvallalat, en→https://stratosweb.hu/en/bespoke-web-development, de→https://stratosweb.hu/de/webentwicklung-agentur, x-default→https://stratosweb.hu/nagyvallalat
 - **H1** (1): Minden webfejlesztés, egy partnerrel.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1262
+- **szavak**: 1268
 - **H2:**
   - Mit fejlesztünk?
   - Így dolgozunk együtt a bevezetésig
@@ -494,7 +497,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/rolunk, en→https://stratosweb.hu/en/about, de→https://stratosweb.hu/de/ueber-uns, x-default→https://stratosweb.hu/rolunk
 - **H1** (1): A Stratos története
 - **JSON-LD**: ProfessionalService, WebSite, AboutPage, BreadcrumbList, FAQPage
-- **szavak**: 1029
+- **szavak**: 1035
 - **H2:**
   - Ez nem munka. Ez életszemlélet.
   - Miért a Stratos — hat ok
@@ -512,7 +515,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/szolgaltatasok, en→https://stratosweb.hu/en/bespoke-web-design, de→https://stratosweb.hu/de/website-erstellen-lassen, x-default→https://stratosweb.hu/szolgaltatasok
 - **H1** (1): Weboldal készítés, és a rendszer körülötte.
 - **JSON-LD**: ProfessionalService, WebSite, CollectionPage, BreadcrumbList
-- **szavak**: 1140
+- **szavak**: 1146
 - **H2:**
   - Melyik üzleti problémára válasz?
   - Mi az, ami tényleg együtt működik?
@@ -531,7 +534,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/ugyfelszolgalat, en→https://stratosweb.hu/en/contact, de→https://stratosweb.hu/de/kontakt, x-default→https://stratosweb.hu/ugyfelszolgalat
 - **H1** (1): Kezdjük ott, hogy elmondod.
 - **JSON-LD**: ProfessionalService, WebSite, ContactPage, BreadcrumbList
-- **szavak**: 801
+- **szavak**: 807
 - **H2:**
   - Válaszd azt, amennyi időd most van.
   - Mi történik, miután elküldted?
@@ -547,9 +550,9 @@ Generated from the committed build output (87 pages).
 - **canonical**: https://stratosweb.hu/webshop-keszites
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/webshop-keszites, en→https://stratosweb.hu/en/ecommerce-web-design, de→https://stratosweb.hu/de/onlineshop-erstellung, x-default→https://stratosweb.hu/webshop-keszites
-- **H1** (1): A kosár nem a végállomás. A kezdet.
+- **H1** (1): Webshop készítés, ami el is ad. Nem csak kinéz.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 821
+- **szavak**: 837
 - **H2:**
   - Miből áll egy webshop készítés?
   - Sablon nélkül, bővítmény nélkül.
@@ -566,7 +569,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: —
 - **H1** (1): This page isn’t here.
 - **JSON-LD**: —
-- **szavak**: 274
+- **szavak**: 280
 - **H2:**
   - Your next altitude starts here.
 
@@ -579,7 +582,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/rolunk, en→https://stratosweb.hu/en/about, de→https://stratosweb.hu/de/ueber-uns, x-default→https://stratosweb.hu/rolunk
 - **H1** (1): The Stratos story
 - **JSON-LD**: ProfessionalService, WebSite, AboutPage, BreadcrumbList, FAQPage
-- **szavak**: 1154
+- **szavak**: 1160
 - **H2:**
   - This isn't a job. It's a way of life.
   - Why Stratos — six reasons
@@ -591,18 +594,19 @@ Generated from the committed build output (87 pages).
 ## `en/ads-management.html`
 
 - **title** (40): Google and Meta ads management | Stratos
-- **desc** (133): Google and Meta ads management that brings clients, not reach: audience research, creative, bidding strategy and conversion tracking.
+- **desc** (155): Google Ads and Meta ads management on a monthly fee, kept separate from the ad budget. Audience, creative, bidding, conversion tracking. Free consultation.
 - **canonical**: https://stratosweb.hu/en/ads-management
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/hirdeteskezeles, en→https://stratosweb.hu/en/ads-management, de→https://stratosweb.hu/de/werbeanzeigen, x-default→https://stratosweb.hu/hirdeteskezeles
-- **H1** (1): You're not buying reach. You're buying clients.
+- **H1** (1): Google and Meta ads management that brings clients.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1639
+- **szavak**: 2011
 - **H2:**
   - From the ad to the enquiry there are six stations.
   - Attention is the most valuable resource
   - Are they searching for you, or must you find them?
-  - How ads management works
+  - How ads management actually runs
+  - What does ads management cost?
   - We don't watch likes, we watch business results.
   - A campaign we don't invoice for
   - Frequently asked
@@ -619,7 +623,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/szolgaltatasok, en→https://stratosweb.hu/en/bespoke-web-design, de→https://stratosweb.hu/de/website-erstellen-lassen, x-default→https://stratosweb.hu/szolgaltatasok
 - **H1** (1): Bespoke web design, and the system around it.
 - **JSON-LD**: ProfessionalService, WebSite, CollectionPage, BreadcrumbList
-- **szavak**: 1300
+- **szavak**: 1306
 - **H2:**
   - Which business problem does it answer?
   - What actually works together?
@@ -638,7 +642,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/nagyvallalat, en→https://stratosweb.hu/en/bespoke-web-development, de→https://stratosweb.hu/de/webentwicklung-agentur, x-default→https://stratosweb.hu/nagyvallalat
 - **H1** (1): Bespoke web development, one partner.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1493
+- **szavak**: 1499
 - **H2:**
   - What we build
   - How we work together up to go-live
@@ -658,7 +662,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-google-cegprofil, en→https://stratosweb.hu/en/blog-google-business-profile, de→https://stratosweb.hu/de/blog-google-unternehmensprofil, x-default→https://stratosweb.hu/blog-google-cegprofil
 - **H1** (1): Setting up a Google Business Profile, step by step
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 895
+- **szavak**: 901
 - **H2:**
   - 1. Claim or create the profile
   - 2. Choose the primary category precisely
@@ -677,11 +681,11 @@ Generated from the committed build output (87 pages).
 - **title** (52): How to reach Google's first page — 7 steps | Stratos
 - **desc** (117): Getting onto Google's first page takes a system, not magic. Seven steps a small business can work through on its own.
 - **canonical**: https://stratosweb.hu/en/blog-google-first-page
-- **robots**: —
-- **hreflang**: hu→https://stratosweb.hu/blog-google-elso-oldal, en→https://stratosweb.hu/en/blog-google-first-page, de→https://stratosweb.hu/de/blog-google-erste-seite, x-default→https://stratosweb.hu/blog-google-elso-oldal
+- **robots**: noindex, follow
+- **hreflang**: —
 - **H1** (1): How to reach Google's first page — 7 steps
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 958
+- **szavak**: 964
 - **H2:**
   - 1. Decide which question you want to answer
   - 2. One question, one page
@@ -703,7 +707,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-google-vagy-facebook, en→https://stratosweb.hu/en/blog-google-or-facebook, de→https://stratosweb.hu/de/blog-google-oder-facebook, x-default→https://stratosweb.hu/blog-google-vagy-facebook
 - **H1** (1): Google or Facebook ads — which is worth it in 2026?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 784
+- **szavak**: 790
 - **H2:**
   - When is Google the right answer?
   - When is Meta the right answer?
@@ -722,7 +726,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-logo-keszites, en→https://stratosweb.hu/en/blog-logo-design, de→https://stratosweb.hu/de/blog-logo-gestaltung, x-default→https://stratosweb.hu/blog-logo-keszites
 - **H1** (1): Getting a logo made: what to ask for, what not to accept
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 1000
+- **szavak**: 1006
 - **H2:**
   - What you must receive at the end
   - What does it cost?
@@ -740,7 +744,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet, en→https://stratosweb.hu/en/blog-no-enquiries, de→https://stratosweb.hu/de/blog-keine-anfragen, x-default→https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet
 - **H1** (1): Why isn't your website bringing clients? 7 common mistakes
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 847
+- **szavak**: 853
 - **H2:**
   - 1. The first screen doesn't say what you do
   - 2. There's no clear next step
@@ -762,7 +766,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-online-marketing, en→https://stratosweb.hu/en/blog-online-marketing, de→https://stratosweb.hu/de/blog-online-marketing, x-default→https://stratosweb.hu/blog-online-marketing
 - **H1** (1): Online marketing for a small business: where to start
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 959
+- **szavak**: 965
 - **H2:**
   - The foundation: somewhere to send people
   - The marketing channels, in order
@@ -781,7 +785,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-elavult-weboldal, en→https://stratosweb.hu/en/blog-outdated-website, de→https://stratosweb.hu/de/blog-veraltete-website, x-default→https://stratosweb.hu/blog-elavult-weboldal
 - **H1** (1): How many clients is an outdated website costing you?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 850
+- **szavak**: 856
 - **H2:**
   - The calculation
   - If you don't know the numbers
@@ -799,7 +803,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-webdesign, en→https://stratosweb.hu/en/blog-web-design, de→https://stratosweb.hu/de/blog-webdesign, x-default→https://stratosweb.hu/blog-webdesign
 - **H1** (1): Web design: what makes one good?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 980
+- **szavak**: 986
 - **H2:**
   - 1. The first screen says what this is
   - 2. One decision per screen
@@ -820,7 +824,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-weboldal-arak, en→https://stratosweb.hu/en/blog-website-cost, de→https://stratosweb.hu/de/blog-website-kosten, x-default→https://stratosweb.hu/blog-weboldal-arak
 - **H1** (1): How much does a website cost in 2026?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 913
+- **szavak**: 919
 - **H2:**
   - What drives the price up?
   - What the price usually leaves out
@@ -839,7 +843,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-keresooptimalizalas, en→https://stratosweb.hu/en/blog-what-is-seo, de→https://stratosweb.hu/de/blog-was-ist-seo, x-default→https://stratosweb.hu/blog-keresooptimalizalas
 - **H1** (1): What is SEO, and what does it cost?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 1043
+- **szavak**: 1049
 - **H2:**
   - What can you do without paying?
   - What does it cost if you don't do it yourself?
@@ -858,7 +862,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog, en→https://stratosweb.hu/en/blog, de→https://stratosweb.hu/de/blog, x-default→https://stratosweb.hu/blog
 - **H1** (1): What you need to know, in plain words.
 - **JSON-LD**: ProfessionalService, WebSite, CollectionPage, BreadcrumbList
-- **szavak**: 721
+- **szavak**: 727
 - **H2:**
   - How to reach Google's first page — 7 steps
   - Where to next
@@ -872,9 +876,9 @@ Generated from the committed build output (87 pages).
 - **canonical**: https://stratosweb.hu/en/branding
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/branding, en→https://stratosweb.hu/en/branding, de→https://stratosweb.hu/de/branding, x-default→https://stratosweb.hu/branding
-- **H1** (1): One colour. One line. And they think of you.
+- **H1** (1): Logo and identity design people actually remember.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1538
+- **szavak**: 1558
 - **H2:**
   - A logo is a mark. An identity is a system.
   - Brand building from A to Z
@@ -893,7 +897,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/ugyfelszolgalat, en→https://stratosweb.hu/en/contact, de→https://stratosweb.hu/de/kontakt, x-default→https://stratosweb.hu/ugyfelszolgalat
 - **H1** (1): It starts when you tell us.
 - **JSON-LD**: ProfessionalService, WebSite, ContactPage, BreadcrumbList
-- **szavak**: 948
+- **szavak**: 954
 - **H2:**
   - Pick the one that fits the time you have.
   - What happens after you send it?
@@ -909,9 +913,9 @@ Generated from the committed build output (87 pages).
 - **canonical**: https://stratosweb.hu/en/ecommerce-web-design
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/webshop-keszites, en→https://stratosweb.hu/en/ecommerce-web-design, de→https://stratosweb.hu/de/onlineshop-erstellung, x-default→https://stratosweb.hu/webshop-keszites
-- **H1** (1): The basket is not the finish line. It is the start.
+- **H1** (1): An online store that actually sells. Not just looks good.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 970
+- **szavak**: 989
 - **H2:**
   - What goes into building an online store?
   - No template, no plugins.
@@ -928,7 +932,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/impact-program, en→https://stratosweb.hu/en/impact-program, de→https://stratosweb.hu/de/impact-programm, x-default→https://stratosweb.hu/impact-program
 - **H1** (1): Premium websites for the people who change lives.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage
-- **szavak**: 1265
+- **szavak**: 1271
 - **H2:**
   - This project is personal.
   - Two causes close to us
@@ -952,7 +956,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/impresszum, en→https://stratosweb.hu/en/imprint, de→https://stratosweb.hu/de/impressum, x-default→https://stratosweb.hu/impresszum
 - **H1** (1): Imprint
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 380
+- **szavak**: 386
 - **H2:**
   - Hosting provider
   - Database provider
@@ -968,7 +972,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/adatkezelesi-tajekoztato, en→https://stratosweb.hu/en/privacy-policy, de→https://stratosweb.hu/de/datenschutz, x-default→https://stratosweb.hu/adatkezelesi-tajekoztato
 - **H1** (1): Privacy policy
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 1514
+- **szavak**: 1520
 - **H2:**
   - The Controller's responsibility and contact details
   - Purposes of processing
@@ -996,19 +1000,21 @@ Generated from the committed build output (87 pages).
 ## `en/seo-consultancy.html`
 
 - **title** (58): SEO Consultancy | Technical, Content & Local SEO | Stratos
-- **desc** (150): SEO consultancy that reports enquiries rather than rankings: technical SEO, content architecture, keyword research and local search, measured monthly.
+- **desc** (140): SEO consultancy in Győr and Budapest, on a monthly fee. Technical SEO, content and local search, reported monthly. Ask for a free discovery.
 - **canonical**: https://stratosweb.hu/en/seo-consultancy
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/keresooptimalizalas, en→https://stratosweb.hu/en/seo-consultancy, de→https://stratosweb.hu/de/seo-betreuung, x-default→https://stratosweb.hu/keresooptimalizalas
-- **H1** (1): The demand is already there. It isn't finding you.
+- **H1** (1): SEO that brings customers. Not just rankings.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1351
+- **szavak**: 1947
 - **H2:**
   - What does SEO actually involve?
+  - What does SEO actually cost?
   - Six million forints, from zero forints of ad spend.
-  - Four months, four stages
+  - How long before SEO actually produces results?
   - What we will not promise.
   - An agency or a specialist? Both.
+  - SEO in Győr and Budapest
   - Frequently asked
   - Where to next
   - Have a similar challenge?
@@ -1022,7 +1028,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/kkv, en→https://stratosweb.hu/en/web-design-small-business, de→https://stratosweb.hu/de/webdesign-kmu, x-default→https://stratosweb.hu/kkv
 - **H1** (1): A website without the big upfront cost.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1554
+- **szavak**: 1560
 - **H2:**
   - What the monthly fee buys
   - How you get to a live site
@@ -1043,7 +1049,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munka-barbershop, en→https://stratosweb.hu/en/work-barbershop, de→https://stratosweb.hu/de/projekt-barbershop, x-default→https://stratosweb.hu/munka-barbershop
 - **H1** (1): A site whose only job is the appointment.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 730
+- **szavak**: 736
 - **H2:**
   - What the finished site contains
   - A monochrome background and a single gold accent
@@ -1060,7 +1066,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munka-mentaltrening, en→https://stratosweb.hu/en/work-mentaltrening, de→https://stratosweb.hu/de/projekt-mentaltrening, x-default→https://stratosweb.hu/munka-mentaltrening
 - **H1** (1): One practitioner, one promise, one button.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 712
+- **szavak**: 718
 - **H2:**
   - What the finished site contains
   - One colour, one photograph, nothing spare
@@ -1077,7 +1083,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munka-rapidkert, en→https://stratosweb.hu/en/work-rapidkert, de→https://stratosweb.hu/de/projekt-rapidkert, x-default→https://stratosweb.hu/munka-rapidkert
 - **H1** (1): A great garden starts below the surface.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 1173
+- **szavak**: 1179
 - **H2:**
   - We captured demand where it forms
   - Search that compounds.
@@ -1096,7 +1102,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munkaink, en→https://stratosweb.hu/en/work, de→https://stratosweb.hu/de/projekte, x-default→https://stratosweb.hu/munkaink
 - **H1** (1): Live sites, not portfolio pictures.
 - **JSON-LD**: ProfessionalService, WebSite, CollectionPage, BreadcrumbList
-- **szavak**: 648
+- **szavak**: 654
 - **H2:**
   - Three projects, three structures
   - Clients we worked with who have no case study yet
@@ -1112,7 +1118,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: —
 - **H1** (1): Diese Seite gibt es nicht.
 - **JSON-LD**: —
-- **szavak**: 247
+- **szavak**: 253
 - **H2:**
   - Die nächste Höhe beginnt hier.
 
@@ -1132,11 +1138,11 @@ Generated from the committed build output (87 pages).
 - **title** (59): Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos
 - **desc** (119): Für Googles erste Seite braucht es System, keine Magie. Sieben Schritte, die ein kleines Unternehmen selbst gehen kann.
 - **canonical**: https://stratosweb.hu/de/blog-google-erste-seite
-- **robots**: —
-- **hreflang**: hu→https://stratosweb.hu/blog-google-elso-oldal, en→https://stratosweb.hu/en/blog-google-first-page, de→https://stratosweb.hu/de/blog-google-erste-seite, x-default→https://stratosweb.hu/blog-google-elso-oldal
+- **robots**: noindex, follow
+- **hreflang**: —
 - **H1** (1): Wie kommst du auf Googles erste Seite? 7 Schritte
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 894
+- **szavak**: 900
 - **H2:**
   - 1. Entscheide, welche Frage du beantworten willst
   - 2. Eine Frage, eine Seite
@@ -1158,7 +1164,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-google-vagy-facebook, en→https://stratosweb.hu/en/blog-google-or-facebook, de→https://stratosweb.hu/de/blog-google-oder-facebook, x-default→https://stratosweb.hu/blog-google-vagy-facebook
 - **H1** (1): Google- oder Facebook-Werbung? Was lohnt sich 2026?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 735
+- **szavak**: 741
 - **H2:**
   - Wann ist Google die richtige Antwort?
   - Wann ist Meta die richtige Antwort?
@@ -1177,7 +1183,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-google-cegprofil, en→https://stratosweb.hu/en/blog-google-business-profile, de→https://stratosweb.hu/de/blog-google-unternehmensprofil, x-default→https://stratosweb.hu/blog-google-cegprofil
 - **H1** (1): Google-Unternehmensprofil Schritt für Schritt einrichten
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 823
+- **szavak**: 829
 - **H2:**
   - 1. Fordere das Profil an oder erstelle es
   - 2. Wähl die Hauptkategorie präzise
@@ -1200,7 +1206,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet, en→https://stratosweb.hu/en/blog-no-enquiries, de→https://stratosweb.hu/de/blog-keine-anfragen, x-default→https://stratosweb.hu/blog-miert-nem-hoz-ugyfelet
 - **H1** (1): Warum bringt deine Website keine Kunden? 7 häufige Fehler
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 823
+- **szavak**: 829
 - **H2:**
   - 1. Auf dem ersten Bildschirm steht nicht, was du machst
   - 2. Es gibt keinen klaren nächsten Schritt
@@ -1222,7 +1228,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-logo-keszites, en→https://stratosweb.hu/en/blog-logo-design, de→https://stratosweb.hu/de/blog-logo-gestaltung, x-default→https://stratosweb.hu/blog-logo-keszites
 - **H1** (1): Ein Logo erstellen lassen: was Sie verlangen und was Sie nicht akzeptieren sollten
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 915
+- **szavak**: 921
 - **H2:**
   - Was Sie am Ende erhalten müssen
   - Was kostet es?
@@ -1240,7 +1246,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-online-marketing, en→https://stratosweb.hu/en/blog-online-marketing, de→https://stratosweb.hu/de/blog-online-marketing, x-default→https://stratosweb.hu/blog-online-marketing
 - **H1** (1): Online-Marketing für kleine Unternehmen: womit anfangen?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 851
+- **szavak**: 857
 - **H2:**
   - Das Fundament: ein Ort, wohin Sie Menschen schicken
   - Die Marketingkanäle, der Reihe nach
@@ -1259,7 +1265,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-elavult-weboldal, en→https://stratosweb.hu/en/blog-outdated-website, de→https://stratosweb.hu/de/blog-veraltete-website, x-default→https://stratosweb.hu/blog-elavult-weboldal
 - **H1** (1): Wie viele Kunden kostet dich eine veraltete Website?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 798
+- **szavak**: 804
 - **H2:**
   - Die Rechnung
   - Wenn du die Zahlen nicht kennst
@@ -1277,7 +1283,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-keresooptimalizalas, en→https://stratosweb.hu/en/blog-what-is-seo, de→https://stratosweb.hu/de/blog-was-ist-seo, x-default→https://stratosweb.hu/blog-keresooptimalizalas
 - **H1** (1): Was ist SEO, und was kostet es?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 955
+- **szavak**: 961
 - **H2:**
   - Was können Sie ohne Bezahlung tun?
   - Was kostet es, wenn Sie es nicht selbst machen?
@@ -1296,7 +1302,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-webdesign, en→https://stratosweb.hu/en/blog-web-design, de→https://stratosweb.hu/de/blog-webdesign, x-default→https://stratosweb.hu/blog-webdesign
 - **H1** (1): Webdesign: was macht ein gutes aus?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 881
+- **szavak**: 887
 - **H2:**
   - 1. Der erste Bildschirm sagt, worum es geht
   - 2. Eine Entscheidung pro Bildschirm
@@ -1317,7 +1323,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog-weboldal-arak, en→https://stratosweb.hu/en/blog-website-cost, de→https://stratosweb.hu/de/blog-website-kosten, x-default→https://stratosweb.hu/blog-weboldal-arak
 - **H1** (1): Was kostet eine Website 2026?
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, Article
-- **szavak**: 846
+- **szavak**: 852
 - **H2:**
   - Was treibt den Preis?
   - Was im Preis meist nicht enthalten ist
@@ -1336,7 +1342,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/blog, en→https://stratosweb.hu/en/blog, de→https://stratosweb.hu/de/blog, x-default→https://stratosweb.hu/blog
 - **H1** (1): Was du wissen musst, verständlich.
 - **JSON-LD**: ProfessionalService, WebSite, CollectionPage, BreadcrumbList
-- **szavak**: 658
+- **szavak**: 664
 - **H2:**
   - Wie kommst du auf Googles erste Seite? 7 Schritte
   - Wie geht es weiter
@@ -1350,9 +1356,9 @@ Generated from the committed build output (87 pages).
 - **canonical**: https://stratosweb.hu/de/branding
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/branding, en→https://stratosweb.hu/en/branding, de→https://stratosweb.hu/de/branding, x-default→https://stratosweb.hu/branding
-- **H1** (1): Eine Farbe. Ein Satz. Und man denkt an dich.
+- **H1** (1): Logo- und Marken- gestaltung, an die man sich erinnert.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1371
+- **szavak**: 1387
 - **H2:**
   - Ein Logo ist ein Zeichen. Ein Erscheinungsbild ist ein System.
   - Markenaufbau von A bis Z
@@ -1371,7 +1377,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/adatkezelesi-tajekoztato, en→https://stratosweb.hu/en/privacy-policy, de→https://stratosweb.hu/de/datenschutz, x-default→https://stratosweb.hu/adatkezelesi-tajekoztato
 - **H1** (1): Datenschutz­ erklärung
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 1362
+- **szavak**: 1368
 - **H2:**
   - Verantwortlichkeit und Kontaktdaten des Verantwortlichen
   - Zwecke der Verarbeitung
@@ -1394,7 +1400,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/impact-program, en→https://stratosweb.hu/en/impact-program, de→https://stratosweb.hu/de/impact-programm, x-default→https://stratosweb.hu/impact-program
 - **H1** (1): Erstklassige Websites für die Menschen, die Leben verändern.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage
-- **szavak**: 1196
+- **szavak**: 1202
 - **H2:**
   - Dieses Projekt ist persönlich.
   - Zwei Anliegen, die uns nahegehen
@@ -1418,7 +1424,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/impresszum, en→https://stratosweb.hu/en/imprint, de→https://stratosweb.hu/de/impressum, x-default→https://stratosweb.hu/impresszum
 - **H1** (1): Impressum
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 345
+- **szavak**: 351
 - **H2:**
   - Hosting-Anbieter
   - Datenbank-Anbieter
@@ -1434,7 +1440,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/ugyfelszolgalat, en→https://stratosweb.hu/en/contact, de→https://stratosweb.hu/de/kontakt, x-default→https://stratosweb.hu/ugyfelszolgalat
 - **H1** (1): Es beginnt damit, dass du es erzählst.
 - **JSON-LD**: ProfessionalService, WebSite, ContactPage, BreadcrumbList
-- **szavak**: 888
+- **szavak**: 894
 - **H2:**
   - Wähl den Weg, der zu deiner Zeit passt.
   - Was passiert, nachdem du abgeschickt hast?
@@ -1450,9 +1456,9 @@ Generated from the committed build output (87 pages).
 - **canonical**: https://stratosweb.hu/de/onlineshop-erstellung
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/webshop-keszites, en→https://stratosweb.hu/en/ecommerce-web-design, de→https://stratosweb.hu/de/onlineshop-erstellung, x-default→https://stratosweb.hu/webshop-keszites
-- **H1** (1): Der Warenkorb ist nicht das Ziel. Er ist der Anfang.
+- **H1** (1): Ein Onlineshop, der auch verkauft. Nicht nur aussieht.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 853
+- **szavak**: 867
 - **H2:**
   - Woraus besteht eine Onlineshop- Erstellung?
   - Keine Vorlage, keine Plugins.
@@ -1469,7 +1475,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munka-barbershop, en→https://stratosweb.hu/en/work-barbershop, de→https://stratosweb.hu/de/projekt-barbershop, x-default→https://stratosweb.hu/munka-barbershop
 - **H1** (1): Eine Seite, deren einzige Aufgabe der Termin ist.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 656
+- **szavak**: 662
 - **H2:**
   - Was die fertige Website enthält
   - Monochromer Hintergrund, ein einziger goldener Akzent
@@ -1486,7 +1492,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munka-mentaltrening, en→https://stratosweb.hu/en/work-mentaltrening, de→https://stratosweb.hu/de/projekt-mentaltrening, x-default→https://stratosweb.hu/munka-mentaltrening
 - **H1** (1): Ein Experte, ein Versprechen, ein Button.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 628
+- **szavak**: 634
 - **H2:**
   - Was die fertige Website enthält
   - Eine Farbe, ein Foto, nichts Überflüssiges
@@ -1503,7 +1509,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munka-rapidkert, en→https://stratosweb.hu/en/work-rapidkert, de→https://stratosweb.hu/de/projekt-rapidkert, x-default→https://stratosweb.hu/munka-rapidkert
 - **H1** (1): Ein großartiger Garten beginnt unter der Oberfläche.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList
-- **szavak**: 1066
+- **szavak**: 1072
 - **H2:**
   - Wir haben die Nachfrage dort abgeholt, wo sie entsteht
   - Suche, die sich verzinst.
@@ -1522,7 +1528,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/munkaink, en→https://stratosweb.hu/en/work, de→https://stratosweb.hu/de/projekte, x-default→https://stratosweb.hu/munkaink
 - **H1** (1): Live-Websites, keine Portfoliobilder.
 - **JSON-LD**: ProfessionalService, WebSite, CollectionPage, BreadcrumbList
-- **szavak**: 597
+- **szavak**: 603
 - **H2:**
   - Drei Projekte, drei Strukturen
   - Kunden, mit denen wir gearbeitet haben — noch ohne Fallstudie
@@ -1532,19 +1538,21 @@ Generated from the committed build output (87 pages).
 ## `de/seo-betreuung.html`
 
 - **title** (59): SEO Betreuung | Technik, Inhalte und lokale Suche | Stratos
-- **desc** (150): SEO Betreuung, die Anfragen ausweist statt Platzierungen: technisches SEO, Inhaltsarchitektur, Keyword-Recherche und lokale Suche, monatlich gemessen.
+- **desc** (148): SEO Betreuung in Győr und Budapest, zur Monatspauschale. Technisches SEO, Inhalte und lokale Suche, monatlich berichtet. Analyse kostenlos anfragen.
 - **canonical**: https://stratosweb.hu/de/seo-betreuung
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/keresooptimalizalas, en→https://stratosweb.hu/en/seo-consultancy, de→https://stratosweb.hu/de/seo-betreuung, x-default→https://stratosweb.hu/keresooptimalizalas
-- **H1** (1): Die Nachfrage ist längst da. Sie findet Sie nicht.
+- **H1** (1): SEO, das Kunden bringt. Nicht nur Rankings.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1216
+- **szavak**: 1762
 - **H2:**
   - Woraus besteht SEO eigentlich?
+  - Was kostet SEO wirklich?
   - Sechs Millionen Forint, aus null Forint Werbebudget.
-  - Vier Monate, vier Phasen
+  - Wie lange, bis SEO wirklich Ergebnisse bringt?
   - Was wir nicht versprechen.
   - Agentur oder Spezialist? Beides.
+  - SEO in Győr und Budapest
   - Häufige Fragen
   - Wie geht es weiter
   - Eine ähnliche Aufgabe?
@@ -1558,7 +1566,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/rolunk, en→https://stratosweb.hu/en/about, de→https://stratosweb.hu/de/ueber-uns, x-default→https://stratosweb.hu/rolunk
 - **H1** (1): Die Geschichte von Stratos
 - **JSON-LD**: ProfessionalService, WebSite, AboutPage, BreadcrumbList, FAQPage
-- **szavak**: 1052
+- **szavak**: 1058
 - **H2:**
   - Das ist kein Job. Das ist eine Lebenshaltung.
   - Warum Stratos — sechs Gründe
@@ -1576,7 +1584,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/kkv, en→https://stratosweb.hu/en/web-design-small-business, de→https://stratosweb.hu/de/webdesign-kmu, x-default→https://stratosweb.hu/kkv
 - **H1** (1): Eine Website ohne hohe Einmalkosten.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1387
+- **szavak**: 1393
 - **H2:**
   - Was du für die Monatsgebühr bekommst
   - So kommst du zu deiner Website
@@ -1597,7 +1605,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/nagyvallalat, en→https://stratosweb.hu/en/bespoke-web-development, de→https://stratosweb.hu/de/webentwicklung-agentur, x-default→https://stratosweb.hu/nagyvallalat
 - **H1** (1): Individuelle Webentwicklung, ein Partner.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1324
+- **szavak**: 1330
 - **H2:**
   - Was wir entwickeln
   - So arbeiten wir zusammen bis zum Go-live
@@ -1617,7 +1625,7 @@ Generated from the committed build output (87 pages).
 - **hreflang**: hu→https://stratosweb.hu/szolgaltatasok, en→https://stratosweb.hu/en/bespoke-web-design, de→https://stratosweb.hu/de/website-erstellen-lassen, x-default→https://stratosweb.hu/szolgaltatasok
 - **H1** (1): Website erstellen lassen, mit System.
 - **JSON-LD**: ProfessionalService, WebSite, CollectionPage, BreadcrumbList
-- **szavak**: 1186
+- **szavak**: 1192
 - **H2:**
   - Auf welches geschäftliche Problem antwortet sie?
   - Was funktioniert wirklich zusammen?
@@ -1630,18 +1638,19 @@ Generated from the committed build output (87 pages).
 ## `de/werbeanzeigen.html`
 
 - **title** (40): Google- und Meta-Werbeanzeigen | Stratos
-- **desc** (125): Google- und Meta-Werbebetreuung für Anfragen statt Reichweite: Zielgruppen, Kreation, Gebotsstrategie und Conversion-Messung.
+- **desc** (151): Google-Ads- und Meta-Werbebetreuung zum Monatshonorar, getrennt vom Werbebudget. Zielgruppen, Kreation, Gebote, Conversion-Messung. Beratung kostenlos.
 - **canonical**: https://stratosweb.hu/de/werbeanzeigen
 - **robots**: —
 - **hreflang**: hu→https://stratosweb.hu/hirdeteskezeles, en→https://stratosweb.hu/en/ads-management, de→https://stratosweb.hu/de/werbeanzeigen, x-default→https://stratosweb.hu/hirdeteskezeles
-- **H1** (1): Du kaufst keine Reichweite. Du kaufst Kunden.
+- **H1** (1): Google- und Meta- Werbebetreuung, die Kunden bringt.
 - **JSON-LD**: ProfessionalService, WebSite, WebPage, BreadcrumbList, FAQPage, Service
-- **szavak**: 1495
+- **szavak**: 1823
 - **H2:**
   - Von der Anzeige bis zur Anfrage liegen sechs Stationen.
   - Aufmerksamkeit ist die wertvollste Ressource
   - Suchen sie dich, oder musst du sie finden?
-  - Der Ablauf der Werbebetreuung
+  - Wie die Werbe- betreuung abläuft
+  - Was kostet die Werbebetreuung?
   - Wir schauen nicht auf Likes, sondern auf das Geschäftsergebnis.
   - Eine Kampagne, die wir nicht in Rechnung stellen
   - Häufige Fragen
