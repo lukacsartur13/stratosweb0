@@ -402,6 +402,7 @@ UI = {
         "f_links": "Linkek",
         "f_contact": "Kapcsolat",
         "f_social": "Közösség",
+        "f_gbp": "Google Cégprofil",
         "f_rights": "© 2026 Stratos Media Agency — Minden jog fenntartva.",
         "f_privacy": "Adatkezelési tájékoztató",
         "f_imprint": "Impresszum",
@@ -505,6 +506,7 @@ UI = {
         "f_links": "Links",
         "f_contact": "Contact",
         "f_social": "Social",
+        "f_gbp": "Google Business Profile",
         "f_rights": "© 2026 Stratos Media Agency — All rights reserved.",
         "f_privacy": "Privacy policy",
         "f_imprint": "Imprint",
@@ -598,6 +600,7 @@ UI = {
         "f_links": "Links",
         "f_contact": "Kontakt",
         "f_social": "Social Media",
+        "f_gbp": "Google Unternehmensprofil",
         "f_rights": "© 2026 Stratos Media Agency — Alle Rechte vorbehalten.",
         "f_privacy": "Datenschutzerklärung",
         "f_imprint": "Impressum",
@@ -1241,6 +1244,20 @@ SOCIAL_PROFILES = [
     "https://www.linkedin.com/company/stratos-media-agency",
     "https://www.instagram.com/stratosweb/",
     "https://www.facebook.com/profile.php?id=61590329356257",
+    # The Google Business Profile, by CID.
+    #
+    # This form and not the share link. `share.google/…` and the
+    # `maps.app.goo.gl/…` it expands to both resolve to a URL carrying session
+    # state — `sxsrf` with a timestamp baked in, `sei`, `kgs`, `authuser=3`,
+    # `client=safari` — which identifies the account and browser that generated
+    # it and goes stale. The CID is the profile's permanent numeric id, taken
+    # from the second half of the place's ftid
+    # (0x287014d94dbcf5f1:0x2307501a6799534f -> 2524074190501925711), and this
+    # URL is what Google itself documents for linking a profile.
+    #
+    # Cross-checked against the knowledge-graph id on the same place,
+    # /g/11zg2004v8, which both share links also carried.
+    "https://maps.google.com/?cid=2524074190501925711",
 ]
 
 # Published in the footer of every page, in every language.
@@ -1404,8 +1421,17 @@ def build_structured_data(lang, key, title, desc, meta, body):
     organisation = {
         "@type": "ProfessionalService",
         "@id": SITE + "/#organization",
-        "name": "Stratos",
-        "alternateName": "Stratos Media Agency",
+        # The unabbreviated name, because that is what `name` is for, and
+        # "Stratos" on its own is the short form the <title>s use. Both are
+        # correct per the owner; the Business Profile is the place they have to
+        # agree, and it is listed under Stratos Webdesign.
+        #
+        # "Stratos Media Agency" stays as a second alternate rather than being
+        # dropped: it is the name in the footer's copyright line and in the
+        # LinkedIn handle, so it is a real alias whether or not it is the one
+        # to lead with.
+        "name": "Stratos Webdesign",
+        "alternateName": ["Stratos", "Stratos Media Agency"],
         "url": SITE + "/",
         "logo": {
             "@type": "ImageObject",
@@ -1744,6 +1770,7 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
           <li><a href="https://www.linkedin.com/company/stratos-media-agency" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://www.instagram.com/stratosweb/" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="https://www.facebook.com/profile.php?id=61590329356257" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://maps.google.com/?cid=2524074190501925711" target="_blank" rel="noopener">{{f_gbp}}</a></li>
         </ul>
       </div>
       <!-- Status. Three statements, every one of them already published
@@ -1827,6 +1854,7 @@ def build_footer(lang, key):
         nl_placeholder=u["nl_placeholder"], nl_button=u["nl_button"],
         f_links=u["f_links"], f_pages=pages, f_services=u["services"], f_svc=svc,
         f_contact=u["f_contact"], f_social=u["f_social"], f_rights=u["f_rights"],
+        f_gbp=u["f_gbp"],
         privacy=href(lang, "privacy"), f_privacy=u["f_privacy"],
         imprint=href(lang, "imprint"), f_imprint=u["f_imprint"],
         # ---- Phase 8.5
