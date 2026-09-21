@@ -154,6 +154,47 @@ def indexable(key):
     return case_status(key) == "full"
 
 
+# ------------------------------------------------ per-locale indexability
+#
+# A route is `full` or it is not, for all three languages at once — that was
+# true of every route until this one.
+#
+# /blog-google-elso-oldal is a Hungarian article that works. Its English and
+# German translations are also good, and they are the problem: together they
+# draw about a quarter of the site's total impressions, for "wie komme ich bei
+# google auf die erste seite" and "first page google", at positions in the 40s
+# to 70s, and they have converted ZERO clicks in three months. That traffic is
+# informational, in two markets where this company has no local presence and
+# no intention of buying one, and it is competing for crawl budget with the
+# service pages that do sell.
+#
+# So the route stays `full` — the Hungarian article is indexed, linked and in
+# the sitemap, unchanged — and the two translations go `noindex, follow`.
+# `follow` because they still link into the rest of the site and that equity is
+# worth keeping; the pages stay reachable, translated and linked from the blog
+# index, exactly like a `summary` case study.
+#
+# THE HREFLANG SET GOES WITH IT
+# Google's instruction is that an hreflang set must not point at a noindex URL:
+# the annotation says "this is the version for that audience" and noindex says
+# "there is no version here", and a crawler resolving the conflict may drop the
+# whole cluster. So all three variants publish an hreflang set of hu plus
+# x-default, and the two noindexed URLs simply are not in it. This is the one
+# case where scripts/seo-audit.mjs's "every page declares all three" rule is
+# wrong, and it now reads this table rather than assuming.
+#
+# REVERSING THIS IS ONE LINE. Empty the dict and rebuild: the robots meta, the
+# hreflang set and the sitemap all come from it.
+LOCALE_NOINDEX = {
+    "post-seo": ("en", "de"),
+}
+
+
+def locale_indexable(key, lang):
+    """Is THIS language version of the route meant to be indexed?"""
+    return indexable(key) and lang not in LOCALE_NOINDEX.get(key, ())
+
+
 POSTS = ("post-seo", "post-arak", "post-cegprofil", "post-hirdetes",
          "post-elavult", "post-konverzio", "post-seo-alap", "post-marketing",
          "post-logo", "post-webdesign")
@@ -865,7 +906,7 @@ def build_font_preload(lang, base):
         for f in faces)
 
 
-def build_alternates(key):
+def build_alternates(key, lang):
     """The hreflang set for one route, as ABSOLUTE URLs.
 
     `absolute()` returns a root-relative path — every other consumer in this
@@ -883,9 +924,23 @@ def build_alternates(key):
 
     `tests/head-links.spec.ts` now asserts absoluteness on every built page.
     """
+    # A language version that is noindex is not a version to offer anyone, so it
+    # publishes no alternates at all — the same treatment 404.html gets, and for
+    # the same reason: an annotation is a statement about a page a crawler
+    # should consider, and this is not one. Declaring hu here instead would be
+    # reciprocally unanswerable, because the Hungarian page does not name it
+    # back; that is the point rather than an oversight.
+    #
+    # Note what is NOT filtered: `indexable(key)`. A `summary` case study is
+    # noindex at route level and deliberately keeps its full hreflang set — all
+    # three versions exist and are equally reachable. Only LOCALE_NOINDEX, which
+    # is about one language version of one route, removes anything here.
+    skip = LOCALE_NOINDEX.get(key, ())
+    if lang in skip:
+        return ""
     tags = "".join(
         f'\n<link rel="alternate" hreflang="{l}" href="{SITE}{absolute(l, key)}">'
-        for l in LANGS)
+        for l in LANGS if l not in skip)
     return tags + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}{absolute("hu", key)}">'
 
 
@@ -2744,7 +2799,14 @@ def write_route_manifest():
                     # self-disclaiming URLs in it before Phase 9.
                     "canonical": {k: {l: absolute(l, k) for l in LANGS}
                                   for k in SLUGS},
-                    "status": {k: case_status(k) for k in SLUGS}},
+                    "status": {k: case_status(k) for k in SLUGS},
+                    # Routes that are indexable in some languages and not
+                    # others. assemble.mjs drops these from the sitemap and
+                    # scripts/seo-audit.mjs stops demanding an hreflang for
+                    # them; see LOCALE_NOINDEX above for why the list is what
+                    # it is.
+                    "localeNoindex": {k: list(v)
+                                      for k, v in sorted(LOCALE_NOINDEX.items())}},
                    ensure_ascii=False, indent=1),
         encoding="utf-8")
 
@@ -2812,7 +2874,7 @@ def main():
             html = render(SHELL, dict(
                 lang=lang, title=title, desc=desc,
                 base=base, brand_alt=u["brand_alt"],
-                alternates=build_alternates(key),
+                alternates=build_alternates(key, lang),
                 social=build_social(lang, key, title, desc, meta),
                 # After translation and after the legal note, so the breadcrumb
                 # it reads is the one this page will actually render.
@@ -2826,7 +2888,7 @@ def main():
                 # are worth following; it is simply not a page to rank as a case
                 # study. `follow` keeps the outbound equity, `noindex` keeps the
                 # claim honest.
-                robots="" if indexable(key)
+                robots="" if locale_indexable(key, lang)
                        else '\n<meta name="robots" content="noindex, follow">',
                 body_class="",
                 instruments=chrome,

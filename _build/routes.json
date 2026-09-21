@@ -328,5 +328,11 @@
   "quote": "full",
   "privacy": "full",
   "imprint": "full"
+ },
+ "localeNoindex": {
+  "post-seo": [
+   "en",
+   "de"
+  ]
  }
 }

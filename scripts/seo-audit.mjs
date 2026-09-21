@@ -44,6 +44,47 @@ const DESC_MAX = 165;
 
 const isDuplicate = (name) => / \d+$/.test(name.replace(/\.[^.]+$/, ''));
 
+// ---------------------------------------------------- per-locale indexability
+//
+// "Every page declares hreflang for hu, en, de and x-default" was a hard check
+// here, and it was right for as long as every route was indexable in all three
+// languages. /blog-google-elso-oldal broke that: the Hungarian article is
+// indexed, its English and German translations are `noindex, follow`, and
+// Google's own instruction is that an hreflang set must not point at a noindex
+// URL. Keeping the old rule would have demanded the exact annotation that
+// instruction forbids.
+//
+// So the required set is computed per route rather than assumed, from the table
+// _build/build.py owns and writes into routes.json. Reading it rather than
+// re-deriving it is the point: if LOCALE_NOINDEX changes there, this check
+// follows without anyone remembering to edit it.
+const MANIFEST = join(ROOT, '_build', 'routes.json');
+const { canonical: CANONICAL = {}, langs: MLANGS = [], localeNoindex: LOCALE_NOINDEX = {} } =
+  existsSync(MANIFEST) ? JSON.parse(await readFile(MANIFEST, 'utf8')) : {};
+
+// canonical path -> { key, lang }, so a document can find its own route.
+const ROUTE_OF = new Map();
+for (const [key, byLang] of Object.entries(CANONICAL)) {
+  for (const [lang, path] of Object.entries(byLang)) ROUTE_OF.set(path, { key, lang });
+}
+
+/** The hreflang values this document is REQUIRED to declare. */
+function requiredHreflang(canonicalPath) {
+  const here = ROUTE_OF.get(canonicalPath);
+  if (!here) return [...MLANGS, 'x-default'];       // unknown route: the old rule
+  const skip = new Set(LOCALE_NOINDEX[here.key] ?? []);
+  // A noindexed language version declares nothing: it is not a member of the
+  // cluster, so it has no set to publish and nothing points back at it.
+  if (skip.has(here.lang)) return [];
+  return [...MLANGS.filter((l) => !skip.has(l)), 'x-default'];
+}
+
+/** Values this document must NOT declare, because those URLs are noindex. */
+function forbiddenHreflang(canonicalPath) {
+  const here = ROUTE_OF.get(canonicalPath);
+  return new Set(here ? (LOCALE_NOINDEX[here.key] ?? []) : []);
+}
+
 const one = (html, re) => html.match(re)?.[1] ?? null;
 const all = (html, re) => [...html.matchAll(re)].map((m) => m[1]);
 
@@ -292,12 +333,22 @@ async function main() {
 
     // ---- hreflang -----------------------------------------------------------
     const langs = p.alternates.map((a) => a.hreflang);
-    for (const required of ['hu', 'en', 'de', 'x-default']) {
-      if (!langs.includes(required)) {
-        fail(p.route, 'hreflang-missing', `no hreflang="${required}"`);
+    const required = requiredHreflang(p.canonicalPath);
+    const forbidden = forbiddenHreflang(p.canonicalPath);
+    for (const want of required) {
+      if (!langs.includes(want)) {
+        fail(p.route, 'hreflang-missing', `no hreflang="${want}"`);
       }
     }
-    if (!langs.includes(p.lang)) {
+    for (const got of langs) {
+      if (forbidden.has(got)) {
+        fail(p.route, 'hreflang-noindex-target',
+          `declares hreflang="${got}", which is a noindex URL`);
+      }
+    }
+    // A noindexed language version is not required to name itself — it is not a
+    // version a crawler should be offered at all. An indexable one still must.
+    if (p.indexable && !langs.includes(p.lang)) {
       fail(p.route, 'hreflang-self', `no self-referential hreflang for ${p.lang}`);
     }
 

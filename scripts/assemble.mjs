@@ -222,6 +222,9 @@ if (!existsSync(MANIFEST)) {
 }
 const {
   langs: LANGS, slugs: RAW, canonical: CANONICAL, status: STATUS = {},
+  // Routes indexable in some languages but not others. Owned by LOCALE_NOINDEX
+  // in _build/build.py, which explains why the one entry is there.
+  localeNoindex: LOCALE_NOINDEX = {},
 } = JSON.parse(await readFile(MANIFEST, 'utf8'));
 
 if (!CANONICAL) {
@@ -289,11 +292,22 @@ async function sitemap() {
     // contradiction the crawler has to resolve, so it is not emitted at all.
     // The status comes from _build/build.py, which owns it.
     if ((STATUS[key] ?? 'full') !== 'full') continue;
+    // A language version can be noindex while its siblings are not. Two things
+    // follow, and they are the same rule twice: the noindex URL gets no <url>
+    // entry of its own, because a sitemap entry for a noindex page is a
+    // contradiction the crawler has to resolve; and it appears in no other
+    // entry's hreflang set, because an annotation pointing at a noindex URL can
+    // cost the whole cluster. The generated <head> states exactly this set.
+    const skip = new Set(LOCALE_NOINDEX[key] ?? []);
     paths.forEach((path, i) => {
-      // Every URL carries the full hreflang set, including x-default pointing at
+      if (skip.has(LANGS[i])) return;
+      // Every URL carries the hreflang set, including x-default pointing at
       // Hungarian — the same contract the generated <head> already states.
       const alts = paths
-        .map((p, j) => `    <xhtml:link rel="alternate" hreflang="${LANGS[j]}" href="${SITE_URL}/${p}"/>`)
+        .map((p, j) => (skip.has(LANGS[j])
+          ? null
+          : `    <xhtml:link rel="alternate" hreflang="${LANGS[j]}" href="${SITE_URL}/${p}"/>`))
+        .filter(Boolean)
         .join('\n');
       urls.push(
         `  <url>\n` +
