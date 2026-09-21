@@ -55,20 +55,46 @@
 # Netlify by default, so a campaign link to /index.html?utm_source=… still
 # lands with its parameters intact — which matters, because attribution is read
 # from them on arrival.
+#
+# `force = true`, AND THAT IS THE WHOLE RULE
+# ------------------------------------------
+# These three rules shipped without it and did nothing at all for a year. A
+# Netlify redirect whose `from` matches a path that EXISTS in the publish
+# directory is shadowed by the file unless the rule forces it, and
+# dist/index.html is the most existing file on the site. Measured against
+# production before the fix:
+#
+#   https://stratosweb.hu/index.html       200   (rule present, never fired)
+#   https://stratosweb.hu/en/index.html    200   (rule present, never fired)
+#   https://stratosweb.hu/de/index.html    200   (rule present, never fired)
+#   https://stratosweb.hu/en/seo           301   (no file at that path — fired)
+#
+# The last line is the control that makes this a diagnosis rather than a guess:
+# redirects in this file DO work, and the three that do not are exactly the
+# three pointing at real files. Every audit this repo runs reads the config or
+# the built HTML, and both said the rule was there.
+#
+# The duplicate was never visible in Search Console because the canonical in all
+# three shells already names `/`, `/en/` and `/de/`, so Google resolved it on our
+# behalf and filed the twins under "Alternate page with proper canonical tag".
+# That is Google covering for a redirect that was not happening.
 [[redirects]]
   from = "/index.html"
   to = "/"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/en/index.html"
   to = "/en/"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/de/index.html"
   to = "/de/"
   status = 301
+  force = true
 
 # LEGACY WIX URLS
 # ---------------
@@ -81,15 +107,32 @@
 #
 # Twelve of them — /kkv, /rolunk, /branding, /blog, /impresszum and so on — are
 # extensionless paths that this build ALREADY answers 200 for, because Netlify
-# serves /kkv from kkv.html. Adding `/kkv -> /kkv.html` would look tidier and
-# would consolidate the duplicate, but it would also turn one dashboard setting
-# into an outage: Netlify's "Pretty URLs" 301s /kkv.html to /kkv, and the two
-# rules together are an infinite redirect loop. Today that setting being on
-# costs a canonical pointing at a redirect, which is a defect; with those rules
-# it would cost the page. The duplicate is already resolved the safe way, by
-# `<link rel="canonical">` naming the .html form, so the rules are not worth the
-# loop. See phase9-redirect-map.md §3 item 1 — that check is now load-bearing
-# for a different reason than it was.
+# serves /kkv from kkv.html. Adding `/kkv -> /kkv.html` would invert the
+# canonical and is not on the table; the open question was ever only the other
+# direction, `/kkv.html -> /kkv`.
+#
+# WHAT THIS PARAGRAPH USED TO SAY, AND WHY IT WAS WRONG
+# It said that rule would deadlock against Netlify's "Pretty URLs", which 301s
+# /kkv.html to /kkv — two rules pointing at each other, an infinite loop, so the
+# duplicate had to stay. That reasoning assumed Pretty URLs was ON. It is not.
+# Measured against production, every route answers 200 in BOTH forms:
+#
+#   https://stratosweb.hu/kkv                200
+#   https://stratosweb.hu/kkv.html           200   (Pretty URLs would 301 this)
+#
+# So there is no second rule to collide with, and there never was a loop. The
+# real reason to leave this alone is smaller and it is not a risk: `absolute()`
+# in _build/build.py emits the EXTENSIONLESS form as the canonical, the hreflang
+# set, og:url and the sitemap entry, and the .html twin carries that same
+# canonical. Google reads it and files the twin under "Alternate page with
+# proper canonical tag" — 47 of them, which is the duplicate being resolved
+# correctly rather than a defect to chase. 87 forced rules would buy a tidier
+# access log and nothing a crawler acts on differently.
+#
+# If that ever stops being true, the fix is one dashboard setting — Site
+# configuration -> Build & deploy -> Post processing -> Pretty URLs — and not a
+# rule in this file. Turning it on is safe TODAY for the same reason the loop
+# was imaginary: nothing here redirects in the opposing direction.
 #
 # The eight below are the URLs whose paths genuinely do not exist here.
 
