@@ -244,3 +244,62 @@
   .proofidx { grid-template-columns: 1fr; }
   .proofidx__fig { justify-items: start; }
 }
+
+/* ----------------------------------------------------- the SEO page's H1
+   One heading on the site carries a word wider than --step-5 can set.
+   "Keresőoptimalizálás" is 19 characters, and the H1 has to hold it: it is the
+   term this route owns in scripts/seo-ownership.mjs, the word the page is
+   named after, and Search Console shows the page ranking for it at position 42
+   while its own H1 never said it.
+
+   Measured in Archivo at --step-5, 1440 viewport: the word needs 1255px and
+   the heading offers 1232. The shortfall closes only above a ~2180 viewport,
+   so on every real screen `overflow-wrap: break-word` split it mid-syllable
+   with no hyphen — KERESŐOPTIMALIZÁ / LÁS, — which reads as a bug rather than
+   as typography.
+
+   Two declarations, and neither changes the design:
+
+   `font-size` caps the step at 6vw, which is a 5% reduction at 1440 and buys
+   the 23px the word was short. `max(2rem, …)` keeps the clamp floor, so the
+   phone size is untouched — below ~540px the cap would shrink the heading
+   instead of the word, and there the second declaration takes over.
+
+   The 6rem is the third bound and it is not redundant: `.wrap` stops at a
+   1560px max-width, so past roughly 1600 the heading's box stops growing while
+   6vw keeps going. A 1920 screen measured 1406px of box against a 1585px word,
+   and a 2560 one only 1400px of box. 96px is the largest size the word still
+   fits at in the widest box this layout ever hands out — it is also exactly
+   what a 1600 viewport already resolves to, so the cap joins the curve where
+   the curve already was.
+
+   `hyphens: auto` is that second declaration. The browser holds a Hungarian
+   dictionary and breaks the compound at a real syllable boundary WITH a
+   hyphen, so the narrow-screen break reads as set rather than as broken. It is
+   the same idiom main.css already applies to .stat__l and .metric__l for
+   exactly this reason, in exactly these two languages.
+
+   Scoped to the page key, so the other three routes on this stylesheet — sme,
+   enterprise, shop — keep --step-5 untouched.
+
+   THE H2s GET THE HYPHEN AND NOT THE CAP
+   The same word sits in four of this page's section headings, and at h-md in
+   the narrow column of a `.g-split` it does not fit either: the word measures
+   881px against 565px of column, so no arrangement of <br> puts it on one
+   line. This is not new — "Miből áll a keresőoptimalizálás?" has been wrapping
+   mid-word in production since the ownership pass wrote it, and three of the
+   four headings here are mine. The break is unavoidable; the missing hyphen is
+   what made it read as damage rather than as setting.
+
+   The cap is deliberately NOT extended to them. Making an h-md small enough to
+   hold 881px in 565px means roughly 41px, which is below h-sm — it would
+   restyle all nine of this page's section headings to spare one word in four
+   of them, and that is a type-scale change wearing a bug fix's clothes. */
+[data-page-key="seo"] .phead h1 {
+  font-size: max(2rem, min(var(--step-5), 6vw, 6rem));
+  hyphens: auto;
+}
+
+[data-page-key="seo"] .band h2.display {
+  hyphens: auto;
+}

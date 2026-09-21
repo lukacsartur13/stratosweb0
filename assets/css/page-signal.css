@@ -81,3 +81,33 @@
 @media (max-width: 460px) {
   .signal__list { grid-template-columns: 1fr; }
 }
+
+/* ------------------------------------------------- the ads page's H1
+   Same shape of problem as [data-page-key="seo"] in page-build.css, one size
+   smaller, and it arrived for the same reason: the H1 now has to carry the
+   term the page owns. "Hirdetéskezelés," in Hungarian and "Werbebetreuung," in
+   German are 15 and 16 characters, against the old heading's longest word of
+   seven ("elérést"), so the line that never wrapped now can.
+
+   Measured: clean from 414 to 1920. It breaks in exactly two places, and each
+   declaration answers one.
+
+   Above ~2000 `.wrap` has stopped growing at its 1560px max-width while
+   --step-5 keeps climbing to its 8rem ceiling — a 2560 screen offers 1400px of
+   box and asks for 128px of type. 7.25rem holds the size the 1920 case already
+   proved fits in the same box.
+
+   Below ~400 the clamp floor pins the type at 2rem while the column keeps
+   narrowing, and no size short of unreadable would fit; `hyphens: auto` lets
+   the browser break the compound at a real syllable boundary and set a hyphen,
+   which is what both Hungarian and German expect to see there anyway.
+
+   English is unaffected at every width — "ads management" breaks at a space. */
+[data-page-key="ads"] .phead h1 {
+  font-size: max(2rem, min(var(--step-5), 7.25rem));
+  hyphens: auto;
+}
+
+[data-page-key="ads"] .band h2.display {
+  hyphens: auto;
+}
