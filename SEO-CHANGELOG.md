@@ -204,6 +204,9 @@ seo-ownership    nincs ütközés — mind az öt fej-kulcsszónak egy gazdája 
 JSON-LD          87 blokk, 0 hiba; minden @id hivatkozás feloldható, nincs entity-szivárgás
 H1               90 oldal, oldalanként pontosan egy; nincs kihagyott fejcímszint
 elrendezés       320–3840 px, három nyelv: nincs törött szó, nincs vízszintes túlcsordulás
+                 (valódi böngészőben is újramérve, 15 px-es görgetősávval — a headless
+                 Chrome overlay görgetősávja 15 px-szel bőkezűbb, és az első beállítás
+                 pont ebbe a hibahatárba esett bele 1024 px-en)
 ```
 
 `seo-audit-before.md` és `seo-audit-after.md` a két pillanatkép; a `before` a

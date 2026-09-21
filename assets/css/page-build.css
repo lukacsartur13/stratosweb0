@@ -260,10 +260,18 @@
 
    Two declarations, and neither changes the design:
 
-   `font-size` caps the step at 6vw, which is a 5% reduction at 1440 and buys
+   `font-size` caps the step at 5.7vw, which is a 10% reduction at 1440 and buys
    the 23px the word was short. `max(2rem, …)` keeps the clamp floor, so the
-   phone size is untouched — below ~540px the cap would shrink the heading
+   phone size is untouched — below ~560px the cap would shrink the heading
    instead of the word, and there the second declaration takes over.
+
+   5.7 and not the 6.0 this started at, because 6.0 was measured in headless
+   Chrome, which draws an OVERLAY scrollbar. A browser with a classic scrollbar
+   takes ~15px off the viewport and therefore off the heading's box, and 6.0 was
+   inside that margin: at a 1024 window the word wants 864px, headless offered
+   864 and a real window offered 849. The word broke in the pane while the sweep
+   called it clean. 5.7 clears the widest measured case by 40px or more at every
+   width.
 
    The 6rem is the third bound and it is not redundant: `.wrap` stops at a
    1560px max-width, so past roughly 1600 the heading's box stops growing while
@@ -296,7 +304,7 @@
    restyle all nine of this page's section headings to spare one word in four
    of them, and that is a type-scale change wearing a bug fix's clothes. */
 [data-page-key="seo"] .phead h1 {
-  font-size: max(2rem, min(var(--step-5), 6vw, 6rem));
+  font-size: max(2rem, min(var(--step-5), 5.7vw, 6rem));
   hyphens: auto;
 }
 
