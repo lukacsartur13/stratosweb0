@@ -151,16 +151,50 @@ gyártanék:
    (és ha a 4. prioritást megtartod, a `/blog-google-elso-oldal`-ra is, hogy az új,
    szűkített hreflang-készletet hamarabb lássa).
 
-4. **Google Cégprofil.** A footer NAP-ja és a `areaServed` most már alátámasztja a
-   helyi találatot, de a Cégprofil összekötése nélkül a fele hiányzik. A profilon
-   ugyanez a cím szerepeljen, karakterre: `9151 Abda, Arany János utca 13.`
-   A footerbe szánt Cégprofil-link a repóban nincs meg — küldd át, és berakom.
+4. **Google Cégprofil — a link bekerült, a NAP viszont nem egyezik.**
+   A profil rajta van a `sameAs`-ben és a footerben, CID alapján
+   (`maps.google.com/?cid=2524074190501925711`), mind a három nyelven. A küldött
+   `share.google` / `maps.app.goo.gl` link **nem** került be: munkamenet-adatot
+   visz (`sxsrf` időbélyeggel, `sei`, `kgs`, `authuser=3`, `client=safari`), ami
+   elavul és a fiókot azonosítja.
+
+   Amit a profil nyilvánosan mutat, szemben azzal, amit az oldal mond:
+
+   | | Cégprofil | az oldal |
+   |---|---|---|
+   | Név | Stratos Webdesign \| Weboldal és hirdetéskezelés \| Győr | Stratos Webdesign *(javítva)* |
+   | Cím | **9027 Győr, Gesztenyefa út 4** | **9151 Abda, Arany János utca 13.** |
+   | Telefon | 06 30 584 8024 | +36 30 584 8024 ✓ |
+   | Webhely | stratosweb.hu | stratosweb.hu ✓ |
+
+   A **cím 11,6 km-rel tér el**, és ez a NAP négy eleméből a második, ami nem
+   stimmel. Lásd lent, a nyitott döntéseknél.
+
+   A profil neve ezen felül **kulcsszavazva van**. A Google Cégprofil szabályzata
+   szerint a névmezőbe a valós cégnév való; a „| Weboldal és hirdetéskezelés |
+   Győr" toldat miatt a Google átírhatja a nevet vagy felfüggesztheti a profilt.
+   A javaslatom: a profil neve legyen `Stratos Webdesign` — így egyben a
+   strukturált adattal is egyezik.
 
 5. **Netlify „Pretty URLs”** — **ne kapcsold be.** Lásd az 5. pontot: a mostani
    állapot canonicallel rendben van, a bekapcsolás viszont minden belső linket
    egy 301-re küldene.
 
 ## Amit rád hagytam
+
+- **Melyik cím kerüljön a strukturált adatba és a footerbe.** Ez a legfontosabb
+  nyitott kérdés, mert most 90 oldal mond mást, mint a Cégprofil. Két valós
+  adatról van szó: a `9151 Abda` az egyéni vállalkozó **székhelye**, amit az
+  impresszumnak jogszabály szerint közölnie kell, a `9027 Győr, Gesztenyefa út 4`
+  pedig az, ahol a Cégprofil szerint megtalálhatók vagytok.
+
+  A javaslatom: a **LocalBusiness `address` és a footer a győri címet mondja** —
+  ez az, amit az ügyfél keres és amit a Google a helyi találathoz párosít —, az
+  **impresszum pedig maradjon a székhelynél**, külön megjelölve. A kettő
+  párhuzamosan helyes, csak nem ugyanarra a kérdésre válasz.
+
+  Ha rábólintasz, egy commitban átírom mind a 90 oldalt; a `build.py` egyetlen
+  `address` blokkjából jön az összes.
 
 - **Városi landing oldalak** (`/keresooptimalizalas-gyor`, `/weboldal-keszites-gyor`):
   nem készültek el, és a javaslatom, hogy ne is készüljenek. A korábbi döntés
