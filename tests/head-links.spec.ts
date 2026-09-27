@@ -30,6 +30,43 @@ const DIST = join(ROOT, 'dist');
 
 type Doc = { file: string; html: string; lang: string };
 
+/* Routes that are indexable in some languages and not others.
+ *
+ * _build/build.py owns this (LOCALE_NOINDEX) and publishes it through
+ * routes.json; scripts/assemble.mjs and scripts/seo-audit.mjs read the same
+ * table. /blog-google-elso-oldal is the only entry: the Hungarian article is
+ * indexed, its English and German translations are `noindex, follow`, and
+ * Google's instruction is that an hreflang set must not name a noindex URL.
+ *
+ * So "every page declares all three languages" stopped being true, and this
+ * file asserted it. The expected set is computed per route now. Reading the
+ * table rather than restating it is the point — the day LOCALE_NOindex changes,
+ * this test follows without anyone remembering it exists. */
+type Manifest = {
+  langs: string[];
+  canonical: Record<string, Record<string, string>>;
+  localeNoindex?: Record<string, string[]>;
+};
+let manifest: Manifest;
+/** canonical path -> the route key and language that own it. */
+const routeOf = new Map<string, { key: string; lang: string }>();
+
+/** The hreflang values a document is expected to declare, sorted. */
+function expectedLangs(canonicalPath: string | null): string[] {
+  const here = canonicalPath ? routeOf.get(canonicalPath) : undefined;
+  const skip = new Set(here ? (manifest.localeNoindex?.[here.key] ?? []) : []);
+  // A noindexed language version publishes no set at all; callers skip those
+  // before asking, because an empty set is indistinguishable from a page that
+  // simply has none.
+  return [...manifest.langs.filter((l) => !skip.has(l)), 'x-default'].sort();
+}
+
+const canonicalOf = (html: string) => {
+  const href = /<link[^>]*rel="canonical"[^>]*href="([^"]*)"/.exec(html)?.[1];
+  if (!href) return null;
+  try { return new URL(href).pathname; } catch { return null; }
+};
+
 async function walk(dir: string, out: string[] = []): Promise<string[]> {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     // dist/portal is the SPA's own build; its shell is Vite's and carries no
@@ -51,6 +88,11 @@ async function walk(dir: string, out: string[] = []): Promise<string[]> {
 let docs: Doc[] = [];
 
 test.beforeAll(async () => {
+  manifest = JSON.parse(await readFile(join(ROOT, '_build', 'routes.json'), 'utf8'));
+  for (const [key, byLang] of Object.entries(manifest.canonical)) {
+    for (const [lang, p] of Object.entries(byLang)) routeOf.set(p, { key, lang });
+  }
+
   const files = await walk(DIST);
   docs = await Promise.all(files.map(async (f) => {
     const html = await readFile(f, 'utf8');
@@ -129,7 +171,7 @@ test('the hreflang set is reciprocal and complete', () => {
     const alts = alternates(doc.html);
     if (!alts.length) continue;
     const langs = alts.map((a) => a.lang).sort();
-    expect(langs, `${doc.file} hreflang languages`).toEqual(['de', 'en', 'hu', 'x-default']);
+    expect(langs, `${doc.file} hreflang languages`).toEqual(expectedLangs(canonicalOf(doc.html)));
 
     const hu = alts.find((a) => a.lang === 'hu')!.href;
     const xd = alts.find((a) => a.lang === 'x-default')!.href;

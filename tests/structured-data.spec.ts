@@ -246,7 +246,12 @@ test('organisation identity is one entity, identical on every page', () => {
     expect(orgs, `${doc.file} declares one organisation`).toHaveLength(1);
     const org = orgs[0];
     expect(org['@id']).toMatch(/#organization$/);
-    expect(org.name).toBe('Stratos');
+    /* The UNABBREVIATED name, which is what `name` is for. "Stratos" is the
+       short form the <title> suffixes use and is an alternateName now; the
+       Google Business Profile the site links from sameAs is listed under
+       Stratos Webdesign, and that is the one place the two have to agree. */
+    expect(org.name).toBe('Stratos Webdesign');
+    expect(org.alternateName).toContain('Stratos');
 
     const fingerprint = JSON.stringify(org);
     const [firstFile, first] = [...seen.entries()][0] ?? [];

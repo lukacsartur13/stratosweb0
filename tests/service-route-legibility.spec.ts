@@ -548,11 +548,19 @@ for (const route of REPAIRED) {
 test('the repaired routes keep their section order', async ({ page }) => {
   // Cheap insurance for §38: this was a colour and timing repair, so the
   // sequence of bands on the page is not something it may have moved.
+  //
+  // The fifth `band band--pale` is the pricing section — "Mennyibe kerül a
+  // hirdetéskezelés?" — added by the SEO pass, which is a content change and
+  // is allowed to move this. It sits between the process and the mid-page CTA
+  // deliberately: the cost question is the one a reader has by then, and the
+  // CTA reads differently once it is answered. Everything around it is in the
+  // order §38 left it.
   await page.goto('/hirdeteskezeles.html');
   const bands = await page.evaluate(() =>
     [...document.querySelectorAll('section')].map((s) => s.className.trim()));
   expect(bands).toEqual([
     'phead', 'band band--tight', 'band', 'band band--pale', 'band',
+    'band band--pale',
     'band band--tight', 'band band--tight', 'band band--tight',
     'band band--pale', 'band band--tight', 'band', 'arrival',
   ]);
