@@ -50,10 +50,11 @@ test.describe('the shell', () => {
     // and a contribution figure — and it is still not a client portal.
     //
     // The order is still the reading order of the business: decide, analyse,
-    // answer, sell, serve, deliver, diagnose.
+    // answer, sell, serve, deliver, give (the free Impact Program, owner-only),
+    // file (the owner's document library, phase 3), diagnose.
     const labels = [...primary![1].matchAll(/label: '([^']+)'/g)].map((m) => m[1]);
     expect(labels).toEqual([
-      'Dashboard', 'Analytics', 'Leads', 'Sales', 'Clients', 'Projects', 'System',
+      'Dashboard', 'Analytics', 'Leads', 'Sales', 'Clients', 'Projects', 'Impact', 'Documents', 'System',
     ]);
   });
 
@@ -86,8 +87,10 @@ test.describe('the shell', () => {
     const shell = code('components', 'shell', 'PortalShell.tsx');
     const items = [...shell.matchAll(/\{ to: '[^']+',\s*label: '[^']+',\s*icon: \w+,\s*cap: '(\w+)' \}/g)];
     expect(items.length, 'every nav item declares a capability').toBeGreaterThanOrEqual(10);
-    expect(shell).toMatch(/PRIMARY\.filter\(\(n\) => can\(profile\?\.role, n\.cap\)\)/);
-    expect(shell).toMatch(/SECONDARY\.filter\(\(n\) => can\(profile\?\.role, n\.cap\)\)/);
+    // `canAccess`, not `can`: it is the role matrix for every capability except
+    // the owner-only project ones, which follow `is_owner()` instead.
+    expect(shell).toMatch(/PRIMARY\.filter\(\(n\) => canAccess\(profile, n\.cap\)\)/);
+    expect(shell).toMatch(/SECONDARY\.filter\(\(n\) => canAccess\(profile, n\.cap\)\)/);
   });
 
   test('the active route is marked by state, not only by colour', () => {
@@ -153,7 +156,10 @@ test.describe('routes', () => {
   });
 
   test('the whole shell is behind the session guard', () => {
-    expect(app).toMatch(/<ProtectedRoute>\s*[\s\S]{0,400}?<ScopeProvider><PortalShell \/><\/ScopeProvider>/);
+    // Phase 4: the guarded layout is `PortalRoot`, which renders the staff
+    // shell — or, for a `client` account, the client portal instead.
+    expect(app).toMatch(/<ProtectedRoute>\s*[\s\S]{0,400}?<PortalRoot \/>/);
+    expect(app).toMatch(/function PortalRoot\(\)[\s\S]{0,400}?<ScopeProvider><PortalShell \/><\/ScopeProvider>/);
   });
 
   test('System is a distinct capability from Analytics', () => {
@@ -444,10 +450,10 @@ test.describe('one design system', () => {
     const sites = files.flatMap((file) =>
       [...fs.readFileSync(file, 'utf8').matchAll(/font-mark/g)]
         .map(() => path.relative(SRC, file)));
-    // The sidebar lockup, the mobile top bar, the drawer header and the
-    // sign-in lockup. Four places, all of them the brand, none of them a page
-    // title, a section label or a figure.
-    expect(sites.length, `font-mark appears in ${sites.join(', ')}`).toBeLessThanOrEqual(4);
+    // The sidebar lockup, the mobile top bar, the drawer header, the sign-in
+    // lockup and (phase 4) the client portal's header. Five places, all of them
+    // the brand, none of them a page title, a section label or a figure.
+    expect(sites.length, `font-mark appears in ${sites.join(', ')}`).toBeLessThanOrEqual(5);
   });
 
   test('charts share one system and no chart library was added', () => {

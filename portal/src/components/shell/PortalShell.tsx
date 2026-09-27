@@ -1,11 +1,11 @@
 import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
-  Activity, Building2, ChartLine, FolderKanban, Image, Inbox, LayoutDashboard, LogOut,
+  Activity, Building2, ChartLine, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LogOut,
   Menu, RefreshCw, ScrollText, Settings, Target, Users, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
-import { can, ROLE_LABELS, type Capability } from '@/lib/permissions';
+import { can, canAccess, ROLE_LABELS, type Capability } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
 import { useHealth } from '@/lib/health';
 import { ENVIRONMENTS, RANGES } from '@/lib/analytics';
@@ -74,6 +74,12 @@ const PRIMARY: NavItem[] = [
   { to: '/sales',     label: 'Sales',     icon: Target,          cap: 'view_sales' },
   { to: '/clients',   label: 'Clients',   icon: Building2,       cap: 'view_clients' },
   { to: '/projects',  label: 'Projects',  icon: FolderKanban,    cap: 'view_projects' },
+  // The free programme: its own pipeline and its own projects. Owner-only,
+  // like Projects (see OWNER_CAPABILITIES).
+  { to: '/impact',    label: 'Impact',    icon: HeartHandshake,  cap: 'view_impact' },
+  // The private document library: every paid and Impact project's files.
+  // Owner-only (OWNER_CAPABILITIES).
+  { to: '/documents', label: 'Documents', icon: FileStack,       cap: 'view_documents' },
   { to: '/system',    label: 'System',    icon: Activity,        cap: 'view_system' },
 ];
 
@@ -98,6 +104,8 @@ const TITLES: { path: string; title: string }[] = [
   { path: '/sales', title: 'Sales' },
   { path: '/system', title: 'System' },
   { path: '/projects', title: 'Projects' },
+  { path: '/impact', title: 'Impact' },
+  { path: '/documents', title: 'Documents' },
   { path: '/clients', title: 'Clients' },
   { path: '/case-studies', title: 'Case studies' },
   { path: '/users', title: 'Users' },
@@ -119,15 +127,19 @@ export function PortalShell() {
   // say where you are, and on a detail screen where you are is the record.
   const dealDetail = useMatch('/sales/:id');
   const clientDetail = useMatch('/clients/:id');
+  const projectTemplates = useMatch('/projects/templates');
   const projectDetail = useMatch('/projects/:id');
+  const impactApplication = useMatch('/impact/applications/:id');
 
-  const primary = PRIMARY.filter((n) => can(profile?.role, n.cap));
-  const secondary = SECONDARY.filter((n) => can(profile?.role, n.cap));
+  const primary = PRIMARY.filter((n) => canAccess(profile, n.cap));
+  const secondary = SECONDARY.filter((n) => canAccess(profile, n.cap));
 
   const title = leadDetail ? 'Lead'
     : dealDetail ? 'Opportunity'
       : clientDetail ? 'Client'
+        : projectTemplates ? 'Checkpoint templates'
         : projectDetail ? 'Project'
+        : impactApplication ? 'Impact application'
           : TITLES.find((t) => location.pathname.startsWith(t.path))?.title ?? 'Dashboard';
 
   // Route change closes the drawer, otherwise it stays open over the page the

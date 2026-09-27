@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useRows } from '@/lib/useRows';
 import { useAuth } from '@/features/auth/AuthProvider';
-import { can } from '@/lib/permissions';
+import { can, canAccess } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
 import { Grid } from '@/components/shell/PortalShell';
 import {
@@ -91,7 +91,7 @@ export function DashboardScreen() {
   const mayAnalytics = can(profile?.role, 'view_analytics');
   const maySystem = can(profile?.role, 'view_system');
   const maySales = can(profile?.role, 'view_sales');
-  const mayProjects = can(profile?.role, 'view_projects');
+  const mayProjects = canAccess(profile, 'view_projects');
 
   const leads = useRows<Lead>('leads', LEAD_COLUMNS, 'created_at', reloadToken);
   const { state: analytics } = useAnalytics(range, environment, mayAnalytics, reloadToken);
@@ -101,7 +101,7 @@ export function DashboardScreen() {
   // is two bounded, filtered reads — see `useDashboardOperations`. Neither loads
   // the pipeline, the client book or the project list.
   const summary = useSalesSummary(maySales, reloadToken);
-  const operations = useDashboardOperations(maySales || mayProjects, reloadToken);
+  const operations = useDashboardOperations(maySales || mayProjects, reloadToken, mayProjects);
 
   const rows = leads.rows;
   const ready = leads.state === 'ready';

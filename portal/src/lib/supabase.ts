@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { keyKind } from '@/lib/keyKind';
 
 // Only the anon key ever reaches the browser. It is not a secret — it is a
 // public identifier that says "an anonymous or logged-in user is asking" — and
@@ -8,7 +9,20 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
 
-export const isConfigured = Boolean(url && anonKey);
+// A secret key that somehow reached the bundle is not used, so the Portal
+// fails closed ("not configured") instead of running every request with RLS
+// bypassed. The build refuses it first (portal/vite.config.ts); this is the
+// floor under that. Nothing about the key is logged.
+export const isConfigured = Boolean(url && anonKey) && keyKind(anonKey) !== 'secret';
+
+/**
+ * The two PUBLIC values the upload request needs to address Storage directly
+ * (lib/documents.ts). Both already ship in this bundle; exporting them adds no
+ * exposure. Empty when not configured.
+ */
+export const publicConfig = isConfigured
+  ? { url: url!.replace(/\/+$/, ''), anonKey: anonKey! }
+  : { url: '', anonKey: '' };
 
 /**
  * Without credentials the portal still has to boot, so that `npm run dev` and
@@ -47,6 +61,10 @@ function makeStub(): SupabaseClient {
       updateUser: err,
     },
     from: () => table,
+    rpc: err,
+    storage: {
+      from: () => ({ createSignedUploadUrl: err, createSignedUrl: err, download: err }),
+    },
   } as unknown as SupabaseClient;
 }
 

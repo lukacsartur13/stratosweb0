@@ -338,7 +338,7 @@ export interface AttentionDeal {
  * The Projects screen, which already has the counts for its own list, is where
  * that one appears.
  */
-export function useDashboardOperations(enabled = true, reloadToken = 0) {
+export function useDashboardOperations(enabled = true, reloadToken = 0, includeProjects = true) {
   const [deals, setDeals] = useState<AttentionDeal[]>([]);
   const [projects, setProjects] = useState<DashboardProject[]>([]);
   const [state, setState] = useState<'idle' | 'loading' | 'ready' | 'error'>(
@@ -373,18 +373,26 @@ export function useDashboardOperations(enabled = true, reloadToken = 0) {
         )
         .order('next_action_on', { ascending: true, nullsFirst: false })
         .limit(40),
-      supabase
-        .from('projects')
-        // Its OWN column list, not the Projects screen's. The Dashboard block
-        // draws four columns; asking for the description, the hours, the payment
-        // amounts and the responsible profile would be a wider row over the wire
-        // for data nothing on this screen renders.
-        .select('id, name, status, value, currency, target_date, archived_at, '
-          + 'client:organizations(id, name)')
-        .is('archived_at', null)
-        .not('status', 'in', '("completed","archived","care")')
-        .order('target_date', { ascending: true, nullsFirst: false })
-        .limit(12),
+      // Projects are the portal owner's alone; for anybody else this read is
+      // not sent, so the attention list and the block cannot be built from an
+      // empty answer that merely looks like "no live projects".
+      includeProjects
+        ? supabase
+          .from('projects')
+          // Its OWN column list, not the Projects screen's. The Dashboard block
+          // draws four columns; asking for the description, the hours, the
+          // payment amounts and the responsible profile would be a wider row
+          // over the wire for data nothing on this screen renders.
+          .select('id, name, status, value, currency, target_date, archived_at, '
+            + 'client:organizations(id, name)')
+          .is('archived_at', null)
+          // Paid delivery. Impact projects are counted on the Impact screen,
+          // and a cancelled project is not live.
+          .eq('program', 'paid')
+          .not('status', 'in', '("completed","archived","care","cancelled")')
+          .order('target_date', { ascending: true, nullsFirst: false })
+          .limit(12)
+        : Promise.resolve({ data: [], error: null }),
     ]);
 
     // Either can fail without taking the Dashboard with it — most likely because
@@ -396,7 +404,7 @@ export function useDashboardOperations(enabled = true, reloadToken = 0) {
     setDeals((dealRes.data ?? []) as unknown as AttentionDeal[]);
     setProjects((projectRes.data ?? []) as unknown as DashboardProject[]);
     setState(dealRes.error && projectRes.error ? 'error' : 'ready');
-  }, [enabled, reloadToken]);
+  }, [enabled, reloadToken, includeProjects]);
 
   useEffect(() => { void load(); }, [load]);
 

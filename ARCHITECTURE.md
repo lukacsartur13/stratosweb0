@@ -154,10 +154,19 @@ portal actually filters and sorts by.
 
 | Role | Reach |
 |---|---|
-| `super_admin` | Everything, including role management |
-| `admin` | Operational data: leads, projects, clients, case studies, content |
-| `team_member` | Projects they are assigned to, via `project_members` |
-| `client` | Their own organisation only |
+| `super_admin` | Everything except projects, including role management. Projects: only the designated owner |
+| `admin` | Operational data: leads, sales, clients, case studies, content — not projects |
+| `team_member` | Dashboard, case studies, media — not projects (since the owner lockdown) |
+| `client` | Their own organisation record only — not its projects |
+
+**The owner is not a role.** Projects, checkpoints, project costs, links, notes
+and log events belong to one designated account (`portal_owner` /
+`is_owner()`), which must also be a `super_admin`; no other role reaches them.
+The Impact Program — its application pipeline, Impact projects and their
+market values — is owner-only on the same terms. See `supabase/OWNER_TRACKER.md`.
+So is the document library (phase 3): every project's files in the private
+`project-documents` bucket, keyed `<project id>/<document id>`, with
+restrictive storage policies no other policy can widen. See `supabase/DOCUMENTS.md`.
 
 `role` lives in `profiles`, **never** in `auth.users.raw_user_meta_data`. User
 metadata is writable by the user; a role stored there is a one-line privilege
@@ -262,11 +271,16 @@ a stylesheet updated via CSSOM — worth doing, not done.
 
 Named plainly so nobody discovers it by surprise:
 
-- **Client portal features** — schema and policies are in place; the screens are
-  not. A `client` today sees an overview and their projects.
+- **Client e-mail from Supabase** — client accounts, the Hungarian client portal,
+  sharing and "Nyersanyag leadása" are built (`supabase/CLIENT_PORTAL.md`), but
+  an invitation is a link the owner sends by hand; no e-mail is sent.
 - **Write paths in the admin** — every screen reads. Creating and editing rows is
   done in the Supabase dashboard for now.
-- **Storage buckets** — `media_assets` records exist; bucket policies do not.
+- **Storage for anything but project documents** — the owner's document library
+  has its own private bucket and policies (`supabase/DOCUMENTS.md`);
+  `media_assets` is an older scaffold with no bucket and no policies.
+- **A server-side content check of client uploads** — sizes are checked on the
+  server, file contents only in the browser (`supabase/DOCUMENTS.md` §3).
 - **Content blocks as a CMS** — the table and policies exist and the public site
   does not read from them yet. Phase 1 (static content in code) is intentional.
 - **Three.js / Blender GLB assets** — see README, "Known limitations".

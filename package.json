@@ -51,7 +51,17 @@
     "draco:sync": "node scripts/sync-draco.mjs",
     "draco:check": "node scripts/sync-draco.mjs --check",
     "test:mountains": "playwright test --config playwright.mountains.config.ts",
-    "strip:comments": "node scripts/strip-html-comments.mjs"
+    "strip:comments": "node scripts/strip-html-comments.mjs",
+    "test:documents": "playwright test tests/portal-documents.spec.ts tests/portal-documents-db.spec.ts --project=desktop-1440",
+    "check:documents:ui": "node scripts/portal-documents-check.mjs",
+    "check:documents:live": "node scripts/documents-live-check.mjs",
+    "test:client-portal": "playwright test tests/portal-client-db.spec.ts tests/portal-invite.spec.ts --project=desktop-1440",
+    "check:client-portal:ui": "node scripts/portal-client-check.mjs",
+    "check:client-portal:live": "node scripts/client-portal-live-check.mjs",
+    "test:payments": "playwright test tests/portal-payments.spec.ts tests/portal-payments-db.spec.ts --project=node",
+    "check:pg:integration": "node scripts/pg-integration-check.mjs",
+    "check:release:local": "node scripts/local-supabase-release.mjs",
+    "check:portal:live-browser": "node scripts/portal-live-browser-check.mjs"
   },
   "comments": {
     "dependencies": "Runtime dependencies of the NETLIFY FUNCTIONS, and nothing else. The public site ships no third-party JavaScript and the portal has its own manifest; this block exists because Netlify bundles netlify/functions/* against the ROOT package.json, not against portal/. Omitting @supabase/supabase-js here is what made every lead submission crash with ERR_MODULE_NOT_FOUND at the store step — the SDK was installed under portal/node_modules, where the function cannot reach it."
@@ -60,6 +70,7 @@
     "@supabase/supabase-js": "^2.47.10"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@playwright/test": "^1.49.1",
     "esbuild": "^0.25.12"
   }

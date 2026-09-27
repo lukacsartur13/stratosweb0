@@ -7,7 +7,7 @@ import { useAuth } from './AuthProvider';
 import { Button, Field, Input, Panel } from '@/components/ui';
 
 /* --------------------------------------------------------------- chrome */
-function AuthShell({ title, lede, children }: { title: string; lede: string; children: ReactNode }) {
+export function AuthShell({ title, lede, children }: { title: string; lede: string; children: ReactNode }) {
   return (
     <main className="grid min-h-dvh place-items-center px-4 py-10">
       <div className="w-full max-w-sm">

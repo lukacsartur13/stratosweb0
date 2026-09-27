@@ -1,9 +1,10 @@
-import { Component, lazy, type ErrorInfo, type ReactNode } from 'react';
+import { Component, lazy, Suspense, type ErrorInfo, type ReactNode } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from '@/features/auth/AuthProvider';
 import { ProtectedRoute } from '@/features/auth/ProtectedRoute';
 import { LoginPage, ForgotPasswordPage, ResetPasswordPage } from '@/features/auth/pages';
 import { PortalShell } from '@/components/shell/PortalShell';
+import { useAuth } from '@/features/auth/AuthProvider';
 import { ScopeProvider } from '@/lib/scope';
 import { DashboardScreen } from '@/pages/dashboard';
 import { LeadsScreen } from '@/pages/leads';
@@ -46,6 +47,38 @@ const ClientDetailScreen = lazy(() =>
 const ProjectsScreen = lazy(() => import('@/pages/projects').then((m) => ({ default: m.ProjectsScreen })));
 const ProjectDetailScreen = lazy(() =>
   import('@/pages/projects').then((m) => ({ default: m.ProjectDetailScreen })));
+const ProjectTemplatesScreen = lazy(() =>
+  import('@/pages/projects').then((m) => ({ default: m.ProjectTemplatesScreen })));
+
+// The Impact Program: its own chunk, owner-only. Its projects open in the
+// project screen above, which adapts to `program`.
+const ImpactScreen = lazy(() => import('@/pages/impact').then((m) => ({ default: m.ImpactScreen })));
+const ImpactApplicationScreen = lazy(() =>
+  import('@/pages/impact').then((m) => ({ default: m.ImpactApplicationScreen })));
+
+// The document library: its own chunk, owner-only. The project screen embeds
+// the same `ProjectLibrary` component, over the same rows.
+const DocumentsScreen = lazy(() => import('@/pages/documents').then((m) => ({ default: m.DocumentsScreen })));
+const DocumentsProjectScreen = lazy(() =>
+  import('@/pages/documents').then((m) => ({ default: m.DocumentsProjectScreen })));
+
+// The client portal: a separate, Hungarian surface for `client` accounts, and
+// the page an invitation link opens. Their own chunk: staff never load them.
+const ClientApp = lazy(() => import('@/features/client/ClientApp').then((m) => ({ default: m.ClientApp })));
+const AcceptInvitePage = lazy(() =>
+  import('@/features/client/AcceptInvite').then((m) => ({ default: m.AcceptInvitePage })));
+
+/**
+ * Who gets which portal. A `client` account never renders the staff shell or
+ * any staff screen — the layout itself is swapped, so no staff route can be
+ * reached by typing its address. What a client can READ is decided in the
+ * database regardless (the client_portal_* functions).
+ */
+function PortalRoot() {
+  const { profile } = useAuth();
+  if (profile?.role === 'client') return <Suspense fallback={null}><ClientApp /></Suspense>;
+  return <ScopeProvider><PortalShell /></ScopeProvider>;
+}
 
 const CaseStudiesScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.CaseStudiesScreen })));
 const UsersScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.UsersScreen })));
@@ -101,14 +134,16 @@ export default function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/accept-invite" element={<Suspense fallback={null}><AcceptInvitePage /></Suspense>} />
 
             <Route
               element={
                 <ProtectedRoute>
                   {/* Scope wraps the shell rather than the app: it is the
                       Control Room's state, and the sign-in screen has no
-                      period, no deployment and nothing to refresh. */}
-                  <ScopeProvider><PortalShell /></ScopeProvider>
+                      period, no deployment and nothing to refresh. A client
+                      gets the client portal instead of the shell. */}
+                  <PortalRoot />
                 </ProtectedRoute>
               }
             >
@@ -134,8 +169,24 @@ export default function App() {
                 <ProtectedRoute capability="view_clients"><ClientDetailScreen /></ProtectedRoute>} />
               <Route path="projects" element={
                 <ProtectedRoute capability="view_projects"><ProjectsScreen /></ProtectedRoute>} />
+              {/* Owner-only: `view_projects` belongs to no role, only to the
+                  designated portal owner (see canAccess in lib/permissions). */}
+              <Route path="projects/templates" element={
+                <ProtectedRoute capability="manage_projects"><ProjectTemplatesScreen /></ProtectedRoute>} />
               <Route path="projects/:id" element={
                 <ProtectedRoute capability="view_projects"><ProjectDetailScreen /></ProtectedRoute>} />
+
+              {/* ------------------------------------ the Impact Program */}
+              <Route path="impact" element={
+                <ProtectedRoute capability="view_impact"><ImpactScreen /></ProtectedRoute>} />
+              <Route path="impact/applications/:id" element={
+                <ProtectedRoute capability="view_impact"><ImpactApplicationScreen /></ProtectedRoute>} />
+
+              {/* ------------------------------ the document library */}
+              <Route path="documents" element={
+                <ProtectedRoute capability="view_documents"><DocumentsScreen /></ProtectedRoute>} />
+              <Route path="documents/:id" element={
+                <ProtectedRoute capability="view_documents"><DocumentsProjectScreen /></ProtectedRoute>} />
 
               {/* -------------------------------------------- the records */}
               <Route path="case-studies" element={

@@ -2,7 +2,8 @@ import { Suspense, lazy, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Target } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
-import { can } from '@/lib/permissions';
+import { can, canAccess } from '@/lib/permissions';
+import { isImpactLead } from '@/lib/impactRules';
 import { useScope } from '@/lib/scope';
 import { Grid } from '@/components/shell/PortalShell';
 import {
@@ -233,7 +234,9 @@ export function LeadDetailScreen() {
 
         {/* =========================================== 4/12 — the metadata */}
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-4">
-          <Conversion lead={lead} mayConvert={mayConvert} />
+          {isImpactLead(lead)
+            ? <ImpactNotice mayImpact={canAccess(profile, 'view_impact')} />
+            : <Conversion lead={lead} mayConvert={mayConvert} />}
 
           <Panel>
             <SectionHeader title="Stage" />
@@ -424,6 +427,28 @@ function Timeline({ entries }: { entries: TimelineEntry[] }) {
  * copied (§3), and the two records stay joined by `opportunities.lead_id` so the
  * chain from a channel to revenue survives the conversion.
  */
+/**
+ * An Impact application in place of the conversion panel. It is free and is
+ * judged in its own pipeline; it never becomes an opportunity — the database
+ * refuses it (`opportunities_not_impact`), so the button is not drawn at all.
+ */
+function ImpactNotice({ mayImpact }: { mayImpact: boolean }) {
+  return (
+    <Panel>
+      <SectionHeader title="Impact Program" />
+      <div className="grid gap-2 px-4 py-3">
+        <p className="text-xs text-haze">
+          This is an Impact application. The programme is free, so it is not a sales lead and cannot be
+          converted to an opportunity. It is handled in the Impact pipeline.
+        </p>
+        {mayImpact && (
+          <Link to="/impact" className="t-note underline underline-offset-4 hover:text-paper">Open the Impact pipeline</Link>
+        )}
+      </div>
+    </Panel>
+  );
+}
+
 function Conversion({ lead, mayConvert }: { lead: Lead; mayConvert: boolean }) {
   const [existing, setExisting] = useState<{ id: string; title: string; stage: string }[]>([]);
   const [open, setOpen] = useState(false);

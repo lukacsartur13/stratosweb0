@@ -164,7 +164,7 @@ const names = (events: Event[]) => events.map((e) => e.event);
 
 test.describe('what the shipped build actually configures', () => {
   test('every committed page carries the GA4 config, and it requires consent', () => {
-    for (const file of ['kkv.html', 'en/web-design-sme.html', 'de/webdesign-kmu.html']) {
+    for (const file of ['kkv.html', 'en/web-design-small-business.html', 'de/webdesign-kmu.html']) {
       const html = readFileSync(resolve(ROOT, file), 'utf8');
       const match = html.match(/<script id="analytics-config"[^>]*>([\s\S]*?)<\/script>/);
       expect(match, `${file} must carry an analytics config`).toBeTruthy();
@@ -351,11 +351,11 @@ test('measurement sets no cookie and writes no storage', async ({ page }) => {
 
 test.describe('the taxonomy is actually emitted', () => {
   test('a service page reports its identity, not its slug', async ({ page }) => {
-    const events = await withAdapter(page, '/en/web-design-sme.html');
+    const events = await withAdapter(page, '/en/web-design-small-business.html');
     const view = events.find((e) => e.event === 'page_view');
 
     expect(view).toBeTruthy();
-    // The slug is translated; the key is not. /en/web-design-sme.html and
+    // The slug is translated; the key is not. /en/web-design-small-business.html and
     // /de/webdesign-kmu.html are both `sme`, which is what makes the three
     // locales aggregable.
     expect(view!.page_key).toBe('sme');

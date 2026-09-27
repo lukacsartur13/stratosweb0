@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { closeRefusal } from '@/lib/pipeline';
+import { paymentRefusal } from '@/lib/paymentRules';
 
 /**
  * Clients and projects — the delivery half of the operating system.
@@ -76,6 +78,13 @@ export interface Project {
   payment_state: string;
   invoiced_amount: number | null;
   paid_amount: number | null;
+  /** `paid` | `impact`. Fixed at creation (20260929000300_impact_program.sql). */
+  program: string;
+  /**
+   * Impact only: what the donated work would have cost, whole HUF. NOT
+   * revenue, not owed. `null` is "not recorded yet", which is not 0.
+   */
+  market_value: number | null;
   created_at: string;
   updated_at: string;
   client?: { id: string; name: string } | null;
@@ -86,9 +95,14 @@ export const PROJECT_COLUMNS =
   'id, organization_id, name, slug, description, status, service, value, currency, '
   + 'start_date, target_date, completed_at, archived_at, opportunity_id, responsible_id, '
   + 'estimated_hours, actual_hours, payment_state, invoiced_amount, paid_amount, '
-  + 'created_at, updated_at, '
-  + 'client:organizations(id, name), responsible:profiles(id, full_name, email)';
+  + 'program, market_value, created_at, updated_at, '
+  // The foreign key is named: `project_members` is a second (many-to-many)
+  // path from projects to profiles, and real PostgREST refuses an ambiguous
+  // embed with PGRST201 — every project read failed on a real stack
+  // (scripts/portal-live-browser-check.mjs). A mocked API cannot show this.
+  + 'client:organizations(id, name), responsible:profiles!projects_responsible_id_fkey(id, full_name, email)';
 
+/** A checkpoint. The table kept its P2 name, `project_milestones`. */
 export interface Milestone {
   id: string;
   project_id: string;
@@ -97,6 +111,24 @@ export interface Milestone {
   state: string;
   due_on: string | null;
   completed_at: string | null;
+  assignee: string | null;
+  note: string | null;
+  blocked_reason: string | null;
+  next_step: string | null;
+}
+
+export const MILESTONE_COLUMNS =
+  'id, project_id, title, position, state, due_on, completed_at, '
+  + 'assignee, note, blocked_reason, next_step';
+
+/** A row of `checkpoint_templates`. */
+export interface CheckpointTemplate {
+  id: string;
+  name: string;
+  service_keywords: string[];
+  steps: string[];
+  position: number;
+  archived_at: string | null;
 }
 
 /* ================================================================= costs == */
@@ -182,7 +214,7 @@ export const useProjects = (reloadToken = 0) =>
  * on an indexed column, so the cost is four index lookups regardless of how many
  * clients exist.
  */
-export function useClientDetail(id: string | undefined, reloadToken = 0) {
+export function useClientDetail(id: string | undefined, reloadToken = 0, includeProjects = true) {
   const [client, setClient] = useState<Client | null>(null);
   const [contacts, setContacts] = useState<ClientContact[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -204,8 +236,13 @@ export function useClientDetail(id: string | undefined, reloadToken = 0) {
       supabase.from('client_contacts')
         .select('id, organization_id, name, role, email, phone, is_primary, created_at')
         .eq('organization_id', id).order('is_primary', { ascending: false }),
-      supabase.from('projects').select(PROJECT_COLUMNS)
-        .eq('organization_id', id).order('created_at', { ascending: false }).limit(100),
+      // Projects are the owner's alone. For anybody else the request is not
+      // sent at all, rather than sent and answered with an empty list that the
+      // screen would render as "no projects".
+      includeProjects
+        ? supabase.from('projects').select(PROJECT_COLUMNS)
+          .eq('organization_id', id).order('created_at', { ascending: false }).limit(100)
+        : Promise.resolve({ data: [], error: null }),
       supabase.from('opportunities')
         .select('id, title, stage, estimated_value, currency, won_at, expected_close_on')
         .eq('organization_id', id).is('archived_at', null)
@@ -229,17 +266,21 @@ export function useClientDetail(id: string | undefined, reloadToken = 0) {
     setProjects((projectRes.data ?? []) as unknown as Project[]);
     setDeals((dealRes.data ?? []) as never);
     setState(clientRes.data ? 'ready' : 'missing');
-  }, [id, reloadToken]);
+  }, [id, reloadToken, includeProjects]);
 
   useEffect(() => { void load(); }, [load]);
 
   return { client, contacts, projects, deals, state, reload: load };
 }
 
-/** One project, its milestones, its costs and its links. Four parallel reads. */
+/**
+ * One project, its checkpoints, its costs, its links and its client's contacts.
+ * Five parallel reads.
+ */
 export function useProjectDetail(id: string | undefined, reloadToken = 0) {
   const [project, setProject] = useState<Project | null>(null);
   const [milestones, setMilestones] = useState<Milestone[]>([]);
+  const [contacts, setContacts] = useState<ClientContact[]>([]);
   const [costs, setCosts] = useState<ProjectCost[]>([]);
   const [links, setLinks] = useState<ProjectLink[]>([]);
   const [state, setState] = useState<'loading' | 'ready' | 'missing' | 'error' | 'unconfigured'>(
@@ -254,7 +295,7 @@ export function useProjectDetail(id: string | undefined, reloadToken = 0) {
     const [projectRes, msRes, costRes, linkRes] = await Promise.all([
       supabase.from('projects').select(PROJECT_COLUMNS).eq('id', id).maybeSingle(),
       supabase.from('project_milestones')
-        .select('id, project_id, title, position, state, due_on, completed_at')
+        .select(MILESTONE_COLUMNS)
         .eq('project_id', id).order('position', { ascending: true }),
       supabase.from('project_costs')
         .select('id, project_id, description, category, amount, currency, incurred_on, created_at')
@@ -276,58 +317,120 @@ export function useProjectDetail(id: string | undefined, reloadToken = 0) {
     if (costRes.error) console.error('[project_costs]', costRes.error);
     if (linkRes.error) console.error('[project_links]', linkRes.error);
 
-    setProject((projectRes.data ?? null) as unknown as Project | null);
+    const found = (projectRes.data ?? null) as unknown as Project | null;
+    // The client's contacts, for "who is this for". One indexed read once the
+    // project says which client it belongs to.
+    if (found) {
+      const contactRes = await supabase.from('client_contacts')
+        .select('id, organization_id, name, role, email, phone, is_primary, created_at')
+        .eq('organization_id', found.organization_id)
+        .order('is_primary', { ascending: false }).limit(20);
+      if (contactRes.error) console.error('[client_contacts.byProject]', contactRes.error);
+      setContacts((contactRes.data ?? []) as unknown as ClientContact[]);
+    }
+
+    setProject(found);
     setMilestones((msRes.data ?? []) as unknown as Milestone[]);
     setCosts((costRes.data ?? []) as unknown as ProjectCost[]);
     setLinks((linkRes.data ?? []) as unknown as ProjectLink[]);
-    setState(projectRes.data ? 'ready' : 'missing');
+    setState(found ? 'ready' : 'missing');
   }, [id, reloadToken]);
 
   useEffect(() => { void load(); }, [load]);
 
-  return { project, milestones, costs, links, state, reload: load };
+  return { project, milestones, contacts, costs, links, state, reload: load };
 }
 
 /**
- * How many milestones each project still has open, for a whole list.
+ * Every checkpoint of every project on the list, and each client's primary
+ * contact — for the tracker overview.
  *
- * ONE query for every project on the screen, not one per project. §70 asks for
- * N+1 patterns to be identified and fixed before acceptance; this is the one
- * place the projects list would have had one, and the fix is to fetch the
- * milestone states in a single bounded read and count them here.
+ * TWO queries for the whole screen, not two per project. §70 asks for N+1
+ * patterns to be identified and fixed; the overview needs, per project, the
+ * current step, done/total, lateness, waiting and blocked, and all of that is
+ * derived from the checkpoint rows by `trackerOf` in lib/pipeline.ts. Only the
+ * columns that derivation reads are selected.
  */
-export function useOpenMilestoneCounts(projectIds: string[], reloadToken = 0) {
-  const [counts, setCounts] = useState<Record<string, number>>({});
+export function useTrackerRows(projectIds: string[], orgIds: string[], reloadToken = 0) {
+  const [checkpoints, setCheckpoints] = useState<Record<string, Milestone[]>>({});
+  const [contacts, setContacts] = useState<Record<string, ClientContact>>({});
   const key = projectIds.slice().sort().join(',');
+  const orgKey = orgIds.slice().sort().join(',');
 
   useEffect(() => {
     let cancelled = false;
     if (!isConfigured || projectIds.length === 0) return;
 
     void (async () => {
-      const { data, error } = await supabase
-        .from('project_milestones')
-        .select('project_id, state')
-        .in('project_id', projectIds)
-        .limit(2000);
+      const [msRes, contactRes] = await Promise.all([
+        supabase
+          .from('project_milestones')
+          .select('id, project_id, title, position, state, due_on, blocked_reason, next_step')
+          .in('project_id', projectIds)
+          .order('position', { ascending: true })
+          .limit(4000),
+        orgIds.length === 0
+          ? Promise.resolve({ data: [], error: null })
+          : supabase
+            .from('client_contacts')
+            .select('id, organization_id, name, email, phone, is_primary')
+            .in('organization_id', orgIds)
+            .eq('is_primary', true)
+            .limit(500),
+      ]);
 
-      if (error) { console.error('[project_milestones.counts]', error); return; }
+      if (msRes.error) console.error('[project_milestones.tracker]', msRes.error);
+      if (contactRes.error) console.error('[client_contacts.primary]', contactRes.error);
       if (cancelled) return;
 
-      const next: Record<string, number> = {};
-      for (const id of projectIds) next[id] = 0;
-      for (const row of (data ?? []) as { project_id: string; state: string }[]) {
-        if (row.state !== 'done') next[row.project_id] = (next[row.project_id] ?? 0) + 1;
+      const byProject: Record<string, Milestone[]> = {};
+      for (const id of projectIds) byProject[id] = [];
+      for (const row of (msRes.data ?? []) as unknown as Milestone[]) {
+        (byProject[row.project_id] ??= []).push(row);
       }
-      setCounts(next);
+      const byOrg: Record<string, ClientContact> = {};
+      for (const row of (contactRes.data ?? []) as unknown as ClientContact[]) byOrg[row.organization_id] = row;
+
+      setCheckpoints(byProject);
+      setContacts(byOrg);
     })();
 
     return () => { cancelled = true; };
-    // `key` rather than the array: a new array with the same ids must not
+    // The keys rather than the arrays: a new array with the same ids must not
     // re-fetch on every render.
-  }, [key, reloadToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [key, orgKey, reloadToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return counts;
+  return { checkpoints, contacts };
+}
+
+/** The owner's checkpoint templates, live ones first by position. */
+export function useCheckpointTemplates(reloadToken = 0, enabled = true) {
+  const [rows, setRows] = useState<CheckpointTemplate[]>([]);
+  const [state, setState] = useState<ReadState>(isConfigured ? 'loading' : 'unconfigured');
+  const [message, setMessage] = useState('');
+
+  const load = useCallback(async () => {
+    if (!isConfigured) return setState('unconfigured');
+    if (!enabled) return setState('ready');
+    setState('loading');
+    const { data, error } = await supabase
+      .from('checkpoint_templates')
+      .select('id, name, service_keywords, steps, position, archived_at')
+      .order('position', { ascending: true })
+      .limit(200);
+    if (error) {
+      console.error('[checkpoint_templates]', error);
+      setState('error');
+      setMessage(readError(error, 'checkpoint templates'));
+      return;
+    }
+    setRows((data ?? []) as CheckpointTemplate[]);
+    setState('ready');
+  }, [reloadToken, enabled]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => { void load(); }, [load]);
+
+  return { rows, live: rows.filter((t) => !t.archived_at), state, message, reload: load };
 }
 
 /* ============================================================ duplicates == */
@@ -414,6 +517,17 @@ export function uniqueSlug(name: string, taken: string[]): string {
 
 function refusal(error: { code?: string; message?: string }, what: string): string {
   console.error(`[${what}]`, error);
+  const closing = closeRefusal(error.message);
+  if (closing) return closing;
+  // The payment schedule's rules (a currency fixed by a schedule, payment
+  // columns that follow it) — said in words, not as a generic refusal.
+  if (error.message?.includes('stratos:payment_')) return paymentRefusal(error);
+  if (error.code === '23514' && error.message?.includes('project_milestones_blocked_check')) {
+    return 'A blocked checkpoint needs a reason and a next step.';
+  }
+  if (error.code === '23514' && error.message?.includes('checkpoint_steps_valid')) {
+    return 'A template needs 1 to 40 steps, none of them blank or longer than 160 characters.';
+  }
   if (error.code === '42P01') {
     return 'Those tables do not exist yet. Run the migrations in supabase/migrations.';
   }
@@ -526,16 +640,48 @@ export function useOperationsMutations(onChanged: () => void) {
 
   const updateProject = useCallback(async (id: string, patch: Partial<Project>) => {
     setBusy(id);
-    // A completed project gets a completion date, stamped here rather than by a
-    // trigger because — unlike a won deal — "completed" is not a terminal state
-    // in the database's eyes and can legitimately be reversed.
-    const next: Record<string, unknown> = { ...patch };
-    if (patch.status === 'completed') next.completed_at = new Date().toISOString();
-    if (patch.status && patch.status !== 'completed') next.completed_at = null;
-
+    // `completed_at` is not sent: the database stamps it on close and clears it
+    // on reopen (`project_close_rules`), whatever a caller would have said.
+    const { completed_at: _ignored, ...next } = patch;
     const { error } = await supabase.from('projects').update(next).eq('id', id);
     setBusy(null);
     if (error) return refusal(error, 'projects.update');
+    onChanged();
+    return null;
+  }, [onChanged]);
+
+  /**
+   * Close a project. The database decides: it accepts only when the project has
+   * at least one checkpoint and every one is done, and stamps `completed_at`.
+   * Returns `true` ONLY when a row actually moved from open to closed — the
+   * `.neq('status', 'completed')` makes a second click on an already-closed
+   * project match nothing — so the caller celebrates a close, not a click.
+   */
+  const closeProject = useCallback(async (id: string): Promise<true | string> => {
+    setBusy(id);
+    const { data, error } = await supabase
+      .from('projects')
+      .update({ status: 'completed' })
+      .eq('id', id)
+      .neq('status', 'completed')
+      .select('id');
+    setBusy(null);
+    if (error) return refusal(error, 'projects.close');
+    onChanged();
+    if (!data || data.length === 0) return 'This project was already closed, or may not be changed by this account.';
+    return true;
+  }, [onChanged]);
+
+  /** Reopen a closed project. It goes back to `active`; the close date is cleared by the database. */
+  const reopenProject = useCallback(async (id: string) => {
+    setBusy(id);
+    const { error } = await supabase
+      .from('projects')
+      .update({ status: 'active' })
+      .eq('id', id)
+      .eq('status', 'completed');
+    setBusy(null);
+    if (error) return refusal(error, 'projects.reopen');
     onChanged();
     return null;
   }, [onChanged]);
@@ -544,9 +690,18 @@ export function useOperationsMutations(onChanged: () => void) {
 
   const saveMilestone = useCallback(async (
     projectId: string,
-    milestone: { id?: string; title: string; state?: string; due_on?: string | null; position?: number },
+    milestone: {
+      id?: string; title: string; state?: string; due_on?: string | null; position?: number;
+      assignee?: string | null; note?: string | null; blocked_reason?: string | null; next_step?: string | null;
+    },
   ) => {
-    if (!milestone.title.trim()) return 'A milestone needs a title.';
+    if (!milestone.title.trim()) return 'A checkpoint needs a title.';
+    // The same rule the database holds (project_milestones_blocked_check),
+    // said here first so the answer is a sentence rather than a refusal.
+    if (milestone.state === 'blocked'
+      && (!milestone.blocked_reason?.trim() || !milestone.next_step?.trim())) {
+      return 'A blocked checkpoint needs a reason and a next step.';
+    }
     setBusy('milestone');
     const { id, ...fields } = milestone;
     const { error } = id
@@ -554,6 +709,59 @@ export function useOperationsMutations(onChanged: () => void) {
       : await supabase.from('project_milestones').insert({ ...fields, project_id: projectId });
     setBusy(null);
     if (error) return refusal(error, 'project_milestones.save');
+    onChanged();
+    return null;
+  }, [onChanged]);
+
+  /**
+   * Copy a template's steps into a project as its checkpoints, in ONE insert.
+   * A copy, not a link: editing the template later changes nothing here.
+   */
+  const applyTemplate = useCallback(async (projectId: string, steps: string[], from = 0) => {
+    if (steps.length === 0) return null;
+    setBusy('milestone');
+    const { error } = await supabase.from('project_milestones').insert(
+      steps.map((title, i) => ({ project_id: projectId, title, position: from + i })),
+    );
+    setBusy(null);
+    if (error) return refusal(error, 'project_milestones.template');
+    onChanged();
+    return null;
+  }, [onChanged]);
+
+  /* ------------------------------------------------------- templates */
+
+  const saveTemplate = useCallback(async (template: {
+    id?: string; name: string; service_keywords: string[]; steps: string[]; position: number;
+  }) => {
+    if (!template.name.trim()) return 'A template needs a name.';
+    if (template.steps.length === 0) return 'A template needs at least one step.';
+    setBusy('template');
+    const { id, ...fields } = template;
+    const { error } = id
+      ? await supabase.from('checkpoint_templates').update(fields).eq('id', id)
+      : await supabase.from('checkpoint_templates').insert(fields);
+    setBusy(null);
+    if (error) {
+      if (error.code === '23505') return 'A template with that name already exists.';
+      return refusal(error, 'checkpoint_templates.save');
+    }
+    onChanged();
+    return null;
+  }, [onChanged]);
+
+  /** Retire (or restore) a template. Never deleted: nothing points at it, but its name is history. */
+  const archiveTemplate = useCallback(async (id: string, archived: boolean) => {
+    setBusy(id);
+    const { error } = await supabase
+      .from('checkpoint_templates')
+      .update({ archived_at: archived ? new Date().toISOString() : null })
+      .eq('id', id);
+    setBusy(null);
+    if (error) {
+      if (error.code === '23505') return 'A live template already has that name.';
+      return refusal(error, 'checkpoint_templates.archive');
+    }
     onChanged();
     return null;
   }, [onChanged]);
@@ -625,7 +833,8 @@ export function useOperationsMutations(onChanged: () => void) {
 
   return {
     createClient, updateClient, saveContact, removeContact,
-    createProject, updateProject, saveMilestone, removeMilestone,
+    createProject, updateProject, closeProject, reopenProject,
+    saveMilestone, removeMilestone, applyTemplate, saveTemplate, archiveTemplate,
     addCost, removeCost, addLink, removeLink, busy,
   };
 }

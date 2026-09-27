@@ -12,6 +12,12 @@ export interface Profile {
   avatar_url: string | null;
   role: Role;
   organization_id: string | null;
+  /**
+   * The designated portal owner — the answer of `is_owner()`, the same function
+   * every project policy calls. False whenever it cannot be read (the function
+   * is not deployed yet, or the request failed): the tracker fails closed.
+   */
+  is_owner: boolean;
 }
 
 interface AuthState {
@@ -79,18 +85,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(true);
 
     (async () => {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('id, email, full_name, avatar_url, role, organization_id')
-        .eq('id', session.user.id)
-        .single();
+      const [{ data, error }, owner] = await Promise.all([
+        supabase
+          .from('profiles')
+          .select('id, email, full_name, avatar_url, role, organization_id')
+          .eq('id', session.user.id)
+          .single(),
+        supabase.rpc('is_owner').then(
+          (r) => r,
+          () => ({ data: false, error: null }),
+        ),
+      ]);
 
       if (!alive) return;
       if (error) {
         console.warn('Could not load profile:', error.message);
         setProfile(null);
       } else {
-        setProfile(data as Profile);
+        if (owner.error) console.warn('Could not read the owner flag:', owner.error.message);
+        setProfile({ ...(data as Omit<Profile, 'is_owner'>), is_owner: owner.data === true });
       }
       setLoading(false);
     })();

@@ -14,8 +14,23 @@ export type Capability =
   | 'view_dashboard'
   | 'view_leads'
   | 'manage_leads'
+  // The private project tracker. NOT in any role's list below: these two are
+  // held only by the designated portal owner (`is_owner()` in
+  // 20260928000200_owner_tracker.sql), whatever their role — a second
+  // super_admin does not get them. See `canAccess`.
   | 'view_projects'
   | 'manage_projects'
+  // The Impact pipeline, Impact projects and their market values. Owner-only
+  // for now, for the same reason as projects: every table and function behind
+  // it answers to `is_owner()` (20260929000300_impact_program.sql).
+  | 'view_impact'
+  // The private document library (Documents, and the Documents panel on a
+  // project). Owner-only: every table, function and stored object behind it
+  // answers to `is_owner()` (20260930000100_document_library.sql).
+  | 'view_documents'
+  // Inviting client accounts, assigning their projects and sharing documents
+  // with them (20261001000100_client_portal.sql). Owner-only.
+  | 'manage_client_accounts'
   // The commercial book: opportunities, the pipeline, follow-ups, performance.
   // A separate capability from `view_clients` even though the same two roles
   // hold both today, because they are different questions: "what are we likely
@@ -50,38 +65,53 @@ export type Capability =
 
 const MATRIX: Record<Role, Capability[]> = {
   super_admin: [
-    'view_dashboard', 'view_leads', 'manage_leads', 'view_projects', 'manage_projects',
+    'view_dashboard', 'view_leads', 'manage_leads',
     'view_clients', 'manage_clients', 'view_sales', 'manage_sales',
     'view_case_studies', 'manage_case_studies',
     'manage_content', 'view_media', 'manage_users', 'manage_settings', 'view_activity',
     'view_analytics', 'view_system',
   ],
   admin: [
-    'view_dashboard', 'view_leads', 'manage_leads', 'view_projects', 'manage_projects',
+    'view_dashboard', 'view_leads', 'manage_leads',
     'view_clients', 'manage_clients', 'view_sales', 'manage_sales',
     'view_case_studies', 'manage_case_studies',
     'manage_content', 'view_media', 'view_activity', 'view_analytics', 'view_system',
   ],
-  // A team member sees the work assigned to them. The RLS policy on `projects`
-  // is what actually narrows the rows; this just hides the screens that would
-  // be empty for them anyway.
-  // A team member sees the delivery work and NOT the commercial book. This
-  // mirrors the database rather than merely agreeing with it: `opportunities`
-  // grants select to `is_staff()`, so a team member CAN read the pipeline
-  // through PostgREST — but `project_costs` is admin-only, which is the line
-  // that actually matters. Sales is hidden here because a pipeline screen is not
-  // the work they are assigned to, and the day that judgement changes it is one
-  // line in this matrix rather than a migration.
-  team_member: ['view_dashboard', 'view_projects', 'view_case_studies', 'view_media'],
+  // A team member does NOT see the commercial book. `opportunities` grants
+  // select to `is_staff()`, so a team member CAN read the pipeline through
+  // PostgREST; Sales is hidden here because a pipeline screen is not their work,
+  // and the day that judgement changes it is one line in this matrix rather than
+  // a migration. Projects are the owner's alone (see OWNER_CAPABILITIES).
+  team_member: ['view_dashboard', 'view_case_studies', 'view_media'],
   // The client portal is scaffolded, not built. A client can sign in and reach
-  // their own overview; the rest of the screens are staff-only until the client
-  // features in ARCHITECTURE.md land.
-  client: ['view_dashboard', 'view_projects'],
+  // an overview; everything else is staff-only until the client features land.
+  client: ['view_dashboard'],
 };
 
 export function can(role: Role | null | undefined, capability: Capability): boolean {
   if (!role) return false;
   return MATRIX[role].includes(capability);
+}
+
+/**
+ * Capabilities no ROLE carries. They follow `profiles.is_owner`, which the
+ * AuthProvider reads from `is_owner()` — the same function every project
+ * policy calls — so the screen and the database cannot disagree about who the
+ * owner is. The role check is repeated because the database repeats it.
+ */
+export const OWNER_CAPABILITIES: readonly Capability[] = ['view_projects', 'manage_projects', 'view_impact', 'view_documents', 'manage_client_accounts'];
+
+export function canAccess(
+  profile: { role: Role; is_owner?: boolean } | null | undefined,
+  capability: Capability,
+): boolean {
+  if (!profile) return false;
+  if (OWNER_CAPABILITIES.includes(capability)) {
+    // The owner (super_admin) or a named owner delegate (admin or super_admin,
+    // 20261003000100_owner_delegates.sql). The role floor mirrors is_owner().
+    return profile.is_owner === true && (profile.role === 'super_admin' || profile.role === 'admin');
+  }
+  return can(profile.role, capability);
 }
 
 export function isStaff(role: Role | null | undefined): boolean {

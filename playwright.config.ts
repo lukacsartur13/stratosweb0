@@ -27,6 +27,13 @@ const NODE_ONLY = [
   // Runs the Hungarian keyword-ownership guard as a child process against
   // dist. Reads markup, no page, no viewport.
   /seo-ownership\.spec\.ts/,
+  /portal-owner-db\.spec\.ts/,
+  /portal-tracker\.spec\.ts/,
+  /portal-impact-db\.spec\.ts/,
+  /portal-impact\.spec\.ts/,
+  /portal-payments-db\.spec\.ts/,
+  /portal-payments\.spec\.ts/,
+  /portal-delegates-db\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are

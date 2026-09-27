@@ -552,8 +552,9 @@ export function Dialog({
 
     // The first control, not the panel: a dialog that focuses its own container
     // announces its title and then leaves the user pressing Tab to find out what
-    // is in it.
-    focusable()[0]?.focus();
+    // is in it. A dialog whose whole point is one field (a name) marks that
+    // field `data-autofocus`, so typing starts where the answer goes.
+    (panelRef.current?.querySelector<HTMLElement>('[data-autofocus]') ?? focusable()[0])?.focus();
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') { event.stopPropagation(); onClose(); return; }

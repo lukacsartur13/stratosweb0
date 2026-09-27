@@ -139,6 +139,17 @@ const who = (row: { full_name: string | null; email: string } | null) =>
 const asText = (value: unknown): string | undefined =>
   value === null || value === undefined || value === '' ? undefined : String(value);
 
+/** "field: from → to" for the fields a payment-schedule change touched. */
+function changes(meta: Record<string, unknown>): string {
+  return Object.entries(meta)
+    .filter(([k, v]) => k !== 'id' && v !== null && typeof v === 'object' && 'to' in (v as object))
+    .map(([k, v]) => {
+      const c = v as { from: unknown; to: unknown };
+      return `${k.replace('_', ' ')}: ${asText(c.from) ?? '—'} → ${asText(c.to) ?? '—'}`;
+    })
+    .join(' · ');
+}
+
 /**
  * Turn what was recorded into what is read.
  *
@@ -209,12 +220,41 @@ export function buildRecordTimeline(
         push('money', 'Project value changed',
           `${asText(meta.from) ?? 'not set'} → ${asText(meta.to) ?? 'not set'} ${asText(meta.currency) ?? ''}`.trim());
         break;
+      case 'project.market_value_changed':
+        // Impact only. Written by `log_project_market_value`: old → new, whole HUF.
+        push('money', 'Market value changed',
+          `${asText(meta.from) ?? 'not set'} → ${asText(meta.to) ?? 'not set'} HUF · not revenue`);
+        break;
       case 'project.cost_added':
         push('money', 'Cost added',
           `${asText(meta.description) ?? ''} · ${asText(meta.amount) ?? ''} ${asText(meta.currency) ?? ''}`.trim());
         break;
       case 'project.cost_removed':
         push('money', 'Cost removed', asText(meta.description));
+        break;
+      // The payment schedule (20261002000100). Amounts are in the project's
+      // currency, which is fixed while a schedule exists.
+      case 'project.instalment_added':
+        push('money', 'Instalment added', `${asText(meta.label) ?? ''} · ${asText(meta.amount) ?? ''}${meta.due_on ? ` · due ${asText(meta.due_on)}` : ''}`);
+        break;
+      case 'project.instalment_changed':
+        push('money', 'Instalment changed', changes(meta));
+        break;
+      case 'project.instalment_removed':
+        push('money', 'Instalment removed', `${asText(meta.label) ?? ''} · ${asText(meta.amount) ?? ''}`);
+        break;
+      case 'project.payment_added':
+        push('money', 'Payment recorded', `${asText(meta.amount) ?? ''} · ${meta.paid_on ? asText(meta.paid_on) : 'date not recorded'}`);
+        break;
+      case 'project.payment_changed':
+        push('money', 'Payment changed', changes(meta));
+        break;
+      case 'project.payment_removed':
+        push('money', 'Payment removed', `${asText(meta.amount) ?? ''} · ${meta.paid_on ? asText(meta.paid_on) : 'date not recorded'}`);
+        break;
+      case 'project.finance_carried_over':
+        push('money', 'Payment figures carried over to the schedule',
+          `was ${asText(meta.payment_state) ?? '?'} · paid ${asText(meta.paid_amount) ?? 'not recorded'}`);
         break;
       default:
         push('other', row.action);

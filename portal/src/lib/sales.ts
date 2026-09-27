@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { defaultProbability, isOpen, OPEN_STAGES, type Stage } from '@/lib/pipeline';
 import { refusal as classify, type DbFailure } from '@/lib/dbError';
 import type { OpportunityDraft } from '@/lib/business';
+import { celebrate } from '@/lib/celebrate';
 
 // Re-exported so a screen that already imports the opportunity type does not
 // need a second import for the shape it edits. A `type` re-export is erased at
@@ -98,6 +99,18 @@ export const OPPORTUNITY_COLUMNS =
   // 20260816000100_revenue_operations.sql, and is what production's own error
   // hint names.
   + 'owner:profiles!opportunities_owner_id_fkey(id, full_name, email)';
+
+/**
+ * A won deal that has already become a client (§17).
+ *
+ * This is what "done" looks like for a won opportunity: the stage is `won` AND
+ * a client record exists for it. Until the client exists the deal stays on the
+ * board, in the Won column, because the conversion is the next thing somebody
+ * has to do to it. Once it exists there is nothing left to do here — the work
+ * continues on the client and the project — so the pipeline stops showing it.
+ */
+export const isConverted = (o: Pick<Opportunity, 'stage' | 'organization_id'>): boolean =>
+  o.stage === 'won' && Boolean(o.organization_id);
 
 /** Who a deal is with, whether or not it has become a client yet. */
 export const dealParty = (o: Opportunity): string =>
@@ -256,6 +269,9 @@ function refusal(error: { code?: string; message?: string }, what: string): stri
 export function useOpportunityMutations(onChanged: () => void) {
   const { profile } = useAuth();
   const [busy, setBusy] = useState<string | null>(null);
+  // Deals with a completion on the wire. `busy` holds one id and is shared by
+  // every row, so it cannot stop a second click on row A while row B is saving.
+  const inFlight = useRef(new Set<string>());
 
   /**
    * Create an opportunity from nothing (§52).
@@ -307,11 +323,18 @@ export function useOpportunityMutations(onChanged: () => void) {
    * default 40 to 60, and should not overwrite a considered 35 with 60. The
    * won/lost ends are stamped to 100/0 by the database trigger regardless, which
    * is right: a forecast weighted at 60% on a closed deal is not a forecast.
+   *
+   * Winning celebrates, once. A move TO won is written with `.neq('stage', 'won')`
+   * and asks for the changed rows back, so the confetti fires only when the
+   * database confirms a row actually went from not-won to won: a refused save
+   * returns an error, and a deal that was already won (another tab, a stale
+   * screen) matches nothing. The celebration is triggered here, by the write,
+   * and never by rendering a won deal — so a reload cannot repeat it.
    */
   const setStage = useCallback(async (
     id: string,
     stage: Stage,
-    current: { stage: string; probability: number },
+    current: { stage: string; probability: number; title?: string },
     extra?: { lost_reason?: string | null; lost_note?: string | null },
   ) => {
     setBusy(id);
@@ -319,9 +342,14 @@ export function useOpportunityMutations(onChanged: () => void) {
     const patch: OpportunityDraft = { stage, ...extra };
     if (wasDefault && isOpen(stage)) patch.probability = defaultProbability(stage);
 
-    const { error } = await supabase.from('opportunities').update(patch).eq('id', id);
+    const winning = stage === 'won';
+    const query = supabase.from('opportunities').update(patch).eq('id', id);
+    const { data, error } = winning
+      ? await query.neq('stage', 'won').select('id')
+      : await query;
     setBusy(null);
     if (error) return refusal(error, 'stage');
+    if (winning && Array.isArray(data) && data.length > 0) celebrate('deal_won', current.title);
     onChanged();
     return null;
   }, [onChanged]);
@@ -345,7 +373,42 @@ export function useOpportunityMutations(onChanged: () => void) {
     return null;
   }, [onChanged]);
 
-  return { create, update, setStage, archive, busy };
+  /**
+   * Mark the next action done.
+   *
+   * ONE database call, `opportunity_complete_action` (20261002000100): it clears
+   * the two follow-up columns AND writes "Done: …" to the deal's notes in a
+   * single transaction, and only if the deal still carries exactly the action
+   * this screen showed. So:
+   *
+   *   - a refused or failed save writes neither — there is no "done" note for
+   *     an action that is still open;
+   *   - a retry, a double click or a second tab after a success matches nothing
+   *     and writes nothing — no duplicate note;
+   *   - a stale screen cannot clear an action somebody else has just set.
+   *
+   * Clearing the columns is what takes the row off the Follow-ups list and the
+   * "overdue" off the Dashboard — there is no separate done flag. The deal then
+   * reads "has no next action" until the next step is decided.
+   */
+  const completeAction = useCallback(async (deal: Pick<Opportunity, 'id' | 'next_action' | 'next_action_on'>) => {
+    if (!deal.next_action) return null;
+    if (inFlight.current.has(deal.id)) return null;
+    inFlight.current.add(deal.id);
+    setBusy(deal.id);
+    const { data, error } = await supabase.rpc('opportunity_complete_action', {
+      p_id: deal.id, p_expected: deal.next_action,
+    });
+    inFlight.current.delete(deal.id);
+    setBusy(null);
+    if (error) return refusal(error, 'complete');
+    onChanged();
+    // `false`: nothing matched — already done, or changed meanwhile. The reload
+    // above shows which; nothing was written either way.
+    return data === false ? 'This action was already done or has changed. The list has been refreshed.' : null;
+  }, [onChanged]);
+
+  return { create, update, setStage, archive, completeAction, busy };
 }
 
 /* ============================================================== filtering */
@@ -354,15 +417,37 @@ export type SalesSort = 'updated' | 'value' | 'close' | 'company';
 
 export interface SalesFilters {
   query: string;
+  /**
+   * `pipeline` (the default: everything except won deals that already have a
+   * client), `all`, `open`, or one stage.
+   */
   stage: string;
   owner: string;
   service: string;
   source: string;
-  /** `all`, `month` (closing this month), `overdue`, `quarter`. */
+  /** `all`, `month` (closing this month), `overdue`, `quarter`, `none`. */
   close: string;
 }
 
-const BLANK: SalesFilters = {
+/**
+ * What the screen shows when nothing has been chosen.
+ *
+ * Stage `pipeline`: a won deal that has become a client has left the pipeline
+ * and is not shown unless asked for — see `isConverted`. Close `month`: the
+ * screen opens on the deals expected to close THIS month rather than on every
+ * record ever entered; `Any close date` is one click away in the same select.
+ */
+export const DEFAULT_FILTERS: SalesFilters = {
+  query: '', stage: 'pipeline', owner: 'all', service: 'all', source: 'all', close: 'month',
+};
+const BLANK = DEFAULT_FILTERS;
+
+/**
+ * What "Clear" goes to: nothing narrowed at all — every stage (converted deals
+ * included), any close date. Clearing back to the defaults would leave an
+ * empty "this month" view exactly as empty as it was.
+ */
+export const CLEARED_FILTERS: SalesFilters = {
   query: '', stage: 'all', owner: 'all', service: 'all', source: 'all', close: 'all',
 };
 
@@ -383,14 +468,14 @@ export const CLOSE_OPTIONS = [
  * there is only one account, which is the honest rendering of §12's
  * "owner/responsible filter where real".
  */
-export function useSalesFilter(rows: Opportunity[], initialStage = 'all') {
+export function useSalesFilter(rows: Opportunity[], initialStage = BLANK.stage) {
   const [filters, setFilters] = useState<SalesFilters>({ ...BLANK, stage: initialStage });
   const [sort, setSort] = useState<SalesSort>('updated');
 
   const set = useCallback(<K extends keyof SalesFilters>(key: K, value: SalesFilters[K]) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   }, []);
-  const reset = useCallback(() => setFilters(BLANK), []);
+  const reset = useCallback(() => setFilters(CLEARED_FILTERS), []);
 
   const options = useMemo(() => {
     const distinct = (of: (o: Opportunity) => string | null) =>
@@ -413,7 +498,8 @@ export function useSalesFilter(rows: Opportunity[], initialStage = 'all') {
 
     let out = rows;
 
-    if (filters.stage === 'open') out = out.filter((o) => isOpen(o.stage));
+    if (filters.stage === 'pipeline') out = out.filter((o) => !isConverted(o));
+    else if (filters.stage === 'open') out = out.filter((o) => isOpen(o.stage));
     else if (filters.stage !== 'all') out = out.filter((o) => o.stage === filters.stage);
 
     if (filters.service !== 'all') out = out.filter((o) => o.service === filters.service);
@@ -459,17 +545,20 @@ export function useSalesFilter(rows: Opportunity[], initialStage = 'all') {
   }, [rows, filters, sort]);
 
   const counts = useMemo(() => {
-    const out: Record<string, number> = { all: rows.length, open: 0 };
+    const out: Record<string, number> = { all: rows.length, pipeline: 0, open: 0 };
     for (const row of rows) {
       out[row.stage] = (out[row.stage] ?? 0) + 1;
       if (isOpen(row.stage)) out.open += 1;
+      if (!isConverted(row)) out.pipeline += 1;
     }
     for (const stage of OPEN_STAGES) out[stage] = out[stage] ?? 0;
     return out;
   }, [rows]);
 
-  const narrowed = (Object.keys(BLANK) as (keyof SalesFilters)[])
-    .some((k) => filters[k] !== BLANK[k]);
+  // Anything that hides a row — the default "this month" and "in the pipeline"
+  // included — counts, so "Clear" is offered on the default view too.
+  const narrowed = (Object.keys(CLEARED_FILTERS) as (keyof SalesFilters)[])
+    .some((k) => filters[k] !== CLEARED_FILTERS[k]);
 
   return { filters, set, reset, narrowed, options, sort, setSort, filtered, counts };
 }
@@ -493,6 +582,10 @@ export interface FollowUp {
  * it is not today, and putting it in "upcoming" would be a claim about when it
  * is due that nobody made. The Dashboard's attention list is where that deal
  * surfaces, as "has no next action date".
+ *
+ * A row leaves the list when the action is marked done (`completeAction`) or
+ * changed on the deal. Either way the DATA changed; nothing is ticked off in
+ * the list and remembered separately from the deal.
  */
 export function followUps(rows: Opportunity[], now = new Date()): FollowUp[] {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();

@@ -15,6 +15,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { supabaseKeyKind } from './supabase-key-kind.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -49,8 +50,15 @@ const RULES = [
   },
   {
     id: 'jwt',
-    re: /\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}/,
+    re: /\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}/g,
     note: 'A JWT literal.',
+    // The Supabase anon key IS a JWT, and it is public by design: it is in
+    // every built Portal bundle and every visitor's browser, and RLS decides
+    // what it can do. A JWT whose payload says `role: anon` is therefore not a
+    // finding. Any other JWT — including one that cannot be decoded — is.
+    // (scripts/supabase-key-kind.mjs; the server key is a JWT with another
+    // role, and is still caught here and by the rule above.)
+    isPublic: (match) => supabaseKeyKind(match) === 'public',
   },
   {
     id: 'private-key',
@@ -235,8 +243,10 @@ async function main() {
     const body = await readFile(file, 'utf8');
     body.split('\n').forEach((line, i) => {
       for (const rule of RULES) {
+        rule.re.lastIndex = 0;
         if (!rule.re.test(line)) continue;
         if (DESCRIBES_THE_RULE.has(rel)) continue;
+        if (rule.isPublic && [...line.matchAll(rule.re)].every((m) => rule.isPublic(m[0]))) continue;
         findings.push({ rel, line: i + 1, rule, text: line.trim().slice(0, 120) });
       }
     });

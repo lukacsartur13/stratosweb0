@@ -533,6 +533,9 @@ export const PROJECT_STATUS: Record<string, {
   blocked:       { label: 'Blocked',       tone: 'bad',     note: 'Cannot proceed.' },
   on_hold:       { label: 'On hold',       tone: 'warn',    note: 'Paused deliberately.' },
   completed:     { label: 'Completed',     tone: 'good',    note: 'Delivered.' },
+  // Fell through (20260929000200_impact_enums.sql). Offered for Impact
+  // projects only; counts as neither committed nor delivered support.
+  cancelled:     { label: 'Cancelled',     tone: 'bad',     note: 'Fell through. Not delivered.' },
   // The pre-P2 phase vocabulary. Rendered, never offered.
   discovery:     { label: 'Discovery',     tone: 'neutral', note: 'Legacy phase value.' },
   design:        { label: 'Design',        tone: 'neutral', note: 'Legacy phase value.' },
@@ -547,7 +550,30 @@ export const projectStatusTone = (status: string) => PROJECT_STATUS[status]?.ton
 
 /** A project is live if it is neither finished nor put away. */
 export const isLiveProject = (p: { status: string; archived_at: string | null }) =>
-  !p.archived_at && !['completed', 'archived', 'care'].includes(p.status);
+  !p.archived_at && !['completed', 'archived', 'care', 'cancelled'].includes(p.status);
+
+/**
+ * Closed means `completed`, and only that — the database's close rule
+ * (`project_close_rules` in 20260928000200_owner_tracker.sql) is what puts a
+ * project there, so this is the one reading of "closed" the screens use.
+ * Archiving is `archived_at`, a separate thing, and is not closing.
+ */
+export const isClosedProject = (p: { status: string }) => p.status === 'completed';
+
+/**
+ * What the status control offers. `completed` is not in it: a project is
+ * closed with its own action, which the database only accepts once every
+ * checkpoint is done, and reopened with another.
+ */
+export const SETTABLE_PROJECT_STATES = PROJECT_STATES.filter((s) => s !== 'completed');
+
+/**
+ * What an Impact project's status control offers: the same states, plus
+ * `cancelled`. An Impact project that falls through must leave the support
+ * counters, and archiving (a layout action) must not be how that happens.
+ * Paid projects keep exactly the list they had.
+ */
+export const IMPACT_SETTABLE_STATES = [...SETTABLE_PROJECT_STATES, 'cancelled'] as const;
 
 export const PAYMENT_STATES = ['not_invoiced', 'invoiced', 'partially_paid', 'paid'] as const;
 
@@ -560,26 +586,29 @@ export const PAYMENT_LABEL: Record<string, string> = {
 
 /* ============================================================ milestones == */
 
-export const MILESTONE_STATES = ['pending', 'in_progress', 'done', 'blocked'] as const;
+/**
+ * The five checkpoint states, in the order a checkpoint moves through them.
+ * `pending` is the stored name of "not started"; the enum value predates the
+ * label and renaming a stored enum value is a table rewrite.
+ */
+export const MILESTONE_STATES = ['pending', 'in_progress', 'waiting_client', 'blocked', 'done'] as const;
 
 export const MILESTONE_LABEL: Record<string, string> = {
-  pending: 'Pending',
+  pending: 'Not started',
   in_progress: 'In progress',
-  done: 'Done',
+  waiting_client: 'Waiting on client',
   blocked: 'Blocked',
+  done: 'Done',
 };
 
 /**
- * Starting points, per kind of work (§23).
+ * The lists the Portal shipped with, per kind of work (§23).
  *
- * ## Why these are here and not in the database
- *
- * §23 asks for a website milestone model and then says, in the same breath, not
- * to hard-code website milestones onto every project. A schema cannot express
- * "these ten, unless it is an ads project, in which case those four" without
- * becoming a templating system. A list of starting points in the application
- * can, and the moment a project is created the list is ITS list — editable,
- * addable, removable — with no template to keep in step.
+ * These are now the SEED of `checkpoint_templates` (20260928000200), which is
+ * what the tracker offers and the owner edits; the SQL seeds exactly these four.
+ * They stay here because `templateFor` still answers "which kind of work is
+ * this" for a service string without a database round trip, and the P2 tests
+ * pin that behaviour.
  *
  * `match` is a substring test against the service, lowercased, because the
  * service is free text a person typed. Anything unrecognised gets the generic
@@ -640,6 +669,130 @@ export function progressOf(milestones: { state: string }[]): { done: number; tot
   const total = milestones.length;
   const done = milestones.filter((m) => m.state === 'done').length;
   return { done, total, percent: total > 0 ? (done / total) * 100 : null };
+}
+
+/** The subset of a `checkpoint_templates` row the matcher needs. */
+export interface TemplateLike {
+  name: string;
+  service_keywords: string[];
+  position: number;
+  archived_at?: string | null;
+}
+
+/**
+ * The stored template a project's service points at.
+ *
+ * Same rule as `templateFor`, over the owner's editable list: the first live
+ * template, in `position` order, one of whose keywords is a substring of the
+ * service; otherwise the last live template with no keywords (the fallback);
+ * otherwise nothing.
+ */
+export function matchTemplate<T extends TemplateLike>(templates: T[], service: string | null | undefined): T | null {
+  const live = templates.filter((t) => !t.archived_at).sort((a, b) => a.position - b.position);
+  const needle = (service ?? '').toLowerCase().trim();
+  if (needle) {
+    const hit = live.find((t) => t.service_keywords.some((k) => k.trim() && needle.includes(k.toLowerCase().trim())));
+    if (hit) return hit;
+  }
+  const fallbacks = live.filter((t) => t.service_keywords.every((k) => !k.trim()));
+  return fallbacks[fallbacks.length - 1] ?? null;
+}
+
+/** The subset of a checkpoint the tracker summary reads. */
+export interface CheckpointLike {
+  title: string;
+  state: string;
+  position: number;
+  due_on: string | null;
+  blocked_reason?: string | null;
+  next_step?: string | null;
+}
+
+export interface TrackerSummary {
+  done: number;
+  total: number;
+  /** The first checkpoint, in order, that is not done. Null when all are, or none exist. */
+  current: string | null;
+  /** Every checkpoint exists and is done — the database's own close condition. */
+  closable: boolean;
+  /** Late: the project's target date has passed, or an open checkpoint's has. */
+  late: boolean;
+  lateBecause: string | null;
+  /** Open checkpoints that are waiting on the client. */
+  waiting: string[];
+  /** Blocked checkpoints, each with the reason and the next step it must carry. */
+  blocked: { title: string; reason: string | null; next: string | null }[];
+}
+
+/**
+ * Where a project stands, from its checkpoints.
+ *
+ * Late, waiting and blocked are three SEPARATE answers, because they call for
+ * three different things: a late project needs re-dating or pushing, a waiting
+ * one needs the client chased, a blocked one needs the stated next step taken.
+ * Collapsing them into one "attention" flag would hide which.
+ *
+ * A closed project is none of the three; the caller passes `closed` so a
+ * finished project with a past target date does not read as late forever.
+ */
+export function trackerOf(
+  checkpoints: CheckpointLike[],
+  project: { target_date: string | null; closed?: boolean },
+  now = new Date(),
+): TrackerSummary {
+  const ordered = [...checkpoints].sort((a, b) => a.position - b.position);
+  const open = ordered.filter((c) => c.state !== 'done');
+  const total = ordered.length;
+  const done = total - open.length;
+
+  let lateBecause: string | null = null;
+  if (!project.closed) {
+    if (dueTone(project.target_date, now) === 'overdue') {
+      lateBecause = 'The target date has passed.';
+    } else {
+      const lateStep = open.find((c) => dueTone(c.due_on, now) === 'overdue');
+      if (lateStep) lateBecause = `“${lateStep.title}” is past its due date.`;
+    }
+  }
+
+  return {
+    done,
+    total,
+    current: open[0]?.title ?? null,
+    closable: total > 0 && open.length === 0,
+    late: lateBecause !== null,
+    lateBecause,
+    waiting: project.closed ? [] : open.filter((c) => c.state === 'waiting_client').map((c) => c.title),
+    blocked: project.closed ? [] : open
+      .filter((c) => c.state === 'blocked')
+      .map((c) => ({ title: c.title, reason: c.blocked_reason ?? null, next: c.next_step ?? null })),
+  };
+}
+
+/**
+ * Why a close was refused, from the database's own words.
+ *
+ * The close rule raises `stratos:<reason>` (see `project_close_rules` and
+ * `milestone_tracker_rules`); anything else is not a close refusal.
+ */
+export function closeRefusal(message: string | null | undefined): string | null {
+  if (!message) return null;
+  if (message.includes('stratos:project_close_no_checkpoints')) {
+    return 'A project needs at least one checkpoint, all done, before it can be closed.';
+  }
+  if (message.includes('stratos:project_close_open_checkpoints')) {
+    return 'Every checkpoint has to be done before the project can be closed.';
+  }
+  if (message.includes('stratos:project_closed')) {
+    return 'This project is closed. Reopen it to change its checkpoints.';
+  }
+  if (message.includes('stratos:impact_close_no_market_value')) {
+    return 'Record the market value of the donated work before closing an Impact project — and a closed one keeps it.';
+  }
+  if (message.includes('stratos:project_program_fixed')) {
+    return 'A project is paid or Impact from the day it is created.';
+  }
+  return null;
 }
 
 export const COST_CATEGORIES = [

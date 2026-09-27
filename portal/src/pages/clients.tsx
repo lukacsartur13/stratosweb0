@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Plus } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
-import { can } from '@/lib/permissions';
+import { can, canAccess } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { Grid } from '@/components/shell/PortalShell';
@@ -21,6 +21,7 @@ import {
 } from '@/lib/operations';
 import { buildRecordTimeline, useNoteMutation, useRecordDetail } from '@/lib/records';
 import { formatWhen } from '@/lib/leads';
+import { ClientAccountsPanel } from '@/features/client/ClientAccountsPanel';
 
 /**
  * CLIENTS — the relationship hub (§18, §19).
@@ -57,7 +58,7 @@ interface Rollup {
  * from `opportunities`. A `select *` here would pull every project description
  * and every deal's contact details across the wire to compute two counts.
  */
-function useClientRollups(reloadToken = 0) {
+function useClientRollups(reloadToken = 0, includeProjects = true) {
   const [rollups, setRollups] = useState<Record<string, Rollup>>({});
 
   useEffect(() => {
@@ -66,8 +67,11 @@ function useClientRollups(reloadToken = 0) {
 
     void (async () => {
       const [projectRes, dealRes] = await Promise.all([
-        supabase.from('projects')
-          .select('organization_id, status, archived_at, updated_at').limit(500),
+        // Projects are the portal owner's alone; nobody else's list asks.
+        includeProjects
+          ? supabase.from('projects')
+            .select('organization_id, status, archived_at, updated_at').limit(500)
+          : Promise.resolve({ data: [], error: null }),
         supabase.from('opportunities')
           .select('organization_id, stage, estimated_value, currency, won_at, updated_at')
           .not('organization_id', 'is', null).is('archived_at', null).limit(500),
@@ -113,7 +117,7 @@ function useClientRollups(reloadToken = 0) {
     })();
 
     return () => { cancelled = true; };
-  }, [reloadToken]);
+  }, [reloadToken, includeProjects]);
 
   return rollups;
 }
@@ -123,9 +127,10 @@ export function ClientsScreen() {
   const { reloadToken } = useScope();
   const navigate = useNavigate();
   const mayEdit = can(profile?.role, 'manage_clients');
+  const mayProjects = canAccess(profile, 'view_projects');
 
   const { rows, state, message, reload } = useClients(reloadToken);
-  const rollups = useClientRollups(reloadToken);
+  const rollups = useClientRollups(reloadToken, mayProjects);
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('all');
   const [creating, setCreating] = useState(false);
@@ -209,7 +214,7 @@ export function ClientsScreen() {
           <Table
             head={[
               'Client', 'Status',
-              { label: 'Active projects', align: 'right' },
+              ...(mayProjects ? [{ label: 'Active projects', align: 'right' as const }] : []),
               { label: 'Won value', align: 'right' },
               'Primary service', 'Source', 'Last activity',
             ]}
@@ -233,9 +238,11 @@ export function ClientsScreen() {
                       {CLIENT_STATUS[client.status]?.label ?? client.status}
                     </StatusPill>
                   </Cell>
-                  <Cell align="right" className="num text-xs text-paper">
-                    {roll ? roll.activeProjects : <span className="text-haze">—</span>}
-                  </Cell>
+                  {mayProjects && (
+                    <Cell align="right" className="num text-xs text-paper">
+                      {roll ? roll.activeProjects : <span className="text-haze">—</span>}
+                    </Cell>
+                  )}
                   <Cell align="right" className="num text-xs text-paper">
                     {won.total && won.total.value > 0
                       ? moneyCompact(won.total.value, won.total.currency)
@@ -284,8 +291,9 @@ export function ClientDetailScreen() {
   const { profile } = useAuth();
   const { reloadToken } = useScope();
   const mayEdit = can(profile?.role, 'manage_clients');
+  const mayProjects = canAccess(profile, 'view_projects');
 
-  const { client, contacts, projects, deals, state, reload } = useClientDetail(id, reloadToken);
+  const { client, contacts, projects, deals, state, reload } = useClientDetail(id, reloadToken, mayProjects);
   const detail = useRecordDetail('client', state === 'ready' ? id ?? null : null, reloadToken);
   const notes = useNoteMutation('client', () => { void detail.reload(); });
   const ops = useOperationsMutations(reload);
@@ -371,10 +379,19 @@ export function ClientDetailScreen() {
             {wonDeals.length} won {wonDeals.length === 1 ? 'deal' : 'deals'}
           </p>
         </div>
+        {/* Projects are the portal owner's alone. For anybody else the tile
+            says so rather than showing a 0 that would be a claim about the
+            client. */}
         <div className="min-w-0 px-4 py-3.5">
           <p className="t-section">Active projects</p>
-          <p className="t-metric mt-1.5">{activeProjects.length}</p>
-          <p className="t-note mt-1">{projects.length} in total</p>
+          {mayProjects ? (
+            <>
+              <p className="t-metric mt-1.5">{activeProjects.length}</p>
+              <p className="t-note mt-1">{projects.length} in total</p>
+            </>
+          ) : (
+            <p className="t-note mt-1.5">Private to the portal owner</p>
+          )}
         </div>
         <div className="min-w-0 px-4 py-3.5">
           <p className="t-section">Opportunities</p>
@@ -395,7 +412,7 @@ export function ClientDetailScreen() {
       <Grid>
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-8">
           {/* ------------------------------------------------ projects */}
-          <Panel className="min-w-0">
+          {mayProjects && <Panel className="min-w-0">
             <SectionHeader title="Projects" note={`${projects.length}`} />
             {projects.length === 0 ? (
               <p className="px-4 py-3 text-xs text-haze">No projects for this client yet.</p>
@@ -419,7 +436,7 @@ export function ClientDetailScreen() {
                 ))}
               </Table>
             )}
-          </Panel>
+          </Panel>}
 
           {/* ------------------------------------------- opportunities */}
           <Panel className="min-w-0">
@@ -541,6 +558,15 @@ export function ClientDetailScreen() {
               </ul>
             )}
           </Panel>
+
+          {/* Client portal accounts: owner-only, like the projects they open. */}
+          {canAccess(profile, 'manage_client_accounts') && (
+            <ClientAccountsPanel
+              clientId={client.id}
+              contacts={contacts.map((c) => ({ id: c.id, name: c.name, email: c.email }))}
+              projects={projects.map((p) => ({ id: p.id, name: p.name }))}
+            />
+          )}
 
           <Panel>
             <SectionHeader

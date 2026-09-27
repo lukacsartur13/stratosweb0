@@ -79,6 +79,9 @@ export interface Lead {
   // Written by the canonical envelope — see netlify/functions/lead-contract.mjs.
   // Every one is nullable because rows created before that migration have none.
   form_type: string | null;
+  // The pre-envelope form label. Read so that a legacy Impact application
+  // (form_type null, source 'impact') is recognised — see `isImpactLead`.
+  source: string | null;
   locale: string | null;
   source_route: string | null;
   submission_id: string | null;
@@ -91,7 +94,7 @@ export interface Lead {
 
 export const LEAD_COLUMNS =
   'id, name, email, company, phone, message, service_interest, budget_range, status, created_at, '
-  + 'form_type, locale, source_route, submission_id, payload, meta';
+  + 'form_type, source, locale, source_route, submission_id, payload, meta';
 
 /* =============================================================== attribution */
 

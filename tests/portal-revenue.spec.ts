@@ -666,7 +666,7 @@ test.describe('the P2 modules', () => {
     const primary = /const PRIMARY: NavItem\[\] = \[([\s\S]*?)\];/.exec(shell);
     const labels = [...primary![1].matchAll(/label: '([^']+)'/g)].map((m) => m[1]);
     expect(labels).toEqual([
-      'Dashboard', 'Analytics', 'Leads', 'Sales', 'Clients', 'Projects', 'System',
+      'Dashboard', 'Analytics', 'Leads', 'Sales', 'Clients', 'Projects', 'Impact', 'Documents', 'System',
     ]);
 
     // Sales does NOT get four sidebar children. Its four views are one screen

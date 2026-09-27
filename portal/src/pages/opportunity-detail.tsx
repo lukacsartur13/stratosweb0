@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Check } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
-import { can } from '@/lib/permissions';
+import { can, canAccess } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
 import { useRows } from '@/lib/useRows';
 import { Grid } from '@/components/shell/PortalShell';
@@ -11,7 +11,7 @@ import {
   Select, Skeleton, StatusPill, Textarea, cn,
 } from '@/components/ui';
 import {
-  LOST_REASONS, LOST_REASON_LABEL, STAGE, STAGES, dueTone, isOpen,
+  LOST_REASONS, LOST_REASON_LABEL, STAGE, STAGES, dueTone, isOpen, matchTemplate,
   shortDate, stageLabel, stageTone, templateFor, weighted, type Stage,
 } from '@/lib/pipeline';
 import { CURRENCIES, money, percent } from '@/lib/money';
@@ -19,7 +19,8 @@ import {
   dealParty, dealSource, useOpportunity, useOpportunityMutations, type Opportunity,
 } from '@/lib/sales';
 import {
-  findClientMatches, uniqueSlug, useClients, useOperationsMutations, type Client,
+  findClientMatches, uniqueSlug, useCheckpointTemplates, useClients, useOperationsMutations,
+  type Client,
 } from '@/lib/operations';
 import { buildRecordTimeline, useNoteMutation, useRecordDetail } from '@/lib/records';
 import { formatWhen } from '@/lib/leads';
@@ -367,6 +368,20 @@ function CommercialPanel({
         <DataLine
           term="Next action"
           value={deal.next_action || <NotRecorded what="Next action" />}
+          note={mayEdit && deal.next_action ? (
+            // Done clears the action and its date and writes what was done to
+            // the notes. Set the next step with Edit; until then the Dashboard
+            // says the deal has no next action, which is true.
+            <Button
+              size="sm"
+              className="mt-1"
+              disabled={mutate.busy === deal.id}
+              aria-label={`Mark done: ${deal.next_action}`}
+              onClick={async () => setError(await mutate.completeAction(deal))}
+            >
+              <Check size={11} aria-hidden="true" /> Done
+            </Button>
+          ) : undefined}
         />
         <DataLine
           term="Next action due"
@@ -567,7 +582,14 @@ function WonDialog({
 function WonPanel({
   deal, mayEdit, onChanged,
 }: { deal: Opportunity; mayEdit: boolean; onChanged: () => void }) {
+  const { profile } = useAuth();
+  // Projects are the portal owner's alone (20260928000300_owner_lockdown.sql).
+  // For anybody else the project half of this panel is not drawn and not
+  // queried: an empty answer from RLS would otherwise read as "no project yet"
+  // and offer a Create button the database would refuse.
+  const mayProjects = canAccess(profile, 'manage_projects');
   const clients = useClients();
+  const templates = useCheckpointTemplates(0, mayProjects);
   const ops = useOperationsMutations(onChanged);
   const sales = useOpportunityMutations(onChanged);
   const [error, setError] = useState<string | null>(null);
@@ -578,14 +600,14 @@ function WonPanel({
   // column, run once — not a join on the list screen and not one per project.
   useEffect(() => {
     let cancelled = false;
-    if (!isConfigured) return;
+    if (!isConfigured || !mayProjects) return;
     void (async () => {
       const { data } = await supabase
         .from('projects').select('id, name, status').eq('opportunity_id', deal.id).limit(20);
       if (!cancelled) setProjects((data ?? []) as never);
     })();
     return () => { cancelled = true; };
-  }, [deal.id, onChanged]);
+  }, [deal.id, onChanged, mayProjects]);
 
   const matches = useMemo(
     () => findClientMatches(clients.rows, {
@@ -618,10 +640,15 @@ function WonPanel({
     setBusy(false);
   };
 
+  // The owner's own list for this service, falling back to the shipped one
+  // only if the templates could not be read.
+  const template = matchTemplate(templates.live, deal.service);
+  const steps = template?.steps ?? templateFor(deal.service).steps;
+  const templateName = template?.name ?? templateFor(deal.service).label;
+
   const createProject = async () => {
     if (!deal.organization_id) return;
     setBusy(true);
-    const template = templateFor(deal.service);
     const result = await ops.createProject({
       organization_id: deal.organization_id,
       name: deal.title,
@@ -632,18 +659,18 @@ function WonPanel({
       currency: deal.currency,
       opportunity_id: deal.id,
       start_date: new Date().toISOString().slice(0, 10),
-    }, template.steps);
+    }, steps);
     setBusy(false);
     if (typeof result === 'string') setError(result);
   };
 
-  const done = Boolean(deal.organization_id) && projects.length > 0;
+  const done = Boolean(deal.organization_id) && (!mayProjects || projects.length > 0);
 
   return (
     <Panel>
       <SectionHeader
         title="Won"
-        note={done ? 'client and project created' : 'what this deal became'}
+        note={done ? (mayProjects ? 'client and project created' : 'client created') : 'what this deal became'}
       />
       <div className="grid gap-3 px-4 py-3.5">
         <dl className="grid rounded-sm border border-hairline">
@@ -655,7 +682,7 @@ function WonPanel({
                 </Link>
               : <NotRecorded what="Client" />}
           />
-          <DataLine
+          {mayProjects && <DataLine
             term="Projects"
             value={projects.length === 0
               ? <NotRecorded what="Project" />
@@ -669,7 +696,7 @@ function WonPanel({
                   ))}
                 </span>
               )}
-          />
+          />}
           <DataLine
             term="Won value"
             value={money(deal.estimated_value, deal.currency)
@@ -709,13 +736,13 @@ function WonPanel({
           </div>
         )}
 
-        {mayEdit && deal.organization_id && projects.length === 0 && (
+        {mayProjects && deal.organization_id && projects.length === 0 && (
           <div>
-            <Button size="sm" variant="primary" onClick={createProject} disabled={busy}>
+            <Button size="sm" variant="primary" onClick={createProject} disabled={busy || templates.state === 'loading'}>
               Create project
             </Button>
             <p className="t-note mt-1.5">
-              Starts from the {templateFor(deal.service).label.toLowerCase()} milestone list, at the
+              Starts from the {templateName.toLowerCase()} checkpoint template ({steps.length} steps), at the
               deal&rsquo;s value. Everything is editable afterwards.
             </p>
           </div>

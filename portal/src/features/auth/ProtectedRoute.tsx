@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { useAuth } from './AuthProvider';
-import { can, type Capability } from '@/lib/permissions';
+import { canAccess, type Capability } from '@/lib/permissions';
 import { Skeleton } from '@/components/ui';
 
 /**
@@ -54,7 +54,7 @@ export function ProtectedRoute({
     );
   }
 
-  if (capability && !can(profile.role, capability)) {
+  if (capability && !canAccess(profile, capability)) {
     return <Navigate to="/" replace />;
   }
 

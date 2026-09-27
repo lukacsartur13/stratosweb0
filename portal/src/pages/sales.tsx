@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { Plus, X } from 'lucide-react';
+import { Check, Plus, X } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { can } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
@@ -67,7 +67,7 @@ export function SalesScreen() {
   const view = (VIEWS.find((v) => v.id === params.get('view'))?.id ?? 'pipeline') as View;
   const list = useOpportunities(reloadToken);
   const summary = useSalesSummary(true, reloadToken);
-  const filter = useSalesFilter(list.rows, params.get('stage') ?? 'all');
+  const filter = useSalesFilter(list.rows, params.get('stage') ?? undefined);
   const [creating, setCreating] = useState(false);
 
   const setView = (next: View) => {
@@ -136,7 +136,7 @@ export function SalesScreen() {
         <>
           {view === 'pipeline' && <Board rows={filter.filtered} filter={filter} mayEdit={mayEdit} onChanged={reload} />}
           {view === 'table' && <TableView filter={filter} capped={list.capped} limit={list.limit} />}
-          {view === 'followups' && <FollowUpView rows={list.rows} />}
+          {view === 'followups' && <FollowUpView rows={list.rows} mayEdit={mayEdit} onChanged={reload} />}
           {view === 'performance' && (
             <Performance
               rows={summary.rows}
@@ -402,7 +402,9 @@ function TableView({
         <DataState
           kind="empty"
           title="Nothing matches"
-          body="No opportunity matches every filter above."
+          body={filter.filters.close === 'month'
+            ? 'No opportunity matches every filter above. The view opens on deals closing this month — clear the filters to see every deal, including won deals that became clients.'
+            : 'No opportunity matches every filter above.'}
           action={<Button size="sm" onClick={filter.reset}>Clear filters</Button>}
         />
       ) : (
@@ -486,8 +488,14 @@ function FilterBar({
 
       <label className="sr-only" htmlFor="sales-stage">Stage</label>
       <Select id="sales-stage" value={filters.stage} onChange={(e) => set('stage', e.target.value)}>
-        <option value="all">Any stage</option>
-        <option value="open">Open only</option>
+        {/*
+          `In the pipeline` is the default and is not "everything": a won deal
+          that has become a client has left the pipeline (see `isConverted` in
+          lib/sales.ts) and is shown only under `Everything` or `Won`.
+        */}
+        <option value="pipeline">In the pipeline ({filter.counts.pipeline ?? 0})</option>
+        <option value="open">Open only ({filter.counts.open ?? 0})</option>
+        <option value="all">Everything ({filter.counts.all ?? 0})</option>
         {STAGES.map((s) => (
           <option key={s} value={s}>{STAGE[s].label} ({filter.counts[s] ?? 0})</option>
         ))}
@@ -553,11 +561,19 @@ function FilterBar({
 /* ========================================================== the follow-ups */
 
 /**
- * The morning list (§38). Three groups, one row each, and nothing to tick off:
- * a row leaves this list when the action on the deal changes, which is the only
- * thing that actually resolves it.
+ * The morning list (§38). Three groups, one row each.
+ *
+ * `Done` clears the action on the deal — it does not tick a box beside it. The
+ * row leaves the list because the data no longer puts it there, which is the
+ * same reason it leaves when the action is changed on the deal, and the deal
+ * then asks for its next step on the Dashboard rather than pretending to have
+ * one.
  */
-function FollowUpView({ rows }: { rows: Opportunity[] }) {
+function FollowUpView({
+  rows, mayEdit, onChanged,
+}: { rows: Opportunity[]; mayEdit: boolean; onChanged: () => void }) {
+  const mutate = useOpportunityMutations(onChanged);
+  const [error, setError] = useState<string | null>(null);
   const groups = useMemo(() => {
     const all = followUps(rows);
     return [
@@ -593,7 +609,10 @@ function FollowUpView({ rows }: { rows: Opportunity[] }) {
           {group.items.length === 0 ? (
             <p className="px-4 py-3 text-xs text-haze">Nothing {group.title.toLowerCase()}.</p>
           ) : (
-            <Table head={['Action', 'Opportunity', 'Company', 'Due', 'Stage', 'Responsible']} minWidth={720}>
+            <Table
+              head={['Action', 'Opportunity', 'Company', 'Due', 'Stage', 'Responsible', ...(mayEdit ? [''] : [])]}
+              minWidth={mayEdit ? 840 : 720}
+            >
               {group.items.map(({ deal }) => (
                 <Row key={deal.id}>
                   <Cell className="min-w-0 text-[13px] text-paper">{deal.next_action}</Cell>
@@ -613,12 +632,25 @@ function FollowUpView({ rows }: { rows: Opportunity[] }) {
                   <Cell className="truncate text-[11px] text-haze">
                     {deal.owner?.full_name || deal.owner?.email || '—'}
                   </Cell>
+                  {mayEdit && (
+                    <Cell align="right" className="whitespace-nowrap">
+                      <Button
+                        size="sm"
+                        disabled={mutate.busy === deal.id}
+                        aria-label={`Mark done: ${deal.next_action}`}
+                        onClick={async () => setError(await mutate.completeAction(deal))}
+                      >
+                        <Check size={11} aria-hidden="true" /> Done
+                      </Button>
+                    </Cell>
+                  )}
                 </Row>
               ))}
             </Table>
           )}
         </Panel>
       ))}
+      {error && <p role="alert" className="text-xs text-danger">{error}</p>}
     </div>
   );
 }
