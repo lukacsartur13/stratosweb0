@@ -137,11 +137,21 @@ gyártanék:
 
 ## Amit neked kell megtenned
 
-1. **Deploy.** A `force = true` javítás csak élesen ellenőrizhető. Utána:
-   ```bash
-   curl -sI https://stratosweb.hu/index.html | head -3
+1. ~~**Deploy.**~~ **Kész — 2026-09-27.** A `main` kint van (`8392683..c3106e2`),
+   a Netlify lebuildelte, és élesben ellenőrizve:
+
    ```
-   `301` és `location: https://stratosweb.hu/` a várt válasz. (Most `200`.)
+   /index.html      301 -> https://stratosweb.hu/
+   /en/index.html   301 -> https://stratosweb.hu/en/
+   /de/index.html   301 -> https://stratosweb.hu/de/
+   /                200      (nincs hurok)
+   www -> apex      301      (egy ugrás, változatlan)
+   ```
+
+   A három szabály, ami eddig néma volt, most tüzel. Ellenőrizve még: a négy
+   átírt H1, a `Stratos Webdesign` név, a hatelemű `areaServed`, a footer NAP és
+   a Cégprofil-link mind a három nyelven, a blogcikk EN/DE `noindex, follow`-ja
+   hreflang nélkül, a 79 URL-es sitemap és a `robots.txt`.
 
 2. **GSC → Indexelés → Oldalak:** a „Page with redirect” és a „Duplicate, Google
    chose different canonical” csoportokon **Validate fix**.
