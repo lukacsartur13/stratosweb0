@@ -3,9 +3,74 @@
 @tailwind utilities;
 
 @layer base {
+  /*
+    THE TWO THEMES
+    ==============
+    Dark is the Control Room as it was designed; light is the same room with
+    the lights on. Each token is an RGB triplet (tailwind.config.ts wraps it in
+    rgb(… / alpha)). The viewer picks System, Light or Dark (lib/theme.ts); the
+    choice lands on <html data-theme="light|dark"> before first paint
+    (public/theme-boot.js). Without script, the media query below still
+    follows the device.
+
+    Light values are chosen for contrast on white, not for symmetry: text is
+    ≥ 4.5:1 on every light surface, panel included (haze 5.6, amber
+    signal-ink 5.2, danger 5.1, good 4.7, chrome 7.0).
+  */
   :root {
     color-scheme: dark;
+    --c-ink: 11 15 22;          /* #0B0F16 */
+    --c-deck: 16 22 31;         /* #10161F */
+    --c-panel: 20 28 39;        /* #141C27 */
+    --c-fg: 244 244 244;        /* hairlines and hover wash */
+    --a-hair: 0.10;
+    --a-hairline: 0.06;
+    --c-field: rgb(0 0 0 / 0.3);
+    --c-signal: 255 238 37;     /* #FFEE25 */
+    --c-signal-ink: 255 238 37;
+    --c-chrome: 203 220 233;    /* #CBDCE9 */
+    --c-paper: 244 244 244;     /* #F4F4F4 */
+    --c-haze: 138 152 168;      /* #8A98A8 */
+    --c-danger: 255 90 71;      /* #FF5A47 */
+    --c-good: 62 207 142;       /* #3ECF8E */
   }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme='dark']) { 
+    color-scheme: light;
+    --c-ink: 244 246 249;       /* #F4F6F9 */
+    --c-deck: 255 255 255;
+    --c-panel: 236 239 243;     /* #ECEFF3 */
+    --c-fg: 11 15 22;
+    --a-hair: 0.14;
+    --a-hairline: 0.08;
+    --c-field: #FFFFFF;
+    --c-signal: 255 238 37;
+    --c-signal-ink: 122 96 0;   /* #7A6000 */
+    --c-chrome: 51 83 110;      /* #33536E */
+    --c-paper: 15 20 27;        /* #0F141B */
+    --c-haze: 84 96 110;        /* #54606E */
+    --c-danger: 190 45 28;      /* #BE2D1C */
+    --c-good: 12 122 76;        /* #0C7A4C */
+   }
+  }
+  :root[data-theme='light'] { 
+    color-scheme: light;
+    --c-ink: 244 246 249;       /* #F4F6F9 */
+    --c-deck: 255 255 255;
+    --c-panel: 236 239 243;     /* #ECEFF3 */
+    --c-fg: 11 15 22;
+    --a-hair: 0.14;
+    --a-hairline: 0.08;
+    --c-field: #FFFFFF;
+    --c-signal: 255 238 37;
+    --c-signal-ink: 122 96 0;   /* #7A6000 */
+    --c-chrome: 51 83 110;      /* #33536E */
+    --c-paper: 15 20 27;        /* #0F141B */
+    --c-haze: 84 96 110;        /* #54606E */
+    --c-danger: 190 45 28;      /* #BE2D1C */
+    --c-good: 12 122 76;        /* #0C7A4C */
+   }
 
   /*
     Level 0 — the page.
@@ -16,19 +81,19 @@
     depending on where it sits on the page.
   */
   body {
-    background: theme('colors.ink');
+    background: rgb(var(--c-ink));
     min-height: 100dvh;
   }
 
   /* The site's focus ring, unchanged. Anything that can be reached by keyboard
      shows it — including inside dialogs and the mobile drawer. */
   :focus-visible {
-    outline: 2px solid theme('colors.signal');
+    outline: 2px solid rgb(var(--c-signal-ink));
     outline-offset: 2px;
   }
 
   ::selection {
-    background: theme('colors.signal');
+    background: rgb(var(--c-signal));
     color: #000;
   }
 }
@@ -61,7 +126,7 @@
     font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: theme('colors.paper');
+    color: rgb(var(--c-paper));
   }
 
   .t-section,
@@ -70,7 +135,7 @@
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: theme('colors.haze');
+    color: rgb(var(--c-haze));
   }
 
   .t-metric {
@@ -79,25 +144,25 @@
     font-size: 28px;
     line-height: 1.05;
     letter-spacing: -0.01em;
-    color: theme('colors.paper');
+    color: rgb(var(--c-paper));
   }
 
   .t-row {
     font-size: 13px;
-    color: theme('colors.paper');
+    color: rgb(var(--c-paper));
   }
 
   .t-meta {
     font-family: theme('fontFamily.data');
     font-variant-numeric: tabular-nums;
     font-size: 11px;
-    color: theme('colors.haze');
+    color: rgb(var(--c-haze));
   }
 
   .t-note {
     font-size: 10px;
     line-height: 1.5;
-    color: theme('colors.haze');
+    color: rgb(var(--c-haze));
   }
 
   /*

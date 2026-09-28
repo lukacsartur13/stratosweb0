@@ -29,7 +29,7 @@ export interface ClientUpload {
 
 type State = 'loading' | 'ready' | 'error' | 'unconfigured';
 
-function useRpc<T>(fn: string, reloadToken: number) {
+export function useRpc<T>(fn: string, reloadToken: number) {
   const [rows, setRows] = useState<T[]>([]);
   const [state, setState] = useState<State>(isConfigured ? 'loading' : 'unconfigured');
   const load = useCallback(async () => {

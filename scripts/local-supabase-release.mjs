@@ -210,6 +210,10 @@ const release = [
     assert(/is_owner=true projects=[1-9]/.test(d) && /is_owner=false projects=0/.test(a), `${d}; ${a}`);
     return `${d}; ${a}`;
   }],
+  ['27c. 20261004000100_client_demos_meetings_help.sql', () => db.query(read(MIG, '20261004000100_client_demos_meetings_help.sql'))],
+  ['27d. 20261004000200_help_seed.sql', () => db.query(read(MIG, '20261004000200_help_seed.sql'))],
+  ['27f. 20261005000100_client_feedback_reschedule.sql', () => db.query(read(MIG, '20261005000100_client_feedback_reschedule.sql'))],
+  ['27e. client-extras-verify.sql', () => verify('client-extras-verify.sql')],
   ['28. maintenance-off.sql: writes accepted again', async () => {
     await db.query(read(CHK, 'maintenance-off.sql'));
     const p = await waitFor('ok');

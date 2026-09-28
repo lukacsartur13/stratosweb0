@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, type DragEvent } from 'react';
 import { Link, Navigate, NavLink, useLocation, useSearchParams } from 'react-router-dom';
-import { ArrowUpFromLine, Download, LogOut, X } from 'lucide-react';
+import { ArrowUpFromLine, CalendarPlus, Download, ExternalLink, LogOut, MapPin, Video, X } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { Badge, Button, DataState, ErrorState, Panel, SectionHeader, Select, Skeleton, cn } from '@/components/ui';
 import { MAX_DOCUMENT_BYTES, formatBytes } from '@/lib/documentRules';
@@ -9,12 +9,20 @@ import {
   CLIENT_ALLOWED_SUMMARY, CLIENT_UPLOAD_API, CLIENT_UPLOAD_TEXT, UPLOAD_STATE_HU, downloadShared, failureHu,
   useClientMe, useClientProjects, useClientUploads, useSharedDocuments, type ClientProject,
 } from '@/lib/clientPortal';
+import {
+  requestMeetingChange, sendDemoFeedback, useClientDemos, useClientFeedback, useClientHelp, useClientMeetingRequests, useClientMeetings,
+  withdrawMeetingRequest, type ClientDemo, type ClientFeedback, type ClientMeeting, type ClientMeetingRequest,
+} from '@/lib/clientView';
+import { formatMeetingTime, googleCalendarUrl, nextMeeting, safeHttpsUrl, wallClock, zonedToUtc } from '@/lib/meetings';
+import { HelpChat } from '@/features/client/HelpChat';
+import { ThemeSwitch } from '@/components/ThemeSwitch';
 
 /**
  * THE CLIENT PORTAL — what a client account sees, in Hungarian.
  *
- * Three pages and nothing else: Projektjeim, Megosztott dokumentumok,
- * Nyersanyag leadása. The staff screens are never rendered for a client (the
+ * Four pages and nothing else: Projektjeim (with the project's published demos
+ * and upcoming meetings), Megosztott dokumentumok, Nyersanyag leadása and
+ * Segítség (the help assistant). The staff screens are never rendered for a client (the
  * layout renders this instead of them), and none of their data could be read
  * anyway: every read here is a `client_portal_*` function with fixed columns.
  */
@@ -27,10 +35,11 @@ export function ClientApp() {
   const { pathname } = useLocation();
   const me = useClientMe();
 
-  if (!['/', '/megosztott', '/nyersanyag'].includes(pathname)) return <Navigate to="/" replace />;
+  if (!['/', '/megosztott', '/nyersanyag', '/segitseg'].includes(pathname)) return <Navigate to="/" replace />;
 
-  const page = pathname === '/megosztott' ? <SharedPage /> : pathname === '/nyersanyag' ? <RawMaterialPage /> : <ProjectsPage />;
-  const tabs: [string, string][] = [['/', 'Projektjeim'], ['/megosztott', 'Megosztott dokumentumok'], ['/nyersanyag', 'Nyersanyag leadása']];
+  const page = pathname === '/megosztott' ? <SharedPage /> : pathname === '/nyersanyag' ? <RawMaterialPage />
+    : pathname === '/segitseg' ? <HelpPage /> : <ProjectsPage />;
+  const tabs: [string, string][] = [['/', 'Projektjeim'], ['/megosztott', 'Megosztott dokumentumok'], ['/nyersanyag', 'Nyersanyag leadása'], ['/segitseg', 'Segítség']];
 
   return (
     <div className="min-h-dvh" lang="hu">
@@ -40,9 +49,12 @@ export function ClientApp() {
             <p className="font-mark text-[15px] leading-none tracking-[0.26em] text-paper">STRATOS</p>
             <p className="t-note mt-1 truncate">{me.rows[0] ? `${me.rows[0].full_name} · ${me.rows[0].company}` : 'Ügyfélportál'}</p>
           </div>
-          <Button size="sm" variant="quiet" className={TOUCH} onClick={() => void signOut()}>
-            <LogOut size={11} aria-hidden="true" /> Kijelentkezés
-          </Button>
+          <div className="flex flex-wrap items-center gap-2">
+            <ThemeSwitch lang="hu" />
+            <Button size="sm" variant="quiet" className={TOUCH} onClick={() => void signOut()}>
+              <LogOut size={11} aria-hidden="true" /> Kijelentkezés
+            </Button>
+          </div>
         </div>
         <nav aria-label="Ügyfélportál" className="mx-auto flex max-w-4xl flex-wrap gap-1 px-4 pb-2">
           {tabs.map(([to, label]) => (
@@ -67,6 +79,12 @@ function Loading() {
 
 function ProjectsPage() {
   const projects = useClientProjects();
+  const [tick, setTick] = useState(0);
+  const refresh = () => setTick((n) => n + 1);
+  const demos = useClientDemos(tick);
+  const meetings = useClientMeetings(tick);
+  const feedback = useClientFeedback(tick);
+  const requests = useClientMeetingRequests(tick);
   return (
     <Panel>
       <SectionHeader title="Projektjeim" />
@@ -78,16 +96,111 @@ function ProjectsPage() {
       {projects.state === 'ready' && projects.rows.length > 0 && (
         <ul className="grid">
           {projects.rows.map((p) => (
-            <li key={p.project_id} className="flex flex-wrap items-center justify-between gap-2 border-b border-hairline px-4 py-3 last:border-0">
-              <p className="text-[14px] text-paper">{p.project_name}</p>
-              <div className="flex flex-wrap gap-2">
-                <Link to={`/megosztott?projekt=${p.project_id}`} className="t-note underline underline-offset-4 hover:text-paper max-sm:py-2">Dokumentumok</Link>
-                <Link to={`/nyersanyag?projekt=${p.project_id}`} className="t-note underline underline-offset-4 hover:text-paper max-sm:py-2">Nyersanyag leadása</Link>
+            <li key={p.project_id} className="grid gap-3 border-b border-hairline px-4 py-4 last:border-0" data-project={p.project_id}>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="text-[15px] text-paper">{p.project_name}</h3>
+                <div className="flex flex-wrap gap-2">
+                  <Link to={`/megosztott?projekt=${p.project_id}`} className="t-note underline underline-offset-4 hover:text-paper max-sm:py-2">Dokumentumok</Link>
+                  <Link to={`/nyersanyag?projekt=${p.project_id}`} className="t-note underline underline-offset-4 hover:text-paper max-sm:py-2">Nyersanyag leadása</Link>
+                </div>
               </div>
+              <ProjectMeetings rows={meetings.rows.filter((m) => m.project_id === p.project_id)} state={meetings.state}
+                requests={requests.rows} onChanged={refresh} />
+              <ProjectDemos rows={demos.rows.filter((d) => d.project_id === p.project_id)} state={demos.state}
+                feedback={feedback.rows} onChanged={refresh} />
             </li>
           ))}
         </ul>
       )}
+    </Panel>
+  );
+}
+
+function ProjectDemos({ rows, state, feedback, onChanged }: { rows: ClientDemo[]; state: string; feedback: ClientFeedback[]; onChanged: () => void }) {
+  if (state === 'error') return <p className="t-note">A demók most nem tölthetők be.</p>;
+  if (rows.length === 0) return null;
+  return (
+    <section aria-label="Demók" className="grid gap-2">
+      {rows.map((d) => (
+        <article key={d.demo_id} className="flex flex-wrap items-center justify-between gap-3 rounded-sm border border-signal/40 bg-deck px-4 py-3" data-client-demo={d.demo_id}>
+          <div className="min-w-0">
+            <p className="t-section text-signal">Demó</p>
+            <p className="text-[15px] text-paper">{d.title}</p>
+            {d.note && <p className="t-note mt-0.5">{d.note}</p>}
+          </div>
+          <a href={safeHttpsUrl(d.url)} target="_blank" rel="noopener noreferrer"
+             className={cn('inline-flex items-center gap-1.5 rounded-sm bg-signal px-3 py-2 text-[13px] font-medium text-black hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal', TOUCH)}>
+            Demó megtekintése <ExternalLink size={12} aria-hidden="true" /><span className="sr-only"> (új lapon nyílik)</span>
+          </a>
+          <DemoFeedback demo={d} mine={feedback.filter((f) => f.demo_id === d.demo_id)} onChanged={onChanged} />
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function ProjectMeetings({ rows, state, requests, onChanged }: { rows: ClientMeeting[]; state: string; requests: ClientMeetingRequest[]; onChanged: () => void }) {
+  if (state === 'error') return <p className="t-note">A megbeszélések most nem tölthetők be.</p>;
+  if (rows.length === 0) return null;
+  const next = nextMeeting(rows);
+  const rest = rows.filter((m) => m.meeting_id !== next?.meeting.meeting_id);
+  return (
+    <section aria-label="Megbeszélések" className="grid gap-2">
+      {next && <MeetingCard m={next.meeting} highlight inProgress={next.inProgress} requests={requests} onChanged={onChanged} />}
+      {rest.length > 0 && (
+        <ul className="grid gap-1.5" aria-label="További időpontok">
+          {rest.map((m) => <li key={m.meeting_id}><MeetingCard m={m} requests={requests} onChanged={onChanged} /></li>)}
+        </ul>
+      )}
+      <p className="t-note">A portálon módosított időpont nem frissíti automatikusan a naptáradba korábban elmentett példányt — módosítás után mentsd el újra.</p>
+    </section>
+  );
+}
+
+function MeetingCard({ m, highlight = false, inProgress = false, requests, onChanged }: {
+  m: ClientMeeting; highlight?: boolean; inProgress?: boolean; requests: ClientMeetingRequest[]; onChanged: () => void;
+}) {
+  return (
+    <article className={cn('grid gap-1 rounded-sm border px-4 py-3', highlight ? 'border-paper/40 bg-deck' : 'border-hairline', m.cancelled && 'opacity-70')}
+             data-client-meeting={m.meeting_id} data-highlight={highlight || undefined}>
+      <p className="t-section text-chrome">
+        {m.cancelled ? <Badge tone="bad">Lemondva</Badge> : highlight ? (inProgress ? 'Most zajlik' : 'Következő megbeszélés') : 'Későbbi időpont'}
+      </p>
+      <p className={cn('text-[14px] text-paper', m.cancelled && 'line-through')}>{m.title}</p>
+      <p className="text-[13px] text-haze">{formatMeetingTime(m)}</p>
+      {m.location && <p className="t-note inline-flex items-center gap-1"><MapPin size={11} aria-hidden="true" /> {m.location}</p>}
+      {m.note && <p className="t-note">{m.note}</p>}
+      {!m.cancelled && (
+        <div className="mt-1 flex flex-wrap gap-2">
+          {m.join_url && (
+            <a href={safeHttpsUrl(m.join_url)} target="_blank" rel="noopener noreferrer" className={cn('inline-flex items-center gap-1 rounded-sm border border-hairline px-2.5 py-1.5 text-[12px] text-paper hover:bg-flare', TOUCH)}>
+              <Video size={11} aria-hidden="true" /> Csatlakozás<span className="sr-only"> (új lapon nyílik)</span>
+            </a>
+          )}
+          <a href={googleCalendarUrl({ ...m, project_name: m.project_name })} target="_blank" rel="noopener noreferrer"
+             className={cn('inline-flex items-center gap-1 rounded-sm border border-hairline px-2.5 py-1.5 text-[12px] text-paper hover:bg-flare', TOUCH)}>
+            <CalendarPlus size={11} aria-hidden="true" /> Google Naptárba helyezés<span className="sr-only"> (új lapon nyílik)</span>
+          </a>
+        </div>
+      )}
+      <Reschedule m={m} mine={requests.filter((r) => r.meeting_id === m.meeting_id)} onChanged={onChanged} />
+    </article>
+  );
+}
+
+/* ============================================================== help == */
+
+function HelpPage() {
+  const help = useClientHelp();
+  return (
+    <Panel>
+      <SectionHeader title="Segítség" />
+      <div className="px-4 py-4">
+        {help.state === 'loading' && <Loading />}
+        {help.state === 'error' && <ErrorState message="A súgó most nem tölthető be." onRetry={help.reload} />}
+        {help.state === 'ready' && help.rows.length === 0 && <DataState kind="empty" title="Nincs még súgócikk" body="Keresd a Stratos kapcsolattartódat." />}
+        {help.state === 'ready' && help.rows.length > 0 && <HelpChat articles={help.rows} />}
+      </div>
     </Panel>
   );
 }
@@ -239,7 +352,7 @@ function HuQueue({ items, onRetry, onCancel }: { items: UploadItem[]; onRetry: (
               )}
             </span>
           </div>
-          <div className="h-0.5 w-full overflow-hidden rounded-full bg-white/[0.06]" role="progressbar" aria-label={`${i.name} feltöltése`}
+          <div className="h-0.5 w-full overflow-hidden rounded-full bg-flare" role="progressbar" aria-label={`${i.name} feltöltése`}
                aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round((i.phase === 'done' ? 1 : i.progress) * 100)}>
             <div className={cn('h-full', i.phase === 'failed' ? 'bg-danger' : 'bg-signal')}
                  style={{ width: `${Math.round((i.phase === 'done' ? 1 : i.progress) * 100)}%` }} />
@@ -275,5 +388,137 @@ function MyUploads({ projectId, reloadToken }: { projectId: string | null; reloa
         </ul>
       )}
     </Panel>
+  );
+}
+
+/* ============================================ demo feedback, reschedule == */
+
+const hu = (iso: string) => new Date(iso).toLocaleString('hu-HU', { dateStyle: 'medium', timeStyle: 'short' });
+
+function DemoFeedback({ demo, mine, onChanged }: { demo: ClientDemo; mine: ClientFeedback[]; onChanged: () => void }) {
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [sent, setSent] = useState(false);
+  const id = `fb-${demo.demo_id}`;
+  const send = async () => {
+    if (!text.trim()) return setError('Írj valamit az üzenetbe.');
+    setBusy(true);
+    const problem = await sendDemoFeedback(demo.demo_id, text.trim());
+    setBusy(false);
+    setError(problem);
+    if (!problem) { setText(''); setSent(true); onChanged(); }
+  };
+  return (
+    <div className="w-full border-t border-hairline pt-2" data-demo-feedback={demo.demo_id}>
+      <button type="button" aria-expanded={open} aria-controls={id} onClick={() => setOpen(!open)}
+              className={cn('text-[13px] text-chrome underline underline-offset-4 hover:text-paper focus-visible:outline-2 focus-visible:outline-signal', TOUCH)}>
+        Észrevételek{mine.length ? ` (${mine.length})` : ''}
+      </button>
+      {open && (
+        <div id={id} className="mt-2 grid gap-2">
+          {mine.length > 0 && (
+            <ul className="grid gap-1" aria-label="Elküldött észrevételeid">
+              {mine.map((f) => (
+                <li key={f.feedback_id} className="rounded-sm border border-hairline px-3 py-2 text-[13px]">
+                  <p className="whitespace-pre-line text-paper">{f.body}</p>
+                  <p className="t-note mt-1">{hu(f.created_at)} · {f.seen ? 'A Stratos látta' : 'Még nem látta'}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+          <label htmlFor={`${id}-text`} className="label">Új észrevétel a demóról</label>
+          <textarea id={`${id}-text`} value={text} maxLength={2000} rows={3} onChange={(e) => { setText(e.target.value); setSent(false); }}
+                    className="w-full rounded-sm border border-hair bg-field px-3 py-2 text-sm text-paper focus-visible:outline-2 focus-visible:outline-signal" />
+          <div className="flex flex-wrap items-center gap-2">
+            <Button size="sm" variant="primary" className={TOUCH} onClick={send} disabled={busy || !text.trim()}>Küldés</Button>
+            <span className="t-note">A Stratos a portálon látja; munkanapokon 1 munkanapon belül reagálunk.</span>
+          </div>
+          {sent && <p role="status" className="text-xs text-good">Elküldve.</p>}
+          {error && <p role="alert" className="text-xs text-danger">{error}</p>}
+        </div>
+      )}
+    </div>
+  );
+}
+
+const STATUS_HU: Record<ClientMeetingRequest['status'], string> = {
+  pending: 'Függőben — a Stratos jóváhagyására vár', accepted: 'Elfogadva — a megbeszélés az új időpontra módosult',
+  declined: 'Nem fogadtuk el', withdrawn: 'Visszavonva',
+};
+
+function Reschedule({ m, mine, onChanged }: { m: ClientMeeting; mine: ClientMeetingRequest[]; onChanged: () => void }) {
+  const pending = mine.find((r) => r.status === 'pending');
+  const last = [...mine].reverse().find((r) => r.status !== 'pending' && r.status !== 'withdrawn');
+  const [open, setOpen] = useState(false);
+  const start0 = wallClock(m.time_zone, new Date(m.starts_at));
+  const end0 = wallClock(m.time_zone, new Date(m.ends_at));
+  const [form, setForm] = useState({ date: start0.slice(0, 10), start: start0.slice(11, 16), end: end0.slice(11, 16), message: '' });
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const id = `rs-${m.meeting_id}`;
+  if (m.cancelled && !pending) return null;
+
+  const submit = async () => {
+    const s = zonedToUtc(form.date, form.start, m.time_zone);
+    const e = zonedToUtc(form.date, form.end, m.time_zone);
+    if ('error' in s || 'error' in e) return setError('Adj meg létező dátumot és időpontot.');
+    let end = e.iso;
+    if (new Date(end) <= new Date(s.iso)) end = new Date(new Date(end).getTime() + 24 * 3600e3).toISOString();
+    if (new Date(s.iso) <= new Date()) return setError('A javasolt időpont már elmúlt.');
+    setBusy(true);
+    const problem = await requestMeetingChange(m.meeting_id, s.iso, end, m.time_zone, form.message.trim() || null);
+    setBusy(false);
+    setError(problem);
+    if (!problem) { setOpen(false); onChanged(); }
+  };
+  const withdraw = async () => { if (!pending) return; setBusy(true); setError(await withdrawMeetingRequest(pending.request_id)); setBusy(false); onChanged(); };
+
+  return (
+    <div className="mt-1 grid gap-2 border-t border-hairline pt-2" data-reschedule={m.meeting_id}>
+      {pending && (
+        <div className="grid gap-1 text-[13px]" data-request-status="pending">
+          <p className="text-paper">Javasolt új időpont: {formatMeetingTime({ starts_at: pending.proposed_starts_at, ends_at: pending.proposed_ends_at, time_zone: pending.time_zone })}</p>
+          <p className="t-note">{STATUS_HU.pending}</p>
+          <div><Button size="sm" variant="quiet" className={TOUCH} onClick={withdraw} disabled={busy}>Javaslat visszavonása</Button></div>
+        </div>
+      )}
+      {!pending && last && (
+        <p className="t-note" data-request-status={last.status}>
+          Legutóbbi javaslatod: {STATUS_HU[last.status]}{last.owner_note ? ` — „${last.owner_note}”` : ''}
+        </p>
+      )}
+      {!pending && !m.cancelled && (
+        <button type="button" aria-expanded={open} aria-controls={id} onClick={() => setOpen(!open)}
+                className={cn('justify-self-start text-[13px] text-chrome underline underline-offset-4 hover:text-paper focus-visible:outline-2 focus-visible:outline-signal', TOUCH)}>
+          Új időpont javaslása
+        </button>
+      )}
+      {open && !pending && (
+        <div id={id} className="grid gap-2">
+          <div className="grid gap-2 sm:grid-cols-3">
+            <label className="grid gap-1 text-[12px] text-haze">Dátum
+              <input type="date" value={form.date} onChange={(e) => setForm((p) => ({ ...p, date: e.target.value }))}
+                     className={cn('rounded-sm border border-hair bg-field px-2 py-1.5 text-sm text-paper', TOUCH)} /></label>
+            <label className="grid gap-1 text-[12px] text-haze">Kezdés
+              <input type="time" value={form.start} onChange={(e) => setForm((p) => ({ ...p, start: e.target.value }))}
+                     className={cn('rounded-sm border border-hair bg-field px-2 py-1.5 text-sm text-paper', TOUCH)} /></label>
+            <label className="grid gap-1 text-[12px] text-haze">Befejezés
+              <input type="time" value={form.end} onChange={(e) => setForm((p) => ({ ...p, end: e.target.value }))}
+                     className={cn('rounded-sm border border-hair bg-field px-2 py-1.5 text-sm text-paper', TOUCH)} /></label>
+          </div>
+          <p className="t-note">Időzóna: {m.time_zone}</p>
+          <label className="grid gap-1 text-[12px] text-haze">Üzenet (nem kötelező)
+            <textarea rows={2} maxLength={1000} value={form.message} onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
+                      className="rounded-sm border border-hair bg-field px-2 py-1.5 text-sm text-paper" /></label>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button size="sm" variant="primary" className={TOUCH} onClick={submit} disabled={busy}>Javaslat elküldése</Button>
+            <span className="t-note">A megbeszélés csak akkor módosul, ha a Stratos elfogadja. Munkanapokon 1 munkanapon belül reagálunk.</span>
+          </div>
+        </div>
+      )}
+      {error && <p role="alert" className="text-xs text-danger">{error}</p>}
+    </div>
   );
 }

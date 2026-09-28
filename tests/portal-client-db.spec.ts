@@ -180,7 +180,9 @@ test.describe('structure', () => {
       'client_account_id', 'client_begin_upload', 'client_finish_upload', 'client_has_project', 'client_mark_upload',
       'client_may_read_document', 'client_may_read_object', 'client_may_upload_object', 'client_own_upload',
       'client_portal_documents', 'client_portal_me', 'client_portal_projects', 'client_portal_uploads',
-    ]);
+      // phase 7 (20261004000100): demos and meetings — same client rules
+      'client_portal_demos', 'client_portal_meetings',
+    ].sort());
     expect((await db.query(`select table_name from information_schema.views where table_schema = 'public'`)).rows).toEqual([]);
   });
 

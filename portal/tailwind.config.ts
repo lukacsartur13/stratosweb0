@@ -20,35 +20,49 @@ import type { Config } from 'tailwindcss';
 // further to nest, nesting stops.
 // =============================================================================
 
+const v = (name: string) => `rgb(var(--c-${name}) / <alpha-value>)`;
+
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      // Every colour is a CSS variable (styles.css), so one set of class names
+      // serves both themes. Triplets, not hex, so `/40`-style opacity works.
       colors: {
         void: '#000000',
 
         /** Level 0 — the page. */
-        ink: '#0B0F16',
+        ink: v('ink'),
         /** Level 1 — a section. Two points of light above the page, no more. */
-        deck: '#10161F',
+        deck: v('deck'),
         /** Level 1, raised. The executive strip and the command bar only. */
-        panel: '#141C27',
+        panel: v('panel'),
         /** Level 2 — interaction. Hover, selected, focused, active row. */
-        flare: 'rgba(244,244,244,0.055)',
+        flare: 'rgb(var(--c-fg) / 0.055)',
+        /** An input's well: darker than its section in dark, white in light. */
+        field: 'var(--c-field)',
 
         // Two hairlines, not one. `hair` bounds a section; `hairline` separates
         // rows and cells INSIDE one. A table drawn entirely in `hair` reads as
         // twenty stacked boxes rather than as one table.
-        hair: 'rgba(244,244,244,0.10)',
-        hairline: 'rgba(244,244,244,0.06)',
+        hair: 'rgb(var(--c-fg) / var(--a-hair))',
+        hairline: 'rgb(var(--c-fg) / var(--a-hairline))',
 
-        signal: '#FFEE25',
-        chrome: '#CBDCE9',
-        paper: '#F4F4F4',
-        haze: '#8A98A8',
-        danger: '#FF5A47',
-        good: '#3ECF8E',
+        /** The brand yellow as a FILL. Yellow in both themes. */
+        signal: v('signal'),
+        chrome: v('chrome'),
+        paper: v('paper'),
+        haze: v('haze'),
+        danger: v('danger'),
+        good: v('good'),
       },
+      // The brand yellow cannot be read as text or a line on a light page, so
+      // text, borders, outlines and accents use `--c-signal-ink`: the same
+      // yellow in dark, a deep amber in light.
+      textColor: { signal: v('signal-ink') },
+      borderColor: { signal: v('signal-ink') },
+      outlineColor: { signal: v('signal-ink') },
+      accentColor: { signal: v('signal-ink') },
 
       // Aboreto and JetBrains Mono are self-hosted and are actually loaded —
       // see the note in index.html. `Instrument Sans` was replaced by Archivo,
@@ -81,7 +95,7 @@ export default {
       // surfaces above; a drop shadow on every panel is how a dense screen turns
       // into a pile of floating rectangles.
       boxShadow: {
-        panel: '0 1px 0 rgba(244,244,244,0.03) inset',
+        panel: '0 1px 0 rgb(var(--c-fg) / 0.03) inset',
       },
     },
   },

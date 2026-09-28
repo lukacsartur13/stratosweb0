@@ -201,6 +201,26 @@ await check('owner uploads a PDF into real Storage and shares it with the invite
   assert(doc.upload_state === 'ready', `document ${doc.upload_state}`);
 });
 
+await check('owner adds a published demo link and a meeting from the project page', async () => {
+  await owner.goto(`${ORIGIN}/portal/projects/${project}`);
+  const panel = owner.getByRole('region', { name: 'Client portal view' });
+  await panel.getByRole('button', { name: 'Demo link' }).click();
+  await owner.fill('#demo-title', 'Weboldal demó');
+  await owner.fill('#demo-url', 'https://demo.example.com/webshop');
+  await owner.getByLabel('Visible to the client').check();
+  await owner.getByRole('dialog').getByRole('button', { name: 'Save' }).click();
+  await panel.getByText('Visible to the client').waitFor();
+  await panel.getByRole('button', { name: 'Meeting', exact: true }).click();
+  const d = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Budapest' }).format(new Date(Date.now() + 2 * 864e5));
+  await owner.fill('#mt-title', 'Demó átbeszélése');
+  await owner.fill('#mt-date', d);
+  await owner.fill('#mt-start', '10:00');
+  await owner.fill('#mt-end', '11:00');
+  await owner.fill('#mt-join', 'https://meet.example.com/abc');
+  await owner.getByRole('dialog').getByRole('button', { name: 'Save' }).click();
+  await panel.getByText('Demó átbeszélése').waitFor();
+});
+
 const clientCtx = await context();
 const client = await clientCtx.newPage();
 openPages.push(client);
@@ -222,6 +242,32 @@ await check('the Hungarian client portal shows only its project and no internal 
   assert(!/1\s?000\s?000|400\s?000|Előleg|Payment|Checkpoint|Blocked|market/i.test(text), 'an internal figure is on the client screen');
   assert((await client.locator('html').getAttribute('lang')) === 'hu' || (await client.locator('[lang="hu"]').count()) > 0, 'not marked Hungarian');
   await shot(client, 'client-projects');
+});
+
+await check('the client sees the demo card (new tab) and the next meeting with a Google Calendar link', async () => {
+  const card = client.locator('[data-client-demo]').first();
+  await card.waitFor();
+  const link = card.getByRole('link', { name: /Demó megtekintése/ });
+  assert(await link.getAttribute('href') === 'https://demo.example.com/webshop' && await link.getAttribute('target') === '_blank', 'demo link');
+  const meeting = client.locator('[data-client-meeting][data-highlight="true"]');
+  await meeting.waitFor();
+  const cal = new URL(await meeting.getByRole('link', { name: /Google Naptárba helyezés/ }).getAttribute('href'));
+  assert(cal.searchParams.get('text') === 'Demó átbeszélése' && cal.searchParams.get('ctz') === 'Europe/Budapest', cal.toString());
+  assert(/T080000Z\/\d{8}T090000Z$/.test(cal.searchParams.get('dates')) || /T090000Z\/\d{8}T100000Z$/.test(cal.searchParams.get('dates')), `dates ${cal.searchParams.get('dates')}`);
+});
+
+await check('Segítség answers from the real, published knowledge base — by keyboard', async () => {
+  await client.getByRole('link', { name: 'Segítség' }).click();
+  const input = client.getByLabel('Kérdésed');
+  await input.waitFor();
+  await input.focus();
+  await client.keyboard.type('mekkora fájlokat tölthetek fel');
+  await client.keyboard.press('Enter');
+  await client.locator('[data-reply="answer"]').last().getByText('50 MB', { exact: false }).waitFor();
+  await input.fill('szeretnék pizzát rendelni');
+  await client.keyboard.press('Enter');
+  await client.locator('[data-reply="unknown"]').last().waitFor();
+  await client.getByRole('link', { name: 'Projektjeim' }).click();
 });
 
 await check('the client downloads the shared file through a signed link', async () => {
@@ -259,7 +305,7 @@ await check('a refused file type is refused on the client screen before any requ
 
 await check('phone width: the client portal does not scroll sideways', async () => {
   await client.setViewportSize({ width: 390, height: 844 });
-  for (const tab of ['Projektjeim', 'Megosztott dokumentumok', 'Nyersanyag leadása']) {
+  for (const tab of ['Projektjeim', 'Megosztott dokumentumok', 'Nyersanyag leadása', 'Segítség']) {
     await client.getByRole('link', { name: tab }).click();
     assert(await client.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), `${tab} scrolls sideways`);
   }

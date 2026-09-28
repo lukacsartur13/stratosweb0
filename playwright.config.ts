@@ -15,6 +15,7 @@ const NODE_ONLY = [
   // Reads the built HTML off disk and checks the <head> link values. No page,
   // no viewport — the same answer in every browser.
   /head-links\.spec\.ts/,
+  /portal-theme\.spec\.ts/,
   /portal-health\.spec\.ts/, /lead-notify\.spec\.ts/, /redirects\.spec\.ts/,
   // Runs the repository secret scan as a child process and asserts what it does
   // and does not read. No page, no viewport, and running it five times over is
@@ -34,6 +35,7 @@ const NODE_ONLY = [
   /portal-payments-db\.spec\.ts/,
   /portal-payments\.spec\.ts/,
   /portal-delegates-db\.spec\.ts/,
+  /portal-client-extras\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are

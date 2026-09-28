@@ -292,6 +292,7 @@ async function scenarioUpgrade() {
     '20261001000100_client_portal.sql', 'CHECK:client-portal-verify.sql',
     '20261002000100_payment_schedule.sql', 'CHECK:payment-schedule-verify.sql',
     '20261003000100_owner_delegates.sql', 'CHECK:owner-delegates-verify.sql',
+    '20261004000100_client_demos_meetings_help.sql', '20261004000200_help_seed.sql', '20261005000100_client_feedback_reschedule.sql', 'CHECK:client-extras-verify.sql',
   ];
   assert(JSON.stringify(order.filter((x) => x.endsWith('.sql') && !x.includes(':'))) === JSON.stringify(files.filter((f) => f > '20260816000100_revenue_operations.sql')),
     'the release order does not list every migration file');

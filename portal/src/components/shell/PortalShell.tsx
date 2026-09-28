@@ -1,10 +1,11 @@
 import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
-  Activity, Building2, ChartLine, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LogOut,
+  Activity, Building2, ChartLine, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
   Menu, RefreshCw, ScrollText, Settings, Target, Users, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { can, canAccess, ROLE_LABELS, type Capability } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
 import { useHealth } from '@/lib/health';
@@ -86,6 +87,8 @@ const PRIMARY: NavItem[] = [
 /** Records and administration. Real screens, subordinate weight. */
 const SECONDARY: NavItem[] = [
   { to: '/case-studies', label: 'Case studies', icon: Image,      cap: 'view_case_studies' },
+  // The client help centre's knowledge base. Owner-only (OWNER_CAPABILITIES).
+  { to: '/help',         label: 'Help centre',  icon: LifeBuoy,   cap: 'manage_help' },
   { to: '/users',        label: 'Users',        icon: Users,      cap: 'manage_users' },
   { to: '/activity',     label: 'Activity',     icon: ScrollText, cap: 'view_activity' },
   { to: '/settings',     label: 'Settings',     icon: Settings,   cap: 'manage_settings' },
@@ -167,7 +170,7 @@ export function PortalShell() {
       <NavGroup items={primary} label="Portal sections" />
       {secondary.length > 0 && (
         <div className="border-t border-hairline pt-4">
-          <p className="t-section mb-1.5 px-2.5 text-haze/70">Records</p>
+          <p className="t-section mb-1.5 px-2.5 text-haze">Records</p>
           <NavGroup items={secondary} label="Records and administration" subdued />
         </div>
       )}
@@ -253,7 +256,7 @@ function Lockup() {
   return (
     <div className="border-b border-hairline px-4 py-3.5">
       <p className="font-mark text-[15px] leading-none tracking-[0.26em] text-paper">STRATOS</p>
-      <p className="t-section mt-1.5 text-haze/80">Portal</p>
+      <p className="t-section mt-1.5 text-haze">Portal</p>
     </div>
   );
 }
@@ -273,7 +276,7 @@ function NavGroup({ items, label, subdued = false }: { items: NavItem[]; label: 
             subdued ? 'text-[12px]' : 'text-[13px]',
             isActive
               ? 'bg-flare text-paper'
-              : cn('hover:bg-flare hover:text-paper', subdued ? 'text-haze/80' : 'text-haze'),
+              : cn('hover:bg-flare hover:text-paper', subdued ? 'text-haze' : 'text-haze'),
           )}
         >
           {({ isActive }) => (
@@ -291,7 +294,7 @@ function NavGroup({ items, label, subdued = false }: { items: NavItem[]; label: 
               <Icon
                 size={subdued ? 13 : 14}
                 strokeWidth={1.75}
-                className={isActive ? 'text-paper' : 'text-haze/70'}
+                className={isActive ? 'text-paper' : 'text-haze'}
                 aria-hidden="true"
               />
               <span className="truncate">{text}</span>
@@ -336,6 +339,7 @@ function SidebarFooter({
       )}
       <p className="truncate text-[12px] text-paper">{profile?.full_name || profile?.email || '—'}</p>
       <p className="t-note mb-2 truncate">{profile ? ROLE_LABELS[profile.role] : '—'}</p>
+      <ThemeSwitch className="mb-2" />
       <Button size="sm" variant="quiet" className="-ml-2 w-[calc(100%+0.5rem)] justify-start" onClick={onSignOut}>
         <LogOut size={12} aria-hidden="true" /> Sign out
       </Button>

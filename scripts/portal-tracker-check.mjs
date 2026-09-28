@@ -24,6 +24,7 @@
 // Exit code 0 when every check passes, 1 otherwise.
 // =============================================================================
 import { chromium } from '@playwright/test';
+import { lowContrast } from './lib-contrast.mjs';
 import { execFileSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import { mkdtempSync, readFileSync, existsSync, rmSync } from 'node:fs';
@@ -153,6 +154,13 @@ function freshState() {
         outcome: 'review', issues: ['payment_date_unknown', 'marked_paid_amount_short', 'state_changed:paid->partially_paid'], derived_state: 'partially_paid', reviewed_at: null },
     ],
     paymentReads: 0, completeCalls: 0, completeAnswer: 'ok',
+    demos: [], meetings: [], helpReads: 0, feedback: [], requests: [], decisions: [],
+    help: [
+      { id: 'ha-1', slug: 'portal-fajltipusok', question: 'Milyen fájlokat tölthetek fel?', answer: 'Fájlonként legfeljebb 50 MB.', topic: 'Ügyfélportál – feltöltés',
+        alt_questions: ['mekkora fájl'], source: 'lib/documentRules.ts', status: 'published', review_note: null, position: 10, updated_at: new Date().toISOString() },
+      { id: 'ha-2', slug: 'portal-masik-idopont', question: 'Hogyan kérhetek másik időpontot?', answer: '[JAVASLAT]', topic: 'Ügyfélportál – megbeszélések',
+        alt_questions: [], source: null, status: 'draft', review_note: 'Üzleti döntés kell.', position: 20, updated_at: new Date().toISOString() },
+    ],
     // Scripted server answers for the next close / win, and every write seen.
     closeAnswer: 'ok', winAnswer: 'ok', writes: [], projectReads: 0,
   };
@@ -182,8 +190,8 @@ function applyFilters(url, rows) {
 
 const json = (route, body, status = 200) => route.fulfill({ status, contentType: 'application/json', body: JSON.stringify(body) });
 
-async function open(browser, { owner = true, reducedMotion = 'no-preference', state = freshState() } = {}) {
-  const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, locale: 'en-GB', timezoneId: 'Europe/Budapest', reducedMotion });
+async function open(browser, { owner = true, reducedMotion = 'no-preference', state = freshState(), colorScheme = 'dark' } = {}) {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, locale: 'en-GB', timezoneId: 'Europe/Budapest', reducedMotion, colorScheme });
   const profile = { id: USER.id, email: USER.email, full_name: 'Owner', avatar_url: null, role: 'super_admin', organization_id: null };
 
   await context.route('**/*', async (route) => {
@@ -256,6 +264,14 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
         project: { id, name: body.p_project_name, status: 'planned', market_value: null } });
       return json(route, id);
     }
+    if (url.includes('/rest/v1/rpc/owner_decide_meeting_request')) {
+      const b = JSON.parse(req.postData() || '{}');
+      state.decisions.push(b);
+      const r = state.requests.find((x) => x.id === b.p_request);
+      r.status = b.p_accept ? 'accepted' : 'declined'; r.decided_at = new Date().toISOString();
+      if (b.p_accept) Object.assign(state.meetings.find((m) => m.id === r.meeting_id), { starts_at: r.proposed_starts_at, ends_at: r.proposed_ends_at });
+      return json(route, r.status);
+    }
     if (url.includes('/rest/v1/rpc/')) return json(route, []);
 
     if (url.includes('/rest/v1/impact_applications')) {
@@ -311,6 +327,16 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
       return answer(applyFilters(url, state.milestones));
     }
     if (url.includes('/rest/v1/checkpoint_templates')) return answer(owner ? TEMPLATES : []);
+    // Phase 7 tables, as RLS answers them.
+    for (const [path, key] of [['project_demos', 'demos'], ['project_meetings', 'meetings'], ['help_articles', 'help'], ['demo_feedback', 'feedback'], ['meeting_change_requests', 'requests']]) {
+      if (!url.includes(`/rest/v1/${path}`)) continue;
+      if (path === 'help_articles' && method === 'GET') state.helpReads += 1;
+      if (!owner) return answer([]);
+      const body = JSON.parse(req.postData() || '{}');
+      if (method === 'POST') { state.writes.push({ table: path, method, body }); state[key].push({ id: `${key}-${state.writes.length}`, revoked_at: null, cancelled_at: null, updated_at: new Date().toISOString(), ...body }); return json(route, [], 201); }
+      if (method === 'PATCH') { state.writes.push({ table: path, method, url, body }); for (const r of applyFilters(url, state[key])) Object.assign(r, body); return json(route, []); }
+      return answer(applyFilters(url, state[key]));
+    }
     // The schedule tables, as RLS answers them: the owner's rows, nobody else's.
     for (const [path, key] of [['project_instalments', 'instalments'], ['project_payments', 'payments'], ['project_finance_legacy', 'legacy']]) {
       if (!url.includes(`/rest/v1/${path}`)) continue;
@@ -934,6 +960,143 @@ await check('sales: the table opens on this month; Clear shows every deal, conve
   await page.getByRole('button', { name: 'Clear filters' }).click();
   await page.getByText('Rapidkert rebuild').first().waitFor();
   assert(await page.locator('#sales-close').inputValue() === 'all' && await page.locator('#sales-stage').inputValue() === 'all', 'clear did not clear');
+  await context.close();
+});
+
+/* ------------------------------------------------ phase 7: owner side */
+
+await check('owner: the project page manages demo links — unsafe URLs refused before any write; unpublished by default; the public-site caveat is shown', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects/p-late`);
+  const panel = page.getByRole('region', { name: 'Client portal view' });
+  await panel.locator('[data-demo-public-warning]').waitFor();
+  await panel.getByRole('button', { name: 'Demo link' }).click();
+  await page.fill('#demo-title', 'Weboldal demó');
+  for (const bad of ['javascript:alert(1)', 'http://demo.example.com', 'https://user:pw@demo.example.com']) {
+    await page.fill('#demo-url', bad);
+    await page.getByRole('dialog').getByRole('button', { name: 'Save' }).click();
+    await page.getByRole('dialog').getByText('Only a plain https:// address', { exact: false }).waitFor();
+  }
+  assert(!state.writes.some((w) => w.table === 'project_demos'), 'an unsafe URL was sent');
+  await page.fill('#demo-url', 'https://demo.example.com/rapidkert');
+  assert(!(await page.getByLabel('Visible to the client').isChecked()), 'published by default');
+  await page.getByRole('dialog').getByRole('button', { name: 'Save' }).click();
+  await page.getByRole('dialog').waitFor({ state: 'detached' });
+  const w = state.writes.find((x) => x.table === 'project_demos');
+  assert(w.body.published === false && w.body.url === 'https://demo.example.com/rapidkert' && w.body.project_id === 'p-late', JSON.stringify(w.body));
+  await panel.getByText('Not published').waitFor();
+  await panel.getByRole('button', { name: 'Publish' }).click();
+  await panel.getByText('Visible to the client').waitFor();
+  await shot(page, 'owner-client-view');
+  await context.close();
+});
+
+await check('owner: meetings — a time skipped by DST is refused, a repeated one needs a second Save; UTC is stored', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects/p-late`);
+  const panel = page.getByRole('region', { name: 'Client portal view' });
+  await panel.getByRole('button', { name: 'Meeting', exact: true }).click();
+  await page.fill('#mt-title', 'Egyeztetés');
+  await page.fill('#mt-date', '2026-03-29');
+  await page.fill('#mt-start', '02:30');
+  await page.fill('#mt-end', '03:30');
+  await page.fill('#mt-join', 'https://meet.example.com/abc');
+  await page.getByRole('dialog').getByRole('button', { name: 'Save' }).click();
+  await page.getByText('does not exist in this time zone', { exact: false }).waitFor();
+  assert(!state.writes.some((x) => x.table === 'project_meetings'), 'nonexistent time saved');
+  await page.fill('#mt-date', '2026-10-25');
+  await page.getByRole('dialog').getByRole('button', { name: 'Save' }).click();
+  await page.getByText('occurs twice', { exact: false }).waitFor();
+  assert(!state.writes.some((x) => x.table === 'project_meetings'), 'ambiguous time saved without confirmation');
+  await page.getByRole('dialog').getByRole('button', { name: 'Save' }).click();
+  await page.getByRole('dialog').waitFor({ state: 'detached' });
+  const w = state.writes.find((x) => x.table === 'project_meetings');
+  assert(w.body.starts_at === '2026-10-25T00:30:00.000Z' && w.body.ends_at === '2026-10-25T02:30:00.000Z' && w.body.time_zone === 'Europe/Budapest', JSON.stringify(w.body));
+  await context.close();
+});
+
+await check('owner: the help centre lists drafts with their review note, and the tester answers from published articles only', async () => {
+  const { page, context } = await open(browser);
+  await page.goto(`${BASE}/help`);
+  await page.getByText('1 published · 1 draft').waitFor();
+  assert(await page.getByText('Üzleti döntés kell.').isVisible(), 'review note missing');
+  await page.getByLabel('Kérdésed').fill('Hogyan kérhetek másik időpontot?');
+  await page.keyboard.press('Enter');
+  await page.locator('[data-reply]').last().waitFor();
+  assert((await page.locator('[data-reply]').last().getAttribute('data-reply')) !== 'answer', 'a draft was answered in the tester');
+  await context.close();
+});
+
+await check('non-owner: no Help centre, and no help or client-view request', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { owner: false, state });
+  await page.goto(`${BASE}/`);
+  await page.getByRole('link', { name: 'Sales' }).first().waitFor();
+  assert(await page.getByRole('link', { name: 'Help centre' }).count() === 0, 'Help centre in the nav');
+  await page.goto(`${BASE}/help`);
+  await page.waitForURL(/\/portal\/?$/);
+  await settle(page);
+  assert(state.helpReads === 0 && !state.writes.length, 'help read by a non-owner');
+  await context.close();
+});
+
+await check('owner: client feedback shows under the demo and in the inbox; a proposed time is accepted through the decision function', async () => {
+  const state = freshState();
+  const h = (n) => new Date(Date.now() + n * 3600e3).toISOString();
+  state.demos.push({ id: 'dm-1', project_id: 'p-late', title: 'Weboldal demó', url: 'https://demo.example.com', client_note: null, published: true, revoked_at: null, position: 0, updated_at: h(0) });
+  state.meetings.push({ id: 'mt-1', project_id: 'p-late', title: 'Egyeztetés', starts_at: h(48), ends_at: h(49), time_zone: 'Europe/Budapest', join_url: 'https://meet.example.com/a', location: null, client_note: null, cancelled_at: null, updated_at: h(0) });
+  state.feedback.push({ id: 'fb-1', demo_id: 'dm-1', project_id: 'p-late', body: 'A logó legyen nagyobb.', created_at: h(-1), read_at: null, account: { full_name: 'Kovács Anna', email: 'anna@a.example' },
+    project: { name: 'Late website' }, demo: { title: 'Weboldal demó' } });
+  state.requests.push({ id: 'rq-1', meeting_id: 'mt-1', project_id: 'p-late', proposed_starts_at: h(72), proposed_ends_at: h(73), time_zone: 'Europe/Budapest', message: 'Csütörtök?',
+    status: 'pending', owner_note: null, created_at: h(-1), decided_at: null, account: { full_name: 'Kovács Anna', email: 'anna@a.example' }, project: { name: 'Late website' }, meeting: { title: 'Egyeztetés' } });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects`);
+  const inbox = page.getByRole('region', { name: 'Client inbox' });
+  await inbox.getByText('2 waiting').waitFor();
+  await page.goto(`${BASE}/projects/p-late`);
+  const panel = page.getByRole('region', { name: 'Client portal view' });
+  await panel.getByText('A logó legyen nagyobb.').waitFor();
+  await panel.getByRole('button', { name: 'Mark read' }).click();
+  await page.waitForTimeout(300);
+  const w = state.writes.find((x) => x.table === 'demo_feedback');
+  assert(w && w.body.read_at && Object.keys(w.body).length === 1, `read write ${JSON.stringify(w)}`);
+  await panel.getByText('Csütörtök?', { exact: false }).waitFor();
+  await panel.getByRole('button', { name: 'Accept — move the meeting' }).click();
+  await page.waitForTimeout(400);
+  assert(state.decisions.length === 1 && state.decisions[0].p_request === 'rq-1' && state.decisions[0].p_accept === true, JSON.stringify(state.decisions));
+  assert(!state.writes.some((x) => x.table === 'meeting_change_requests'), 'the request table was written directly');
+  await context.close();
+});
+
+/* ============================================================ theme === */
+
+await check('owner: Appearance in the sidebar — System follows the device, Light/Dark stick; every owner screen reads at 4.5:1 in both', async () => {
+  const { page, context } = await open(browser, { colorScheme: 'light' });
+  await page.goto(`${BASE}/`);
+  const sw = page.getByRole('radiogroup', { name: 'Appearance' }).first();
+  await sw.waitFor();
+  assert(await page.evaluate(() => document.documentElement.dataset.theme) === 'light', 'system light not applied');
+  await sw.getByRole('radio', { name: 'Dark' }).click();
+  assert(await page.evaluate(() => [document.documentElement.dataset.theme, localStorage.getItem('stratos.portal.theme')].join()) === 'dark,dark', 'Dark not stored');
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  assert(await page.evaluate(() => document.documentElement.dataset.theme) === 'dark', 'Dark lost on reload');
+  await page.getByRole('radiogroup', { name: 'Appearance' }).first().getByRole('radio', { name: 'System' }).click();
+  assert(await page.evaluate(() => document.documentElement.dataset.theme) === 'light', 'System did not return to the device');
+
+  for (const scheme of ['light', 'dark']) {
+    await page.emulateMedia({ colorScheme: scheme });
+    await page.waitForFunction((t) => document.documentElement.dataset.theme === t, scheme);
+    for (const path of ['/', '/projects', '/projects/p-late', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
+      await page.goto(`${BASE}${path}`);
+      await page.waitForLoadState('networkidle');
+      await page.waitForTimeout(150);
+      const bad = await lowContrast(page);
+      assert(bad.length === 0, `${scheme} ${path}: ${JSON.stringify(bad.slice(0, 5))}`);
+      if (path === '/' || path === '/projects/p-late') await shot(page, `theme-${scheme}${path.replace(/\//g, '-')}`);
+    }
+  }
   await context.close();
 });
 

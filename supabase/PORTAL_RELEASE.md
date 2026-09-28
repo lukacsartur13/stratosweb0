@@ -6,10 +6,11 @@ hozzáférés és projektkövető (1.), Impact program (2.), dokumentumtár (3.)
 leírásaiban van (`OWNER_TRACKER.md`, `DOCUMENTS.md`, `CLIENT_PORTAL.md`); ahol ez a
 fájl eltér tőlük, **ez a fájl az érvényes**.
 
-> **Semmi nincs élesítve.** Egyetlen migráció sem futott az éles adatbázison, nincs
-> deploy, nem készült bucket, nem ment ki meghívó. Minden alábbi lépést te hajtasz
-> végre. Titkos értéket (jelszót, kulcsot, kapcsolati sztringet) **soha ne másolj
-> be a beszélgetésbe**: a lenti parancsok a te gépeden, interaktívan kérik el őket.
+> **Állapot (2026-09-28):** az **1–6. szakasz élesben van** (napló: §12), a **7–8. szakasz**
+> (demólinkek, megbeszélések, ügyfélsúgó, demó-észrevételek, új időpont javaslása) és a
+> **Megjelenés-kapcsoló** (§14) is (napló: §15).
+> Titkos értéket (jelszót, kulcsot, kapcsolati sztringet) **soha ne másolj be a
+> beszélgetésbe**: a parancsok a te gépeden, interaktívan kérik el őket.
 
 ---
 
@@ -347,3 +348,125 @@ tesztadatok, `@example.invalid` címek. Minden szkript megtagadja a nem helyi c�
 Egyéb rétegek (változatlanul zöldek): PGlite adatbázis-tesztek, valódi Postgres
 17.10 párhuzamossági szkript (`npm run check:pg:integration`, 46/46), mockolt
 felületi ellenőrzések (32 + 18 + 11), típusellenőrzés, production build, titokkeresés.
+
+
+---
+
+## 12. Élesítési napló — 2026-09-27/28 (1–6. szakasz)
+
+| Mi | Érték |
+|---|---|
+| Supabase-projekt | `onyynfpowjwsoivkefcz` (Postgres 17.6) |
+| Netlify-webhely | `stratosweb1` → https://stratosweb.hu, a GitHub `main`-ről buildel |
+| Visszaállítási pont (frontend) | deploy `6ab927f6fcf30a0008123034` (commit `a788bdc`) |
+| Új éles deploy | `6ab9a442bd664c0008d7b86e` (commit `20201cd`) |
+| Mentés | `~/stratos-backup/2026-09-28-pre-portal-release/` (roles/schema/data + SHA256SUMS + README); helyi visszaállítással ellenőrizve, 25 tábla sorszáma egyezett; élesben 0 tárolt fájl volt |
+| Régi adatok | `legacy-data-review.sql`: 0 pénzügyi tétel, 0 konfliktus, 3 Impact-lead → jelentkezés |
+| Auth (dashboardon, a tulajdonos által) | Site URL `https://stratosweb.hu`; + redirect `https://stratosweb.hu/portal/reset-password`; regisztráció ki; minimum jelszó 12 |
+| Írásvédelem | be 2026-09-27 23:11:07 UTC → ki 23:44:16 UTC; élesben igazolva: tulajdonosi írás 25006-tal elutasítva, fejléc `X-Stratos-Maintenance: on` |
+| Migrációk | a §4 sorrendje szerint mind a 12 (`20260928000100` … `20261003000100`), minden verify `ok` |
+| Tulajdonos / megbízott | lukacs.artur@media-stratos.com (super_admin) / info@media-stratos.com (admin, `portal_add_delegate`) |
+| Éles próbák (TESZT ügyfél, „Teszt” projekt) | fizetési ütemezés és összesítő; jövőbeli dátum és kézi átírás elutasítva; feltöltés, véglegesítés, **upsert-felülírás 400, tartalom változatlan** a hosztolt Storage-on; letöltés; CORS és CSP a stratosweb.hu-ról; meghívás, jelszóbeállítás, ügyfélnézet, megosztott fájl letöltése, nyersanyag-leadás; hozzáférés-visszavonás → 0 projekt/dokumentum/objektum |
+| Tesztadat | a tulajdonos kérésére **bent maradt** (TESZT ügyfél, „Teszt” projekt, 2 részlet, 1 befizetés, 2 fájl); a tesztfiók (lukacsartur13@icloud.com) projekt-hozzárendelése visszavonva |
+| Eltérés | `PORTAL_ORIGIN` nem lett beállítva (Netlify: Forbidden) — a meghívó-függvény a Netlify `URL`-jét (https://stratosweb.hu) használja; `documents-verify.sql` a 4. szakasz megosztásaival hamis hibát adott → javítva (csak a szkript) |
+| Takarítás később | `drop function if exists public.portal_maintenance_gate();` |
+
+---
+
+## 13. 7–8. szakasz — demólinkek, megbeszélések, ügyfélsúgó, észrevételek, új időpont
+
+**Élesben (napló: §15).** Additív: új táblák és függvények, meglévő adatot és írást
+nem érint, ezért **írásvédelem nem kell**. A régi (mostani) portál nem használja az
+új objektumokat; az új portál a migrációk nélkül ezeknél a részeknél
+„nem tölthető be” üzenetet mutat. **Sorrend: migrációk → ellenőrzés → deploy.**
+
+1. Mentés (§3).
+2. `migrations/20261004000100_client_demos_meetings_help.sql`
+3. `migrations/20261004000200_help_seed.sql` — 74 cikk, mind publikált (a tulajdonos 2026-09-28-i döntéseivel); újrafuttatva nem írja felül a szerkesztéseket.
+4. `migrations/20261005000100_client_feedback_reschedule.sql` — demó-észrevételek és időpont-javaslatok.
+5. `checks/client-extras-verify.sql` — minden sor `ok`.
+6. `checks/client-portal-verify.sql` — minden sor `ok` (a definer-lista már a 7. szakaszt is ismeri).
+7. Deploy (commit + push a `main`-re).
+8. Próba a TESZT projekten: demó + megbeszélés; a tesztfiókkal a demókártya, „Észrevételek”, „Új időpont javaslása”, „Google Naptárba helyezés”, Segítség fül; tulajdonosként a „Client inbox” és a projektoldali elfogadás/elutasítás.
+
+Visszaállítás: a frontend előző deployja; a táblák maradhatnak (semmi nem olvassa őket).
+Ha el kell zárni:
+`revoke execute on function client_portal_demos(), client_portal_meetings(), client_help_articles() from authenticated;`
+`revoke execute on function client_send_demo_feedback(uuid,text), client_request_meeting_change(uuid,timestamptz,timestamptz,text,text), client_withdraw_meeting_request(uuid) from authenticated;`
+
+### Tulajdonosi tudnivalók
+
+- **A demóoldal a portálon kívül publikus.** A portál csak a LINKET mutatja a
+  hozzárendelt ügyfélnek; aki ismeri a címet, megnyithatja. Ha titkos, a demó
+  tárhelyén kell védeni (pl. jelszóval). A portál a linket nem tölti le és nem ágyazza be.
+- Csak `https://` cím fogadható el (nincs `http:`, `javascript:`, `data:`, szóköz,
+  `felhasználó:jelszó@`) — adatbázis-szinten is.
+- A megbeszélés **nem küld e-mailt vagy naptármeghívót**. Az ügyfél a
+  „Google Naptárba helyezés” gombbal menti; a portálon módosított időpont a már
+  elmentett naptárbejegyzést nem frissíti (a felület ezt kiírja).
+- A nyári időszámítás miatt nem létező órát a felület elutasítja; a kétszer
+  előforduló órát csak második mentéssel fogadja el (az első, nyári időt használja).
+- A súgó csak **publikált** cikkekből válaszol, a böngészőben (külső AI nincs), a
+  beszélgetést nem tárolja és nem továbbítja. Szerkesztés: Help centre menü.
+- **Észrevételek (8. szakasz).** Az ügyfél a demó alatt írhat (max. 2000 karakter,
+  naponta 30). **Értesítés nem megy** — a Projektek oldal „Client inbox” panelje és a
+  projekt „Client portal view” része mutatja; „Mark read” után az ügyfél „A Stratos
+  látta” jelzést lát. Az üzenet nem szerkeszthető és nem törölhető.
+- **Új időpont (8. szakasz).** Az ügyfél megbeszélésenként egy függő javaslatot
+  küldhet (múltbeli nem, max. 24 óra), és visszavonhatja. Döntés csak a
+  „Accept — move the meeting” / „Decline” gombbal (az `owner_decide_meeting_request`
+  függvény): elfogadáskor a megbeszélés átkerül az új időpontra, a többi függő
+  javaslat „Másik javaslat lett elfogadva.” megjegyzéssel elutasítva. E-mail itt sem
+  megy; ha sürgős, szólj az ügyfélnek külön.
+
+### A súgócikkek állapota
+
+Vázlat nincs. A négy korábbi vázlat a tulajdonos 2026-09-28-i szövegével publikált
+(elkészülési idő: „az egyeztetés során rögzítjük”; demó-visszajelzés és új időpont a
+portálon; további módosítás: szerződés szerinti körök, díj a mértéktől függ,
+karbantartás havidíjas, válasz 1 munkanapon belül).
+
+A nyilvános webhely (kkv.html, rolunk.html és EN/DE megfelelőik: GYIK, a Rólunk
+„Gyors átfutás” kártyája, a KKV oldal zárómondata) már ugyanezt mondja; napos-hetes
+ígéret nem maradt rajta.
+
+A GYIK-források listája: `supabase/help/faq-inventory.json` (8 publikált oldal,
+oldalanként HU/EN/DE 68-68 bejegyzés, 60 egyedi téma).
+
+### Ami a 7–8. szakaszból ellenőrizve lett (helyben)
+
+| Réteg | Eredmény |
+|---|---|
+| PGlite: jogosultság, idegen projekt, közzététel/visszavonás/hozzáférés-megszüntetés, URL-ek, megbeszélés-szabályok, észrevételek, időpont-javaslat és döntés, verify, párosító | 25/25 |
+| Egységtesztek: DST, Google Naptár-kódolás, „következő” kiválasztás, URL-szabály, párosító, szerződések | 18/18 |
+| Renderelt, mockolt: ügyfél és tulajdonos | 17/17 + 37/37 |
+| Valódi helyi Supabase: kiadási próba, dokumentumok, élő ügyfélportál, böngésző | 36/36, 13/13, 22/22, 18/18 |
+| Valódi Postgres 17.10 | 52/52 |
+| Teljes portál-tesztcsomag (Playwright, minden nézet) | 1161/1161 |
+
+## 14. Megjelenés: Rendszer / Világos / Sötét (csak frontend)
+
+**Élesben (napló: §15).** Migráció és adatbázis-változás nincs, élesítése egy deploy.
+A kapcsoló három helyen van: a tulajdonosi oldalsáv alján, az ügyfélportál fejlécében
+és a bejelentkezési oldalon. Az alapérték a „Rendszer”, ami élőben követi az eszköz
+beállítását. A választást az adott böngésző tárolja (`localStorage`: `stratos.portal.theme`),
+a fiókhoz nem kötődik, és nem megy el sehová. Az első megjelenítés előtt a
+`/portal/theme-boot.js` állítja be (külön fájlban, mert a CSP nem enged inline scriptet),
+ezért nem villan fel a másik téma.
+
+Ellenőrizve: a renderelt tesztek minden ügyfél- és tulajdonosi képernyőt mindkét témában
+végigmérnek, és minden látható szövegnél legalább 4.5:1 kontrasztot követelnek meg
+(19/19, 38/38). A csak node-on futó teszt (`tests/portal-theme.spec.ts`) 5/5.
+A korábban 70–80%-ra halványított szürke feliratok sötét módban sem érték el a 4.5:1-et,
+ezért most teljes erősségűek.
+
+## 15. Élesítési napló — 2026-09-28 (7–8. szakasz, Megjelenés, webhely-GYIK)
+
+| Mi | Érték |
+|---|---|
+| Visszaállítási pont (frontend) | deploy `6ab9a442bd664c0008d7b86e` (commit `20201cd`) |
+| Mentés | `~/stratos-backup/2026-09-28-pre-phase7-8/` (roles/schema/data + SHA256SUMS + a bucket 2 fájlja) |
+| Migrációk (11:23–11:24 UTC) | `20261004000100`, `20261004000200`, `20261005000100` — mind hiba nélkül |
+| Verify élesben | client-extras 10/10, client-portal 13/13, documents 17/17, payment-schedule 15/15, owner-delegates 6/6 |
+| Adatok | 74 súgócikk, mind publikált; a meglévő adatok változatlanok: 1 projekt, 1 ügyfélfiók, 2 fájl |
+| Webhely | az elkészülési idő szövege a súgóéval egyezik (kkv, rólunk; HU/EN/DE); a napos-hetes ígéret törölve |

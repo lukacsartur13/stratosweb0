@@ -64,6 +64,7 @@ const DocumentsProjectScreen = lazy(() =>
 
 // The client portal: a separate, Hungarian surface for `client` accounts, and
 // the page an invitation link opens. Their own chunk: staff never load them.
+const HelpCentreScreen = lazy(() => import('@/pages/help').then((m) => ({ default: m.HelpCentreScreen })));
 const ClientApp = lazy(() => import('@/features/client/ClientApp').then((m) => ({ default: m.ClientApp })));
 const AcceptInvitePage = lazy(() =>
   import('@/features/client/AcceptInvite').then((m) => ({ default: m.AcceptInvitePage })));
@@ -187,6 +188,10 @@ export default function App() {
                 <ProtectedRoute capability="view_documents"><DocumentsScreen /></ProtectedRoute>} />
               <Route path="documents/:id" element={
                 <ProtectedRoute capability="view_documents"><DocumentsProjectScreen /></ProtectedRoute>} />
+
+              {/* ---------------------------------------- the help centre */}
+              <Route path="help" element={
+                <ProtectedRoute capability="manage_help"><HelpCentreScreen /></ProtectedRoute>} />
 
               {/* -------------------------------------------- the records */}
               <Route path="case-studies" element={

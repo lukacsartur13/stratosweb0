@@ -226,6 +226,8 @@ test.describe('the portal renders stored values as text, never as markup', () =>
           /^`(mailto:|tel:|https:\/\/|\/|#)/.test(expr) ||
           /^['"](mailto:|tel:|https:\/\/|\/|#)/.test(expr) ||
           /^safeUrl\(/.test(expr) ||                       // scheme decided at the point of use
+          /^safeHttpsUrl\(/.test(expr) ||                  // https only, the database's own rule (lib/meetings.ts)
+          /^googleCalendarUrl\(/.test(expr) ||              // always a literal https://calendar.google.com/… (lib/meetings.ts)
           /^to$|^path$/.test(expr);                        // a router prop, not a URL
         if (!safe) offenders.push(`${path.relative(process.cwd(), file)}: href={${expr}}`);
       }

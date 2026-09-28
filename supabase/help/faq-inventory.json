@@ -1,0 +1,535 @@
+{
+ "generated_from": "published HTML (tracked, excluding * 2.html copies, _backup, dist, experiments)",
+ "per_language": {
+  "hu": 68,
+  "en": 68,
+  "de": 68
+ },
+ "unique_published_topics": 60,
+ "articles": [
+  {
+   "slug": "web-branding-1",
+   "question": "Mi tartozik pontosan a brandépítéshez — csak egy logót kapok?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-branding-2",
+   "question": "Mi a különbség egy logó és egy komplett arculat között?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-branding-3",
+   "question": "Már van arculatom — érdemes újratervezni, vagy elég ráépíteni?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-branding-4",
+   "question": "Hogyan megy a brandépítés díjazása?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-branding-5",
+   "question": "Mennyi idő alatt készül el egy teljes arculat, és mit kell hozzá megadnom?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-branding-6",
+   "question": "Kapok-e brand guide-ot a logó, színek és betűtípusok használatáról?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-branding-7",
+   "question": "Miért fontos a tudatos brandépítés egy kis cégnek?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-branding-8",
+   "question": "Beleszólhatok a kreatív folyamatba, vagy ti döntitek el?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-branding-9",
+   "question": "Össze lesz hangolva a brand a weboldalammal és a hirdetéseimmel?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-branding-10",
+   "question": "Mi történik a kész arculati fájlokkal — szabadon használhatom bárhol?",
+   "topic": "Arculat és brand",
+   "status": "published",
+   "source": "branding.html – GYIK (EN: en/branding.html, DE: de/branding.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-1",
+   "question": "Mennyi hirdetési kerettel érdemes indulni, és ez hogyan viszonyul a kezelési díjhoz?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-2",
+   "question": "Mikor látok először eredményt?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-3",
+   "question": "Google Ads vagy Meta hirdetés éri meg jobban a vállalkozásomnak?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-4",
+   "question": "Honnan tudom, hogy megtérül a hirdetés — mit és hogyan mértek?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-5",
+   "question": "Mi történik a hirdetési fiókkal, ha felmondom a szerződést?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-6",
+   "question": "Miért fizetek havidíjat a kezelésért, ha úgyis a Google/Meta kapja a hirdetési összeget?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-7",
+   "question": "Kell hozzá kész weboldal, vagy elég egy Facebook-oldal is?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-8",
+   "question": "Garantáljátok, hogy megnő az ügyfélszám?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-9",
+   "question": "Ki írja a hirdetésszövegeket és készíti a kreatívokat?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-hirdeteskezeles-10",
+   "question": "Mi a különbség a fizetett hirdetés és a SEO között?",
+   "topic": "Hirdetéskezelés",
+   "status": "published",
+   "source": "hirdeteskezeles.html – GYIK (EN: en/ads-management.html, DE: de/werbeanzeigen.html)"
+  },
+  {
+   "slug": "web-impact-program-1",
+   "question": "Tényleg ingyenes?",
+   "topic": "Impact Program",
+   "status": "published",
+   "source": "impact-program.html – GYIK (EN: en/impact-program.html, DE: de/impact-programm.html)"
+  },
+  {
+   "slug": "web-impact-program-2",
+   "question": "Miért csináljátok ezt?",
+   "topic": "Impact Program",
+   "status": "published",
+   "source": "impact-program.html – GYIK (EN: en/impact-program.html, DE: de/impact-programm.html)"
+  },
+  {
+   "slug": "web-impact-program-3",
+   "question": "Ki jelentkezhet?",
+   "topic": "Impact Program",
+   "status": "published",
+   "source": "impact-program.html – GYIK (EN: en/impact-program.html, DE: de/impact-programm.html)"
+  },
+  {
+   "slug": "web-impact-program-4",
+   "question": "Hány szervezetet választotok ki?",
+   "topic": "Impact Program",
+   "status": "published",
+   "source": "impact-program.html – GYIK (EN: en/impact-program.html, DE: de/impact-programm.html)"
+  },
+  {
+   "slug": "web-impact-program-5",
+   "question": "Karbantartjátok a weboldalt?",
+   "topic": "Impact Program",
+   "status": "published",
+   "source": "impact-program.html – GYIK (EN: en/impact-program.html, DE: de/impact-programm.html)"
+  },
+  {
+   "slug": "web-impact-program-6",
+   "question": "Meglévő weboldalt is újraterveztek?",
+   "topic": "Impact Program",
+   "status": "published",
+   "source": "impact-program.html – GYIK (EN: en/impact-program.html, DE: de/impact-programm.html)"
+  },
+  {
+   "slug": "web-keresooptimalizalas-1",
+   "question": "Mennyi idő alatt látszik eredmény?",
+   "topic": "Keresőoptimalizálás",
+   "status": "published",
+   "source": "keresooptimalizalas.html – GYIK (EN: en/seo-consultancy.html, DE: de/seo-betreuung.html)"
+  },
+  {
+   "slug": "web-keresooptimalizalas-2",
+   "question": "Garantáltok első helyet a Google-ben?",
+   "topic": "Keresőoptimalizálás",
+   "status": "published",
+   "source": "keresooptimalizalas.html – GYIK (EN: en/seo-consultancy.html, DE: de/seo-betreuung.html)"
+  },
+  {
+   "slug": "web-keresooptimalizalas-3",
+   "question": "Mennyibe kerül a keresőoptimalizálás?",
+   "topic": "Keresőoptimalizálás",
+   "status": "published",
+   "source": "keresooptimalizalas.html – GYIK (EN: en/seo-consultancy.html, DE: de/seo-betreuung.html)"
+  },
+  {
+   "slug": "web-keresooptimalizalas-4",
+   "question": "Kell hozzá új weboldal?",
+   "topic": "Keresőoptimalizálás",
+   "status": "published",
+   "source": "keresooptimalizalas.html – GYIK (EN: en/seo-consultancy.html, DE: de/seo-betreuung.html)"
+  },
+  {
+   "slug": "web-keresooptimalizalas-5",
+   "question": "Mi a különbség a SEO és a Google Ads között?",
+   "topic": "Keresőoptimalizálás",
+   "status": "published",
+   "source": "keresooptimalizalas.html – GYIK (EN: en/seo-consultancy.html, DE: de/seo-betreuung.html)"
+  },
+  {
+   "slug": "web-keresooptimalizalas-6",
+   "question": "Ha felmondom, elveszik minden?",
+   "topic": "Keresőoptimalizálás",
+   "status": "published",
+   "source": "keresooptimalizalas.html – GYIK (EN: en/seo-consultancy.html, DE: de/seo-betreuung.html)"
+  },
+  {
+   "slug": "web-kkv-1",
+   "question": "Mennyi idő alatt készül el egy weboldal?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html) · rolunk.html – GYIK (EN: en/about.html, DE: de/ueber-uns.html)"
+  },
+  {
+   "slug": "web-kkv-2",
+   "question": "Miért előnyös a havidíjas konstrukció a nagy egyszeri költség helyett?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html) · rolunk.html – GYIK (EN: en/about.html, DE: de/ueber-uns.html)"
+  },
+  {
+   "slug": "web-kkv-3",
+   "question": "Mennyire lesz testreszabott a weboldalam?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html) · rolunk.html – GYIK (EN: en/about.html, DE: de/ueber-uns.html)"
+  },
+  {
+   "slug": "web-kkv-4",
+   "question": "Később bővíthető vagy fejleszthető a rendszer?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html) · rolunk.html – GYIK (EN: en/about.html, DE: de/ueber-uns.html)"
+  },
+  {
+   "slug": "web-kkv-5",
+   "question": "Mobiltelefonon és tableten is megfelelően működik majd az oldal?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html) · rolunk.html – GYIK (EN: en/about.html, DE: de/ueber-uns.html)"
+  },
+  {
+   "slug": "web-kkv-6",
+   "question": "Segítetek a Google és Meta hirdetések kezelésében is?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html) · rolunk.html – GYIK (EN: en/about.html, DE: de/ueber-uns.html)"
+  },
+  {
+   "slug": "web-kkv-7",
+   "question": "Kapok segítséget abban, hogy megértsem, mi hogyan működik?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html) · rolunk.html – GYIK (EN: en/about.html, DE: de/ueber-uns.html)"
+  },
+  {
+   "slug": "web-kkv-8",
+   "question": "Hogyan követhető a weboldal és a hirdetések teljesítménye?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html) · rolunk.html – GYIK (EN: en/about.html, DE: de/ueber-uns.html)"
+  },
+  {
+   "slug": "web-kkv-9",
+   "question": "Kié a weboldal és a domain?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html)"
+  },
+  {
+   "slug": "web-kkv-10",
+   "question": "Van hűségidő vagy kötbér?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html)"
+  },
+  {
+   "slug": "web-kkv-11",
+   "question": "Mit kell nekem biztosítanom a kezdéshez?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html)"
+  },
+  {
+   "slug": "web-kkv-12",
+   "question": "Mi van, ha már van weboldalam?",
+   "topic": "Weboldal",
+   "status": "published",
+   "source": "kkv.html – GYIK (EN: en/web-design-small-business.html, DE: de/webdesign-kmu.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-1",
+   "question": "Milyen SLA-t és rendelkezésre állást vállaltok?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-2",
+   "question": "Hogyan illeszkedtek a meglévő rendszereinkhez és folyamatainkhoz?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-3",
+   "question": "Hogyan kezelitek az adatbiztonságot és a GDPR-megfelelőséget?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-4",
+   "question": "Skálázható a megoldás több piacra és nagy terhelésre?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-5",
+   "question": "Hogyan áll fel és hogyan skálázódik a dedikált csapat?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-6",
+   "question": "Kié a forráskód és a szellemi tulajdon?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-7",
+   "question": "Milyen technológiákkal dolgoztok?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-8",
+   "question": "Átvesztek meglévő, más által fejlesztett rendszert?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-9",
+   "question": "Hogyan zajlik a riportálás és a projektkövetés?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-nagyvallalat-10",
+   "question": "Milyen szerződéses és elszámolási modellben dolgoztok?",
+   "topic": "Nagyvállalati fejlesztés",
+   "status": "published",
+   "source": "nagyvallalat.html – GYIK (EN: en/bespoke-web-development.html, DE: de/webentwicklung-agentur.html)"
+  },
+  {
+   "slug": "web-webshop-keszites-1",
+   "question": "Mennyibe kerül egy webshop készítés?",
+   "topic": "Webshop",
+   "status": "published",
+   "source": "webshop-keszites.html – GYIK (EN: en/ecommerce-web-design.html, DE: de/onlineshop-erstellung.html)"
+  },
+  {
+   "slug": "web-webshop-keszites-2",
+   "question": "Mennyi idő alatt készül el?",
+   "topic": "Webshop",
+   "status": "published",
+   "source": "webshop-keszites.html – GYIK (EN: en/ecommerce-web-design.html, DE: de/onlineshop-erstellung.html)"
+  },
+  {
+   "slug": "web-webshop-keszites-3",
+   "question": "Át tudtok venni egy meglévő webáruházat?",
+   "topic": "Webshop",
+   "status": "published",
+   "source": "webshop-keszites.html – GYIK (EN: en/ecommerce-web-design.html, DE: de/onlineshop-erstellung.html)"
+  },
+  {
+   "slug": "web-webshop-keszites-4",
+   "question": "Kapok hozzá adminfelületet?",
+   "topic": "Webshop",
+   "status": "published",
+   "source": "webshop-keszites.html – GYIK (EN: en/ecommerce-web-design.html, DE: de/onlineshop-erstellung.html)"
+  },
+  {
+   "slug": "web-webshop-keszites-5",
+   "question": "Ki felel a jogi megfelelésért?",
+   "topic": "Webshop",
+   "status": "published",
+   "source": "webshop-keszites.html – GYIK (EN: en/ecommerce-web-design.html, DE: de/onlineshop-erstellung.html)"
+  },
+  {
+   "slug": "web-webshop-keszites-6",
+   "question": "Mi van, ha nő a bolt?",
+   "topic": "Webshop",
+   "status": "published",
+   "source": "webshop-keszites.html – GYIK (EN: en/ecommerce-web-design.html, DE: de/onlineshop-erstellung.html)"
+  },
+  {
+   "slug": "portal-hol-adom-le",
+   "question": "Hol adhatom le a képeket, a logót és a szövegeket?",
+   "topic": "Ügyfélportál – feltöltés",
+   "status": "published",
+   "source": "features/client/ClientApp.tsx (Nyersanyag leadása), 20261001000100_client_portal.sql"
+  },
+  {
+   "slug": "portal-fajltipusok",
+   "question": "Milyen fájlokat tölthetek fel?",
+   "topic": "Ügyfélportál – feltöltés",
+   "status": "published",
+   "source": "lib/documentRules.ts, lib/clientPortal.ts (CLIENT_ALLOWED_SUMMARY), client_upload_limits()"
+  },
+  {
+   "slug": "portal-javitott-valtozat",
+   "question": "Hogyan adhatok le egy javított változatot?",
+   "topic": "Ügyfélportál – feltöltés",
+   "status": "published",
+   "source": "features/client/ClientApp.tsx, document_free_name()"
+  },
+  {
+   "slug": "portal-dokumentumok-demo",
+   "question": "Hol találom a megosztott dokumentumokat és a demót?",
+   "topic": "Ügyfélportál – dokumentumok és demó",
+   "status": "published",
+   "source": "features/client/ClientApp.tsx, 20261004000100_client_demos_meetings_help.sql"
+  },
+  {
+   "slug": "portal-demo-visszajelzes",
+   "question": "Hogyan jelezzek vissza a demóról?",
+   "topic": "Ügyfélportál – dokumentumok és demó",
+   "status": "published",
+   "source": "nincs hiteles forrás a folyamatra"
+  },
+  {
+   "slug": "portal-kovetkezo-megbeszeles",
+   "question": "Hol látom a következő megbeszélést?",
+   "topic": "Ügyfélportál – megbeszélések",
+   "status": "published",
+   "source": "features/client/ClientApp.tsx, client_portal_meetings()"
+  },
+  {
+   "slug": "portal-naptarba",
+   "question": "Hogyan tehetem be a naptáramba?",
+   "topic": "Ügyfélportál – megbeszélések",
+   "status": "published",
+   "source": "lib/meetings.ts (googleCalendarUrl)"
+  },
+  {
+   "slug": "portal-masik-idopont",
+   "question": "Hogyan kérhetek másik időpontot?",
+   "topic": "Ügyfélportál – megbeszélések",
+   "status": "published",
+   "source": "nincs hiteles forrás a folyamatra"
+  },
+  {
+   "slug": "portal-belepes",
+   "question": "Mit tegyek, ha nem tudok belépni?",
+   "topic": "Ügyfélportál – belépés és hibák",
+   "status": "published",
+   "source": "features/auth/pages.tsx, features/client/AcceptInvite.tsx, Auth-beállítások (PORTAL_RELEASE.md §6)"
+  },
+  {
+   "slug": "portal-feltoltes-hiba",
+   "question": "Mit tegyek, ha nem sikerül a feltöltés?",
+   "topic": "Ügyfélportál – belépés és hibák",
+   "status": "published",
+   "source": "lib/clientPortal.ts (CLIENT_UPLOAD_TEXT), lib/documents.ts (useUploader)"
+  },
+  {
+   "slug": "portal-tovabbi-modositas",
+   "question": "Hogyan kérhetek további módosítást vagy átadás utáni segítséget?",
+   "topic": "Ügyfélportál – módosítás és támogatás",
+   "status": "published",
+   "source": "nincs hiteles forrás"
+  },
+  {
+   "slug": "portal-ki-latja",
+   "question": "Ki látja a feltöltött és a velem megosztott fájlokat?",
+   "topic": "Ügyfélportál – dokumentumok és demó",
+   "status": "published",
+   "source": "20261001000100_client_portal.sql (client_portal_* függvények)"
+  },
+  {
+   "slug": "portal-demo-nyilvanos",
+   "question": "Csak én látom a demóoldalt?",
+   "topic": "Ügyfélportál – dokumentumok és demó",
+   "status": "published",
+   "source": "20261004000100_client_demos_meetings_help.sql (fejléc)"
+  },
+  {
+   "slug": "portal-projekt-allapot",
+   "question": "Hol látom a projekt állapotát, határidejét vagy a fizetéseket?",
+   "topic": "Ügyfélportál – módosítás és támogatás",
+   "status": "published",
+   "source": "client_portal_* függvények (nincs állapot- vagy pénzügyi mező)"
+  }
+ ],
+ "owner_decisions_2026_09_28": [
+  "web-kkv-1: egyeztetés során rögzített határidő (a webhely GYIK-je még a régi szöveget mutatja)",
+  "portal-demo-visszajelzes: Észrevételek funkció",
+  "portal-masik-idopont: új időpont javaslása",
+  "portal-tovabbi-modositas: szerződés szerinti körök, díj a módosítástól, havidíjas karbantartás, válasz 1 munkanapon belül"
+ ]
+}

@@ -27,9 +27,13 @@ select 'definer functions reading projects or the library are exactly the client
        (select coalesce(array_agg(p.proname::text order by p.proname), '{}') from pg_proc p
         where p.pronamespace = 'public'::regnamespace and p.prosecdef and p.prorettype <> 'trigger'::regtype
           and p.prosrc ~* '\m(projects|project_milestones|project_costs|project_links|impact_applications|project_documents|document_folders|document_shares|client_project_access|client_accounts)\M')
-       = array['client_account_id', 'client_begin_upload', 'client_finish_upload', 'client_has_project', 'client_mark_upload',
-               'client_may_read_document', 'client_may_read_object', 'client_may_upload_object', 'client_own_upload',
-               'client_portal_documents', 'client_portal_me', 'client_portal_projects', 'client_portal_uploads'],
+       = (select array_agg(x order by x) from unnest(
+           array['client_account_id', 'client_begin_upload', 'client_finish_upload', 'client_has_project', 'client_mark_upload',
+                 'client_may_read_document', 'client_may_read_object', 'client_may_upload_object', 'client_own_upload',
+                 'client_portal_documents', 'client_portal_me', 'client_portal_projects', 'client_portal_uploads']
+           -- phase 7 (20261004000100), when applied: the same client rules
+           || case when to_regprocedure('public.client_portal_demos()') is not null
+                   then array['client_portal_demos', 'client_portal_meetings'] else '{}'::text[] end) x),
        null
 union all
 select 'client storage policies present',

@@ -66,7 +66,7 @@ export function Field({ label, error, hint, children, id }: FieldProps) {
 }
 
 const fieldBase =
-  'w-full rounded-sm border bg-black/30 px-3 py-2.5 text-sm text-paper placeholder:text-haze/60 ' +
+  'w-full rounded-sm border bg-field px-3 py-2.5 text-sm text-paper placeholder:text-haze/60 ' +
   'transition-colors focus:border-signal/60 focus:outline-none focus-visible:outline-2 ' +
   'focus-visible:outline-signal';
 
@@ -108,7 +108,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSel
     <select
       ref={ref}
       className={cn(
-        'rounded-sm border border-hair bg-black/30 px-2 py-1.5 font-data text-[11px] text-paper',
+        'rounded-sm border border-hair bg-field px-2 py-1.5 font-data text-[11px] text-paper',
         'transition-colors hover:bg-flare focus:border-signal/60 focus:outline-none',
         'focus-visible:outline-2 focus-visible:outline-signal',
         className,
@@ -290,7 +290,7 @@ export function StatusPill({ tone = 'neutral', children }: { tone?: Tone; childr
 /* ------------------------------------------------------------------ states */
 
 export function Skeleton({ className }: { className?: string }) {
-  return <div className={cn('animate-pulse rounded-sm bg-white/[0.04]', className)} aria-hidden="true" />;
+  return <div className={cn('animate-pulse rounded-sm bg-flare', className)} aria-hidden="true" />;
 }
 
 /**

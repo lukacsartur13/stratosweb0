@@ -43,8 +43,10 @@ import { cn } from '@/components/ui';
  * default: on a dashboard with five panels, five palettes is noise.
  */
 
-const AXIS = 'rgba(244,244,244,0.09)';
-const ACCENT = '#FFEE25';
+// CSS variables work only in `style`, not in SVG presentation attributes.
+const AXIS = 'rgb(var(--c-fg) / 0.09)';
+// The line is a stroke, so it takes the readable variant: yellow in dark, amber in light.
+const ACCENT = 'rgb(var(--c-signal-ink))';
 
 /* =================================================================== line == */
 
@@ -131,8 +133,8 @@ export function TrendChart({
       >
         <defs>
           <linearGradient id={`${id}-fill`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor={ACCENT} stopOpacity="0.16" />
-            <stop offset="100%" stopColor={ACCENT} stopOpacity="0" />
+            <stop offset="0%" style={{ stopColor: ACCENT }} stopOpacity="0.16" />
+            <stop offset="100%" style={{ stopColor: ACCENT }} stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -143,7 +145,7 @@ export function TrendChart({
           <line
             key={f}
             x1={0} x2={geometry.w} y1={geometry.h * f} y2={geometry.h * f}
-            stroke={AXIS} strokeWidth={1} vectorEffect="non-scaling-stroke"
+            style={{ stroke: AXIS }} strokeWidth={1} vectorEffect="non-scaling-stroke"
           />
         ))}
 
@@ -151,7 +153,7 @@ export function TrendChart({
         <path
           d={geometry.line}
           fill="none"
-          stroke={ACCENT}
+          style={{ stroke: ACCENT }}
           strokeWidth={1.5}
           strokeLinejoin="round"
           strokeLinecap="round"
@@ -164,7 +166,7 @@ export function TrendChart({
         {baseline && baseline.value > 0 && (
           <line
             x1={0} x2={geometry.w} y1={geometry.y(baseline.value)} y2={geometry.y(baseline.value)}
-            stroke="rgba(203,220,233,0.45)" strokeWidth={1} strokeDasharray="4 4"
+            style={{ stroke: 'rgb(var(--c-chrome) / 0.45)' }} strokeWidth={1} strokeDasharray="4 4"
             vectorEffect="non-scaling-stroke"
           />
         )}
@@ -173,9 +175,9 @@ export function TrendChart({
           <g>
             <line
               x1={geometry.x(hover)} x2={geometry.x(hover)} y1={0} y2={geometry.h}
-              stroke="rgba(244,244,244,0.26)" strokeWidth={1} vectorEffect="non-scaling-stroke"
+              style={{ stroke: 'rgb(var(--c-fg) / 0.26)' }} strokeWidth={1} vectorEffect="non-scaling-stroke"
             />
-            <circle cx={geometry.x(hover)} cy={geometry.y(points[hover])} r={3} fill={ACCENT}
+            <circle cx={geometry.x(hover)} cy={geometry.y(points[hover])} r={3} style={{ fill: ACCENT }}
               vectorEffect="non-scaling-stroke" />
           </g>
         )}
@@ -263,7 +265,7 @@ export function BarList({
           <div className="flex items-baseline justify-between gap-3">
             <span className="min-w-0 break-words text-xs text-paper">{row.key || '—'}</span>
             <span className="num shrink-0 text-xs text-haze">
-              {row.note && <span className="mr-2 text-haze/70">{row.note}</span>}
+              {row.note && <span className="mr-2 text-haze">{row.note}</span>}
               {format(row.value)}
             </span>
           </div>
@@ -310,7 +312,7 @@ export function Funnel({
           <li key={stage.id}>
             {i > 0 && (
               <div className="flex items-center gap-2 py-1.5">
-                <span className="text-[10px] leading-none text-haze/70" aria-hidden="true">↓</span>
+                <span className="text-[10px] leading-none text-haze" aria-hidden="true">↓</span>
                 <span className="num text-[10px] text-haze">
                   {stage.ofPrevious === null ? '—' : `${(stage.ofPrevious * 100).toFixed(1)}%`}
                 </span>
@@ -339,7 +341,7 @@ export function Funnel({
                 style={{ width: `${Math.max(share * 100, stage.count > 0 ? 0.6 : 0).toFixed(2)}%` }}
               />
             </div>
-            {stage.hint && <p className="num mt-1 text-[10px] leading-relaxed text-haze/80">{stage.hint}</p>}
+            {stage.hint && <p className="num mt-1 text-[10px] leading-relaxed text-haze">{stage.hint}</p>}
           </li>
         );
       })}

@@ -16,6 +16,7 @@
 // library. The database's own enforcement is tests/portal-client-db.spec.ts.
 // =============================================================================
 import { chromium } from '@playwright/test';
+import { lowContrast } from './lib-contrast.mjs';
 import { execFileSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import { mkdtempSync, readFileSync, existsSync } from 'node:fs';
@@ -47,6 +48,7 @@ const SHOTS = process.env.SHOTS || null;
 const shot = async (page, name) => { if (SHOTS) await page.screenshot({ path: join(SHOTS, `CLIENT-${name}.png`), fullPage: true }); };
 
 const now = () => new Date().toISOString();
+const inHours = (h) => new Date(Date.now() + h * 3600e3).toISOString();
 const CLIENT = { id: '22222222-2222-4222-8222-222222222222', email: 'anna@a.example' };
 const OWNER = { id: '11111111-1111-4111-8111-111111111111', email: 'owner@example.invalid' };
 const ORG = { id: 'c0000000-0000-4000-8000-000000000001', name: 'Rapidkert Kft.' };
@@ -64,13 +66,30 @@ function freshState(over = {}) {
     failPut: new Set(), revokeOnFinish: new Set(),
     invites: [], shares: [],
     verify: 'ok',
+    demos: [{ demo_id: 'demo-1', project_id: P1, project_name: 'Rapidkert weboldal', title: 'Weboldal demó', url: 'https://demo.example.com/rapidkert',
+      note: 'A kezdőlap és a kapcsolat oldal kész.', updated_at: now() }],
+    meetings: [
+      { meeting_id: 'm-cancel', project_id: P1, project_name: 'Rapidkert weboldal', title: 'Lemondott egyeztetés', starts_at: inHours(2), ends_at: inHours(3),
+        time_zone: 'Europe/Budapest', join_url: 'https://meet.example.com/x', location: null, note: null, cancelled: true },
+      { meeting_id: 'm-next', project_id: P1, project_name: 'Rapidkert weboldal', title: 'Demó átbeszélése & „árajánlat”', starts_at: inHours(26), ends_at: inHours(27),
+        time_zone: 'Europe/Budapest', join_url: 'https://meet.example.com/abc', location: null, note: 'Hozd a kérdéseidet.', cancelled: false },
+      { meeting_id: 'm-later', project_id: P1, project_name: 'Rapidkert weboldal', title: 'Átadás', starts_at: inHours(200), ends_at: inHours(201),
+        time_zone: 'Europe/Budapest', join_url: null, location: 'Budapest, Váci út 1.', note: null, cancelled: false },
+    ],
+    help: [
+      { article_id: 'h1', topic: 'Ügyfélportál – feltöltés', question: 'Hol adhatom le a képeket, a logót és a szövegeket?', alt_questions: ['hova töltsem fel a logót'],
+        answer: 'A portál „Nyersanyag leadása” menüpontjában.' },
+      { article_id: 'h2', topic: 'Ügyfélportál – feltöltés', question: 'Milyen fájlokat tölthetek fel?', alt_questions: ['mekkora fájlt tölthetek fel'], answer: 'Fájlonként legfeljebb 50 MB.' },
+      { article_id: 'h3', topic: 'Ügyfélportál – megbeszélések', question: 'Hogyan tehetem be a naptáramba?', alt_questions: ['google naptár'], answer: 'A „Google Naptárba helyezés” gombbal.' },
+    ],
+    feedback: [], reqs: [],
     ...over,
   };
 }
 const json = (route, body, status = 200) => route.fulfill({ status, contentType: 'application/json', body: JSON.stringify(body) });
 
-async function open(browser, { role = 'client', state = freshState(), viewport = { width: 1280, height: 900 }, session = true } = {}) {
-  const context = await browser.newContext({ viewport, locale: 'hu-HU', acceptDownloads: true });
+async function open(browser, { role = 'client', state = freshState(), viewport = { width: 1280, height: 900 }, session = true, colorScheme = 'dark' } = {}) {
+  const context = await browser.newContext({ viewport, locale: 'hu-HU', acceptDownloads: true, colorScheme });
   const user = role === 'client' ? CLIENT : OWNER;
   const profile = { id: user.id, email: user.email, full_name: role === 'client' ? 'Kovács Anna' : 'Owner', avatar_url: null,
     role: role === 'client' ? 'client' : role === 'owner' ? 'super_admin' : role, organization_id: role === 'client' ? ORG.id : null };
@@ -106,7 +125,7 @@ async function open(browser, { role = 'client', state = freshState(), viewport =
     if (url.includes('/rest/v1/profiles')) return json(route, profile);
 
     // ---- the client API
-    if (url.includes('/rest/v1/rpc/client_portal_me')) return json(route, role === 'client' ? [{ full_name: 'Kovács Anna', company: ORG.name }] : []);
+    if (/\/rest\/v1\/rpc\/client_portal_me(\?|$)/.test(url)) return json(route, role === 'client' ? [{ full_name: 'Kovács Anna', company: ORG.name }] : []);
     if (url.includes('/rest/v1/rpc/client_portal_projects')) return json(route, role === 'client' ? state.projects : []);
     if (url.includes('/rest/v1/rpc/client_portal_documents')) return json(route, role === 'client' ? state.shared : []);
     if (url.includes('/rest/v1/rpc/client_portal_uploads')) return json(route, role === 'client' ? state.uploads : []);
@@ -134,6 +153,25 @@ async function open(browser, { role = 'client', state = freshState(), viewport =
       Object.assign(u, { state: b.p_state, failure_reason: b.p_state === 'failed' ? b.p_reason : null });
       return json(route, u.state);
     }
+    if (url.includes('/rest/v1/rpc/client_portal_demos')) return json(route, role === 'client' ? state.demos.filter((d) => state.projects.some((p) => p.project_id === d.project_id)) : []);
+    if (url.includes('/rest/v1/rpc/client_portal_meetings')) return json(route, role === 'client' ? state.meetings.filter((m) => state.projects.some((p) => p.project_id === m.project_id)) : []);
+    if (url.includes('/rest/v1/rpc/client_send_demo_feedback')) {
+      const b = body(); state.feedback.push({ feedback_id: `f-${state.feedback.length + 1}`, demo_id: b.p_demo, body: b.p_body, created_at: now(), seen: false });
+      return json(route, state.feedback.at(-1).feedback_id);
+    }
+    if (url.includes('/rest/v1/rpc/client_portal_demo_feedback')) return json(route, role === 'client' ? state.feedback : []);
+    if (url.includes('/rest/v1/rpc/client_request_meeting_change')) {
+      const b = body();
+      if (state.reqs.some((r) => r.meeting_id === b.p_meeting && r.status === 'pending')) return json(route, { code: 'P0001', message: 'stratos:meeting_request_pending' }, 400);
+      state.reqs.push({ request_id: `r-${state.reqs.length + 1}`, meeting_id: b.p_meeting, proposed_starts_at: b.p_starts, proposed_ends_at: b.p_ends,
+        time_zone: b.p_time_zone, message: b.p_message, status: 'pending', owner_note: null, created_at: now(), decided_at: null });
+      return json(route, state.reqs.at(-1).request_id);
+    }
+    if (url.includes('/rest/v1/rpc/client_withdraw_meeting_request')) {
+      const r = state.reqs.find((x) => x.request_id === body().p_request); r.status = 'withdrawn'; r.decided_at = now(); return json(route, 'withdrawn');
+    }
+    if (url.includes('/rest/v1/rpc/client_portal_meeting_requests')) return json(route, role === 'client' ? state.reqs : []);
+    if (url.includes('/rest/v1/rpc/client_help_articles')) { state.helpReads = (state.helpReads ?? 0) + 1; return json(route, role === 'client' ? state.help : []); }
     if (url.includes('/rest/v1/rpc/')) return json(route, []);
 
     // ---- the owner's tables
@@ -330,7 +368,7 @@ await check('an expired or used link says so, in Hungarian', async () => {
 
 await check('at phone width the client pages fit, and their controls are thumb-sized', async () => {
   const { page, context } = await open(browser, { viewport: { width: 390, height: 844 } });
-  for (const path of ['/', '/megosztott', '/nyersanyag']) {
+  for (const path of ['/', '/megosztott', '/nyersanyag', '/segitseg']) {
     await page.goto(`${BASE}${path}`);
     await page.getByRole('navigation', { name: 'Ügyfélportál' }).waitFor();
     await page.waitForTimeout(300);
@@ -397,6 +435,189 @@ await check('a staff account that is not the owner sees no client accounts and s
   assert(await page.getByLabel('Client accounts').count() === 0, 'the panel is shown to an admin');
   assert(!state.requests.some((r) => r.includes('client_accounts')), 'client_accounts was requested by an admin');
   await context.close();
+});
+
+
+/* ------------------------------------------ phase 7: demos, meetings, help */
+
+await check('Projektjeim: a published demo is a clear card whose button opens a new tab; nothing is embedded', async () => {
+  const { page, context } = await open(browser);
+  await page.goto(`${BASE}/`);
+  const card = page.locator('[data-client-demo="demo-1"]');
+  await card.waitFor();
+  const link = card.getByRole('link', { name: /Demó megtekintése/ });
+  assert(await link.getAttribute('target') === '_blank' && (await link.getAttribute('rel'))?.includes('noopener'), 'demo link not a safe new tab');
+  assert(await link.getAttribute('href') === 'https://demo.example.com/rapidkert', 'wrong demo href');
+  assert(await page.locator('iframe, object, embed').count() === 0, 'something is embedded');
+  assert(await card.getByText('A kezdőlap és a kapcsolat oldal kész.').isVisible(), 'note missing');
+  await shot(page, 'projects-demo-meetings');
+  await context.close();
+});
+
+await check('meetings: the next one is highlighted with a Google Calendar button; a cancelled one has none; the sync caveat is said', async () => {
+  const { page, context } = await open(browser);
+  await page.goto(`${BASE}/`);
+  const next = page.locator('[data-client-meeting="m-next"]');
+  await next.waitFor();
+  assert(await next.getAttribute('data-highlight') === 'true', 'next meeting not highlighted');
+  assert(await next.getByText('Következő megbeszélés').isVisible(), 'no next label');
+  const cal = next.getByRole('link', { name: /Google Naptárba helyezés/ });
+  const href = await cal.getAttribute('href');
+  const u = new URL(href);
+  assert(u.hostname === 'calendar.google.com' && u.searchParams.get('action') === 'TEMPLATE', `calendar link ${href}`);
+  assert(u.searchParams.get('text') === 'Demó átbeszélése & „árajánlat”', `title ${u.searchParams.get('text')}`);
+  assert(/^\d{8}T\d{6}Z\/\d{8}T\d{6}Z$/.test(u.searchParams.get('dates')), 'dates not UTC');
+  assert(await cal.getAttribute('target') === '_blank', 'calendar not a new tab');
+  const cancelled = page.locator('[data-client-meeting="m-cancel"]');
+  assert(await cancelled.getByText('Lemondva').isVisible(), 'cancelled not flagged');
+  assert(await cancelled.getByRole('link', { name: /Google Naptár|Csatlakozás/ }).count() === 0, 'cancelled meeting offers calendar/join');
+  assert(await cancelled.getAttribute('data-highlight') === null, 'cancelled highlighted');
+  assert(await page.getByText('nem frissíti automatikusan', { exact: false }).isVisible(), 'sync caveat missing');
+  const later = page.locator('[data-client-meeting="m-later"]');
+  assert(await later.getByText('Budapest, Váci út 1.').isVisible(), 'place missing');
+  await context.close();
+});
+
+await check('access withdrawn: no project, so no demo and no meeting either', async () => {
+  const { page, context } = await open(browser, { state: freshState({ projects: [] }) });
+  await page.goto(`${BASE}/`);
+  await page.getByText('Nincs projekt').waitFor();
+  assert(await page.locator('[data-client-demo], [data-client-meeting]').count() === 0, 'demo or meeting of a withdrawn project shown');
+  await context.close();
+});
+
+await check('Segítség: known, rephrased and unknown questions — by keyboard, with no request while chatting', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/segitseg`);
+  const input = page.getByLabel('Kérdésed');
+  await input.waitFor();
+  const before = state.requests.length;
+  await input.focus();
+  await page.keyboard.type('mekkora fájlt tölthetek fel?');
+  await page.keyboard.press('Enter');
+  await page.locator('[data-reply="answer"]').last().getByText('Fájlonként legfeljebb 50 MB.').waitFor();
+  await input.fill('google naptár');
+  await page.keyboard.press('Enter');
+  await page.locator('[data-reply="answer"]').last().getByText('Google Naptárba helyezés', { exact: false }).waitFor();
+  await input.fill('mikor fizetem ki a számlát a kutyámnak');
+  await page.keyboard.press('Enter');
+  await page.locator('[data-reply="unknown"]').last().waitFor();
+  assert(await page.getByText('Erre a kérdésre nincs kész válaszom.', { exact: false }).isVisible(), 'unknown not honest');
+  assert(!(await page.locator('[data-help-chat]').innerText()).match(/továbbítottam|elküldtem|elküldtük/i), 'claims to forward');
+  assert(state.requests.length === before, `${state.requests.length - before} requests while chatting`);
+  await page.getByRole('group', { name: 'Témák' }).getByRole('button', { name: 'Ügyfélportál – feltöltés' }).click();
+  await page.getByRole('group', { name: 'Javasolt kérdések' }).getByRole('button', { name: 'Hol adhatom le a képeket, a logót és a szövegeket?' }).click();
+  await page.locator('[data-reply="answer"]').last().getByText('Nyersanyag leadása', { exact: false }).waitFor();
+  await shot(page, 'help');
+  await context.close();
+});
+
+/* --------------------------------- phase 8: demo feedback, reschedule (client) */
+
+await check('Észrevételek: a client writes feedback under the demo by keyboard; it is listed as sent, not yet seen', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  const box = page.locator('[data-demo-feedback="demo-1"]');
+  await box.getByRole('button', { name: 'Észrevételek' }).click();
+  const area = box.getByLabel('Új észrevétel a demóról');
+  await area.focus();
+  await page.keyboard.type('A kapcsolat oldalon elírás van.');
+  await box.getByRole('button', { name: 'Küldés' }).click();
+  await box.getByText('Elküldve.').waitFor();
+  assert(state.feedback.length === 1 && state.feedback[0].body === 'A kapcsolat oldalon elírás van.' && state.feedback[0].demo_id === 'demo-1', JSON.stringify(state.feedback));
+  await box.getByText('Még nem látta').waitFor();
+  assert(!(await box.innerText()).match(/továbbítottam|elküldtük a kollégának/i), 'claims forwarding');
+  await context.close();
+});
+
+await check('Új időpont javaslása: sent as a proposal in the meeting\'s zone; shown as pending; can be withdrawn; the meeting itself is unchanged', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  const card = page.locator('[data-client-meeting="m-next"]');
+  await card.getByRole('button', { name: 'Új időpont javaslása' }).click();
+  const future = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Budapest' }).format(new Date(Date.now() + 5 * 864e5));
+  await card.getByLabel('Dátum').fill(future);
+  await card.getByLabel('Kezdés').fill('14:00');
+  await card.getByLabel('Befejezés').fill('15:00');
+  await card.getByLabel('Üzenet (nem kötelező)').fill('Délután jobb lenne.');
+  await card.getByRole('button', { name: 'Javaslat elküldése' }).click();
+  await card.locator('[data-request-status="pending"]').waitFor();
+  const r = state.reqs[0];
+  assert(r.meeting_id === 'm-next' && r.time_zone === 'Europe/Budapest' && r.message === 'Délután jobb lenne.', JSON.stringify(r));
+  const wall = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Budapest', hourCycle: 'h23', hour: '2-digit', minute: '2-digit' }).format(new Date(r.proposed_starts_at));
+  assert(wall === '14:00', `stored start is ${wall} in Budapest`);
+  assert(state.meetings.find((m) => m.meeting_id === 'm-next').starts_at === state.meetings.find((m) => m.meeting_id === 'm-next').starts_at, 'meeting moved');
+  await card.getByRole('button', { name: 'Javaslat visszavonása' }).click();
+  await card.getByRole('button', { name: 'Új időpont javaslása' }).waitFor();
+  assert(state.reqs[0].status === 'withdrawn', 'not withdrawn');
+  assert(await page.locator('[data-client-meeting="m-cancel"]').getByRole('button', { name: 'Új időpont javaslása' }).count() === 0, 'a cancelled meeting offers a proposal');
+  await shot(page, 'reschedule');
+  await context.close();
+});
+
+/* ============================================================ theme === */
+
+const themeOf = (page) => page.evaluate(() => ({ theme: document.documentElement.dataset.theme, pref: document.documentElement.dataset.themePref,
+  bg: getComputedStyle(document.body).backgroundColor, stored: localStorage.getItem('stratos.portal.theme') }));
+
+await check('Megjelenés: Rendszer follows the device, live; Világos/Sötét are remembered on this device', async () => {
+  const { page, context } = await open(browser, { colorScheme: 'light' });
+  await page.goto(`${BASE}/`);
+  const sw = page.getByRole('radiogroup', { name: 'Megjelenés' });
+  await sw.waitFor();
+  assert(await sw.getByRole('radio', { name: 'Rendszer' }).getAttribute('aria-checked') === 'true', 'default is not Rendszer');
+  let t = await themeOf(page);
+  assert(t.theme === 'light' && t.bg === 'rgb(244, 246, 249)' && t.stored === null, `system light: ${JSON.stringify(t)}`);
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  t = await themeOf(page);
+  assert(t.bg === 'rgb(11, 15, 22)', `system dark bg ${t.bg}`);
+  // Keyboard: the arrow keys move the choice.
+  await sw.getByRole('radio', { name: 'Rendszer' }).focus();
+  await page.keyboard.press('ArrowRight');
+  t = await themeOf(page);
+  assert(t.theme === 'light' && t.pref === 'light' && t.stored === 'light', `after ArrowRight: ${JSON.stringify(t)}`);
+  // Chosen, it no longer follows the device, and survives a reload — set before first paint.
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  t = await themeOf(page);
+  assert(t.theme === 'light' && t.pref === 'light', `after reload: ${JSON.stringify(t)}`);
+  await page.getByRole('radiogroup', { name: 'Megjelenés' }).getByRole('radio', { name: 'Sötét' }).click();
+  t = await themeOf(page);
+  assert(t.theme === 'dark' && t.stored === 'dark', `Sötét: ${JSON.stringify(t)}`);
+  await page.getByRole('radiogroup', { name: 'Megjelenés' }).getByRole('radio', { name: 'Rendszer' }).click();
+  t = await themeOf(page);
+  assert(t.pref === 'system' && t.stored === null && t.theme === 'dark', `back to Rendszer: ${JSON.stringify(t)}`);
+  await context.close();
+});
+
+await check('light theme: every client page and the sign-in page read at 4.5:1 or better; dark stays as it was', async () => {
+  for (const scheme of ['light', 'dark']) {
+    const { page, context } = await open(browser, { colorScheme: scheme });
+    for (const path of ['/', '/megosztott', '/nyersanyag', '/segitseg']) {
+      await page.goto(`${BASE}${path}`);
+      await page.getByRole('navigation', { name: 'Ügyfélportál' }).waitFor();
+      await page.waitForLoadState('networkidle');
+      if (path === '/') {
+        await page.getByText('Rapidkert weboldal').first().waitFor();
+        for (const b of await page.getByRole('button', { name: /Észrevételek|Új időpont javaslása/ }).all()) await b.click();
+      }
+      const bad = await lowContrast(page);
+      assert(bad.length === 0, `${scheme} ${path}: ${JSON.stringify(bad.slice(0, 5))}`);
+      if (path === '/') await shot(page, `theme-${scheme}`);
+    }
+    await context.close();
+    const login = await open(browser, { colorScheme: scheme, session: false });
+    await login.page.goto(`${BASE}/login`);
+    await login.page.getByRole('radiogroup', { name: 'Appearance' }).waitFor();
+    const bad = await lowContrast(login.page);
+    assert(bad.length === 0, `${scheme} login: ${JSON.stringify(bad.slice(0, 5))}`);
+    await shot(login.page, `login-${scheme}`);
+    await login.context.close();
+  }
 });
 
 await browser.close();

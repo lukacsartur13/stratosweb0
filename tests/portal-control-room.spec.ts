@@ -465,7 +465,8 @@ test.describe('one design system', () => {
     const charts = code('components', 'charts.tsx');
     // One accent, one axis colour, declared once and used by every chart.
     expect(charts).toContain("const AXIS = ");
-    expect(charts).toContain("const ACCENT = '#FFEE25'");
+    // The accent is the theme's signal-ink: the brand yellow in dark, amber in light.
+    expect(charts).toContain("const ACCENT = 'rgb(var(--c-signal-ink))'");
   });
 
   test('the typographic ladder is six levels and they are defined once', () => {

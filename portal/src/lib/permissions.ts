@@ -31,6 +31,9 @@ export type Capability =
   // Inviting client accounts, assigning their projects and sharing documents
   // with them (20261001000100_client_portal.sql). Owner-only.
   | 'manage_client_accounts'
+  // The help centre's articles (20261004000100_client_demos_meetings_help.sql):
+  // the knowledge base the client assistant answers from. Owner-only.
+  | 'manage_help'
   // The commercial book: opportunities, the pipeline, follow-ups, performance.
   // A separate capability from `view_clients` even though the same two roles
   // hold both today, because they are different questions: "what are we likely
@@ -99,7 +102,7 @@ export function can(role: Role | null | undefined, capability: Capability): bool
  * policy calls — so the screen and the database cannot disagree about who the
  * owner is. The role check is repeated because the database repeats it.
  */
-export const OWNER_CAPABILITIES: readonly Capability[] = ['view_projects', 'manage_projects', 'view_impact', 'view_documents', 'manage_client_accounts'];
+export const OWNER_CAPABILITIES: readonly Capability[] = ['view_projects', 'manage_projects', 'view_impact', 'view_documents', 'manage_client_accounts', 'manage_help'];
 
 export function canAccess(
   profile: { role: Role; is_owner?: boolean } | null | undefined,

@@ -127,7 +127,16 @@ begin
       continue;
     end if;
     select count(*) into n_docs from project_documents;
-    select count(*) into n_objs from storage.objects where bucket_id = 'project-documents';
+    -- Objects this account may NOT see. After phase 4 a client legitimately
+    -- sees what is shared with it (client_may_read_object); anything beyond
+    -- that is a finding. Before phase 4 the function does not exist and every
+    -- visible object counts.
+    if to_regprocedure('public.client_may_read_object(text)') is not null then
+      execute $q$select count(*) from storage.objects
+                 where bucket_id = 'project-documents' and not public.client_may_read_object(name)$q$ into n_objs;
+    else
+      select count(*) into n_objs from storage.objects where bucket_id = 'project-documents';
+    end if;
     begin
       perform document_begin_upload((select some_project from verify_totals), null, 'x.txt', 1, null, 'text');
       refused := false;

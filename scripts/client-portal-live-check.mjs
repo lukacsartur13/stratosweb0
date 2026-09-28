@@ -372,5 +372,80 @@ await check('password reset e-mail through the local mail catcher, to the allowe
   return `redirect ${redirect} honoured`;
 });
 
+
+/* ========== phase 7: demo links, meetings, help — real PostgREST, real Auth */
+
+await check('phase 7: published demos and upcoming meetings reach only the assigned client; revoking the assignment ends both', async () => {
+  const eva = await inviteAndAccept(owner, orgA, 'eva', [PA]);
+  const iris = await inviteAndAccept(owner, orgB, 'iris', [PB]);
+  const d = await owner.client.from('project_demos').insert({ project_id: PA, title: 'Weboldal demó', url: 'https://demo.example.com/a', client_note: 'Nézd meg', published: true }).select('id').single();
+  assert(!d.error, d.error?.message);
+  const hidden = await owner.client.from('project_demos').insert({ project_id: PA, title: 'Rejtett', url: 'https://demo.example.com/h' }).select('id').single();
+  assert(!hidden.error, hidden.error?.message);
+  const soon = new Date(Date.now() + 86400e3).toISOString(); const end = new Date(Date.now() + 90000e3).toISOString();
+  const m = await owner.client.from('project_meetings').insert({ project_id: PA, title: 'Egyeztetés', starts_at: soon, ends_at: end, join_url: 'https://meet.example.com/x' }).select('id').single();
+  assert(!m.error, m.error?.message);
+  const demos = await eva.client.rpc('client_portal_demos');
+  assert(!demos.error && demos.data.map((x) => x.title).join() === 'Weboldal demó', JSON.stringify(demos.data ?? demos.error));
+  const meets = await eva.client.rpc('client_portal_meetings');
+  assert(!meets.error && meets.data.length === 1 && meets.data[0].title === 'Egyeztetés', JSON.stringify(meets.data ?? meets.error));
+  for (const [label, c] of [['other company', iris.client], ['anon', createClient(URL_, ANON, opts)]]) {
+    const x = await c.rpc('client_portal_demos'); const y = await c.rpc('client_portal_meetings');
+    assert((x.error || x.data.length === 0) && (y.error || y.data.length === 0), `${label} sees them`);
+    const direct = await c.from('project_demos').select('*');
+    assert(direct.error || direct.data.length === 0, `${label} reads the table`);
+  }
+  const bad = await owner.client.from('project_demos').insert({ project_id: PA, title: 'x', url: 'javascript:alert(1)' });
+  assert(bad.error, 'javascript: URL accepted');
+  const acct = (await admin.from('client_accounts').select('id').eq('email', eva.email).single()).data.id;
+  await owner.client.from('client_project_access').update({ revoked_at: new Date().toISOString() }).eq('account_id', acct).is('revoked_at', null);
+  const after = await eva.client.rpc('client_portal_demos'); const after2 = await eva.client.rpc('client_portal_meetings');
+  assert(after.data.length === 0 && after2.data.length === 0, 'revoked client still sees demos or meetings');
+});
+
+await check('phase 7: a client reads published help articles only, without source or review note', async () => {
+  const cl = await inviteAndAccept(owner, orgA, 'hanna', [PA]);
+  const r = await cl.client.rpc('client_help_articles');
+  assert(!r.error && r.data.length > 0, r.error?.message ?? 'empty');
+  assert(JSON.stringify(Object.keys(r.data[0]).sort()) === JSON.stringify(['alt_questions', 'answer', 'article_id', 'question', 'topic']), Object.keys(r.data[0]).join());
+  const drafts = (await admin.from('help_articles').select('id').eq('status', 'draft')).data.map((x) => x.id);
+  assert(!r.data.some((x) => drafts.includes(x.article_id)), 'a draft reached a client');
+  const direct = await cl.client.from('help_articles').select('*');
+  assert(direct.error || direct.data.length === 0, 'client reads the table');
+  return `${r.data.length} published, ${drafts.length} drafts withheld`;
+});
+
+
+/* ============== phase 8: demo feedback and reschedule — real PostgREST, real Auth */
+
+await check('phase 8: feedback under a demo reaches the owner; a proposed time is accepted and moves the meeting; others see nothing', async () => {
+  const zoe = await inviteAndAccept(owner, orgA, 'zoe', [PA]);
+  const kim = await inviteAndAccept(owner, orgB, 'kim', [PB]);
+  const d = (await owner.client.from('project_demos').insert({ project_id: PA, title: 'Demó 8', url: 'https://demo.example.com/8', published: true }).select('id').single()).data.id;
+  const s0 = new Date(Date.now() + 2 * 86400e3).toISOString(); const e0 = new Date(Date.now() + 2 * 86400e3 + 3600e3).toISOString();
+  const m = (await owner.client.from('project_meetings').insert({ project_id: PA, title: 'Egyeztetés 8', starts_at: s0, ends_at: e0, location: 'Iroda' }).select('id').single()).data.id;
+  const fb = await zoe.client.rpc('client_send_demo_feedback', { p_demo: d, p_body: 'Tetszik, de a gomb legyen zöld.' });
+  assert(!fb.error, fb.error?.message);
+  assert((await kim.client.rpc('client_send_demo_feedback', { p_demo: d, p_body: 'x' })).error, 'another company sent feedback');
+  const seen = await owner.client.from('demo_feedback').select('body, account:client_accounts(full_name)').eq('demo_id', d);
+  assert(!seen.error && seen.data.length === 1 && seen.data[0].body === 'Tetszik, de a gomb legyen zöld.', JSON.stringify(seen.error ?? seen.data));
+  assert((await kim.client.from('demo_feedback').select('*')).data?.length === 0, 'client reads the table');
+  const s1 = new Date(Date.now() + 3 * 86400e3).toISOString(); const e1 = new Date(Date.now() + 3 * 86400e3 + 3600e3).toISOString();
+  const rq = await zoe.client.rpc('client_request_meeting_change', { p_meeting: m, p_starts: s1, p_ends: e1, p_time_zone: 'Europe/Budapest', p_message: 'Szerda jobb.' });
+  assert(!rq.error, rq.error?.message);
+  assert((await zoe.client.from('meeting_change_requests').update({ status: 'accepted' }).eq('id', rq.data)).error
+    || (await admin.from('meeting_change_requests').select('status').eq('id', rq.data).single()).data.status === 'pending', 'client decided its own request');
+  const direct = await owner.client.from('meeting_change_requests').update({ status: 'accepted' }).eq('id', rq.data).select('id');
+  assert(direct.error || direct.data.length === 0, 'the owner bypassed the decision function');
+  const dec = await owner.client.rpc('owner_decide_meeting_request', { p_request: rq.data, p_accept: true, p_note: null });
+  assert(!dec.error && dec.data === 'accepted', JSON.stringify(dec.error ?? dec.data));
+  const now = await zoe.client.rpc('client_portal_meetings');
+  const moved = now.data.find((x) => x.meeting_id === m);
+  assert(new Date(moved.starts_at).getTime() === new Date(s1).getTime(), `meeting at ${moved.starts_at}`);
+  const mine = await zoe.client.rpc('client_portal_meeting_requests');
+  assert(mine.data.length === 1 && mine.data[0].status === 'accepted', JSON.stringify(mine.data));
+  assert(((await kim.client.rpc('client_portal_meeting_requests')).data ?? []).length === 0, 'another company sees the request');
+});
+
 console.log(`\n${results.filter(Boolean).length}/${results.length} live client-portal checks passed`);
 process.exit(results.every(Boolean) ? 0 : 1);

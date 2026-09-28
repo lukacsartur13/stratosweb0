@@ -29,6 +29,7 @@ import { impactCloseBlockers, parseMarketValue } from '@/lib/impactRules';
 import { safeUrl } from '@/pages/clients';
 import { ProjectLibrary } from '@/features/documents/ProjectLibrary';
 import { PaymentSchedule, Receivables } from '@/features/payments/PaymentSchedule';
+import { ClientInbox, ClientViewPanel } from '@/features/client-view/ClientViewPanel';
 
 /**
  * PROJECTS — the owner's private delivery tracker.
@@ -266,6 +267,8 @@ export function ProjectsScreen() {
 
       {/* Owner-only like the whole screen: the figures come from RLS-guarded
           rows, so any other account would see an empty panel anyway. */}
+      {canAccess(profile, 'manage_client_accounts') && <ClientInbox reloadToken={reloadToken} />}
+
       <Receivables reloadToken={reloadToken} />
 
       {mayEdit && creating && (
@@ -630,6 +633,12 @@ export function ProjectDetailScreen() {
                 Open in Documents
               </Link>
             </div>
+          )}
+
+          {/* ------------------------------------ client portal view */}
+          {/* Demo links and meetings the project's assigned client sees. */}
+          {canAccess(profile, 'manage_client_accounts') && (
+            <ClientViewPanel projectId={project.id} projectName={project.name} />
           )}
 
           {/* ------------------------------------------------ links */}

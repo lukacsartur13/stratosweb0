@@ -514,7 +514,7 @@ function UploadQueue({
                 )}
               </span>
             </div>
-            <div className="h-0.5 w-full overflow-hidden rounded-full bg-white/[0.06]" role="progressbar"
+            <div className="h-0.5 w-full overflow-hidden rounded-full bg-flare" role="progressbar"
                  aria-label={`${i.name} upload`} aria-valuemin={0} aria-valuemax={100}
                  aria-valuenow={Math.round((i.phase === 'done' ? 1 : i.progress) * 100)}>
               <div className={cn('h-full transition-[width]', i.phase === 'failed' ? 'bg-danger' : 'bg-signal')}

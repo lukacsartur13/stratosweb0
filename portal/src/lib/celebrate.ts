@@ -29,8 +29,13 @@ const TEXT: Record<Celebration, string> = {
   deal_won: 'Deal won',
 };
 
-// tailwind.config.ts: signal, paper, chrome, good.
-const PALETTE = ['#FFEE25', '#F4F4F4', '#CBDCE9', '#3ECF8E'];
+// The theme's signal, paper, chrome and good, read when the burst starts —
+// a canvas cannot resolve CSS variables itself. The fallbacks are the dark theme.
+const PALETTE_TOKENS: [string, string][] = [['signal', '255 238 37'], ['paper', '244 244 244'], ['chrome', '203 220 233'], ['good', '62 207 142']];
+function palette(): string[] {
+  const css = getComputedStyle(document.documentElement);
+  return PALETTE_TOKENS.map(([name, fallback]) => `rgb(${css.getPropertyValue(`--c-${name}`).trim() || fallback})`);
+}
 
 export function prefersReducedMotion(): boolean {
   try {
@@ -79,6 +84,7 @@ function burst() {
   canvas.style.height = `${height}px`;
   ctx.scale(dpr, dpr);
   document.body.appendChild(canvas);
+  const PALETTE = palette();
 
   // Two fans, from just below the top corners, meeting over the content.
   const pieces = Array.from({ length: 80 }, (_, i) => {

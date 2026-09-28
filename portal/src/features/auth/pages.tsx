@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
 import { Button, Field, Input, Panel } from '@/components/ui';
+import { ThemeSwitch } from '@/components/ThemeSwitch';
 
 /* --------------------------------------------------------------- chrome */
 export function AuthShell({ title, lede, children }: { title: string; lede: string; children: ReactNode }) {
@@ -34,6 +35,7 @@ export function AuthShell({ title, lede, children }: { title: string; lede: stri
             Back to the website
           </a>
         </p>
+        <div className="mt-4 flex justify-center"><ThemeSwitch /></div>
       </div>
     </main>
   );

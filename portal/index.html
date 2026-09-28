@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="hu" class="dark">
+<html lang="hu">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,6 +25,9 @@
          Archivo and JetBrains Mono. Two of the three families this interface
          asks for are in it. See FONTS.md and scripts/sync-fonts.mjs. -->
     <link rel="stylesheet" href="/assets/css/type.css" />
+    <!-- Sets data-theme before first paint (System / Light / Dark). A classic,
+         blocking file rather than inline code: the CSP allows no inline script. -->
+    <script src="/portal/theme-boot.js"></script>
     <title>Stratos — Portal</title>
   </head>
   <body class="bg-ink text-paper font-body antialiased">
