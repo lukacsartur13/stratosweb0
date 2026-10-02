@@ -503,6 +503,8 @@ képernyőn); a meglévő portál-tesztek (node + desktop-1440) zöldek.
 
 ## 17. Kuka: projektek, ügyfelek és leadek törlése a portálon (10. szakasz)
 
+**Élesítve 2026-10-02:** a migráció hiba nélkül lefutott az SQL-szerkesztőben, utána push a `main`-re.
+
 **Sorrend: migráció → ellenőrzés → deploy.** Az új portál olvassa a `leads.trashed_at`
 oszlopot; a migráció előtt a Leads lista hibát adna. A mostani élő portál a migráció
 után változatlanul működik, karbantartási ablak nem kell.
