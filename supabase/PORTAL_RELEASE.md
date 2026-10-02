@@ -470,3 +470,33 @@ ezért most teljes erősségűek.
 | Verify élesben | client-extras 10/10, client-portal 13/13, documents 17/17, payment-schedule 15/15, owner-delegates 6/6 |
 | Adatok | 74 súgócikk, mind publikált; a meglévő adatok változatlanok: 1 projekt, 1 ügyfélfiók, 2 fájl |
 | Webhely | az elkészülési idő szövege a súgóéval egyezik (kkv, rólunk; HU/EN/DE); a napos-hetes ígéret törölve |
+
+## 16. Havi szerződések (9. szakasz)
+
+**Élesítve 2026-10-02:** a migráció lefutott az SQL-szerkesztőben, az ellenőrző lekérdezés
+minden sora az elvárt értéket adta (a tulajdonos jelzése szerint); a frontend a `main`-re
+pusholt commitból deployol. Eredetileg: egy migráció, utána egy deploy — **ebben a sorrendben**: az új
+portál már olvassa a `billing` és `monthly_fee` oszlopot, a migráció előtt a
+projektképernyők „Unavailable”-t mutatnának.
+
+1. SQL-szerkesztő: `supabase/migrations/20261006000100_monthly_contracts.sql` (hiba nélkül fut; ismételt futtatás is biztonságos).
+2. Deploy.
+
+Mit csinál:
+
+- A projekt **egyszeri** (`one_off`, minden meglévő projekt ilyen marad) vagy **havi
+  szerződés** (`monthly`). Létrehozáskor választod, utána nem változtatható
+  (`stratos:project_billing_fixed`).
+- Havi szerződésnek **havi díja** van (kötelező, a projekt pénznemében), egyszeri
+  projektértéke nincs; Impact projekt nem lehet havi. Ezt az adatbázis is kikényszeríti
+  (`projects_monthly_shape_check`). A díj minden változása naplózódik (Activity).
+- **Külön kezelés:** Projects → **Monthly contracts** fül: a futó szerződések havi díjai
+  pénznemenként összesítve, a lista a díjjal, kezdettel, eltelt hónapokkal, lejárattal.
+  Az Active/Closed lista és a Dashboard „Active projects” blokkja csak egyszeri projekteket mutat.
+- A szerződés **megszüntetése** = lezárás („End contract”), checkpoint nélkül is; újranyitható.
+- **Fizetés:** ugyanaz a fizetési ütemező, havonta egy részlettel; a „+ Month” gomb kitölti
+  a következő hónapot a mostani díjjal. Havi szerződésnél nincs „schedule ≠ contract” jelzés.
+
+Ellenőrizve (helyben): PGlite `tests/portal-monthly-db.spec.ts` 9/9; renderelt, mockolt
+`scripts/portal-tracker-check.mjs` 42/42 (benne 4 új havi eset és a kontrasztmérés a két új
+képernyőn); a meglévő portál-tesztek (node + desktop-1440) zöldek.

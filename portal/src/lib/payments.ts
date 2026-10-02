@@ -62,7 +62,7 @@ export function usePaymentSchedule(projectId: string | undefined, enabled = true
     setPayments((p.data ?? []).map((r) => asNumber(r, ['amount']) as unknown as Payment));
     const row = ((o.data ?? []) as Record<string, unknown>[])[0];
     setOverview(row
-      ? asNumber(row, ['contracted', 'scheduled', 'paid', 'remaining', 'overpaid', 'overdue', 'schedule_gap']) as unknown as PaymentOverview
+      ? asNumber(row, ['contracted', 'scheduled', 'paid', 'remaining', 'overpaid', 'overdue', 'schedule_gap', 'monthly_fee']) as unknown as PaymentOverview
       : null);
     setLegacy(l.data
       ? asNumber(l.data as Record<string, unknown>, ['value', 'invoiced_amount', 'paid_amount']) as unknown as LegacyFinance
@@ -91,7 +91,7 @@ export function usePaymentOverview(enabled = true, reloadToken = 0) {
       return;
     }
     setRows(((data ?? []) as Record<string, unknown>[]).map((r) =>
-      asNumber(r, ['contracted', 'scheduled', 'paid', 'remaining', 'overpaid', 'overdue', 'schedule_gap']) as unknown as PaymentOverview));
+      asNumber(r, ['contracted', 'scheduled', 'paid', 'remaining', 'overpaid', 'overdue', 'schedule_gap', 'monthly_fee']) as unknown as PaymentOverview));
     setState('ready');
   }, [enabled, reloadToken]);
 

@@ -35,6 +35,7 @@ const NODE_ONLY = [
   /portal-payments-db\.spec\.ts/,
   /portal-payments\.spec\.ts/,
   /portal-delegates-db\.spec\.ts/,
+  /portal-monthly-db\.spec\.ts/,
   /portal-client-extras\.spec\.ts/,
 ];
 

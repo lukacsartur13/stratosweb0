@@ -135,7 +135,7 @@ test.describe('owner-only', () => {
 
 test.describe('separation from the paid business', () => {
   test('the paid project list excludes Impact; the Dashboard counts paid, live projects', () => {
-    expect(read('pages', 'projects.tsx')).toContain("rows.filter((p) => !p.archived_at && p.program !== 'impact')");
+    expect(read('pages', 'projects.tsx')).toMatch(/rows\.filter\(\(p\) => !p\.archived_at && p\.program !== 'impact'/);
     const biz = read('lib', 'business.ts');
     expect(biz).toContain(".eq('program', 'paid')");
     expect(biz).toContain('"completed","archived","care","cancelled"');
@@ -148,7 +148,8 @@ test.describe('separation from the paid business', () => {
 
   test('an Impact project is never sent a fee, currency or payment from the edit dialog', () => {
     const projects = read('pages', 'projects.tsx');
-    expect(projects).toMatch(/\.\.\.\(impact \? \{\} : \{\s*value:/);
+    // Paid one-off projects send `value`; monthly contracts send `monthly_fee`; Impact sends neither.
+    expect(projects).toMatch(/\.\.\.\(impact \? \{\} : \{\s*\.\.\.\(monthly \? \{ monthly_fee: [^}]*\} : \{ value:/);
   });
 
   test('starting a project is one RPC, not a sequence of client writes', () => {

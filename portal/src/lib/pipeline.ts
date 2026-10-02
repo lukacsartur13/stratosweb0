@@ -789,6 +789,12 @@ export function closeRefusal(message: string | null | undefined): string | null 
   if (message.includes('stratos:impact_close_no_market_value')) {
     return 'Record the market value of the donated work before closing an Impact project — and a closed one keeps it.';
   }
+  if (message.includes('stratos:project_billing_fixed')) {
+    return 'A project is one-off or a monthly contract from the day it is created.';
+  }
+  if (message.includes('projects_monthly_shape_check')) {
+    return 'A monthly contract needs a monthly fee and has no one-off project value.';
+  }
   if (message.includes('stratos:project_program_fixed')) {
     return 'A project is paid or Impact from the day it is created.';
   }
@@ -807,3 +813,42 @@ export const COST_LABEL: Record<string, string> = {
   production: 'Production',
   other: 'Other direct cost',
 };
+
+/* ====================================================== monthly contracts == */
+
+/**
+ * A monthly contract — billed by the month, listed and totalled apart from
+ * one-off projects. `billing` is absent on rows read before the migration,
+ * which are all one-off.
+ */
+export const isMonthly = (p: { billing?: string | null }) => p.billing === 'monthly';
+
+/**
+ * The monthly fees of the running (not ended, not archived) contracts, per
+ * currency — never added across currencies.
+ */
+export function monthlyTotals(projects: {
+  billing?: string | null; monthly_fee: number | null; currency: string; status: string; archived_at: string | null;
+}[]) {
+  const by = new Map<string, { currency: string; total: number; contracts: number }>();
+  for (const p of projects) {
+    if (p.billing !== 'monthly' || p.archived_at || p.status === 'completed' || p.status === 'cancelled') continue;
+    const t = by.get(p.currency) ?? { currency: p.currency, total: 0, contracts: 0 };
+    t.total = Math.round((t.total + Number(p.monthly_fee ?? 0)) * 100) / 100;
+    t.contracts += 1;
+    by.set(p.currency, t);
+  }
+  return [...by.values()].sort((a, b) => (a.currency === 'HUF' ? -1 : b.currency === 'HUF' ? 1 : a.currency.localeCompare(b.currency)));
+}
+
+/**
+ * Whole months a contract has run: from its start to today, or to its end if
+ * it has ended. `null` without a start date. A partial month counts as begun.
+ */
+export function monthsRunning(start: string | null, until: string): number | null {
+  if (!start) return null;
+  const [sy, sm, sd] = start.slice(0, 10).split('-').map(Number);
+  const [uy, um, ud] = until.slice(0, 10).split('-').map(Number);
+  const months = (uy - sy) * 12 + (um - sm) + (ud >= sd ? 1 : 0);
+  return Math.max(months, 0);
+}

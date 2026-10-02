@@ -429,7 +429,10 @@ export function ClientDetailScreen() {
                       <StatusPill tone={projectStatusTone(p.status)}>{projectStatusLabel(p.status)}</StatusPill>
                     </Cell>
                     <Cell align="right" className="num text-xs text-paper">
-                      {money(p.value, p.currency) ?? <span className="text-haze">—</span>}
+                      {/* A monthly contract's fee is per month — never shown as if it were a project value. */}
+                      {p.billing === 'monthly'
+                        ? <>{money(p.monthly_fee, p.currency)} <span className="text-haze">/ month</span></>
+                        : money(p.value, p.currency) ?? <span className="text-haze">—</span>}
                     </Cell>
                     <Cell className="num whitespace-nowrap text-[11px] text-haze">{shortDate(p.target_date)}</Cell>
                   </Row>

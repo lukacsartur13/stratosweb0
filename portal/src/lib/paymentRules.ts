@@ -57,6 +57,10 @@ export interface PaymentOverview {
   instalments: number;
   payments: number;
   undated_payments: number;
+  /** `one_off` | `monthly` (20261006000100). Absent before that migration. */
+  billing?: string;
+  /** Monthly contracts only: the agreed fee per month. */
+  monthly_fee?: number | null;
 }
 
 /** The pre-schedule single-sum figures, kept verbatim by the migration. */
@@ -174,9 +178,14 @@ export function totalsByCurrency(rows: PaymentOverview[]) {
   return [...by.values()].sort((a, b) => (a.currency === 'HUF' ? -1 : b.currency === 'HUF' ? 1 : a.currency.localeCompare(b.currency)));
 }
 
-/** A schedule that exists and does not add up to the contract, or a contract never recorded. */
-export function hasScheduleMismatch(r: Pick<PaymentOverview, 'instalments' | 'schedule_gap' | 'contracted'>) {
+/**
+ * A schedule that exists and does not add up to the contract, or a contract
+ * never recorded. A monthly contract has no total to add up to — one
+ * instalment per month is its whole shape — so it is never a mismatch.
+ */
+export function hasScheduleMismatch(r: Pick<PaymentOverview, 'instalments' | 'schedule_gap' | 'contracted' | 'billing'>) {
   if (r.instalments === 0) return false;
+  if (r.billing === 'monthly') return false;
   if (r.contracted === null) return true;
   return r.schedule_gap !== null && r.schedule_gap !== 0;
 }
@@ -243,4 +252,25 @@ export function paymentRefusal(error: { code?: string | null; message?: string |
     return 'The payment schedule is not installed on this database yet (20261002000100_payment_schedule.sql).';
   }
   return 'The payment could not be saved. Check that this account is the portal owner, then try again.';
+}
+
+/**
+ * The next month of a monthly contract: one month after the latest due date
+ * (keeping its day of the month, clamped to the month's length), or today when
+ * there is none. Named like "2026. október", at the current fee.
+ */
+export function nextMonth(dues: (string | null)[], fee: number, today: string): { label: string; amount: number; due_on: string } {
+  const latest = dues.filter((d): d is string => Boolean(d)).sort().pop();
+  let due = today;
+  if (latest) {
+    const [y, mo, d] = latest.split('-').map(Number);
+    const ny = mo === 12 ? y + 1 : y;
+    const nm = mo === 12 ? 1 : mo + 1;
+    const last = new Date(Date.UTC(ny, nm, 0)).getUTCDate();
+    due = `${ny}-${String(nm).padStart(2, '0')}-${String(Math.min(d, last)).padStart(2, '0')}`;
+  }
+  const [y, mo] = due.split('-').map(Number);
+  const label = new Intl.DateTimeFormat('hu-HU', { year: 'numeric', month: 'long', timeZone: 'UTC' })
+    .format(new Date(Date.UTC(y, mo - 1, 1)));
+  return { label, amount: fee, due_on: due };
 }

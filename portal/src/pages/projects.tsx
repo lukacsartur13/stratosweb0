@@ -18,7 +18,7 @@ import {
   type TrackerSummary,
 } from '@/lib/pipeline';
 import {
-  costTotal, uniqueSlug, useCheckpointTemplates, useClients, useOperationsMutations,
+  costTotal, isMonthly, monthlyTotals, monthsRunning, uniqueSlug, useCheckpointTemplates, useClients, useOperationsMutations,
   useProjectDetail, useProjects, useTrackerRows,
   type CheckpointTemplate, type ClientContact, type Milestone, type Project,
 } from '@/lib/operations';
@@ -29,6 +29,7 @@ import { impactCloseBlockers, parseMarketValue } from '@/lib/impactRules';
 import { safeUrl } from '@/pages/clients';
 import { ProjectLibrary } from '@/features/documents/ProjectLibrary';
 import { PaymentSchedule, Receivables } from '@/features/payments/PaymentSchedule';
+import { budapestToday } from '@/lib/paymentRules';
 import { ClientInbox, ClientViewPanel } from '@/features/client-view/ClientViewPanel';
 
 /**
@@ -47,9 +48,13 @@ import { ClientInbox, ClientViewPanel } from '@/features/client-view/ClientViewP
  * Active and Closed are the two halves of one list. Closed is `completed`,
  * which only the database's close rule can set; archiving (`archived_at`) is a
  * different thing and archived projects appear in neither.
+ *
+ * Monthly contracts (20261006000100_monthly_contracts.sql) are a third list of
+ * their own: billed by the month, totalled by monthly fee, and never counted in
+ * Active or Closed.
  */
 
-type View = 'active' | 'closed';
+type View = 'active' | 'closed' | 'monthly';
 type Flag = 'all' | 'late' | 'waiting' | 'blocked';
 
 export function ProjectsScreen() {
@@ -59,7 +64,7 @@ export function ProjectsScreen() {
   const [params, setParams] = useSearchParams();
   const mayEdit = canAccess(profile, 'manage_projects');
 
-  const view: View = params.get('view') === 'closed' ? 'closed' : 'active';
+  const view: View = params.get('view') === 'closed' ? 'closed' : params.get('view') === 'monthly' ? 'monthly' : 'active';
   const { rows, state, message, reload } = useProjects(reloadToken);
   const [query, setQuery] = useState('');
   const [flag, setFlag] = useState<Flag>('all');
@@ -71,9 +76,15 @@ export function ProjectsScreen() {
     setParams(updated, { replace: true });
   };
 
-  // Paid projects. Impact projects have their own screen (/impact) and their
-  // own counters; they share the detail screen, not this list.
-  const present = useMemo(() => rows.filter((p) => !p.archived_at && p.program !== 'impact'), [rows]);
+  // Paid one-off projects. Impact projects have their own screen (/impact) and
+  // their own counters; monthly contracts have their own view below. All three
+  // share the detail screen, not this list.
+  const present = useMemo(
+    () => rows.filter((p) => !p.archived_at && p.program !== 'impact' && !isMonthly(p)),
+    [rows],
+  );
+  const monthly = useMemo(() => rows.filter((p) => !p.archived_at && isMonthly(p)), [rows]);
+  const runningMonthly = monthly.filter((p) => !isClosedProject(p)).length;
   const tracker = useTrackerRows(
     present.map((p) => p.id),
     [...new Set(present.map((p) => p.organization_id))],
@@ -128,7 +139,11 @@ export function ProjectsScreen() {
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <nav aria-label="Project views" className="flex flex-wrap items-center gap-px">
-          {([['active', `Active (${activeCount})`], ['closed', `Closed (${closedCount})`]] as const).map(([id, label]) => (
+          {([
+            ['active', `Active (${activeCount})`],
+            ['closed', `Closed (${closedCount})`],
+            ['monthly', `Monthly contracts (${runningMonthly})`],
+          ] as const).map(([id, label]) => (
             <button
               key={id}
               type="button"
@@ -154,6 +169,9 @@ export function ProjectsScreen() {
         </div>
       </div>
 
+      {view === 'monthly' ? (
+        <MonthlyContracts rows={monthly} state={state} message={message} onRetry={reload} />
+      ) : (
       <Panel className="min-w-0">
         <SectionHeader
           title={view === 'closed' ? 'Closed projects' : 'Active projects'}
@@ -264,6 +282,7 @@ export function ProjectsScreen() {
           </Table>
         )}
       </Panel>
+      )}
 
       {/* Owner-only like the whole screen: the figures come from RLS-guarded
           rows, so any other account would see an empty panel anyway. */}
@@ -273,10 +292,124 @@ export function ProjectsScreen() {
 
       {mayEdit && creating && (
         <NewProjectDialog
+          monthly={view === 'monthly'}
           onClose={() => setCreating(false)}
           onCreated={(id) => { setCreating(false); void reload(); navigate(`/projects/${id}`); }}
         />
       )}
+    </div>
+  );
+}
+
+/**
+ * MONTHLY CONTRACTS — paid work billed by the month, kept apart from the
+ * one-off projects.
+ *
+ * The top line is the monthly fee of every running contract, one figure per
+ * currency (never added across currencies). A contract that has been ended
+ * (closed) stays listed under it, with the date it ended, and is not counted.
+ * What was actually received is the payment schedule's, per contract.
+ */
+function MonthlyContracts({
+  rows, state, message, onRetry,
+}: { rows: Project[]; state: string; message: string; onRetry: () => void }) {
+  const navigate = useNavigate();
+  const [query, setQuery] = useState('');
+  const totals = monthlyTotals(rows);
+  const today = budapestToday();
+  const q = query.trim().toLowerCase();
+  const sorted = [...rows]
+    .filter((p) => !q || [p.name, p.client?.name, p.service].some((f) => String(f ?? '').toLowerCase().includes(q)))
+    .sort((a, b) => Number(isClosedProject(a)) - Number(isClosedProject(b)) || a.name.localeCompare(b.name));
+
+  return (
+    <div className="grid gap-4">
+      <Panel aria-label="Monthly revenue" className="grid grid-cols-1 divide-y divide-hairline sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        {totals.length === 0 ? (
+          <div className="px-4 py-3.5 sm:col-span-3">
+            <p className="t-section">Monthly fees</p>
+            <p className="t-note mt-1.5">No running monthly contract.</p>
+          </div>
+        ) : totals.map((t) => (
+          <div key={t.currency} className="min-w-0 px-4 py-3.5" data-monthly-total={t.currency}>
+            <p className="t-section">Monthly fees · {t.currency}</p>
+            <p className="t-metric mt-1.5 num">{money(t.total, t.currency)}</p>
+            <p className="t-note mt-1">
+              per month · {t.contracts} running contract{t.contracts === 1 ? '' : 's'}
+            </p>
+          </div>
+        ))}
+      </Panel>
+
+      <Panel className="min-w-0">
+        <SectionHeader
+          title="Monthly contracts"
+          note={state === 'ready' ? `${sorted.length} of ${rows.length}` : undefined}
+          action={
+            <Input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Contract, client, service…"
+              aria-label="Search monthly contracts"
+              className="h-7 w-44 py-1 text-xs sm:w-56"
+            />
+          }
+        />
+        {state === 'loading' && (
+          <div className="space-y-1.5 p-4" aria-busy="true">
+            {[0, 1, 2].map((i) => <Skeleton key={i} className="h-8 w-full" />)}
+          </div>
+        )}
+        {state === 'error' && <ErrorState message={message} onRetry={onRetry} />}
+        {state === 'ready' && sorted.length === 0 && (
+          <DataState
+            kind="empty"
+            title={rows.length === 0 ? 'No monthly contracts yet' : 'Nothing matches'}
+            body={rows.length === 0
+              ? 'A monthly contract is ongoing work billed by the month — care, ads management, SEO. Create one with New project → Monthly contract.'
+              : 'No contract matches the search.'}
+          />
+        )}
+        {state === 'ready' && sorted.length > 0 && (
+          <Table
+            head={['Contract', 'Company', 'Service', { label: 'Monthly fee', align: 'right' }, 'Since',
+              { label: 'Months', align: 'right' }, 'Ends', 'State']}
+            minWidth={840}
+            sticky
+          >
+            {sorted.map((p) => {
+              const ended = isClosedProject(p);
+              const months = monthsRunning(p.start_date, ended && p.completed_at ? p.completed_at : today);
+              return (
+                <Row key={p.id} onClick={() => navigate(`/projects/${p.id}`)}>
+                  <Cell className="min-w-0">
+                    <Link to={`/projects/${p.id}`} className={cn('text-[13px] hover:text-signal', ended ? 'text-haze' : 'text-paper')}>
+                      {p.name}
+                    </Link>
+                  </Cell>
+                  <Cell className="truncate text-[11px] text-haze">{p.client?.name ?? '—'}</Cell>
+                  <Cell className="truncate text-[11px] text-haze">{p.service || '—'}</Cell>
+                  <Cell align="right" className={cn('num text-xs', ended ? 'text-haze' : 'text-paper')}>
+                    {p.monthly_fee === null ? '—' : money(p.monthly_fee, p.currency)}
+                  </Cell>
+                  <Cell className="num whitespace-nowrap text-[11px] text-haze">{shortDate(p.start_date)}</Cell>
+                  <Cell align="right" className="num text-xs text-haze">{months ?? '—'}</Cell>
+                  <Cell className="num whitespace-nowrap text-[11px] text-haze">
+                    {ended ? shortDate(p.completed_at) : p.target_date ? shortDate(p.target_date) : 'open-ended'}
+                  </Cell>
+                  <Cell>
+                    {ended
+                      ? <Badge tone="neutral">Ended</Badge>
+                      : p.status === 'on_hold' ? <Badge tone="warn">On hold</Badge>
+                        : <Badge tone="good">Running</Badge>}
+                  </Cell>
+                </Row>
+              );
+            })}
+          </Table>
+        )}
+      </Panel>
     </div>
   );
 }
@@ -383,6 +516,9 @@ export function ProjectDetailScreen() {
   // (projects_impact_free_check and project_close_rules). Same checkpoints,
   // templates, signals and close as a paid project otherwise.
   const impact = project.program === 'impact';
+  // A monthly contract: billed by the month, no one-off value, and "closing"
+  // is ending the contract — no checkpoint rule (project_close_rules).
+  const monthly = isMonthly(project);
   const cancelled = project.status === 'cancelled';
   const summary = trackerOf(milestones, { target_date: project.target_date, closed });
   const primary = contacts.find((c) => c.is_primary) ?? contacts[0] ?? null;
@@ -402,8 +538,9 @@ export function ProjectDetailScreen() {
   const targetTone = closed ? 'none' : dueTone(project.target_date);
   const settable = impact ? IMPACT_SETTABLE_STATES : SETTABLE_PROJECT_STATES;
   const impactBlockers = impact ? impactCloseBlockers(project, summary) : [];
-  const closable = impact ? impactBlockers.length === 0 : summary.closable;
+  const closable = impact ? impactBlockers.length === 0 : monthly ? true : summary.closable;
   const listPath = impact ? (closed || cancelled ? '/impact?view=closed' : '/impact?view=active')
+    : monthly ? '/projects?view=monthly'
     : closed ? '/projects?view=closed' : '/projects';
   const matched = matchTemplate(templates.live, project.service);
   const chosen = templates.live.find((t) => t.id === templateId) ?? matched;
@@ -417,7 +554,8 @@ export function ProjectDetailScreen() {
   const close = async () => {
     setCloseError(null);
     const result = await ops.closeProject(project.id);
-    if (result === true) celebrate('project_closed', project.name);
+    // A delivered project is celebrated; an ended monthly contract is not.
+    if (result === true) { if (!monthly) celebrate('project_closed', project.name); }
     else setCloseError(result);
   };
 
@@ -436,10 +574,10 @@ export function ProjectDetailScreen() {
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link to={listPath} className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper">
-          <ArrowLeft size={11} aria-hidden="true" /> {impact ? 'Impact projects' : closed ? 'Closed projects' : 'All projects'}
+          <ArrowLeft size={11} aria-hidden="true" /> {impact ? 'Impact projects' : monthly ? 'Monthly contracts' : closed ? 'Closed projects' : 'All projects'}
         </Link>
         <StatusPill tone={closed ? 'good' : projectStatusTone(project.status)}>
-          {closed ? 'Closed' : projectStatusLabel(project.status)}
+          {closed ? (monthly ? 'Ended' : 'Closed') : projectStatusLabel(project.status)}
         </StatusPill>
       </div>
 
@@ -449,7 +587,7 @@ export function ProjectDetailScreen() {
         className="grid grid-cols-2 divide-x divide-y divide-hairline bg-panel sm:grid-cols-4 xl:divide-y-0"
       >
         <div className="col-span-2 min-w-0 px-4 py-3.5">
-          <p className="t-section">{impact ? 'Impact project · free' : 'Project'}</p>
+          <p className="t-section">{impact ? 'Impact project · free' : monthly ? 'Monthly contract' : 'Project'}</p>
           <p className="mt-1.5 break-words text-lg leading-tight text-paper">{project.name}</p>
           <p className="t-note mt-1">
             {project.client
@@ -478,6 +616,20 @@ export function ProjectDetailScreen() {
             </>
           )}
         </div>
+        {monthly ? (
+        <div className="min-w-0 px-4 py-3.5">
+          <p className="t-section">Monthly fee</p>
+          <p className="num mt-1.5 text-xl leading-none text-paper" data-figure="monthly-fee">
+            {project.monthly_fee === null ? '—' : money(project.monthly_fee, project.currency)}
+          </p>
+          <p className="t-note mt-1">
+            {closed
+              ? `ended ${shortDate(project.completed_at)}`
+              : `${project.start_date ? `since ${shortDate(project.start_date)}` : 'no start date'} · ${
+                project.target_date ? `ends ${shortDate(project.target_date)}` : 'open-ended'}`}
+          </p>
+        </div>
+        ) : (
         <div className="min-w-0 px-4 py-3.5">
           <p className="t-section">{closed ? 'Closed' : 'Deadline'}</p>
           <p className={cn(
@@ -493,6 +645,7 @@ export function ProjectDetailScreen() {
                 : project.start_date ? `started ${shortDate(project.start_date)}` : 'no start date'}
           </p>
         </div>
+        )}
       </Panel>
 
       <Grid>
@@ -500,7 +653,7 @@ export function ProjectDetailScreen() {
           {/* ---------------------------------------------- the close */}
           <Panel aria-label="Delivery status">
             <SectionHeader
-              title={closed ? 'Closed' : 'Delivery status'}
+              title={closed ? (monthly ? 'Contract ended' : 'Closed') : monthly ? 'Contract status' : 'Delivery status'}
               note={closed ? `on ${shortDate(project.completed_at)}` : undefined}
               action={mayEdit ? (
                 closed ? (
@@ -515,13 +668,18 @@ export function ProjectDetailScreen() {
                     disabled={!closable || cancelled || ops.busy === project.id}
                     aria-describedby="close-rule"
                   >
-                    <Check size={11} aria-hidden="true" /> Close project
+                    <Check size={11} aria-hidden="true" /> {monthly ? 'End contract' : 'Close project'}
                   </Button>
                 )
               ) : undefined}
             />
             <div className="grid gap-2 px-4 py-3">
-              {closed ? (
+              {closed && monthly ? (
+                <p className="text-xs text-haze">
+                  This monthly contract has ended and no longer counts in the monthly fees. Payments
+                  that arrive later are still recorded in its payment schedule. Reopen it to resume it.
+                </p>
+              ) : closed ? (
                 <p className="text-xs text-haze">
                   Every checkpoint was done when this project was closed. Reopen it to change its
                   checkpoints. Closing says nothing about payment, and does not archive it.
@@ -529,7 +687,9 @@ export function ProjectDetailScreen() {
               ) : (
                 <>
                   <p id="close-rule" className="t-note">
-                    {impact && cancelled
+                    {monthly
+                      ? 'A monthly contract runs until it is ended. Ending it takes it out of the monthly fees; it can be reopened. Checkpoints are optional here — use them for recurring deliverables if they help.'
+                      : impact && cancelled
                       ? 'This Impact project is cancelled: it counts as neither committed nor delivered support. Set another state to resume it.'
                       : impact && impactBlockers.length > 0
                       ? `Before this Impact project can be closed it needs: ${impactBlockers.join('; ')}.`
@@ -759,10 +919,13 @@ export function ProjectDetailScreen() {
                   projectId={project.id}
                   currency={project.currency}
                   contracted={project.value}
+                  monthlyFee={monthly ? project.monthly_fee : null}
                   mayEdit={mayEdit}
                   onChanged={() => { void reload(); void detail.reload(); }}
                 />
-                <Profitability project={project} fin={fin} costCount={costs.length} />
+                {monthly
+                  ? <MonthlyFeePanel project={project} spend={spend} costCount={costs.length} />
+                  : <Profitability project={project} fin={fin} costCount={costs.length} />}
               </>}
 
           <Panel>
@@ -779,6 +942,8 @@ export function ProjectDetailScreen() {
               <p className="px-4 py-3 text-xs text-haze">
                 {impact
                   ? 'No internal costs recorded. Free to the client is not free to deliver — what it cost us to do goes here.'
+                  : monthly
+                  ? 'No direct costs recorded. Subcontractors, ad tools, software — whatever this contract costs to run goes here.'
                   : 'No direct costs recorded. Contribution cannot be calculated until at least one is — a project with no recorded costs is not a project that cost nothing.'}
               </p>
             ) : (
@@ -836,6 +1001,7 @@ export function ProjectDetailScreen() {
                 ) : closed ? 'Closed' : projectStatusLabel(project.status)}
               />
               {impact && <DataLine term="Programme" value={<Badge tone="good">Impact · free</Badge>} note="no fee, invoice or payment" />}
+              {monthly && <DataLine term="Billing" value={<Badge tone="neutral">Monthly contract</Badge>} note="billed by the month" />}
               <DataLine term="Service" value={project.service || <NotRecorded />} />
               <DataLine
                 term="Responsible"
@@ -843,9 +1009,12 @@ export function ProjectDetailScreen() {
                   || <NotRecorded what="Responsible" />}
               />
               <DataLine term="Started" value={<span className="num text-[11px]">{shortDate(project.start_date)}</span>} />
-              <DataLine term="Deadline" value={<span className="num text-[11px]">{shortDate(project.target_date)}</span>} />
+              <DataLine
+                term={monthly ? 'Contract end' : 'Deadline'}
+                value={<span className="num text-[11px]">{monthly && !project.target_date ? 'open-ended' : shortDate(project.target_date)}</span>}
+              />
               {project.completed_at && (
-                <DataLine term="Closed" value={<span className="num text-[11px]">{shortDate(project.completed_at)}</span>} />
+                <DataLine term={monthly ? 'Ended' : 'Closed'} value={<span className="num text-[11px]">{shortDate(project.completed_at)}</span>} />
               )}
               {!impact && <DataLine
                 term="Opportunity"
@@ -868,6 +1037,8 @@ export function ProjectDetailScreen() {
             <p className="t-note border-t border-hairline px-4 py-2">
               {impact
                 ? 'An Impact project is free, always: the database refuses a fee, an invoice, a payment or a sale on it.'
+                : monthly
+                ? 'The monthly fee is what was agreed, not cash received. Record each month as an instalment in the payment schedule, and the payments against it.'
                 : 'Agreed value is not cash received. What has actually arrived is recorded in the payment schedule — the payment state follows it, and neither is required to close the project.'}
             </p>
           </Panel>
@@ -1219,10 +1390,16 @@ function TemplateDialog({
 
 /* =============================================================== dialogs == */
 
-/** A project needs a client (§54). There is no orphan-project path. */
+/**
+ * A project needs a client (§54). There is no orphan-project path.
+ *
+ * One-off or monthly is chosen here and fixed from then on
+ * (`project_billing_fixed`). A monthly contract takes a monthly fee instead of
+ * a project value, and starts without checkpoints unless one is chosen.
+ */
 function NewProjectDialog({
-  onClose, onCreated, presetClient,
-}: { onClose: () => void; onCreated: (id: string) => void; presetClient?: string }) {
+  onClose, onCreated, presetClient, monthly: startMonthly = false,
+}: { onClose: () => void; onCreated: (id: string) => void; presetClient?: string; monthly?: boolean }) {
   const clients = useClients();
   const templates = useCheckpointTemplates();
   const ops = useOperationsMutations(() => {});
@@ -1238,8 +1415,11 @@ function NewProjectDialog({
     target_date: '',
     estimated_hours: '',
     // '' = follow the service; 'none' = no checkpoints; otherwise a template id.
-    template: '',
+    template: startMonthly ? 'none' : '',
+    billing: (startMonthly ? 'monthly' : 'one_off') as 'one_off' | 'monthly',
+    monthly_fee: '',
   });
+  const monthly = form.billing === 'monthly';
 
   const matched = matchTemplate(templates.live, form.service);
   const chosen = form.template === 'none' ? null
@@ -1250,10 +1430,15 @@ function NewProjectDialog({
   const submit = async () => {
     if (!form.organization_id) { setError('A project needs a client.'); return; }
     if (!form.name.trim()) { setError('A project needs a name.'); return; }
-    const raw = form.value.trim();
+    const raw = monthly ? '' : form.value.trim();
     const value = raw === '' ? null : Number(raw.replace(/\s/g, '').replace(',', '.'));
     if (value !== null && (!Number.isFinite(value) || value < 0)) {
       setError('The value must be a number, and not a negative one.'); return;
+    }
+    const rawFee = form.monthly_fee.trim();
+    const fee = monthly ? Number(rawFee.replace(/\s/g, '').replace(',', '.')) : null;
+    if (monthly && (rawFee === '' || !Number.isFinite(fee) || (fee ?? 0) <= 0)) {
+      setError('A monthly contract needs a monthly fee greater than zero.'); return;
     }
     const hours = form.estimated_hours.trim();
     const estimated = hours === '' ? null : Number(hours);
@@ -1272,6 +1457,8 @@ function NewProjectDialog({
       start_date: form.start_date || null,
       target_date: form.target_date || null,
       estimated_hours: estimated,
+      billing: form.billing,
+      monthly_fee: fee,
     }, steps);
 
     if (typeof result === 'string') { setError(result); return; }
@@ -1283,8 +1470,10 @@ function NewProjectDialog({
       open
       wide
       onClose={onClose}
-      title="New project"
-      description="The preferred route is from a won opportunity, which keeps the delivery connected to what sold it. This is for work that did not come through the pipeline."
+      title={monthly ? 'New monthly contract' : 'New project'}
+      description={monthly
+        ? 'Ongoing work billed by the month. It is listed and totalled under Monthly contracts, apart from one-off projects.'
+        : 'The preferred route is from a won opportunity, which keeps the delivery connected to what sold it. This is for work that did not come through the pipeline.'}
       footer={
         <>
           <Button size="sm" onClick={onClose}>Cancel</Button>
@@ -1303,7 +1492,18 @@ function NewProjectDialog({
           </Select>
         </Field>
 
-        <Field id="np-name" label="Project name">
+        <Field id="np-billing" label="Billing" hint="Fixed once the project is created.">
+          <Select id="np-billing" className="w-full py-2.5 text-sm" value={form.billing}
+                  onChange={(e) => {
+                    const next = e.target.value as 'one_off' | 'monthly';
+                    setForm((p) => ({ ...p, billing: next, template: next === 'monthly' ? 'none' : '' }));
+                  }}>
+            <option value="one_off">One-off project — a price, delivered once</option>
+            <option value="monthly">Monthly contract — a monthly fee, runs until ended</option>
+          </Select>
+        </Field>
+
+        <Field id="np-name" label={monthly ? 'Contract name' : 'Project name'}>
           <Input id="np-name" value={form.name}
                  onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} />
         </Field>
@@ -1314,10 +1514,18 @@ function NewProjectDialog({
                    onChange={(e) => setForm((p) => ({ ...p, service: e.target.value }))}
                    placeholder="Website, Ads, Branding…" />
           </Field>
-          <Field id="np-value" label="Value">
-            <Input id="np-value" inputMode="numeric" value={form.value}
-                   onChange={(e) => setForm((p) => ({ ...p, value: e.target.value }))} />
-          </Field>
+          {monthly ? (
+            <Field id="np-fee" label="Monthly fee">
+              <Input id="np-fee" inputMode="numeric" value={form.monthly_fee} aria-required="true"
+                     onChange={(e) => setForm((p) => ({ ...p, monthly_fee: e.target.value }))}
+                     placeholder="e.g. 150 000" />
+            </Field>
+          ) : (
+            <Field id="np-value" label="Value">
+              <Input id="np-value" inputMode="numeric" value={form.value}
+                     onChange={(e) => setForm((p) => ({ ...p, value: e.target.value }))} />
+            </Field>
+          )}
           <Field id="np-currency" label="Currency">
             <Select id="np-currency" className="w-full py-2.5 text-sm" value={form.currency}
                     onChange={(e) => setForm((p) => ({ ...p, currency: e.target.value }))}>
@@ -1331,7 +1539,7 @@ function NewProjectDialog({
             <Input id="np-start" type="date" value={form.start_date}
                    onChange={(e) => setForm((p) => ({ ...p, start_date: e.target.value }))} />
           </Field>
-          <Field id="np-target" label="Deadline">
+          <Field id="np-target" label={monthly ? 'Contract end' : 'Deadline'} hint={monthly ? 'Leave empty if open-ended.' : undefined}>
             <Input id="np-target" type="date" value={form.target_date}
                    onChange={(e) => setForm((p) => ({ ...p, target_date: e.target.value }))} />
           </Field>
@@ -1423,6 +1631,46 @@ function Profitability({
 }
 
 /**
+ * A monthly contract's figures. The fee is the agreement; "fees to date" is
+ * that fee times the months the contract has run — at TODAY's fee, which is
+ * said, because a fee changed mid-contract makes it an approximation. What was
+ * actually received is the payment schedule's, above.
+ */
+function MonthlyFeePanel({
+  project, spend, costCount,
+}: { project: Project; spend: number | null; costCount: number }) {
+  const ended = isClosedProject(project);
+  const months = monthsRunning(project.start_date, ended && project.completed_at ? project.completed_at : budapestToday());
+  const fee = project.monthly_fee === null ? null : Number(project.monthly_fee);
+  const toDate = fee !== null && months !== null ? Math.round(fee * months * 100) / 100 : null;
+  const value = (amount: number | null) =>
+    amount === null ? <NotRecorded /> : <span className="num">{money(amount, project.currency)}</span>;
+
+  return (
+    <Panel aria-label="Monthly contract">
+      <SectionHeader title="Monthly contract" note={ended ? 'ended' : 'running'} />
+      <dl className="grid">
+        <DataLine term="Monthly fee" value={value(fee)} note="per month · agreed, not received" />
+        <DataLine
+          term="Months"
+          value={months === null ? <NotRecorded what="Start date" /> : <span className="num">{months}</span>}
+          note={project.start_date ? `since ${shortDate(project.start_date)}` : 'needs a start date'}
+        />
+        <DataLine term="Fees to date" value={value(toDate)} note="months × the current fee" />
+        <DataLine
+          term="Direct costs"
+          value={value(spend)}
+          note={costCount > 0 ? `${costCount} recorded` : 'none recorded'}
+        />
+      </dl>
+      <p className="t-note border-t border-hairline px-4 py-2">
+        Monthly fees are counted apart from one-off project values, and never added to them.
+      </p>
+    </Panel>
+  );
+}
+
+/**
  * An Impact project's market value: what the donated work would have cost, in
  * whole forints. NOT revenue, not owed, not a receivable — it feeds the two
  * support counters on the Impact screen and nothing else.
@@ -1484,6 +1732,7 @@ function EditProjectDialog({
 }: { project: Project; onClose: () => void; onSaved: () => void }) {
   const ops = useOperationsMutations(onSaved);
   const impact = project.program === 'impact';
+  const monthly = isMonthly(project);
   const staff = useRows<{ id: string; full_name: string | null; email: string; role: string }>(
     'profiles', 'id, full_name, email, role', 'created_at',
   );
@@ -1493,6 +1742,7 @@ function EditProjectDialog({
     service: project.service ?? '',
     description: project.description ?? '',
     value: project.value === null ? '' : String(project.value),
+    monthly_fee: project.monthly_fee === null ? '' : String(project.monthly_fee),
     currency: project.currency,
     start_date: project.start_date ?? '',
     target_date: project.target_date ?? '',
@@ -1512,8 +1762,13 @@ function EditProjectDialog({
     const value = number(form.value);
     const estimated = number(form.estimated_hours);
     const actual = number(form.actual_hours);
-    if ([value, estimated, actual].includes('bad')) {
+    const fee = number(form.monthly_fee);
+    if ([value, estimated, actual, fee].includes('bad')) {
       setError('Amounts and hours must be numbers, and not negative ones.');
+      return;
+    }
+    if (monthly && (fee === null || fee === 0)) {
+      setError('A monthly contract needs a monthly fee greater than zero.');
       return;
     }
 
@@ -1532,8 +1787,10 @@ function EditProjectDialog({
       // payment schedule, and the database refuses a write that disagrees.
       // The currency is only sent when it changed — it is fixed once the
       // project has a schedule.
+      // A monthly contract sends its monthly fee and never a one-off value
+      // (projects_monthly_shape_check refuses one).
       ...(impact ? {} : {
-        value: value as number | null,
+        ...(monthly ? { monthly_fee: fee as number } : { value: value as number | null }),
         ...(form.currency !== project.currency ? { currency: form.currency } : {}),
       }),
     });
@@ -1546,7 +1803,7 @@ function EditProjectDialog({
       open
       wide
       onClose={onClose}
-      title="Edit project"
+      title={monthly ? 'Edit monthly contract' : 'Edit project'}
       footer={
         <>
           <Button size="sm" onClick={onClose}>Cancel</Button>
@@ -1565,10 +1822,17 @@ function EditProjectDialog({
                    onChange={(e) => setForm((p) => ({ ...p, service: e.target.value }))} />
           </Field>
           {!impact && <>
-          <Field id="ep-value" label="Project value">
-            <Input id="ep-value" inputMode="numeric" value={form.value}
-                   onChange={(e) => setForm((p) => ({ ...p, value: e.target.value }))} />
-          </Field>
+          {monthly ? (
+            <Field id="ep-fee" label="Monthly fee" hint="A change is logged in Activity.">
+              <Input id="ep-fee" inputMode="numeric" value={form.monthly_fee}
+                     onChange={(e) => setForm((p) => ({ ...p, monthly_fee: e.target.value }))} />
+            </Field>
+          ) : (
+            <Field id="ep-value" label="Project value">
+              <Input id="ep-value" inputMode="numeric" value={form.value}
+                     onChange={(e) => setForm((p) => ({ ...p, value: e.target.value }))} />
+            </Field>
+          )}
           <Field id="ep-currency" label="Currency">
             <Select id="ep-currency" className="w-full py-2.5 text-sm" value={form.currency}
                     onChange={(e) => setForm((p) => ({ ...p, currency: e.target.value }))}>
@@ -1583,7 +1847,7 @@ function EditProjectDialog({
             <Input id="ep-start" type="date" value={form.start_date}
                    onChange={(e) => setForm((p) => ({ ...p, start_date: e.target.value }))} />
           </Field>
-          <Field id="ep-target" label="Target">
+          <Field id="ep-target" label={monthly ? 'Contract end' : 'Target'}>
             <Input id="ep-target" type="date" value={form.target_date}
                    onChange={(e) => setForm((p) => ({ ...p, target_date: e.target.value }))} />
           </Field>

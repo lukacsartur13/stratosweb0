@@ -75,8 +75,10 @@ const project = (over) => ({
   start_date: day(-30), target_date: day(30), completed_at: null, archived_at: null, opportunity_id: null,
   responsible_id: null, estimated_hours: null, actual_hours: null, payment_state: 'not_invoiced',
   invoiced_amount: null, paid_amount: null, created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
-  client: ORG, responsible: null, status: 'active', program: 'paid', market_value: null, ...over,
+  client: ORG, responsible: null, status: 'active', program: 'paid', market_value: null,
+  billing: 'one_off', monthly_fee: null, ...over,
 });
+const monthlyProject = (over) => project({ value: null, service: 'Karbantartás', billing: 'monthly', monthly_fee: 150000, target_date: null, ...over });
 const impactProject = (over) => project({ value: null, service: 'Website', program: 'impact', ...over });
 
 const IMPACT_LEAD = (id, company, over = {}) => ({
@@ -106,6 +108,9 @@ function freshState() {
       project({ id: 'p-block', name: 'Blocked hosting' }),
       project({ id: 'p-stale', name: 'Stale screen' }),
       project({ id: 'p-done', name: 'Delivered site', status: 'completed', completed_at: new Date().toISOString() }),
+      monthlyProject({ id: 'm-care', name: 'Website care', start_date: day(-70) }),
+      monthlyProject({ id: 'm-ads', name: 'Google Ads management', service: 'Hirdetéskezelés', monthly_fee: 90000 }),
+      monthlyProject({ id: 'm-ended', name: 'Old SEO retainer', status: 'completed', completed_at: new Date().toISOString(), monthly_fee: 60000 }),
       impactProject({ id: 'i-ready', name: 'Tanoda website', client: { id: ORG.id, name: 'Tanoda Egyesület' } }),
       impactProject({ id: 'i-valued', name: 'Menhely website', market_value: 800000 }),
       impactProject({ id: 'i-done', name: 'Kórus website', status: 'completed', completed_at: new Date().toISOString(), market_value: 600000 }),
@@ -236,7 +241,8 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
           const t = scheduleTotals(p.value, insts, pays, today);
           return { project_id: p.id, project_name: p.name, client_name: p.client?.name ?? null, status: p.status, archived: !!p.archived_at,
             currency: p.currency, contracted: p.value, scheduled: t.scheduled, paid: t.paid, remaining: t.remaining, overpaid: t.overpaid,
-            overdue: t.overdue, schedule_gap: t.scheduleGap, next_due_on: null, instalments: insts.length, payments: pays.length, undated_payments: t.undated };
+            overdue: t.overdue, schedule_gap: t.scheduleGap, next_due_on: null, instalments: insts.length, payments: pays.length, undated_payments: t.undated,
+            billing: p.billing, monthly_fee: p.monthly_fee };
         });
       return json(route, rows);
     }
@@ -292,6 +298,13 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
     if (url.includes('/rest/v1/projects')) {
       state.projectReads += method === 'GET' ? 1 : 0;
       if (!owner) return answer([]); // what RLS answers a non-owner
+      if (method === 'POST') {
+        const body = JSON.parse(req.postData() || '{}');
+        state.writes.push({ table: 'projects', method, body });
+        const created = project({ id: `p-new-${state.writes.length}`, ...body });
+        state.projects.push(created);
+        return json(route, single ? { id: created.id } : [{ id: created.id }], 201);
+      }
       if (method === 'PATCH') {
         const patch = JSON.parse(req.postData() || '{}');
         state.writes.push({ table: 'projects', url, patch });
@@ -923,6 +936,94 @@ await check('payments: phone width — no horizontal scroll on the project and t
   await context.close();
 });
 
+/* ------------------------------------------------------ monthly contracts */
+
+await check('monthly: a view of its own, with the running fees per currency; Active and Closed exclude it', async () => {
+  const { page, context } = await open(browser);
+  await page.goto(`${BASE}/projects`);
+  await page.getByRole('link', { name: 'Ready to close' }).waitFor();
+  assert(!(await page.getByText('Website care').isVisible()), 'a monthly contract is listed under Active');
+  await page.getByRole('button', { name: 'Monthly contracts (2)' }).click();
+  await page.getByRole('link', { name: 'Website care' }).waitFor();
+  assert(await page.getByRole('button', { name: 'Monthly contracts (2)' }).getAttribute('aria-current') === 'page', 'the Monthly tab is not marked current');
+  assert(await page.getByRole('button', { name: /^Active/ }).getAttribute('aria-current') === null, 'Active is still marked current');
+  const total = page.locator('[data-monthly-total="HUF"]');
+  assert((await total.innerText()).replace(/\s/g, '').includes('240000'), `running total wrong: ${await total.innerText()}`);
+  assert(await page.getByRole('link', { name: 'Old SEO retainer' }).isVisible(), 'an ended contract is not listed');
+  assert(!(await page.getByRole('link', { name: 'Ready to close' }).isVisible()), 'a one-off project is listed under Monthly');
+  await shot(page, 'monthly-list');
+  await page.getByRole('button', { name: /Closed/ }).click();
+  await page.getByRole('link', { name: 'Delivered site' }).first().waitFor();
+  assert(!(await page.getByText('Old SEO retainer').isVisible()), 'an ended monthly contract is listed under Closed');
+  await context.close();
+});
+
+await check('monthly: the contract shows its fee, ends without checkpoints, and + Month fills in the next month', async () => {
+  const state = freshState();
+  state.instalments.push({ id: 'in-m1', project_id: 'm-care', label: 'július', amount: 150000, due_on: '2026-07-31', invoiced: true, invoiced_on: null, note: null, position: 0, origin: 'manual' });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects/m-care`);
+  await page.locator('[data-figure="monthly-fee"]').waitFor();
+  assert((await page.locator('[data-figure="monthly-fee"]').innerText()).replace(/\s/g, '').includes('150000'), 'fee not shown');
+  assert(await page.getByRole('region', { name: 'Monthly contract' }).isVisible(), 'no monthly panel');
+  assert(!(await page.getByText('Contribution', { exact: true }).isVisible()), 'the one-off contribution panel is shown');
+  const schedule = page.getByRole('region', { name: 'Payment schedule' });
+  assert(!(await schedule.locator('[data-signal="schedule-mismatch"]').count()), 'a monthly schedule is flagged as a mismatch');
+  const end = page.getByRole('button', { name: 'End contract' });
+  assert(await end.isEnabled(), 'End contract is disabled without checkpoints');
+  await schedule.getByRole('button', { name: 'Month' }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.waitFor();
+  assert(await dialog.getByLabel('Name').inputValue() === '2026. augusztus', `label: ${await dialog.getByLabel('Name').inputValue()}`);
+  assert(await dialog.getByLabel(/Amount/).inputValue() === '150000', 'amount not the fee');
+  assert(await dialog.getByLabel('Due').inputValue() === '2026-08-31', `due: ${await dialog.getByLabel('Due').inputValue()}`);
+  await shot(page, 'monthly-next-month');
+  await dialog.getByRole('button', { name: 'Cancel' }).click();
+  await end.click();
+  await settle(page);
+  assert((await celebrations(page)).confetti === 0, 'ending a monthly contract celebrated');
+  const patch = state.writes.find((w) => w.table === 'projects' && w.patch?.status === 'completed');
+  assert(patch && patch.url.includes('m-care'), 'the end was not sent');
+  await shot(page, 'monthly-detail');
+  await context.close();
+});
+
+await check('monthly: New project → Monthly contract sends billing and the fee, never a value', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects?view=monthly`);
+  await page.getByRole('button', { name: 'New project' }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByRole('heading', { name: 'New monthly contract' }).waitFor();
+  await dialog.getByLabel('Client').selectOption(ORG.id);
+  await dialog.getByLabel('Contract name').fill('SEO retainer');
+  await dialog.getByRole('button', { name: 'Create' }).click();
+  await dialog.getByRole('alert').waitFor();
+  assert((await dialog.getByRole('alert').innerText()).includes('monthly fee'), 'a monthly contract without a fee was accepted');
+  await dialog.getByLabel('Monthly fee').fill('120 000');
+  await shot(page, 'monthly-new');
+  await dialog.getByRole('button', { name: 'Create' }).click();
+  await page.waitForURL(/\/projects\/p-new-/);
+  const post = state.writes.find((w) => w.table === 'projects' && w.method === 'POST');
+  assert(post.body.billing === 'monthly' && post.body.monthly_fee === 120000 && post.body.value === null,
+    `wrong insert: ${JSON.stringify(post.body)}`);
+  assert(!state.writes.some((w) => w.table === 'project_milestones'), 'checkpoints were seeded on a monthly contract');
+  await context.close();
+});
+
+await check('monthly: phone width — no horizontal scroll on the list and the contract', async () => {
+  const { page, context } = await open(browser);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`${BASE}/projects?view=monthly`);
+  await page.getByRole('link', { name: 'Website care' }).waitFor();
+  assert(await noHorizontalScroll(page), 'monthly list scrolls sideways at 390px');
+  await shot(page, 'monthly-phone');
+  await page.goto(`${BASE}/projects/m-care`);
+  await page.locator('[data-figure="monthly-fee"]').waitFor();
+  assert(await noHorizontalScroll(page), 'monthly contract scrolls sideways at 390px');
+  await context.close();
+});
+
 /* ------------------------------------------------------------- Sales */
 
 await check('sales: "Done" is one call per double click; the action leaves the follow-ups; a failure leaves it', async () => {
@@ -1088,7 +1189,7 @@ await check('owner: Appearance in the sidebar — System follows the device, Lig
   for (const scheme of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: scheme });
     await page.waitForFunction((t) => document.documentElement.dataset.theme === t, scheme);
-    for (const path of ['/', '/projects', '/projects/p-late', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
+    for (const path of ['/', '/projects', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
       await page.goto(`${BASE}${path}`);
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(150);

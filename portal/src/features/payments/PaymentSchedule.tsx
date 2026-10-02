@@ -8,7 +8,7 @@ import { money } from '@/lib/money';
 import { shortDate } from '@/lib/pipeline';
 import { usePaymentMutations, usePaymentOverview, usePaymentSchedule } from '@/lib/payments';
 import {
-  INSTALMENT_STATE_LABEL, budapestToday, hasScheduleMismatch, legacyIssueText, parseAmount, scheduleTotals, totalsByCurrency,
+  INSTALMENT_STATE_LABEL, budapestToday, hasScheduleMismatch, legacyIssueText, nextMonth, parseAmount, scheduleTotals, totalsByCurrency,
   type InstalmentView, type Payment,
 } from '@/lib/paymentRules';
 
@@ -33,12 +33,20 @@ import {
  * Closed projects keep this panel fully editable: a payment that arrives after
  * the handover is recorded like any other, and what is still owed stays in
  * view. Closing never reads it.
+ *
+ * ## Monthly contracts
+ *
+ * With a `monthlyFee` the schedule is one instalment per month. "+ Month"
+ * pre-fills the next one — the month after the latest, at the current fee —
+ * and there is no contract total to check the schedule against.
  */
 export function PaymentSchedule({
-  projectId, currency, contracted, mayEdit, onChanged,
+  projectId, currency, contracted, monthlyFee = null, mayEdit, onChanged,
 }: {
-  projectId: string; currency: string; contracted: number | null; mayEdit: boolean; onChanged: () => void;
+  projectId: string; currency: string; contracted: number | null; monthlyFee?: number | null;
+  mayEdit: boolean; onChanged: () => void;
 }) {
+  const monthly = monthlyFee !== null;
   const s = usePaymentSchedule(projectId);
   const reloadAll = () => { void s.reload(); onChanged(); };
   const ops = usePaymentMutations(projectId, reloadAll);
@@ -60,7 +68,9 @@ export function PaymentSchedule({
     gap: o ? o.schedule_gap : t.scheduleGap,
   };
   const m = (n: number | null) => (n === null ? '—' : money(n, currency));
-  const mismatch = s.instalments.length > 0 && hasScheduleMismatch({ instalments: s.instalments.length, schedule_gap: fig.gap, contracted });
+  const mismatch = s.instalments.length > 0 && hasScheduleMismatch({
+    instalments: s.instalments.length, schedule_gap: fig.gap, contracted, billing: monthly ? 'monthly' : 'one_off',
+  });
 
   const remove = async (what: 'instalment' | 'payment', id: string) => {
     if (!window.confirm(what === 'payment'
@@ -75,8 +85,10 @@ export function PaymentSchedule({
         title="Payment schedule"
         note={`${currency} · from recorded payments`}
         action={mayEdit && s.state === 'ready' ? (
-          <Button size="sm" onClick={() => setInstalmentDraft({ label: s.instalments.length === 0 ? 'Előleg' : '' })}>
-            <Plus size={11} aria-hidden="true" /> Instalment
+          <Button size="sm" onClick={() => setInstalmentDraft(monthly
+            ? nextMonth(s.instalments.map((i) => i.due_on), monthlyFee, today)
+            : { label: s.instalments.length === 0 ? 'Előleg' : '' })}>
+            <Plus size={11} aria-hidden="true" /> {monthly ? 'Month' : 'Instalment'}
           </Button>
         ) : undefined}
       />
@@ -88,14 +100,18 @@ export function PaymentSchedule({
       {s.state === 'ready' && (
         <>
           <dl className="grid" data-payment-figures>
-            <DataLine term="Contracted" value={contracted === null ? <span className="text-haze">Not recorded</span> : <span className="num">{m(contracted)}</span>}
-                      note="the project value" />
+            {monthly ? (
+              <DataLine term="Monthly fee" value={<span className="num">{m(monthlyFee)}</span>} note="per month" />
+            ) : (
+              <DataLine term="Contracted" value={contracted === null ? <span className="text-haze">Not recorded</span> : <span className="num">{m(contracted)}</span>}
+                        note="the project value" />
+            )}
             <DataLine term="Scheduled" value={<span className="num">{m(fig.scheduled)}</span>}
                       note={`${s.instalments.length} instalment${s.instalments.length === 1 ? '' : 's'}`} />
             <DataLine term="Paid" value={<span className="num" data-figure="paid">{m(fig.paid)}</span>}
                       note={t.undated > 0 ? `${t.undated} payment${t.undated === 1 ? '' : 's'} without a date` : `${s.payments.length} payment${s.payments.length === 1 ? '' : 's'}`} />
             <DataLine term="Remaining" value={<span className="num" data-figure="remaining">{m(fig.remaining)}</span>}
-                      note={contracted === null ? 'against the scheduled total' : 'against the contract'} />
+                      note={monthly || contracted === null ? 'against the scheduled months' : 'against the contract'} />
             <DataLine term="Overdue" value={<span className={cn('num', fig.overdue > 0 && 'text-danger')} data-figure="overdue">{m(fig.overdue)}</span>}
                       note={fig.overdue > 0 ? 'due date passed, not received' : undefined} />
             {fig.overpaid > 0 && (
@@ -138,8 +154,9 @@ export function PaymentSchedule({
 
           {t.views.length === 0 ? (
             <p className="border-t border-hairline px-4 py-3 text-xs text-haze">
-              No instalments yet. Add the parts of the price — e.g. an advance and a final invoice — with their due dates.
-              Payments are then recorded against them.
+              {monthly
+                ? 'No months yet. Add each month as it is billed — + Month fills in the next one at the current fee. Payments are then recorded against it.'
+                : 'No instalments yet. Add the parts of the price — e.g. an advance and a final invoice — with their due dates. Payments are then recorded against them.'}
             </p>
           ) : (
             <ul className="grid border-t border-hairline" aria-label="Instalments">

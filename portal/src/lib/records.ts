@@ -225,6 +225,11 @@ export function buildRecordTimeline(
         push('money', 'Market value changed',
           `${asText(meta.from) ?? 'not set'} → ${asText(meta.to) ?? 'not set'} HUF · not revenue`);
         break;
+      case 'project.monthly_fee_changed':
+        // Monthly contracts only. Written by `log_project_monthly_fee`: old → new.
+        push('money', 'Monthly fee changed',
+          `${asText(meta.from) ?? 'not set'} → ${asText(meta.to) ?? 'not set'} ${asText(meta.currency) ?? ''} / month`.trim());
+        break;
       case 'project.cost_added':
         push('money', 'Cost added',
           `${asText(meta.description) ?? ''} · ${asText(meta.amount) ?? ''} ${asText(meta.currency) ?? ''}`.trim());

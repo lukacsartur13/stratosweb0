@@ -389,6 +389,9 @@ export function useDashboardOperations(enabled = true, reloadToken = 0, includeP
           // Paid delivery. Impact projects are counted on the Impact screen,
           // and a cancelled project is not live.
           .eq('program', 'paid')
+          // One-off delivery. Monthly contracts run until ended and are listed
+          // under Projects → Monthly contracts.
+          .neq('billing', 'monthly')
           .not('status', 'in', '("completed","archived","care","cancelled")')
           .order('target_date', { ascending: true, nullsFirst: false })
           .limit(12)

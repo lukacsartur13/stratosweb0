@@ -2,6 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { closeRefusal } from '@/lib/pipeline';
+
+export { isMonthly, monthlyTotals, monthsRunning } from '@/lib/pipeline';
 import { paymentRefusal } from '@/lib/paymentRules';
 
 /**
@@ -85,6 +87,13 @@ export interface Project {
    * revenue, not owed. `null` is "not recorded yet", which is not 0.
    */
   market_value: number | null;
+  /**
+   * `one_off` | `monthly`. Fixed at creation (20261006000100_monthly_contracts.sql).
+   * A monthly contract has a `monthly_fee` and no one-off `value`.
+   */
+  billing: string;
+  /** Monthly contracts only: the agreed fee per month, in `currency`. */
+  monthly_fee: number | null;
   created_at: string;
   updated_at: string;
   client?: { id: string; name: string } | null;
@@ -95,7 +104,7 @@ export const PROJECT_COLUMNS =
   'id, organization_id, name, slug, description, status, service, value, currency, '
   + 'start_date, target_date, completed_at, archived_at, opportunity_id, responsible_id, '
   + 'estimated_hours, actual_hours, payment_state, invoiced_amount, paid_amount, '
-  + 'program, market_value, created_at, updated_at, '
+  + 'program, market_value, billing, monthly_fee, created_at, updated_at, '
   // The foreign key is named: `project_members` is a second (many-to-many)
   // path from projects to profiles, and real PostgREST refuses an ambiguous
   // embed with PGRST201 — every project read failed on a real stack
@@ -609,6 +618,7 @@ export function useOperationsMutations(onChanged: () => void) {
     start_date?: string | null; target_date?: string | null;
     opportunity_id?: string | null; responsible_id?: string | null;
     estimated_hours?: number | null; description?: string | null;
+    billing?: 'one_off' | 'monthly'; monthly_fee?: number | null;
   }, milestones: string[] = []): Promise<{ id: string } | string> => {
     if (!draft.organization_id) return 'A project needs a client.';
     if (!draft.name.trim()) return 'A project needs a name.';
