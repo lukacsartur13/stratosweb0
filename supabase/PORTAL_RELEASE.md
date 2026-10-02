@@ -500,3 +500,47 @@ Mit csinál:
 Ellenőrizve (helyben): PGlite `tests/portal-monthly-db.spec.ts` 9/9; renderelt, mockolt
 `scripts/portal-tracker-check.mjs` 42/42 (benne 4 új havi eset és a kontrasztmérés a két új
 képernyőn); a meglévő portál-tesztek (node + desktop-1440) zöldek.
+
+## 17. Kuka: projektek, ügyfelek és leadek törlése a portálon (10. szakasz)
+
+**Sorrend: migráció → ellenőrzés → deploy.** Az új portál olvassa a `leads.trashed_at`
+oszlopot; a migráció előtt a Leads lista hibát adna. A mostani élő portál a migráció
+után változatlanul működik, karbantartási ablak nem kell.
+
+1. SQL Editor: `supabase/migrations/20261007000100_trash.sql` (ismételten is futtatható).
+2. Ellenőrzés: a lenti lekérdezés minden sora `true`.
+3. Deploy (push a `main`-re).
+
+```sql
+select 'leads.trashed_at' as mi, exists (select 1 from information_schema.columns
+  where table_name = 'leads' and column_name = 'trashed_at') as ok
+union all select 'purge függvények', count(*) = 6 from pg_proc
+  where proname in ('purge_project', 'purge_client', 'purge_lead',
+                    'project_purge_blockers', 'client_purge_blockers', 'lead_purge_blockers')
+union all select 'törlés-triggerek', count(*) = 3 from pg_trigger
+  where tgname in ('projects_deleted', 'organizations_deleted', 'leads_deleted')
+union all select 'anon nem törölhet', not has_function_privilege('anon', 'purge_project(uuid)', 'execute')
+union all select 'bejelentkezett hívhatja', has_function_privilege('authenticated', 'purge_project(uuid)', 'execute');
+```
+
+Mit csinál:
+
+- **Move to trash** a projekt, az ügyfél és a lead oldalán: eltűnik minden listából és
+  összesítőből (az Impact-számlálókból és a forrás→lead→won kimutatásból is), a
+  Kukába tett projekt az ügyfélportálon sem látszik. Visszaállítható.
+  Projektnél és ügyfélnél ez a meglévő `archived_at`, tehát a korábban archivált
+  projektek is a Kukában jelennek meg.
+- **Trash** menüpont: Restore, illetve **Delete permanently**. A végleges törlést az adatbázis
+  megtagadja, és megnevezi az okát, ha a projekthez fizetési részlet, dokumentum,
+  ügyfélportál-hozzáférés, demó, megbeszélés vagy Impact-jelentkezés tartozik; ügyfélnél ha
+  van projektje (a Kukában lévő is), ügyfélportál-fiókja vagy sales-lehetősége; leadnél ha
+  Impact-jelentkezés tartozik hozzá. Ami csak az adott rekordhoz tartozik (checkpointok,
+  költségek, linkek, jegyzetek, kapcsolattartók) vele együtt törlődik. Minden törlés naplózódik
+  (lead esetén személyes adat nélkül).
+- Jogok: projekt — csak a tulajdonos; ügyfél — Kukába bárki, aki ügyfelet kezel, véglegesen
+  csak a tulajdonos; lead — aki leadet kezel.
+
+Ellenőrizve (helyben): PGlite `tests/portal-trash-db.spec.ts` 10/10; renderelt, mockolt
+`scripts/portal-tracker-check.mjs` 46/46 (4 új Kuka-eset, kontrasztmérés a Kuka oldalon);
+a meglévő portál-tesztek (node + desktop-1440) zöldek, köztük a dokumentumtár és az
+ügyfélportál definer-függvény szabályai.

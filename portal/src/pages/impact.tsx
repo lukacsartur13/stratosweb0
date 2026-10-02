@@ -233,7 +233,7 @@ export function ImpactScreen() {
         <Panel className="min-w-0">
           <SectionHeader
             title={view === 'active' ? 'Active Impact projects' : 'Closed Impact projects'}
-            note={archivedCount > 0 ? `${archivedCount} archived not shown — still counted` : undefined}
+            note={archivedCount > 0 ? `${archivedCount} in the Trash — not shown, not counted` : undefined}
           />
           {projects.state === 'loading' && (
             <div className="space-y-1.5 p-4" aria-busy="true">{[0, 1, 2].map((i) => <Skeleton key={i} className="h-8 w-full" />)}</div>
@@ -497,7 +497,7 @@ function StartProjectDialog({ app, busy, onClose, onStart }: {
   const name = applicantName(app);
   const website = app.lead?.website ?? (typeof app.lead?.payload?.web === 'string' ? app.lead.payload.web : null);
   const matches = useMemo(
-    () => findClientMatches(clients.rows, { name, email: app.lead?.email, website }),
+    () => findClientMatches(clients.rows.filter((c) => !c.archived_at), { name, email: app.lead?.email, website }),
     [clients.rows, name, app.lead?.email, website],
   );
 

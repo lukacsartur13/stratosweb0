@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls';
 import { ArrowLeft, Plus } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { can, canAccess } from '@/lib/permissions';
@@ -292,6 +293,7 @@ export function ClientDetailScreen() {
   const { reloadToken } = useScope();
   const mayEdit = can(profile?.role, 'manage_clients');
   const mayProjects = canAccess(profile, 'view_projects');
+  const navigate = useNavigate();
 
   const { client, contacts, projects, deals, state, reload } = useClientDetail(id, reloadToken, mayProjects);
   const detail = useRecordDetail('client', state === 'ready' ? id ?? null : null, reloadToken);
@@ -354,10 +356,16 @@ export function ClientDetailScreen() {
         <Link to="/clients" className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper">
           <ArrowLeft size={11} aria-hidden="true" /> All clients
         </Link>
-        <StatusPill tone={CLIENT_STATUS[client.status]?.tone ?? 'neutral'}>
-          {CLIENT_STATUS[client.status]?.label ?? client.status}
-        </StatusPill>
+        <span className="flex flex-wrap items-center gap-2">
+          {mayEdit && !client.archived_at && (
+            <MoveToTrashButton kind="client" id={client.id} name={client.name} onTrashed={() => navigate('/clients')} />
+          )}
+          <StatusPill tone={CLIENT_STATUS[client.status]?.tone ?? 'neutral'}>
+            {CLIENT_STATUS[client.status]?.label ?? client.status}
+          </StatusPill>
+        </span>
       </div>
+      {client.archived_at && <InTrashBanner kind="client" id={client.id} at={client.archived_at} onRestored={() => void reload()} />}
 
       {/* -------------------------------------------- the summary strip */}
       <Panel

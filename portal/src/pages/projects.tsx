@@ -31,6 +31,7 @@ import { ProjectLibrary } from '@/features/documents/ProjectLibrary';
 import { PaymentSchedule, Receivables } from '@/features/payments/PaymentSchedule';
 import { budapestToday } from '@/lib/paymentRules';
 import { ClientInbox, ClientViewPanel } from '@/features/client-view/ClientViewPanel';
+import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls';
 
 /**
  * PROJECTS — the owner's private delivery tracker.
@@ -464,6 +465,7 @@ export function ProjectDetailScreen() {
   const { id } = useParams<{ id: string }>();
   const { profile } = useAuth();
   const { reloadToken } = useScope();
+  const navigate = useNavigate();
   const mayEdit = canAccess(profile, 'manage_projects');
 
   const { project, milestones, contacts, costs, links, state, reload } = useProjectDetail(id, reloadToken);
@@ -554,9 +556,9 @@ export function ProjectDetailScreen() {
   const close = async () => {
     setCloseError(null);
     const result = await ops.closeProject(project.id);
+    if (result !== true) setCloseError(result);
     // A delivered project is celebrated; an ended monthly contract is not.
-    if (result === true) { if (!monthly) celebrate('project_closed', project.name); }
-    else setCloseError(result);
+    if (result === true && !monthly) celebrate('project_closed', project.name);
   };
 
   const reopen = async () => {
@@ -576,10 +578,18 @@ export function ProjectDetailScreen() {
         <Link to={listPath} className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper">
           <ArrowLeft size={11} aria-hidden="true" /> {impact ? 'Impact projects' : monthly ? 'Monthly contracts' : closed ? 'Closed projects' : 'All projects'}
         </Link>
-        <StatusPill tone={closed ? 'good' : projectStatusTone(project.status)}>
-          {closed ? (monthly ? 'Ended' : 'Closed') : projectStatusLabel(project.status)}
-        </StatusPill>
+        <span className="flex flex-wrap items-center gap-2">
+          {mayEdit && !project.archived_at && (
+            <MoveToTrashButton kind="project" id={project.id} name={project.name} onTrashed={() => navigate(listPath)} />
+          )}
+          <StatusPill tone={closed ? 'good' : projectStatusTone(project.status)}>
+            {closed ? (monthly ? 'Ended' : 'Closed') : projectStatusLabel(project.status)}
+          </StatusPill>
+        </span>
       </div>
+      {project.archived_at && (
+        <InTrashBanner kind="project" id={project.id} at={project.archived_at} onRestored={() => { void reload(); void detail.reload(); }} />
+      )}
 
       {/* ----------------------------------------------------- header */}
       <Panel

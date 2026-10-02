@@ -610,7 +610,8 @@ function WonPanel({
   }, [deal.id, onChanged, mayProjects]);
 
   const matches = useMemo(
-    () => findClientMatches(clients.rows, {
+    // A client in the Trash is not offered as the one to attach to.
+    () => findClientMatches(clients.rows.filter((c) => !c.archived_at), {
       name: deal.company_name ?? deal.contact_name,
       email: deal.contact_email,
     }),

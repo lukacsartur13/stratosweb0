@@ -45,7 +45,7 @@ export function LeadsScreen() {
   const { reloadToken } = useScope();
   const [params] = useSearchParams();
   const navigate = useNavigate();
-  const { rows, state, message, reload } = useRows<Lead>('leads', LEAD_COLUMNS, 'created_at', reloadToken);
+  const { rows, state, message, reload } = useRows<Lead>('leads', LEAD_COLUMNS, 'created_at', reloadToken, 'trashed_at');
   // Which enquiries already became opportunities. ONE bounded query for the
   // whole list rather than one per row — see `useLeadConversions`. A lead that
   // has been converted is marked here so nobody converts it twice.

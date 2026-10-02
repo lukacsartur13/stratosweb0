@@ -1,10 +1,11 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Target } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { can, canAccess } from '@/lib/permissions';
 import { isImpactLead } from '@/lib/impactRules';
 import { useScope } from '@/lib/scope';
+import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls';
 import { Grid } from '@/components/shell/PortalShell';
 import {
   Button, DataState, Panel, SectionHeader, Skeleton, StatusPill, Textarea, cn,
@@ -59,6 +60,7 @@ export function LeadDetailScreen() {
   const { profile } = useAuth();
   const { reloadToken } = useScope();
   const mayEdit = can(profile?.role, 'manage_leads');
+  const navigate = useNavigate();
   const mayConvert = can(profile?.role, 'manage_sales');
 
   const { lead, state, reload } = useLead(id, reloadToken);
@@ -129,8 +131,14 @@ export function LeadDetailScreen() {
         >
           <ArrowLeft size={11} aria-hidden="true" /> All leads
         </Link>
-        <StatusPill tone={statusTone(lead.status)}>{statusLabel(lead.status)}</StatusPill>
+        <span className="flex flex-wrap items-center gap-2">
+          {mayEdit && !lead.trashed_at && (
+            <MoveToTrashButton kind="lead" id={lead.id} name={lead.name} onTrashed={() => navigate('/leads')} />
+          )}
+          <StatusPill tone={statusTone(lead.status)}>{statusLabel(lead.status)}</StatusPill>
+        </span>
       </div>
+      {lead.trashed_at && <InTrashBanner kind="lead" id={lead.id} at={lead.trashed_at} onRestored={() => void reload()} />}
 
       <Grid>
         {/* ============================================ 8/12 — the enquiry */}

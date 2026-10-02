@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
   Activity, Building2, ChartLine, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
-  Menu, RefreshCw, ScrollText, Settings, Target, Users, X,
+  Menu, RefreshCw, ScrollText, Settings, Target, Trash2, Users, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
@@ -92,6 +92,8 @@ const SECONDARY: NavItem[] = [
   { to: '/users',        label: 'Users',        icon: Users,      cap: 'manage_users' },
   { to: '/activity',     label: 'Activity',     icon: ScrollText, cap: 'view_activity' },
   { to: '/settings',     label: 'Settings',     icon: Settings,   cap: 'manage_settings' },
+  // Projects, clients and leads moved to the Trash: restore or delete for good.
+  { to: '/trash',        label: 'Trash',        icon: Trash2,     cap: 'manage_leads' },
 ];
 
 /**
@@ -114,6 +116,7 @@ const TITLES: { path: string; title: string }[] = [
   { path: '/users', title: 'Users' },
   { path: '/activity', title: 'Activity' },
   { path: '/settings', title: 'Settings' },
+  { path: '/trash', title: 'Trash' },
 ];
 
 /** The screens the period and environment controls actually apply to. */

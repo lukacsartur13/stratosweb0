@@ -250,7 +250,9 @@ export function useClientDetail(id: string | undefined, reloadToken = 0, include
       // screen would render as "no projects".
       includeProjects
         ? supabase.from('projects').select(PROJECT_COLUMNS)
-          .eq('organization_id', id).order('created_at', { ascending: false }).limit(100)
+          // Projects in the Trash are not the client's projects any more.
+          .eq('organization_id', id).is('archived_at', null)
+          .order('created_at', { ascending: false }).limit(100)
         : Promise.resolve({ data: [], error: null }),
       supabase.from('opportunities')
         .select('id, title, stage, estimated_value, currency, won_at, expected_close_on')

@@ -187,6 +187,7 @@ function applyFilters(url, rows) {
     else if (op === 'neq') out = out.filter((r) => String(r[key] ?? '') !== value);
     else if (op === 'in') { const set = value.replace(/^\(|\)$/g, '').split(',').map((v) => v.replace(/"/g, '')); out = out.filter((r) => set.includes(String(r[key]))); }
     else if (op === 'is' && value === 'null') out = out.filter((r) => r[key] === null || r[key] === undefined);
+    else if (op === 'not' && value === 'is.null') out = out.filter((r) => r[key] !== null && r[key] !== undefined);
   }
   return out;
 }
@@ -278,6 +279,18 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
       if (b.p_accept) Object.assign(state.meetings.find((m) => m.id === r.meeting_id), { starts_at: r.proposed_starts_at, ends_at: r.proposed_ends_at });
       return json(route, r.status);
     }
+    // The Trash's permanent delete: refused while a schedule exists, as the real one is.
+    for (const [fn, key] of [['purge_project', 'projects'], ['purge_client', null], ['purge_lead', null]]) {
+      if (!url.includes(`/rest/v1/rpc/${fn}`)) continue;
+      const body = JSON.parse(req.postData() || '{}');
+      state.writes.push({ table: `rpc:${fn}`, body });
+      if (key === 'projects') {
+        const n = state.instalments.filter((i) => i.project_id === body.p_id).length;
+        if (n > 0) return json(route, { code: 'P0001', message: 'stratos:purge_blocked', details: `${n} instalment(s) in the payment schedule`, hint: null }, 400);
+        state.projects = state.projects.filter((p) => p.id !== body.p_id);
+      }
+      return json(route, null, 204);
+    }
     if (url.includes('/rest/v1/rpc/')) return json(route, []);
 
     if (url.includes('/rest/v1/impact_applications')) {
@@ -291,7 +304,16 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
       }
       return answer(applyFilters(url, state.applications));
     }
-    if (url.includes('/rest/v1/leads')) return answer([state.impactLead]);
+    if (url.includes('/rest/v1/leads')) {
+      if (method === 'PATCH') {
+        const patch = JSON.parse(req.postData() || '{}');
+        state.writes.push({ table: 'leads', url, patch });
+        const rows = applyFilters(url, [state.impactLead]);
+        for (const r of rows) Object.assign(r, patch);
+        return json(route, rows.map((r) => ({ id: r.id })));
+      }
+      return answer(applyFilters(url, [state.impactLead]));
+    }
 
     if (url.includes('/rest/v1/profiles')) return answer([profile]);
 
@@ -1024,6 +1046,85 @@ await check('monthly: phone width — no horizontal scroll on the list and the c
   await context.close();
 });
 
+/* --------------------------------------------------------------- Trash */
+
+await check('trash: a project moved to the Trash leaves Projects; Restore brings it back; Delete removes it', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects/p-ready`);
+  page.once('dialog', (d) => d.accept());
+  await page.getByRole('button', { name: 'Move to trash' }).click();
+  await page.waitForURL(/\/projects$/);
+  await page.getByRole('link', { name: 'Late website' }).first().waitFor();
+  assert(!(await page.getByRole('link', { name: 'Ready to close' }).isVisible()), 'a trashed project is still listed');
+  await page.getByRole('link', { name: 'Trash' }).click();
+  const section = page.getByRole('region', { name: 'Trash: Projects' });
+  await section.getByRole('link', { name: 'Ready to close' }).waitFor();
+  await shot(page, 'trash');
+  await section.getByRole('button', { name: 'Restore' }).click();
+  await settle(page);
+  assert(state.projects.find((p) => p.id === 'p-ready').archived_at === null, 'restore did not clear the Trash mark');
+  assert(!(await section.getByRole('link', { name: 'Ready to close' }).isVisible()), 'restored project still in the Trash');
+  state.projects.find((p) => p.id === 'p-ready').archived_at = new Date().toISOString();
+  await page.reload();
+  await section.getByRole('link', { name: 'Ready to close' }).waitFor();
+  page.once('dialog', (d) => d.accept());
+  await section.getByRole('button', { name: 'Delete permanently' }).click();
+  await settle(page);
+  assert(!state.projects.some((p) => p.id === 'p-ready'), 'the project was not deleted');
+  assert(state.writes.filter((w) => w.table === 'rpc:purge_project').length === 1, 'not exactly one delete call');
+  assert(!(await section.getByRole('link', { name: 'Ready to close' }).isVisible()), 'deleted project still listed');
+  await context.close();
+});
+
+await check('trash: a delete that money blocks says why, and nothing is removed', async () => {
+  const state = freshState();
+  state.projects.find((p) => p.id === 'p-late').archived_at = new Date().toISOString();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/trash`);
+  const section = page.getByRole('region', { name: 'Trash: Projects' });
+  await section.getByRole('link', { name: 'Late website' }).waitFor();
+  page.once('dialog', (d) => d.accept());
+  await section.getByRole('button', { name: 'Delete permanently' }).click();
+  const alert = section.getByRole('alert');
+  await alert.waitFor();
+  assert((await alert.innerText()).includes('2 instalment(s)'), `reason not shown: ${await alert.innerText()}`);
+  assert(state.projects.some((p) => p.id === 'p-late'), 'a blocked project was removed');
+  await shot(page, 'trash-blocked');
+  await context.close();
+});
+
+await check('trash: a project in the Trash says so on its page and can be restored there', async () => {
+  const state = freshState();
+  state.projects.find((p) => p.id === 'p-late').archived_at = new Date().toISOString();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects/p-late`);
+  const banner = page.locator('[data-in-trash="project"]');
+  await banner.waitFor();
+  assert(!(await page.getByRole('button', { name: 'Move to trash' }).isVisible()), 'Move to trash offered on a trashed project');
+  await banner.getByRole('button', { name: 'Restore' }).click();
+  await page.getByRole('button', { name: 'Move to trash' }).waitFor();
+  assert(state.projects.find((p) => p.id === 'p-late').archived_at === null, 'not restored');
+  await context.close();
+});
+
+await check('trash: a lead moved to the Trash leaves Leads and shows the banner on its page', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/leads/l-new`);
+  page.once('dialog', (d) => d.accept());
+  await page.getByRole('button', { name: 'Move to trash' }).click();
+  await page.waitForURL(/\/leads$/);
+  assert(state.impactLead.trashed_at, 'the lead was not marked');
+  await settle(page);
+  assert(!(await page.getByText('Kiss Anna').first().isVisible()), 'a trashed lead is still listed');
+  await page.goto(`${BASE}/leads/l-new`);
+  await page.locator('[data-in-trash="lead"]').waitFor();
+  await page.goto(`${BASE}/trash`);
+  await page.getByRole('region', { name: 'Trash: Leads' }).getByRole('link', { name: 'Kiss Anna' }).waitFor();
+  await context.close();
+});
+
 /* ------------------------------------------------------------- Sales */
 
 await check('sales: "Done" is one call per double click; the action leaves the follow-ups; a failure leaves it', async () => {
@@ -1189,7 +1290,7 @@ await check('owner: Appearance in the sidebar — System follows the device, Lig
   for (const scheme of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: scheme });
     await page.waitForFunction((t) => document.documentElement.dataset.theme === t, scheme);
-    for (const path of ['/', '/projects', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
+    for (const path of ['/', '/projects', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/trash', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
       await page.goto(`${BASE}${path}`);
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(150);

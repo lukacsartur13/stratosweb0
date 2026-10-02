@@ -85,6 +85,9 @@ const CaseStudiesScreen = lazy(() => import('@/pages/screens').then((m) => ({ de
 const UsersScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.UsersScreen })));
 const ActivityScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.ActivityScreen })));
 const SettingsScreen = lazy(() => import('@/pages/screens').then((m) => ({ default: m.SettingsScreen })));
+// Projects, clients and leads moved to the Trash (20261007000100_trash.sql).
+// Each section inside checks its own capability.
+const TrashScreen = lazy(() => import('@/pages/trash').then((m) => ({ default: m.TrashScreen })));
 
 /**
  * Nothing below this should ever show a visitor a stack trace. React unmounts
@@ -202,6 +205,8 @@ export default function App() {
                 <ProtectedRoute capability="view_activity"><ActivityScreen /></ProtectedRoute>} />
               <Route path="settings" element={
                 <ProtectedRoute capability="manage_settings"><SettingsScreen /></ProtectedRoute>} />
+              <Route path="trash" element={
+                <ProtectedRoute capability="manage_leads"><TrashScreen /></ProtectedRoute>} />
 
               <Route path="*" element={<NotFoundScreen />} />
             </Route>

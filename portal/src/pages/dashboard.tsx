@@ -93,7 +93,7 @@ export function DashboardScreen() {
   const maySales = can(profile?.role, 'view_sales');
   const mayProjects = canAccess(profile, 'view_projects');
 
-  const leads = useRows<Lead>('leads', LEAD_COLUMNS, 'created_at', reloadToken);
+  const leads = useRows<Lead>('leads', LEAD_COLUMNS, 'created_at', reloadToken, 'trashed_at');
   const { state: analytics } = useAnalytics(range, environment, mayAnalytics, reloadToken);
   const { state: health } = useHealth(maySystem, reloadToken);
 

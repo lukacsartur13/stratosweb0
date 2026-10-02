@@ -183,7 +183,8 @@ test.describe('the celebration is an event, never a rendering of state', () => {
   test('exactly two call sites, each behind a confirmed successful transition', () => {
     const calls = callers();
     expect(calls).toHaveLength(2);
-    expect(calls).toContain("pages/projects.tsx: if (result === true) celebrate('project_closed', project.name);");
+    // An ended monthly contract is not celebrated (20261006000100_monthly_contracts.sql).
+    expect(calls).toContain("pages/projects.tsx: if (result === true && !monthly) celebrate('project_closed', project.name);");
     expect(calls).toContain("lib/sales.ts: if (winning && Array.isArray(data) && data.length > 0) celebrate('deal_won', current.title);");
   });
 

@@ -12,7 +12,11 @@ export type LoadState = 'loading' | 'ready' | 'error' | 'unconfigured';
  * `projects` gets their own organisation's rows because the database said so,
  * not because the frontend remembered to add a `where`.
  */
-export function useRows<T>(table: string, columns = '*', orderBy = 'created_at', reloadToken = 0) {
+/**
+ * `liveOnly` names a column that must be NULL — the Trash column of a table
+ * whose trashed rows no list may show (`leads.trashed_at`).
+ */
+export function useRows<T>(table: string, columns = '*', orderBy = 'created_at', reloadToken = 0, liveOnly?: string) {
   const [rows, setRows] = useState<T[]>([]);
   const [state, setState] = useState<LoadState>(isConfigured ? 'loading' : 'unconfigured');
   const [message, setMessage] = useState('');
@@ -20,9 +24,9 @@ export function useRows<T>(table: string, columns = '*', orderBy = 'created_at',
   const load = useCallback(async () => {
     if (!isConfigured) return setState('unconfigured');
     setState('loading');
-    const { data, error } = await supabase
-      .from(table)
-      .select(columns)
+    let query = supabase.from(table).select(columns);
+    if (liveOnly) query = query.is(liveOnly, null);
+    const { data, error } = await query
       .order(orderBy, { ascending: false })
       .limit(200);
 
@@ -42,7 +46,7 @@ export function useRows<T>(table: string, columns = '*', orderBy = 'created_at',
     setState('ready');
     // `reloadToken` is the command bar's Refresh — see the note on the same
     // dependency in lib/analytics.ts.
-  }, [table, columns, orderBy, reloadToken]);
+  }, [table, columns, orderBy, reloadToken, liveOnly]);
 
   useEffect(() => { void load(); }, [load]);
 
