@@ -9,6 +9,7 @@ import { disablePush, enablePush, pushState, type PushState } from '@/lib/push';
 import { canAccess } from '@/lib/permissions';
 import { getEmailPref, notifyOwnerTest, setEmailPref } from '@/lib/notify';
 import { useGoogleReviewUrl } from '@/lib/clientExperience';
+import { useAutomationSettings, type AutomationSettings } from '@/lib/automations';
 import { isSafeHttpsUrl } from '@/lib/meetings';
 import {
   Badge, Button, Cell, DataState, ErrorState, Input, Panel, Row, SectionHeader, Skeleton, Table,
@@ -222,6 +223,7 @@ export function SettingsScreen() {
       <LanguageSettings />
       <NotificationSettings />
       {canAccess(profile, 'manage_projects') && <GoogleReviewSettings />}
+      {canAccess(profile, 'manage_projects') && <AutomationSettingsPanel />}
       <p className="t-note">
         {t('Infrastructure, credentials and deploy context are on the System screen.')}
       </p>
@@ -345,6 +347,48 @@ function GoogleReviewSettings() {
         )}
         {review.state === 'ready' && !review.url && <p className="text-signal">{t('No link yet: clients are thanked, but not asked for a review.')}</p>}
         {message && <p role="status" className={message.ok ? 'text-xs text-good' : 'text-xs text-danger'}>{message.text}</p>}
+      </div>
+    </Panel>
+  );
+}
+
+/**
+ * The automations (20261015000100): which rules run and their thresholds. What
+ * they raise shows on Today and is pushed and e-mailed to the owner and admins.
+ */
+function AutomationSettingsPanel() {
+  const auto = useAutomationSettings();
+  const [message, setMessage] = useState<string | null>(null);
+  const v = auto.value;
+  const save = async (patch: Partial<AutomationSettings>) => setMessage(await auto.save(patch));
+  const number = (key: 'auto_lead_hours' | 'auto_deal_days' | 'auto_deadline_days', min: number, max: number, label: string) => (
+    <Input type="number" min={min} max={max} aria-label={label} className="w-20" defaultValue={v?.[key]} key={`${key}-${v?.[key]}`}
+           onBlur={(e) => { const n = Math.round(Number(e.target.value)); if (n >= min && n <= max && n !== v?.[key]) void save({ [key]: n }); }} />
+  );
+  const rule = (on: keyof AutomationSettings, title: string, body: ReactNode) => (
+    <li className="flex items-start gap-2 border-b border-hairline py-2 last:border-0">
+      <input type="checkbox" className="mt-0.5 h-4 w-4 accent-signal" checked={Boolean(v?.[on])} aria-label={title}
+             onChange={(e) => void save({ [on]: e.target.checked })} data-auto={on} />
+      <div className="grid gap-1"><p className="text-paper">{title}</p><div className="t-note flex flex-wrap items-center gap-1">{body}</div></div>
+    </li>
+  );
+  return (
+    <Panel aria-label={t('Automations')}>
+      <SectionHeader title={t('Automations')} />
+      <div className="px-4 py-3 text-[13px]">
+        <p className="t-note">{t('What these find shows under “Needs attention” on Today, once per case, and is pushed and e-mailed to you and the admins. It closes by itself when the cause is gone.')}</p>
+        {auto.state === 'loading' && <Skeleton className="mt-2 h-24 w-full" />}
+        {auto.state === 'error' && <p className="mt-2 text-haze">{t('This feature is not installed on the database yet (20261015000100).')}</p>}
+        {v && (
+          <ul className="mt-2 grid">
+            {rule('auto_lead_on', t('A new lead with no reply'), <>{t('after')} {number('auto_lead_hours', 1, 720, t('Hours'))} {t('hours without a status change or a logged contact')}</>)}
+            {rule('auto_deal_on', t('A stalled deal'), <>{t('no movement for')} {number('auto_deal_days', 1, 365, t('Days'))} {t('days and no next step ahead')}</>)}
+            {rule('auto_won_on', t('A won deal without a project'), <>{t('until the project is created from it')}</>)}
+            {rule('auto_overdue_on', t('An overdue payment'), <>{t('from the payment schedule')}</>)}
+            {rule('auto_deadline_on', t('A project deadline coming up'), <>{t('within')} {number('auto_deadline_days', 1, 60, t('Days'))} {t('days')}</>)}
+          </ul>
+        )}
+        {message && <p role="status" className="mt-2 text-xs text-danger">{message}</p>}
       </div>
     </Panel>
   );

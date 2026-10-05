@@ -15,7 +15,9 @@ const KINDS = ['client_upload', 'client_feedback', 'client_reschedule', 'client_
   'document_shared', 'demo_published', 'meeting_scheduled', 'meeting_changed', 'meeting_cancelled', 'reschedule_decided', 'feedback_replied',
   // 20261014000100: client experience
   'client_message', 'client_approved', 'client_changes_requested', 'client_request_done', 'client_survey',
-  'request_added', 'message_posted', 'approval_requested', 'survey_requested'];
+  'request_added', 'message_posted', 'approval_requested', 'survey_requested',
+  // 20261015000100: automations
+  'auto_lead_unanswered', 'auto_deal_stale', 'auto_deal_won', 'auto_instalment_overdue', 'auto_deadline_soon'];
 const msg = (kind: string, payload: Record<string, unknown> = {}) => ({
   id: `m-${kind}`, kind, audience: kind.startsWith('client_') || kind === 'test' ? 'owner' : 'client',
   project_id: 'p1', project_name: 'Rapidkert weboldal', payload,
@@ -25,7 +27,7 @@ test.describe('what a notification says', () => {
   test('every kind reads in every language, with no placeholder left', () => {
     for (const kind of KINDS) {
       for (const lang of LANGS) {
-        const s = line(msg(kind, { name: 'logo.png', title: 'Demó', excerpt: 'Szép', reply: 'Köszi', starts_at: '2026-10-07T08:00:00Z', decision: 'accepted', score: 9, due_on: '2026-10-12' }), lang);
+        const s = line(msg(kind, { name: 'logo.png', title: 'Demó', excerpt: 'Szép', reply: 'Köszi', starts_at: '2026-10-07T08:00:00Z', decision: 'accepted', score: 9, due_on: '2026-10-12', hours: 24, days: 14, amount: 500000, currency: 'HUF' }), lang);
         expect(s, `${kind}/${lang}`).not.toMatch(/\{\w+\}/);
         expect(s.length, `${kind}/${lang}`).toBeGreaterThan(10);
       }
@@ -36,6 +38,17 @@ test.describe('what a notification says', () => {
     expect(line(msg('request_added', { title: 'Logó', due_on: '2026-10-12' }), 'hu')).toBe('Kérünk tőled valamit: Logó (határidő: október 12.)');
     expect(line(msg('request_added', { title: 'Logó' }), 'en')).toBe('We need something from you: Logó');
     expect(line({ ...msg('client_survey', { score: 9 }), client_name: 'Kovács Anna' }, 'en')).toBe('Kovács Anna rated you 9/10 (Rapidkert weboldal)');
+  });
+
+  test('automation alerts read as one line, with the amount in the reader\'s format, and link to their page', () => {
+    const overdue = { ...msg('auto_instalment_overdue', { title: 'Late website', detail: 'Rapidkert Kft.', amount: 500000, currency: 'HUF', due_on: '2026-09-30' }), project_id: 'p-late' };
+    expect(line(overdue, 'en')).toMatch(/^Overdue payment: Late website \(Rapidkert Kft\.\) — HUF\s?500,000 \(since 30 September\)$/);
+    expect(line(overdue, 'hu')).toContain('500\u00a0000\u00a0Ft');
+    expect(compose([overdue], { audience: 'owner', lang: 'en', origin: 'https://stratosweb.hu' }).push.url).toBe('https://stratosweb.hu/portal/projects/p-late');
+    const lead = msg('auto_lead_unanswered', { title: 'Kovács Anna', lead_id: 'l-1', hours: 24 });
+    expect(compose([lead], { audience: 'owner', lang: 'hu', origin: 'https://stratosweb.hu' }).push.url).toBe('https://stratosweb.hu/portal/leads/l-1');
+    const deal = msg('auto_deal_stale', { title: 'Webshop', opportunity_id: 'o-1', days: 14 });
+    expect(compose([deal], { audience: 'owner', lang: 'de', origin: 'https://stratosweb.hu' }).push.url).toBe('https://stratosweb.hu/portal/sales/o-1');
   });
 
   test('a client e-mail greets, links and says who it is from; a person\'s text is escaped in HTML', () => {
@@ -67,6 +80,7 @@ test.describe('one run of the sender', () => {
       rpc: async (fn: string, args: Record<string, unknown>) => {
         if (fn === 'notification_claim') return { data: rows, error: null };
         if (fn === 'survey_quarterly_due') { quarterly.push(1); return { data: 0, error: null }; }
+        if (fn === 'automation_run') { quarterly.push(2); return { data: 0, error: null }; }
         done.push({ id: args.p_id as string, error: (args.p_error as string) ?? null });
         return { data: null, error: null };
       },
@@ -77,10 +91,10 @@ test.describe('one run of the sender', () => {
     return { db, done, quarterly };
   }
 
-  test('each run first creates the quarterly surveys that are due', async () => {
+  test('each run first raises the automation alerts, then the quarterly surveys that are due', async () => {
     const { db, quarterly } = fakeDb([]);
     await dispatch(db, { origin: 'https://stratosweb.hu' });
-    expect(quarterly).toEqual([1]);
+    expect(quarterly).toEqual([2, 1]);
   });
 
   test('one e-mail per person; the client is greeted in their language; sent messages are marked', async () => {

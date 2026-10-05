@@ -37,6 +37,12 @@ const LINES = {
   client_changes_requested: ['{client} módosítást kér a demón ({title}, {project}): „{excerpt}”', '{client} asks for changes to the demo ({title}, {project}): “{excerpt}”', '{client} wünscht Änderungen an der Demo ({title}, {project}): „{excerpt}“'],
   client_request_done: ['{client} kész: {title} ({project})', '{client} marked done: {title} ({project})', '{client} hat erledigt: {title} ({project})'],
   client_survey: ['{client} értékelt: {score}/10 ({project})', '{client} rated you {score}/10 ({project})', '{client} hat {score}/10 bewertet ({project})'],
+  // automations (20261015000100)
+  auto_lead_unanswered: ['Még senki nem válaszolt a leadre: {title}{detail} — {hours} órája jött', 'Nobody has answered this lead: {title}{detail} — it came in {hours} h ago', 'Noch keine Antwort auf diesen Lead: {title}{detail} — vor {hours} Std. eingegangen'],
+  auto_deal_stale: ['Elakadt ajánlat: {title}{detail} — {days} napja nem mozdult', 'Stalled deal: {title}{detail} — no movement for {days} days', 'Stockendes Angebot: {title}{detail} — seit {days} Tagen keine Bewegung'],
+  auto_deal_won: ['Megnyert üzlet, még nincs projekt: {title}{detail}', 'Won, but no project yet: {title}{detail}', 'Gewonnen, aber noch kein Projekt: {title}{detail}'],
+  auto_instalment_overdue: ['Lejárt fizetés: {title}{detail} — {amount} ({day} óta)', 'Overdue payment: {title}{detail} — {amount} (since {day})', 'Überfällige Zahlung: {title}{detail} — {amount} (seit {day})'],
+  auto_deadline_soon: ['Közeleg a határidő: {title}{detail} — {day}', 'Deadline coming up: {title}{detail} — {day}', 'Frist naht: {title}{detail} — {day}'],
   test: ['Próbaértesítés — ha ezt látod, az értesítések működnek.', 'Test notification — if you can see this, notifications work.', 'Testbenachrichtigung — wenn Sie das sehen, funktionieren die Benachrichtigungen.'],
   // ---- to a client
   document_shared: ['Új dokumentumot osztottunk meg veled: {name}', 'We shared a new document with you: {name}', 'Wir haben ein neues Dokument mit dir geteilt: {name}'],
@@ -55,6 +61,12 @@ const LINES = {
 const DUE = [' (határidő: {d})', ' (by {d})', ' (bis {d})'];
 const day = (iso, lang) => {
   try { return new Intl.DateTimeFormat({ hu: 'hu-HU', en: 'en-GB', de: 'de-DE' }[lang], { month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)); } catch { return iso; }
+};
+
+const money = (amount, currency, lang) => {
+  try {
+    return new Intl.NumberFormat({ hu: 'hu-HU', en: 'en-GB', de: 'de-DE' }[lang], { style: 'currency', currency: currency || 'HUF', maximumFractionDigits: 0 }).format(Number(amount));
+  } catch { return `${amount} ${currency ?? ''}`.trim(); }
 };
 
 const DECISION = { accepted: ['elfogadva', 'accepted', 'angenommen'], declined: ['nem fogadtuk el', 'declined', 'abgelehnt'] };
@@ -92,6 +104,11 @@ export function line(msg, lang) {
     decision: DECISION[p.decision]?.[i] ?? '',
     score: p.score ?? '',
     due: p.due_on ? DUE[i].replace('{d}', day(p.due_on, lang)) : '',
+    detail: p.detail ? ` (${p.detail})` : '',
+    hours: p.hours ?? '',
+    days: p.days ?? '',
+    day: p.due_on ? day(String(p.due_on).slice(0, 10), lang) : '',
+    amount: p.amount != null ? money(p.amount, p.currency, lang) : '',
   };
   return fill((LINES[msg.kind] ?? LINES.test)[i], ctx).replace(/\s+\(\)$/, '');
 }
@@ -102,6 +119,9 @@ export function target(msg, audience) {
     if (msg.kind === 'document_shared') return '/portal/megosztott';
     return '/portal/';
   }
+  const p = msg.payload ?? {};
+  if (p.lead_id) return `/portal/leads/${p.lead_id}`;
+  if (p.opportunity_id) return `/portal/sales/${p.opportunity_id}`;
   if (msg.project_id) return `/portal/projects/${msg.project_id}`;
   return '/portal/';
 }

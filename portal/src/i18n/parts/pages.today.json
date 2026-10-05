@@ -46,5 +46,29 @@
  "Checkpoints due": {
   "hu": "Esedékes mérföldkövek",
   "de": "Fällige Meilensteine"
+ },
+ "{amount} · due {date}": {
+  "hu": "{amount} · esedékes: {date}",
+  "de": "{amount} · fällig {date}"
+ },
+ "No reply yet": {
+  "hu": "Nincs válasz",
+  "de": "Noch keine Antwort"
+ },
+ "Stalled": {
+  "hu": "Elakadt",
+  "de": "Stockt"
+ },
+ "Won — start the project": {
+  "hu": "Megnyert — indítsd a projektet",
+  "de": "Gewonnen — Projekt anlegen"
+ },
+ "Overdue payment": {
+  "hu": "Lejárt fizetés",
+  "de": "Überfällige Zahlung"
+ },
+ "Deadline soon": {
+  "hu": "Közeleg a határidő",
+  "de": "Frist naht"
  }
 }

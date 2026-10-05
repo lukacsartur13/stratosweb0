@@ -811,3 +811,31 @@ Ellenőrizve (helyben): `tests/portal-client-experience-db.spec.ts` 18/18 (jogok
 üzenetkorlát, lezáráskori és negyedéves kérdőív, Google-link 7-től); `tests/notify.spec.ts`; tulajdonosi
 ellenőrző 61/61; ügyfélportál 24/24; dokumentum 18/18; teljes futás 2269 zöld, 1 hiba az ingadozó
 `homepage-chrome` mobil tesztben (külön feladat).
+
+## 26. Automatizálások (18. szakasz, „5. CRM” első része)
+
+**Sorrend: 25. → ez a migráció → deploy.**
+
+1. SQL Editor: `supabase/migrations/20261015000100_automations.sql` (ismételten is futtatható).
+2. Deploy (push a `main`-re). A percenkénti küldő (`notify-dispatch`) futtatja a szabályokat.
+
+Mit csinál (a tulajdonos döntései, 2026-10-05):
+
+- Négy szabály, mindegyik **figyelmeztetést** hoz létre a **Ma** nézet tetején („Needs attention”, linkkel),
+  és push + e-mail megy róla a tulajdonosnak és az adminoknak:
+  1. **Új lead válasz nélkül:** `new` állapotú, N órája jött (alap: 24), nincs rögzített kapcsolatfelvétel
+     (`interactions`). Csak az utolsó 14 nap leadjei.
+  2. **Elakadt ajánlat:** nyitott lehetőség, N napja nem mozdult (alap: 14; a mozgás = módosítás vagy rögzített
+     kapcsolatfelvétel), és nincs előttünk következő lépés.
+  3. **Megnyert üzlet projekt nélkül:** az elmúlt 30 nap nyert lehetőségei, amíg nem készül belőlük projekt.
+  4. **Lejárt fizetés** (a fizetési ütemterv saját számításából) és **közelgő projekt-határidő** (N napon
+     belül, alap: 3).
+- **Esetenként egyszer** szól (mindegyik figyelmeztetésnek kulcsa van); **magától lezárul**, ha az ok megszűnt
+  (válaszoltál, mozdult az ajánlat, kifizették, lezártad a projektet); kézzel is „Done”.
+- Ki látja: a lead- és ajánlat-figyelmeztetéseket az adminok; a projektre vonatkozókat a tulajdonos és a
+  helyettesei.
+- Beállítások → **Automations**: szabályonként ki/be és a határértékek (tulajdonos).
+
+Ellenőrizve (helyben): `tests/portal-automations-db.spec.ts` 6/6 (egyszeri riasztás, önlezárás, küszöb, újbóli
+elakadás, láthatóság, jogok); `tests/notify.spec.ts` 10/10; tulajdonosi ellenőrző 62/62; teljes futás 2295 zöld,
+1 hiba a már ismert ingadozó `homepage-chrome` mobil tesztben.

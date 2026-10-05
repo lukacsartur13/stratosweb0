@@ -8,6 +8,7 @@ import { Badge, Button, DataState, ErrorState, Input, Panel, SectionHeader, Skel
 import { shortDate } from '@/lib/pipeline';
 import { intlLocale, t } from '@/lib/i18n';
 import { inboxNoteId, todayIso, useNotesMutations, useToday } from '@/lib/notes';
+import { alertLink, markAlertDone, useAlerts, type AlertKind, type AutomationAlert } from '@/lib/automations';
 
 /**
  * TODAY — everything due today or already late, in one list, from four places:
@@ -23,6 +24,7 @@ export function TodayScreen() {
   const [tick, setTick] = useState(0);
   const may = { sales: can(profile?.role, 'view_sales'), projects: canAccess(profile, 'view_projects') };
   const today = useToday(reloadToken + tick, may);
+  const alerts = useAlerts(reloadToken + tick);
   const ops = useNotesMutations(() => setTick((n) => n + 1));
   const [draft, setDraft] = useState('');
   const [due, setDue] = useState(todayIso());
@@ -42,7 +44,7 @@ export function TodayScreen() {
 
   const late = (d: string) => d < day;
   const when = (iso: string) => new Date(iso).toLocaleTimeString(intlLocale('en-GB'), { hour: '2-digit', minute: '2-digit' });
-  const count = today.tasks.length + today.followUps.length + today.checkpoints.length + today.meetings.length;
+  const count = today.tasks.length + today.followUps.length + today.checkpoints.length + today.meetings.length + alerts.rows.length;
 
   return (
     <div className="grid gap-4 lg:max-w-4xl">
@@ -63,6 +65,24 @@ export function TodayScreen() {
       {today.state === 'error' && <Panel><ErrorState message={t('Today could not be read.')} onRetry={today.reload} /></Panel>}
       {today.state === 'ready' && count === 0 && (
         <Panel><DataState kind="empty" title={t('Nothing due today')} body={t('No task, follow-up, checkpoint or meeting is due today or late.')} /></Panel>
+      )}
+
+      {alerts.rows.length > 0 && (
+        <Panel aria-label={t('Needs attention')}>
+          <SectionHeader title={t('Needs attention')} note={String(alerts.rows.length)} />
+          <ul className="grid">
+            {alerts.rows.map((a) => (
+              <li key={a.id} className="flex flex-wrap items-center gap-2 border-b border-hairline px-4 py-2 last:border-0" data-alert={a.kind}>
+                <Badge tone={ALERT_TONE[a.kind]}>{t(ALERT_LABEL[a.kind])}</Badge>
+                <Link to={alertLink(a)} className="min-w-0 flex-1 text-[13px] text-paper hover:text-signal">
+                  {a.title}{a.detail ? <span className="t-note"> · {a.detail}</span> : null}
+                </Link>
+                <span className="t-note">{alertNote(a)}</span>
+                <Button size="sm" variant="quiet" onClick={async () => { setError(await markAlertDone(a.id)); setTick((n) => n + 1); }}>{t('Done')}</Button>
+              </li>
+            ))}
+          </ul>
+        </Panel>
       )}
 
       {today.state === 'ready' && today.meetings.length > 0 && (
@@ -138,4 +158,22 @@ export function TodayScreen() {
       )}
     </div>
   );
+}
+
+const ALERT_LABEL: Record<AlertKind, string> = {
+  lead_unanswered: 'No reply yet', deal_stale: 'Stalled', deal_won: 'Won — start the project',
+  instalment_overdue: 'Overdue payment', deadline_soon: 'Deadline soon',
+};
+const ALERT_TONE: Record<AlertKind, 'warn' | 'bad' | 'good' | 'neutral'> = {
+  lead_unanswered: 'warn', deal_stale: 'neutral', deal_won: 'good', instalment_overdue: 'bad', deadline_soon: 'warn',
+};
+
+/** The figure or day that matters for this alert. */
+function alertNote(a: AutomationAlert): string {
+  if (a.kind === 'instalment_overdue' && a.amount !== null) {
+    const money = new Intl.NumberFormat(intlLocale('en-GB'), { style: 'currency', currency: a.currency ?? 'HUF', maximumFractionDigits: 0 }).format(a.amount);
+    return a.due_on ? t('{amount} · due {date}', { amount: money, date: shortDate(a.due_on) }) : money;
+  }
+  if (a.kind === 'deadline_soon' && a.due_on) return shortDate(a.due_on);
+  return shortDate(a.created_at.slice(0, 10));
 }

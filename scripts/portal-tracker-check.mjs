@@ -159,7 +159,7 @@ function freshState() {
         outcome: 'review', issues: ['payment_date_unknown', 'marked_paid_amount_short', 'state_changed:paid->partially_paid'], derived_state: 'partially_paid', reviewed_at: null },
     ],
     paymentReads: 0, completeCalls: 0, completeAnswer: 'ok',
-    demos: [], meetings: [], helpReads: 0, feedback: [], outbox: [], asks: [], messages: [], surveys: [], settings: [{ id: true, google_review_url: null }], requests: [], decisions: [],
+    demos: [], meetings: [], helpReads: 0, feedback: [], outbox: [], asks: [], messages: [], surveys: [], settings: [{ id: true, google_review_url: null, auto_lead_on: true, auto_lead_hours: 24, auto_deal_on: true, auto_deal_days: 14, auto_won_on: true, auto_overdue_on: true, auto_deadline_on: true, auto_deadline_days: 3 }], alerts: [], requests: [], decisions: [],
     help: [
       { id: 'ha-1', slug: 'portal-fajltipusok', question: 'Milyen fájlokat tölthetek fel?', answer: 'Fájlonként legfeljebb 50 MB.', topic: 'Ügyfélportál – feltöltés',
         alt_questions: ['mekkora fájl'], source: 'lib/documentRules.ts', status: 'published', review_note: null, position: 10, updated_at: new Date().toISOString() },
@@ -410,7 +410,7 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
     if (url.includes('/rest/v1/checkpoint_templates')) return answer(owner ? TEMPLATES : []);
     // Phase 7 tables, as RLS answers them.
     for (const [path, key] of [['project_demos', 'demos'], ['project_meetings', 'meetings'], ['help_articles', 'help'], ['demo_feedback', 'feedback'], ['meeting_change_requests', 'requests'], ['notification_outbox', 'outbox'],
-      ['client_requests', 'asks'], ['project_messages', 'messages'], ['client_surveys', 'surveys'], ['portal_settings', 'settings']]) {
+      ['client_requests', 'asks'], ['project_messages', 'messages'], ['client_surveys', 'surveys'], ['portal_settings', 'settings'], ['automation_alerts', 'alerts']]) {
       if (!url.includes(`/rest/v1/${path}`)) continue;
       if (path === 'help_articles' && method === 'GET') state.helpReads += 1;
       if (!owner) return answer([]);
@@ -1670,6 +1670,41 @@ await check('settings: the Google review link refuses a non-https address and sa
   await page.getByText('Saved.').waitFor();
   const w = state.writes.find((x) => x.table === 'portal_settings');
   assert(w && w.body.google_review_url === 'https://g.page/r/stratos/review', JSON.stringify(w));
+  await context.close();
+});
+
+await check('automations: Today lists what needs attention with links; Done ticks one off; Settings switches a rule and its threshold', async () => {
+  const state = freshState();
+  const now = new Date().toISOString();
+  const base = { detail: null, due_on: null, amount: null, currency: null, created_at: now, lead_id: null, opportunity_id: null, project_id: null, done_at: null, resolved_at: null };
+  state.alerts.push(
+    { ...base, id: 'al-1', kind: 'lead_unanswered', title: 'Kovács Anna', detail: 'Rapidkert', lead_id: 'l-1' },
+    { ...base, id: 'al-2', kind: 'instalment_overdue', title: 'Late website', detail: 'Rapidkert Kft.', project_id: 'p-late', amount: 300000, currency: 'HUF', due_on: '2026-09-25' },
+    { ...base, id: 'al-3', kind: 'deal_stale', title: 'Webshop', opportunity_id: state.deal.id },
+  );
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/today`);
+  const panel = page.getByRole('region', { name: 'Needs attention' });
+  await panel.getByText('Overdue payment').waitFor();
+  assert(await panel.getByRole('link', { name: /Kovács Anna/ }).getAttribute('href') === '/portal/leads/l-1', 'lead link');
+  assert(await panel.getByRole('link', { name: /Late website/ }).getAttribute('href') === '/portal/projects/p-late', 'project link');
+  assert(/300/.test(await panel.locator('[data-alert="instalment_overdue"]').innerText()), 'amount shown');
+  await panel.locator('[data-alert="deal_stale"]').getByRole('button', { name: 'Done' }).click();
+  await page.waitForTimeout(300);
+  const w = state.writes.find((x) => x.table === 'automation_alerts');
+  assert(w && w.method === 'PATCH' && w.body.done_at && /id=eq.al-3/.test(w.url), JSON.stringify(w));
+
+  await page.goto(`${BASE}/settings`);
+  const auto = page.getByRole('region', { name: 'Automations' });
+  await auto.getByText('A stalled deal').waitFor();
+  await auto.locator('[data-auto="auto_won_on"]').uncheck();
+  const hours = auto.getByLabel('Hours');
+  await hours.fill('8');
+  await hours.blur();
+  await page.waitForTimeout(400);
+  const ws = state.writes.filter((x) => x.table === 'portal_settings').map((x) => x.body);
+  assert(ws.some((b) => b.auto_won_on === false) && ws.some((b) => b.auto_lead_hours === 8), JSON.stringify(ws));
+  await shot(page, 'owner-automations');
   await context.close();
 });
 

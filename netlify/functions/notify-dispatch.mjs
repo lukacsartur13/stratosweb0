@@ -8,7 +8,7 @@
 //   client messages   an e-mail to every client the database names as a
 //                     recipient AT SEND TIME (active account, still has the
 //                     project, and — if the owner named accounts — one of those)
-//   (and, first, the quarterly satisfaction surveys that are due)
+//   (and, first, the automations and the quarterly satisfaction surveys that are due)
 //
 // Several messages to one person in one run become ONE e-mail and ONE push.
 // Each message is then marked sent, or given back with its error (the database
@@ -78,6 +78,12 @@ async function sendPush(db, userIds, payload) {
 export async function dispatch(db, { origin }) {
   // In a quarter's last month: the satisfaction survey of each running monthly
   // contract (20261014000100). Idempotent; its e-mails are claimed just below.
+  // The automations (20261015000100): alerts on Today, and their notifications
+  // queued for this same run.
+  const auto = await db.rpc('automation_run');
+  if (auto.error) console.error('[notify] automation_run', auto.error.code);
+  else if (auto.data) console.log('[notify] automation alerts', auto.data);
+
   const due = await db.rpc('survey_quarterly_due');
   if (due.error) console.error('[notify] survey_quarterly_due', due.error.code);
   else if (due.data) console.log('[notify] quarterly surveys', due.data);

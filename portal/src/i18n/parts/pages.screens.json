@@ -239,5 +239,69 @@
  "No link yet: clients are thanked, but not asked for a review.": {
   "hu": "Még nincs link: az ügyfelek köszönetet kapnak, de értékelést nem kérünk tőlük.",
   "de": "Noch kein Link: Kunden wird gedankt, aber nicht um eine Bewertung gebeten."
+ },
+ "Automations": {
+  "hu": "Automatizálások",
+  "de": "Automatisierungen"
+ },
+ "What these find shows under “Needs attention” on Today, once per case, and is pushed and e-mailed to you and the admins. It closes by itself when the cause is gone.": {
+  "hu": "Amit ezek találnak, a Ma nézetben a „Figyelmet kér” alatt jelenik meg, esetenként egyszer, és push + e-mail megy róla neked és az adminoknak. Magától lezárul, ha az ok megszűnt.",
+  "de": "Was diese Regeln finden, erscheint unter „Braucht Aufmerksamkeit“ auf Heute, einmal pro Fall, und wird Ihnen und den Admins per Push und E-Mail gemeldet. Es schließt sich von selbst, wenn die Ursache behoben ist."
+ },
+ "This feature is not installed on the database yet (20261015000100).": {
+  "hu": "Ez a funkció még nincs telepítve az adatbázisban (20261015000100).",
+  "de": "Diese Funktion ist in der Datenbank noch nicht installiert (20261015000100)."
+ },
+ "A new lead with no reply": {
+  "hu": "Új lead válasz nélkül",
+  "de": "Neuer Lead ohne Antwort"
+ },
+ "after": {
+  "hu": "ennyi idő után:",
+  "de": "nach"
+ },
+ "hours without a status change or a logged contact": {
+  "hu": "óra, ha nem változott az állapota és nincs rögzített kapcsolatfelvétel",
+  "de": "Stunden ohne Statusänderung oder erfassten Kontakt"
+ },
+ "A stalled deal": {
+  "hu": "Elakadt ajánlat",
+  "de": "Stockendes Angebot"
+ },
+ "no movement for": {
+  "hu": "nem mozdult ennyi ideje:",
+  "de": "keine Bewegung seit"
+ },
+ "Days": {
+  "hu": "Nap",
+  "de": "Tage"
+ },
+ "days and no next step ahead": {
+  "hu": "nap, és nincs előttünk következő lépés",
+  "de": "Tagen und kein nächster Schritt geplant"
+ },
+ "A won deal without a project": {
+  "hu": "Megnyert üzlet projekt nélkül",
+  "de": "Gewonnenes Geschäft ohne Projekt"
+ },
+ "until the project is created from it": {
+  "hu": "amíg nem készül belőle projekt",
+  "de": "bis daraus ein Projekt angelegt ist"
+ },
+ "An overdue payment": {
+  "hu": "Lejárt fizetés",
+  "de": "Überfällige Zahlung"
+ },
+ "A project deadline coming up": {
+  "hu": "Közelgő projekt-határidő",
+  "de": "Bevorstehende Projektfrist"
+ },
+ "within": {
+  "hu": "ennyi napon belül:",
+  "de": "innerhalb von"
+ },
+ "days": {
+  "hu": "nap",
+  "de": "Tagen"
  }
 }
