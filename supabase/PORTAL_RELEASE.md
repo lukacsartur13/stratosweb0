@@ -619,6 +619,8 @@ desktop-tesztcsomag zöld (253 + 287).
 
 ## 20. A súgócikkek angolul és németül (13. szakasz)
 
+**Élesítve 2026-10-05:** a migráció hiba nélkül lefutott, utána push a `main`-re.
+
 **Sorrend: migráció → deploy.** A tulajdonosi Súgóközpont az új `translations` oszlopot is
 olvassa, ezért a migráció előtt nem töltene be.
 
@@ -646,6 +648,8 @@ forma ki van kényszerítve, a weboldal szövege kerül át, a kereső angolul �
 `scripts/portal-client-check.mjs` 20/20 és `scripts/portal-tracker-check.mjs` 52/52.
 
 ## 21. Alapok: fájlmegnyitás, jegyzetek, Ma, tevékenységnapló (14. szakasz, „1. Alapok”)
+
+**Élesítve 2026-10-05:** a migráció hiba nélkül lefutott, utána push a `main`-re.
 
 **Sorrend: a 20. szakasz migrációja (súgófordítás), majd ez, majd deploy.** Az új Jegyzetek és Ma
 képernyő a migráció előtt „not installed” hibát mutatna.
@@ -680,6 +684,8 @@ Ellenőrizve (helyben): `tests/portal-notes-db.spec.ts` 5/5; dokumentum-ellenőr
 portál-teszt (263 + 288) — kihagyott teszt nélkül.
 
 ## 22. Munkaidő: ki, melyik nap, hány órát, mire (15. szakasz)
+
+**Élesítve 2026-10-05:** a migráció hiba nélkül lefutott, utána push a `main`-re.
 
 **Sorrend: 20. → 21. → ez a migráció, majd deploy.**
 
