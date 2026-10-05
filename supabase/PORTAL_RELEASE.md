@@ -814,6 +814,8 @@ ellenőrző 61/61; ügyfélportál 24/24; dokumentum 18/18; teljes futás 2269 z
 
 ## 26. Automatizálások (18. szakasz, „5. CRM” első része)
 
+**Élesítve 2026-10-05:** a migráció hiba nélkül lefutott, utána push a `main`-re.
+
 **Sorrend: 25. → ez a migráció → deploy.**
 
 1. SQL Editor: `supabase/migrations/20261015000100_automations.sql` (ismételten is futtatható).
