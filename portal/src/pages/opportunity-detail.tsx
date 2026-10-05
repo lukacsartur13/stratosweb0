@@ -27,6 +27,7 @@ import { formatWhen } from '@/lib/leads';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { t } from '@/lib/i18n';
 import { ActivityLog } from '@/features/activity/ActivityLog';
+import { EmailHistory } from '@/features/google/EmailHistory';
 
 /**
  * ONE OPPORTUNITY — the commercial detail (§13).
@@ -271,6 +272,7 @@ export function OpportunityDetailScreen() {
           </Panel>
 
           <ActivityLog target={{ opportunity_id: deal.id }} mayEdit={mayEdit} reloadToken={reloadToken} />
+          <EmailHistory target={{ opportunity_id: deal.id }} reloadToken={reloadToken} />
         </div>
 
         {/* ================================= 4/12 — commercial control */}

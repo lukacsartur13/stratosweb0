@@ -1,0 +1,38 @@
+{
+ "(no subject)": {
+  "hu": "(nincs tárgy)",
+  "de": "(kein Betreff)"
+ },
+ "E-mails": {
+  "hu": "E-mailek",
+  "de": "E-Mails"
+ },
+ "No e-mail yet. Connect your Google account in Settings to see the messages exchanged with this address.": {
+  "hu": "Még nincs e-mail. Kösd össze a Google-fiókodat a Beállításokban, hogy lásd az ezzel a címmel váltott leveleket.",
+  "de": "Noch keine E-Mail. Verbinden Sie Ihr Google-Konto in den Einstellungen, um die mit dieser Adresse gewechselten Nachrichten zu sehen."
+ },
+ "Open in Gmail": {
+  "hu": "Megnyitás a Gmailben",
+  "de": "In Gmail öffnen"
+ },
+ "The e-mails could not be read.": {
+  "hu": "Az e-maileket nem sikerült betölteni.",
+  "de": "Die E-Mails konnten nicht geladen werden."
+ },
+ "from {who}": {
+  "hu": "feladó: {who}",
+  "de": "von {who}"
+ },
+ "mailbox: {who}": {
+  "hu": "postafiók: {who}",
+  "de": "Postfach: {who}"
+ },
+ "sent": {
+  "hu": "elküldött",
+  "de": "gesendet"
+ },
+ "to {who}": {
+  "hu": "címzett: {who}",
+  "de": "an {who}"
+ }
+}

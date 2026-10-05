@@ -891,3 +891,38 @@ menüpont); teljes futás 2307 zöld, 2 hiba a már ismert ingadozó `homepage-c
 Ellenőrizve (helyben): `tests/csv.spec.ts` 3/3 (írás, visszaolvasás, vesszős/tabos fájl, fejlécek, képletvédelem);
 tulajdonosi ellenőrző 64/64 (CSV letöltés BOM-mal és fejléccel, import terve, kihagyások, írás csak megerősítés
 után, kapcsolattartó); teljes futás 2309 zöld.
+
+## 29. Google: Gmail-előzmények és naptár-szinkron (21. szakasz, „5. CRM” + „6. Google”)
+
+**Sorrend: 28. → Google Cloud beállítás → Netlify-kulcsok → ez a migráció → deploy → összekötés.**
+
+1. Google Cloud (a `lukacs.artur@media-stratos.com` Workspace-fiókkal), projekt „Stratos Portál”:
+   - Gmail API és Google Calendar API bekapcsolva;
+   - Google Auth Platform: Branding „Stratos Portál”, **Audience: Internal** (nem kell Google-jóváhagyás);
+   - Client: Web application, Authorized redirect URI: `https://stratosweb.hu/api/google-oauth`.
+2. Netlify (Functions, secret): `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_TOKEN_KEY` (32 bájt
+   base64; a tokenek titkosítókulcsa — elvesztése = mindenkinek újra össze kell kötnie).
+3. SQL Editor: `supabase/migrations/20261017000100_google.sql` (ismételten is futtatható).
+4. Deploy, majd mindenki: Beállítások → **Google → Connect Google**.
+
+Mit csinál (a tulajdonos döntései, 2026-10-05):
+
+- **Mindenki a saját fiókját köti be** (`/api/google-oauth`): a hozzáférés (refresh token) AES-256-GCM-mel
+  titkosítva kerül az adatbázisba, és az API-n keresztül senki — a saját gazdája sem — olvashatja; a `state`
+  aláírt és 10 percig érvényes. Leválasztáskor a Google-nál is visszavonjuk.
+- **Gmail** (`google-sync`, 10 percenként fiókonként; először 90 napra visszamenőleg): csak azok a levelek
+  kerülnek be, amelyek feladója/címzettje egy lead, ügyfél-kapcsolattartó vagy ajánlat-kapcsolattartó címe —
+  tárgy, címek, dátum, a Gmail rövid kivonata (`format=metadata`, a levél törzse és a mellékletek nem).
+  Megjelennek a lead, az ügyfél és az ajánlat oldalán („E-mails”); a Gmail-link csak a postafiók gazdájának.
+  Egy `new` leadnek küldött levél bekerül a lead tevékenységnaplójába is (ezzel a „nincs válasz”
+  automatizálás is lezárul).
+- **Naptár** (`google-sync`, 2 percenként): a portálban felvett / módosított / lemondott megbeszélés a
+  létrehozója Google Naptárába kerül (ha ő nincs összekötve: a tulajdonoséba). A megbeszélés ablakában:
+  „Put it in my Google Calendar” (alap: be), „Make a Google Meet link” (ha nincs link; a link visszaíródik a
+  megbeszélésbe, az ügyfél is látja), „Invite the project's clients” (a Google küld meghívót). Hiba esetén a
+  megbeszélésnél „Calendar sync failed” jelzés.
+
+Ellenőrizve (helyben): `tests/portal-google-db.spec.ts` 5/5 (token olvashatatlan, címlista, egyszeri tárolás,
+naplózás és automatizálás-lezárás, láthatóság, naptár-jelölés és visszaírás); `tests/google.spec.ts` 7/7
+(titkosítás, aláírt state, címek, esemény, naptár- és Gmail-szinkron hamis Google-lel, OAuth-végpont);
+tulajdonosi ellenőrző 65/65; teljes futás 2341 zöld + 1 ingadozó weboldal-teszt (újrafuttatva zöld).

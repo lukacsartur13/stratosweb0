@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls';
 import { ActivityLog } from '@/features/activity/ActivityLog';
+import { EmailHistory } from '@/features/google/EmailHistory';
 import { ClientNotesPanel } from '@/features/notes/ClientNotesPanel';
 import { ArrowLeft, Plus } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -528,6 +529,7 @@ export function ClientDetailScreen() {
           </Panel>
 
           <ActivityLog target={{ organization_id: client.id }} mayEdit={mayEdit} reloadToken={reloadToken} />
+          <EmailHistory target={{ organization_id: client.id }} reloadToken={reloadToken} />
         </div>
 
         {/* ------------------------------------------------- the rail */}

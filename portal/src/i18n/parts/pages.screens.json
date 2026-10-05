@@ -303,5 +303,57 @@
  "days": {
   "hu": "nap",
   "de": "Tagen"
+ },
+ "Access revoked": {
+  "hu": "Hozzáférés visszavonva",
+  "de": "Zugriff widerrufen"
+ },
+ "Connect Google": {
+  "hu": "Google-fiók összekötése",
+  "de": "Google verbinden"
+ },
+ "Connect your own Google account: the e-mails you exchange with leads, clients and deals appear on their pages (subject, date and a short snippet — read-only), and the meetings you make in the Portal go into your Google Calendar.": {
+  "hu": "Kösd össze a saját Google-fiókodat: a leadekkel, ügyfelekkel és ajánlatokkal váltott leveleid megjelennek az oldalukon (tárgy, dátum és rövid kivonat — csak olvasás), a portálban felvett megbeszéléseid pedig bekerülnek a Google Naptáradba.",
+  "de": "Verbinden Sie Ihr eigenes Google-Konto: Die E-Mails mit Leads, Kunden und Angeboten erscheinen auf deren Seiten (Betreff, Datum und ein kurzer Auszug — nur lesend), und die im Portal angelegten Termine kommen in Ihren Google Kalender."
+ },
+ "Connected": {
+  "hu": "Összekötve",
+  "de": "Verbunden"
+ },
+ "Disconnect": {
+  "hu": "Leválasztás",
+  "de": "Trennen"
+ },
+ "E-mails last read: {when}": {
+  "hu": "E-mailek utoljára beolvasva: {when}",
+  "de": "E-Mails zuletzt gelesen: {when}"
+ },
+ "Gmail and Calendar": {
+  "hu": "Gmail és Naptár",
+  "de": "Gmail und Kalender"
+ },
+ "Google is disconnected. Stored e-mails stay; nothing new is read.": {
+  "hu": "A Google le van választva. A már beolvasott e-mailek megmaradnak; újat nem olvasunk be.",
+  "de": "Google ist getrennt. Gespeicherte E-Mails bleiben; Neues wird nicht gelesen."
+ },
+ "Google no longer accepts this connection. Connect again.": {
+  "hu": "A Google már nem fogadja el ezt a kapcsolatot. Kösd össze újra.",
+  "de": "Google akzeptiert diese Verbindung nicht mehr. Bitte erneut verbinden."
+ },
+ "Google": {
+  "hu": "Google",
+  "de": "Google"
+ },
+ "The Google connection could not be read.": {
+  "hu": "A Google-kapcsolatot nem sikerült betölteni.",
+  "de": "Die Google-Verbindung konnte nicht gelesen werden."
+ },
+ "This feature is not installed on the database yet (20261017000100).": {
+  "hu": "Ez a funkció még nincs telepítve az adatbázisban (20261017000100).",
+  "de": "Diese Funktion ist in der Datenbank noch nicht installiert (20261017000100)."
+ },
+ "not yet": {
+  "hu": "még nem",
+  "de": "noch nicht"
  }
 }

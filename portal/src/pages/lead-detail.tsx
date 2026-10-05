@@ -7,6 +7,7 @@ import { isImpactLead } from '@/lib/impactRules';
 import { useScope } from '@/lib/scope';
 import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls';
 import { ActivityLog } from '@/features/activity/ActivityLog';
+import { EmailHistory } from '@/features/google/EmailHistory';
 import { Grid } from '@/components/shell/PortalShell';
 import {
   Button, DataState, Panel, SectionHeader, Skeleton, StatusPill, Textarea, cn,
@@ -241,6 +242,7 @@ export function LeadDetailScreen() {
           </Panel>
 
           <ActivityLog target={{ lead_id: lead.id }} mayEdit={mayEdit} reloadToken={reloadToken} />
+          <EmailHistory target={{ lead_id: lead.id }} reloadToken={reloadToken} />
         </div>
 
         {/* =========================================== 4/12 — the metadata */}

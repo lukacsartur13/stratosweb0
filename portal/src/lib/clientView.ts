@@ -25,6 +25,8 @@ export interface Demo {
 export interface Meeting {
   id: string; project_id: string; title: string; starts_at: string; ends_at: string; time_zone: string;
   join_url: string | null; location: string | null; client_note: string | null; cancelled_at: string | null; updated_at: string;
+  /** Google Calendar (20261017000100). */
+  google_sync?: boolean; google_meet?: boolean; google_invite_clients?: boolean; google_event_id?: string | null; google_error?: string | null;
 }
 export interface OwnerHelpArticle {
   id: string; slug: string | null; question: string; answer: string; topic: string; alt_questions: string[];
@@ -66,7 +68,7 @@ function useOwnerRows<T>(table: string, columns: string, projectId: string | und
 export const useProjectDemos = (projectId: string, t = 0) => useOwnerRows<Demo>('project_demos',
   'id, project_id, title, url, client_note, published, revoked_at, position, updated_at, approval_requested_at, approval_state, approval_note, approval_decided_at, approval_seen_at', projectId, 'position', t);
 export const useProjectMeetings = (projectId: string, t = 0) => useOwnerRows<Meeting>('project_meetings',
-  'id, project_id, title, starts_at, ends_at, time_zone, join_url, location, client_note, cancelled_at, updated_at', projectId, 'starts_at', t);
+  'id, project_id, title, starts_at, ends_at, time_zone, join_url, location, client_note, cancelled_at, updated_at, google_sync, google_meet, google_invite_clients, google_event_id, google_error', projectId, 'starts_at', t);
 export const useHelpArticlesOwner = (t = 0) => useOwnerRows<OwnerHelpArticle>('help_articles',
   'id, slug, question, answer, topic, alt_questions, source, status, review_note, position, updated_at, translations', undefined, 'position', t);
 

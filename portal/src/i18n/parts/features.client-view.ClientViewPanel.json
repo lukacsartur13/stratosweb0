@@ -358,5 +358,33 @@
  "Rating": {
   "hu": "Értékelés",
   "de": "Bewertung"
+ },
+ "Calendar sync failed": {
+  "hu": "Naptár-szinkron sikertelen",
+  "de": "Kalender-Sync fehlgeschlagen"
+ },
+ "Google Calendar": {
+  "hu": "Google Naptár",
+  "de": "Google Kalender"
+ },
+ "Invite the project's clients from Google Calendar (Google e-mails them an invitation)": {
+  "hu": "A projekt ügyfeleinek meghívása a Google Naptárból (a Google meghívó e-mailt küld nekik)",
+  "de": "Die Kunden des Projekts aus Google Kalender einladen (Google schickt ihnen eine Einladung)"
+ },
+ "Make a Google Meet link (when there is no join link)": {
+  "hu": "Google Meet-link készítése (ha nincs csatlakozási link)",
+  "de": "Google-Meet-Link erstellen (wenn kein Teilnahmelink angegeben ist)"
+ },
+ "Needs your Google account connected in Settings. The calendar is updated within two minutes of a change.": {
+  "hu": "Ehhez a Beállításokban össze kell kötnöd a Google-fiókodat. A naptár a módosítás után két percen belül frissül.",
+  "de": "Dafür muss Ihr Google-Konto in den Einstellungen verbunden sein. Der Kalender wird innerhalb von zwei Minuten nach einer Änderung aktualisiert."
+ },
+ "Put it in my Google Calendar": {
+  "hu": "Kerüljön be a Google Naptáramba",
+  "de": "In meinen Google Kalender eintragen"
+ },
+ "in Google Calendar": {
+  "hu": "a Google Naptárban",
+  "de": "im Google Kalender"
  }
 }

@@ -43,6 +43,7 @@ const NODE_ONLY = [
   /portal-hours-db\.spec\.ts/,
   /notify\.spec\.ts/,
   /csv\.spec\.ts/,
+  /google\.spec\.ts/,
   /portal-client-extras\.spec\.ts/,
 ];
 

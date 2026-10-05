@@ -1,0 +1,35 @@
+{
+ "Google could not be connected. Try again.": {
+  "hu": "A Google-fiókot nem sikerült összekötni. Próbáld újra.",
+  "de": "Google konnte nicht verbunden werden. Bitte erneut versuchen."
+ },
+ "Google could not be reached. Try again.": {
+  "hu": "A Google nem érhető el. Próbáld újra.",
+  "de": "Google ist nicht erreichbar. Bitte erneut versuchen."
+ },
+ "Google did not grant lasting access. Remove “Stratos Portál” at myaccount.google.com → Security → Third-party access, then connect again.": {
+  "hu": "A Google nem adott tartós hozzáférést. Távolítsd el a „Stratos Portál”-t itt: myaccount.google.com → Biztonság → Harmadik féltől származó hozzáférés, aztán kösd össze újra.",
+  "de": "Google hat keinen dauerhaften Zugriff gewährt. Entfernen Sie „Stratos Portál“ unter myaccount.google.com → Sicherheit → Zugriff durch Drittanbieter und verbinden Sie erneut.",
+  "en": "Google did not grant lasting access. Remove “Stratos Portál” at myaccount.google.com → Security → Third-party access, then connect again."
+ },
+ "Google is connected. E-mails and meetings sync within a few minutes.": {
+  "hu": "A Google össze van kötve. Az e-mailek és a megbeszélések néhány percen belül szinkronizálódnak.",
+  "de": "Google ist verbunden. E-Mails und Termine werden in wenigen Minuten synchronisiert."
+ },
+ "Google is not set up on the server yet (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_TOKEN_KEY).": {
+  "hu": "A Google még nincs beállítva a szerveren (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_TOKEN_KEY).",
+  "de": "Google ist auf dem Server noch nicht eingerichtet (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_TOKEN_KEY)."
+ },
+ "Sign in again, then try once more.": {
+  "hu": "Jelentkezz be újra, aztán próbáld még egyszer.",
+  "de": "Melden Sie sich erneut an und versuchen Sie es noch einmal."
+ },
+ "The connection took too long or was started elsewhere. Try again.": {
+  "hu": "Az összekötés túl sokáig tartott, vagy máshol indult. Próbáld újra.",
+  "de": "Die Verbindung hat zu lange gedauert oder wurde woanders gestartet. Bitte erneut versuchen."
+ },
+ "The connection was cancelled on Google's page.": {
+  "hu": "Az összekötést megszakítottad a Google oldalán.",
+  "de": "Die Verbindung wurde auf der Google-Seite abgebrochen."
+ }
+}

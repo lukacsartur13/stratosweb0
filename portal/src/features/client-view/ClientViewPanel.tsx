@@ -237,6 +237,7 @@ function Meetings({ projectId, projectName, tick, onChanged }: { projectId: stri
         <p className="text-[13px] text-paper">
           {m.title}{' '}
           {m.cancelled_at ? <Badge tone="bad">{t('Cancelled')}</Badge> : next?.meeting.id === m.id ? <Badge tone="good">{next.inProgress ? t('Now') : t('Next')}</Badge> : null}
+          {m.google_error ? <> <Badge tone="warn">{t('Calendar sync failed')}</Badge></> : m.google_event_id && !m.cancelled_at ? <span className="t-note"> · {t('in Google Calendar')}</span> : null}
         </p>
         <p className="t-note">{formatMeetingTime(m)}</p>
         <p className="t-note break-all">{m.location ?? ''}{m.location && m.join_url ? ' · ' : ''}{m.join_url ?? ''}</p>
@@ -307,6 +308,7 @@ function MeetingDialog({ initial, busy, onClose, onSave }: {
   const [form, setForm] = useState({
     title: initial.title ?? '', date: start0.slice(0, 10), start: start0.slice(11, 16), end: end0.slice(11, 16),
     zone: zone0, join: initial.join_url ?? '', location: initial.location ?? '', note: initial.client_note ?? '',
+    gcal: initial.google_sync ?? true, meet: initial.google_meet ?? false, invite: initial.google_invite_clients ?? false,
   });
   const [error, setError] = useState<string | null>(null);
   const [warning, setWarning] = useState<string | null>(null);
@@ -315,7 +317,9 @@ function MeetingDialog({ initial, busy, onClose, onSave }: {
   const submit = async () => {
     if (!form.title.trim()) return setError(t('A meeting needs a title.'));
     if (form.join.trim() && !isSafeHttpsUrl(form.join.trim())) return setError(t('The join link must be a plain https:// address.'));
-    if (!form.join.trim() && !form.location.trim()) return setError(t('Give a join link or a place.'));
+    // A Meet link Google is asked to make counts as the place until it arrives.
+    const meetOnly = form.gcal && form.meet && !form.join.trim() && !form.location.trim();
+    if (!form.join.trim() && !form.location.trim() && !meetOnly) return setError(t('Give a join link or a place.'));
     const s = zonedToUtc(form.date, form.start, form.zone);
     const e = zonedToUtc(form.date, form.end, form.zone);
     if ('error' in s || 'error' in e) {
@@ -332,7 +336,8 @@ function MeetingDialog({ initial, busy, onClose, onSave }: {
     }
     setError(await onSave({
       title: form.title.trim(), starts_at: s.iso, ends_at: end, time_zone: form.zone,
-      join_url: form.join.trim() || null, location: form.location.trim() || null, client_note: form.note.trim() || null,
+      join_url: form.join.trim() || null, location: form.location.trim() || (meetOnly ? 'Google Meet' : null), client_note: form.note.trim() || null,
+      google_sync: form.gcal, google_meet: form.gcal && form.meet, google_invite_clients: form.gcal && form.invite,
     }));
   };
 
@@ -359,6 +364,23 @@ function MeetingDialog({ initial, busy, onClose, onSave }: {
           onChange={(e) => setForm((p) => ({ ...p, location: e.target.value }))} /></Field>
         <Field id="mt-note" label={t('Note for the client (Hungarian)')}><Textarea id="mt-note" maxLength={1000} value={form.note}
           onChange={(e) => setForm((p) => ({ ...p, note: e.target.value }))} /></Field>
+        <fieldset className="grid gap-1.5 rounded-sm border border-hairline px-3 py-2 text-[13px]" data-gcal>
+          <legend className="label px-1">{t('Google Calendar')}</legend>
+          <label className="flex items-center gap-2 text-paper">
+            <input type="checkbox" checked={form.gcal} onChange={(e) => setForm((p) => ({ ...p, gcal: e.target.checked }))} />
+            {t('Put it in my Google Calendar')}
+          </label>
+          <label className={cn('flex items-center gap-2', form.gcal && !form.join.trim() ? 'text-paper' : 'text-haze')}>
+            <input type="checkbox" disabled={!form.gcal || Boolean(form.join.trim())} checked={form.meet && !form.join.trim()}
+                   onChange={(e) => setForm((p) => ({ ...p, meet: e.target.checked }))} />
+            {t('Make a Google Meet link (when there is no join link)')}
+          </label>
+          <label className={cn('flex items-center gap-2', form.gcal ? 'text-paper' : 'text-haze')}>
+            <input type="checkbox" disabled={!form.gcal} checked={form.invite} onChange={(e) => setForm((p) => ({ ...p, invite: e.target.checked }))} />
+            {t('Invite the project\'s clients from Google Calendar (Google e-mails them an invitation)')}
+          </label>
+          <p className="t-note">{t('Needs your Google account connected in Settings. The calendar is updated within two minutes of a change.')}</p>
+        </fieldset>
         {warning && <p role="status" className="text-xs text-signal">{warning}</p>}
         {error && <p role="alert" className="text-xs text-danger">{error}</p>}
       </div>

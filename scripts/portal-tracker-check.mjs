@@ -159,7 +159,7 @@ function freshState() {
         outcome: 'review', issues: ['payment_date_unknown', 'marked_paid_amount_short', 'state_changed:paid->partially_paid'], derived_state: 'partially_paid', reviewed_at: null },
     ],
     paymentReads: 0, completeCalls: 0, completeAnswer: 'ok',
-    demos: [], meetings: [], helpReads: 0, feedback: [], outbox: [], asks: [], messages: [], surveys: [], settings: [{ id: true, google_review_url: null, auto_lead_on: true, auto_lead_hours: 24, auto_deal_on: true, auto_deal_days: 14, auto_won_on: true, auto_overdue_on: true, auto_deadline_on: true, auto_deadline_days: 3 }], alerts: [], requests: [], decisions: [],
+    demos: [], meetings: [], helpReads: 0, feedback: [], outbox: [], asks: [], messages: [], surveys: [], settings: [{ id: true, google_review_url: null, auto_lead_on: true, auto_lead_hours: 24, auto_deal_on: true, auto_deal_days: 14, auto_won_on: true, auto_overdue_on: true, auto_deadline_on: true, auto_deadline_days: 3 }], alerts: [], emails: [], google: [], requests: [], decisions: [],
     help: [
       { id: 'ha-1', slug: 'portal-fajltipusok', question: 'Milyen fájlokat tölthetek fel?', answer: 'Fájlonként legfeljebb 50 MB.', topic: 'Ügyfélportál – feltöltés',
         alt_questions: ['mekkora fájl'], source: 'lib/documentRules.ts', status: 'published', review_note: null, position: 10, updated_at: new Date().toISOString() },
@@ -213,6 +213,11 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
     const answer = (rows) => json(route, single ? rows[0] ?? null : rows);
 
     if (url.includes('/api/portal-')) return json(route, { ok: false, error: 'mock' }, 503);
+    if (url.includes('/api/google-oauth')) {
+      state.googleCalls = [...(state.googleCalls ?? []), { body: JSON.parse(req.postData() || '{}'), auth: req.headers().authorization ?? null }];
+      return json(route, { ok: true, url: 'https://accounts.google.com/o/oauth2/v2/auth?mock=1' });
+    }
+    if (url.startsWith('https://accounts.google.com/')) { state.wentToGoogle = true; return route.fulfill({ status: 200, contentType: 'text/html', body: '<p>google</p>' }); }
     if (url.startsWith(`http://127.0.0.1:${PORT}/`)) return route.continue();
     if (url.includes('/auth/v1/user')) return json(route, USER);
     if (url.includes('/auth/v1/')) return json(route, { access_token: 'mock', user: USER });
@@ -411,7 +416,7 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
     if (url.includes('/rest/v1/checkpoint_templates')) return answer(owner ? TEMPLATES : []);
     // Phase 7 tables, as RLS answers them.
     for (const [path, key] of [['project_demos', 'demos'], ['project_meetings', 'meetings'], ['help_articles', 'help'], ['demo_feedback', 'feedback'], ['meeting_change_requests', 'requests'], ['notification_outbox', 'outbox'],
-      ['client_requests', 'asks'], ['project_messages', 'messages'], ['client_surveys', 'surveys'], ['portal_settings', 'settings'], ['automation_alerts', 'alerts']]) {
+      ['client_requests', 'asks'], ['project_messages', 'messages'], ['client_surveys', 'surveys'], ['portal_settings', 'settings'], ['automation_alerts', 'alerts'], ['email_messages', 'emails'], ['google_accounts', 'google']]) {
       if (!url.includes(`/rest/v1/${path}`)) continue;
       if (path === 'help_articles' && method === 'GET') state.helpReads += 1;
       if (!owner) return answer([]);
@@ -1789,6 +1794,46 @@ await check('import & export: a client list downloads as an Excel-ready CSV; an 
   const contact = state.writes.find((w) => w.table === 'client_contacts');
   assert(contact.body.name === 'Kiss Éva' && contact.body.email === 'eva@kert.example' && contact.body.is_primary === true, JSON.stringify(contact.body));
   await shot(page, 'owner-import');
+  await context.close();
+});
+
+await check('google: Settings connects through the server; the lead shows its e-mails; a meeting can ask for Calendar, Meet and invitations', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/settings?google=connected`);
+  const panel = page.getByRole('region', { name: 'Google' });
+  await panel.getByText('Google is connected.', { exact: false }).waitFor();
+  await panel.getByRole('button', { name: 'Connect Google' }).click();
+  await page.waitForURL(/accounts\.google\.com/);
+  assert(state.wentToGoogle && state.googleCalls[0].body.action === 'start' && /^Bearer /.test(state.googleCalls[0].auth ?? ''), JSON.stringify(state.googleCalls));
+
+  state.emails.push(
+    { id: 'em-1', lead_id: 'l-new', direction: 'in', from_email: 'anna@kert.example', from_name: 'Kovács Anna', to_emails: ['owner@example.invalid'],
+      subject: 'Árajánlat kérés', snippet: 'Szia, érdeklődnék…', sent_at: new Date(Date.now() - 864e5).toISOString(), thread_id: 't-1', mailbox_user_id: USER.id, mailbox: { full_name: 'Owner', email: 'owner@example.invalid' } },
+    { id: 'em-2', lead_id: 'l-new', direction: 'out', from_email: 'owner@example.invalid', from_name: 'Owner', to_emails: ['anna@kert.example'],
+      subject: 'Re: Árajánlat kérés', snippet: 'Küldöm…', sent_at: new Date().toISOString(), thread_id: 't-1', mailbox_user_id: 'someone-else', mailbox: { full_name: 'Admin', email: 'admin@example.invalid' } },
+  );
+  await page.goto(`${BASE}/leads/l-new`);
+  const mails = page.getByRole('region', { name: 'E-mails' });
+  await mails.getByText('Re: Árajánlat kérés').waitFor();
+  await mails.getByText('mailbox: Admin', { exact: false }).waitFor();
+  // Only the mailbox's own person gets the Gmail link.
+  assert(await mails.getByRole('link', { name: 'Open in Gmail' }).count() === 1, 'Gmail links');
+
+  await page.goto(`${BASE}/projects/p-late`);
+  const cv = page.getByRole('region', { name: 'Client portal view' });
+  await cv.getByRole('button', { name: 'Meeting', exact: true }).click();
+  await page.fill('#mt-title', 'Egyeztetés');
+  await page.fill('#mt-date', '2026-11-10');
+  await page.fill('#mt-start', '10:00');
+  await page.fill('#mt-end', '11:00');
+  const dialog = page.getByRole('dialog');
+  assert(await dialog.getByLabel('Put it in my Google Calendar').isChecked(), 'calendar not on by default');
+  await dialog.getByLabel('Make a Google Meet link (when there is no join link)').check();
+  await dialog.getByRole('button', { name: 'Save' }).click();
+  await dialog.waitFor({ state: 'detached' });
+  const w = state.writes.find((x) => x.table === 'project_meetings');
+  assert(w.body.google_sync === true && w.body.google_meet === true && w.body.google_invite_clients === false && w.body.join_url === null && w.body.location === 'Google Meet', JSON.stringify(w.body));
   await context.close();
 });
 

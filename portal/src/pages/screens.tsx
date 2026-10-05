@@ -4,12 +4,14 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { useScope } from '@/lib/scope';
 import { ROLE_LABELS, type Role } from '@/lib/permissions';
 import { LanguageSwitch, useLanguage } from '@/features/i18n/LanguageGate';
-import { t, tc } from '@/lib/i18n';
+import { intlLocale, t, tc } from '@/lib/i18n';
 import { disablePush, enablePush, pushState, type PushState } from '@/lib/push';
 import { canAccess } from '@/lib/permissions';
 import { getEmailPref, notifyOwnerTest, setEmailPref } from '@/lib/notify';
 import { useGoogleReviewUrl } from '@/lib/clientExperience';
 import { useAutomationSettings, type AutomationSettings } from '@/lib/automations';
+import { connectGoogle, disconnectGoogle, googleReturn, useGoogleAccount } from '@/lib/google';
+import { useLocation } from 'react-router-dom';
 import { isSafeHttpsUrl } from '@/lib/meetings';
 import {
   Badge, Button, Cell, DataState, ErrorState, Input, Panel, Row, SectionHeader, Skeleton, Table,
@@ -222,6 +224,7 @@ export function SettingsScreen() {
       </Panel>
       <LanguageSettings />
       <NotificationSettings />
+      {(profile?.role === 'super_admin' || profile?.role === 'admin') && <GoogleSettings />}
       {canAccess(profile, 'manage_projects') && <GoogleReviewSettings />}
       {canAccess(profile, 'manage_projects') && <AutomationSettingsPanel />}
       <p className="t-note">
@@ -346,6 +349,59 @@ function GoogleReviewSettings() {
           </div>
         )}
         {review.state === 'ready' && !review.url && <p className="text-signal">{t('No link yet: clients are thanked, but not asked for a review.')}</p>}
+        {message && <p role="status" className={message.ok ? 'text-xs text-good' : 'text-xs text-danger'}>{message.text}</p>}
+      </div>
+    </Panel>
+  );
+}
+
+/**
+ * This person's own Google account (20261017000100): the e-mails exchanged
+ * with leads, clients and deals are read from it, and the meetings they make
+ * go into its calendar. Read-only for mail; the token stays on the server.
+ */
+function GoogleSettings() {
+  const { profile } = useAuth();
+  const { search } = useLocation();
+  const google = useGoogleAccount(profile?.id);
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(() => googleReturn(search));
+  const a = google.account;
+  const when = (iso: string | null) => (iso ? new Date(iso).toLocaleString(intlLocale('en-GB'), { dateStyle: 'medium', timeStyle: 'short' }) : t('not yet'));
+  const connect = async () => { setBusy(true); const p = await connectGoogle(); if (p) { setMessage({ ok: false, text: p }); setBusy(false); } };
+  const disconnect = async () => {
+    setBusy(true);
+    const p = await disconnectGoogle();
+    setBusy(false);
+    setMessage(p ? { ok: false, text: p } : { ok: true, text: t('Google is disconnected. Stored e-mails stay; nothing new is read.') });
+    void google.reload();
+  };
+  return (
+    <Panel aria-label={t('Google')}>
+      <SectionHeader title={t('Google')} note={t('Gmail and Calendar')} />
+      <div className="grid gap-2 px-4 py-3 text-[13px]" data-google={google.state === 'ready' ? (a ? 'connected' : 'off') : google.state}>
+        <p className="t-note">
+          {t('Connect your own Google account: the e-mails you exchange with leads, clients and deals appear on their pages (subject, date and a short snippet — read-only), and the meetings you make in the Portal go into your Google Calendar.')}
+        </p>
+        {google.state === 'loading' && <Skeleton className="h-8 w-48" />}
+        {google.state === 'missing' && <p className="text-haze">{t('This feature is not installed on the database yet (20261017000100).')}</p>}
+        {google.state === 'error' && <p className="text-haze">{t('The Google connection could not be read.')}</p>}
+        {google.state === 'ready' && !a && (
+          <Button size="sm" variant="primary" className="justify-self-start" onClick={connect} disabled={busy}>{t('Connect Google')}</Button>
+        )}
+        {google.state === 'ready' && a && (
+          <>
+            <p className="text-paper">
+              <Badge tone={a.last_error === 'revoked' ? 'bad' : 'good'}>{a.last_error === 'revoked' ? t('Access revoked') : t('Connected')}</Badge>{' '}{a.google_email}
+            </p>
+            <p className="t-note">{t('E-mails last read: {when}', { when: when(a.gmail_synced_at) })}</p>
+            {a.last_error === 'revoked' && <p className="text-danger">{t('Google no longer accepts this connection. Connect again.')}</p>}
+            <div className="flex flex-wrap gap-2">
+              {a.last_error === 'revoked' && <Button size="sm" variant="primary" onClick={connect} disabled={busy}>{t('Connect Google')}</Button>}
+              <Button size="sm" variant="quiet" onClick={disconnect} disabled={busy}>{t('Disconnect')}</Button>
+            </div>
+          </>
+        )}
         {message && <p role="status" className={message.ok ? 'text-xs text-good' : 'text-xs text-danger'}>{message.text}</p>}
       </div>
     </Panel>
