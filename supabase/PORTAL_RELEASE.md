@@ -844,6 +844,8 @@ elakadás, láthatóság, jogok); `tests/notify.spec.ts` 10/10; tulajdonosi elle
 
 ## 27. Bevételi riport (19. szakasz, „5. CRM” második része)
 
+**Élesítve 2026-10-05:** a migráció hiba nélkül lefutott, utána push a `main`-re.
+
 **Sorrend: 26. → ez a migráció → deploy.**
 
 1. SQL Editor: `supabase/migrations/20261016000100_revenue_report.sql` (ismételten is futtatható).
