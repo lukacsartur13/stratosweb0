@@ -26,6 +26,7 @@ export interface Meeting {
 export interface OwnerHelpArticle {
   id: string; slug: string | null; question: string; answer: string; topic: string; alt_questions: string[];
   source: string | null; status: 'published' | 'draft'; review_note: string | null; position: number; updated_at: string;
+  translations: HelpArticle['translations'];
 }
 
 type State = 'loading' | 'ready' | 'error' | 'unconfigured';
@@ -64,7 +65,7 @@ export const useProjectDemos = (projectId: string, t = 0) => useOwnerRows<Demo>(
 export const useProjectMeetings = (projectId: string, t = 0) => useOwnerRows<Meeting>('project_meetings',
   'id, project_id, title, starts_at, ends_at, time_zone, join_url, location, client_note, cancelled_at, updated_at', projectId, 'starts_at', t);
 export const useHelpArticlesOwner = (t = 0) => useOwnerRows<OwnerHelpArticle>('help_articles',
-  'id, slug, question, answer, topic, alt_questions, source, status, review_note, position, updated_at', undefined, 'position', t);
+  'id, slug, question, answer, topic, alt_questions, source, status, review_note, position, updated_at, translations', undefined, 'position', t);
 
 /** Writes: insert or update by id. Returns null or a sentence. */
 export function useClientViewMutations(onChanged: () => void) {

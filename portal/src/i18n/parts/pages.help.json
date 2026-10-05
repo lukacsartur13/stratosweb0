@@ -134,5 +134,41 @@
  "Review note (internal)": {
   "hu": "Ellenőrzési jegyzet (belső)",
   "de": "Prüfnotiz (intern)"
+ },
+ "{n} published article has no English or German text yet — clients who chose those languages see it in Hungarian.": {
+  "hu": "{n} közzétett cikknek még nincs angol vagy német szövege — az ezeket a nyelveket választó ügyfelek magyarul látják.",
+  "de": "{n} veröffentlichter Artikel hat noch keinen englischen oder deutschen Text — Kunden mit diesen Sprachen sehen ihn auf Ungarisch."
+ },
+ "{n} published articles have no English or German text yet — clients who chose those languages see them in Hungarian.": {
+  "hu": "{n} közzétett cikknek még nincs angol vagy német szövege — az ezeket a nyelveket választó ügyfelek magyarul látják őket.",
+  "de": "{n} veröffentlichte Artikel haben noch keinen englischen oder deutschen Text — Kunden mit diesen Sprachen sehen sie auf Ungarisch."
+ },
+ "{language}: write the question, or leave the whole language empty.": {
+  "hu": "{language}: írd meg a kérdést, vagy hagyd üresen az egész nyelvet.",
+  "de": "{language}: Schreiben Sie die Frage oder lassen Sie die ganze Sprache leer."
+ },
+ "{language}: write the answer, or leave the whole language empty.": {
+  "hu": "{language}: írd meg a választ, vagy hagyd üresen az egész nyelvet.",
+  "de": "{language}: Schreiben Sie die Antwort oder lassen Sie die ganze Sprache leer."
+ },
+ "{language}: write the topic, or leave the whole language empty.": {
+  "hu": "{language}: írd meg a témát, vagy hagyd üresen az egész nyelvet.",
+  "de": "{language}: Schreiben Sie das Thema oder lassen Sie die ganze Sprache leer."
+ },
+ "Hungarian first, as the client reads it. English and German are shown to clients who chose those languages; left empty, they see the Hungarian.": {
+  "hu": "Először magyarul, ahogy az ügyfél olvassa. Az angolt és a németet az ezeket választó ügyfelek látják; ha üresen marad, nekik is a magyar jelenik meg.",
+  "de": "Zuerst auf Ungarisch, so wie der Kunde es liest. Englisch und Deutsch sehen Kunden, die diese Sprachen gewählt haben; bleibt es leer, sehen sie das Ungarische."
+ },
+ "Other ways to ask (one per line)": {
+  "hu": "Más megfogalmazások (soronként egy)",
+  "de": "Andere Formulierungen (eine pro Zeile)"
+ },
+ "Text in {language}": {
+  "hu": "Szöveg: {language}",
+  "de": "Text auf {language}"
+ },
+ "No text in {language} — shown in Hungarian": {
+  "hu": "Nincs szöveg ({language}) — magyarul jelenik meg",
+  "de": "Kein Text ({language}) — wird auf Ungarisch angezeigt"
  }
 }

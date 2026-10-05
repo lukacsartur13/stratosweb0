@@ -38,6 +38,7 @@ const NODE_ONLY = [
   /portal-monthly-db\.spec\.ts/,
   /portal-trash-db\.spec\.ts/,
   /portal-locale-db\.spec\.ts/,
+  /portal-help-i18n\.spec\.ts/,
   /portal-client-extras\.spec\.ts/,
 ];
 

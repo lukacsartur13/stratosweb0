@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState, type FormEvent } from 'react';
 import { Send } from 'lucide-react';
 import { Button, Input, cn } from '@/components/ui';
-import { buildIndex, reply, type HelpArticle, type HelpReply } from '@/lib/helpMatcher';
+import { buildIndex, fullyTranslated, localise, reply, type HelpArticle, type HelpReply } from '@/lib/helpMatcher';
 import { getLang, t } from '@/lib/i18n';
 
 /**
@@ -15,7 +15,10 @@ type Turn = { id: number; from: 'client' | 'bot'; text?: string; reply?: HelpRep
 
 const TOUCH = 'max-sm:min-h-10';
 
-export function HelpChat({ articles, label = 'Segítség' }: { articles: HelpArticle[]; label?: string }) {
+export function HelpChat({ articles: source, label = 'Segítség' }: { articles: HelpArticle[]; label?: string }) {
+  // In the reader's language where an article has one (the tree remounts on a
+  // language change, so this is read once per mount).
+  const articles = useMemo(() => localise(source, getLang()), [source]);
   const index = useMemo(() => buildIndex(articles), [articles]);
   const topics = useMemo(() => [...new Set(articles.map((a) => a.topic))], [articles]);
   const [turns, setTurns] = useState<Turn[]>([]);
@@ -40,15 +43,16 @@ export function HelpChat({ articles, label = 'Segítség' }: { articles: HelpArt
   ]);
   const submit = (e: FormEvent) => { e.preventDefault(); ask(draft); };
 
-  const suggestions = (topic ? articles.filter((a) => a.topic === topic) : articles.filter((a) => a.topic.startsWith('Ügyfélportál'))).slice(0, 8);
+  const suggestions = (topic ? articles.filter((a) => a.topic === topic)
+    : articles.filter((a) => (a.source_topic ?? a.topic).startsWith('Ügyfélportál'))).slice(0, 8);
 
   return (
     <div className="grid gap-3" data-help-chat>
       <p className="t-note">
         {t('Kérdezz szabadon, vagy válassz az alábbi témák közül. A válaszok a Stratos által jóváhagyott tudásbázisból jönnek. A beszélgetést nem mentjük és senkinek nem továbbítjuk; ha itt nincs válasz, keresd a Stratos kapcsolattartódat.')}
       </p>
-      {(getLang() === 'en' || getLang() === 'de') && (
-        <p className="t-note" data-help-language-note>{t('A súgócikkek és a válaszok magyar nyelvűek.')}</p>
+      {!fullyTranslated(source, getLang()) && (
+        <p className="t-note" data-help-language-note>{t('Néhány súgócikk csak magyarul érhető el.')}</p>
       )}
 
       <div role="group" aria-label={t('Témák')} className="flex flex-wrap gap-1.5">

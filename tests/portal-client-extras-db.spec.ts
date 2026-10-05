@@ -296,7 +296,8 @@ test.describe('the help centre', () => {
   test('a client gets published articles only, without source or review note', async () => {
     const rows = await ok(db, 'a1', `select * from client_help_articles()`);
     expect(rows.length).toBe(74);
-    expect(Object.keys(rows[0]).sort()).toEqual(['alt_questions', 'answer', 'article_id', 'question', 'topic']);
+    // `translations` (20261010000100): the same article in English and German. Still no source, no review note.
+    expect(Object.keys(rows[0]).sort()).toEqual(['alt_questions', 'answer', 'article_id', 'question', 'topic', 'translations']);
     // A draft never reaches a client: make one and look.
     await ok(db, 'owner', `update help_articles set status = 'draft' where slug = 'portal-masik-idopont'`);
     const again = await ok(db, 'a1', `select question from client_help_articles()`);

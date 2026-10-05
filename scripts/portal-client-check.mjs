@@ -78,8 +78,11 @@ function freshState(over = {}) {
     ],
     help: [
       { article_id: 'h1', topic: 'Ügyfélportál – feltöltés', question: 'Hol adhatom le a képeket, a logót és a szövegeket?', alt_questions: ['hova töltsem fel a logót'],
-        answer: 'A portál „Nyersanyag leadása” menüpontjában.' },
-      { article_id: 'h2', topic: 'Ügyfélportál – feltöltés', question: 'Milyen fájlokat tölthetek fel?', alt_questions: ['mekkora fájlt tölthetek fel'], answer: 'Fájlonként legfeljebb 50 MB.' },
+        answer: 'A portál „Nyersanyag leadása” menüpontjában.',
+        translations: { en: { question: 'Where do I hand over photos, the logo and texts?', topic: 'Client portal – uploads',
+          alt_questions: ['where do I upload the logo'], answer: 'In the portal\'s “Hand over materials” section.' } } },
+      { article_id: 'h2', topic: 'Ügyfélportál – feltöltés', question: 'Milyen fájlokat tölthetek fel?', alt_questions: ['mekkora fájlt tölthetek fel'], answer: 'Fájlonként legfeljebb 50 MB.',
+        translations: { en: { question: 'Which files can I upload?', topic: 'Client portal – uploads', alt_questions: [], answer: 'Up to 50 MB per file.' } } },
       { article_id: 'h3', topic: 'Ügyfélportál – megbeszélések', question: 'Hogyan tehetem be a naptáramba?', alt_questions: ['google naptár'], answer: 'A „Google Naptárba helyezés” gombbal.' },
     ],
     feedback: [], reqs: [],
@@ -635,7 +638,11 @@ await check('language: English and German in the client header, saved on the cli
   assert(state.profilePatches?.at(-1)?.locale === 'en', 'the choice was not saved on the profile');
   assert(await page.locator('[lang="en"]').first().isVisible(), 'the page is not marked English');
   await page.goto(`${BASE}/segitseg`);
-  await page.getByText('The help articles and answers are in Hungarian.').waitFor();
+  // Two of the three articles have English; the third is shown in Hungarian, and the page says so.
+  await page.getByText('Some help articles are only available in Hungarian.').waitFor();
+  await page.getByLabel('Your question').fill('Where do I upload the logo?');
+  await page.getByRole('button', { name: 'Ask' }).click();
+  await page.locator('[data-reply="answer"]').getByText('In the portal\'s “Hand over materials” section.').waitFor();
   await shot(page, 'lang-en');
   await page.getByRole('radio', { name: 'Deutsch' }).click();
   await page.getByRole('navigation', { name: 'Kundenportal' }).waitFor();

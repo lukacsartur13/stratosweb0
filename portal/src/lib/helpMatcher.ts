@@ -17,13 +17,48 @@
 //      "no ready answer" and the topics.
 // =============================================================================
 
+export interface HelpTranslation {
+  question: string;
+  answer: string;
+  topic: string;
+  alt_questions?: string[];
+}
+
 export interface HelpArticle {
   article_id: string;
   question: string;
   answer: string;
   topic: string;
   alt_questions: string[];
+  /** English and German (20261010000100_help_translations.sql). */
+  translations?: Partial<Record<'en' | 'de', HelpTranslation>> | null;
+  /** The Hungarian topic, kept by `localise` for grouping that keys on it. */
+  source_topic?: string;
 }
+
+/**
+ * The articles as a reader of `lang` sees them: each one's English or German
+ * text where it has one, its Hungarian otherwise. Matching then runs on the
+ * same text the answer is shown in. `source_topic` keeps the Hungarian topic.
+ */
+export function localise(articles: HelpArticle[], lang: string | null): HelpArticle[] {
+  return articles.map((a) => {
+    const tr = lang === 'en' || lang === 'de' ? a.translations?.[lang] : undefined;
+    if (!tr) return { ...a, source_topic: a.topic };
+    return {
+      ...a,
+      question: tr.question,
+      answer: tr.answer,
+      topic: tr.topic,
+      alt_questions: tr.alt_questions ?? [],
+      source_topic: a.topic,
+    };
+  });
+}
+
+/** Whether every article has a text in `lang` (Hungarian always does). */
+export const fullyTranslated = (articles: HelpArticle[], lang: string | null) =>
+  lang !== 'en' && lang !== 'de' ? true : articles.every((a) => Boolean(a.translations?.[lang]));
 
 export type HelpReply =
   | { kind: 'answer'; article: HelpArticle; related: HelpArticle[]; score: number }
@@ -38,6 +73,14 @@ const STOP = new Set([
   'kerdes', 'kerdezni', 'milyen', 'melyik', 'mennyi', 'minden', 'sok', 'jo', 'olyan', 'amit', 'ami', 'aki', 'hanem', 'tehat',
   'most', 'pedig', 'vajon', 'lesz', 'volt', 'lenne', 'valami', 'barmi', 'kapok', 'kaphatok', 'tudnatok', 'tudtok', 'tudsz',
   'egyaltalan', 'eleg', 'sem', 'se', 'meddig', 'miert', 'hany', 'ide', 'oda', 'ot',
+  // English and German function words, for the translated articles. None of
+  // them is a Hungarian content word the articles depend on.
+  'the', 'an', 'and', 'or', 'of', 'to', 'in', 'on', 'for', 'with', 'my', 'your', 'can', 'could', 'do', 'does', 'how',
+  'what', 'where', 'when', 'which', 'who', 'why', 'are', 'was', 'it', 'this', 'that', 'there', 'have', 'has', 'get',
+  'would', 'should', 'want', 'need', 'from', 'about', 'any', 'me', 'we', 'you', 'our', 'will',
+  'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einen', 'und', 'oder', 'ich', 'du', 'sie', 'wir', 'ihr',
+  'mein', 'meine', 'dein', 'deine', 'wie', 'was', 'wo', 'wann', 'wer', 'warum', 'welche', 'welcher', 'kann', 'ist',
+  'sind', 'zu', 'zum', 'zur', 'im', 'ins', 'auf', 'von', 'fur', 'nicht', 'auch', 'noch', 'ob', 'bei', 'mir', 'mich',
 ]);
 
 const SUFFIXES = [
@@ -94,7 +137,9 @@ export interface HelpIndex {
 
 export function buildIndex(articles: HelpArticle[]): HelpIndex {
   const phrasings = articles.map((a) => [a.question, ...a.alt_questions].map(tokens));
-  const answers = articles.map((a) => tokens(a.answer));
+  // The topic is part of what an article is about: "Is it really free?" is
+  // the Impact Program's article only because of its topic.
+  const answers = articles.map((a) => tokens(`${a.answer} ${a.topic}`));
   const docs = articles.map((_, i) => new Set([...phrasings[i].flat(), ...answers[i]]));
   const n = Math.max(articles.length, 1);
   const cache = new Map<string, number>();

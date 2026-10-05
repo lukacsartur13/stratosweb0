@@ -6,7 +6,8 @@ import {
 import { useScope } from '@/lib/scope';
 import { useClientViewMutations, useHelpArticlesOwner, type OwnerHelpArticle } from '@/lib/clientView';
 import { HelpChat } from '@/features/client/HelpChat';
-import { t } from '@/lib/i18n';
+import { LANG_NAMES, t } from '@/lib/i18n';
+import type { HelpTranslation } from '@/lib/helpMatcher';
 
 /**
  * THE HELP CENTRE — the knowledge base the client assistant answers from.
@@ -30,13 +31,21 @@ export function HelpCentreScreen() {
   const topics = useMemo(() => [...new Set(list.rows.map((a) => a.topic))], [list.rows]);
   const drafts = list.rows.filter((a) => a.status === 'draft');
   const published = list.rows.filter((a) => a.status === 'published')
-    .map((a) => ({ article_id: a.id, question: a.question, answer: a.answer, topic: a.topic, alt_questions: a.alt_questions }));
+    .map((a) => ({ article_id: a.id, question: a.question, answer: a.answer, topic: a.topic, alt_questions: a.alt_questions, translations: a.translations }));
+  const untranslated = list.rows.filter((a) => a.status === 'published' && (!a.translations?.en || !a.translations?.de)).length;
 
   return (
     <div className="grid gap-4">
       <Panel>
         <SectionHeader title={t('Help centre')} note={t('{published} published · {drafts} draft', { published: published.length, drafts: drafts.length })}
           action={<Button size="sm" variant="primary" onClick={() => setEditing({ status: 'draft', alt_questions: [] })}><Plus size={11} aria-hidden="true" /> {t('Article')}</Button>} />
+        {untranslated > 0 && (
+          <p className="border-b border-hairline px-4 py-2 text-xs text-signal" data-help-untranslated>
+            {t(untranslated === 1
+              ? '{n} published article has no English or German text yet — clients who chose those languages see it in Hungarian.'
+              : '{n} published articles have no English or German text yet — clients who chose those languages see them in Hungarian.', { n: untranslated })}
+          </p>
+        )}
         <p className="t-note border-b border-hairline px-4 py-2">
           {t('Clients see only published articles. A draft waits for your decision — its review note says which. Only publish what describes how things actually work; no promise of revision rounds, response times, guarantees or fees without a decision behind it.')}
         </p>
@@ -54,7 +63,15 @@ export function HelpCentreScreen() {
           {shown.map((a) => (
             <li key={a.id} className="flex flex-wrap items-start justify-between gap-2 border-b border-hairline px-4 py-3 last:border-0" data-article={a.slug ?? a.id}>
               <div className="min-w-0 flex-1">
-                <p className="text-[13px] text-paper">{a.question} <Badge tone={a.status === 'published' ? 'good' : 'warn'}>{a.status === 'published' ? t('Published') : t('Draft')}</Badge></p>
+                <p className="text-[13px] text-paper">
+                  {a.question} <Badge tone={a.status === 'published' ? 'good' : 'warn'}>{a.status === 'published' ? t('Published') : t('Draft')}</Badge>{' '}
+                  {(['en', 'de'] as const).map((l) => (
+                    <span key={l} className={cn('ml-1 font-data text-[10px] uppercase', a.translations?.[l] ? 'text-haze' : 'text-signal line-through')}
+                          title={a.translations?.[l] ? t('Text in {language}', { language: LANG_NAMES[l] }) : t('No text in {language} — shown in Hungarian', { language: LANG_NAMES[l] })}>
+                      {l}
+                    </span>
+                  ))}
+                </p>
                 <p className="t-note">{a.topic}{a.source ? ` · ${a.source}` : ''}</p>
                 {a.review_note && <p className="mt-1 text-xs text-signal">{a.review_note}</p>}
                 <p className="mt-1 line-clamp-2 text-[12px] text-haze">{a.answer}</p>
@@ -97,6 +114,13 @@ function ArticleDialog({ initial, topics, busy, onClose, onSave }: {
     question: initial.question ?? '', answer: initial.answer ?? '', topic: initial.topic ?? '',
     alts: (initial.alt_questions ?? []).join('\n'), source: initial.source ?? '', status: initial.status ?? 'draft', review: initial.review_note ?? '',
   });
+  // English and German: optional; an empty language shows the Hungarian text.
+  const blank = (x?: HelpTranslation) => ({
+    question: x?.question ?? '', answer: x?.answer ?? '', topic: x?.topic ?? '', alts: (x?.alt_questions ?? []).join('\n'),
+  });
+  const [tr, setTr] = useState({ en: blank(initial.translations?.en), de: blank(initial.translations?.de) });
+  const setTrField = (lang: 'en' | 'de', key: keyof ReturnType<typeof blank>) => (e: { target: { value: string } }) =>
+    setTr((p) => ({ ...p, [lang]: { ...p[lang], [key]: e.target.value } }));
   const [error, setError] = useState<string | null>(null);
   const submit = async () => {
     if (form.question.trim().length < 3) return setError(t('Write the question.'));
@@ -104,14 +128,26 @@ function ArticleDialog({ initial, topics, busy, onClose, onSave }: {
     if (!form.topic.trim()) return setError(t('Choose or type a topic.'));
     const alts = form.alts.split('\n').map((x) => x.trim()).filter(Boolean);
     if (alts.length > 40) return setError(t('At most 40 alternative phrasings.'));
+    const translations: Record<string, HelpTranslation> = {};
+    for (const lang of ['en', 'de'] as const) {
+      const x = tr[lang];
+      if (![x.question, x.answer, x.topic, x.alts].some((v) => v.trim())) continue;
+      const name = LANG_NAMES[lang];
+      if (x.question.trim().length < 3) return setError(t('{language}: write the question, or leave the whole language empty.', { language: name }));
+      if (!x.answer.trim()) return setError(t('{language}: write the answer, or leave the whole language empty.', { language: name }));
+      if (!x.topic.trim()) return setError(t('{language}: write the topic, or leave the whole language empty.', { language: name }));
+      const xAlts = x.alts.split('\n').map((v) => v.trim()).filter(Boolean);
+      if (xAlts.length > 40) return setError(t('At most 40 alternative phrasings.'));
+      translations[lang] = { question: x.question.trim(), answer: x.answer.trim(), topic: x.topic.trim(), alt_questions: xAlts };
+    }
     setError(await onSave({
       question: form.question.trim(), answer: form.answer.trim(), topic: form.topic.trim(), alt_questions: alts,
-      source: form.source.trim() || null, status: form.status, review_note: form.review.trim() || null,
+      source: form.source.trim() || null, status: form.status, review_note: form.review.trim() || null, translations,
     }));
   };
   return (
     <Dialog open wide onClose={onClose} title={initial.id ? t('Edit article') : t('New article')}
-            description={t('Hungarian, as the client reads it.')}
+            description={t('Hungarian first, as the client reads it. English and German are shown to clients who chose those languages; left empty, they see the Hungarian.')}
             footer={<><Button size="sm" onClick={onClose}>{t('Cancel')}</Button><Button size="sm" variant="primary" onClick={submit} disabled={busy}>{t('Save')}</Button></>}>
       <div className="grid gap-3">
         <Field id="ha-question" label={t('Question')}><Input id="ha-question" data-autofocus maxLength={300} value={form.question} onChange={(e) => setForm((p) => ({ ...p, question: e.target.value }))} /></Field>
@@ -130,6 +166,25 @@ function ArticleDialog({ initial, topics, busy, onClose, onSave }: {
         <Field id="ha-alts" label={t('Other ways a client may ask (one per line)')} hint={t('Helps the assistant find this answer.')}>
           <Textarea id="ha-alts" rows={4} value={form.alts} onChange={(e) => setForm((p) => ({ ...p, alts: e.target.value }))} />
         </Field>
+        {(['en', 'de'] as const).map((lang) => (
+          <fieldset key={lang} className="grid gap-2 rounded-sm border border-hairline px-3 py-2.5" lang={lang} data-translation={lang}>
+            <legend className="t-section px-1">{LANG_NAMES[lang]}</legend>
+            <Field id={`ha-${lang}-question`} label={t('Question')}>
+              <Input id={`ha-${lang}-question`} maxLength={300} value={tr[lang].question} onChange={setTrField(lang, 'question')} />
+            </Field>
+            <Field id={`ha-${lang}-answer`} label={t('Answer')}>
+              <Textarea id={`ha-${lang}-answer`} maxLength={4000} rows={4} value={tr[lang].answer} onChange={setTrField(lang, 'answer')} />
+            </Field>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <Field id={`ha-${lang}-topic`} label={t('Topic')}>
+                <Input id={`ha-${lang}-topic`} maxLength={80} value={tr[lang].topic} onChange={setTrField(lang, 'topic')} />
+              </Field>
+              <Field id={`ha-${lang}-alts`} label={t('Other ways to ask (one per line)')}>
+                <Textarea id={`ha-${lang}-alts`} rows={2} value={tr[lang].alts} onChange={setTrField(lang, 'alts')} />
+              </Field>
+            </div>
+          </fieldset>
+        ))}
         <Field id="ha-source" label={t('Source or internal reference')}><Input id="ha-source" maxLength={500} value={form.source} onChange={(e) => setForm((p) => ({ ...p, source: e.target.value }))} /></Field>
         <Field id="ha-review" label={t('Review note (internal)')}><Textarea id="ha-review" maxLength={1000} value={form.review} onChange={(e) => setForm((p) => ({ ...p, review: e.target.value }))} /></Field>
         {error && <p role="alert" className={cn('text-xs text-danger')}>{error}</p>}

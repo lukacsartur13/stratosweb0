@@ -1184,6 +1184,31 @@ await check('impact: an applicant\'s lead goes to the Trash from the application
 
 /* ------------------------------------------------------------ languages */
 
+await check('help centre: an article takes English and German; a half-filled language is refused; the list marks what is missing', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/help`);
+  await page.locator('[data-help-untranslated]').waitFor();
+  await page.getByRole('button', { name: /^Edit Milyen fájlokat/ }).click();
+  const dialog = page.getByRole('dialog');
+  const en = dialog.locator('[data-translation="en"]');
+  await en.getByLabel('Question').fill('Which files can I upload?');
+  await en.getByLabel('Answer').fill('Up to 50 MB per file.');
+  await en.getByLabel('Topic').fill('Client portal – uploads');
+  await dialog.locator('[data-translation="de"]').getByLabel('Question').fill('Welche Dateien?');
+  await dialog.getByRole('button', { name: 'Save' }).click();
+  await dialog.getByRole('alert').waitFor();
+  assert((await dialog.getByRole('alert').innerText()).startsWith('Deutsch:'), 'a half-filled German was not refused');
+  await dialog.locator('[data-translation="de"]').getByLabel('Question').fill('');
+  await dialog.getByRole('button', { name: 'Save' }).click();
+  await settle(page);
+  const patch = state.writes.find((w) => w.table === 'help_articles' && w.method === 'PATCH');
+  assert(patch?.body.translations?.en?.question === 'Which files can I upload?' && !patch.body.translations.de,
+    `wrong translations saved: ${JSON.stringify(patch?.body.translations)}`);
+  await shot(page, 'help-translations');
+  await context.close();
+});
+
 await check('language: Magyar in the sidebar turns the owner portal Hungarian and saves it on the account', async () => {
   const state = freshState();
   const { page, context } = await open(browser, { state });

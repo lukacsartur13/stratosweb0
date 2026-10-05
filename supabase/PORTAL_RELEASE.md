@@ -616,3 +616,31 @@ Ellenőrizve (helyben): `tests/portal-locale-db.spec.ts` 4/4 (saját nyelv, csak
 (magyarra váltás és mentés, a fiók nyelve új eszközön, német oldalak kontrasztja és 390 px-es
 szélessége); `scripts/portal-client-check.mjs` 20/20 (angol és német ügyfélportál); a node- és
 desktop-tesztcsomag zöld (253 + 287).
+
+## 20. A súgócikkek angolul és németül (13. szakasz)
+
+**Sorrend: migráció → deploy.** A tulajdonosi Súgóközpont az új `translations` oszlopot is
+olvassa, ezért a migráció előtt nem töltene be.
+
+1. SQL Editor: `supabase/migrations/20261010000100_help_translations.sql` (≈90 KB, ismételten is
+   futtatható; meglévő fordítást nem ír felül).
+2. Ellenőrzés: `select count(*) filter (where translations ? 'en' and translations ? 'de') as forditott, count(*) as osszes from help_articles;`
+   — a két szám akkor egyezik, ha egyik cikket sem szerkesztetted a portálon az első feltöltés óta.
+3. Deploy (push a `main`-re).
+
+Mit csinál:
+
+- Minden súgócikk mellé angol és német kérdés, válasz, téma és alternatív kérdések kerülnek
+  (`help_articles.translations`). A magyar marad maga a cikk.
+- **60 cikk** a weboldal saját, publikált angol és német GYIK-szövegét kapja (`_build/i18n`), a
+  weboldal tegező német hangján; **14 portálos cikk** fordítása itt készült, a gombokat pontosan úgy
+  nevezve, ahogy a lefordított portál mutatja.
+- Egy cikk csak akkor kap fordítást, ha a magyar kérdése és válasza még pontosan a feltöltött
+  szöveg — amit közben a portálon átírtál, azt a Súgóközpontban fordítsd le (a lista jelöli: az áthúzott
+  `en`/`de` hiányzó fordítás).
+- Az ügyfél súgója a választott nyelven keres és válaszol; fordítás nélküli cikk magyarul jelenik meg,
+  és ezt egy megjegyzés jelzi. A Súgóközpont cikkablakában angol és német mező is van.
+
+Ellenőrizve (helyben): `tests/portal-help-i18n.spec.ts` 5/5 (74 cikk fordítva, a szerkesztett kimarad, a
+forma ki van kényszerítve, a weboldal szövege kerül át, a kereső angolul és németül is a jó cikket adja);
+`scripts/portal-client-check.mjs` 20/20 és `scripts/portal-tracker-check.mjs` 52/52.
