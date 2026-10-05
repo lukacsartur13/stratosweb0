@@ -776,6 +776,8 @@ mobilon — ismétlésre 3/4-ben átmegy, a portált nem érinti.
 
 ## 25. Ügyfélélmény: jóváhagyás, „Rád várunk”, üzenőfal, elégedettség (17. szakasz, „3. Ügyfélélmény”)
 
+**Élesítve 2026-10-05:** a migráció hiba nélkül lefutott, utána push a `main`-re.
+
 **Sorrend: 24. → ez a migráció → deploy.**
 
 1. SQL Editor: `supabase/migrations/20261014000100_client_experience.sql` (ismételten is futtatható).
