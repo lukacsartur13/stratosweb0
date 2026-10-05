@@ -585,6 +585,8 @@ Ellenőrizve (helyben): `tests/portal-trash-db.spec.ts` 12/12; `scripts/portal-t
 
 ## 19. Nyelvválasztás: magyar, angol, német (12. szakasz)
 
+**Élesítve 2026-10-05:** a migráció hiba nélkül lefutott, utána push a `main`-re.
+
 **Sorrend: migráció → deploy.** A frontend a migráció nélkül sem törik el (a nyelv akkor
 csak az adott eszközön marad meg), de a fiókhoz mentéshez a migráció kell.
 
