@@ -748,3 +748,24 @@ Mit csinál:
 Ellenőrizve (helyben): `tests/notify.spec.ts` 6/6 (szövegek minden nyelven, egy futás hamis Resenddel, VAPID-
 kulcspár); `tests/portal-client-extras-db.spec.ts` értesítési része 6/6; tulajdonosi ellenőrző 58/58; ügyfélportál
 22/22; dokumentum 18/18; minden teszt (2190), kihagyott vagy le nem futott nélkül.
+
+## 24. Értesítések az adminoknak is (16b. szakasz)
+
+**Sorrend: 23. → ez a migráció, majd deploy.**
+
+1. SQL Editor: `supabase/migrations/20261013000200_notify_staff.sql` (ismételten is futtatható).
+2. Deploy (push a `main`-re).
+
+Mit csinál (a tulajdonos döntése, 2026-10-05):
+
+- **Az admin is megkapja ugyanazokat az értesítéseket**, mint a tulajdonos (push + e-mail): ügyfél-feltöltés,
+  észrevétel, időpont-javaslat. A tulajdonosi „owner” üzenet címzettje: a tulajdonos és minden super_admin / admin.
+- **Az admin is látja a Beállításokat:** saját fiók, nyelv, értesítések — push bekapcsolása az eszközén,
+  „Send a test” (csak magának), és **„E-mailben is”** kapcsoló (`notification_prefs`, alapból bekapcsolva).
+- Megjegyzés: az értesítés linkje a projektoldalra mutat, amit csak a tulajdonos nyithat meg; az admin a
+  kezdőlapra kerül.
+
+Ellenőrizve (helyben): `tests/notify.spec.ts` 7/7; `portal-client-extras-db` értesítési része (címzettek,
+e-mail-kapcsoló, saját próba) zöld; tulajdonosi ellenőrző 59/59 (admin: Beállítások, értesítési panel,
+e-mail-kapcsoló). Teljes futás: 2194 zöld, 2 hiba a `homepage-chrome` „navigating away and back” tesztben
+mobilon — ismétlésre 3/4-ben átmegy, a portált nem érinti.

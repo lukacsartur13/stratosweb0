@@ -97,6 +97,25 @@ test.describe('one run of the sender', () => {
     }
   });
 
+  test('an admin who turned e-mails off gets no e-mail; the owner still does', async () => {
+    process.env.RESEND_API_KEY = 'test-key';
+    delete process.env.VAPID_PRIVATE_KEY;
+    const sent: { to: string[] }[] = [];
+    const original = __net.fetch;
+    __net.fetch = async (_url: string, init: { body: string }) => { sent.push(JSON.parse(init.body)); return new Response('{}', { status: 200 }); };
+    try {
+      const owner = { email: 'owner@example.invalid', name: 'Owner', locale: 'hu', user_id: 'u-o', email_on: true };
+      const admin = { email: 'admin@example.invalid', name: 'Admin', locale: 'hu', user_id: 'u-a', email_on: false };
+      const { db, done } = fakeDb([{ ...msg('client_upload', { name: 'logo.png' }), recipients: [owner, admin] }]);
+      const r = await dispatch(db, { origin: 'https://stratosweb.hu' });
+      expect(r).toMatchObject({ people: 2, emails: 1, failed: 0 });
+      expect(sent.map((x) => x.to[0])).toEqual(['owner@example.invalid']);
+      expect(done.map((d) => d.error)).toEqual([null]);
+    } finally {
+      __net.fetch = original;
+    }
+  });
+
   test('a client e-mail that fails is given back for a retry; nothing personal is logged', async () => {
     process.env.RESEND_API_KEY = 'test-key';
     const original = __net.fetch;

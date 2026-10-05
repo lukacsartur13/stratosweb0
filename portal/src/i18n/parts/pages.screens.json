@@ -219,5 +219,9 @@
  "Turn off": {
   "hu": "Kikapcsolás",
   "de": "Ausschalten"
+ },
+ "Also by e-mail ({email})": {
+  "hu": "E-mailben is ({email})",
+  "de": "Auch per E-Mail ({email})"
  }
 }

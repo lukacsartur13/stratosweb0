@@ -6,5 +6,9 @@
  "The test could not be queued.": {
   "hu": "A próbaértesítést nem sikerült elindítani.",
   "de": "Die Testbenachrichtigung konnte nicht eingereiht werden."
+ },
+ "The setting could not be saved. Try again.": {
+  "hu": "A beállítást nem sikerült menteni. Próbáld újra.",
+  "de": "Die Einstellung konnte nicht gespeichert werden. Bitte erneut versuchen."
  }
 }

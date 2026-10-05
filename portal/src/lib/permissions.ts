@@ -79,6 +79,8 @@ const MATRIX: Record<Role, Capability[]> = {
     'view_clients', 'manage_clients', 'view_sales', 'manage_sales',
     'view_case_studies', 'manage_case_studies',
     'manage_content', 'view_media', 'view_activity', 'view_analytics', 'view_system',
+    // Settings: their own account, language and notifications (2026-10-05).
+    'manage_settings',
   ],
   // A team member does NOT see the commercial book. `opportunities` grants
   // select to `is_staff()`, so a team member CAN read the pipeline through

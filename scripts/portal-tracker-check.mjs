@@ -201,9 +201,9 @@ function applyFilters(url, rows) {
 
 const json = (route, body, status = 200) => route.fulfill({ status, contentType: 'application/json', body: JSON.stringify(body) });
 
-async function open(browser, { owner = true, reducedMotion = 'no-preference', state = freshState(), colorScheme = 'dark', lang = null } = {}) {
+async function open(browser, { owner = true, reducedMotion = 'no-preference', state = freshState(), colorScheme = 'dark', lang = null, role = 'super_admin' } = {}) {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, locale: 'en-GB', timezoneId: 'Europe/Budapest', reducedMotion, colorScheme });
-  const profile = { id: USER.id, email: USER.email, full_name: 'Owner', avatar_url: null, role: 'super_admin', organization_id: null, locale: lang };
+  const profile = { id: USER.id, email: USER.email, full_name: 'Owner', avatar_url: null, role, organization_id: null, locale: lang };
 
   await context.route('**/*', async (route) => {
     const req = route.request();
@@ -1574,6 +1574,22 @@ await check('notifications: Settings explains push on this device and does not c
   assert(['off', 'unsupported', 'denied'].includes(st), `push state ${st}`);
   if (st === 'denied') await page.getByText('Notifications are blocked for this site', { exact: false }).waitFor();
   assert(!(await page.getByText('On for this device').count()), 'push shown as on without a subscription');
+  await context.close();
+});
+
+await check('notifications: an admin (not the owner) has Settings, the same notifications, a test of their own and an e-mail switch', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { owner: false, role: 'admin', state });
+  await page.goto(`${BASE}/`);
+  await page.getByRole('link', { name: 'Settings' }).first().click();
+  await page.waitForURL(/\/settings$/);
+  await page.getByText('When a client uploads a file', { exact: false }).waitFor();
+  await page.locator('[data-push-state]:not([data-push-state="loading"])').waitFor();
+  const mail = page.locator('[data-notify-email]');
+  await mail.waitFor();
+  assert(await mail.isChecked(), 'e-mails are off by default');
+  await mail.uncheck();
+  await page.waitForTimeout(300);
   await context.close();
 });
 

@@ -2,7 +2,9 @@
 // Every minute: send what is waiting in `notification_outbox`
 // (20261013000100_notifications.sql).
 //
-//   owner messages    push to every device the owner registered, and an e-mail
+//   owner messages    to the owner and every admin (20261013000200): push to
+//                     every device they registered, and an e-mail unless they
+//                     turned e-mails off in Settings
 //   client messages   an e-mail to every client the database names as a
 //                     recipient AT SEND TIME (active account, still has the
 //                     project, and — if the owner named accounts — one of those)
@@ -104,8 +106,11 @@ export async function dispatch(db, { origin }) {
   for (const { audience, person, messages } of byPerson.values()) {
     const lang = pickLang(person.locale, audience === 'client' ? 'hu' : 'en');
     const msg = compose(messages, { audience, lang, name: person.name, origin });
-    const mailError = await sendEmail({ to: person.email, subject: msg.subject, text: msg.text, html: msg.html });
-    if (mailError) {
+    const wantsMail = audience === 'client' || person.email_on !== false;
+    const mailError = wantsMail ? await sendEmail({ to: person.email, subject: msg.subject, text: msg.text, html: msg.html }) : null;
+    if (!wantsMail) {
+      // E-mails off (Settings): push only.
+    } else if (mailError) {
       console.error('[notify] email', audience, mailError);
       // A test, and owner messages, still count as delivered when the push went out.
       if (audience === 'client') for (const m of messages) failed.set(m.id, mailError);

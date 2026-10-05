@@ -28,12 +28,24 @@ export async function notifyClient(kind: ClientNotice, projectId: string, payloa
   return null;
 }
 
-/** A test message to the owner's own devices and inbox. */
-export async function notifyOwnerTest(): Promise<string | null> {
-  const { error } = await supabase.from('notification_outbox').insert({ audience: 'owner', kind: 'test', payload: {} });
+/** A test message to the caller's own devices and inbox (20261013000200: any admin). */
+export async function notifyOwnerTest(userId: string): Promise<string | null> {
+  const { error } = await supabase.from('notification_outbox').insert({ audience: 'owner', kind: 'test', payload: { only: userId } });
   if (error) {
     console.error('[notify.test]', error.code);
     return t('The test could not be queued.');
   }
+  return null;
+}
+
+/** Whether this person gets the e-mails as well as the push (default: yes). */
+export async function getEmailPref(userId: string): Promise<boolean | null> {
+  const { data, error } = await supabase.from('notification_prefs').select('email').eq('user_id', userId).maybeSingle();
+  if (error) { console.error('[notify.prefs]', error.code); return null; }
+  return (data as { email: boolean } | null)?.email ?? true;
+}
+export async function setEmailPref(userId: string, email: boolean): Promise<string | null> {
+  const { error } = await supabase.from('notification_prefs').upsert({ user_id: userId, email, updated_at: new Date().toISOString() });
+  if (error) { console.error('[notify.prefs.save]', error.code); return t('The setting could not be saved. Try again.'); }
   return null;
 }

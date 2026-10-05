@@ -5,9 +5,8 @@ import { useScope } from '@/lib/scope';
 import { ROLE_LABELS, type Role } from '@/lib/permissions';
 import { LanguageSwitch, useLanguage } from '@/features/i18n/LanguageGate';
 import { t, tc } from '@/lib/i18n';
-import { canAccess } from '@/lib/permissions';
 import { disablePush, enablePush, pushState, type PushState } from '@/lib/push';
-import { notifyOwnerTest } from '@/lib/notify';
+import { getEmailPref, notifyOwnerTest, setEmailPref } from '@/lib/notify';
 import {
   Badge, Button, Cell, DataState, ErrorState, Input, Panel, Row, SectionHeader, Skeleton, Table,
 } from '@/components/ui';
@@ -233,13 +232,22 @@ export function SettingsScreen() {
  */
 function NotificationSettings() {
   const { profile } = useAuth();
-  const isOwner = canAccess(profile, 'manage_projects');
+  // The owner and every admin get the same notifications (20261013000200).
+  const isAdmin = profile?.role === 'super_admin' || profile?.role === 'admin';
   const [state, setState] = useState<PushState | 'loading'>('loading');
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [email, setEmail] = useState<boolean | null>(null);
 
   const refresh = () => { void pushState().then(setState).catch(() => setState('unsupported')); };
   useEffect(refresh, []);
+  useEffect(() => { if (isAdmin && profile) void getEmailPref(profile.id).then(setEmail); }, [isAdmin, profile?.id]);
+  const toggleEmail = async (on: boolean) => {
+    if (!profile) return;
+    setEmail(on);
+    const problem = await setEmailPref(profile.id, on);
+    if (problem) { setEmail(!on); setMessage(problem); }
+  };
 
   const enable = async () => {
     setBusy(true);
@@ -251,14 +259,19 @@ function NotificationSettings() {
     refresh();
   };
   const disable = async () => { setBusy(true); await disablePush(); setBusy(false); setMessage(null); refresh(); };
-  const test = async () => { setBusy(true); setMessage((await notifyOwnerTest()) ?? t('A test is on its way — it arrives within a minute.')); setBusy(false); };
+  const test = async () => {
+    if (!profile) return;
+    setBusy(true);
+    setMessage((await notifyOwnerTest(profile.id)) ?? t('A test is on its way — it arrives within a minute.'));
+    setBusy(false);
+  };
 
   return (
     <Panel aria-label={t('Notifications')}>
       <SectionHeader title={t('Notifications')} note={t('this device')} />
       <div className="grid gap-2 px-4 py-3 text-[13px]" data-push-state={state}>
         <p className="t-note">
-          {isOwner
+          {isAdmin
             ? t('When a client uploads a file, writes feedback on a demo or proposes a new meeting time, you get a push notification here and an e-mail.')
             : t('Push notifications from the portal, on this device.')}
         </p>
@@ -276,9 +289,15 @@ function NotificationSettings() {
         {state === 'on' && (
           <div className="flex flex-wrap items-center gap-2">
             <Badge tone="good">{t('On for this device')}</Badge>
-            {isOwner && <Button size="sm" onClick={test} disabled={busy}>{t('Send a test')}</Button>}
+            {isAdmin && <Button size="sm" onClick={test} disabled={busy}>{t('Send a test')}</Button>}
             <Button size="sm" variant="quiet" onClick={disable} disabled={busy}>{t('Turn off')}</Button>
           </div>
+        )}
+        {isAdmin && email !== null && (
+          <label className="flex items-center gap-2 text-paper">
+            <input type="checkbox" checked={email} onChange={(e) => void toggleEmail(e.target.checked)} className="h-4 w-4 accent-signal" data-notify-email />
+            {t('Also by e-mail ({email})', { email: profile?.email ?? '' })}
+          </label>
         )}
         {message && <p role="status" className="text-xs text-haze">{message}</p>}
       </div>

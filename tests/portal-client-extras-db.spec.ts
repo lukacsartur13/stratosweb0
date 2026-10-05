@@ -536,7 +536,8 @@ test.describe('notifications', () => {
     const rows = await claim();
     expect(rows.length).toBe(6);
     const byKind = Object.fromEntries(rows.map((r) => [r.kind, r]));
-    expect(byKind.client_upload.recipients.map((x) => x.email)).toEqual(['owner@example.invalid']);
+    // The owner and every admin (20261013000200); not a team member, not a client.
+    expect(byKind.client_upload.recipients.map((x) => x.email).sort()).toEqual(['admin@example.invalid', 'owner@example.invalid', 'super2@example.invalid']);
     expect(byKind.demo_published.recipients.map((x) => x.email).sort()).toEqual(['anna@a.example', 'bela@a.example']);
     expect(byKind.demo_published.recipients[0].locale).toBe('hu');
     expect(byKind.document_shared.recipients.map((x) => x.email)).toEqual(['bela@a.example']);
@@ -571,6 +572,20 @@ test.describe('notifications', () => {
     const mine = await ok(db, 'a1', `select reply, replied_at from client_portal_demo_feedback()`);
     expect(mine[0].reply).toBe('Javítjuk holnapra.');
     expect((await as(db, 'owner', `update demo_feedback set body = 'más' where id = $1`, [f.id])).error?.message).toContain('feedback_fixed');
+  });
+
+  test('admins: e-mails can be turned off per person; a test reaches only its sender; a team member cannot send one', async () => {
+    await db.exec(`update notification_outbox set sent_at = now()`);
+    await ok(db, 'admin', `insert into notification_prefs (email) values (false)`);
+    expect((await as(db, 'admin', `insert into notification_prefs (user_id, email) values ($1, false)`, [U.owner])).error).not.toBeNull();
+    expect((await as(db, 'team', `insert into notification_prefs (email) values (false)`)).error).not.toBeNull();
+    await ok(db, 'admin', `insert into notification_outbox (audience, kind, payload) values ('owner', 'test', $1)`, [JSON.stringify({ only: U.admin })]);
+    expect((await as(db, 'admin', `insert into notification_outbox (audience, kind, payload) values ('owner', 'test', $1)`, [JSON.stringify({ only: U.owner })])).error).not.toBeNull();
+    expect((await as(db, 'admin', `insert into notification_outbox (audience, kind, payload) values ('owner', 'test', '{}')`)).error).not.toBeNull();
+    expect((await as(db, 'team', `insert into notification_outbox (audience, kind, payload) values ('owner', 'test', $1)`, [JSON.stringify({ only: U.team })])).error).not.toBeNull();
+    const [row] = await claim();
+    expect(row.recipients).toEqual([expect.objectContaining({ email: 'admin@example.invalid', email_on: false, user_id: U.admin })]);
+    await db.query(`select notification_done($1)`, [row.id]);
   });
 
   test('push: staff register their own device; re-registering replaces it; a client cannot', async () => {
