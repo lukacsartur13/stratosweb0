@@ -51,9 +51,9 @@
 }
 
 /* ------------------------------------------------------------- the ledger
-   ~15M, and the two channels it is made of. The split sits UNDER the total and
-   is ruled off from it, because the reader has to see the sum before the
-   parts — the parts are the honesty, the sum is the claim. */
+   ~110M of quote requests from organic search, and beneath it the 9M of
+   contracted Google Ads value and the 0 Ft of ad spend behind the organic
+   figure. Different measures, so the split never adds up to the head. */
 .ledger { border-top: 1px solid var(--hair); padding-top: clamp(1.4rem, 3.5vw, 2.4rem); }
 
 .ledger__head { margin: 0; }
@@ -64,7 +64,7 @@
   line-height: .86; color: var(--signal);
   font-variant-numeric: tabular-nums;
   /* The figure is the longest unbreakable token on the page. Without this a
-     430px viewport puts "~15M Ft" past the right edge rather than wrapping. */
+     430px viewport puts "~110M Ft" past the right edge rather than wrapping. */
   overflow-wrap: anywhere;
 }
 .ledger__c {

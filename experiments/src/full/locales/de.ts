@@ -192,10 +192,10 @@ export const DE: Record<string, string> = {
     'Wir haben nicht auf mehr Traffic gezielt, sondern auf genaueren. Positionierung, Seitenstruktur und Werbung bauten auf derselben, enger gefassten Suchintention auf.',
   'Google Ads és SEO egy rendszerként, majd egy teljesen újragondolt weboldal, amelynek közepén a kert és az alatta lévő talaj interaktív 3D keresztmetszete áll.':
     'Google Ads und SEO als ein System, danach eine vollständig neu gedachte Website, in deren Zentrum ein interaktiver 3D-Querschnitt durch einen Garten und den Boden darunter steht.',
-  'A fizetett és az organikus keresés együtt nagyjából 15 millió Ft értékű szerződött projektet hozott: mintegy 9 millió Ft a Google Adsből, további 6 millió Ft az organikus keresésből.':
-    'Bezahlte und organische Suche brachten zusammen einen beauftragten Projektwert von rund 15 Millionen HUF: etwa 9 Millionen HUF aus Google Ads und weitere 6 Millionen HUF aus der organischen Suche.',
-  '~15M Ft': '~15 Mio. HUF',
-  'Szerződött projektérték keresésből': 'Beauftragter Projektwert aus der Suche',
+  'Az organikus keresés nagyjából 110 millió Ft értékű ajánlatkérést hozott, hirdetési költés nélkül; a hirdetés ezen felül mintegy 9 millió Ft-ot.':
+    'Die organische Suche brachte Angebotsanfragen im Wert von rund 110 Millionen HUF, ganz ohne Werbebudget; die Anzeigen brachten zusätzlich etwa 9 Millionen HUF.',
+  '~110M Ft': '~110 Mio. HUF',
+  'Ajánlatkérés organikus keresésből': 'Angebotsanfragen aus der organischen Suche',
   'Az oldal karbantartása és a hirdetések folyamatos kezelése havidíjas konstrukcióban.':
     'Wartung der Website und laufende Betreuung der Werbung im Monatsmodell.',
   'Az eredmények gyorsan láthatóak lettek: több megkeresés érkezett, és sokkal célzottabban találtak ránk azok az ügyfelek, akik valóban a szolgáltatásainkat keresték.':

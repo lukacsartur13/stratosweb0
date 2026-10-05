@@ -18,16 +18,18 @@
  *   * the ongoing-role text restates the monthly model described on kkv.html.
  *
  * `metric` is set ONLY where a figure has a named source. Rapidkert now carries
- * one: its Google Ads account for 2025-12-01—2026-04-30 plus the contracted
- * project value confirmed by the client, which is the same pair of sources the
- * case-study route cites section by section. The other two entries stay `null`,
+ * one: the total value of quote requests received from organic search, beside
+ * its Google Ads account for 2025-12-01—2026-04-30 and the value brought in by
+ * ads, confirmed by the client — the same sources the case-study route cites
+ * section by section. The other two entries stay `null`,
  * and that remains a finding rather than an oversight — no verified numeric
  * outcome exists for either. The layout renders the field when it is present and
  * omits the row entirely when it is null, so filling one in is a one-line change
  * with no design work. See FULL_ASCENT_PROTOTYPE.md.
  *
- * The figure is contracted project value. It is not revenue and it is not
- * profit, and it must not be relabelled as either here or on the case study.
+ * The headline figure is quote-request value from organic search; the 9M beside
+ * it is the value brought in by Google Ads. The two are never summed, and neither
+ * is revenue or profit — do not relabel either as such here or on the case study.
  *
  * The brief also named "Uncensored Society" and "Brickness Community" as likely
  * candidates. Neither appears anywhere in this repository — no copy, no logo, no
@@ -101,10 +103,10 @@ const WORK_HU: CaseStudy[] = [
     implementation:
       'Google Ads és SEO egy rendszerként, majd egy teljesen újragondolt weboldal, amelynek közepén a kert és az alatta lévő talaj interaktív 3D keresztmetszete áll.',
     result:
-      'A fizetett és az organikus keresés együtt nagyjából 15 millió Ft értékű szerződött projektet hozott: mintegy 9 millió Ft a Google Adsből, további 6 millió Ft az organikus keresésből.',
+      'Az organikus keresés nagyjából 110 millió Ft értékű ajánlatkérést hozott, hirdetési költés nélkül; a hirdetés ezen felül mintegy 9 millió Ft-ot.',
     metric: {
-      value: '~15M Ft',
-      label: 'Szerződött projektérték keresésből',
+      value: '~110M Ft',
+      label: 'Ajánlatkérés organikus keresésből',
     },
     ongoing:
       'Az oldal karbantartása és a hirdetések folyamatos kezelése havidíjas konstrukcióban.',
