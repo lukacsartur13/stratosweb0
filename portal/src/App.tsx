@@ -93,6 +93,8 @@ const TrashScreen = lazy(() => import('@/pages/trash').then((m) => ({ default: m
 // Notes, checklists and tasks (20261011000100_notes_tasks_activity.sql).
 const NotesScreen = lazy(() => import('@/pages/notes').then((m) => ({ default: m.NotesScreen })));
 const TodayScreen = lazy(() => import('@/pages/today').then((m) => ({ default: m.TodayScreen })));
+// Hours worked, per person per day (20261012000100_time_entries.sql).
+const HoursScreen = lazy(() => import('@/pages/hours').then((m) => ({ default: m.HoursScreen })));
 
 /**
  * Nothing below this should ever show a visitor a stack trace. React unmounts
@@ -213,6 +215,8 @@ export default function App() {
                 <ProtectedRoute capability="manage_settings"><SettingsScreen /></ProtectedRoute>} />
               <Route path="today" element={
                 <ProtectedRoute capability="manage_clients"><TodayScreen /></ProtectedRoute>} />
+              <Route path="hours" element={
+                <ProtectedRoute capability="manage_clients"><HoursScreen /></ProtectedRoute>} />
               <Route path="notes" element={
                 <ProtectedRoute capability="manage_clients"><NotesScreen /></ProtectedRoute>} />
               <Route path="trash" element={

@@ -1,0 +1,142 @@
+{
+ "Week": {
+  "hu": "Hét",
+  "de": "Woche"
+ },
+ "Week of {date}": {
+  "hu": "{date} hete",
+  "de": "Woche ab {date}"
+ },
+ "Previous week": {
+  "hu": "Előző hét",
+  "de": "Vorige Woche"
+ },
+ "This week": {
+  "hu": "Ez a hét",
+  "de": "Diese Woche"
+ },
+ "Next week": {
+  "hu": "Következő hét",
+  "de": "Nächste Woche"
+ },
+ "Person": {
+  "hu": "Személy",
+  "de": "Person"
+ },
+ "you": {
+  "hu": "te",
+  "de": "Sie"
+ },
+ "{person}, {day}: {hours} hours": {
+  "hu": "{person}, {day}: {hours} óra",
+  "de": "{person}, {day}: {hours} Stunden"
+ },
+ "Lines": {
+  "hu": "Bejegyzések",
+  "de": "Einträge"
+ },
+ "{person} — {day}": {
+  "hu": "{person} — {day}",
+  "de": "{person} — {day}"
+ },
+ "Every line this week": {
+  "hu": "A hét összes bejegyzése",
+  "de": "Alle Einträge dieser Woche"
+ },
+ "Show the whole week": {
+  "hu": "Az egész hét",
+  "de": "Ganze Woche zeigen"
+ },
+ "Nobody has logged hours this week yet.": {
+  "hu": "Ezen a héten még senki nem írt be órát.",
+  "de": "Diese Woche hat noch niemand Stunden erfasst."
+ },
+ "h": {
+  "hu": "ó",
+  "de": "Std."
+ },
+ "Edit this line": {
+  "hu": "Bejegyzés szerkesztése",
+  "de": "Eintrag bearbeiten"
+ },
+ "Remove this line": {
+  "hu": "Bejegyzés törlése",
+  "de": "Eintrag entfernen"
+ },
+ "Remove this line of hours?": {
+  "hu": "Törlöd ezt a bejegyzést?",
+  "de": "Diesen Stundeneintrag entfernen?"
+ },
+ "Choose a project, or Other.": {
+  "hu": "Válassz projektet, vagy az Egyébet.",
+  "de": "Wählen Sie ein Projekt oder „Sonstiges“."
+ },
+ "Write in a few words what it was.": {
+  "hu": "Írd le pár szóban, mi volt.",
+  "de": "Beschreiben Sie in wenigen Worten, was es war."
+ },
+ "Day": {
+  "hu": "Nap",
+  "de": "Tag"
+ },
+ "Hours": {
+  "hu": "Munkaidő",
+  "de": "Stunden"
+ },
+ "On": {
+  "hu": "Mire ment",
+  "de": "Wofür"
+ },
+ "Choose…": {
+  "hu": "Válassz…",
+  "de": "Auswählen…"
+ },
+ "Other — write what it was": {
+  "hu": "Egyéb — írd le, mi volt",
+  "de": "Sonstiges — beschreiben, was es war"
+ },
+ "What was it?": {
+  "hu": "Mi volt?",
+  "de": "Was war es?"
+ },
+ "e.g. Administration, sales calls, learning": {
+  "hu": "pl. adminisztráció, értékesítési hívások, tanulás",
+  "de": "z. B. Verwaltung, Vertriebsanrufe, Weiterbildung"
+ },
+ "Note (optional)": {
+  "hu": "Megjegyzés (nem kötelező)",
+  "de": "Notiz (optional)"
+ },
+ "Several lines a day are fine — one per thing worked on.": {
+  "hu": "Egy napra több sor is írható — amin dolgoztál, mindegyikre egy.",
+  "de": "Mehrere Einträge pro Tag sind in Ordnung — einer pro Tätigkeit."
+ },
+ "Log hours": {
+  "hu": "Óra rögzítése",
+  "de": "Stunden erfassen"
+ },
+ "A project": {
+  "hu": "Egy projekt",
+  "de": "Ein Projekt"
+ },
+ "Projects": {
+  "hu": "Projektek",
+  "de": "Projekte"
+ },
+ "Closed projects": {
+  "hu": "Lezárt projektek",
+  "de": "Abgeschlossene Projekte"
+ },
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Save": {
+  "hu": "Mentés",
+  "de": "Speichern"
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "de": "Abbrechen"
+ }
+}

@@ -678,3 +678,28 @@ Mit csinál:
 Ellenőrizve (helyben): `tests/portal-notes-db.spec.ts` 5/5; dokumentum-ellenőrző 18/18 (valódi PDF,
 .docx és .xlsx mintákkal, `scripts/fixtures/`); ügyfélportál 21/21; tulajdonosi ellenőrző 55/55; minden
 portál-teszt (263 + 288) — kihagyott teszt nélkül.
+
+## 22. Munkaidő: ki, melyik nap, hány órát, mire (15. szakasz)
+
+**Sorrend: 20. → 21. → ez a migráció, majd deploy.**
+
+1. SQL Editor: `supabase/migrations/20261012000100_time_entries.sql` (ismételten is futtatható).
+2. Deploy (push a `main`-re).
+
+Mit csinál:
+
+- **Munkaidő** (új menüpont): naponta egy vagy több sor — óra (negyedórára), mire ment (bármelyik projekt,
+  vagy „Egyéb” szabad szöveggel), megjegyzés. Heti táblázat: sorban az emberek, oszlopban a napok, a cellára
+  kattintva az aznapi sorok; hétváltás.
+- **Mindenki látja a többiekét, mindenki a sajátját írja**; a tulajdonos bárkiét javíthatja. Egy napra
+  legfeljebb 24 óra.
+- **Bármelyik admin bármelyik projektre írhat órát** (a tulajdonos döntése, 2026-10-05). Ehhez a `time_projects()`
+  függvény a projekteknek csak a nevét, az ügyfél nevét és a lezártságát adja ki; érték, fizetés, mérföldkő és
+  dokumentum továbbra is csak a tulajdonosé. A két ellenőrző szkript (`client-portal-verify.sql`) ismeri ezt a
+  függvényt.
+- **A projekt munkaórái:** a projekt „Actual hours” értéke = kézzel beírt + a projektre naplózott órák (mindig
+  a naplóból összegezve, sosem tárolva — javítás vagy törlés után sem csúszik el).
+
+Ellenőrizve (helyben): `tests/portal-hours-db.spec.ts` 4/4; tulajdonosi ellenőrző 56/56 (rögzítés projektre
+és „Egyéb”-re, heti táblázat, kolléga sora, érvénytelen óra, a projekt naplózott órái); minden portál-teszt
+(267 + 288), kihagyás nélkül.

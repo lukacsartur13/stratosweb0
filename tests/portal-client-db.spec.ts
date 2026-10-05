@@ -182,6 +182,9 @@ test.describe('structure', () => {
       'client_portal_documents', 'client_portal_me', 'client_portal_projects', 'client_portal_uploads',
       // phase 7 (20261004000100): demos and meetings — same client rules
       'client_portal_demos', 'client_portal_meetings',
+      // 20261012000100: project NAMES for logging hours — staff admins only,
+      // name, client name and closed flag, nothing else (the owner's decision).
+      'time_projects',
     ].sort());
     expect((await db.query(`select table_name from information_schema.views where table_schema = 'public'`)).rows).toEqual([]);
   });

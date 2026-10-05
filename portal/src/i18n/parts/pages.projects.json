@@ -1182,5 +1182,13 @@
  "http and https only.": {
   "hu": "Csak http és https.",
   "de": "Nur http und https."
+ },
+ "{entered} entered + {logged} logged": {
+  "hu": "{entered} kézzel + {logged} naplózva",
+  "de": "{entered} erfasst + {logged} protokolliert"
+ },
+ "Entered by hand. Hours logged on the Hours screen are added on top.": {
+  "hu": "Kézzel beírva. A Munkaidő oldalon naplózott órák ehhez adódnak hozzá.",
+  "de": "Von Hand eingetragen. Auf der Seite Stunden erfasste Zeiten kommen hinzu."
  }
 }

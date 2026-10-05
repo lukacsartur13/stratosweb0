@@ -166,7 +166,7 @@ function freshState() {
       { id: 'ha-2', slug: 'portal-masik-idopont', question: 'Hogyan kérhetek másik időpontot?', answer: '[JAVASLAT]', topic: 'Ügyfélportál – megbeszélések',
         alt_questions: [], source: null, status: 'draft', review_note: 'Üzleti döntés kell.', position: 20, updated_at: new Date().toISOString() },
     ],
-    notes: [], noteItems: [], interactions: [],
+    notes: [], noteItems: [], interactions: [], timeEntries: [],
     // Scripted server answers for the next close / win, and every write seen.
     closeAnswer: 'ok', winAnswer: 'ok', writes: [], projectReads: 0,
   };
@@ -296,6 +296,10 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
       }
       return json(route, null, 204);
     }
+    if (url.includes('/rest/v1/rpc/time_projects')) {
+      return json(route, state.projects.filter((p) => !p.archived_at)
+        .map((p) => ({ project_id: p.id, project_name: p.name, client_name: p.client?.name ?? null, closed: p.status === 'completed' })));
+    }
     if (url.includes('/rest/v1/rpc/')) return json(route, []);
 
     if (url.includes('/rest/v1/impact_applications')) {
@@ -321,7 +325,7 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
     }
 
     // Notes, checklist points and the activity log (20261011000100).
-    for (const [path, key] of [['note_items', 'noteItems'], ['notes', 'notes'], ['interactions', 'interactions']]) {
+    for (const [path, key] of [['note_items', 'noteItems'], ['notes', 'notes'], ['interactions', 'interactions'], ['time_entries', 'timeEntries']]) {
       if (!new RegExp(`/rest/v1/${path}(\\?|$)`).test(url)) continue;
       const body = JSON.parse(req.postData() || '{}');
       const embed = (r) => path === 'notes' ? { ...r, client: r.organization_id ? { id: ORG.id, name: ORG.name } : null }
@@ -329,7 +333,7 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
           : { ...r, author: { full_name: 'Owner', email: USER.email } };
       if (method === 'POST') {
         state.writes.push({ table: path, method, body });
-        const row = { id: `${path}-${state.writes.length}`, created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
+        const row = { id: `${path}-${state.writes.length}`, user_id: USER.id, created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
           pinned: false, archived_at: null, body: null, organization_id: null, done: false, done_at: null, due_on: null, milestone_id: null, position: 0, ...body };
         state[key].push(row);
         return json(route, single ? { id: row.id } : [{ id: row.id }], 201);
@@ -1280,6 +1284,46 @@ await check('activity log: a call is logged on the client page and listed; the c
   await context.close();
 });
 
+/* ------------------------------------------------------------------ hours */
+
+await check('hours: a line on a project and one on Other are logged; the week shows everybody; the project counts its logged hours', async () => {
+  const state = freshState();
+  state.timeEntries.push({ id: 'te-colleague', user_id: 'admin-2', work_date: day(0), hours: 3, project_id: null, label: 'Sales calls', note: null });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/hours`);
+  const form = page.getByRole('region', { name: 'Log hours' });
+  await form.getByLabel('Hours', { exact: true }).fill('6,5');
+  await form.getByLabel('On', { exact: true }).selectOption('p-late');
+  await form.getByLabel('Note (optional)').fill('Homepage build');
+  await form.getByRole('button', { name: 'Log hours' }).click();
+  await settle(page);
+  await form.getByLabel('Hours', { exact: true }).fill('1.25');
+  await form.getByLabel('On', { exact: true }).selectOption('__other__');
+  await form.getByLabel('What was it?').fill('Administration');
+  await form.getByRole('button', { name: 'Log hours' }).click();
+  await settle(page);
+  const posts = state.writes.filter((w) => w.table === 'time_entries' && w.method === 'POST').map((w) => w.body);
+  assert(posts.length === 2, `posted ${posts.length}`);
+  assert(posts[0].project_id === 'p-late' && posts[0].hours === 6.5 && posts[0].work_date === day(0) && posts[0].label === null, `first: ${JSON.stringify(posts[0])}`);
+  assert(posts[1].project_id === null && posts[1].label === 'Administration' && posts[1].hours === 1.25, `second: ${JSON.stringify(posts[1])}`);
+  const week = page.locator('[data-hours-week]');
+  await week.locator(`[data-person="${USER.id}"]`).getByText('7.75').first().waitFor();
+  await week.locator('[data-person="admin-2"]').getByText('3').first().waitFor();
+  // A colleague's line is shown with what it was on.
+  await page.getByText('Sales calls').waitFor();
+  await shot(page, 'hours');
+
+  // Refused before anything is sent: not quarter hours.
+  await form.getByLabel('Hours', { exact: true }).fill('1.1');
+  await form.getByRole('button', { name: 'Log hours' }).click();
+  await form.getByRole('alert').waitFor();
+  assert(state.writes.filter((w) => w.table === 'time_entries' && w.method === 'POST').length === 2, 'invalid hours were sent');
+
+  await page.goto(`${BASE}/projects/p-late`);
+  await page.getByText('0 entered + 6.5 logged').waitFor();
+  await context.close();
+});
+
 /* ------------------------------------------------------------ languages */
 
 await check('help centre: an article takes English and German; a half-filled language is refused; the list marks what is missing', async () => {
@@ -1508,7 +1552,7 @@ await check('owner: Appearance in the sidebar — System follows the device, Lig
   for (const scheme of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: scheme });
     await page.waitForFunction((t) => document.documentElement.dataset.theme === t, scheme);
-    for (const path of ['/', '/today', '/notes', '/projects', '/projects?view=all', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/trash', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
+    for (const path of ['/', '/today', '/notes', '/hours', '/projects', '/projects?view=all', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/trash', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
       await page.goto(`${BASE}${path}`);
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(150);

@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
-  Activity, Building2, CalendarCheck, ChartLine, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
+  Activity, Building2, CalendarCheck, ChartLine, Clock, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
   Menu, NotebookPen, RefreshCw, ScrollText, Settings, Target, Trash2, Users, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -80,6 +80,8 @@ const PRIMARY: NavItem[] = [
   { to: '/clients',   label: 'Clients',   icon: Building2,       cap: 'view_clients' },
   // Working notes and checklists, optionally about a client.
   { to: '/notes',     label: 'Notes',     icon: NotebookPen,     cap: 'manage_clients' },
+  // Who worked how many hours, on what — everybody's week.
+  { to: '/hours',     label: 'Hours',     icon: Clock,           cap: 'manage_clients' },
   { to: '/projects',  label: 'Projects',  icon: FolderKanban,    cap: 'view_projects' },
   // The free programme: its own pipeline and its own projects. Owner-only,
   // like Projects (see OWNER_CAPABILITIES).
@@ -125,6 +127,7 @@ const TITLES: { path: string; title: string }[] = [
   { path: '/trash', title: 'Trash' },
   { path: '/today', title: 'Today' },
   { path: '/notes', title: 'Notes' },
+  { path: '/hours', title: 'Hours' },
 ];
 
 /** The screens the period and environment controls actually apply to. */

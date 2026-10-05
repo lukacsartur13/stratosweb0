@@ -174,5 +174,9 @@
  "Notes": {
   "hu": "Jegyzetek",
   "de": "Notizen"
+ },
+ "Hours": {
+  "hu": "Munkaidő",
+  "de": "Stunden"
  }
 }

@@ -33,7 +33,10 @@ select 'definer functions reading projects or the library are exactly the client
                  'client_portal_documents', 'client_portal_me', 'client_portal_projects', 'client_portal_uploads']
            -- phase 7 (20261004000100), when applied: the same client rules
            || case when to_regprocedure('public.client_portal_demos()') is not null
-                   then array['client_portal_demos', 'client_portal_meetings'] else '{}'::text[] end) x),
+                   then array['client_portal_demos', 'client_portal_meetings'] else '{}'::text[] end
+           -- 20261012000100, when applied: project NAMES for logging hours, staff admins only
+           || case when to_regprocedure('public.time_projects()') is not null
+                   then array['time_projects'] else '{}'::text[] end) x),
        null
 union all
 select 'client storage policies present',

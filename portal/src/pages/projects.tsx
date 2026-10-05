@@ -32,6 +32,7 @@ import { PaymentSchedule, Receivables } from '@/features/payments/PaymentSchedul
 import { budapestToday } from '@/lib/paymentRules';
 import { ClientInbox, ClientViewPanel } from '@/features/client-view/ClientViewPanel';
 import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls';
+import { useProjectLoggedHours } from '@/lib/hours';
 import { t, tc } from '@/lib/i18n';
 
 /**
@@ -608,6 +609,8 @@ export function ProjectDetailScreen() {
   const mayEdit = canAccess(profile, 'manage_projects');
 
   const { project, milestones, contacts, costs, links, state, reload } = useProjectDetail(id, reloadToken);
+  // Hours logged on the Hours screen, by everybody, summed now (20261012000100).
+  const logged = useProjectLoggedHours(id, reloadToken);
   const templates = useCheckpointTemplates(reloadToken);
   const detail = useRecordDetail('project', state === 'ready' ? id ?? null : null, reloadToken);
   const notes = useNoteMutation('project', () => { void detail.reload(); });
@@ -669,7 +672,8 @@ export function ProjectDetailScreen() {
     currency: project.currency,
     costs: spend,
     estimated_hours: project.estimated_hours,
-    actual_hours: project.actual_hours,
+    // Hours entered by hand on the project, plus every hour logged on it.
+    actual_hours: logged ? (project.actual_hours ?? 0) + logged : project.actual_hours,
   });
   const timeline = buildRecordTimeline(
     { at: project.created_at, title: t('Project created'), detail: project.service ?? undefined },
@@ -1070,7 +1074,7 @@ export function ProjectDetailScreen() {
                 />
                 {monthly
                   ? <MonthlyFeePanel project={project} spend={spend} costCount={costs.length} />
-                  : <Profitability project={project} fin={fin} costCount={costs.length} />}
+                  : <Profitability project={project} fin={fin} costCount={costs.length} logged={logged} />}
               </>}
 
           <Panel>
@@ -1724,8 +1728,8 @@ function NewProjectDialog({
  * missing figure says `Not recorded`.
  */
 function Profitability({
-  project, fin, costCount,
-}: { project: Project; fin: ReturnType<typeof financials>; costCount: number }) {
+  project, fin, costCount, logged,
+}: { project: Project; fin: ReturnType<typeof financials>; costCount: number; logged: number | null }) {
   const value = (amount: number | null, tone?: string) =>
     amount === null
       ? <NotRecorded />
@@ -1760,9 +1764,10 @@ function Profitability({
         <DataLine
           term={t('Actual hours')}
           value={fin.actualHours === null ? <NotRecorded /> : <span className="num">{fin.actualHours}</span>}
-          note={fin.estimatedHours !== null && fin.actualHours !== null && fin.actualHours > fin.estimatedHours
-            ? t('over the estimate')
-            : undefined}
+          note={[
+            logged ? t('{entered} entered + {logged} logged', { entered: project.actual_hours ?? 0, logged: Math.round(logged * 100) / 100 }) : null,
+            fin.estimatedHours !== null && fin.actualHours !== null && fin.actualHours > fin.estimatedHours ? t('over the estimate') : null,
+          ].filter(Boolean).join(' · ') || undefined}
         />
         <DataLine term={t('Revenue / hour')} value={value(fin.revenuePerHour)} />
         <DataLine term={t('Contribution / hour')} value={value(fin.contributionPerHour)} />
@@ -2010,7 +2015,7 @@ function EditProjectDialog({
             <Input id="ep-est-hours" inputMode="numeric" value={form.estimated_hours}
                    onChange={(e) => setForm((p) => ({ ...p, estimated_hours: e.target.value }))} />
           </Field>
-          <Field id="ep-act-hours" label={t('Actual hours')} hint={t('Entered by hand — there is no timer.')}>
+          <Field id="ep-act-hours" label={t('Actual hours')} hint={t('Entered by hand. Hours logged on the Hours screen are added on top.')}>
             <Input id="ep-act-hours" inputMode="numeric" value={form.actual_hours}
                    onChange={(e) => setForm((p) => ({ ...p, actual_hours: e.target.value }))} />
           </Field>

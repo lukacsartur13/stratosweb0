@@ -40,6 +40,7 @@ const NODE_ONLY = [
   /portal-locale-db\.spec\.ts/,
   /portal-help-i18n\.spec\.ts/,
   /portal-notes-db\.spec\.ts/,
+  /portal-hours-db\.spec\.ts/,
   /portal-client-extras\.spec\.ts/,
 ];
 
