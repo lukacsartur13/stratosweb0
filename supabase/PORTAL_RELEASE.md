@@ -549,6 +549,8 @@ a meglévő portál-tesztek (node + desktop-1440) zöldek, köztük a dokumentum
 
 ## 18. All fül, Impact-projekt jelentkezés nélkül, Impact-leadek törlése (11. szakasz)
 
+**Élesítve 2026-10-05:** a migráció hiba nélkül lefutott, utána push a `main`-re.
+
 **Sorrend: migráció → deploy.** A frontend a migráció előtt sem törik el, de az „New Impact
 project” és az Impact-lead végleges törlése csak a migráció után működik.
 
