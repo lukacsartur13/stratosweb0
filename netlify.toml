@@ -444,6 +444,13 @@
   [headers.values]
     Content-Type = "text/javascript; charset=utf-8"
 
+# The portal's web app manifest (Add to Home Screen, push on iPhone). Without
+# this it is served as octet-stream, which nosniff makes browsers refuse.
+[[headers]]
+  for = "/portal/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json; charset=utf-8"
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
