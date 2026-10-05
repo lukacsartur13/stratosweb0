@@ -1,0 +1,34 @@
+{
+ "The download could not be started. Try again.": {
+  "hu": "A letöltést nem sikerült elindítani. Próbáld újra.",
+  "de": "Der Download konnte nicht gestartet werden. Bitte versuchen Sie es erneut."
+ },
+ "The file could not be read. Try downloading it.": {
+  "hu": "A fájlt nem sikerült beolvasni. Próbáld letölteni.",
+  "de": "Die Datei konnte nicht gelesen werden. Versuchen Sie, sie herunterzuladen."
+ },
+ "This file is not shown inside the Portal. Download it instead.": {
+  "hu": "Ez a fájl nem jeleníthető meg a Portálon belül. Töltsd le inkább.",
+  "de": "Diese Datei wird im Portal nicht angezeigt. Laden Sie sie stattdessen herunter."
+ },
+ ".{ext} files are not accepted.": {
+  "hu": ".{ext} fájl nem tölthető fel.",
+  "de": ".{ext}-Dateien werden nicht akzeptiert."
+ },
+ "Files without an extension are not accepted.": {
+  "hu": "Kiterjesztés nélküli fájl nem tölthető fel.",
+  "de": "Dateien ohne Endung werden nicht akzeptiert."
+ },
+ "This file's content does not match .{ext}, so it was not uploaded.": {
+  "hu": "A fájl tartalma nem egyezik a .{ext} kiterjesztéssel, ezért nem lett feltöltve.",
+  "de": "Der Inhalt dieser Datei passt nicht zu .{ext}, daher wurde sie nicht hochgeladen."
+ },
+ "The file was sent, but it could not be confirmed. Retry to check again.": {
+  "hu": "A fájl elküldve, de nem sikerült visszaigazolni. Próbáld újra az ellenőrzéshez.",
+  "de": "Die Datei wurde gesendet, konnte aber nicht bestätigt werden. Wiederholen Sie den Vorgang, um erneut zu prüfen."
+ },
+ "The upload stopped unexpectedly. Retry it.": {
+  "hu": "A feltöltés váratlanul leállt. Próbáld újra.",
+  "de": "Der Upload wurde unerwartet unterbrochen. Bitte wiederholen Sie ihn."
+ }
+}

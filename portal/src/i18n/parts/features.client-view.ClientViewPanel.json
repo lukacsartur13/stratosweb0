@@ -1,0 +1,298 @@
+{
+ "Client portal view": {
+  "hu": "Ügyfélportál nézet",
+  "de": "Kundenportal-Ansicht"
+ },
+ "Client portal": {
+  "hu": "Ügyfélportál",
+  "de": "Kundenportal"
+ },
+ "demos and meetings the assigned client sees": {
+  "hu": "demók és megbeszélések, amelyeket a hozzárendelt ügyfél lát",
+  "de": "Demos und Termine, die der zugewiesene Kunde sieht"
+ },
+ "Demo links": {
+  "hu": "Demólinkek",
+  "de": "Demo-Links"
+ },
+ "Demo link": {
+  "hu": "Demólink",
+  "de": "Demo-Link"
+ },
+ "The portal only decides who sees the LINK. The demo site itself is outside the portal: anyone who has its address can open it, unless the demo host protects it (e.g. with a password).": {
+  "hu": "A portál csak azt dönti el, ki látja a LINKET. Maga a demóoldal a portálon kívül van: bárki megnyithatja, aki ismeri a címét, hacsak a demó tárhelye nem védi (pl. jelszóval).",
+  "de": "Das Portal entscheidet nur, wer den LINK sieht. Die Demo-Seite selbst liegt außerhalb des Portals: Jeder, der die Adresse kennt, kann sie öffnen, sofern der Demo-Host sie nicht schützt (z. B. mit einem Passwort)."
+ },
+ "No demo link yet.": {
+  "hu": "Még nincs demólink.",
+  "de": "Noch kein Demo-Link."
+ },
+ "Revoked": {
+  "hu": "Visszavonva",
+  "de": "Widerrufen"
+ },
+ "Visible to the client": {
+  "hu": "Az ügyfél látja",
+  "de": "Für den Kunden sichtbar"
+ },
+ "Not published": {
+  "hu": "Nincs közzétéve",
+  "de": "Nicht veröffentlicht"
+ },
+ "Unpublish": {
+  "hu": "Visszavonás",
+  "de": "Zurückziehen"
+ },
+ "Publish": {
+  "hu": "Közzététel",
+  "de": "Veröffentlichen"
+ },
+ "Edit demo {title}": {
+  "hu": "Demó szerkesztése: {title}",
+  "de": "Demo bearbeiten: {title}"
+ },
+ "Restore": {
+  "hu": "Visszaállítás",
+  "de": "Wiederherstellen"
+ },
+ "Revoke": {
+  "hu": "Visszavonás",
+  "de": "Widerrufen"
+ },
+ "A demo needs a title, e.g. \"Weboldal demó\".": {
+  "en": "A demo needs a title, e.g. \"Website demo\".",
+  "de": "Eine Demo braucht einen Titel, z. B. „Website-Demo“."
+ },
+ "Only a plain https:// address is accepted — no http, javascript:, data:, spaces or user:password@.": {
+  "hu": "Csak egyszerű https:// cím fogadható el — http, javascript:, data:, szóköz és felhasználó:jelszó@ nélkül.",
+  "de": "Nur eine einfache https://-Adresse wird akzeptiert — kein http, javascript:, data:, keine Leerzeichen und kein Benutzer:Passwort@."
+ },
+ "Edit demo link": {
+  "hu": "Demólink szerkesztése",
+  "de": "Demo-Link bearbeiten"
+ },
+ "New demo link": {
+  "hu": "Új demólink",
+  "de": "Neuer Demo-Link"
+ },
+ "The client opens it in a new tab from the portal. The portal never loads or embeds it.": {
+  "hu": "Az ügyfél új lapon nyitja meg a portálról. A portál soha nem tölti be és nem ágyazza be.",
+  "de": "Der Kunde öffnet ihn im Portal in einem neuen Tab. Das Portal lädt oder bettet ihn nie ein."
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "de": "Abbrechen"
+ },
+ "Save": {
+  "hu": "Mentés",
+  "de": "Speichern"
+ },
+ "Title": {
+  "hu": "Cím",
+  "de": "Titel"
+ },
+ "Weboldal demó": {
+  "en": "Website demo",
+  "de": "Website-Demo"
+ },
+ "HTTPS address": {
+  "hu": "HTTPS-cím",
+  "de": "HTTPS-Adresse"
+ },
+ "Note for the client (Hungarian)": {
+  "hu": "Jegyzet az ügyfélnek (magyarul)",
+  "de": "Notiz für den Kunden (auf Ungarisch)"
+ },
+ "Short — shown on the client's card.": {
+  "hu": "Röviden — az ügyfél kártyáján jelenik meg.",
+  "de": "Kurz — erscheint auf der Karte des Kunden."
+ },
+ "Cancelled": {
+  "hu": "Megszakítva",
+  "de": "Abgebrochen"
+ },
+ "Now": {
+  "hu": "Most",
+  "de": "Jetzt"
+ },
+ "Next": {
+  "hu": "Következő",
+  "de": "Nächster"
+ },
+ "Edit meeting {title}": {
+  "hu": "Megbeszélés szerkesztése: {title}",
+  "de": "Termin bearbeiten: {title}"
+ },
+ "Reinstate": {
+  "hu": "Visszaállítás",
+  "de": "Wiederherstellen"
+ },
+ "Cancel meeting": {
+  "hu": "Megbeszélés lemondása",
+  "de": "Termin absagen"
+ },
+ "Meetings": {
+  "hu": "Megbeszélések",
+  "de": "Termine"
+ },
+ "Meeting": {
+  "hu": "Megbeszélés",
+  "de": "Termin"
+ },
+ "Shown to the assigned client in the portal. No e-mail or calendar invitation is sent. A time changed here does not update a copy the client already saved to Google Calendar — the client portal says so.": {
+  "hu": "A hozzárendelt ügyfél a portálon látja. E-mail vagy naptármeghívó nem megy ki. Az itt módosított időpont nem frissíti azt a példányt, amelyet az ügyfél már elmentett a Google Naptárba — az ügyfélportál ezt jelzi is.",
+  "de": "Wird dem zugewiesenen Kunden im Portal angezeigt. Es wird keine E-Mail und keine Kalendereinladung versendet. Eine hier geänderte Zeit aktualisiert keine Kopie, die der Kunde bereits in Google Kalender gespeichert hat — das Kundenportal weist darauf hin."
+ },
+ "No upcoming meeting": {
+  "hu": "Nincs közelgő megbeszélés",
+  "de": "Kein anstehender Termin"
+ },
+ "Past meetings ({n})": {
+  "hu": "Korábbi megbeszélések ({n})",
+  "de": "Vergangene Termine ({n})"
+ },
+ "cancelled": {
+  "hu": "lemondva",
+  "de": "abgesagt"
+ },
+ "A meeting needs a title.": {
+  "hu": "A megbeszélésnek cím kell.",
+  "de": "Ein Termin braucht einen Titel."
+ },
+ "The join link must be a plain https:// address.": {
+  "hu": "A csatlakozási linknek egyszerű https:// címnek kell lennie.",
+  "de": "Der Teilnahmelink muss eine einfache https://-Adresse sein."
+ },
+ "Give a join link or a place.": {
+  "hu": "Adj meg csatlakozási linket vagy helyszínt.",
+  "de": "Geben Sie einen Teilnahmelink oder einen Ort an."
+ },
+ "That time does not exist in this time zone (the clocks skip it when summer time starts). Choose another.": {
+  "hu": "Ez az időpont nem létezik ebben az időzónában (a nyári időszámítás kezdetekor az óra átugorja). Válassz másikat.",
+  "de": "Diese Uhrzeit gibt es in dieser Zeitzone nicht (die Uhren überspringen sie bei Beginn der Sommerzeit). Wählen Sie eine andere."
+ },
+ "Give a date and both times.": {
+  "hu": "Adj meg dátumot és mindkét időpontot.",
+  "de": "Geben Sie ein Datum und beide Uhrzeiten an."
+ },
+ "That time occurs twice when summer time ends; the first (summer-time) occurrence will be used. Save again to confirm, or choose another time.": {
+  "hu": "Ez az időpont kétszer fordul elő a nyári időszámítás végén; az első (nyári idő szerinti) lesz érvényes. Mentsd el újra a megerősítéshez, vagy válassz másik időpontot.",
+  "de": "Diese Uhrzeit kommt am Ende der Sommerzeit zweimal vor; das erste Vorkommen (Sommerzeit) wird verwendet. Speichern Sie erneut zur Bestätigung oder wählen Sie eine andere Uhrzeit."
+ },
+ "Edit meeting": {
+  "hu": "Megbeszélés szerkesztése",
+  "de": "Termin bearbeiten"
+ },
+ "New meeting": {
+  "hu": "Új megbeszélés",
+  "de": "Neuer Termin"
+ },
+ "Times are read in the time zone you choose. The client sees them in the same zone.": {
+  "hu": "Az időpontok a választott időzóna szerint értendők. Az ügyfél ugyanebben a zónában látja őket.",
+  "de": "Zeiten gelten in der gewählten Zeitzone. Der Kunde sieht sie in derselben Zone."
+ },
+ "Egyeztetés a demóról": {
+  "en": "Demo review call",
+  "de": "Abstimmung zur Demo"
+ },
+ "Date": {
+  "hu": "Dátum",
+  "de": "Datum"
+ },
+ "Start": {
+  "hu": "Kezdés",
+  "de": "Beginn"
+ },
+ "End": {
+  "hu": "Vége",
+  "de": "Ende"
+ },
+ "Time zone": {
+  "hu": "Időzóna",
+  "de": "Zeitzone"
+ },
+ "Online join link (https)": {
+  "hu": "Online csatlakozási link (https)",
+  "de": "Online-Teilnahmelink (https)"
+ },
+ "or place": {
+  "hu": "vagy helyszín",
+  "de": "oder Ort"
+ },
+ "Client feedback": {
+  "hu": "Ügyfél-észrevételek",
+  "de": "Kundenrückmeldungen"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "read": {
+  "hu": "olvasott",
+  "de": "gelesen"
+ },
+ "New": {
+  "hu": "Új",
+  "de": "Neu"
+ },
+ "Mark unread": {
+  "hu": "Olvasatlannak jelöl",
+  "de": "Als ungelesen markieren"
+ },
+ "Mark read": {
+  "hu": "Olvasottnak jelöl",
+  "de": "Als gelesen markieren"
+ },
+ "Optional note to the client (Hungarian):": {
+  "hu": "Opcionális üzenet az ügyfélnek (magyarul):",
+  "de": "Optionale Notiz an den Kunden (auf Ungarisch):"
+ },
+ "Proposed new times": {
+  "hu": "Javasolt új időpontok",
+  "de": "Vorgeschlagene neue Zeiten"
+ },
+ "{name} proposes: {time}": {
+  "hu": "{name} javaslata: {time}",
+  "de": "{name} schlägt vor: {time}"
+ },
+ "Pending": {
+  "hu": "Függőben",
+  "de": "Ausstehend"
+ },
+ "accepted": {
+  "hu": "elfogadva",
+  "de": "angenommen"
+ },
+ "declined": {
+  "hu": "elutasítva",
+  "de": "abgelehnt"
+ },
+ "withdrawn": {
+  "hu": "visszavonva",
+  "de": "zurückgezogen"
+ },
+ "Accept — move the meeting": {
+  "hu": "Elfogadás — a megbeszélés áthelyezése",
+  "de": "Annehmen — Termin verschieben"
+ },
+ "Decline": {
+  "hu": "Elutasítás",
+  "de": "Ablehnen"
+ },
+ "Client inbox": {
+  "hu": "Ügyfél-beérkezők",
+  "de": "Kunden-Posteingang"
+ },
+ "{n} waiting": {
+  "hu": "{n} vár",
+  "de": "{n} offen"
+ },
+ "New time": {
+  "hu": "Új időpont",
+  "de": "Neue Zeit"
+ },
+ "Feedback": {
+  "hu": "Észrevétel",
+  "de": "Rückmeldung"
+ }
+}

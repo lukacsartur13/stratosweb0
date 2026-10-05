@@ -1,0 +1,506 @@
+{
+ "Analytics sections": {
+  "hu": "Analitika szakaszai",
+  "de": "Analytik-Abschnitte"
+ },
+ "Compare previous period": {
+  "hu": "Összevetés az előző időszakkal",
+  "de": "Mit Vorperiode vergleichen"
+ },
+ "Overview": {
+  "hu": "Áttekintés",
+  "de": "Überblick"
+ },
+ "Traffic": {
+  "hu": "Forgalom",
+  "de": "Traffic"
+ },
+ "Acquisition": {
+  "hu": "Akvizíció",
+  "de": "Akquisition"
+ },
+ "Content": {
+  "hu": "Tartalom",
+  "de": "Inhalt"
+ },
+ "Conversion": {
+  "hu": "Konverzió",
+  "de": "Conversion"
+ },
+ "Revenue": {
+  "hu": "Bevétel",
+  "de": "Umsatz"
+ },
+ "Audience": {
+  "hu": "Közönség",
+  "de": "Zielgruppe"
+ },
+ "Revenue attribution": {
+  "hu": "Bevétel-hozzárendelés",
+  "de": "Umsatzzuordnung"
+ },
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Portal Analytics is built and waiting for credentials. Reporting needs a Google service account with read access to the GA4 property — a separate thing from the measurement tag on the public site, which is already live and collecting.": {
+  "hu": "A Portál analitika elkészült, és hitelesítő adatokra vár. A riportokhoz egy Google szolgáltatásfiók kell, olvasási joggal a GA4-tulajdonhoz — ez külön dolog a nyilvános oldal mérőkódjától, amely már élesben gyűjt.",
+  "de": "Portal Analytics ist fertig und wartet auf Zugangsdaten. Für die Berichte wird ein Google-Dienstkonto mit Lesezugriff auf die GA4-Property benötigt — unabhängig vom Mess-Tag auf der öffentlichen Website, das bereits live ist und Daten erfasst."
+ },
+ "Missing in the Netlify function environment": {
+  "hu": "Hiányzik a Netlify függvénykörnyezetből",
+  "de": "Fehlt in der Netlify-Function-Umgebung"
+ },
+ "The property is already configured. Only the service account credentials are outstanding.": {
+  "hu": "A tulajdon már be van állítva. Csak a szolgáltatásfiók hitelesítő adatai hiányoznak.",
+  "de": "Die Property ist bereits konfiguriert. Es fehlen nur noch die Zugangsdaten des Dienstkontos."
+ },
+ "1 — Enable the Google Analytics Data API in the Google Cloud project.": {
+  "hu": "1 — Kapcsold be a Google Analytics Data API-t a Google Cloud projektben.",
+  "de": "1 — Aktivieren Sie die Google Analytics Data API im Google-Cloud-Projekt."
+ },
+ "2 — Create a service account, and a JSON key for it.": {
+  "hu": "2 — Hozz létre egy szolgáltatásfiókot és hozzá egy JSON-kulcsot.",
+  "de": "2 — Erstellen Sie ein Dienstkonto und einen JSON-Schlüssel dafür."
+ },
+ "3 — Add its address as a Viewer on the GA4 property.": {
+  "hu": "3 — Add hozzá a címét Megtekintőként a GA4-tulajdonhoz.",
+  "de": "3 — Fügen Sie seine Adresse als Betrachter zur GA4-Property hinzu."
+ },
+ "4 — Set the three variables above in Netlify, then redeploy.": {
+  "hu": "4 — Állítsd be a fenti három változót a Netlifyban, majd telepítsd újra.",
+  "de": "4 — Setzen Sie die drei obigen Variablen in Netlify und deployen Sie neu."
+ },
+ "The full sequence is in": {
+  "hu": "A teljes lépéssor itt található:",
+  "de": "Der vollständige Ablauf steht in"
+ },
+ "Nothing on this screen changes until all three variables exist.": {
+  "hu": "Amíg mindhárom változó nincs meg, ezen a képernyőn semmi sem változik.",
+  "de": "Bis alle drei Variablen gesetzt sind, ändert sich auf diesem Bildschirm nichts."
+ },
+ "Key figures": {
+  "hu": "Fő számok",
+  "de": "Kennzahlen"
+ },
+ "Active users": {
+  "hu": "Aktív felhasználók",
+  "de": "Aktive Nutzer"
+ },
+ "Sessions": {
+  "hu": "Munkamenetek",
+  "de": "Sitzungen"
+ },
+ "Views": {
+  "hu": "Megtekintések",
+  "de": "Aufrufe"
+ },
+ "New users": {
+  "hu": "Új felhasználók",
+  "de": "Neue Nutzer"
+ },
+ "Users": {
+  "hu": "Felhasználók",
+  "de": "Benutzer"
+ },
+ "Lead events": {
+  "hu": "Lead-események",
+  "de": "Lead-Ereignisse"
+ },
+ "form & questionnaire success": {
+  "hu": "sikeres űrlap és kérdőív",
+  "de": "Formular & Fragebogen erfolgreich"
+ },
+ "lead events / session": {
+  "hu": "lead-esemény / munkamenet",
+  "de": "Lead-Ereignisse / Sitzung"
+ },
+ "previous period, {avg} avg": {
+  "hu": "előző időszak, átl. {avg}",
+  "de": "Vorperiode, Ø {avg}"
+ },
+ "Metric": {
+  "hu": "Mutató",
+  "de": "Kennzahl"
+ },
+ "The dashed rule is the previous period’s": {
+  "hu": "A szaggatott vonal az előző időszak",
+  "de": "Die gestrichelte Linie ist der"
+ },
+ "average per interval": {
+  "hu": "intervallumonkénti átlaga",
+  "de": "Durchschnitt pro Intervall der Vorperiode"
+ },
+ "GA4 returns one series per request, so the previous period has a level here but not a shape.": {
+  "hu": "A GA4 kérésenként egy idősort ad vissza, így az előző időszaknak itt szintje van, alakja nincs.",
+  "de": "GA4 liefert pro Anfrage eine Zeitreihe, daher hat die Vorperiode hier ein Niveau, aber keinen Verlauf."
+ },
+ "Source / medium": {
+  "hu": "Forrás / médium",
+  "de": "Quelle / Medium"
+ },
+ "Campaign": {
+  "hu": "Kampány",
+  "de": "Kampagne"
+ },
+ "GA4 session-scoped attribution": {
+  "hu": "GA4 munkamenet-szintű hozzárendelés",
+  "de": "GA4-Zuordnung auf Sitzungsebene"
+ },
+ "Acquisition breakdown": {
+  "hu": "Akvizíció bontása",
+  "de": "Akquisition-Aufschlüsselung"
+ },
+ "No sessions": {
+  "hu": "Nincs munkamenet",
+  "de": "Keine Sitzungen"
+ },
+ "Nothing arrived in this range.": {
+  "hu": "Ebben az időszakban nem érkezett senki.",
+  "de": "In diesem Zeitraum ist nichts eingegangen."
+ },
+ "Engaged": {
+  "hu": "Elköteleződött",
+  "de": "Engagiert"
+ },
+ "Leads": {
+  "hu": "Leadek",
+  "de": "Leads"
+ },
+ "CVR": {
+  "hu": "Konv.",
+  "de": "CVR"
+ },
+ "(not set)": {
+  "hu": "(nincs megadva)",
+  "de": "(nicht gesetzt)"
+ },
+ "Top pages": {
+  "hu": "Top oldalak",
+  "de": "Top-Seiten"
+ },
+ "Landing pages": {
+  "hu": "Belépő oldalak",
+  "de": "Einstiegsseiten"
+ },
+ "Page view": {
+  "hu": "Oldalnézet",
+  "de": "Seitenansicht"
+ },
+ "Landing": {
+  "hu": "Belépő",
+  "de": "Einstieg"
+ },
+ "No page views": {
+  "hu": "Nincs oldalmegtekintés",
+  "de": "Keine Seitenaufrufe"
+ },
+ "Nothing was viewed in this range.": {
+  "hu": "Ebben az időszakban semmit sem néztek meg.",
+  "de": "In diesem Zeitraum wurde nichts aufgerufen."
+ },
+ "Page": {
+  "hu": "Oldal",
+  "de": "Seite"
+ },
+ "Avg. time": {
+  "hu": "Átl. idő",
+  "de": "Ø Zeit"
+ },
+ "No landing pages": {
+  "hu": "Nincs belépő oldal",
+  "de": "Keine Einstiegsseiten"
+ },
+ "No sessions started in this range.": {
+  "hu": "Ebben az időszakban nem indult munkamenet.",
+  "de": "In diesem Zeitraum hat keine Sitzung begonnen."
+ },
+ "Landing page": {
+  "hu": "Belépő oldal",
+  "de": "Einstiegsseite"
+ },
+ "Bounce": {
+  "hu": "Visszafordulás",
+  "de": "Absprung"
+ },
+ "Leads here are enquiries sent FROM that page.": {
+  "hu": "Itt a leadek az adott oldalRÓL küldött érdeklődések.",
+  "de": "Leads sind hier Anfragen, die VON dieser Seite gesendet wurden."
+ },
+ "Leads here are enquiries attributed to the session that STARTED on that page — which is the number an ad campaign is judged on.": {
+  "hu": "Itt a leadek azokhoz a munkamenetekhez rendelt érdeklődések, amelyek az adott oldalon INDULTAK — egy hirdetési kampányt ez alapján ítélnek meg.",
+  "de": "Leads sind hier Anfragen, die der Sitzung zugeordnet sind, die auf dieser Seite BEGANN — die Zahl, an der eine Werbekampagne gemessen wird."
+ },
+ "Conversion path": {
+  "hu": "Konverziós út",
+  "de": "Conversion-Pfad"
+ },
+ "Stages after the first are": {
+  "hu": "Az első utáni szakaszok",
+  "de": "Die Phasen nach der ersten sind"
+ },
+ "event counts": {
+  "hu": "eseményszámok",
+  "de": "Ereigniszahlen"
+ },
+ ", not unique users: one visitor who clicks two CTAs is counted twice. GA4’s user-scoped funnel is an Exploration and is not available through the Data API.": {
+  "hu": ", nem egyedi felhasználók: aki két CTA-ra kattint, kétszer számít. A GA4 felhasználószintű tölcsére egy Exploration, és a Data API-n keresztül nem érhető el.",
+  "de": ", keine eindeutigen Nutzer: Wer zwei CTAs klickt, wird doppelt gezählt. Der nutzerbezogene Trichter von GA4 ist eine Exploration und über die Data API nicht verfügbar."
+ },
+ "Events behind the stages": {
+  "hu": "A szakaszok mögötti események",
+  "de": "Ereignisse hinter den Phasen"
+ },
+ "No events": {
+  "hu": "Nincs esemény",
+  "de": "Keine Ereignisse"
+ },
+ "No funnel event fired in this range.": {
+  "hu": "Ebben az időszakban nem futott tölcséresemény.",
+  "de": "In diesem Zeitraum wurde kein Trichter-Ereignis ausgelöst."
+ },
+ "Event": {
+  "hu": "Esemény",
+  "de": "Ereignis"
+ },
+ "Count": {
+  "hu": "Darab",
+  "de": "Anzahl"
+ },
+ "By surface": {
+  "hu": "Felület szerint",
+  "de": "Nach Oberfläche"
+ },
+ "which product the interaction was in": {
+  "hu": "melyik termékben történt az interakció",
+  "de": "in welchem Produkt die Interaktion stattfand"
+ },
+ "No events to group.": {
+  "hu": "Nincs csoportosítható esemény.",
+  "de": "Keine Ereignisse zum Gruppieren."
+ },
+ "Questionnaire": {
+  "hu": "Kérdőív",
+  "de": "Fragebogen"
+ },
+ "Form": {
+  "hu": "Űrlap",
+  "de": "Formular"
+ },
+ "CTA": {
+  "hu": "CTA",
+  "de": "CTA"
+ },
+ "Device": {
+  "hu": "Eszköz",
+  "de": "Gerät"
+ },
+ "mobile ≠ desktop here": {
+  "hu": "itt mobil ≠ asztali",
+  "de": "hier Mobil ≠ Desktop"
+ },
+ "Nothing to break down in this range.": {
+  "hu": "Ebben az időszakban nincs mit bontani.",
+  "de": "In diesem Zeitraum gibt es nichts aufzuschlüsseln."
+ },
+ "Share": {
+  "hu": "Megosztás",
+  "de": "Teilen"
+ },
+ "mobile": {
+  "hu": "mobil",
+  "de": "Mobil"
+ },
+ "desktop": {
+  "hu": "asztali",
+  "de": "Desktop"
+ },
+ "tablet": {
+  "hu": "tablet",
+  "de": "Tablet"
+ },
+ "The public site ships a separate portrait-mobile composition. A gap in the lead rate between the two is a product signal, not a device fact.": {
+  "hu": "A nyilvános oldal külön álló mobilnézetet kap. Ha a kettő lead-aránya eltér, az termékjelzés, nem eszköztény.",
+  "de": "Die öffentliche Website liefert eine eigene Hochformat-Mobilversion. Ein Unterschied in der Lead-Rate zwischen beiden ist ein Produktsignal, keine Geräteeigenschaft."
+ },
+ "Analytics reflects traffic where analytics measurement was permitted.": {
+  "hu": "Az analitika csak azt a forgalmat mutatja, ahol a mérést engedélyezték.",
+  "de": "Die Analytik zeigt nur Traffic, bei dem die Messung erlaubt wurde."
+ },
+ "Google Analytics loads only after a visitor accepts it, and a visitor who declines is never contacted by Google at all — so real traffic is higher than every figure above by an amount this property cannot know. GA4 terms are used as GA4 defines them: a session is a visit, not a person.": {
+  "hu": "A Google Analytics csak akkor töltődik be, ha a látogató elfogadja, aki pedig elutasítja, azzal a Google egyáltalán nem kerül kapcsolatba — így a valós forgalom minden fenti számnál nagyobb, olyan mértékben, amit ez a tulajdon nem tudhat. A GA4-fogalmakat a GA4 meghatározása szerint használjuk: a munkamenet egy látogatás, nem egy személy.",
+  "de": "Google Analytics lädt erst, nachdem ein Besucher zustimmt, und ein Besucher, der ablehnt, wird von Google gar nicht kontaktiert — der echte Traffic liegt also um einen Betrag, den diese Property nicht kennen kann, über jeder Zahl oben. GA4-Begriffe werden so verwendet, wie GA4 sie definiert: Eine Sitzung ist ein Besuch, keine Person."
+ },
+ "Filter": {
+  "hu": "Szűrő",
+  "de": "Filter"
+ },
+ "none": {
+  "hu": "nincs",
+  "de": "keiner"
+ },
+ "Fetched": {
+  "hu": "Lekérve",
+  "de": "Abgerufen"
+ },
+ "cached": {
+  "hu": "gyorsítótárból",
+  "de": "zwischengespeichert"
+ },
+ "today": {
+  "hu": "ma",
+  "de": "heute"
+ },
+ "last 7 days": {
+  "hu": "elmúlt 7 nap",
+  "de": "letzte 7 Tage"
+ },
+ "last 30 days": {
+  "hu": "elmúlt 30 nap",
+  "de": "letzte 30 Tage"
+ },
+ "last 90 days": {
+  "hu": "elmúlt 90 nap",
+  "de": "letzte 90 Tage"
+ },
+ "No filter. Production and staging traffic are combined.": {
+  "hu": "Nincs szűrő. Az éles és a teszt forgalom együtt szerepel.",
+  "de": "Kein Filter. Produktions- und Staging-Traffic sind zusammengefasst."
+ },
+ "Sessions whose hostname is one of the production hosts.": {
+  "hu": "Azok a munkamenetek, amelyek hosztneve az éles hosztok egyike.",
+  "de": "Sitzungen, deren Hostname einer der Produktions-Hosts ist."
+ },
+ "Sessions from any other hostname — integration and preview deploys.": {
+  "hu": "Bármely más hosztnévről érkező munkamenetek — integrációs és előnézeti telepítések.",
+  "de": "Sitzungen von jedem anderen Hostname — Integrations- und Vorschau-Deploys."
+ },
+ "CTA interaction": {
+  "hu": "CTA-interakció",
+  "de": "CTA-Interaktion"
+ },
+ "Form started": {
+  "hu": "Űrlap elkezdve",
+  "de": "Formular begonnen"
+ },
+ "Form submitted": {
+  "hu": "Űrlap elküldve",
+  "de": "Formular gesendet"
+ },
+ "Lead confirmed": {
+  "hu": "Lead megerősítve",
+  "de": "Lead bestätigt"
+ },
+ "Source to revenue": {
+  "hu": "Forrástól a bevételig",
+  "de": "Von der Quelle zum Umsatz"
+ },
+ "Portal records, aligned with GA4 sessions": {
+  "hu": "Portál-adatok, GA4-munkamenetek mellé állítva",
+  "de": "Portal-Daten, neben GA4-Sitzungen gestellt"
+ },
+ "Dimension": {
+  "hu": "Dimenzió",
+  "de": "Dimension"
+ },
+ "Source": {
+  "hu": "Forrás",
+  "de": "Quelle"
+ },
+ "Medium": {
+  "hu": "Médium",
+  "de": "Medium"
+ },
+ "source": {
+  "hu": "forrás",
+  "de": "Quelle"
+ },
+ "medium": {
+  "hu": "médium",
+  "de": "Medium"
+ },
+ "campaign": {
+  "hu": "kampány",
+  "de": "Kampagne"
+ },
+ "landing": {
+  "hu": "belépő oldal",
+  "de": "Einstiegsseite"
+ },
+ "Unavailable": {
+  "hu": "Nem elérhető",
+  "de": "Nicht verfügbar"
+ },
+ "The attribution aggregate could not be read. It needs the P2 migration to have been applied.": {
+  "hu": "A hozzárendelési összesítés nem olvasható. Ehhez a P2 migrációnak lefutva kell lennie.",
+  "de": "Die Zuordnungsauswertung konnte nicht gelesen werden. Dafür muss die P2-Migration angewendet sein."
+ },
+ "No database is configured in this environment.": {
+  "hu": "Ebben a környezetben nincs adatbázis beállítva.",
+  "de": "In dieser Umgebung ist keine Datenbank konfiguriert."
+ },
+ "Nothing to attribute yet": {
+  "hu": "Még nincs mit hozzárendelni",
+  "de": "Noch nichts zuzuordnen"
+ },
+ "This table fills in as leads arrive and become opportunities. It needs no Google credentials for anything except the sessions column.": {
+  "hu": "A táblázat akkor telik meg, amikor leadek érkeznek és lehetőséggé válnak. Google hitelesítő adat csak a munkamenetek oszlophoz kell.",
+  "de": "Diese Tabelle füllt sich, sobald Leads eingehen und zu Verkaufschancen werden. Google-Zugangsdaten braucht nur die Spalte Sitzungen."
+ },
+ "Qualified": {
+  "hu": "Minősített",
+  "de": "Qualifiziert"
+ },
+ "Opportunities": {
+  "hu": "Lehetőségek",
+  "de": "Verkaufschancen"
+ },
+ "Won": {
+  "hu": "Megnyert",
+  "de": "Gewonnen"
+ },
+ "Won value": {
+  "hu": "Megnyert érték",
+  "de": "Gewonnener Wert"
+ },
+ "Two measurements, side by side — not one join.": {
+  "hu": "Két mérés egymás mellett — nem egy összekapcsolás.",
+  "de": "Zwei Messungen nebeneinander — keine Verknüpfung."
+ },
+ "Leads, Qualified, Opportunities, Won and Won value come from the Portal’s own records and are linked by real foreign keys: a lead’s recorded attribution, the opportunity it became, the value it closed for. Sessions comes from GA4, counts visits rather than people, includes only visitors who accepted analytics, and is placed beside them by matching the {dimension} string.": {
+  "hu": "A Leadek, Minősített, Lehetőségek, Megnyert és Megnyert érték a Portál saját adataiból jön, valódi idegen kulcsokkal összekötve: a lead rögzített forrása, a lehetőség, amivé vált, és az érték, amiért lezárult. A Munkamenetek a GA4-ből jön, látogatásokat számol, nem személyeket, csak az analitikát elfogadó látogatókat tartalmazza, és a(z) „{dimension}” szöveg egyezése alapján kerül melléjük.",
+  "de": "Leads, Qualifiziert, Verkaufschancen, Gewonnen und Gewonnener Wert stammen aus den eigenen Daten des Portals und sind über echte Fremdschlüssel verknüpft: die erfasste Zuordnung eines Leads, die Verkaufschance, die daraus wurde, und der Wert, zu dem sie abgeschlossen wurde. Sitzungen stammt aus GA4, zählt Besuche statt Personen, umfasst nur Besucher, die der Analytik zugestimmt haben, und wird über den Abgleich der Zeichenfolge „{dimension}“ daneben gestellt."
+ },
+ "There is deliberately": {
+  "hu": "Ebben a táblázatban szándékosan",
+  "de": "Es gibt bewusst"
+ },
+ "no conversion rate": {
+  "hu": "nincs konverziós arány",
+  "de": "keine Conversion-Rate"
+ },
+ "in this table. The two populations do not overlap, so a rate built by dividing one by the other would be precision that does not exist. Nothing here identifies an individual, and no request behind it carries a person’s identifier.": {
+  "hu": "— a két sokaság nem fedi egymást, így az egyiket a másikkal elosztó arány nem létező pontosság lenne. Itt semmi nem azonosít egyént, és a mögötte lévő kérések egyike sem visz személyazonosítót.",
+  "de": "in dieser Tabelle. Die beiden Grundgesamtheiten überschneiden sich nicht, eine Rate aus der Division der einen durch die andere wäre also Scheingenauigkeit. Nichts hier identifiziert eine Einzelperson, und keine Anfrage dahinter enthält eine personenbezogene Kennung."
+ },
+ "Sessions are unavailable in this view — GA4 is not connected, or its report could not be read. Every other column is unaffected.": {
+  "hu": "A munkamenetek ebben a nézetben nem elérhetők — a GA4 nincs bekötve, vagy a riportja nem olvasható. A többi oszlopot ez nem érinti.",
+  "de": "Sitzungen sind in dieser Ansicht nicht verfügbar — GA4 ist nicht verbunden oder sein Bericht konnte nicht gelesen werden. Alle anderen Spalten sind nicht betroffen."
+ },
+ "No opportunity has been won yet, so every revenue figure is zero because it is measured as zero — not because it is missing.": {
+  "hu": "Még nincs megnyert lehetőség, ezért minden bevételi szám nulla, mert nullának mérjük — nem azért, mert hiányzik.",
+  "de": "Es wurde noch keine Verkaufschance gewonnen, daher ist jede Umsatzzahl null, weil sie als null gemessen wird — nicht, weil sie fehlt."
+ },
+ "GA4 did not report this key — which is not the same as zero sessions": {
+  "hu": "A GA4 nem jelentett erre a kulcsra — ez nem ugyanaz, mint a nulla munkamenet",
+  "de": "GA4 hat diesen Schlüssel nicht gemeldet — das ist nicht dasselbe wie null Sitzungen"
+ },
+ "Won in more than one currency — no rate exists to add them": {
+  "hu": "Több pénznemben megnyerve — nincs árfolyam az összeadásukhoz",
+  "de": "In mehr als einer Währung gewonnen — es gibt keinen Kurs, um sie zu addieren"
+ },
+ "mixed": {
+  "hu": "vegyes",
+  "de": "gemischt"
+ }
+}

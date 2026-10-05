@@ -1,0 +1,138 @@
+{
+ "System status": {
+  "hu": "Rendszerállapot",
+  "de": "Systemstatus"
+ },
+ "checked {when}": {
+  "hu": "ellenőrizve: {when}",
+  "de": "geprüft {when}"
+ },
+ "Check again": {
+  "hu": "Újraellenőrzés",
+  "de": "Erneut prüfen"
+ },
+ "Cannot reach the health endpoint": {
+  "hu": "Az állapot-végpont nem érhető el",
+  "de": "Der Status-Endpunkt ist nicht erreichbar"
+ },
+ "{message} The static development server serves no functions, so this is expected outside a Netlify deploy.": {
+  "hu": "{message} A statikus fejlesztői szerver nem futtat függvényeket, így Netlify-telepítésen kívül ez várható.",
+  "de": "{message} Der statische Entwicklungsserver stellt keine Functions bereit, außerhalb eines Netlify-Deploys ist das also zu erwarten."
+ },
+ "Try again": {
+  "hu": "Újra",
+  "de": "Erneut versuchen"
+ },
+ "OK": {
+  "hu": "OK",
+  "de": "OK"
+ },
+ "Degraded": {
+  "hu": "Korlátozott",
+  "de": "Eingeschränkt"
+ },
+ "Not configured": {
+  "hu": "Nincs beállítva",
+  "de": "Nicht konfiguriert"
+ },
+ "Unreachable": {
+  "hu": "Nem érhető el",
+  "de": "Nicht erreichbar"
+ },
+ "Off": {
+  "hu": "Kikapcsolva",
+  "de": "Aus"
+ },
+ "URL and service key both answer": {
+  "hu": "Az URL és a service key is válaszol",
+  "de": "URL und Service-Key antworten beide"
+ },
+ "Check the URL and the service key": {
+  "hu": "Ellenőrizd az URL-t és a service keyt",
+  "de": "Prüfen Sie die URL und den Service-Key"
+ },
+ "Lead API": {
+  "hu": "Lead API",
+  "de": "Lead-API"
+ },
+ "store configured · IP hashing salted": {
+  "hu": "tároló beállítva · IP-hash sózva",
+  "de": "Speicher konfiguriert · IP-Hashing gesalzen"
+ },
+ "store configured · IP salt missing": {
+  "hu": "tároló beállítva · IP-só hiányzik",
+  "de": "Speicher konfiguriert · IP-Salt fehlt"
+ },
+ "{n} variable outstanding": {
+  "hu": "{n} változó hiányzik",
+  "de": "{n} Variable ausstehend"
+ },
+ "{n} variables outstanding": {
+  "hu": "{n} változó hiányzik",
+  "de": "{n} Variablen ausstehend"
+ },
+ "service account configured": {
+  "hu": "szolgáltatásfiók beállítva",
+  "de": "Dienstkonto konfiguriert"
+ },
+ "Notifications": {
+  "hu": "Értesítések",
+  "de": "Benachrichtigungen"
+ },
+ "transport: {transport}": {
+  "hu": "csatorna: {transport}",
+  "de": "Transport: {transport}"
+ },
+ "Outstanding in the function environment": {
+  "hu": "Hiányzik a függvénykörnyezetből",
+  "de": "In der Function-Umgebung ausstehend"
+ },
+ "Environment": {
+  "hu": "Környezet",
+  "de": "Umgebung"
+ },
+ "Deploy context": {
+  "hu": "Telepítési környezet",
+  "de": "Deploy-Kontext"
+ },
+ "Netlify's own context, not a hostname": {
+  "hu": "A Netlify saját környezete, nem hosztnév",
+  "de": "Netlifys eigener Kontext, kein Hostname"
+ },
+ "Portal client": {
+  "hu": "Portál kliens",
+  "de": "Portal-Client"
+ },
+ "Configured": {
+  "hu": "Beállítva",
+  "de": "Konfiguriert"
+ },
+ "Supabase URL and anon key in this bundle": {
+  "hu": "Supabase URL és anon key ebben a csomagban",
+  "de": "Supabase-URL und Anon-Key in diesem Bundle"
+ },
+ "Service role key": {
+  "hu": "Service role key",
+  "de": "Service-Role-Key"
+ },
+ "Server only": {
+  "hu": "Csak szerveren",
+  "de": "Nur Server"
+ },
+ "Never present in this bundle": {
+  "hu": "Soha nincs ebben a csomagban",
+  "de": "Nie in diesem Bundle enthalten"
+ },
+ "This screen reports whether a credential": {
+  "hu": "Ez a képernyő azt mutatja, hogy egy hitelesítő adat",
+  "de": "Dieser Bildschirm zeigt, ob ein Zugangsschlüssel"
+ },
+ "exists": {
+  "hu": "létezik-e",
+  "de": "existiert"
+ },
+ "— never its value. No secret, token, webhook address or private key can reach it, by the shape of the endpoint rather than by discipline here.": {
+  "hu": "— az értékét soha. Titok, token, webhook-cím vagy privát kulcs nem juthat ide: ezt a végpont felépítése garantálja, nem az itteni fegyelem.",
+  "de": "— niemals seinen Wert. Kein Geheimnis, Token, Webhook-Adresse oder privater Schlüssel kann hierher gelangen, und zwar durch den Aufbau des Endpunkts, nicht durch Disziplin an dieser Stelle."
+ }
+}

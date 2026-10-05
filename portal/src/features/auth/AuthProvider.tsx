@@ -4,6 +4,7 @@ import {
 import type { Session } from '@supabase/supabase-js';
 import { supabase, isConfigured } from '@/lib/supabase';
 import type { Role } from '@/lib/permissions';
+import { isLang, t, type Lang } from '@/lib/i18n';
 
 export interface Profile {
   id: string;
@@ -18,6 +19,8 @@ export interface Profile {
    * is not deployed yet, or the request failed): the tracker fails closed.
    */
   is_owner: boolean;
+  /** The portal language this user chose (profiles.locale), or null. */
+  locale: Lang | null;
 }
 
 interface AuthState {
@@ -41,10 +44,10 @@ const Ctx = createContext<AuthState | null>(null);
  * person already holding the session can read.
  */
 function safeAuthError(raw: string | undefined): string {
-  if (!raw) return 'Sign-in failed. Please try again.';
-  if (/rate|too many/i.test(raw)) return 'Too many attempts. Please wait a minute and try again.';
-  if (/not confirmed|confirm/i.test(raw)) return 'Please confirm your email address first — check your inbox.';
-  return 'Those details did not match an account.';
+  if (!raw) return t('Sign-in failed. Please try again.');
+  if (/rate|too many/i.test(raw)) return t('Too many attempts. Please wait a minute and try again.');
+  if (/not confirmed|confirm/i.test(raw)) return t('Please confirm your email address first — check your inbox.');
+  return t('Those details did not match an account.');
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -85,7 +88,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(true);
 
     (async () => {
-      const [{ data, error }, owner] = await Promise.all([
+      const [{ data, error }, owner, chosen] = await Promise.all([
         supabase
           .from('profiles')
           .select('id, email, full_name, avatar_url, role, organization_id')
@@ -95,6 +98,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           (r) => r,
           () => ({ data: false, error: null }),
         ),
+        // A read of its own: before 20261009000100 the column does not exist,
+        // and a missing language must never cost the profile (and the sign-in).
+        supabase.from('profiles').select('locale').eq('id', session.user.id).maybeSingle().then(
+          (r) => r,
+          () => ({ data: null, error: null }),
+        ),
       ]);
 
       if (!alive) return;
@@ -103,7 +112,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setProfile(null);
       } else {
         if (owner.error) console.warn('Could not read the owner flag:', owner.error.message);
-        setProfile({ ...(data as Omit<Profile, 'is_owner'>), is_owner: owner.data === true });
+        const locale = (chosen.data as { locale?: unknown } | null)?.locale;
+        setProfile({
+          ...(data as Omit<Profile, 'is_owner' | 'locale'>),
+          is_owner: owner.data === true,
+          locale: isLang(locale) ? locale : null,
+        });
       }
       setLoading(false);
     })();
@@ -126,7 +140,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         return { error: error ? safeAuthError(error.message) : null };
       } catch {
-        return { error: 'Sign-in is unavailable right now. Please try again shortly.' };
+        return { error: t('Sign-in is unavailable right now. Please try again shortly.') };
       }
     },
 
@@ -146,7 +160,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // loud, because the visitor can act on it.
         return {
           error: error && /rate|too many/i.test(error.message)
-            ? 'Too many attempts. Please wait a minute and try again.'
+            ? t('Too many attempts. Please wait a minute and try again.')
             : null,
         };
       } catch {
@@ -159,7 +173,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const { error } = await supabase.auth.updateUser({ password });
         return { error: error ? error.message : null };
       } catch {
-        return { error: 'Could not save the new password. Request a fresh link.' };
+        return { error: t('Could not save the new password. Request a fresh link.') };
       }
     },
   }), [session, profile, loading]);

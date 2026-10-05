@@ -1,0 +1,34 @@
+{
+ "Choose a client, or name a new one.": {
+  "hu": "Válassz ügyfelet, vagy adj nevet egy újnak.",
+  "de": "Wählen Sie einen Kunden oder benennen Sie einen neuen."
+ },
+ "Only the portal owner can change Impact data.": {
+  "hu": "Az Impact-adatokat csak a portál tulajdonosa módosíthatja.",
+  "de": "Nur der Inhaber des Portals kann Impact-Daten ändern."
+ },
+ "That name is already taken — a client or a project with the same address exists.": {
+  "hu": "Ez a név már foglalt — van már ügyfél vagy projekt ugyanezzel a címmel.",
+  "de": "Dieser Name ist bereits vergeben — ein Kunde oder Projekt mit derselben Adresse existiert."
+ },
+ "The Impact tables do not exist yet. Apply 20260929000100-0300 in supabase/migrations.": {
+  "hu": "Az Impact-táblák még nem léteznek. Futtasd le a 20260929000100-0300 migrációkat (supabase/migrations).",
+  "de": "Die Impact-Tabellen existieren noch nicht. Wenden Sie 20260929000100-0300 aus supabase/migrations an."
+ },
+ "The database refused that change.": {
+  "hu": "Az adatbázis elutasította a módosítást.",
+  "de": "Die Datenbank hat diese Änderung abgelehnt."
+ },
+ "The database refused the request. The Impact Program is readable by the portal owner only.": {
+  "hu": "Az adatbázis elutasította a kérést. Az Impact Programot csak a portál tulajdonosa láthatja.",
+  "de": "Die Datenbank hat die Anfrage abgelehnt. Das Impact-Programm ist nur für den Inhaber des Portals lesbar."
+ },
+ "The database refused those values.": {
+  "hu": "Az adatbázis elutasította ezeket az értékeket.",
+  "de": "Die Datenbank hat diese Werte abgelehnt."
+ },
+ "The project needs a name.": {
+  "hu": "A projektnek nevet kell adni.",
+  "de": "Das Projekt braucht einen Namen."
+ }
+}

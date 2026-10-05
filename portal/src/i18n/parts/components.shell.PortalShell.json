@@ -1,0 +1,174 @@
+{
+ "Dashboard": {
+  "hu": "Áttekintés",
+  "de": "Übersicht"
+ },
+ "Analytics": {
+  "hu": "Analitika",
+  "de": "Analytik"
+ },
+ "Leads": {
+  "hu": "Leadek",
+  "de": "Leads"
+ },
+ "Sales": {
+  "hu": "Értékesítés",
+  "de": "Vertrieb"
+ },
+ "Clients": {
+  "hu": "Ügyfelek",
+  "de": "Kunden"
+ },
+ "Projects": {
+  "hu": "Projektek",
+  "de": "Projekte"
+ },
+ "Documents": {
+  "hu": "Dokumentumok",
+  "de": "Dokumente"
+ },
+ "System": {
+  "hu": "Rendszer",
+  "de": "System"
+ },
+ "Case studies": {
+  "hu": "Esettanulmányok",
+  "de": "Fallstudien"
+ },
+ "Help centre": {
+  "hu": "Súgóközpont",
+  "de": "Hilfe-Center"
+ },
+ "Users": {
+  "hu": "Felhasználók",
+  "de": "Benutzer"
+ },
+ "Activity": {
+  "hu": "Tevékenység",
+  "de": "Aktivität"
+ },
+ "Settings": {
+  "hu": "Beállítások",
+  "de": "Einstellungen"
+ },
+ "Trash": {
+  "hu": "Kuka",
+  "de": "Papierkorb"
+ },
+ "Lead": {
+  "hu": "Lead",
+  "de": "Lead"
+ },
+ "Opportunity": {
+  "hu": "Lehetőség",
+  "de": "Verkaufschance"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "Checkpoint templates": {
+  "hu": "Mérföldkő-sablonok",
+  "de": "Meilenstein-Vorlagen"
+ },
+ "Project": {
+  "hu": "Projekt",
+  "de": "Projekt"
+ },
+ "Impact application": {
+  "hu": "Impact-jelentkezés",
+  "de": "Impact-Bewerbung"
+ },
+ "Portal sections": {
+  "hu": "Portál részei",
+  "de": "Portalbereiche"
+ },
+ "Records": {
+  "hu": "Nyilvántartások",
+  "de": "Datensätze"
+ },
+ "Records and administration": {
+  "hu": "Nyilvántartások és adminisztráció",
+  "de": "Datensätze und Verwaltung"
+ },
+ "Skip to content": {
+  "hu": "Ugrás a tartalomra",
+  "de": "Zum Inhalt springen"
+ },
+ "Menu": {
+  "hu": "Menü",
+  "de": "Menü"
+ },
+ "Portal navigation": {
+  "hu": "Portálnavigáció",
+  "de": "Portalnavigation"
+ },
+ "Close navigation": {
+  "hu": "Navigáció bezárása",
+  "de": "Navigation schließen"
+ },
+ "Portal": {
+  "hu": "Portál",
+  "de": "Portal"
+ },
+ "Sign out": {
+  "hu": "Kijelentkezés",
+  "de": "Abmelden"
+ },
+ "Period": {
+  "hu": "Időszak",
+  "de": "Zeitraum"
+ },
+ "Environment": {
+  "hu": "Környezet",
+  "de": "Umgebung"
+ },
+ "Refresh data": {
+  "hu": "Adatok frissítése",
+  "de": "Daten aktualisieren"
+ },
+ "Refresh": {
+  "hu": "Frissítés",
+  "de": "Aktualisieren"
+ },
+ "Today": {
+  "hu": "Ma",
+  "de": "Heute"
+ },
+ "Last 7 days": {
+  "hu": "Elmúlt 7 nap",
+  "de": "Letzte 7 Tage"
+ },
+ "Last 30 days": {
+  "hu": "Elmúlt 30 nap",
+  "de": "Letzte 30 Tage"
+ },
+ "Last 90 days": {
+  "hu": "Elmúlt 90 nap",
+  "de": "Letzte 90 Tage"
+ },
+ "Production": {
+  "hu": "Éles",
+  "de": "Produktion"
+ },
+ "Staging": {
+  "hu": "Teszt",
+  "de": "Staging"
+ },
+ "All": {
+  "hu": "Összes",
+  "de": "Alle"
+ },
+ "Super admin": {
+  "hu": "Szuperadmin",
+  "de": "Super-Admin"
+ },
+ "Admin": {
+  "hu": "Admin",
+  "de": "Admin"
+ },
+ "Team member": {
+  "hu": "Csapattag",
+  "de": "Teammitglied"
+ }
+}

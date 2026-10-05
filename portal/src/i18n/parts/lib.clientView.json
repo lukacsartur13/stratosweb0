@@ -1,0 +1,78 @@
+{
+ "The link must be a plain https:// address (no spaces, no user name or password in it).": {
+  "hu": "A linknek egyszerű https:// címnek kell lennie (szóköz, felhasználónév és jelszó nélkül).",
+  "de": "Der Link muss eine einfache https://-Adresse sein (ohne Leerzeichen, Benutzername oder Passwort)."
+ },
+ "Unknown time zone.": {
+  "hu": "Ismeretlen időzóna.",
+  "de": "Unbekannte Zeitzone."
+ },
+ "The end must be after the start, within 24 hours, and a join link or a place is needed.": {
+  "hu": "A befejezésnek a kezdés után, 24 órán belül kell lennie, és csatlakozási link vagy helyszín kell.",
+  "de": "Das Ende muss nach dem Beginn und innerhalb von 24 Stunden liegen, und ein Teilnahmelink oder ein Ort ist nötig."
+ },
+ "The database refused those values. Check the lengths and the link.": {
+  "hu": "Az adatbázis elutasította ezeket az értékeket. Ellenőrizd a hosszakat és a linket.",
+  "de": "Die Datenbank hat diese Werte abgelehnt. Prüfen Sie die Längen und den Link."
+ },
+ "Only the portal owner can change this.": {
+  "hu": "Ezt csak a portál tulajdonosa módosíthatja.",
+  "de": "Nur der Portal-Inhaber kann dies ändern."
+ },
+ "This feature is not installed on the database yet (20261004000100).": {
+  "hu": "Ez a funkció még nincs telepítve az adatbázisban (20261004000100).",
+  "de": "Diese Funktion ist in der Datenbank noch nicht installiert (20261004000100)."
+ },
+ "The change could not be saved. Try again.": {
+  "hu": "A módosítást nem sikerült menteni. Próbáld újra.",
+  "de": "Die Änderung konnte nicht gespeichert werden. Versuchen Sie es erneut."
+ },
+ "Demó": {
+  "en": "Demo",
+  "de": "Demo"
+ },
+ "Megbeszélés": {
+  "en": "Meeting",
+  "de": "Termin"
+ },
+ "{title} — new time proposed": {
+  "hu": "{title} — új időpontot javasolt",
+  "de": "{title} — neue Zeit vorgeschlagen"
+ },
+ "This proposal was already decided.": {
+  "hu": "Erről a javaslatról már döntöttek.",
+  "de": "Über diesen Vorschlag wurde bereits entschieden."
+ },
+ "Ma már sok üzenetet küldtél. Holnap újra írhatsz, vagy keresd a Stratost e-mailben.": {
+  "en": "You have sent a lot of messages today. You can write again tomorrow, or contact Stratos by e-mail.",
+  "de": "Sie haben heute bereits viele Nachrichten gesendet. Sie können morgen wieder schreiben oder Stratos per E-Mail kontaktieren."
+ },
+ "Írj valamit az üzenetbe.": {
+  "en": "Write something in the message.",
+  "de": "Bitte schreiben Sie etwas in die Nachricht."
+ },
+ "Erre a megbeszélésre már van függőben lévő javaslatod. Vond vissza, ha másikat küldenél.": {
+  "en": "You already have a pending proposal for this meeting. Withdraw it if you want to send another.",
+  "de": "Für diesen Termin haben Sie bereits einen ausstehenden Vorschlag. Ziehen Sie ihn zurück, wenn Sie einen anderen senden möchten."
+ },
+ "A javasolt időpont már elmúlt.": {
+  "en": "The proposed time has already passed.",
+  "de": "Die vorgeschlagene Zeit liegt bereits in der Vergangenheit."
+ },
+ "Ez a megbeszélés már lezajlott vagy le lett mondva.": {
+  "en": "This meeting has already taken place or was cancelled.",
+  "de": "Dieser Termin hat bereits stattgefunden oder wurde abgesagt."
+ },
+ "Ehhez már nincs hozzáférésed.": {
+  "en": "You no longer have access to this.",
+  "de": "Sie haben darauf keinen Zugriff mehr."
+ },
+ "A befejezésnek a kezdés után kell lennie, legfeljebb 24 órával.": {
+  "en": "The end must be after the start, by at most 24 hours.",
+  "de": "Das Ende muss nach dem Beginn liegen, höchstens 24 Stunden später."
+ },
+ "Nem sikerült elküldeni. Próbáld újra.": {
+  "en": "It could not be sent. Try again.",
+  "de": "Senden fehlgeschlagen. Versuchen Sie es erneut."
+ }
+}

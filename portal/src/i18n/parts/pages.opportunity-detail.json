@@ -1,0 +1,458 @@
+{
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Supabase credentials are not set in this environment, so there is nothing to read yet.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase-hozzáférési adatok, így még nincs mit beolvasni.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt, daher gibt es noch nichts zu lesen."
+ },
+ "Unavailable": {
+  "hu": "Nem elérhető",
+  "de": "Nicht verfügbar"
+ },
+ "No such opportunity": {
+  "hu": "Nincs ilyen lehetőség",
+  "de": "Keine solche Verkaufschance"
+ },
+ "The opportunity could not be read right now.": {
+  "hu": "A lehetőséget most nem sikerült betölteni.",
+  "de": "Die Verkaufschance konnte gerade nicht geladen werden."
+ },
+ "This opportunity does not exist, or this account may not read it.": {
+  "hu": "Ez a lehetőség nem létezik, vagy ez a fiók nem láthatja.",
+  "de": "Diese Verkaufschance existiert nicht, oder dieses Konto darf sie nicht sehen."
+ },
+ "Back to Sales": {
+  "hu": "Vissza az Értékesítéshez",
+  "de": "Zurück zum Vertrieb"
+ },
+ "Opportunity created": {
+  "hu": "Lehetőség létrehozva",
+  "de": "Verkaufschance erstellt"
+ },
+ "Converted from a lead": {
+  "hu": "Leadből átalakítva",
+  "de": "Aus einem Lead umgewandelt"
+ },
+ "Entered manually": {
+  "hu": "Kézzel rögzítve",
+  "de": "Manuell erfasst"
+ },
+ "All opportunities": {
+  "hu": "Összes lehetőség",
+  "de": "Alle Verkaufschancen"
+ },
+ "Archived": {
+  "hu": "Archivált",
+  "de": "Archiviert"
+ },
+ "Opportunity": {
+  "hu": "Lehetőség",
+  "de": "Verkaufschance"
+ },
+ "created {when}": {
+  "hu": "létrehozva: {when}",
+  "de": "erstellt {when}"
+ },
+ "Edit": {
+  "hu": "Szerkesztés",
+  "de": "Bearbeiten"
+ },
+ "Lost — {reason}": {
+  "hu": "Elvesztett — {reason}",
+  "de": "Verloren — {reason}"
+ },
+ "Notes": {
+  "hu": "Jegyzetek",
+  "de": "Notizen"
+ },
+ "Add a note": {
+  "hu": "Jegyzet hozzáadása",
+  "de": "Notiz hinzufügen"
+ },
+ "What was said, what was agreed, what happens next.": {
+  "hu": "Mi hangzott el, miben egyeztetek, mi következik.",
+  "de": "Was besprochen und vereinbart wurde und was als Nächstes passiert."
+ },
+ "Add note": {
+  "hu": "Jegyzet hozzáadása",
+  "de": "Notiz hinzufügen"
+ },
+ "No notes yet.": {
+  "hu": "Még nincs jegyzet.",
+  "de": "Noch keine Notizen."
+ },
+ "Unknown": {
+  "hu": "Ismeretlen",
+  "de": "Unbekannt"
+ },
+ "Activity": {
+  "hu": "Tevékenység",
+  "de": "Aktivität"
+ },
+ "only what was recorded": {
+  "hu": "csak a rögzített események",
+  "de": "nur Erfasstes"
+ },
+ "Commercial": {
+  "hu": "Üzleti adatok",
+  "de": "Kaufmännisches"
+ },
+ "Stage": {
+  "hu": "Szakasz",
+  "de": "Phase"
+ },
+ "Estimated value": {
+  "hu": "Becsült érték",
+  "de": "Geschätzter Wert"
+ },
+ "Value": {
+  "hu": "Érték",
+  "de": "Wert"
+ },
+ "Probability": {
+  "hu": "Valószínűség",
+  "de": "Wahrscheinlichkeit"
+ },
+ "stage default — editable": {
+  "hu": "a szakasz alapértéke — módosítható",
+  "de": "Phasen-Standard — änderbar"
+ },
+ "set for this deal": {
+  "hu": "ehhez az üzlethez beállítva",
+  "de": "für diese Verkaufschance festgelegt"
+ },
+ "Weighted": {
+  "hu": "Súlyozott",
+  "de": "Gewichtet"
+ },
+ "value × probability": {
+  "hu": "érték × valószínűség",
+  "de": "Wert × Wahrscheinlichkeit"
+ },
+ "Expected close": {
+  "hu": "Várható lezárás",
+  "de": "Erwarteter Abschluss"
+ },
+ "this date has passed": {
+  "hu": "ez a dátum már elmúlt",
+  "de": "dieses Datum ist überschritten"
+ },
+ "Next action": {
+  "hu": "Következő lépés",
+  "de": "Nächster Schritt"
+ },
+ "Mark done: {action}": {
+  "hu": "Elvégezve: {action}",
+  "de": "Erledigt: {action}"
+ },
+ "Done": {
+  "hu": "Kész",
+  "de": "Erledigt"
+ },
+ "Next action due": {
+  "hu": "Következő lépés határideje",
+  "de": "Nächster Schritt fällig"
+ },
+ "Service": {
+  "hu": "Szolgáltatás",
+  "de": "Leistung"
+ },
+ "Responsible": {
+  "hu": "Felelős",
+  "de": "Verantwortlich"
+ },
+ "Responsible person": {
+  "hu": "Felelős személy",
+  "de": "Verantwortliche Person"
+ },
+ "Nobody": {
+  "hu": "Senki",
+  "de": "Niemand"
+ },
+ "Origin": {
+  "hu": "Eredet",
+  "de": "Herkunft"
+ },
+ "Source": {
+  "hu": "Forrás",
+  "de": "Quelle"
+ },
+ "Campaign": {
+  "hu": "Kampány",
+  "de": "Kampagne"
+ },
+ "Landing page": {
+  "hu": "Belépő oldal",
+  "de": "Einstiegsseite"
+ },
+ "Form": {
+  "hu": "Űrlap",
+  "de": "Formular"
+ },
+ "Locale": {
+  "hu": "Nyelv",
+  "de": "Sprache"
+ },
+ "Updated": {
+  "hu": "Frissítve",
+  "de": "Aktualisiert"
+ },
+ "Won": {
+  "hu": "Megnyert",
+  "de": "Gewonnen"
+ },
+ "Lost": {
+  "hu": "Elvesztett",
+  "de": "Verloren"
+ },
+ "Closing this deal records the date and locks the probability.": {
+  "hu": "Lezáráskor rögzül a dátum, és a valószínűség többé nem módosítható.",
+  "de": "Beim Abschluss wird das Datum erfasst und die Wahrscheinlichkeit festgeschrieben."
+ },
+ "Mark lost": {
+  "hu": "Elvesztettnek jelölés",
+  "de": "Als verloren markieren"
+ },
+ "Mark won": {
+  "hu": "Megnyertnek jelölés",
+  "de": "Als gewonnen markieren"
+ },
+ "Mark this opportunity lost": {
+  "hu": "Lehetőség megjelölése elvesztettként",
+  "de": "Verkaufschance als verloren markieren"
+ },
+ "The reason is optional — an honest blank is better than a guessed category. It is what makes lost deals countable a year from now.": {
+  "hu": "Az ok megadása nem kötelező — egy őszinte üres mező jobb, mint egy találomra választott kategória. Ettől lesznek az elvesztett üzletek egy év múlva is kiértékelhetők.",
+  "de": "Der Grund ist optional — ein ehrliches leeres Feld ist besser als eine geratene Kategorie. Dadurch lassen sich verlorene Verkaufschancen auch in einem Jahr noch auswerten."
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "de": "Abbrechen"
+ },
+ "Reason": {
+  "hu": "Ok",
+  "de": "Grund"
+ },
+ "Not recorded": {
+  "hu": "Nincs rögzítve",
+  "de": "Nicht erfasst"
+ },
+ "Note": {
+  "hu": "Jegyzet",
+  "de": "Notiz"
+ },
+ "Anything worth remembering about why.": {
+  "hu": "Bármi, amit érdemes megjegyezni az okáról.",
+  "de": "Alles, was zum Grund festgehalten werden sollte."
+ },
+ "Mark this opportunity won": {
+  "hu": "Lehetőség megjelölése megnyertként",
+  "de": "Verkaufschance als gewonnen markieren"
+ },
+ "The won date is stamped by the database and the probability becomes 100%. Creating the client and the project is the next step, and it is a separate one.": {
+  "hu": "A megnyerés dátumát az adatbázis rögzíti, a valószínűség 100% lesz. Az ügyfél és a projekt létrehozása a következő, külön lépés.",
+  "de": "Das Gewinndatum wird von der Datenbank gesetzt, und die Wahrscheinlichkeit wird 100 %. Kunde und Projekt anzulegen ist der nächste, separate Schritt."
+ },
+ "Company": {
+  "hu": "Cég",
+  "de": "Firma"
+ },
+ "This deal has no value recorded, so it will count towards won deals but not towards won revenue. Add one before closing if it is known.": {
+  "hu": "Ennél az üzletnél nincs rögzített érték, ezért beleszámít a megnyert üzletek számába, de a megnyert bevételbe nem. Ha ismert, add meg lezárás előtt.",
+  "de": "Für diese Verkaufschance ist kein Wert erfasst. Sie zählt daher zu den gewonnenen Abschlüssen, aber nicht zum gewonnenen Umsatz. Tragen Sie ihn vor dem Abschluss ein, falls er bekannt ist."
+ },
+ "client and project created": {
+  "hu": "ügyfél és projekt létrehozva",
+  "de": "Kunde und Projekt angelegt"
+ },
+ "client created": {
+  "hu": "ügyfél létrehozva",
+  "de": "Kunde angelegt"
+ },
+ "what this deal became": {
+  "hu": "mi lett ebből az üzletből",
+  "de": "was aus dieser Verkaufschance wurde"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "Projects": {
+  "hu": "Projektek",
+  "de": "Projekte"
+ },
+ "Project": {
+  "hu": "Projekt",
+  "de": "Projekt"
+ },
+ "Won value": {
+  "hu": "Megnyert érték",
+  "de": "Gewonnener Wert"
+ },
+ "Possible existing clients": {
+  "hu": "Lehetséges meglévő ügyfelek",
+  "de": "Mögliche bestehende Kunden"
+ },
+ "Nothing is merged automatically. Attach this deal to one of these, or create a new client if none of them is the same company.": {
+  "hu": "Semmi sem vonódik össze automatikusan. Kapcsold ezt az üzletet valamelyikhez, vagy hozz létre új ügyfelet, ha egyik sem ugyanaz a cég.",
+  "de": "Nichts wird automatisch zusammengeführt. Ordnen Sie diese Verkaufschance einem dieser Kunden zu, oder legen Sie einen neuen Kunden an, falls keiner dieselbe Firma ist."
+ },
+ "— matched on {why}": {
+  "hu": "— egyezés: {why}",
+  "de": "— Übereinstimmung: {why}"
+ },
+ "Attach": {
+  "hu": "Hozzákapcsolás",
+  "de": "Zuordnen"
+ },
+ "Create client from this deal": {
+  "hu": "Ügyfél létrehozása ebből az üzletből",
+  "de": "Kunden aus dieser Verkaufschance anlegen"
+ },
+ "Create project": {
+  "hu": "Projekt létrehozása",
+  "de": "Projekt erstellen"
+ },
+ "Starts from the {template} checkpoint template ({n} steps), at the deal’s value. Everything is editable afterwards.": {
+  "hu": "A(z) „{template}” mérföldkő-sablonból indul ({n} lépés), az üzlet értékével. Utána minden szerkeszthető.",
+  "de": "Beginnt mit der Meilensteinvorlage „{template}“ ({n} Schritte) zum Wert der Verkaufschance. Danach ist alles bearbeitbar."
+ },
+ "Source lead": {
+  "hu": "Forrás-lead",
+  "de": "Quell-Lead"
+ },
+ "the enquiry this came from": {
+  "hu": "az érdeklődés, amelyből született",
+  "de": "die Anfrage, aus der sie stammt"
+ },
+ "Open the original enquiry": {
+  "hu": "Az eredeti érdeklődés megnyitása",
+  "de": "Ursprüngliche Anfrage öffnen"
+ },
+ "The message, the questionnaire answers and the submission metadata stay on the lead — they are deliberately not copied here.": {
+  "hu": "Az üzenet, a kérdőív válaszai és a beküldés metaadatai a leadnél maradnak — szándékosan nem másoljuk át őket ide.",
+  "de": "Nachricht, Fragebogenantworten und Metadaten der Einsendung bleiben beim Lead — sie werden bewusst nicht hierher kopiert."
+ },
+ "The value must be a number, and not a negative one.": {
+  "hu": "Az értéknek számnak kell lennie, és nem lehet negatív.",
+  "de": "Der Wert muss eine Zahl sein und darf nicht negativ sein."
+ },
+ "Probability must be a whole number between 0 and 100.": {
+  "hu": "A valószínűségnek 0 és 100 közötti egész számnak kell lennie.",
+  "de": "Die Wahrscheinlichkeit muss eine ganze Zahl zwischen 0 und 100 sein."
+ },
+ "Edit opportunity": {
+  "hu": "Lehetőség szerkesztése",
+  "de": "Verkaufschance bearbeiten"
+ },
+ "Save": {
+  "hu": "Mentés",
+  "de": "Speichern"
+ },
+ "Title": {
+  "hu": "Cím",
+  "de": "Titel"
+ },
+ "Contact": {
+  "hu": "Kapcsolattartó",
+  "de": "Kontakt"
+ },
+ "Contact email": {
+  "hu": "Kapcsolattartó e-mail-címe",
+  "de": "Kontakt-E-Mail"
+ },
+ "Contact phone": {
+  "hu": "Kapcsolattartó telefonszáma",
+  "de": "Kontakt-Telefon"
+ },
+ "Currency": {
+  "hu": "Pénznem",
+  "de": "Währung"
+ },
+ "Probability %": {
+  "hu": "Valószínűség %",
+  "de": "Wahrscheinlichkeit %"
+ },
+ "{n}% is the stage default": {
+  "hu": "A szakasz alapértéke {n}%",
+  "de": "{n} % ist der Phasen-Standard"
+ },
+ "Closed deals are fixed at 100 or 0": {
+  "hu": "Lezárt üzletnél rögzítetten 100 vagy 0",
+  "de": "Abgeschlossene Verkaufschancen stehen fest auf 100 oder 0"
+ },
+ "Next action date": {
+  "hu": "Következő lépés dátuma",
+  "de": "Datum nächster Schritt"
+ },
+ "Qualified": {
+  "hu": "Minősített",
+  "de": "Qualifiziert"
+ },
+ "Discovery": {
+  "hu": "Felmérés",
+  "de": "Bedarfsanalyse"
+ },
+ "Proposal": {
+  "hu": "Ajánlat",
+  "de": "Angebot"
+ },
+ "Negotiation": {
+  "hu": "Tárgyalás",
+  "de": "Verhandlung"
+ },
+ "A real commercial fit.": {
+  "hu": "Valódi üzleti illeszkedés.",
+  "de": "Ein echter geschäftlicher Fit."
+ },
+ "We are working out the scope.": {
+  "hu": "Most tisztázzuk a terjedelmet.",
+  "de": "Wir klären den Umfang."
+ },
+ "A quote is with them.": {
+  "hu": "Megkapták az árajánlatot.",
+  "de": "Ein Angebot liegt ihnen vor."
+ },
+ "Terms are being agreed.": {
+  "hu": "A feltételekről tárgyalunk.",
+  "de": "Die Konditionen werden vereinbart."
+ },
+ "Signed.": {
+  "hu": "Aláírva.",
+  "de": "Unterschrieben."
+ },
+ "Went elsewhere, or went quiet.": {
+  "hu": "Máshoz ment, vagy elhallgatott.",
+  "de": "Woanders hingegangen oder verstummt."
+ },
+ "Price": {
+  "hu": "Ár",
+  "de": "Preis"
+ },
+ "No response": {
+  "hu": "Nem válaszolt",
+  "de": "Keine Antwort"
+ },
+ "Competitor": {
+  "hu": "Versenytárs",
+  "de": "Wettbewerber"
+ },
+ "Timing": {
+  "hu": "Időzítés",
+  "de": "Zeitpunkt"
+ },
+ "Scope mismatch": {
+  "hu": "Nem illő terjedelem",
+  "de": "Umfang passt nicht"
+ },
+ "Internal decision": {
+  "hu": "Belső döntés",
+  "de": "Interne Entscheidung"
+ },
+ "Other": {
+  "hu": "Egyéb",
+  "de": "Sonstiges"
+ }
+}

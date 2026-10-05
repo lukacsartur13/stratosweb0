@@ -1,0 +1,14 @@
+{
+ "Loading": {
+  "hu": "Betöltés",
+  "de": "Wird geladen"
+ },
+ "No profile": {
+  "hu": "Nincs profil",
+  "de": "Kein Profil"
+ },
+ "You are signed in, but this account has no profile record. An administrator needs to finish setting it up.": {
+  "hu": "Be vagy jelentkezve, de ehhez a fiókhoz nem tartozik profil. Egy adminisztrátornak kell befejeznie a beállítását.",
+  "de": "Sie sind angemeldet, aber für dieses Konto gibt es keinen Profildatensatz. Ein Administrator muss die Einrichtung abschließen."
+ }
+}

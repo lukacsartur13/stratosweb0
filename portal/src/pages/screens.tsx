@@ -3,6 +3,8 @@ import { useRows, useSearch, formatDate, type LoadState } from '@/lib/useRows';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { useScope } from '@/lib/scope';
 import { ROLE_LABELS, type Role } from '@/lib/permissions';
+import { LanguageSwitch, useLanguage } from '@/features/i18n/LanguageGate';
+import { t, tc } from '@/lib/i18n';
 import {
   Badge, Cell, DataState, ErrorState, Input, Panel, Row, SectionHeader, Skeleton, Table,
 } from '@/components/ui';
@@ -59,7 +61,7 @@ function DataPanel({
               value={search.value}
               onChange={(e) => search.onChange(e.target.value)}
               placeholder={search.placeholder}
-              aria-label={`Search ${title.toLowerCase()}`}
+              aria-label={t('Search {what}', { what: title.toLowerCase() })}
               className="h-7 w-44 py-1 text-xs sm:w-56"
             />
           ) : null
@@ -75,8 +77,8 @@ function DataPanel({
       {state === 'unconfigured' && (
         <DataState
           kind="unconfigured"
-          title="Not connected"
-          body="Supabase credentials are not set in this environment, so there is nothing to read yet. See README.md for the setup steps."
+          title={t('Not connected')}
+          body={t('Supabase credentials are not set in this environment, so there is nothing to read yet. See README.md for the setup steps.')}
         />
       )}
 
@@ -105,20 +107,20 @@ export function CaseStudiesScreen() {
 
   return (
     <DataPanel
-      title="All case studies"
+      title={t('All case studies')}
       state={state} message={message} count={filtered.length} reload={reload}
-      search={{ value: query, onChange: setQuery, placeholder: 'Title or client…' }}
+      search={{ value: query, onChange: setQuery, placeholder: t('Title or client…') }}
       empty={{
-        title: 'No case studies',
-        body: 'Rapidkert, Barbershop Győr and mentáliserő.hu are the references to start from.',
+        title: t('No case studies'),
+        body: t('Rapidkert, Barbershop Győr and mentáliserő.hu are the references to start from.'),
       }}
     >
-      <Table head={['Title', 'Client', 'State', 'Order', 'Updated']}>
+      <Table head={[t('Title'), t('Client'), t('State'), t('Order'), t('Updated')]}>
         {filtered.map((c) => (
           <Row key={c.id}>
             <Cell className="text-[13px] text-paper">{c.title}</Cell>
             <Cell className="text-xs text-haze">{c.client_name || '—'}</Cell>
-            <Cell><Badge tone={c.published ? 'good' : 'neutral'}>{c.published ? 'Published' : 'Draft'}</Badge></Cell>
+            <Cell><Badge tone={c.published ? 'good' : 'neutral'}>{c.published ? t('Published') : t('Draft')}</Badge></Cell>
             <Cell className="num text-xs text-haze">{c.sort_order}</Cell>
             <Cell className="num text-xs text-haze">{formatDate(c.updated_at)}</Cell>
           </Row>
@@ -140,19 +142,19 @@ export function UsersScreen() {
 
   return (
     <DataPanel
-      title="Accounts"
+      title={t('Accounts')}
       state={state} message={message} count={filtered.length} reload={reload}
-      search={{ value: query, onChange: setQuery, placeholder: 'Name or email…' }}
-      empty={{ title: 'No users', body: 'Accounts appear here once they have signed up or been invited.' }}
+      search={{ value: query, onChange: setQuery, placeholder: t('Name or email…') }}
+      empty={{ title: t('No users'), body: t('Accounts appear here once they have signed up or been invited.') }}
     >
-      <Table head={['Name', 'Email', 'Role', 'Joined']}>
+      <Table head={[t('Name'), t('Email'), t('Role'), t('Joined')]}>
         {filtered.map((u) => (
           <Row key={u.id}>
             <Cell className="text-[13px] text-paper">{u.full_name || '—'}</Cell>
             <Cell className="break-all text-xs text-haze">{u.email}</Cell>
             <Cell>
               <Badge tone={u.role === 'super_admin' ? 'warn' : u.role === 'client' ? 'neutral' : 'good'}>
-                {ROLE_LABELS[u.role]}
+                {t(ROLE_LABELS[u.role])}
               </Badge>
             </Cell>
             <Cell className="num text-xs text-haze">{formatDate(u.created_at)}</Cell>
@@ -173,11 +175,11 @@ export function ActivityScreen() {
   );
   return (
     <DataPanel
-      title="Recent activity"
+      title={t('Recent activity')}
       state={state} message={message} count={rows.length} reload={reload}
-      empty={{ title: 'Nothing logged', body: 'Writes made through the portal and the serverless functions are recorded here.' }}
+      empty={{ title: t('Nothing logged'), body: t('Writes made through the portal and the serverless functions are recorded here.') }}
     >
-      <Table head={['Action', 'Entity', 'When']}>
+      <Table head={[tc('log', 'Action'), t('Entity'), t('When')]}>
         {rows.map((l) => (
           <Row key={l.id}>
             <Cell className="num break-all text-xs text-paper">{l.action}</Cell>
@@ -204,18 +206,44 @@ export function SettingsScreen() {
   return (
     <div className="grid gap-4 lg:max-w-xl">
       <Panel>
-        <SectionHeader title="This account" />
+        <SectionHeader title={t('This account')} />
         <dl className="grid px-4 py-3 text-sm">
-          <Line term="Name" value={profile?.full_name || '—'} />
-          <Line term="Email" value={profile?.email || '—'} />
-          <Line term="Role" value={profile ? ROLE_LABELS[profile.role] : '—'} />
-          <Line term="Organisation" value={profile?.organization_id ?? 'Stratos (staff)'} />
+          <Line term={t('Name')} value={profile?.full_name || '—'} />
+          <Line term={t('Email')} value={profile?.email || '—'} />
+          <Line term={t('Role')} value={profile ? t(ROLE_LABELS[profile.role]) : '—'} />
+          <Line term={t('Organisation')} value={profile?.organization_id ?? t('Stratos (staff)')} />
         </dl>
       </Panel>
+      <LanguageSettings />
       <p className="t-note">
-        Infrastructure, credentials and deploy context are on the System screen.
+        {t('Infrastructure, credentials and deploy context are on the System screen.')}
       </p>
     </div>
+  );
+}
+
+/**
+ * The portal language for THIS account — saved on the profile, so it follows
+ * the account to every device. Clients choose theirs in the client portal's
+ * header; nobody chooses for anybody else.
+ */
+function LanguageSettings() {
+  const { lang } = useLanguage();
+  return (
+    <Panel aria-label={t('Language')}>
+      <SectionHeader title={t('Language')} />
+      <div className="grid gap-2 px-4 py-3">
+        <LanguageSwitch className="justify-self-start" />
+        <p className="t-note">
+          {lang
+            ? t('The whole portal is shown in this language for your account, on every device.')
+            : t('Not chosen yet: the portal is shown in English. Your choice is saved on your account.')}
+        </p>
+        <p className="t-note">
+          {t('Clients choose their own language in the client portal header (Magyar, English, Deutsch). Names, notes and other text you type are not translated.')}
+        </p>
+      </div>
+    </Panel>
   );
 }
 

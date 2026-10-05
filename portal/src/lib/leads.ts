@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { intlLocale, t } from '@/lib/i18n';
 
 /**
  * The lead pipeline: the status model, the mutations, the notes and the
@@ -48,7 +49,7 @@ export const STATUS: Record<string, { label: string; tone: 'neutral' | 'good' | 
   spam: { label: 'Spam', tone: 'bad', note: 'Junk. Kept, not deleted.' },
 };
 
-export const statusLabel = (status: string) => STATUS[status]?.label ?? status;
+export const statusLabel = (status: string) => (STATUS[status] ? t(STATUS[status].label) : status);
 export const statusTone = (status: string) => STATUS[status]?.tone ?? 'neutral';
 
 /** The four public forms, plus the pre-envelope fallback. */
@@ -158,7 +159,7 @@ export const FACETS: { id: string; label: string; of: (lead: Lead) => string | n
   { id: 'medium', label: 'Medium', of: (l) => metaText(l, 'utmMedium') },
   { id: 'campaign', label: 'Campaign', of: (l) => metaText(l, 'utmCampaign') },
   { id: 'landing', label: 'Landing page', of: (l) => metaText(l, 'landingRoute') },
-  { id: 'form', label: 'Form', of: (l) => (l.form_type ? FORM_LABEL[l.form_type] ?? l.form_type : null) },
+  { id: 'form', label: 'Form', of: (l) => (l.form_type ? (FORM_LABEL[l.form_type] ? t(FORM_LABEL[l.form_type]) : l.form_type) : null) },
   { id: 'locale', label: 'Locale', of: (l) => l.locale },
 ];
 
@@ -307,9 +308,9 @@ export function buildTimeline(lead: Lead, notes: Note[], log: LogRow[]): Timelin
       id: `received-${lead.id}`,
       at: lead.created_at,
       kind: 'received',
-      title: 'Enquiry received',
+      title: t('Enquiry received'),
       detail: [
-        lead.form_type ? FORM_LABEL[lead.form_type] ?? lead.form_type : null,
+        lead.form_type ? (FORM_LABEL[lead.form_type] ? t(FORM_LABEL[lead.form_type]) : lead.form_type) : null,
         lead.source_route,
       ].filter(Boolean).join(' · ') || undefined,
     },
@@ -320,7 +321,7 @@ export function buildTimeline(lead: Lead, notes: Note[], log: LogRow[]): Timelin
       id: `note-${note.id}`,
       at: note.created_at,
       kind: 'note',
-      title: 'Note added',
+      title: t('Note added'),
       detail: note.body,
       by: who(note.author),
     });
@@ -334,7 +335,7 @@ export function buildTimeline(lead: Lead, notes: Note[], log: LogRow[]): Timelin
         id: `log-${row.id}`,
         at: row.created_at,
         kind: 'status',
-        title: `Status ${statusLabel(from)} → ${statusLabel(to)}`,
+        title: t('Status {from} → {to}', { from: statusLabel(from), to: statusLabel(to) }),
         // Null when the change did not come from a signed-in session — a
         // service-key write, or SQL run in the dashboard. Null is the honest
         // answer and the screen renders nothing rather than a name.
@@ -347,10 +348,10 @@ export function buildTimeline(lead: Lead, notes: Note[], log: LogRow[]): Timelin
         at: row.created_at,
         kind: 'notified',
         title: notified === true
-          ? 'Notification sent'
+          ? t('Notification sent')
           : notified === false
-            ? 'Notification not sent'
-            : 'Notification attempted',
+            ? t('Notification not sent')
+            : t('Notification attempted'),
         detail: row.metadata?.notifyReason ? String(row.metadata.notifyReason) : undefined,
       });
     } else {
@@ -387,7 +388,7 @@ export function useLeadMutations(onChanged: () => void) {
     setBusy(null);
     if (error) {
       console.error('[leads.status]', error);
-      return 'The database refused that change. Check that your account may edit leads.';
+      return t('The database refused that change. Check that your account may edit leads.');
     }
     onChanged();
     return null;
@@ -395,8 +396,8 @@ export function useLeadMutations(onChanged: () => void) {
 
   const addNote = useCallback(async (leadId: string, body: string) => {
     const text = body.trim();
-    if (!text) return 'Write something first.';
-    if (!profile) return 'Your session has expired. Sign in again.';
+    if (!text) return t('Write something first.');
+    if (!profile) return t('Your session has expired. Sign in again.');
 
     setBusy(leadId);
     // `author_id` is set from the signed-in profile and the policy requires it
@@ -409,8 +410,8 @@ export function useLeadMutations(onChanged: () => void) {
     if (error) {
       console.error('[lead_notes.insert]', error);
       return error.code === '42P01'
-        ? 'Notes are not set up in this database yet. Run the migrations in supabase/migrations.'
-        : 'The database refused that note.';
+        ? t('Notes are not set up in this database yet. Run the migrations in supabase/migrations.')
+        : t('The database refused that note.');
     }
     onChanged();
     return null;
@@ -549,7 +550,7 @@ export const formatWhen = (value: string | null | undefined) => {
   const d = new Date(value);
   return Number.isNaN(d.getTime())
     ? '—'
-    : d.toLocaleString('en-GB', {
+    : d.toLocaleString(intlLocale('en-GB'), {
       year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit',
     });
 };

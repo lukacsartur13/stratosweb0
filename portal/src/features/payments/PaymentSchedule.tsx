@@ -6,6 +6,7 @@ import {
 } from '@/components/ui';
 import { money } from '@/lib/money';
 import { shortDate } from '@/lib/pipeline';
+import { t } from '@/lib/i18n';
 import { usePaymentMutations, usePaymentOverview, usePaymentSchedule } from '@/lib/payments';
 import {
   INSTALMENT_STATE_LABEL, budapestToday, hasScheduleMismatch, legacyIssueText, nextMonth, parseAmount, scheduleTotals, totalsByCurrency,
@@ -55,17 +56,17 @@ export function PaymentSchedule({
   const [paymentDraft, setPaymentDraft] = useState<{ instalment: InstalmentView; payment?: Payment } | null>(null);
 
   const today = budapestToday();
-  const t = scheduleTotals(contracted, s.instalments, s.payments, today);
+  const tot = scheduleTotals(contracted, s.instalments, s.payments, today);
   // The database's figures are authoritative; the local ones (same rules) cover
   // the moment between a write and the reload.
   const o = s.overview;
   const fig = {
-    scheduled: o?.scheduled ?? t.scheduled,
-    paid: o?.paid ?? t.paid,
-    remaining: o?.remaining ?? t.remaining,
-    overpaid: o?.overpaid ?? t.overpaid,
-    overdue: o?.overdue ?? t.overdue,
-    gap: o ? o.schedule_gap : t.scheduleGap,
+    scheduled: o?.scheduled ?? tot.scheduled,
+    paid: o?.paid ?? tot.paid,
+    remaining: o?.remaining ?? tot.remaining,
+    overpaid: o?.overpaid ?? tot.overpaid,
+    overdue: o?.overdue ?? tot.overdue,
+    gap: o ? o.schedule_gap : tot.scheduleGap,
   };
   const m = (n: number | null) => (n === null ? '—' : money(n, currency));
   const mismatch = s.instalments.length > 0 && hasScheduleMismatch({
@@ -74,60 +75,62 @@ export function PaymentSchedule({
 
   const remove = async (what: 'instalment' | 'payment', id: string) => {
     if (!window.confirm(what === 'payment'
-      ? 'Remove this payment? The removal is logged with its amount.'
-      : 'Remove this instalment? Only an instalment without payments can be removed.')) return;
+      ? t('Remove this payment? The removal is logged with its amount.')
+      : t('Remove this instalment? Only an instalment without payments can be removed.'))) return;
     setError(what === 'payment' ? await ops.removePayment(id) : await ops.removeInstalment(id));
   };
 
   return (
-    <Panel aria-label="Payment schedule">
+    <Panel aria-label={t('Payment schedule')}>
       <SectionHeader
-        title="Payment schedule"
-        note={`${currency} · from recorded payments`}
+        title={t('Payment schedule')}
+        note={t('{currency} · from recorded payments', { currency })}
         action={mayEdit && s.state === 'ready' ? (
           <Button size="sm" onClick={() => setInstalmentDraft(monthly
             ? nextMonth(s.instalments.map((i) => i.due_on), monthlyFee, today)
             : { label: s.instalments.length === 0 ? 'Előleg' : '' })}>
-            <Plus size={11} aria-hidden="true" /> {monthly ? 'Month' : 'Instalment'}
+            <Plus size={11} aria-hidden="true" /> {monthly ? t('Month') : t('Instalment')}
           </Button>
         ) : undefined}
       />
 
       {s.state === 'loading' && <div className="p-4" aria-busy="true"><Skeleton className="h-24 w-full" /></div>}
       {s.state === 'error' && <ErrorState message={s.message} onRetry={s.reload} />}
-      {s.state === 'unconfigured' && <DataState kind="unconfigured" title="Not connected" />}
+      {s.state === 'unconfigured' && <DataState kind="unconfigured" title={t('Not connected')} />}
 
       {s.state === 'ready' && (
         <>
           <dl className="grid" data-payment-figures>
             {monthly ? (
-              <DataLine term="Monthly fee" value={<span className="num">{m(monthlyFee)}</span>} note="per month" />
+              <DataLine term={t('Monthly fee')} value={<span className="num">{m(monthlyFee)}</span>} note={t('per month')} />
             ) : (
-              <DataLine term="Contracted" value={contracted === null ? <span className="text-haze">Not recorded</span> : <span className="num">{m(contracted)}</span>}
-                        note="the project value" />
+              <DataLine term={t('Contracted')} value={contracted === null ? <span className="text-haze">{t('Not recorded')}</span> : <span className="num">{m(contracted)}</span>}
+                        note={t('the project value')} />
             )}
-            <DataLine term="Scheduled" value={<span className="num">{m(fig.scheduled)}</span>}
-                      note={`${s.instalments.length} instalment${s.instalments.length === 1 ? '' : 's'}`} />
-            <DataLine term="Paid" value={<span className="num" data-figure="paid">{m(fig.paid)}</span>}
-                      note={t.undated > 0 ? `${t.undated} payment${t.undated === 1 ? '' : 's'} without a date` : `${s.payments.length} payment${s.payments.length === 1 ? '' : 's'}`} />
-            <DataLine term="Remaining" value={<span className="num" data-figure="remaining">{m(fig.remaining)}</span>}
-                      note={monthly || contracted === null ? 'against the scheduled months' : 'against the contract'} />
-            <DataLine term="Overdue" value={<span className={cn('num', fig.overdue > 0 && 'text-danger')} data-figure="overdue">{m(fig.overdue)}</span>}
-                      note={fig.overdue > 0 ? 'due date passed, not received' : undefined} />
+            <DataLine term={t('Scheduled')} value={<span className="num">{m(fig.scheduled)}</span>}
+                      note={t(s.instalments.length === 1 ? '{n} instalment' : '{n} instalments', { n: s.instalments.length })} />
+            <DataLine term={t('Paid')} value={<span className="num" data-figure="paid">{m(fig.paid)}</span>}
+                      note={tot.undated > 0
+                        ? t(tot.undated === 1 ? '{n} payment without a date' : '{n} payments without a date', { n: tot.undated })
+                        : t(s.payments.length === 1 ? '{n} payment' : '{n} payments', { n: s.payments.length })} />
+            <DataLine term={t('Remaining')} value={<span className="num" data-figure="remaining">{m(fig.remaining)}</span>}
+                      note={monthly || contracted === null ? t('against the scheduled months') : t('against the contract')} />
+            <DataLine term={t('Overdue')} value={<span className={cn('num', fig.overdue > 0 && 'text-danger')} data-figure="overdue">{m(fig.overdue)}</span>}
+                      note={fig.overdue > 0 ? t('due date passed, not received') : undefined} />
             {fig.overpaid > 0 && (
-              <DataLine term="Over-paid" value={<span className="num text-signal" data-figure="overpaid">{m(fig.overpaid)}</span>}
-                        note="received beyond the amount due — kept, not absorbed" />
+              <DataLine term={t('Over-paid')} value={<span className="num text-signal" data-figure="overpaid">{m(fig.overpaid)}</span>}
+                        note={t('received beyond the amount due — kept, not absorbed')} />
             )}
           </dl>
 
           {mismatch && (
             <p className="border-t border-hairline px-4 py-2 text-xs text-signal" role="status" data-signal="schedule-mismatch">
-              <Badge tone="warn">Mismatch</Badge>{' '}
+              <Badge tone="warn">{t('Mismatch')}</Badge>{' '}
               {contracted === null
-                ? 'No contract value is recorded for this project, so the schedule cannot be checked against it.'
+                ? t('No contract value is recorded for this project, so the schedule cannot be checked against it.')
                 : (fig.gap ?? 0) < 0
-                  ? `The instalments add up to ${m(fig.scheduled)}, ${m(-(fig.gap ?? 0))} less than the contract.`
-                  : `The instalments add up to ${m(fig.scheduled)}, ${m(fig.gap)} more than the contract.`}
+                  ? t('The instalments add up to {scheduled}, {gap} less than the contract.', { scheduled: m(fig.scheduled), gap: m(-(fig.gap ?? 0)) })
+                  : t('The instalments add up to {scheduled}, {gap} more than the contract.', { scheduled: m(fig.scheduled), gap: m(fig.gap) })}
             </p>
           )}
 
@@ -135,10 +138,10 @@ export function PaymentSchedule({
             <div className={cn('border-t border-hairline px-4 py-3', s.legacy.outcome === 'review' && !s.legacy.reviewed_at && 'bg-signal/5')}
                  data-legacy={s.legacy.outcome}>
               <p className="text-xs text-paper">
-                <Badge tone={s.legacy.outcome === 'review' && !s.legacy.reviewed_at ? 'warn' : 'neutral'}>Carried over</Badge>{' '}
-                Before the schedule, this project recorded: {s.legacy.payment_state.replace('_', ' ')}
-                {s.legacy.invoiced_amount !== null ? ` · invoiced ${m(s.legacy.invoiced_amount)}` : ''}
-                {s.legacy.paid_amount !== null ? ` · paid ${m(s.legacy.paid_amount)}` : ''}.
+                <Badge tone={s.legacy.outcome === 'review' && !s.legacy.reviewed_at ? 'warn' : 'neutral'}>{t('Carried over')}</Badge>{' '}
+                {t('Before the schedule, this project recorded: {state}', { state: s.legacy.payment_state.replace('_', ' ') })}
+                {s.legacy.invoiced_amount !== null ? ` · ${t('invoiced {amount}', { amount: m(s.legacy.invoiced_amount) })}` : ''}
+                {s.legacy.paid_amount !== null ? ` · ${t('paid {amount}', { amount: m(s.legacy.paid_amount) })}` : ''}.
               </p>
               <ul className="t-note mt-1 grid gap-0.5">
                 {s.legacy.issues.map((i) => <li key={i}>{legacyIssueText(i)}</li>)}
@@ -146,50 +149,50 @@ export function PaymentSchedule({
               {mayEdit && s.legacy.outcome === 'review' && (
                 <Button size="sm" variant="quiet" className="mt-2" disabled={ops.busy === 'legacy'}
                         onClick={async () => setError(await ops.markLegacyReviewed(!s.legacy!.reviewed_at))}>
-                  {s.legacy.reviewed_at ? 'Mark as not reviewed' : 'Mark as reviewed'}
+                  {s.legacy.reviewed_at ? t('Mark as not reviewed') : t('Mark as reviewed')}
                 </Button>
               )}
             </div>
           )}
 
-          {t.views.length === 0 ? (
+          {tot.views.length === 0 ? (
             <p className="border-t border-hairline px-4 py-3 text-xs text-haze">
               {monthly
-                ? 'No months yet. Add each month as it is billed — + Month fills in the next one at the current fee. Payments are then recorded against it.'
-                : 'No instalments yet. Add the parts of the price — e.g. an advance and a final invoice — with their due dates. Payments are then recorded against them.'}
+                ? t('No months yet. Add each month as it is billed — + Month fills in the next one at the current fee. Payments are then recorded against it.')
+                : t('No instalments yet. Add the parts of the price — e.g. an advance and a final invoice — with their due dates. Payments are then recorded against them.')}
             </p>
           ) : (
-            <ul className="grid border-t border-hairline" aria-label="Instalments">
-              {t.views.map((v) => (
+            <ul className="grid border-t border-hairline" aria-label={t('Instalments')}>
+              {tot.views.map((v) => (
                 <li key={v.id} className="border-b border-hairline px-4 py-3 last:border-0" data-instalment={v.state}>
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div className="min-w-0">
                       <p className="text-[13px] text-paper">
                         {v.label}{' '}
                         <Badge tone={v.state === 'paid' ? 'good' : v.overdue ? 'bad' : v.state === 'overpaid' ? 'warn' : 'neutral'}>
-                          {v.overdue ? 'Overdue' : INSTALMENT_STATE_LABEL[v.state]}
+                          {v.overdue ? t('Overdue') : t(INSTALMENT_STATE_LABEL[v.state])}
                         </Badge>{' '}
-                        {v.invoiced ? <Badge tone="neutral">Invoiced{v.invoiced_on ? ` ${shortDate(v.invoiced_on)}` : ''}</Badge>
-                          : <span className="t-note">not invoiced</span>}
+                        {v.invoiced ? <Badge tone="neutral">{t('Invoiced')}{v.invoiced_on ? ` ${shortDate(v.invoiced_on)}` : ''}</Badge>
+                          : <span className="t-note">{t('not invoiced')}</span>}
                       </p>
                       <p className="t-note mt-0.5">
-                        <span className="num">{m(v.amount)}</span> · due {v.due_on ? shortDate(v.due_on) : 'not recorded'}
-                        {' · '}received <span className="num">{m(v.received)}</span>
-                        {v.outstanding > 0 && <> · <span className={cn(v.overdue && 'text-danger')}>outstanding {m(v.outstanding)}</span></>}
-                        {v.over > 0 && <> · <span className="text-signal">over-paid {m(v.over)}</span></>}
+                        <span className="num">{m(v.amount)}</span> · {t('due {date}', { date: v.due_on ? shortDate(v.due_on) : t('not recorded') })}
+                        {' · '}{t('received')} <span className="num">{m(v.received)}</span>
+                        {v.outstanding > 0 && <> · <span className={cn(v.overdue && 'text-danger')}>{t('outstanding {amount}', { amount: m(v.outstanding) })}</span></>}
+                        {v.over > 0 && <> · <span className="text-signal">{t('over-paid {amount}', { amount: m(v.over) })}</span></>}
                       </p>
                       {v.note && <p className="t-note mt-0.5 break-words">{v.note}</p>}
                     </div>
                     {mayEdit && (
                       <div className="flex shrink-0 gap-1">
                         <Button size="sm" onClick={() => setPaymentDraft({ instalment: v })}>
-                          <Plus size={11} aria-hidden="true" /> Payment
+                          <Plus size={11} aria-hidden="true" /> {t('Payment')}
                         </Button>
-                        <Button size="sm" variant="quiet" aria-label={`Edit instalment ${v.label}`} onClick={() => setInstalmentDraft(v)}>
+                        <Button size="sm" variant="quiet" aria-label={t('Edit instalment {label}', { label: v.label })} onClick={() => setInstalmentDraft(v)}>
                           <Pencil size={11} aria-hidden="true" />
                         </Button>
                         {v.payments.length === 0 && (
-                          <Button size="sm" variant="quiet" aria-label={`Remove instalment ${v.label}`}
+                          <Button size="sm" variant="quiet" aria-label={t('Remove instalment {label}', { label: v.label })}
                                   disabled={ops.busy === v.id} onClick={() => void remove('instalment', v.id)}>
                             <Trash2 size={11} aria-hidden="true" />
                           </Button>
@@ -198,23 +201,23 @@ export function PaymentSchedule({
                     )}
                   </div>
                   {v.payments.length > 0 && (
-                    <ul className="mt-2 grid gap-1 border-l border-hairline pl-3" aria-label={`Payments for ${v.label}`}>
+                    <ul className="mt-2 grid gap-1 border-l border-hairline pl-3" aria-label={t('Payments for {label}', { label: v.label })}>
                       {v.payments.map((p) => (
                         <li key={p.id} className="flex flex-wrap items-center justify-between gap-2 text-xs">
                           <span>
                             <span className="num text-paper">{m(p.amount)}</span>{' '}
                             <span className={cn('t-note', p.paid_on === null && 'text-signal')}>
-                              {p.paid_on ? `on ${shortDate(p.paid_on)}` : 'date not recorded'}
+                              {p.paid_on ? t('on {date}', { date: shortDate(p.paid_on) }) : t('date not recorded')}
                             </span>
-                            {p.origin === 'legacy' && <span className="t-note"> · carried over</span>}
+                            {p.origin === 'legacy' && <span className="t-note"> · {t('carried over')}</span>}
                             {p.note && <span className="t-note"> · {p.note}</span>}
                           </span>
                           {mayEdit && (
                             <span className="flex gap-1">
-                              <Button size="sm" variant="quiet" aria-label="Edit payment" onClick={() => setPaymentDraft({ instalment: v, payment: p })}>
+                              <Button size="sm" variant="quiet" aria-label={t('Edit payment')} onClick={() => setPaymentDraft({ instalment: v, payment: p })}>
                                 <Pencil size={11} aria-hidden="true" />
                               </Button>
-                              <Button size="sm" variant="quiet" aria-label="Remove payment" disabled={ops.busy === p.id}
+                              <Button size="sm" variant="quiet" aria-label={t('Remove payment')} disabled={ops.busy === p.id}
                                       onClick={() => void remove('payment', p.id)}>
                                 <Trash2 size={11} aria-hidden="true" />
                               </Button>
@@ -230,8 +233,7 @@ export function PaymentSchedule({
           )}
           {error && <p role="alert" className="border-t border-hairline px-4 py-2 text-xs text-danger">{error}</p>}
           <p className="t-note border-t border-hairline px-4 py-2">
-            Paid is only what is recorded here as received. Invoicing is marked per instalment and is not payment.
-            Closing the project does not depend on it.
+            {t('Paid is only what is recorded here as received. Invoicing is marked per instalment and is not payment. Closing the project does not depend on it.')}
           </p>
         </>
       )}
@@ -253,7 +255,7 @@ export function PaymentSchedule({
         <PaymentDialog
           currency={currency}
           instalment={paymentDraft.instalment}
-          instalments={t.views}
+          instalments={tot.views}
           initial={paymentDraft.payment}
           today={today}
           busy={ops.busy !== null}
@@ -290,10 +292,10 @@ function InstalmentDialog({
   const legacy = initial.origin === 'legacy';
 
   const submit = async () => {
-    if (!form.label.trim()) return setError('An instalment needs a name, e.g. "Előleg" or "Végszámla".');
+    if (!form.label.trim()) return setError(t('An instalment needs a name, e.g. "Előleg" or "Végszámla".'));
     const amount = parseAmount(form.amount);
     if ('error' in amount) return setError(amount.error);
-    if (!form.due_on && !legacy) return setError('An instalment needs a due date.');
+    if (!form.due_on && !legacy) return setError(t('An instalment needs a due date.'));
     setError(await onSave({
       label: form.label.trim(),
       amount: amount.value,
@@ -305,37 +307,37 @@ function InstalmentDialog({
   };
 
   return (
-    <Dialog open onClose={onClose} title={initial.id ? 'Edit instalment' : 'New instalment'}
-            description={`Amounts are in ${currency}, the project's currency.`}
+    <Dialog open onClose={onClose} title={initial.id ? t('Edit instalment') : t('New instalment')}
+            description={t('Amounts are in {currency}, the project\'s currency.', { currency })}
             footer={<>
               <Button size="sm" onClick={onClose}>Cancel</Button>
               <Button size="sm" variant="primary" onClick={submit} disabled={busy}>Save</Button>
             </>}>
       <div className="grid gap-3">
-        <Field id="pi-label" label="Name">
+        <Field id="pi-label" label={t('Name')}>
           <Input id="pi-label" data-autofocus value={form.label} maxLength={120}
                  onChange={(e) => setForm((p) => ({ ...p, label: e.target.value }))} placeholder="Előleg" />
         </Field>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="pi-amount" label={`Amount (${currency})`}>
+          <Field id="pi-amount" label={t('Amount ({currency})', { currency })}>
             <Input id="pi-amount" inputMode="decimal" value={form.amount}
                    onChange={(e) => setForm((p) => ({ ...p, amount: e.target.value }))} />
           </Field>
-          <Field id="pi-due" label="Due" hint={legacy ? 'Carried over without a due date; add one if known.' : undefined}>
+          <Field id="pi-due" label={t('Due')} hint={legacy ? t('Carried over without a due date; add one if known.') : undefined}>
             <Input id="pi-due" type="date" value={form.due_on}
                    onChange={(e) => setForm((p) => ({ ...p, due_on: e.target.value }))} />
           </Field>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="pi-invoiced" label="Invoiced">
+          <Field id="pi-invoiced" label={t('Invoiced')}>
             <Select id="pi-invoiced" className="w-full py-2.5 text-sm" value={form.invoiced ? 'yes' : 'no'}
                     onChange={(e) => setForm((p) => ({ ...p, invoiced: e.target.value === 'yes' }))}>
-              <option value="no">Not invoiced</option>
-              <option value="yes">Invoiced</option>
+              <option value="no">{t('Not invoiced')}</option>
+              <option value="yes">{t('Invoiced')}</option>
             </Select>
           </Field>
           {form.invoiced && (
-            <Field id="pi-invoiced-on" label="Invoice date" hint="Optional.">
+            <Field id="pi-invoiced-on" label={t('Invoice date')} hint={t('Optional.')}>
               <Input id="pi-invoiced-on" type="date" value={form.invoiced_on}
                      onChange={(e) => setForm((p) => ({ ...p, invoiced_on: e.target.value }))} />
             </Field>
@@ -380,41 +382,42 @@ function PaymentDialog({
     // A carried-over payment was never dated; it may stay undated (no date is
     // invented). Every other payment needs the day it arrived.
     const keepUndated = !form.paid_on && initial !== undefined && initial.paid_on === null;
-    if (!form.paid_on && !keepUndated) return setError('Enter the day the money arrived.');
-    if (form.paid_on > today) return setError('A payment is recorded on the day it arrived — that date is in the future.');
+    if (!form.paid_on && !keepUndated) return setError(t('Enter the day the money arrived.'));
+    if (form.paid_on > today) return setError(t('A payment is recorded on the day it arrived — that date is in the future.'));
     setError(await onSave({ instalment_id: form.instalment_id, amount: parsed.value, paid_on: form.paid_on || null, note: form.note.trim() || null }));
   };
 
   return (
-    <Dialog open onClose={onClose} title={initial ? 'Edit payment' : 'Record a payment'}
-            description={`Money received, in ${currency}. A part payment is fine; record each transfer separately.`}
+    <Dialog open onClose={onClose} title={initial ? t('Edit payment') : t('Record a payment')}
+            description={t('Money received, in {currency}. A part payment is fine; record each transfer separately.', { currency })}
             footer={<>
               <Button size="sm" onClick={onClose}>Cancel</Button>
               <Button size="sm" variant="primary" onClick={submit} disabled={busy}>Save</Button>
             </>}>
       <div className="grid gap-3">
-        <Field id="pp-instalment" label="Instalment">
+        <Field id="pp-instalment" label={t('Instalment')}>
           <Select id="pp-instalment" className="w-full py-2.5 text-sm" value={form.instalment_id}
                   onChange={(e) => setForm((p) => ({ ...p, instalment_id: e.target.value }))}>
             {instalments.map((i) => (
-              <option key={i.id} value={i.id}>{i.label} — outstanding {money(i.outstanding, currency)}</option>
+              <option key={i.id} value={i.id}>{i.label} — {t('outstanding {amount}', { amount: money(i.outstanding, currency) })}</option>
             ))}
           </Select>
         </Field>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="pp-amount" label={`Amount (${currency})`}>
+          <Field id="pp-amount" label={t('Amount ({currency})', { currency })}>
             <Input id="pp-amount" data-autofocus inputMode="decimal" value={form.amount}
                    onChange={(e) => setForm((p) => ({ ...p, amount: e.target.value }))} />
           </Field>
-          <Field id="pp-date" label="Received on" hint={initial && initial.paid_on === null ? 'Carried over without a date. Enter it only if you know it.' : undefined}>
+          <Field id="pp-date" label={t('Received on')} hint={initial && initial.paid_on === null ? t('Carried over without a date. Enter it only if you know it.') : undefined}>
             <Input id="pp-date" type="date" max={today} value={form.paid_on}
                    onChange={(e) => setForm((p) => ({ ...p, paid_on: e.target.value }))} />
           </Field>
         </div>
         {willOver && (
           <p className="text-xs text-signal" role="status">
-            This takes “{target.label}” over its amount by {money(before + ('value' in parsed ? parsed.value : 0) - target.amount, currency)}.
-            It will be saved and shown as over-paid — split it across instalments if part of it belongs to another one.
+            {t('This takes “{label}” over its amount by {amount}. It will be saved and shown as over-paid — split it across instalments if part of it belongs to another one.', {
+              label: target.label, amount: money(before + ('value' in parsed ? parsed.value : 0) - target.amount, currency),
+            })}
           </p>
         )}
         <Field id="pp-note" label="Note">
@@ -443,40 +446,40 @@ export function Receivables({ reloadToken = 0 }: { reloadToken?: number }) {
     .sort((a, b) => b.overdue - a.overdue || b.remaining - a.remaining);
 
   return (
-    <Panel aria-label="Receivables">
-      <SectionHeader title="Receivables" note="from recorded payments · per currency" />
+    <Panel aria-label={t('Receivables')}>
+      <SectionHeader title={t('Receivables')} note={t('from recorded payments · per currency')} />
       {state === 'loading' && <div className="p-4" aria-busy="true"><Skeleton className="h-16 w-full" /></div>}
-      {state === 'error' && <ErrorState message="The payment figures could not be read." onRetry={reload} />}
+      {state === 'error' && <ErrorState message={t('The payment figures could not be read.')} onRetry={reload} />}
       {state === 'ready' && totals.length === 0 && (
-        <p className="px-4 py-3 text-xs text-haze">No payment schedule has been recorded on any project yet.</p>
+        <p className="px-4 py-3 text-xs text-haze">{t('No payment schedule has been recorded on any project yet.')}</p>
       )}
       {state === 'ready' && totals.length > 0 && (
         <>
           <dl className="grid sm:grid-cols-2">
-            {totals.map((t) => (
-              <div key={t.currency} className="border-b border-hairline sm:border-r" data-currency={t.currency}>
-                <p className="t-section px-4 pt-2.5">{t.currency} · {t.projects} project{t.projects === 1 ? '' : 's'}</p>
-                <DataLine term="Contracted" value={<span className="num">{money(t.contracted, t.currency)}</span>} />
-                <DataLine term="Paid" value={<span className="num">{money(t.paid, t.currency)}</span>} />
-                <DataLine term="Remaining" value={<span className="num">{money(t.remaining, t.currency)}</span>} />
-                <DataLine term="Overdue" value={<span className={cn('num', t.overdue > 0 && 'text-danger')}>{money(t.overdue, t.currency)}</span>} />
-                {t.overpaid > 0 && <DataLine term="Over-paid" value={<span className="num text-signal">{money(t.overpaid, t.currency)}</span>} />}
+            {totals.map((c) => (
+              <div key={c.currency} className="border-b border-hairline sm:border-r" data-currency={c.currency}>
+                <p className="t-section px-4 pt-2.5">{c.currency} · {t(c.projects === 1 ? '{n} project' : '{n} projects', { n: c.projects })}</p>
+                <DataLine term={t('Contracted')} value={<span className="num">{money(c.contracted, c.currency)}</span>} />
+                <DataLine term={t('Paid')} value={<span className="num">{money(c.paid, c.currency)}</span>} />
+                <DataLine term={t('Remaining')} value={<span className="num">{money(c.remaining, c.currency)}</span>} />
+                <DataLine term={t('Overdue')} value={<span className={cn('num', c.overdue > 0 && 'text-danger')}>{money(c.overdue, c.currency)}</span>} />
+                {c.overpaid > 0 && <DataLine term={t('Over-paid')} value={<span className="num text-signal">{money(c.overpaid, c.currency)}</span>} />}
               </div>
             ))}
           </dl>
           {attention.length > 0 && (
-            <ul className="grid" aria-label="Outstanding by project">
+            <ul className="grid" aria-label={t('Outstanding by project')}>
               {attention.map((r) => (
                 <li key={r.project_id} className="flex flex-wrap items-baseline justify-between gap-2 border-b border-hairline px-4 py-2 last:border-0">
                   <Link to={`/projects/${r.project_id}`} className="text-[13px] text-paper underline-offset-4 hover:underline">
                     {r.project_name}{r.client_name ? <span className="t-note"> · {r.client_name}</span> : null}
-                    {r.status === 'completed' && <span className="t-note"> · closed</span>}
+                    {r.status === 'completed' && <span className="t-note"> · {t('closed')}</span>}
                   </Link>
                   <span className="text-xs">
-                    {r.remaining > 0 && <span className="num">owes {money(r.remaining, r.currency)}</span>}
-                    {r.overdue > 0 && <span className="num text-danger"> · overdue {money(r.overdue, r.currency)}</span>}
-                    {r.overpaid > 0 && <span className="num text-signal"> over-paid {money(r.overpaid, r.currency)}</span>}
-                    {hasScheduleMismatch(r) && <span className="text-signal"> · schedule ≠ contract</span>}
+                    {r.remaining > 0 && <span className="num">{t('owes {amount}', { amount: money(r.remaining, r.currency) })}</span>}
+                    {r.overdue > 0 && <span className="num text-danger"> · {t('overdue {amount}', { amount: money(r.overdue, r.currency) })}</span>}
+                    {r.overpaid > 0 && <span className="num text-signal"> {t('over-paid {amount}', { amount: money(r.overpaid, r.currency) })}</span>}
+                    {hasScheduleMismatch(r) && <span className="text-signal"> · {t('schedule ≠ contract')}</span>}
                   </span>
                 </li>
               ))}

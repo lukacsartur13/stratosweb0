@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { intlLocale, t } from '@/lib/i18n';
 
 /**
  * The Portal's one client for `/api/portal-analytics`.
@@ -207,7 +208,7 @@ export function useAnalytics(range: Range, environment: Environment, enabled = t
     if (!token) {
       // The route is behind ProtectedRoute, so this is the moment between a
       // session expiring and the guard noticing rather than an anonymous view.
-      setState({ kind: 'error', message: 'Your session has expired. Sign in again.', code: 'UNAUTHENTICATED' });
+      setState({ kind: 'error', message: t('Your session has expired. Sign in again.'), code: 'UNAUTHENTICATED' });
       return;
     }
 
@@ -226,10 +227,10 @@ export function useAnalytics(range: Range, environment: Environment, enabled = t
           kind: 'error',
           code: res.status === 403 ? 'FORBIDDEN' : res.status === 401 ? 'UNAUTHENTICATED' : 'UPSTREAM',
           message: res.status === 403
-            ? 'This account cannot view analytics.'
+            ? t('This account cannot view analytics.')
             : res.status === 401
-              ? 'Your session has expired. Sign in again.'
-              : 'Analytics could not be loaded right now.',
+              ? t('Your session has expired. Sign in again.')
+              : t('Analytics could not be loaded right now.'),
         });
         return;
       }
@@ -255,7 +256,7 @@ export function useAnalytics(range: Range, environment: Environment, enabled = t
       if (mine !== generation.current) return;
       // A network failure, or a build with no functions behind it — `npm run
       // dev` on the static server is the common case.
-      setState({ kind: 'error', message: 'Analytics could not be reached.', code: 'NETWORK' });
+      setState({ kind: 'error', message: t('Analytics could not be reached.'), code: 'NETWORK' });
     }
     // `reloadToken` is the command bar's Refresh, and it is a dependency rather
     // than an imperative call so that every screen reading this hook reloads
@@ -270,9 +271,16 @@ export function useAnalytics(range: Range, environment: Environment, enabled = t
 
 /* ------------------------------------------------------------- formatting */
 
-const nf = new Intl.NumberFormat('en-GB');
+// One formatter per locale: the language can change after this module loads.
+const nfs = new Map<string, Intl.NumberFormat>();
+const nf = () => {
+  const locale = intlLocale('en-GB');
+  let f = nfs.get(locale);
+  if (!f) { f = new Intl.NumberFormat(locale); nfs.set(locale, f); }
+  return f;
+};
 export const n = (value: number | null | undefined) =>
-  value === null || value === undefined ? '—' : nf.format(value);
+  value === null || value === undefined ? '—' : nf().format(value);
 
 /** A ratio as a percentage, or an em dash. Never `NaN%`. */
 export const pct = (value: number | null | undefined, digits = 1) =>

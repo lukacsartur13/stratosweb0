@@ -6,6 +6,11 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
 import { Button, Field, Input, Panel } from '@/components/ui';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
+import { LanguageSwitch } from '@/features/i18n/LanguageGate';
+import { t } from '@/lib/i18n';
+
+/** The schemas below are built at import, so their messages are translated where they are shown. */
+const tr = (message?: string) => (message ? t(message) : undefined);
 
 /* --------------------------------------------------------------- chrome */
 export function AuthShell({ title, lede, children }: { title: string; lede: string; children: ReactNode }) {
@@ -16,7 +21,7 @@ export function AuthShell({ title, lede, children }: { title: string; lede: stri
           {/* The mark is Aboreto here for the same reason it is in the sidebar:
               one face draws the brand and nothing else in the product does. */}
           <p className="font-mark text-[15px] tracking-[0.26em] text-paper">STRATOS</p>
-          <p className="t-section mt-1.5">Portal</p>
+          <p className="t-section mt-1.5">{t('Portal')}</p>
         </div>
         <Panel className="p-6">
           <h1 className="font-data text-[12px] uppercase tracking-[0.18em] text-chrome">{title}</h1>
@@ -32,10 +37,10 @@ export function AuthShell({ title, lede, children }: { title: string; lede: stri
               A relative link deserves a relative label; this one needs no
               maintenance when the domain moves. */}
           <a href="/" className="underline underline-offset-4 hover:text-paper">
-            Back to the website
+            {t('Back to the website')}
           </a>
         </p>
-        <div className="mt-4 flex justify-center"><ThemeSwitch /></div>
+        <div className="mt-4 flex flex-wrap justify-center gap-2"><ThemeSwitch /><LanguageSwitch /></div>
       </div>
     </main>
   );
@@ -44,8 +49,8 @@ export function AuthShell({ title, lede, children }: { title: string; lede: stri
 function NotConfigured() {
   return (
     <p className="rounded-sm border border-signal/30 bg-signal/5 p-3 text-xs text-haze">
-      Supabase is not configured in this environment. Copy <code className="text-chrome">.env.example</code> to{' '}
-      <code className="text-chrome">.env</code> and restart the dev server.
+      {t('Supabase is not configured in this environment. Copy')} <code className="text-chrome">.env.example</code> {t('to')}{' '}
+      <code className="text-chrome">.env</code> {t('and restart the dev server.')}
     </p>
   );
 }
@@ -67,7 +72,7 @@ export function LoginPage() {
   if (session) return <Navigate to="/" replace />;
 
   return (
-    <AuthShell title="Sign in" lede="This area is for Stratos staff and clients.">
+    <AuthShell title={t('Sign in')} lede={t('This area is for Stratos staff and clients.')}>
       {!configured && <div className="mb-4"><NotConfigured /></div>}
       <form
         noValidate
@@ -78,10 +83,10 @@ export function LoginPage() {
           if (error) setFormError(error);
         })}
       >
-        <Field id="email" label="Email" error={errors.email?.message}>
+        <Field id="email" label={t('Email')} error={tr(errors.email?.message)}>
           <Input id="email" type="email" autoComplete="email" invalid={!!errors.email} {...register('email')} />
         </Field>
-        <Field id="password" label="Password" error={errors.password?.message}>
+        <Field id="password" label={t('Password')} error={tr(errors.password?.message)}>
           <Input id="password" type="password" autoComplete="current-password" invalid={!!errors.password} {...register('password')} />
         </Field>
 
@@ -92,13 +97,13 @@ export function LoginPage() {
         )}
 
         <Button type="submit" variant="primary" disabled={isSubmitting}>
-          {isSubmitting ? 'Signing in…' : 'Sign in'}
+          {isSubmitting ? t('Signing in…') : t('Sign in')}
         </Button>
       </form>
 
       <p className="mt-4 text-xs text-haze">
         <a href="/portal/forgot-password" className="underline underline-offset-4 hover:text-paper">
-          Forgotten your password?
+          {t('Forgotten your password?')}
         </a>
       </p>
       {/* No "create an account" link, and no public signup route. Accounts are
@@ -120,12 +125,12 @@ export function ForgotPasswordPage() {
   } = useForm<z.infer<typeof emailSchema>>({ resolver: zodResolver(emailSchema) });
 
   return (
-    <AuthShell title="Reset password" lede="We will email you a link to choose a new one.">
+    <AuthShell title={t('Reset password')} lede={t('We will email you a link to choose a new one.')}>
       {!configured && <div className="mb-4"><NotConfigured /></div>}
       {sent ? (
         // The same message regardless of whether the address exists.
         <p role="status" className="rounded-sm border border-good/30 bg-good/5 p-3 text-sm text-haze">
-          If that address has an account, a reset link is on its way. It expires in one hour.
+          {t('If that address has an account, a reset link is on its way. It expires in one hour.')}
         </p>
       ) : (
         <form
@@ -133,16 +138,16 @@ export function ForgotPasswordPage() {
           className="grid gap-4"
           onSubmit={handleSubmit(async (v) => { await requestReset(v.email); setSent(true); })}
         >
-          <Field id="reset-email" label="Email" error={errors.email?.message}>
+          <Field id="reset-email" label={t('Email')} error={tr(errors.email?.message)}>
             <Input id="reset-email" type="email" autoComplete="email" invalid={!!errors.email} {...register('email')} />
           </Field>
           <Button type="submit" variant="primary" disabled={isSubmitting}>
-            {isSubmitting ? 'Sending…' : 'Send reset link'}
+            {isSubmitting ? t('Sending…') : t('Send reset link')}
           </Button>
         </form>
       )}
       <p className="mt-4 text-xs text-haze">
-        <a href="/portal/login" className="underline underline-offset-4 hover:text-paper">Back to sign in</a>
+        <a href="/portal/login" className="underline underline-offset-4 hover:text-paper">{t('Back to sign in')}</a>
       </p>
     </AuthShell>
   );
@@ -170,21 +175,21 @@ export function ResetPasswordPage() {
   } = useForm<z.infer<typeof newPasswordSchema>>({ resolver: zodResolver(newPasswordSchema) });
 
   return (
-    <AuthShell title="Choose a new password" lede="Twelve characters or more, with a mix of cases and a number.">
+    <AuthShell title={t('Choose a new password')} lede={t('Twelve characters or more, with a mix of cases and a number.')}>
       <form
         noValidate
         className="grid gap-4"
         onSubmit={handleSubmit(async (v) => {
           setFormError(null);
           const { error } = await updatePassword(v.password);
-          if (error) setFormError('That link has expired or has already been used. Request a new one.');
+          if (error) setFormError(t('That link has expired or has already been used. Request a new one.'));
           else navigate('/', { replace: true });
         })}
       >
-        <Field id="new-password" label="New password" error={errors.password?.message}>
+        <Field id="new-password" label={t('New password')} error={tr(errors.password?.message)}>
           <Input id="new-password" type="password" autoComplete="new-password" invalid={!!errors.password} {...register('password')} />
         </Field>
-        <Field id="confirm-password" label="Confirm password" error={errors.confirm?.message}>
+        <Field id="confirm-password" label={t('Confirm password')} error={tr(errors.confirm?.message)}>
           <Input id="confirm-password" type="password" autoComplete="new-password" invalid={!!errors.confirm} {...register('confirm')} />
         </Field>
         {formError && (
@@ -193,7 +198,7 @@ export function ResetPasswordPage() {
           </p>
         )}
         <Button type="submit" variant="primary" disabled={isSubmitting}>
-          {isSubmitting ? 'Saving…' : 'Save password'}
+          {isSubmitting ? t('Saving…') : t('Save password')}
         </Button>
       </form>
     </AuthShell>

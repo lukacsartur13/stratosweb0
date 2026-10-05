@@ -1,0 +1,310 @@
+{
+ "Top level": {
+  "hu": "Legfelső szint",
+  "de": "Oberste Ebene"
+ },
+ "Documents": {
+  "hu": "Dokumentumok",
+  "de": "Dokumente"
+ },
+ "Trash": {
+  "hu": "Kuka",
+  "de": "Papierkorb"
+ },
+ "{n} items · {size} still stored": {
+  "hu": "{n} elem · {size} még tárolva",
+  "de": "{n} Elemente · {size} noch gespeichert"
+ },
+ "{n} file · {size}": {
+  "hu": "{n} fájl · {size}",
+  "de": "{n} Datei · {size}"
+ },
+ "{n} files · {size}": {
+  "hu": "{n} fájl · {size}",
+  "de": "{n} Dateien · {size}"
+ },
+ "Folder": {
+  "hu": "Mappa",
+  "de": "Ordner"
+ },
+ "Upload files": {
+  "hu": "Fájlok feltöltése",
+  "de": "Dateien hochladen"
+ },
+ "Upload": {
+  "hu": "Feltöltés",
+  "de": "Hochladen"
+ },
+ "Close trash": {
+  "hu": "Kuka bezárása",
+  "de": "Papierkorb schließen"
+ },
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Supabase credentials are not set in this environment.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase hozzáférési adatok.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt."
+ },
+ "The documents could not be read. The library may not be set up in this database yet.": {
+  "hu": "A dokumentumokat nem sikerült beolvasni. Lehet, hogy a dokumentumtár még nincs beállítva ebben az adatbázisban.",
+  "de": "Die Dokumente konnten nicht gelesen werden. Die Bibliothek ist in dieser Datenbank möglicherweise noch nicht eingerichtet."
+ },
+ "Folder path": {
+  "hu": "Mappa útvonala",
+  "de": "Ordnerpfad"
+ },
+ "Project files": {
+  "hu": "Projektfájlok",
+  "de": "Projektdateien"
+ },
+ "No documents yet. Upload files or drop them here — up to {max} each.": {
+  "hu": "Még nincs dokumentum. Tölts fel fájlokat, vagy húzd ide őket — egyenként legfeljebb {max}.",
+  "de": "Noch keine Dokumente. Laden Sie Dateien hoch oder ziehen Sie sie hierher — jeweils bis zu {max}."
+ },
+ "This folder is empty. Upload files or drop them here.": {
+  "hu": "Ez a mappa üres. Tölts fel fájlokat, vagy húzd ide őket.",
+  "de": "Dieser Ordner ist leer. Laden Sie Dateien hoch oder ziehen Sie sie hierher."
+ },
+ "Folder contents": {
+  "hu": "Mappa tartalma",
+  "de": "Ordnerinhalt"
+ },
+ "From clients": {
+  "hu": "Ügyfelektől",
+  "de": "Von Kunden"
+ },
+ "Share folder {name}": {
+  "hu": "{name} mappa megosztása",
+  "de": "Ordner {name} teilen"
+ },
+ "Rename folder {name}": {
+  "hu": "{name} mappa átnevezése",
+  "de": "Ordner {name} umbenennen"
+ },
+ "Move folder {name} to the trash": {
+  "hu": "{name} mappa áthelyezése a Kukába",
+  "de": "Ordner {name} in den Papierkorb verschieben"
+ },
+ "from {name}": {
+  "hu": "feltöltötte: {name}",
+  "de": "von {name}"
+ },
+ "a client": {
+  "hu": "egy ügyfél",
+  "de": "einem Kunden"
+ },
+ "Unfinished upload": {
+  "hu": "Befejezetlen feltöltés",
+  "de": "Unvollständiger Upload"
+ },
+ "Upload failed": {
+  "hu": "Sikertelen feltöltés",
+  "de": "Upload fehlgeschlagen"
+ },
+ "Upload the file again.": {
+  "hu": "Töltsd fel újra a fájlt.",
+  "de": "Laden Sie die Datei erneut hoch."
+ },
+ "Share {name}": {
+  "hu": "{name} megosztása",
+  "de": "{name} teilen"
+ },
+ "Preview {name}": {
+  "hu": "{name} előnézete",
+  "de": "Vorschau von {name}"
+ },
+ "Download {name}": {
+  "hu": "{name} letöltése",
+  "de": "{name} herunterladen"
+ },
+ "Rename {name}": {
+  "hu": "{name} átnevezése",
+  "de": "{name} umbenennen"
+ },
+ "Move {name}": {
+  "hu": "{name} áthelyezése",
+  "de": "{name} verschieben"
+ },
+ "Move {name} to the trash": {
+  "hu": "{name} áthelyezése a Kukába",
+  "de": "{name} in den Papierkorb verschieben"
+ },
+ "Upload with the button or by dropping files here. Up to {max} each: {types}. Each file is checked by its content, not only its name — it is not virus-scanned.": {
+  "hu": "Tölts fel a gombbal, vagy húzd ide a fájlokat. Egyenként legfeljebb {max}: {types}. Minden fájlt a tartalma alapján ellenőrzünk, nem csak a neve alapján — víruskeresés nincs.",
+  "de": "Laden Sie über die Schaltfläche hoch oder ziehen Sie Dateien hierher. Jeweils bis zu {max}: {types}. Jede Datei wird anhand ihres Inhalts geprüft, nicht nur anhand des Namens — ein Virenscan erfolgt nicht."
+ },
+ "Drop to upload into {folder}": {
+  "hu": "Engedd el a feltöltéshez ide: {folder}",
+  "de": "Loslassen, um in {folder} hochzuladen"
+ },
+ "the project’s top level": {
+  "hu": "a projekt legfelső szintje",
+  "de": "die oberste Ebene des Projekts"
+ },
+ "Restoring puts an item back where it was. Nothing here is ever deleted automatically — and every file in the trash still occupies storage until it is removed by hand in the Supabase dashboard.": {
+  "hu": "A visszaállítás az elemet az eredeti helyére teszi. Innen semmi sem törlődik automatikusan — és a Kukában lévő minden fájl foglalja a tárhelyet, amíg kézzel el nem távolítják a Supabase irányítópultján.",
+  "de": "Wiederherstellen legt ein Element an seinen ursprünglichen Ort zurück. Hier wird nie etwas automatisch gelöscht — und jede Datei im Papierkorb belegt weiterhin Speicher, bis sie im Supabase-Dashboard manuell entfernt wird."
+ },
+ "The trash is empty.": {
+  "hu": "A Kuka üres.",
+  "de": "Der Papierkorb ist leer."
+ },
+ "from {location} · {n} files inside · trashed {date}": {
+  "hu": "innen: {location} · {n} fájl benne · kukába téve: {date}",
+  "de": "aus {location} · {n} Dateien darin · gelöscht am {date}"
+ },
+ "from {location} · {size} · trashed {date}": {
+  "hu": "innen: {location} · {size} · kukába téve: {date}",
+  "de": "aus {location} · {size} · gelöscht am {date}"
+ },
+ "Restore": {
+  "hu": "Visszaállítás",
+  "de": "Wiederherstellen"
+ },
+ "New folder": {
+  "hu": "Új mappa",
+  "de": "Neuer Ordner"
+ },
+ "Rename folder": {
+  "hu": "Mappa átnevezése",
+  "de": "Ordner umbenennen"
+ },
+ "Rename file": {
+  "hu": "Fájl átnevezése",
+  "de": "Datei umbenennen"
+ },
+ "Inside {folder}.": {
+  "hu": "Helye: {folder}.",
+  "de": "In {folder}."
+ },
+ "Renaming never moves or copies the stored file.": {
+  "hu": "Az átnevezés soha nem helyezi át és nem másolja a tárolt fájlt.",
+  "de": "Umbenennen verschiebt oder kopiert die gespeicherte Datei nie."
+ },
+ "a folder": {
+  "hu": "egy mappa",
+  "de": "einen Ordner"
+ },
+ "via folder: {names}": {
+  "hu": "mappán keresztül: {names}",
+  "de": "über Ordner: {names}"
+ },
+ "Sharing a folder gives access to everything in it — its subfolders and any file added later — for as long as it stays inside. Moving a file out ends that access.": {
+  "hu": "Egy mappa megosztása mindenhez hozzáférést ad benne — az almappákhoz és a később hozzáadott fájlokhoz is —, amíg bent maradnak. Ha egy fájlt kiviszel belőle, a hozzáférés megszűnik.",
+  "de": "Das Teilen eines Ordners gewährt Zugriff auf alles darin — Unterordner und später hinzugefügte Dateien —, solange es darin bleibt. Wird eine Datei herausverschoben, endet dieser Zugriff."
+ },
+ "Only this file. Files are private until shared; a client downloads with a one-minute link, and a copy already downloaded cannot be taken back.": {
+  "hu": "Csak ez a fájl. A fájlok megosztásig privátak; az ügyfél egyperces linkkel tölt le, és a már letöltött példány nem vonható vissza.",
+  "de": "Nur diese Datei. Dateien sind privat, bis sie geteilt werden; ein Kunde lädt über einen einminütigen Link herunter, und eine bereits heruntergeladene Kopie kann nicht zurückgenommen werden."
+ },
+ "Done": {
+  "hu": "Kész",
+  "de": "Erledigt"
+ },
+ "No client account is assigned to this project. Assign one on the client’s page first.": {
+  "hu": "Ehhez a projekthez nincs ügyfélfiók hozzárendelve. Előbb rendelj hozzá egyet az ügyfél oldalán.",
+  "de": "Diesem Projekt ist kein Kundenkonto zugewiesen. Weisen Sie zuerst auf der Seite des Kunden eines zu."
+ },
+ "Client accounts": {
+  "hu": "Ügyfélfiókok",
+  "de": "Kundenkonten"
+ },
+ "not linked yet": {
+  "hu": "még nincs összekapcsolva",
+  "de": "noch nicht verknüpft"
+ },
+ "Already sees it through “{folder}”.": {
+  "hu": "Már látja a(z) „{folder}” mappán keresztül.",
+  "de": "Sieht es bereits über „{folder}“."
+ },
+ "Stop sharing": {
+  "hu": "Megosztás leállítása",
+  "de": "Teilen beenden"
+ },
+ "Share": {
+  "hu": "Megosztás",
+  "de": "Teilen"
+ },
+ "Uploads": {
+  "hu": "Feltöltések",
+  "de": "Uploads"
+ },
+ "{done} of {total} uploaded": {
+  "hu": "{done}/{total} feltöltve",
+  "de": "{done} von {total} hochgeladen"
+ },
+ "Clear finished": {
+  "hu": "Befejezettek törlése a listából",
+  "de": "Abgeschlossene ausblenden"
+ },
+ "Retry": {
+  "hu": "Újra",
+  "de": "Wiederholen"
+ },
+ "Cancel {name}": {
+  "hu": "{name} megszakítása",
+  "de": "{name} abbrechen"
+ },
+ "{name} upload": {
+  "hu": "{name} feltöltése",
+  "de": "Upload von {name}"
+ },
+ "A name is required.": {
+  "hu": "Név megadása kötelező.",
+  "de": "Ein Name ist erforderlich."
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "de": "Abbrechen"
+ },
+ "Save": {
+  "hu": "Mentés",
+  "de": "Speichern"
+ },
+ "Within this project. If the folder already has a file of this name, the moved one is numbered.": {
+  "hu": "Ezen a projekten belül. Ha a mappában már van ilyen nevű fájl, az áthelyezett sorszámot kap.",
+  "de": "Innerhalb dieses Projekts. Hat der Ordner bereits eine Datei mit diesem Namen, wird die verschobene nummeriert."
+ },
+ "Move": {
+  "hu": "Áthelyezés",
+  "de": "Verschieben"
+ },
+ "Project files (top level)": {
+  "hu": "Projektfájlok (legfelső szint)",
+  "de": "Projektdateien (oberste Ebene)"
+ },
+ "Download": {
+  "hu": "Letöltés",
+  "de": "Herunterladen"
+ },
+ "Close": {
+  "hu": "Bezárás",
+  "de": "Schließen"
+ },
+ "Waiting": {
+  "hu": "Vár",
+  "de": "Wartet"
+ },
+ "Starting": {
+  "hu": "Indul",
+  "de": "Startet"
+ },
+ "Uploading": {
+  "hu": "Feltöltés",
+  "de": "Lädt hoch"
+ },
+ "Checking": {
+  "hu": "Ellenőrzés",
+  "de": "Wird geprüft"
+ },
+ "Uploaded": {
+  "hu": "Feltöltve",
+  "de": "Hochgeladen"
+ },
+ "Failed": {
+  "hu": "Sikertelen",
+  "de": "Fehlgeschlagen"
+ }
+}

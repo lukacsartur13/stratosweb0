@@ -1,0 +1,531 @@
+{
+ "{n} project in progress": {
+  "hu": "{n} projekt folyamatban",
+  "de": "{n} Projekt in Arbeit"
+ },
+ "{n} projects in progress": {
+  "hu": "{n} projekt folyamatban",
+  "de": "{n} Projekte in Arbeit"
+ },
+ "{n} closed project": {
+  "hu": "{n} lezárt projekt",
+  "de": "{n} abgeschlossenes Projekt"
+ },
+ "{n} closed projects": {
+  "hu": "{n} lezárt projekt",
+  "de": "{n} abgeschlossene Projekte"
+ },
+ "{n} Impact submission is not in the pipeline.": {
+  "hu": "{n} Impact-beküldés nincs a folyamatban.",
+  "de": "{n} Impact-Einsendung ist nicht in der Pipeline."
+ },
+ "{n} Impact submissions are not in the pipeline.": {
+  "hu": "{n} Impact-beküldés nincs a folyamatban.",
+  "de": "{n} Impact-Einsendungen sind nicht in der Pipeline."
+ },
+ "e.g. Zöld Kör Egyesület": {
+  "hu": "pl. Zöld Kör Egyesület",
+  "en": "e.g. Zöld Kör Egyesület",
+  "de": "z. B. Zöld Kör Egyesület"
+ },
+ "A project can be started once the application is accepted.": {
+  "hu": "Projekt akkor indítható, ha a jelentkezést elfogadtad.",
+  "de": "Ein Projekt kann gestartet werden, sobald die Bewerbung angenommen ist."
+ },
+ "A project lands here when it is closed — every checkpoint done and a market value recorded.": {
+  "hu": "Egy projekt lezáráskor kerül ide — minden mérföldkő kész, és a piaci érték rögzítve.",
+  "de": "Ein Projekt erscheint hier, wenn es abgeschlossen ist — alle Meilensteine erledigt und ein Marktwert erfasst."
+ },
+ "A project needs a name.": {
+  "hu": "A projektnek nevet kell adni.",
+  "de": "Ein Projekt braucht einen Namen."
+ },
+ "A project was started from this application. Its progress lives on the project:": {
+  "hu": "Ebből a jelentkezésből projekt indult. Az előrehaladása a projektnél követhető:",
+  "de": "Aus dieser Bewerbung wurde ein Projekt gestartet. Der Fortschritt wird am Projekt geführt:"
+ },
+ "Active Impact projects": {
+  "hu": "Aktív Impact-projektek",
+  "de": "Aktive Impact-Projekte"
+ },
+ "Active projects ({n})": {
+  "hu": "Aktív projektek ({n})",
+  "de": "Aktive Projekte ({n})"
+ },
+ "All applications": {
+  "hu": "Összes jelentkezés",
+  "de": "Alle Bewerbungen"
+ },
+ "All done": {
+  "hu": "Minden kész",
+  "de": "Alles erledigt"
+ },
+ "An Impact project is started from an accepted application.": {
+  "hu": "Impact-projekt elfogadott jelentkezésből indítható.",
+  "de": "Ein Impact-Projekt wird aus einer angenommenen Bewerbung gestartet."
+ },
+ "An application appears here the moment the Impact form is submitted.": {
+  "hu": "A jelentkezés abban a pillanatban megjelenik itt, amint beküldik az Impact-űrlapot.",
+  "de": "Eine Bewerbung erscheint hier, sobald das Impact-Formular abgeschickt wird."
+ },
+ "Answers": {
+  "hu": "Válaszok",
+  "de": "Antworten"
+ },
+ "Application pipeline": {
+  "hu": "Jelentkezési folyamat",
+  "de": "Bewerbungs-Pipeline"
+ },
+ "Application summary": {
+  "hu": "Jelentkezés összefoglalója",
+  "de": "Bewerbungsübersicht"
+ },
+ "Applications ({n})": {
+  "hu": "Jelentkezések ({n})",
+  "de": "Bewerbungen ({n})"
+ },
+ "Attach to an existing client": {
+  "hu": "Hozzárendelés meglévő ügyfélhez",
+  "de": "Einem bestehenden Kunden zuordnen"
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "de": "Abbrechen"
+ },
+ "Cancelled · not counted": {
+  "hu": "Megszakítva · nem számít bele",
+  "de": "Abgebrochen · nicht gezählt"
+ },
+ "Cancelled": {
+  "hu": "Megszakítva",
+  "de": "Abgebrochen"
+ },
+ "Checkpoints": {
+  "hu": "Mérföldkövek",
+  "de": "Meilensteine"
+ },
+ "Choose a client, or type the name of a new one.": {
+  "hu": "Válassz ügyfelet, vagy írd be egy új nevét.",
+  "de": "Wählen Sie einen Kunden oder geben Sie den Namen eines neuen ein."
+ },
+ "Choose a client…": {
+  "hu": "Válassz ügyfelet…",
+  "de": "Kunden wählen…"
+ },
+ "Choose the client this project is for.": {
+  "hu": "Válaszd ki, melyik ügyfélé a projekt.",
+  "de": "Wählen Sie den Kunden für dieses Projekt."
+ },
+ "Client name": {
+  "hu": "Ügyfél neve",
+  "de": "Kundenname"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "Closed Impact projects": {
+  "hu": "Lezárt Impact-projektek",
+  "de": "Abgeschlossene Impact-Projekte"
+ },
+ "Closed projects ({n})": {
+  "hu": "Lezárt projektek ({n})",
+  "de": "Abgeschlossene Projekte ({n})"
+ },
+ "Closed": {
+  "hu": "Lezárt",
+  "de": "Abgeschlossen"
+ },
+ "Committed support": {
+  "hu": "Vállalt támogatás",
+  "de": "Zugesagte Unterstützung"
+ },
+ "Conflicts to review": {
+  "hu": "Átnézendő ütközések",
+  "de": "Zu prüfende Konflikte"
+ },
+ "Conflicts": {
+  "hu": "Ütközések",
+  "de": "Konflikte"
+ },
+ "Contact": {
+  "hu": "Kapcsolattartó",
+  "de": "Kontakt"
+ },
+ "Copied into the project — editing the template later never changes them.": {
+  "hu": "Bemásolódnak a projektbe — a sablon későbbi szerkesztése nem változtat rajtuk.",
+  "de": "Werden ins Projekt kopiert — spätere Änderungen an der Vorlage ändern sie nie."
+ },
+ "Copied into the project. Everything is editable afterwards.": {
+  "hu": "Bemásolódnak a projektbe. Utána minden szerkeszthető.",
+  "de": "Werden ins Projekt kopiert. Danach ist alles bearbeitbar."
+ },
+ "Create a new client": {
+  "hu": "Új ügyfél létrehozása",
+  "de": "Neuen Kunden anlegen"
+ },
+ "Create": {
+  "hu": "Létrehozás",
+  "de": "Erstellen"
+ },
+ "Creates the project and marks the application as started, together. Free: no fee, invoice or payment can be recorded on it.": {
+  "hu": "Egyszerre létrehozza a projektet, és elindítottnak jelöli a jelentkezést. Ingyenes: nem rögzíthető rajta díj, számla vagy befizetés.",
+  "de": "Legt das Projekt an und markiert die Bewerbung zugleich als gestartet. Kostenlos: Gebühr, Rechnung oder Zahlung können nicht erfasst werden."
+ },
+ "Current step": {
+  "hu": "Aktuális lépés",
+  "de": "Aktueller Schritt"
+ },
+ "Deadline": {
+  "hu": "Határidő",
+  "de": "Frist"
+ },
+ "Deal: {title} ({stage})": {
+  "hu": "Üzlet: {title} ({stage})",
+  "de": "Verkaufschance: {title} ({stage})"
+ },
+ "Decision note": {
+  "hu": "Döntési jegyzet",
+  "de": "Entscheidungsnotiz"
+ },
+ "Decision": {
+  "hu": "Döntés",
+  "de": "Entscheidung"
+ },
+ "Delivered": {
+  "hu": "Teljesítve",
+  "de": "Geliefert"
+ },
+ "Email": {
+  "hu": "E-mail",
+  "de": "E-Mail"
+ },
+ "Every application": {
+  "hu": "Minden jelentkezés",
+  "de": "Alle Bewerbungen"
+ },
+ "Existing client": {
+  "hu": "Meglévő ügyfél",
+  "de": "Bestehender Kunde"
+ },
+ "Field": {
+  "hu": "Terület",
+  "de": "Bereich"
+ },
+ "For free work agreed outside the Impact form. It is counted with the other Impact projects and is never billed.": {
+  "hu": "Az Impact-űrlapon kívül egyeztetett ingyenes munkához. A többi Impact-projekttel együtt számít, és soha nem számlázzuk.",
+  "de": "Für kostenlose Arbeit, die außerhalb des Impact-Formulars vereinbart wurde. Sie wird mit den anderen Impact-Projekten gezählt und nie abgerechnet."
+ },
+ "Impact application · free": {
+  "hu": "Impact-jelentkezés · ingyenes",
+  "de": "Impact-Bewerbung · kostenlos"
+ },
+ "Impact applications": {
+  "hu": "Impact-jelentkezések",
+  "de": "Impact-Bewerbungen"
+ },
+ "Impact is always free. Market value is what the donated work would have cost — not revenue, not an amount owed. Both figures are summed from the projects on every load; archiving changes neither.": {
+  "hu": "Az Impact mindig ingyenes. A piaci érték az, amennyibe a felajánlott munka került volna — nem bevétel, és nem tartozás. Mindkét számot minden betöltéskor a projektekből összegezzük; az archiválás egyiket sem változtatja meg.",
+  "de": "Impact ist immer kostenlos. Der Marktwert ist, was die gespendete Arbeit gekostet hätte — kein Umsatz, kein geschuldeter Betrag. Beide Zahlen werden bei jedem Laden aus den Projekten summiert; Archivieren ändert keine davon."
+ },
+ "Impact support": {
+  "hu": "Impact-támogatás",
+  "de": "Impact-Unterstützung"
+ },
+ "Impact views": {
+  "hu": "Impact-nézetek",
+  "de": "Impact-Ansichten"
+ },
+ "Impact · free": {
+  "hu": "Impact · ingyenes",
+  "de": "Impact · kostenlos"
+ },
+ "Lead status when brought across": {
+  "hu": "Lead állapota az átvételkor",
+  "de": "Lead-Status bei der Übernahme"
+ },
+ "Lead": {
+  "hu": "Lead",
+  "de": "Lead"
+ },
+ "Market value (HUF)": {
+  "hu": "Piaci érték (HUF)",
+  "de": "Marktwert (HUF)"
+ },
+ "Market value": {
+  "hu": "Piaci érték",
+  "de": "Marktwert"
+ },
+ "Match the service — {name} ({n} steps)": {
+  "hu": "Szolgáltatás szerint — {name} ({n} lépés)",
+  "de": "Passend zur Leistung — {name} ({n} Schritte)"
+ },
+ "Match the service": {
+  "hu": "Szolgáltatás szerint",
+  "de": "Passend zur Leistung"
+ },
+ "Missing from the pipeline": {
+  "hu": "Hiányzik a folyamatból",
+  "de": "Fehlt in der Pipeline"
+ },
+ "New Impact project": {
+  "hu": "Új Impact-projekt",
+  "de": "Neues Impact-Projekt"
+ },
+ "New client's name": {
+  "hu": "Az új ügyfél neve",
+  "de": "Name des neuen Kunden"
+ },
+ "New client…": {
+  "hu": "Új ügyfél…",
+  "de": "Neuer Kunde…"
+ },
+ "No Impact project in progress": {
+  "hu": "Nincs folyamatban Impact-projekt",
+  "de": "Kein Impact-Projekt in Arbeit"
+ },
+ "No application has this status.": {
+  "hu": "Egyik jelentkezés sincs ebben az állapotban.",
+  "de": "Keine Bewerbung hat diesen Status."
+ },
+ "No applications yet": {
+  "hu": "Még nincs jelentkezés",
+  "de": "Noch keine Bewerbungen"
+ },
+ "No checkpoints yet": {
+  "hu": "Még nincs mérföldkő",
+  "de": "Noch keine Meilensteine"
+ },
+ "No checkpoints": {
+  "hu": "Nincs mérföldkő",
+  "de": "Keine Meilensteine"
+ },
+ "No closed Impact project": {
+  "hu": "Nincs lezárt Impact-projekt",
+  "de": "Kein abgeschlossenes Impact-Projekt"
+ },
+ "No such application": {
+  "hu": "Nincs ilyen jelentkezés",
+  "de": "Keine solche Bewerbung"
+ },
+ "Not recorded": {
+  "hu": "Nincs rögzítve",
+  "de": "Nicht erfasst"
+ },
+ "Nothing in this view": {
+  "hu": "Ebben a nézetben nincs semmi",
+  "de": "Nichts in dieser Ansicht"
+ },
+ "Nothing is merged automatically. Attach to one of these if it is the same organisation.": {
+  "hu": "Semmi nem olvad össze automatikusan. Rendeld hozzá valamelyikhez, ha ugyanarról a szervezetről van szó.",
+  "de": "Nichts wird automatisch zusammengeführt. Ordnen Sie es einem davon zu, wenn es dieselbe Organisation ist."
+ },
+ "Open ({n})": {
+  "hu": "Nyitott ({n})",
+  "de": "Offen ({n})"
+ },
+ "Open applications": {
+  "hu": "Nyitott jelentkezések",
+  "de": "Offene Bewerbungen"
+ },
+ "Open the lead": {
+  "hu": "Lead megnyitása",
+  "de": "Lead öffnen"
+ },
+ "Organisation": {
+  "hu": "Szervezet",
+  "de": "Organisation"
+ },
+ "Original lead": {
+  "hu": "Eredeti lead",
+  "de": "Ursprünglicher Lead"
+ },
+ "Phone": {
+  "hu": "Telefon",
+  "de": "Telefon"
+ },
+ "Possible existing clients": {
+  "hu": "Lehetséges meglévő ügyfelek",
+  "de": "Mögliche bestehende Kunden"
+ },
+ "Programme": {
+  "hu": "Program",
+  "de": "Programm"
+ },
+ "Project name": {
+  "hu": "Projekt neve",
+  "de": "Projektname"
+ },
+ "Project {n}": {
+  "hu": "{n}. projekt",
+  "de": "Projekt {n}"
+ },
+ "Project": {
+  "hu": "Projekt",
+  "de": "Projekt"
+ },
+ "Received {when}": {
+  "hu": "Beérkezett: {when}",
+  "de": "Eingegangen: {when}"
+ },
+ "Received": {
+  "hu": "Beérkezett",
+  "de": "Eingegangen"
+ },
+ "Record": {
+  "hu": "Nyilvántartás",
+  "de": "Datensatz"
+ },
+ "Save note": {
+  "hu": "Jegyzet mentése",
+  "de": "Notiz speichern"
+ },
+ "Service": {
+  "hu": "Szolgáltatás",
+  "de": "Leistung"
+ },
+ "Show": {
+  "hu": "Megjelenítés",
+  "de": "Anzeigen"
+ },
+ "Start Impact project": {
+  "hu": "Impact-projekt indítása",
+  "de": "Impact-Projekt starten"
+ },
+ "Start an Impact project": {
+  "hu": "Impact-projekt indítása",
+  "de": "Ein Impact-Projekt starten"
+ },
+ "Start project": {
+  "hu": "Projekt indítása",
+  "de": "Projekt starten"
+ },
+ "Start": {
+  "hu": "Kezdés",
+  "de": "Beginn"
+ },
+ "Starting checkpoints": {
+  "hu": "Kezdő mérföldkövek",
+  "de": "Anfangs-Meilensteine"
+ },
+ "Starting…": {
+  "hu": "Indítás…",
+  "de": "Wird gestartet…"
+ },
+ "State": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "Status": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "Supabase credentials are not set in this environment.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase hozzáférési adatok.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt."
+ },
+ "Support delivered": {
+  "hu": "Teljesített támogatás",
+  "de": "Geleistete Unterstützung"
+ },
+ "The Impact projects could not be read.": {
+  "hu": "Az Impact-projekteket nem sikerült beolvasni.",
+  "de": "Die Impact-Projekte konnten nicht gelesen werden."
+ },
+ "The leads are stored; their capture failed. Run": {
+  "hu": "A leadek el vannak tárolva, de a felvételük nem sikerült. Futtasd a(z)",
+  "de": "Die Leads sind gespeichert; ihre Erfassung ist fehlgeschlagen. Führen Sie"
+ },
+ "These came in through the Impact form but were already sold as paid deals before the Impact pipeline existed. Nothing was reclassified or deleted; decide each one by hand.": {
+  "hu": "Ezek az Impact-űrlapon érkeztek, de még az Impact-folyamat létrejötte előtt fizetős üzletként értékesítettük őket. Semmit nem soroltunk át és nem töröltünk; mindegyikről kézzel dönts.",
+  "de": "Diese kamen über das Impact-Formular, wurden aber vor Einführung der Impact-Pipeline bereits als bezahlte Verkaufschancen verkauft. Nichts wurde umklassifiziert oder gelöscht; entscheiden Sie jeden Fall von Hand."
+ },
+ "This application does not exist, or this account may not read it.": {
+  "hu": "Ez a jelentkezés nem létezik, vagy ez a fiók nem láthatja.",
+  "de": "Diese Bewerbung existiert nicht, oder dieses Konto darf sie nicht lesen."
+ },
+ "This submission carries no stored answers.": {
+  "hu": "Ehhez a beküldéshez nincsenek tárolt válaszok.",
+  "de": "Zu dieser Einsendung sind keine Antworten gespeichert."
+ },
+ "Unavailable": {
+  "hu": "Nem elérhető",
+  "de": "Nicht verfügbar"
+ },
+ "Unknown applicant": {
+  "hu": "Ismeretlen jelentkező",
+  "de": "Unbekannter Bewerber"
+ },
+ "Unnamed applicant": {
+  "hu": "Névtelen jelentkező",
+  "de": "Unbenannter Bewerber"
+ },
+ "Use this client": {
+  "hu": "Ez az ügyfél",
+  "de": "Diesen Kunden verwenden"
+ },
+ "Website": {
+  "hu": "Weboldal",
+  "de": "Website"
+ },
+ "What it would cost a paying client. Can be added later; needed before closing.": {
+  "hu": "Amennyibe egy fizető ügyfélnek kerülne. Később is megadható; lezárás előtt kötelező.",
+  "de": "Was es einen zahlenden Kunden kosten würde. Kann später ergänzt werden; vor dem Abschließen erforderlich."
+ },
+ "Why it was accepted, deferred or turned down. Owner-only.": {
+  "hu": "Miért fogadtad el, halasztottad el vagy utasítottad el. Csak a tulajdonos látja.",
+  "de": "Warum angenommen, zurückgestellt oder abgelehnt. Nur für den Inhaber."
+ },
+ "as submitted": {
+  "hu": "ahogy beküldték",
+  "de": "wie eingereicht"
+ },
+ "brought across from the lead list": {
+  "hu": "átvéve a leadlistából",
+  "de": "aus der Lead-Liste übernommen"
+ },
+ "e.g. 1 250 000": {
+  "hu": "pl. 1 250 000",
+  "de": "z. B. 1 250 000"
+ },
+ "fell through · not counted": {
+  "hu": "meghiúsult · nem számít bele",
+  "de": "gescheitert · nicht gezählt"
+ },
+ "in the SQL editor to add them — it never duplicates.": {
+  "hu": "parancsot az SQL-szerkesztőben a hozzáadásukhoz — sosem duplikál.",
+  "de": "im SQL-Editor aus, um sie hinzuzufügen — es entstehen nie Duplikate."
+ },
+ "never a paid opportunity": {
+  "hu": "soha nem fizetős üzlet",
+  "de": "nie eine bezahlte Verkaufschance"
+ },
+ "project": {
+  "hu": "projekt",
+  "de": "Projekt"
+ },
+ "since {date}": {
+  "hu": "{date} óta",
+  "de": "seit {date}"
+ },
+ "{name} ({n} steps)": {
+  "hu": "{name} ({n} lépés)",
+  "de": "{name} ({n} Schritte)"
+ },
+ "{n} accepted, awaiting a project": {
+  "hu": "{n} elfogadva, projektre vár",
+  "de": "{n} angenommen, wartet auf ein Projekt"
+ },
+ "{n} in progress without a market value — not in this figure": {
+  "hu": "{n} folyamatban lévő piaci érték nélkül — nincs benne ebben a számban",
+  "de": "{n} in Arbeit ohne Marktwert — nicht in dieser Zahl enthalten"
+ },
+ "{n} in the Trash — not shown, not counted": {
+  "hu": "{n} a Kukában — nem látszik, nem számít bele",
+  "de": "{n} im Papierkorb — nicht angezeigt, nicht gezählt"
+ },
+ "{n} of {total}": {
+  "hu": "{n} / {total}",
+  "de": "{n} von {total}"
+ }
+}

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { supabase, isConfigured, publicConfig } from '@/lib/supabase';
+import { t } from '@/lib/i18n';
 import {
   DOCUMENT_BUCKET, DOWNLOAD_URL_SECONDS, FAILURE_LABEL, MAX_DOCUMENT_BYTES, cleanFileName, documentRefusal,
   DOC_COLUMNS, FOLDER_COLUMNS, SNIFF_BYTES, checkUploadable, escapeLike, sniffPreview,
@@ -188,19 +189,19 @@ export async function downloadDocument(doc: Pick<Doc, 'storage_path' | 'name'>):
     .createSignedUrl(doc.storage_path, DOWNLOAD_URL_SECONDS, { download: true });
   if (error || !data?.signedUrl) {
     console.error('[documents.download]', error?.name ?? 'none');
-    return 'The download could not be started. Try again.';
+    return t('The download could not be started. Try again.');
   }
   let blob: Blob;
   try {
     const res = await fetch(data.signedUrl);
     if (!res.ok) {
       console.error('[documents.download]', res.status);
-      return 'The download could not be started. Try again.';
+      return t('The download could not be started. Try again.');
     }
     blob = new Blob([await res.arrayBuffer()], { type: 'application/octet-stream' });
   } catch {
     console.error('[documents.download]', 'network');
-    return 'The download could not be started. Try again.';
+    return t('The download could not be started. Try again.');
   }
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -220,11 +221,11 @@ Promise<{ kind: PreviewKind; blob: Blob; text?: string } | { error: string }> {
   const { data, error } = await supabase.storage.from(DOCUMENT_BUCKET).download(doc.storage_path);
   if (error || !data) {
     console.error('[documents.preview]', error?.name ?? 'none');
-    return { error: 'The file could not be read. Try downloading it.' };
+    return { error: t('The file could not be read. Try downloading it.') };
   }
   const head = new Uint8Array(await data.slice(0, 8192).arrayBuffer());
   const kind = sniffPreview(head, doc.name);
-  if (!kind) return { error: 'This file is not shown inside the Portal. Download it instead.' };
+  if (!kind) return { error: t('This file is not shown inside the Portal. Download it instead.') };
   if (kind.kind === 'text') {
     const text = new TextDecoder('utf-8').decode(await data.slice(0, 200_000).arrayBuffer());
     return { kind, blob: data, text };
@@ -339,10 +340,10 @@ export const OWNER_UPLOAD_API: UploadApi = {
 
 export const OWNER_UPLOAD_TEXT: UploadText = {
   refusal: documentRefusal,
-  failure: (reason) => FAILURE_LABEL[reason ?? ''] ?? FAILURE_LABEL.storage_refused,
+  failure: (reason) => t(FAILURE_LABEL[reason ?? ''] ?? FAILURE_LABEL.storage_refused),
   typeRefused: (v) => (v.code === 'extension'
-    ? (v.ext ? `.${v.ext} files are not accepted.` : 'Files without an extension are not accepted.')
-    : `This file's content does not match .${v.ext}, so it was not uploaded.`),
+    ? (v.ext ? t('.{ext} files are not accepted.', { ext: v.ext }) : t('Files without an extension are not accepted.'))
+    : t('This file\'s content does not match .{ext}, so it was not uploaded.', { ext: v.ext })),
   unconfirmed: 'The file was sent, but it could not be confirmed. Retry to check again.',
   unexpected: 'The upload stopped unexpectedly. Retry it.',
 };
@@ -461,7 +462,7 @@ export function useUploader(projectId: string, onChanged: () => void, api: Uploa
         // failed. Record it; the row keeps its name for a retry, and a later
         // finish or `document_reconcile()` completes it if the bytes did land.
         await api.mark(docId, 'failed', 'network');
-        patch(item.key, { phase: 'failed', message: outcome === 'error' ? text.unconfirmed : text.failure('network') });
+        patch(item.key, { phase: 'failed', message: outcome === 'error' ? t(text.unconfirmed) : text.failure('network') });
       }
       onChangedRef.current();
     } catch (e) {
@@ -474,7 +475,7 @@ export function useUploader(projectId: string, onChanged: () => void, api: Uploa
         return;
       }
       console.error('[documents.upload]', e instanceof Error ? e.name : 'error');
-      patch(item.key, { phase: 'failed', message: text.unexpected });
+      patch(item.key, { phase: 'failed', message: t(text.unexpected) });
     } finally {
       running.current.delete(item.key);
       pump();

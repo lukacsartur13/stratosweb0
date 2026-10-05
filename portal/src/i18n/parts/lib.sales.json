@@ -1,0 +1,42 @@
+{
+ "the pipeline": {
+  "hu": "a folyamat",
+  "de": "die Pipeline"
+ },
+ "this opportunity": {
+  "hu": "ez a lehetőség",
+  "de": "diese Verkaufschance"
+ },
+ "An opportunity needs a title.": {
+  "hu": "A lehetőséghez cím kell.",
+  "de": "Eine Verkaufschance braucht einen Titel."
+ },
+ "An opportunity needs a company or an existing client.": {
+  "hu": "A lehetőséghez cég vagy meglévő ügyfél kell.",
+  "de": "Eine Verkaufschance braucht eine Firma oder einen bestehenden Kunden."
+ },
+ "This action was already done or has changed. The list has been refreshed.": {
+  "hu": "Ezt a lépést már elvégezték, vagy időközben megváltozott. A listát frissítettük.",
+  "de": "Dieser Schritt wurde bereits erledigt oder hat sich geändert. Die Liste wurde aktualisiert."
+ },
+ "Any close date": {
+  "hu": "Bármely lezárási dátum",
+  "de": "Beliebiges Abschlussdatum"
+ },
+ "Overdue": {
+  "hu": "Lejárt",
+  "de": "Überfällig"
+ },
+ "This month": {
+  "hu": "Ebben a hónapban",
+  "de": "Diesen Monat"
+ },
+ "Next 90 days": {
+  "hu": "Következő 90 nap",
+  "de": "Nächste 90 Tage"
+ },
+ "No date set": {
+  "hu": "Nincs dátum",
+  "de": "Kein Datum"
+ }
+}

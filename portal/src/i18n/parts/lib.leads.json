@@ -1,0 +1,138 @@
+{
+ "New": {
+  "hu": "Új",
+  "de": "Neu"
+ },
+ "Contacted": {
+  "hu": "Megkeresve",
+  "de": "Kontaktiert"
+ },
+ "Qualified": {
+  "hu": "Minősített",
+  "de": "Qualifiziert"
+ },
+ "Proposal": {
+  "hu": "Ajánlat",
+  "de": "Angebot"
+ },
+ "Won": {
+  "hu": "Megnyert",
+  "de": "Gewonnen"
+ },
+ "Lost": {
+  "hu": "Elvesztett",
+  "de": "Verloren"
+ },
+ "Spam": {
+  "hu": "Spam",
+  "de": "Spam"
+ },
+ "Arrived and not yet answered.": {
+  "hu": "Beérkezett, még nem válaszoltunk.",
+  "de": "Eingegangen und noch nicht beantwortet."
+ },
+ "We have replied.": {
+  "hu": "Válaszoltunk.",
+  "de": "Wir haben geantwortet."
+ },
+ "A real fit, worth a proposal.": {
+  "hu": "Valóban illik hozzánk, megér egy ajánlatot.",
+  "de": "Passt wirklich, ein Angebot lohnt sich."
+ },
+ "A quote is with them.": {
+  "hu": "Megkapták az árajánlatot.",
+  "de": "Ein Angebot liegt ihnen vor."
+ },
+ "Became a client.": {
+  "hu": "Ügyfél lett.",
+  "de": "Ist Kunde geworden."
+ },
+ "Went elsewhere, or went quiet.": {
+  "hu": "Máshoz ment, vagy elhallgatott.",
+  "de": "Woanders hingegangen oder verstummt."
+ },
+ "Junk. Kept, not deleted.": {
+  "hu": "Szemét. Megtartva, nem törölve.",
+  "de": "Müll. Aufbewahrt, nicht gelöscht."
+ },
+ "Newsletter": {
+  "hu": "Hírlevél",
+  "de": "Newsletter"
+ },
+ "Contact": {
+  "hu": "Kapcsolattartó",
+  "de": "Kontakt"
+ },
+ "Questionnaire": {
+  "hu": "Kérdőív",
+  "de": "Fragebogen"
+ },
+ "Website": {
+  "hu": "Weboldal",
+  "de": "Website"
+ },
+ "Any date": {
+  "hu": "Bármikor",
+  "de": "Beliebiges Datum"
+ },
+ "Today": {
+  "hu": "Ma",
+  "de": "Heute"
+ },
+ "Last 7 days": {
+  "hu": "Elmúlt 7 nap",
+  "de": "Letzte 7 Tage"
+ },
+ "Last 30 days": {
+  "hu": "Elmúlt 30 nap",
+  "de": "Letzte 30 Tage"
+ },
+ "Last 90 days": {
+  "hu": "Elmúlt 90 nap",
+  "de": "Letzte 90 Tage"
+ },
+ "Enquiry received": {
+  "hu": "Érdeklődés beérkezett",
+  "de": "Anfrage eingegangen"
+ },
+ "Note added": {
+  "hu": "Jegyzet hozzáadva",
+  "de": "Notiz hinzugefügt"
+ },
+ "Status {from} → {to}": {
+  "hu": "Állapot: {from} → {to}",
+  "de": "Status {from} → {to}"
+ },
+ "Notification sent": {
+  "hu": "Értesítés elküldve",
+  "de": "Benachrichtigung gesendet"
+ },
+ "Notification not sent": {
+  "hu": "Értesítés nem ment ki",
+  "de": "Benachrichtigung nicht gesendet"
+ },
+ "Notification attempted": {
+  "hu": "Értesítés megkísérelve",
+  "de": "Benachrichtigung versucht"
+ },
+ "The database refused that change. Check that your account may edit leads.": {
+  "hu": "Az adatbázis elutasította a módosítást. Ellenőrizd, hogy a fiókod szerkesztheti-e a leadeket.",
+  "de": "Die Datenbank hat diese Änderung abgelehnt. Prüfen Sie, ob Ihr Konto Leads bearbeiten darf."
+ },
+ "Write something first.": {
+  "hu": "Előbb írj valamit.",
+  "de": "Bitte schreiben Sie zuerst etwas."
+ },
+ "Your session has expired. Sign in again.": {
+  "hu": "Lejárt a munkameneted. Jelentkezz be újra.",
+  "de": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."
+ },
+ "Notes are not set up in this database yet. Run the migrations in supabase/migrations.": {
+  "hu": "A jegyzetek még nincsenek beállítva ebben az adatbázisban. Futtasd a supabase/migrations migrációit.",
+  "de": "Notizen sind in dieser Datenbank noch nicht eingerichtet. Führen Sie die Migrationen in supabase/migrations aus."
+ },
+ "The database refused that note.": {
+  "hu": "Az adatbázis elutasította a jegyzetet.",
+  "de": "Die Datenbank hat diese Notiz abgelehnt."
+ }
+}

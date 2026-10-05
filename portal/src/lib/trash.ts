@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
+import { t } from '@/lib/i18n';
 
 /**
  * The Trash — deleting projects, clients and leads from the Portal
@@ -28,18 +29,18 @@ export function trashRefusal(error: { code?: string; message?: string; details?:
   console.error('[trash]', error.code, error.message);
   const m = error.message ?? '';
   if (m.includes('stratos:purge_blocked')) {
-    return `It cannot be deleted permanently while it has: ${error.details ?? 'linked records'}. Keep it in the Trash, or remove those first.`;
+    return t('It cannot be deleted permanently while it has: {details}. Keep it in the Trash, or remove those first.', { details: error.details ?? t('linked records') });
   }
-  if (m.includes('stratos:purge_not_trashed')) return 'Move it to the Trash first.';
+  if (m.includes('stratos:purge_not_trashed')) return t('Move it to the Trash first.');
   if (error.code === '23503' || error.code === '23001') {
-    return 'It is still linked to another record (for example an Impact application), so it cannot be deleted permanently. Keep it in the Trash.';
+    return t('It is still linked to another record (for example an Impact application), so it cannot be deleted permanently. Keep it in the Trash.');
   }
-  if (m.includes('stratos:purge_missing')) return 'It no longer exists — it may have been deleted already.';
-  if (m.includes('stratos:purge_forbidden') || error.code === '42501') return 'This account may not delete it permanently.';
+  if (m.includes('stratos:purge_missing')) return t('It no longer exists — it may have been deleted already.');
+  if (m.includes('stratos:purge_forbidden') || error.code === '42501') return t('This account may not delete it permanently.');
   if (error.code === 'PGRST202' || error.code === '42883') {
-    return 'The Trash is not installed in the database yet (20261007000100_trash.sql).';
+    return t('The Trash is not installed in the database yet (20261007000100_trash.sql).');
   }
-  return 'The database refused that change. Check that your account may edit this data.';
+  return t('The database refused that change. Check that your account may edit this data.');
 }
 
 export function useTrashMutations(onChanged: () => void) {
@@ -53,7 +54,7 @@ export function useTrashMutations(onChanged: () => void) {
       .update({ [column]: new Date().toISOString() }).eq('id', id).is(column, null).select('id');
     setBusy(null);
     if (error) return trashRefusal(error);
-    if (!data || data.length === 0) return 'It is already in the Trash, or this account may not change it.';
+    if (!data || data.length === 0) return t('It is already in the Trash, or this account may not change it.');
     onChanged();
     return null;
   }, [onChanged]);

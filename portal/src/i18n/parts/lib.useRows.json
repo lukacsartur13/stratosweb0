@@ -1,0 +1,10 @@
+{
+ "That table does not exist yet. Run the migrations in supabase/migrations.": {
+  "hu": "Ez a tábla még nem létezik. Futtasd le a supabase/migrations migrációit.",
+  "de": "Diese Tabelle existiert noch nicht. Führen Sie die Migrationen in supabase/migrations aus."
+ },
+ "The database refused the request. Check that you have permission for this data.": {
+  "hu": "Az adatbázis elutasította a kérést. Ellenőrizd, hogy van-e jogosultságod ezekhez az adatokhoz.",
+  "de": "Die Datenbank hat die Anfrage abgelehnt. Prüfen Sie, ob Sie für diese Daten berechtigt sind."
+ }
+}

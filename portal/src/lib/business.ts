@@ -3,6 +3,7 @@ import { supabase, isConfigured } from '@/lib/supabase';
 import { defaultProbability, type SummaryRow } from '@/lib/pipeline';
 import { refusal as classify, type DbFailure } from '@/lib/dbError';
 import { metaText, type Lead } from '@/lib/leads';
+import { t } from '@/lib/i18n';
 
 /**
  * The reads the DASHBOARD makes, and the two cross-record lookups the LEADS
@@ -98,7 +99,7 @@ export function useSalesSummary(enabled = true, reloadToken = 0) {
       // `migration_missing` — the honest answer, and the one the Portal spent
       // this whole phase not giving.
       const { failure: cause, message: sentence } = classify(
-        'portal_sales_summary', error, 'the pipeline summary',
+        'portal_sales_summary', error, t('the pipeline summary'),
       );
       setState('error');
       setFailure(cause);

@@ -13,6 +13,7 @@ import {
 } from '@/lib/documents';
 import { ProjectLibrary } from '@/features/documents/ProjectLibrary';
 import { ProjectFacts } from '@/features/documents/ProjectFacts';
+import { t, tc } from '@/lib/i18n';
 
 /**
  * DOCUMENTS — the owner's private document library.
@@ -59,17 +60,17 @@ export function DocumentsScreen() {
   return (
     <div className="grid gap-4">
       {/* ------------------------------------------------- file search */}
-      <Panel aria-label="Find a file">
+      <Panel aria-label={t('Find a file')}>
         <SectionHeader
-          title="Find a file"
-          note={fileQuery.trim().length >= 2 && search.state === 'ready' ? `${search.hits.length}${search.hits.length === 50 ? '+' : ''} found` : 'every project'}
+          title={t('Find a file')}
+          note={fileQuery.trim().length >= 2 && search.state === 'ready' ? t('{n} found', { n: `${search.hits.length}${search.hits.length === 50 ? '+' : ''}` }) : t('every project')}
           action={
             <Input
               type="search"
               value={fileQuery}
               onChange={(e) => setFileQuery(e.target.value)}
-              placeholder="File name…"
-              aria-label="Search file names"
+              placeholder={t('File name…')}
+              aria-label={t('Search file names')}
               className="h-7 w-48 py-1 text-xs sm:w-72"
             />
           }
@@ -78,11 +79,11 @@ export function DocumentsScreen() {
           search.state === 'loading' ? (
             <div className="p-4" aria-busy="true"><Skeleton className="h-8 w-full" /></div>
           ) : search.state === 'error' ? (
-            <p role="alert" className="px-4 py-3 text-xs text-danger">The search could not be run.</p>
+            <p role="alert" className="px-4 py-3 text-xs text-danger">{t('The search could not be run.')}</p>
           ) : search.hits.length === 0 ? (
-            <p className="px-4 py-3 text-xs text-haze">No file name contains “{fileQuery.trim()}”.</p>
+            <p className="px-4 py-3 text-xs text-haze">{t('No file name contains “{q}”.', { q: fileQuery.trim() })}</p>
           ) : (
-            <ul className="grid" aria-label="Files found">
+            <ul className="grid" aria-label={t('Files found')}>
               {search.hits.map((h) => (
                 <li key={h.id} className="flex items-center justify-between gap-3 border-b border-hairline px-4 py-2 last:border-0">
                   <div className="min-w-0">
@@ -93,10 +94,10 @@ export function DocumentsScreen() {
                       {h.name}
                     </Link>
                     <p className="t-note">
-                      {h.project?.name ?? 'Project'}{h.folder ? ` / ${h.folder.name}` : ''} · {formatBytes(h.byte_size)} · {shortDate(h.completed_at)}
+                      {h.project?.name ?? t('Project')}{h.folder ? ` / ${h.folder.name}` : ''} · {formatBytes(h.byte_size)} · {shortDate(h.completed_at)}
                     </p>
                   </div>
-                  <Button size="sm" variant="quiet" aria-label={`Download ${h.name}`} onClick={() => void downloadDocument(h)}>
+                  <Button size="sm" variant="quiet" aria-label={t('Download {name}', { name: h.name })} onClick={() => void downloadDocument(h)}>
                     <Download size={11} aria-hidden="true" />
                   </Button>
                 </li>
@@ -109,22 +110,22 @@ export function DocumentsScreen() {
       {/* ------------------------------------------------ the projects */}
       <Panel className="min-w-0">
         <SectionHeader
-          title="Project folders"
-          note={state === 'ready' ? `${shown.length} · ${formatBytes(bytes.live)} stored` : undefined}
+          title={t('Project folders')}
+          note={state === 'ready' ? t('{n} · {size} stored', { n: shown.length, size: formatBytes(bytes.live) }) : undefined}
           action={
             <div className="flex flex-wrap items-center gap-2">
-              <label className="sr-only" htmlFor="documents-show">Show</label>
+              <label className="sr-only" htmlFor="documents-show">{t('Show')}</label>
               <Select id="documents-show" value={filter} onChange={(e) => setFilter(e.target.value as Filter)}>
-                <option value="open">Open projects</option>
-                <option value="closed">Closed, cancelled and archived</option>
-                <option value="all">Every project</option>
+                <option value="open">{t('Open projects')}</option>
+                <option value="closed">{t('Closed, cancelled and archived')}</option>
+                <option value="all">{t('Every project')}</option>
               </Select>
               <Input
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Project, client, service…"
-                aria-label="Search projects"
+                placeholder={t('Project, client, service…')}
+                aria-label={t('Search projects')}
                 className="h-7 w-44 py-1 text-xs sm:w-56"
               />
             </div>
@@ -134,24 +135,24 @@ export function DocumentsScreen() {
           <div className="space-y-1.5 p-4" aria-busy="true">{[0, 1, 2].map((i) => <Skeleton key={i} className="h-8 w-full" />)}</div>
         )}
         {state === 'unconfigured' && (
-          <DataState kind="unconfigured" title="Not connected" body="Supabase credentials are not set in this environment." />
+          <DataState kind="unconfigured" title={t('Not connected')} body={t('Supabase credentials are not set in this environment.')} />
         )}
         {state === 'error' && <ErrorState message={message} onRetry={reload} />}
         {state === 'ready' && shown.length === 0 && (
-          <DataState kind="empty" title={rows.length === 0 ? 'No projects yet' : 'Nothing matches'}
-                     body={rows.length === 0 ? 'Every project gets a document folder of its own.' : 'No project in this view matches.'} />
+          <DataState kind="empty" title={rows.length === 0 ? t('No projects yet') : t('Nothing matches')}
+                     body={rows.length === 0 ? t('Every project gets a document folder of its own.') : t('No project in this view matches.')} />
         )}
         {state === 'ready' && shown.length > 0 && (
-          <Table head={['Project', 'Client', 'Programme', 'Status', { label: 'Files', align: 'right' }]} minWidth={640}>
+          <Table head={[t('Project'), t('Client'), t('Programme'), t('Status'), { label: t('Files'), align: 'right' }]} minWidth={640}>
             {shown.map((p) => (
               <Row key={p.id} onClick={() => navigate(`/documents/${p.id}`)}>
                 <Cell>
                   <Link to={`/documents/${p.id}`} className="text-[13px] text-paper hover:text-signal">{p.name}</Link>
                 </Cell>
                 <Cell className="truncate text-[11px] text-haze">{p.client?.name ?? '—'}</Cell>
-                <Cell>{p.program === 'impact' ? <Badge tone="good">Impact</Badge> : <span className="text-[11px] text-haze">Paid</span>}</Cell>
+                <Cell>{p.program === 'impact' ? <Badge tone="good">Impact</Badge> : <span className="text-[11px] text-haze">{tc('programme', 'Paid')}</span>}</Cell>
                 <Cell className="text-[11px] text-haze">
-                  {isClosedProject(p) ? 'Closed' : projectStatusLabel(p.status)}{p.archived_at ? ' · archived' : ''}
+                  {isClosedProject(p) ? t('Closed') : projectStatusLabel(p.status)}{p.archived_at ? ` · ${t('archived')}` : ''}
                 </Cell>
                 <Cell align="right" className="num text-xs text-haze">{counts[p.id] ?? 0}</Cell>
               </Row>
@@ -176,34 +177,33 @@ function Housekeeping({ trashedBytes }: { trashedBytes: number }) {
   const byKind = (rows: StorageReportRow[], kind: StorageReportRow['kind']) => rows.filter((r) => r.kind === kind);
 
   return (
-    <Panel aria-label="Storage housekeeping">
+    <Panel aria-label={t('Storage housekeeping')}>
       <SectionHeader
-        title="Storage housekeeping"
-        note={`${formatBytes(trashedBytes)} in the trash`}
-        action={<Button size="sm" onClick={() => void run()} disabled={busy}>{busy ? 'Checking…' : 'Check uploads'}</Button>}
+        title={t('Storage housekeeping')}
+        note={t('{size} in the trash', { size: formatBytes(trashedBytes) })}
+        action={<Button size="sm" onClick={() => void run()} disabled={busy}>{busy ? t('Checking…') : t('Check uploads')}</Button>}
       />
       <div className="grid gap-2 px-4 py-3 text-xs text-haze">
         <p>
-          Files in the trash still occupy storage: the trash is reversible, so nothing is ever deleted automatically
-          and there is no permanent-delete button. Remove a file for good by hand in the Supabase dashboard
-          (Storage → project-documents), after checking the report below.
+          {t('Files in the trash still occupy storage: the trash is reversible, so nothing is ever deleted automatically and there is no permanent-delete button. Remove a file for good by hand in the Supabase dashboard (Storage → project-documents), after checking the report below.')}
         </p>
         {result && 'error' in result && <p role="alert" className="text-danger">{result.error}</p>}
         {result && !('error' in result) && (
-          <ul className="grid gap-1 text-paper" aria-label="Storage report">
-            <li>{result.finished} unfinished upload{result.finished === 1 ? '' : 's'} completed; {result.expired} expired.</li>
+          <ul className="grid gap-1 text-paper" aria-label={t('Storage report')}>
+            <li>{t(result.finished === 1 ? '{n} unfinished upload completed; {expired} expired.' : '{n} unfinished uploads completed; {expired} expired.', { n: result.finished, expired: result.expired })}</li>
             {(['orphan_object', 'missing_object', 'changed_object', 'unfinished_object', 'trashed_object'] as const).map((k) => {
               const rows = byKind(result.report, k);
+              const n = rows.length;
               const label = {
-                orphan_object: 'stored objects with no document',
-                missing_object: 'documents whose stored file is missing',
-                changed_object: 'documents whose stored file changed size since upload',
-                unfinished_object: 'stored objects of failed uploads',
-                trashed_object: 'trashed documents still stored',
+                orphan_object: t('{n} stored objects with no document', { n }),
+                missing_object: t('{n} documents whose stored file is missing', { n }),
+                changed_object: t('{n} documents whose stored file changed size since upload', { n }),
+                unfinished_object: t('{n} stored objects of failed uploads', { n }),
+                trashed_object: t('{n} trashed documents still stored', { n }),
               }[k];
               return (
                 <li key={k} className={cn(rows.length > 0 && k !== 'trashed_object' && 'text-signal')}>
-                  {rows.length} {label}{rows.length > 0 ? ` · ${formatBytes(rows.reduce((n, r) => n + Number(r.byte_size ?? 0), 0))}` : ''}
+                  {label}{rows.length > 0 ? ` · ${formatBytes(rows.reduce((n, r) => n + Number(r.byte_size ?? 0), 0))}` : ''}
                   {rows.length > 0 && k !== 'trashed_object' && (
                     <span className="t-note block break-all">{rows.slice(0, 5).map((r) => r.document_name ?? r.storage_path).join(', ')}{rows.length > 5 ? '…' : ''}</span>
                   )}
@@ -235,7 +235,7 @@ export function DocumentsProjectScreen() {
   return (
     <div className="grid gap-4">
       <Link to="/documents" className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper">
-        <ArrowLeft size={11} aria-hidden="true" /> All project folders
+        <ArrowLeft size={11} aria-hidden="true" /> {t('All project folders')}
       </Link>
       <Grid>
         <div className="col-span-12 min-w-0 lg:col-span-8">

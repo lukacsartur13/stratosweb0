@@ -1,0 +1,118 @@
+{
+ "The value must be a number, and not a negative one.": {
+  "hu": "Az értéknek számnak kell lennie, és nem lehet negatív.",
+  "de": "Der Wert muss eine Zahl sein und darf nicht negativ sein."
+ },
+ "Convert to opportunity": {
+  "hu": "Átalakítás lehetőséggé",
+  "de": "In Verkaufschance umwandeln"
+ },
+ "New opportunity": {
+  "hu": "Új lehetőség",
+  "de": "Neue Verkaufschance"
+ },
+ "The company, contact and attribution are carried over from the lead. The enquiry itself stays on the lead and is not copied.": {
+  "hu": "A cég, a kapcsolattartó és a forrásadatok átkerülnek a leadből. Maga az érdeklődés a leadnél marad, nem másoljuk át.",
+  "de": "Firma, Kontakt und Zuordnung werden aus dem Lead übernommen. Die Anfrage selbst bleibt beim Lead und wird nicht kopiert."
+ },
+ "For a conversation that did not start on the website. Everything else can be filled in afterwards.": {
+  "hu": "Olyan beszélgetéshez, amely nem a weboldalon indult. Minden más később is kitölthető.",
+  "de": "Für ein Gespräch, das nicht über die Website begonnen hat. Alles Weitere kann später ergänzt werden."
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "de": "Abbrechen"
+ },
+ "Create opportunity": {
+  "hu": "Lehetőség létrehozása",
+  "de": "Verkaufschance erstellen"
+ },
+ "Create": {
+  "hu": "Létrehozás",
+  "de": "Erstellen"
+ },
+ "Title": {
+  "hu": "Cím",
+  "de": "Titel"
+ },
+ "Rapidkert — website relaunch": {
+  "hu": "Rapidkert — weboldal-megújítás",
+  "de": "Rapidkert — Website-Relaunch"
+ },
+ "Company": {
+  "hu": "Cég",
+  "de": "Firma"
+ },
+ "Service": {
+  "hu": "Szolgáltatás",
+  "de": "Leistung"
+ },
+ "Website, Ads, Branding…": {
+  "hu": "Weboldal, hirdetések, arculat…",
+  "de": "Website, Ads, Branding…"
+ },
+ "Contact": {
+  "hu": "Kapcsolattartó",
+  "de": "Kontakt"
+ },
+ "Contact email": {
+  "hu": "Kapcsolattartó e-mail-címe",
+  "de": "Kontakt-E-Mail"
+ },
+ "Estimated value": {
+  "hu": "Becsült érték",
+  "de": "Geschätzter Wert"
+ },
+ "Leave empty if unknown": {
+  "hu": "Hagyd üresen, ha nem ismert",
+  "de": "Leer lassen, falls unbekannt"
+ },
+ "Currency": {
+  "hu": "Pénznem",
+  "de": "Währung"
+ },
+ "Stage": {
+  "hu": "Szakasz",
+  "de": "Phase"
+ },
+ "Expected close": {
+  "hu": "Várható lezárás",
+  "de": "Erwarteter Abschluss"
+ },
+ "Next action": {
+  "hu": "Következő lépés",
+  "de": "Nächster Schritt"
+ },
+ "Discovery call": {
+  "hu": "Felmérő hívás",
+  "de": "Erstgespräch"
+ },
+ "Next action date": {
+  "hu": "Következő lépés dátuma",
+  "de": "Datum nächster Schritt"
+ },
+ "Qualified": {
+  "hu": "Minősített",
+  "de": "Qualifiziert"
+ },
+ "Discovery": {
+  "hu": "Felmérés",
+  "de": "Bedarfsanalyse"
+ },
+ "Proposal": {
+  "hu": "Ajánlat",
+  "de": "Angebot"
+ },
+ "Negotiation": {
+  "hu": "Tárgyalás",
+  "de": "Verhandlung"
+ },
+ "Won": {
+  "hu": "Megnyert",
+  "de": "Gewonnen"
+ },
+ "Lost": {
+  "hu": "Elvesztett",
+  "de": "Verloren"
+ }
+}

@@ -27,7 +27,16 @@ import path from 'node:path';
  */
 
 const SRC = path.join(process.cwd(), 'portal', 'src');
-const read = (...parts: string[]) => fs.readFileSync(path.join(SRC, ...parts), 'utf8');
+/**
+ * The source as it reads before translation (portal/src/lib/i18n.ts): every
+ * `{t('X')}` prop back to `"X"` and every `t('X')` to `'X'`. These checks are
+ * about which words and which structure a screen has, and wrapping a word for
+ * translation changes neither.
+ */
+const untranslated = (source: string) => source
+  .replace(/=\{t\('((?:[^'\\]|\\.)*)'\)\}/g, '="$1"')
+  .replace(/\bt\('((?:[^'\\]|\\.)*)'\)/g, "'$1'");
+const read = (...parts: string[]) => untranslated(fs.readFileSync(path.join(SRC, ...parts), 'utf8'));
 
 /** Comments stripped: a doc comment naming a hazard is not an occurrence of it. */
 const code = (...parts: string[]) =>

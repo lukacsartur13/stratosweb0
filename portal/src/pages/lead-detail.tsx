@@ -15,6 +15,7 @@ import {
   statusTone, useLead, useLeadDetail, useLeadMutations, type Lead, type Stage, type TimelineEntry,
 } from '@/lib/leads';
 import { draftFromLead } from '@/lib/business';
+import { t } from '@/lib/i18n';
 // The conversion dialog is a form nobody sees until they press a button, on a
 // screen that IS in the entry bundle. Lazy, so opening a lead does not download
 // a dialog most lead views never open.
@@ -86,8 +87,8 @@ export function LeadDetailScreen() {
       <Panel>
         <DataState
           kind="unconfigured"
-          title="Not connected"
-          body="Supabase credentials are not set in this environment, so there is nothing to read yet."
+          title={t('Not connected')}
+          body={t('Supabase credentials are not set in this environment, so there is nothing to read yet.')}
         />
       </Panel>
     );
@@ -98,11 +99,11 @@ export function LeadDetailScreen() {
       <Panel>
         <DataState
           kind={state === 'error' ? 'unavailable' : 'empty'}
-          title={state === 'error' ? 'Unavailable' : 'No such lead'}
+          title={state === 'error' ? t('Unavailable') : t('No such lead')}
           body={state === 'error'
-            ? 'The lead could not be read right now.'
-            : 'This lead does not exist, or this account may not read it.'}
-          action={<Button size="sm" onClick={() => window.history.back()}>Back</Button>}
+            ? t('The lead could not be read right now.')
+            : t('This lead does not exist, or this account may not read it.')}
+          action={<Button size="sm" onClick={() => window.history.back()}>{t('Back')}</Button>}
         />
       </Panel>
     );
@@ -129,7 +130,7 @@ export function LeadDetailScreen() {
           to="/leads"
           className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper"
         >
-          <ArrowLeft size={11} aria-hidden="true" /> All leads
+          <ArrowLeft size={11} aria-hidden="true" /> {t('All leads')}
         </Link>
         <span className="flex flex-wrap items-center gap-2">
           {mayEdit && !lead.trashed_at && (
@@ -144,7 +145,7 @@ export function LeadDetailScreen() {
         {/* ============================================ 8/12 — the enquiry */}
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-8">
           <Panel>
-            <SectionHeader title="Enquiry" note={formatWhen(lead.created_at)} />
+            <SectionHeader title={t('Enquiry')} note={formatWhen(lead.created_at)} />
             <div className="px-4 py-3.5">
               <h2 className="text-lg text-paper">{lead.company || lead.name}</h2>
               <p className="mt-0.5 text-xs text-haze">
@@ -164,9 +165,9 @@ export function LeadDetailScreen() {
               )}
 
               <dl className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-3">
-                <Fact label="Service interest" value={lead.service_interest} />
-                <Fact label="Budget" value={lead.budget_range} />
-                <Fact label="Form" value={lead.form_type ? FORM_LABEL[lead.form_type] ?? lead.form_type : null} />
+                <Fact label={t('Service interest')} value={lead.service_interest} />
+                <Fact label={t('Budget')} value={lead.budget_range} />
+                <Fact label={t('Form')} value={lead.form_type ? (FORM_LABEL[lead.form_type] ? t(FORM_LABEL[lead.form_type]) : lead.form_type) : null} />
               </dl>
             </div>
           </Panel>
@@ -174,8 +175,8 @@ export function LeadDetailScreen() {
           {(answers.length > 0 || scalars.length > 0) && (
             <Panel>
               <SectionHeader
-                title="Answers"
-                note={answers.length > 0 ? `${answers.length} questions` : undefined}
+                title={t('Answers')}
+                note={answers.length > 0 ? t('{n} questions', { n: answers.length }) : undefined}
               />
               {scalars.length > 0 && (
                 <dl className="grid gap-x-6 gap-y-2 border-b border-hairline px-4 py-3 sm:grid-cols-3">
@@ -183,8 +184,8 @@ export function LeadDetailScreen() {
                     <Fact
                       key={k}
                       label={k}
-                      value={typeof v === 'boolean' ? (v ? 'Yes' : 'No')
-                        : Array.isArray(v) ? `${v.length} answers` : String(v ?? '')}
+                      value={typeof v === 'boolean' ? (v ? t('Yes') : t('No'))
+                        : Array.isArray(v) ? t('{n} answers', { n: v.length }) : String(v ?? '')}
                     />
                   ))}
                 </dl>
@@ -203,22 +204,22 @@ export function LeadDetailScreen() {
           )}
 
           <Panel>
-            <SectionHeader title="Activity" />
+            <SectionHeader title={t('Activity')} />
             {mayEdit && (
               <div className="border-b border-hairline px-4 py-3">
-                <label className="label mb-1.5 block" htmlFor={`note-${lead.id}`}>Internal note</label>
+                <label className="label mb-1.5 block" htmlFor={`note-${lead.id}`}>{t('Internal note')}</label>
                 <Textarea
                   id={`note-${lead.id}`}
                   value={draft}
                   onChange={(e) => setDraft(e.target.value)}
                   maxLength={4000}
-                  placeholder="Private to the team. Plain text."
+                  placeholder={t('Private to the team. Plain text.')}
                   className="min-h-16 text-xs"
                 />
                 <div className="mt-1.5 flex items-center justify-between gap-2">
                   <span className="num text-[10px] text-haze">{draft.length}/4000</span>
                   <Button size="sm" disabled={!draft.trim() || mutate.busy === lead.id} onClick={() => void submit()}>
-                    Add note
+                    {t('Add note')}
                   </Button>
                 </div>
               </div>
@@ -233,8 +234,7 @@ export function LeadDetailScreen() {
                   row have neither, and their timelines show only what they have
                   — which is better than inventing the rest. */}
               <p className="t-note mt-2.5">
-                Only recorded events appear here. Leads received before status changes were logged
-                show the arrival and nothing else.
+                {t('Only recorded events appear here. Leads received before status changes were logged show the arrival and nothing else.')}
               </p>
             </div>
           </Panel>
@@ -247,7 +247,7 @@ export function LeadDetailScreen() {
             : <Conversion lead={lead} mayConvert={mayConvert} />}
 
           <Panel>
-            <SectionHeader title="Stage" />
+            <SectionHeader title={t('Stage')} />
             <div className="px-4 py-3">
               {mayEdit ? (
                 <div className="flex flex-wrap gap-1">
@@ -266,7 +266,7 @@ export function LeadDetailScreen() {
                           : 'border-hair text-haze hover:bg-flare hover:text-paper',
                       )}
                     >
-                      {STATUS[stage].label}
+                      {t(STATUS[stage].label)}
                     </button>
                   ))}
                 </div>
@@ -274,25 +274,25 @@ export function LeadDetailScreen() {
                 <StatusPill tone={statusTone(lead.status)}>{statusLabel(lead.status)}</StatusPill>
               )}
               <p className="t-note mt-2">
-                {STATUS[lead.status]?.note ?? 'A status this Portal does not draw.'}
+                {STATUS[lead.status] ? t(STATUS[lead.status].note) : t('A status this Portal does not draw.')}
               </p>
               {error && <p role="alert" className="mt-1.5 text-[11px] text-danger">{error}</p>}
             </div>
           </Panel>
 
           <Panel>
-            <SectionHeader title="Origin" />
+            <SectionHeader title={t('Origin')} />
             <dl className="grid px-4 py-3">
-              <Line label="Received" value={formatWhen(lead.created_at)} />
-              <Line label="Source" value={leadSource(lead)} />
-              <Line label="Medium" value={metaText(lead, 'utmMedium')} />
-              <Line label="Campaign" value={metaText(lead, 'utmCampaign')} />
-              <Line label="Content" value={metaText(lead, 'utmContent')} />
-              <Line label="Term" value={metaText(lead, 'utmTerm')} />
-              <Line label="Landed on" value={metaText(lead, 'landingRoute')} />
-              <Line label="Submitted from" value={lead.source_route} />
-              <Line label="Locale" value={lead.locale} />
-              <Line label="Submission id" value={lead.submission_id} />
+              <Line label={t('Received')} value={formatWhen(lead.created_at)} />
+              <Line label={t('Source')} value={leadSource(lead)} />
+              <Line label={t('Medium')} value={metaText(lead, 'utmMedium')} />
+              <Line label={t('Campaign')} value={metaText(lead, 'utmCampaign')} />
+              <Line label={t('Content')} value={metaText(lead, 'utmContent')} />
+              <Line label={t('Term')} value={metaText(lead, 'utmTerm')} />
+              <Line label={t('Landed on')} value={metaText(lead, 'landingRoute')} />
+              <Line label={t('Submitted from')} value={lead.source_route} />
+              <Line label={t('Locale')} value={lead.locale} />
+              <Line label={t('Submission id')} value={lead.submission_id} />
             </dl>
           </Panel>
 
@@ -309,12 +309,12 @@ export function LeadDetailScreen() {
           */}
           {Object.entries(meta).filter(([k]) => !SHOWN_META.has(k)).length > 0 && (
             <Panel>
-              <SectionHeader title="Other metadata" />
+              <SectionHeader title={t('Other metadata')} />
               <dl className="grid px-4 py-3">
                 {Object.entries(meta)
                   .filter(([k]) => !SHOWN_META.has(k))
                   .map(([k, v]) => (
-                    <Line key={k} label={META_LABEL[k] ?? k} value={String(v ?? '')} />
+                    <Line key={k} label={META_LABEL[k] ? t(META_LABEL[k]) : k} value={String(v ?? '')} />
                   ))}
               </dl>
             </Panel>
@@ -390,7 +390,7 @@ const KIND_TONE: Record<TimelineEntry['kind'], string> = {
 };
 
 function Timeline({ entries }: { entries: TimelineEntry[] }) {
-  if (entries.length === 0) return <p className="text-xs text-haze">Nothing recorded.</p>;
+  if (entries.length === 0) return <p className="text-xs text-haze">{t('Nothing recorded.')}</p>;
   return (
     <ol className="relative grid gap-3 border-l border-hairline pl-4">
       {entries.map((entry) => (
@@ -443,14 +443,13 @@ function Timeline({ entries }: { entries: TimelineEntry[] }) {
 function ImpactNotice({ mayImpact }: { mayImpact: boolean }) {
   return (
     <Panel>
-      <SectionHeader title="Impact Program" />
+      <SectionHeader title={t('Impact Program')} />
       <div className="grid gap-2 px-4 py-3">
         <p className="text-xs text-haze">
-          This is an Impact application. The programme is free, so it is not a sales lead and cannot be
-          converted to an opportunity. It is handled in the Impact pipeline.
+          {t('This is an Impact application. The programme is free, so it is not a sales lead and cannot be converted to an opportunity. It is handled in the Impact pipeline.')}
         </p>
         {mayImpact && (
-          <Link to="/impact" className="t-note underline underline-offset-4 hover:text-paper">Open the Impact pipeline</Link>
+          <Link to="/impact" className="t-note underline underline-offset-4 hover:text-paper">{t('Open the Impact pipeline')}</Link>
         )}
       </div>
     </Panel>
@@ -484,7 +483,7 @@ function Conversion({ lead, mayConvert }: { lead: Lead; mayConvert: boolean }) {
 
   return (
     <Panel>
-      <SectionHeader title="Pipeline" note={existing.length > 0 ? `${existing.length}` : undefined} />
+      <SectionHeader title={t('Pipeline')} note={existing.length > 0 ? `${existing.length}` : undefined} />
       <div className="px-4 py-3">
         {existing.length > 0 ? (
           <ul className="grid gap-2">
@@ -499,8 +498,7 @@ function Conversion({ lead, mayConvert }: { lead: Lead; mayConvert: boolean }) {
           </ul>
         ) : (
           <p className="text-xs text-haze">
-            No opportunity yet. Converting is deliberate — an opportunity is a qualified commercial
-            possibility, not every enquiry that arrives.
+            {t('No opportunity yet. Converting is deliberate — an opportunity is a qualified commercial possibility, not every enquiry that arrives.')}
           </p>
         )}
 
@@ -508,14 +506,13 @@ function Conversion({ lead, mayConvert }: { lead: Lead; mayConvert: boolean }) {
           <Button size="sm" variant={existing.length > 0 ? 'ghost' : 'primary'} className="mt-2.5"
                   onClick={() => setOpen(true)}>
             <Target size={12} aria-hidden="true" />
-            {existing.length > 0 ? 'Convert again' : 'Convert to opportunity'}
+            {existing.length > 0 ? t('Convert again') : t('Convert to opportunity')}
           </Button>
         )}
 
         {existing.length > 0 && mayConvert && (
           <p className="t-note mt-1.5">
-            A second opportunity is legitimate — a client can come back for different work — and is
-            never created by accident.
+            {t('A second opportunity is legitimate — a client can come back for different work — and is never created by accident.')}
           </p>
         )}
       </div>

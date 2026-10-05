@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { AuthShell } from '@/features/auth/pages';
 import { Button, Field, Input } from '@/components/ui';
+import { t } from '@/lib/i18n';
 
 /**
  * /portal/accept-invite#token_hash=…&type=invite|recovery
@@ -58,38 +59,37 @@ export function AcceptInvitePage() {
 
   if (phase === 'invalid') {
     return (
-      <AuthShell title="A link nem érvényes" lede="Lejárt, már felhasználták, vagy hiányos.">
+      <AuthShell title={t('A link nem érvényes')} lede={t('Lejárt, már felhasználták, vagy hiányos.')}>
         <p className="text-sm text-haze">
-          Kérj új meghívó linket a Stratostól. Biztonsági okból minden link csak egyszer használható,
-          és korlátozott ideig érvényes.
+          {t('Kérj új meghívó linket a Stratostól. Biztonsági okból minden link csak egyszer használható, és korlátozott ideig érvényes.')}
         </p>
       </AuthShell>
     );
   }
   if (phase === 'checking') {
-    return <AuthShell title="Ellenőrzés…" lede="Egy pillanat."><p className="text-sm text-haze" aria-busy="true">A link ellenőrzése folyamatban.</p></AuthShell>;
+    return <AuthShell title={t('Ellenőrzés…')} lede={t('Egy pillanat.')}><p className="text-sm text-haze" aria-busy="true">{t('A link ellenőrzése folyamatban.')}</p></AuthShell>;
   }
 
   return (
-    <AuthShell title="Jelszó beállítása" lede="Ezzel a jelszóval lépsz be ezután. Senki más nem látja.">
+    <AuthShell title={t('Jelszó beállítása')} lede={t('Ezzel a jelszóval lépsz be ezután. Senki más nem látja.')}>
       <form
         noValidate
         className="grid gap-4"
         onSubmit={handleSubmit(async (v) => {
           setFormError(null);
           const { error } = await updatePassword(v.password);
-          if (error) setFormError('A jelszó mentése nem sikerült. Kérj új linket.');
+          if (error) setFormError(t('A jelszó mentése nem sikerült. Kérj új linket.'));
           else navigate('/', { replace: true });
         })}
       >
-        <Field id="new-password" label="Új jelszó" error={errors.password?.message}>
+        <Field id="new-password" label={t('Új jelszó')} error={errors.password?.message && t(errors.password.message)}>
           <Input id="new-password" type="password" autoComplete="new-password" invalid={!!errors.password} {...register('password')} />
         </Field>
-        <Field id="confirm-password" label="Jelszó még egyszer" error={errors.confirm?.message}>
+        <Field id="confirm-password" label={t('Jelszó még egyszer')} error={errors.confirm?.message && t(errors.confirm.message)}>
           <Input id="confirm-password" type="password" autoComplete="new-password" invalid={!!errors.confirm} {...register('confirm')} />
         </Field>
         {formError && <p role="alert" className="rounded-sm border border-danger/30 bg-danger/5 p-2.5 text-xs text-danger">{formError}</p>}
-        <Button type="submit" variant="primary" disabled={isSubmitting}>{isSubmitting ? 'Mentés…' : 'Jelszó mentése'}</Button>
+        <Button type="submit" variant="primary" disabled={isSubmitting}>{isSubmitting ? t('Mentés…') : t('Jelszó mentése')}</Button>
       </form>
     </AuthShell>
   );

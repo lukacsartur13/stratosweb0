@@ -1,0 +1,158 @@
+{
+ "Not invoiced": {
+  "hu": "Nincs számlázva",
+  "de": "Nicht fakturiert"
+ },
+ "Invoiced": {
+  "hu": "Számlázva",
+  "de": "Fakturiert"
+ },
+ "Partially paid": {
+  "hu": "Részben fizetve",
+  "de": "Teilweise bezahlt"
+ },
+ "Paid": {
+  "hu": "Fizetve",
+  "de": "Bezahlt"
+ },
+ "All done": {
+  "hu": "Minden kész",
+  "de": "Alles erledigt"
+ },
+ "Blocked": {
+  "hu": "Elakadt",
+  "de": "Blockiert"
+ },
+ "Checkpoint": {
+  "hu": "Mérföldkő",
+  "de": "Meilenstein"
+ },
+ "Checkpoints": {
+  "hu": "Mérföldkövek",
+  "de": "Meilensteine"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "Closed": {
+  "hu": "Lezárt",
+  "de": "Abgeschlossen"
+ },
+ "Contacts": {
+  "hu": "Kapcsolattartók",
+  "de": "Kontakte"
+ },
+ "Contract value": {
+  "hu": "Szerződéses érték",
+  "de": "Vertragswert"
+ },
+ "Fee": {
+  "hu": "Díj",
+  "de": "Gebühr"
+ },
+ "Free": {
+  "hu": "Ingyenes",
+  "de": "Kostenlos"
+ },
+ "Impact value": {
+  "hu": "Impact-érték",
+  "de": "Impact-Wert"
+ },
+ "Impact · free": {
+  "hu": "Impact · ingyenes",
+  "de": "Impact · kostenlos"
+ },
+ "Invoiced amount": {
+  "hu": "Számlázott összeg",
+  "de": "Fakturierter Betrag"
+ },
+ "Market value": {
+  "hu": "Piaci érték",
+  "de": "Marktwert"
+ },
+ "Next: {next}": {
+  "hu": "Következő: {next}",
+  "de": "Nächster Schritt: {next}"
+ },
+ "No contact recorded for this client.": {
+  "hu": "Ehhez az ügyfélhez nincs rögzített kapcsolattartó.",
+  "de": "Für diesen Kunden ist kein Kontakt erfasst."
+ },
+ "No details recorded": {
+  "hu": "Nincsenek rögzített adatok",
+  "de": "Keine Angaben erfasst"
+ },
+ "Only what is recorded on the project. No payment schedule is kept in the Portal yet.": {
+  "hu": "Csak ami a projekten rögzítve van. Fizetési ütemezést a Portál még nem vezet.",
+  "de": "Nur was am Projekt erfasst ist. Ein Zahlungsplan wird im Portal noch nicht geführt."
+ },
+ "Open project": {
+  "hu": "Projekt megnyitása",
+  "de": "Projekt öffnen"
+ },
+ "Paid amount": {
+  "hu": "Kifizetett összeg",
+  "de": "Bezahlter Betrag"
+ },
+ "Payment state": {
+  "hu": "Fizetési állapot",
+  "de": "Zahlungsstatus"
+ },
+ "Payment": {
+  "hu": "Befizetés",
+  "de": "Zahlung"
+ },
+ "Primary": {
+  "hu": "Elsődleges",
+  "de": "Primär"
+ },
+ "Programme": {
+  "hu": "Program",
+  "de": "Programm"
+ },
+ "Project facts": {
+  "hu": "Projektadatok",
+  "de": "Projektdaten"
+ },
+ "Project": {
+  "hu": "Projekt",
+  "de": "Projekt"
+ },
+ "Service": {
+  "hu": "Szolgáltatás",
+  "de": "Leistung"
+ },
+ "Status": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "The project could not be read.": {
+  "hu": "A projektet nem sikerült beolvasni.",
+  "de": "Das Projekt konnte nicht gelesen werden."
+ },
+ "Why: {reason}": {
+  "hu": "Ok: {reason}",
+  "de": "Grund: {reason}"
+ },
+ "archived": {
+  "hu": "archivált",
+  "de": "archiviert"
+ },
+ "company": {
+  "hu": "cég",
+  "de": "Firma"
+ },
+ "no fee, invoice or payment": {
+  "hu": "nincs díj, számla vagy befizetés",
+  "de": "keine Gebühr, Rechnung oder Zahlung"
+ },
+ "what the work would have cost — not revenue": {
+  "hu": "amennyibe a munka került volna — nem bevétel",
+  "de": "was die Arbeit gekostet hätte — kein Umsatz"
+ },
+ "{done}/{total} done": {
+  "hu": "{done}/{total} kész",
+  "de": "{done}/{total} erledigt"
+ }
+}

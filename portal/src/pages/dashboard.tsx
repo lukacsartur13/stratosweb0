@@ -25,6 +25,7 @@ import {
   FACETS, LEAD_COLUMNS, formatWhen, groupBy, leadSource, since, statusLabel,
   statusTone, today, type Lead,
 } from '@/lib/leads';
+import { intlLocale, t } from '@/lib/i18n';
 
 /**
  * THE DASHBOARD — decisions.
@@ -233,16 +234,16 @@ function ExecutiveStrip({
   const unavailable = (): { value: ReactNode; note: string } | null => {
     if (analytics.kind === 'loading') return { value: <Skeleton className="h-7 w-20" />, note: '' };
     if (analytics.kind === 'unconfigured') {
-      return { value: <NoFigure reason="Analytics not configured" />, note: 'not configured' };
+      return { value: <NoFigure reason={t('Analytics not configured')} />, note: t('not configured') };
     }
     if (analytics.kind === 'error') {
-      return { value: <NoFigure reason="Analytics unavailable" />, note: 'unavailable' };
+      return { value: <NoFigure reason={t('Analytics unavailable')} />, note: t('unavailable') };
     }
     return null;
   };
   const gap = unavailable();
 
-  const periodNote = range === 'today' ? 'today' : `last ${days} days`;
+  const periodNote = range === 'today' ? t('today') : t('last {days} days', { days });
 
   // The two commercial figures. Both are the database's own sums, per currency,
   // and neither is a client-side total over a truncated list.
@@ -252,17 +253,17 @@ function ExecutiveStrip({
   /** A commercial cell: the figure, or a measured nothing — never a fake zero. */
   const commercial = (total: typeof openTotal, weighted: boolean) => {
     if (summary.state === 'loading') return <Skeleton className="h-7 w-24" />;
-    if (summary.state === 'error') return <NoFigure reason="The pipeline summary could not be read" />;
+    if (summary.state === 'error') return <NoFigure reason={t('The pipeline summary could not be read')} />;
     const figure = total.total;
     if (!figure || figure.items === 0) return <span className="text-haze">0</span>;
     return moneyCompact(weighted ? figure.weighted : figure.value, figure.currency);
   };
 
   return (
-    <MetricStrip label="Executive summary">
+    <MetricStrip label={t('Executive summary')}>
       {mayAnalytics && (
         <MetricCell
-          label="Sessions"
+          label={t('Sessions')}
           value={gap ? gap.value : n(now?.sessions)}
           delta={!gap && compare && now && was ? <Delta value={delta(now.sessions, was.sessions)} /> : undefined}
           note={gap ? gap.note : periodNote}
@@ -273,38 +274,38 @@ function ExecutiveStrip({
           lead-event total because this is the number the business acts on: a
           row that exists, with a name on it, that somebody has to answer. */}
       <MetricCell
-        label="Leads"
+        label={t('Leads')}
         value={leadsReady ? leadCount : <Skeleton className="h-7 w-14" />}
-        note={`${periodNote} · from the Portal`}
+        note={t('{period} · from the Portal', { period: periodNote })}
       />
 
       {mayAnalytics && (
         <MetricCell
-          label="Conversion"
+          label={t('Conversion')}
           value={gap ? gap.value : pct(now?.leadRate, 2)}
           delta={
             !gap && compare && now?.leadRate != null && was?.leadRate != null
               ? <Delta value={delta(now.leadRate, was.leadRate)} />
               : undefined
           }
-          note={gap ? gap.note : 'lead events / session'}
+          note={gap ? gap.note : t('lead events / session')}
         />
       )}
 
       {/* The two commercial figures: what is in motion, and what has landed. */}
       {maySales && (
         <MetricCell
-          label="Pipeline"
+          label={t('Pipeline')}
           value={commercial(openTotal, false)}
           note={openTotal.total && openTotal.total.items > 0
-            ? `${openTotal.total.items} open · ${moneyCompact(openTotal.total.weighted, openTotal.total.currency)} weighted`
-            : 'no open opportunities'}
+            ? t('{n} open · {weighted} weighted', { n: openTotal.total.items, weighted: moneyCompact(openTotal.total.weighted, openTotal.total.currency) })
+            : t('no open opportunities')}
         />
       )}
 
       {maySales && (
         <MetricCell
-          label="Won this month"
+          label={t('Won this month')}
           // NOT `tone="live"`. That token exists for the one figure that is true
           // RIGHT NOW rather than true for a period, and month-to-date revenue is
           // emphatically a period figure. Reusing it here would have put two
@@ -316,16 +317,16 @@ function ExecutiveStrip({
           // executive strip, which is prominence enough.
           value={commercial(wonTotal, false)}
           note={wonTotal.total && wonTotal.total.items > 0
-            ? `${wonTotal.total.items} ${wonTotal.total.items === 1 ? 'deal' : 'deals'}`
-            : 'nothing closed yet'}
+            ? t(wonTotal.total.items === 1 ? '{n} deal' : '{n} deals', { n: wonTotal.total.items })
+            : t('nothing closed yet')}
         />
       )}
 
       {!mayAnalytics && !maySales && (
         <MetricCell
-          label="Unanswered"
+          label={t('Unanswered')}
           value={leadsReady ? rows.filter((l) => l.status === 'new').length : <Skeleton className="h-7 w-14" />}
-          note="still at New"
+          note={t('still at New')}
         />
       )}
     </MetricStrip>
@@ -354,11 +355,11 @@ function PipelineBlock({ summary }: { summary: ReturnType<typeof useSalesSummary
   return (
     <Panel className="col-span-12 min-w-0 lg:col-span-5">
       <SectionHeader
-        title="Pipeline"
-        note="open opportunities"
+        title={t('Pipeline')}
+        note={t('open opportunities')}
         action={
           <Link to="/sales" className="t-note inline-flex items-center gap-1 underline underline-offset-4 hover:text-paper">
-            Opportunities <ArrowRight size={11} aria-hidden="true" />
+            {t('Opportunities')} <ArrowRight size={11} aria-hidden="true" />
           </Link>
         }
       />
@@ -372,33 +373,33 @@ function PipelineBlock({ summary }: { summary: ReturnType<typeof useSalesSummary
       {summary.state === 'error' && (
         <DataState
           kind="unavailable"
-          title="Unavailable"
-          body="The pipeline summary could not be read. It needs the P2 migration to have been applied."
+          title={t('Unavailable')}
+          body={t('The pipeline summary could not be read. It needs the P2 migration to have been applied.')}
         />
       )}
 
       {summary.state === 'unconfigured' && (
-        <DataState kind="unconfigured" title="Not connected" body="No database is configured in this environment." />
+        <DataState kind="unconfigured" title={t('Not connected')} body={t('No database is configured in this environment.')} />
       )}
 
       {summary.state === 'ready' && !anything && (
         <DataState
           kind="empty"
-          title="No open opportunities"
-          body="The pipeline is what qualified leads become. Nothing is in it yet."
-          action={<Link to="/leads?status=qualified"><span className="t-note underline underline-offset-4">Convert a qualified lead</span></Link>}
+          title={t('No open opportunities')}
+          body={t('The pipeline is what qualified leads become. Nothing is in it yet.')}
+          action={<Link to="/leads?status=qualified"><span className="t-note underline underline-offset-4">{t('Convert a qualified lead')}</span></Link>}
         />
       )}
 
       {summary.state === 'ready' && anything && (
         <>
           <table className="w-full border-collapse">
-            <caption className="sr-only">Open opportunities by stage</caption>
+            <caption className="sr-only">{t('Open opportunities by stage')}</caption>
             <tbody>
               {stages.map((stage) => (
                 <tr key={stage.stage} className="border-b border-hairline last:border-0">
                   <th scope="row" className="px-4 py-1.5 text-left font-normal">
-                    <span className="t-section">{STAGE[stage.stage].label}</span>
+                    <span className="t-section">{t(STAGE[stage.stage].label)}</span>
                     <span className="mt-1 block"><Meter value={stage.value} max={max} /></span>
                   </th>
                   <td className="num w-12 px-2 py-1.5 text-right text-xs text-haze">{stage.items}</td>
@@ -412,19 +413,18 @@ function PipelineBlock({ summary }: { summary: ReturnType<typeof useSalesSummary
 
           {/* The two figures the whole panel exists to produce. */}
           <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-t border-hair px-4 py-2.5">
-            <span className="t-section">Total</span>
+            <span className="t-section">{t('Total')}</span>
             <span className="num text-sm text-paper">
               {open.total ? moneyCompact(open.total.value, open.total.currency) : '—'}
             </span>
-            <span className="t-section">Weighted</span>
+            <span className="t-section">{t('Weighted')}</span>
             <span className="num text-sm text-chrome">
               {open.total ? moneyCompact(open.total.weighted, open.total.currency) : '—'}
             </span>
           </div>
           {open.others > 0 && (
             <p className="t-note border-t border-hairline px-4 py-1.5 text-signal">
-              {open.others} more in {open.otherCurrencies.join(', ')} — not added in, because nothing
-              here converts between currencies.
+              {t('{n} more in {currencies} — not added in, because nothing here converts between currencies.', { n: open.others, currencies: open.otherCurrencies.join(', ') })}
             </p>
           )}
         </>
@@ -456,11 +456,11 @@ function TopRevenueSources({
   return (
     <Panel className="col-span-12 min-w-0 lg:col-span-5">
       <SectionHeader
-        title="Top revenue sources"
-        note="won value by acquisition source"
+        title={t('Top revenue sources')}
+        note={t('won value by acquisition source')}
         action={
           <Link to="/analytics#revenue" className="t-note inline-flex items-center gap-1 underline underline-offset-4 hover:text-paper">
-            Attribution <ArrowRight size={11} aria-hidden="true" />
+            {t('Attribution')} <ArrowRight size={11} aria-hidden="true" />
           </Link>
         }
       />
@@ -471,12 +471,12 @@ function TopRevenueSources({
       ) : top.length === 0 ? (
         <DataState
           kind="empty"
-          title="No attributed revenue"
-          body="Won deals exist, but none of them carries an acquisition source."
+          title={t('No attributed revenue')}
+          body={t('Won deals exist, but none of them carries an acquisition source.')}
         />
       ) : (
         <table className="w-full border-collapse">
-          <caption className="sr-only">Won value by acquisition source</caption>
+          <caption className="sr-only">{t('Won value by acquisition source')}</caption>
           <tbody>
             {top.map((row) => (
               <tr key={row.key} className="border-b border-hairline last:border-0">
@@ -490,7 +490,7 @@ function TopRevenueSources({
                   {row.won_currencies > 1
                     // Two currencies behind one figure. The count is true; the
                     // sum would not be, so it is not printed.
-                    ? <span className="text-haze" title="Won in more than one currency">mixed</span>
+                    ? <span className="text-haze" title={t('Won in more than one currency')}>{t('mixed')}</span>
                     : moneyCompact(row.won_value, row.won_currency ?? 'HUF')}
                 </td>
               </tr>
@@ -518,11 +518,11 @@ function ActiveProjects({
   return (
     <Panel className="col-span-12 min-w-0 lg:col-span-5">
       <SectionHeader
-        title="Active projects"
-        note={projects.length > 0 ? `${projects.length} live` : undefined}
+        title={t('Active projects')}
+        note={projects.length > 0 ? t('{n} live', { n: projects.length }) : undefined}
         action={
           <Link to="/projects" className="t-note inline-flex items-center gap-1 underline underline-offset-4 hover:text-paper">
-            All projects <ArrowRight size={11} aria-hidden="true" />
+            {t('All projects')} <ArrowRight size={11} aria-hidden="true" />
           </Link>
         }
       />
@@ -533,11 +533,11 @@ function ActiveProjects({
       ) : projects.length === 0 ? (
         <DataState
           kind="empty"
-          title="No active projects"
-          body="A project is created from a won opportunity, which keeps the delivery connected to what sold it."
+          title={t('No active projects')}
+          body={t('A project is created from a won opportunity, which keeps the delivery connected to what sold it.')}
         />
       ) : (
-        <Table head={['Project', 'Client', 'Status', 'Target']} minWidth={560}>
+        <Table head={[t('Project'), t('Client'), t('Status'), t('Target')]} minWidth={560}>
           {projects.slice(0, 6).map((project) => {
             const tone = dueTone(project.target_date);
             return (
@@ -590,26 +590,26 @@ function TrafficPulse({
     const total = traffic.overview.previous[metric];
     const mean = total / points;
     return mean > 0
-      ? { value: mean, label: `previous period, ${Math.round(mean).toLocaleString('en-GB')} avg` }
+      ? { value: mean, label: t('previous period, {avg} avg', { avg: Math.round(mean).toLocaleString(intlLocale('en-GB')) }) }
       : null;
   }, [compare, traffic, metric]);
 
   return (
     <Panel className="col-span-12 min-w-0 lg:col-span-8">
       <SectionHeader
-        title="Traffic"
-        note={traffic?.rangeLabel.toLowerCase()}
-        action={<Segmented label="Metric" value={metric} options={METRICS} onChange={setMetric} />}
+        title={t('Traffic')}
+        note={traffic ? t(traffic.rangeLabel.toLowerCase()) : undefined}
+        action={<Segmented label={t('Metric')} value={metric} options={METRICS.map((m) => ({ ...m, label: t(m.label) }))} onChange={setMetric} />}
       />
       {loading ? (
         <div className="p-4" aria-busy="true"><Skeleton className="h-[200px] w-full" /></div>
       ) : !traffic ? (
-        <DataState kind="unconfigured" title="No traffic data" body="Analytics is not available for this period." />
+        <DataState kind="unconfigured" title={t('No traffic data')} body={t('Analytics is not available for this period.')} />
       ) : (
         <TrendChart
           points={traffic.trend.points.map((p) => p[metric])}
           labels={traffic.trend.points.map((p) => trendLabel(p.at, traffic.trend.grain))}
-          label={METRICS.find((m) => m.id === metric)!.label}
+          label={t(METRICS.find((m) => m.id === metric)!.label)}
           baseline={baseline}
         />
       )}
@@ -631,7 +631,7 @@ function LivePanel({ analytics, traffic }: { analytics: AnalyticsState; traffic:
   return (
     <Panel className="col-span-12 min-w-0 lg:col-span-4">
       <SectionHeader
-        title="Live"
+        title={t('Live')}
         action={
           rt ? (
             <span className="flex items-center gap-1.5">
@@ -639,7 +639,7 @@ function LivePanel({ analytics, traffic }: { analytics: AnalyticsState; traffic:
                   something blinking in the corner of an operational screen is a
                   thing you learn to ignore. */}
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal" aria-hidden="true" />
-              <span className="t-note">last {rt.minutes} min</span>
+              <span className="t-note">{t('last {n} min', { n: rt.minutes })}</span>
             </span>
           ) : null
         }
@@ -652,20 +652,20 @@ function LivePanel({ analytics, traffic }: { analytics: AnalyticsState; traffic:
       {analytics.kind === 'unconfigured' && (
         <DataState
           kind="unconfigured"
-          title="Analytics not configured"
-          body="No Google service account yet, so nobody can be counted — which is not the same as nobody being here."
+          title={t('Analytics not configured')}
+          body={t('No Google service account yet, so nobody can be counted — which is not the same as nobody being here.')}
         />
       )}
 
       {analytics.kind === 'error' && analytics.code !== 'DISABLED' && (
-        <DataState kind="unavailable" title="Unavailable" body={analytics.message} />
+        <DataState kind="unavailable" title={t('Unavailable')} body={analytics.message} />
       )}
 
       {analytics.kind === 'ready' && !rt && (
         <DataState
           kind="unavailable"
-          title="Realtime unavailable"
-          body="The realtime report could not be read. The figures above are unaffected — they come from a different Google endpoint."
+          title={t('Realtime unavailable')}
+          body={t('The realtime report could not be read. The figures above are unaffected — they come from a different Google endpoint.')}
         />
       )}
 
@@ -673,18 +673,18 @@ function LivePanel({ analytics, traffic }: { analytics: AnalyticsState; traffic:
         <>
           <div className="border-b border-hairline px-4 py-3">
             <p className="num text-4xl leading-none text-signal">{n(rt.activeUsersByPage)}</p>
-            <p className="t-section mt-1.5">active now</p>
+            <p className="t-section mt-1.5">{t('active now')}</p>
           </div>
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b border-hairline">
-                <th scope="col" className="t-section px-4 py-1.5 text-left font-normal">Page</th>
-                <th scope="col" className="t-section px-4 py-1.5 text-right font-normal">Active</th>
+                <th scope="col" className="t-section px-4 py-1.5 text-left font-normal">{t('Page')}</th>
+                <th scope="col" className="t-section px-4 py-1.5 text-right font-normal">{t('Active')}</th>
               </tr>
             </thead>
             <tbody>
               {rt.byPage.length === 0 && (
-                <tr><td colSpan={2} className="px-4 py-5 text-center text-xs text-haze">Nobody on the site right now.</td></tr>
+                <tr><td colSpan={2} className="px-4 py-5 text-center text-xs text-haze">{t('Nobody on the site right now.')}</td></tr>
               )}
               {rt.byPage.slice(0, 6).map((page) => (
                 <tr key={page.key} className="border-b border-hairline last:border-0">
@@ -697,7 +697,7 @@ function LivePanel({ analytics, traffic }: { analytics: AnalyticsState; traffic:
           </table>
           {!rt.environmentFiltered && (
             <p className="t-note border-t border-hairline px-4 py-2">
-              Whole property — GA4 does not expose hostname on realtime reports.
+              {t('Whole property — GA4 does not expose hostname on realtime reports.')}
             </p>
           )}
         </>
@@ -713,11 +713,11 @@ function ConversionPath({
 }: { traffic: Report | null; loading: boolean; wide?: boolean }) {
   return (
     <Panel className={cn('col-span-12 min-w-0', wide ? 'lg:col-span-12' : 'lg:col-span-7')}>
-      <SectionHeader title="Conversion path" note="measured events" />
+      <SectionHeader title={t('Conversion path')} note={t('measured events')} />
       {loading ? (
         <div className="p-4" aria-busy="true"><Skeleton className="h-48 w-full" /></div>
       ) : !traffic ? (
-        <DataState kind="unconfigured" title="No conversion data" body="Analytics is not available for this period." />
+        <DataState kind="unconfigured" title={t('No conversion data')} body={t('Analytics is not available for this period.')} />
       ) : (
         <>
           <Funnel stages={traffic.funnel} />
@@ -731,8 +731,7 @@ function ConversionPath({
             showing them under the word "funnel" without this line would not be.
           */}
           <p className="t-note border-t border-hairline px-4 py-2.5">
-            Stages after the first are <span className="text-paper">event counts</span>, not unique
-            users. Only events this property actually collects are shown.
+            {t('Stages after the first are')} <span className="text-paper">{t('event counts')}</span>{t(', not unique users. Only events this property actually collects are shown.')}
           </p>
         </>
       )}
@@ -763,11 +762,11 @@ function Acquisition({
   return (
     <Panel className={cn('col-span-12 min-w-0', wide ? 'lg:col-span-12' : 'lg:col-span-7')}>
       <SectionHeader
-        title="Acquisition"
-        note={traffic ? 'GA4 session-scoped' : 'from the leads themselves'}
+        title={t('Acquisition')}
+        note={traffic ? t('GA4 session-scoped') : t('from the leads themselves')}
         action={
           <Link to="/analytics" className="t-note underline underline-offset-4 hover:text-paper">
-            Full breakdown
+            {t('Full breakdown')}
           </Link>
         }
       />
@@ -775,14 +774,14 @@ function Acquisition({
         <div className="p-4" aria-busy="true"><Skeleton className="h-40 w-full" /></div>
       ) : traffic ? (
         rows.length === 0 ? (
-          <DataState kind="empty" title="No sessions" body="Nothing arrived in this period." />
+          <DataState kind="empty" title={t('No sessions')} body={t('Nothing arrived in this period.')} />
         ) : (
           <Table
             head={[
-              'Source',
-              { label: 'Sessions', align: 'right' },
-              { label: 'Leads', align: 'right' },
-              { label: 'CVR', align: 'right' },
+              t('Source'),
+              { label: t('Sessions'), align: 'right' },
+              { label: t('Leads'), align: 'right' },
+              { label: t('CVR'), align: 'right' },
             ]}
             minWidth={560}
           >
@@ -816,11 +815,10 @@ function Acquisition({
               is always available. */}
           <BarList
             rows={groupBy(leads, FACETS[0].of, 6)}
-            empty="No attribution recorded on these leads yet."
+            empty={t('No attribution recorded on these leads yet.')}
           />
           <p className="t-note border-t border-hairline px-4 py-2.5">
-            Counted from each lead&rsquo;s own submission — sessions are not available, so no
-            conversion rate is shown rather than one built from two populations.
+            {t('Counted from each lead’s own submission — sessions are not available, so no conversion rate is shown rather than one built from two populations.')}
           </p>
         </>
       )}
@@ -834,10 +832,10 @@ function RecentLeads({ rows, state }: { rows: Lead[]; state: string }) {
   return (
     <Panel className="col-span-12 min-w-0 lg:col-span-7">
       <SectionHeader
-        title="Recent leads"
+        title={t('Recent leads')}
         action={
           <Link to="/leads" className="t-note inline-flex items-center gap-1 underline underline-offset-4 hover:text-paper">
-            View all leads <ArrowRight size={11} aria-hidden="true" />
+            {t('View all leads')} <ArrowRight size={11} aria-hidden="true" />
           </Link>
         }
       />
@@ -851,25 +849,25 @@ function RecentLeads({ rows, state }: { rows: Lead[]; state: string }) {
       {state === 'unconfigured' && (
         <DataState
           kind="unconfigured"
-          title="Not connected"
-          body="Supabase credentials are not set in this environment, so there is nothing to read yet."
+          title={t('Not connected')}
+          body={t('Supabase credentials are not set in this environment, so there is nothing to read yet.')}
         />
       )}
 
       {state === 'error' && (
-        <DataState kind="unavailable" title="Unavailable" body="The lead list could not be read." />
+        <DataState kind="unavailable" title={t('Unavailable')} body={t('The lead list could not be read.')} />
       )}
 
       {state === 'ready' && rows.length === 0 && (
         <DataState
           kind="empty"
-          title="No leads yet"
-          body="Submissions from the public forms land here the moment they arrive."
+          title={t('No leads yet')}
+          body={t('Submissions from the public forms land here the moment they arrive.')}
         />
       )}
 
       {state === 'ready' && rows.length > 0 && (
-        <Table head={['Time', 'Company / contact', 'Source', 'Status']} minWidth={560}>
+        <Table head={[t('Time'), t('Company / contact'), t('Source'), t('Status')]} minWidth={560}>
           {rows.slice(0, 6).map((lead) => (
             <LeadRow key={lead.id} lead={lead} />
           ))}
@@ -952,7 +950,7 @@ function Attention({
     if (maySales) {
       const named = (recordId: string) => {
         const deal = deals.find((d) => d.id === recordId);
-        return deal?.client?.name || deal?.company_name || deal?.title || 'An opportunity';
+        return deal?.client?.name || deal?.company_name || deal?.title || t('An opportunity');
       };
       for (const item of dealAttention(deals.map((d) => ({
         id: d.id,
@@ -970,7 +968,8 @@ function Attention({
           id: item.id,
           to: item.to,
           urgent: item.urgent,
-          text: `${named(item.record)} ${item.text}`,
+          // The rule's sentence carries a {name} slot: the name's place differs by language.
+          text: item.text.replace('{name}', named(item.record)),
           because: item.because,
         });
       }
@@ -987,7 +986,7 @@ function Attention({
         id: item.id,
         to: item.to,
         urgent: item.urgent,
-        text: `${project?.name ?? 'A project'} ${item.text}`,
+        text: item.text.replace('{name}', project?.name ?? t('A project')),
         because: item.because,
       });
     }
@@ -999,7 +998,7 @@ function Attention({
           id: 'new',
           to: '/leads?status=new',
           urgent: true,
-          text: `${cold.length} new ${cold.length === 1 ? 'lead has' : 'leads have'} waited more than a day`,
+          text: t(cold.length === 1 ? '{n} new lead has waited more than a day' : '{n} new leads have waited more than a day', { n: cold.length }),
         });
       }
       const stale = rows.filter((l) => l.status === 'proposal' && hours(l.created_at) > 7 * 24);
@@ -1007,15 +1006,15 @@ function Attention({
         out.push({
           id: 'proposal',
           to: '/leads?status=proposal',
-          text: `${stale.length} ${stale.length === 1 ? 'proposal has' : 'proposals have'} been out for over a week`,
+          text: t(stale.length === 1 ? '{n} proposal has been out for over a week' : '{n} proposals have been out for over a week', { n: stale.length }),
         });
       }
     }
 
     if (analytics.kind === 'unconfigured') {
-      out.push({ id: 'ga4', to: '/analytics', text: 'Analytics is not configured' });
+      out.push({ id: 'ga4', to: '/analytics', text: t('Analytics is not configured') });
     } else if (analytics.kind === 'error' && analytics.code !== 'DISABLED') {
-      out.push({ id: 'ga4-error', to: '/analytics', text: 'Analytics is unavailable', urgent: true });
+      out.push({ id: 'ga4-error', to: '/analytics', text: t('Analytics is unavailable'), urgent: true });
     }
 
     if (health.kind === 'ready') {
@@ -1028,13 +1027,13 @@ function Attention({
         // and while both were keyed `ga4` React rendered one of them twice and
         // the count above the list disagreed with the list.
         if (service.state === 'unreachable') {
-          out.push({ id: `health-${key}`, to: '/system', urgent: true, text: `${label} is unreachable` });
+          out.push({ id: `health-${key}`, to: '/system', urgent: true, text: t('{service} is unreachable', { service: t(label) }) });
         } else if (service.state === 'unconfigured' || service.state === 'degraded') {
-          out.push({ id: `health-${key}`, to: '/system', text: `${label} needs configuration` });
+          out.push({ id: `health-${key}`, to: '/system', text: t('{service} needs configuration', { service: t(label) }) });
         }
       }
       if (health.data.services.notifications.state === 'disabled') {
-        out.push({ id: 'notify', to: '/system', text: 'Lead notifications are off — leads arrive in the Portal only' });
+        out.push({ id: 'notify', to: '/system', text: t('Lead notifications are off — leads arrive in the Portal only') });
       }
     }
 
@@ -1053,11 +1052,11 @@ function Attention({
   return (
     <Panel className="col-span-12 min-w-0 lg:col-span-8">
       <SectionHeader
-        title="Needs attention"
-        note={items.length > 8 ? `showing 8 of ${items.length}` : items.length > 0 ? `${items.length}` : undefined}
+        title={t('Needs attention')}
+        note={items.length > 8 ? t('showing 8 of {n}', { n: items.length }) : items.length > 0 ? `${items.length}` : undefined}
       />
       {items.length === 0 ? (
-        <p className="px-4 py-3.5 text-xs text-haze">Nothing requires attention.</p>
+        <p className="px-4 py-3.5 text-xs text-haze">{t('Nothing requires attention.')}</p>
       ) : (
         <ul className="grid">
           {/* Capped at eight. A Dashboard section that can grow without limit is
@@ -1110,10 +1109,10 @@ function SystemLine({
       .filter((s) => s.state !== 'ok' && s.state !== 'disabled').length
     : 0;
 
-  const label = health.kind === 'loading' ? 'Checking systems…'
-    : health.kind === 'error' ? 'System status unavailable'
-      : problems === 0 ? 'All systems operational'
-        : `${problems} ${problems === 1 ? 'system requires' : 'systems require'} attention`;
+  const label = health.kind === 'loading' ? t('Checking systems…')
+    : health.kind === 'error' ? t('System status unavailable')
+      : problems === 0 ? t('All systems operational')
+        : t(problems === 1 ? '{n} system requires attention' : '{n} systems require attention', { n: problems });
 
   const tone = health.kind !== 'ready' ? 'bg-chrome/40' : problems === 0 ? 'bg-good' : 'bg-signal';
 

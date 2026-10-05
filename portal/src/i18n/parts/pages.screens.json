@@ -1,0 +1,159 @@
+{
+ "Search {what}": {
+  "hu": "Keresés: {what}",
+  "de": "Suche: {what}"
+ },
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Supabase credentials are not set in this environment, so there is nothing to read yet. See README.md for the setup steps.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase-hozzáférési adatok, így még nincs mit beolvasni. A beállítás lépéseit a README.md írja le.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt, daher gibt es noch nichts zu lesen. Die Einrichtung ist in README.md beschrieben."
+ },
+ "All case studies": {
+  "hu": "Összes esettanulmány",
+  "de": "Alle Fallstudien"
+ },
+ "Title or client…": {
+  "hu": "Cím vagy ügyfél…",
+  "de": "Titel oder Kunde…"
+ },
+ "No case studies": {
+  "hu": "Nincs esettanulmány",
+  "de": "Keine Fallstudien"
+ },
+ "Title": {
+  "hu": "Cím",
+  "de": "Titel"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "State": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "Order": {
+  "hu": "Sorrend",
+  "de": "Reihenfolge"
+ },
+ "Updated": {
+  "hu": "Frissítve",
+  "de": "Aktualisiert"
+ },
+ "Published": {
+  "hu": "Közzétéve",
+  "de": "Veröffentlicht"
+ },
+ "Draft": {
+  "hu": "Vázlat",
+  "de": "Entwurf"
+ },
+ "Accounts": {
+  "hu": "Fiókok",
+  "de": "Konten"
+ },
+ "Name or email…": {
+  "hu": "Név vagy e-mail…",
+  "de": "Name oder E-Mail…"
+ },
+ "No users": {
+  "hu": "Nincs felhasználó",
+  "de": "Keine Benutzer"
+ },
+ "Accounts appear here once they have signed up or been invited.": {
+  "hu": "A fiókok regisztráció vagy meghívás után jelennek meg itt.",
+  "de": "Konten erscheinen hier, sobald sie registriert oder eingeladen wurden."
+ },
+ "Name": {
+  "hu": "Név",
+  "de": "Name"
+ },
+ "Email": {
+  "hu": "E-mail",
+  "de": "E-Mail"
+ },
+ "Role": {
+  "hu": "Szerepkör",
+  "de": "Rolle"
+ },
+ "Joined": {
+  "hu": "Csatlakozott",
+  "de": "Beigetreten"
+ },
+ "Recent activity": {
+  "hu": "Legutóbbi tevékenység",
+  "de": "Letzte Aktivität"
+ },
+ "Nothing logged": {
+  "hu": "Nincs naplózott tevékenység",
+  "de": "Nichts protokolliert"
+ },
+ "Writes made through the portal and the serverless functions are recorded here.": {
+  "hu": "A portálon és a szerver nélküli függvényeken keresztül végzett írások itt jelennek meg.",
+  "de": "Schreibvorgänge über das Portal und die Serverless-Funktionen werden hier protokolliert."
+ },
+ "Action": {
+  "hu": "Lépés",
+  "de": "Schritt"
+ },
+ "Entity": {
+  "hu": "Objektum",
+  "de": "Objekt"
+ },
+ "When": {
+  "hu": "Mikor",
+  "de": "Wann"
+ },
+ "This account": {
+  "hu": "Ez a fiók",
+  "de": "Dieses Konto"
+ },
+ "Organisation": {
+  "hu": "Szervezet",
+  "de": "Organisation"
+ },
+ "Stratos (staff)": {
+  "hu": "Stratos (munkatárs)",
+  "de": "Stratos (Mitarbeitende)"
+ },
+ "Infrastructure, credentials and deploy context are on the System screen.": {
+  "hu": "Az infrastruktúra, a hozzáférési adatok és a telepítési környezet a Rendszer képernyőn található.",
+  "de": "Infrastruktur, Zugangsdaten und Deploy-Kontext finden Sie im Bereich System."
+ },
+ "Language": {
+  "hu": "Nyelv",
+  "de": "Sprache"
+ },
+ "The whole portal is shown in this language for your account, on every device.": {
+  "hu": "A fiókodhoz a teljes portál ezen a nyelven jelenik meg, minden eszközön.",
+  "de": "Das gesamte Portal wird für Ihr Konto auf jedem Gerät in dieser Sprache angezeigt."
+ },
+ "Not chosen yet: the portal is shown in English. Your choice is saved on your account.": {
+  "hu": "Még nincs kiválasztva: a portál angolul jelenik meg. A választásodat a fiókodhoz mentjük.",
+  "de": "Noch nicht gewählt: Das Portal wird auf Englisch angezeigt. Ihre Auswahl wird in Ihrem Konto gespeichert."
+ },
+ "Clients choose their own language in the client portal header (Magyar, English, Deutsch). Names, notes and other text you type are not translated.": {
+  "hu": "Az ügyfelek a saját nyelvüket az ügyfélportál fejlécében választják ki (Magyar, English, Deutsch). A nevek, jegyzetek és a beírt egyéb szövegek nem fordítódnak le.",
+  "de": "Kunden wählen ihre Sprache selbst in der Kopfzeile des Kundenportals (Magyar, English, Deutsch). Namen, Notizen und andere von Ihnen eingegebene Texte werden nicht übersetzt."
+ },
+ "Super admin": {
+  "hu": "Szuperadmin",
+  "de": "Super-Admin"
+ },
+ "Admin": {
+  "hu": "Admin",
+  "de": "Admin"
+ },
+ "Team member": {
+  "hu": "Csapattag",
+  "de": "Teammitglied"
+ },
+ "Rapidkert, Barbershop Győr and mentáliserő.hu are the references to start from.": {
+  "en": "Rapidkert, Barbershop Győr and mentáliserő.hu are the references to start from.",
+  "hu": "A Rapidkert, a Barbershop Győr és a mentáliserő.hu a kiinduló referenciák.",
+  "de": "Rapidkert, Barbershop Győr und mentáliserő.hu sind die Referenzen für den Anfang."
+ }
+}

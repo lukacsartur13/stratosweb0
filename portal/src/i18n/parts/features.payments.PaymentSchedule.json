@@ -1,0 +1,355 @@
+{
+ "Remove this payment? The removal is logged with its amount.": {
+  "hu": "Eltávolítod ezt a befizetést? Az eltávolítás az összegével együtt naplózódik.",
+  "de": "Diese Zahlung entfernen? Das Entfernen wird mit dem Betrag protokolliert."
+ },
+ "Remove this instalment? Only an instalment without payments can be removed.": {
+  "hu": "Eltávolítod ezt a részletet? Csak befizetés nélküli részlet távolítható el.",
+  "de": "Diese Rate entfernen? Nur eine Rate ohne Zahlungen kann entfernt werden."
+ },
+ "Payment schedule": {
+  "hu": "Fizetési ütemezés",
+  "de": "Zahlungsplan"
+ },
+ "{currency} · from recorded payments": {
+  "hu": "{currency} · a rögzített befizetésekből",
+  "de": "{currency} · aus erfassten Zahlungen"
+ },
+ "Month": {
+  "hu": "Hónap",
+  "de": "Monat"
+ },
+ "Instalment": {
+  "hu": "Részlet",
+  "de": "Rate"
+ },
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Monthly fee": {
+  "hu": "Havidíj",
+  "de": "Monatsgebühr"
+ },
+ "per month": {
+  "hu": "havonta",
+  "de": "pro Monat"
+ },
+ "Contracted": {
+  "hu": "Szerződött",
+  "de": "Vertraglich"
+ },
+ "Not recorded": {
+  "hu": "Nincs rögzítve",
+  "de": "Nicht erfasst"
+ },
+ "the project value": {
+  "hu": "a projekt értéke",
+  "de": "der Projektwert"
+ },
+ "Scheduled": {
+  "hu": "Ütemezett",
+  "de": "Geplant"
+ },
+ "{n} instalment": {
+  "hu": "{n} részlet",
+  "de": "{n} Rate"
+ },
+ "{n} instalments": {
+  "hu": "{n} részlet",
+  "de": "{n} Raten"
+ },
+ "Paid": {
+  "hu": "Fizetve",
+  "de": "Bezahlt"
+ },
+ "{n} payment without a date": {
+  "hu": "{n} dátum nélküli befizetés",
+  "de": "{n} Zahlung ohne Datum"
+ },
+ "{n} payments without a date": {
+  "hu": "{n} dátum nélküli befizetés",
+  "de": "{n} Zahlungen ohne Datum"
+ },
+ "{n} payment": {
+  "hu": "{n} befizetés",
+  "de": "{n} Zahlung"
+ },
+ "{n} payments": {
+  "hu": "{n} befizetés",
+  "de": "{n} Zahlungen"
+ },
+ "Remaining": {
+  "hu": "Hátralévő",
+  "de": "Offen"
+ },
+ "against the scheduled months": {
+  "hu": "az ütemezett hónapokhoz képest",
+  "de": "gegenüber den geplanten Monaten"
+ },
+ "against the contract": {
+  "hu": "a szerződéshez képest",
+  "de": "gegenüber dem Vertrag"
+ },
+ "Overdue": {
+  "hu": "Lejárt",
+  "de": "Überfällig"
+ },
+ "due date passed, not received": {
+  "hu": "lejárt a határidő, nem érkezett meg",
+  "de": "Fälligkeit überschritten, nicht eingegangen"
+ },
+ "Over-paid": {
+  "hu": "Túlfizetve",
+  "de": "Überzahlt"
+ },
+ "received beyond the amount due — kept, not absorbed": {
+  "hu": "az esedékes összegen felül érkezett — megmarad, nem olvad be",
+  "de": "über den fälligen Betrag hinaus eingegangen — bleibt erhalten, wird nicht verrechnet"
+ },
+ "Mismatch": {
+  "hu": "Eltérés",
+  "de": "Abweichung"
+ },
+ "No contract value is recorded for this project, so the schedule cannot be checked against it.": {
+  "hu": "Ennél a projektnél nincs rögzítve szerződéses érték, így az ütemezés nem ellenőrizhető hozzá.",
+  "de": "Für dieses Projekt ist kein Vertragswert erfasst, daher kann der Plan nicht damit abgeglichen werden."
+ },
+ "The instalments add up to {scheduled}, {gap} less than the contract.": {
+  "hu": "A részletek összege {scheduled}, ez {gap} összeggel kevesebb a szerződésnél.",
+  "de": "Die Raten ergeben {scheduled}, {gap} weniger als der Vertrag."
+ },
+ "The instalments add up to {scheduled}, {gap} more than the contract.": {
+  "hu": "A részletek összege {scheduled}, ez {gap} összeggel több a szerződésnél.",
+  "de": "Die Raten ergeben {scheduled}, {gap} mehr als der Vertrag."
+ },
+ "Carried over": {
+  "hu": "Átvitt",
+  "de": "Übernommen"
+ },
+ "Before the schedule, this project recorded: {state}": {
+  "hu": "Az ütemezés előtt ennél a projektnél ez volt rögzítve: {state}",
+  "de": "Vor dem Zahlungsplan war für dieses Projekt erfasst: {state}"
+ },
+ "invoiced {amount}": {
+  "hu": "számlázva {amount}",
+  "de": "fakturiert {amount}"
+ },
+ "paid {amount}": {
+  "hu": "fizetve {amount}",
+  "de": "bezahlt {amount}"
+ },
+ "Mark as not reviewed": {
+  "hu": "Jelölés nem átnézettként",
+  "de": "Als nicht geprüft markieren"
+ },
+ "Mark as reviewed": {
+  "hu": "Jelölés átnézettként",
+  "de": "Als geprüft markieren"
+ },
+ "No months yet. Add each month as it is billed — + Month fills in the next one at the current fee. Payments are then recorded against it.": {
+  "hu": "Még nincs hónap. Vedd fel az egyes hónapokat, ahogy számlázod őket — a + Hónap a következőt a jelenlegi díjjal tölti ki. A befizetéseket ezután ehhez rögzíted.",
+  "de": "Noch keine Monate. Fügen Sie jeden Monat bei der Abrechnung hinzu — + Monat füllt den nächsten mit der aktuellen Gebühr aus. Zahlungen werden dann darauf erfasst."
+ },
+ "No instalments yet. Add the parts of the price — e.g. an advance and a final invoice — with their due dates. Payments are then recorded against them.": {
+  "hu": "Még nincs részlet. Vedd fel az ár részeit — pl. előleget és végszámlát — a határidejükkel. A befizetéseket ezután ezekhez rögzíted.",
+  "de": "Noch keine Raten. Fügen Sie die Teile des Preises — z. B. eine Anzahlung und eine Schlussrechnung — mit ihren Fälligkeiten hinzu. Zahlungen werden dann darauf erfasst."
+ },
+ "Instalments": {
+  "hu": "Részletek",
+  "de": "Raten"
+ },
+ "Invoiced": {
+  "hu": "Számlázva",
+  "de": "Fakturiert"
+ },
+ "not invoiced": {
+  "hu": "nincs számlázva",
+  "de": "nicht fakturiert"
+ },
+ "due {date}": {
+  "hu": "esedékes: {date}",
+  "de": "fällig {date}"
+ },
+ "not recorded": {
+  "hu": "nincs rögzítve",
+  "de": "nicht erfasst"
+ },
+ "received": {
+  "hu": "beérkezett",
+  "de": "eingegangen"
+ },
+ "outstanding {amount}": {
+  "hu": "hátralévő: {amount}",
+  "de": "offen {amount}"
+ },
+ "over-paid {amount}": {
+  "hu": "túlfizetve: {amount}",
+  "de": "überzahlt {amount}"
+ },
+ "Payment": {
+  "hu": "Befizetés",
+  "de": "Zahlung"
+ },
+ "Edit instalment {label}": {
+  "hu": "{label} részlet szerkesztése",
+  "de": "Rate {label} bearbeiten"
+ },
+ "Remove instalment {label}": {
+  "hu": "{label} részlet eltávolítása",
+  "de": "Rate {label} entfernen"
+ },
+ "Payments for {label}": {
+  "hu": "Befizetések – {label}",
+  "de": "Zahlungen für {label}"
+ },
+ "on {date}": {
+  "hu": "{date}",
+  "de": "am {date}"
+ },
+ "date not recorded": {
+  "hu": "dátum nincs rögzítve",
+  "de": "Datum nicht erfasst"
+ },
+ "carried over": {
+  "hu": "átvitt",
+  "de": "übernommen"
+ },
+ "Edit payment": {
+  "hu": "Befizetés szerkesztése",
+  "de": "Zahlung bearbeiten"
+ },
+ "Remove payment": {
+  "hu": "Befizetés eltávolítása",
+  "de": "Zahlung entfernen"
+ },
+ "Paid is only what is recorded here as received. Invoicing is marked per instalment and is not payment. Closing the project does not depend on it.": {
+  "hu": "Fizetett csak az, amit itt beérkezettként rögzítesz. A számlázást részletenként jelölöd, és az nem befizetés. A projekt lezárása nem függ ettől.",
+  "de": "Bezahlt ist nur, was hier als eingegangen erfasst ist. Die Fakturierung wird pro Rate markiert und ist keine Zahlung. Der Projektabschluss hängt nicht davon ab."
+ },
+ "An instalment needs a name, e.g. \"Előleg\" or \"Végszámla\".": {
+  "hu": "A részletnek nevet kell adni, pl. „Előleg” vagy „Végszámla”.",
+  "en": "An instalment needs a name, e.g. \"Előleg\" or \"Végszámla\".",
+  "de": "Eine Rate braucht einen Namen, z. B. „Előleg“ oder „Végszámla“."
+ },
+ "An instalment needs a due date.": {
+  "hu": "A részletnek határidő kell.",
+  "de": "Eine Rate braucht ein Fälligkeitsdatum."
+ },
+ "Edit instalment": {
+  "hu": "Részlet szerkesztése",
+  "de": "Rate bearbeiten"
+ },
+ "New instalment": {
+  "hu": "Új részlet",
+  "de": "Neue Rate"
+ },
+ "Amounts are in {currency}, the project's currency.": {
+  "hu": "Az összegek {currency} pénznemben vannak, ez a projekt pénzneme.",
+  "de": "Beträge sind in {currency}, der Währung des Projekts."
+ },
+ "Amount ({currency})": {
+  "hu": "Összeg ({currency})",
+  "de": "Betrag ({currency})"
+ },
+ "Due": {
+  "hu": "Esedékes",
+  "de": "Fällig"
+ },
+ "Carried over without a due date; add one if known.": {
+  "hu": "Határidő nélkül került át; add meg, ha ismert.",
+  "de": "Ohne Fälligkeitsdatum übernommen; ergänzen Sie es, falls bekannt."
+ },
+ "Not invoiced": {
+  "hu": "Nincs számlázva",
+  "de": "Nicht fakturiert"
+ },
+ "Invoice date": {
+  "hu": "Számla dátuma",
+  "de": "Rechnungsdatum"
+ },
+ "Optional.": {
+  "hu": "Nem kötelező.",
+  "de": "Optional."
+ },
+ "Enter the day the money arrived.": {
+  "hu": "Add meg, melyik napon érkezett meg a pénz.",
+  "de": "Geben Sie den Tag ein, an dem das Geld eingegangen ist."
+ },
+ "A payment is recorded on the day it arrived — that date is in the future.": {
+  "hu": "A befizetést az érkezése napjával kell rögzíteni — ez a dátum a jövőben van.",
+  "de": "Eine Zahlung wird am Tag ihres Eingangs erfasst — dieses Datum liegt in der Zukunft."
+ },
+ "Record a payment": {
+  "hu": "Befizetés rögzítése",
+  "de": "Zahlung erfassen"
+ },
+ "Money received, in {currency}. A part payment is fine; record each transfer separately.": {
+  "hu": "Beérkezett pénz, {currency} pénznemben. Részbefizetés is rendben van; minden utalást külön rögzíts.",
+  "de": "Eingegangenes Geld, in {currency}. Eine Teilzahlung ist in Ordnung; erfassen Sie jede Überweisung einzeln."
+ },
+ "Received on": {
+  "hu": "Beérkezés napja",
+  "de": "Eingegangen am"
+ },
+ "Carried over without a date. Enter it only if you know it.": {
+  "hu": "Dátum nélkül került át. Csak akkor add meg, ha tudod.",
+  "de": "Ohne Datum übernommen. Geben Sie es nur ein, wenn Sie es kennen."
+ },
+ "This takes “{label}” over its amount by {amount}. It will be saved and shown as over-paid — split it across instalments if part of it belongs to another one.": {
+  "hu": "Ezzel a(z) „{label}” részlet {amount} összeggel túllépi a saját összegét. Mentésre kerül, és túlfizetettként jelenik meg — oszd szét a részletek között, ha egy része egy másikhoz tartozik.",
+  "de": "Damit überschreitet „{label}“ seinen Betrag um {amount}. Es wird gespeichert und als überzahlt angezeigt — teilen Sie es auf die Raten auf, falls ein Teil zu einer anderen gehört."
+ },
+ "Receivables": {
+  "hu": "Kintlévőségek",
+  "de": "Forderungen"
+ },
+ "from recorded payments · per currency": {
+  "hu": "a rögzített befizetésekből · pénznemenként",
+  "de": "aus erfassten Zahlungen · je Währung"
+ },
+ "The payment figures could not be read.": {
+  "hu": "A fizetési adatokat nem sikerült beolvasni.",
+  "de": "Die Zahlungsdaten konnten nicht gelesen werden."
+ },
+ "No payment schedule has been recorded on any project yet.": {
+  "hu": "Még egyik projekthez sincs fizetési ütemezés rögzítve.",
+  "de": "Für noch kein Projekt wurde ein Zahlungsplan erfasst."
+ },
+ "{n} project": {
+  "hu": "{n} projekt",
+  "de": "{n} Projekt"
+ },
+ "{n} projects": {
+  "hu": "{n} projekt",
+  "de": "{n} Projekte"
+ },
+ "Outstanding by project": {
+  "hu": "Hátralék projektenként",
+  "de": "Offene Beträge nach Projekt"
+ },
+ "closed": {
+  "hu": "lezárt",
+  "de": "abgeschlossen"
+ },
+ "owes {amount}": {
+  "hu": "tartozás: {amount}",
+  "de": "schuldet {amount}"
+ },
+ "overdue {amount}": {
+  "hu": "lejárt: {amount}",
+  "de": "überfällig {amount}"
+ },
+ "schedule ≠ contract": {
+  "hu": "ütemezés ≠ szerződés",
+  "de": "Plan ≠ Vertrag"
+ },
+ "Not paid": {
+  "hu": "Nincs fizetve",
+  "de": "Nicht bezahlt"
+ },
+ "Partly paid": {
+  "hu": "Részben fizetve",
+  "de": "Teilweise bezahlt"
+ }
+}

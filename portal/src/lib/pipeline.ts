@@ -3,7 +3,8 @@
 //
 // Stages, probabilities, pipeline arithmetic, profitability and the rules that
 // decide what needs attention. Everything in this file is a PURE FUNCTION over
-// plain data, and the file has NO IMPORTS — which is what lets
+// plain data, and the file has NO IMPORTS but the pure `./i18n` (whose `t`
+// returns its key in Node) — which is what lets
 // `tests/portal-revenue.spec.ts` import it directly and assert the authoritative
 // totals rather than assert that a screenshot has a number on it.
 //
@@ -22,6 +23,12 @@
 // Neither half guesses. Where a figure cannot be computed the answer is `null`,
 // and every screen renders `null` as "Not recorded" rather than as zero (§31).
 // =============================================================================
+
+// The one import this file may have: `t` and `intlLocale` are pure too, and in
+// Node (the tests) `t` returns its key. The label maps below stay in English —
+// module-level text is evaluated once, before any language is chosen — and the
+// accessor functions translate them where they are read.
+import { t, intlLocale } from './i18n.ts';
 
 /* ================================================================= stages == */
 
@@ -63,7 +70,7 @@ export const STAGE: Record<Stage, {
   lost:        { label: 'Lost',        probability: 0,   tone: 'bad',     note: 'Went elsewhere, or went quiet.' },
 };
 
-export const stageLabel = (stage: string) => STAGE[stage as Stage]?.label ?? stage;
+export const stageLabel = (stage: string) => { const s = STAGE[stage as Stage]; return s ? t(s.label) : stage; };
 export const stageTone = (stage: string) => STAGE[stage as Stage]?.tone ?? 'neutral';
 export const defaultProbability = (stage: string) => STAGE[stage as Stage]?.probability ?? 20;
 
@@ -288,7 +295,7 @@ export function shortDate(value: string | null | undefined): string {
   const d = new Date(value.length === 10 ? `${value}T00:00:00` : value);
   return Number.isNaN(d.getTime())
     ? '—'
-    : d.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: '2-digit' });
+    : d.toLocaleDateString(intlLocale('en-GB'), { year: 'numeric', month: 'short', day: '2-digit' });
 }
 
 /* ========================================================= what needs doing */
@@ -352,8 +359,8 @@ export function dealAttention(deals: Deal[], now = new Date()): AttentionItem[] 
           id: `no-action-${deal.id}`,
           record: deal.id,
           to,
-          text: 'has no next action',
-          because: `A ${stageLabel(deal.stage).toLowerCase()} opportunity with nothing scheduled stops moving without anyone noticing.`,
+          text: t('{name} has no next action'),
+          because: t('A {stage} opportunity with nothing scheduled stops moving without anyone noticing.', { stage: stageLabel(deal.stage).toLowerCase() }),
           urgent: false,
         });
       } else if (dueTone(deal.next_action_on, now) === 'overdue') {
@@ -361,8 +368,8 @@ export function dealAttention(deals: Deal[], now = new Date()): AttentionItem[] 
           id: `late-action-${deal.id}`,
           record: deal.id,
           to,
-          text: `next action is overdue — ${deal.next_action}`,
-          because: 'The date set for the next step has passed.',
+          text: t('{name} next action is overdue — {action}', { action: deal.next_action }),
+          because: t('The date set for the next step has passed.'),
           urgent: true,
         });
       }
@@ -372,8 +379,8 @@ export function dealAttention(deals: Deal[], now = new Date()): AttentionItem[] 
           id: `late-close-${deal.id}`,
           record: deal.id,
           to,
-          text: 'expected close date has passed',
-          because: 'It is still open past the date it was forecast to close, so the forecast is wrong until it is re-dated or closed.',
+          text: t('{name} expected close date has passed'),
+          because: t('It is still open past the date it was forecast to close, so the forecast is wrong until it is re-dated or closed.'),
           urgent: true,
         });
       }
@@ -384,8 +391,8 @@ export function dealAttention(deals: Deal[], now = new Date()): AttentionItem[] 
         id: `unconverted-${deal.id}`,
         record: deal.id,
         to,
-        text: 'is won but has no client record',
-        because: 'Won revenue with no client cannot be attributed to a relationship or given a project.',
+        text: t('{name} is won but has no client record'),
+        because: t('Won revenue with no client cannot be attributed to a relationship or given a project.'),
         urgent: false,
       });
     }
@@ -427,8 +434,8 @@ export function projectAttention(projects: DeliveryProject[], now = new Date()):
         id: `blocked-${project.id}`,
         record: project.id,
         to,
-        text: 'is blocked',
-        because: 'A blocked project consumes a target date without moving towards it.',
+        text: t('{name} is blocked'),
+        because: t('A blocked project consumes a target date without moving towards it.'),
         urgent: true,
       });
     }
@@ -438,8 +445,8 @@ export function projectAttention(projects: DeliveryProject[], now = new Date()):
         id: `late-project-${project.id}`,
         record: project.id,
         to,
-        text: 'is past its target date',
-        because: 'The delivery date has passed and the project is not complete.',
+        text: t('{name} is past its target date'),
+        because: t('The delivery date has passed and the project is not complete.'),
         urgent: true,
       });
     }
@@ -449,8 +456,8 @@ export function projectAttention(projects: DeliveryProject[], now = new Date()):
         id: `review-${project.id}`,
         record: project.id,
         to,
-        text: 'is waiting on the client',
-        because: 'Nothing moves in client review until somebody asks for the review back.',
+        text: t('{name} is waiting on the client'),
+        because: t('Nothing moves in client review until somebody asks for the review back.'),
         urgent: false,
       });
     }
@@ -460,8 +467,8 @@ export function projectAttention(projects: DeliveryProject[], now = new Date()):
         id: `nomilestone-${project.id}`,
         record: project.id,
         to,
-        text: 'is active with no milestone left to do',
-        because: 'Either the work is finished and the status is stale, or the next milestone has not been written down.',
+        text: t('{name} is active with no milestone left to do'),
+        because: t('Either the work is finished and the status is stale, or the next milestone has not been written down.'),
         urgent: false,
       });
     }
@@ -545,7 +552,7 @@ export const PROJECT_STATUS: Record<string, {
   archived:      { label: 'Archived',      tone: 'neutral', note: 'Closed.' },
 };
 
-export const projectStatusLabel = (status: string) => PROJECT_STATUS[status]?.label ?? status;
+export const projectStatusLabel = (status: string) => { const s = PROJECT_STATUS[status]; return s ? t(s.label) : status; };
 export const projectStatusTone = (status: string) => PROJECT_STATUS[status]?.tone ?? 'neutral';
 
 /** A project is live if it is neither finished nor put away. */
@@ -748,10 +755,10 @@ export function trackerOf(
   let lateBecause: string | null = null;
   if (!project.closed) {
     if (dueTone(project.target_date, now) === 'overdue') {
-      lateBecause = 'The target date has passed.';
+      lateBecause = t('The target date has passed.');
     } else {
       const lateStep = open.find((c) => dueTone(c.due_on, now) === 'overdue');
-      if (lateStep) lateBecause = `“${lateStep.title}” is past its due date.`;
+      if (lateStep) lateBecause = t('“{title}” is past its due date.', { title: lateStep.title });
     }
   }
 
@@ -778,25 +785,25 @@ export function trackerOf(
 export function closeRefusal(message: string | null | undefined): string | null {
   if (!message) return null;
   if (message.includes('stratos:project_close_no_checkpoints')) {
-    return 'A project needs at least one checkpoint, all done, before it can be closed.';
+    return t('A project needs at least one checkpoint, all done, before it can be closed.');
   }
   if (message.includes('stratos:project_close_open_checkpoints')) {
-    return 'Every checkpoint has to be done before the project can be closed.';
+    return t('Every checkpoint has to be done before the project can be closed.');
   }
   if (message.includes('stratos:project_closed')) {
-    return 'This project is closed. Reopen it to change its checkpoints.';
+    return t('This project is closed. Reopen it to change its checkpoints.');
   }
   if (message.includes('stratos:impact_close_no_market_value')) {
-    return 'Record the market value of the donated work before closing an Impact project — and a closed one keeps it.';
+    return t('Record the market value of the donated work before closing an Impact project — and a closed one keeps it.');
   }
   if (message.includes('stratos:project_billing_fixed')) {
-    return 'A project is one-off or a monthly contract from the day it is created.';
+    return t('A project is one-off or a monthly contract from the day it is created.');
   }
   if (message.includes('projects_monthly_shape_check')) {
-    return 'A monthly contract needs a monthly fee and has no one-off project value.';
+    return t('A monthly contract needs a monthly fee and has no one-off project value.');
   }
   if (message.includes('stratos:project_program_fixed')) {
-    return 'A project is paid or Impact from the day it is created.';
+    return t('A project is paid or Impact from the day it is created.');
   }
   return null;
 }

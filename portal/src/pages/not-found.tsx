@@ -6,14 +6,16 @@
  * would pull all six record screens into the entry chunk and undo the split in
  * App.tsx.
  */
+import { t } from '@/lib/i18n';
+
 export function NotFoundScreen() {
   return (
     <div className="grid min-h-[50dvh] place-items-center text-center">
       <div>
         <p className="num text-3xl text-signal">404</p>
-        <p className="mt-2 text-sm text-haze">That screen does not exist in the portal.</p>
+        <p className="mt-2 text-sm text-haze">{t('That screen does not exist in the portal.')}</p>
         <a href="/portal/" className="mt-4 inline-block text-xs underline underline-offset-4 hover:text-paper">
-          Back to the Dashboard
+          {t('Back to the Dashboard')}
         </a>
       </div>
     </div>

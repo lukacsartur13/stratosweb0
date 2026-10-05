@@ -1,5 +1,5 @@
 // =============================================================================
-// Meetings and demo links — the pure rules (no imports), shared by the owner's
+// Meetings and demo links — the pure rules (no imports but `./i18n`), shared by the owner's
 // panel and the client portal, and tested in tests/portal-client-extras.spec.ts.
 //
 // Instants are stored as timestamptz (UTC) together with the IANA zone the
@@ -7,6 +7,8 @@
 // and how the time is shown; the instant itself never changes meaning, so
 // daylight-saving time cannot shift a meeting.
 // =============================================================================
+
+import { intlLocale } from './i18n.ts';
 
 export interface MeetingLike {
   starts_at: string;
@@ -84,10 +86,10 @@ export function wallClock(zone: string, at: Date): string {
 export function formatMeetingTime(m: Pick<MeetingLike, 'starts_at' | 'ends_at' | 'time_zone'>): string {
   const start = new Date(m.starts_at);
   const end = new Date(m.ends_at);
-  const day = new Intl.DateTimeFormat('hu-HU', { timeZone: m.time_zone, year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' }).format(start);
-  const hm = (d: Date) => new Intl.DateTimeFormat('hu-HU', { timeZone: m.time_zone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(d);
+  const day = new Intl.DateTimeFormat(intlLocale('hu-HU'), { timeZone: m.time_zone, year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' }).format(start);
+  const hm = (d: Date) => new Intl.DateTimeFormat(intlLocale('hu-HU'), { timeZone: m.time_zone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(d);
   const sameDay = wallClock(m.time_zone, start).slice(0, 10) === wallClock(m.time_zone, end).slice(0, 10);
-  const endText = sameDay ? hm(end) : `${new Intl.DateTimeFormat('hu-HU', { timeZone: m.time_zone, month: 'long', day: 'numeric' }).format(end)} ${hm(end)}`;
+  const endText = sameDay ? hm(end) : `${new Intl.DateTimeFormat(intlLocale('hu-HU'), { timeZone: m.time_zone, month: 'long', day: 'numeric' }).format(end)} ${hm(end)}`;
   const zoneNote = m.time_zone === 'Europe/Budapest' ? '' : ` (${m.time_zone})`;
   return `${day} ${hm(start)}–${endText}${zoneNote}`;
 }

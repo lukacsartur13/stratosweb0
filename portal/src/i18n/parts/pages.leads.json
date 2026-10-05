@@ -1,0 +1,118 @@
+{
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "No leads yet": {
+  "hu": "Még nincs lead",
+  "de": "Noch keine Leads"
+ },
+ "Date": {
+  "hu": "Dátum",
+  "de": "Datum"
+ },
+ "Form": {
+  "hu": "Űrlap",
+  "de": "Formular"
+ },
+ "Source": {
+  "hu": "Forrás",
+  "de": "Quelle"
+ },
+ "Status": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "Pipeline": {
+  "hu": "Folyamat",
+  "de": "Pipeline"
+ },
+ "Locale": {
+  "hu": "Nyelv",
+  "de": "Sprache"
+ },
+ "Supabase credentials are not set in this environment, so there is nothing to read yet. See README.md for the setup steps.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase-hozzáférési adatok, így még nincs mit beolvasni. A beállítás lépéseit a README.md írja le.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt, daher gibt es noch nichts zu lesen. Die Einrichtung ist in README.md beschrieben."
+ },
+ "Nothing matches": {
+  "hu": "Nincs találat",
+  "de": "Keine Treffer"
+ },
+ "No lead matches every filter above.": {
+  "hu": "Egy lead sem felel meg az összes fenti szűrőnek.",
+  "de": "Kein Lead entspricht allen Filtern oben."
+ },
+ "The newsletter, contact form, Impact application and quote questionnaire all write here through the Netlify function.": {
+  "hu": "A hírlevél, a kapcsolatfelvételi űrlap, az Impact-jelentkezés és az árajánlatkérő kérdőív mind ide ír a Netlify függvényen keresztül.",
+  "de": "Newsletter, Kontaktformular, Impact-Bewerbung und Angebotsfragebogen schreiben alle über die Netlify-Funktion hierher."
+ },
+ "Clear filters": {
+  "hu": "Szűrők törlése",
+  "de": "Filter zurücksetzen"
+ },
+ "Company / person": {
+  "hu": "Cég / személy",
+  "de": "Firma / Person"
+ },
+ "Open the opportunity for {name}": {
+  "hu": "{name} lehetőségének megnyitása",
+  "de": "Verkaufschance für {name} öffnen"
+ },
+ "All": {
+  "hu": "Összes",
+  "de": "Alle"
+ },
+ "Name, company, email, message…": {
+  "hu": "Név, cég, e-mail, üzenet…",
+  "de": "Name, Firma, E-Mail, Nachricht…"
+ },
+ "Search leads": {
+  "hu": "Leadek keresése",
+  "de": "Leads durchsuchen"
+ },
+ "Any form": {
+  "hu": "Bármely űrlap",
+  "de": "Alle Formulare"
+ },
+ "Any source": {
+  "hu": "Bármely forrás",
+  "de": "Alle Quellen"
+ },
+ "Any locale": {
+  "hu": "Bármely nyelv",
+  "de": "Alle Sprachen"
+ },
+ "Sort": {
+  "hu": "Rendezés",
+  "de": "Sortierung"
+ },
+ "Newest first": {
+  "hu": "Legújabb elöl",
+  "de": "Neueste zuerst"
+ },
+ "Oldest first": {
+  "hu": "Legrégebbi elöl",
+  "de": "Älteste zuerst"
+ },
+ "By name": {
+  "hu": "Név szerint",
+  "de": "Nach Name"
+ },
+ "By stage": {
+  "hu": "Szakasz szerint",
+  "de": "Nach Phase"
+ },
+ "Clear": {
+  "hu": "Törlés",
+  "de": "Zurücksetzen"
+ },
+ "{total} leads": {
+  "hu": "{total} lead",
+  "de": "{total} Leads"
+ },
+ "{shown} of {total}": {
+  "hu": "{shown} / {total}",
+  "de": "{shown} von {total}"
+ }
+}

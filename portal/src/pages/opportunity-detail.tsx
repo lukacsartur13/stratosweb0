@@ -25,6 +25,7 @@ import {
 import { buildRecordTimeline, useNoteMutation, useRecordDetail } from '@/lib/records';
 import { formatWhen } from '@/lib/leads';
 import { supabase, isConfigured } from '@/lib/supabase';
+import { t } from '@/lib/i18n';
 
 /**
  * ONE OPPORTUNITY — the commercial detail (§13).
@@ -95,8 +96,8 @@ export function OpportunityDetailScreen() {
       <Panel>
         <DataState
           kind="unconfigured"
-          title="Not connected"
-          body="Supabase credentials are not set in this environment, so there is nothing to read yet."
+          title={t('Not connected')}
+          body={t('Supabase credentials are not set in this environment, so there is nothing to read yet.')}
         />
       </Panel>
     );
@@ -107,11 +108,11 @@ export function OpportunityDetailScreen() {
       <Panel>
         <DataState
           kind={state === 'error' ? 'unavailable' : 'empty'}
-          title={state === 'error' ? 'Unavailable' : 'No such opportunity'}
+          title={state === 'error' ? t('Unavailable') : t('No such opportunity')}
           body={state === 'error'
-            ? 'The opportunity could not be read right now.'
-            : 'This opportunity does not exist, or this account may not read it.'}
-          action={<Link to="/sales"><Button size="sm">Back to Sales</Button></Link>}
+            ? t('The opportunity could not be read right now.')
+            : t('This opportunity does not exist, or this account may not read it.')}
+          action={<Link to="/sales"><Button size="sm">{t('Back to Sales')}</Button></Link>}
         />
       </Panel>
     );
@@ -120,8 +121,8 @@ export function OpportunityDetailScreen() {
   const timeline = buildRecordTimeline(
     {
       at: deal.created_at,
-      title: 'Opportunity created',
-      detail: deal.lead_id ? 'Converted from a lead' : 'Entered manually',
+      title: t('Opportunity created'),
+      detail: deal.lead_id ? t('Converted from a lead') : t('Entered manually'),
     },
     detail.notes,
     detail.log,
@@ -140,10 +141,10 @@ export function OpportunityDetailScreen() {
           to="/sales"
           className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper"
         >
-          <ArrowLeft size={11} aria-hidden="true" /> All opportunities
+          <ArrowLeft size={11} aria-hidden="true" /> {t('All opportunities')}
         </Link>
         <div className="flex flex-wrap items-center gap-2">
-          {deal.archived_at && <StatusPill tone="neutral">Archived</StatusPill>}
+          {deal.archived_at && <StatusPill tone="neutral">{t('Archived')}</StatusPill>}
           <StatusPill tone={stageTone(deal.stage)}>{stageLabel(deal.stage)}</StatusPill>
         </div>
       </div>
@@ -153,9 +154,9 @@ export function OpportunityDetailScreen() {
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-8">
           <Panel>
             <SectionHeader
-              title="Opportunity"
-              note={`created ${formatWhen(deal.created_at)}`}
-              action={mayEdit ? <Button size="sm" onClick={() => setEditing(true)}>Edit</Button> : undefined}
+              title={t('Opportunity')}
+              note={t('created {when}', { when: formatWhen(deal.created_at) })}
+              action={mayEdit ? <Button size="sm" onClick={() => setEditing(true)}>{t('Edit')}</Button> : undefined}
             />
             <div className="px-4 py-3.5">
               <h2 className="text-lg leading-snug text-paper">{deal.title}</h2>
@@ -180,7 +181,7 @@ export function OpportunityDetailScreen() {
 
               {deal.stage === 'lost' && deal.lost_reason && (
                 <div className="mt-3 rounded-sm border border-danger/25 px-3 py-2">
-                  <p className="label text-danger">Lost — {(LOST_REASON_LABEL as Record<string, string>)[deal.lost_reason] ?? deal.lost_reason}</p>
+                  <p className="label text-danger">{t('Lost — {reason}', { reason: t((LOST_REASON_LABEL as Record<string, string>)[deal.lost_reason] ?? deal.lost_reason) })}</p>
                   {deal.lost_note && (
                     <p className="mt-1 whitespace-pre-wrap text-xs text-haze">{deal.lost_note}</p>
                   )}
@@ -203,27 +204,27 @@ export function OpportunityDetailScreen() {
 
           {/* ------------------------------------------------- notes */}
           <Panel>
-            <SectionHeader title="Notes" note={detail.notes.length > 0 ? `${detail.notes.length}` : undefined} />
+            <SectionHeader title={t('Notes')} note={detail.notes.length > 0 ? `${detail.notes.length}` : undefined} />
             {mayEdit && (
               <div className="border-b border-hairline px-4 py-3">
-                <label className="sr-only" htmlFor="opp-note">Add a note</label>
+                <label className="sr-only" htmlFor="opp-note">{t('Add a note')}</label>
                 <Textarea
                   id="opp-note"
                   value={draft}
                   onChange={(e) => setDraft(e.target.value)}
-                  placeholder="What was said, what was agreed, what happens next."
+                  placeholder={t('What was said, what was agreed, what happens next.')}
                   className="min-h-20 text-[13px]"
                 />
                 <div className="mt-2 flex items-center justify-between gap-3">
                   {error ? <p role="alert" className="text-xs text-danger">{error}</p> : <span />}
                   <Button size="sm" variant="primary" onClick={submitNote} disabled={notes.busy}>
-                    Add note
+                    {t('Add note')}
                   </Button>
                 </div>
               </div>
             )}
             {detail.notes.length === 0 ? (
-              <p className="px-4 py-3 text-xs text-haze">No notes yet.</p>
+              <p className="px-4 py-3 text-xs text-haze">{t('No notes yet.')}</p>
             ) : (
               <ul className="grid">
                 {detail.notes.map((note) => (
@@ -233,7 +234,7 @@ export function OpportunityDetailScreen() {
                         no dangerouslySetInnerHTML anywhere in this file. */}
                     <p className="whitespace-pre-wrap text-[13px] text-paper">{note.body}</p>
                     <p className="t-note mt-1">
-                      {note.author?.full_name || note.author?.email || 'Unknown'} · {formatWhen(note.created_at)}
+                      {note.author?.full_name || note.author?.email || t('Unknown')} · {formatWhen(note.created_at)}
                     </p>
                   </li>
                 ))}
@@ -243,7 +244,7 @@ export function OpportunityDetailScreen() {
 
           {/* ---------------------------------------------- activity */}
           <Panel>
-            <SectionHeader title="Activity" note="only what was recorded" />
+            <SectionHeader title={t('Activity')} note={t('only what was recorded')} />
             <ol className="grid">
               {timeline.map((entry) => (
                 <li key={entry.id} className="flex gap-3 border-b border-hairline px-4 py-2.5 last:border-0">
@@ -314,11 +315,11 @@ function CommercialPanel({
 
   return (
     <Panel>
-      <SectionHeader title="Commercial" />
+      <SectionHeader title={t('Commercial')} />
 
       {mayEdit && (
         <div className="border-b border-hairline px-4 py-3">
-          <label className="label mb-1.5 block" htmlFor="detail-stage">Stage</label>
+          <label className="label mb-1.5 block" htmlFor="detail-stage">{t('Stage')}</label>
           <Select
             id="detail-stage"
             value={deal.stage}
@@ -328,46 +329,46 @@ function CommercialPanel({
               setError(await mutate.setStage(deal.id, e.target.value as Stage, deal));
             }}
           >
-            {STAGES.map((s) => <option key={s} value={s}>{STAGE[s].label}</option>)}
+            {STAGES.map((s) => <option key={s} value={s}>{t(STAGE[s].label)}</option>)}
           </Select>
-          <p className="t-note mt-1">{STAGE[deal.stage as Stage]?.note}</p>
+          <p className="t-note mt-1">{STAGE[deal.stage as Stage]?.note && t(STAGE[deal.stage as Stage].note)}</p>
           {error && <p role="alert" className="mt-1 text-xs text-danger">{error}</p>}
         </div>
       )}
 
       <dl className="grid">
         <DataLine
-          term="Estimated value"
+          term={t('Estimated value')}
           value={money(deal.estimated_value, deal.currency)
             ? <span className="num">{money(deal.estimated_value, deal.currency)}</span>
-            : <NotRecorded what="Value" />}
+            : <NotRecorded what={t('Value')} />}
         />
         <DataLine
-          term="Probability"
+          term={t('Probability')}
           value={<span className="num">{percent(deal.probability)}</span>}
           note={deal.probability === STAGE[deal.stage as Stage]?.probability
-            ? 'stage default — editable'
-            : 'set for this deal'}
+            ? t('stage default — editable')
+            : t('set for this deal')}
         />
         <DataLine
-          term="Weighted"
+          term={t('Weighted')}
           value={money(weighted(deal), deal.currency)
             ? <span className="num text-chrome">{money(weighted(deal), deal.currency)}</span>
             : <NotRecorded />}
-          note="value × probability"
+          note={t('value × probability')}
         />
         <DataLine
-          term="Expected close"
+          term={t('Expected close')}
           value={deal.expected_close_on
             ? <span className={cn('num', closeTone === 'overdue' ? 'text-danger' : closeTone === 'today' ? 'text-signal' : undefined)}>
                 {shortDate(deal.expected_close_on)}
               </span>
-            : <NotRecorded what="Expected close" />}
-          note={closeTone === 'overdue' ? 'this date has passed' : undefined}
+            : <NotRecorded what={t('Expected close')} />}
+          note={closeTone === 'overdue' ? t('this date has passed') : undefined}
         />
         <DataLine
-          term="Next action"
-          value={deal.next_action || <NotRecorded what="Next action" />}
+          term={t('Next action')}
+          value={deal.next_action || <NotRecorded what={t('Next action')} />}
           note={mayEdit && deal.next_action ? (
             // Done clears the action and its date and writes what was done to
             // the notes. Set the next step with Edit; until then the Dashboard
@@ -376,40 +377,40 @@ function CommercialPanel({
               size="sm"
               className="mt-1"
               disabled={mutate.busy === deal.id}
-              aria-label={`Mark done: ${deal.next_action}`}
+              aria-label={t('Mark done: {action}', { action: deal.next_action })}
               onClick={async () => setError(await mutate.completeAction(deal))}
             >
-              <Check size={11} aria-hidden="true" /> Done
+              <Check size={11} aria-hidden="true" /> {t('Done')}
             </Button>
           ) : undefined}
         />
         <DataLine
-          term="Next action due"
+          term={t('Next action due')}
           value={deal.next_action_on
             ? <span className={cn('num', actionTone === 'overdue' ? 'text-danger' : actionTone === 'today' ? 'text-signal' : undefined)}>
                 {shortDate(deal.next_action_on)}
               </span>
             : <NotRecorded />}
         />
-        <DataLine term="Service" value={deal.service || <NotRecorded what="Service" />} />
+        <DataLine term={t('Service')} value={deal.service || <NotRecorded what={t('Service')} />} />
         <DataLine
-          term="Responsible"
+          term={t('Responsible')}
           value={mayEdit && staff.length > 0 ? (
             <>
-              <label className="sr-only" htmlFor="detail-owner">Responsible person</label>
+              <label className="sr-only" htmlFor="detail-owner">{t('Responsible person')}</label>
               <Select
                 id="detail-owner"
                 value={deal.owner_id ?? ''}
                 className="w-full"
                 onChange={(e) => void set({ owner_id: e.target.value || null })}
               >
-                <option value="">Nobody</option>
+                <option value="">{t('Nobody')}</option>
                 {staff.map((p) => (
                   <option key={p.id} value={p.id}>{p.full_name || p.email}</option>
                 ))}
               </Select>
             </>
-          ) : (deal.owner?.full_name || deal.owner?.email || <NotRecorded what="Responsible" />)}
+          ) : (deal.owner?.full_name || deal.owner?.email || <NotRecorded what={t('Responsible')} />)}
         />
       </dl>
     </Panel>
@@ -427,16 +428,16 @@ function CommercialPanel({
 function OriginPanel({ deal }: { deal: Opportunity }) {
   return (
     <Panel>
-      <SectionHeader title="Origin" />
+      <SectionHeader title={t('Origin')} />
       <dl className="grid">
-        <DataLine term="Source" value={dealSource(deal)} />
-        <DataLine term="Campaign" value={deal.campaign || <span className="text-haze">—</span>} />
-        <DataLine term="Landing page" value={deal.landing_route || <span className="text-haze">—</span>} />
-        <DataLine term="Form" value={deal.form_type || <span className="text-haze">—</span>} />
-        <DataLine term="Locale" value={deal.locale ? deal.locale.toUpperCase() : <span className="text-haze">—</span>} />
-        <DataLine term="Updated" value={<span className="num text-[11px]">{formatWhen(deal.updated_at)}</span>} />
-        {deal.won_at && <DataLine term="Won" value={<span className="num text-[11px]">{formatWhen(deal.won_at)}</span>} />}
-        {deal.lost_at && <DataLine term="Lost" value={<span className="num text-[11px]">{formatWhen(deal.lost_at)}</span>} />}
+        <DataLine term={t('Source')} value={dealSource(deal)} />
+        <DataLine term={t('Campaign')} value={deal.campaign || <span className="text-haze">—</span>} />
+        <DataLine term={t('Landing page')} value={deal.landing_route || <span className="text-haze">—</span>} />
+        <DataLine term={t('Form')} value={deal.form_type || <span className="text-haze">—</span>} />
+        <DataLine term={t('Locale')} value={deal.locale ? deal.locale.toUpperCase() : <span className="text-haze">—</span>} />
+        <DataLine term={t('Updated')} value={<span className="num text-[11px]">{formatWhen(deal.updated_at)}</span>} />
+        {deal.won_at && <DataLine term={t('Won')} value={<span className="num text-[11px]">{formatWhen(deal.won_at)}</span>} />}
+        {deal.lost_at && <DataLine term={t('Lost')} value={<span className="num text-[11px]">{formatWhen(deal.lost_at)}</span>} />}
       </dl>
     </Panel>
   );
@@ -447,10 +448,10 @@ function OriginPanel({ deal }: { deal: Opportunity }) {
 function CloseBar({ onWin, onLose, busy }: { onWin: () => void; onLose: () => void; busy: boolean }) {
   return (
     <Panel className="flex flex-wrap items-center justify-between gap-3 px-4 py-3">
-      <p className="text-xs text-haze">Closing this deal records the date and locks the probability.</p>
+      <p className="text-xs text-haze">{t('Closing this deal records the date and locks the probability.')}</p>
       <div className="flex gap-2">
-        <Button size="sm" variant="danger" onClick={onLose} disabled={busy}>Mark lost</Button>
-        <Button size="sm" variant="primary" onClick={onWin} disabled={busy}>Mark won</Button>
+        <Button size="sm" variant="danger" onClick={onLose} disabled={busy}>{t('Mark lost')}</Button>
+        <Button size="sm" variant="primary" onClick={onWin} disabled={busy}>{t('Mark won')}</Button>
       </div>
     </Panel>
   );
@@ -484,26 +485,26 @@ function LostDialog({
     <Dialog
       open
       onClose={onClose}
-      title="Mark this opportunity lost"
-      description="The reason is optional — an honest blank is better than a guessed category. It is what makes lost deals countable a year from now."
+      title={t('Mark this opportunity lost')}
+      description={t('The reason is optional — an honest blank is better than a guessed category. It is what makes lost deals countable a year from now.')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
           <Button size="sm" variant="danger" onClick={submit} disabled={mutate.busy === deal.id}>
-            Mark lost
+            {t('Mark lost')}
           </Button>
         </>
       }
     >
       <div className="grid gap-3">
-        <Field id="lost-reason" label="Reason">
+        <Field id="lost-reason" label={t('Reason')}>
           <Select id="lost-reason" className="w-full py-2.5 text-sm" value={reason}
                   onChange={(e) => setReason(e.target.value)}>
-            <option value="">Not recorded</option>
-            {LOST_REASONS.map((r) => <option key={r} value={r}>{LOST_REASON_LABEL[r]}</option>)}
+            <option value="">{t('Not recorded')}</option>
+            {LOST_REASONS.map((r) => <option key={r} value={r}>{t(LOST_REASON_LABEL[r])}</option>)}
           </Select>
         </Field>
-        <Field id="lost-note" label="Note" hint="Anything worth remembering about why.">
+        <Field id="lost-note" label={t('Note')} hint={t('Anything worth remembering about why.')}>
           <Textarea id="lost-note" value={note} onChange={(e) => setNote(e.target.value)} />
         </Field>
         {error && <p role="alert" className="text-xs text-danger">{error}</p>}
@@ -539,26 +540,25 @@ function WonDialog({
     <Dialog
       open
       onClose={onClose}
-      title="Mark this opportunity won"
-      description="The won date is stamped by the database and the probability becomes 100%. Creating the client and the project is the next step, and it is a separate one."
+      title={t('Mark this opportunity won')}
+      description={t('The won date is stamped by the database and the probability becomes 100%. Creating the client and the project is the next step, and it is a separate one.')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
           <Button size="sm" variant="primary" onClick={submit} disabled={mutate.busy === deal.id}>
-            Mark won
+            {t('Mark won')}
           </Button>
         </>
       }
     >
       <dl className="grid rounded-sm border border-hairline">
-        <DataLine term="Value" value={money(deal.estimated_value, deal.currency) ?? <NotRecorded />} />
-        <DataLine term="Company" value={dealParty(deal)} />
-        <DataLine term="Service" value={deal.service || <NotRecorded />} />
+        <DataLine term={t('Value')} value={money(deal.estimated_value, deal.currency) ?? <NotRecorded />} />
+        <DataLine term={t('Company')} value={dealParty(deal)} />
+        <DataLine term={t('Service')} value={deal.service || <NotRecorded />} />
       </dl>
       {!deal.estimated_value && (
         <p className="t-note mt-3">
-          This deal has no value recorded, so it will count towards won deals but not towards won
-          revenue. Add one before closing if it is known.
+          {t('This deal has no value recorded, so it will count towards won deals but not towards won revenue. Add one before closing if it is known.')}
         </p>
       )}
       {error && <p role="alert" className="mt-3 text-xs text-danger">{error}</p>}
@@ -670,23 +670,23 @@ function WonPanel({
   return (
     <Panel>
       <SectionHeader
-        title="Won"
-        note={done ? (mayProjects ? 'client and project created' : 'client created') : 'what this deal became'}
+        title={t('Won')}
+        note={done ? (mayProjects ? t('client and project created') : t('client created')) : t('what this deal became')}
       />
       <div className="grid gap-3 px-4 py-3.5">
         <dl className="grid rounded-sm border border-hairline">
           <DataLine
-            term="Client"
+            term={t('Client')}
             value={deal.client
               ? <Link to={`/clients/${deal.client.id}`} className="underline underline-offset-4 hover:text-signal">
                   {deal.client.name}
                 </Link>
-              : <NotRecorded what="Client" />}
+              : <NotRecorded what={t('Client')} />}
           />
           {mayProjects && <DataLine
-            term="Projects"
+            term={t('Projects')}
             value={projects.length === 0
-              ? <NotRecorded what="Project" />
+              ? <NotRecorded what={t('Project')} />
               : (
                 <span className="grid gap-0.5">
                   {projects.map((p) => (
@@ -699,7 +699,7 @@ function WonPanel({
               )}
           />}
           <DataLine
-            term="Won value"
+            term={t('Won value')}
             value={money(deal.estimated_value, deal.currency)
               ? <span className="num">{money(deal.estimated_value, deal.currency)}</span>
               : <NotRecorded />}
@@ -710,19 +710,18 @@ function WonPanel({
           <div className="grid gap-2">
             {matches.length > 0 && (
               <div className="rounded-sm border border-signal/25 px-3 py-2.5">
-                <p className="label mb-1.5 text-signal">Possible existing clients</p>
+                <p className="label mb-1.5 text-signal">{t('Possible existing clients')}</p>
                 <p className="t-note mb-2">
-                  Nothing is merged automatically. Attach this deal to one of these, or create a new
-                  client if none of them is the same company.
+                  {t('Nothing is merged automatically. Attach this deal to one of these, or create a new client if none of them is the same company.')}
                 </p>
                 <ul className="grid gap-1.5">
                   {matches.map(({ client, why }) => (
                     <li key={client.id} className="flex flex-wrap items-center justify-between gap-2">
                       <span className="min-w-0 text-[13px] text-paper">
-                        {client.name} <span className="t-note">— matched on {why}</span>
+                        {client.name} <span className="t-note">{t('— matched on {why}', { why })}</span>
                       </span>
                       <Button size="sm" onClick={() => void attach(client)} disabled={busy}>
-                        Attach
+                        {t('Attach')}
                       </Button>
                     </li>
                   ))}
@@ -731,7 +730,7 @@ function WonPanel({
             )}
             <div>
               <Button size="sm" variant="primary" onClick={createClient} disabled={busy}>
-                Create client from this deal
+                {t('Create client from this deal')}
               </Button>
             </div>
           </div>
@@ -740,11 +739,10 @@ function WonPanel({
         {mayProjects && deal.organization_id && projects.length === 0 && (
           <div>
             <Button size="sm" variant="primary" onClick={createProject} disabled={busy || templates.state === 'loading'}>
-              Create project
+              {t('Create project')}
             </Button>
             <p className="t-note mt-1.5">
-              Starts from the {templateName.toLowerCase()} checkpoint template ({steps.length} steps), at the
-              deal&rsquo;s value. Everything is editable afterwards.
+              {t('Starts from the {template} checkpoint template ({n} steps), at the deal’s value. Everything is editable afterwards.', { template: t(templateName).toLowerCase(), n: steps.length })}
             </p>
           </div>
         )}
@@ -761,17 +759,16 @@ function RelatedLead({ deal }: { deal: Opportunity }) {
   if (!deal.lead_id) return null;
   return (
     <Panel>
-      <SectionHeader title="Source lead" note="the enquiry this came from" />
+      <SectionHeader title={t('Source lead')} note={t('the enquiry this came from')} />
       <div className="px-4 py-3">
         <Link
           to={`/leads/${deal.lead_id}`}
           className="text-[13px] text-paper underline underline-offset-4 hover:text-signal"
         >
-          Open the original enquiry
+          {t('Open the original enquiry')}
         </Link>
         <p className="t-note mt-1">
-          The message, the questionnaire answers and the submission metadata stay on the lead — they
-          are deliberately not copied here.
+          {t('The message, the questionnaire answers and the submission metadata stay on the lead — they are deliberately not copied here.')}
         </p>
       </div>
     </Panel>
@@ -814,13 +811,13 @@ function EditDialog({
     const raw = form.estimated_value.trim();
     const value = raw === '' ? null : Number(raw.replace(/\s/g, '').replace(',', '.'));
     if (value !== null && (!Number.isFinite(value) || value < 0)) {
-      setError('The value must be a number, and not a negative one.'); return;
+      setError(t('The value must be a number, and not a negative one.')); return;
     }
     const probability = Number(form.probability);
     if (!Number.isInteger(probability) || probability < 0 || probability > 100) {
       // The database has the same constraint. Checking here means the operator
       // is told what is wrong instead of shown a refusal.
-      setError('Probability must be a whole number between 0 and 100.'); return;
+      setError(t('Probability must be a whole number between 0 and 100.')); return;
     }
 
     const problem = await mutate.update(deal.id, {
@@ -846,50 +843,50 @@ function EditDialog({
       open
       wide
       onClose={onClose}
-      title="Edit opportunity"
+      title={t('Edit opportunity')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
           <Button size="sm" variant="primary" onClick={submit} disabled={mutate.busy === deal.id}>
-            Save
+            {t('Save')}
           </Button>
         </>
       }
     >
       <div className="grid gap-3">
-        <Field id="edit-title" label="Title">
+        <Field id="edit-title" label={t('Title')}>
           <Input id="edit-title" value={form.title} onChange={(e) => field('title', e.target.value)} />
         </Field>
 
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="edit-company" label="Company">
+          <Field id="edit-company" label={t('Company')}>
             <Input id="edit-company" value={form.company_name}
                    onChange={(e) => field('company_name', e.target.value)} />
           </Field>
-          <Field id="edit-service" label="Service">
+          <Field id="edit-service" label={t('Service')}>
             <Input id="edit-service" value={form.service}
                    onChange={(e) => field('service', e.target.value)} />
           </Field>
-          <Field id="edit-contact" label="Contact">
+          <Field id="edit-contact" label={t('Contact')}>
             <Input id="edit-contact" value={form.contact_name}
                    onChange={(e) => field('contact_name', e.target.value)} />
           </Field>
-          <Field id="edit-email" label="Contact email">
+          <Field id="edit-email" label={t('Contact email')}>
             <Input id="edit-email" type="email" value={form.contact_email}
                    onChange={(e) => field('contact_email', e.target.value)} />
           </Field>
-          <Field id="edit-phone" label="Contact phone">
+          <Field id="edit-phone" label={t('Contact phone')}>
             <Input id="edit-phone" value={form.contact_phone}
                    onChange={(e) => field('contact_phone', e.target.value)} />
           </Field>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <Field id="edit-value" label="Estimated value">
+          <Field id="edit-value" label={t('Estimated value')}>
             <Input id="edit-value" inputMode="numeric" value={form.estimated_value}
                    onChange={(e) => field('estimated_value', e.target.value)} />
           </Field>
-          <Field id="edit-currency" label="Currency">
+          <Field id="edit-currency" label={t('Currency')}>
             <Select id="edit-currency" className="w-full py-2.5 text-sm" value={form.currency}
                     onChange={(e) => field('currency', e.target.value)}>
               {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -897,10 +894,10 @@ function EditDialog({
           </Field>
           <Field
             id="edit-probability"
-            label="Probability %"
+            label={t('Probability %')}
             hint={isOpen(deal.stage)
-              ? `${STAGE[deal.stage as Stage]?.probability}% is the stage default`
-              : 'Closed deals are fixed at 100 or 0'}
+              ? t('{n}% is the stage default', { n: STAGE[deal.stage as Stage]?.probability })
+              : t('Closed deals are fixed at 100 or 0')}
           >
             <Input id="edit-probability" inputMode="numeric" value={form.probability}
                    disabled={!isOpen(deal.stage)}
@@ -909,15 +906,15 @@ function EditDialog({
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <Field id="edit-close" label="Expected close">
+          <Field id="edit-close" label={t('Expected close')}>
             <Input id="edit-close" type="date" value={form.expected_close_on}
                    onChange={(e) => field('expected_close_on', e.target.value)} />
           </Field>
-          <Field id="edit-action" label="Next action">
+          <Field id="edit-action" label={t('Next action')}>
             <Input id="edit-action" value={form.next_action}
                    onChange={(e) => field('next_action', e.target.value)} />
           </Field>
-          <Field id="edit-action-date" label="Next action date">
+          <Field id="edit-action-date" label={t('Next action date')}>
             <Input id="edit-action-date" type="date" value={form.next_action_on}
                    onChange={(e) => field('next_action_on', e.target.value)} />
           </Field>

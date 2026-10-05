@@ -20,6 +20,7 @@ import {
   useSalesFilter, type Opportunity,
 } from '@/lib/sales';
 import { useSalesSummary } from '@/lib/business';
+import { t } from '@/lib/i18n';
 
 /**
  * SALES — the commercial workspace.
@@ -51,6 +52,7 @@ import { useSalesSummary } from '@/lib/business';
 
 type View = 'pipeline' | 'table' | 'followups' | 'performance';
 
+// English source text; translated where it is rendered (`t(v.label)`).
 const VIEWS: { id: View; label: string }[] = [
   { id: 'pipeline', label: 'Pipeline' },
   { id: 'table', label: 'Table' },
@@ -88,7 +90,7 @@ export function SalesScreen() {
       />
 
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <nav aria-label="Sales views" className="flex flex-wrap items-center gap-px">
+        <nav aria-label={t('Sales views')} className="flex flex-wrap items-center gap-px">
           {VIEWS.map((v) => (
             <button
               key={v.id}
@@ -100,14 +102,14 @@ export function SalesScreen() {
                 view === v.id ? 'bg-flare text-paper' : 'text-haze hover:bg-flare hover:text-paper',
               )}
             >
-              {v.label}
+              {t(v.label)}
             </button>
           ))}
         </nav>
 
         {mayEdit && (
           <Button size="sm" variant="primary" onClick={() => setCreating(true)}>
-            <Plus size={12} aria-hidden="true" /> New opportunity
+            <Plus size={12} aria-hidden="true" /> {t('New opportunity')}
           </Button>
         )}
       </div>
@@ -122,8 +124,8 @@ export function SalesScreen() {
         <Panel>
           <DataState
             kind="unconfigured"
-            title="Not connected"
-            body="Supabase credentials are not set in this environment, so there is nothing to read yet."
+            title={t('Not connected')}
+            body={t('Supabase credentials are not set in this environment, so there is nothing to read yet.')}
           />
         </Panel>
       )}
@@ -181,16 +183,16 @@ function PipelineStrip({
   const wonMtd = sumByCurrency(bucket(rows, 'won_mtd'));
 
   const cells: { label: string; total: ReturnType<typeof primaryTotal>; weighted?: boolean; note: string }[] = [
-    { label: 'Total pipeline', total: primaryTotal(open), note: 'open opportunities' },
-    { label: 'Weighted', total: primaryTotal(open), weighted: true, note: 'value × probability' },
-    { label: 'Closing this month', total: primaryTotal(closing), note: 'expected close date' },
-    { label: 'Won this month', total: primaryTotal(wonMtd), note: 'marked won' },
+    { label: t('Total pipeline'), total: primaryTotal(open), note: t('open opportunities') },
+    { label: t('Weighted'), total: primaryTotal(open), weighted: true, note: t('value × probability') },
+    { label: t('Closing this month'), total: primaryTotal(closing), note: t('expected close date') },
+    { label: t('Won this month'), total: primaryTotal(wonMtd), note: t('marked won') },
   ];
 
   return (
     <>
     <Panel
-      aria-label="Pipeline value"
+      aria-label={t('Pipeline value')}
       className="grid grid-cols-2 divide-x divide-y divide-hairline bg-panel xl:grid-cols-4 xl:divide-y-0"
     >
       {cells.map((cell) => {
@@ -212,7 +214,7 @@ function PipelineStrip({
               </span>
               {cell.total.others > 0 && (
                 <span className="t-note text-signal">
-                  +{cell.total.others} in {cell.total.otherCurrencies.join(', ')}
+                  {t('+{n} in {currencies}', { n: cell.total.others, currencies: cell.total.otherCurrencies.join(', ') })}
                 </span>
               )}
             </div>
@@ -236,7 +238,7 @@ function PipelineStrip({
           onClick={onRetry}
           className="underline underline-offset-2 hover:text-paper"
         >
-          Retry
+          {t('Retry')}
         </button>
       </p>
     )}
@@ -279,9 +281,9 @@ function Board({
               inStage.map((o) => ({ currency: o.currency, value: o.estimated_value ?? 0, weighted: weighted(o) ?? 0 })),
             ));
             return (
-              <section key={stage} aria-label={STAGE[stage].label} className="min-w-0">
+              <section key={stage} aria-label={t(STAGE[stage].label)} className="min-w-0">
                 <header className="mb-2 flex items-baseline justify-between gap-2 border-b border-hairline pb-1.5">
-                  <h2 className="t-section text-chrome">{STAGE[stage].label}</h2>
+                  <h2 className="t-section text-chrome">{t(STAGE[stage].label)}</h2>
                   <span className="num text-[11px] text-haze">{inStage.length}</span>
                 </header>
                 <p className="t-note mb-2 min-h-[15px]">
@@ -292,7 +294,7 @@ function Board({
                 <div className="grid gap-2">
                   {inStage.length === 0 && (
                     <p className="rounded-sm border border-dashed border-hairline px-3 py-4 text-center text-[10px] text-haze">
-                      Nothing here
+                      {t('Nothing here')}
                     </p>
                   )}
                   {inStage.map((deal) => (
@@ -325,7 +327,7 @@ function DealCard({
 
       <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
         <span className="num text-[12px] text-paper">
-          {money(deal.estimated_value, deal.currency) ?? <span className="text-haze">no value</span>}
+          {money(deal.estimated_value, deal.currency) ?? <span className="text-haze">{t('no value')}</span>}
         </span>
         <span className="num text-[10px] text-haze">{deal.probability}%</span>
       </div>
@@ -335,7 +337,7 @@ function DealCard({
           'num mt-1 text-[10px]',
           closeTone === 'overdue' ? 'text-danger' : closeTone === 'today' ? 'text-signal' : 'text-haze',
         )}>
-          {closeTone === 'overdue' ? 'overdue · ' : ''}{shortDate(deal.expected_close_on)}
+          {closeTone === 'overdue' ? t('overdue · ') : ''}{shortDate(deal.expected_close_on)}
         </p>
       )}
 
@@ -354,7 +356,7 @@ function DealCard({
             alternative to provide because there is no drag.
           */}
           <label className="sr-only" htmlFor={`stage-${deal.id}`}>
-            Stage for {deal.title}
+            {t('Stage for {title}', { title: deal.title })}
           </label>
           <Select
             id={`stage-${deal.id}`}
@@ -371,7 +373,7 @@ function DealCard({
               setError(await mutate.setStage(deal.id, next, deal));
             }}
           >
-            {STAGES.map((s) => <option key={s} value={s}>{STAGE[s].label}</option>)}
+            {STAGES.map((s) => <option key={s} value={s}>{t(STAGE[s].label)}</option>)}
           </Select>
           {error && <p role="alert" className="mt-1 text-[10px] text-danger">{error}</p>}
         </>
@@ -401,21 +403,21 @@ function TableView({
       {rows.length === 0 ? (
         <DataState
           kind="empty"
-          title="Nothing matches"
+          title={t('Nothing matches')}
           body={filter.filters.close === 'month'
-            ? 'No opportunity matches every filter above. The view opens on deals closing this month — clear the filters to see every deal, including won deals that became clients.'
-            : 'No opportunity matches every filter above.'}
-          action={<Button size="sm" onClick={filter.reset}>Clear filters</Button>}
+            ? t('No opportunity matches every filter above. The view opens on deals closing this month — clear the filters to see every deal, including won deals that became clients.')
+            : t('No opportunity matches every filter above.')}
+          action={<Button size="sm" onClick={filter.reset}>{t('Clear filters')}</Button>}
         />
       ) : (
         <>
           <Table
             head={[
-              'Opportunity', 'Company', 'Stage',
-              { label: 'Value', align: 'right' },
-              { label: 'Prob.', align: 'right' },
-              { label: 'Weighted', align: 'right' },
-              'Expected close', 'Next action', 'Source',
+              t('Opportunity'), t('Company'), t('Stage'),
+              { label: t('Value'), align: 'right' },
+              { label: t('Prob.'), align: 'right' },
+              { label: t('Weighted'), align: 'right' },
+              t('Expected close'), t('Next action'), t('Source'),
             ]}
             minWidth={840}
             sticky
@@ -455,8 +457,7 @@ function TableView({
 
           {capped && (
             <p className="t-note border-t border-hairline px-4 py-2">
-              Showing the {limit} most recently updated opportunities. Narrow the filters to
-              reach older records.
+              {t('Showing the {limit} most recently updated opportunities. Narrow the filters to reach older records.', { limit })}
             </p>
           )}
         </>
@@ -481,36 +482,36 @@ function FilterBar({
         type="search"
         value={filters.query}
         onChange={(e) => set('query', e.target.value)}
-        placeholder="Opportunity or company…"
-        aria-label="Search opportunities"
+        placeholder={t('Opportunity or company…')}
+        aria-label={t('Search opportunities')}
         className="h-7 w-full py-1 text-xs sm:w-52"
       />
 
-      <label className="sr-only" htmlFor="sales-stage">Stage</label>
+      <label className="sr-only" htmlFor="sales-stage">{t('Stage')}</label>
       <Select id="sales-stage" value={filters.stage} onChange={(e) => set('stage', e.target.value)}>
         {/*
           `In the pipeline` is the default and is not "everything": a won deal
           that has become a client has left the pipeline (see `isConverted` in
           lib/sales.ts) and is shown only under `Everything` or `Won`.
         */}
-        <option value="pipeline">In the pipeline ({filter.counts.pipeline ?? 0})</option>
-        <option value="open">Open only ({filter.counts.open ?? 0})</option>
-        <option value="all">Everything ({filter.counts.all ?? 0})</option>
+        <option value="pipeline">{t('In the pipeline ({n})', { n: filter.counts.pipeline ?? 0 })}</option>
+        <option value="open">{t('Open only ({n})', { n: filter.counts.open ?? 0 })}</option>
+        <option value="all">{t('Everything ({n})', { n: filter.counts.all ?? 0 })}</option>
         {STAGES.map((s) => (
-          <option key={s} value={s}>{STAGE[s].label} ({filter.counts[s] ?? 0})</option>
+          <option key={s} value={s}>{t(STAGE[s].label)} ({filter.counts[s] ?? 0})</option>
         ))}
       </Select>
 
-      <label className="sr-only" htmlFor="sales-close">Close date</label>
+      <label className="sr-only" htmlFor="sales-close">{t('Close date')}</label>
       <Select id="sales-close" value={filters.close} onChange={(e) => set('close', e.target.value)}>
-        {CLOSE_OPTIONS.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+        {CLOSE_OPTIONS.map((o) => <option key={o.id} value={o.id}>{t(o.label)}</option>)}
       </Select>
 
       {options.services.length > 0 && (
         <>
-          <label className="sr-only" htmlFor="sales-service">Service</label>
+          <label className="sr-only" htmlFor="sales-service">{t('Service')}</label>
           <Select id="sales-service" value={filters.service} onChange={(e) => set('service', e.target.value)}>
-            <option value="all">Any service</option>
+            <option value="all">{t('Any service')}</option>
             {options.services.map((s) => <option key={s} value={s}>{s}</option>)}
           </Select>
         </>
@@ -518,9 +519,9 @@ function FilterBar({
 
       {options.sources.length > 0 && (
         <>
-          <label className="sr-only" htmlFor="sales-source">Source</label>
+          <label className="sr-only" htmlFor="sales-source">{t('Source')}</label>
           <Select id="sales-source" value={filters.source} onChange={(e) => set('source', e.target.value)}>
-            <option value="all">Any source</option>
+            <option value="all">{t('Any source')}</option>
             {options.sources.map((s) => <option key={s} value={s}>{s}</option>)}
           </Select>
         </>
@@ -529,9 +530,9 @@ function FilterBar({
       {/* Only when there is genuinely more than one owner (§12, §39). */}
       {options.owners.length > 1 && (
         <>
-          <label className="sr-only" htmlFor="sales-owner">Responsible</label>
+          <label className="sr-only" htmlFor="sales-owner">{t('Responsible')}</label>
           <Select id="sales-owner" value={filters.owner} onChange={(e) => set('owner', e.target.value)}>
-            <option value="all">Anyone</option>
+            <option value="all">{t('Anyone')}</option>
             {options.owners.map((o) => (
               <option key={o.id} value={o.id}>{o.full_name || o.email}</option>
             ))}
@@ -539,21 +540,21 @@ function FilterBar({
         </>
       )}
 
-      <label className="sr-only" htmlFor="sales-sort">Sort</label>
+      <label className="sr-only" htmlFor="sales-sort">{t('Sort')}</label>
       <Select id="sales-sort" value={filter.sort} onChange={(e) => filter.setSort(e.target.value as never)}>
-        <option value="updated">Recently updated</option>
-        <option value="value">By value</option>
-        <option value="close">By close date</option>
-        <option value="company">By company</option>
+        <option value="updated">{t('Recently updated')}</option>
+        <option value="value">{t('By value')}</option>
+        <option value="close">{t('By close date')}</option>
+        <option value="company">{t('By company')}</option>
       </Select>
 
       {filter.narrowed && (
         <Button size="sm" variant="quiet" onClick={filter.reset}>
-          <X size={11} aria-hidden="true" /> Clear
+          <X size={11} aria-hidden="true" /> {t('Clear')}
         </Button>
       )}
 
-      <span className="t-note ml-auto whitespace-nowrap">{shown} shown</span>
+      <span className="t-note ml-auto whitespace-nowrap">{t('{n} shown', { n: shown })}</span>
     </div>
   );
 }
@@ -577,9 +578,9 @@ function FollowUpView({
   const groups = useMemo(() => {
     const all = followUps(rows);
     return [
-      { id: 'overdue' as const, title: 'Overdue', items: all.filter((f) => f.group === 'overdue') },
-      { id: 'today' as const, title: 'Today', items: all.filter((f) => f.group === 'today') },
-      { id: 'upcoming' as const, title: 'Upcoming', items: all.filter((f) => f.group === 'upcoming') },
+      { id: 'overdue' as const, title: t('Overdue'), items: all.filter((f) => f.group === 'overdue') },
+      { id: 'today' as const, title: t('Today'), items: all.filter((f) => f.group === 'today') },
+      { id: 'upcoming' as const, title: t('Upcoming'), items: all.filter((f) => f.group === 'upcoming') },
     ];
   }, [rows]);
 
@@ -588,11 +589,11 @@ function FollowUpView({
   if (total === 0) {
     return (
       <Panel>
-        <SectionHeader title="Follow-ups" />
+        <SectionHeader title={t('Follow-ups')} />
         <DataState
           kind="empty"
-          title="Nothing scheduled"
-          body="Follow-ups appear here when an open opportunity has a next action with a date on it."
+          title={t('Nothing scheduled')}
+          body={t('Follow-ups appear here when an open opportunity has a next action with a date on it.')}
         />
       </Panel>
     );
@@ -607,10 +608,12 @@ function FollowUpView({
             note={group.items.length > 0 ? `${group.items.length}` : undefined}
           />
           {group.items.length === 0 ? (
-            <p className="px-4 py-3 text-xs text-haze">Nothing {group.title.toLowerCase()}.</p>
+            <p className="px-4 py-3 text-xs text-haze">
+              {group.id === 'overdue' ? t('Nothing overdue.') : group.id === 'today' ? t('Nothing today.') : t('Nothing upcoming.')}
+            </p>
           ) : (
             <Table
-              head={['Action', 'Opportunity', 'Company', 'Due', 'Stage', 'Responsible', ...(mayEdit ? [''] : [])]}
+              head={[t('Action'), t('Opportunity'), t('Company'), t('Due'), t('Stage'), t('Responsible'), ...(mayEdit ? [''] : [])]}
               minWidth={mayEdit ? 840 : 720}
             >
               {group.items.map(({ deal }) => (
@@ -637,10 +640,10 @@ function FollowUpView({
                       <Button
                         size="sm"
                         disabled={mutate.busy === deal.id}
-                        aria-label={`Mark done: ${deal.next_action}`}
+                        aria-label={t('Mark done: {action}', { action: deal.next_action })}
                         onClick={async () => setError(await mutate.completeAction(deal))}
                       >
-                        <Check size={11} aria-hidden="true" /> Done
+                        <Check size={11} aria-hidden="true" /> {t('Done')}
                       </Button>
                     </Cell>
                   )}
@@ -706,49 +709,49 @@ function Performance({
   return (
     <div className="grid gap-4">
       <Panel>
-        <SectionHeader title="Commercial performance" note="from recorded opportunities only" />
+        <SectionHeader title={t('Commercial performance')} note={t('from recorded opportunities only')} />
         <dl className="grid sm:grid-cols-2">
           <div className="border-b border-hairline sm:border-r">
-            <DataLine term="Won this month" value={figure(wonMtd)} note={`${wonMtd.total?.items ?? 0} deals`} />
-            <DataLine term="Won this year" value={figure(wonYtd)} note={`${wonYtd.total?.items ?? 0} deals`} />
+            <DataLine term={t('Won this month')} value={figure(wonMtd)} note={t('{n} deals', { n: wonMtd.total?.items ?? 0 })} />
+            <DataLine term={t('Won this year')} value={figure(wonYtd)} note={t('{n} deals', { n: wonYtd.total?.items ?? 0 })} />
             <DataLine
-              term="Average won deal"
+              term={t('Average won deal')}
               value={average.length > 0
                 ? <span className="num">{money(average[0].value, average[0].currency)}</span>
                 : <NotRecorded />}
-              note={average.length > 1 ? `and ${average.length - 1} other currency` : undefined}
+              note={average.length > 1 ? t('and {n} other currency', { n: average.length - 1 }) : undefined}
             />
           </div>
           <div>
-            <DataLine term="Open pipeline" value={figure(open)} note={`${open.total?.items ?? 0} open`} />
-            <DataLine term="Weighted pipeline" value={figure(open, true)} note="value × probability" />
+            <DataLine term={t('Open pipeline')} value={figure(open)} note={t('{n} open', { n: open.total?.items ?? 0 })} />
+            <DataLine term={t('Weighted pipeline')} value={figure(open, true)} note={t('value × probability')} />
             <DataLine
-              term="Win rate"
+              term={t('Win rate')}
               value={rate === null
-                ? <NotRecorded what="Win rate" />
+                ? <NotRecorded what={t('Win rate')} />
                 : <span className="num">{percent(rate)}</span>}
               note={rate === null
-                ? 'no deal has closed yet'
-                : `${count(rows, 'won_all')} won of ${count(rows, 'won_all') + count(rows, 'lost_all')} closed`}
+                ? t('no deal has closed yet')
+                : t('{won} won of {closed} closed', { won: count(rows, 'won_all'), closed: count(rows, 'won_all') + count(rows, 'lost_all') })}
             />
           </div>
         </dl>
       </Panel>
 
       <Panel>
-        <SectionHeader title="Open pipeline by stage" />
+        <SectionHeader title={t('Open pipeline by stage')} />
         {stages.every((s) => s.items === 0) ? (
-          <DataState kind="empty" title="No open opportunities" body="Nothing is in the pipeline right now." />
+          <DataState kind="empty" title={t('No open opportunities')} body={t('Nothing is in the pipeline right now.')} />
         ) : (
           <Table
-            head={['Stage', { label: 'Deals', align: 'right' }, { label: 'Value', align: 'right' },
-              { label: 'Weighted', align: 'right' }]}
+            head={[t('Stage'), { label: t('Deals'), align: 'right' }, { label: t('Value'), align: 'right' },
+              { label: t('Weighted'), align: 'right' }]}
             minWidth={560}
           >
             {stages.map((s) => (
               <Row key={s.stage}>
                 <Cell className="min-w-0">
-                  <span className="text-[13px] text-paper">{STAGE[s.stage].label}</span>
+                  <span className="text-[13px] text-paper">{t(STAGE[s.stage].label)}</span>
                   <span className="mt-1 block"><Meter value={s.value} max={maxStage} /></span>
                 </Cell>
                 <Cell align="right" className="num text-xs text-paper">{s.items}</Cell>
@@ -763,9 +766,8 @@ function Performance({
           </Table>
         )}
         <p className="t-note border-t border-hairline px-4 py-2.5">
-          Weighted is <span className="text-paper">estimated value × probability</span>. The stage
-          probabilities are operational defaults, editable per opportunity — they are not measured
-          Stratos win rates.
+          {t('Weighted is')} <span className="text-paper">{t('estimated value × probability')}</span>
+          {t('. The stage probabilities are operational defaults, editable per opportunity — they are not measured Stratos win rates.')}
         </p>
       </Panel>
     </div>
@@ -779,14 +781,14 @@ function NothingYet({ mayEdit, onCreate }: { mayEdit: boolean; onCreate: () => v
     <Panel>
       <DataState
         kind="empty"
-        title="No opportunities yet"
-        body="An opportunity is a qualified commercial possibility. Convert a qualified lead from the Leads screen, or create one directly for a conversation that started somewhere else."
+        title={t('No opportunities yet')}
+        body={t('An opportunity is a qualified commercial possibility. Convert a qualified lead from the Leads screen, or create one directly for a conversation that started somewhere else.')}
         action={
           <div className="flex flex-wrap justify-center gap-2">
             <Link to="/leads?status=qualified">
-              <Button size="sm">Convert a qualified lead</Button>
+              <Button size="sm">{t('Convert a qualified lead')}</Button>
             </Link>
-            {mayEdit && <Button size="sm" variant="primary" onClick={onCreate}>Create opportunity</Button>}
+            {mayEdit && <Button size="sm" variant="primary" onClick={onCreate}>{t('Create opportunity')}</Button>}
           </div>
         }
       />

@@ -1,0 +1,338 @@
+{
+ "Clients": {
+  "hu": "Ügyfelek",
+  "de": "Kunden"
+ },
+ "{n} of {total}": {
+  "hu": "{n} / {total}",
+  "de": "{n} von {total}"
+ },
+ "Status": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "Any status": {
+  "hu": "Bármely állapot",
+  "de": "Jeder Status"
+ },
+ "Client or contact…": {
+  "hu": "Ügyfél vagy kapcsolattartó…",
+  "de": "Kunde oder Kontakt…"
+ },
+ "Search clients": {
+  "hu": "Ügyfelek keresése",
+  "de": "Kunden suchen"
+ },
+ "New": {
+  "hu": "Új",
+  "de": "Neu"
+ },
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Supabase credentials are not set in this environment, so there is nothing to read yet.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase-hozzáférési adatok, így még nincs mit beolvasni.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt, daher gibt es noch nichts zu lesen."
+ },
+ "No clients yet": {
+  "hu": "Még nincs ügyfél",
+  "de": "Noch keine Kunden"
+ },
+ "Nothing matches": {
+  "hu": "Nincs találat",
+  "de": "Keine Treffer"
+ },
+ "A client is created when an opportunity is won — that is the traceable route from an enquiry to a relationship. One can also be added directly.": {
+  "hu": "Ügyfél akkor jön létre, amikor megnyersz egy lehetőséget — ez a követhető út az érdeklődéstől az ügyfélkapcsolatig. Közvetlenül is hozzáadhatsz egyet.",
+  "de": "Ein Kunde entsteht, wenn eine Verkaufschance gewonnen wird — der nachvollziehbare Weg von der Anfrage zur Kundenbeziehung. Er kann auch direkt angelegt werden."
+ },
+ "No client matches the filters above.": {
+  "hu": "Egy ügyfél sem felel meg a fenti szűrőknek.",
+  "de": "Kein Kunde entspricht den Filtern oben."
+ },
+ "Open the pipeline": {
+  "hu": "Folyamat megnyitása",
+  "de": "Pipeline öffnen"
+ },
+ "Add a client": {
+  "hu": "Ügyfél hozzáadása",
+  "de": "Kunden hinzufügen"
+ },
+ "Clear": {
+  "hu": "Törlés",
+  "de": "Zurücksetzen"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "Active projects": {
+  "hu": "Aktív projektek",
+  "de": "Aktive Projekte"
+ },
+ "Won value": {
+  "hu": "Megnyert érték",
+  "de": "Gewonnener Wert"
+ },
+ "Primary service": {
+  "hu": "Fő szolgáltatás",
+  "de": "Hauptleistung"
+ },
+ "Source": {
+  "hu": "Forrás",
+  "de": "Quelle"
+ },
+ "Last activity": {
+  "hu": "Utolsó tevékenység",
+  "de": "Letzte Aktivität"
+ },
+ "Unavailable": {
+  "hu": "Nem elérhető",
+  "de": "Nicht verfügbar"
+ },
+ "No such client": {
+  "hu": "Nincs ilyen ügyfél",
+  "de": "Kunde nicht gefunden"
+ },
+ "The client could not be read right now.": {
+  "hu": "Az ügyfelet most nem sikerült beolvasni.",
+  "de": "Der Kunde konnte gerade nicht gelesen werden."
+ },
+ "Supabase credentials are not set in this environment.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase hozzáférési adatok.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt."
+ },
+ "This client does not exist, or this account may not read it.": {
+  "hu": "Ez az ügyfél nem létezik, vagy ez a fiók nem láthatja.",
+  "de": "Dieser Kunde existiert nicht, oder dieses Konto darf ihn nicht lesen."
+ },
+ "All clients": {
+  "hu": "Összes ügyfél",
+  "de": "Alle Kunden"
+ },
+ "Client created": {
+  "hu": "Ügyfél létrehozva",
+  "de": "Kunde erstellt"
+ },
+ "Client summary": {
+  "hu": "Ügyfél-összefoglaló",
+  "de": "Kundenübersicht"
+ },
+ "{n} won deal": {
+  "hu": "{n} megnyert üzlet",
+  "de": "{n} gewonnenes Geschäft"
+ },
+ "{n} won deals": {
+  "hu": "{n} megnyert üzlet",
+  "de": "{n} gewonnene Geschäfte"
+ },
+ "{n} in total": {
+  "hu": "összesen {n}",
+  "de": "{n} insgesamt"
+ },
+ "Private to the portal owner": {
+  "hu": "Csak a portál tulajdonosa látja",
+  "de": "Nur für den Portalinhaber sichtbar"
+ },
+ "Opportunities": {
+  "hu": "Lehetőségek",
+  "de": "Verkaufschancen"
+ },
+ "{n} open": {
+  "hu": "{n} nyitott",
+  "de": "{n} offen"
+ },
+ "Not recorded": {
+  "hu": "Nincs rögzítve",
+  "de": "Nicht erfasst"
+ },
+ "Projects": {
+  "hu": "Projektek",
+  "de": "Projekte"
+ },
+ "No projects for this client yet.": {
+  "hu": "Ennek az ügyfélnek még nincs projektje.",
+  "de": "Für diesen Kunden gibt es noch keine Projekte."
+ },
+ "Project": {
+  "hu": "Projekt",
+  "de": "Projekt"
+ },
+ "Value": {
+  "hu": "Érték",
+  "de": "Wert"
+ },
+ "Target": {
+  "hu": "Céldátum",
+  "de": "Zieltermin"
+ },
+ "/ month": {
+  "hu": "/ hó",
+  "de": "/ Monat"
+ },
+ "No opportunities recorded against this client.": {
+  "hu": "Ehhez az ügyfélhez nincs rögzített lehetőség.",
+  "de": "Für diesen Kunden sind keine Verkaufschancen erfasst."
+ },
+ "Opportunity": {
+  "hu": "Lehetőség",
+  "de": "Verkaufschance"
+ },
+ "Stage": {
+  "hu": "Szakasz",
+  "de": "Phase"
+ },
+ "Date": {
+  "hu": "Dátum",
+  "de": "Datum"
+ },
+ "Notes": {
+  "hu": "Jegyzetek",
+  "de": "Notizen"
+ },
+ "Add a note": {
+  "hu": "Jegyzet hozzáadása",
+  "de": "Notiz hinzufügen"
+ },
+ "Anything worth remembering about this relationship.": {
+  "hu": "Bármi, amit érdemes megjegyezni erről az ügyfélkapcsolatról.",
+  "de": "Alles, was zu dieser Kundenbeziehung festgehalten werden sollte."
+ },
+ "Add note": {
+  "hu": "Jegyzet hozzáadása",
+  "de": "Notiz hinzufügen"
+ },
+ "No notes yet.": {
+  "hu": "Még nincs jegyzet.",
+  "de": "Noch keine Notizen."
+ },
+ "Unknown": {
+  "hu": "Ismeretlen",
+  "de": "Unbekannt"
+ },
+ "Activity": {
+  "hu": "Tevékenység",
+  "de": "Aktivität"
+ },
+ "only what was recorded": {
+  "hu": "csak a rögzített események",
+  "de": "nur Erfasstes"
+ },
+ "Contacts": {
+  "hu": "Kapcsolattartók",
+  "de": "Kontakte"
+ },
+ "Add": {
+  "hu": "Hozzáadás",
+  "de": "Hinzufügen"
+ },
+ "No contacts recorded. The enquiry’s own name and address stay on the lead and are not copied here.": {
+  "hu": "Nincs rögzített kapcsolattartó. Az érdeklődő saját neve és címe a leadnél marad, ide nem másolódik.",
+  "de": "Keine Kontakte erfasst. Name und Adresse aus der Anfrage bleiben beim Lead und werden nicht hierher kopiert."
+ },
+ "Primary": {
+  "hu": "Elsődleges",
+  "de": "Primär"
+ },
+ "Edit": {
+  "hu": "Szerkesztés",
+  "de": "Bearbeiten"
+ },
+ "Website": {
+  "hu": "Weboldal",
+  "de": "Website"
+ },
+ "Acquisition source": {
+  "hu": "Szerzési forrás",
+  "de": "Akquisitionsquelle"
+ },
+ "Campaign": {
+  "hu": "Kampány",
+  "de": "Kampagne"
+ },
+ "Client since": {
+  "hu": "Ügyfél ekkortól",
+  "de": "Kunde seit"
+ },
+ "Reference": {
+  "hu": "Azonosító",
+  "de": "Referenz"
+ },
+ "Client status": {
+  "hu": "Ügyfél állapota",
+  "de": "Kundenstatus"
+ },
+ "A client needs a name.": {
+  "hu": "Az ügyfélnek nevet kell adni.",
+  "de": "Ein Kunde braucht einen Namen."
+ },
+ "New client": {
+  "hu": "Új ügyfél",
+  "de": "Neuer Kunde"
+ },
+ "The traceable route is Lead → Opportunity → Won → Client. A client added here has no opportunity behind it, so it carries no acquisition source.": {
+  "hu": "A követhető út: Lead → Lehetőség → Megnyert → Ügyfél. Az itt hozzáadott ügyfél mögött nincs lehetőség, így szerzési forrása sincs.",
+  "de": "Der nachvollziehbare Weg ist Lead → Verkaufschance → Gewonnen → Kunde. Ein hier angelegter Kunde hat keine Verkaufschance dahinter und daher keine Akquisitionsquelle."
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "de": "Abbrechen"
+ },
+ "Create": {
+  "hu": "Létrehozás",
+  "de": "Erstellen"
+ },
+ "Name": {
+  "hu": "Név",
+  "de": "Name"
+ },
+ "This may already exist": {
+  "hu": "Lehet, hogy már létezik",
+  "de": "Existiert möglicherweise bereits"
+ },
+ "— matched on {why}": {
+  "hu": "— egyezés: {why}",
+  "de": "— Übereinstimmung: {why}"
+ },
+ "Nothing is blocked and nothing is merged. Check before creating a second record for the same company.": {
+  "hu": "Semmi sincs letiltva és semmi sem olvad össze. Ellenőrizd, mielőtt második rekordot hozol létre ugyanarra a cégre.",
+  "de": "Nichts wird blockiert und nichts zusammengeführt. Prüfen Sie dies, bevor Sie einen zweiten Datensatz für dieselbe Firma anlegen."
+ },
+ "Edit contact": {
+  "hu": "Kapcsolattartó szerkesztése",
+  "de": "Kontakt bearbeiten"
+ },
+ "Add contact": {
+  "hu": "Kapcsolattartó hozzáadása",
+  "de": "Kontakt hinzufügen"
+ },
+ "A contact is entered deliberately. The enquiry's own personal data stays on the lead.": {
+  "hu": "A kapcsolattartót tudatosan kell felvenni. Az érdeklődő személyes adatai a leadnél maradnak.",
+  "de": "Ein Kontakt wird bewusst erfasst. Die personenbezogenen Daten aus der Anfrage bleiben beim Lead."
+ },
+ "Remove": {
+  "hu": "Eltávolítás",
+  "de": "Entfernen"
+ },
+ "Save": {
+  "hu": "Mentés",
+  "de": "Speichern"
+ },
+ "Role": {
+  "hu": "Szerepkör",
+  "de": "Rolle"
+ },
+ "Email": {
+  "hu": "E-mail",
+  "de": "E-Mail"
+ },
+ "Phone": {
+  "hu": "Telefon",
+  "de": "Telefon"
+ },
+ "Primary contact — a client can have only one": {
+  "hu": "Elsődleges kapcsolattartó — ügyfelenként csak egy lehet",
+  "de": "Hauptkontakt — ein Kunde kann nur einen haben"
+ }
+}

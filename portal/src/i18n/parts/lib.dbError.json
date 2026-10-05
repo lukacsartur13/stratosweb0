@@ -1,0 +1,42 @@
+{
+ "this data": {
+  "hu": "ezek az adatok",
+  "de": "diese Daten"
+ },
+ "Your session has ended. Sign in again to continue.": {
+  "hu": "A munkameneted lejárt. A folytatáshoz jelentkezz be újra.",
+  "de": "Ihre Sitzung ist abgelaufen. Melden Sie sich erneut an, um fortzufahren."
+ },
+ "Your account may not change {subject}.": {
+  "hu": "A fiókod nem módosíthatja ezt: {subject}.",
+  "de": "Ihr Konto darf {subject} nicht ändern."
+ },
+ "Your account does not have access to {subject}.": {
+  "hu": "A fiókod nem fér hozzá ehhez: {subject}.",
+  "de": "Ihr Konto hat keinen Zugriff auf {subject}."
+ },
+ "Could not reach the database. Check the connection and try again.": {
+  "hu": "Az adatbázis nem érhető el. Ellenőrizd a kapcsolatot, és próbáld újra.",
+  "de": "Die Datenbank ist nicht erreichbar. Prüfen Sie die Verbindung und versuchen Sie es erneut."
+ },
+ "{Subject} is not set up in this database yet. The pipeline migration in supabase/migrations has not been applied.": {
+  "hu": "{Subject}: még nincs beállítva ebben az adatbázisban. A supabase/migrations mappában lévő pipeline-migráció nincs lefuttatva.",
+  "de": "{Subject}: in dieser Datenbank noch nicht eingerichtet. Die Pipeline-Migration in supabase/migrations wurde nicht angewendet."
+ },
+ "{Subject} does not match what this version of the Portal expects. The database may be behind a newer build.": {
+  "hu": "{Subject}: nem egyezik azzal, amit a Portál ezen verziója vár. Lehet, hogy az adatbázis le van maradva egy újabb buildhez képest.",
+  "de": "{Subject}: entspricht nicht dem, was diese Portal-Version erwartet. Die Datenbank ist möglicherweise älter als der aktuelle Build."
+ },
+ "The database refused those values. Check the amount, the probability, the stage and the dates.": {
+  "hu": "Az adatbázis elutasította ezeket az értékeket. Ellenőrizd az összeget, a valószínűséget, a szakaszt és a dátumokat.",
+  "de": "Die Datenbank hat diese Werte abgelehnt. Prüfen Sie Betrag, Wahrscheinlichkeit, Phase und Daten."
+ },
+ "That change could not be saved. Try again in a moment.": {
+  "hu": "A módosítást nem sikerült menteni. Próbáld újra egy kicsit később.",
+  "de": "Die Änderung konnte nicht gespeichert werden. Versuchen Sie es gleich noch einmal."
+ },
+ "{Subject} could not be read. Try again in a moment.": {
+  "hu": "{Subject}: nem sikerült betölteni. Próbáld újra egy kicsit később.",
+  "de": "{Subject}: konnte nicht geladen werden. Versuchen Sie es gleich noch einmal."
+ }
+}

@@ -196,9 +196,9 @@ function applyFilters(url, rows) {
 
 const json = (route, body, status = 200) => route.fulfill({ status, contentType: 'application/json', body: JSON.stringify(body) });
 
-async function open(browser, { owner = true, reducedMotion = 'no-preference', state = freshState(), colorScheme = 'dark' } = {}) {
+async function open(browser, { owner = true, reducedMotion = 'no-preference', state = freshState(), colorScheme = 'dark', lang = null } = {}) {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, locale: 'en-GB', timezoneId: 'Europe/Budapest', reducedMotion, colorScheme });
-  const profile = { id: USER.id, email: USER.email, full_name: 'Owner', avatar_url: null, role: 'super_admin', organization_id: null };
+  const profile = { id: USER.id, email: USER.email, full_name: 'Owner', avatar_url: null, role: 'super_admin', organization_id: null, locale: lang };
 
   await context.route('**/*', async (route) => {
     const req = route.request();
@@ -315,7 +315,15 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
       return answer(applyFilters(url, [state.impactLead]));
     }
 
-    if (url.includes('/rest/v1/profiles')) return answer([profile]);
+    if (url.includes('/rest/v1/profiles')) {
+      if (method === 'PATCH') {
+        const patch = JSON.parse(req.postData() || '{}');
+        state.writes.push({ table: 'profiles', url, patch });
+        Object.assign(profile, patch);
+        return json(route, []);
+      }
+      return answer([profile]);
+    }
 
     if (url.includes('/rest/v1/projects')) {
       state.projectReads += method === 'GET' ? 1 : 0;
@@ -1171,6 +1179,44 @@ await check('impact: an applicant\'s lead goes to the Trash from the application
   await page.getByRole('button', { name: 'Move to trash' }).click();
   await page.waitForURL(/\/impact$/);
   assert(state.impactLead.trashed_at, 'the Impact lead was not moved to the Trash');
+  await context.close();
+});
+
+/* ------------------------------------------------------------ languages */
+
+await check('language: Magyar in the sidebar turns the owner portal Hungarian and saves it on the account', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects`);
+  await page.getByRole('link', { name: 'Late website' }).first().waitFor();
+  await page.getByRole('radio', { name: 'Magyar' }).first().click();
+  await page.getByRole('link', { name: 'Projektek' }).first().waitFor();
+  const patch = state.writes.find((w) => w.table === 'profiles');
+  assert(patch?.patch.locale === 'hu', 'the choice was not saved on the profile');
+  assert(await page.evaluate(() => document.documentElement.lang) === 'hu', 'html lang not set');
+  await page.reload();
+  await page.getByRole('link', { name: 'Projektek' }).first().waitFor();
+  await shot(page, 'lang-hu-projects');
+  await context.close();
+});
+
+await check('language: the account\'s choice applies on a new device; German pages read and fit', async () => {
+  const { page, context } = await open(browser, { lang: 'de' });
+  await page.goto(`${BASE}/projects`);
+  await page.getByRole('link', { name: 'Projekte' }).first().waitFor();
+  for (const path of ['/projects?view=all', '/projects/p-late', '/projects/m-care', '/trash', '/impact', '/sales?view=table']) {
+    await page.goto(`${BASE}${path}`);
+    await page.waitForLoadState('networkidle');
+    const bad = await lowContrast(page);
+    assert(bad.length === 0, `de ${path}: ${JSON.stringify(bad.slice(0, 3))}`);
+  }
+  await shot(page, 'lang-de-sales');
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const path of ['/projects', '/projects/p-late', '/trash']) {
+    await page.goto(`${BASE}${path}`);
+    await page.waitForLoadState('networkidle');
+    assert(await noHorizontalScroll(page), `de ${path} scrolls sideways at 390px`);
+  }
   await context.close();
 });
 

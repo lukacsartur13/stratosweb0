@@ -122,7 +122,10 @@ async function open(browser, { role = 'client', state = freshState(), viewport =
     if (url.includes('/auth/v1/')) return json(route, { access_token: 'mock', user });
 
     if (url.includes('/rest/v1/rpc/is_owner')) return json(route, role === 'owner');
-    if (url.includes('/rest/v1/profiles')) return json(route, profile);
+    if (url.includes('/rest/v1/profiles')) {
+      if (method === 'PATCH') { state.profilePatches = [...(state.profilePatches ?? []), body()]; Object.assign(profile, body()); return json(route, []); }
+      return json(route, profile);
+    }
 
     // ---- the client API
     if (/\/rest\/v1\/rpc\/client_portal_me(\?|$)/.test(url)) return json(route, role === 'client' ? [{ full_name: 'Kovács Anna', company: ORG.name }] : []);
@@ -618,6 +621,36 @@ await check('light theme: every client page and the sign-in page read at 4.5:1 o
     await shot(login.page, `login-${scheme}`);
     await login.context.close();
   }
+});
+
+await check('language: English and German in the client header, saved on the client\'s own profile; help says its articles are Hungarian', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  await page.getByRole('navigation', { name: 'Ügyfélportál' }).waitFor();
+  await page.getByRole('radio', { name: 'English' }).click();
+  const nav = page.getByRole('navigation', { name: 'Client portal' });
+  await nav.waitFor();
+  for (const label of ['My projects', 'Documents', 'Hand over materials', 'Help']) await nav.getByText(label).first().waitFor();
+  assert(state.profilePatches?.at(-1)?.locale === 'en', 'the choice was not saved on the profile');
+  assert(await page.locator('[lang="en"]').first().isVisible(), 'the page is not marked English');
+  await page.goto(`${BASE}/segitseg`);
+  await page.getByText('The help articles and answers are in Hungarian.').waitFor();
+  await shot(page, 'lang-en');
+  await page.getByRole('radio', { name: 'Deutsch' }).click();
+  await page.getByRole('navigation', { name: 'Kundenportal' }).waitFor();
+  for (const path of ['/', '/megosztott', '/nyersanyag']) {
+    await page.goto(`${BASE}${path}`);
+    await page.waitForLoadState('networkidle');
+    const bad = await lowContrast(page);
+    assert(bad.length === 0, `de ${path}: ${JSON.stringify(bad.slice(0, 3))}`);
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`${BASE}/`);
+  await page.waitForLoadState('networkidle');
+  assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), 'German client portal scrolls sideways at 390px');
+  await shot(page, 'lang-de-phone');
+  await context.close();
 });
 
 await browser.close();

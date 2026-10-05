@@ -1,0 +1,38 @@
+{
+ "It cannot be deleted permanently while it has: {details}. Keep it in the Trash, or remove those first.": {
+  "hu": "Nem törölhető véglegesen, amíg ezek tartoznak hozzá: {details}. Hagyd a Kukában, vagy előbb távolítsd el ezeket.",
+  "de": "Es kann nicht endgültig gelöscht werden, solange Folgendes daran hängt: {details}. Lassen Sie es im Papierkorb oder entfernen Sie dies zuerst."
+ },
+ "linked records": {
+  "hu": "kapcsolódó rekordok",
+  "de": "verknüpfte Datensätze"
+ },
+ "Move it to the Trash first.": {
+  "hu": "Előbb tedd a Kukába.",
+  "de": "Verschieben Sie es zuerst in den Papierkorb."
+ },
+ "It is still linked to another record (for example an Impact application), so it cannot be deleted permanently. Keep it in the Trash.": {
+  "hu": "Még kapcsolódik egy másik rekordhoz (például egy Impact-jelentkezéshez), ezért nem törölhető véglegesen. Hagyd a Kukában.",
+  "de": "Es ist noch mit einem anderen Datensatz verknüpft (zum Beispiel einer Impact-Bewerbung) und kann daher nicht endgültig gelöscht werden. Lassen Sie es im Papierkorb."
+ },
+ "It no longer exists — it may have been deleted already.": {
+  "hu": "Már nem létezik — lehet, hogy valaki már törölte.",
+  "de": "Es existiert nicht mehr — möglicherweise wurde es bereits gelöscht."
+ },
+ "This account may not delete it permanently.": {
+  "hu": "Ez a fiók nem törölheti véglegesen.",
+  "de": "Dieses Konto darf es nicht endgültig löschen."
+ },
+ "The Trash is not installed in the database yet (20261007000100_trash.sql).": {
+  "hu": "A Kuka még nincs telepítve az adatbázisban (20261007000100_trash.sql).",
+  "de": "Der Papierkorb ist in der Datenbank noch nicht eingerichtet (20261007000100_trash.sql)."
+ },
+ "The database refused that change. Check that your account may edit this data.": {
+  "hu": "Az adatbázis elutasította a módosítást. Ellenőrizd, hogy a fiókod szerkesztheti-e ezeket az adatokat.",
+  "de": "Die Datenbank hat die Änderung abgelehnt. Prüfen Sie, ob Ihr Konto diese Daten bearbeiten darf."
+ },
+ "It is already in the Trash, or this account may not change it.": {
+  "hu": "Már a Kukában van, vagy ez a fiók nem módosíthatja.",
+  "de": "Es ist bereits im Papierkorb, oder dieses Konto darf es nicht ändern."
+ }
+}

@@ -32,6 +32,7 @@ import { PaymentSchedule, Receivables } from '@/features/payments/PaymentSchedul
 import { budapestToday } from '@/lib/paymentRules';
 import { ClientInbox, ClientViewPanel } from '@/features/client-view/ClientViewPanel';
 import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls';
+import { t, tc } from '@/lib/i18n';
 
 /**
  * PROJECTS — the owner's private delivery tracker.
@@ -141,12 +142,12 @@ export function ProjectsScreen() {
   return (
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <nav aria-label="Project views" className="flex flex-wrap items-center gap-px">
+        <nav aria-label={t('Project views')} className="flex flex-wrap items-center gap-px">
           {([
-            ['all', `All (${everything.length})`],
-            ['active', `Active (${activeCount})`],
-            ['closed', `Closed (${closedCount})`],
-            ['monthly', `Monthly contracts (${runningMonthly})`],
+            ['all', t('All ({n})', { n: everything.length })],
+            ['active', t('Active ({n})', { n: activeCount })],
+            ['closed', t('Closed ({n})', { n: closedCount })],
+            ['monthly', t('Monthly contracts ({n})', { n: runningMonthly })],
           ] as const).map(([id, label]) => (
             <button
               key={id}
@@ -163,11 +164,11 @@ export function ProjectsScreen() {
           ))}
         </nav>
         <div className="flex flex-wrap items-center gap-2">
-          <Link to="/impact?view=active" className="t-note underline underline-offset-4 hover:text-paper">Impact projects</Link>
-          <Link to="/projects/templates"><Button size="sm">Templates</Button></Link>
+          <Link to="/impact?view=active" className="t-note underline underline-offset-4 hover:text-paper">{t('Impact projects')}</Link>
+          <Link to="/projects/templates"><Button size="sm">{t('Templates')}</Button></Link>
           {mayEdit && (
             <Button size="sm" variant="primary" onClick={() => setCreating(true)}>
-              <Plus size={12} aria-hidden="true" /> New project
+              <Plus size={12} aria-hidden="true" /> {t('New project')}
             </Button>
           )}
         </div>
@@ -180,18 +181,18 @@ export function ProjectsScreen() {
       ) : (
       <Panel className="min-w-0">
         <SectionHeader
-          title={view === 'closed' ? 'Closed projects' : 'Active projects'}
-          note={state === 'ready' ? `${filtered.length} of ${inView.length}` : undefined}
+          title={view === 'closed' ? t('Closed projects') : t('Active projects')}
+          note={state === 'ready' ? t('{n} of {total}', { n: filtered.length, total: inView.length }) : undefined}
           action={
             <div className="flex flex-wrap items-center gap-2">
               {view === 'active' && (
                 <>
-                  <label className="sr-only" htmlFor="project-flag">Show</label>
+                  <label className="sr-only" htmlFor="project-flag">{t('Show')}</label>
                   <Select id="project-flag" value={flag} onChange={(e) => setFlag(e.target.value as Flag)}>
-                    <option value="all">Every active project</option>
-                    <option value="late">Late ({flagCounts.late})</option>
-                    <option value="waiting">Waiting on client ({flagCounts.waiting})</option>
-                    <option value="blocked">Blocked ({flagCounts.blocked})</option>
+                    <option value="all">{t('Every active project')}</option>
+                    <option value="late">{t('Late ({n})', { n: flagCounts.late })}</option>
+                    <option value="waiting">{t('Waiting on client ({n})', { n: flagCounts.waiting })}</option>
+                    <option value="blocked">{t('Blocked ({n})', { n: flagCounts.blocked })}</option>
                   </Select>
                 </>
               )}
@@ -199,8 +200,8 @@ export function ProjectsScreen() {
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Project, client, step…"
-                aria-label="Search projects"
+                placeholder={t('Project, client, step…')}
+                aria-label={t('Search projects')}
                 className="h-7 w-44 py-1 text-xs sm:w-56"
               />
             </div>
@@ -216,8 +217,8 @@ export function ProjectsScreen() {
         {state === 'unconfigured' && (
           <DataState
             kind="unconfigured"
-            title="Not connected"
-            body="Supabase credentials are not set in this environment, so there is nothing to read yet."
+            title={t('Not connected')}
+            body={t('Supabase credentials are not set in this environment, so there is nothing to read yet.')}
           />
         )}
 
@@ -226,17 +227,17 @@ export function ProjectsScreen() {
         {state === 'ready' && filtered.length === 0 && (
           <DataState
             kind="empty"
-            title={present.length === 0 ? 'No projects yet'
+            title={present.length === 0 ? t('No projects yet')
               : inView.length === 0
-                ? (view === 'closed' ? 'No closed projects' : 'No active projects')
-                : 'Nothing matches'}
+                ? (view === 'closed' ? t('No closed projects') : t('No active projects'))
+                : t('Nothing matches')}
             body={inView.length === 0
               ? (view === 'closed'
-                ? 'A project lands here when it is closed — after its last checkpoint is done.'
-                : 'A project is created from a won opportunity, or here for an existing client.')
-              : 'Nothing in this view matches the search or the filter.'}
+                ? t('A project lands here when it is closed — after its last checkpoint is done.')
+                : t('A project is created from a won opportunity, or here for an existing client.'))
+              : t('Nothing in this view matches the search or the filter.')}
             action={inView.length > 0
-              ? <Button size="sm" onClick={() => { setQuery(''); setFlag('all'); }}>Clear</Button>
+              ? <Button size="sm" onClick={() => { setQuery(''); setFlag('all'); }}>{t('Clear')}</Button>
               : undefined}
           />
         )}
@@ -244,9 +245,9 @@ export function ProjectsScreen() {
         {state === 'ready' && filtered.length > 0 && (
           <Table
             head={view === 'closed'
-              ? ['Project', 'Client', 'Company', 'Service', { label: 'Checkpoints', align: 'right' }, 'Deadline', 'Closed']
-              : ['Project', 'Client', 'Company', 'Service', 'Current step',
-                { label: 'Checkpoints', align: 'right' }, 'Deadline', 'Signals']}
+              ? [t('Project'), t('Client'), t('Company'), t('Service'), { label: t('Checkpoints'), align: 'right' }, t('Deadline'), t('Closed')]
+              : [t('Project'), t('Client'), t('Company'), t('Service'), t('Current step'),
+                { label: t('Checkpoints'), align: 'right' }, t('Deadline'), t('Signals')]}
             minWidth={840}
             sticky
           >
@@ -266,7 +267,7 @@ export function ProjectsScreen() {
                   <Cell className="truncate text-[11px] text-haze">{project.service || '—'}</Cell>
                   {view === 'active' && (
                     <Cell className="truncate text-[11px] text-paper">
-                      {s?.current ?? <span className="text-haze">{s && s.total > 0 ? 'All done — ready to close' : 'No checkpoints'}</span>}
+                      {s?.current ?? <span className="text-haze">{s && s.total > 0 ? t('All done — ready to close') : t('No checkpoints')}</span>}
                     </Cell>
                   )}
                   <Cell align="right" className="num text-xs text-haze">
@@ -341,7 +342,7 @@ function AllProjects({
     return s && (s.late || s.waiting.length > 0 || s.blocked.length > 0);
   }).length;
   const sums = (m: Map<string, number> | { currency: string; total: number }[]) =>
-    (Array.isArray(m) ? m.map((t) => [t.currency, t.total] as const) : [...m.entries()])
+    (Array.isArray(m) ? m.map((x) => [x.currency, x.total] as const) : [...m.entries()])
       .map(([c, v]) => money(v, c)).join(' · ') || '—';
 
   const q = query.trim().toLowerCase();
@@ -353,51 +354,51 @@ function AllProjects({
   const kindBadge = (p: Project) => {
     const k = kindOf(p);
     return k === 'impact' ? <Badge tone="good">Impact</Badge>
-      : k === 'monthly' ? <Badge tone="neutral">Monthly</Badge>
-        : <span className="text-[11px] text-haze">One-off</span>;
+      : k === 'monthly' ? <Badge tone="neutral">{t('Monthly')}</Badge>
+        : <span className="text-[11px] text-haze">{t('One-off')}</span>;
   };
   const stateOf = (p: Project) => {
-    if (isClosedProject(p)) return <Badge tone="neutral">{isMonthly(p) ? 'Ended' : 'Closed'}</Badge>;
-    if (p.status === 'cancelled') return <Badge tone="neutral">Cancelled</Badge>;
-    if (isMonthly(p)) return <Badge tone="good">Running</Badge>;
+    if (isClosedProject(p)) return <Badge tone="neutral">{isMonthly(p) ? t('Ended') : t('Closed')}</Badge>;
+    if (p.status === 'cancelled') return <Badge tone="neutral">{t('Cancelled')}</Badge>;
+    if (isMonthly(p)) return <Badge tone="good">{t('Running')}</Badge>;
     return <StatusPill tone={projectStatusTone(p.status)}>{projectStatusLabel(p.status)}</StatusPill>;
   };
   const priceOf = (p: Project) => {
     const k = kindOf(p);
-    if (k === 'impact') return p.market_value === null ? <span className="text-haze">free</span>
-      : <span className="text-haze">free · worth {money(p.market_value, 'HUF')}</span>;
-    if (k === 'monthly') return p.monthly_fee === null ? '—' : <>{money(p.monthly_fee, p.currency)} <span className="text-haze">/ month</span></>;
+    if (k === 'impact') return p.market_value === null ? <span className="text-haze">{t('free')}</span>
+      : <span className="text-haze">{t('free · worth {value}', { value: money(p.market_value, 'HUF') })}</span>;
+    if (k === 'monthly') return p.monthly_fee === null ? '—' : <>{money(p.monthly_fee, p.currency)} <span className="text-haze">{t('/ month')}</span></>;
     return money(p.value, p.currency) ?? '—';
   };
 
   return (
     <div className="grid gap-4">
-      <MetricStrip label="All projects" className="xl:grid-cols-4">
-        <MetricCell label="One-off in progress" value={openOneOff.length}
-                    note={`${sums(valueByCurrency)} agreed value · ${oneOff.length - openOneOff.length} closed`} />
-        <MetricCell label="Monthly contracts" value={fees.reduce((n, t) => n + t.contracts, 0)}
-                    note={`${sums(fees)} per month`} />
-        <MetricCell label="Impact in progress" value={impactOpen.length}
-                    note={`${money(impactValue, 'HUF')} market value · free`} />
-        <MetricCell label="Needs attention" value={attention} tone={attention > 0 ? 'live' : 'default'}
-                    note="one-off projects late, waiting or blocked" />
+      <MetricStrip label={t('All projects')} className="xl:grid-cols-4">
+        <MetricCell label={t('One-off in progress')} value={openOneOff.length}
+                    note={t('{value} agreed value · {n} closed', { value: sums(valueByCurrency), n: oneOff.length - openOneOff.length })} />
+        <MetricCell label={t('Monthly contracts')} value={fees.reduce((n, x) => n + x.contracts, 0)}
+                    note={t('{value} per month', { value: sums(fees) })} />
+        <MetricCell label={t('Impact in progress')} value={impactOpen.length}
+                    note={t('{value} market value · free', { value: money(impactValue, 'HUF') })} />
+        <MetricCell label={t('Needs attention')} value={attention} tone={attention > 0 ? 'live' : 'default'}
+                    note={t('one-off projects late, waiting or blocked')} />
       </MetricStrip>
 
       <Panel className="min-w-0">
         <SectionHeader
-          title="Every project"
-          note={state === 'ready' ? `${shown.length} of ${rows.length}` : undefined}
+          title={t('Every project')}
+          note={state === 'ready' ? t('{n} of {total}', { n: shown.length, total: rows.length }) : undefined}
           action={
             <div className="flex flex-wrap items-center gap-2">
-              <label className="sr-only" htmlFor="all-kind">Kind</label>
+              <label className="sr-only" htmlFor="all-kind">{t('Kind')}</label>
               <Select id="all-kind" value={kind} onChange={(e) => setKind(e.target.value as typeof kind)}>
-                <option value="all">Every kind</option>
-                <option value="one_off">One-off</option>
-                <option value="monthly">Monthly</option>
+                <option value="all">{t('Every kind')}</option>
+                <option value="one_off">{t('One-off')}</option>
+                <option value="monthly">{t('Monthly')}</option>
                 <option value="impact">Impact</option>
               </Select>
               <Input type="search" value={query} onChange={(e) => setQuery(e.target.value)}
-                     placeholder="Project, client, service…" aria-label="Search every project"
+                     placeholder={t('Project, client, service…')} aria-label={t('Search every project')}
                      className="h-7 w-44 py-1 text-xs sm:w-56" />
             </div>
           }
@@ -407,12 +408,12 @@ function AllProjects({
         )}
         {state === 'error' && <ErrorState message={message} onRetry={onRetry} />}
         {state === 'ready' && shown.length === 0 && (
-          <DataState kind="empty" title={rows.length === 0 ? 'No projects yet' : 'Nothing matches'}
-                     body={rows.length === 0 ? 'Create one with New project.' : 'Nothing matches the search or the kind.'} />
+          <DataState kind="empty" title={rows.length === 0 ? t('No projects yet') : t('Nothing matches')}
+                     body={rows.length === 0 ? t('Create one with New project.') : t('Nothing matches the search or the kind.')} />
         )}
         {state === 'ready' && shown.length > 0 && (
           <Table
-            head={['Project', 'Kind', 'Company', 'State', { label: 'Price', align: 'right' }, 'Deadline / end']}
+            head={[t('Project'), t('Kind'), t('Company'), t('State'), { label: t('Price'), align: 'right' }, t('Deadline / end')]}
             minWidth={840}
             sticky
           >
@@ -429,7 +430,7 @@ function AllProjects({
                 <Cell align="right" className="num text-xs text-paper">{priceOf(p)}</Cell>
                 <Cell className="num whitespace-nowrap text-[11px] text-haze">
                   {isClosedProject(p) ? shortDate(p.completed_at)
-                    : isMonthly(p) && !p.target_date ? 'open-ended' : shortDate(p.target_date)}
+                    : isMonthly(p) && !p.target_date ? t('open-ended') : shortDate(p.target_date)}
                 </Cell>
               </Row>
             ))}
@@ -463,18 +464,18 @@ function MonthlyContracts({
 
   return (
     <div className="grid gap-4">
-      <Panel aria-label="Monthly revenue" className="grid grid-cols-1 divide-y divide-hairline sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      <Panel aria-label={t('Monthly revenue')} className="grid grid-cols-1 divide-y divide-hairline sm:grid-cols-3 sm:divide-x sm:divide-y-0">
         {totals.length === 0 ? (
           <div className="px-4 py-3.5 sm:col-span-3">
-            <p className="t-section">Monthly fees</p>
-            <p className="t-note mt-1.5">No running monthly contract.</p>
+            <p className="t-section">{t('Monthly fees')}</p>
+            <p className="t-note mt-1.5">{t('No running monthly contract.')}</p>
           </div>
-        ) : totals.map((t) => (
-          <div key={t.currency} className="min-w-0 px-4 py-3.5" data-monthly-total={t.currency}>
-            <p className="t-section">Monthly fees · {t.currency}</p>
-            <p className="t-metric mt-1.5 num">{money(t.total, t.currency)}</p>
+        ) : totals.map((tot) => (
+          <div key={tot.currency} className="min-w-0 px-4 py-3.5" data-monthly-total={tot.currency}>
+            <p className="t-section">{t('Monthly fees · {currency}', { currency: tot.currency })}</p>
+            <p className="t-metric mt-1.5 num">{money(tot.total, tot.currency)}</p>
             <p className="t-note mt-1">
-              per month · {t.contracts} running contract{t.contracts === 1 ? '' : 's'}
+              {t(tot.contracts === 1 ? 'per month · {n} running contract' : 'per month · {n} running contracts', { n: tot.contracts })}
             </p>
           </div>
         ))}
@@ -482,15 +483,15 @@ function MonthlyContracts({
 
       <Panel className="min-w-0">
         <SectionHeader
-          title="Monthly contracts"
-          note={state === 'ready' ? `${sorted.length} of ${rows.length}` : undefined}
+          title={t('Monthly contracts')}
+          note={state === 'ready' ? t('{n} of {total}', { n: sorted.length, total: rows.length }) : undefined}
           action={
             <Input
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Contract, client, service…"
-              aria-label="Search monthly contracts"
+              placeholder={t('Contract, client, service…')}
+              aria-label={t('Search monthly contracts')}
               className="h-7 w-44 py-1 text-xs sm:w-56"
             />
           }
@@ -504,16 +505,16 @@ function MonthlyContracts({
         {state === 'ready' && sorted.length === 0 && (
           <DataState
             kind="empty"
-            title={rows.length === 0 ? 'No monthly contracts yet' : 'Nothing matches'}
+            title={rows.length === 0 ? t('No monthly contracts yet') : t('Nothing matches')}
             body={rows.length === 0
-              ? 'A monthly contract is ongoing work billed by the month — care, ads management, SEO. Create one with New project → Monthly contract.'
-              : 'No contract matches the search.'}
+              ? t('A monthly contract is ongoing work billed by the month — care, ads management, SEO. Create one with New project → Monthly contract.')
+              : t('No contract matches the search.')}
           />
         )}
         {state === 'ready' && sorted.length > 0 && (
           <Table
-            head={['Contract', 'Company', 'Service', { label: 'Monthly fee', align: 'right' }, 'Since',
-              { label: 'Months', align: 'right' }, 'Ends', 'State']}
+            head={[t('Contract'), t('Company'), t('Service'), { label: t('Monthly fee'), align: 'right' }, t('Since'),
+              { label: t('Months'), align: 'right' }, t('Ends'), t('State')]}
             minWidth={840}
             sticky
           >
@@ -535,13 +536,13 @@ function MonthlyContracts({
                   <Cell className="num whitespace-nowrap text-[11px] text-haze">{shortDate(p.start_date)}</Cell>
                   <Cell align="right" className="num text-xs text-haze">{months ?? '—'}</Cell>
                   <Cell className="num whitespace-nowrap text-[11px] text-haze">
-                    {ended ? shortDate(p.completed_at) : p.target_date ? shortDate(p.target_date) : 'open-ended'}
+                    {ended ? shortDate(p.completed_at) : p.target_date ? shortDate(p.target_date) : t('open-ended')}
                   </Cell>
                   <Cell>
                     {ended
-                      ? <Badge tone="neutral">Ended</Badge>
-                      : p.status === 'on_hold' ? <Badge tone="warn">On hold</Badge>
-                        : <Badge tone="good">Running</Badge>}
+                      ? <Badge tone="neutral">{t('Ended')}</Badge>
+                      : p.status === 'on_hold' ? <Badge tone="warn">{t('On hold')}</Badge>
+                        : <Badge tone="good">{t('Running')}</Badge>}
                   </Cell>
                 </Row>
               );
@@ -560,21 +561,21 @@ function MonthlyContracts({
 function Signals({ summary }: { summary: TrackerSummary | undefined }) {
   if (!summary) return <span className="text-haze">—</span>;
   const marks: { key: string; tone: 'bad' | 'warn'; label: string; title: string }[] = [];
-  if (summary.late) marks.push({ key: 'late', tone: 'bad', label: 'Late', title: summary.lateBecause ?? 'Late' });
+  if (summary.late) marks.push({ key: 'late', tone: 'bad', label: t('Late'), title: summary.lateBecause ?? t('Late') });
   if (summary.waiting.length > 0) {
-    marks.push({ key: 'waiting', tone: 'warn', label: 'Waiting', title: `Waiting on the client: ${summary.waiting.join(', ')}` });
+    marks.push({ key: 'waiting', tone: 'warn', label: t('Waiting'), title: t('Waiting on the client: {items}', { items: summary.waiting.join(', ') }) });
   }
   if (summary.blocked.length > 0) {
     marks.push({
-      key: 'blocked', tone: 'bad', label: 'Blocked',
-      title: summary.blocked.map((b) => `${b.title}: ${b.reason ?? 'no reason'} → ${b.next ?? 'no next step'}`).join('; '),
+      key: 'blocked', tone: 'bad', label: t('Blocked'),
+      title: summary.blocked.map((b) => t('{title}: {reason} → {next}', { title: b.title, reason: b.reason ?? t('no reason'), next: b.next ?? t('no next step') })).join('; '),
     });
   }
   if (marks.length === 0) return <span className="text-haze">—</span>;
   return (
     <span className="flex flex-wrap gap-1">
       {marks.map((m) => (
-        <span key={m.key} title={m.title} aria-label={`${m.label}: ${m.title}`} data-signal={m.key}>
+        <span key={m.key} title={m.title} aria-label={t('{label}: {title}', { label: m.label, title: m.title })} data-signal={m.key}>
           <Badge tone={m.tone}>{m.label}</Badge>
         </span>
       ))}
@@ -638,13 +639,13 @@ export function ProjectDetailScreen() {
       <Panel>
         <DataState
           kind={state === 'error' ? 'unavailable' : state === 'unconfigured' ? 'unconfigured' : 'empty'}
-          title={state === 'error' ? 'Unavailable' : state === 'unconfigured' ? 'Not connected' : 'No such project'}
+          title={state === 'error' ? t('Unavailable') : state === 'unconfigured' ? t('Not connected') : t('No such project')}
           body={state === 'error'
-            ? 'The project could not be read right now.'
+            ? t('The project could not be read right now.')
             : state === 'unconfigured'
-              ? 'Supabase credentials are not set in this environment.'
-              : 'This project does not exist, or this account may not read it.'}
-          action={<Link to="/projects"><Button size="sm">All projects</Button></Link>}
+              ? t('Supabase credentials are not set in this environment.')
+              : t('This project does not exist, or this account may not read it.')}
+          action={<Link to="/projects"><Button size="sm">{t('All projects')}</Button></Link>}
         />
       </Panel>
     );
@@ -671,7 +672,7 @@ export function ProjectDetailScreen() {
     actual_hours: project.actual_hours,
   });
   const timeline = buildRecordTimeline(
-    { at: project.created_at, title: 'Project created', detail: project.service ?? undefined },
+    { at: project.created_at, title: t('Project created'), detail: project.service ?? undefined },
     detail.notes,
     detail.log,
   );
@@ -714,14 +715,14 @@ export function ProjectDetailScreen() {
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link to={listPath} className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper">
-          <ArrowLeft size={11} aria-hidden="true" /> {impact ? 'Impact projects' : monthly ? 'Monthly contracts' : closed ? 'Closed projects' : 'All projects'}
+          <ArrowLeft size={11} aria-hidden="true" /> {impact ? t('Impact projects') : monthly ? t('Monthly contracts') : closed ? t('Closed projects') : t('All projects')}
         </Link>
         <span className="flex flex-wrap items-center gap-2">
           {mayEdit && !project.archived_at && (
             <MoveToTrashButton kind="project" id={project.id} name={project.name} onTrashed={() => navigate(listPath)} />
           )}
           <StatusPill tone={closed ? 'good' : projectStatusTone(project.status)}>
-            {closed ? (monthly ? 'Ended' : 'Closed') : projectStatusLabel(project.status)}
+            {closed ? (monthly ? t('Ended') : t('Closed')) : projectStatusLabel(project.status)}
           </StatusPill>
         </span>
       </div>
@@ -731,55 +732,55 @@ export function ProjectDetailScreen() {
 
       {/* ----------------------------------------------------- header */}
       <Panel
-        aria-label="Project summary"
+        aria-label={t('Project summary')}
         className="grid grid-cols-2 divide-x divide-y divide-hairline bg-panel sm:grid-cols-4 xl:divide-y-0"
       >
         <div className="col-span-2 min-w-0 px-4 py-3.5">
-          <p className="t-section">{impact ? 'Impact project · free' : monthly ? 'Monthly contract' : 'Project'}</p>
+          <p className="t-section">{impact ? t('Impact project · free') : monthly ? t('Monthly contract') : t('Project')}</p>
           <p className="mt-1.5 break-words text-lg leading-tight text-paper">{project.name}</p>
           <p className="t-note mt-1">
             {project.client
               ? <Link to={`/clients/${project.client.id}`} className="underline underline-offset-4 hover:text-paper">
                   {project.client.name}
                 </Link>
-              : 'No client'}
+              : t('No client')}
             {project.service ? ` · ${project.service}` : ''}
           </p>
           <p className="t-note mt-1">
             {primary
               ? <>{primary.name}{primary.email ? ` · ${primary.email}` : ''}{primary.phone ? ` · ${primary.phone}` : ''}</>
-              : 'No contact recorded for this client'}
+              : t('No contact recorded for this client')}
           </p>
         </div>
         <div className="min-w-0 px-4 py-3.5">
-          <p className="t-section">Checkpoints</p>
+          <p className="t-section">{t('Checkpoints')}</p>
           {summary.total === 0 ? (
-            <p className="mt-1.5"><NotRecorded what="Checkpoints" /></p>
+            <p className="mt-1.5"><NotRecorded what={t('Checkpoints')} /></p>
           ) : (
             <>
               <p className="t-metric mt-1.5">{summary.done}/{summary.total}</p>
               <p className="t-note mt-1 truncate">
-                {closed ? 'all done' : summary.current ? `now: ${summary.current}` : 'all done'}
+                {closed ? t('all done') : summary.current ? t('now: {step}', { step: summary.current }) : t('all done')}
               </p>
             </>
           )}
         </div>
         {monthly ? (
         <div className="min-w-0 px-4 py-3.5">
-          <p className="t-section">Monthly fee</p>
+          <p className="t-section">{t('Monthly fee')}</p>
           <p className="num mt-1.5 text-xl leading-none text-paper" data-figure="monthly-fee">
             {project.monthly_fee === null ? '—' : money(project.monthly_fee, project.currency)}
           </p>
           <p className="t-note mt-1">
             {closed
-              ? `ended ${shortDate(project.completed_at)}`
-              : `${project.start_date ? `since ${shortDate(project.start_date)}` : 'no start date'} · ${
-                project.target_date ? `ends ${shortDate(project.target_date)}` : 'open-ended'}`}
+              ? t('ended {date}', { date: shortDate(project.completed_at) })
+              : `${project.start_date ? t('since {date}', { date: shortDate(project.start_date) }) : t('no start date')} · ${
+                project.target_date ? t('ends {date}', { date: shortDate(project.target_date) }) : t('open-ended')}`}
           </p>
         </div>
         ) : (
         <div className="min-w-0 px-4 py-3.5">
-          <p className="t-section">{closed ? 'Closed' : 'Deadline'}</p>
+          <p className="t-section">{closed ? t('Closed') : t('Deadline')}</p>
           <p className={cn(
             'num mt-1.5 text-xl leading-none',
             targetTone === 'overdue' ? 'text-danger' : targetTone === 'today' ? 'text-signal' : 'text-paper',
@@ -788,9 +789,9 @@ export function ProjectDetailScreen() {
           </p>
           <p className="t-note mt-1">
             {closed
-              ? `deadline was ${shortDate(project.target_date)}`
-              : targetTone === 'overdue' ? 'this date has passed'
-                : project.start_date ? `started ${shortDate(project.start_date)}` : 'no start date'}
+              ? t('deadline was {date}', { date: shortDate(project.target_date) })
+              : targetTone === 'overdue' ? t('this date has passed')
+                : project.start_date ? t('started {date}', { date: shortDate(project.start_date) }) : t('no start date')}
           </p>
         </div>
         )}
@@ -799,14 +800,14 @@ export function ProjectDetailScreen() {
       <Grid>
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-8">
           {/* ---------------------------------------------- the close */}
-          <Panel aria-label="Delivery status">
+          <Panel aria-label={t('Delivery status')}>
             <SectionHeader
-              title={closed ? (monthly ? 'Contract ended' : 'Closed') : monthly ? 'Contract status' : 'Delivery status'}
-              note={closed ? `on ${shortDate(project.completed_at)}` : undefined}
+              title={closed ? (monthly ? t('Contract ended') : t('Closed')) : monthly ? t('Contract status') : t('Delivery status')}
+              note={closed ? t('on {date}', { date: shortDate(project.completed_at) }) : undefined}
               action={mayEdit ? (
                 closed ? (
                   <Button size="sm" onClick={reopen} disabled={ops.busy === project.id}>
-                    <RotateCcw size={11} aria-hidden="true" /> Reopen
+                    <RotateCcw size={11} aria-hidden="true" /> {t('Reopen')}
                   </Button>
                 ) : (
                   <Button
@@ -816,7 +817,7 @@ export function ProjectDetailScreen() {
                     disabled={!closable || cancelled || ops.busy === project.id}
                     aria-describedby="close-rule"
                   >
-                    <Check size={11} aria-hidden="true" /> {monthly ? 'End contract' : 'Close project'}
+                    <Check size={11} aria-hidden="true" /> {monthly ? t('End contract') : t('Close project')}
                   </Button>
                 )
               ) : undefined}
@@ -824,47 +825,45 @@ export function ProjectDetailScreen() {
             <div className="grid gap-2 px-4 py-3">
               {closed && monthly ? (
                 <p className="text-xs text-haze">
-                  This monthly contract has ended and no longer counts in the monthly fees. Payments
-                  that arrive later are still recorded in its payment schedule. Reopen it to resume it.
+                  {t('This monthly contract has ended and no longer counts in the monthly fees. Payments that arrive later are still recorded in its payment schedule. Reopen it to resume it.')}
                 </p>
               ) : closed ? (
                 <p className="text-xs text-haze">
-                  Every checkpoint was done when this project was closed. Reopen it to change its
-                  checkpoints. Closing says nothing about payment, and does not archive it.
+                  {t('Every checkpoint was done when this project was closed. Reopen it to change its checkpoints. Closing says nothing about payment, and does not archive it.')}
                 </p>
               ) : (
                 <>
                   <p id="close-rule" className="t-note">
                     {monthly
-                      ? 'A monthly contract runs until it is ended. Ending it takes it out of the monthly fees; it can be reopened. Checkpoints are optional here — use them for recurring deliverables if they help.'
+                      ? t('A monthly contract runs until it is ended. Ending it takes it out of the monthly fees; it can be reopened. Checkpoints are optional here — use them for recurring deliverables if they help.')
                       : impact && cancelled
-                      ? 'This Impact project is cancelled: it counts as neither committed nor delivered support. Set another state to resume it.'
+                      ? t('This Impact project is cancelled: it counts as neither committed nor delivered support. Set another state to resume it.')
                       : impact && impactBlockers.length > 0
-                      ? `Before this Impact project can be closed it needs: ${impactBlockers.join('; ')}.`
+                      ? t('Before this Impact project can be closed it needs: {items}.', { items: impactBlockers.join('; ') })
                       : impact
-                      ? 'Every checkpoint is done and the market value is recorded. Closing moves it to delivered support; it can be reopened.'
+                      ? t('Every checkpoint is done and the market value is recorded. Closing moves it to delivered support; it can be reopened.')
                       : summary.closable
-                      ? 'Every checkpoint is done. Closing moves the project to Closed; it can be reopened. Payment is tracked separately.'
+                      ? t('Every checkpoint is done. Closing moves the project to Closed; it can be reopened. Payment is tracked separately.')
                       : summary.total === 0
-                        ? 'A project is closed after its last checkpoint is done. This one has no checkpoints yet — add at least one.'
-                        : `${summary.total - summary.done} of ${summary.total} checkpoints still open. The project can be closed once they are all done.`}
+                        ? t('A project is closed after its last checkpoint is done. This one has no checkpoints yet — add at least one.')
+                        : t('{open} of {total} checkpoints still open. The project can be closed once they are all done.', { open: summary.total - summary.done, total: summary.total })}
                   </p>
                   {!summary.late && summary.waiting.length === 0 && summary.blocked.length === 0 && (
-                    <p className="text-xs text-haze">Nothing late, nothing waiting, nothing blocked.</p>
+                    <p className="text-xs text-haze">{t('Nothing late, nothing waiting, nothing blocked.')}</p>
                   )}
                   {summary.late && (
-                    <p className="text-xs text-danger" data-signal="late"><Badge tone="bad">Late</Badge> {summary.lateBecause}</p>
+                    <p className="text-xs text-danger" data-signal="late"><Badge tone="bad">{t('Late')}</Badge> {summary.lateBecause}</p>
                   )}
                   {summary.waiting.length > 0 && (
                     <p className="text-xs text-signal" data-signal="waiting">
-                      <Badge tone="warn">Waiting on client</Badge> {summary.waiting.join(', ')}
+                      <Badge tone="warn">{t('Waiting on client')}</Badge> {summary.waiting.join(', ')}
                     </p>
                   )}
                   {summary.blocked.map((b) => (
                     <div key={b.title} className="rounded-sm border border-danger/30 px-3 py-2" data-signal="blocked">
-                      <p className="text-xs text-paper"><Badge tone="bad">Blocked</Badge> {b.title}</p>
-                      <p className="t-note mt-1">Why: {b.reason ?? '—'}</p>
-                      <p className="t-note">Next: {b.next ?? '—'}</p>
+                      <p className="text-xs text-paper"><Badge tone="bad">{t('Blocked')}</Badge> {b.title}</p>
+                      <p className="t-note mt-1">{t('Why: {reason}', { reason: b.reason ?? '—' })}</p>
+                      <p className="t-note">{t('Next: {step}', { step: b.next ?? '—' })}</p>
                     </div>
                   ))}
                 </>
@@ -876,27 +875,26 @@ export function ProjectDetailScreen() {
           {/* ------------------------------------------- checkpoints */}
           <Panel className="min-w-0">
             <SectionHeader
-              title="Checkpoints"
-              note={summary.total > 0 ? `${summary.done}/${summary.total}` : 'none yet'}
+              title={t('Checkpoints')}
+              note={summary.total > 0 ? `${summary.done}/${summary.total}` : t('none yet')}
               action={mayChange
                 ? <Button size="sm" variant="quiet" onClick={() => setCheckpoint({ position: milestones.length, state: 'pending' })}>
-                    <Plus size={11} aria-hidden="true" /> Add checkpoint
+                    <Plus size={11} aria-hidden="true" /> {t('Add checkpoint')}
                   </Button>
                 : undefined}
             />
             {milestones.length === 0 ? (
               <div className="grid gap-2 px-4 py-4">
                 <p className="text-xs text-haze">
-                  No checkpoints. Start from a template — its steps are copied into this project, so
-                  editing the template later never changes them — or add them one by one.
+                  {t('No checkpoints. Start from a template — its steps are copied into this project, so editing the template later never changes them — or add them one by one.')}
                 </p>
                 {mayChange && templates.live.length > 0 && (
                   <div className="flex flex-wrap items-center gap-2">
-                    <label className="sr-only" htmlFor="apply-template">Template</label>
+                    <label className="sr-only" htmlFor="apply-template">{t('Template')}</label>
                     <Select id="apply-template" value={chosen?.id ?? ''} onChange={(e) => setTemplateId(e.target.value)}>
-                      {templates.live.map((t) => (
-                        <option key={t.id} value={t.id}>
-                          {t.name} ({t.steps.length} steps){t.id === matched?.id ? ' — matches the service' : ''}
+                      {templates.live.map((tpl) => (
+                        <option key={tpl.id} value={tpl.id}>
+                          {t('{name} ({n} steps)', { name: tpl.name, n: tpl.steps.length })}{tpl.id === matched?.id ? t(' — matches the service') : ''}
                         </option>
                       ))}
                     </Select>
@@ -905,7 +903,7 @@ export function ProjectDetailScreen() {
                       disabled={!chosen || ops.busy === 'milestone'}
                       onClick={async () => { if (chosen) setError(await ops.applyTemplate(project.id, chosen.steps)); }}
                     >
-                      Add these steps
+                      {t('Add these steps')}
                     </Button>
                   </div>
                 )}
@@ -925,7 +923,7 @@ export function ProjectDetailScreen() {
               </ul>
             )}
             {closed && milestones.length > 0 && (
-              <p className="t-note border-t border-hairline px-4 py-2">Checkpoints are frozen while the project is closed.</p>
+              <p className="t-note border-t border-hairline px-4 py-2">{t('Checkpoints are frozen while the project is closed.')}</p>
             )}
             {error && <p role="alert" className="border-t border-hairline px-4 py-2 text-xs text-danger">{error}</p>}
           </Panel>
@@ -938,7 +936,7 @@ export function ProjectDetailScreen() {
             <div className="grid gap-1">
               <ProjectLibrary projectId={project.id} reloadToken={reloadToken} compact />
               <Link to={`/documents/${project.id}`} className="t-note justify-self-end underline underline-offset-4 hover:text-paper">
-                Open in Documents
+                {t('Open in Documents')}
               </Link>
             </div>
           )}
@@ -952,17 +950,16 @@ export function ProjectDetailScreen() {
           {/* ------------------------------------------------ links */}
           <Panel>
             <SectionHeader
-              title="Links"
+              title={t('Links')}
               action={mayEdit
                 ? <Button size="sm" variant="quiet" onClick={() => setAddingLink(true)}>
-                    <Plus size={11} aria-hidden="true" /> Add
+                    <Plus size={11} aria-hidden="true" /> {t('Add')}
                   </Button>
                 : undefined}
             />
             {links.length === 0 ? (
               <p className="px-4 py-3 text-xs text-haze">
-                No links. The live site, the staging URL, the repository, the design file — anything
-                with an http or https address.
+                {t('No links. The live site, the staging URL, the repository, the design file — anything with an http or https address.')}
               </p>
             ) : (
               <ul className="grid">
@@ -993,7 +990,7 @@ export function ProjectDetailScreen() {
                       </div>
                       {mayEdit && (
                         <Button size="sm" variant="quiet" onClick={() => void ops.removeLink(link.id)}
-                                aria-label={`Remove ${link.label}`}>
+                                aria-label={t('Remove {name}', { name: link.label })}>
                           <Trash2 size={11} aria-hidden="true" />
                         </Button>
                       )}
@@ -1005,28 +1002,28 @@ export function ProjectDetailScreen() {
 
           {/* ------------------------------------------------ notes */}
           <Panel>
-            <SectionHeader title="Notes" note={detail.notes.length > 0 ? `${detail.notes.length}` : undefined} />
+            <SectionHeader title={t('Notes')} note={detail.notes.length > 0 ? `${detail.notes.length}` : undefined} />
             {mayEdit && (
               <div className="border-b border-hairline px-4 py-3">
-                <label className="sr-only" htmlFor="project-note">Add a note</label>
+                <label className="sr-only" htmlFor="project-note">{t('Add a note')}</label>
                 <Textarea id="project-note" value={draft} onChange={(e) => setDraft(e.target.value)}
-                          placeholder="What changed, what is blocked, what was agreed."
+                          placeholder={t('What changed, what is blocked, what was agreed.')}
                           className="min-h-20 text-[13px]" />
                 <div className="mt-2 flex items-center justify-between gap-3">
                   <span />
-                  <Button size="sm" variant="primary" onClick={submitNote} disabled={notes.busy}>Add note</Button>
+                  <Button size="sm" variant="primary" onClick={submitNote} disabled={notes.busy}>{t('Add note')}</Button>
                 </div>
               </div>
             )}
             {detail.notes.length === 0 ? (
-              <p className="px-4 py-3 text-xs text-haze">No notes yet.</p>
+              <p className="px-4 py-3 text-xs text-haze">{t('No notes yet.')}</p>
             ) : (
               <ul className="grid">
                 {detail.notes.map((note) => (
                   <li key={note.id} className="border-b border-hairline px-4 py-3 last:border-0">
                     <p className="whitespace-pre-wrap text-[13px] text-paper">{note.body}</p>
                     <p className="t-note mt-1">
-                      {note.author?.full_name || note.author?.email || 'Unknown'} · {formatWhen(note.created_at)}
+                      {note.author?.full_name || note.author?.email || t('Unknown')} · {formatWhen(note.created_at)}
                     </p>
                   </li>
                 ))}
@@ -1036,7 +1033,7 @@ export function ProjectDetailScreen() {
 
           {/* --------------------------------------------- activity */}
           <Panel>
-            <SectionHeader title="Activity" note="only what was recorded" />
+            <SectionHeader title={t('Activity')} note={t('only what was recorded')} />
             <ol className="grid">
               {timeline.map((entry) => (
                 <li key={entry.id} className="flex gap-3 border-b border-hairline px-4 py-2.5 last:border-0">
@@ -1078,21 +1075,21 @@ export function ProjectDetailScreen() {
 
           <Panel>
             <SectionHeader
-              title="Costs"
+              title={t('Costs')}
               note={costs.length > 0 ? `${costs.length}` : undefined}
               action={mayEdit
                 ? <Button size="sm" variant="quiet" onClick={() => setAddingCost(true)}>
-                    <Plus size={11} aria-hidden="true" /> Add
+                    <Plus size={11} aria-hidden="true" /> {t('Add')}
                   </Button>
                 : undefined}
             />
             {costs.length === 0 ? (
               <p className="px-4 py-3 text-xs text-haze">
                 {impact
-                  ? 'No internal costs recorded. Free to the client is not free to deliver — what it cost us to do goes here.'
+                  ? t('No internal costs recorded. Free to the client is not free to deliver — what it cost us to do goes here.')
                   : monthly
-                  ? 'No direct costs recorded. Subcontractors, ad tools, software — whatever this contract costs to run goes here.'
-                  : 'No direct costs recorded. Contribution cannot be calculated until at least one is — a project with no recorded costs is not a project that cost nothing.'}
+                  ? t('No direct costs recorded. Subcontractors, ad tools, software — whatever this contract costs to run goes here.')
+                  : t('No direct costs recorded. Contribution cannot be calculated until at least one is — a project with no recorded costs is not a project that cost nothing.')}
               </p>
             ) : (
               <ul className="grid">
@@ -1101,14 +1098,14 @@ export function ProjectDetailScreen() {
                     <div className="min-w-0">
                       <p className="truncate text-[13px] text-paper">{cost.description}</p>
                       <p className="t-note">
-                        {COST_LABEL[cost.category] ?? cost.category} · {shortDate(cost.incurred_on)}
+                        {tc('cost', COST_LABEL[cost.category] ?? cost.category)} · {shortDate(cost.incurred_on)}
                       </p>
                     </div>
                     <div className="flex shrink-0 items-center gap-1">
                       <span className="num text-[12px] text-paper">{money(cost.amount, cost.currency)}</span>
                       {mayEdit && (
                         <Button size="sm" variant="quiet" onClick={() => void ops.removeCost(cost.id)}
-                                aria-label={`Remove ${cost.description}`}>
+                                aria-label={t('Remove {name}', { name: cost.description })}>
                           <Trash2 size={11} aria-hidden="true" />
                         </Button>
                       )}
@@ -1121,15 +1118,15 @@ export function ProjectDetailScreen() {
 
           <Panel>
             <SectionHeader
-              title="Project"
-              action={mayEdit ? <Button size="sm" onClick={() => setEditing(true)}>Edit</Button> : undefined}
+              title={t('Project')}
+              action={mayEdit ? <Button size="sm" onClick={() => setEditing(true)}>{t('Edit')}</Button> : undefined}
             />
             <dl className="grid">
               <DataLine
-                term="Status"
+                term={t('Status')}
                 value={mayChange ? (
                   <>
-                    <label className="sr-only" htmlFor="project-detail-status">Project status</label>
+                    <label className="sr-only" htmlFor="project-detail-status">{t('Project status')}</label>
                     <Select
                       id="project-detail-status"
                       className="w-full"
@@ -1141,53 +1138,53 @@ export function ProjectDetailScreen() {
                           silently claiming the project is "Planned". Closed is
                           not offered: it is the Close action's alone. */}
                       {!(settable as readonly string[]).includes(project.status) && (
-                        <option value="" disabled>{projectStatusLabel(project.status)} (legacy)</option>
+                        <option value="" disabled>{t('{status} (legacy)', { status: projectStatusLabel(project.status) })}</option>
                       )}
-                      {settable.map((s) => <option key={s} value={s}>{PROJECT_STATUS[s].label}</option>)}
+                      {settable.map((s) => <option key={s} value={s}>{t(PROJECT_STATUS[s].label)}</option>)}
                     </Select>
                   </>
-                ) : closed ? 'Closed' : projectStatusLabel(project.status)}
+                ) : closed ? t('Closed') : projectStatusLabel(project.status)}
               />
-              {impact && <DataLine term="Programme" value={<Badge tone="good">Impact · free</Badge>} note="no fee, invoice or payment" />}
-              {monthly && <DataLine term="Billing" value={<Badge tone="neutral">Monthly contract</Badge>} note="billed by the month" />}
-              <DataLine term="Service" value={project.service || <NotRecorded />} />
+              {impact && <DataLine term={t('Programme')} value={<Badge tone="good">{t('Impact · free')}</Badge>} note={t('no fee, invoice or payment')} />}
+              {monthly && <DataLine term={t('Billing')} value={<Badge tone="neutral">{t('Monthly contract')}</Badge>} note={t('billed by the month')} />}
+              <DataLine term={t('Service')} value={project.service || <NotRecorded />} />
               <DataLine
-                term="Responsible"
+                term={t('Responsible')}
                 value={project.responsible?.full_name || project.responsible?.email
-                  || <NotRecorded what="Responsible" />}
+                  || <NotRecorded what={t('Responsible')} />}
               />
-              <DataLine term="Started" value={<span className="num text-[11px]">{shortDate(project.start_date)}</span>} />
+              <DataLine term={t('Started')} value={<span className="num text-[11px]">{shortDate(project.start_date)}</span>} />
               <DataLine
-                term={monthly ? 'Contract end' : 'Deadline'}
-                value={<span className="num text-[11px]">{monthly && !project.target_date ? 'open-ended' : shortDate(project.target_date)}</span>}
+                term={monthly ? t('Contract end') : t('Deadline')}
+                value={<span className="num text-[11px]">{monthly && !project.target_date ? t('open-ended') : shortDate(project.target_date)}</span>}
               />
               {project.completed_at && (
-                <DataLine term={monthly ? 'Ended' : 'Closed'} value={<span className="num text-[11px]">{shortDate(project.completed_at)}</span>} />
+                <DataLine term={monthly ? t('Ended') : t('Closed')} value={<span className="num text-[11px]">{shortDate(project.completed_at)}</span>} />
               )}
               {!impact && <DataLine
-                term="Opportunity"
+                term={t('Opportunity')}
                 value={project.opportunity_id
                   ? <Link to={`/sales/${project.opportunity_id}`} className="underline underline-offset-4 hover:text-signal">
-                      The deal that sold this
+                      {t('The deal that sold this')}
                     </Link>
-                  : <span className="text-haze">Not linked</span>}
+                  : <span className="text-haze">{t('Not linked')}</span>}
               />}
               {!impact && <DataLine
-                term="Payment"
+                term={t('Payment')}
                 value={<Badge tone={project.payment_state === 'paid' ? 'good' : 'neutral'}>
-                  {PAYMENT_LABEL[project.payment_state] ?? project.payment_state}
+                  {t(PAYMENT_LABEL[project.payment_state] ?? project.payment_state)}
                 </Badge>}
                 note={project.paid_amount !== null
-                  ? `${money(project.paid_amount, project.currency)} received · from the payment schedule`
-                  : 'from the payment schedule'}
+                  ? t('{amount} received · from the payment schedule', { amount: money(project.paid_amount, project.currency) })
+                  : t('from the payment schedule')}
               />}
             </dl>
             <p className="t-note border-t border-hairline px-4 py-2">
               {impact
-                ? 'An Impact project is free, always: the database refuses a fee, an invoice, a payment or a sale on it.'
+                ? t('An Impact project is free, always: the database refuses a fee, an invoice, a payment or a sale on it.')
                 : monthly
-                ? 'The monthly fee is what was agreed, not cash received. Record each month as an instalment in the payment schedule, and the payments against it.'
-                : 'Agreed value is not cash received. What has actually arrived is recorded in the payment schedule — the payment state follows it, and neither is required to close the project.'}
+                ? t('The monthly fee is what was agreed, not cash received. Record each month as an instalment in the payment schedule, and the payments against it.')
+                : t('Agreed value is not cash received. What has actually arrived is recorded in the payment schedule — the payment state follows it, and neither is required to close the project.')}
             </p>
           </Panel>
         </div>
@@ -1219,18 +1216,18 @@ function ContactsPanel({ contacts, clientId }: { contacts: ClientContact[]; clie
   return (
     <Panel>
       <SectionHeader
-        title="Contacts"
+        title={t('Contacts')}
         note={contacts.length > 0 ? `${contacts.length}` : undefined}
-        action={clientId ? <Link to={`/clients/${clientId}`} className="t-note underline underline-offset-4 hover:text-paper">Client</Link> : undefined}
+        action={clientId ? <Link to={`/clients/${clientId}`} className="t-note underline underline-offset-4 hover:text-paper">{t('Client')}</Link> : undefined}
       />
       {contacts.length === 0 ? (
-        <p className="px-4 py-3 text-xs text-haze">No contacts recorded. Add them on the client.</p>
+        <p className="px-4 py-3 text-xs text-haze">{t('No contacts recorded. Add them on the client.')}</p>
       ) : (
         <ul className="grid">
           {contacts.map((c) => (
             <li key={c.id} className="border-b border-hairline px-4 py-2 last:border-0">
               <p className="text-[13px] text-paper">
-                {c.name} {c.is_primary && <Badge tone="good">Primary</Badge>}
+                {c.name} {c.is_primary && <Badge tone="good">{t('Primary')}</Badge>}
               </p>
               <p className="t-note break-words">{[c.role, c.email, c.phone].filter(Boolean).join(' · ') || '—'}</p>
             </li>
@@ -1261,7 +1258,7 @@ function CheckpointRow({
   onRemove: () => void;
 }) {
   const tone = m.state === 'done' ? 'none' : dueTone(m.due_on);
-  const meta = [m.assignee, m.due_on ? `due ${shortDate(m.due_on)}` : null].filter(Boolean).join(' · ');
+  const meta = [m.assignee, m.due_on ? t('due {date}', { date: shortDate(m.due_on) }) : null].filter(Boolean).join(' · ');
 
   return (
     <li className="border-b border-hairline px-4 py-2.5 last:border-0" data-checkpoint={m.state}>
@@ -1277,31 +1274,31 @@ function CheckpointRow({
         )}
         {mayEdit ? (
           <>
-            <label className="sr-only" htmlFor={`cp-${m.id}`}>State for {m.title}</label>
+            <label className="sr-only" htmlFor={`cp-${m.id}`}>{t('State for {title}', { title: m.title })}</label>
             <Select id={`cp-${m.id}`} value={m.state} onChange={(e) => onState(e.target.value)}>
-              {MILESTONE_STATES.map((s) => <option key={s} value={s}>{MILESTONE_LABEL[s]}</option>)}
+              {MILESTONE_STATES.map((s) => <option key={s} value={s}>{t(MILESTONE_LABEL[s])}</option>)}
             </Select>
-            <Button size="sm" variant="quiet" onClick={onEdit} aria-label={`Edit ${m.title}`}>
+            <Button size="sm" variant="quiet" onClick={onEdit} aria-label={t('Edit {name}', { name: m.title })}>
               <Pencil size={11} aria-hidden="true" />
             </Button>
-            <Button size="sm" variant="quiet" onClick={onRemove} aria-label={`Remove ${m.title}`}>
+            <Button size="sm" variant="quiet" onClick={onRemove} aria-label={t('Remove {name}', { name: m.title })}>
               <Trash2 size={11} aria-hidden="true" />
             </Button>
           </>
         ) : (
           <Badge tone={m.state === 'done' ? 'good' : m.state === 'blocked' ? 'bad' : m.state === 'waiting_client' ? 'warn' : 'neutral'}>
-            {MILESTONE_LABEL[m.state] ?? m.state}
+            {t(MILESTONE_LABEL[m.state] ?? m.state)}
           </Badge>
         )}
       </div>
       {m.state === 'blocked' && (
         <div className="ml-4 mt-1.5 rounded-sm border border-danger/30 px-3 py-1.5">
-          <p className="text-[11px] text-paper">Why: {m.blocked_reason || '—'}</p>
-          <p className="text-[11px] text-haze">Next: {m.next_step || '—'}</p>
+          <p className="text-[11px] text-paper">{t('Why: {reason}', { reason: m.blocked_reason || '—' })}</p>
+          <p className="text-[11px] text-haze">{t('Next: {step}', { step: m.next_step || '—' })}</p>
         </div>
       )}
       {m.state !== 'blocked' && m.next_step && m.state !== 'done' && (
-        <p className="ml-4 mt-1 text-[11px] text-haze">Next: {m.next_step}</p>
+        <p className="ml-4 mt-1 text-[11px] text-haze">{t('Next: {step}', { step: m.next_step })}</p>
       )}
       {m.note && <p className="ml-4 mt-1 whitespace-pre-wrap text-[11px] text-haze">{m.note}</p>}
     </li>
@@ -1332,7 +1329,7 @@ function CheckpointDialog({
 
   const submit = async () => {
     if (blocked && (!form.blocked_reason.trim() || !form.next_step.trim())) {
-      setError('A blocked checkpoint needs a reason and a next step.');
+      setError(t('A blocked checkpoint needs a reason and a next step.'));
       return;
     }
     const problem = await ops.saveMilestone(projectId, {
@@ -1354,43 +1351,43 @@ function CheckpointDialog({
       open
       wide
       onClose={onClose}
-      title={initial.id ? 'Edit checkpoint' : 'Add a checkpoint'}
+      title={initial.id ? t('Edit checkpoint') : t('Add a checkpoint')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
-          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'milestone'}>Save</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
+          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'milestone'}>{t('Save')}</Button>
         </>
       }
     >
       <div className="grid gap-3">
-        <Field id="cp-title" label="Checkpoint">
+        <Field id="cp-title" label={t('Checkpoint')}>
           <Input id="cp-title" value={form.title} onChange={set('title')} />
         </Field>
         <div className="grid gap-3 sm:grid-cols-3">
-          <Field id="cp-state" label="State">
+          <Field id="cp-state" label={t('State')}>
             <Select id="cp-state" className="w-full py-2.5 text-sm" value={form.state} onChange={set('state')}>
-              {MILESTONE_STATES.map((s) => <option key={s} value={s}>{MILESTONE_LABEL[s]}</option>)}
+              {MILESTONE_STATES.map((s) => <option key={s} value={s}>{t(MILESTONE_LABEL[s])}</option>)}
             </Select>
           </Field>
-          <Field id="cp-assignee" label="Responsible" hint="Stratos, the client, a collaborator.">
+          <Field id="cp-assignee" label={t('Responsible')} hint={t('Stratos, the client, a collaborator.')}>
             <Input id="cp-assignee" value={form.assignee} onChange={set('assignee')} />
           </Field>
-          <Field id="cp-due" label="Due">
+          <Field id="cp-due" label={t('Due')}>
             <Input id="cp-due" type="date" value={form.due_on} onChange={set('due_on')} />
           </Field>
         </div>
         {blocked && (
-          <Field id="cp-reason" label="Why is it blocked? (required)">
+          <Field id="cp-reason" label={t('Why is it blocked? (required)')}>
             <Textarea id="cp-reason" value={form.blocked_reason} onChange={set('blocked_reason')}
                       aria-required="true" invalid={Boolean(error) && !form.blocked_reason.trim()} />
           </Field>
         )}
-        <Field id="cp-next" label={blocked ? 'Next step (required)' : 'Next step'}>
+        <Field id="cp-next" label={blocked ? t('Next step (required)') : t('Next step')}>
           <Input id="cp-next" value={form.next_step} onChange={set('next_step')}
                  aria-required={blocked ? 'true' : undefined}
                  invalid={blocked && Boolean(error) && !form.next_step.trim()} />
         </Field>
-        <Field id="cp-note" label="Note">
+        <Field id="cp-note" label={t('Note')}>
           <Textarea id="cp-note" value={form.note} onChange={set('note')} />
         </Field>
         {error && <p role="alert" className="text-xs text-danger">{error}</p>}
@@ -1416,19 +1413,19 @@ export function ProjectTemplatesScreen() {
 
   const list = (items: CheckpointTemplate[], archived: boolean) => (
     <ul className="grid">
-      {items.map((t) => (
-        <li key={t.id} className="flex flex-wrap items-start justify-between gap-3 border-b border-hairline px-4 py-3 last:border-0">
+      {items.map((tpl) => (
+        <li key={tpl.id} className="flex flex-wrap items-start justify-between gap-3 border-b border-hairline px-4 py-3 last:border-0">
           <div className="min-w-0 flex-1">
-            <p className="text-[13px] text-paper">{t.name} <span className="t-note">· {t.steps.length} steps</span></p>
+            <p className="text-[13px] text-paper">{tpl.name} <span className="t-note">· {t('{n} steps', { n: tpl.steps.length })}</span></p>
             <p className="t-note mt-0.5">
-              {t.service_keywords.length > 0 ? `Matches: ${t.service_keywords.join(', ')}` : 'Fallback — used when no other template matches'}
+              {tpl.service_keywords.length > 0 ? t('Matches: {keywords}', { keywords: tpl.service_keywords.join(', ') }) : t('Fallback — used when no other template matches')}
             </p>
-            <p className="mt-1 break-words text-[11px] text-haze">{t.steps.join(' → ')}</p>
+            <p className="mt-1 break-words text-[11px] text-haze">{tpl.steps.join(' → ')}</p>
           </div>
           <div className="flex shrink-0 gap-1">
-            {!archived && <Button size="sm" onClick={() => setEditing(t)}>Edit</Button>}
-            <Button size="sm" variant="quiet" onClick={async () => setError(await ops.archiveTemplate(t.id, !archived))}>
-              {archived ? 'Restore' : 'Retire'}
+            {!archived && <Button size="sm" onClick={() => setEditing(tpl)}>{t('Edit')}</Button>}
+            <Button size="sm" variant="quiet" onClick={async () => setError(await ops.archiveTemplate(tpl.id, !archived))}>
+              {archived ? t('Restore') : t('Retire')}
             </Button>
           </div>
         </li>
@@ -1440,24 +1437,24 @@ export function ProjectTemplatesScreen() {
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link to="/projects" className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper">
-          <ArrowLeft size={11} aria-hidden="true" /> All projects
+          <ArrowLeft size={11} aria-hidden="true" /> {t('All projects')}
         </Link>
         <Button size="sm" variant="primary" onClick={() => setEditing({ position: (live[live.length - 1]?.position ?? 0) + 10 })}>
-          <Plus size={12} aria-hidden="true" /> New template
+          <Plus size={12} aria-hidden="true" /> {t('New template')}
         </Button>
       </div>
       <Panel>
-        <SectionHeader title="Checkpoint templates" note="copied into a project when used — editing one never changes an existing project" />
+        <SectionHeader title={t('Checkpoint templates')} note={t('copied into a project when used — editing one never changes an existing project')} />
         {state === 'loading' && <div className="p-4"><Skeleton className="h-24 w-full" /></div>}
         {state === 'error' && <ErrorState message={message} onRetry={reload} />}
-        {state === 'unconfigured' && <DataState kind="unconfigured" title="Not connected" />}
-        {state === 'ready' && live.length === 0 && <DataState kind="empty" title="No templates" body="Add one per kind of work you deliver." />}
+        {state === 'unconfigured' && <DataState kind="unconfigured" title={t('Not connected')} />}
+        {state === 'ready' && live.length === 0 && <DataState kind="empty" title={t('No templates')} body={t('Add one per kind of work you deliver.')} />}
         {state === 'ready' && live.length > 0 && list(live, false)}
         {error && <p role="alert" className="border-t border-hairline px-4 py-2 text-xs text-danger">{error}</p>}
       </Panel>
       {retired.length > 0 && (
         <Panel>
-          <SectionHeader title="Retired" note={`${retired.length}`} />
+          <SectionHeader title={t('Retired')} note={`${retired.length}`} />
           {list(retired, true)}
         </Panel>
       )}
@@ -1502,31 +1499,31 @@ function TemplateDialog({
       open
       wide
       onClose={onClose}
-      title={initial.id ? 'Edit template' : 'New template'}
-      description="Projects that already started from this template keep their own checkpoints."
+      title={initial.id ? t('Edit template') : t('New template')}
+      description={t('Projects that already started from this template keep their own checkpoints.')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
-          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'template'}>Save</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
+          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'template'}>{t('Save')}</Button>
         </>
       }
     >
       <div className="grid gap-3">
         <div className="grid gap-3 sm:grid-cols-3">
           <div className="sm:col-span-2">
-            <Field id="tpl-name" label="Name">
+            <Field id="tpl-name" label={t('Name')}>
               <Input id="tpl-name" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} />
             </Field>
           </div>
-          <Field id="tpl-position" label="Order">
+          <Field id="tpl-position" label={t('Order')}>
             <Input id="tpl-position" inputMode="numeric" value={form.position}
                    onChange={(e) => setForm((p) => ({ ...p, position: e.target.value }))} />
           </Field>
         </div>
-        <Field id="tpl-keywords" label="Service keywords" hint="Comma-separated. Matched inside the project's service. Leave empty for a fallback.">
+        <Field id="tpl-keywords" label={t('Service keywords')} hint={t('Comma-separated. Matched inside the project\'s service. Leave empty for a fallback.')}>
           <Input id="tpl-keywords" value={form.keywords} onChange={(e) => setForm((p) => ({ ...p, keywords: e.target.value }))} />
         </Field>
-        <Field id="tpl-steps" label="Steps" hint="One per line, in order. 1–40 steps.">
+        <Field id="tpl-steps" label={t('Steps')} hint={t('One per line, in order. 1–40 steps.')}>
           <Textarea id="tpl-steps" className="min-h-40" value={form.steps}
                     onChange={(e) => setForm((p) => ({ ...p, steps: e.target.value }))} />
         </Field>
@@ -1576,22 +1573,22 @@ function NewProjectDialog({
   const steps = chosen?.steps ?? (form.template === 'none' || templates.state !== 'error' ? [] : templateFor(form.service).steps);
 
   const submit = async () => {
-    if (!form.organization_id) { setError('A project needs a client.'); return; }
-    if (!form.name.trim()) { setError('A project needs a name.'); return; }
+    if (!form.organization_id) { setError(t('A project needs a client.')); return; }
+    if (!form.name.trim()) { setError(t('A project needs a name.')); return; }
     const raw = monthly ? '' : form.value.trim();
     const value = raw === '' ? null : Number(raw.replace(/\s/g, '').replace(',', '.'));
     if (value !== null && (!Number.isFinite(value) || value < 0)) {
-      setError('The value must be a number, and not a negative one.'); return;
+      setError(t('The value must be a number, and not a negative one.')); return;
     }
     const rawFee = form.monthly_fee.trim();
     const fee = monthly ? Number(rawFee.replace(/\s/g, '').replace(',', '.')) : null;
     if (monthly && (rawFee === '' || !Number.isFinite(fee) || (fee ?? 0) <= 0)) {
-      setError('A monthly contract needs a monthly fee greater than zero.'); return;
+      setError(t('A monthly contract needs a monthly fee greater than zero.')); return;
     }
     const hours = form.estimated_hours.trim();
     const estimated = hours === '' ? null : Number(hours);
     if (estimated !== null && (!Number.isFinite(estimated) || estimated < 0)) {
-      setError('Estimated hours must be a non-negative number.'); return;
+      setError(t('Estimated hours must be a non-negative number.')); return;
     }
 
     const result = await ops.createProject({
@@ -1618,63 +1615,63 @@ function NewProjectDialog({
       open
       wide
       onClose={onClose}
-      title={monthly ? 'New monthly contract' : 'New project'}
+      title={monthly ? t('New monthly contract') : t('New project')}
       description={monthly
-        ? 'Ongoing work billed by the month. It is listed and totalled under Monthly contracts, apart from one-off projects.'
-        : 'The preferred route is from a won opportunity, which keeps the delivery connected to what sold it. This is for work that did not come through the pipeline.'}
+        ? t('Ongoing work billed by the month. It is listed and totalled under Monthly contracts, apart from one-off projects.')
+        : t('The preferred route is from a won opportunity, which keeps the delivery connected to what sold it. This is for work that did not come through the pipeline.')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
-          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'project'}>Create</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
+          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'project'}>{t('Create')}</Button>
         </>
       }
     >
       <div className="grid gap-3">
-        <Field id="np-client" label="Client">
+        <Field id="np-client" label={t('Client')}>
           <Select id="np-client" className="w-full py-2.5 text-sm" value={form.organization_id}
                   onChange={(e) => setForm((p) => ({ ...p, organization_id: e.target.value }))}>
-            <option value="">Choose a client…</option>
+            <option value="">{t('Choose a client…')}</option>
             {clients.rows.filter((c) => !c.archived_at).map((c) => (
               <option key={c.id} value={c.id}>{c.name}</option>
             ))}
           </Select>
         </Field>
 
-        <Field id="np-billing" label="Billing" hint="Fixed once the project is created.">
+        <Field id="np-billing" label={t('Billing')} hint={t('Fixed once the project is created.')}>
           <Select id="np-billing" className="w-full py-2.5 text-sm" value={form.billing}
                   onChange={(e) => {
                     const next = e.target.value as 'one_off' | 'monthly';
                     setForm((p) => ({ ...p, billing: next, template: next === 'monthly' ? 'none' : '' }));
                   }}>
-            <option value="one_off">One-off project — a price, delivered once</option>
-            <option value="monthly">Monthly contract — a monthly fee, runs until ended</option>
+            <option value="one_off">{t('One-off project — a price, delivered once')}</option>
+            <option value="monthly">{t('Monthly contract — a monthly fee, runs until ended')}</option>
           </Select>
         </Field>
 
-        <Field id="np-name" label={monthly ? 'Contract name' : 'Project name'}>
+        <Field id="np-name" label={monthly ? t('Contract name') : t('Project name')}>
           <Input id="np-name" value={form.name}
                  onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} />
         </Field>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <Field id="np-service" label="Service">
+          <Field id="np-service" label={t('Service')}>
             <Input id="np-service" value={form.service}
                    onChange={(e) => setForm((p) => ({ ...p, service: e.target.value }))}
-                   placeholder="Website, Ads, Branding…" />
+                   placeholder={t('Website, Ads, Branding…')} />
           </Field>
           {monthly ? (
-            <Field id="np-fee" label="Monthly fee">
+            <Field id="np-fee" label={t('Monthly fee')}>
               <Input id="np-fee" inputMode="numeric" value={form.monthly_fee} aria-required="true"
                      onChange={(e) => setForm((p) => ({ ...p, monthly_fee: e.target.value }))}
-                     placeholder="e.g. 150 000" />
+                     placeholder={t('e.g. 150 000')} />
             </Field>
           ) : (
-            <Field id="np-value" label="Value">
+            <Field id="np-value" label={t('Value')}>
               <Input id="np-value" inputMode="numeric" value={form.value}
                      onChange={(e) => setForm((p) => ({ ...p, value: e.target.value }))} />
             </Field>
           )}
-          <Field id="np-currency" label="Currency">
+          <Field id="np-currency" label={t('Currency')}>
             <Select id="np-currency" className="w-full py-2.5 text-sm" value={form.currency}
                     onChange={(e) => setForm((p) => ({ ...p, currency: e.target.value }))}>
               {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -1683,26 +1680,26 @@ function NewProjectDialog({
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <Field id="np-start" label="Start">
+          <Field id="np-start" label={t('Start')}>
             <Input id="np-start" type="date" value={form.start_date}
                    onChange={(e) => setForm((p) => ({ ...p, start_date: e.target.value }))} />
           </Field>
-          <Field id="np-target" label={monthly ? 'Contract end' : 'Deadline'} hint={monthly ? 'Leave empty if open-ended.' : undefined}>
+          <Field id="np-target" label={monthly ? t('Contract end') : t('Deadline')} hint={monthly ? t('Leave empty if open-ended.') : undefined}>
             <Input id="np-target" type="date" value={form.target_date}
                    onChange={(e) => setForm((p) => ({ ...p, target_date: e.target.value }))} />
           </Field>
-          <Field id="np-hours" label="Estimated hours">
+          <Field id="np-hours" label={t('Estimated hours')}>
             <Input id="np-hours" inputMode="numeric" value={form.estimated_hours}
                    onChange={(e) => setForm((p) => ({ ...p, estimated_hours: e.target.value }))} />
           </Field>
         </div>
 
-        <Field id="np-template" label="Checkpoints" hint="Copied into the project. Everything is editable afterwards.">
+        <Field id="np-template" label={t('Checkpoints')} hint={t('Copied into the project. Everything is editable afterwards.')}>
           <Select id="np-template" className="w-full py-2.5 text-sm" value={form.template}
                   onChange={(e) => setForm((p) => ({ ...p, template: e.target.value }))}>
-            <option value="">{matched ? `Match the service — ${matched.name} (${matched.steps.length} steps)` : 'Match the service'}</option>
-            {templates.live.map((t) => <option key={t.id} value={t.id}>{t.name} ({t.steps.length} steps)</option>)}
-            <option value="none">No checkpoints yet</option>
+            <option value="">{matched ? t('Match the service — {name} ({n} steps)', { name: matched.name, n: matched.steps.length }) : t('Match the service')}</option>
+            {templates.live.map((tpl) => <option key={tpl.id} value={tpl.id}>{t('{name} ({n} steps)', { name: tpl.name, n: tpl.steps.length })}</option>)}
+            <option value="none">{t('No checkpoints yet')}</option>
           </Select>
         </Field>
 
@@ -1737,42 +1734,41 @@ function Profitability({
   return (
     <Panel className={cn(!fin.complete && 'opacity-95')}>
       <SectionHeader
-        title="Contribution"
-        note={fin.complete ? 'management figures' : 'incomplete'}
+        title={t('Contribution')}
+        note={fin.complete ? t('management figures') : t('incomplete')}
       />
       <dl className="grid">
-        <DataLine term="Project value" value={value(fin.value)} />
+        <DataLine term={t('Project value')} value={value(fin.value)} />
         <DataLine
-          term="Direct costs"
+          term={t('Direct costs')}
           value={value(fin.costs)}
-          note={costCount > 0 ? `${costCount} recorded` : 'none recorded'}
+          note={costCount > 0 ? t('{n} recorded', { n: costCount }) : t('none recorded')}
         />
         <DataLine
-          term="Contribution"
+          term={t('Contribution')}
           value={value(fin.contribution, fin.contribution !== null && fin.contribution < 0 ? 'text-danger' : 'text-chrome')}
-          note="value − direct costs"
+          note={t('value − direct costs')}
         />
         <DataLine
-          term="Margin"
+          term={t('Margin')}
           value={fin.margin === null ? <NotRecorded /> : <span className="num">{percent(fin.margin)}</span>}
         />
         <DataLine
-          term="Estimated hours"
+          term={t('Estimated hours')}
           value={fin.estimatedHours === null ? <NotRecorded /> : <span className="num">{fin.estimatedHours}</span>}
         />
         <DataLine
-          term="Actual hours"
+          term={t('Actual hours')}
           value={fin.actualHours === null ? <NotRecorded /> : <span className="num">{fin.actualHours}</span>}
           note={fin.estimatedHours !== null && fin.actualHours !== null && fin.actualHours > fin.estimatedHours
-            ? 'over the estimate'
+            ? t('over the estimate')
             : undefined}
         />
-        <DataLine term="Revenue / hour" value={value(fin.revenuePerHour)} />
-        <DataLine term="Contribution / hour" value={value(fin.contributionPerHour)} />
+        <DataLine term={t('Revenue / hour')} value={value(fin.revenuePerHour)} />
+        <DataLine term={t('Contribution / hour')} value={value(fin.contributionPerHour)} />
       </dl>
       <p className="t-note border-t border-hairline px-4 py-2">
-        Contribution is project value minus direct project costs. It is a management figure — not
-        profit, and not an accounting result.
+        {t('Contribution is project value minus direct project costs. It is a management figure — not profit, and not an accounting result.')}
       </p>
     </Panel>
   );
@@ -1795,24 +1791,24 @@ function MonthlyFeePanel({
     amount === null ? <NotRecorded /> : <span className="num">{money(amount, project.currency)}</span>;
 
   return (
-    <Panel aria-label="Monthly contract">
-      <SectionHeader title="Monthly contract" note={ended ? 'ended' : 'running'} />
+    <Panel aria-label={t('Monthly contract')}>
+      <SectionHeader title={t('Monthly contract')} note={ended ? t('ended') : t('running')} />
       <dl className="grid">
-        <DataLine term="Monthly fee" value={value(fee)} note="per month · agreed, not received" />
+        <DataLine term={t('Monthly fee')} value={value(fee)} note={t('per month · agreed, not received')} />
         <DataLine
-          term="Months"
-          value={months === null ? <NotRecorded what="Start date" /> : <span className="num">{months}</span>}
-          note={project.start_date ? `since ${shortDate(project.start_date)}` : 'needs a start date'}
+          term={t('Months')}
+          value={months === null ? <NotRecorded what={t('Start date')} /> : <span className="num">{months}</span>}
+          note={project.start_date ? t('since {date}', { date: shortDate(project.start_date) }) : t('needs a start date')}
         />
-        <DataLine term="Fees to date" value={value(toDate)} note="months × the current fee" />
+        <DataLine term={t('Fees to date')} value={value(toDate)} note={t('months × the current fee')} />
         <DataLine
-          term="Direct costs"
+          term={t('Direct costs')}
           value={value(spend)}
-          note={costCount > 0 ? `${costCount} recorded` : 'none recorded'}
+          note={costCount > 0 ? t('{n} recorded', { n: costCount }) : t('none recorded')}
         />
       </dl>
       <p className="t-note border-t border-hairline px-4 py-2">
-        Monthly fees are counted apart from one-off project values, and never added to them.
+        {t('Monthly fees are counted apart from one-off project values, and never added to them.')}
       </p>
     </Panel>
   );
@@ -1843,33 +1839,32 @@ function MarketValuePanel({ project, mayEdit, onSaved }: { project: Project; may
   };
 
   return (
-    <Panel aria-label="Market value">
-      <SectionHeader title="Market value" note="Impact · not revenue" />
+    <Panel aria-label={t('Market value')}>
+      <SectionHeader title={t('Market value')} note={t('Impact · not revenue')} />
       <dl className="grid">
         <DataLine
-          term="Market value"
+          term={t('Market value')}
           value={project.market_value === null
-            ? <span className="text-signal" data-impact-missing>Not recorded</span>
+            ? <span className="text-signal" data-impact-missing>{t('Not recorded')}</span>
             : <span className="num">{money(project.market_value, 'HUF')}</span>}
-          note={project.market_value === null ? 'needed before closing' : undefined}
+          note={project.market_value === null ? t('needed before closing') : undefined}
         />
-        <DataLine term="Fee to the client" value={<span className="num">0 Ft</span>} note="always free" />
+        <DataLine term={t('Fee to the client')} value={<span className="num">0 Ft</span>} note={t('always free')} />
       </dl>
       {mayEdit && (
         <div className="grid gap-2 border-t border-hairline px-4 py-3">
-          <Field id="impact-market-value" label="Whole forints" hint="Blank means not recorded yet — it is not the same as 0.">
+          <Field id="impact-market-value" label={t('Whole forints')} hint={t('Blank means not recorded yet — it is not the same as 0.')}>
             <Input id="impact-market-value" inputMode="numeric" value={shown}
-                   onChange={(e) => setDraft(e.target.value)} placeholder="e.g. 1 250 000" />
+                   onChange={(e) => setDraft(e.target.value)} placeholder={t('e.g. 1 250 000')} />
           </Field>
           <div className="flex justify-end">
-            <Button size="sm" onClick={save} disabled={draft === null || ops.busy === project.id}>Save value</Button>
+            <Button size="sm" onClick={save} disabled={draft === null || ops.busy === project.id}>{t('Save value')}</Button>
           </div>
           {error && <p role="alert" className="text-xs text-danger">{error}</p>}
         </div>
       )}
       <p className="t-note border-t border-hairline px-4 py-2">
-        What this work would have cost a paying client. It is counted as committed support while the
-        project runs and as delivered support once it is closed. It is never invoiced or owed.
+        {t('What this work would have cost a paying client. It is counted as committed support while the project runs and as delivered support once it is closed. It is never invoiced or owed.')}
       </p>
     </Panel>
   );
@@ -1912,11 +1907,11 @@ function EditProjectDialog({
     const actual = number(form.actual_hours);
     const fee = number(form.monthly_fee);
     if ([value, estimated, actual, fee].includes('bad')) {
-      setError('Amounts and hours must be numbers, and not negative ones.');
+      setError(t('Amounts and hours must be numbers, and not negative ones.'));
       return;
     }
     if (monthly && (fee === null || fee === 0)) {
-      setError('A monthly contract needs a monthly fee greater than zero.');
+      setError(t('A monthly contract needs a monthly fee greater than zero.'));
       return;
     }
 
@@ -1951,37 +1946,37 @@ function EditProjectDialog({
       open
       wide
       onClose={onClose}
-      title={monthly ? 'Edit monthly contract' : 'Edit project'}
+      title={monthly ? t('Edit monthly contract') : t('Edit project')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
-          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === project.id}>Save</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
+          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === project.id}>{t('Save')}</Button>
         </>
       }
     >
       <div className="grid gap-3">
-        <Field id="ep-name" label="Name">
+        <Field id="ep-name" label={t('Name')}>
           <Input id="ep-name" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} />
         </Field>
 
         <div className={cn('grid gap-3', impact ? 'sm:grid-cols-1' : 'sm:grid-cols-3')}>
-          <Field id="ep-service" label="Service">
+          <Field id="ep-service" label={t('Service')}>
             <Input id="ep-service" value={form.service}
                    onChange={(e) => setForm((p) => ({ ...p, service: e.target.value }))} />
           </Field>
           {!impact && <>
           {monthly ? (
-            <Field id="ep-fee" label="Monthly fee" hint="A change is logged in Activity.">
+            <Field id="ep-fee" label={t('Monthly fee')} hint={t('A change is logged in Activity.')}>
               <Input id="ep-fee" inputMode="numeric" value={form.monthly_fee}
                      onChange={(e) => setForm((p) => ({ ...p, monthly_fee: e.target.value }))} />
             </Field>
           ) : (
-            <Field id="ep-value" label="Project value">
+            <Field id="ep-value" label={t('Project value')}>
               <Input id="ep-value" inputMode="numeric" value={form.value}
                      onChange={(e) => setForm((p) => ({ ...p, value: e.target.value }))} />
             </Field>
           )}
-          <Field id="ep-currency" label="Currency">
+          <Field id="ep-currency" label={t('Currency')}>
             <Select id="ep-currency" className="w-full py-2.5 text-sm" value={form.currency}
                     onChange={(e) => setForm((p) => ({ ...p, currency: e.target.value }))}>
               {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -1991,18 +1986,18 @@ function EditProjectDialog({
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <Field id="ep-start" label="Start">
+          <Field id="ep-start" label={t('Start')}>
             <Input id="ep-start" type="date" value={form.start_date}
                    onChange={(e) => setForm((p) => ({ ...p, start_date: e.target.value }))} />
           </Field>
-          <Field id="ep-target" label={monthly ? 'Contract end' : 'Target'}>
+          <Field id="ep-target" label={monthly ? t('Contract end') : t('Target')}>
             <Input id="ep-target" type="date" value={form.target_date}
                    onChange={(e) => setForm((p) => ({ ...p, target_date: e.target.value }))} />
           </Field>
-          <Field id="ep-owner" label="Responsible">
+          <Field id="ep-owner" label={t('Responsible')}>
             <Select id="ep-owner" className="w-full py-2.5 text-sm" value={form.responsible_id}
                     onChange={(e) => setForm((p) => ({ ...p, responsible_id: e.target.value }))}>
-              <option value="">Nobody</option>
+              <option value="">{t('Nobody')}</option>
               {staff.rows.filter((s) => s.role !== 'client').map((s) => (
                 <option key={s.id} value={s.id}>{s.full_name || s.email}</option>
               ))}
@@ -2011,11 +2006,11 @@ function EditProjectDialog({
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="ep-est-hours" label="Estimated hours">
+          <Field id="ep-est-hours" label={t('Estimated hours')}>
             <Input id="ep-est-hours" inputMode="numeric" value={form.estimated_hours}
                    onChange={(e) => setForm((p) => ({ ...p, estimated_hours: e.target.value }))} />
           </Field>
-          <Field id="ep-act-hours" label="Actual hours" hint="Entered by hand — there is no timer.">
+          <Field id="ep-act-hours" label={t('Actual hours')} hint={t('Entered by hand — there is no timer.')}>
             <Input id="ep-act-hours" inputMode="numeric" value={form.actual_hours}
                    onChange={(e) => setForm((p) => ({ ...p, actual_hours: e.target.value }))} />
           </Field>
@@ -2023,12 +2018,11 @@ function EditProjectDialog({
 
         {!impact && (
           <p className="t-note" data-payment-moved>
-            Invoicing and payments are recorded in the project's payment schedule, not here — the
-            payment state follows what is recorded there. The currency is fixed once a schedule exists.
+            {t('Invoicing and payments are recorded in the project\'s payment schedule, not here — the payment state follows what is recorded there. The currency is fixed once a schedule exists.')}
           </p>
         )}
 
-        <Field id="ep-description" label="Description">
+        <Field id="ep-description" label={t('Description')}>
           <Textarea id="ep-description" value={form.description}
                     onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))} />
         </Field>
@@ -2055,7 +2049,7 @@ function CostDialog({
   const submit = async () => {
     const amount = Number(form.amount.trim().replace(/\s/g, '').replace(',', '.'));
     if (!Number.isFinite(amount) || amount < 0) {
-      setError('The amount must be a number, and not a negative one.'); return;
+      setError(t('The amount must be a number, and not a negative one.')); return;
     }
     const problem = await ops.addCost(project.id, { ...form, amount });
     if (problem) { setError(problem); return; }
@@ -2066,36 +2060,36 @@ function CostDialog({
     <Dialog
       open
       onClose={onClose}
-      title="Add a direct cost"
-      description="A cost that belongs to this project. Not bookkeeping — this exists so contribution can be calculated."
+      title={t('Add a direct cost')}
+      description={t('A cost that belongs to this project. Not bookkeeping — this exists so contribution can be calculated.')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
-          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'cost'}>Add</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
+          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'cost'}>{t('Add')}</Button>
         </>
       }
     >
       <div className="grid gap-3">
-        <Field id="cost-description" label="Description">
+        <Field id="cost-description" label={t('Description')}>
           <Input id="cost-description" value={form.description}
                  onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))} />
         </Field>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="cost-category" label="Category">
+          <Field id="cost-category" label={t('Category')}>
             <Select id="cost-category" className="w-full py-2.5 text-sm" value={form.category}
                     onChange={(e) => setForm((p) => ({ ...p, category: e.target.value }))}>
-              {COST_CATEGORIES.map((c) => <option key={c} value={c}>{COST_LABEL[c]}</option>)}
+              {COST_CATEGORIES.map((c) => <option key={c} value={c}>{tc('cost', COST_LABEL[c])}</option>)}
             </Select>
           </Field>
-          <Field id="cost-date" label="Date">
+          <Field id="cost-date" label={t('Date')}>
             <Input id="cost-date" type="date" value={form.incurred_on}
                    onChange={(e) => setForm((p) => ({ ...p, incurred_on: e.target.value }))} />
           </Field>
-          <Field id="cost-amount" label="Amount">
+          <Field id="cost-amount" label={t('Amount')}>
             <Input id="cost-amount" inputMode="numeric" value={form.amount}
                    onChange={(e) => setForm((p) => ({ ...p, amount: e.target.value }))} />
           </Field>
-          <Field id="cost-currency" label="Currency">
+          <Field id="cost-currency" label={t('Currency')}>
             <Select id="cost-currency" className="w-full py-2.5 text-sm" value={form.currency}
                     onChange={(e) => setForm((p) => ({ ...p, currency: e.target.value }))}>
               {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -2104,8 +2098,7 @@ function CostDialog({
         </div>
         {form.currency !== project.currency && (
           <p className="t-note text-signal">
-            This cost is in a different currency from the project. It will be listed but not
-            subtracted — nothing here converts between currencies.
+            {t('This cost is in a different currency from the project. It will be listed but not subtracted — nothing here converts between currencies.')}
           </p>
         )}
         {error && <p role="alert" className="text-xs text-danger">{error}</p>}
@@ -2131,22 +2124,22 @@ function LinkDialog({
     <Dialog
       open
       onClose={onClose}
-      title="Add a link"
-      description="Live site, staging, repository, design file, asset folder. A link, not an integration."
+      title={t('Add a link')}
+      description={t('Live site, staging, repository, design file, asset folder. A link, not an integration.')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
-          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'link'}>Add</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
+          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'link'}>{t('Add')}</Button>
         </>
       }
     >
       <div className="grid gap-3">
-        <Field id="link-label" label="Label">
+        <Field id="link-label" label={t('Label')}>
           <Input id="link-label" value={form.label}
                  onChange={(e) => setForm((p) => ({ ...p, label: e.target.value }))}
-                 placeholder="Staging" />
+                 placeholder={t('Staging')} />
         </Field>
-        <Field id="link-url" label="URL" hint="http and https only.">
+        <Field id="link-url" label={t('URL')} hint={t('http and https only.')}>
           <Input id="link-url" value={form.url}
                  onChange={(e) => setForm((p) => ({ ...p, url: e.target.value }))}
                  placeholder="https://staging.example.hu" />

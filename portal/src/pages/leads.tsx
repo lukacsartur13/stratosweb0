@@ -12,6 +12,7 @@ import {
   DAY_OPTIONS, FORM_LABEL, LEAD_COLUMNS, PIPELINE, STATUS, formatWhen, leadSource, statusLabel,
   statusTone, useLeadFilter, type Lead,
 } from '@/lib/leads';
+import { t } from '@/lib/i18n';
 
 /**
  * LEADS — work.
@@ -77,8 +78,8 @@ export function LeadsScreen() {
         {state === 'unconfigured' && (
           <DataState
             kind="unconfigured"
-            title="Not connected"
-            body="Supabase credentials are not set in this environment, so there is nothing to read yet. See README.md for the setup steps."
+            title={t('Not connected')}
+            body={t('Supabase credentials are not set in this environment, so there is nothing to read yet. See README.md for the setup steps.')}
           />
         )}
 
@@ -87,17 +88,17 @@ export function LeadsScreen() {
         {state === 'ready' && filter.filtered.length === 0 && (
           <DataState
             kind="empty"
-            title={rows.length ? 'Nothing matches' : 'No leads yet'}
+            title={rows.length ? t('Nothing matches') : t('No leads yet')}
             body={rows.length
-              ? 'No lead matches every filter above.'
-              : 'The newsletter, contact form, Impact application and quote questionnaire all write here through the Netlify function.'}
-            action={rows.length ? <Button size="sm" onClick={filter.reset}>Clear filters</Button> : undefined}
+              ? t('No lead matches every filter above.')
+              : t('The newsletter, contact form, Impact application and quote questionnaire all write here through the Netlify function.')}
+            action={rows.length ? <Button size="sm" onClick={filter.reset}>{t('Clear filters')}</Button> : undefined}
           />
         )}
 
         {state === 'ready' && filter.filtered.length > 0 && (
           <Table
-            head={['Date', 'Company / person', 'Form', 'Source', 'Status', 'Pipeline', 'Locale']}
+            head={[t('Date'), t('Company / person'), t('Form'), t('Source'), t('Status'), t('Pipeline'), t('Locale')]}
             minWidth={840}
             sticky
           >
@@ -117,7 +118,7 @@ export function LeadsScreen() {
                   </span>
                 </Cell>
                 <Cell className="text-[11px] text-haze">
-                  {FORM_LABEL[lead.form_type ?? ''] ?? lead.form_type ?? '—'}
+                  {FORM_LABEL[lead.form_type ?? ''] ? t(FORM_LABEL[lead.form_type ?? '']) : lead.form_type ?? '—'}
                 </Cell>
                 <Cell className="break-words text-[11px] text-haze">{leadSource(lead)}</Cell>
                 <Cell><StatusPill tone={statusTone(lead.status)}>{statusLabel(lead.status)}</StatusPill></Cell>
@@ -131,7 +132,7 @@ export function LeadsScreen() {
                         to={`/sales/${converted[lead.id].id}`}
                         onClick={(e) => e.stopPropagation()}
                         className="hover:opacity-80"
-                        aria-label={`Open the opportunity for ${lead.company || lead.name}`}
+                        aria-label={t('Open the opportunity for {name}', { name: lead.company || lead.name })}
                       >
                         <StageBadge stage={converted[lead.id].stage} />
                       </Link>
@@ -167,13 +168,13 @@ function StatusStrip({
   loading: boolean;
 }) {
   const cells: { id: string; label: string }[] = [
-    { id: 'all', label: 'All' },
-    ...PIPELINE.map((stage) => ({ id: stage as string, label: STATUS[stage].label })),
+    { id: 'all', label: t('All') },
+    ...PIPELINE.map((stage) => ({ id: stage as string, label: t(STATUS[stage].label) })),
   ];
 
   return (
     <Panel
-      aria-label="Pipeline"
+      aria-label={t('Pipeline')}
       className="grid grid-cols-2 divide-x divide-y divide-hairline bg-panel sm:grid-cols-4 xl:grid-cols-7 xl:divide-y-0"
     >
       {cells.map(({ id, label }) => {
@@ -231,52 +232,52 @@ function FilterBar({
           type="search"
           value={filters.query}
           onChange={(e) => set('query', e.target.value)}
-          placeholder="Name, company, email, message…"
-          aria-label="Search leads"
+          placeholder={t('Name, company, email, message…')}
+          aria-label={t('Search leads')}
           className="h-7 w-full py-1 text-xs sm:w-56"
         />
 
-        <label className="sr-only" htmlFor="filter-days">Date</label>
+        <label className="sr-only" htmlFor="filter-days">{t('Date')}</label>
         <Select id="filter-days" value={filters.days} onChange={(e) => set('days', e.target.value)}>
-          {DAY_OPTIONS.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+          {DAY_OPTIONS.map((o) => <option key={o.id} value={o.id}>{t(o.label)}</option>)}
         </Select>
 
-        <label className="sr-only" htmlFor="filter-form">Form</label>
+        <label className="sr-only" htmlFor="filter-form">{t('Form')}</label>
         <Select id="filter-form" value={filters.form} onChange={(e) => set('form', e.target.value)}>
-          <option value="all">Any form</option>
+          <option value="all">{t('Any form')}</option>
           {options.forms.map((f) => (
-            <option key={f} value={f}>{FORM_LABEL[f] ?? f}</option>
+            <option key={f} value={f}>{FORM_LABEL[f] ? t(FORM_LABEL[f]) : f}</option>
           ))}
         </Select>
 
-        <label className="sr-only" htmlFor="filter-source">Source</label>
+        <label className="sr-only" htmlFor="filter-source">{t('Source')}</label>
         <Select id="filter-source" value={filters.source} onChange={(e) => set('source', e.target.value)}>
-          <option value="all">Any source</option>
+          <option value="all">{t('Any source')}</option>
           {options.sources.map((s) => <option key={s} value={s}>{s}</option>)}
         </Select>
 
-        <label className="sr-only" htmlFor="filter-locale">Locale</label>
+        <label className="sr-only" htmlFor="filter-locale">{t('Locale')}</label>
         <Select id="filter-locale" value={filters.locale} onChange={(e) => set('locale', e.target.value)}>
-          <option value="all">Any locale</option>
+          <option value="all">{t('Any locale')}</option>
           {options.locales.map((l) => <option key={l} value={l}>{l.toUpperCase()}</option>)}
         </Select>
 
-        <label className="sr-only" htmlFor="filter-sort">Sort</label>
+        <label className="sr-only" htmlFor="filter-sort">{t('Sort')}</label>
         <Select id="filter-sort" value={filter.sort} onChange={(e) => filter.setSort(e.target.value as never)}>
-          <option value="newest">Newest first</option>
-          <option value="oldest">Oldest first</option>
-          <option value="name">By name</option>
-          <option value="status">By stage</option>
+          <option value="newest">{t('Newest first')}</option>
+          <option value="oldest">{t('Oldest first')}</option>
+          <option value="name">{t('By name')}</option>
+          <option value="status">{t('By stage')}</option>
         </Select>
 
         {filter.narrowed && (
           <Button size="sm" variant="quiet" onClick={filter.reset}>
-            <X size={11} aria-hidden="true" /> Clear
+            <X size={11} aria-hidden="true" /> {t('Clear')}
           </Button>
         )}
 
         <span className="t-note ml-auto whitespace-nowrap">
-          {shown === total ? `${total} leads` : `${shown} of ${total}`}
+          {shown === total ? t('{total} leads', { total }) : t('{shown} of {total}', { shown, total })}
         </span>
       </div>
     </div>

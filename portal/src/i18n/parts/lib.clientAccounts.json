@@ -1,0 +1,82 @@
+{
+ "Only the portal owner can invite clients.": {
+  "hu": "Ügyfelet csak a portál tulajdonosa hívhat meg.",
+  "de": "Nur der Portal-Inhaber kann Kunden einladen."
+ },
+ "Your session has ended. Sign in again.": {
+  "hu": "A munkameneted lejárt. Jelentkezz be újra.",
+  "de": "Ihre Sitzung ist abgelaufen. Melden Sie sich erneut an."
+ },
+ "Too many invitations in the last hour. Try again later.": {
+  "hu": "Túl sok meghívás az elmúlt órában. Próbáld később.",
+  "de": "Zu viele Einladungen in der letzten Stunde. Versuchen Sie es später erneut."
+ },
+ "That e-mail address is not valid.": {
+  "hu": "Ez az e-mail-cím érvénytelen.",
+  "de": "Diese E-Mail-Adresse ist ungültig."
+ },
+ "That address belongs to a staff account. Its role is not changed, and it cannot be a client account.": {
+  "hu": "Ez a cím egy munkatársi fiókhoz tartozik. A szerepköre nem változik, és nem lehet ügyfélfiók.",
+  "de": "Diese Adresse gehört zu einem Mitarbeiterkonto. Seine Rolle wird nicht geändert, und es kann kein Kundenkonto sein."
+ },
+ "That address already belongs to another company's client account. It is not moved.": {
+  "hu": "Ez a cím már egy másik cég ügyfélfiókjához tartozik. Nem kerül át.",
+  "de": "Diese Adresse gehört bereits zum Kundenkonto einer anderen Firma. Sie wird nicht verschoben."
+ },
+ "One of the projects belongs to another company.": {
+  "hu": "Az egyik projekt egy másik céghez tartozik.",
+  "de": "Eines der Projekte gehört zu einer anderen Firma."
+ },
+ "That contact belongs to another company.": {
+  "hu": "Ez a kapcsolattartó egy másik céghez tartozik.",
+  "de": "Dieser Kontakt gehört zu einer anderen Firma."
+ },
+ "That account is revoked.": {
+  "hu": "Ez a fiók vissza van vonva.",
+  "de": "Dieses Konto ist widerrufen."
+ },
+ "The sign-in account for that address could not be matched. Nothing was changed.": {
+  "hu": "Az ehhez a címhez tartozó bejelentkezési fiókot nem sikerült azonosítani. Semmi sem változott.",
+  "de": "Das Anmeldekonto für diese Adresse konnte nicht zugeordnet werden. Es wurde nichts geändert."
+ },
+ "More than one sign-in account has that address. Resolve it in Supabase first.": {
+  "hu": "Több bejelentkezési fióknak is ez a címe. Előbb rendezd a Supabase-ben.",
+  "de": "Mehrere Anmeldekonten haben diese Adresse. Klären Sie das zuerst in Supabase."
+ },
+ "The sign-in account exists but is not linked yet. Try again — nothing will be duplicated, and no access is given until it is linked.": {
+  "hu": "A bejelentkezési fiók létezik, de még nincs összekapcsolva. Próbáld újra — semmi sem duplikálódik, és összekapcsolásig nincs hozzáférés.",
+  "de": "Das Anmeldekonto existiert, ist aber noch nicht verknüpft. Versuchen Sie es erneut — nichts wird doppelt angelegt, und bis zur Verknüpfung wird kein Zugriff gewährt."
+ },
+ "Invitations are not configured on this deployment (see supabase/CLIENT_PORTAL.md).": {
+  "hu": "A meghívások nincsenek beállítva ezen a telepítésen (lásd supabase/CLIENT_PORTAL.md).",
+  "de": "Einladungen sind in dieser Installation nicht konfiguriert (siehe supabase/CLIENT_PORTAL.md)."
+ },
+ "A name, a valid e-mail address and the client are required.": {
+  "hu": "Név, érvényes e-mail-cím és az ügyfél megadása kötelező.",
+  "de": "Name, eine gültige E-Mail-Adresse und der Kunde sind erforderlich."
+ },
+ "The invitation could not be completed. Try again.": {
+  "hu": "A meghívást nem sikerült befejezni. Próbáld újra.",
+  "de": "Die Einladung konnte nicht abgeschlossen werden. Versuchen Sie es erneut."
+ },
+ "The invitation service could not be reached. Try again.": {
+  "hu": "A meghívószolgáltatás nem érhető el. Próbáld újra.",
+  "de": "Der Einladungsdienst ist nicht erreichbar. Versuchen Sie es erneut."
+ },
+ "That client account is not assigned to this project.": {
+  "hu": "Ez az ügyfélfiók nincs hozzárendelve ehhez a projekthez.",
+  "de": "Dieses Kundenkonto ist diesem Projekt nicht zugewiesen."
+ },
+ "Only finished files outside the trash can be shared.": {
+  "hu": "Csak a Kukán kívüli, kész fájlok oszthatók meg.",
+  "de": "Nur fertige Dateien außerhalb des Papierkorbs können geteilt werden."
+ },
+ "Already shared.": {
+  "hu": "Már meg van osztva.",
+  "de": "Bereits geteilt."
+ },
+ "The share could not be changed. Try again.": {
+  "hu": "A megosztást nem sikerült módosítani. Próbáld újra.",
+  "de": "Die Freigabe konnte nicht geändert werden. Versuchen Sie es erneut."
+ }
+}

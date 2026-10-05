@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { RotateCcw, Trash2 } from 'lucide-react';
 import { Badge, Button, Panel } from '@/components/ui';
 import { formatWhen } from '@/lib/leads';
-import { TRASH_NOUN, useTrashMutations, type TrashKind } from '@/lib/trash';
+import { useTrashMutations, type TrashKind } from '@/lib/trash';
+import { t } from '@/lib/i18n';
 
 /**
  * "Move to trash" on a record's own screen. Asks once, then hides the record
@@ -17,19 +18,27 @@ export function MoveToTrashButton({
   const [error, setError] = useState<string | null>(null);
 
   const go = async () => {
-    if (!window.confirm(`Move "${name}" to the Trash?\n\nIt disappears from every list and total. You can restore it from the Trash, or delete it permanently there.`)) return;
+    if (!window.confirm(t('Move "{name}" to the Trash?\n\nIt disappears from every list and total. You can restore it from the Trash, or delete it permanently there.', { name }))) return;
     setError(await ops.moveToTrash(kind, id));
   };
 
   return (
     <span className="inline-flex flex-wrap items-center gap-2">
       <Button size="sm" variant="danger" onClick={go} disabled={ops.busy === id} data-trash={kind}>
-        <Trash2 size={11} aria-hidden="true" /> Move to trash
+        <Trash2 size={11} aria-hidden="true" /> {t('Move to trash')}
       </Button>
       {error && <span role="alert" className="text-xs text-danger">{error}</span>}
     </span>
   );
 }
+
+// English source text, one sentence per kind (the noun's gender changes the
+// sentence in Hungarian and German); translated where it is rendered.
+const IN_TRASH: Record<TrashKind, string> = {
+  project: 'This project was moved to the Trash on {when}. It is hidden from every list and total.',
+  client: 'This client was moved to the Trash on {when}. It is hidden from every list and total.',
+  lead: 'This lead was moved to the Trash on {when}. It is hidden from every list and total.',
+};
 
 /** Shown on a record's screen while it is in the Trash, with Restore. */
 export function InTrashBanner({
@@ -40,13 +49,13 @@ export function InTrashBanner({
   return (
     <Panel className="flex flex-wrap items-center justify-between gap-3 border-danger/40 px-4 py-3" data-in-trash={kind}>
       <p className="text-xs text-paper">
-        <Badge tone="bad">In the Trash</Badge>{' '}
-        This {TRASH_NOUN[kind]} was moved to the Trash on {formatWhen(at)}. It is hidden from every list and total.
+        <Badge tone="bad">{t('In the Trash')}</Badge>{' '}
+        {t(IN_TRASH[kind], { when: formatWhen(at) })}
       </p>
       <span className="flex flex-wrap items-center gap-2">
-        <Link to="/trash" className="t-note underline underline-offset-4 hover:text-paper">Open the Trash</Link>
+        <Link to="/trash" className="t-note underline underline-offset-4 hover:text-paper">{t('Open the Trash')}</Link>
         <Button size="sm" onClick={async () => setError(await ops.restore(kind, id))} disabled={ops.busy === id}>
-          <RotateCcw size={11} aria-hidden="true" /> Restore
+          <RotateCcw size={11} aria-hidden="true" /> {t('Restore')}
         </Button>
       </span>
       {error && <p role="alert" className="w-full text-xs text-danger">{error}</p>}

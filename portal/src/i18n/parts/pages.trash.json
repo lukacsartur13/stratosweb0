@@ -1,0 +1,70 @@
+{
+ "Projects": {
+  "hu": "Projektek",
+  "de": "Projekte"
+ },
+ "Clients": {
+  "hu": "Ügyfelek",
+  "de": "Kunden"
+ },
+ "Leads": {
+  "hu": "Leadek",
+  "de": "Leads"
+ },
+ "Its checkpoints, costs, links and notes are deleted with it. Payments, documents and client portal access block a permanent delete.": {
+  "hu": "A mérföldkövei, költségei, linkjei és jegyzetei vele együtt törlődnek. Befizetés, dokumentum vagy ügyfélportál-hozzáférés esetén nem törölhető véglegesen.",
+  "de": "Meilensteine, Kosten, Links und Notizen werden mitgelöscht. Zahlungen, Dokumente und Kundenportal-Zugriffe verhindern das endgültige Löschen."
+ },
+ "Its contacts and notes are deleted with it. Its projects (also those in the Trash), client portal accounts and sales opportunities block a permanent delete.": {
+  "hu": "A kapcsolattartói és jegyzetei vele együtt törlődnek. Ha van projektje (a Kukában lévő is), ügyfélportál-fiókja vagy sales-lehetősége, nem törölhető véglegesen.",
+  "de": "Kontakte und Notizen werden mitgelöscht. Projekte (auch im Papierkorb), Kundenportal-Konten und Verkaufschancen verhindern das endgültige Löschen."
+ },
+ "The enquiry, its personal data and its notes are deleted. A sales opportunity made from it stays, without the link.": {
+  "hu": "Az érdeklődés, a személyes adatai és a jegyzetei törlődnek. A belőle lett sales-lehetőség megmarad, csak a kapcsolat szűnik meg.",
+  "de": "Die Anfrage, ihre personenbezogenen Daten und Notizen werden gelöscht. Eine daraus entstandene Verkaufschance bleibt, ohne Verknüpfung."
+ },
+ "Delete \"{name}\" permanently?\n\nThis cannot be undone.": {
+  "hu": "Véglegesen törlöd: „{name}”?\n\nEz nem vonható vissza.",
+  "de": "„{name}“ endgültig löschen?\n\nDas kann nicht rückgängig gemacht werden."
+ },
+ "Moved here from a project, client or lead screen. Nothing here appears in any list or total. Restore puts it back unchanged; Delete permanently cannot be undone.": {
+  "hu": "Ide a projekt, ügyfél vagy lead oldaláról kerülnek az elemek. Ami itt van, az semmilyen listában vagy összesítőben nem jelenik meg. A Visszaállítás változatlanul visszateszi; a Végleges törlés nem vonható vissza.",
+  "de": "Hierher verschoben von einer Projekt-, Kunden- oder Lead-Seite. Nichts hier erscheint in Listen oder Summen. Wiederherstellen stellt es unverändert zurück; Endgültig löschen kann nicht rückgängig gemacht werden."
+ },
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "The Trash could not be read.": {
+  "hu": "A Kuka nem olvasható be.",
+  "de": "Der Papierkorb konnte nicht gelesen werden."
+ },
+ "Trash: {section}": {
+  "hu": "Kuka: {section}",
+  "de": "Papierkorb: {section}"
+ },
+ "Nothing in the Trash.": {
+  "hu": "A Kuka üres.",
+  "de": "Der Papierkorb ist leer."
+ },
+ "Name": {
+  "hu": "Név",
+  "de": "Name"
+ },
+ "Details": {
+  "hu": "Részletek",
+  "de": "Details"
+ },
+ "Trashed": {
+  "hu": "Kukába téve",
+  "de": "Gelöscht am"
+ },
+ "Restore": {
+  "hu": "Visszaállítás",
+  "de": "Wiederherstellen"
+ },
+ "Delete permanently": {
+  "hu": "Végleges törlés",
+  "de": "Endgültig löschen"
+ }
+}

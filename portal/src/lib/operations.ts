@@ -5,6 +5,7 @@ import { closeRefusal } from '@/lib/pipeline';
 
 export { isMonthly, monthlyTotals, monthsRunning } from '@/lib/pipeline';
 import { paymentRefusal } from '@/lib/paymentRules';
+import { t } from '@/lib/i18n';
 
 /**
  * Clients and projects — the delivery half of the operating system.
@@ -165,8 +166,8 @@ export interface ProjectLink {
 
 function readError(error: { code?: string }, what: string): string {
   return error.code === '42P01'
-    ? `The ${what} table does not exist yet. Run the migrations in supabase/migrations.`
-    : 'The database refused the request. Check that you have permission for this data.';
+    ? t('The {what} table does not exist yet. Run the migrations in supabase/migrations.', { what })
+    : t('The database refused the request. Check that you have permission for this data.');
 }
 
 type ReadState = 'loading' | 'ready' | 'error' | 'unconfigured';
@@ -498,11 +499,11 @@ export function findClientMatches(
     const clientDomain = hostOf(client.website);
 
     if (name && clientName === name) {
-      out.push({ client, why: 'the same company name' });
+      out.push({ client, why: t('the same company name') });
     } else if (domain && clientDomain && clientDomain === domain) {
-      out.push({ client, why: `the same domain (${domain})` });
+      out.push({ client, why: t('the same domain ({domain})', { domain }) });
     } else if (name && clientName && (clientName.includes(name) || name.includes(clientName))) {
-      out.push({ client, why: 'a similar company name' });
+      out.push({ client, why: t('a similar company name') });
     }
   }
   return out;
@@ -534,18 +535,18 @@ function refusal(error: { code?: string; message?: string }, what: string): stri
   // columns that follow it) — said in words, not as a generic refusal.
   if (error.message?.includes('stratos:payment_')) return paymentRefusal(error);
   if (error.code === '23514' && error.message?.includes('project_milestones_blocked_check')) {
-    return 'A blocked checkpoint needs a reason and a next step.';
+    return t('A blocked checkpoint needs a reason and a next step.');
   }
   if (error.code === '23514' && error.message?.includes('checkpoint_steps_valid')) {
-    return 'A template needs 1 to 40 steps, none of them blank or longer than 160 characters.';
+    return t('A template needs 1 to 40 steps, none of them blank or longer than 160 characters.');
   }
   if (error.code === '42P01') {
-    return 'Those tables do not exist yet. Run the migrations in supabase/migrations.';
+    return t('Those tables do not exist yet. Run the migrations in supabase/migrations.');
   }
-  if (error.code === '23505') return 'A record with that name already exists.';
-  if (error.code === '23514') return 'The database refused those values. Check the amounts and dates.';
-  if (error.code === '23503') return 'That record no longer exists.';
-  return 'The database refused that change. Check that your account may edit this data.';
+  if (error.code === '23505') return t('A record with that name already exists.');
+  if (error.code === '23514') return t('The database refused those values. Check the amounts and dates.');
+  if (error.code === '23503') return t('That record no longer exists.');
+  return t('The database refused that change. Check that your account may edit this data.');
 }
 
 export function useOperationsMutations(onChanged: () => void) {
@@ -559,7 +560,7 @@ export function useOperationsMutations(onChanged: () => void) {
     acquisition_source?: string | null; acquisition_medium?: string | null;
     acquisition_campaign?: string | null; primary_service?: string | null;
   }): Promise<{ id: string } | string> => {
-    if (!draft.name.trim()) return 'A client needs a name.';
+    if (!draft.name.trim()) return t('A client needs a name.');
     setBusy('client');
     const { data, error } = await supabase
       .from('organizations')
@@ -586,7 +587,7 @@ export function useOperationsMutations(onChanged: () => void) {
     contact: { id?: string; name: string; role?: string | null; email?: string | null;
       phone?: string | null; is_primary?: boolean },
   ) => {
-    if (!contact.name.trim()) return 'A contact needs a name.';
+    if (!contact.name.trim()) return t('A contact needs a name.');
     setBusy('contact');
     const { id, ...fields } = contact;
     const { error } = id
@@ -596,7 +597,7 @@ export function useOperationsMutations(onChanged: () => void) {
     if (error) {
       // The partial unique index refuses a second primary contact. That is a
       // real rule and deserves a sentence rather than the generic refusal.
-      if (error.code === '23505') return 'This client already has a primary contact.';
+      if (error.code === '23505') return t('This client already has a primary contact.');
       return refusal(error, 'client_contacts.save');
     }
     onChanged();
@@ -625,8 +626,8 @@ export function useOperationsMutations(onChanged: () => void) {
     // no application behind it.
     program?: 'paid' | 'impact'; impact_direct?: boolean; market_value?: number | null;
   }, milestones: string[] = []): Promise<{ id: string } | string> => {
-    if (!draft.organization_id) return 'A project needs a client.';
-    if (!draft.name.trim()) return 'A project needs a name.';
+    if (!draft.organization_id) return t('A project needs a client.');
+    if (!draft.name.trim()) return t('A project needs a name.');
 
     setBusy('project');
     const { data, error } = await supabase
@@ -683,7 +684,7 @@ export function useOperationsMutations(onChanged: () => void) {
     setBusy(null);
     if (error) return refusal(error, 'projects.close');
     onChanged();
-    if (!data || data.length === 0) return 'This project was already closed, or may not be changed by this account.';
+    if (!data || data.length === 0) return t('This project was already closed, or may not be changed by this account.');
     return true;
   }, [onChanged]);
 
@@ -710,12 +711,12 @@ export function useOperationsMutations(onChanged: () => void) {
       assignee?: string | null; note?: string | null; blocked_reason?: string | null; next_step?: string | null;
     },
   ) => {
-    if (!milestone.title.trim()) return 'A checkpoint needs a title.';
+    if (!milestone.title.trim()) return t('A checkpoint needs a title.');
     // The same rule the database holds (project_milestones_blocked_check),
     // said here first so the answer is a sentence rather than a refusal.
     if (milestone.state === 'blocked'
       && (!milestone.blocked_reason?.trim() || !milestone.next_step?.trim())) {
-      return 'A blocked checkpoint needs a reason and a next step.';
+      return t('A blocked checkpoint needs a reason and a next step.');
     }
     setBusy('milestone');
     const { id, ...fields } = milestone;
@@ -749,8 +750,8 @@ export function useOperationsMutations(onChanged: () => void) {
   const saveTemplate = useCallback(async (template: {
     id?: string; name: string; service_keywords: string[]; steps: string[]; position: number;
   }) => {
-    if (!template.name.trim()) return 'A template needs a name.';
-    if (template.steps.length === 0) return 'A template needs at least one step.';
+    if (!template.name.trim()) return t('A template needs a name.');
+    if (template.steps.length === 0) return t('A template needs at least one step.');
     setBusy('template');
     const { id, ...fields } = template;
     const { error } = id
@@ -758,7 +759,7 @@ export function useOperationsMutations(onChanged: () => void) {
       : await supabase.from('checkpoint_templates').insert(fields);
     setBusy(null);
     if (error) {
-      if (error.code === '23505') return 'A template with that name already exists.';
+      if (error.code === '23505') return t('A template with that name already exists.');
       return refusal(error, 'checkpoint_templates.save');
     }
     onChanged();
@@ -774,7 +775,7 @@ export function useOperationsMutations(onChanged: () => void) {
       .eq('id', id);
     setBusy(null);
     if (error) {
-      if (error.code === '23505') return 'A live template already has that name.';
+      if (error.code === '23505') return t('A live template already has that name.');
       return refusal(error, 'checkpoint_templates.archive');
     }
     onChanged();
@@ -795,8 +796,8 @@ export function useOperationsMutations(onChanged: () => void) {
   const addCost = useCallback(async (projectId: string, cost: {
     description: string; category: string; amount: number; currency: string; incurred_on: string;
   }) => {
-    if (!cost.description.trim()) return 'A cost needs a description.';
-    if (!Number.isFinite(cost.amount) || cost.amount < 0) return 'A cost needs a non-negative amount.';
+    if (!cost.description.trim()) return t('A cost needs a description.');
+    if (!Number.isFinite(cost.amount) || cost.amount < 0) return t('A cost needs a non-negative amount.');
     setBusy('cost');
     const { error } = await supabase
       .from('project_costs')
@@ -819,13 +820,13 @@ export function useOperationsMutations(onChanged: () => void) {
   /* ------------------------------------------------------------ links */
 
   const addLink = useCallback(async (projectId: string, link: { label: string; url: string }) => {
-    if (!link.label.trim()) return 'A link needs a label.';
+    if (!link.label.trim()) return t('A link needs a label.');
     if (!/^https?:\/\//i.test(link.url.trim())) {
       // The same rule as the check constraint and as `safeUrl` at render time.
       // Refusing here means the operator is told why rather than shown a
       // database error, and the two layers behind it mean a bypass of this one
       // changes nothing.
-      return 'Only http and https links can be stored.';
+      return t('Only http and https links can be stored.');
     }
     setBusy('link');
     const { error } = await supabase

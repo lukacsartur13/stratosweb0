@@ -1,0 +1,110 @@
+{
+ "The {what} table does not exist yet. Run the migrations in supabase/migrations.": {
+  "hu": "A(z) {what} tábla még nem létezik. Futtasd le a migrációkat (supabase/migrations).",
+  "de": "Die Tabelle {what} existiert noch nicht. Führen Sie die Migrationen in supabase/migrations aus."
+ },
+ "The database refused the request. Check that you have permission for this data.": {
+  "hu": "Az adatbázis elutasította a kérést. Ellenőrizd, hogy van-e jogosultságod ezekhez az adatokhoz.",
+  "de": "Die Datenbank hat die Anfrage abgelehnt. Prüfen Sie, ob Sie für diese Daten berechtigt sind."
+ },
+ "the same company name": {
+  "hu": "azonos cégnév",
+  "de": "gleicher Firmenname"
+ },
+ "the same domain ({domain})": {
+  "hu": "azonos domain ({domain})",
+  "de": "gleiche Domain ({domain})"
+ },
+ "a similar company name": {
+  "hu": "hasonló cégnév",
+  "de": "ähnlicher Firmenname"
+ },
+ "A blocked checkpoint needs a reason and a next step.": {
+  "hu": "Az elakadt mérföldkőhöz ok és következő lépés kell.",
+  "de": "Ein blockierter Meilenstein braucht einen Grund und einen nächsten Schritt."
+ },
+ "A template needs 1 to 40 steps, none of them blank or longer than 160 characters.": {
+  "hu": "Egy sablonban 1–40 lépés lehet, egyik sem lehet üres vagy 160 karakternél hosszabb.",
+  "de": "Eine Vorlage braucht 1 bis 40 Schritte, keiner davon leer oder länger als 160 Zeichen."
+ },
+ "Those tables do not exist yet. Run the migrations in supabase/migrations.": {
+  "hu": "Ezek a táblák még nem léteznek. Futtasd le a migrációkat (supabase/migrations).",
+  "de": "Diese Tabellen existieren noch nicht. Führen Sie die Migrationen in supabase/migrations aus."
+ },
+ "A record with that name already exists.": {
+  "hu": "Már létezik rekord ezzel a névvel.",
+  "de": "Ein Datensatz mit diesem Namen existiert bereits."
+ },
+ "The database refused those values. Check the amounts and dates.": {
+  "hu": "Az adatbázis elutasította ezeket az értékeket. Ellenőrizd az összegeket és a dátumokat.",
+  "de": "Die Datenbank hat diese Werte abgelehnt. Prüfen Sie die Beträge und Daten."
+ },
+ "That record no longer exists.": {
+  "hu": "Ez a rekord már nem létezik.",
+  "de": "Dieser Datensatz existiert nicht mehr."
+ },
+ "The database refused that change. Check that your account may edit this data.": {
+  "hu": "Az adatbázis elutasította a módosítást. Ellenőrizd, hogy a fiókod szerkesztheti-e ezeket az adatokat.",
+  "de": "Die Datenbank hat die Änderung abgelehnt. Prüfen Sie, ob Ihr Konto diese Daten bearbeiten darf."
+ },
+ "A client needs a name.": {
+  "hu": "Az ügyfélnek nevet kell adni.",
+  "de": "Ein Kunde braucht einen Namen."
+ },
+ "A contact needs a name.": {
+  "hu": "A kapcsolattartónak nevet kell adni.",
+  "de": "Ein Kontakt braucht einen Namen."
+ },
+ "This client already has a primary contact.": {
+  "hu": "Ennek az ügyfélnek már van elsődleges kapcsolattartója.",
+  "de": "Dieser Kunde hat bereits einen Hauptkontakt."
+ },
+ "A project needs a client.": {
+  "hu": "A projekthez ügyfél kell.",
+  "de": "Ein Projekt braucht einen Kunden."
+ },
+ "A project needs a name.": {
+  "hu": "A projektnek nevet kell adni.",
+  "de": "Ein Projekt braucht einen Namen."
+ },
+ "This project was already closed, or may not be changed by this account.": {
+  "hu": "Ezt a projektet már lezárták, vagy ez a fiók nem módosíthatja.",
+  "de": "Dieses Projekt wurde bereits abgeschlossen oder darf von diesem Konto nicht geändert werden."
+ },
+ "A checkpoint needs a title.": {
+  "hu": "A mérföldkőnek címet kell adni.",
+  "de": "Ein Meilenstein braucht einen Titel."
+ },
+ "A template needs a name.": {
+  "hu": "A sablonnak nevet kell adni.",
+  "de": "Eine Vorlage braucht einen Namen."
+ },
+ "A template needs at least one step.": {
+  "hu": "A sablonhoz legalább egy lépés kell.",
+  "de": "Eine Vorlage braucht mindestens einen Schritt."
+ },
+ "A template with that name already exists.": {
+  "hu": "Már létezik sablon ezzel a névvel.",
+  "de": "Eine Vorlage mit diesem Namen existiert bereits."
+ },
+ "A live template already has that name.": {
+  "hu": "Egy aktív sablon már ezt a nevet viseli.",
+  "de": "Eine aktive Vorlage trägt diesen Namen bereits."
+ },
+ "A cost needs a description.": {
+  "hu": "A költséghez leírás kell.",
+  "de": "Kosten brauchen eine Beschreibung."
+ },
+ "A cost needs a non-negative amount.": {
+  "hu": "A költség összege nem lehet negatív.",
+  "de": "Kosten brauchen einen nicht negativen Betrag."
+ },
+ "A link needs a label.": {
+  "hu": "A linkhez felirat kell.",
+  "de": "Ein Link braucht eine Bezeichnung."
+ },
+ "Only http and https links can be stored.": {
+  "hu": "Csak http és https link menthető.",
+  "de": "Nur http- und https-Links können gespeichert werden."
+ }
+}

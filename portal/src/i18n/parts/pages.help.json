@@ -1,0 +1,138 @@
+{
+ "Help centre": {
+  "hu": "Súgóközpont",
+  "de": "Hilfe-Center"
+ },
+ "{published} published · {drafts} draft": {
+  "hu": "{published} közzétett · {drafts} vázlat",
+  "de": "{published} veröffentlicht · {drafts} Entwurf"
+ },
+ "Article": {
+  "hu": "Cikk",
+  "de": "Artikel"
+ },
+ "Clients see only published articles. A draft waits for your decision — its review note says which. Only publish what describes how things actually work; no promise of revision rounds, response times, guarantees or fees without a decision behind it.": {
+  "hu": "Az ügyfelek csak a közzétett cikkeket látják. A vázlat a döntésedre vár — az ellenőrzési jegyzete megmondja, mire. Csak azt tedd közzé, ami a valós működést írja le; ne ígérj javítási köröket, válaszidőt, garanciát vagy díjat, ha nincs mögötte döntés.",
+  "de": "Kunden sehen nur veröffentlichte Artikel. Ein Entwurf wartet auf Ihre Entscheidung — seine Prüfnotiz sagt, worüber. Veröffentlichen Sie nur, was die tatsächliche Arbeitsweise beschreibt; keine Zusagen zu Korrekturrunden, Antwortzeiten, Garantien oder Gebühren ohne eine Entscheidung dahinter."
+ },
+ "Status": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "All": {
+  "hu": "Összes",
+  "de": "Alle"
+ },
+ "Published": {
+  "hu": "Közzétéve",
+  "de": "Veröffentlicht"
+ },
+ "Drafts ({n})": {
+  "hu": "Vázlatok ({n})",
+  "de": "Entwürfe ({n})"
+ },
+ "Search articles": {
+  "hu": "Cikkek keresése",
+  "de": "Artikel durchsuchen"
+ },
+ "Search…": {
+  "hu": "Keresés…",
+  "de": "Suche…"
+ },
+ "No article": {
+  "hu": "Nincs cikk",
+  "de": "Kein Artikel"
+ },
+ "Draft": {
+  "hu": "Vázlat",
+  "de": "Entwurf"
+ },
+ "Unpublish": {
+  "hu": "Visszavonás",
+  "de": "Zurückziehen"
+ },
+ "Publish": {
+  "hu": "Közzététel",
+  "de": "Veröffentlichen"
+ },
+ "Edit {title}": {
+  "hu": "Szerkesztés: {title}",
+  "de": "Bearbeiten: {title}"
+ },
+ "Try the assistant": {
+  "hu": "Próbáld ki az asszisztenst",
+  "de": "Assistenten testen"
+ },
+ "published articles only — exactly what a client gets": {
+  "hu": "csak közzétett cikkek — pontosan, amit az ügyfél kap",
+  "de": "nur veröffentlichte Artikel — genau das, was ein Kunde bekommt"
+ },
+ "Write the question.": {
+  "hu": "Írd meg a kérdést.",
+  "de": "Schreiben Sie die Frage."
+ },
+ "Write the answer.": {
+  "hu": "Írd meg a választ.",
+  "de": "Schreiben Sie die Antwort."
+ },
+ "Choose or type a topic.": {
+  "hu": "Válassz vagy írj be egy témát.",
+  "de": "Wählen oder geben Sie ein Thema ein."
+ },
+ "At most 40 alternative phrasings.": {
+  "hu": "Legfeljebb 40 alternatív megfogalmazás.",
+  "de": "Höchstens 40 alternative Formulierungen."
+ },
+ "Edit article": {
+  "hu": "Cikk szerkesztése",
+  "de": "Artikel bearbeiten"
+ },
+ "New article": {
+  "hu": "Új cikk",
+  "de": "Neuer Artikel"
+ },
+ "Hungarian, as the client reads it.": {
+  "hu": "Magyarul, ahogy az ügyfél olvassa.",
+  "de": "Auf Ungarisch, so wie der Kunde es liest."
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "de": "Abbrechen"
+ },
+ "Save": {
+  "hu": "Mentés",
+  "de": "Speichern"
+ },
+ "Question": {
+  "hu": "Kérdés",
+  "de": "Frage"
+ },
+ "Answer": {
+  "hu": "Válasz",
+  "de": "Antwort"
+ },
+ "Topic": {
+  "hu": "Téma",
+  "de": "Thema"
+ },
+ "Draft — clients never see it": {
+  "hu": "Vázlat — az ügyfelek soha nem látják",
+  "de": "Entwurf — Kunden sehen ihn nie"
+ },
+ "Other ways a client may ask (one per line)": {
+  "hu": "Más módok, ahogy az ügyfél kérdezhet (soronként egy)",
+  "de": "Andere Formulierungen eines Kunden (eine pro Zeile)"
+ },
+ "Helps the assistant find this answer.": {
+  "hu": "Segít az asszisztensnek megtalálni ezt a választ.",
+  "de": "Hilft dem Assistenten, diese Antwort zu finden."
+ },
+ "Source or internal reference": {
+  "hu": "Forrás vagy belső hivatkozás",
+  "de": "Quelle oder interne Referenz"
+ },
+ "Review note (internal)": {
+  "hu": "Ellenőrzési jegyzet (belső)",
+  "de": "Prüfnotiz (intern)"
+ }
+}

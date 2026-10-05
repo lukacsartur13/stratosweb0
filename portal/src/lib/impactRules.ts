@@ -1,11 +1,13 @@
 // =============================================================================
 // The Impact Program — vocabulary and pure rules.
 //
-// NO IMPORTS, like lib/money.ts and lib/pipeline.ts: tests/portal-impact.spec.ts
+// NO IMPORTS (but the pure ./i18n), like lib/money.ts and lib/pipeline.ts: tests/portal-impact.spec.ts
 // imports this file directly. The enforcement is the database
 // (20260929000300_impact_program.sql); everything here only decides what is
 // drawn, and says the database's rules before the database has to.
 // =============================================================================
+
+import { t } from './i18n.ts';
 
 /** The application pipeline, in the order an application moves through it. */
 export const IMPACT_STATUSES = [
@@ -13,6 +15,8 @@ export const IMPACT_STATUSES = [
 ] as const;
 export type ImpactStatus = (typeof IMPACT_STATUSES)[number];
 
+// Labels and notes are English source text, translated where they are read
+// (`impactStatusLabel`; a note with `t(note)`) — never here, at import.
 export const IMPACT_STATUS: Record<ImpactStatus, {
   label: string; tone: 'neutral' | 'good' | 'warn' | 'bad'; note: string;
 }> = {
@@ -25,7 +29,10 @@ export const IMPACT_STATUS: Record<ImpactStatus, {
   deferred:        { label: 'Deferred',        tone: 'neutral', note: 'Not now — kept for a later round.' },
 };
 
-export const impactStatusLabel = (s: string) => IMPACT_STATUS[s as ImpactStatus]?.label ?? s;
+export const impactStatusLabel = (s: string) => {
+  const label = IMPACT_STATUS[s as ImpactStatus]?.label;
+  return label ? t(label) : s;
+};
 export const impactStatusTone = (s: string) => IMPACT_STATUS[s as ImpactStatus]?.tone ?? 'neutral';
 
 /**
@@ -67,13 +74,13 @@ export const IMPACT_QUESTIONS: { key: string; label: string; contact?: boolean }
  */
 export function impactAnswers(payload: Record<string, unknown> | null | undefined): { label: string; value: string }[] {
   const data = payload && typeof payload === 'object' ? payload : {};
-  const text = (v: unknown) => (v === true ? 'Igen' : v === false ? 'Nem' : String(v));
+  const text = (v: unknown) => (v === true ? t('Igen') : v === false ? t('Nem') : String(v));
   const known = new Set(IMPACT_QUESTIONS.map((q) => q.key));
   const out: { label: string; value: string }[] = [];
   for (const q of IMPACT_QUESTIONS) {
     if (q.contact) continue;
     const v = data[q.key];
-    if (v !== undefined && v !== null && v !== '') out.push({ label: q.label, value: text(v) });
+    if (v !== undefined && v !== null && v !== '') out.push({ label: t(q.label), value: text(v) });
   }
   for (const [key, v] of Object.entries(data)) {
     if (known.has(key) || v === undefined || v === null || v === '') continue;
@@ -96,11 +103,11 @@ export function parseMarketValue(raw: string): { value: number | null } | { erro
   if (trimmed === '') return { value: null };
   const compact = trimmed.replace(/[\s ]/g, '').replace(/\.(?=\d{3}(\D|$))/g, '').replace(/(Ft|HUF)$/i, '');
   if (!/^\d+$/.test(compact)) {
-    return { error: 'The market value is a whole number of forints, e.g. 1 250 000. No decimals, no minus sign.' };
+    return { error: t('The market value is a whole number of forints, e.g. 1 250 000. No decimals, no minus sign.') };
   }
   const value = Number(compact);
   if (!Number.isSafeInteger(value) || value > 1_000_000_000_000) {
-    return { error: 'That market value is out of range.' };
+    return { error: t('That market value is out of range.') };
   }
   return { value };
 }
@@ -115,11 +122,13 @@ export function impactCloseBlockers(
   checkpoints: { total: number; done: number },
 ): string[] {
   const out: string[] = [];
-  if (checkpoints.total === 0) out.push('at least one checkpoint');
+  if (checkpoints.total === 0) out.push(t('at least one checkpoint'));
   else if (checkpoints.done < checkpoints.total) {
-    out.push(`${checkpoints.total - checkpoints.done} of ${checkpoints.total} checkpoints still open`);
+    out.push(t('{open} of {total} checkpoints still open', {
+      open: checkpoints.total - checkpoints.done, total: checkpoints.total,
+    }));
   }
-  if (project.market_value === null) out.push('the market value of the donated work');
+  if (project.market_value === null) out.push(t('the market value of the donated work'));
   return out;
 }
 
@@ -140,6 +149,7 @@ export function impactRefusal(message: string | null | undefined): string | null
     ['projects_impact_free_check', 'An Impact project is free: no fee, invoice, payment or opportunity can be put on it.'],
     ['stratos:lead_program_fixed', 'Whether a lead is an Impact application is decided by the form it came from.'],
   ];
-  for (const [needle, sentence] of map) if (message.includes(needle)) return sentence;
+  // English source text, translated on the way out.
+  for (const [needle, sentence] of map) if (message.includes(needle)) return t(sentence);
   return null;
 }

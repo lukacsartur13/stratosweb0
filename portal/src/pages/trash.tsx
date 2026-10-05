@@ -9,6 +9,7 @@ import {
 } from '@/components/ui';
 import { formatWhen } from '@/lib/leads';
 import { useTrash, useTrashMutations, type TrashKind, type TrashRow } from '@/lib/trash';
+import { t } from '@/lib/i18n';
 
 /**
  * THE TRASH — projects, clients and leads that were moved here.
@@ -23,6 +24,8 @@ import { useTrash, useTrashMutations, type TrashKind, type TrashRow } from '@/li
  * owner alone, like every project screen.
  */
 
+// English source text; translated where it is rendered (`t(section.title)`),
+// never here — a module-level string is evaluated once, before any language.
 const SECTIONS: { kind: TrashKind; title: string; path: (id: string) => string; note: string }[] = [
   { kind: 'project', title: 'Projects', path: (id) => `/projects/${id}`,
     note: 'Its checkpoints, costs, links and notes are deleted with it. Payments, documents and client portal access block a permanent delete.' },
@@ -51,7 +54,7 @@ export function TrashScreen() {
     setMessage(problem ? { id: r.id, text: problem } : null);
   };
   const purge = async (r: TrashRow) => {
-    if (!window.confirm(`Delete "${r.name}" permanently?\n\nThis cannot be undone.`)) return;
+    if (!window.confirm(t('Delete "{name}" permanently?\n\nThis cannot be undone.', { name: r.name }))) return;
     const problem = await ops.purge(r.kind, r.id);
     setMessage(problem ? { id: r.id, text: problem } : null);
   };
@@ -59,23 +62,22 @@ export function TrashScreen() {
   return (
     <div className="grid gap-4">
       <p className="t-note">
-        Moved here from a project, client or lead screen. Nothing here appears in any list or total.
-        Restore puts it back unchanged; Delete permanently cannot be undone.
+        {t('Moved here from a project, client or lead screen. Nothing here appears in any list or total. Restore puts it back unchanged; Delete permanently cannot be undone.')}
       </p>
 
       {state === 'loading' && <Skeleton className="h-40 w-full" />}
-      {state === 'unconfigured' && <Panel><DataState kind="unconfigured" title="Not connected" /></Panel>}
-      {state === 'error' && <Panel><ErrorState message="The Trash could not be read." onRetry={reload} /></Panel>}
+      {state === 'unconfigured' && <Panel><DataState kind="unconfigured" title={t('Not connected')} /></Panel>}
+      {state === 'error' && <Panel><ErrorState message={t('The Trash could not be read.')} onRetry={reload} /></Panel>}
 
       {state === 'ready' && SECTIONS.filter((s) => may[s.kind]).map((section) => {
         const items = rows.filter((r) => r.kind === section.kind);
         return (
-          <Panel key={section.kind} aria-label={`Trash: ${section.title}`} className="min-w-0">
-            <SectionHeader title={section.title} note={`${items.length}`} />
+          <Panel key={section.kind} aria-label={t('Trash: {section}', { section: t(section.title) })} className="min-w-0">
+            <SectionHeader title={t(section.title)} note={`${items.length}`} />
             {items.length === 0 ? (
-              <p className="px-4 py-3 text-xs text-haze">Nothing in the Trash.</p>
+              <p className="px-4 py-3 text-xs text-haze">{t('Nothing in the Trash.')}</p>
             ) : (
-              <Table head={['Name', 'Details', 'Trashed', { label: '', align: 'right' }]} minWidth={640}>
+              <Table head={[t('Name'), t('Details'), t('Trashed'), { label: '', align: 'right' }]} minWidth={640}>
                 {items.map((r) => (
                   <Row key={r.id}>
                     <Cell className="min-w-0">
@@ -89,11 +91,11 @@ export function TrashScreen() {
                     <Cell align="right">
                       <span className="inline-flex gap-1">
                         <Button size="sm" className="whitespace-nowrap" onClick={() => void restore(r)} disabled={ops.busy === r.id}>
-                          <RotateCcw size={11} aria-hidden="true" /> Restore
+                          <RotateCcw size={11} aria-hidden="true" /> {t('Restore')}
                         </Button>
                         {mayPurge[r.kind] && (
                           <Button size="sm" variant="danger" className="whitespace-nowrap" onClick={() => void purge(r)} disabled={ops.busy === r.id}>
-                            <Trash2 size={11} aria-hidden="true" /> Delete permanently
+                            <Trash2 size={11} aria-hidden="true" /> {t('Delete permanently')}
                           </Button>
                         )}
                       </span>
@@ -102,7 +104,7 @@ export function TrashScreen() {
                 ))}
               </Table>
             )}
-            <p className="t-note border-t border-hairline px-4 py-2">{section.note}</p>
+            <p className="t-note border-t border-hairline px-4 py-2">{t(section.note)}</p>
           </Panel>
         );
       })}

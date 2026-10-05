@@ -6,11 +6,13 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
+import { LanguageSwitch } from '@/features/i18n/LanguageGate';
 import { can, canAccess, ROLE_LABELS, type Capability } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
 import { useHealth } from '@/lib/health';
 import { ENVIRONMENTS, RANGES } from '@/lib/analytics';
 import { Button, Select, Skeleton, cn } from '@/components/ui';
+import { t } from '@/lib/i18n';
 
 /**
  * The Control Room shell.
@@ -140,13 +142,13 @@ export function PortalShell() {
   const primary = PRIMARY.filter((n) => canAccess(profile, n.cap));
   const secondary = SECONDARY.filter((n) => canAccess(profile, n.cap));
 
-  const title = leadDetail ? 'Lead'
-    : dealDetail ? 'Opportunity'
-      : clientDetail ? 'Client'
-        : projectTemplates ? 'Checkpoint templates'
-        : projectDetail ? 'Project'
-        : impactApplication ? 'Impact application'
-          : TITLES.find((t) => location.pathname.startsWith(t.path))?.title ?? 'Dashboard';
+  const title = leadDetail ? t('Lead')
+    : dealDetail ? t('Opportunity')
+      : clientDetail ? t('Client')
+        : projectTemplates ? t('Checkpoint templates')
+        : projectDetail ? t('Project')
+        : impactApplication ? t('Impact application')
+          : t(TITLES.find((x) => location.pathname.startsWith(x.path))?.title ?? 'Dashboard');
 
   // Route change closes the drawer, otherwise it stays open over the page the
   // visitor just asked for.
@@ -170,11 +172,11 @@ export function PortalShell() {
 
   const nav = (
     <div className="grid gap-5">
-      <NavGroup items={primary} label="Portal sections" />
+      <NavGroup items={primary} label={t('Portal sections')} />
       {secondary.length > 0 && (
         <div className="border-t border-hairline pt-4">
-          <p className="t-section mb-1.5 px-2.5 text-haze">Records</p>
-          <NavGroup items={secondary} label="Records and administration" subdued />
+          <p className="t-section mb-1.5 px-2.5 text-haze">{t('Records')}</p>
+          <NavGroup items={secondary} label={t('Records and administration')} subdued />
         </div>
       )}
     </div>
@@ -186,7 +188,7 @@ export function PortalShell() {
         href="#portal-main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-sm focus:bg-signal focus:px-3 focus:py-2 focus:text-xs focus:text-black"
       >
-        Skip to content
+        {t('Skip to content')}
       </a>
 
       {/* ------------------------------------------------ desktop sidebar */}
@@ -203,7 +205,7 @@ export function PortalShell() {
             forty pixels of vertical space is two lines saying one thing. */}
         <span className="font-mark text-[13px] tracking-[0.24em] text-paper">STRATOS</span>
         <Button size="sm" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="portal-drawer">
-          <Menu size={13} aria-hidden="true" /> Menu
+          <Menu size={13} aria-hidden="true" /> {t('Menu')}
         </Button>
       </header>
 
@@ -215,12 +217,12 @@ export function PortalShell() {
             id="portal-drawer"
             role="dialog"
             aria-modal="true"
-            aria-label="Portal navigation"
+            aria-label={t('Portal navigation')}
             className="absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col border-r border-hair bg-deck"
           >
             <div className="flex items-center justify-between border-b border-hairline px-4 py-3">
               <span className="font-mark text-[13px] tracking-[0.24em] text-paper">STRATOS</span>
-              <Button ref={closeRef} size="sm" onClick={() => setOpen(false)} aria-label="Close navigation">
+              <Button ref={closeRef} size="sm" onClick={() => setOpen(false)} aria-label={t('Close navigation')}>
                 <X size={13} aria-hidden="true" />
               </Button>
             </div>
@@ -259,7 +261,7 @@ function Lockup() {
   return (
     <div className="border-b border-hairline px-4 py-3.5">
       <p className="font-mark text-[15px] leading-none tracking-[0.26em] text-paper">STRATOS</p>
-      <p className="t-section mt-1.5 text-haze">Portal</p>
+      <p className="t-section mt-1.5 text-haze">{t('Portal')}</p>
     </div>
   );
 }
@@ -300,7 +302,7 @@ function NavGroup({ items, label, subdued = false }: { items: NavItem[]; label: 
                 className={isActive ? 'text-paper' : 'text-haze'}
                 aria-hidden="true"
               />
-              <span className="truncate">{text}</span>
+              <span className="truncate">{t(text)}</span>
             </>
           )}
         </NavLink>
@@ -341,10 +343,11 @@ function SidebarFooter({
         </p>
       )}
       <p className="truncate text-[12px] text-paper">{profile?.full_name || profile?.email || '—'}</p>
-      <p className="t-note mb-2 truncate">{profile ? ROLE_LABELS[profile.role] : '—'}</p>
-      <ThemeSwitch className="mb-2" />
+      <p className="t-note mb-2 truncate">{profile ? t(ROLE_LABELS[profile.role]) : '—'}</p>
+      <ThemeSwitch className="mb-2 w-full" dense />
+      <LanguageSwitch className="mb-2" />
       <Button size="sm" variant="quiet" className="-ml-2 w-[calc(100%+0.5rem)] justify-start" onClick={onSignOut}>
-        <LogOut size={12} aria-hidden="true" /> Sign out
+        <LogOut size={12} aria-hidden="true" /> {t('Sign out')}
       </Button>
     </div>
   );
@@ -370,27 +373,27 @@ function CommandBar({ title, scoped }: { title: string; scoped: boolean }) {
 
       {scoped && (
         <div className="flex flex-wrap items-center gap-2">
-          <label className="sr-only" htmlFor="scope-range">Period</label>
+          <label className="sr-only" htmlFor="scope-range">{t('Period')}</label>
           <Select
             id="scope-range"
             value={range}
             onChange={(e) => setRange(e.target.value as typeof range)}
           >
-            {RANGES.map((r) => <option key={r.id} value={r.id}>{r.long}</option>)}
+            {RANGES.map((r) => <option key={r.id} value={r.id}>{t(r.long)}</option>)}
           </Select>
 
-          <label className="sr-only" htmlFor="scope-environment">Environment</label>
+          <label className="sr-only" htmlFor="scope-environment">{t('Environment')}</label>
           <Select
             id="scope-environment"
             value={environment}
             onChange={(e) => setEnvironment(e.target.value as typeof environment)}
           >
-            {ENVIRONMENTS.map((e) => <option key={e.id} value={e.id}>{e.label}</option>)}
+            {ENVIRONMENTS.map((e) => <option key={e.id} value={e.id}>{t(e.label)}</option>)}
           </Select>
 
-          <Button size="sm" variant="quiet" onClick={refresh} aria-label="Refresh data">
+          <Button size="sm" variant="quiet" onClick={refresh} aria-label={t('Refresh data')}>
             <RefreshCw size={12} aria-hidden="true" />
-            <span className="hidden sm:inline">Refresh</span>
+            <span className="hidden sm:inline">{t('Refresh')}</span>
           </Button>
         </div>
       )}

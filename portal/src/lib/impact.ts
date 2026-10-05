@@ -3,6 +3,7 @@ import { supabase, isConfigured } from '@/lib/supabase';
 import { PROJECT_COLUMNS, type Project } from '@/lib/operations';
 import { closeRefusal } from '@/lib/pipeline';
 import { impactRefusal, isImpactLead } from '@/lib/impactRules';
+import { t } from '@/lib/i18n';
 
 /**
  * The Impact Program — reads and writes.
@@ -85,8 +86,8 @@ export interface ImpactConflict {
 
 function readMessage(error: { code?: string }): string {
   return error.code === '42P01' || error.code === 'PGRST205' || error.code === 'PGRST202'
-    ? 'The Impact tables do not exist yet. Apply 20260929000100-0300 in supabase/migrations.'
-    : 'The database refused the request. The Impact Program is readable by the portal owner only.';
+    ? t('The Impact tables do not exist yet. Apply 20260929000100-0300 in supabase/migrations.')
+    : t('The database refused the request. The Impact Program is readable by the portal owner only.');
 }
 
 /* ================================================================ reads == */
@@ -257,10 +258,10 @@ function refusal(error: { code?: string; message?: string }, what: string): stri
   console.error(`[${what}]`, error);
   const said = impactRefusal(error.message) ?? closeRefusal(error.message);
   if (said) return said;
-  if (error.code === '23505') return 'That name is already taken — a client or a project with the same address exists.';
-  if (error.code === '42501') return 'Only the portal owner can change Impact data.';
-  if (error.code === '23514') return 'The database refused those values.';
-  return 'The database refused that change.';
+  if (error.code === '23505') return t('That name is already taken — a client or a project with the same address exists.');
+  if (error.code === '42501') return t('Only the portal owner can change Impact data.');
+  if (error.code === '23514') return t('The database refused those values.');
+  return t('The database refused that change.');
 }
 
 export interface StartProjectInput {
@@ -301,8 +302,8 @@ export function useImpactMutations(onChanged: () => void) {
    * call finds the application already started and returns the same project.
    */
   const startProject = useCallback(async (input: StartProjectInput): Promise<{ id: string } | string> => {
-    if (!input.project.name.trim()) return 'The project needs a name.';
-    if (!input.organizationId && !input.client?.name.trim()) return 'Choose a client, or name a new one.';
+    if (!input.project.name.trim()) return t('The project needs a name.');
+    if (!input.organizationId && !input.client?.name.trim()) return t('Choose a client, or name a new one.');
     setBusy('start');
     const { data, error } = await supabase.rpc('impact_start_project', {
       p_application: input.applicationId,

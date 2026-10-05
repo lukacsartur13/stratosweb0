@@ -16,6 +16,7 @@ import { moneyCompact } from '@/lib/money';
 import {
   useAttribution, type AttributionDimension, type AttributionRow,
 } from '@/lib/business';
+import { intlLocale, t, tc } from '@/lib/i18n';
 
 /**
  * ANALYTICS — analysis.
@@ -49,6 +50,7 @@ import {
  * thirty days they mean.
  */
 
+// English source text; translated where it is rendered (`t(s.label)`).
 const SECTIONS = [
   { id: 'overview', label: 'Overview' },
   { id: 'traffic', label: 'Traffic' },
@@ -70,9 +72,9 @@ export function AnalyticsScreen() {
       {/* One control row, and it holds only what the command bar does not:
           the comparison, and the jump list. */}
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <nav aria-label="Analytics sections" className="flex flex-wrap gap-x-4 gap-y-1">
+        <nav aria-label={t('Analytics sections')} className="flex flex-wrap gap-x-4 gap-y-1">
           {SECTIONS.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="t-section hover:text-paper">{s.label}</a>
+            <a key={s.id} href={`#${s.id}`} className="t-section hover:text-paper">{t(s.label)}</a>
           ))}
         </nav>
         <label className="flex cursor-pointer items-center gap-2 text-[11px] text-haze hover:text-paper">
@@ -82,7 +84,7 @@ export function AnalyticsScreen() {
             onChange={(e) => setCompare(e.target.checked)}
             className="h-3 w-3 accent-signal"
           />
-          Compare previous period
+          {t('Compare previous period')}
         </label>
       </div>
 
@@ -120,7 +122,7 @@ function Screen({
       <div className="grid gap-6">
         <NotConnected missing={state.missing} propertyConfigured={state.propertyConfigured} />
         {maySales && (
-          <Section id="revenue" title="Revenue attribution">
+          <Section id="revenue" title={t('Revenue attribution')}>
             <RevenueAttribution traffic={null} />
           </Section>
         )}
@@ -133,7 +135,7 @@ function Screen({
       <div className="grid gap-6">
         <Panel><ErrorState message={state.message} onRetry={reload} /></Panel>
         {maySales && (
-          <Section id="revenue" title="Revenue attribution">
+          <Section id="revenue" title={t('Revenue attribution')}>
             <RevenueAttribution traffic={null} />
           </Section>
         )}
@@ -156,16 +158,14 @@ function Screen({
 function NotConnected({ missing, propertyConfigured }: { missing: string[]; propertyConfigured: boolean }) {
   return (
     <Panel>
-      <SectionHeader title="Not connected" />
+      <SectionHeader title={t('Not connected')} />
       <div className="grid gap-4 px-4 py-5">
         <p className="max-w-prose text-sm text-haze">
-          Portal Analytics is built and waiting for credentials. Reporting needs a Google service
-          account with read access to the GA4 property — a separate thing from the measurement tag
-          on the public site, which is already live and collecting.
+          {t('Portal Analytics is built and waiting for credentials. Reporting needs a Google service account with read access to the GA4 property — a separate thing from the measurement tag on the public site, which is already live and collecting.')}
         </p>
         {missing.length > 0 && (
           <div>
-            <p className="label mb-1.5">Missing in the Netlify function environment</p>
+            <p className="label mb-1.5">{t('Missing in the Netlify function environment')}</p>
             <ul className="grid gap-1">
               {missing.map((name) => <li key={name} className="num text-xs text-paper">{name}</li>)}
             </ul>
@@ -173,19 +173,19 @@ function NotConnected({ missing, propertyConfigured }: { missing: string[]; prop
         )}
         {propertyConfigured && (
           <p className="text-xs text-haze">
-            The property is already configured. Only the service account credentials are outstanding.
+            {t('The property is already configured. Only the service account credentials are outstanding.')}
           </p>
         )}
         <ol className="grid max-w-prose gap-1.5 text-xs text-haze">
-          <li>1 — Enable the Google Analytics Data API in the Google Cloud project.</li>
-          <li>2 — Create a service account, and a JSON key for it.</li>
-          <li>3 — Add its address as a Viewer on the GA4 property.</li>
-          <li>4 — Set the three variables above in Netlify, then redeploy.</li>
+          <li>{t('1 — Enable the Google Analytics Data API in the Google Cloud project.')}</li>
+          <li>{t('2 — Create a service account, and a JSON key for it.')}</li>
+          <li>{t('3 — Add its address as a Viewer on the GA4 property.')}</li>
+          <li>{t('4 — Set the three variables above in Netlify, then redeploy.')}</li>
         </ol>
         <p className="max-w-prose text-xs text-haze">
-          The full sequence is in{' '}
-          <span className="num">_build/reports/mobile-altimeter-portal-analytics-report.md</span>.
-          Nothing on this screen changes until all three variables exist.
+          {t('The full sequence is in')}{' '}
+          <span className="num">_build/reports/mobile-altimeter-portal-analytics-report.md</span>.{' '}
+          {t('Nothing on this screen changes until all three variables exist.')}
         </p>
       </div>
     </Panel>
@@ -199,35 +199,35 @@ function Report_({
 }: { data: Report; cached: boolean; compare: boolean; maySales: boolean }) {
   return (
     <div className="grid gap-6">
-      <Section id="overview" title="Overview">
+      <Section id="overview" title={t('Overview')}>
         <Overview data={data} compare={compare} />
       </Section>
 
-      <Section id="traffic" title="Traffic">
+      <Section id="traffic" title={t('Traffic')}>
         <TrafficSection data={data} compare={compare} />
       </Section>
 
-      <Section id="acquisition" title="Acquisition">
+      <Section id="acquisition" title={t('Acquisition')}>
         <AcquisitionSection data={data} />
       </Section>
 
-      <Section id="content" title="Content">
+      <Section id="content" title={t('Content')}>
         <ContentSection data={data} />
       </Section>
 
-      <Section id="conversion" title="Conversion">
+      <Section id="conversion" title={t('Conversion')}>
         <ConversionSection data={data} />
       </Section>
 
       {/* §55 — an ADDITIONAL layer. It does not replace a single GA4 section
           above it, and every one of those is untouched by this phase. */}
       {maySales && (
-        <Section id="revenue" title="Revenue attribution">
+        <Section id="revenue" title={t('Revenue attribution')}>
           <RevenueAttribution traffic={data} />
         </Section>
       )}
 
-      <Section id="audience" title="Audience">
+      <Section id="audience" title={t('Audience')}>
         <AudienceSection data={data} />
       </Section>
 
@@ -264,23 +264,23 @@ function Overview({ data, compare }: { data: Report; compare: boolean }) {
   const d = (a: number, b: number) => (compare ? <Delta value={delta(a, b)} /> : undefined);
 
   return (
-    <MetricStrip label="Key figures" className="xl:grid-cols-6">
-      <MetricCell label="Active users" value={n(now.activeUsers)} delta={d(now.activeUsers, was.activeUsers)} />
-      <MetricCell label="Sessions" value={n(now.sessions)} delta={d(now.sessions, was.sessions)} />
-      <MetricCell label="Views" value={n(now.screenPageViews)} delta={d(now.screenPageViews, was.screenPageViews)} />
-      <MetricCell label="New users" value={n(now.newUsers)} delta={d(now.newUsers, was.newUsers)} />
+    <MetricStrip label={t('Key figures')} className="xl:grid-cols-6">
+      <MetricCell label={t('Active users')} value={n(now.activeUsers)} delta={d(now.activeUsers, was.activeUsers)} />
+      <MetricCell label={t('Sessions')} value={n(now.sessions)} delta={d(now.sessions, was.sessions)} />
+      <MetricCell label={t('Views')} value={n(now.screenPageViews)} delta={d(now.screenPageViews, was.screenPageViews)} />
+      <MetricCell label={t('New users')} value={n(now.newUsers)} delta={d(now.newUsers, was.newUsers)} />
       <MetricCell
-        label="Lead events"
+        label={t('Lead events')}
         value={n(now.leadEvents)}
         delta={d(now.leadEvents, was.leadEvents)}
-        note="form & questionnaire success"
+        note={t('form & questionnaire success')}
       />
       <MetricCell
-        label="Conversion"
+        label={t('Conversion')}
         value={pct(now.leadRate, 2)}
         delta={compare && now.leadRate !== null && was.leadRate !== null
           ? <Delta value={delta(now.leadRate, was.leadRate)} /> : undefined}
-        note="lead events / session"
+        note={t('lead events / session')}
       />
     </MetricStrip>
   );
@@ -290,6 +290,7 @@ function Overview({ data, compare }: { data: Report; compare: boolean }) {
 
 type Metric = 'activeUsers' | 'sessions' | 'screenPageViews';
 
+// English source text; translated where it is rendered.
 const METRICS: { id: Metric; label: string }[] = [
   { id: 'activeUsers', label: 'Users' },
   { id: 'sessions', label: 'Sessions' },
@@ -305,22 +306,22 @@ function TrafficSection({ data, compare }: { data: Report; compare: boolean }) {
     if (points === 0) return null;
     const mean = data.overview.previous[metric] / points;
     return mean > 0
-      ? { value: mean, label: `previous period, ${Math.round(mean).toLocaleString('en-GB')} avg` }
+      ? { value: mean, label: t('previous period, {avg} avg', { avg: Math.round(mean).toLocaleString(intlLocale('en-GB')) }) }
       : null;
   }, [compare, data, metric]);
 
   return (
     <Panel>
       <SectionHeader
-        title={METRICS.find((m) => m.id === metric)!.label}
-        note={data.rangeLabel.toLowerCase()}
-        action={<Segmented label="Metric" value={metric} options={METRICS} onChange={setMetric} />}
+        title={t(METRICS.find((m) => m.id === metric)!.label)}
+        note={t(data.rangeLabel.toLowerCase())}
+        action={<Segmented label={t('Metric')} value={metric} options={METRICS.map((m) => ({ ...m, label: t(m.label) }))} onChange={setMetric} />}
         level={3}
       />
       <TrendChart
         points={data.trend.points.map((p) => p[metric])}
         labels={data.trend.points.map((p) => trendLabel(p.at, data.trend.grain))}
-        label={`${METRICS.find((m) => m.id === metric)!.label} · ${data.rangeLabel.toLowerCase()}`}
+        label={`${t(METRICS.find((m) => m.id === metric)!.label)} · ${t(data.rangeLabel.toLowerCase())}`}
         baseline={baseline}
         height={260}
       />
@@ -334,9 +335,9 @@ function TrafficSection({ data, compare }: { data: Report; compare: boolean }) {
       */}
       {compare && (
         <p className="t-note border-t border-hairline px-4 py-2">
-          The dashed rule is the previous period&rsquo;s <span className="text-paper">average per
-          interval</span>. GA4 returns one series per request, so the previous period has a level
-          here but not a shape.
+          {t('The dashed rule is the previous period’s')}{' '}
+          <span className="text-paper">{t('average per interval')}</span>.{' '}
+          {t('GA4 returns one series per request, so the previous period has a level here but not a shape.')}
         </p>
       )}
     </Panel>
@@ -382,29 +383,29 @@ function AcquisitionSection({ data }: { data: Report }) {
   return (
     <Panel className="min-w-0">
       <SectionHeader
-        title={grain === 'source' ? 'Source / medium' : 'Campaign'}
-        note="GA4 session-scoped attribution"
+        title={grain === 'source' ? t('Source / medium') : t('Campaign')}
+        note={t('GA4 session-scoped attribution')}
         level={3}
         action={
           <Segmented
-            label="Acquisition breakdown"
+            label={t('Acquisition breakdown')}
             value={grain}
-            options={[{ id: 'source' as const, label: 'Source / medium' }, { id: 'campaign' as const, label: 'Campaign' }]}
+            options={[{ id: 'source' as const, label: t('Source / medium') }, { id: 'campaign' as const, label: t('Campaign') }]}
             onChange={setGrain}
           />
         }
       />
       {rows.length === 0 ? (
-        <DataState kind="empty" title="No sessions" body="Nothing arrived in this range." />
+        <DataState kind="empty" title={t('No sessions')} body={t('Nothing arrived in this range.')} />
       ) : (
         <Table
           head={[
-            grain === 'source' ? 'Source / medium' : 'Campaign',
-            { label: 'Sessions', align: 'right' },
-            { label: 'Users', align: 'right' },
-            { label: 'Engaged', align: 'right' },
-            { label: 'Leads', align: 'right' },
-            { label: 'CVR', align: 'right' },
+            grain === 'source' ? t('Source / medium') : t('Campaign'),
+            { label: t('Sessions'), align: 'right' },
+            { label: t('Users'), align: 'right' },
+            { label: t('Engaged'), align: 'right' },
+            { label: t('Leads'), align: 'right' },
+            { label: t('CVR'), align: 'right' },
           ]}
           minWidth={720}
         >
@@ -417,7 +418,7 @@ function AcquisitionSection({ data }: { data: Report }) {
                     `spring-2026-kkv-remarketing-lookalike-1pct` is an ordinary
                     campaign name and a 48-character unbroken token in a table
                     cell sets that column's min-content width. */}
-                <span className="break-all text-xs text-paper">{row.key || '(not set)'}</span>
+                <span className="break-all text-xs text-paper">{row.key || t('(not set)')}</span>
                 <Meter value={row.sessions} max={max} />
               </Cell>
               <Cell align="right" className="num text-xs text-paper">{n(row.sessions)}</Cell>
@@ -447,13 +448,13 @@ function ContentSection({ data }: { data: Report }) {
   return (
     <Panel className="min-w-0">
       <SectionHeader
-        title={view === 'pages' ? 'Top pages' : 'Landing pages'}
+        title={view === 'pages' ? t('Top pages') : t('Landing pages')}
         level={3}
         action={
           <Segmented
-            label="Page view"
+            label={t('Page view')}
             value={view}
-            options={[{ id: 'pages' as const, label: 'Top pages' }, { id: 'landing' as const, label: 'Landing' }]}
+            options={[{ id: 'pages' as const, label: t('Top pages') }, { id: 'landing' as const, label: t('Landing') }]}
             onChange={setView}
           />
         }
@@ -461,15 +462,15 @@ function ContentSection({ data }: { data: Report }) {
 
       {view === 'pages' ? (
         data.pages.length === 0 ? (
-          <DataState kind="empty" title="No page views" body="Nothing was viewed in this range." />
+          <DataState kind="empty" title={t('No page views')} body={t('Nothing was viewed in this range.')} />
         ) : (
           <Table
             head={[
-              'Page',
-              { label: 'Views', align: 'right' },
-              { label: 'Users', align: 'right' },
-              { label: 'Avg. time', align: 'right' },
-              { label: 'Leads', align: 'right' },
+              t('Page'),
+              { label: t('Views'), align: 'right' },
+              { label: t('Users'), align: 'right' },
+              { label: t('Avg. time'), align: 'right' },
+              { label: t('Leads'), align: 'right' },
             ]}
             minWidth={720}
           >
@@ -491,16 +492,16 @@ function ContentSection({ data }: { data: Report }) {
           </Table>
         )
       ) : data.landingPages.length === 0 ? (
-        <DataState kind="empty" title="No landing pages" body="No sessions started in this range." />
+        <DataState kind="empty" title={t('No landing pages')} body={t('No sessions started in this range.')} />
       ) : (
         <Table
           head={[
-            'Landing page',
-            { label: 'Sessions', align: 'right' },
-            { label: 'Users', align: 'right' },
-            { label: 'Bounce', align: 'right' },
-            { label: 'Leads', align: 'right' },
-            { label: 'CVR', align: 'right' },
+            t('Landing page'),
+            { label: t('Sessions'), align: 'right' },
+            { label: t('Users'), align: 'right' },
+            { label: t('Bounce'), align: 'right' },
+            { label: t('Leads'), align: 'right' },
+            { label: t('CVR'), align: 'right' },
           ]}
           minWidth={720}
         >
@@ -524,8 +525,8 @@ function ContentSection({ data }: { data: Report }) {
 
       <p className="t-note border-t border-hairline px-4 py-2.5">
         {view === 'pages'
-          ? 'Leads here are enquiries sent FROM that page.'
-          : 'Leads here are enquiries attributed to the session that STARTED on that page — which is the number an ad campaign is judged on.'}
+          ? t('Leads here are enquiries sent FROM that page.')
+          : t('Leads here are enquiries attributed to the session that STARTED on that page — which is the number an ad campaign is judged on.')}
       </p>
     </Panel>
   );
@@ -556,10 +557,12 @@ function ConversionSection({ data }: { data: Report }) {
   return (
     <Grid>
       <Panel className="col-span-12 min-w-0 lg:col-span-5">
-        <SectionHeader title="Conversion path" level={3} note={data.rangeLabel.toLowerCase()} />
+        <SectionHeader title={t('Conversion path')} level={3} note={t(data.rangeLabel.toLowerCase())} />
         <Funnel
           stages={data.funnel.map((stage) => ({
             ...stage,
+            // Stage labels are English text from the endpoint.
+            label: t(stage.label),
             hint: stage.events ? stage.events.join(' · ') : undefined,
           }))}
         />
@@ -573,19 +576,19 @@ function ConversionSection({ data }: { data: Report }) {
           under the word "funnel" without this line would not be.
         */}
         <p className="t-note border-t border-hairline px-4 py-2.5">
-          Stages after the first are <span className="text-paper">event counts</span>, not unique
-          users: one visitor who clicks two CTAs is counted twice. GA4&rsquo;s user-scoped funnel is
-          an Exploration and is not available through the Data API.
+          {t('Stages after the first are')}{' '}
+          <span className="text-paper">{t('event counts')}</span>
+          {t(', not unique users: one visitor who clicks two CTAs is counted twice. GA4’s user-scoped funnel is an Exploration and is not available through the Data API.')}
         </p>
       </Panel>
 
       <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-7">
         <Panel className="min-w-0">
-          <SectionHeader title="Events behind the stages" level={3} />
+          <SectionHeader title={t('Events behind the stages')} level={3} />
           {data.events.length === 0 ? (
-            <DataState kind="empty" title="No events" body="No funnel event fired in this range." />
+            <DataState kind="empty" title={t('No events')} body={t('No funnel event fired in this range.')} />
           ) : (
-            <Table head={['Event', { label: 'Count', align: 'right' }]} minWidth={560}>
+            <Table head={[t('Event'), { label: t('Count'), align: 'right' }]} minWidth={560}>
               {data.events.map((event) => (
                 <Row key={event.name}>
                   <Cell className="num break-all text-xs text-paper">{event.name}</Cell>
@@ -597,8 +600,8 @@ function ConversionSection({ data }: { data: Report }) {
         </Panel>
 
         <Panel className="min-w-0">
-          <SectionHeader title="By surface" level={3} note="which product the interaction was in" />
-          <BarList rows={byForm} empty="No events to group." />
+          <SectionHeader title={t('By surface')} level={3} note={t('which product the interaction was in')} />
+          <BarList rows={byForm.map((row) => ({ ...row, key: t(row.key) }))} empty={t('No events to group.')} />
         </Panel>
       </div>
     </Grid>
@@ -622,26 +625,26 @@ function AudienceSection({ data }: { data: Report }) {
 
   return (
     <Panel className="min-w-0">
-      <SectionHeader title="Device" level={3} note="mobile ≠ desktop here" />
+      <SectionHeader title={t('Device')} level={3} note={t('mobile ≠ desktop here')} />
       {data.devices.length === 0 ? (
-        <DataState kind="empty" title="No sessions" body="Nothing to break down in this range." />
+        <DataState kind="empty" title={t('No sessions')} body={t('Nothing to break down in this range.')} />
       ) : (
         <Table
           head={[
-            'Device',
-            { label: 'Sessions', align: 'right' },
-            { label: 'Share', align: 'right' },
-            { label: 'Users', align: 'right' },
-            { label: 'Engaged', align: 'right' },
-            { label: 'Leads', align: 'right' },
-            { label: 'CVR', align: 'right' },
+            t('Device'),
+            { label: t('Sessions'), align: 'right' },
+            { label: tc('ratio', 'Share'), align: 'right' },
+            { label: t('Users'), align: 'right' },
+            { label: t('Engaged'), align: 'right' },
+            { label: t('Leads'), align: 'right' },
+            { label: t('CVR'), align: 'right' },
           ]}
           minWidth={720}
         >
           {data.devices.map((row) => (
             <Row key={row.device}>
               <Cell className="min-w-0">
-                <span className="text-xs capitalize text-paper">{row.device}</span>
+                <span className="text-xs capitalize text-paper">{t(row.device)}</span>
                 <Meter value={row.sessions} max={Math.max(...data.devices.map((d) => d.sessions), 1)} />
               </Cell>
               <Cell align="right" className="num text-xs text-paper">{n(row.sessions)}</Cell>
@@ -662,8 +665,7 @@ function AudienceSection({ data }: { data: Report }) {
           the only place that difference is measurable, and saying so is what
           stops it reading as a stock breakdown nobody acts on. */}
       <p className="t-note border-t border-hairline px-4 py-2.5">
-        The public site ships a separate portrait-mobile composition. A gap in the lead rate between
-        the two is a product signal, not a device fact.
+        {t('The public site ships a separate portrait-mobile composition. A gap in the lead rate between the two is a product signal, not a device fact.')}
       </p>
     </Panel>
   );
@@ -676,25 +678,22 @@ function MeasurementNote({ data, cached }: { data: Report; cached: boolean }) {
     <Panel className="px-4 py-3.5">
       <div className="grid gap-3 lg:grid-cols-[1fr_auto] lg:items-end">
         <p className="max-w-prose text-xs leading-relaxed text-haze">
-          <span className="text-paper">Analytics reflects traffic where analytics measurement was permitted.</span>{' '}
-          Google Analytics loads only after a visitor accepts it, and a visitor who declines is never
-          contacted by Google at all — so real traffic is higher than every figure above by an amount
-          this property cannot know. GA4 terms are used as GA4 defines them: a session is a visit,
-          not a person.
+          <span className="text-paper">{t('Analytics reflects traffic where analytics measurement was permitted.')}</span>{' '}
+          {t('Google Analytics loads only after a visitor accepts it, and a visitor who declines is never contacted by Google at all — so real traffic is higher than every figure above by an amount this property cannot know. GA4 terms are used as GA4 defines them: a session is a visit, not a person.')}
         </p>
         <dl className="grid gap-1 lg:text-right">
-          <Line term="Traffic" value={data.environmentFilter.note} />
+          <Line term={t('Traffic')} value={t(data.environmentFilter.note)} />
           <Line
-            term="Filter"
+            term={t('Filter')}
             value={
               data.environmentFilter.applied
                 ? `${data.environmentFilter.by} · ${data.environmentFilter.hosts.join(', ')}`
-                : 'none'
+                : t('none')
             }
           />
           <Line
-            term="Fetched"
-            value={`${new Date(data.fetchedAt).toLocaleString('en-GB')}${cached ? ' · cached' : ''}`}
+            term={t('Fetched')}
+            value={`${new Date(data.fetchedAt).toLocaleString(intlLocale('en-GB'))}${cached ? ` · ${t('cached')}` : ''}`}
           />
         </dl>
       </div>
@@ -747,6 +746,7 @@ function Line({ term, value }: { term: string; value: ReactNode }) {
  * component carries an identifier for a person.
  */
 
+// English source text; translated where it is rendered.
 const DIMENSIONS: { id: AttributionDimension; label: string }[] = [
   { id: 'source', label: 'Source' },
   { id: 'medium', label: 'Medium' },
@@ -799,13 +799,13 @@ function RevenueAttribution({ traffic }: { traffic: Report | null }) {
   return (
     <Panel className="min-w-0">
       <SectionHeader
-        title="Source to revenue"
-        note="Portal records, aligned with GA4 sessions"
+        title={t('Source to revenue')}
+        note={t('Portal records, aligned with GA4 sessions')}
         action={
           <Segmented
-            label="Dimension"
+            label={t('Dimension')}
             value={dimension}
-            options={DIMENSIONS}
+            options={DIMENSIONS.map((d) => ({ ...d, label: t(d.label) }))}
             onChange={setDimension}
           />
         }
@@ -820,20 +820,20 @@ function RevenueAttribution({ traffic }: { traffic: Report | null }) {
       {state === 'error' && (
         <DataState
           kind="unavailable"
-          title="Unavailable"
-          body="The attribution aggregate could not be read. It needs the P2 migration to have been applied."
+          title={t('Unavailable')}
+          body={t('The attribution aggregate could not be read. It needs the P2 migration to have been applied.')}
         />
       )}
 
       {state === 'unconfigured' && (
-        <DataState kind="unconfigured" title="Not connected" body="No database is configured in this environment." />
+        <DataState kind="unconfigured" title={t('Not connected')} body={t('No database is configured in this environment.')} />
       )}
 
       {state === 'ready' && ranked.length === 0 && (
         <DataState
           kind="empty"
-          title="Nothing to attribute yet"
-          body="This table fills in as leads arrive and become opportunities. It needs no Google credentials for anything except the sessions column."
+          title={t('Nothing to attribute yet')}
+          body={t('This table fills in as leads arrive and become opportunities. It needs no Google credentials for anything except the sessions column.')}
         />
       )}
 
@@ -841,13 +841,13 @@ function RevenueAttribution({ traffic }: { traffic: Report | null }) {
         <>
           <Table
             head={[
-              DIMENSIONS.find((d) => d.id === dimension)!.label,
-              { label: 'Sessions', align: 'right' },
-              { label: 'Leads', align: 'right' },
-              { label: 'Qualified', align: 'right' },
-              { label: 'Opportunities', align: 'right' },
-              { label: 'Won', align: 'right' },
-              { label: 'Won value', align: 'right' },
+              t(DIMENSIONS.find((d) => d.id === dimension)!.label),
+              { label: t('Sessions'), align: 'right' },
+              { label: t('Leads'), align: 'right' },
+              { label: t('Qualified'), align: 'right' },
+              { label: t('Opportunities'), align: 'right' },
+              { label: t('Won'), align: 'right' },
+              { label: t('Won value'), align: 'right' },
             ]}
             minWidth={840}
           >
@@ -857,29 +857,22 @@ function RevenueAttribution({ traffic }: { traffic: Report | null }) {
           {/* §34 — the methodology, next to the numbers and not in a document. */}
           <div className="grid gap-2 border-t border-hairline px-4 py-3">
             <p className="max-w-prose text-xs leading-relaxed text-haze">
-              <span className="text-paper">Two measurements, side by side — not one join.</span>{' '}
-              Leads, Qualified, Opportunities, Won and Won value come from the Portal&rsquo;s own
-              records and are linked by real foreign keys: a lead&rsquo;s recorded attribution, the
-              opportunity it became, the value it closed for. Sessions comes from GA4, counts visits
-              rather than people, includes only visitors who accepted analytics, and is placed beside
-              them by matching the {dimension} string.
+              <span className="text-paper">{t('Two measurements, side by side — not one join.')}</span>{' '}
+              {t('Leads, Qualified, Opportunities, Won and Won value come from the Portal’s own records and are linked by real foreign keys: a lead’s recorded attribution, the opportunity it became, the value it closed for. Sessions comes from GA4, counts visits rather than people, includes only visitors who accepted analytics, and is placed beside them by matching the {dimension} string.', { dimension: t(dimension) })}
             </p>
             <p className="max-w-prose text-xs leading-relaxed text-haze">
-              There is deliberately <span className="text-paper">no conversion rate</span> in this
-              table. The two populations do not overlap, so a rate built by dividing one by the other
-              would be precision that does not exist. Nothing here identifies an individual, and no
-              request behind it carries a person&rsquo;s identifier.
+              {t('There is deliberately')}{' '}
+              <span className="text-paper">{t('no conversion rate')}</span>{' '}
+              {t('in this table. The two populations do not overlap, so a rate built by dividing one by the other would be precision that does not exist. Nothing here identifies an individual, and no request behind it carries a person’s identifier.')}
             </p>
             {!traffic && (
               <p className="t-note">
-                Sessions are unavailable in this view — GA4 is not connected, or its report could not
-                be read. Every other column is unaffected.
+                {t('Sessions are unavailable in this view — GA4 is not connected, or its report could not be read. Every other column is unaffected.')}
               </p>
             )}
             {!anyWon && (
               <p className="t-note">
-                No opportunity has been won yet, so every revenue figure is zero because it is
-                measured as zero — not because it is missing.
+                {t('No opportunity has been won yet, so every revenue figure is zero because it is measured as zero — not because it is missing.')}
               </p>
             )}
           </div>
@@ -901,7 +894,7 @@ function AttributionRowView({
       <Cell className="min-w-0 break-words text-[12px] text-paper">{row.key}</Cell>
       <Cell align="right" className="num text-xs text-haze">
         {ga4 === undefined
-          ? <span title="GA4 did not report this key — which is not the same as zero sessions">—</span>
+          ? <span title={t('GA4 did not report this key — which is not the same as zero sessions')}>—</span>
           : n(ga4)}
       </Cell>
       <Cell align="right" className="num text-xs text-paper">{n(row.leads)}</Cell>
@@ -914,8 +907,8 @@ function AttributionRowView({
         ) : row.won_currencies > 1 ? (
           // Two currencies behind one figure. The count is true; the sum is not
           // a thing this system can compute, so it is not printed.
-          <span className="text-haze" title="Won in more than one currency — no rate exists to add them">
-            mixed
+          <span className="text-haze" title={t('Won in more than one currency — no rate exists to add them')}>
+            {t('mixed')}
           </span>
         ) : (
           <span className="text-signal">{moneyCompact(row.won_value, row.won_currency ?? 'HUF')}</span>

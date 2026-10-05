@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { useAuth } from './AuthProvider';
 import { canAccess, type Capability } from '@/lib/permissions';
 import { Skeleton } from '@/components/ui';
+import { t } from '@/lib/i18n';
 
 /**
  * Route-level gate.
@@ -23,7 +24,7 @@ export function ProtectedRoute({
   if (loading) {
     return (
       <div className="grid min-h-dvh place-items-center p-8">
-        <div className="w-full max-w-md space-y-3" aria-busy="true" aria-label="Loading">
+        <div className="w-full max-w-md space-y-3" aria-busy="true" aria-label={t('Loading')}>
           <Skeleton className="h-7 w-40" />
           <Skeleton className="h-24 w-full" />
           <Skeleton className="h-24 w-full" />
@@ -44,10 +45,9 @@ export function ProtectedRoute({
     return (
       <div className="grid min-h-dvh place-items-center p-8 text-center">
         <div className="max-w-md">
-          <p className="font-data text-[11px] uppercase tracking-[0.18em] text-danger">No profile</p>
+          <p className="font-data text-[11px] uppercase tracking-[0.18em] text-danger">{t('No profile')}</p>
           <p className="mt-2 text-sm text-haze">
-            You are signed in, but this account has no profile record. An administrator needs to
-            finish setting it up.
+            {t('You are signed in, but this account has no profile record. An administrator needs to finish setting it up.')}
           </p>
         </div>
       </div>

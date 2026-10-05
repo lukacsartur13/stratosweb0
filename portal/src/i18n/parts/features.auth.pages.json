@@ -1,0 +1,130 @@
+{
+ "Portal": {
+  "hu": "Portál",
+  "de": "Portal"
+ },
+ "Back to the website": {
+  "hu": "Vissza a weboldalra",
+  "de": "Zurück zur Website"
+ },
+ "Supabase is not configured in this environment. Copy": {
+  "hu": "A Supabase nincs beállítva ebben a környezetben. Másold a(z)",
+  "de": "Supabase ist in dieser Umgebung nicht konfiguriert. Kopieren Sie"
+ },
+ "to": {
+  "hu": "fájlt ide:",
+  "de": "nach"
+ },
+ "and restart the dev server.": {
+  "hu": "és indítsd újra a fejlesztői szervert.",
+  "de": "und starten Sie den Dev-Server neu."
+ },
+ "Sign in": {
+  "hu": "Bejelentkezés",
+  "de": "Anmelden"
+ },
+ "This area is for Stratos staff and clients.": {
+  "hu": "Ez a felület a Stratos munkatársainak és ügyfeleinek szól.",
+  "de": "Dieser Bereich ist für Mitarbeitende und Kunden von Stratos."
+ },
+ "Email": {
+  "hu": "E-mail",
+  "de": "E-Mail"
+ },
+ "Password": {
+  "hu": "Jelszó",
+  "de": "Passwort"
+ },
+ "Signing in…": {
+  "hu": "Bejelentkezés…",
+  "de": "Anmeldung…"
+ },
+ "Forgotten your password?": {
+  "hu": "Elfelejtetted a jelszavad?",
+  "de": "Passwort vergessen?"
+ },
+ "Reset password": {
+  "hu": "Jelszó visszaállítása",
+  "de": "Passwort zurücksetzen"
+ },
+ "We will email you a link to choose a new one.": {
+  "hu": "Küldünk e-mailben egy linket, amellyel újat választhatsz.",
+  "de": "Wir senden Ihnen per E-Mail einen Link, um ein neues festzulegen."
+ },
+ "If that address has an account, a reset link is on its way. It expires in one hour.": {
+  "hu": "Ha ehhez a címhez tartozik fiók, már úton van a visszaállító link. Egy óra múlva lejár.",
+  "de": "Falls zu dieser Adresse ein Konto besteht, ist ein Link zum Zurücksetzen unterwegs. Er läuft nach einer Stunde ab."
+ },
+ "Sending…": {
+  "hu": "Küldés…",
+  "de": "Wird gesendet…"
+ },
+ "Send reset link": {
+  "hu": "Link küldése",
+  "de": "Link senden"
+ },
+ "Back to sign in": {
+  "hu": "Vissza a bejelentkezéshez",
+  "de": "Zurück zur Anmeldung"
+ },
+ "Choose a new password": {
+  "hu": "Új jelszó megadása",
+  "de": "Neues Passwort festlegen"
+ },
+ "Twelve characters or more, with a mix of cases and a number.": {
+  "hu": "Legalább tizenkét karakter, kis- és nagybetűvel, valamint számmal.",
+  "de": "Mindestens zwölf Zeichen, mit Groß- und Kleinbuchstaben und einer Ziffer."
+ },
+ "That link has expired or has already been used. Request a new one.": {
+  "hu": "Ez a link lejárt vagy már felhasználták. Kérj újat.",
+  "de": "Dieser Link ist abgelaufen oder wurde bereits verwendet. Fordern Sie einen neuen an."
+ },
+ "New password": {
+  "hu": "Új jelszó",
+  "de": "Neues Passwort"
+ },
+ "Confirm password": {
+  "hu": "Jelszó megerősítése",
+  "de": "Passwort bestätigen"
+ },
+ "Saving…": {
+  "hu": "Mentés…",
+  "de": "Wird gespeichert…"
+ },
+ "Save password": {
+  "hu": "Jelszó mentése",
+  "de": "Passwort speichern"
+ },
+ "Enter your email address.": {
+  "hu": "Add meg az e-mail-címed.",
+  "de": "Geben Sie Ihre E-Mail-Adresse ein."
+ },
+ "That does not look like an email address.": {
+  "hu": "Ez nem tűnik e-mail-címnek.",
+  "de": "Das sieht nicht nach einer E-Mail-Adresse aus."
+ },
+ "Enter your password.": {
+  "hu": "Add meg a jelszavad.",
+  "de": "Geben Sie Ihr Passwort ein."
+ },
+ "Use at least 12 characters.": {
+  "hu": "Legalább 12 karaktert használj.",
+  "de": "Verwenden Sie mindestens 12 Zeichen."
+ },
+ "Include a lower-case letter.": {
+  "hu": "Legyen benne kisbetű.",
+  "de": "Verwenden Sie einen Kleinbuchstaben."
+ },
+ "Include an upper-case letter.": {
+  "hu": "Legyen benne nagybetű.",
+  "de": "Verwenden Sie einen Großbuchstaben."
+ },
+ "Include a number.": {
+  "hu": "Legyen benne szám.",
+  "de": "Verwenden Sie eine Ziffer."
+ },
+ "The two passwords do not match.": {
+  "hu": "A két jelszó nem egyezik.",
+  "de": "Die beiden Passwörter stimmen nicht überein."
+ }
+}

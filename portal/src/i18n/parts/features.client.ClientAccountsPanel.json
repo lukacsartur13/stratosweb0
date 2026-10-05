@@ -1,0 +1,247 @@
+{
+ "A project": {
+  "hu": "Egy projekt",
+  "en": "A project",
+  "de": "Ein Projekt"
+ },
+ "The change could not be saved.": {
+  "hu": "A módosítást nem sikerült menteni.",
+  "en": "The change could not be saved.",
+  "de": "Die Änderung konnte nicht gespeichert werden."
+ },
+ "Client accounts": {
+  "hu": "Ügyfélfiókok",
+  "en": "Client accounts",
+  "de": "Kundenkonten"
+ },
+ "{n} active": {
+  "hu": "{n} aktív",
+  "en": "{n} active",
+  "de": "{n} aktiv"
+ },
+ "Invite": {
+  "hu": "Meghívás",
+  "en": "Invite",
+  "de": "Einladen"
+ },
+ "Client accounts are not set up in this database yet.": {
+  "hu": "Az ügyfélfiókok még nincsenek beállítva ebben az adatbázisban.",
+  "en": "Client accounts are not set up in this database yet.",
+  "de": "Kundenkonten sind in dieser Datenbank noch nicht eingerichtet."
+ },
+ "No client accounts. An invited client sees only the projects you assign and the files you share — never the tracker, notes, money or market values.": {
+  "hu": "Nincs ügyfélfiók. A meghívott ügyfél csak a hozzá rendelt projekteket és a megosztott fájlokat látja — a követést, a jegyzeteket, a pénzügyeket és a piaci értékeket soha.",
+  "en": "No client accounts. An invited client sees only the projects you assign and the files you share — never the tracker, notes, money or market values.",
+  "de": "Keine Kundenkonten. Ein eingeladener Kunde sieht nur die zugewiesenen Projekte und die geteilten Dateien — nie das Tracking, Notizen, Finanzen oder Marktwerte."
+ },
+ "Revoked {date}": {
+  "hu": "Visszavonva: {date}",
+  "en": "Revoked {date}",
+  "de": "Widerrufen am {date}"
+ },
+ "Invited, not linked yet": {
+  "hu": "Meghívva, még nincs összekapcsolva",
+  "en": "Invited, not linked yet",
+  "de": "Eingeladen, noch nicht verknüpft"
+ },
+ "Active since {date}": {
+  "hu": "Aktív {date} óta",
+  "en": "Active since {date}",
+  "de": "Aktiv seit {date}"
+ },
+ "Invited {date} · not signed in yet": {
+  "hu": "Meghívva: {date} · még nem jelentkezett be",
+  "en": "Invited {date} · not signed in yet",
+  "de": "Eingeladen am {date} · noch nicht angemeldet"
+ },
+ "Re-invite": {
+  "hu": "Újrameghívás",
+  "en": "Re-invite",
+  "de": "Erneut einladen"
+ },
+ "New link": {
+  "hu": "Új link",
+  "en": "New link",
+  "de": "Neuer Link"
+ },
+ "Revoke {email}? Every project and every share of this account ends now.": {
+  "hu": "Visszavonod: {email}? A fiók minden projekt-hozzáférése és megosztása azonnal megszűnik.",
+  "en": "Revoke {email}? Every project and every share of this account ends now.",
+  "de": "{email} widerrufen? Alle Projekte und Freigaben dieses Kontos enden sofort."
+ },
+ "Revoke": {
+  "hu": "Visszavonás",
+  "en": "Revoke",
+  "de": "Widerrufen"
+ },
+ "No project assigned — this account sees nothing.": {
+  "hu": "Nincs hozzárendelt projekt — ez a fiók semmit sem lát.",
+  "en": "No project assigned — this account sees nothing.",
+  "de": "Kein Projekt zugewiesen — dieses Konto sieht nichts."
+ },
+ "Remove {project} from {email}": {
+  "hu": "{project} eltávolítása innen: {email}",
+  "en": "Remove {project} from {email}",
+  "de": "{project} von {email} entfernen"
+ },
+ "Assign a project to {email}": {
+  "hu": "Projekt hozzárendelése: {email}",
+  "en": "Assign a project to {email}",
+  "de": "Projekt zuweisen an {email}"
+ },
+ "Assign a project…": {
+  "hu": "Projekt hozzárendelése…",
+  "en": "Assign a project…",
+  "de": "Projekt zuweisen…"
+ },
+ "Removing a project ends every share in it. Assigning it again later restores no share.": {
+  "hu": "A projekt eltávolítása minden benne lévő megosztást megszüntet. Későbbi újbóli hozzárendeléskor a megosztások nem állnak vissza.",
+  "en": "Removing a project ends every share in it. Assigning it again later restores no share.",
+  "de": "Das Entfernen eines Projekts beendet alle Freigaben darin. Eine spätere erneute Zuweisung stellt keine Freigabe wieder her."
+ },
+ "New link for {email}": {
+  "hu": "Új link: {email}",
+  "en": "New link for {email}",
+  "de": "Neuer Link für {email}"
+ },
+ "Invite a client account": {
+  "hu": "Ügyfélfiók meghívása",
+  "en": "Invite a client account",
+  "de": "Kundenkonto einladen"
+ },
+ "The client chooses their own password from the link. No e-mail is sent: you send the link yourself.": {
+  "hu": "Az ügyfél a linken keresztül maga választ jelszót. E-mail nem megy ki: a linket te küldöd el.",
+  "en": "The client chooses their own password from the link. No e-mail is sent: you send the link yourself.",
+  "de": "Der Kunde wählt über den Link selbst ein Passwort. Es wird keine E-Mail versendet: Sie senden den Link selbst."
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "en": "Cancel",
+  "de": "Abbrechen"
+ },
+ "Working…": {
+  "hu": "Folyamatban…",
+  "en": "Working…",
+  "de": "Wird bearbeitet…"
+ },
+ "Make a new link": {
+  "hu": "Új link készítése",
+  "en": "Make a new link",
+  "de": "Neuen Link erstellen"
+ },
+ "Contact (optional)": {
+  "hu": "Kapcsolattartó (opcionális)",
+  "en": "Contact (optional)",
+  "de": "Kontakt (optional)"
+ },
+ "No contact": {
+  "hu": "Nincs kapcsolattartó",
+  "en": "No contact",
+  "de": "Kein Kontakt"
+ },
+ "Name": {
+  "hu": "Név",
+  "en": "Name",
+  "de": "Name"
+ },
+ "E-mail": {
+  "hu": "E-mail",
+  "en": "E-mail",
+  "de": "E-Mail"
+ },
+ "Fixed for an existing account.": {
+  "hu": "Meglévő fióknál nem módosítható.",
+  "en": "Fixed for an existing account.",
+  "de": "Bei einem bestehenden Konto fest."
+ },
+ "Also assign": {
+  "hu": "Hozzárendelés még",
+  "en": "Also assign",
+  "de": "Zusätzlich zuweisen"
+ },
+ "Projects": {
+  "hu": "Projektek",
+  "en": "Projects",
+  "de": "Projekte"
+ },
+ "This client has no projects yet.": {
+  "hu": "Ennek az ügyfélnek még nincs projektje.",
+  "en": "This client has no projects yet.",
+  "de": "Dieser Kunde hat noch keine Projekte."
+ },
+ "A staff address, or one that already belongs to another company, is refused and left unchanged. Access starts only once the account is linked; if a step fails, inviting again is safe.": {
+  "hu": "A munkatársi címet vagy a már másik céghez tartozót a rendszer elutasítja, és változatlanul hagyja. A hozzáférés csak a fiók összekapcsolása után indul; ha egy lépés meghiúsul, nyugodtan meghívhatod újra.",
+  "en": "A staff address, or one that already belongs to another company, is refused and left unchanged. Access starts only once the account is linked; if a step fails, inviting again is safe.",
+  "de": "Eine Mitarbeiteradresse oder eine, die bereits zu einer anderen Firma gehört, wird abgelehnt und bleibt unverändert. Der Zugriff beginnt erst, wenn das Konto verknüpft ist; schlägt ein Schritt fehl, kann gefahrlos erneut eingeladen werden."
+ },
+ "Password link ready": {
+  "hu": "A jelszólink kész",
+  "en": "Password link ready",
+  "de": "Passwort-Link bereit"
+ },
+ "Invitation link ready": {
+  "hu": "A meghívólink kész",
+  "en": "Invitation link ready",
+  "de": "Einladungslink bereit"
+ },
+ "Send this to {email} yourself — by e-mail or message. It is shown only now.": {
+  "hu": "Küldd el magad ide: {email} — e-mailben vagy üzenetben. Csak most látható.",
+  "en": "Send this to {email} yourself — by e-mail or message. It is shown only now.",
+  "de": "Senden Sie dies selbst an {email} — per E-Mail oder Nachricht. Er wird nur jetzt angezeigt."
+ },
+ "Done": {
+  "hu": "Kész",
+  "en": "Done",
+  "de": "Erledigt"
+ },
+ "Link": {
+  "hu": "Link",
+  "en": "Link",
+  "de": "Link"
+ },
+ "Copied": {
+  "hu": "Másolva",
+  "en": "Copied",
+  "de": "Kopiert"
+ },
+ "Copy link": {
+  "hu": "Link másolása",
+  "en": "Copy link",
+  "de": "Link kopieren"
+ },
+ "It works once, and expires (the project’s e-mail link expiry — 1 hour by default).": {
+  "hu": "Egyszer használható, és lejár (a projekt e-mail-link lejárati ideje szerint — alapból 1 óra).",
+  "en": "It works once, and expires (the project’s e-mail link expiry — 1 hour by default).",
+  "de": "Er funktioniert einmal und läuft ab (nach der E-Mail-Link-Gültigkeit des Projekts — standardmäßig 1 Stunde)."
+ },
+ "Making a new link makes this one stop working.": {
+  "hu": "Új link készítésekor ez megszűnik működni.",
+  "en": "Making a new link makes this one stop working.",
+  "de": "Ein neuer Link macht diesen ungültig."
+ },
+ "It is not stored anywhere. If it is lost, make a new one.": {
+  "hu": "Sehol nincs tárolva. Ha elveszik, készíts újat.",
+  "en": "It is not stored anywhere. If it is lost, make a new one.",
+  "de": "Er wird nirgends gespeichert. Geht er verloren, erstellen Sie einen neuen."
+ },
+ "This account already has a password: the link lets them choose a new one.": {
+  "hu": "Ennek a fióknak már van jelszava: a linkkel újat választhat.",
+  "en": "This account already has a password: the link lets them choose a new one.",
+  "de": "Dieses Konto hat bereits ein Passwort: Mit dem Link kann ein neues gewählt werden."
+ },
+ "The client chooses their own password.": {
+  "hu": "Az ügyfél maga választ jelszót.",
+  "en": "The client chooses their own password.",
+  "de": "Der Kunde wählt sein Passwort selbst."
+ },
+ "Private": {
+  "hu": "Bizalmas",
+  "en": "Private",
+  "de": "Vertraulich"
+ },
+ "Anyone holding the link can sign in as this client until it is used.": {
+  "hu": "Amíg fel nem használják, bárki, akinél a link van, beléphet ezzel az ügyféllel.",
+  "en": "Anyone holding the link can sign in as this client until it is used.",
+  "de": "Bis zur Verwendung kann sich jeder mit dem Link als dieser Kunde anmelden."
+ }
+}

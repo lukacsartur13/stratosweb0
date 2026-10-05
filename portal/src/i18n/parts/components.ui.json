@@ -1,0 +1,22 @@
+{
+ "Unavailable": {
+  "hu": "Nem elérhető",
+  "de": "Nicht verfügbar"
+ },
+ "Try again": {
+  "hu": "Újra",
+  "de": "Erneut versuchen"
+ },
+ "{what} has not been recorded": {
+  "hu": "{what}: nincs rögzítve",
+  "de": "{what} wurde nicht erfasst"
+ },
+ "Not recorded": {
+  "hu": "Nincs rögzítve",
+  "de": "Nicht erfasst"
+ },
+ "Close": {
+  "hu": "Bezárás",
+  "de": "Schließen"
+ }
+}

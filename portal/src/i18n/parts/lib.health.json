@@ -1,0 +1,38 @@
+{
+ "Your session has expired. Sign in again.": {
+  "hu": "Lejárt a munkameneted. Jelentkezz be újra.",
+  "de": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."
+ },
+ "This account cannot view system health.": {
+  "hu": "Ez a fiók nem láthatja a rendszer állapotát.",
+  "de": "Dieses Konto kann den Systemstatus nicht einsehen."
+ },
+ "System health could not be read.": {
+  "hu": "A rendszer állapota nem olvasható.",
+  "de": "Der Systemstatus konnte nicht gelesen werden."
+ },
+ "System health could not be reached.": {
+  "hu": "A rendszer állapota nem érhető el.",
+  "de": "Der Systemstatus ist nicht erreichbar."
+ },
+ "OK": {
+  "hu": "OK",
+  "de": "OK"
+ },
+ "Degraded": {
+  "hu": "Korlátozott",
+  "de": "Eingeschränkt"
+ },
+ "Not configured": {
+  "hu": "Nincs beállítva",
+  "de": "Nicht konfiguriert"
+ },
+ "Unreachable": {
+  "hu": "Nem érhető el",
+  "de": "Nicht erreichbar"
+ },
+ "Off": {
+  "hu": "Kikapcsolva",
+  "de": "Aus"
+ }
+}

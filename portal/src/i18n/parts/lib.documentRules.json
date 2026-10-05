@@ -1,0 +1,102 @@
+{
+ ".{ext} files are not accepted.": {
+  "hu": ".{ext} fájl nem tölthető fel.",
+  "de": ".{ext}-Dateien werden nicht akzeptiert."
+ },
+ "Files without an extension are not accepted.": {
+  "hu": "Kiterjesztés nélküli fájl nem tölthető fel.",
+  "de": "Dateien ohne Endung werden nicht akzeptiert."
+ },
+ "This file's content does not match .{ext}, so it was not uploaded.": {
+  "hu": "A fájl tartalma nem egyezik a .{ext} kiterjesztéssel, ezért nem lett feltöltve.",
+  "de": "Der Inhalt dieser Datei passt nicht zu .{ext}, daher wurde sie nicht hochgeladen."
+ },
+ "This client account is not assigned to this project.": {
+  "hu": "Ez az ügyfélfiók nincs hozzárendelve ehhez a projekthez.",
+  "de": "Dieses Kundenkonto ist diesem Projekt nicht zugewiesen."
+ },
+ "This file type is not accepted, or its content does not match its extension.": {
+  "hu": "Ez a fájltípus nem tölthető fel, vagy a tartalma nem egyezik a kiterjesztésével.",
+  "de": "Dieser Dateityp wird nicht akzeptiert, oder der Inhalt passt nicht zur Endung."
+ },
+ "The file is larger than {max}, the upload limit.": {
+  "hu": "A fájl nagyobb, mint {max}, a feltöltési korlát.",
+  "de": "Die Datei ist größer als {max}, das Upload-Limit."
+ },
+ "That folder is in the trash. Restore it first.": {
+  "hu": "Ez a mappa a Kukában van. Előbb állítsd vissza.",
+  "de": "Dieser Ordner ist im Papierkorb. Stellen Sie ihn zuerst wieder her."
+ },
+ "A folder cannot be moved inside itself.": {
+  "hu": "Mappa nem helyezhető át saját magába.",
+  "de": "Ein Ordner kann nicht in sich selbst verschoben werden."
+ },
+ "Files and folders stay in their own project.": {
+  "hu": "A fájlok és mappák a saját projektjükben maradnak.",
+  "de": "Dateien und Ordner bleiben in ihrem eigenen Projekt."
+ },
+ "A finished upload cannot be changed. Upload a new file instead.": {
+  "hu": "Befejezett feltöltés nem módosítható. Tölts fel inkább új fájlt.",
+  "de": "Ein abgeschlossener Upload kann nicht geändert werden. Laden Sie stattdessen eine neue Datei hoch."
+ },
+ "The stored file is missing or incomplete, so it was not marked as uploaded.": {
+  "hu": "A tárolt fájl hiányzik vagy hiányos, ezért nem lett feltöltöttként jelölve.",
+  "de": "Die gespeicherte Datei fehlt oder ist unvollständig, daher wurde sie nicht als hochgeladen markiert."
+ },
+ "Use a name of 1–200 characters without / or \\.": {
+  "hu": "1–200 karakteres nevet adj meg, / és \\ nélkül.",
+  "de": "Verwenden Sie einen Namen mit 1–200 Zeichen ohne / oder \\."
+ },
+ "Something in this folder already has that name.": {
+  "hu": "Ebben a mappában már van valami ezzel a névvel.",
+  "de": "In diesem Ordner gibt es bereits etwas mit diesem Namen."
+ },
+ "That folder belongs to another project.": {
+  "hu": "Ez a mappa egy másik projekthez tartozik.",
+  "de": "Dieser Ordner gehört zu einem anderen Projekt."
+ },
+ "Only the portal owner can do this.": {
+  "hu": "Ezt csak a portál tulajdonosa teheti meg.",
+  "de": "Das kann nur der Portal-Inhaber."
+ },
+ "It no longer exists, or this account may not see it.": {
+  "hu": "Már nem létezik, vagy ez a fiók nem láthatja.",
+  "de": "Es existiert nicht mehr, oder dieses Konto darf es nicht sehen."
+ },
+ "The change could not be saved. Try again.": {
+  "hu": "A módosítást nem sikerült menteni. Próbáld újra.",
+  "de": "Die Änderung konnte nicht gespeichert werden. Versuchen Sie es erneut."
+ },
+ "The connection dropped during the upload.": {
+  "hu": "A kapcsolat megszakadt feltöltés közben.",
+  "de": "Die Verbindung brach während des Uploads ab."
+ },
+ "The upload was cancelled.": {
+  "hu": "A feltöltés megszakítva.",
+  "de": "Der Upload wurde abgebrochen."
+ },
+ "The upload was never completed.": {
+  "hu": "A feltöltés soha nem fejeződött be.",
+  "de": "Der Upload wurde nie abgeschlossen."
+ },
+ "The stored file is larger than 50 MB.": {
+  "hu": "A tárolt fájl nagyobb 50 MB-nál.",
+  "de": "Die gespeicherte Datei ist größer als 50 MB."
+ },
+ "The stored file is not the size that was sent. Upload it again.": {
+  "hu": "A tárolt fájl mérete nem egyezik az elküldöttével. Töltsd fel újra.",
+  "de": "Die gespeicherte Datei hat nicht die gesendete Größe. Laden Sie sie erneut hoch."
+ },
+ "Storage refused the file.": {
+  "hu": "A tárhely elutasította a fájlt.",
+  "de": "Der Speicher hat die Datei abgelehnt."
+ },
+ "Access to this project was withdrawn before the upload finished.": {
+  "hu": "A projekthez való hozzáférést a feltöltés befejezése előtt visszavonták.",
+  "de": "Der Zugriff auf dieses Projekt wurde entzogen, bevor der Upload abgeschlossen war."
+ },
+ "PDF, Office/OpenDocument, text/CSV, images (PNG, JPG, GIF, WebP, TIFF, HEIC, SVG), PSD/AI/EPS, MP4/MOV/MP3, ZIP": {
+  "hu": "PDF, Office/OpenDocument, szöveg/CSV, képek (PNG, JPG, GIF, WebP, TIFF, HEIC, SVG), PSD/AI/EPS, MP4/MOV/MP3, ZIP",
+  "de": "PDF, Office/OpenDocument, Text/CSV, Bilder (PNG, JPG, GIF, WebP, TIFF, HEIC, SVG), PSD/AI/EPS, MP4/MOV/MP3, ZIP"
+ }
+}

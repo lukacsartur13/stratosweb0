@@ -1,0 +1,18 @@
+{
+ "Super admin": {
+  "hu": "Szuperadmin",
+  "de": "Super-Admin"
+ },
+ "Admin": {
+  "hu": "Admin",
+  "de": "Admin"
+ },
+ "Team member": {
+  "hu": "Csapattag",
+  "de": "Teammitglied"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ }
+}

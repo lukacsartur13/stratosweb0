@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { t } from '@/lib/i18n';
 
 /**
  * Notes and timelines, for the three record types P2 adds.
@@ -106,8 +107,8 @@ export function useNoteMutation(kind: RecordKind, onChanged: () => void) {
 
   const addNote = useCallback(async (id: string, body: string) => {
     const text = body.trim();
-    if (!text) return 'Write something first.';
-    if (!profile) return 'Your session has expired. Sign in again.';
+    if (!text) return t('Write something first.');
+    if (!profile) return t('Your session has expired. Sign in again.');
 
     setBusy(true);
     // `author_id` is set from the signed-in profile, and
@@ -121,8 +122,8 @@ export function useNoteMutation(kind: RecordKind, onChanged: () => void) {
     if (error) {
       console.error('[record_notes.insert]', error);
       return error.code === '42P01'
-        ? 'Notes are not set up in this database yet. Run the migrations in supabase/migrations.'
-        : 'The database refused that note.';
+        ? t('Notes are not set up in this database yet. Run the migrations in supabase/migrations.')
+        : t('The database refused that note.');
     }
     onChanged();
     return null;
@@ -173,7 +174,7 @@ export function buildRecordTimeline(
       id: `note-${note.id}`,
       at: note.created_at,
       kind: 'note',
-      title: 'Note added',
+      title: t('Note added'),
       detail: note.body,
       by: who(note.author),
     });
@@ -187,79 +188,79 @@ export function buildRecordTimeline(
 
     switch (row.action) {
       case 'opportunity.created':
-        push('created', 'Opportunity created', asText(meta.title));
+        push('created', t('Opportunity created'), asText(meta.title));
         break;
       case 'opportunity.stage_changed':
-        push('stage', `Stage ${asText(meta.from) ?? '?'} → ${asText(meta.to) ?? '?'}`,
-          asText(meta.reason) ? `Reason: ${asText(meta.reason)}` : undefined);
+        push('stage', t('Stage {from} → {to}', { from: asText(meta.from) ?? '?', to: asText(meta.to) ?? '?' }),
+          asText(meta.reason) ? t('Reason: {reason}', { reason: asText(meta.reason) }) : undefined);
         break;
       case 'opportunity.value_changed':
-        push('money', 'Value changed',
-          `${asText(meta.from) ?? 'not set'} → ${asText(meta.to) ?? 'not set'} ${asText(meta.currency) ?? ''}`.trim());
+        push('money', t('Value changed'),
+          `${asText(meta.from) ?? t('not set')} → ${asText(meta.to) ?? t('not set')} ${asText(meta.currency) ?? ''}`.trim());
         break;
       case 'opportunity.next_action_changed':
-        push('action', 'Next action changed',
-          [asText(meta.action), asText(meta.due)].filter(Boolean).join(' · ') || 'Cleared');
+        push('action', t('Next action changed'),
+          [asText(meta.action), asText(meta.due)].filter(Boolean).join(' · ') || t('Cleared'));
         break;
       case 'opportunity.client_linked':
-        push('status', 'Linked to a client');
+        push('status', t('Linked to a client'));
         break;
       case 'client.created':
-        push('created', 'Client created', asText(meta.name));
+        push('created', t('Client created'), asText(meta.name));
         break;
       case 'client.status_changed':
         push('status', `Status ${asText(meta.from) ?? '?'} → ${asText(meta.to) ?? '?'}`);
         break;
       case 'project.created':
-        push('created', 'Project created', asText(meta.name));
+        push('created', t('Project created'), asText(meta.name));
         break;
       case 'project.status_changed':
         push('status', `Status ${asText(meta.from) ?? '?'} → ${asText(meta.to) ?? '?'}`);
         break;
       case 'project.value_changed':
-        push('money', 'Project value changed',
-          `${asText(meta.from) ?? 'not set'} → ${asText(meta.to) ?? 'not set'} ${asText(meta.currency) ?? ''}`.trim());
+        push('money', t('Project value changed'),
+          `${asText(meta.from) ?? t('not set')} → ${asText(meta.to) ?? t('not set')} ${asText(meta.currency) ?? ''}`.trim());
         break;
       case 'project.market_value_changed':
         // Impact only. Written by `log_project_market_value`: old → new, whole HUF.
-        push('money', 'Market value changed',
-          `${asText(meta.from) ?? 'not set'} → ${asText(meta.to) ?? 'not set'} HUF · not revenue`);
+        push('money', t('Market value changed'),
+          t('{from} → {to} HUF · not revenue', { from: asText(meta.from) ?? t('not set'), to: asText(meta.to) ?? t('not set') }));
         break;
       case 'project.monthly_fee_changed':
         // Monthly contracts only. Written by `log_project_monthly_fee`: old → new.
-        push('money', 'Monthly fee changed',
-          `${asText(meta.from) ?? 'not set'} → ${asText(meta.to) ?? 'not set'} ${asText(meta.currency) ?? ''} / month`.trim());
+        push('money', t('Monthly fee changed'),
+          t('{from} → {to} {currency} / month', { from: asText(meta.from) ?? t('not set'), to: asText(meta.to) ?? t('not set'), currency: asText(meta.currency) ?? '' }).trim());
         break;
       case 'project.cost_added':
-        push('money', 'Cost added',
+        push('money', t('Cost added'),
           `${asText(meta.description) ?? ''} · ${asText(meta.amount) ?? ''} ${asText(meta.currency) ?? ''}`.trim());
         break;
       case 'project.cost_removed':
-        push('money', 'Cost removed', asText(meta.description));
+        push('money', t('Cost removed'), asText(meta.description));
         break;
       // The payment schedule (20261002000100). Amounts are in the project's
       // currency, which is fixed while a schedule exists.
       case 'project.instalment_added':
-        push('money', 'Instalment added', `${asText(meta.label) ?? ''} · ${asText(meta.amount) ?? ''}${meta.due_on ? ` · due ${asText(meta.due_on)}` : ''}`);
+        push('money', t('Instalment added'), `${asText(meta.label) ?? ''} · ${asText(meta.amount) ?? ''}${meta.due_on ? ` · ${t('due {date}', { date: asText(meta.due_on) })}` : ''}`);
         break;
       case 'project.instalment_changed':
-        push('money', 'Instalment changed', changes(meta));
+        push('money', t('Instalment changed'), changes(meta));
         break;
       case 'project.instalment_removed':
-        push('money', 'Instalment removed', `${asText(meta.label) ?? ''} · ${asText(meta.amount) ?? ''}`);
+        push('money', t('Instalment removed'), `${asText(meta.label) ?? ''} · ${asText(meta.amount) ?? ''}`);
         break;
       case 'project.payment_added':
-        push('money', 'Payment recorded', `${asText(meta.amount) ?? ''} · ${meta.paid_on ? asText(meta.paid_on) : 'date not recorded'}`);
+        push('money', t('Payment recorded'), `${asText(meta.amount) ?? ''} · ${meta.paid_on ? asText(meta.paid_on) : t('date not recorded')}`);
         break;
       case 'project.payment_changed':
-        push('money', 'Payment changed', changes(meta));
+        push('money', t('Payment changed'), changes(meta));
         break;
       case 'project.payment_removed':
-        push('money', 'Payment removed', `${asText(meta.amount) ?? ''} · ${meta.paid_on ? asText(meta.paid_on) : 'date not recorded'}`);
+        push('money', t('Payment removed'), `${asText(meta.amount) ?? ''} · ${meta.paid_on ? asText(meta.paid_on) : t('date not recorded')}`);
         break;
       case 'project.finance_carried_over':
-        push('money', 'Payment figures carried over to the schedule',
-          `was ${asText(meta.payment_state) ?? '?'} · paid ${asText(meta.paid_amount) ?? 'not recorded'}`);
+        push('money', t('Payment figures carried over to the schedule'),
+          t('was {state} · paid {amount}', { state: asText(meta.payment_state) ?? '?', amount: asText(meta.paid_amount) ?? t('not recorded') }));
         break;
       default:
         push('other', row.action);

@@ -2,6 +2,7 @@ import { useMemo, useRef, useState, type FormEvent } from 'react';
 import { Send } from 'lucide-react';
 import { Button, Input, cn } from '@/components/ui';
 import { buildIndex, reply, type HelpArticle, type HelpReply } from '@/lib/helpMatcher';
+import { getLang, t } from '@/lib/i18n';
 
 /**
  * The client help assistant (Hungarian). Answers ONLY from the published
@@ -44,11 +45,13 @@ export function HelpChat({ articles, label = 'Segítség' }: { articles: HelpArt
   return (
     <div className="grid gap-3" data-help-chat>
       <p className="t-note">
-        Kérdezz szabadon, vagy válassz az alábbi témák közül. A válaszok a Stratos által jóváhagyott tudásbázisból jönnek.
-        A beszélgetést nem mentjük és senkinek nem továbbítjuk; ha itt nincs válasz, keresd a Stratos kapcsolattartódat.
+        {t('Kérdezz szabadon, vagy válassz az alábbi témák közül. A válaszok a Stratos által jóváhagyott tudásbázisból jönnek. A beszélgetést nem mentjük és senkinek nem továbbítjuk; ha itt nincs válasz, keresd a Stratos kapcsolattartódat.')}
       </p>
+      {(getLang() === 'en' || getLang() === 'de') && (
+        <p className="t-note" data-help-language-note>{t('A súgócikkek és a válaszok magyar nyelvűek.')}</p>
+      )}
 
-      <div role="group" aria-label="Témák" className="flex flex-wrap gap-1.5">
+      <div role="group" aria-label={t('Témák')} className="flex flex-wrap gap-1.5">
         {topics.map((t) => (
           <button key={t} type="button" onClick={() => setTopic(topic === t ? null : t)} aria-pressed={topic === t}
                   className={cn('rounded-sm border border-hairline px-2.5 py-1.5 text-[12px] focus-visible:outline-2 focus-visible:outline-signal',
@@ -58,7 +61,7 @@ export function HelpChat({ articles, label = 'Segítség' }: { articles: HelpArt
         ))}
       </div>
 
-      <div className="grid gap-1" aria-label="Javasolt kérdések" role="group">
+      <div className="grid gap-1" aria-label={t('Javasolt kérdések')} role="group">
         {suggestions.map((a) => (
           <button key={a.article_id} type="button" onClick={() => choose(a)}
                   className={cn('rounded-sm px-2 py-1.5 text-left text-[13px] text-chrome underline-offset-4 hover:text-paper hover:underline focus-visible:outline-2 focus-visible:outline-signal', TOUCH)}>
@@ -67,7 +70,7 @@ export function HelpChat({ articles, label = 'Segítség' }: { articles: HelpArt
         ))}
       </div>
 
-      <ol ref={log} className="grid max-h-[26rem] gap-2 overflow-y-auto" aria-live="polite" aria-label="Beszélgetés">
+      <ol ref={log} className="grid max-h-[26rem] gap-2 overflow-y-auto" aria-live="polite" aria-label={t('Beszélgetés')}>
         {turns.map((t) => (
           <li key={t.id} className={cn('max-w-[46rem] rounded-sm border px-3 py-2 text-[13px]',
             t.from === 'client' ? 'justify-self-end border-hairline bg-flare text-paper' : 'border-hairline bg-deck text-paper')}>
@@ -78,11 +81,11 @@ export function HelpChat({ articles, label = 'Segítség' }: { articles: HelpArt
       </ol>
 
       <form onSubmit={submit} className="flex gap-2">
-        <label htmlFor="help-question" className="sr-only">Kérdésed</label>
-        <Input id="help-question" value={draft} maxLength={300} placeholder="Például: Hol adhatom le a logót?"
+        <label htmlFor="help-question" className="sr-only">{t('Kérdésed')}</label>
+        <Input id="help-question" value={draft} maxLength={300} placeholder={t('Például: Hol adhatom le a logót?')}
                onChange={(e) => setDraft(e.target.value)} className={TOUCH} autoComplete="off" />
         <Button type="submit" size="sm" variant="primary" className={TOUCH} disabled={!draft.trim()}>
-          <Send size={11} aria-hidden="true" /> {label === 'Segítség' ? 'Kérdezem' : 'Ask'}
+          <Send size={11} aria-hidden="true" /> {label === 'Segítség' ? t('Kérdezem') : t('Ask')}
         </Button>
       </form>
     </div>
@@ -97,7 +100,7 @@ function BotReply({ reply: r, onChoose, onTopic }: { reply: HelpReply; onChoose:
         <p className="whitespace-pre-line text-haze">{r.article.answer}</p>
         {r.related.length > 0 && (
           <div className="grid gap-0.5">
-            <p className="t-note">Kapcsolódó kérdések:</p>
+            <p className="t-note">{t('Kapcsolódó kérdések:')}</p>
             {r.related.map((a) => (
               <button key={a.article_id} type="button" className="text-left text-[12px] text-chrome underline underline-offset-4 hover:text-paper" onClick={() => onChoose(a)}>
                 {a.question}
@@ -111,26 +114,26 @@ function BotReply({ reply: r, onChoose, onTopic }: { reply: HelpReply; onChoose:
   if (r.kind === 'clarify') {
     return (
       <div className="grid gap-1" data-reply="clarify">
-        <p>Nem vagyok biztos benne, mire gondolsz. Ezek közül valamelyik?</p>
+        <p>{t('Nem vagyok biztos benne, mire gondolsz. Ezek közül valamelyik?')}</p>
         {r.options.map((a) => (
           <button key={a.article_id} type="button" className="text-left text-[13px] text-chrome underline underline-offset-4 hover:text-paper" onClick={() => onChoose(a)}>
             {a.question}
           </button>
         ))}
-        <p className="t-note">Ha egyik sem, fogalmazd meg másképp, vagy keresd a Stratos kapcsolattartódat.</p>
+        <p className="t-note">{t('Ha egyik sem, fogalmazd meg másképp, vagy keresd a Stratos kapcsolattartódat.')}</p>
       </div>
     );
   }
   return (
     <div className="grid gap-1" data-reply="unknown">
-      <p>Erre a kérdésre nincs kész válaszom. Nem találgatok: projektállapotról, határidőről vagy fizetésről itt nem tudok nyilatkozni.</p>
-      <p className="t-note">Ezekben a témákban tudok segíteni:</p>
+      <p>{t('Erre a kérdésre nincs kész válaszom. Nem találgatok: projektállapotról, határidőről vagy fizetésről itt nem tudok nyilatkozni.')}</p>
+      <p className="t-note">{t('Ezekben a témákban tudok segíteni:')}</p>
       <div className="flex flex-wrap gap-1">
         {r.topics.map((t) => (
           <button key={t} type="button" className="rounded-sm border border-hairline px-2 py-1 text-[12px] text-haze hover:text-paper" onClick={() => onTopic(t)}>{t}</button>
         ))}
       </div>
-      <p className="t-note">Ha ezek egyike sem segít, keresd a Stratos kapcsolattartódat. Ez a felület nem küld üzenetet.</p>
+      <p className="t-note">{t('Ha ezek egyike sem segít, keresd a Stratos kapcsolattartódat. Ez a felület nem küld üzenetet.')}</p>
     </div>
   );
 }

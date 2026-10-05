@@ -1,8 +1,8 @@
 // =============================================================================
 // What the database actually said, and what the operator is told.
 //
-// This file has NO IMPORTS, on purpose — the same rule `money.ts` and
-// `pipeline.ts` follow. It is a pure classification over a PostgREST error
+// This file has NO IMPORTS but the pure `./i18n`, on purpose — the same rule
+// `money.ts` and `pipeline.ts` follow. It is a pure classification over a PostgREST error
 // object, so a test can exercise every branch without a browser or a project.
 //
 // WHY IT EXISTS
@@ -40,6 +40,8 @@
 // it: none of those four fields ever holds one, and the error object is never
 // logged whole.
 // =============================================================================
+
+import { t } from './i18n.ts';
 
 /**
  * The seven causes worth telling apart, from §11.
@@ -162,32 +164,32 @@ export function classify(
  */
 export function sentence(
   failure: DbFailure,
-  subject = 'this data',
+  subject = t('this data'),
   action: 'read' | 'write' = 'read',
 ): string {
   switch (failure) {
     case 'unauthenticated':
-      return 'Your session has ended. Sign in again to continue.';
+      return t('Your session has ended. Sign in again to continue.');
     case 'denied':
       // Reading and writing are refused by different policies and are fixed by
       // different things, so they are not told in the same sentence. `view_sales`
       // and `manage_sales` are two capabilities for exactly this reason.
       return action === 'write'
-        ? `Your account may not change ${subject}.`
-        : `Your account does not have access to ${subject}.`;
+        ? t('Your account may not change {subject}.', { subject })
+        : t('Your account does not have access to {subject}.', { subject });
     case 'network':
-      return 'Could not reach the database. Check the connection and try again.';
+      return t('Could not reach the database. Check the connection and try again.');
     case 'migration_missing':
-      return `${cap(subject)} is not set up in this database yet. The pipeline migration in supabase/migrations has not been applied.`;
+      return t('{Subject} is not set up in this database yet. The pipeline migration in supabase/migrations has not been applied.', { Subject: cap(subject) });
     case 'schema_mismatch':
-      return `${cap(subject)} does not match what this version of the Portal expects. The database may be behind a newer build.`;
+      return t('{Subject} does not match what this version of the Portal expects. The database may be behind a newer build.', { Subject: cap(subject) });
     case 'invalid_query':
-      return 'The database refused those values. Check the amount, the probability, the stage and the dates.';
+      return t('The database refused those values. Check the amount, the probability, the stage and the dates.');
     case 'server_error':
     default:
       return action === 'write'
-        ? 'That change could not be saved. Try again in a moment.'
-        : `${cap(subject)} could not be read. Try again in a moment.`;
+        ? t('That change could not be saved. Try again in a moment.')
+        : t('{Subject} could not be read. Try again in a moment.', { Subject: cap(subject) });
   }
 }
 

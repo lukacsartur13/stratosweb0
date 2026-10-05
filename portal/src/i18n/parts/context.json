@@ -1,0 +1,18 @@
+{
+ "cost|Production": {
+  "hu": "Gyártás",
+  "de": "Produktion"
+ },
+ "programme|Paid": {
+  "hu": "Fizetős",
+  "de": "Kostenpflichtig"
+ },
+ "ratio|Share": {
+  "hu": "Arány",
+  "de": "Anteil"
+ },
+ "log|Action": {
+  "hu": "Művelet",
+  "de": "Aktion"
+ }
+}

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
+import { t } from '@/lib/i18n';
 
 /**
  * Client accounts and sharing — the OWNER's side (English, like the rest of the
@@ -68,7 +69,7 @@ export async function inviteClient(input: {
 }): Promise<{ link: string; kind: 'invite' | 'recovery' } | { error: string }> {
   const { data } = await supabase.auth.getSession();
   const token = data.session?.access_token;
-  if (!token) return { error: INVITE_REFUSAL.UNAUTHENTICATED };
+  if (!token) return { error: t(INVITE_REFUSAL.UNAUTHENTICATED) };
   try {
     const res = await fetch('/api/portal-invite', {
       method: 'POST',
@@ -77,9 +78,9 @@ export async function inviteClient(input: {
     });
     const body = await res.json().catch(() => null) as { ok?: boolean; link?: string; kind?: 'invite' | 'recovery'; code?: string } | null;
     if (res.ok && body?.link) return { link: body.link, kind: body.kind ?? 'invite' };
-    return { error: INVITE_REFUSAL[body?.code ?? ''] ?? 'The invitation could not be completed. Try again.' };
+    return { error: t(INVITE_REFUSAL[body?.code ?? ''] ?? 'The invitation could not be completed. Try again.') };
   } catch {
-    return { error: 'The invitation service could not be reached. Try again.' };
+    return { error: t('The invitation service could not be reached. Try again.') };
   }
 }
 
@@ -114,9 +115,9 @@ export function useProjectSharing(projectId: string, reloadToken = 0) {
   useEffect(() => { void load(); }, [load]);
 
   const refusal = (e: { message?: string; code?: string }) => (
-    /share_not_assigned/.test(e.message ?? '') ? 'That client account is not assigned to this project.'
-      : /share_not_shareable/.test(e.message ?? '') ? 'Only finished files outside the trash can be shared.'
-        : e.code === '23505' ? 'Already shared.' : 'The share could not be changed. Try again.');
+    /share_not_assigned/.test(e.message ?? '') ? t('That client account is not assigned to this project.')
+      : /share_not_shareable/.test(e.message ?? '') ? t('Only finished files outside the trash can be shared.')
+        : e.code === '23505' ? t('Already shared.') : t('The share could not be changed. Try again.'));
 
   return {
     available, accounts, shares, reload: load,

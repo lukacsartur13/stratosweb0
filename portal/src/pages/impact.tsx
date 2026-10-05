@@ -23,6 +23,7 @@ import {
 import { safeUrl } from '@/pages/clients';
 import { useOperationsMutations } from '@/lib/operations';
 import { MoveToTrashButton } from '@/features/trash/TrashControls';
+import { t } from '@/lib/i18n';
 
 /**
  * IMPACT — the free programme, kept apart from the paid business.
@@ -96,60 +97,58 @@ export function ImpactScreen() {
   return (
     <div className="grid gap-4">
       {/* ---------------------------------------------------- the counters */}
-      <MetricStrip label="Impact support" className="xl:grid-cols-4">
+      <MetricStrip label={t('Impact support')} className="xl:grid-cols-4">
         <MetricCell
-          label="Committed support"
+          label={t('Committed support')}
           value={figure(summary?.committed)}
           note={summary
             ? (summary.committed_missing > 0
               ? <span className="text-signal" data-impact-missing>
-                  {summary.committed_missing} in progress without a market value — not in this figure
+                  {t('{n} in progress without a market value — not in this figure', { n: summary.committed_missing })}
                 </span>
-              : `${summary.committed_projects} ${summary.committed_projects === 1 ? 'project' : 'projects'} in progress`)
+              : t(summary.committed_projects === 1 ? '{n} project in progress' : '{n} projects in progress', { n: summary.committed_projects }))
             : undefined}
         />
         <MetricCell
-          label="Support delivered"
+          label={t('Support delivered')}
           value={figure(summary?.delivered)}
-          note={summary ? `${summary.delivered_projects} closed ${summary.delivered_projects === 1 ? 'project' : 'projects'}` : undefined}
+          note={summary ? t(summary.delivered_projects === 1 ? '{n} closed project' : '{n} closed projects', { n: summary.delivered_projects }) : undefined}
         />
-        <MetricCell label="Open applications" value={applications.state === 'ready' ? openCount : <Skeleton className="h-7 w-10" />}
-                    note={`${counts.accepted ?? 0} accepted, awaiting a project`} />
-        <MetricCell label="Cancelled" value={summary ? summary.cancelled_projects : '—'} note="fell through · not counted" />
+        <MetricCell label={t('Open applications')} value={applications.state === 'ready' ? openCount : <Skeleton className="h-7 w-10" />}
+                    note={t('{n} accepted, awaiting a project', { n: counts.accepted ?? 0 })} />
+        <MetricCell label={t('Cancelled')} value={summary ? summary.cancelled_projects : '—'} note={t('fell through · not counted')} />
       </MetricStrip>
       <p className="t-note -mt-2">
-        Impact is always free. Market value is what the donated work would have cost — not revenue,
-        not an amount owed. Both figures are summed from the projects on every load; archiving changes neither.
+        {t('Impact is always free. Market value is what the donated work would have cost — not revenue, not an amount owed. Both figures are summed from the projects on every load; archiving changes neither.')}
       </p>
 
       {uncaptured.length > 0 && (
-        <Panel className="border-danger/40 px-4 py-3" aria-label="Missing from the pipeline">
+        <Panel className="border-danger/40 px-4 py-3" aria-label={t('Missing from the pipeline')}>
           <p role="alert" className="text-xs text-danger">
-            {uncaptured.length} Impact {uncaptured.length === 1 ? 'submission is' : 'submissions are'} not in the pipeline.
-            The leads are stored; their capture failed. Run <code>select * from impact_sync_applications();</code> in the
-            SQL editor to add them — it never duplicates.
+            {t(uncaptured.length === 1 ? '{n} Impact submission is not in the pipeline.' : '{n} Impact submissions are not in the pipeline.', { n: uncaptured.length })}
+            {' '}{t('The leads are stored; their capture failed. Run')} <code>select * from impact_sync_applications();</code>{' '}
+            {t('in the SQL editor to add them — it never duplicates.')}
           </p>
         </Panel>
       )}
 
       {conflicts.length > 0 && (
-        <Panel aria-label="Conflicts">
-          <SectionHeader title="Conflicts to review" note={`${conflicts.length}`} />
+        <Panel aria-label={t('Conflicts')}>
+          <SectionHeader title={t('Conflicts to review')} note={`${conflicts.length}`} />
           <p className="t-note px-4 pt-2">
-            These came in through the Impact form but were already sold as paid deals before the Impact
-            pipeline existed. Nothing was reclassified or deleted; decide each one by hand.
+            {t('These came in through the Impact form but were already sold as paid deals before the Impact pipeline existed. Nothing was reclassified or deleted; decide each one by hand.')}
           </p>
           <ul className="grid px-4 py-2">
             {conflicts.map((c) => (
               <li key={c.opportunity_id} className="flex flex-wrap items-center justify-between gap-2 border-b border-hairline py-2 last:border-0">
-                <span className="text-[13px] text-paper">{c.company || c.lead_name || 'Unknown applicant'}</span>
+                <span className="text-[13px] text-paper">{c.company || c.lead_name || t('Unknown applicant')}</span>
                 <span className="flex flex-wrap items-center gap-3 text-[11px]">
-                  {c.lead_id && <Link to={`/leads/${c.lead_id}`} className="underline underline-offset-4 hover:text-paper">Lead</Link>}
+                  {c.lead_id && <Link to={`/leads/${c.lead_id}`} className="underline underline-offset-4 hover:text-paper">{t('Lead')}</Link>}
                   <Link to={`/sales/${c.opportunity_id}`} className="underline underline-offset-4 hover:text-paper">
-                    Deal: {c.opportunity_title} ({c.stage})
+                    {t('Deal: {title} ({stage})', { title: c.opportunity_title, stage: c.stage })}
                   </Link>
                   {c.project_ids.map((pid, i) => (
-                    <Link key={pid} to={`/projects/${pid}`} className="underline underline-offset-4 hover:text-paper">Project {i + 1}</Link>
+                    <Link key={pid} to={`/projects/${pid}`} className="underline underline-offset-4 hover:text-paper">{t('Project {n}', { n: i + 1 })}</Link>
                   ))}
                 </span>
               </li>
@@ -159,11 +158,11 @@ export function ImpactScreen() {
       )}
 
       <div className="flex flex-wrap items-center justify-between gap-2">
-      <nav aria-label="Impact views" className="flex flex-wrap items-center gap-px">
+      <nav aria-label={t('Impact views')} className="flex flex-wrap items-center gap-px">
         {([
-          ['applications', `Applications (${applications.rows.length})`],
-          ['active', `Active projects (${active.length})`],
-          ['closed', `Closed projects (${closed.length})`],
+          ['applications', t('Applications ({n})', { n: applications.rows.length })],
+          ['active', t('Active projects ({n})', { n: active.length })],
+          ['closed', t('Closed projects ({n})', { n: closed.length })],
         ] as const).map(([id, label]) => (
           <button
             key={id}
@@ -180,7 +179,7 @@ export function ImpactScreen() {
         ))}
       </nav>
         <Button size="sm" variant="primary" onClick={() => setCreating(true)}>
-          <Plus size={12} aria-hidden="true" /> New Impact project
+          <Plus size={12} aria-hidden="true" /> {t('New Impact project')}
         </Button>
       </div>
       {creating && (
@@ -193,15 +192,15 @@ export function ImpactScreen() {
       {view === 'applications' && (
         <Panel className="min-w-0">
           <SectionHeader
-            title="Application pipeline"
-            note={applications.state === 'ready' ? `${shown.length} of ${applications.rows.length}` : undefined}
+            title={t('Application pipeline')}
+            note={applications.state === 'ready' ? t('{n} of {total}', { n: shown.length, total: applications.rows.length }) : undefined}
             action={
               <>
-                <label className="sr-only" htmlFor="impact-status">Show</label>
+                <label className="sr-only" htmlFor="impact-status">{t('Show')}</label>
                 <Select id="impact-status" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-                  <option value="open">Open ({openCount})</option>
+                  <option value="open">{t('Open ({n})', { n: openCount })}</option>
                   {IMPACT_STATUSES.map((s) => <option key={s} value={s}>{impactStatusLabel(s)} ({counts[s] ?? 0})</option>)}
-                  <option value="all">Every application</option>
+                  <option value="all">{t('Every application')}</option>
                 </Select>
               </>
             }
@@ -209,17 +208,17 @@ export function ImpactScreen() {
           {applications.state === 'loading' && (
             <div className="space-y-1.5 p-4" aria-busy="true">{[0, 1, 2].map((i) => <Skeleton key={i} className="h-8 w-full" />)}</div>
           )}
-          {applications.state === 'unconfigured' && <DataState kind="unconfigured" title="Not connected" body="Supabase credentials are not set in this environment." />}
+          {applications.state === 'unconfigured' && <DataState kind="unconfigured" title={t('Not connected')} body={t('Supabase credentials are not set in this environment.')} />}
           {applications.state === 'error' && <ErrorState message={applications.message} onRetry={applications.reload} />}
           {applications.state === 'ready' && shown.length === 0 && (
             <DataState kind="empty"
-              title={applications.rows.length === 0 ? 'No applications yet' : 'Nothing in this view'}
+              title={applications.rows.length === 0 ? t('No applications yet') : t('Nothing in this view')}
               body={applications.rows.length === 0
-                ? 'An application appears here the moment the Impact form is submitted.'
-                : 'No application has this status.'} />
+                ? t('An application appears here the moment the Impact form is submitted.')
+                : t('No application has this status.')} />
           )}
           {applications.state === 'ready' && shown.length > 0 && (
-            <Table head={['Organisation', 'Contact', 'Field', 'Received', 'Status', 'Project']} minWidth={720} sticky>
+            <Table head={[t('Organisation'), t('Contact'), t('Field'), t('Received'), t('Status'), t('Project')]} minWidth={720} sticky>
               {shown.map((a) => (
                 <Row key={a.id} onClick={() => navigate(`/impact/applications/${a.id}`)}>
                   <Cell className="min-w-0">
@@ -246,19 +245,19 @@ export function ImpactScreen() {
       {view !== 'applications' && (
         <Panel className="min-w-0">
           <SectionHeader
-            title={view === 'active' ? 'Active Impact projects' : 'Closed Impact projects'}
-            note={archivedCount > 0 ? `${archivedCount} in the Trash — not shown, not counted` : undefined}
+            title={view === 'active' ? t('Active Impact projects') : t('Closed Impact projects')}
+            note={archivedCount > 0 ? t('{n} in the Trash — not shown, not counted', { n: archivedCount }) : undefined}
           />
           {projects.state === 'loading' && (
             <div className="space-y-1.5 p-4" aria-busy="true">{[0, 1, 2].map((i) => <Skeleton key={i} className="h-8 w-full" />)}</div>
           )}
-          {projects.state === 'error' && <ErrorState message="The Impact projects could not be read." onRetry={projects.reload} />}
+          {projects.state === 'error' && <ErrorState message={t('The Impact projects could not be read.')} onRetry={projects.reload} />}
           {projects.state === 'ready' && (view === 'active' ? active : closed).length === 0 && (
             <DataState kind="empty"
-              title={view === 'active' ? 'No Impact project in progress' : 'No closed Impact project'}
+              title={view === 'active' ? t('No Impact project in progress') : t('No closed Impact project')}
               body={view === 'active'
-                ? 'An Impact project is started from an accepted application.'
-                : 'A project lands here when it is closed — every checkpoint done and a market value recorded.'} />
+                ? t('An Impact project is started from an accepted application.')
+                : t('A project lands here when it is closed — every checkpoint done and a market value recorded.')} />
           )}
           {projects.state === 'ready' && (view === 'active' ? active : closed).length > 0 && (
             <ImpactProjectTable rows={view === 'active' ? active : closed} summaries={summaries} closedView={view === 'closed'} />
@@ -270,7 +269,7 @@ export function ImpactScreen() {
 }
 
 const applicantName = (a: ImpactApplication) =>
-  a.lead?.company || String(a.lead?.payload?.org ?? '') || a.lead?.name || 'Unnamed applicant';
+  a.lead?.company || String(a.lead?.payload?.org ?? '') || a.lead?.name || t('Unnamed applicant');
 
 function ImpactProjectTable({ rows, summaries, closedView }: {
   rows: Project[]; summaries: Record<string, TrackerSummary>; closedView: boolean;
@@ -279,9 +278,9 @@ function ImpactProjectTable({ rows, summaries, closedView }: {
   return (
     <Table
       head={closedView
-        ? ['Project', 'Organisation', 'State', 'Closed', { label: 'Market value', align: 'right' }]
-        : ['Project', 'Organisation', 'Current step', { label: 'Checkpoints', align: 'right' }, 'Deadline',
-          { label: 'Market value', align: 'right' }]}
+        ? [t('Project'), t('Organisation'), t('State'), t('Closed'), { label: t('Market value'), align: 'right' }]
+        : [t('Project'), t('Organisation'), t('Current step'), { label: t('Checkpoints'), align: 'right' }, t('Deadline'),
+          { label: t('Market value'), align: 'right' }]}
       minWidth={720}
       sticky
     >
@@ -296,14 +295,14 @@ function ImpactProjectTable({ rows, summaries, closedView }: {
             {closedView ? (
               <>
                 <Cell>{p.status === 'cancelled'
-                  ? <Badge tone="bad">Cancelled · not counted</Badge>
-                  : <Badge tone="good">Delivered</Badge>}</Cell>
+                  ? <Badge tone="bad">{t('Cancelled · not counted')}</Badge>
+                  : <Badge tone="good">{t('Delivered')}</Badge>}</Cell>
                 <Cell className="num whitespace-nowrap text-[11px] text-haze">{shortDate(p.completed_at)}</Cell>
               </>
             ) : (
               <>
                 <Cell className="truncate text-[11px] text-paper">
-                  {s?.current ?? <span className="text-haze">{s && s.total > 0 ? 'All done' : 'No checkpoints'}</span>}
+                  {s?.current ?? <span className="text-haze">{s && s.total > 0 ? t('All done') : t('No checkpoints')}</span>}
                 </Cell>
                 <Cell align="right" className="num text-xs text-haze">{s && s.total > 0 ? `${s.done}/${s.total}` : '—'}</Cell>
                 <Cell className="num whitespace-nowrap text-[11px] text-haze">{shortDate(p.target_date)}</Cell>
@@ -311,7 +310,7 @@ function ImpactProjectTable({ rows, summaries, closedView }: {
             )}
             <Cell align="right" className="num text-xs">
               {p.market_value === null
-                ? <span className="text-signal" data-impact-missing>Not recorded</span>
+                ? <span className="text-signal" data-impact-missing>{t('Not recorded')}</span>
                 : <span className="text-paper">{huf(p.market_value)}</span>}
             </Cell>
           </Row>
@@ -341,9 +340,9 @@ export function ImpactApplicationScreen() {
       <Panel>
         <DataState
           kind={state === 'error' ? 'unavailable' : state === 'unconfigured' ? 'unconfigured' : 'empty'}
-          title={state === 'error' ? 'Unavailable' : state === 'unconfigured' ? 'Not connected' : 'No such application'}
-          body={state === 'missing' ? 'This application does not exist, or this account may not read it.' : undefined}
-          action={<Link to="/impact"><Button size="sm">All applications</Button></Link>}
+          title={state === 'error' ? t('Unavailable') : state === 'unconfigured' ? t('Not connected') : t('No such application')}
+          body={state === 'missing' ? t('This application does not exist, or this account may not read it.') : undefined}
+          action={<Link to="/impact"><Button size="sm">{t('All applications')}</Button></Link>}
         />
       </Panel>
     );
@@ -359,7 +358,7 @@ export function ImpactApplicationScreen() {
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link to="/impact" className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper">
-          <ArrowLeft size={11} aria-hidden="true" /> Impact applications
+          <ArrowLeft size={11} aria-hidden="true" /> {t('Impact applications')}
         </Link>
         <span className="flex flex-wrap items-center gap-2">
           {/* The applicant's lead goes to the Trash; deleting it there deletes
@@ -371,18 +370,18 @@ export function ImpactApplicationScreen() {
         </span>
       </div>
 
-      <Panel aria-label="Application summary" className="px-4 py-3.5">
-        <p className="t-section">Impact application · free</p>
+      <Panel aria-label={t('Application summary')} className="px-4 py-3.5">
+        <p className="t-section">{t('Impact application · free')}</p>
         <p className="mt-1.5 break-words text-lg leading-tight text-paper">{applicantName(app)}</p>
         <p className="t-note mt-1">
-          Received {formatWhen(app.created_at)}{app.origin === 'backfill' ? ' · brought across from the lead list' : ''}
+          {t('Received {when}', { when: formatWhen(app.created_at) })}{app.origin === 'backfill' ? ` · ${t('brought across from the lead list')}` : ''}
         </p>
       </Panel>
 
       <Grid>
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-8">
-          <Panel aria-label="Answers">
-            <SectionHeader title="Answers" note="as submitted" />
+          <Panel aria-label={t('Answers')}>
+            <SectionHeader title={t('Answers')} note={t('as submitted')} />
             {answers.length > 0 ? (
               <dl className="grid">
                 {answers.map((a) => (
@@ -395,22 +394,22 @@ export function ImpactApplicationScreen() {
             ) : lead?.message ? (
               <p className="whitespace-pre-wrap break-words px-4 py-3 text-[13px] text-paper">{lead.message}</p>
             ) : (
-              <p className="px-4 py-3 text-xs text-haze">This submission carries no stored answers.</p>
+              <p className="px-4 py-3 text-xs text-haze">{t('This submission carries no stored answers.')}</p>
             )}
           </Panel>
 
-          <Panel aria-label="Decision">
-            <SectionHeader title="Decision" note={`since ${shortDate(app.status_changed_at)}`} />
+          <Panel aria-label={t('Decision')}>
+            <SectionHeader title={t('Decision')} note={t('since {date}', { date: shortDate(app.status_changed_at) })} />
             <div className="grid gap-3 px-4 py-3">
               {started ? (
                 <p className="text-xs text-haze">
-                  A project was started from this application. Its progress lives on the project:{' '}
+                  {t('A project was started from this application. Its progress lives on the project:')}{' '}
                   {app.project
                     ? <Link to={`/projects/${app.project.id}`} className="underline underline-offset-4 hover:text-paper">{app.project.name}</Link>
-                    : 'project'}.
+                    : t('project')}.
                 </p>
               ) : (
-                <Field id="impact-app-status" label="Status">
+                <Field id="impact-app-status" label={t('Status')}>
                   <Select
                     id="impact-app-status"
                     className="w-full py-2.5 text-sm"
@@ -422,22 +421,22 @@ export function ImpactApplicationScreen() {
                   </Select>
                 </Field>
               )}
-              <Field id="impact-app-note" label="Decision note" hint="Why it was accepted, deferred or turned down. Owner-only.">
+              <Field id="impact-app-note" label={t('Decision note')} hint={t('Why it was accepted, deferred or turned down. Owner-only.')}>
                 <Textarea id="impact-app-note" value={draft} onChange={(e) => setNote(e.target.value)} className="min-h-20 text-[13px]" />
               </Field>
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <Button size="sm" disabled={note === null || ops.busy === app.id}
                         onClick={async () => { const r = await ops.saveDecisionNote(app.id, draft); setError(r); if (!r) setNote(null); }}>
-                  Save note
+                  {t('Save note')}
                 </Button>
                 {app.status === 'accepted' && (
                   <Button size="sm" variant="primary" onClick={() => setStarting(true)}>
-                    <Play size={11} aria-hidden="true" /> Start Impact project
+                    <Play size={11} aria-hidden="true" /> {t('Start Impact project')}
                   </Button>
                 )}
               </div>
               {app.status !== 'accepted' && !started && (
-                <p className="t-note">A project can be started once the application is accepted.</p>
+                <p className="t-note">{t('A project can be started once the application is accepted.')}</p>
               )}
               {error && <p role="alert" className="text-xs text-danger">{error}</p>}
             </div>
@@ -446,31 +445,31 @@ export function ImpactApplicationScreen() {
 
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-4">
           <Panel>
-            <SectionHeader title="Contact" />
+            <SectionHeader title={t('Contact')} />
             <dl className="grid">
-              <DataLine term="Organisation" value={lead?.company || <NotRecorded />} />
-              <DataLine term="Contact" value={lead?.name || <NotRecorded />} />
-              <DataLine term="Email" value={lead?.email
+              <DataLine term={t('Organisation')} value={lead?.company || <NotRecorded />} />
+              <DataLine term={t('Contact')} value={lead?.name || <NotRecorded />} />
+              <DataLine term={t('Email')} value={lead?.email
                 ? <a href={`mailto:${lead.email}`} className="underline underline-offset-4 hover:text-signal">{lead.email}</a>
                 : <NotRecorded />} />
-              <DataLine term="Phone" value={lead?.phone || <NotRecorded />} />
-              <DataLine term="Website" value={safeUrl(website)
+              <DataLine term={t('Phone')} value={lead?.phone || <NotRecorded />} />
+              <DataLine term={t('Website')} value={safeUrl(website)
                 ? <a href={safeUrl(website)!} target="_blank" rel="noreferrer noopener" className="break-all underline underline-offset-4 hover:text-signal">{website}</a>
                 : website || <NotRecorded />} />
             </dl>
           </Panel>
           <Panel>
-            <SectionHeader title="Record" />
+            <SectionHeader title={t('Record')} />
             <dl className="grid">
-              <DataLine term="Original lead" value={lead
-                ? <Link to={`/leads/${lead.id}`} className="underline underline-offset-4 hover:text-signal">Open the lead</Link>
+              <DataLine term={t('Original lead')} value={lead
+                ? <Link to={`/leads/${lead.id}`} className="underline underline-offset-4 hover:text-signal">{t('Open the lead')}</Link>
                 : <NotRecorded />} />
-              <DataLine term="Programme" value={<Badge tone="good">Impact · free</Badge>}
-                        note="never a paid opportunity" />
-              {app.legacy_lead_status && <DataLine term="Lead status when brought across" value={app.legacy_lead_status} />}
+              <DataLine term={t('Programme')} value={<Badge tone="good">{t('Impact · free')}</Badge>}
+                        note={t('never a paid opportunity')} />
+              {app.legacy_lead_status && <DataLine term={t('Lead status when brought across')} value={app.legacy_lead_status} />}
               {app.project && (
-                <DataLine term="Market value" value={app.project.market_value === null
-                  ? <NotRecorded what="Market value" />
+                <DataLine term={t('Market value')} value={app.project.market_value === null
+                  ? <NotRecorded what={t('Market value')} />
                   : <span className="num">{huf(app.project.market_value)}</span>} />
               )}
             </dl>
@@ -531,11 +530,11 @@ function StartProjectDialog({ app, busy, onClose, onStart }: {
   const [error, setError] = useState<string | null>(null);
 
   const matched = matchTemplate(templates.live, service);
-  const chosen = templateId === 'none' ? null : templates.live.find((t) => t.id === templateId) ?? matched;
+  const chosen = templateId === 'none' ? null : templates.live.find((tpl) => tpl.id === templateId) ?? matched;
 
   const submit = async () => {
     setError(null);
-    if (mode === 'existing' && !clientId) { setError('Choose the client this project is for.'); return; }
+    if (mode === 'existing' && !clientId) { setError(t('Choose the client this project is for.')); return; }
     const problem = await onStart({
       applicationId: app.id,
       organizationId: mode === 'existing' ? clientId : null,
@@ -557,29 +556,29 @@ function StartProjectDialog({ app, busy, onClose, onStart }: {
     <Dialog
       open
       onClose={onClose}
-      title="Start an Impact project"
-      description="Creates the project and marks the application as started, together. Free: no fee, invoice or payment can be recorded on it."
+      title={t('Start an Impact project')}
+      description={t('Creates the project and marks the application as started, together. Free: no fee, invoice or payment can be recorded on it.')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
           <Button size="sm" variant="primary" onClick={submit} disabled={busy}>
-            {busy ? 'Starting…' : 'Start project'}
+            {busy ? t('Starting…') : t('Start project')}
           </Button>
         </>
       }
     >
       <div className="grid gap-3">
         <fieldset className="grid gap-2">
-          <legend className="label mb-1">Client</legend>
+          <legend className="label mb-1">{t('Client')}</legend>
           {matches.length > 0 && (
             <div className="rounded-sm border border-signal/25 px-3 py-2.5">
-              <p className="label mb-1.5 text-signal">Possible existing clients</p>
-              <p className="t-note mb-2">Nothing is merged automatically. Attach to one of these if it is the same organisation.</p>
+              <p className="label mb-1.5 text-signal">{t('Possible existing clients')}</p>
+              <p className="t-note mb-2">{t('Nothing is merged automatically. Attach to one of these if it is the same organisation.')}</p>
               <ul className="grid gap-1.5">
                 {matches.map(({ client, why }) => (
                   <li key={client.id} className="flex flex-wrap items-center justify-between gap-2">
                     <span className="min-w-0 text-[13px] text-paper">{client.name} <span className="t-note">— {why}</span></span>
-                    <Button size="sm" onClick={() => { setMode('existing'); setClientId(client.id); }}>Use this client</Button>
+                    <Button size="sm" onClick={() => { setMode('existing'); setClientId(client.id); }}>{t('Use this client')}</Button>
                   </li>
                 ))}
               </ul>
@@ -587,38 +586,38 @@ function StartProjectDialog({ app, busy, onClose, onStart }: {
           )}
           <label className="flex items-center gap-2 text-[13px] text-paper">
             <input type="radio" name="impact-client-mode" checked={mode === 'new'} onChange={() => setMode('new')} />
-            Create a new client
+            {t('Create a new client')}
           </label>
           {mode === 'new' && (
-            <Field id="impact-client-name" label="Client name">
+            <Field id="impact-client-name" label={t('Client name')}>
               <Input id="impact-client-name" value={clientName} onChange={(e) => setClientName(e.target.value)} />
             </Field>
           )}
           <label className="flex items-center gap-2 text-[13px] text-paper">
             <input type="radio" name="impact-client-mode" checked={mode === 'existing'} onChange={() => setMode('existing')} />
-            Attach to an existing client
+            {t('Attach to an existing client')}
           </label>
           {mode === 'existing' && (
-            <Field id="impact-client" label="Existing client">
+            <Field id="impact-client" label={t('Existing client')}>
               <Select id="impact-client" className="w-full py-2.5 text-sm" value={clientId} onChange={(e) => setClientId(e.target.value)}>
-                <option value="">Choose a client…</option>
+                <option value="">{t('Choose a client…')}</option>
                 {clients.rows.filter((c: Client) => !c.archived_at).map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
               </Select>
             </Field>
           )}
         </fieldset>
 
-        <Field id="impact-project-name" label="Project name">
+        <Field id="impact-project-name" label={t('Project name')}>
           <Input id="impact-project-name" value={projectName} onChange={(e) => setProjectName(e.target.value)} />
         </Field>
-        <Field id="impact-service" label="Service">
+        <Field id="impact-service" label={t('Service')}>
           <Input id="impact-service" value={service} onChange={(e) => setService(e.target.value)} />
         </Field>
-        <Field id="impact-template" label="Starting checkpoints" hint="Copied into the project — editing the template later never changes them.">
+        <Field id="impact-template" label={t('Starting checkpoints')} hint={t('Copied into the project — editing the template later never changes them.')}>
           <Select id="impact-template" className="w-full py-2.5 text-sm" value={templateId} onChange={(e) => setTemplateId(e.target.value)}>
-            <option value="">{matched ? `Match the service — ${matched.name} (${matched.steps.length} steps)` : 'Match the service'}</option>
-            {templates.live.map((t) => <option key={t.id} value={t.id}>{t.name} ({t.steps.length} steps)</option>)}
-            <option value="none">No checkpoints yet</option>
+            <option value="">{matched ? t('Match the service — {name} ({n} steps)', { name: matched.name, n: matched.steps.length }) : t('Match the service')}</option>
+            {templates.live.map((tpl) => <option key={tpl.id} value={tpl.id}>{t('{name} ({n} steps)', { name: tpl.name, n: tpl.steps.length })}</option>)}
+            <option value="none">{t('No checkpoints yet')}</option>
           </Select>
         </Field>
         {error && <p role="alert" className="text-xs text-danger">{error}</p>}
@@ -643,11 +642,11 @@ function NewImpactProjectDialog({ onClose, onCreated }: { onClose: () => void; o
   });
   const set = (key: keyof typeof form) => (e: { target: { value: string } }) => setForm((p) => ({ ...p, [key]: e.target.value }));
   const matched = matchTemplate(templates.live, form.service);
-  const chosen = form.template === 'none' ? null : templates.live.find((t) => t.id === form.template) ?? matched;
+  const chosen = form.template === 'none' ? null : templates.live.find((tpl) => tpl.id === form.template) ?? matched;
 
   const submit = async () => {
-    if (!form.organization_id && !form.client_name.trim()) { setError('Choose a client, or type the name of a new one.'); return; }
-    if (!form.name.trim()) { setError('A project needs a name.'); return; }
+    if (!form.organization_id && !form.client_name.trim()) { setError(t('Choose a client, or type the name of a new one.')); return; }
+    if (!form.name.trim()) { setError(t('A project needs a name.')); return; }
     let market: number | null = null;
     if (form.market_value.trim()) {
       const parsed = parseMarketValue(form.market_value);
@@ -678,51 +677,51 @@ function NewImpactProjectDialog({ onClose, onCreated }: { onClose: () => void; o
       open
       wide
       onClose={onClose}
-      title="New Impact project"
-      description="For free work agreed outside the Impact form. It is counted with the other Impact projects and is never billed."
+      title={t('New Impact project')}
+      description={t('For free work agreed outside the Impact form. It is counted with the other Impact projects and is never billed.')}
       footer={<>
-        <Button size="sm" onClick={onClose}>Cancel</Button>
-        <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy !== null}>Create</Button>
+        <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
+        <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy !== null}>{t('Create')}</Button>
       </>}
     >
       <div className="grid gap-3">
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="ni-client" label="Client">
+          <Field id="ni-client" label={t('Client')}>
             <Select id="ni-client" className="w-full py-2.5 text-sm" value={form.organization_id} onChange={set('organization_id')}>
-              <option value="">New client…</option>
+              <option value="">{t('New client…')}</option>
               {clients.rows.filter((c: Client) => !c.archived_at).map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
             </Select>
           </Field>
           {!form.organization_id && (
-            <Field id="ni-client-name" label="New client's name">
-              <Input id="ni-client-name" value={form.client_name} onChange={set('client_name')} placeholder="e.g. Zöld Kör Egyesület" />
+            <Field id="ni-client-name" label={t("New client's name")}>
+              <Input id="ni-client-name" value={form.client_name} onChange={set('client_name')} placeholder={t('e.g. Zöld Kör Egyesület')} />
             </Field>
           )}
         </div>
-        <Field id="ni-name" label="Project name">
+        <Field id="ni-name" label={t('Project name')}>
           <Input id="ni-name" value={form.name} onChange={set('name')} />
         </Field>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="ni-service" label="Service">
+          <Field id="ni-service" label={t('Service')}>
             <Input id="ni-service" value={form.service} onChange={set('service')} />
           </Field>
-          <Field id="ni-market" label="Market value (HUF)" hint="What it would cost a paying client. Can be added later; needed before closing.">
-            <Input id="ni-market" inputMode="numeric" value={form.market_value} onChange={set('market_value')} placeholder="e.g. 1 250 000" />
+          <Field id="ni-market" label={t('Market value (HUF)')} hint={t('What it would cost a paying client. Can be added later; needed before closing.')}>
+            <Input id="ni-market" inputMode="numeric" value={form.market_value} onChange={set('market_value')} placeholder={t('e.g. 1 250 000')} />
           </Field>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="ni-start" label="Start">
+          <Field id="ni-start" label={t('Start')}>
             <Input id="ni-start" type="date" value={form.start_date} onChange={set('start_date')} />
           </Field>
-          <Field id="ni-target" label="Deadline">
+          <Field id="ni-target" label={t('Deadline')}>
             <Input id="ni-target" type="date" value={form.target_date} onChange={set('target_date')} />
           </Field>
         </div>
-        <Field id="ni-template" label="Checkpoints" hint="Copied into the project. Everything is editable afterwards.">
+        <Field id="ni-template" label={t('Checkpoints')} hint={t('Copied into the project. Everything is editable afterwards.')}>
           <Select id="ni-template" className="w-full py-2.5 text-sm" value={form.template} onChange={set('template')}>
-            <option value="">{matched ? `Match the service — ${matched.name} (${matched.steps.length} steps)` : 'Match the service'}</option>
-            {templates.live.map((t) => <option key={t.id} value={t.id}>{t.name} ({t.steps.length} steps)</option>)}
-            <option value="none">No checkpoints yet</option>
+            <option value="">{matched ? t('Match the service — {name} ({n} steps)', { name: matched.name, n: matched.steps.length }) : t('Match the service')}</option>
+            {templates.live.map((tpl) => <option key={tpl.id} value={tpl.id}>{t('{name} ({n} steps)', { name: tpl.name, n: tpl.steps.length })}</option>)}
+            <option value="none">{t('No checkpoints yet')}</option>
           </Select>
         </Field>
         {error && <p role="alert" className="text-xs text-danger">{error}</p>}

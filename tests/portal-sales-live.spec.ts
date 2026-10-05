@@ -30,7 +30,16 @@ import {
  */
 
 const ROOT = process.cwd();
-const src = (...p: string[]) => fs.readFileSync(path.join(ROOT, 'portal', 'src', ...p), 'utf8');
+/**
+ * The source as it reads before translation (portal/src/lib/i18n.ts): every
+ * `{t('X')}` prop back to `"X"` and every `t('X')` to `'X'`. These checks are
+ * about which words and which structure a screen has, and wrapping a word for
+ * translation changes neither.
+ */
+const untranslated = (source: string) => source
+  .replace(/=\{t\('((?:[^'\\]|\\.)*)'\)\}/g, '="$1"')
+  .replace(/\bt\('((?:[^'\\]|\\.)*)'\)/g, "'$1'");
+const src = (...p: string[]) => untranslated(fs.readFileSync(path.join(ROOT, 'portal', 'src', ...p), 'utf8'));
 
 test.describe('what the database said', () => {
   test('a missing table is a missing migration, not a refused permission', () => {

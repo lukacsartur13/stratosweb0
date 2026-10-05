@@ -5,6 +5,7 @@ import { defaultProbability, isOpen, OPEN_STAGES, type Stage } from '@/lib/pipel
 import { refusal as classify, type DbFailure } from '@/lib/dbError';
 import type { OpportunityDraft } from '@/lib/business';
 import { celebrate } from '@/lib/celebrate';
+import { t } from '@/lib/i18n';
 
 // Re-exported so a screen that already imports the opportunity type does not
 // need a second import for the shape it edits. A `type` re-export is erased at
@@ -186,7 +187,7 @@ export function useOpportunities(reloadToken = 0, includeArchived = false) {
       // denial, the thing it named, cannot produce an error on SELECT at all.
       // It answers `200 []`. See lib/dbError.ts.
       const { failure: cause, message: sentence } = classify(
-        'opportunities', error, 'the pipeline', hasSession,
+        'opportunities', error, t('the pipeline'), hasSession,
       );
       setState('error');
       setFailure(cause);
@@ -240,7 +241,7 @@ export function useOpportunity(id: string | undefined, reloadToken = 0) {
       // every sense that matters to a reader — not an outage. `classify` calls
       // that `invalid_query`; this screen calls it `missing`, which is the same
       // fact told in the vocabulary of a page that either has a deal or does not.
-      const { failure } = classify('opportunities.detail', error, 'this opportunity');
+      const { failure } = classify('opportunities.detail', error, t('this opportunity'));
       setState(failure === 'invalid_query' ? 'missing' : 'error');
       return;
     }
@@ -263,7 +264,7 @@ export function useOpportunity(id: string | undefined, reloadToken = 0) {
  * matched, because PostgREST answers `PGRST205` for a table it cannot find.
  */
 function refusal(error: { code?: string; message?: string }, what: string): string {
-  return classify(`opportunities.${what}`, error, 'the pipeline', true, 'write').message;
+  return classify(`opportunities.${what}`, error, t('the pipeline'), true, 'write').message;
 }
 
 export function useOpportunityMutations(onChanged: () => void) {
@@ -281,9 +282,9 @@ export function useOpportunityMutations(onChanged: () => void) {
    * absent for these.
    */
   const create = useCallback(async (draft: OpportunityDraft): Promise<{ id: string } | string> => {
-    if (!draft.title?.trim()) return 'An opportunity needs a title.';
+    if (!draft.title?.trim()) return t('An opportunity needs a title.');
     if (!draft.company_name?.trim() && !draft.organization_id) {
-      return 'An opportunity needs a company or an existing client.';
+      return t('An opportunity needs a company or an existing client.');
     }
     setBusy('create');
     const stage = draft.stage ?? 'qualified';
@@ -405,7 +406,7 @@ export function useOpportunityMutations(onChanged: () => void) {
     onChanged();
     // `false`: nothing matched — already done, or changed meanwhile. The reload
     // above shows which; nothing was written either way.
-    return data === false ? 'This action was already done or has changed. The list has been refreshed.' : null;
+    return data === false ? t('This action was already done or has changed. The list has been refreshed.') : null;
   }, [onChanged]);
 
   return { create, update, setStage, archive, completeAction, busy };

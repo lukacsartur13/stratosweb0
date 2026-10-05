@@ -1,0 +1,402 @@
+{
+ "Qualified": {
+  "hu": "Minősített",
+  "de": "Qualifiziert"
+ },
+ "Discovery": {
+  "hu": "Felmérés",
+  "de": "Bedarfsanalyse"
+ },
+ "Proposal": {
+  "hu": "Ajánlat",
+  "de": "Angebot"
+ },
+ "Negotiation": {
+  "hu": "Tárgyalás",
+  "de": "Verhandlung"
+ },
+ "Won": {
+  "hu": "Megnyert",
+  "de": "Gewonnen"
+ },
+ "Lost": {
+  "hu": "Elvesztett",
+  "de": "Verloren"
+ },
+ "A real commercial fit.": {
+  "hu": "Valódi üzleti illeszkedés.",
+  "de": "Ein echter geschäftlicher Fit."
+ },
+ "We are working out the scope.": {
+  "hu": "Most tisztázzuk a terjedelmet.",
+  "de": "Wir klären den Umfang."
+ },
+ "A quote is with them.": {
+  "hu": "Megkapták az árajánlatot.",
+  "de": "Ein Angebot liegt ihnen vor."
+ },
+ "Terms are being agreed.": {
+  "hu": "A feltételekről tárgyalunk.",
+  "de": "Die Konditionen werden vereinbart."
+ },
+ "Signed.": {
+  "hu": "Aláírva.",
+  "de": "Unterschrieben."
+ },
+ "Went elsewhere, or went quiet.": {
+  "hu": "Máshoz ment, vagy elhallgatott.",
+  "de": "Woanders hingegangen oder verstummt."
+ },
+ "Price": {
+  "hu": "Ár",
+  "de": "Preis"
+ },
+ "No response": {
+  "hu": "Nem válaszolt",
+  "de": "Keine Antwort"
+ },
+ "Competitor": {
+  "hu": "Versenytárs",
+  "de": "Wettbewerber"
+ },
+ "Timing": {
+  "hu": "Időzítés",
+  "de": "Zeitpunkt"
+ },
+ "Scope mismatch": {
+  "hu": "Nem illő terjedelem",
+  "de": "Umfang passt nicht"
+ },
+ "Internal decision": {
+  "hu": "Belső döntés",
+  "de": "Interne Entscheidung"
+ },
+ "Other": {
+  "hu": "Egyéb",
+  "de": "Sonstiges"
+ },
+ "A {stage} opportunity with nothing scheduled stops moving without anyone noticing.": {
+  "hu": "A(z) „{stage}” szakaszban lévő lehetőség ütemezett lépés nélkül észrevétlenül megáll.",
+  "de": "Eine Verkaufschance in der Phase „{stage}“ ohne geplanten Schritt bleibt unbemerkt stehen."
+ },
+ "The date set for the next step has passed.": {
+  "hu": "A következő lépés kitűzött dátuma elmúlt.",
+  "de": "Das Datum für den nächsten Schritt ist verstrichen."
+ },
+ "It is still open past the date it was forecast to close, so the forecast is wrong until it is re-dated or closed.": {
+  "hu": "A tervezett zárási dátum után is nyitva van, így az előrejelzés hibás, amíg új dátumot nem kap vagy le nem zárják.",
+  "de": "Sie ist über das prognostizierte Abschlussdatum hinaus offen; die Prognose stimmt erst wieder, wenn sie neu datiert oder abgeschlossen wird."
+ },
+ "Won revenue with no client cannot be attributed to a relationship or given a project.": {
+  "hu": "Ügyfél nélküli megnyert bevétel nem rendelhető ügyfélkapcsolathoz, és projekt sem indítható rá.",
+  "de": "Gewonnener Umsatz ohne Kunden lässt sich keiner Kundenbeziehung zuordnen und keinem Projekt zuweisen."
+ },
+ "A blocked project consumes a target date without moving towards it.": {
+  "hu": "Az elakadt projekt fogyasztja az időt a céldátumig, de nem halad felé.",
+  "de": "Ein blockiertes Projekt verbraucht Zeit bis zum Zieltermin, ohne voranzukommen."
+ },
+ "The delivery date has passed and the project is not complete.": {
+  "hu": "A leadási dátum elmúlt, és a projekt nincs kész.",
+  "de": "Der Liefertermin ist verstrichen und das Projekt ist nicht fertig."
+ },
+ "Nothing moves in client review until somebody asks for the review back.": {
+  "hu": "Ügyfél-jóváhagyásban semmi sem halad, amíg valaki vissza nem kéri a visszajelzést.",
+  "de": "In der Kundenprüfung bewegt sich nichts, bis jemand die Rückmeldung einfordert."
+ },
+ "Either the work is finished and the status is stale, or the next milestone has not been written down.": {
+  "hu": "Vagy kész a munka és elavult az állapot, vagy a következő mérföldkövet még nem rögzítették.",
+  "de": "Entweder ist die Arbeit fertig und der Status veraltet, oder der nächste Meilenstein wurde noch nicht erfasst."
+ },
+ "Prospect": {
+  "hu": "Potenciális",
+  "de": "Interessent"
+ },
+ "Active": {
+  "hu": "Aktív",
+  "de": "Aktiv"
+ },
+ "Paused": {
+  "hu": "Szünetel",
+  "de": "Pausiert"
+ },
+ "Former": {
+  "hu": "Korábbi",
+  "de": "Ehemalig"
+ },
+ "Planned": {
+  "hu": "Tervezett",
+  "de": "Geplant"
+ },
+ "Client review": {
+  "hu": "Ügyfél-jóváhagyás",
+  "de": "Kundenprüfung"
+ },
+ "Blocked": {
+  "hu": "Elakadt",
+  "de": "Blockiert"
+ },
+ "On hold": {
+  "hu": "Szünetel",
+  "de": "Pausiert"
+ },
+ "Completed": {
+  "hu": "Befejezett",
+  "de": "Abgeschlossen"
+ },
+ "Cancelled": {
+  "hu": "Megszakítva",
+  "de": "Abgebrochen"
+ },
+ "Design": {
+  "hu": "Design",
+  "de": "Design"
+ },
+ "Build": {
+  "hu": "Fejlesztés",
+  "de": "Umsetzung"
+ },
+ "Launch": {
+  "hu": "Indulás",
+  "de": "Launch"
+ },
+ "Care": {
+  "hu": "Gondozás",
+  "de": "Betreuung"
+ },
+ "Archived": {
+  "hu": "Archivált",
+  "de": "Archiviert"
+ },
+ "Agreed, not started.": {
+  "hu": "Megállapodtunk, még nem indult.",
+  "de": "Vereinbart, noch nicht begonnen."
+ },
+ "Being worked on.": {
+  "hu": "Dolgozunk rajta.",
+  "de": "In Arbeit."
+ },
+ "Waiting on the client.": {
+  "hu": "Ügyfélre vár.",
+  "de": "Wartet auf den Kunden."
+ },
+ "Cannot proceed.": {
+  "hu": "Nem tud haladni.",
+  "de": "Kann nicht fortgesetzt werden."
+ },
+ "Paused deliberately.": {
+  "hu": "Szándékosan szüneteltetve.",
+  "de": "Bewusst pausiert."
+ },
+ "Delivered.": {
+  "hu": "Átadva.",
+  "de": "Geliefert."
+ },
+ "Fell through. Not delivered.": {
+  "hu": "Meghiúsult. Nem került átadásra.",
+  "de": "Geplatzt. Nicht geliefert."
+ },
+ "Legacy phase value.": {
+  "hu": "Régi fázisérték.",
+  "de": "Veralteter Phasenwert."
+ },
+ "Closed.": {
+  "hu": "Lezárva.",
+  "de": "Abgeschlossen."
+ },
+ "Not invoiced": {
+  "hu": "Nincs számlázva",
+  "de": "Nicht fakturiert"
+ },
+ "Invoiced": {
+  "hu": "Számlázva",
+  "de": "Fakturiert"
+ },
+ "Partially paid": {
+  "hu": "Részben fizetve",
+  "de": "Teilweise bezahlt"
+ },
+ "Paid": {
+  "hu": "Fizetve",
+  "de": "Bezahlt"
+ },
+ "Not started": {
+  "hu": "Nem indult",
+  "de": "Nicht begonnen"
+ },
+ "In progress": {
+  "hu": "Folyamatban",
+  "de": "In Arbeit"
+ },
+ "Waiting on client": {
+  "hu": "Ügyfélre vár",
+  "de": "Wartet auf Kunden"
+ },
+ "Done": {
+  "hu": "Kész",
+  "de": "Erledigt"
+ },
+ "Website": {
+  "hu": "Weboldal",
+  "de": "Website"
+ },
+ "Ads": {
+  "hu": "Hirdetések",
+  "de": "Anzeigen"
+ },
+ "Branding": {
+  "hu": "Arculat",
+  "de": "Branding"
+ },
+ "General": {
+  "hu": "Általános",
+  "de": "Allgemein"
+ },
+ "Research": {
+  "hu": "Kutatás",
+  "de": "Recherche"
+ },
+ "UX / structure": {
+  "hu": "UX / struktúra",
+  "de": "UX / Struktur"
+ },
+ "Development": {
+  "hu": "Fejlesztés",
+  "de": "Entwicklung"
+ },
+ "Content": {
+  "hu": "Tartalom",
+  "de": "Inhalt"
+ },
+ "QA": {
+  "hu": "Tesztelés",
+  "de": "QA"
+ },
+ "Maintenance": {
+  "hu": "Karbantartás",
+  "de": "Wartung"
+ },
+ "Audit": {
+  "hu": "Audit",
+  "de": "Audit"
+ },
+ "Account setup": {
+  "hu": "Fiók beállítása",
+  "de": "Konto-Einrichtung"
+ },
+ "Creative": {
+  "hu": "Kreatív",
+  "de": "Creatives"
+ },
+ "Optimisation": {
+  "hu": "Optimalizálás",
+  "de": "Optimierung"
+ },
+ "Direction": {
+  "hu": "Irány",
+  "de": "Richtung"
+ },
+ "Refinement": {
+  "hu": "Finomítás",
+  "de": "Feinschliff"
+ },
+ "Handover": {
+  "hu": "Átadás",
+  "de": "Übergabe"
+ },
+ "Delivery": {
+  "hu": "Megvalósítás",
+  "de": "Umsetzung"
+ },
+ "The target date has passed.": {
+  "hu": "A céldátum elmúlt.",
+  "de": "Der Zieltermin ist verstrichen."
+ },
+ "“{title}” is past its due date.": {
+  "hu": "„{title}” túllépte a határidejét.",
+  "de": "„{title}“ hat die Frist überschritten."
+ },
+ "A project needs at least one checkpoint, all done, before it can be closed.": {
+  "hu": "Lezárás előtt a projektnek legalább egy mérföldkő kell, és mindnek késznek kell lennie.",
+  "de": "Ein Projekt braucht vor dem Abschluss mindestens einen Meilenstein, und alle müssen erledigt sein."
+ },
+ "Every checkpoint has to be done before the project can be closed.": {
+  "hu": "A projekt lezárásához minden mérföldkőnek késznek kell lennie.",
+  "de": "Alle Meilensteine müssen erledigt sein, bevor das Projekt abgeschlossen werden kann."
+ },
+ "This project is closed. Reopen it to change its checkpoints.": {
+  "hu": "Ez a projekt le van zárva. Nyisd újra, ha módosítanád a mérföldköveit.",
+  "de": "Dieses Projekt ist abgeschlossen. Öffnen Sie es wieder, um die Meilensteine zu ändern."
+ },
+ "Record the market value of the donated work before closing an Impact project — and a closed one keeps it.": {
+  "hu": "Impact-projekt lezárása előtt rögzítsd a felajánlott munka piaci értékét — a lezárt projekt megtartja.",
+  "de": "Erfassen Sie vor dem Abschluss eines Impact-Projekts den Marktwert der gespendeten Arbeit — ein abgeschlossenes Projekt behält ihn."
+ },
+ "A project is one-off or a monthly contract from the day it is created.": {
+  "hu": "A projekt a létrehozásától kezdve vagy egyszeri, vagy havi szerződés.",
+  "de": "Ein Projekt ist ab seiner Anlage entweder einmalig oder ein Monatsvertrag."
+ },
+ "A monthly contract needs a monthly fee and has no one-off project value.": {
+  "hu": "A havi szerződéshez havidíj kell, és nincs egyszeri projektértéke.",
+  "de": "Ein Monatsvertrag braucht eine Monatsgebühr und hat keinen einmaligen Projektwert."
+ },
+ "A project is paid or Impact from the day it is created.": {
+  "hu": "A projekt a létrehozásától kezdve vagy fizetős, vagy Impact.",
+  "de": "Ein Projekt ist ab seiner Anlage entweder bezahlt oder Impact."
+ },
+ "Collaborator fee": {
+  "hu": "Közreműködői díj",
+  "de": "Honorar Mitwirkende"
+ },
+ "Subcontractor": {
+  "hu": "Alvállalkozó",
+  "de": "Subunternehmer"
+ },
+ "Stock / media": {
+  "hu": "Stock / média",
+  "de": "Stock / Medien"
+ },
+ "Software / service": {
+  "hu": "Szoftver / szolgáltatás",
+  "de": "Software / Dienst"
+ },
+ "Production": {
+  "hu": "Éles",
+  "de": "Produktion"
+ },
+ "Other direct cost": {
+  "hu": "Egyéb közvetlen költség",
+  "de": "Sonstige direkte Kosten"
+ },
+ "{name} has no next action": {
+  "hu": "{name}: nincs következő lépés",
+  "de": "{name} hat keinen nächsten Schritt"
+ },
+ "{name} next action is overdue — {action}": {
+  "hu": "{name}: lejárt a következő lépés — {action}",
+  "de": "{name}: der nächste Schritt ist überfällig — {action}"
+ },
+ "{name} expected close date has passed": {
+  "hu": "{name}: elmúlt a várható zárási dátum",
+  "de": "{name}: das erwartete Abschlussdatum ist verstrichen"
+ },
+ "{name} is won but has no client record": {
+  "hu": "{name}: megnyert, de nincs ügyfélrekordja",
+  "de": "{name} ist gewonnen, hat aber keinen Kundendatensatz"
+ },
+ "{name} is blocked": {
+  "hu": "{name}: elakadt",
+  "de": "{name} ist blockiert"
+ },
+ "{name} is past its target date": {
+  "hu": "{name}: túllépte a határidőt",
+  "de": "{name} hat den Zieltermin überschritten"
+ },
+ "{name} is waiting on the client": {
+  "hu": "{name}: ügyfélre vár",
+  "de": "{name} wartet auf den Kunden"
+ },
+ "{name} is active with no milestone left to do": {
+  "hu": "{name}: aktív, de nincs hátralévő mérföldköve",
+  "de": "{name} ist aktiv, hat aber keinen offenen Meilenstein"
+ }
+}

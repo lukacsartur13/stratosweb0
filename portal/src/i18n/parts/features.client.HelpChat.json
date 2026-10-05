@@ -1,0 +1,63 @@
+{
+ "Kérdezz szabadon, vagy válassz az alábbi témák közül. A válaszok a Stratos által jóváhagyott tudásbázisból jönnek. A beszélgetést nem mentjük és senkinek nem továbbítjuk; ha itt nincs válasz, keresd a Stratos kapcsolattartódat.": {
+  "en": "Ask anything, or pick one of the topics below. The answers come from a knowledge base approved by Stratos. The conversation is not saved or passed on to anyone; if there is no answer here, get in touch with your Stratos contact.",
+  "de": "Fragen Sie einfach, oder wählen Sie eines der Themen unten. Die Antworten stammen aus einer von Stratos freigegebenen Wissensdatenbank. Das Gespräch wird nicht gespeichert und an niemanden weitergegeben; wenn Sie hier keine Antwort finden, wenden Sie sich bitte an Ihren Ansprechpartner bei Stratos."
+ },
+ "A súgócikkek és a válaszok magyar nyelvűek.": {
+  "en": "The help articles and answers are in Hungarian.",
+  "de": "Die Hilfeartikel und Antworten sind auf Ungarisch."
+ },
+ "Témák": {
+  "en": "Topics",
+  "de": "Themen"
+ },
+ "Javasolt kérdések": {
+  "en": "Suggested questions",
+  "de": "Vorgeschlagene Fragen"
+ },
+ "Beszélgetés": {
+  "en": "Conversation",
+  "de": "Gespräch"
+ },
+ "Kérdésed": {
+  "en": "Your question",
+  "de": "Ihre Frage"
+ },
+ "Például: Hol adhatom le a logót?": {
+  "en": "For example: Where can I hand over the logo?",
+  "de": "Zum Beispiel: Wo kann ich das Logo übergeben?"
+ },
+ "Kérdezem": {
+  "en": "Ask",
+  "de": "Fragen"
+ },
+ "Ask": {
+  "hu": "Kérdezem",
+  "en": "Ask",
+  "de": "Fragen"
+ },
+ "Kapcsolódó kérdések:": {
+  "en": "Related questions:",
+  "de": "Verwandte Fragen:"
+ },
+ "Nem vagyok biztos benne, mire gondolsz. Ezek közül valamelyik?": {
+  "en": "I'm not sure what you mean. Is it one of these?",
+  "de": "Ich bin nicht sicher, was Sie meinen. Ist es eine dieser Fragen?"
+ },
+ "Ha egyik sem, fogalmazd meg másképp, vagy keresd a Stratos kapcsolattartódat.": {
+  "en": "If none of them, try rephrasing, or get in touch with your Stratos contact.",
+  "de": "Falls keine passt, formulieren Sie die Frage bitte anders oder wenden Sie sich an Ihren Ansprechpartner bei Stratos."
+ },
+ "Erre a kérdésre nincs kész válaszom. Nem találgatok: projektállapotról, határidőről vagy fizetésről itt nem tudok nyilatkozni.": {
+  "en": "I don't have a ready answer to this question. I won't guess: I can't speak about project status, deadlines or payments here.",
+  "de": "Auf diese Frage habe ich keine fertige Antwort. Ich rate nicht: Zu Projektstand, Fristen oder Zahlungen kann ich hier nichts sagen."
+ },
+ "Ezekben a témákban tudok segíteni:": {
+  "en": "I can help with these topics:",
+  "de": "Bei diesen Themen kann ich helfen:"
+ },
+ "Ha ezek egyike sem segít, keresd a Stratos kapcsolattartódat. Ez a felület nem küld üzenetet.": {
+  "en": "If none of these helps, get in touch with your Stratos contact. This page does not send messages.",
+  "de": "Wenn keines davon hilft, wenden Sie sich bitte an Ihren Ansprechpartner bei Stratos. Diese Seite versendet keine Nachrichten."
+ }
+}

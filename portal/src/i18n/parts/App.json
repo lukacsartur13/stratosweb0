@@ -1,0 +1,14 @@
+{
+ "Something broke": {
+  "hu": "Valami elromlott",
+  "de": "Etwas ist schiefgelaufen"
+ },
+ "The portal hit an error it could not recover from. Reloading usually clears it.": {
+  "hu": "A portál olyan hibába futott, amelyből nem tudott helyreállni. Újratöltéssel általában megoldódik.",
+  "de": "Im Portal ist ein Fehler aufgetreten, der nicht behoben werden konnte. Neu laden hilft in der Regel."
+ },
+ "Reload": {
+  "hu": "Újratöltés",
+  "de": "Neu laden"
+ }
+}

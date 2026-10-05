@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
+import { intlLocale, t } from '@/lib/i18n';
 
 export type LoadState = 'loading' | 'ready' | 'error' | 'unconfigured';
 
@@ -37,8 +38,8 @@ export function useRows<T>(table: string, columns = '*', orderBy = 'created_at',
       console.error(`[${table}]`, error);
       setMessage(
         error.code === '42P01'
-          ? 'That table does not exist yet. Run the migrations in supabase/migrations.'
-          : 'The database refused the request. Check that you have permission for this data.',
+          ? t('That table does not exist yet. Run the migrations in supabase/migrations.')
+          : t('The database refused the request. Check that you have permission for this data.'),
       );
       return;
     }
@@ -66,7 +67,7 @@ export function useSearch<T>(rows: T[], keys: (keyof T)[]) {
   return { query, setQuery, filtered };
 }
 
-export function formatDate(value: string | null | undefined, locale = 'hu-HU') {
+export function formatDate(value: string | null | undefined, locale = intlLocale('hu-HU')) {
   if (!value) return '—';
   const d = new Date(value);
   return Number.isNaN(d.getTime())

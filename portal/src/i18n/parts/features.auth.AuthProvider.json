@@ -1,0 +1,26 @@
+{
+ "Sign-in failed. Please try again.": {
+  "hu": "A bejelentkezés nem sikerült. Próbáld újra.",
+  "de": "Die Anmeldung ist fehlgeschlagen. Bitte versuchen Sie es erneut."
+ },
+ "Too many attempts. Please wait a minute and try again.": {
+  "hu": "Túl sok próbálkozás. Várj egy percet, és próbáld újra.",
+  "de": "Zu viele Versuche. Bitte warten Sie eine Minute und versuchen Sie es erneut."
+ },
+ "Please confirm your email address first — check your inbox.": {
+  "hu": "Előbb erősítsd meg az e-mail-címed — nézd meg a postafiókod.",
+  "de": "Bitte bestätigen Sie zuerst Ihre E-Mail-Adresse — sehen Sie in Ihrem Posteingang nach."
+ },
+ "Those details did not match an account.": {
+  "hu": "Ezekkel az adatokkal nem található fiók.",
+  "de": "Diese Angaben passen zu keinem Konto."
+ },
+ "Sign-in is unavailable right now. Please try again shortly.": {
+  "hu": "A bejelentkezés most nem érhető el. Próbáld újra hamarosan.",
+  "de": "Die Anmeldung ist gerade nicht verfügbar. Bitte versuchen Sie es in Kürze erneut."
+ },
+ "Could not save the new password. Request a fresh link.": {
+  "hu": "Nem sikerült menteni az új jelszót. Kérj új linket.",
+  "de": "Das neue Passwort konnte nicht gespeichert werden. Fordern Sie einen neuen Link an."
+ }
+}

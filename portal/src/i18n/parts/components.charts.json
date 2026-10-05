@@ -1,0 +1,22 @@
+{
+ "No data in this range.": {
+  "hu": "Ebben az időszakban nincs adat.",
+  "de": "Keine Daten in diesem Zeitraum."
+ },
+ "peak {n}": {
+  "hu": "csúcs {n}",
+  "de": "Spitze {n}"
+ },
+ "{label} over time. Peak {max}.": {
+  "hu": "{label} időbeli alakulása. Csúcs: {max}.",
+  "de": "{label} im Zeitverlauf. Spitze: {max}."
+ },
+ "{pct}% of entry": {
+  "hu": "a belépők {pct}%-a",
+  "de": "{pct} % des Einstiegs"
+ },
+ "no comparison": {
+  "hu": "nincs összevetés",
+  "de": "kein Vergleich"
+ }
+}

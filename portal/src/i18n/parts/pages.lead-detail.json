@@ -1,0 +1,210 @@
+{
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Unavailable": {
+  "hu": "Nem elérhető",
+  "de": "Nicht verfügbar"
+ },
+ "Supabase credentials are not set in this environment, so there is nothing to read yet.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase-hozzáférési adatok, így még nincs mit beolvasni.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt, daher gibt es noch nichts zu lesen."
+ },
+ "Form": {
+  "hu": "Űrlap",
+  "de": "Formular"
+ },
+ "Source": {
+  "hu": "Forrás",
+  "de": "Quelle"
+ },
+ "Locale": {
+  "hu": "Nyelv",
+  "de": "Sprache"
+ },
+ "Pipeline": {
+  "hu": "Folyamat",
+  "de": "Pipeline"
+ },
+ "No such lead": {
+  "hu": "Nincs ilyen lead",
+  "de": "Lead nicht gefunden"
+ },
+ "The lead could not be read right now.": {
+  "hu": "A leadet most nem sikerült beolvasni.",
+  "de": "Der Lead konnte gerade nicht gelesen werden."
+ },
+ "This lead does not exist, or this account may not read it.": {
+  "hu": "Ez a lead nem létezik, vagy ez a fiók nem olvashatja.",
+  "de": "Dieser Lead existiert nicht, oder dieses Konto darf ihn nicht lesen."
+ },
+ "Back": {
+  "hu": "Vissza",
+  "de": "Zurück"
+ },
+ "All leads": {
+  "hu": "Összes lead",
+  "de": "Alle Leads"
+ },
+ "Enquiry": {
+  "hu": "Érdeklődés",
+  "de": "Anfrage"
+ },
+ "Service interest": {
+  "hu": "Érdeklődési terület",
+  "de": "Gewünschte Leistung"
+ },
+ "Budget": {
+  "hu": "Költségkeret",
+  "de": "Budget"
+ },
+ "Answers": {
+  "hu": "Válaszok",
+  "de": "Antworten"
+ },
+ "{n} questions": {
+  "hu": "{n} kérdés",
+  "de": "{n} Fragen"
+ },
+ "Yes": {
+  "hu": "Igen",
+  "de": "Ja"
+ },
+ "No": {
+  "hu": "Nem",
+  "de": "Nein"
+ },
+ "{n} answers": {
+  "hu": "{n} válasz",
+  "de": "{n} Antworten"
+ },
+ "Activity": {
+  "hu": "Tevékenység",
+  "de": "Aktivität"
+ },
+ "Internal note": {
+  "hu": "Belső jegyzet",
+  "de": "Interne Notiz"
+ },
+ "Private to the team. Plain text.": {
+  "hu": "Csak a csapat látja. Sima szöveg.",
+  "de": "Nur für das Team sichtbar. Reiner Text."
+ },
+ "Add note": {
+  "hu": "Jegyzet hozzáadása",
+  "de": "Notiz hinzufügen"
+ },
+ "Only recorded events appear here. Leads received before status changes were logged show the arrival and nothing else.": {
+  "hu": "Itt csak a rögzített események jelennek meg. Azoknál a leadeknél, amelyek az állapotváltozások naplózása előtt érkeztek, csak a beérkezés látszik.",
+  "de": "Hier erscheinen nur erfasste Ereignisse. Bei Leads, die vor der Protokollierung von Statusänderungen eingingen, ist nur der Eingang zu sehen."
+ },
+ "Stage": {
+  "hu": "Szakasz",
+  "de": "Phase"
+ },
+ "A status this Portal does not draw.": {
+  "hu": "Olyan állapot, amelyet ez a Portál nem jelenít meg.",
+  "de": "Ein Status, den dieses Portal nicht darstellt."
+ },
+ "Origin": {
+  "hu": "Eredet",
+  "de": "Herkunft"
+ },
+ "Received": {
+  "hu": "Beérkezett",
+  "de": "Eingegangen"
+ },
+ "Medium": {
+  "hu": "Médium",
+  "de": "Medium"
+ },
+ "Campaign": {
+  "hu": "Kampány",
+  "de": "Kampagne"
+ },
+ "Content": {
+  "hu": "Tartalom",
+  "de": "Inhalt"
+ },
+ "Term": {
+  "hu": "Kulcsszó",
+  "de": "Suchbegriff"
+ },
+ "Landed on": {
+  "hu": "Érkezési oldal",
+  "de": "Landingpage"
+ },
+ "Submitted from": {
+  "hu": "Beküldés helye",
+  "de": "Gesendet von"
+ },
+ "Submission id": {
+  "hu": "Beküldés azonosítója",
+  "de": "Übermittlungs-ID"
+ },
+ "Other metadata": {
+  "hu": "Egyéb metaadatok",
+  "de": "Weitere Metadaten"
+ },
+ "Referrer at submit": {
+  "hu": "Hivatkozó beküldéskor",
+  "de": "Referrer beim Absenden"
+ },
+ "Served by": {
+  "hu": "Kiszolgáló",
+  "de": "Ausgeliefert von"
+ },
+ "Device": {
+  "hu": "Eszköz",
+  "de": "Gerät"
+ },
+ "Time to fill (ms)": {
+  "hu": "Kitöltési idő (ms)",
+  "de": "Ausfülldauer (ms)"
+ },
+ "Attempts": {
+  "hu": "Próbálkozások",
+  "de": "Versuche"
+ },
+ "Legacy client": {
+  "hu": "Régi kliens",
+  "de": "Alter Client"
+ },
+ "Submission id source": {
+  "hu": "Beküldés-azonosító forrása",
+  "de": "Quelle der Übermittlungs-ID"
+ },
+ "Nothing recorded.": {
+  "hu": "Nincs rögzített esemény.",
+  "de": "Nichts erfasst."
+ },
+ "Impact Program": {
+  "hu": "Impact Program",
+  "de": "Impact-Programm"
+ },
+ "This is an Impact application. The programme is free, so it is not a sales lead and cannot be converted to an opportunity. It is handled in the Impact pipeline.": {
+  "hu": "Ez egy Impact-jelentkezés. A program ingyenes, ezért nem értékesítési lead, és nem alakítható lehetőséggé. Az Impact folyamatában kezeljük.",
+  "de": "Dies ist eine Impact-Bewerbung. Das Programm ist kostenlos, daher ist sie kein Vertriebs-Lead und kann nicht in eine Verkaufschance umgewandelt werden. Sie wird in der Impact-Pipeline bearbeitet."
+ },
+ "Open the Impact pipeline": {
+  "hu": "Impact folyamat megnyitása",
+  "de": "Impact-Pipeline öffnen"
+ },
+ "No opportunity yet. Converting is deliberate — an opportunity is a qualified commercial possibility, not every enquiry that arrives.": {
+  "hu": "Még nincs lehetőség. Az átalakítás tudatos döntés — a lehetőség minősített üzleti esély, nem minden beérkező érdeklődés.",
+  "de": "Noch keine Verkaufschance. Die Umwandlung ist eine bewusste Entscheidung — eine Verkaufschance ist eine qualifizierte geschäftliche Möglichkeit, nicht jede eingehende Anfrage."
+ },
+ "Convert again": {
+  "hu": "Újra átalakítás",
+  "de": "Erneut umwandeln"
+ },
+ "Convert to opportunity": {
+  "hu": "Átalakítás lehetőséggé",
+  "de": "In Verkaufschance umwandeln"
+ },
+ "A second opportunity is legitimate — a client can come back for different work — and is never created by accident.": {
+  "hu": "Egy második lehetőség is jogos — az ügyfél más munkával is visszatérhet —, és sosem jön létre véletlenül.",
+  "de": "Eine zweite Verkaufschance ist legitim — ein Kunde kann für andere Arbeit zurückkommen — und entsteht nie versehentlich."
+ }
+}

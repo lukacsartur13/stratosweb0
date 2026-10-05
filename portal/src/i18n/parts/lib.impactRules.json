@@ -1,0 +1,191 @@
+{
+ "Applied": {
+  "hu": "Jelentkezett",
+  "de": "Beworben"
+ },
+ "In review": {
+  "hu": "Elbírálás alatt",
+  "de": "In Prüfung"
+ },
+ "Consultation": {
+  "hu": "Egyeztetés",
+  "de": "Beratung"
+ },
+ "Accepted": {
+  "hu": "Elfogadva",
+  "de": "Angenommen"
+ },
+ "Project started": {
+  "hu": "Projekt elindítva",
+  "de": "Projekt gestartet"
+ },
+ "Rejected": {
+  "hu": "Elutasítva",
+  "de": "Abgelehnt"
+ },
+ "Deferred": {
+  "hu": "Elhalasztva",
+  "de": "Zurückgestellt"
+ },
+ "Arrived through the Impact form.": {
+  "hu": "Az Impact-űrlapon érkezett.",
+  "de": "Über das Impact-Formular eingegangen."
+ },
+ "Being assessed.": {
+  "hu": "Elbírálás alatt.",
+  "de": "Wird geprüft."
+ },
+ "Talking it through with the applicant.": {
+  "hu": "Egyeztetés a jelentkezővel.",
+  "de": "Abstimmung mit dem Bewerber."
+ },
+ "A project can be started from it.": {
+  "hu": "Projekt indítható belőle.",
+  "de": "Daraus kann ein Projekt gestartet werden."
+ },
+ "An Impact project exists.": {
+  "hu": "Van már Impact-projekt.",
+  "de": "Ein Impact-Projekt existiert."
+ },
+ "Not taken on.": {
+  "hu": "Nem vállaltuk.",
+  "de": "Nicht übernommen."
+ },
+ "Not now — kept for a later round.": {
+  "hu": "Most nem — egy későbbi körre félretéve.",
+  "de": "Nicht jetzt — für eine spätere Runde vorgemerkt."
+ },
+ "Only an accepted application can start a project.": {
+  "hu": "Csak elfogadott jelentkezésből indítható projekt.",
+  "de": "Nur aus einer angenommenen Bewerbung kann ein Projekt gestartet werden."
+ },
+ "A project has already been started from this application.": {
+  "hu": "Ebből a jelentkezésből már indult projekt.",
+  "de": "Aus dieser Bewerbung wurde bereits ein Projekt gestartet."
+ },
+ "“Project started” is set by starting a project, not by hand.": {
+  "hu": "A „Projekt elindítva” állapotot a projekt indítása állítja be, nem kézzel.",
+  "de": "„Projekt gestartet“ wird durch das Starten eines Projekts gesetzt, nicht von Hand."
+ },
+ "An Impact application is free. It cannot become a paid opportunity.": {
+  "hu": "Az Impact-jelentkezés ingyenes. Nem válhat fizetős üzleti lehetőséggé.",
+  "de": "Eine Impact-Bewerbung ist kostenlos. Sie kann keine bezahlte Verkaufschance werden."
+ },
+ "That client no longer exists. Choose another, or create a new one.": {
+  "hu": "Ez az ügyfél már nem létezik. Válassz másikat, vagy hozz létre újat.",
+  "de": "Dieser Kunde existiert nicht mehr. Wählen Sie einen anderen oder legen Sie einen neuen an."
+ },
+ "A new client needs a name.": {
+  "hu": "Az új ügyfélnek nevet kell adni.",
+  "de": "Ein neuer Kunde braucht einen Namen."
+ },
+ "The project needs a name.": {
+  "hu": "A projektnek nevet kell adni.",
+  "de": "Das Projekt braucht einen Namen."
+ },
+ "This application does not exist, or this account may not read it.": {
+  "hu": "Ez a jelentkezés nem létezik, vagy ez a fiók nem láthatja.",
+  "de": "Diese Bewerbung existiert nicht, oder dieses Konto darf sie nicht lesen."
+ },
+ "Only the portal owner can start an Impact project.": {
+  "hu": "Impact-projektet csak a portál tulajdonosa indíthat.",
+  "de": "Nur der Inhaber des Portals kann ein Impact-Projekt starten."
+ },
+ "Record the market value of the donated work before closing — and a closed project keeps it.": {
+  "hu": "Lezárás előtt rögzítsd a felajánlott munka piaci értékét — a lezárt projekt meg is tartja.",
+  "de": "Erfassen Sie vor dem Abschließen den Marktwert der gespendeten Arbeit — ein abgeschlossenes Projekt behält ihn."
+ },
+ "An Impact project is free: no fee, invoice, payment or opportunity can be put on it.": {
+  "hu": "Az Impact-projekt ingyenes: nem kerülhet rá díj, számla, befizetés vagy üzleti lehetőség.",
+  "de": "Ein Impact-Projekt ist kostenlos: Gebühr, Rechnung, Zahlung oder Verkaufschance sind nicht möglich."
+ },
+ "Whether a lead is an Impact application is decided by the form it came from.": {
+  "hu": "Hogy egy lead Impact-jelentkezés-e, azt az űrlap dönti el, amelyről érkezett.",
+  "de": "Ob ein Lead eine Impact-Bewerbung ist, entscheidet das Formular, über das er kam."
+ },
+ "Igen": {
+  "hu": "Igen",
+  "en": "Yes",
+  "de": "Ja"
+ },
+ "Nem": {
+  "hu": "Nem",
+  "en": "No",
+  "de": "Nein"
+ },
+ "Szervezet": {
+  "hu": "Szervezet",
+  "en": "Organisation",
+  "de": "Organisation"
+ },
+ "Kapcsolattartó": {
+  "hu": "Kapcsolattartó",
+  "en": "Contact",
+  "de": "Kontakt"
+ },
+ "E-mail": {
+  "hu": "E-mail",
+  "en": "E-mail",
+  "de": "E-Mail"
+ },
+ "Telefon": {
+  "hu": "Telefon",
+  "en": "Phone",
+  "de": "Telefon"
+ },
+ "Weboldal": {
+  "hu": "Weboldal",
+  "en": "Website",
+  "de": "Website"
+ },
+ "Tevékenységi terület": {
+  "hu": "Tevékenységi terület",
+  "en": "Field of activity",
+  "de": "Tätigkeitsbereich"
+ },
+ "Mivel foglalkozik a szervezet": {
+  "hu": "Mivel foglalkozik a szervezet",
+  "en": "What the organisation does",
+  "de": "Was die Organisation macht"
+ },
+ "Elért hatás": {
+  "hu": "Elért hatás",
+  "en": "Impact achieved",
+  "de": "Erzielte Wirkung"
+ },
+ "Miért fontos az új weboldal": {
+  "hu": "Miért fontos az új weboldal",
+  "en": "Why the new website matters",
+  "de": "Warum die neue Website wichtig ist"
+ },
+ "Mit tudjon az új weboldal": {
+  "hu": "Mit tudjon az új weboldal",
+  "en": "What the new website should do",
+  "de": "Was die neue Website können soll"
+ },
+ "Adatkezelés elfogadva": {
+  "hu": "Adatkezelés elfogadva",
+  "en": "Privacy policy accepted",
+  "de": "Datenschutz akzeptiert"
+ },
+ "That market value is out of range.": {
+  "hu": "Ez a piaci érték kívül esik a megengedett tartományon.",
+  "de": "Dieser Marktwert liegt außerhalb des zulässigen Bereichs."
+ },
+ "The market value is a whole number of forints, e.g. 1 250 000. No decimals, no minus sign.": {
+  "hu": "A piaci érték egész forintösszeg, pl. 1 250 000. Tizedesjegy és mínuszjel nélkül.",
+  "de": "Der Marktwert ist ein ganzzahliger Forint-Betrag, z. B. 1 250 000. Ohne Dezimalstellen, ohne Minuszeichen."
+ },
+ "at least one checkpoint": {
+  "hu": "legalább egy mérföldkő",
+  "de": "mindestens ein Meilenstein"
+ },
+ "the market value of the donated work": {
+  "hu": "a felajánlott munka piaci értéke",
+  "de": "der Marktwert der gespendeten Arbeit"
+ },
+ "{open} of {total} checkpoints still open": {
+  "hu": "{total} mérföldkőből {open} még nyitott",
+  "de": "{open} von {total} Meilensteinen noch offen"
+ }
+}

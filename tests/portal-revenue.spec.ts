@@ -788,10 +788,13 @@ test.describe('the P2 modules', () => {
 
   test('the pure modules stay pure', () => {
     // This is what makes the arithmetic above testable at all.
+    // The one import allowed is the translation function, which is itself pure
+    // (lib/i18n.ts: no imports; in Node it returns its key).
     for (const file of ['lib/money.ts', 'lib/pipeline.ts']) {
-      const source = code(...file.split('/'));
+      const source = code(...file.split('/')).replace(/^import \{[^}]*\} from '\.\/i18n(\.ts)?';$/m, '');
       expect(source, `${file} must have no imports`).not.toMatch(/^\s*import\s/m);
     }
+    expect(code('lib', 'i18n.ts'), 'lib/i18n.ts must have no imports').not.toMatch(/^\s*import\s/m);
   });
 
   test('the P2 modules handle an empty account without inventing anything', () => {

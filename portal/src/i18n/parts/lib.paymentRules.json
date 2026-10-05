@@ -1,0 +1,138 @@
+{
+ "Enter an amount.": {
+  "hu": "Adj meg egy összeget.",
+  "de": "Bitte geben Sie einen Betrag ein."
+ },
+ "An amount is a positive number with at most two decimals.": {
+  "hu": "Az összeg pozitív szám, legfeljebb két tizedesjeggyel.",
+  "de": "Ein Betrag ist eine positive Zahl mit höchstens zwei Nachkommastellen."
+ },
+ "An amount must be more than 0.": {
+  "hu": "Az összegnek 0-nál nagyobbnak kell lennie.",
+  "de": "Der Betrag muss größer als 0 sein."
+ },
+ "That amount is too large.": {
+  "hu": "Ez az összeg túl nagy.",
+  "de": "Dieser Betrag ist zu groß."
+ },
+ "The payment state read \"{from}\" before and now reads \"{to}\", because it follows the recorded payments.": {
+  "hu": "A fizetési állapot korábban „{from}” volt, most „{to}”, mert a rögzített befizetéseket követi.",
+  "de": "Der Zahlungsstatus lautete vorher „{from}“ und lautet jetzt „{to}“, weil er den erfassten Zahlungen folgt."
+ },
+ "The paid amount was carried over without a date — none was ever recorded. Add the date if you know it.": {
+  "hu": "A befizetett összeg dátum nélkül került át — soha nem rögzítettek hozzá dátumot. Add meg, ha tudod.",
+  "de": "Der bezahlte Betrag wurde ohne Datum übernommen — es wurde nie eines erfasst. Ergänzen Sie das Datum, falls bekannt."
+ },
+ "A payment state was set, but no amount was ever recorded, so there was nothing to carry over.": {
+  "hu": "Fizetési állapot be volt állítva, de összeget soha nem rögzítettek, így nem volt mit átvinni.",
+  "de": "Ein Zahlungsstatus war gesetzt, aber es wurde nie ein Betrag erfasst, daher gab es nichts zu übernehmen."
+ },
+ "No invoiced amount was recorded; the carried instalment uses the contract value.": {
+  "hu": "Számlázott összeg nem volt rögzítve; az átvitt részlet a szerződéses értéket használja.",
+  "de": "Es war kein fakturierter Betrag erfasst; die übernommene Rate verwendet den Vertragswert."
+ },
+ "It was marked paid with no paid amount. Record the payment if it arrived.": {
+  "hu": "Fizetettnek volt jelölve, befizetett összeg nélkül. Rögzítsd a befizetést, ha megérkezett.",
+  "de": "Es war als bezahlt markiert, ohne bezahlten Betrag. Erfassen Sie die Zahlung, falls sie eingegangen ist."
+ },
+ "It was marked paid, but the paid amount is less than the contract or invoiced amount.": {
+  "hu": "Fizetettnek volt jelölve, de a befizetett összeg kevesebb a szerződéses vagy számlázott összegnél.",
+  "de": "Es war als bezahlt markiert, aber der bezahlte Betrag ist geringer als der Vertrags- oder fakturierte Betrag."
+ },
+ "It was marked partly paid with no paid amount.": {
+  "hu": "Részben fizetettnek volt jelölve, befizetett összeg nélkül.",
+  "de": "Es war als teilweise bezahlt markiert, ohne bezahlten Betrag."
+ },
+ "The old payment state contradicted the amounts recorded beside it.": {
+  "hu": "A régi fizetési állapot ellentmondott a mellette rögzített összegeknek.",
+  "de": "Der alte Zahlungsstatus widersprach den daneben erfassten Beträgen."
+ },
+ "More was recorded as paid than the contract value. The over-payment is kept and shown.": {
+  "hu": "A szerződéses értéknél több volt befizetettként rögzítve. A túlfizetés megmarad és látszik.",
+  "de": "Es wurde mehr als bezahlt erfasst als der Vertragswert. Die Überzahlung bleibt erhalten und wird angezeigt."
+ },
+ "More was recorded as invoiced than the contract value.": {
+  "hu": "A szerződéses értéknél több volt számlázottként rögzítve.",
+  "de": "Es wurde mehr als fakturiert erfasst als der Vertragswert."
+ },
+ "More was recorded as paid than as invoiced.": {
+  "hu": "Több volt befizetettként rögzítve, mint számlázottként.",
+  "de": "Es wurde mehr als bezahlt erfasst als fakturiert."
+ },
+ "Not invoiced": {
+  "hu": "Nincs számlázva",
+  "de": "Nicht fakturiert"
+ },
+ "Invoiced": {
+  "hu": "Számlázva",
+  "de": "Fakturiert"
+ },
+ "Partially paid": {
+  "hu": "Részben fizetve",
+  "de": "Teilweise bezahlt"
+ },
+ "Paid": {
+  "hu": "Fizetve",
+  "de": "Bezahlt"
+ },
+ "Not paid": {
+  "hu": "Nincs fizetve",
+  "de": "Nicht bezahlt"
+ },
+ "Partly paid": {
+  "hu": "Részben fizetve",
+  "de": "Teilweise bezahlt"
+ },
+ "Over-paid": {
+  "hu": "Túlfizetve",
+  "de": "Überzahlt"
+ },
+ "An Impact project is free: it has no payment schedule and takes no client payment.": {
+  "hu": "Az Impact projekt ingyenes: nincs fizetési ütemezése, és nem fogad ügyfélbefizetést.",
+  "de": "Ein Impact-Projekt ist kostenlos: Es hat keinen Zahlungsplan und nimmt keine Kundenzahlung an."
+ },
+ "A payment is recorded on the day it arrived — that date is in the future.": {
+  "hu": "A befizetést az érkezése napjával kell rögzíteni — ez a dátum a jövőben van.",
+  "de": "Eine Zahlung wird am Tag ihres Eingangs erfasst — dieses Datum liegt in der Zukunft."
+ },
+ "A payment with a date cannot lose it.": {
+  "hu": "Dátummal rögzített befizetés dátuma nem törölhető.",
+  "de": "Bei einer Zahlung mit Datum kann das Datum nicht entfernt werden."
+ },
+ "This project has a payment schedule, so its currency cannot change.": {
+  "hu": "Ennek a projektnek van fizetési ütemezése, ezért a pénzneme nem módosítható.",
+  "de": "Dieses Projekt hat einen Zahlungsplan, daher kann die Währung nicht geändert werden."
+ },
+ "Payment state and paid amount follow the payment schedule. Record an instalment or a payment instead.": {
+  "hu": "A fizetési állapot és a befizetett összeg a fizetési ütemezésből adódik. Rögzíts inkább részletet vagy befizetést.",
+  "de": "Zahlungsstatus und bezahlter Betrag ergeben sich aus dem Zahlungsplan. Erfassen Sie stattdessen eine Rate oder eine Zahlung."
+ },
+ "Carried-over rows are written only by the migration.": {
+  "hu": "Az átvitt sorokat csak a migráció írja.",
+  "de": "Übernommene Zeilen werden nur von der Migration geschrieben."
+ },
+ "An instalment or payment stays with its project.": {
+  "hu": "A részlet és a befizetés a saját projektjénél marad.",
+  "de": "Eine Rate oder Zahlung bleibt bei ihrem Projekt."
+ },
+ "The carried-over figures are a record and cannot be edited.": {
+  "hu": "Az átvitt számok nyilvántartásként szolgálnak, nem szerkeszthetők.",
+  "de": "Die übernommenen Zahlen sind ein Nachweis und können nicht bearbeitet werden."
+ },
+ "This instalment has payments. Remove or move them first.": {
+  "hu": "Ehhez a részlethez befizetések tartoznak. Előbb távolítsd el vagy helyezd át őket.",
+  "de": "Diese Rate hat Zahlungen. Entfernen oder verschieben Sie diese zuerst."
+ },
+ "The database refused those values. Check the amount and the dates.": {
+  "hu": "Az adatbázis elutasította ezeket az értékeket. Ellenőrizd az összeget és a dátumokat.",
+  "de": "Die Datenbank hat diese Werte abgelehnt. Prüfen Sie den Betrag und die Daten."
+ },
+ "The payment schedule is not installed on this database yet (20261002000100_payment_schedule.sql).": {
+  "hu": "A fizetési ütemezés még nincs telepítve ezen az adatbázison (20261002000100_payment_schedule.sql).",
+  "de": "Der Zahlungsplan ist in dieser Datenbank noch nicht installiert (20261002000100_payment_schedule.sql)."
+ },
+ "The payment could not be saved. Check that this account is the portal owner, then try again.": {
+  "hu": "A befizetést nem sikerült menteni. Ellenőrizd, hogy ez a fiók a portál tulajdonosa, majd próbáld újra.",
+  "de": "Die Zahlung konnte nicht gespeichert werden. Prüfen Sie, ob dieses Konto der Portal-Inhaber ist, und versuchen Sie es erneut."
+ }
+}

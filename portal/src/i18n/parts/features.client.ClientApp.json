@@ -1,0 +1,350 @@
+{
+ "Projektjeim": {
+  "en": "My projects",
+  "de": "Meine Projekte"
+ },
+ "Megosztott dokumentumok": {
+  "en": "Shared documents",
+  "de": "Geteilte Dokumente"
+ },
+ "Nyersanyag leadása": {
+  "en": "Hand over materials",
+  "de": "Material übergeben"
+ },
+ "Segítség": {
+  "en": "Help",
+  "de": "Hilfe"
+ },
+ "Ügyfélportál": {
+  "en": "Client portal",
+  "de": "Kundenportal"
+ },
+ "Kijelentkezés": {
+  "en": "Sign out",
+  "de": "Abmelden"
+ },
+ "A projektek nem tölthetők be.": {
+  "en": "The projects could not be loaded.",
+  "de": "Die Projekte konnten nicht geladen werden."
+ },
+ "Nincs projekt": {
+  "en": "No project",
+  "de": "Kein Projekt"
+ },
+ "Jelenleg egy projekthez sincs hozzáférésed. Ha ez hiba, szólj a Stratosnak.": {
+  "en": "You don't have access to any project at the moment. If this is a mistake, let Stratos know.",
+  "de": "Sie haben derzeit keinen Zugriff auf ein Projekt. Falls das ein Fehler ist, geben Sie Stratos bitte Bescheid."
+ },
+ "Dokumentumok": {
+  "en": "Documents",
+  "de": "Dokumente"
+ },
+ "A demók most nem tölthetők be.": {
+  "en": "The demos can't be loaded right now.",
+  "de": "Die Demos können gerade nicht geladen werden."
+ },
+ "Demók": {
+  "en": "Demos",
+  "de": "Demos"
+ },
+ "Demó": {
+  "en": "Demo",
+  "de": "Demo"
+ },
+ "Demó megtekintése": {
+  "en": "View demo",
+  "de": "Demo ansehen"
+ },
+ "(új lapon nyílik)": {
+  "en": "(opens in a new tab)",
+  "de": "(öffnet in neuem Tab)"
+ },
+ "A megbeszélések most nem tölthetők be.": {
+  "en": "The meetings can't be loaded right now.",
+  "de": "Die Termine können gerade nicht geladen werden."
+ },
+ "Megbeszélések": {
+  "en": "Meetings",
+  "de": "Termine"
+ },
+ "További időpontok": {
+  "en": "Further dates",
+  "de": "Weitere Termine"
+ },
+ "A portálon módosított időpont nem frissíti automatikusan a naptáradba korábban elmentett példányt — módosítás után mentsd el újra.": {
+  "en": "A time changed in the portal does not update the copy you saved to your calendar earlier — save it again after a change.",
+  "de": "Eine im Portal geänderte Zeit aktualisiert den zuvor in Ihrem Kalender gespeicherten Eintrag nicht automatisch — speichern Sie ihn nach einer Änderung bitte erneut."
+ },
+ "Lemondva": {
+  "en": "Cancelled",
+  "de": "Abgesagt"
+ },
+ "Most zajlik": {
+  "en": "Happening now",
+  "de": "Läuft gerade"
+ },
+ "Következő megbeszélés": {
+  "en": "Next meeting",
+  "de": "Nächster Termin"
+ },
+ "Későbbi időpont": {
+  "en": "Later date",
+  "de": "Späterer Termin"
+ },
+ "Csatlakozás": {
+  "en": "Join",
+  "de": "Teilnehmen"
+ },
+ "Google Naptárba helyezés": {
+  "en": "Add to Google Calendar",
+  "de": "Zu Google Kalender hinzufügen"
+ },
+ "A súgó most nem tölthető be.": {
+  "en": "Help can't be loaded right now.",
+  "de": "Die Hilfe kann gerade nicht geladen werden."
+ },
+ "Nincs még súgócikk": {
+  "en": "No help articles yet",
+  "de": "Noch keine Hilfeartikel"
+ },
+ "Keresd a Stratos kapcsolattartódat.": {
+  "en": "Get in touch with your Stratos contact.",
+  "de": "Wenden Sie sich bitte an Ihren Ansprechpartner bei Stratos."
+ },
+ "egy projekt": {
+  "en": "one project",
+  "de": "ein Projekt"
+ },
+ "Összes": {
+  "en": "All",
+  "de": "Alle"
+ },
+ "Csak a veled megosztott fájlok látszanak. A letöltési link egy percig érvényes; a letöltött másolat a te gépeden marad.": {
+  "en": "Only files shared with you are shown. The download link is valid for one minute; the downloaded copy stays on your computer.",
+  "de": "Es werden nur Dateien angezeigt, die mit Ihnen geteilt wurden. Der Download-Link ist eine Minute gültig; die heruntergeladene Kopie bleibt auf Ihrem Computer."
+ },
+ "A dokumentumok nem tölthetők be.": {
+  "en": "The documents could not be loaded.",
+  "de": "Die Dokumente konnten nicht geladen werden."
+ },
+ "Nincs megosztott dokumentum": {
+  "en": "No shared documents",
+  "de": "Keine geteilten Dokumente"
+ },
+ "Ha a Stratos megoszt veled egy fájlt vagy mappát, itt jelenik meg.": {
+  "en": "When Stratos shares a file or folder with you, it appears here.",
+  "de": "Wenn Stratos eine Datei oder einen Ordner mit Ihnen teilt, erscheint sie hier."
+ },
+ "a(z) „{folder}” mappán keresztül": {
+  "en": "via the folder ‘{folder}’",
+  "de": "über den Ordner „{folder}“"
+ },
+ "{name} letöltése": {
+  "en": "Download {name}",
+  "de": "{name} herunterladen"
+ },
+ "Letöltés": {
+  "en": "Download",
+  "de": "Herunterladen"
+ },
+ "Itt adhatod le a projekthez szükséges anyagokat: logót, képeket, szövegeket és más fájlokat. A leadott fájlt nem lehet törölni, áthelyezni vagy felülírni — ha változott, töltsd fel az új változatot új fájlként.": {
+  "en": "Here you can hand over the materials the project needs: logo, images, texts and other files. A file you have handed over cannot be deleted, moved or overwritten — if it has changed, upload the new version as a new file.",
+  "de": "Hier können Sie die Materialien für das Projekt übergeben: Logo, Bilder, Texte und andere Dateien. Eine übergebene Datei kann nicht gelöscht, verschoben oder überschrieben werden — wenn sie sich geändert hat, laden Sie die neue Version bitte als neue Datei hoch."
+ },
+ "Fájlonként legfeljebb {max}. Elfogadott: {types}. A fájlokat a tartalmuk alapján ellenőrizzük; vírusellenőrzés nincs.": {
+  "en": "Up to {max} per file. Accepted: {types}. Files are checked by their content; there is no virus scan.",
+  "de": "Bis zu {max} pro Datei. Erlaubt: {types}. Dateien werden anhand ihres Inhalts geprüft; eine Virenprüfung gibt es nicht."
+ },
+ "Jelenleg egy projekthez sincs hozzáférésed, ezért most nem tudsz fájlt leadni.": {
+  "en": "You don't have access to any project at the moment, so you can't hand over files now.",
+  "de": "Sie haben derzeit keinen Zugriff auf ein Projekt und können daher keine Dateien übergeben."
+ },
+ "Projekt": {
+  "en": "Project",
+  "de": "Projekt"
+ },
+ "Válassz projektet…": {
+  "en": "Choose a project…",
+  "de": "Projekt wählen…"
+ },
+ "Feltöltés: {project}": {
+  "en": "Upload: {project}",
+  "de": "Hochladen: {project}"
+ },
+ "Ide kerül:": {
+  "en": "Goes to:",
+  "de": "Ziel:"
+ },
+ "Fájlok kiválasztása": {
+  "en": "Choose files",
+  "de": "Dateien auswählen"
+ },
+ "vagy húzd ide a fájlokat": {
+  "en": "or drag the files here",
+  "de": "oder ziehen Sie die Dateien hierher"
+ },
+ "Feltöltések": {
+  "en": "Uploads",
+  "de": "Uploads"
+ },
+ "Várakozik": {
+  "en": "Queued",
+  "de": "Wartet"
+ },
+ "Indul": {
+  "en": "Starting",
+  "de": "Startet"
+ },
+ "Feltöltés": {
+  "en": "Uploading",
+  "de": "Wird hochgeladen"
+ },
+ "Ellenőrzés": {
+  "en": "Checking",
+  "de": "Wird geprüft"
+ },
+ "Leadva": {
+  "en": "Handed over",
+  "de": "Übergeben"
+ },
+ "Sikertelen": {
+  "en": "Failed",
+  "de": "Fehlgeschlagen"
+ },
+ "Újra": {
+  "en": "Retry",
+  "de": "Erneut"
+ },
+ "{name} megszakítása": {
+  "en": "Cancel {name}",
+  "de": "{name} abbrechen"
+ },
+ "{name} feltöltése": {
+  "en": "Uploading {name}",
+  "de": "{name} wird hochgeladen"
+ },
+ "Korábbi leadásaim": {
+  "en": "My earlier hand-overs",
+  "de": "Meine bisherigen Übergaben"
+ },
+ "Frissítés": {
+  "en": "Refresh",
+  "de": "Aktualisieren"
+ },
+ "Még nem adtál le fájlt.": {
+  "en": "You haven't handed over any files yet.",
+  "de": "Sie haben noch keine Dateien übergeben."
+ },
+ "Leadott fájlok": {
+  "en": "Handed-over files",
+  "de": "Übergebene Dateien"
+ },
+ "Töltsd fel újra a fájlt.": {
+  "en": "Please upload the file again.",
+  "de": "Bitte laden Sie die Datei erneut hoch."
+ },
+ "Írj valamit az üzenetbe.": {
+  "en": "Write something in the message.",
+  "de": "Bitte schreiben Sie etwas in die Nachricht."
+ },
+ "Észrevételek": {
+  "en": "Feedback",
+  "de": "Rückmeldungen"
+ },
+ "Elküldött észrevételeid": {
+  "en": "Your feedback sent",
+  "de": "Ihre gesendeten Rückmeldungen"
+ },
+ "A Stratos látta": {
+  "en": "Seen by Stratos",
+  "de": "Von Stratos gesehen"
+ },
+ "Még nem látta": {
+  "en": "Not seen yet",
+  "de": "Noch nicht gesehen"
+ },
+ "Új észrevétel a demóról": {
+  "en": "New feedback on the demo",
+  "de": "Neue Rückmeldung zur Demo"
+ },
+ "Küldés": {
+  "en": "Send",
+  "de": "Senden"
+ },
+ "A Stratos a portálon látja; munkanapokon 1 munkanapon belül reagálunk.": {
+  "en": "Stratos sees it in the portal; we reply within 1 working day.",
+  "de": "Stratos sieht sie im Portal; wir antworten innerhalb von 1 Werktag."
+ },
+ "Elküldve.": {
+  "en": "Sent.",
+  "de": "Gesendet."
+ },
+ "Függőben — a Stratos jóváhagyására vár": {
+  "en": "Pending — waiting for Stratos to approve",
+  "de": "Ausstehend — wartet auf die Bestätigung durch Stratos"
+ },
+ "Elfogadva — a megbeszélés az új időpontra módosult": {
+  "en": "Accepted — the meeting has moved to the new time",
+  "de": "Angenommen — der Termin wurde auf die neue Zeit verschoben"
+ },
+ "Nem fogadtuk el": {
+  "en": "Not accepted",
+  "de": "Nicht angenommen"
+ },
+ "Visszavonva": {
+  "en": "Withdrawn",
+  "de": "Zurückgezogen"
+ },
+ "Adj meg létező dátumot és időpontot.": {
+  "en": "Enter a valid date and time.",
+  "de": "Bitte geben Sie ein gültiges Datum und eine gültige Uhrzeit ein."
+ },
+ "A javasolt időpont már elmúlt.": {
+  "en": "The proposed time has already passed.",
+  "de": "Die vorgeschlagene Zeit liegt bereits in der Vergangenheit."
+ },
+ "Javasolt új időpont: {time}": {
+  "en": "Proposed new time: {time}",
+  "de": "Vorgeschlagene neue Zeit: {time}"
+ },
+ "Javaslat visszavonása": {
+  "en": "Withdraw proposal",
+  "de": "Vorschlag zurückziehen"
+ },
+ "Legutóbbi javaslatod: {status}": {
+  "en": "Your last proposal: {status}",
+  "de": "Ihr letzter Vorschlag: {status}"
+ },
+ "Új időpont javaslása": {
+  "en": "Propose a new time",
+  "de": "Neue Zeit vorschlagen"
+ },
+ "Dátum": {
+  "en": "Date",
+  "de": "Datum"
+ },
+ "Kezdés": {
+  "en": "Start",
+  "de": "Beginn"
+ },
+ "Befejezés": {
+  "en": "End",
+  "de": "Ende"
+ },
+ "Időzóna: {tz}": {
+  "en": "Time zone: {tz}",
+  "de": "Zeitzone: {tz}"
+ },
+ "Üzenet (nem kötelező)": {
+  "en": "Message (optional)",
+  "de": "Nachricht (optional)"
+ },
+ "Javaslat elküldése": {
+  "en": "Send proposal",
+  "de": "Vorschlag senden"
+ },
+ "A megbeszélés csak akkor módosul, ha a Stratos elfogadja. Munkanapokon 1 munkanapon belül reagálunk.": {
+  "en": "The meeting only changes if Stratos accepts. We reply within 1 working day.",
+  "de": "Der Termin ändert sich nur, wenn Stratos zustimmt. Wir antworten innerhalb von 1 Werktag."
+ }
+}

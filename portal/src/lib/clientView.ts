@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { useRpc } from '@/lib/clientPortal';
 import type { HelpArticle } from '@/lib/helpMatcher';
+import { t } from '@/lib/i18n';
 
 /**
  * What a client sees of a project beyond files: demo links and meetings — and
@@ -32,13 +33,13 @@ type State = 'loading' | 'ready' | 'error' | 'unconfigured';
 /** The database's refusals for this phase, in words. Never the raw text. */
 export function clientViewRefusal(error: { code?: string | null; message?: string | null } | null): string {
   const m = error?.message ?? '';
-  if (/portal_safe_https_url|project_demos_url_check|join_url/.test(m)) return 'The link must be a plain https:// address (no spaces, no user name or password in it).';
-  if (/stratos:meeting_time_zone/.test(m)) return 'Unknown time zone.';
-  if (/project_meetings_check|ends_at/.test(m)) return 'The end must be after the start, within 24 hours, and a join link or a place is needed.';
-  if (error?.code === '23514') return 'The database refused those values. Check the lengths and the link.';
-  if (error?.code === '42501') return 'Only the portal owner can change this.';
-  if (error?.code === 'PGRST205' || error?.code === 'PGRST202') return 'This feature is not installed on the database yet (20261004000100).';
-  return 'The change could not be saved. Try again.';
+  if (/portal_safe_https_url|project_demos_url_check|join_url/.test(m)) return t('The link must be a plain https:// address (no spaces, no user name or password in it).');
+  if (/stratos:meeting_time_zone/.test(m)) return t('Unknown time zone.');
+  if (/project_meetings_check|ends_at/.test(m)) return t('The end must be after the start, within 24 hours, and a join link or a place is needed.');
+  if (error?.code === '23514') return t('The database refused those values. Check the lengths and the link.');
+  if (error?.code === '42501') return t('Only the portal owner can change this.');
+  if (error?.code === 'PGRST205' || error?.code === 'PGRST202') return t('This feature is not installed on the database yet (20261004000100).');
+  return t('The change could not be saved. Try again.');
 }
 
 function useOwnerRows<T>(table: string, columns: string, projectId: string | undefined, order: string, reloadToken: number) {
@@ -109,6 +110,9 @@ export const useMeetingRequests = (projectId: string | undefined, t = 0) => useO
   'id, meeting_id, project_id, proposed_starts_at, proposed_ends_at, time_zone, message, status, owner_note, created_at, decided_at, account:client_accounts(full_name, email)',
   projectId, 'created_at', t);
 
+// The hooks here name their reload token `t`; inside them, translate with `tr`.
+const tr = t;
+
 /** The owner's inbox across projects: unread feedback, pending time proposals. */
 export function useClientInbox(enabled: boolean, t = 0) {
   const [state, setState] = useState<State>(isConfigured ? 'loading' : 'unconfigured');
@@ -125,9 +129,9 @@ export function useClientInbox(enabled: boolean, t = 0) {
     type Row = Record<string, unknown> & { project?: { name: string } | null; account?: { full_name: string } | null };
     setItems([
       ...((f.data ?? []) as unknown as Row[]).map((x) => ({ kind: 'feedback' as const, id: x.id as string, project_id: x.project_id as string, project: x.project?.name ?? '—',
-        at: x.created_at as string, text: `${(x.demo as { title: string } | null)?.title ?? 'Demó'}: ${x.body as string}`, who: x.account?.full_name ?? '' })),
+        at: x.created_at as string, text: `${(x.demo as { title: string } | null)?.title ?? tr('Demó')}: ${x.body as string}`, who: x.account?.full_name ?? '' })),
       ...((r.data ?? []) as unknown as Row[]).map((x) => ({ kind: 'request' as const, id: x.id as string, project_id: x.project_id as string, project: x.project?.name ?? '—',
-        at: x.created_at as string, text: `${(x.meeting as { title: string } | null)?.title ?? 'Megbeszélés'} — new time proposed`, who: x.account?.full_name ?? '' })),
+        at: x.created_at as string, text: tr('{title} — new time proposed', { title: (x.meeting as { title: string } | null)?.title ?? tr('Megbeszélés') }), who: x.account?.full_name ?? '' })),
     ].sort((a, b) => b.at.localeCompare(a.at)));
     setState('ready');
   }, [enabled, t]);
@@ -139,7 +143,7 @@ export async function ownerDecideRequest(id: string, accept: boolean, note: stri
   const { error } = await supabase.rpc('owner_decide_meeting_request', { p_request: id, p_accept: accept, p_note: note });
   if (!error) return null;
   console.error('[owner_decide_meeting_request]', error.code);
-  if (/meeting_request_decided/.test(error.message ?? '')) return 'This proposal was already decided.';
+  if (/meeting_request_decided/.test(error.message ?? '')) return t('This proposal was already decided.');
   return clientViewRefusal(error);
 }
 
@@ -155,14 +159,14 @@ export const useClientMeetingRequests = (t = 0) => useRpc<ClientMeetingRequest>(
 /** The client's two writes. Returns null or a Hungarian sentence. */
 export function clientWriteRefusal(error: { code?: string | null; message?: string | null }): string {
   const m = error.message ?? '';
-  if (/feedback_limit/.test(m)) return 'Ma már sok üzenetet küldtél. Holnap újra írhatsz, vagy keresd a Stratost e-mailben.';
-  if (/feedback_empty/.test(m)) return 'Írj valamit az üzenetbe.';
-  if (/meeting_request_pending/.test(m)) return 'Erre a megbeszélésre már van függőben lévő javaslatod. Vond vissza, ha másikat küldenél.';
-  if (/meeting_request_past/.test(m)) return 'A javasolt időpont már elmúlt.';
-  if (/meeting_closed/.test(m)) return 'Ez a megbeszélés már lezajlott vagy le lett mondva.';
-  if (/client_no_access/.test(m) || error.code === '42501') return 'Ehhez már nincs hozzáférésed.';
-  if (error.code === '23514') return 'A befejezésnek a kezdés után kell lennie, legfeljebb 24 órával.';
-  return 'Nem sikerült elküldeni. Próbáld újra.';
+  if (/feedback_limit/.test(m)) return t('Ma már sok üzenetet küldtél. Holnap újra írhatsz, vagy keresd a Stratost e-mailben.');
+  if (/feedback_empty/.test(m)) return t('Írj valamit az üzenetbe.');
+  if (/meeting_request_pending/.test(m)) return t('Erre a megbeszélésre már van függőben lévő javaslatod. Vond vissza, ha másikat küldenél.');
+  if (/meeting_request_past/.test(m)) return t('A javasolt időpont már elmúlt.');
+  if (/meeting_closed/.test(m)) return t('Ez a megbeszélés már lezajlott vagy le lett mondva.');
+  if (/client_no_access/.test(m) || error.code === '42501') return t('Ehhez már nincs hozzáférésed.');
+  if (error.code === '23514') return t('A befejezésnek a kezdés után kell lennie, legfeljebb 24 órával.');
+  return t('Nem sikerült elküldeni. Próbáld újra.');
 }
 
 export async function sendDemoFeedback(demoId: string, body: string): Promise<string | null> {

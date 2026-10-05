@@ -23,6 +23,7 @@ import {
 import { buildRecordTimeline, useNoteMutation, useRecordDetail } from '@/lib/records';
 import { formatWhen } from '@/lib/leads';
 import { ClientAccountsPanel } from '@/features/client/ClientAccountsPanel';
+import { t } from '@/lib/i18n';
 
 /**
  * CLIENTS — the relationship hub (§18, §19).
@@ -149,28 +150,28 @@ export function ClientsScreen() {
     <div className="grid gap-4">
       <Panel className="min-w-0">
         <SectionHeader
-          title="Clients"
-          note={state === 'ready' ? `${filtered.length} of ${rows.length}` : undefined}
+          title={t('Clients')}
+          note={state === 'ready' ? t('{n} of {total}', { n: filtered.length, total: rows.length }) : undefined}
           action={
             <div className="flex flex-wrap items-center gap-2">
-              <label className="sr-only" htmlFor="client-status">Status</label>
+              <label className="sr-only" htmlFor="client-status">{t('Status')}</label>
               <Select id="client-status" value={status} onChange={(e) => setStatus(e.target.value)}>
-                <option value="all">Any status</option>
+                <option value="all">{t('Any status')}</option>
                 {CLIENT_STATUSES.map((s) => (
-                  <option key={s} value={s}>{CLIENT_STATUS[s].label}</option>
+                  <option key={s} value={s}>{t(CLIENT_STATUS[s].label)}</option>
                 ))}
               </Select>
               <Input
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Client or contact…"
-                aria-label="Search clients"
+                placeholder={t('Client or contact…')}
+                aria-label={t('Search clients')}
                 className="h-7 w-44 py-1 text-xs sm:w-56"
               />
               {mayEdit && (
                 <Button size="sm" variant="primary" onClick={() => setCreating(true)}>
-                  <Plus size={12} aria-hidden="true" /> New
+                  <Plus size={12} aria-hidden="true" /> {t('New')}
                 </Button>
               )}
             </div>
@@ -186,8 +187,8 @@ export function ClientsScreen() {
         {state === 'unconfigured' && (
           <DataState
             kind="unconfigured"
-            title="Not connected"
-            body="Supabase credentials are not set in this environment, so there is nothing to read yet."
+            title={t('Not connected')}
+            body={t('Supabase credentials are not set in this environment, so there is nothing to read yet.')}
           />
         )}
 
@@ -196,28 +197,28 @@ export function ClientsScreen() {
         {state === 'ready' && filtered.length === 0 && (
           <DataState
             kind="empty"
-            title={rows.length === 0 ? 'No clients yet' : 'Nothing matches'}
+            title={rows.length === 0 ? t('No clients yet') : t('Nothing matches')}
             body={rows.length === 0
-              ? 'A client is created when an opportunity is won — that is the traceable route from an enquiry to a relationship. One can also be added directly.'
-              : 'No client matches the filters above.'}
+              ? t('A client is created when an opportunity is won — that is the traceable route from an enquiry to a relationship. One can also be added directly.')
+              : t('No client matches the filters above.')}
             action={rows.length === 0
               ? (
                 <div className="flex flex-wrap justify-center gap-2">
-                  <Link to="/sales"><Button size="sm">Open the pipeline</Button></Link>
-                  {mayEdit && <Button size="sm" variant="primary" onClick={() => setCreating(true)}>Add a client</Button>}
+                  <Link to="/sales"><Button size="sm">{t('Open the pipeline')}</Button></Link>
+                  {mayEdit && <Button size="sm" variant="primary" onClick={() => setCreating(true)}>{t('Add a client')}</Button>}
                 </div>
               )
-              : <Button size="sm" onClick={() => { setQuery(''); setStatus('all'); }}>Clear</Button>}
+              : <Button size="sm" onClick={() => { setQuery(''); setStatus('all'); }}>{t('Clear')}</Button>}
           />
         )}
 
         {state === 'ready' && filtered.length > 0 && (
           <Table
             head={[
-              'Client', 'Status',
-              ...(mayProjects ? [{ label: 'Active projects', align: 'right' as const }] : []),
-              { label: 'Won value', align: 'right' },
-              'Primary service', 'Source', 'Last activity',
+              t('Client'), t('Status'),
+              ...(mayProjects ? [{ label: t('Active projects'), align: 'right' as const }] : []),
+              { label: t('Won value'), align: 'right' },
+              t('Primary service'), t('Source'), t('Last activity'),
             ]}
             minWidth={840}
             sticky
@@ -236,7 +237,7 @@ export function ClientsScreen() {
                   </Cell>
                   <Cell>
                     <StatusPill tone={CLIENT_STATUS[client.status]?.tone ?? 'neutral'}>
-                      {CLIENT_STATUS[client.status]?.label ?? client.status}
+                      {CLIENT_STATUS[client.status] ? t(CLIENT_STATUS[client.status].label) : client.status}
                     </StatusPill>
                   </Cell>
                   {mayProjects && (
@@ -321,13 +322,13 @@ export function ClientDetailScreen() {
       <Panel>
         <DataState
           kind={state === 'error' ? 'unavailable' : state === 'unconfigured' ? 'unconfigured' : 'empty'}
-          title={state === 'error' ? 'Unavailable' : state === 'unconfigured' ? 'Not connected' : 'No such client'}
+          title={state === 'error' ? t('Unavailable') : state === 'unconfigured' ? t('Not connected') : t('No such client')}
           body={state === 'error'
-            ? 'The client could not be read right now.'
+            ? t('The client could not be read right now.')
             : state === 'unconfigured'
-              ? 'Supabase credentials are not set in this environment.'
-              : 'This client does not exist, or this account may not read it.'}
-          action={<Link to="/clients"><Button size="sm">All clients</Button></Link>}
+              ? t('Supabase credentials are not set in this environment.')
+              : t('This client does not exist, or this account may not read it.')}
+          action={<Link to="/clients"><Button size="sm">{t('All clients')}</Button></Link>}
         />
       </Panel>
     );
@@ -339,7 +340,7 @@ export function ClientDetailScreen() {
   ));
   const activeProjects = projects.filter(isLiveProject);
   const timeline = buildRecordTimeline(
-    { at: client.created_at, title: 'Client created' },
+    { at: client.created_at, title: t('Client created') },
     detail.notes,
     detail.log,
   );
@@ -354,14 +355,14 @@ export function ClientDetailScreen() {
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link to="/clients" className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper">
-          <ArrowLeft size={11} aria-hidden="true" /> All clients
+          <ArrowLeft size={11} aria-hidden="true" /> {t('All clients')}
         </Link>
         <span className="flex flex-wrap items-center gap-2">
           {mayEdit && !client.archived_at && (
             <MoveToTrashButton kind="client" id={client.id} name={client.name} onTrashed={() => navigate('/clients')} />
           )}
           <StatusPill tone={CLIENT_STATUS[client.status]?.tone ?? 'neutral'}>
-            {CLIENT_STATUS[client.status]?.label ?? client.status}
+            {CLIENT_STATUS[client.status] ? t(CLIENT_STATUS[client.status].label) : client.status}
           </StatusPill>
         </span>
       </div>
@@ -369,49 +370,49 @@ export function ClientDetailScreen() {
 
       {/* -------------------------------------------- the summary strip */}
       <Panel
-        aria-label="Client summary"
+        aria-label={t('Client summary')}
         className="grid grid-cols-2 divide-x divide-y divide-hairline bg-panel sm:grid-cols-3 xl:grid-cols-5 xl:divide-y-0"
       >
         <div className="col-span-2 min-w-0 px-4 py-3.5 sm:col-span-1">
-          <p className="t-section">Client</p>
+          <p className="t-section">{t('Client')}</p>
           <p className="mt-1.5 break-words text-lg leading-tight text-paper">{client.name}</p>
         </div>
         <div className="min-w-0 px-4 py-3.5">
-          <p className="t-section">Won value</p>
+          <p className="t-section">{t('Won value')}</p>
           <p className="t-metric mt-1.5">
             {wonTotal.total && wonTotal.total.value > 0
               ? moneyCompact(wonTotal.total.value, wonTotal.total.currency)
               : <span className="text-haze">—</span>}
           </p>
           <p className="t-note mt-1">
-            {wonDeals.length} won {wonDeals.length === 1 ? 'deal' : 'deals'}
+            {t(wonDeals.length === 1 ? '{n} won deal' : '{n} won deals', { n: wonDeals.length })}
           </p>
         </div>
         {/* Projects are the portal owner's alone. For anybody else the tile
             says so rather than showing a 0 that would be a claim about the
             client. */}
         <div className="min-w-0 px-4 py-3.5">
-          <p className="t-section">Active projects</p>
+          <p className="t-section">{t('Active projects')}</p>
           {mayProjects ? (
             <>
               <p className="t-metric mt-1.5">{activeProjects.length}</p>
-              <p className="t-note mt-1">{projects.length} in total</p>
+              <p className="t-note mt-1">{t('{n} in total', { n: projects.length })}</p>
             </>
           ) : (
-            <p className="t-note mt-1.5">Private to the portal owner</p>
+            <p className="t-note mt-1.5">{t('Private to the portal owner')}</p>
           )}
         </div>
         <div className="min-w-0 px-4 py-3.5">
-          <p className="t-section">Opportunities</p>
+          <p className="t-section">{t('Opportunities')}</p>
           <p className="t-metric mt-1.5">{deals.length}</p>
-          <p className="t-note mt-1">{deals.filter((d) => !['won', 'lost'].includes(d.stage)).length} open</p>
+          <p className="t-note mt-1">{t('{n} open', { n: deals.filter((d) => !['won', 'lost'].includes(d.stage)).length })}</p>
         </div>
         <div className="min-w-0 px-4 py-3.5">
-          <p className="t-section">Source</p>
+          <p className="t-section">{t('Source')}</p>
           <p className="mt-1.5 break-words text-[13px] text-paper">
             {client.acquisition_source
               ? [client.acquisition_source, client.acquisition_medium].filter(Boolean).join(' / ')
-              : <span className="text-haze">Not recorded</span>}
+              : <span className="text-haze">{t('Not recorded')}</span>}
           </p>
           {client.acquisition_campaign && <p className="t-note mt-1">{client.acquisition_campaign}</p>}
         </div>
@@ -421,11 +422,11 @@ export function ClientDetailScreen() {
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-8">
           {/* ------------------------------------------------ projects */}
           {mayProjects && <Panel className="min-w-0">
-            <SectionHeader title="Projects" note={`${projects.length}`} />
+            <SectionHeader title={t('Projects')} note={`${projects.length}`} />
             {projects.length === 0 ? (
-              <p className="px-4 py-3 text-xs text-haze">No projects for this client yet.</p>
+              <p className="px-4 py-3 text-xs text-haze">{t('No projects for this client yet.')}</p>
             ) : (
-              <Table head={['Project', 'Status', { label: 'Value', align: 'right' }, 'Target']} minWidth={560}>
+              <Table head={[t('Project'), t('Status'), { label: t('Value'), align: 'right' }, t('Target')]} minWidth={560}>
                 {projects.map((p) => (
                   <Row key={p.id}>
                     <Cell className="min-w-0">
@@ -439,7 +440,7 @@ export function ClientDetailScreen() {
                     <Cell align="right" className="num text-xs text-paper">
                       {/* A monthly contract's fee is per month — never shown as if it were a project value. */}
                       {p.billing === 'monthly'
-                        ? <>{money(p.monthly_fee, p.currency)} <span className="text-haze">/ month</span></>
+                        ? <>{money(p.monthly_fee, p.currency)} <span className="text-haze">{t('/ month')}</span></>
                         : money(p.value, p.currency) ?? <span className="text-haze">—</span>}
                     </Cell>
                     <Cell className="num whitespace-nowrap text-[11px] text-haze">{shortDate(p.target_date)}</Cell>
@@ -451,11 +452,11 @@ export function ClientDetailScreen() {
 
           {/* ------------------------------------------- opportunities */}
           <Panel className="min-w-0">
-            <SectionHeader title="Opportunities" note={`${deals.length}`} />
+            <SectionHeader title={t('Opportunities')} note={`${deals.length}`} />
             {deals.length === 0 ? (
-              <p className="px-4 py-3 text-xs text-haze">No opportunities recorded against this client.</p>
+              <p className="px-4 py-3 text-xs text-haze">{t('No opportunities recorded against this client.')}</p>
             ) : (
-              <Table head={['Opportunity', 'Stage', { label: 'Value', align: 'right' }, 'Date']} minWidth={560}>
+              <Table head={[t('Opportunity'), t('Stage'), { label: t('Value'), align: 'right' }, t('Date')]} minWidth={560}>
                 {deals.map((d) => (
                   <Row key={d.id}>
                     <Cell className="min-w-0">
@@ -478,28 +479,28 @@ export function ClientDetailScreen() {
 
           {/* --------------------------------------------------- notes */}
           <Panel>
-            <SectionHeader title="Notes" note={detail.notes.length > 0 ? `${detail.notes.length}` : undefined} />
+            <SectionHeader title={t('Notes')} note={detail.notes.length > 0 ? `${detail.notes.length}` : undefined} />
             {mayEdit && (
               <div className="border-b border-hairline px-4 py-3">
-                <label className="sr-only" htmlFor="client-note">Add a note</label>
+                <label className="sr-only" htmlFor="client-note">{t('Add a note')}</label>
                 <Textarea id="client-note" value={draft} onChange={(e) => setDraft(e.target.value)}
-                          placeholder="Anything worth remembering about this relationship."
+                          placeholder={t('Anything worth remembering about this relationship.')}
                           className="min-h-20 text-[13px]" />
                 <div className="mt-2 flex items-center justify-between gap-3">
                   {error ? <p role="alert" className="text-xs text-danger">{error}</p> : <span />}
-                  <Button size="sm" variant="primary" onClick={submitNote} disabled={notes.busy}>Add note</Button>
+                  <Button size="sm" variant="primary" onClick={submitNote} disabled={notes.busy}>{t('Add note')}</Button>
                 </div>
               </div>
             )}
             {detail.notes.length === 0 ? (
-              <p className="px-4 py-3 text-xs text-haze">No notes yet.</p>
+              <p className="px-4 py-3 text-xs text-haze">{t('No notes yet.')}</p>
             ) : (
               <ul className="grid">
                 {detail.notes.map((note) => (
                   <li key={note.id} className="border-b border-hairline px-4 py-3 last:border-0">
                     <p className="whitespace-pre-wrap text-[13px] text-paper">{note.body}</p>
                     <p className="t-note mt-1">
-                      {note.author?.full_name || note.author?.email || 'Unknown'} · {formatWhen(note.created_at)}
+                      {note.author?.full_name || note.author?.email || t('Unknown')} · {formatWhen(note.created_at)}
                     </p>
                   </li>
                 ))}
@@ -509,7 +510,7 @@ export function ClientDetailScreen() {
 
           {/* ------------------------------------------------ activity */}
           <Panel>
-            <SectionHeader title="Activity" note="only what was recorded" />
+            <SectionHeader title={t('Activity')} note={t('only what was recorded')} />
             <ol className="grid">
               {timeline.map((entry) => (
                 <li key={entry.id} className="flex gap-3 border-b border-hairline px-4 py-2.5 last:border-0">
@@ -529,17 +530,16 @@ export function ClientDetailScreen() {
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-4">
           <Panel>
             <SectionHeader
-              title="Contacts"
+              title={t('Contacts')}
               action={mayEdit
                 ? <Button size="sm" variant="quiet" onClick={() => setContactOpen('new')}>
-                    <Plus size={11} aria-hidden="true" /> Add
+                    <Plus size={11} aria-hidden="true" /> {t('Add')}
                   </Button>
                 : undefined}
             />
             {contacts.length === 0 ? (
               <p className="px-4 py-3 text-xs text-haze">
-                No contacts recorded. The enquiry&rsquo;s own name and address stay on the lead and are
-                not copied here.
+                {t('No contacts recorded. The enquiry’s own name and address stay on the lead and are not copied here.')}
               </p>
             ) : (
               <ul className="grid">
@@ -549,7 +549,7 @@ export function ClientDetailScreen() {
                       <div className="min-w-0">
                         <p className="text-[13px] text-paper">
                           {contact.name}
-                          {contact.is_primary && <span className="ml-2"><Badge tone="warn">Primary</Badge></span>}
+                          {contact.is_primary && <span className="ml-2"><Badge tone="warn">{t('Primary')}</Badge></span>}
                         </p>
                         {contact.role && <p className="t-note">{contact.role}</p>}
                         {contact.email && (
@@ -561,7 +561,7 @@ export function ClientDetailScreen() {
                         {contact.phone && <p className="num text-[11px] text-haze">{contact.phone}</p>}
                       </div>
                       {mayEdit && (
-                        <Button size="sm" variant="quiet" onClick={() => setContactOpen(contact)}>Edit</Button>
+                        <Button size="sm" variant="quiet" onClick={() => setContactOpen(contact)}>{t('Edit')}</Button>
                       )}
                     </div>
                   </li>
@@ -581,22 +581,22 @@ export function ClientDetailScreen() {
 
           <Panel>
             <SectionHeader
-              title="Client"
+              title={t('Client')}
               action={mayEdit ? <ClientStatusControl client={client} onChanged={reload} /> : undefined}
             />
             <dl className="grid">
               <DataLine
-                term="Website"
+                term={t('Website')}
                 value={safeUrl(client.website)
                   ? <a href={safeUrl(client.website)!} target="_blank" rel="noreferrer noopener"
                        className="break-all underline underline-offset-4 hover:text-signal">{client.website}</a>
-                  : (client.website || <NotRecorded what="Website" />)}
+                  : (client.website || <NotRecorded what={t('Website')} />)}
               />
-              <DataLine term="Primary service" value={client.primary_service || <NotRecorded />} />
-              <DataLine term="Acquisition source" value={client.acquisition_source || <NotRecorded />} />
-              <DataLine term="Campaign" value={client.acquisition_campaign || <span className="text-haze">—</span>} />
-              <DataLine term="Client since" value={<span className="num text-[11px]">{shortDate(client.created_at)}</span>} />
-              <DataLine term="Reference" value={<span className="num text-[11px]">{client.slug}</span>} />
+              <DataLine term={t('Primary service')} value={client.primary_service || <NotRecorded />} />
+              <DataLine term={t('Acquisition source')} value={client.acquisition_source || <NotRecorded />} />
+              <DataLine term={t('Campaign')} value={client.acquisition_campaign || <span className="text-haze">—</span>} />
+              <DataLine term={t('Client since')} value={<span className="num text-[11px]">{shortDate(client.created_at)}</span>} />
+              <DataLine term={t('Reference')} value={<span className="num text-[11px]">{client.slug}</span>} />
             </dl>
           </Panel>
         </div>
@@ -624,13 +624,13 @@ function ClientStatusControl({ client, onChanged }: { client: Client; onChanged:
   const ops = useOperationsMutations(onChanged);
   return (
     <>
-      <label className="sr-only" htmlFor="client-detail-status">Client status</label>
+      <label className="sr-only" htmlFor="client-detail-status">{t('Client status')}</label>
       <Select
         id="client-detail-status"
         value={client.status}
         onChange={(e) => void ops.updateClient(client.id, { status: e.target.value })}
       >
-        {CLIENT_STATUSES.map((s) => <option key={s} value={s}>{CLIENT_STATUS[s].label}</option>)}
+        {CLIENT_STATUSES.map((s) => <option key={s} value={s}>{t(CLIENT_STATUS[s].label)}</option>)}
       </Select>
     </>
   );
@@ -683,7 +683,7 @@ function NewClientDialog({
 
   const submit = async () => {
     const name = form.name.trim();
-    if (!name) { setError('A client needs a name.'); return; }
+    if (!name) { setError(t('A client needs a name.')); return; }
     const result = await ops.createClient({
       name,
       slug: uniqueSlug(name, existing.map((c) => c.slug)),
@@ -699,52 +699,51 @@ function NewClientDialog({
     <Dialog
       open
       onClose={onClose}
-      title="New client"
-      description="The traceable route is Lead → Opportunity → Won → Client. A client added here has no opportunity behind it, so it carries no acquisition source."
+      title={t('New client')}
+      description={t('The traceable route is Lead → Opportunity → Won → Client. A client added here has no opportunity behind it, so it carries no acquisition source.')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
-          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'client'}>Create</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
+          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'client'}>{t('Create')}</Button>
         </>
       }
     >
       <div className="grid gap-3">
-        <Field id="new-client-name" label="Name">
+        <Field id="new-client-name" label={t('Name')}>
           <Input id="new-client-name" value={form.name}
                  onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} />
         </Field>
 
         {matches.length > 0 && (
           <div className="rounded-sm border border-signal/25 px-3 py-2.5" role="status">
-            <p className="label mb-1 text-signal">This may already exist</p>
+            <p className="label mb-1 text-signal">{t('This may already exist')}</p>
             <ul className="grid gap-0.5">
               {matches.map(({ client, why }) => (
                 <li key={client.id} className="text-[12px] text-paper">
-                  {client.name} <span className="t-note">— matched on {why}</span>
+                  {client.name} <span className="t-note">{t('— matched on {why}', { why })}</span>
                 </li>
               ))}
             </ul>
             <p className="t-note mt-1.5">
-              Nothing is blocked and nothing is merged. Check before creating a second record for the
-              same company.
+              {t('Nothing is blocked and nothing is merged. Check before creating a second record for the same company.')}
             </p>
           </div>
         )}
 
-        <Field id="new-client-website" label="Website">
+        <Field id="new-client-website" label={t('Website')}>
           <Input id="new-client-website" value={form.website}
                  onChange={(e) => setForm((p) => ({ ...p, website: e.target.value }))}
                  placeholder="example.hu" />
         </Field>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="new-client-service" label="Primary service">
+          <Field id="new-client-service" label={t('Primary service')}>
             <Input id="new-client-service" value={form.primary_service}
                    onChange={(e) => setForm((p) => ({ ...p, primary_service: e.target.value }))} />
           </Field>
-          <Field id="new-client-status" label="Status">
+          <Field id="new-client-status" label={t('Status')}>
             <Select id="new-client-status" className="w-full py-2.5 text-sm" value={form.status}
                     onChange={(e) => setForm((p) => ({ ...p, status: e.target.value }))}>
-              {CLIENT_STATUSES.map((s) => <option key={s} value={s}>{CLIENT_STATUS[s].label}</option>)}
+              {CLIENT_STATUSES.map((s) => <option key={s} value={s}>{t(CLIENT_STATUS[s].label)}</option>)}
             </Select>
           </Field>
         </div>
@@ -792,33 +791,33 @@ function ContactDialog({
     <Dialog
       open
       onClose={onClose}
-      title={contact ? 'Edit contact' : 'Add contact'}
-      description="A contact is entered deliberately. The enquiry's own personal data stays on the lead."
+      title={contact ? t('Edit contact') : t('Add contact')}
+      description={t("A contact is entered deliberately. The enquiry's own personal data stays on the lead.")}
       footer={
         <>
           {contact && (
-            <Button size="sm" variant="danger" onClick={() => onRemove(contact.id)}>Remove</Button>
+            <Button size="sm" variant="danger" onClick={() => onRemove(contact.id)}>{t('Remove')}</Button>
           )}
-          <Button size="sm" onClick={onClose}>Cancel</Button>
-          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'contact'}>Save</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
+          <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy === 'contact'}>{t('Save')}</Button>
         </>
       }
     >
       <div className="grid gap-3">
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="contact-name" label="Name">
+          <Field id="contact-name" label={t('Name')}>
             <Input id="contact-name" value={form.name}
                    onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} />
           </Field>
-          <Field id="contact-role" label="Role">
+          <Field id="contact-role" label={t('Role')}>
             <Input id="contact-role" value={form.role}
                    onChange={(e) => setForm((p) => ({ ...p, role: e.target.value }))} />
           </Field>
-          <Field id="contact-email" label="Email">
+          <Field id="contact-email" label={t('Email')}>
             <Input id="contact-email" type="email" value={form.email}
                    onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))} />
           </Field>
-          <Field id="contact-phone" label="Phone">
+          <Field id="contact-phone" label={t('Phone')}>
             <Input id="contact-phone" value={form.phone}
                    onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} />
           </Field>
@@ -830,7 +829,7 @@ function ContactDialog({
             onChange={(e) => setForm((p) => ({ ...p, is_primary: e.target.checked }))}
             className="h-3 w-3 accent-signal"
           />
-          Primary contact — a client can have only one
+          {t('Primary contact — a client can have only one')}
         </label>
         {error && <p role="alert" className="text-xs text-danger">{error}</p>}
       </div>

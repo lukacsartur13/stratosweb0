@@ -4,6 +4,8 @@
  * re-exports all of it; import from there.
  */
 
+import { t } from './i18n.ts';
+
 export const DOCUMENT_BUCKET = 'project-documents';
 /** Mirrors `document_max_bytes()`. The database and the bucket enforce it; this only answers early. */
 export const MAX_DOCUMENT_BYTES = 52428800;
@@ -164,11 +166,11 @@ export function checkUploadable(name: string, head: Uint8Array):
   const allowed = ALLOWED_TYPES[ext];
   if (!allowed) {
     return { ok: false, code: 'extension', ext,
-      reason: ext ? `.${ext} files are not accepted.` : 'Files without an extension are not accepted.' };
+      reason: ext ? t('.{ext} files are not accepted.', { ext }) : t('Files without an extension are not accepted.') };
   }
   const kind = sniffKind(head, ext);
   if (!kind || !allowed.includes(kind)) {
-    return { ok: false, code: 'content', ext, reason: `This file's content does not match .${ext}, so it was not uploaded.` };
+    return { ok: false, code: 'content', ext, reason: t('This file\'s content does not match .{ext}, so it was not uploaded.', { ext }) };
   }
   return { ok: true, kind };
 }
@@ -212,22 +214,22 @@ export function sniffPreview(head: Uint8Array, name: string): PreviewKind | null
 /** Plain words for every refusal the library can meet. */
 export function documentRefusal(error: { code?: string; message?: string } | null | undefined): string {
   const m = error?.message ?? '';
-  if (/client_no_access|share_not_assigned/.test(m)) return 'This client account is not assigned to this project.';
-  if (/document_type_not_allowed/.test(m)) return 'This file type is not accepted, or its content does not match its extension.';
-  if (/document_too_large/.test(m)) return `The file is larger than ${formatBytes(MAX_DOCUMENT_BYTES)}, the upload limit.`;
-  if (/document_folder_trashed/.test(m)) return 'That folder is in the trash. Restore it first.';
-  if (/document_folder_cycle/.test(m)) return 'A folder cannot be moved inside itself.';
-  if (/document_project_fixed/.test(m)) return 'Files and folders stay in their own project.';
-  if (/document_ready_final|document_fact_fixed/.test(m)) return 'A finished upload cannot be changed. Upload a new file instead.';
-  if (/document_not_uploaded/.test(m)) return 'The stored file is missing or incomplete, so it was not marked as uploaded.';
+  if (/client_no_access|share_not_assigned/.test(m)) return t('This client account is not assigned to this project.');
+  if (/document_type_not_allowed/.test(m)) return t('This file type is not accepted, or its content does not match its extension.');
+  if (/document_too_large/.test(m)) return t('The file is larger than {max}, the upload limit.', { max: formatBytes(MAX_DOCUMENT_BYTES) });
+  if (/document_folder_trashed/.test(m)) return t('That folder is in the trash. Restore it first.');
+  if (/document_folder_cycle/.test(m)) return t('A folder cannot be moved inside itself.');
+  if (/document_project_fixed/.test(m)) return t('Files and folders stay in their own project.');
+  if (/document_ready_final|document_fact_fixed/.test(m)) return t('A finished upload cannot be changed. Upload a new file instead.');
+  if (/document_not_uploaded/.test(m)) return t('The stored file is missing or incomplete, so it was not marked as uploaded.');
   if (/document_name_valid|check constraint/.test(m) || error?.code === '23514') {
-    return 'Use a name of 1–200 characters without / or \\.';
+    return t('Use a name of 1–200 characters without / or \\.');
   }
-  if (error?.code === '23505') return 'Something in this folder already has that name.';
-  if (error?.code === '23503') return 'That folder belongs to another project.';
-  if (error?.code === '42501' || /document_owner_only/.test(m)) return 'Only the portal owner can do this.';
-  if (error?.code === 'P0002') return 'It no longer exists, or this account may not see it.';
-  return 'The change could not be saved. Try again.';
+  if (error?.code === '23505') return t('Something in this folder already has that name.');
+  if (error?.code === '23503') return t('That folder belongs to another project.');
+  if (error?.code === '42501' || /document_owner_only/.test(m)) return t('Only the portal owner can do this.');
+  if (error?.code === 'P0002') return t('It no longer exists, or this account may not see it.');
+  return t('The change could not be saved. Try again.');
 }
 
 export const FAILURE_LABEL: Record<string, string> = {

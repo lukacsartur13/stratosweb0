@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { t } from '@/lib/i18n';
 
 /**
  * System health, read from `/api/portal-health`.
@@ -60,15 +61,15 @@ function fetchHealth(token: string, key: string): Promise<HealthState> {
         return {
           kind: 'error',
           message: res.status === 403
-            ? 'This account cannot view system health.'
-            : 'System health could not be read.',
+            ? t('This account cannot view system health.')
+            : t('System health could not be read.'),
         };
       }
       return { kind: 'ready', data: (await res.json()) as Health };
     } catch {
       // The common case in development: the static server has no functions
       // behind it. Not an outage, and worth saying so rather than showing red.
-      return { kind: 'error', message: 'System health could not be reached.' };
+      return { kind: 'error', message: t('System health could not be reached.') };
     }
   })();
 
@@ -88,7 +89,7 @@ export function useHealth(enabled = true, reloadToken = 0) {
     if (!enabled) return;
     setState({ kind: 'loading' });
     if (!token) {
-      setState({ kind: 'error', message: 'Your session has expired. Sign in again.' });
+      setState({ kind: 'error', message: t('Your session has expired. Sign in again.') });
       return;
     }
     setState(await fetchHealth(token, `${token}|${reloadToken}`));
@@ -116,6 +117,7 @@ export const TONE: Record<ServiceState, 'good' | 'warn' | 'bad' | 'neutral'> = {
   disabled: 'neutral',
 };
 
+// English source text; translated where it is rendered (`t(STATE_LABEL[s])`).
 export const STATE_LABEL: Record<ServiceState, string> = {
   ok: 'OK',
   degraded: 'Degraded',

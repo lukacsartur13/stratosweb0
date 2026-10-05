@@ -1,0 +1,58 @@
+{
+ "Your session has expired. Sign in again.": {
+  "hu": "Lejárt a munkameneted. Jelentkezz be újra.",
+  "de": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."
+ },
+ "This account cannot view analytics.": {
+  "hu": "Ez a fiók nem láthatja az analitikát.",
+  "de": "Dieses Konto kann die Analytik nicht einsehen."
+ },
+ "Analytics could not be loaded right now.": {
+  "hu": "Az analitika most nem tölthető be.",
+  "de": "Die Analytik konnte gerade nicht geladen werden."
+ },
+ "Analytics could not be reached.": {
+  "hu": "Az analitika nem érhető el.",
+  "de": "Die Analytik ist nicht erreichbar."
+ },
+ "Today": {
+  "hu": "Ma",
+  "de": "Heute"
+ },
+ "7d": {
+  "hu": "7 nap",
+  "de": "7 T"
+ },
+ "30d": {
+  "hu": "30 nap",
+  "de": "30 T"
+ },
+ "90d": {
+  "hu": "90 nap",
+  "de": "90 T"
+ },
+ "Last 7 days": {
+  "hu": "Elmúlt 7 nap",
+  "de": "Letzte 7 Tage"
+ },
+ "Last 30 days": {
+  "hu": "Elmúlt 30 nap",
+  "de": "Letzte 30 Tage"
+ },
+ "Last 90 days": {
+  "hu": "Elmúlt 90 nap",
+  "de": "Letzte 90 Tage"
+ },
+ "Production": {
+  "hu": "Éles",
+  "de": "Produktion"
+ },
+ "Staging": {
+  "hu": "Teszt",
+  "de": "Staging"
+ },
+ "All": {
+  "hu": "Összes",
+  "de": "Alle"
+ }
+}

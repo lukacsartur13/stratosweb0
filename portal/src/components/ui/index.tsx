@@ -6,6 +6,7 @@ import type {
   TextareaHTMLAttributes,
 } from 'react';
 import { forwardRef, useEffect, useRef } from 'react';
+import { t } from '@/lib/i18n';
 
 /**
  * The Control Room's primitives.
@@ -345,9 +346,9 @@ export function ErrorState({ message, onRetry }: { message: string; onRetry?: ()
   return (
     <DataState
       kind="unavailable"
-      title="Unavailable"
+      title={t('Unavailable')}
       body={message}
-      action={onRetry ? <Button size="sm" onClick={onRetry}>Try again</Button> : undefined}
+      action={onRetry ? <Button size="sm" onClick={onRetry}>{t('Try again')}</Button> : undefined}
     />
   );
 }
@@ -493,8 +494,8 @@ export function DataLine({
  */
 export function NotRecorded({ what }: { what?: string }) {
   return (
-    <span className="text-[13px] text-haze" title={what ? `${what} has not been recorded` : undefined}>
-      Not recorded
+    <span className="text-[13px] text-haze" title={what ? t('{what} has not been recorded', { what }) : undefined}>
+      {t('Not recorded')}
     </span>
   );
 }
@@ -605,7 +606,7 @@ export function Dialog({
             <h2 id={titleId} className="t-section text-chrome">{title}</h2>
             {description && <p className="t-note mt-1 max-w-prose">{description}</p>}
           </div>
-          <Button size="sm" variant="quiet" onClick={onClose} aria-label="Close">
+          <Button size="sm" variant="quiet" onClick={onClose} aria-label={t('Close')}>
             <X size={13} aria-hidden="true" />
           </Button>
         </header>

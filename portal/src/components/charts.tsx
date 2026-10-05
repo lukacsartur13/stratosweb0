@@ -1,5 +1,6 @@
 import { useId, useMemo, useState } from 'react';
 import { cn } from '@/components/ui';
+import { intlLocale, t } from '@/lib/i18n';
 
 /**
  * The Portal's charts, and there are four of them.
@@ -104,7 +105,7 @@ export function TrendChart({
   }, [points, height, baseline?.value]);
 
   if (points.length === 0) {
-    return <p className="px-4 py-12 text-center text-xs text-haze">No data in this range.</p>;
+    return <p className="px-4 py-12 text-center text-xs text-haze">{t('No data in this range.')}</p>;
   }
 
   const active = hover === null ? null : { value: points[hover], label: labels[hover] };
@@ -115,8 +116,8 @@ export function TrendChart({
         <p className="t-section">{label}</p>
         <p className="t-meta">
           {active
-            ? <><span className="text-paper">{active.value.toLocaleString('en-GB')}</span> · {active.label}</>
-            : <>peak {geometry.max.toLocaleString('en-GB')}</>}
+            ? <><span className="text-paper">{active.value.toLocaleString(intlLocale('en-GB'))}</span> · {active.label}</>
+            : <>{t('peak {n}', { n: geometry.max.toLocaleString(intlLocale('en-GB')) })}</>}
         </p>
       </div>
 
@@ -128,7 +129,7 @@ export function TrendChart({
         className="block w-full"
         style={{ height }}
         role="img"
-        aria-label={`${label} over time. Peak ${geometry.max}.`}
+        aria-label={t('{label} over time. Peak {max}.', { label, max: geometry.max })}
         onMouseLeave={() => setHover(null)}
       >
         <defs>
@@ -248,7 +249,7 @@ export function BarList({
   rows,
   empty,
   tone = 'chrome',
-  format = (v: number) => v.toLocaleString('en-GB'),
+  format = (v: number) => v.toLocaleString(intlLocale('en-GB')),
 }: {
   rows: { key: string; value: number; note?: string }[];
   empty: string;
@@ -322,13 +323,13 @@ export function Funnel({
             <div className="flex items-baseline justify-between gap-3">
               <div className="min-w-0">
                 <p className={cn('num text-xl leading-none', last ? 'text-signal' : 'text-paper')}>
-                  {stage.count.toLocaleString('en-GB')}
+                  {stage.count.toLocaleString(intlLocale('en-GB'))}
                 </p>
                 <p className="t-section mt-1 truncate">{stage.label}</p>
               </div>
               {stage.ofEntry !== null && (
                 <span className="num shrink-0 text-[10px] text-haze">
-                  {(stage.ofEntry * 100).toFixed(2)}% of entry
+                  {t('{pct}% of entry', { pct: (stage.ofEntry * 100).toFixed(2) })}
                 </span>
               )}
             </div>
@@ -398,7 +399,7 @@ export function Segmented<T extends string>({
  * dashboard that has confused "went down" with "got worse".
  */
 export function Delta({ value, inverse = false }: { value: number | null; inverse?: boolean }) {
-  if (value === null) return <span className="num text-[10px] text-haze">no comparison</span>;
+  if (value === null) return <span className="num text-[10px] text-haze">{t('no comparison')}</span>;
   const flat = Math.abs(value) < 0.005;
   const good = inverse ? value < 0 : value > 0;
   return (

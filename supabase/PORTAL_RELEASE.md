@@ -582,3 +582,35 @@ Mit csinál:
 
 Ellenőrizve (helyben): `tests/portal-trash-db.spec.ts` 12/12; `scripts/portal-tracker-check.mjs`
 49/49; a node- és desktop-tesztcsomag zöld (244 + 266).
+
+## 19. Nyelvválasztás: magyar, angol, német (12. szakasz)
+
+**Sorrend: migráció → deploy.** A frontend a migráció nélkül sem törik el (a nyelv akkor
+csak az adott eszközön marad meg), de a fiókhoz mentéshez a migráció kell.
+
+1. SQL Editor: `supabase/migrations/20261009000100_profile_locale.sql` (ismételten is futtatható).
+2. Deploy (push a `main`-re).
+
+Mit csinál:
+
+- **Mindenki maga választ** (Magyar · English · Deutsch): a tulajdonosi oldalsáv alján, a
+  **Settings → Language** blokkban, az ügyfélportál fejlécében és a belépési oldalon. A választás a
+  saját profilra mentődik (`profiles.locale`), így minden eszközön ugyanaz; más nevében senki nem választ.
+- **Amíg valaki nem választ, minden úgy marad, mint eddig:** a tulajdonosi felület angol, az
+  ügyfélportál magyar.
+- **Mi fordul:** a tulajdonosi felület és az ügyfélportál minden felirata, üzenete, hibaüzenete,
+  státusza; a dátumok és számok formátuma a választott nyelvé.
+- **Mi nem:** amit ti írtok be (projekt- és ügyfélnevek, jegyzetek, megbeszélések címe), a súgócikkek
+  tartalma (magyar; angolul/németül egy rövid megjegyzés jelzi), a meghívó e-mail, a Google
+  Naptár-esemény szövege, és az adatbázisba írt alapértékek (pl. „Előleg” részletnév).
+
+Hogyan működik: a fordítás kulcsa maga a forrásszöveg (`portal/src/lib/i18n.ts`, `t('…')`); a
+fordítások `portal/src/i18n/parts/*.json`-ban vannak (≈1780 kulcs). `node scripts/i18n-check.mjs`
+megmutatja a hiányzó fordítást, az ütközést (ugyanaz a kulcs két fordítással — hibának számít) és a
+valószínűleg be nem csomagolt szöveget. Új felirat írásakor: `t('…')`, és a kulcs a részfájlba.
+
+Ellenőrizve (helyben): `tests/portal-locale-db.spec.ts` 4/4 (saját nyelv, csak hu/en/de, másét nem
+írhatja; `t()`; minden fordítás megtartja a helyőrzőit); `scripts/portal-tracker-check.mjs` 51/51
+(magyarra váltás és mentés, a fiók nyelve új eszközön, német oldalak kontrasztja és 390 px-es
+szélessége); `scripts/portal-client-check.mjs` 20/20 (angol és német ügyfélportál); a node- és
+desktop-tesztcsomag zöld (253 + 287).

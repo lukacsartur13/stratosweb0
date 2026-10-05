@@ -6,6 +6,8 @@ import { LoginPage, ForgotPasswordPage, ResetPasswordPage } from '@/features/aut
 import { PortalShell } from '@/components/shell/PortalShell';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { ScopeProvider } from '@/lib/scope';
+import { LanguageGate } from '@/features/i18n/LanguageGate';
+import { t } from '@/lib/i18n';
 import { DashboardScreen } from '@/pages/dashboard';
 import { LeadsScreen } from '@/pages/leads';
 import { LeadDetailScreen } from '@/pages/lead-detail';
@@ -111,15 +113,15 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean
     return (
       <div className="grid min-h-dvh place-items-center px-6 text-center">
         <div className="max-w-md">
-          <p className="font-data text-[11px] uppercase tracking-[0.18em] text-danger">Something broke</p>
+          <p className="font-data text-[11px] uppercase tracking-[0.18em] text-danger">{t('Something broke')}</p>
           <p className="mt-2 text-sm text-haze">
-            The portal hit an error it could not recover from. Reloading usually clears it.
+            {t('The portal hit an error it could not recover from. Reloading usually clears it.')}
           </p>
           <button
             onClick={() => window.location.reload()}
             className="mt-4 rounded-sm border border-hair px-4 py-2 font-data text-[11px] uppercase tracking-[0.14em] hover:bg-flare"
           >
-            Reload
+            {t('Reload')}
           </button>
         </div>
       </div>
@@ -134,6 +136,7 @@ export default function App() {
           root and a direct hit on /portal/leads still resolves. */}
       <BrowserRouter basename="/portal">
         <AuthProvider>
+          <LanguageGate>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
@@ -213,6 +216,7 @@ export default function App() {
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </LanguageGate>
         </AuthProvider>
       </BrowserRouter>
     </ErrorBoundary>

@@ -4,6 +4,7 @@ import { Grid } from '@/components/shell/PortalShell';
 import { Button, DataState, HealthRow, Panel, SectionHeader, Skeleton } from '@/components/ui';
 import { STATE_LABEL, TONE, useHealth } from '@/lib/health';
 import { formatWhen } from '@/lib/leads';
+import { t } from '@/lib/i18n';
 
 /**
  * SYSTEM — diagnostics.
@@ -38,9 +39,9 @@ export function SystemScreen() {
     <Grid>
       <Panel className="col-span-12 min-w-0 lg:col-span-8">
         <SectionHeader
-          title="System status"
-          note={state.kind === 'ready' ? `checked ${formatWhen(state.data.checkedAt)}` : undefined}
-          action={<Button size="sm" variant="quiet" onClick={() => void reload()}>Check again</Button>}
+          title={t('System status')}
+          note={state.kind === 'ready' ? t('checked {when}', { when: formatWhen(state.data.checkedAt) }) : undefined}
+          action={<Button size="sm" variant="quiet" onClick={() => void reload()}>{t('Check again')}</Button>}
         />
 
         {state.kind === 'loading' && (
@@ -52,9 +53,9 @@ export function SystemScreen() {
         {state.kind === 'error' && (
           <DataState
             kind="unavailable"
-            title="Cannot reach the health endpoint"
-            body={`${state.message} The static development server serves no functions, so this is expected outside a Netlify deploy.`}
-            action={<Button size="sm" onClick={() => void reload()}>Try again</Button>}
+            title={t('Cannot reach the health endpoint')}
+            body={t('{message} The static development server serves no functions, so this is expected outside a Netlify deploy.', { message: state.message })}
+            action={<Button size="sm" onClick={() => void reload()}>{t('Try again')}</Button>}
           />
         )}
 
@@ -62,46 +63,46 @@ export function SystemScreen() {
           <dl className="grid">
             <HealthRow
               term="Supabase"
-              state={STATE_LABEL[state.data.services.supabase.state]}
+              state={t(STATE_LABEL[state.data.services.supabase.state])}
               tone={TONE[state.data.services.supabase.state]}
               note={
                 state.data.services.supabase.state === 'ok'
-                  ? 'URL and service key both answer'
-                  : 'Check the URL and the service key'
+                  ? t('URL and service key both answer')
+                  : t('Check the URL and the service key')
               }
             />
             <HealthRow
-              term="Lead API"
-              state={STATE_LABEL[state.data.services.leadApi.state]}
+              term={t('Lead API')}
+              state={t(STATE_LABEL[state.data.services.leadApi.state])}
               tone={TONE[state.data.services.leadApi.state]}
               note={
                 state.data.services.leadApi.ipSaltConfigured
-                  ? 'store configured · IP hashing salted'
-                  : 'store configured · IP salt missing'
+                  ? t('store configured · IP hashing salted')
+                  : t('store configured · IP salt missing')
               }
             />
             <HealthRow
               term="GA4 Data API"
-              state={STATE_LABEL[state.data.services.ga4.state]}
+              state={t(STATE_LABEL[state.data.services.ga4.state])}
               tone={TONE[state.data.services.ga4.state]}
               note={
                 state.data.services.ga4.missing.length
-                  ? `${state.data.services.ga4.missing.length} variable(s) outstanding`
-                  : 'service account configured'
+                  ? t(state.data.services.ga4.missing.length === 1 ? '{n} variable outstanding' : '{n} variables outstanding', { n: state.data.services.ga4.missing.length })
+                  : t('service account configured')
               }
             />
             <HealthRow
-              term="Notifications"
-              state={STATE_LABEL[state.data.services.notifications.state]}
+              term={t('Notifications')}
+              state={t(STATE_LABEL[state.data.services.notifications.state])}
               tone={TONE[state.data.services.notifications.state]}
-              note={`transport: ${state.data.services.notifications.transport}`}
+              note={t('transport: {transport}', { transport: state.data.services.notifications.transport })}
             />
           </dl>
         )}
 
         {state.kind === 'ready' && state.data.services.ga4.missing.length > 0 && (
           <div className="border-t border-hairline px-4 py-3">
-            <p className="label mb-1.5">Outstanding in the function environment</p>
+            <p className="label mb-1.5">{t('Outstanding in the function environment')}</p>
             <ul className="grid gap-0.5">
               {/* Names. The endpoint has no path by which a value could arrive
                   here, and neither has this list. */}
@@ -115,34 +116,34 @@ export function SystemScreen() {
 
       <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-4">
         <Panel>
-          <SectionHeader title="Environment" />
+          <SectionHeader title={t('Environment')} />
           <dl className="grid">
             <HealthRow
-              term="Deploy context"
+              term={t('Deploy context')}
               state={state.kind === 'ready' ? state.data.environment : '—'}
               tone={state.kind === 'ready' && state.data.environment === 'production' ? 'good' : 'neutral'}
-              note="Netlify's own context, not a hostname"
+              note={t('Netlify\'s own context, not a hostname')}
             />
             <HealthRow
-              term="Portal client"
-              state={configured ? 'Configured' : 'Not configured'}
+              term={t('Portal client')}
+              state={configured ? t('Configured') : t('Not configured')}
               tone={configured ? 'good' : 'warn'}
-              note="Supabase URL and anon key in this bundle"
+              note={t('Supabase URL and anon key in this bundle')}
             />
             <HealthRow
-              term="Service role key"
-              state="Server only"
+              term={t('Service role key')}
+              state={t('Server only')}
               tone="good"
-              note="Never present in this bundle"
+              note={t('Never present in this bundle')}
             />
           </dl>
         </Panel>
 
         <Panel className="px-4 py-3.5">
           <p className="t-note">
-            This screen reports whether a credential <span className="text-paper">exists</span> —
-            never its value. No secret, token, webhook address or private key can reach it, by the
-            shape of the endpoint rather than by discipline here.
+            {t('This screen reports whether a credential')}{' '}
+            <span className="text-paper">{t('exists')}</span>{' '}
+            {t('— never its value. No secret, token, webhook address or private key can reach it, by the shape of the endpoint rather than by discipline here.')}
           </p>
         </Panel>
       </div>

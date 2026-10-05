@@ -1,0 +1,382 @@
+{
+ "Sales views": {
+  "hu": "Értékesítési nézetek",
+  "de": "Vertriebsansichten"
+ },
+ "New opportunity": {
+  "hu": "Új lehetőség",
+  "de": "Neue Verkaufschance"
+ },
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Supabase credentials are not set in this environment, so there is nothing to read yet.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase-hozzáférési adatok, így még nincs mit beolvasni.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt, daher gibt es noch nichts zu lesen."
+ },
+ "Total pipeline": {
+  "hu": "Teljes folyamat",
+  "de": "Gesamte Pipeline"
+ },
+ "open opportunities": {
+  "hu": "nyitott lehetőségek",
+  "de": "offene Verkaufschancen"
+ },
+ "Weighted": {
+  "hu": "Súlyozott",
+  "de": "Gewichtet"
+ },
+ "value × probability": {
+  "hu": "érték × valószínűség",
+  "de": "Wert × Wahrscheinlichkeit"
+ },
+ "Closing this month": {
+  "hu": "E hónapban zárul",
+  "de": "Abschluss diesen Monat"
+ },
+ "expected close date": {
+  "hu": "várható lezárási dátum",
+  "de": "erwartetes Abschlussdatum"
+ },
+ "Won this month": {
+  "hu": "E havi megnyert",
+  "de": "Diesen Monat gewonnen"
+ },
+ "marked won": {
+  "hu": "megnyertnek jelölve",
+  "de": "als gewonnen markiert"
+ },
+ "Pipeline value": {
+  "hu": "A folyamat értéke",
+  "de": "Pipeline-Wert"
+ },
+ "+{n} in {currencies}": {
+  "hu": "+{n}: {currencies}",
+  "de": "+{n} in {currencies}"
+ },
+ "Retry": {
+  "hu": "Újra",
+  "de": "Wiederholen"
+ },
+ "Nothing here": {
+  "hu": "Itt nincs semmi",
+  "de": "Nichts vorhanden"
+ },
+ "no value": {
+  "hu": "nincs érték",
+  "de": "kein Wert"
+ },
+ "overdue · ": {
+  "hu": "lejárt · ",
+  "de": "überfällig · "
+ },
+ "Stage for {title}": {
+  "hu": "Szakasz: {title}",
+  "de": "Phase für {title}"
+ },
+ "Nothing matches": {
+  "hu": "Nincs találat",
+  "de": "Keine Treffer"
+ },
+ "No opportunity matches every filter above. The view opens on deals closing this month — clear the filters to see every deal, including won deals that became clients.": {
+  "hu": "Egy lehetőség sem felel meg az összes fenti szűrőnek. A nézet az e hónapban záruló üzletekkel nyílik — töröld a szűrőket, hogy minden üzletet láss, az ügyféllé vált megnyert üzleteket is.",
+  "de": "Keine Verkaufschance entspricht allen Filtern oben. Die Ansicht zeigt zunächst die Abschlüsse dieses Monats — setzen Sie die Filter zurück, um alle Verkaufschancen zu sehen, auch gewonnene, die bereits Kunden wurden."
+ },
+ "No opportunity matches every filter above.": {
+  "hu": "Egy lehetőség sem felel meg az összes fenti szűrőnek.",
+  "de": "Keine Verkaufschance entspricht allen Filtern oben."
+ },
+ "Clear filters": {
+  "hu": "Szűrők törlése",
+  "de": "Filter zurücksetzen"
+ },
+ "Opportunity": {
+  "hu": "Lehetőség",
+  "de": "Verkaufschance"
+ },
+ "Company": {
+  "hu": "Cég",
+  "de": "Firma"
+ },
+ "Stage": {
+  "hu": "Szakasz",
+  "de": "Phase"
+ },
+ "Value": {
+  "hu": "Érték",
+  "de": "Wert"
+ },
+ "Prob.": {
+  "hu": "Valósz.",
+  "de": "Wahrsch."
+ },
+ "Expected close": {
+  "hu": "Várható lezárás",
+  "de": "Erwarteter Abschluss"
+ },
+ "Next action": {
+  "hu": "Következő lépés",
+  "de": "Nächster Schritt"
+ },
+ "Source": {
+  "hu": "Forrás",
+  "de": "Quelle"
+ },
+ "Showing the {limit} most recently updated opportunities. Narrow the filters to reach older records.": {
+  "hu": "A {limit} legutóbb frissített lehetőség látszik. A régebbi rekordokhoz szűkítsd a szűrőket.",
+  "de": "Angezeigt werden die {limit} zuletzt aktualisierten Verkaufschancen. Grenzen Sie die Filter ein, um ältere Einträge zu erreichen."
+ },
+ "Opportunity or company…": {
+  "hu": "Lehetőség vagy cég…",
+  "de": "Verkaufschance oder Firma…"
+ },
+ "Search opportunities": {
+  "hu": "Lehetőségek keresése",
+  "de": "Verkaufschancen durchsuchen"
+ },
+ "In the pipeline ({n})": {
+  "hu": "A folyamatban ({n})",
+  "de": "In der Pipeline ({n})"
+ },
+ "Open only ({n})": {
+  "hu": "Csak nyitottak ({n})",
+  "de": "Nur offene ({n})"
+ },
+ "Everything ({n})": {
+  "hu": "Mind ({n})",
+  "de": "Alle ({n})"
+ },
+ "Close date": {
+  "hu": "Lezárás dátuma",
+  "de": "Abschlussdatum"
+ },
+ "Service": {
+  "hu": "Szolgáltatás",
+  "de": "Leistung"
+ },
+ "Any service": {
+  "hu": "Bármely szolgáltatás",
+  "de": "Alle Leistungen"
+ },
+ "Any source": {
+  "hu": "Bármely forrás",
+  "de": "Alle Quellen"
+ },
+ "Responsible": {
+  "hu": "Felelős",
+  "de": "Verantwortlich"
+ },
+ "Anyone": {
+  "hu": "Bárki",
+  "de": "Alle"
+ },
+ "Sort": {
+  "hu": "Rendezés",
+  "de": "Sortierung"
+ },
+ "Recently updated": {
+  "hu": "Legutóbb frissített",
+  "de": "Zuletzt aktualisiert"
+ },
+ "By value": {
+  "hu": "Érték szerint",
+  "de": "Nach Wert"
+ },
+ "By close date": {
+  "hu": "Lezárás szerint",
+  "de": "Nach Abschlussdatum"
+ },
+ "By company": {
+  "hu": "Cég szerint",
+  "de": "Nach Firma"
+ },
+ "Clear": {
+  "hu": "Törlés",
+  "de": "Zurücksetzen"
+ },
+ "{n} shown": {
+  "hu": "{n} látható",
+  "de": "{n} angezeigt"
+ },
+ "Overdue": {
+  "hu": "Lejárt",
+  "de": "Überfällig"
+ },
+ "Today": {
+  "hu": "Ma",
+  "de": "Heute"
+ },
+ "Upcoming": {
+  "hu": "Közelgő",
+  "de": "Anstehend"
+ },
+ "Follow-ups": {
+  "hu": "Utánkövetés",
+  "de": "Nachfassen"
+ },
+ "Nothing scheduled": {
+  "hu": "Nincs ütemezett teendő",
+  "de": "Nichts geplant"
+ },
+ "Follow-ups appear here when an open opportunity has a next action with a date on it.": {
+  "hu": "Az utánkövetések akkor jelennek meg itt, ha egy nyitott lehetőségnek dátummal ellátott következő lépése van.",
+  "de": "Nachfass-Aufgaben erscheinen hier, sobald eine offene Verkaufschance einen nächsten Schritt mit Datum hat."
+ },
+ "Nothing overdue.": {
+  "hu": "Nincs lejárt teendő.",
+  "de": "Nichts überfällig."
+ },
+ "Nothing today.": {
+  "hu": "Mára nincs teendő.",
+  "de": "Heute nichts."
+ },
+ "Nothing upcoming.": {
+  "hu": "Nincs közelgő teendő.",
+  "de": "Nichts anstehend."
+ },
+ "Action": {
+  "hu": "Lépés",
+  "de": "Schritt"
+ },
+ "Due": {
+  "hu": "Esedékes",
+  "de": "Fällig"
+ },
+ "Mark done: {action}": {
+  "hu": "Elvégezve: {action}",
+  "de": "Erledigt: {action}"
+ },
+ "Done": {
+  "hu": "Kész",
+  "de": "Erledigt"
+ },
+ "Commercial performance": {
+  "hu": "Üzleti teljesítmény",
+  "de": "Vertriebsleistung"
+ },
+ "from recorded opportunities only": {
+  "hu": "csak a rögzített lehetőségekből",
+  "de": "nur aus erfassten Verkaufschancen"
+ },
+ "{n} deals": {
+  "hu": "{n} üzlet",
+  "de": "{n} Abschlüsse"
+ },
+ "Won this year": {
+  "hu": "Megnyert idén",
+  "de": "Dieses Jahr gewonnen"
+ },
+ "Average won deal": {
+  "hu": "Átlagos megnyert üzlet",
+  "de": "Durchschnittlicher Abschluss"
+ },
+ "and {n} other currency": {
+  "hu": "és további {n} pénznem",
+  "de": "und {n} weitere Währung"
+ },
+ "Open pipeline": {
+  "hu": "Nyitott folyamat",
+  "de": "Offene Pipeline"
+ },
+ "{n} open": {
+  "hu": "{n} nyitott",
+  "de": "{n} offen"
+ },
+ "Weighted pipeline": {
+  "hu": "Súlyozott folyamat",
+  "de": "Gewichtete Pipeline"
+ },
+ "Win rate": {
+  "hu": "Nyerési arány",
+  "de": "Abschlussquote"
+ },
+ "no deal has closed yet": {
+  "hu": "még egy üzlet sem zárult le",
+  "de": "noch keine Verkaufschance abgeschlossen"
+ },
+ "{won} won of {closed} closed": {
+  "hu": "{closed} lezártból {won} megnyert",
+  "de": "{won} gewonnen von {closed} abgeschlossenen"
+ },
+ "Open pipeline by stage": {
+  "hu": "Nyitott folyamat szakaszonként",
+  "de": "Offene Pipeline nach Phase"
+ },
+ "No open opportunities": {
+  "hu": "Nincs nyitott lehetőség",
+  "de": "Keine offenen Verkaufschancen"
+ },
+ "Nothing is in the pipeline right now.": {
+  "hu": "Most nincs semmi a folyamatban.",
+  "de": "Derzeit ist nichts in der Pipeline."
+ },
+ "Deals": {
+  "hu": "Üzletek",
+  "de": "Abschlüsse"
+ },
+ "Weighted is": {
+  "hu": "Súlyozott érték:",
+  "de": "Gewichtet ist"
+ },
+ "estimated value × probability": {
+  "hu": "becsült érték × valószínűség",
+  "de": "geschätzter Wert × Wahrscheinlichkeit"
+ },
+ ". The stage probabilities are operational defaults, editable per opportunity — they are not measured Stratos win rates.": {
+  "hu": ". A szakaszok valószínűségei működési alapértékek, lehetőségenként módosíthatók — nem a Stratos mért nyerési arányai.",
+  "de": ". Die Phasenwahrscheinlichkeiten sind betriebliche Standardwerte, je Verkaufschance änderbar — keine gemessenen Abschlussquoten von Stratos."
+ },
+ "No opportunities yet": {
+  "hu": "Még nincs lehetőség",
+  "de": "Noch keine Verkaufschancen"
+ },
+ "An opportunity is a qualified commercial possibility. Convert a qualified lead from the Leads screen, or create one directly for a conversation that started somewhere else.": {
+  "hu": "A lehetőség egy minősített üzleti esély. Alakíts át egy minősített leadet a Leadek képernyőn, vagy hozz létre egyet közvetlenül egy máshol indult beszélgetéshez.",
+  "de": "Eine Verkaufschance ist eine qualifizierte kaufmännische Möglichkeit. Wandeln Sie einen qualifizierten Lead im Bereich Leads um, oder legen Sie direkt eine an, wenn das Gespräch anderswo begonnen hat."
+ },
+ "Convert a qualified lead": {
+  "hu": "Minősített lead átalakítása",
+  "de": "Qualifizierten Lead umwandeln"
+ },
+ "Create opportunity": {
+  "hu": "Lehetőség létrehozása",
+  "de": "Verkaufschance erstellen"
+ },
+ "Qualified": {
+  "hu": "Minősített",
+  "de": "Qualifiziert"
+ },
+ "Discovery": {
+  "hu": "Felmérés",
+  "de": "Bedarfsanalyse"
+ },
+ "Proposal": {
+  "hu": "Ajánlat",
+  "de": "Angebot"
+ },
+ "Negotiation": {
+  "hu": "Tárgyalás",
+  "de": "Verhandlung"
+ },
+ "Won": {
+  "hu": "Megnyert",
+  "de": "Gewonnen"
+ },
+ "Lost": {
+  "hu": "Elvesztett",
+  "de": "Verloren"
+ },
+ "Pipeline": {
+  "hu": "Folyamat",
+  "de": "Pipeline"
+ },
+ "Table": {
+  "hu": "Táblázat",
+  "de": "Tabelle"
+ },
+ "Performance": {
+  "hu": "Teljesítmény",
+  "de": "Performance"
+ }
+}

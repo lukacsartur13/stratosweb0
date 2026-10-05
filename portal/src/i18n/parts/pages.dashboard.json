@@ -1,0 +1,482 @@
+{
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Unavailable": {
+  "hu": "Nem elérhető",
+  "de": "Nicht verfügbar"
+ },
+ "Supabase credentials are not set in this environment, so there is nothing to read yet.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase-hozzáférési adatok, így még nincs mit beolvasni.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt, daher gibt es noch nichts zu lesen."
+ },
+ "No leads yet": {
+  "hu": "Még nincs lead",
+  "de": "Noch keine Leads"
+ },
+ "Source": {
+  "hu": "Forrás",
+  "de": "Quelle"
+ },
+ "Status": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "Pipeline": {
+  "hu": "Folyamat",
+  "de": "Pipeline"
+ },
+ "Sessions": {
+  "hu": "Munkamenetek",
+  "de": "Sitzungen"
+ },
+ "Leads": {
+  "hu": "Leadek",
+  "de": "Leads"
+ },
+ "Analytics not configured": {
+  "hu": "Az analitika nincs beállítva",
+  "de": "Analytik nicht eingerichtet"
+ },
+ "not configured": {
+  "hu": "nincs beállítva",
+  "de": "nicht eingerichtet"
+ },
+ "Analytics unavailable": {
+  "hu": "Az analitika nem elérhető",
+  "de": "Analytik nicht verfügbar"
+ },
+ "unavailable": {
+  "hu": "nem elérhető",
+  "de": "nicht verfügbar"
+ },
+ "today": {
+  "hu": "ma",
+  "de": "heute"
+ },
+ "last {days} days": {
+  "hu": "elmúlt {days} nap",
+  "de": "letzte {days} Tage"
+ },
+ "The pipeline summary could not be read": {
+  "hu": "A folyamat összesítője nem olvasható be",
+  "de": "Die Pipeline-Übersicht konnte nicht gelesen werden"
+ },
+ "Executive summary": {
+  "hu": "Vezetői összefoglaló",
+  "de": "Management-Übersicht"
+ },
+ "{period} · from the Portal": {
+  "hu": "{period} · a Portálból",
+  "de": "{period} · aus dem Portal"
+ },
+ "Conversion": {
+  "hu": "Konverzió",
+  "de": "Conversion"
+ },
+ "lead events / session": {
+  "hu": "lead-esemény / munkamenet",
+  "de": "Lead-Ereignisse / Sitzung"
+ },
+ "{n} open · {weighted} weighted": {
+  "hu": "{n} nyitott · {weighted} súlyozva",
+  "de": "{n} offen · {weighted} gewichtet"
+ },
+ "no open opportunities": {
+  "hu": "nincs nyitott lehetőség",
+  "de": "keine offenen Verkaufschancen"
+ },
+ "Won this month": {
+  "hu": "E havi megnyert",
+  "de": "Diesen Monat gewonnen"
+ },
+ "{n} deal": {
+  "hu": "{n} üzlet",
+  "de": "{n} Abschluss"
+ },
+ "{n} deals": {
+  "hu": "{n} üzlet",
+  "de": "{n} Abschlüsse"
+ },
+ "nothing closed yet": {
+  "hu": "még nincs lezárt üzlet",
+  "de": "noch nichts abgeschlossen"
+ },
+ "Unanswered": {
+  "hu": "Megválaszolatlan",
+  "de": "Unbeantwortet"
+ },
+ "still at New": {
+  "hu": "még „Új” állapotban",
+  "de": "noch im Status „Neu“"
+ },
+ "open opportunities": {
+  "hu": "nyitott lehetőségek",
+  "de": "offene Verkaufschancen"
+ },
+ "Opportunities": {
+  "hu": "Lehetőségek",
+  "de": "Verkaufschancen"
+ },
+ "The pipeline summary could not be read. It needs the P2 migration to have been applied.": {
+  "hu": "A folyamat összesítője nem olvasható be. Ehhez a P2 migrációt le kell futtatni.",
+  "de": "Die Pipeline-Übersicht konnte nicht gelesen werden. Dafür muss die P2-Migration angewendet sein."
+ },
+ "No database is configured in this environment.": {
+  "hu": "Ebben a környezetben nincs adatbázis beállítva.",
+  "de": "In dieser Umgebung ist keine Datenbank konfiguriert."
+ },
+ "No open opportunities": {
+  "hu": "Nincs nyitott lehetőség",
+  "de": "Keine offenen Verkaufschancen"
+ },
+ "The pipeline is what qualified leads become. Nothing is in it yet.": {
+  "hu": "A folyamatba a minősített leadek kerülnek. Még nincs benne semmi.",
+  "de": "Die Pipeline entsteht aus qualifizierten Leads. Noch ist nichts darin."
+ },
+ "Convert a qualified lead": {
+  "hu": "Minősített lead átalakítása",
+  "de": "Qualifizierten Lead umwandeln"
+ },
+ "Open opportunities by stage": {
+  "hu": "Nyitott lehetőségek szakaszonként",
+  "de": "Offene Verkaufschancen nach Phase"
+ },
+ "Qualified": {
+  "hu": "Minősített",
+  "de": "Qualifiziert"
+ },
+ "Discovery": {
+  "hu": "Felmérés",
+  "de": "Bedarfsanalyse"
+ },
+ "Proposal": {
+  "hu": "Ajánlat",
+  "de": "Angebot"
+ },
+ "Negotiation": {
+  "hu": "Tárgyalás",
+  "de": "Verhandlung"
+ },
+ "Won": {
+  "hu": "Megnyert",
+  "de": "Gewonnen"
+ },
+ "Lost": {
+  "hu": "Elvesztett",
+  "de": "Verloren"
+ },
+ "Total": {
+  "hu": "Összesen",
+  "de": "Gesamt"
+ },
+ "Weighted": {
+  "hu": "Súlyozott",
+  "de": "Gewichtet"
+ },
+ "{n} more in {currencies} — not added in, because nothing here converts between currencies.": {
+  "hu": "További {n} ebben: {currencies} — nincs hozzáadva, mert itt semmi nem vált át pénznemek között.",
+  "de": "{n} weitere in {currencies} — nicht eingerechnet, da hier nicht zwischen Währungen umgerechnet wird."
+ },
+ "Top revenue sources": {
+  "hu": "Legjobb bevételi források",
+  "de": "Top-Umsatzquellen"
+ },
+ "won value by acquisition source": {
+  "hu": "megnyert érték akvizíciós forrás szerint",
+  "de": "gewonnener Wert nach Akquisitionsquelle"
+ },
+ "Attribution": {
+  "hu": "Attribúció",
+  "de": "Attribution"
+ },
+ "No attributed revenue": {
+  "hu": "Nincs forráshoz rendelt bevétel",
+  "de": "Kein zugeordneter Umsatz"
+ },
+ "Won deals exist, but none of them carries an acquisition source.": {
+  "hu": "Vannak megnyert üzletek, de egyikhez sincs akvizíciós forrás rendelve.",
+  "de": "Es gibt gewonnene Abschlüsse, aber keiner hat eine Akquisitionsquelle."
+ },
+ "Won value by acquisition source": {
+  "hu": "Megnyert érték akvizíciós forrás szerint",
+  "de": "Gewonnener Wert nach Akquisitionsquelle"
+ },
+ "Won in more than one currency": {
+  "hu": "Több pénznemben megnyert",
+  "de": "In mehr als einer Währung gewonnen"
+ },
+ "mixed": {
+  "hu": "vegyes",
+  "de": "gemischt"
+ },
+ "Active projects": {
+  "hu": "Aktív projektek",
+  "de": "Aktive Projekte"
+ },
+ "{n} live": {
+  "hu": "{n} futó",
+  "de": "{n} laufend"
+ },
+ "All projects": {
+  "hu": "Összes projekt",
+  "de": "Alle Projekte"
+ },
+ "No active projects": {
+  "hu": "Nincs aktív projekt",
+  "de": "Keine aktiven Projekte"
+ },
+ "A project is created from a won opportunity, which keeps the delivery connected to what sold it.": {
+  "hu": "A projekt egy megnyert lehetőségből jön létre, így a megvalósítás összekapcsolva marad azzal, ami eladta.",
+  "de": "Ein Projekt entsteht aus einer gewonnenen Verkaufschance, so bleibt die Umsetzung mit dem Verkauf verbunden."
+ },
+ "Project": {
+  "hu": "Projekt",
+  "de": "Projekt"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "Target": {
+  "hu": "Céldátum",
+  "de": "Zieltermin"
+ },
+ "Users": {
+  "hu": "Felhasználók",
+  "de": "Benutzer"
+ },
+ "Views": {
+  "hu": "Megtekintések",
+  "de": "Aufrufe"
+ },
+ "previous period, {avg} avg": {
+  "hu": "előző időszak, átl. {avg}",
+  "de": "Vorperiode, Ø {avg}"
+ },
+ "Traffic": {
+  "hu": "Forgalom",
+  "de": "Traffic"
+ },
+ "Metric": {
+  "hu": "Mutató",
+  "de": "Kennzahl"
+ },
+ "No traffic data": {
+  "hu": "Nincs forgalmi adat",
+  "de": "Keine Traffic-Daten"
+ },
+ "Analytics is not available for this period.": {
+  "hu": "Erre az időszakra nem érhető el analitika.",
+  "de": "Für diesen Zeitraum ist keine Analytik verfügbar."
+ },
+ "Live": {
+  "hu": "Élő",
+  "de": "Live"
+ },
+ "last {n} min": {
+  "hu": "elmúlt {n} perc",
+  "de": "letzte {n} Min."
+ },
+ "No Google service account yet, so nobody can be counted — which is not the same as nobody being here.": {
+  "hu": "Még nincs Google szolgáltatásfiók, így senkit sem lehet megszámolni — ez nem ugyanaz, mint hogy senki sincs itt.",
+  "de": "Noch kein Google-Dienstkonto, daher kann niemand gezählt werden — das ist nicht dasselbe, wie dass niemand hier ist."
+ },
+ "Realtime unavailable": {
+  "hu": "A valós idejű adat nem elérhető",
+  "de": "Echtzeitdaten nicht verfügbar"
+ },
+ "The realtime report could not be read. The figures above are unaffected — they come from a different Google endpoint.": {
+  "hu": "A valós idejű jelentés nem olvasható be. A fenti számokat ez nem érinti — azok egy másik Google-végpontról jönnek.",
+  "de": "Der Echtzeitbericht konnte nicht gelesen werden. Die Zahlen oben sind nicht betroffen — sie stammen von einem anderen Google-Endpunkt."
+ },
+ "active now": {
+  "hu": "most aktív",
+  "de": "jetzt aktiv"
+ },
+ "Page": {
+  "hu": "Oldal",
+  "de": "Seite"
+ },
+ "Active": {
+  "hu": "Aktív",
+  "de": "Aktiv"
+ },
+ "Nobody on the site right now.": {
+  "hu": "Most senki sincs az oldalon.",
+  "de": "Gerade ist niemand auf der Website."
+ },
+ "Whole property — GA4 does not expose hostname on realtime reports.": {
+  "hu": "A teljes property — a GA4 a valós idejű jelentésekben nem adja meg a hostnevet.",
+  "de": "Gesamte Property — GA4 liefert in Echtzeitberichten keinen Hostnamen."
+ },
+ "Conversion path": {
+  "hu": "Konverziós út",
+  "de": "Conversion-Pfad"
+ },
+ "measured events": {
+  "hu": "mért események",
+  "de": "gemessene Ereignisse"
+ },
+ "No conversion data": {
+  "hu": "Nincs konverziós adat",
+  "de": "Keine Conversion-Daten"
+ },
+ "Stages after the first are": {
+  "hu": "Az első utáni szakaszok",
+  "de": "Die Phasen nach der ersten sind"
+ },
+ "event counts": {
+  "hu": "eseményszámok",
+  "de": "Ereigniszahlen"
+ },
+ ", not unique users. Only events this property actually collects are shown.": {
+  "hu": ", nem egyedi felhasználók. Csak azok az események látszanak, amelyeket ez a property ténylegesen gyűjt.",
+  "de": ", keine eindeutigen Nutzer. Es werden nur Ereignisse angezeigt, die diese Property tatsächlich erfasst."
+ },
+ "Acquisition": {
+  "hu": "Akvizíció",
+  "de": "Akquisition"
+ },
+ "GA4 session-scoped": {
+  "hu": "GA4, munkamenet-szintű",
+  "de": "GA4, sitzungsbezogen"
+ },
+ "from the leads themselves": {
+  "hu": "magukból a leadekből",
+  "de": "aus den Leads selbst"
+ },
+ "Full breakdown": {
+  "hu": "Teljes bontás",
+  "de": "Vollständige Aufschlüsselung"
+ },
+ "No sessions": {
+  "hu": "Nincs munkamenet",
+  "de": "Keine Sitzungen"
+ },
+ "Nothing arrived in this period.": {
+  "hu": "Ebben az időszakban semmi sem érkezett.",
+  "de": "In diesem Zeitraum ist nichts eingegangen."
+ },
+ "CVR": {
+  "hu": "Konv.",
+  "de": "CVR"
+ },
+ "No attribution recorded on these leads yet.": {
+  "hu": "Ezeknél a leadeknél még nincs rögzített forrás.",
+  "de": "Für diese Leads ist noch keine Attribution erfasst."
+ },
+ "Counted from each lead’s own submission — sessions are not available, so no conversion rate is shown rather than one built from two populations.": {
+  "hu": "Minden lead saját beküldéséből számolva — munkamenet-adat nem érhető el, ezért inkább nem mutatunk konverziós arányt, mint hogy két különböző sokaságból számoljunk egyet.",
+  "de": "Aus der eigenen Übermittlung jedes Leads gezählt — Sitzungen sind nicht verfügbar, daher wird keine Conversion-Rate angezeigt statt einer aus zwei Grundgesamtheiten berechneten."
+ },
+ "Recent leads": {
+  "hu": "Legutóbbi leadek",
+  "de": "Neueste Leads"
+ },
+ "View all leads": {
+  "hu": "Összes lead",
+  "de": "Alle Leads anzeigen"
+ },
+ "The lead list could not be read.": {
+  "hu": "A leadlista nem olvasható be.",
+  "de": "Die Lead-Liste konnte nicht gelesen werden."
+ },
+ "Submissions from the public forms land here the moment they arrive.": {
+  "hu": "A nyilvános űrlapok beküldései érkezésük pillanatában itt jelennek meg.",
+  "de": "Übermittlungen aus den öffentlichen Formularen erscheinen hier, sobald sie eingehen."
+ },
+ "Time": {
+  "hu": "Idő",
+  "de": "Zeit"
+ },
+ "Company / contact": {
+  "hu": "Cég / kapcsolattartó",
+  "de": "Firma / Kontakt"
+ },
+ "An opportunity": {
+  "hu": "Egy lehetőség",
+  "de": "Eine Verkaufschance"
+ },
+ "A project": {
+  "hu": "Egy projekt",
+  "de": "Ein Projekt"
+ },
+ "{n} new lead has waited more than a day": {
+  "hu": "{n} új lead több mint egy napja vár",
+  "de": "{n} neuer Lead wartet seit über einem Tag"
+ },
+ "{n} new leads have waited more than a day": {
+  "hu": "{n} új lead több mint egy napja vár",
+  "de": "{n} neue Leads warten seit über einem Tag"
+ },
+ "{n} proposal has been out for over a week": {
+  "hu": "{n} ajánlat több mint egy hete kint van",
+  "de": "{n} Angebot ist seit über einer Woche offen"
+ },
+ "{n} proposals have been out for over a week": {
+  "hu": "{n} ajánlat több mint egy hete kint van",
+  "de": "{n} Angebote sind seit über einer Woche offen"
+ },
+ "Analytics is not configured": {
+  "hu": "Az analitika nincs beállítva",
+  "de": "Analytik ist nicht eingerichtet"
+ },
+ "Analytics is unavailable": {
+  "hu": "Az analitika nem elérhető",
+  "de": "Analytik ist nicht verfügbar"
+ },
+ "the lead API": {
+  "hu": "a lead API",
+  "de": "die Lead-API"
+ },
+ "the GA4 Data API": {
+  "hu": "a GA4 Data API",
+  "de": "die GA4 Data API"
+ },
+ "{service} is unreachable": {
+  "hu": "Nem érhető el: {service}",
+  "de": "{service} ist nicht erreichbar"
+ },
+ "{service} needs configuration": {
+  "hu": "Beállítást igényel: {service}",
+  "de": "{service} muss eingerichtet werden"
+ },
+ "Lead notifications are off — leads arrive in the Portal only": {
+  "hu": "A lead-értesítések ki vannak kapcsolva — a leadek csak a Portálba érkeznek",
+  "de": "Lead-Benachrichtigungen sind aus — Leads gehen nur im Portal ein"
+ },
+ "Needs attention": {
+  "hu": "Figyelmet igényel",
+  "de": "Handlungsbedarf"
+ },
+ "showing 8 of {n}": {
+  "hu": "8 látható ennyiből: {n}",
+  "de": "8 von {n} angezeigt"
+ },
+ "Nothing requires attention.": {
+  "hu": "Semmi nem igényel figyelmet.",
+  "de": "Nichts erfordert Aufmerksamkeit."
+ },
+ "Checking systems…": {
+  "hu": "Rendszerek ellenőrzése…",
+  "de": "Systeme werden geprüft…"
+ },
+ "System status unavailable": {
+  "hu": "A rendszerállapot nem elérhető",
+  "de": "Systemstatus nicht verfügbar"
+ },
+ "All systems operational": {
+  "hu": "Minden rendszer működik",
+  "de": "Alle Systeme betriebsbereit"
+ },
+ "{n} system requires attention": {
+  "hu": "{n} rendszer figyelmet igényel",
+  "de": "{n} System erfordert Aufmerksamkeit"
+ },
+ "{n} systems require attention": {
+  "hu": "{n} rendszer figyelmet igényel",
+  "de": "{n} Systeme erfordern Aufmerksamkeit"
+ }
+}

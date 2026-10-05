@@ -1,0 +1,1186 @@
+{
+ "Project views": {
+  "hu": "Projektnézetek",
+  "de": "Projektansichten"
+ },
+ "All ({n})": {
+  "hu": "Összes ({n})",
+  "de": "Alle ({n})"
+ },
+ "Active ({n})": {
+  "hu": "Aktív ({n})",
+  "de": "Aktiv ({n})"
+ },
+ "Closed ({n})": {
+  "hu": "Lezárt ({n})",
+  "de": "Abgeschlossen ({n})"
+ },
+ "Monthly contracts ({n})": {
+  "hu": "Havi szerződések ({n})",
+  "de": "Monatsverträge ({n})"
+ },
+ "Impact projects": {
+  "hu": "Impact projektek",
+  "de": "Impact-Projekte"
+ },
+ "Templates": {
+  "hu": "Sablonok",
+  "de": "Vorlagen"
+ },
+ "New project": {
+  "hu": "Új projekt",
+  "de": "Neues Projekt"
+ },
+ "Closed projects": {
+  "hu": "Lezárt projektek",
+  "de": "Abgeschlossene Projekte"
+ },
+ "Active projects": {
+  "hu": "Aktív projektek",
+  "de": "Aktive Projekte"
+ },
+ "{n} of {total}": {
+  "hu": "{n} / {total}",
+  "de": "{n} von {total}"
+ },
+ "Show": {
+  "hu": "Megjelenítés",
+  "de": "Anzeigen"
+ },
+ "Every active project": {
+  "hu": "Minden aktív projekt",
+  "de": "Alle aktiven Projekte"
+ },
+ "Late ({n})": {
+  "hu": "Késik ({n})",
+  "de": "Verspätet ({n})"
+ },
+ "Waiting on client ({n})": {
+  "hu": "Ügyfélre vár ({n})",
+  "de": "Wartet auf Kunden ({n})"
+ },
+ "Blocked ({n})": {
+  "hu": "Elakadt ({n})",
+  "de": "Blockiert ({n})"
+ },
+ "Project, client, step…": {
+  "hu": "Projekt, ügyfél, lépés…",
+  "de": "Projekt, Kunde, Schritt…"
+ },
+ "Search projects": {
+  "hu": "Projektek keresése",
+  "de": "Projekte durchsuchen"
+ },
+ "Not connected": {
+  "hu": "Nincs kapcsolat",
+  "de": "Nicht verbunden"
+ },
+ "Supabase credentials are not set in this environment, so there is nothing to read yet.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase-hozzáférési adatok, így még nincs mit beolvasni.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt, daher gibt es noch nichts zu lesen."
+ },
+ "No projects yet": {
+  "hu": "Még nincs projekt",
+  "de": "Noch keine Projekte"
+ },
+ "No closed projects": {
+  "hu": "Nincs lezárt projekt",
+  "de": "Keine abgeschlossenen Projekte"
+ },
+ "No active projects": {
+  "hu": "Nincs aktív projekt",
+  "de": "Keine aktiven Projekte"
+ },
+ "Nothing matches": {
+  "hu": "Nincs találat",
+  "de": "Keine Treffer"
+ },
+ "A project lands here when it is closed — after its last checkpoint is done.": {
+  "hu": "Egy projekt akkor kerül ide, amikor lezárod — miután az utolsó mérföldköve is kész.",
+  "de": "Ein Projekt erscheint hier, sobald es abgeschlossen ist — nachdem sein letzter Meilenstein erledigt ist."
+ },
+ "A project is created from a won opportunity, or here for an existing client.": {
+  "hu": "Projekt egy megnyert lehetőségből jön létre, vagy itt, egy meglévő ügyfélnek.",
+  "de": "Ein Projekt entsteht aus einer gewonnenen Verkaufschance oder hier für einen bestehenden Kunden."
+ },
+ "Nothing in this view matches the search or the filter.": {
+  "hu": "Ebben a nézetben semmi sem felel meg a keresésnek vagy a szűrőnek.",
+  "de": "In dieser Ansicht entspricht nichts der Suche oder dem Filter."
+ },
+ "Clear": {
+  "hu": "Törlés",
+  "de": "Zurücksetzen"
+ },
+ "Project": {
+  "hu": "Projekt",
+  "de": "Projekt"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "Company": {
+  "hu": "Cég",
+  "de": "Firma"
+ },
+ "Service": {
+  "hu": "Szolgáltatás",
+  "de": "Leistung"
+ },
+ "Checkpoints": {
+  "hu": "Mérföldkövek",
+  "de": "Meilensteine"
+ },
+ "Deadline": {
+  "hu": "Határidő",
+  "de": "Frist"
+ },
+ "Closed": {
+  "hu": "Lezárt",
+  "de": "Abgeschlossen"
+ },
+ "Current step": {
+  "hu": "Aktuális lépés",
+  "de": "Aktueller Schritt"
+ },
+ "Signals": {
+  "hu": "Jelzések",
+  "de": "Signale"
+ },
+ "All done — ready to close": {
+  "hu": "Minden kész — lezárható",
+  "de": "Alles erledigt — bereit zum Abschluss"
+ },
+ "No checkpoints": {
+  "hu": "Nincs mérföldkő",
+  "de": "Keine Meilensteine"
+ },
+ "Monthly": {
+  "hu": "Havi",
+  "de": "Monatlich"
+ },
+ "One-off": {
+  "hu": "Egyszeri",
+  "de": "Einmalig"
+ },
+ "Ended": {
+  "hu": "Megszűnt",
+  "de": "Beendet"
+ },
+ "Cancelled": {
+  "hu": "Megszakítva",
+  "de": "Abgebrochen"
+ },
+ "Running": {
+  "hu": "Fut",
+  "de": "Läuft"
+ },
+ "free": {
+  "hu": "ingyenes",
+  "de": "kostenlos"
+ },
+ "free · worth {value}": {
+  "hu": "ingyenes · értéke {value}",
+  "de": "kostenlos · Wert {value}"
+ },
+ "/ month": {
+  "hu": "/ hó",
+  "de": "/ Monat"
+ },
+ "All projects": {
+  "hu": "Összes projekt",
+  "de": "Alle Projekte"
+ },
+ "One-off in progress": {
+  "hu": "Folyamatban lévő egyszeri",
+  "de": "Laufende Einmalprojekte"
+ },
+ "{value} agreed value · {n} closed": {
+  "hu": "{value} megállapodott érték · {n} lezárt",
+  "de": "{value} vereinbarter Wert · {n} abgeschlossen"
+ },
+ "Monthly contracts": {
+  "hu": "Havi szerződések",
+  "de": "Monatsverträge"
+ },
+ "{value} per month": {
+  "hu": "{value} havonta",
+  "de": "{value} pro Monat"
+ },
+ "Impact in progress": {
+  "hu": "Folyamatban lévő Impact",
+  "de": "Laufende Impact-Projekte"
+ },
+ "{value} market value · free": {
+  "hu": "{value} piaci érték · ingyenes",
+  "de": "{value} Marktwert · kostenlos"
+ },
+ "Needs attention": {
+  "hu": "Figyelmet igényel",
+  "de": "Handlungsbedarf"
+ },
+ "one-off projects late, waiting or blocked": {
+  "hu": "késő, váró vagy elakadt egyszeri projektek",
+  "de": "verspätete, wartende oder blockierte Einmalprojekte"
+ },
+ "Every project": {
+  "hu": "Minden projekt",
+  "de": "Alle Projekte"
+ },
+ "Kind": {
+  "hu": "Típus",
+  "de": "Art"
+ },
+ "Every kind": {
+  "hu": "Minden típus",
+  "de": "Alle Arten"
+ },
+ "Project, client, service…": {
+  "hu": "Projekt, ügyfél, szolgáltatás…",
+  "de": "Projekt, Kunde, Leistung…"
+ },
+ "Search every project": {
+  "hu": "Keresés az összes projektben",
+  "de": "Alle Projekte durchsuchen"
+ },
+ "Create one with New project.": {
+  "hu": "Hozz létre egyet az Új projekt gombbal.",
+  "de": "Legen Sie eines über „Neues Projekt“ an."
+ },
+ "Nothing matches the search or the kind.": {
+  "hu": "Semmi sem felel meg a keresésnek vagy a típusnak.",
+  "de": "Nichts entspricht der Suche oder der Art."
+ },
+ "State": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "Price": {
+  "hu": "Ár",
+  "de": "Preis"
+ },
+ "Deadline / end": {
+  "hu": "Határidő / vége",
+  "de": "Frist / Ende"
+ },
+ "open-ended": {
+  "hu": "határozatlan",
+  "de": "unbefristet"
+ },
+ "Monthly revenue": {
+  "hu": "Havi bevétel",
+  "de": "Monatlicher Umsatz"
+ },
+ "Monthly fees": {
+  "hu": "Havidíjak",
+  "de": "Monatsgebühren"
+ },
+ "No running monthly contract.": {
+  "hu": "Nincs futó havi szerződés.",
+  "de": "Kein laufender Monatsvertrag."
+ },
+ "Monthly fees · {currency}": {
+  "hu": "Havidíjak · {currency}",
+  "de": "Monatsgebühren · {currency}"
+ },
+ "per month · {n} running contract": {
+  "hu": "havonta · {n} futó szerződés",
+  "de": "pro Monat · {n} laufender Vertrag"
+ },
+ "per month · {n} running contracts": {
+  "hu": "havonta · {n} futó szerződés",
+  "de": "pro Monat · {n} laufende Verträge"
+ },
+ "Contract, client, service…": {
+  "hu": "Szerződés, ügyfél, szolgáltatás…",
+  "de": "Vertrag, Kunde, Leistung…"
+ },
+ "Search monthly contracts": {
+  "hu": "Havi szerződések keresése",
+  "de": "Monatsverträge durchsuchen"
+ },
+ "No monthly contracts yet": {
+  "hu": "Még nincs havi szerződés",
+  "de": "Noch keine Monatsverträge"
+ },
+ "A monthly contract is ongoing work billed by the month — care, ads management, SEO. Create one with New project → Monthly contract.": {
+  "hu": "A havi szerződés havonta számlázott, folyamatos munka — karbantartás, hirdetéskezelés, SEO. Létrehozás: Új projekt → Havi szerződés.",
+  "de": "Ein Monatsvertrag ist laufende, monatlich abgerechnete Arbeit — Betreuung, Anzeigenmanagement, SEO. Anlegen über „Neues Projekt“ → „Monatsvertrag“."
+ },
+ "No contract matches the search.": {
+  "hu": "Egyik szerződés sem felel meg a keresésnek.",
+  "de": "Kein Vertrag entspricht der Suche."
+ },
+ "Contract": {
+  "hu": "Szerződés",
+  "de": "Vertrag"
+ },
+ "Monthly fee": {
+  "hu": "Havidíj",
+  "de": "Monatsgebühr"
+ },
+ "Since": {
+  "hu": "Kezdete",
+  "de": "Seit"
+ },
+ "Months": {
+  "hu": "Hónap",
+  "de": "Monate"
+ },
+ "Ends": {
+  "hu": "Vége",
+  "de": "Endet"
+ },
+ "On hold": {
+  "hu": "Szünetel",
+  "de": "Pausiert"
+ },
+ "Late": {
+  "hu": "Késik",
+  "de": "Verspätet"
+ },
+ "Waiting": {
+  "hu": "Vár",
+  "de": "Wartet"
+ },
+ "Waiting on the client: {items}": {
+  "hu": "Ügyfélre vár: {items}",
+  "de": "Wartet auf den Kunden: {items}"
+ },
+ "Blocked": {
+  "hu": "Elakadt",
+  "de": "Blockiert"
+ },
+ "{title}: {reason} → {next}": {
+  "hu": "{title}: {reason} → {next}",
+  "de": "{title}: {reason} → {next}"
+ },
+ "no reason": {
+  "hu": "nincs ok megadva",
+  "de": "kein Grund"
+ },
+ "no next step": {
+  "hu": "nincs következő lépés",
+  "de": "kein nächster Schritt"
+ },
+ "{label}: {title}": {
+  "hu": "{label}: {title}",
+  "de": "{label}: {title}"
+ },
+ "Unavailable": {
+  "hu": "Nem elérhető",
+  "de": "Nicht verfügbar"
+ },
+ "No such project": {
+  "hu": "Nincs ilyen projekt",
+  "de": "Kein solches Projekt"
+ },
+ "The project could not be read right now.": {
+  "hu": "A projektet most nem sikerült beolvasni.",
+  "de": "Das Projekt konnte gerade nicht gelesen werden."
+ },
+ "Supabase credentials are not set in this environment.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase hozzáférési adatok.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt."
+ },
+ "This project does not exist, or this account may not read it.": {
+  "hu": "Ez a projekt nem létezik, vagy ez a fiók nem láthatja.",
+  "de": "Dieses Projekt existiert nicht, oder dieses Konto darf es nicht lesen."
+ },
+ "Project created": {
+  "hu": "Projekt létrehozva",
+  "de": "Projekt erstellt"
+ },
+ "Project summary": {
+  "hu": "Projekt összefoglaló",
+  "de": "Projektübersicht"
+ },
+ "Impact project · free": {
+  "hu": "Impact projekt · ingyenes",
+  "de": "Impact-Projekt · kostenlos"
+ },
+ "Monthly contract": {
+  "hu": "Havi szerződés",
+  "de": "Monatsvertrag"
+ },
+ "No client": {
+  "hu": "Nincs ügyfél",
+  "de": "Kein Kunde"
+ },
+ "No contact recorded for this client": {
+  "hu": "Ehhez az ügyfélhez nincs rögzítve kapcsolattartó",
+  "de": "Für diesen Kunden ist kein Kontakt erfasst"
+ },
+ "all done": {
+  "hu": "minden kész",
+  "de": "alles erledigt"
+ },
+ "now: {step}": {
+  "hu": "most: {step}",
+  "de": "aktuell: {step}"
+ },
+ "ended {date}": {
+  "hu": "megszűnt: {date}",
+  "de": "beendet am {date}"
+ },
+ "since {date}": {
+  "hu": "{date} óta",
+  "de": "seit {date}"
+ },
+ "no start date": {
+  "hu": "nincs kezdő dátum",
+  "de": "kein Startdatum"
+ },
+ "ends {date}": {
+  "hu": "vége: {date}",
+  "de": "endet am {date}"
+ },
+ "deadline was {date}": {
+  "hu": "a határidő {date} volt",
+  "de": "Frist war {date}"
+ },
+ "this date has passed": {
+  "hu": "ez a dátum már elmúlt",
+  "de": "dieses Datum ist überschritten"
+ },
+ "started {date}": {
+  "hu": "kezdés: {date}",
+  "de": "begonnen am {date}"
+ },
+ "Delivery status": {
+  "hu": "Teljesítés állapota",
+  "de": "Lieferstatus"
+ },
+ "Contract ended": {
+  "hu": "Szerződés megszűnt",
+  "de": "Vertrag beendet"
+ },
+ "Contract status": {
+  "hu": "Szerződés állapota",
+  "de": "Vertragsstatus"
+ },
+ "on {date}": {
+  "hu": "{date}",
+  "de": "am {date}"
+ },
+ "Reopen": {
+  "hu": "Újranyitás",
+  "de": "Wieder öffnen"
+ },
+ "End contract": {
+  "hu": "Szerződés megszüntetése",
+  "de": "Vertrag beenden"
+ },
+ "Close project": {
+  "hu": "Projekt lezárása",
+  "de": "Projekt abschließen"
+ },
+ "This monthly contract has ended and no longer counts in the monthly fees. Payments that arrive later are still recorded in its payment schedule. Reopen it to resume it.": {
+  "hu": "Ez a havi szerződés megszűnt, és már nem számít bele a havidíjakba. A később érkező befizetéseket továbbra is a fizetési ütemezésében rögzítheted. Nyisd újra a folytatáshoz.",
+  "de": "Dieser Monatsvertrag ist beendet und zählt nicht mehr zu den Monatsgebühren. Später eingehende Zahlungen werden weiterhin in seinem Zahlungsplan erfasst. Öffnen Sie ihn wieder, um ihn fortzusetzen."
+ },
+ "Every checkpoint was done when this project was closed. Reopen it to change its checkpoints. Closing says nothing about payment, and does not archive it.": {
+  "hu": "A projekt lezárásakor minden mérföldköve kész volt. Nyisd újra, ha módosítanád a mérföldköveit. A lezárás semmit nem mond a fizetésről, és nem is archiválja a projektet.",
+  "de": "Beim Abschluss dieses Projekts waren alle Meilensteine erledigt. Öffnen Sie es wieder, um die Meilensteine zu ändern. Der Abschluss sagt nichts über die Zahlung aus und archiviert das Projekt nicht."
+ },
+ "A monthly contract runs until it is ended. Ending it takes it out of the monthly fees; it can be reopened. Checkpoints are optional here — use them for recurring deliverables if they help.": {
+  "hu": "A havi szerződés a megszüntetéséig fut. Megszüntetéskor kikerül a havidíjak közül; újranyitható. A mérföldkövek itt opcionálisak — használd őket ismétlődő feladatokra, ha segítenek.",
+  "de": "Ein Monatsvertrag läuft, bis er beendet wird. Mit dem Beenden fällt er aus den Monatsgebühren heraus; er kann wieder geöffnet werden. Meilensteine sind hier optional — nutzen Sie sie für wiederkehrende Leistungen, wenn sie helfen."
+ },
+ "This Impact project is cancelled: it counts as neither committed nor delivered support. Set another state to resume it.": {
+  "hu": "Ez az Impact projekt megszakítva: sem vállalt, sem teljesített támogatásnak nem számít. Állíts be másik állapotot a folytatáshoz.",
+  "de": "Dieses Impact-Projekt ist abgebrochen: Es zählt weder als zugesagte noch als erbrachte Unterstützung. Setzen Sie einen anderen Status, um es fortzusetzen."
+ },
+ "Before this Impact project can be closed it needs: {items}.": {
+  "hu": "Az Impact projekt lezárásához még szükséges: {items}.",
+  "de": "Bevor dieses Impact-Projekt abgeschlossen werden kann, fehlt noch: {items}."
+ },
+ "Every checkpoint is done and the market value is recorded. Closing moves it to delivered support; it can be reopened.": {
+  "hu": "Minden mérföldkő kész, és a piaci érték rögzítve van. A lezárás a teljesített támogatások közé teszi; újranyitható.",
+  "de": "Alle Meilensteine sind erledigt und der Marktwert ist erfasst. Der Abschluss verschiebt es in die erbrachte Unterstützung; es kann wieder geöffnet werden."
+ },
+ "Every checkpoint is done. Closing moves the project to Closed; it can be reopened. Payment is tracked separately.": {
+  "hu": "Minden mérföldkő kész. A lezárás a Lezárt projektek közé teszi; újranyitható. A fizetést külön követjük.",
+  "de": "Alle Meilensteine sind erledigt. Der Abschluss verschiebt das Projekt nach „Abgeschlossen“; es kann wieder geöffnet werden. Die Zahlung wird separat verfolgt."
+ },
+ "A project is closed after its last checkpoint is done. This one has no checkpoints yet — add at least one.": {
+  "hu": "A projekt az utolsó mérföldköve teljesítése után zárható le. Ennek még nincs mérföldköve — adj hozzá legalább egyet.",
+  "de": "Ein Projekt wird abgeschlossen, nachdem sein letzter Meilenstein erledigt ist. Dieses hat noch keine Meilensteine — fügen Sie mindestens einen hinzu."
+ },
+ "{open} of {total} checkpoints still open. The project can be closed once they are all done.": {
+  "hu": "{total} mérföldkőből {open} még nyitott. A projekt akkor zárható le, ha mind kész.",
+  "de": "{open} von {total} Meilensteinen sind noch offen. Das Projekt kann abgeschlossen werden, sobald alle erledigt sind."
+ },
+ "Nothing late, nothing waiting, nothing blocked.": {
+  "hu": "Semmi sem késik, semmi sem vár, semmi sem akadt el.",
+  "de": "Nichts verspätet, nichts wartet, nichts blockiert."
+ },
+ "Waiting on client": {
+  "hu": "Ügyfélre vár",
+  "de": "Wartet auf Kunden"
+ },
+ "Why: {reason}": {
+  "hu": "Ok: {reason}",
+  "de": "Grund: {reason}"
+ },
+ "Next: {step}": {
+  "hu": "Következő: {step}",
+  "de": "Nächster Schritt: {step}"
+ },
+ "none yet": {
+  "hu": "még nincs",
+  "de": "noch keine"
+ },
+ "Add checkpoint": {
+  "hu": "Mérföldkő hozzáadása",
+  "de": "Meilenstein hinzufügen"
+ },
+ "No checkpoints. Start from a template — its steps are copied into this project, so editing the template later never changes them — or add them one by one.": {
+  "hu": "Nincs mérföldkő. Indulj ki egy sablonból — a lépései bemásolódnak ebbe a projektbe, így a sablon későbbi szerkesztése nem módosítja őket —, vagy add hozzá őket egyenként.",
+  "de": "Keine Meilensteine. Beginnen Sie mit einer Vorlage — ihre Schritte werden in dieses Projekt kopiert, spätere Änderungen an der Vorlage wirken sich also nicht aus — oder fügen Sie sie einzeln hinzu."
+ },
+ "Template": {
+  "hu": "Sablon",
+  "de": "Vorlage"
+ },
+ "{name} ({n} steps)": {
+  "hu": "{name} ({n} lépés)",
+  "de": "{name} ({n} Schritte)"
+ },
+ " — matches the service": {
+  "hu": " — illik a szolgáltatáshoz",
+  "de": " — passt zur Leistung"
+ },
+ "Add these steps": {
+  "hu": "Lépések hozzáadása",
+  "de": "Diese Schritte hinzufügen"
+ },
+ "Checkpoints are frozen while the project is closed.": {
+  "hu": "A mérföldkövek zárolva vannak, amíg a projekt lezárt.",
+  "de": "Die Meilensteine sind gesperrt, solange das Projekt abgeschlossen ist."
+ },
+ "Open in Documents": {
+  "hu": "Megnyitás a Dokumentumokban",
+  "de": "In Dokumenten öffnen"
+ },
+ "Links": {
+  "hu": "Linkek",
+  "de": "Links"
+ },
+ "Add": {
+  "hu": "Hozzáadás",
+  "de": "Hinzufügen"
+ },
+ "No links. The live site, the staging URL, the repository, the design file — anything with an http or https address.": {
+  "hu": "Nincs link. Az élő oldal, a teszt URL, a repó, a dizájnfájl — bármi, aminek http vagy https címe van.",
+  "de": "Keine Links. Die Live-Website, die Staging-URL, das Repository, die Designdatei — alles mit einer http- oder https-Adresse."
+ },
+ "Remove {name}": {
+  "hu": "{name} eltávolítása",
+  "de": "{name} entfernen"
+ },
+ "Notes": {
+  "hu": "Jegyzetek",
+  "de": "Notizen"
+ },
+ "Add a note": {
+  "hu": "Jegyzet hozzáadása",
+  "de": "Notiz hinzufügen"
+ },
+ "What changed, what is blocked, what was agreed.": {
+  "hu": "Mi változott, mi akadt el, miben állapodtatok meg.",
+  "de": "Was sich geändert hat, was blockiert ist, was vereinbart wurde."
+ },
+ "Add note": {
+  "hu": "Jegyzet hozzáadása",
+  "de": "Notiz hinzufügen"
+ },
+ "No notes yet.": {
+  "hu": "Még nincs jegyzet.",
+  "de": "Noch keine Notizen."
+ },
+ "Unknown": {
+  "hu": "Ismeretlen",
+  "de": "Unbekannt"
+ },
+ "Activity": {
+  "hu": "Tevékenység",
+  "de": "Aktivität"
+ },
+ "only what was recorded": {
+  "hu": "csak a rögzített események",
+  "de": "nur Erfasstes"
+ },
+ "Costs": {
+  "hu": "Költségek",
+  "de": "Kosten"
+ },
+ "No internal costs recorded. Free to the client is not free to deliver — what it cost us to do goes here.": {
+  "hu": "Nincs rögzített belső költség. Ami az ügyfélnek ingyenes, annak a teljesítése nekünk nem az — ide kerül, mibe került nekünk.",
+  "de": "Keine internen Kosten erfasst. Kostenlos für den Kunden heißt nicht kostenlos in der Umsetzung — was es uns gekostet hat, gehört hierher."
+ },
+ "No direct costs recorded. Subcontractors, ad tools, software — whatever this contract costs to run goes here.": {
+  "hu": "Nincs rögzített közvetlen költség. Alvállalkozók, hirdetési eszközök, szoftverek — ide kerül minden, amibe a szerződés futtatása kerül.",
+  "de": "Keine direkten Kosten erfasst. Subunternehmer, Werbetools, Software — alles, was der Betrieb dieses Vertrags kostet, gehört hierher."
+ },
+ "No direct costs recorded. Contribution cannot be calculated until at least one is — a project with no recorded costs is not a project that cost nothing.": {
+  "hu": "Nincs rögzített közvetlen költség. A fedezet addig nem számolható, amíg legalább egy nincs rögzítve — a rögzített költség nélküli projekt nem azonos az ingyen megvalósult projekttel.",
+  "de": "Keine direkten Kosten erfasst. Der Deckungsbeitrag lässt sich erst berechnen, wenn mindestens einer erfasst ist — ein Projekt ohne erfasste Kosten ist kein Projekt, das nichts gekostet hat."
+ },
+ "Edit": {
+  "hu": "Szerkesztés",
+  "de": "Bearbeiten"
+ },
+ "Status": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "Project status": {
+  "hu": "Projekt állapota",
+  "de": "Projektstatus"
+ },
+ "{status} (legacy)": {
+  "hu": "{status} (régi)",
+  "de": "{status} (veraltet)"
+ },
+ "Programme": {
+  "hu": "Program",
+  "de": "Programm"
+ },
+ "Impact · free": {
+  "hu": "Impact · ingyenes",
+  "de": "Impact · kostenlos"
+ },
+ "no fee, invoice or payment": {
+  "hu": "nincs díj, számla vagy befizetés",
+  "de": "keine Gebühr, Rechnung oder Zahlung"
+ },
+ "Billing": {
+  "hu": "Számlázás",
+  "de": "Abrechnung"
+ },
+ "billed by the month": {
+  "hu": "havonta számlázva",
+  "de": "monatlich abgerechnet"
+ },
+ "Responsible": {
+  "hu": "Felelős",
+  "de": "Verantwortlich"
+ },
+ "Started": {
+  "hu": "Kezdés",
+  "de": "Begonnen"
+ },
+ "Contract end": {
+  "hu": "Szerződés vége",
+  "de": "Vertragsende"
+ },
+ "Opportunity": {
+  "hu": "Lehetőség",
+  "de": "Verkaufschance"
+ },
+ "The deal that sold this": {
+  "hu": "Az üzlet, amiből ez lett",
+  "de": "Der Abschluss, aus dem es stammt"
+ },
+ "Not linked": {
+  "hu": "Nincs összekapcsolva",
+  "de": "Nicht verknüpft"
+ },
+ "Payment": {
+  "hu": "Befizetés",
+  "de": "Zahlung"
+ },
+ "{amount} received · from the payment schedule": {
+  "hu": "{amount} beérkezett · a fizetési ütemezésből",
+  "de": "{amount} eingegangen · aus dem Zahlungsplan"
+ },
+ "from the payment schedule": {
+  "hu": "a fizetési ütemezésből",
+  "de": "aus dem Zahlungsplan"
+ },
+ "An Impact project is free, always: the database refuses a fee, an invoice, a payment or a sale on it.": {
+  "hu": "Az Impact projekt mindig ingyenes: az adatbázis elutasít rajta minden díjat, számlát, befizetést vagy értékesítést.",
+  "de": "Ein Impact-Projekt ist immer kostenlos: Die Datenbank lehnt dafür jede Gebühr, Rechnung, Zahlung und jeden Verkauf ab."
+ },
+ "The monthly fee is what was agreed, not cash received. Record each month as an instalment in the payment schedule, and the payments against it.": {
+  "hu": "A havidíj a megállapodott összeg, nem a beérkezett pénz. Minden hónapot részletként rögzíts a fizetési ütemezésben, a hozzá tartozó befizetésekkel együtt.",
+  "de": "Die Monatsgebühr ist das Vereinbarte, nicht das eingegangene Geld. Erfassen Sie jeden Monat als Rate im Zahlungsplan und die Zahlungen dazu."
+ },
+ "Agreed value is not cash received. What has actually arrived is recorded in the payment schedule — the payment state follows it, and neither is required to close the project.": {
+  "hu": "A megállapodott érték nem azonos a beérkezett pénzzel. Ami ténylegesen megérkezett, azt a fizetési ütemezés rögzíti — a fizetési állapot ezt követi, és egyik sem feltétele a projekt lezárásának.",
+  "de": "Der vereinbarte Wert ist kein eingegangenes Geld. Was tatsächlich eingegangen ist, wird im Zahlungsplan erfasst — der Zahlungsstatus folgt ihm, und keines von beiden ist für den Projektabschluss erforderlich."
+ },
+ "Contacts": {
+  "hu": "Kapcsolattartók",
+  "de": "Kontakte"
+ },
+ "No contacts recorded. Add them on the client.": {
+  "hu": "Nincs rögzített kapcsolattartó. Az ügyfélnél adhatod hozzá őket.",
+  "de": "Keine Kontakte erfasst. Fügen Sie sie beim Kunden hinzu."
+ },
+ "Primary": {
+  "hu": "Elsődleges",
+  "de": "Primär"
+ },
+ "due {date}": {
+  "hu": "esedékes: {date}",
+  "de": "fällig {date}"
+ },
+ "State for {title}": {
+  "hu": "{title} állapota",
+  "de": "Status für {title}"
+ },
+ "Edit {name}": {
+  "hu": "{name} szerkesztése",
+  "de": "{name} bearbeiten"
+ },
+ "A blocked checkpoint needs a reason and a next step.": {
+  "hu": "Az elakadt mérföldkőhöz ok és következő lépés kell.",
+  "de": "Ein blockierter Meilenstein braucht einen Grund und einen nächsten Schritt."
+ },
+ "Edit checkpoint": {
+  "hu": "Mérföldkő szerkesztése",
+  "de": "Meilenstein bearbeiten"
+ },
+ "Add a checkpoint": {
+  "hu": "Mérföldkő hozzáadása",
+  "de": "Meilenstein hinzufügen"
+ },
+ "Cancel": {
+  "hu": "Mégse",
+  "de": "Abbrechen"
+ },
+ "Save": {
+  "hu": "Mentés",
+  "de": "Speichern"
+ },
+ "Checkpoint": {
+  "hu": "Mérföldkő",
+  "de": "Meilenstein"
+ },
+ "Stratos, the client, a collaborator.": {
+  "hu": "Stratos, az ügyfél, egy közreműködő.",
+  "de": "Stratos, der Kunde, ein Partner."
+ },
+ "Due": {
+  "hu": "Esedékes",
+  "de": "Fällig"
+ },
+ "Why is it blocked? (required)": {
+  "hu": "Miért akadt el? (kötelező)",
+  "de": "Warum ist er blockiert? (Pflichtfeld)"
+ },
+ "Next step (required)": {
+  "hu": "Következő lépés (kötelező)",
+  "de": "Nächster Schritt (Pflichtfeld)"
+ },
+ "Next step": {
+  "hu": "Következő lépés",
+  "de": "Nächster Schritt"
+ },
+ "Note": {
+  "hu": "Jegyzet",
+  "de": "Notiz"
+ },
+ "{n} steps": {
+  "hu": "{n} lépés",
+  "de": "{n} Schritte"
+ },
+ "Matches: {keywords}": {
+  "hu": "Egyezik: {keywords}",
+  "de": "Passt zu: {keywords}"
+ },
+ "Fallback — used when no other template matches": {
+  "hu": "Alapértelmezett — akkor használjuk, ha más sablon nem illik",
+  "de": "Fallback — wird verwendet, wenn keine andere Vorlage passt"
+ },
+ "Restore": {
+  "hu": "Visszaállítás",
+  "de": "Wiederherstellen"
+ },
+ "Retire": {
+  "hu": "Kivezetés",
+  "de": "Ausmustern"
+ },
+ "New template": {
+  "hu": "Új sablon",
+  "de": "Neue Vorlage"
+ },
+ "Checkpoint templates": {
+  "hu": "Mérföldkő-sablonok",
+  "de": "Meilenstein-Vorlagen"
+ },
+ "copied into a project when used — editing one never changes an existing project": {
+  "hu": "használatkor bemásolódik a projektbe — a szerkesztése meglévő projektet sosem módosít",
+  "de": "wird bei Verwendung ins Projekt kopiert — eine Änderung wirkt sich nie auf bestehende Projekte aus"
+ },
+ "No templates": {
+  "hu": "Nincs sablon",
+  "de": "Keine Vorlagen"
+ },
+ "Add one per kind of work you deliver.": {
+  "hu": "Adj hozzá egyet minden munkatípushoz, amit végzel.",
+  "de": "Legen Sie eine pro Art von Leistung an, die Sie erbringen."
+ },
+ "Retired": {
+  "hu": "Kivezetett",
+  "de": "Ausgemustert"
+ },
+ "Edit template": {
+  "hu": "Sablon szerkesztése",
+  "de": "Vorlage bearbeiten"
+ },
+ "Projects that already started from this template keep their own checkpoints.": {
+  "hu": "Az ebből a sablonból már elindult projektek megtartják a saját mérföldköveiket.",
+  "de": "Projekte, die bereits mit dieser Vorlage begonnen haben, behalten ihre eigenen Meilensteine."
+ },
+ "Name": {
+  "hu": "Név",
+  "de": "Name"
+ },
+ "Order": {
+  "hu": "Sorrend",
+  "de": "Reihenfolge"
+ },
+ "Service keywords": {
+  "hu": "Szolgáltatás kulcsszavai",
+  "de": "Leistungs-Schlüsselwörter"
+ },
+ "Comma-separated. Matched inside the project's service. Leave empty for a fallback.": {
+  "hu": "Vesszővel elválasztva. A projekt szolgáltatásában keressük őket. Hagyd üresen, ha alapértelmezett sablon.",
+  "de": "Durch Kommas getrennt. Wird in der Leistung des Projekts gesucht. Leer lassen für eine Fallback-Vorlage."
+ },
+ "Steps": {
+  "hu": "Lépések",
+  "de": "Schritte"
+ },
+ "One per line, in order. 1–40 steps.": {
+  "hu": "Soronként egy, sorrendben. 1–40 lépés.",
+  "de": "Einer pro Zeile, in Reihenfolge. 1–40 Schritte."
+ },
+ "A project needs a client.": {
+  "hu": "A projekthez ügyfél kell.",
+  "de": "Ein Projekt braucht einen Kunden."
+ },
+ "A project needs a name.": {
+  "hu": "A projektnek nevet kell adni.",
+  "de": "Ein Projekt braucht einen Namen."
+ },
+ "The value must be a number, and not a negative one.": {
+  "hu": "Az értéknek számnak kell lennie, és nem lehet negatív.",
+  "de": "Der Wert muss eine Zahl sein und darf nicht negativ sein."
+ },
+ "A monthly contract needs a monthly fee greater than zero.": {
+  "hu": "A havi szerződéshez nullánál nagyobb havidíj kell.",
+  "de": "Ein Monatsvertrag braucht eine Monatsgebühr größer als null."
+ },
+ "Estimated hours must be a non-negative number.": {
+  "hu": "A becsült órák száma csak nemnegatív szám lehet.",
+  "de": "Die geschätzten Stunden müssen eine nicht negative Zahl sein."
+ },
+ "New monthly contract": {
+  "hu": "Új havi szerződés",
+  "de": "Neuer Monatsvertrag"
+ },
+ "Ongoing work billed by the month. It is listed and totalled under Monthly contracts, apart from one-off projects.": {
+  "hu": "Havonta számlázott, folyamatos munka. A Havi szerződések alatt szerepel és összesítődik, az egyszeri projektektől külön.",
+  "de": "Laufende, monatlich abgerechnete Arbeit. Sie wird unter „Monatsverträge“ geführt und summiert, getrennt von Einmalprojekten."
+ },
+ "The preferred route is from a won opportunity, which keeps the delivery connected to what sold it. This is for work that did not come through the pipeline.": {
+  "hu": "Az ajánlott út egy megnyert lehetőségből indulni, így a teljesítés kapcsolatban marad azzal, amiből eladtuk. Ez a folyamaton kívül érkezett munkákhoz való.",
+  "de": "Der bevorzugte Weg führt über eine gewonnene Verkaufschance, damit die Umsetzung mit dem Verkauf verbunden bleibt. Dies ist für Arbeit, die nicht über die Pipeline kam."
+ },
+ "Create": {
+  "hu": "Létrehozás",
+  "de": "Erstellen"
+ },
+ "Choose a client…": {
+  "hu": "Válassz ügyfelet…",
+  "de": "Kunden wählen…"
+ },
+ "Fixed once the project is created.": {
+  "hu": "A projekt létrehozása után nem módosítható.",
+  "de": "Nach dem Anlegen des Projekts nicht mehr änderbar."
+ },
+ "One-off project — a price, delivered once": {
+  "hu": "Egyszeri projekt — egy ár, egyszeri teljesítés",
+  "de": "Einmalprojekt — ein Preis, einmal geliefert"
+ },
+ "Monthly contract — a monthly fee, runs until ended": {
+  "hu": "Havi szerződés — havidíj, a megszüntetéséig fut",
+  "de": "Monatsvertrag — eine Monatsgebühr, läuft bis zur Beendigung"
+ },
+ "Contract name": {
+  "hu": "Szerződés neve",
+  "de": "Vertragsname"
+ },
+ "Project name": {
+  "hu": "Projekt neve",
+  "de": "Projektname"
+ },
+ "Website, Ads, Branding…": {
+  "hu": "Weboldal, hirdetések, arculat…",
+  "de": "Website, Ads, Branding…"
+ },
+ "e.g. 150 000": {
+  "hu": "pl. 150 000",
+  "de": "z. B. 150 000"
+ },
+ "Value": {
+  "hu": "Érték",
+  "de": "Wert"
+ },
+ "Currency": {
+  "hu": "Pénznem",
+  "de": "Währung"
+ },
+ "Start": {
+  "hu": "Kezdés",
+  "de": "Beginn"
+ },
+ "Leave empty if open-ended.": {
+  "hu": "Hagyd üresen, ha határozatlan.",
+  "de": "Leer lassen, wenn unbefristet."
+ },
+ "Estimated hours": {
+  "hu": "Becsült órák",
+  "de": "Geschätzte Stunden"
+ },
+ "Copied into the project. Everything is editable afterwards.": {
+  "hu": "Bemásolódnak a projektbe. Utána minden szerkeszthető.",
+  "de": "Werden ins Projekt kopiert. Danach ist alles bearbeitbar."
+ },
+ "Match the service — {name} ({n} steps)": {
+  "hu": "Szolgáltatás szerint — {name} ({n} lépés)",
+  "de": "Passend zur Leistung — {name} ({n} Schritte)"
+ },
+ "Match the service": {
+  "hu": "Szolgáltatás szerint",
+  "de": "Passend zur Leistung"
+ },
+ "No checkpoints yet": {
+  "hu": "Még nincs mérföldkő",
+  "de": "Noch keine Meilensteine"
+ },
+ "Contribution": {
+  "hu": "Fedezet",
+  "de": "Deckungsbeitrag"
+ },
+ "management figures": {
+  "hu": "vezetői számok",
+  "de": "Managementkennzahlen"
+ },
+ "incomplete": {
+  "hu": "hiányos",
+  "de": "unvollständig"
+ },
+ "Project value": {
+  "hu": "Projekt értéke",
+  "de": "Projektwert"
+ },
+ "Direct costs": {
+  "hu": "Közvetlen költségek",
+  "de": "Direkte Kosten"
+ },
+ "{n} recorded": {
+  "hu": "{n} rögzítve",
+  "de": "{n} erfasst"
+ },
+ "none recorded": {
+  "hu": "nincs rögzítve",
+  "de": "keine erfasst"
+ },
+ "value − direct costs": {
+  "hu": "érték − közvetlen költségek",
+  "de": "Wert − direkte Kosten"
+ },
+ "Margin": {
+  "hu": "Árrés",
+  "de": "Marge"
+ },
+ "Actual hours": {
+  "hu": "Tényleges órák",
+  "de": "Tatsächliche Stunden"
+ },
+ "over the estimate": {
+  "hu": "a becslés felett",
+  "de": "über der Schätzung"
+ },
+ "Revenue / hour": {
+  "hu": "Bevétel / óra",
+  "de": "Umsatz / Stunde"
+ },
+ "Contribution / hour": {
+  "hu": "Fedezet / óra",
+  "de": "Deckungsbeitrag / Stunde"
+ },
+ "Contribution is project value minus direct project costs. It is a management figure — not profit, and not an accounting result.": {
+  "hu": "A fedezet a projekt értéke mínusz a közvetlen projektköltségek. Vezetői szám — nem nyereség, és nem számviteli eredmény.",
+  "de": "Der Deckungsbeitrag ist der Projektwert abzüglich der direkten Projektkosten. Er ist eine Managementkennzahl — kein Gewinn und kein buchhalterisches Ergebnis."
+ },
+ "ended": {
+  "hu": "megszűnt",
+  "de": "beendet"
+ },
+ "running": {
+  "hu": "fut",
+  "de": "läuft"
+ },
+ "per month · agreed, not received": {
+  "hu": "havonta · megállapodott, nem beérkezett",
+  "de": "pro Monat · vereinbart, nicht eingegangen"
+ },
+ "Start date": {
+  "hu": "Kezdő dátum",
+  "de": "Startdatum"
+ },
+ "needs a start date": {
+  "hu": "kezdő dátum kell",
+  "de": "Startdatum erforderlich"
+ },
+ "Fees to date": {
+  "hu": "Eddigi díjak",
+  "de": "Gebühren bisher"
+ },
+ "months × the current fee": {
+  "hu": "hónapok × a jelenlegi díj",
+  "de": "Monate × aktuelle Gebühr"
+ },
+ "Monthly fees are counted apart from one-off project values, and never added to them.": {
+  "hu": "A havidíjakat az egyszeri projektértékektől külön számoljuk, és soha nem adjuk össze velük.",
+  "de": "Monatsgebühren werden getrennt von Einmalprojektwerten gezählt und nie mit ihnen addiert."
+ },
+ "Market value": {
+  "hu": "Piaci érték",
+  "de": "Marktwert"
+ },
+ "Impact · not revenue": {
+  "hu": "Impact · nem bevétel",
+  "de": "Impact · kein Umsatz"
+ },
+ "Not recorded": {
+  "hu": "Nincs rögzítve",
+  "de": "Nicht erfasst"
+ },
+ "needed before closing": {
+  "hu": "lezárás előtt szükséges",
+  "de": "vor dem Abschluss erforderlich"
+ },
+ "Fee to the client": {
+  "hu": "Díj az ügyfélnek",
+  "de": "Gebühr für den Kunden"
+ },
+ "always free": {
+  "hu": "mindig ingyenes",
+  "de": "immer kostenlos"
+ },
+ "Whole forints": {
+  "hu": "Egész forint",
+  "de": "Ganze Forint"
+ },
+ "Blank means not recorded yet — it is not the same as 0.": {
+  "hu": "Az üres mező azt jelenti, hogy még nincs rögzítve — ez nem azonos a 0-val.",
+  "de": "Leer bedeutet noch nicht erfasst — das ist nicht dasselbe wie 0."
+ },
+ "e.g. 1 250 000": {
+  "hu": "pl. 1 250 000",
+  "de": "z. B. 1 250 000"
+ },
+ "Save value": {
+  "hu": "Érték mentése",
+  "de": "Wert speichern"
+ },
+ "What this work would have cost a paying client. It is counted as committed support while the project runs and as delivered support once it is closed. It is never invoiced or owed.": {
+  "hu": "Ennyibe került volna ez a munka egy fizető ügyfélnek. Amíg a projekt fut, vállalt támogatásként, lezárás után teljesített támogatásként számít. Soha nem számlázzuk, és nem is tartoznak vele.",
+  "de": "Was diese Arbeit einen zahlenden Kunden gekostet hätte. Solange das Projekt läuft, zählt sie als zugesagte Unterstützung, nach dem Abschluss als erbrachte Unterstützung. Sie wird nie in Rechnung gestellt oder geschuldet."
+ },
+ "Amounts and hours must be numbers, and not negative ones.": {
+  "hu": "Az összegek és az órák csak nemnegatív számok lehetnek.",
+  "de": "Beträge und Stunden müssen Zahlen sein, und zwar keine negativen."
+ },
+ "Edit monthly contract": {
+  "hu": "Havi szerződés szerkesztése",
+  "de": "Monatsvertrag bearbeiten"
+ },
+ "Edit project": {
+  "hu": "Projekt szerkesztése",
+  "de": "Projekt bearbeiten"
+ },
+ "A change is logged in Activity.": {
+  "hu": "A változás bekerül a Tevékenységbe.",
+  "de": "Eine Änderung wird in „Aktivität“ protokolliert."
+ },
+ "Target": {
+  "hu": "Céldátum",
+  "de": "Zieltermin"
+ },
+ "Nobody": {
+  "hu": "Senki",
+  "de": "Niemand"
+ },
+ "Entered by hand — there is no timer.": {
+  "hu": "Kézzel megadva — nincs időmérő.",
+  "de": "Manuell eingetragen — es gibt keinen Timer."
+ },
+ "Invoicing and payments are recorded in the project's payment schedule, not here — the payment state follows what is recorded there. The currency is fixed once a schedule exists.": {
+  "hu": "A számlázást és a befizetéseket a projekt fizetési ütemezésében rögzítjük, nem itt — a fizetési állapot az ott rögzítetteket követi. A pénznem rögzül, amint van ütemezés.",
+  "de": "Rechnungen und Zahlungen werden im Zahlungsplan des Projekts erfasst, nicht hier — der Zahlungsstatus folgt dem dort Erfassten. Die Währung ist festgelegt, sobald ein Zahlungsplan existiert."
+ },
+ "Description": {
+  "hu": "Leírás",
+  "de": "Beschreibung"
+ },
+ "The amount must be a number, and not a negative one.": {
+  "hu": "Az összeg csak nemnegatív szám lehet.",
+  "de": "Der Betrag muss eine Zahl sein, und zwar keine negative."
+ },
+ "Add a direct cost": {
+  "hu": "Közvetlen költség hozzáadása",
+  "de": "Direkte Kosten hinzufügen"
+ },
+ "A cost that belongs to this project. Not bookkeeping — this exists so contribution can be calculated.": {
+  "hu": "Ehhez a projekthez tartozó költség. Nem könyvelés — azért van, hogy a fedezet kiszámolható legyen.",
+  "de": "Kosten, die zu diesem Projekt gehören. Keine Buchhaltung — sie dienen der Berechnung des Deckungsbeitrags."
+ },
+ "Category": {
+  "hu": "Kategória",
+  "de": "Kategorie"
+ },
+ "Date": {
+  "hu": "Dátum",
+  "de": "Datum"
+ },
+ "Amount": {
+  "hu": "Összeg",
+  "de": "Betrag"
+ },
+ "This cost is in a different currency from the project. It will be listed but not subtracted — nothing here converts between currencies.": {
+  "hu": "Ez a költség más pénznemben van, mint a projekt. Megjelenik a listában, de nem vonjuk le — itt semmi sem vált át pénznemek között.",
+  "de": "Diese Kosten sind in einer anderen Währung als das Projekt. Sie werden aufgeführt, aber nicht abgezogen — hier wird nicht zwischen Währungen umgerechnet."
+ },
+ "Add a link": {
+  "hu": "Link hozzáadása",
+  "de": "Link hinzufügen"
+ },
+ "Live site, staging, repository, design file, asset folder. A link, not an integration.": {
+  "hu": "Élő oldal, teszt környezet, repó, dizájnfájl, anyagmappa. Egy link, nem integráció.",
+  "de": "Live-Website, Staging, Repository, Designdatei, Asset-Ordner. Ein Link, keine Integration."
+ },
+ "Label": {
+  "hu": "Címke",
+  "de": "Bezeichnung"
+ },
+ "Staging": {
+  "hu": "Teszt",
+  "de": "Staging"
+ },
+ "URL": {
+  "hu": "URL",
+  "de": "URL"
+ },
+ "http and https only.": {
+  "hu": "Csak http és https.",
+  "de": "Nur http und https."
+ }
+}

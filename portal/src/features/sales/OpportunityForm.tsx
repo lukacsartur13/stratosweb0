@@ -4,6 +4,7 @@ import { Button, Dialog, Field, Input, Select } from '@/components/ui';
 import { CURRENCIES } from '@/lib/money';
 import { OPEN_STAGES, STAGE, type Stage } from '@/lib/pipeline';
 import { useOpportunityMutations, type OpportunityDraft } from '@/lib/sales';
+import { t } from '@/lib/i18n';
 
 /**
  * The create-an-opportunity dialog.
@@ -66,7 +67,7 @@ export function NewOpportunity({
     const amount = form.estimated_value.trim();
     const parsed = amount === '' ? null : Number(amount.replace(/\s/g, '').replace(',', '.'));
     if (parsed !== null && (!Number.isFinite(parsed) || parsed < 0)) {
-      setError('The value must be a number, and not a negative one.');
+      setError(t('The value must be a number, and not a negative one.'));
       return;
     }
 
@@ -102,73 +103,73 @@ export function NewOpportunity({
       open={open}
       onClose={onClose}
       wide
-      title={lockedLead ? 'Convert to opportunity' : 'New opportunity'}
+      title={lockedLead ? t('Convert to opportunity') : t('New opportunity')}
       description={lockedLead
-        ? 'The company, contact and attribution are carried over from the lead. The enquiry itself stays on the lead and is not copied.'
-        : 'For a conversation that did not start on the website. Everything else can be filled in afterwards.'}
+        ? t('The company, contact and attribution are carried over from the lead. The enquiry itself stays on the lead and is not copied.')
+        : t('For a conversation that did not start on the website. Everything else can be filled in afterwards.')}
       footer={
         <>
-          <Button size="sm" onClick={onClose}>Cancel</Button>
+          <Button size="sm" onClick={onClose}>{t('Cancel')}</Button>
           <Button size="sm" variant="primary" onClick={submit} disabled={mutate.busy === 'create'}>
-            {lockedLead ? 'Create opportunity' : 'Create'}
+            {lockedLead ? t('Create opportunity') : t('Create')}
           </Button>
         </>
       }
     >
       <div className="grid gap-3">
-        <Field id="opp-title" label="Title">
+        <Field id="opp-title" label={t('Title')}>
           <Input id="opp-title" value={form.title} onChange={(e) => field('title', e.target.value)}
-                 placeholder="Rapidkert — website relaunch" />
+                 placeholder={t('Rapidkert — website relaunch')} />
         </Field>
 
         <div className="grid gap-3 sm:grid-cols-2">
-          <Field id="opp-company" label="Company">
+          <Field id="opp-company" label={t('Company')}>
             <Input id="opp-company" value={form.company_name}
                    onChange={(e) => field('company_name', e.target.value)} />
           </Field>
-          <Field id="opp-service" label="Service">
+          <Field id="opp-service" label={t('Service')}>
             <Input id="opp-service" value={form.service}
-                   onChange={(e) => field('service', e.target.value)} placeholder="Website, Ads, Branding…" />
+                   onChange={(e) => field('service', e.target.value)} placeholder={t('Website, Ads, Branding…')} />
           </Field>
-          <Field id="opp-contact" label="Contact">
+          <Field id="opp-contact" label={t('Contact')}>
             <Input id="opp-contact" value={form.contact_name}
                    onChange={(e) => field('contact_name', e.target.value)} />
           </Field>
-          <Field id="opp-email" label="Contact email">
+          <Field id="opp-email" label={t('Contact email')}>
             <Input id="opp-email" type="email" value={form.contact_email}
                    onChange={(e) => field('contact_email', e.target.value)} />
           </Field>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <Field id="opp-value" label="Estimated value" hint="Leave empty if unknown">
+          <Field id="opp-value" label={t('Estimated value')} hint={t('Leave empty if unknown')}>
             <Input id="opp-value" inputMode="numeric" value={form.estimated_value}
                    onChange={(e) => field('estimated_value', e.target.value)} placeholder="1200000" />
           </Field>
-          <Field id="opp-currency" label="Currency">
+          <Field id="opp-currency" label={t('Currency')}>
             <Select id="opp-currency" className="w-full py-2.5 text-sm" value={form.currency}
                     onChange={(e) => field('currency', e.target.value)}>
               {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
             </Select>
           </Field>
-          <Field id="opp-stage" label="Stage">
+          <Field id="opp-stage" label={t('Stage')}>
             <Select id="opp-stage" className="w-full py-2.5 text-sm" value={form.stage}
                     onChange={(e) => field('stage', e.target.value as Stage)}>
-              {OPEN_STAGES.map((s) => <option key={s} value={s}>{STAGE[s].label}</option>)}
+              {OPEN_STAGES.map((s) => <option key={s} value={s}>{t(STAGE[s].label)}</option>)}
             </Select>
           </Field>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <Field id="opp-close" label="Expected close">
+          <Field id="opp-close" label={t('Expected close')}>
             <Input id="opp-close" type="date" value={form.expected_close_on}
                    onChange={(e) => field('expected_close_on', e.target.value)} />
           </Field>
-          <Field id="opp-action" label="Next action">
+          <Field id="opp-action" label={t('Next action')}>
             <Input id="opp-action" value={form.next_action}
-                   onChange={(e) => field('next_action', e.target.value)} placeholder="Discovery call" />
+                   onChange={(e) => field('next_action', e.target.value)} placeholder={t('Discovery call')} />
           </Field>
-          <Field id="opp-action-date" label="Next action date">
+          <Field id="opp-action-date" label={t('Next action date')}>
             <Input id="opp-action-date" type="date" value={form.next_action_on}
                    onChange={(e) => field('next_action_on', e.target.value)} />
           </Field>

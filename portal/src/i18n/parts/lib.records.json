@@ -1,0 +1,134 @@
+{
+ "Write something first.": {
+  "hu": "Előbb írj valamit.",
+  "de": "Bitte schreiben Sie zuerst etwas."
+ },
+ "Your session has expired. Sign in again.": {
+  "hu": "Lejárt a munkameneted. Jelentkezz be újra.",
+  "de": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."
+ },
+ "Notes are not set up in this database yet. Run the migrations in supabase/migrations.": {
+  "hu": "A jegyzetek még nincsenek beállítva ebben az adatbázisban. Futtasd a supabase/migrations migrációit.",
+  "de": "Notizen sind in dieser Datenbank noch nicht eingerichtet. Führen Sie die Migrationen in supabase/migrations aus."
+ },
+ "The database refused that note.": {
+  "hu": "Az adatbázis elutasította a jegyzetet.",
+  "de": "Die Datenbank hat diese Notiz abgelehnt."
+ },
+ "Note added": {
+  "hu": "Jegyzet hozzáadva",
+  "de": "Notiz hinzugefügt"
+ },
+ "Opportunity created": {
+  "hu": "Lehetőség létrehozva",
+  "de": "Verkaufschance erstellt"
+ },
+ "Stage {from} → {to}": {
+  "hu": "Szakasz: {from} → {to}",
+  "de": "Phase {from} → {to}"
+ },
+ "Reason: {reason}": {
+  "hu": "Ok: {reason}",
+  "de": "Grund: {reason}"
+ },
+ "Value changed": {
+  "hu": "Érték módosítva",
+  "de": "Wert geändert"
+ },
+ "not set": {
+  "hu": "nincs megadva",
+  "de": "nicht gesetzt"
+ },
+ "Next action changed": {
+  "hu": "Következő lépés módosítva",
+  "de": "Nächster Schritt geändert"
+ },
+ "Cleared": {
+  "hu": "Törölve",
+  "de": "Entfernt"
+ },
+ "Linked to a client": {
+  "hu": "Ügyfélhez kapcsolva",
+  "de": "Mit einem Kunden verknüpft"
+ },
+ "Client created": {
+  "hu": "Ügyfél létrehozva",
+  "de": "Kunde erstellt"
+ },
+ "Project created": {
+  "hu": "Projekt létrehozva",
+  "de": "Projekt erstellt"
+ },
+ "Project value changed": {
+  "hu": "Projektérték módosítva",
+  "de": "Projektwert geändert"
+ },
+ "Market value changed": {
+  "hu": "Piaci érték módosítva",
+  "de": "Marktwert geändert"
+ },
+ "{from} → {to} HUF · not revenue": {
+  "hu": "{from} → {to} HUF · nem bevétel",
+  "de": "{from} → {to} HUF · kein Umsatz"
+ },
+ "Monthly fee changed": {
+  "hu": "Havidíj módosítva",
+  "de": "Monatsgebühr geändert"
+ },
+ "{from} → {to} {currency} / month": {
+  "hu": "{from} → {to} {currency} / hó",
+  "de": "{from} → {to} {currency} / Monat"
+ },
+ "Cost added": {
+  "hu": "Költség hozzáadva",
+  "de": "Kosten hinzugefügt"
+ },
+ "Cost removed": {
+  "hu": "Költség eltávolítva",
+  "de": "Kosten entfernt"
+ },
+ "Instalment added": {
+  "hu": "Részlet hozzáadva",
+  "de": "Rate hinzugefügt"
+ },
+ "due {date}": {
+  "hu": "esedékes: {date}",
+  "de": "fällig {date}"
+ },
+ "Instalment changed": {
+  "hu": "Részlet módosítva",
+  "de": "Rate geändert"
+ },
+ "Instalment removed": {
+  "hu": "Részlet eltávolítva",
+  "de": "Rate entfernt"
+ },
+ "Payment recorded": {
+  "hu": "Befizetés rögzítve",
+  "de": "Zahlung erfasst"
+ },
+ "date not recorded": {
+  "hu": "dátum nincs rögzítve",
+  "de": "Datum nicht erfasst"
+ },
+ "Payment changed": {
+  "hu": "Befizetés módosítva",
+  "de": "Zahlung geändert"
+ },
+ "Payment removed": {
+  "hu": "Befizetés eltávolítva",
+  "de": "Zahlung entfernt"
+ },
+ "Payment figures carried over to the schedule": {
+  "hu": "Fizetési adatok átvezetve az ütemezésbe",
+  "de": "Zahlungsangaben in den Zahlungsplan übernommen"
+ },
+ "was {state} · paid {amount}": {
+  "hu": "korábban: {state} · fizetve: {amount}",
+  "de": "zuvor {state} · bezahlt {amount}"
+ },
+ "not recorded": {
+  "hu": "nincs rögzítve",
+  "de": "nicht erfasst"
+ }
+}

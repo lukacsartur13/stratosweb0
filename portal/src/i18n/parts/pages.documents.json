@@ -1,0 +1,178 @@
+{
+ "{n} unfinished upload completed; {expired} expired.": {
+  "hu": "{n} befejezetlen feltöltés lezárva; {expired} lejárt.",
+  "de": "{n} unvollständiger Upload abgeschlossen; {expired} abgelaufen."
+ },
+ "{n} unfinished uploads completed; {expired} expired.": {
+  "hu": "{n} befejezetlen feltöltés lezárva; {expired} lejárt.",
+  "de": "{n} unvollständige Uploads abgeschlossen; {expired} abgelaufen."
+ },
+ "All project folders": {
+  "hu": "Összes projektmappa",
+  "de": "Alle Projektordner"
+ },
+ "Check uploads": {
+  "hu": "Feltöltések ellenőrzése",
+  "de": "Uploads prüfen"
+ },
+ "Checking…": {
+  "hu": "Ellenőrzés…",
+  "de": "Wird geprüft…"
+ },
+ "Client": {
+  "hu": "Ügyfél",
+  "de": "Kunde"
+ },
+ "Closed": {
+  "hu": "Lezárt",
+  "de": "Abgeschlossen"
+ },
+ "Closed, cancelled and archived": {
+  "hu": "Lezárt, megszakított és archivált",
+  "de": "Abgeschlossen, abgebrochen und archiviert"
+ },
+ "Download {name}": {
+  "hu": "{name} letöltése",
+  "de": "{name} herunterladen"
+ },
+ "Every project gets a document folder of its own.": {
+  "hu": "Minden projekt saját dokumentummappát kap.",
+  "de": "Jedes Projekt erhält einen eigenen Dokumentenordner."
+ },
+ "Every project": {
+  "hu": "Minden projekt",
+  "de": "Alle Projekte"
+ },
+ "File name…": {
+  "hu": "Fájlnév…",
+  "de": "Dateiname…"
+ },
+ "Files found": {
+  "hu": "Talált fájlok",
+  "de": "Gefundene Dateien"
+ },
+ "Files in the trash still occupy storage: the trash is reversible, so nothing is ever deleted automatically and there is no permanent-delete button. Remove a file for good by hand in the Supabase dashboard (Storage → project-documents), after checking the report below.": {
+  "hu": "A kukában lévő fájlok továbbra is foglalják a tárhelyet: a kuka visszafordítható, ezért semmi nem törlődik automatikusan, és nincs végleges törlés gomb. Egy fájlt véglegesen kézzel, a Supabase irányítópulton törölhetsz (Storage → project-documents), miután átnézted a lenti jelentést.",
+  "de": "Dateien im Papierkorb belegen weiterhin Speicher: Der Papierkorb ist umkehrbar, daher wird nie etwas automatisch gelöscht, und es gibt keine Schaltfläche zum endgültigen Löschen. Entfernen Sie eine Datei endgültig von Hand im Supabase-Dashboard (Storage → project-documents), nachdem Sie den Bericht unten geprüft haben."
+ },
+ "Files": {
+  "hu": "Fájlok",
+  "de": "Dateien"
+ },
+ "Find a file": {
+  "hu": "Fájl keresése",
+  "de": "Datei suchen"
+ },
+ "No file name contains “{q}”.": {
+  "hu": "Egyik fájlnév sem tartalmazza ezt: „{q}”.",
+  "de": "Kein Dateiname enthält „{q}“."
+ },
+ "No project in this view matches.": {
+  "hu": "Ebben a nézetben egy projekt sem felel meg.",
+  "de": "Kein Projekt in dieser Ansicht passt."
+ },
+ "No projects yet": {
+  "hu": "Még nincs projekt",
+  "de": "Noch keine Projekte"
+ },
+ "Nothing matches": {
+  "hu": "Nincs találat",
+  "de": "Keine Treffer"
+ },
+ "Open projects": {
+  "hu": "Nyitott projektek",
+  "de": "Offene Projekte"
+ },
+ "Paid": {
+  "hu": "Fizetve",
+  "de": "Bezahlt"
+ },
+ "Programme": {
+  "hu": "Program",
+  "de": "Programm"
+ },
+ "Project folders": {
+  "hu": "Projektmappák",
+  "de": "Projektordner"
+ },
+ "Project": {
+  "hu": "Projekt",
+  "de": "Projekt"
+ },
+ "Project, client, service…": {
+  "hu": "Projekt, ügyfél, szolgáltatás…",
+  "de": "Projekt, Kunde, Leistung…"
+ },
+ "Search file names": {
+  "hu": "Keresés a fájlnevekben",
+  "de": "Dateinamen durchsuchen"
+ },
+ "Search projects": {
+  "hu": "Projektek keresése",
+  "de": "Projekte durchsuchen"
+ },
+ "Show": {
+  "hu": "Megjelenítés",
+  "de": "Anzeigen"
+ },
+ "Status": {
+  "hu": "Állapot",
+  "de": "Status"
+ },
+ "Storage housekeeping": {
+  "hu": "Tárhely-karbantartás",
+  "de": "Speicherpflege"
+ },
+ "Storage report": {
+  "hu": "Tárhelyjelentés",
+  "de": "Speicherbericht"
+ },
+ "Supabase credentials are not set in this environment.": {
+  "hu": "Ebben a környezetben nincsenek beállítva a Supabase hozzáférési adatok.",
+  "de": "In dieser Umgebung sind keine Supabase-Zugangsdaten hinterlegt."
+ },
+ "The search could not be run.": {
+  "hu": "A keresést nem sikerült lefuttatni.",
+  "de": "Die Suche konnte nicht ausgeführt werden."
+ },
+ "archived": {
+  "hu": "archivált",
+  "de": "archiviert"
+ },
+ "every project": {
+  "hu": "minden projekt",
+  "de": "alle Projekte"
+ },
+ "{n} documents whose stored file changed size since upload": {
+  "hu": "{n} dokumentum, amelynek tárolt fájlja feltöltés óta megváltozott méretű",
+  "de": "{n} Dokumente, deren gespeicherte Datei seit dem Hochladen die Größe geändert hat"
+ },
+ "{n} documents whose stored file is missing": {
+  "hu": "{n} dokumentum, amelynek hiányzik a tárolt fájlja",
+  "de": "{n} Dokumente, deren gespeicherte Datei fehlt"
+ },
+ "{n} found": {
+  "hu": "{n} találat",
+  "de": "{n} gefunden"
+ },
+ "{n} stored objects of failed uploads": {
+  "hu": "{n} tárolt objektum sikertelen feltöltésekből",
+  "de": "{n} gespeicherte Objekte fehlgeschlagener Uploads"
+ },
+ "{n} stored objects with no document": {
+  "hu": "{n} tárolt objektum dokumentum nélkül",
+  "de": "{n} gespeicherte Objekte ohne Dokument"
+ },
+ "{n} trashed documents still stored": {
+  "hu": "{n} kukába tett dokumentum még tárolva",
+  "de": "{n} Dokumente im Papierkorb noch gespeichert"
+ },
+ "{n} · {size} stored": {
+  "hu": "{n} · {size} tárolva",
+  "de": "{n} · {size} gespeichert"
+ },
+ "{size} in the trash": {
+  "hu": "{size} a kukában",
+  "de": "{size} im Papierkorb"
+ }
+}

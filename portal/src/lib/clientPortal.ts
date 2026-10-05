@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { downloadDocument, type UploadApi, type UploadText } from '@/lib/documents';
 import { MAX_DOCUMENT_BYTES, formatBytes } from '@/lib/documentRules';
+import { t } from '@/lib/i18n';
 
 /**
  * THE CLIENT PORTAL — data.
@@ -51,7 +52,7 @@ export const useClientUploads = (t = 0) => useRpc<ClientUpload>('client_portal_u
 /** A one-minute attachment link, as for the owner. The key is derivable from the two ids the client already has. */
 export async function downloadShared(d: Pick<SharedDocument, 'project_id' | 'document_id' | 'name'>) {
   const problem = await downloadDocument({ storage_path: `${d.project_id}/${d.document_id}`, name: d.name });
-  return problem ? 'A letöltés nem indult el. Lehet, hogy a megosztás időközben megszűnt — frissítsd az oldalt.' : null;
+  return problem ? t('A letöltés nem indult el. Lehet, hogy a megosztás időközben megszűnt — frissítsd az oldalt.') : null;
 }
 
 /* ============================================================ uploads == */
@@ -82,28 +83,31 @@ const HU_FAILURE: Record<string, string> = {
   network: 'Megszakadt a kapcsolat a feltöltés közben.',
   cancelled: 'A feltöltést megszakítottad.',
   expired: 'A feltöltés nem fejeződött be.',
-  too_large: `A fájl nagyobb, mint ${formatBytes(MAX_DOCUMENT_BYTES)}.`,
+  too_large: 'A fájl nagyobb, mint {max}.',
   size_mismatch: 'A beérkezett fájl mérete nem egyezik az elküldöttel. Töltsd fel újra.',
   storage_refused: 'A tárhely nem fogadta el a fájlt.',
   access_revoked: 'Ehhez a projekthez már nincs hozzáférésed, ezért a fájl nem került be.',
 };
-export const failureHu = (reason: string | null) => HU_FAILURE[reason ?? ''] ?? HU_FAILURE.storage_refused;
+// Kept in Hungarian (module level); translated where read.
+const failureText = (text: string) => t(text, { max: formatBytes(MAX_DOCUMENT_BYTES) });
+export const failureHu = (reason: string | null) => failureText(HU_FAILURE[reason ?? ''] ?? HU_FAILURE.storage_refused);
 
 export const CLIENT_UPLOAD_TEXT: UploadText = {
   refusal(error) {
     const m = error?.message ?? '';
-    if (/document_too_large/.test(m)) return HU_FAILURE.too_large;
-    if (/document_type_not_allowed/.test(m)) return 'Ez a fájltípus nem tölthető fel, vagy a tartalma nem egyezik a kiterjesztésével.';
-    if (/client_upload_limit/.test(m)) return 'Elérted a feltöltési korlátot. Várd meg a folyamatban lévőket, vagy próbáld újra később.';
-    if (/client_no_access/.test(m) || error?.code === '42501') return 'Ehhez a projekthez már nincs hozzáférésed.';
-    return 'A feltöltés nem sikerült. Próbáld újra.';
+    if (/document_too_large/.test(m)) return failureText(HU_FAILURE.too_large);
+    if (/document_type_not_allowed/.test(m)) return t('Ez a fájltípus nem tölthető fel, vagy a tartalma nem egyezik a kiterjesztésével.');
+    if (/client_upload_limit/.test(m)) return t('Elérted a feltöltési korlátot. Várd meg a folyamatban lévőket, vagy próbáld újra később.');
+    if (/client_no_access/.test(m) || error?.code === '42501') return t('Ehhez a projekthez már nincs hozzáférésed.');
+    return t('A feltöltés nem sikerült. Próbáld újra.');
   },
   failure: failureHu,
   typeRefused: (v) => (v.code === 'extension'
-    ? (v.ext ? `.${v.ext} típusú fájl nem tölthető fel.` : 'Kiterjesztés nélküli fájl nem tölthető fel.')
-    : `A fájl tartalma nem egyezik a .${v.ext} kiterjesztéssel, ezért nem töltöttük fel.`),
-  unconfirmed: 'A fájl elküldve, de a visszaigazolás nem érkezett meg. Próbáld újra az ellenőrzéshez.',
-  unexpected: 'A feltöltés váratlanul megszakadt. Próbáld újra.',
+    ? (v.ext ? t('.{ext} típusú fájl nem tölthető fel.', { ext: v.ext }) : t('Kiterjesztés nélküli fájl nem tölthető fel.'))
+    : t('A fájl tartalma nem egyezik a .{ext} kiterjesztéssel, ezért nem töltöttük fel.', { ext: v.ext })),
+  // Getters: read at upload time, after the language is set.
+  get unconfirmed() { return t('A fájl elküldve, de a visszaigazolás nem érkezett meg. Próbáld újra az ellenőrzéshez.'); },
+  get unexpected() { return t('A feltöltés váratlanul megszakadt. Próbáld újra.'); },
 };
 
 export const CLIENT_ALLOWED_SUMMARY = 'PDF, Word/Excel/PowerPoint, szöveg és CSV, képek (PNG, JPG, GIF, WebP, TIFF, HEIC, SVG), '

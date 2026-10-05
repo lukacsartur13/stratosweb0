@@ -1,0 +1,74 @@
+{
+ "A link nem érvényes": {
+  "en": "The link is not valid",
+  "de": "Der Link ist ungültig"
+ },
+ "Lejárt, már felhasználták, vagy hiányos.": {
+  "en": "It has expired, has already been used, or is incomplete.",
+  "de": "Er ist abgelaufen, wurde bereits verwendet oder ist unvollständig."
+ },
+ "Kérj új meghívó linket a Stratostól. Biztonsági okból minden link csak egyszer használható, és korlátozott ideig érvényes.": {
+  "en": "Ask Stratos for a new invitation link. For security, every link can be used only once and is valid for a limited time.",
+  "de": "Bitten Sie Stratos um einen neuen Einladungslink. Aus Sicherheitsgründen ist jeder Link nur einmal verwendbar und nur begrenzt gültig."
+ },
+ "Ellenőrzés…": {
+  "en": "Checking…",
+  "de": "Wird geprüft…"
+ },
+ "Egy pillanat.": {
+  "en": "One moment.",
+  "de": "Einen Moment."
+ },
+ "A link ellenőrzése folyamatban.": {
+  "en": "Checking the link.",
+  "de": "Der Link wird geprüft."
+ },
+ "Jelszó beállítása": {
+  "en": "Set your password",
+  "de": "Passwort festlegen"
+ },
+ "Ezzel a jelszóval lépsz be ezután. Senki más nem látja.": {
+  "en": "You'll sign in with this password from now on. Nobody else sees it.",
+  "de": "Mit diesem Passwort melden Sie sich künftig an. Niemand sonst sieht es."
+ },
+ "A jelszó mentése nem sikerült. Kérj új linket.": {
+  "en": "The password could not be saved. Ask for a new link.",
+  "de": "Das Passwort konnte nicht gespeichert werden. Bitte fordern Sie einen neuen Link an."
+ },
+ "Új jelszó": {
+  "en": "New password",
+  "de": "Neues Passwort"
+ },
+ "Jelszó még egyszer": {
+  "en": "Password again",
+  "de": "Passwort wiederholen"
+ },
+ "Mentés…": {
+  "en": "Saving…",
+  "de": "Wird gespeichert…"
+ },
+ "Jelszó mentése": {
+  "en": "Save password",
+  "de": "Passwort speichern"
+ },
+ "Legalább 12 karakter legyen.": {
+  "en": "Use at least 12 characters.",
+  "de": "Mindestens 12 Zeichen."
+ },
+ "Legyen benne kisbetű.": {
+  "en": "Include a lowercase letter.",
+  "de": "Mit mindestens einem Kleinbuchstaben."
+ },
+ "Legyen benne nagybetű.": {
+  "en": "Include an uppercase letter.",
+  "de": "Mit mindestens einem Großbuchstaben."
+ },
+ "Legyen benne szám.": {
+  "en": "Include a number.",
+  "de": "Mit mindestens einer Ziffer."
+ },
+ "A két jelszó nem egyezik.": {
+  "en": "The two passwords don't match.",
+  "de": "Die beiden Passwörter stimmen nicht überein."
+ }
+}
