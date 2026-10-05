@@ -183,21 +183,32 @@ export const ALLOWED_SUMMARY = 'PDF, Office/OpenDocument, text/CSV, images (PNG,
 
 export type PreviewKind =
   | { kind: 'image'; mime: 'image/png' | 'image/jpeg' | 'image/gif' | 'image/webp' }
-  | { kind: 'text' };
+  | { kind: 'text' }
+  | { kind: 'pdf' }
+  | { kind: 'docx' }
+  | { kind: 'xlsx' };
 
 const TEXT_PREVIEW = ['txt', 'csv', 'md'];
-const PREVIEW_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif', 'webp', ...TEXT_PREVIEW];
+const DOCUMENT_PREVIEW = ['pdf', 'docx', 'xlsx'];
+const PREVIEW_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif', 'webp', ...TEXT_PREVIEW, ...DOCUMENT_PREVIEW];
 
 /** Worth offering a preview for — the bytes still decide (`sniffPreview`). */
 export const mayPreview = (d: Pick<Doc, 'name' | 'byte_size'>) =>
   PREVIEW_EXTENSIONS.includes(extensionOf(d.name)) && d.byte_size <= MAX_PREVIEW_BYTES;
 
 /**
- * Only two things are ever shown inside the Portal: raster images (as an
- * `<img>` of a blob re-typed from the sniffed bytes — an image element runs no
- * script) and plain text (as a React text node in a `<pre>`, never as HTML).
- * PDF, SVG, HTML, Office files, archives and everything else only download,
- * as an attachment. Nothing is unpacked: a ZIP is bytes to the Portal.
+ * What is shown inside the Portal, and how — never as markup the browser runs:
+ *
+ *   image  an `<img>` of a blob re-typed from the sniffed bytes (no script)
+ *   text   a React text node in a `<pre>`, never as HTML
+ *   pdf    drawn by PDF.js onto canvases; PDF scripts are not run, eval is off
+ *   docx   its text and structure rebuilt from an allow-list of elements as
+ *          React nodes (features/documents/FileViewer.tsx) — never inserted as HTML
+ *   xlsx   cell values as text in a table
+ *
+ * Each only when the NAME and the BYTES agree (a .docx/.xlsx is a ZIP; a .pdf
+ * starts with %PDF-). SVG, HTML, old .doc/.xls, archives and everything else
+ * only download, as an attachment.
  */
 export function sniffPreview(head: Uint8Array, name: string): PreviewKind | null {
   const ext = extensionOf(name);
@@ -208,6 +219,9 @@ export function sniffPreview(head: Uint8Array, name: string): PreviewKind | null
   if (kind === 'gif') return { kind: 'image', mime: 'image/gif' };
   if (kind === 'webp') return { kind: 'image', mime: 'image/webp' };
   if (kind === 'text' && TEXT_PREVIEW.includes(ext)) return { kind: 'text' };
+  if (kind === 'pdf' && ext === 'pdf') return { kind: 'pdf' };
+  if (kind === 'zip' && ext === 'docx') return { kind: 'docx' };
+  if (kind === 'zip' && ext === 'xlsx') return { kind: 'xlsx' };
   return null;
 }
 

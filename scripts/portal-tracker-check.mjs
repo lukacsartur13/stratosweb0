@@ -47,7 +47,7 @@ execFileSync('npx', ['vite', 'build', '--outDir', BUNDLE, '--emptyOutDir', '--lo
   env: { ...process.env, VITE_SUPABASE_URL: MOCK_URL, VITE_SUPABASE_ANON_KEY: 'mock-anon-key-not-shaped-like-one' },
 });
 
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
 const server = createServer((req, res) => {
   const p = decodeURIComponent(new URL(req.url, 'http://x').pathname).replace(/^\/portal/, '');
   const file = join(BUNDLE, p === '/' || p === '' ? 'index.html' : p);
@@ -166,6 +166,7 @@ function freshState() {
       { id: 'ha-2', slug: 'portal-masik-idopont', question: 'Hogyan kérhetek másik időpontot?', answer: '[JAVASLAT]', topic: 'Ügyfélportál – megbeszélések',
         alt_questions: [], source: null, status: 'draft', review_note: 'Üzleti döntés kell.', position: 20, updated_at: new Date().toISOString() },
     ],
+    notes: [], noteItems: [], interactions: [],
     // Scripted server answers for the next close / win, and every write seen.
     closeAnswer: 'ok', winAnswer: 'ok', writes: [], projectReads: 0,
   };
@@ -188,6 +189,10 @@ function applyFilters(url, rows) {
     else if (op === 'in') { const set = value.replace(/^\(|\)$/g, '').split(',').map((v) => v.replace(/"/g, '')); out = out.filter((r) => set.includes(String(r[key]))); }
     else if (op === 'is' && value === 'null') out = out.filter((r) => r[key] === null || r[key] === undefined);
     else if (op === 'not' && value === 'is.null') out = out.filter((r) => r[key] !== null && r[key] !== undefined);
+    else if (key.includes('.')) continue; // a filter on an embedded resource: not modelled
+    else if (op === 'lte') out = out.filter((r) => r[key] !== null && String(r[key]) <= value);
+    else if (op === 'gte') out = out.filter((r) => r[key] !== null && String(r[key]) >= value);
+    else if (op === 'lt') out = out.filter((r) => r[key] !== null && String(r[key]) < value);
   }
   return out;
 }
@@ -315,6 +320,35 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
       return answer(applyFilters(url, [state.impactLead]));
     }
 
+    // Notes, checklist points and the activity log (20261011000100).
+    for (const [path, key] of [['note_items', 'noteItems'], ['notes', 'notes'], ['interactions', 'interactions']]) {
+      if (!new RegExp(`/rest/v1/${path}(\\?|$)`).test(url)) continue;
+      const body = JSON.parse(req.postData() || '{}');
+      const embed = (r) => path === 'notes' ? { ...r, client: r.organization_id ? { id: ORG.id, name: ORG.name } : null }
+        : path === 'note_items' ? { ...r, note: (() => { const n = state.notes.find((x) => x.id === r.note_id); return n ? { id: n.id, title: n.title, archived_at: n.archived_at, client: n.organization_id ? { id: ORG.id, name: ORG.name } : null } : null; })() }
+          : { ...r, author: { full_name: 'Owner', email: USER.email } };
+      if (method === 'POST') {
+        state.writes.push({ table: path, method, body });
+        const row = { id: `${path}-${state.writes.length}`, created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
+          pinned: false, archived_at: null, body: null, organization_id: null, done: false, done_at: null, due_on: null, milestone_id: null, position: 0, ...body };
+        state[key].push(row);
+        return json(route, single ? { id: row.id } : [{ id: row.id }], 201);
+      }
+      if (method === 'PATCH') {
+        state.writes.push({ table: path, method, url, body });
+        for (const r of applyFilters(url, state[key])) Object.assign(r, body, body.done !== undefined ? { done_at: body.done ? new Date().toISOString() : null } : {});
+        return json(route, []);
+      }
+      if (method === 'DELETE') {
+        state.writes.push({ table: path, method, url });
+        const gone = new Set(applyFilters(url, state[key]).map((r) => r.id));
+        state[key] = state[key].filter((r) => !gone.has(r.id));
+        return json(route, []);
+      }
+      const rows = applyFilters(url, state[key]).map(embed)
+        .filter((r) => path !== 'note_items' || !url.includes('note.archived_at') || (r.note && !r.note.archived_at));
+      return answer(rows);
+    }
     if (url.includes('/rest/v1/profiles')) {
       if (method === 'PATCH') {
         const patch = JSON.parse(req.postData() || '{}');
@@ -1182,6 +1216,70 @@ await check('impact: an applicant\'s lead goes to the Trash from the application
   await context.close();
 });
 
+/* ------------------------------------------- notes, today, activity log */
+
+await check('notes: a checklist about a client is written line by line with Enter; a dated point shows on Today and is ticked off there', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/notes`);
+  await page.getByRole('button', { name: 'New checklist' }).click();
+  await page.getByLabel('Title').fill('Kick-off with Rapidkert');
+  await page.getByLabel('Title').blur();
+  await page.getByLabel('About').selectOption(ORG.id);
+  const line = page.getByLabel('New point');
+  await line.fill('Ask for the logo');
+  await line.press('Enter');
+  await page.locator('[data-item]').first().waitFor();
+  await page.locator('#note-new-due').fill(day(0));
+  await line.fill('Send the offer');
+  await line.press('Enter');
+  await page.locator('[data-item]').nth(1).waitFor();
+  assert(await line.evaluate((el) => el === document.activeElement), 'the cursor left the new-point line');
+  const note = state.notes.at(-1);
+  assert(note.title === 'Kick-off with Rapidkert' && note.organization_id === ORG.id && note.kind === 'checklist', `note: ${JSON.stringify(note)}`);
+  assert(state.noteItems.length === 2 && state.noteItems[1].due_on === day(0), `items: ${JSON.stringify(state.noteItems)}`);
+  await shot(page, 'notes');
+
+  await page.getByRole('link', { name: 'Today' }).first().click();
+  const task = page.locator(`[data-task="${state.noteItems[1].id}"]`);
+  await task.waitFor();
+  await task.getByRole('checkbox').click(); // the line leaves the list once done
+  await settle(page);
+  assert(state.noteItems[1].done === true, 'the task was not ticked off');
+  await shot(page, 'today');
+  await context.close();
+});
+
+await check('notes: a quick task on Today goes into the Tasks list, made on first use', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/today`);
+  await page.getByLabel('Task', { exact: true }).fill('Call Rapidkert about the texts');
+  await page.getByRole('button', { name: 'Add' }).click();
+  await settle(page);
+  assert(state.notes.length === 1 && state.notes[0].title === 'Tasks' && state.notes[0].kind === 'checklist', `inbox: ${JSON.stringify(state.notes)}`);
+  assert(state.noteItems[0]?.text === 'Call Rapidkert about the texts' && state.noteItems[0].due_on === day(0), 'the task was not stored for today');
+  await context.close();
+});
+
+await check('activity log: a call is logged on the client page and listed; the client page shows its notes', async () => {
+  const state = freshState();
+  state.notes.push({ id: 'n-1', kind: 'note', title: 'Brand ideas', body: 'Green, calm', organization_id: ORG.id, pinned: true, archived_at: null,
+    created_at: new Date().toISOString(), updated_at: new Date().toISOString() });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/clients/${ORG.id}`);
+  await page.getByRole('region', { name: 'Notes and checklists' }).getByRole('link', { name: 'Brand ideas' }).waitFor();
+  const log = page.getByRole('region', { name: 'Activity log' });
+  await log.getByRole('button', { name: 'Log' }).click();
+  await log.getByLabel('What was said or agreed').fill('Agreed the homepage texts by Friday.');
+  await log.getByRole('button', { name: 'Save' }).click();
+  await log.getByText('Agreed the homepage texts by Friday.').waitFor();
+  const w = state.writes.find((x) => x.table === 'interactions' && x.method === 'POST');
+  assert(w.body.organization_id === ORG.id && w.body.kind === 'call', `logged: ${JSON.stringify(w.body)}`);
+  await shot(page, 'client-activity');
+  await context.close();
+});
+
 /* ------------------------------------------------------------ languages */
 
 await check('help centre: an article takes English and German; a half-filled language is refused; the list marks what is missing', async () => {
@@ -1410,7 +1508,7 @@ await check('owner: Appearance in the sidebar — System follows the device, Lig
   for (const scheme of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: scheme });
     await page.waitForFunction((t) => document.documentElement.dataset.theme === t, scheme);
-    for (const path of ['/', '/projects', '/projects?view=all', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/trash', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
+    for (const path of ['/', '/today', '/notes', '/projects', '/projects?view=all', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/trash', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
       await page.goto(`${BASE}${path}`);
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(150);

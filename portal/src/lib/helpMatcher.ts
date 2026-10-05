@@ -132,14 +132,18 @@ export interface HelpIndex {
   articles: HelpArticle[];
   phrasings: string[][][]; // per article: [question tokens, ...alternative tokens]
   answers: string[][];
+  topics: string[][];
   idf: (t: string) => number;
 }
 
 export function buildIndex(articles: HelpArticle[]): HelpIndex {
   const phrasings = articles.map((a) => [a.question, ...a.alt_questions].map(tokens));
-  // The topic is part of what an article is about: "Is it really free?" is
-  // the Impact Program's article only because of its topic.
-  const answers = articles.map((a) => tokens(`${a.answer} ${a.topic}`));
+  const answers = articles.map((a) => tokens(a.answer));
+  // The topic's words are never MISSING from an article ("Impact Program" in a
+  // question about the Impact Program's "Is it really free?"), but they add
+  // nothing to its score — a score from the topic would reorder articles across
+  // topics.
+  const topics = articles.map((a) => tokens(a.topic));
   const docs = articles.map((_, i) => new Set([...phrasings[i].flat(), ...answers[i]]));
   const n = Math.max(articles.length, 1);
   const cache = new Map<string, number>();
@@ -150,7 +154,7 @@ export function buildIndex(articles: HelpArticle[]): HelpIndex {
     }
     return cache.get(t)!;
   };
-  return { articles, phrasings, answers, idf };
+  return { articles, phrasings, answers, topics, idf };
 }
 
 function coverage(query: string[], target: string[], idf: (t: string) => number): number {
@@ -175,7 +179,7 @@ export function scoreAll(index: HelpIndex, question: string): { article: HelpArt
     // Distinctive words of the question that this article does not mention at
     // all — "weboldal" asked, a webshop article found. Such a match is never
     // given as THE answer (see reply()).
-    const covered = [...index.phrasings[i].flat(), ...index.answers[i]];
+    const covered = [...index.phrasings[i].flat(), ...index.answers[i], ...index.topics[i]];
     const missing = q.filter((t) => index.idf(t) >= DISTINCTIVE && !covered.some((x) => same(x, t)));
     return { article, score: Math.min(1, best + 0.2 * fromAnswer), missing };
   }).sort((a, b) => b.score - a.score);

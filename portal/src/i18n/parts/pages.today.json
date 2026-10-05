@@ -1,0 +1,50 @@
+{
+ "Add a task": {
+  "hu": "Teendő hozzáadása",
+  "de": "Aufgabe hinzufügen"
+ },
+ "Task": {
+  "hu": "Teendő",
+  "de": "Aufgabe"
+ },
+ "Add a task — e.g. Call Rapidkert about the texts": {
+  "hu": "Új teendő — pl. Felhívni a Rapidkertet a szövegek miatt",
+  "de": "Aufgabe hinzufügen — z. B. Rapidkert wegen der Texte anrufen"
+ },
+ "Today could not be read.": {
+  "hu": "A Ma oldal nem tölthető be.",
+  "de": "„Heute“ konnte nicht geladen werden."
+ },
+ "Nothing due today": {
+  "hu": "Mára nincs teendő",
+  "de": "Heute ist nichts fällig"
+ },
+ "No task, follow-up, checkpoint or meeting is due today or late.": {
+  "hu": "Nincs mára esedékes vagy késő teendő, utánkövetés, mérföldkő vagy megbeszélés.",
+  "de": "Heute ist keine Aufgabe, Nachverfolgung, kein Meilenstein und kein Termin fällig oder überfällig."
+ },
+ "Meetings today": {
+  "hu": "Mai megbeszélések",
+  "de": "Termine heute"
+ },
+ "Tasks": {
+  "hu": "Teendők",
+  "de": "Aufgaben"
+ },
+ "All notes": {
+  "hu": "Összes jegyzet",
+  "de": "Alle Notizen"
+ },
+ "Done: {text}": {
+  "hu": "Kész: {text}",
+  "de": "Erledigt: {text}"
+ },
+ "late · {date}": {
+  "hu": "késik · {date}",
+  "de": "verspätet · {date}"
+ },
+ "Checkpoints due": {
+  "hu": "Esedékes mérföldkövek",
+  "de": "Fällige Meilensteine"
+ }
+}

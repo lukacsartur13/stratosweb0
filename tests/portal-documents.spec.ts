@@ -75,16 +75,26 @@ test.describe('what a file is', () => {
     }
   });
 
-  test('previews: raster images and plain text only — no PDF, SVG or HTML', () => {
+  test('previews: images, text, PDF, .docx and .xlsx — when name and bytes agree; never SVG or HTML', () => {
     expect(sniffPreview(bytes(0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a), 'x.png')).toEqual({ kind: 'image', mime: 'image/png' });
     expect(sniffPreview(bytes(0xff, 0xd8, 0xff, 0xe0), 'x.jpg')).toEqual({ kind: 'image', mime: 'image/jpeg' });
     expect(sniffPreview(ascii('Első sor'), 'notes.txt')).toEqual({ kind: 'text' });
-    expect(sniffPreview(ascii('%PDF-1.7'), 'a.pdf')).toBeNull();
+    // PDF is drawn by PDF.js onto canvases; .docx/.xlsx are ZIPs rebuilt as text (FileViewer.tsx).
+    expect(sniffPreview(ascii('%PDF-1.7'), 'a.pdf')).toEqual({ kind: 'pdf' });
+    expect(sniffPreview(bytes(0x50, 0x4b, 0x03, 0x04), 'offer.docx')).toEqual({ kind: 'docx' });
+    expect(sniffPreview(bytes(0x50, 0x4b, 0x03, 0x04), 'prices.xlsx')).toEqual({ kind: 'xlsx' });
+    // The name and the bytes must agree.
+    expect(sniffPreview(ascii('%PDF-1.7'), 'a.docx')).toBeNull();
+    expect(sniffPreview(bytes(0x50, 0x4b, 0x03, 0x04), 'a.pdf')).toBeNull();
+    expect(sniffPreview(bytes(0x50, 0x4b, 0x03, 0x04), 'a.zip')).toBeNull();
+    // Old binary Office files are not opened.
+    expect(sniffPreview(bytes(0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1), 'old.doc')).toBeNull();
     expect(sniffPreview(ascii('<svg xmlns="http://www.w3.org/2000/svg"/>'), 'logo.svg')).toBeNull();
     expect(sniffPreview(ascii('<html><script>'), 'x.png')).toBeNull();
     expect(sniffPreview(ascii('<html>'), 'notes.txt')).toBeNull();
     expect(mayPreview({ name: 'a.PNG', byte_size: 10 })).toBe(true);
-    for (const name of ['a.pdf', 'a.svg', 'a.docx', 'a.zip', 'a.html']) expect(mayPreview({ name, byte_size: 10 }), name).toBe(false);
+    for (const name of ['a.svg', 'a.zip', 'a.html', 'a.doc', 'a.xls', 'a.pptx']) expect(mayPreview({ name, byte_size: 10 }), name).toBe(false);
+    for (const name of ['a.pdf', 'a.docx', 'a.xlsx']) expect(mayPreview({ name, byte_size: 10 }), name).toBe(true);
     expect(mayPreview({ name: 'a.png', byte_size: 30 * 1024 * 1024 })).toBe(false);
   });
 
@@ -97,9 +107,35 @@ test.describe('what a file is', () => {
     const csp = read('netlify.toml');
     expect(csp).not.toMatch(/frame-src/);
     expect(csp).toMatch(/object-src 'none'/);
-    // The dependency list gained no archive or document-rendering library.
+    // Exactly three document-rendering libraries, for opening files without
+    // downloading them — and nothing that unpacks archives for the Portal.
     const deps = JSON.parse(read('portal', 'package.json')).dependencies as Record<string, string>;
-    expect(Object.keys(deps).filter((d) => /zip|pdf|office|docx|xlsx/i.test(d))).toEqual([]);
+    expect(Object.keys(deps).filter((d) => /zip|pdf|office|docx|xlsx|excel|mammoth/i.test(d)).sort())
+      .toEqual(['mammoth', 'pdfjs-dist', 'read-excel-file']);
+  });
+
+  test('the file viewer renders without running anything from the file', () => {
+    const viewer = fs.readFileSync(path.join(SRC, 'features', 'documents', 'FileViewer.tsx'), 'utf8')
+      .replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    // No markup is inserted and nothing is framed: the .docx is PARSED (an inert
+    // document) and rebuilt from an allow-list as React elements.
+    expect(viewer).not.toMatch(/dangerouslySetInnerHTML|innerHTML|outerHTML|insertAdjacentHTML|<iframe|<object|<embed|srcdoc/);
+    expect(viewer).toMatch(/new DOMParser\(\)\.parseFromString\(html, 'text\/html'\)/);
+    // PDF.js never evaluates code from a file, and XFA forms are off.
+    expect(viewer).toMatch(/isEvalSupported: false/);
+    expect(viewer).toMatch(/enableXfa: false/);
+    // Only embedded raster images survive from a .docx; links lose their target.
+    expect(viewer).toMatch(/SAFE_IMAGE = \/\^data:image\\\/\(png\|jpeg\|gif\|webp\);base64,/);
+    expect(viewer).toMatch(/if \(tag === 'a'\) return createElement\('span'/);
+    // The three libraries load only when a file is opened.
+    for (const lib of ['pdfjs-dist', 'mammoth', 'read-excel-file']) {
+      expect(viewer, lib).not.toMatch(new RegExp(`^import[^\\n]*'${lib}`, 'm'));
+      expect(viewer, lib).toMatch(new RegExp(`await import\\('${lib}`));
+    }
+    // And no other file imports them.
+    const others = ['features/documents/ProjectLibrary.tsx', 'features/client/ClientApp.tsx', 'lib/documents.ts', 'pages/documents.tsx']
+      .map((f) => fs.readFileSync(path.join(SRC, f), 'utf8')).join('\n');
+    expect(others).not.toMatch(/pdfjs-dist|mammoth|read-excel-file/);
   });
 });
 

@@ -45,15 +45,15 @@
  },
  "Ma már sok üzenetet küldtél. Holnap újra írhatsz, vagy keresd a Stratost e-mailben.": {
   "en": "You have sent a lot of messages today. You can write again tomorrow, or contact Stratos by e-mail.",
-  "de": "Sie haben heute bereits viele Nachrichten gesendet. Sie können morgen wieder schreiben oder Stratos per E-Mail kontaktieren."
+  "de": "Du hast heute bereits viele Nachrichten gesendet. Du kannst morgen wieder schreiben oder Stratos per E-Mail kontaktieren."
  },
  "Írj valamit az üzenetbe.": {
   "en": "Write something in the message.",
-  "de": "Bitte schreiben Sie etwas in die Nachricht."
+  "de": "Bitte schreib etwas in die Nachricht."
  },
  "Erre a megbeszélésre már van függőben lévő javaslatod. Vond vissza, ha másikat küldenél.": {
   "en": "You already have a pending proposal for this meeting. Withdraw it if you want to send another.",
-  "de": "Für diesen Termin haben Sie bereits einen ausstehenden Vorschlag. Ziehen Sie ihn zurück, wenn Sie einen anderen senden möchten."
+  "de": "Für diesen Termin hast du bereits einen ausstehenden Vorschlag. Zieh ihn zurück, wenn du einen anderen senden möchtest."
  },
  "A javasolt időpont már elmúlt.": {
   "en": "The proposed time has already passed.",
@@ -65,7 +65,7 @@
  },
  "Ehhez már nincs hozzáférésed.": {
   "en": "You no longer have access to this.",
-  "de": "Sie haben darauf keinen Zugriff mehr."
+  "de": "Du hast darauf keinen Zugriff mehr."
  },
  "A befejezésnek a kezdés után kell lennie, legfeljebb 24 órával.": {
   "en": "The end must be after the start, by at most 24 hours.",
@@ -73,6 +73,6 @@
  },
  "Nem sikerült elküldeni. Próbáld újra.": {
   "en": "It could not be sent. Try again.",
-  "de": "Senden fehlgeschlagen. Versuchen Sie es erneut."
+  "de": "Senden fehlgeschlagen. Versuch es erneut."
  }
 }

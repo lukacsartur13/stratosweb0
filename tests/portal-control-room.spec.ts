@@ -62,8 +62,10 @@ test.describe('the shell', () => {
     // answer, sell, serve, deliver, give (the free Impact Program, owner-only),
     // file (the owner's document library, phase 3), diagnose.
     const labels = [...primary![1].matchAll(/label: '([^']+)'/g)].map((m) => m[1]);
+    // Today (what is due now) sits under the Dashboard; Notes beside Clients,
+    // whose meetings they are mostly written in.
     expect(labels).toEqual([
-      'Dashboard', 'Analytics', 'Leads', 'Sales', 'Clients', 'Projects', 'Impact', 'Documents', 'System',
+      'Dashboard', 'Today', 'Analytics', 'Leads', 'Sales', 'Clients', 'Notes', 'Projects', 'Impact', 'Documents', 'System',
     ]);
   });
 

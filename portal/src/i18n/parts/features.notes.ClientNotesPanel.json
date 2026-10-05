@@ -1,0 +1,26 @@
+{
+ "New checklist": {
+  "hu": "Új lista",
+  "de": "Neue Checkliste"
+ },
+ "New note": {
+  "hu": "Új jegyzet",
+  "de": "Neue Notiz"
+ },
+ "Notes and checklists": {
+  "hu": "Jegyzetek és listák",
+  "de": "Notizen und Checklisten"
+ },
+ "No notes about this client yet. Start one when you meet — every line is saved as you type it.": {
+  "hu": "Még nincs jegyzet erről az ügyfélről. Kezdj egyet a megbeszélésen — minden sor mentődik, ahogy gépeled.",
+  "de": "Noch keine Notizen zu diesem Kunden. Beginnen Sie eine beim Termin — jede Zeile wird beim Tippen gespeichert."
+ },
+ "Pinned": {
+  "hu": "Kitűzve",
+  "de": "Angeheftet"
+ },
+ "{open} open of {total}": {
+  "hu": "{total}-ből {open} nyitott",
+  "de": "{open} von {total} offen"
+ }
+}

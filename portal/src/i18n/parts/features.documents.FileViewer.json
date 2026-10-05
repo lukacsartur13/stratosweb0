@@ -1,0 +1,138 @@
+{
+ "The file could not be opened. Download it instead.": {
+  "hu": "A fájl nem nyitható meg. Töltsd le inkább.",
+  "de": "Die Datei konnte nicht geöffnet werden. Laden Sie sie stattdessen herunter."
+ },
+ "A fájl nem nyitható meg. Töltsd le inkább.": {
+  "en": "The file could not be opened. Download it instead.",
+  "de": "Die Datei konnte nicht geöffnet werden. Lade sie stattdessen herunter."
+ },
+ "Download": {
+  "hu": "Letöltés",
+  "de": "Herunterladen"
+ },
+ "Letöltés": {
+  "en": "Download",
+  "de": "Herunterladen"
+ },
+ "Close": {
+  "hu": "Bezárás",
+  "de": "Schließen"
+ },
+ "Bezárás": {
+  "en": "Close",
+  "de": "Schließen"
+ },
+ "Page {n}": {
+  "hu": "{n}. oldal",
+  "de": "Seite {n}"
+ },
+ "{n}. oldal": {
+  "en": "Page {n}",
+  "de": "Seite {n}"
+ },
+ "The PDF could not be shown. Download it instead.": {
+  "hu": "A PDF nem jeleníthető meg. Töltsd le inkább.",
+  "de": "Das PDF konnte nicht angezeigt werden. Laden Sie es stattdessen herunter."
+ },
+ "A PDF nem jeleníthető meg. Töltsd le inkább.": {
+  "en": "The PDF could not be shown. Download it instead.",
+  "de": "Das PDF konnte nicht angezeigt werden. Lade es stattdessen herunter."
+ },
+ "Opening…": {
+  "hu": "Megnyitás…",
+  "de": "Wird geöffnet…"
+ },
+ "Megnyitás…": {
+  "en": "Opening…",
+  "de": "Wird geöffnet…"
+ },
+ "{shown} of {pages} pages shown — download it for the rest.": {
+  "hu": "{pages} oldalból {shown} látszik — a többihez töltsd le.",
+  "de": "{shown} von {pages} Seiten angezeigt — laden Sie die Datei für den Rest herunter."
+ },
+ "{pages} oldalból {shown} látszik — a többihez töltsd le.": {
+  "en": "{shown} of {pages} pages shown — download it for the rest.",
+  "de": "{shown} von {pages} Seiten angezeigt — lade die Datei für den Rest herunter."
+ },
+ "{pages} pages": {
+  "hu": "{pages} oldal",
+  "de": "{pages} Seiten"
+ },
+ "{pages} oldal": {
+  "en": "{pages} pages",
+  "de": "{pages} Seiten"
+ },
+ "Zoom out": {
+  "hu": "Kicsinyítés",
+  "de": "Verkleinern"
+ },
+ "Kicsinyítés": {
+  "en": "Zoom out",
+  "de": "Verkleinern"
+ },
+ "Zoom in": {
+  "hu": "Nagyítás",
+  "de": "Vergrößern"
+ },
+ "Nagyítás": {
+  "en": "Zoom in",
+  "de": "Vergrößern"
+ },
+ "The document could not be shown. Download it instead.": {
+  "hu": "A dokumentum nem jeleníthető meg. Töltsd le inkább.",
+  "de": "Das Dokument konnte nicht angezeigt werden. Laden Sie es stattdessen herunter."
+ },
+ "A dokumentum nem jeleníthető meg. Töltsd le inkább.": {
+  "en": "The document could not be shown. Download it instead.",
+  "de": "Das Dokument konnte nicht angezeigt werden. Lade es stattdessen herunter."
+ },
+ "Shown as text: the content and structure are exact, the layout and fonts are simplified.": {
+  "hu": "Szövegként látszik: a tartalom és a szerkezet pontos, az elrendezés és a betűk egyszerűsítve.",
+  "de": "Als Text angezeigt: Inhalt und Struktur sind exakt, Layout und Schriften vereinfacht."
+ },
+ "Szövegként látszik: a tartalom és a szerkezet pontos, az elrendezés és a betűk egyszerűsítve.": {
+  "en": "Shown as text: the content and structure are exact, the layout and fonts are simplified.",
+  "de": "Als Text angezeigt: Inhalt und Struktur sind exakt, Layout und Schriften vereinfacht."
+ },
+ "The document is empty.": {
+  "hu": "A dokumentum üres.",
+  "de": "Das Dokument ist leer."
+ },
+ "A dokumentum üres.": {
+  "en": "The document is empty.",
+  "de": "Das Dokument ist leer."
+ },
+ "The spreadsheet could not be shown. Download it instead.": {
+  "hu": "A táblázat nem jeleníthető meg. Töltsd le inkább.",
+  "de": "Die Tabelle konnte nicht angezeigt werden. Laden Sie sie stattdessen herunter."
+ },
+ "A táblázat nem jeleníthető meg. Töltsd le inkább.": {
+  "en": "The spreadsheet could not be shown. Download it instead.",
+  "de": "Die Tabelle konnte nicht angezeigt werden. Lade sie stattdessen herunter."
+ },
+ "Sheets": {
+  "hu": "Munkalapok",
+  "de": "Tabellenblätter"
+ },
+ "Munkalapok": {
+  "en": "Sheets",
+  "de": "Tabellenblätter"
+ },
+ "The first {rows} rows and {cols} columns are shown — download it for the rest.": {
+  "hu": "Az első {rows} sor és {cols} oszlop látszik — a többihez töltsd le.",
+  "de": "Die ersten {rows} Zeilen und {cols} Spalten werden angezeigt — laden Sie die Datei für den Rest herunter."
+ },
+ "Az első {rows} sor és {cols} oszlop látszik — a többihez töltsd le.": {
+  "en": "The first {rows} rows and {cols} columns are shown — download it for the rest.",
+  "de": "Die ersten {rows} Zeilen und {cols} Spalten werden angezeigt — lade die Datei für den Rest herunter."
+ },
+ "This sheet is empty.": {
+  "hu": "Ez a munkalap üres.",
+  "de": "Dieses Tabellenblatt ist leer."
+ },
+ "Ez a munkalap üres.": {
+  "en": "This sheet is empty.",
+  "de": "Dieses Tabellenblatt ist leer."
+ }
+}

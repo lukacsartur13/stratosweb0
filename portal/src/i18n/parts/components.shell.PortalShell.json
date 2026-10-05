@@ -170,5 +170,9 @@
  "Team member": {
   "hu": "Csapattag",
   "de": "Teammitglied"
+ },
+ "Notes": {
+  "hu": "Jegyzetek",
+  "de": "Notizen"
  }
 }

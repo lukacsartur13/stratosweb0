@@ -21,7 +21,9 @@ union all
 select 'the client functions return fixed columns',
        (select string_agg(p.proname || ':' || array_to_string(p.proargnames[p.pronargs + 1:], ','), ' ' order by p.proname) from pg_proc p
         where p.proname in ('client_portal_demos', 'client_portal_meetings', 'client_help_articles') and p.pronamespace = 'public'::regnamespace)
-       = 'client_help_articles:article_id,question,answer,topic,alt_questions client_portal_demos:demo_id,project_id,project_name,title,url,note,updated_at client_portal_meetings:meeting_id,project_id,project_name,title,starts_at,ends_at,time_zone,join_url,location,note,cancelled',
+       -- `translations` from 20261010000100_help_translations.sql (before it, the column is absent).
+       in ('client_help_articles:article_id,question,answer,topic,alt_questions client_portal_demos:demo_id,project_id,project_name,title,url,note,updated_at client_portal_meetings:meeting_id,project_id,project_name,title,starts_at,ends_at,time_zone,join_url,location,note,cancelled',
+           'client_help_articles:article_id,question,answer,topic,alt_questions,translations client_portal_demos:demo_id,project_id,project_name,title,url,note,updated_at client_portal_meetings:meeting_id,project_id,project_name,title,starts_at,ends_at,time_zone,join_url,location,note,cancelled'),
        null
 union all
 select 'phase-8 tables force RLS (when applied)',

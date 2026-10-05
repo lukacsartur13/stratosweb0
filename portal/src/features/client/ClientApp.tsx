@@ -1,13 +1,14 @@
 import { useMemo, useRef, useState, type DragEvent } from 'react';
 import { Link, Navigate, NavLink, useLocation, useSearchParams } from 'react-router-dom';
-import { ArrowUpFromLine, CalendarPlus, Download, ExternalLink, LogOut, MapPin, Video, X } from 'lucide-react';
+import { ArrowUpFromLine, CalendarPlus, Download, ExternalLink, Eye, LogOut, MapPin, Video, X } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { Badge, Button, DataState, ErrorState, Panel, SectionHeader, Select, Skeleton, cn } from '@/components/ui';
-import { MAX_DOCUMENT_BYTES, formatBytes } from '@/lib/documentRules';
+import { MAX_DOCUMENT_BYTES, formatBytes, mayPreview } from '@/lib/documentRules';
+import { FileViewerDialog } from '@/features/documents/FileViewer';
 import { useUploader, type UploadItem } from '@/lib/documents';
 import {
   CLIENT_ALLOWED_SUMMARY, CLIENT_UPLOAD_API, CLIENT_UPLOAD_TEXT, UPLOAD_STATE_HU, downloadShared, failureHu,
-  useClientMe, useClientProjects, useClientUploads, useSharedDocuments, type ClientProject,
+  useClientMe, useClientProjects, useClientUploads, useSharedDocuments, type ClientProject, type SharedDocument,
 } from '@/lib/clientPortal';
 import {
   requestMeetingChange, sendDemoFeedback, useClientDemos, useClientFeedback, useClientHelp, useClientMeetingRequests, useClientMeetings,
@@ -215,6 +216,8 @@ function SharedPage() {
   const [params] = useSearchParams();
   const only = params.get('projekt');
   const [error, setError] = useState<string | null>(null);
+  // A shared PDF, Word, Excel, image or text file opens here, without downloading.
+  const [opening, setOpening] = useState<SharedDocument | null>(null);
   const shown = only ? docs.rows.filter((d) => d.project_id === only) : docs.rows;
   const groups = useMemo(() => {
     const out = new Map<string, typeof shown>();
@@ -245,14 +248,25 @@ function SharedPage() {
                   <p className="break-all text-[13px] text-paper">{d.name}</p>
                   <p className="t-note">{formatBytes(d.byte_size)} · {when(d.shared_at)}{d.via_folder ? ` · ${t('a(z) „{folder}” mappán keresztül', { folder: d.via_folder })}` : ''}</p>
                 </div>
-                <Button size="sm" className={TOUCH} aria-label={t('{name} letöltése', { name: d.name })} onClick={async () => setError(await downloadShared(d))}>
-                  <Download size={11} aria-hidden="true" /> {t('Letöltés')}
-                </Button>
+                <span className="flex flex-wrap gap-1">
+                  {mayPreview({ name: d.name, byte_size: d.byte_size }) && (
+                    <Button size="sm" className={TOUCH} aria-label={t('{name} megnyitása', { name: d.name })} onClick={() => setOpening(d)}>
+                      <Eye size={11} aria-hidden="true" /> {t('Megnyitás')}
+                    </Button>
+                  )}
+                  <Button size="sm" className={TOUCH} aria-label={t('{name} letöltése', { name: d.name })} onClick={async () => setError(await downloadShared(d))}>
+                    <Download size={11} aria-hidden="true" /> {t('Letöltés')}
+                  </Button>
+                </span>
               </li>
             ))}
           </ul>
         </section>
       ))}
+      {opening && (
+        <FileViewerDialog hungarian doc={{ storage_path: `${opening.project_id}/${opening.document_id}`, name: opening.name }}
+                          onClose={() => setOpening(null)} onDownload={async () => setError(await downloadShared(opening))} />
+      )}
     </Panel>
   );
 }

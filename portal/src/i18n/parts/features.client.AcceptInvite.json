@@ -9,7 +9,7 @@
  },
  "Kérj új meghívó linket a Stratostól. Biztonsági okból minden link csak egyszer használható, és korlátozott ideig érvényes.": {
   "en": "Ask Stratos for a new invitation link. For security, every link can be used only once and is valid for a limited time.",
-  "de": "Bitten Sie Stratos um einen neuen Einladungslink. Aus Sicherheitsgründen ist jeder Link nur einmal verwendbar und nur begrenzt gültig."
+  "de": "Bitte Stratos um einen neuen Einladungslink. Aus Sicherheitsgründen ist jeder Link nur einmal verwendbar und nur begrenzt gültig."
  },
  "Ellenőrzés…": {
   "en": "Checking…",
@@ -29,11 +29,11 @@
  },
  "Ezzel a jelszóval lépsz be ezután. Senki más nem látja.": {
   "en": "You'll sign in with this password from now on. Nobody else sees it.",
-  "de": "Mit diesem Passwort melden Sie sich künftig an. Niemand sonst sieht es."
+  "de": "Mit diesem Passwort meldest du dich künftig an. Niemand sonst sieht es."
  },
  "A jelszó mentése nem sikerült. Kérj új linket.": {
   "en": "The password could not be saved. Ask for a new link.",
-  "de": "Das Passwort konnte nicht gespeichert werden. Bitte fordern Sie einen neuen Link an."
+  "de": "Das Passwort konnte nicht gespeichert werden. Bitte fordere einen neuen Link an."
  },
  "Új jelszó": {
   "en": "New password",

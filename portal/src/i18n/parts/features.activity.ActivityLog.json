@@ -1,0 +1,34 @@
+{
+ "Activity log": {
+  "hu": "Tevékenységnapló",
+  "de": "Aktivitätsprotokoll"
+ },
+ "Log": {
+  "hu": "Rögzítés",
+  "de": "Erfassen"
+ },
+ "What": {
+  "hu": "Mi",
+  "de": "Was"
+ },
+ "What was said or agreed": {
+  "hu": "Mi hangzott el, miben egyeztetek",
+  "de": "Was besprochen oder vereinbart wurde"
+ },
+ "Nothing logged yet. A call, an e-mail or a meeting takes two clicks.": {
+  "hu": "Még nincs bejegyzés. Egy hívás, e-mail vagy megbeszélés két kattintás.",
+  "de": "Noch nichts erfasst. Ein Anruf, eine E-Mail oder ein Termin sind zwei Klicks."
+ },
+ "The activity log could not be read.": {
+  "hu": "A tevékenységnapló nem tölthető be.",
+  "de": "Das Aktivitätsprotokoll konnte nicht geladen werden."
+ },
+ "Remove this entry": {
+  "hu": "Bejegyzés eltávolítása",
+  "de": "Diesen Eintrag entfernen"
+ },
+ "Remove this entry from the activity log?": {
+  "hu": "Eltávolítod ezt a bejegyzést a tevékenységnaplóból?",
+  "de": "Diesen Eintrag aus dem Aktivitätsprotokoll entfernen?"
+ }
+}

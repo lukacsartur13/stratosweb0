@@ -8,10 +8,11 @@ import {
 } from '@/components/ui';
 import { shortDate } from '@/lib/pipeline';
 import { intlLocale, t } from '@/lib/i18n';
+import { FileViewerDialog } from '@/features/documents/FileViewer';
 import {
-  ALLOWED_SUMMARY, FAILURE_LABEL, MAX_DOCUMENT_BYTES, downloadDocument, folderPath, formatBytes, loadPreview, mayPreview,
+  ALLOWED_SUMMARY, FAILURE_LABEL, MAX_DOCUMENT_BYTES, downloadDocument, folderPath, formatBytes, mayPreview,
   useDocumentMutations, useProjectLibrary, useUploader,
-  type Doc, type DocFolder, type PreviewKind, type UploadItem,
+  type Doc, type DocFolder, type UploadItem,
 } from '@/lib/documents';
 import { useProjectSharing, type AssignedAccount, type LiveShare } from '@/lib/clientAccounts';
 
@@ -585,32 +586,5 @@ function MoveDialog({
  * frame, no HTML injection, nothing that can run. Everything else downloads.
  */
 function PreviewDialog({ doc, onClose }: { doc: Doc; onClose: () => void }) {
-  const [shown, setShown] = useState<{ kind: PreviewKind; url?: string; text?: string } | { error: string } | null>(null);
-
-  useEffect(() => {
-    let alive = true;
-    let url: string | undefined;
-    void loadPreview(doc).then((r) => {
-      if (!alive) return;
-      if ('error' in r) { setShown(r); return; }
-      if (r.kind.kind !== 'text') url = URL.createObjectURL(r.blob);
-      setShown({ kind: r.kind, url, text: r.text });
-    });
-    return () => { alive = false; if (url) URL.revokeObjectURL(url); };
-  }, [doc]);
-
-  return (
-    <Dialog open onClose={onClose} title={doc.name} wide
-            footer={<><Button size="sm" className={TOUCH} onClick={() => void downloadDocument(doc)}><Download size={11} aria-hidden="true" /> {t('Download')}</Button>
-              <Button size="sm" className={TOUCH} onClick={onClose}>{t('Close')}</Button></>}>
-      {!shown && <Skeleton className="h-64 w-full" />}
-      {shown && 'error' in shown && <p role="alert" className="text-xs text-danger">{shown.error}</p>}
-      {shown && 'kind' in shown && shown.kind.kind === 'image' && shown.url && (
-        <img src={shown.url} alt={doc.name} className="mx-auto max-h-[60dvh] max-w-full object-contain" />
-      )}
-      {shown && 'kind' in shown && shown.kind.kind === 'text' && (
-        <pre className="max-h-[60dvh] overflow-auto whitespace-pre-wrap break-words text-[12px] text-paper">{shown.text}</pre>
-      )}
-    </Dialog>
-  );
+  return <FileViewerDialog doc={doc} onClose={onClose} onDownload={() => void downloadDocument(doc)} />;
 }

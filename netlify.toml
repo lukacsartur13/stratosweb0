@@ -437,6 +437,13 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# The PDF viewer's worker is an ES module (.mjs). A module worker is refused
+# unless it is served as JavaScript, so say so rather than trust a default.
+[[headers]]
+  for = "/portal/assets/*.mjs"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"
+
 [[headers]]
   for = "/assets/*"
   [headers.values]

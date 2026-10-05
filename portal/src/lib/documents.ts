@@ -215,7 +215,7 @@ export async function downloadDocument(doc: Pick<Doc, 'storage_path' | 'name'>):
   return null;
 }
 
-/** The bytes, as the owner, for a preview. The kind comes from the bytes. */
+/** The bytes, for a preview — the owner's, or a client's shared file. The kind comes from the bytes. */
 export async function loadPreview(doc: Pick<Doc, 'storage_path' | 'name'>):
 Promise<{ kind: PreviewKind; blob: Blob; text?: string } | { error: string }> {
   const { data, error } = await supabase.storage.from(DOCUMENT_BUCKET).download(doc.storage_path);
@@ -230,8 +230,10 @@ Promise<{ kind: PreviewKind; blob: Blob; text?: string } | { error: string }> {
     const text = new TextDecoder('utf-8').decode(await data.slice(0, 200_000).arrayBuffer());
     return { kind, blob: data, text };
   }
-  // Re-typed from the sniffed bytes, never from the stored or declared type.
-  return { kind, blob: new Blob([data], { type: kind.mime }) };
+  // An image is re-typed from the sniffed bytes, never from the stored or
+  // declared type. PDF, .docx and .xlsx are read as bytes by their viewers.
+  if (kind.kind === 'image') return { kind, blob: new Blob([data], { type: kind.mime }) };
+  return { kind, blob: new Blob([data], { type: 'application/octet-stream' }) };
 }
 
 /* ============================================================ uploads == */

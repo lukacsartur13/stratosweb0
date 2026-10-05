@@ -42,7 +42,7 @@ execFileSync('npx', ['vite', 'build', '--outDir', BUNDLE, '--emptyOutDir', '--lo
   env: { ...process.env, VITE_SUPABASE_URL: MOCK_URL, VITE_SUPABASE_ANON_KEY: 'mock-anon-key-not-shaped-like-one' },
 });
 
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
 const server = createServer((req, res) => {
   const p = decodeURIComponent(new URL(req.url, 'http://x').pathname).replace(/^\/portal/, '');
   const file = join(BUNDLE, p === '/' || p === '' ? 'index.html' : p);
@@ -504,6 +504,7 @@ await check('search finds a file name across projects and opens it in its folder
 });
 
 await check('preview shows sniffed-safe bytes only; download uses a one-minute attachment link', async () => {
+  const fixture = (name) => readFileSync(join(ROOT, 'scripts', 'fixtures', name));
   const state = freshState();
   const add = (id, name, bytes) => {
     state.docs.push({ id, project_id: 'p-web', folder_id: null, name, byte_size: bytes.length, declared_type: null, upload_state: 'ready',
@@ -512,7 +513,9 @@ await check('preview shows sniffed-safe bytes only; download uses a one-minute a
   };
   add('d1', 'logo.png', PNG);
   add('d2', 'notes.txt', Buffer.from('Első sor\nsecond line'));
-  add('d3', 'invoice.pdf', Buffer.from('%PDF-1.4 real pdf'));
+  add('d3', 'invoice.pdf', fixture('viewer-test.pdf'));
+  add('d5', 'offer.docx', fixture('viewer-test.docx'));
+  add('d6', 'prices.xlsx', fixture('viewer-test.xlsx'));
   add('d8', 'fake.png', Buffer.from('<html><script>alert(1)</script></html>'));
   add('d4', 'drawing.svg', Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>'));
   const { page, context, logs } = await open(browser, { state });
@@ -531,8 +534,40 @@ await check('preview shows sniffed-safe bytes only; download uses a one-minute a
   assert(await page.getByRole('dialog').locator('iframe, img, object, embed').count() === 0, 'HTML bytes named .png were rendered');
   await page.getByRole('dialog').getByRole('button', { name: 'Close' }).first().click();
   assert(await page.getByRole('button', { name: 'Preview drawing.svg' }).count() === 0, 'SVG offered for preview');
-  assert(await page.getByRole('button', { name: 'Preview invoice.pdf' }).count() === 0, 'PDF offered for preview (download only)');
   assert(await page.getByRole('button', { name: 'Download invoice.pdf' }).count() === 1, 'PDF cannot be downloaded');
+
+  // PDF: drawn by PDF.js onto a canvas, in the Portal.
+  await page.getByRole('button', { name: 'Preview invoice.pdf' }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.locator('[data-pdf-pages] canvas').first().waitFor({ timeout: 15000 });
+  await dialog.getByText('1 pages').waitFor();
+  const painted = await dialog.locator('[data-pdf-pages] canvas').first().evaluate((c) => {
+    const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
+    let dark = 0; for (let i = 0; i < d.length; i += 4) if (d[i] < 128) dark += 1; return dark;
+  });
+  assert(painted > 100, 'the PDF page was not drawn');
+  await shot(page, 'viewer-pdf');
+  await dialog.getByRole('button', { name: 'Close' }).first().click();
+
+  // .docx: rebuilt as text — the heading and table are there; the javascript: link is not a link; markup is text.
+  await page.getByRole('button', { name: 'Preview offer.docx' }).click();
+  const docx = page.locator('[data-docx]');
+  await docx.locator('h1', { hasText: 'Árajánlat — weboldal' }).waitFor({ timeout: 15000 });
+  assert(await docx.locator('td', { hasText: '450 000 Ft' }).count() === 1, 'the table was not shown');
+  assert(await docx.locator('a, script, iframe, object, embed').count() === 0, 'an active element came through from the .docx');
+  assert(await docx.getByText('veszélyes link').count() === 1, 'the link text is missing');
+  assert(await docx.getByText('<script>alert(1)</script>').count() === 1, 'written markup was not shown as text');
+  await shot(page, 'viewer-docx');
+  await page.getByRole('dialog').getByRole('button', { name: 'Close' }).first().click();
+
+  // .xlsx: values in a table, one tab per sheet.
+  await page.getByRole('button', { name: 'Preview prices.xlsx' }).click();
+  const xlsx = page.locator('[data-xlsx]');
+  await xlsx.getByText('450000').waitFor({ timeout: 15000 });
+  await page.getByRole('tab', { name: 'Második' }).click();
+  await xlsx.getByText('SEO').waitFor();
+  await shot(page, 'viewer-xlsx');
+  await page.getByRole('dialog').getByRole('button', { name: 'Close' }).first().click();
   assert(await page.locator('iframe').count() === 0, 'an iframe exists on the page');
 
   const download = page.waitForEvent('download');

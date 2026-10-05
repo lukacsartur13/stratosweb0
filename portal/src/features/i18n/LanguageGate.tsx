@@ -5,6 +5,7 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { LANGS, LANG_NAMES, getLang, isLang, setLang, t, type Lang } from '@/lib/i18n';
 import { cn } from '@/components/ui';
+import { ensureDictionaries } from '@/i18n';
 
 /**
  * Which language the portal is in, for everyone: the signed-in profile's
@@ -44,9 +45,10 @@ export function LanguageGate({ children }: { children: ReactNode }) {
 
   // The account's choice wins over the device's, once it is known.
   useEffect(() => {
-    if (profile?.locale && profile.locale !== lang) {
-      storeLang(profile.locale);
-      setState(profile.locale);
+    const next = profile?.locale;
+    if (next && next !== lang) {
+      storeLang(next);
+      void ensureDictionaries().then(() => setState(next));
     }
   }, [profile?.locale]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -59,6 +61,7 @@ export function LanguageGate({ children }: { children: ReactNode }) {
 
   const choose = useCallback(async (next: Lang): Promise<string | null> => {
     storeLang(next);
+    await ensureDictionaries();
     setState(next);
     if (!profile || !isConfigured) return null;
     const { error } = await supabase.from('profiles').update({ locale: next }).eq('id', profile.id);

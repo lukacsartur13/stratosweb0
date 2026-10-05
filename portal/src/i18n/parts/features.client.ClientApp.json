@@ -33,7 +33,7 @@
  },
  "Jelenleg egy projekthez sincs hozzáférésed. Ha ez hiba, szólj a Stratosnak.": {
   "en": "You don't have access to any project at the moment. If this is a mistake, let Stratos know.",
-  "de": "Sie haben derzeit keinen Zugriff auf ein Projekt. Falls das ein Fehler ist, geben Sie Stratos bitte Bescheid."
+  "de": "Du hast derzeit keinen Zugriff auf ein Projekt. Falls das ein Fehler ist, gib Stratos bitte Bescheid."
  },
  "Dokumentumok": {
   "en": "Documents",
@@ -73,7 +73,7 @@
  },
  "A portálon módosított időpont nem frissíti automatikusan a naptáradba korábban elmentett példányt — módosítás után mentsd el újra.": {
   "en": "A time changed in the portal does not update the copy you saved to your calendar earlier — save it again after a change.",
-  "de": "Eine im Portal geänderte Zeit aktualisiert den zuvor in Ihrem Kalender gespeicherten Eintrag nicht automatisch — speichern Sie ihn nach einer Änderung bitte erneut."
+  "de": "Eine im Portal geänderte Zeit aktualisiert den zuvor in deinem Kalender gespeicherten Eintrag nicht automatisch — speichere ihn nach einer Änderung bitte erneut."
  },
  "Lemondva": {
   "en": "Cancelled",
@@ -109,7 +109,7 @@
  },
  "Keresd a Stratos kapcsolattartódat.": {
   "en": "Get in touch with your Stratos contact.",
-  "de": "Wenden Sie sich bitte an Ihren Ansprechpartner bei Stratos."
+  "de": "Wende dich bitte an deinen Ansprechpartner bei Stratos."
  },
  "egy projekt": {
   "en": "one project",
@@ -121,7 +121,7 @@
  },
  "Csak a veled megosztott fájlok látszanak. A letöltési link egy percig érvényes; a letöltött másolat a te gépeden marad.": {
   "en": "Only files shared with you are shown. The download link is valid for one minute; the downloaded copy stays on your computer.",
-  "de": "Es werden nur Dateien angezeigt, die mit Ihnen geteilt wurden. Der Download-Link ist eine Minute gültig; die heruntergeladene Kopie bleibt auf Ihrem Computer."
+  "de": "Es werden nur Dateien angezeigt, die mit dir geteilt wurden. Der Download-Link ist eine Minute gültig; die heruntergeladene Kopie bleibt auf deinem Computer."
  },
  "A dokumentumok nem tölthetők be.": {
   "en": "The documents could not be loaded.",
@@ -133,7 +133,7 @@
  },
  "Ha a Stratos megoszt veled egy fájlt vagy mappát, itt jelenik meg.": {
   "en": "When Stratos shares a file or folder with you, it appears here.",
-  "de": "Wenn Stratos eine Datei oder einen Ordner mit Ihnen teilt, erscheint sie hier."
+  "de": "Wenn Stratos eine Datei oder einen Ordner mit dir teilt, erscheint sie hier."
  },
  "a(z) „{folder}” mappán keresztül": {
   "en": "via the folder ‘{folder}’",
@@ -149,7 +149,7 @@
  },
  "Itt adhatod le a projekthez szükséges anyagokat: logót, képeket, szövegeket és más fájlokat. A leadott fájlt nem lehet törölni, áthelyezni vagy felülírni — ha változott, töltsd fel az új változatot új fájlként.": {
   "en": "Here you can hand over the materials the project needs: logo, images, texts and other files. A file you have handed over cannot be deleted, moved or overwritten — if it has changed, upload the new version as a new file.",
-  "de": "Hier können Sie die Materialien für das Projekt übergeben: Logo, Bilder, Texte und andere Dateien. Eine übergebene Datei kann nicht gelöscht, verschoben oder überschrieben werden — wenn sie sich geändert hat, laden Sie die neue Version bitte als neue Datei hoch."
+  "de": "Hier kannst du die Materialien für das Projekt übergeben: Logo, Bilder, Texte und andere Dateien. Eine übergebene Datei kann nicht gelöscht, verschoben oder überschrieben werden — wenn sie sich geändert hat, lade die neue Version bitte als neue Datei hoch."
  },
  "Fájlonként legfeljebb {max}. Elfogadott: {types}. A fájlokat a tartalmuk alapján ellenőrizzük; vírusellenőrzés nincs.": {
   "en": "Up to {max} per file. Accepted: {types}. Files are checked by their content; there is no virus scan.",
@@ -157,7 +157,7 @@
  },
  "Jelenleg egy projekthez sincs hozzáférésed, ezért most nem tudsz fájlt leadni.": {
   "en": "You don't have access to any project at the moment, so you can't hand over files now.",
-  "de": "Sie haben derzeit keinen Zugriff auf ein Projekt und können daher keine Dateien übergeben."
+  "de": "Du hast derzeit keinen Zugriff auf ein Projekt und kannst daher keine Dateien übergeben."
  },
  "Projekt": {
   "en": "Project",
@@ -181,7 +181,7 @@
  },
  "vagy húzd ide a fájlokat": {
   "en": "or drag the files here",
-  "de": "oder ziehen Sie die Dateien hierher"
+  "de": "oder zieh die Dateien hierher"
  },
  "Feltöltések": {
   "en": "Uploads",
@@ -233,7 +233,7 @@
  },
  "Még nem adtál le fájlt.": {
   "en": "You haven't handed over any files yet.",
-  "de": "Sie haben noch keine Dateien übergeben."
+  "de": "Du hast noch keine Dateien übergeben."
  },
  "Leadott fájlok": {
   "en": "Handed-over files",
@@ -241,11 +241,11 @@
  },
  "Töltsd fel újra a fájlt.": {
   "en": "Please upload the file again.",
-  "de": "Bitte laden Sie die Datei erneut hoch."
+  "de": "Bitte lade die Datei erneut hoch."
  },
  "Írj valamit az üzenetbe.": {
   "en": "Write something in the message.",
-  "de": "Bitte schreiben Sie etwas in die Nachricht."
+  "de": "Bitte schreib etwas in die Nachricht."
  },
  "Észrevételek": {
   "en": "Feedback",
@@ -253,7 +253,7 @@
  },
  "Elküldött észrevételeid": {
   "en": "Your feedback sent",
-  "de": "Ihre gesendeten Rückmeldungen"
+  "de": "Deine gesendeten Rückmeldungen"
  },
  "A Stratos látta": {
   "en": "Seen by Stratos",
@@ -297,7 +297,7 @@
  },
  "Adj meg létező dátumot és időpontot.": {
   "en": "Enter a valid date and time.",
-  "de": "Bitte geben Sie ein gültiges Datum und eine gültige Uhrzeit ein."
+  "de": "Bitte gib ein gültiges Datum und eine gültige Uhrzeit ein."
  },
  "A javasolt időpont már elmúlt.": {
   "en": "The proposed time has already passed.",
@@ -313,7 +313,7 @@
  },
  "Legutóbbi javaslatod: {status}": {
   "en": "Your last proposal: {status}",
-  "de": "Ihr letzter Vorschlag: {status}"
+  "de": "Dein letzter Vorschlag: {status}"
  },
  "Új időpont javaslása": {
   "en": "Propose a new time",
@@ -346,5 +346,13 @@
  "A megbeszélés csak akkor módosul, ha a Stratos elfogadja. Munkanapokon 1 munkanapon belül reagálunk.": {
   "en": "The meeting only changes if Stratos accepts. We reply within 1 working day.",
   "de": "Der Termin ändert sich nur, wenn Stratos zustimmt. Wir antworten innerhalb von 1 Werktag."
+ },
+ "{name} megnyitása": {
+  "en": "Open {name}",
+  "de": "{name} öffnen"
+ },
+ "Megnyitás": {
+  "en": "Open",
+  "de": "Öffnen"
  }
 }

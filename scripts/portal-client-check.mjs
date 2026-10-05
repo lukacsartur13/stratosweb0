@@ -34,7 +34,7 @@ execFileSync('npx', ['vite', 'build', '--outDir', BUNDLE, '--emptyOutDir', '--lo
   cwd: join(ROOT, 'portal'), stdio: 'inherit',
   env: { ...process.env, VITE_SUPABASE_URL: MOCK_URL, VITE_SUPABASE_ANON_KEY: 'mock-anon-key-not-shaped-like-one' },
 });
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
 const server = createServer((req, res) => {
   const p = decodeURIComponent(new URL(req.url, 'http://x').pathname).replace(/^\/portal/, '');
   const file = join(BUNDLE, p === '/' || p === '' ? 'index.html' : p);
@@ -231,6 +231,8 @@ async function open(browser, { role = 'client', state = freshState(), viewport =
         state.signs.push({ path, ...body() });
         return json(route, { signedURL: `/object/sign/project-documents/${path}?token=download-token-secret` });
       }
+      // The bytes of an object this fake holds (the shared PDF for the viewer), else a stub attachment.
+      if (method === 'GET' && state.objects.has(path)) return route.fulfill({ status: 200, body: state.objects.get(path) });
       if (method === 'GET') return route.fulfill({ status: 200, headers: { 'content-disposition': 'attachment; filename="x"' }, body: 'x' });
       return route.abort();
     }
@@ -624,6 +626,20 @@ await check('light theme: every client page and the sign-in page read at 4.5:1 o
     await shot(login.page, `login-${scheme}`);
     await login.context.close();
   }
+});
+
+await check('Megnyitás: a shared PDF opens inside the client portal, without downloading', async () => {
+  const state = freshState();
+  state.objects.set(`${P1}/d-1`, readFileSync(join(ROOT, 'scripts', 'fixtures', 'viewer-test.pdf')));
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/megosztott`);
+  await page.getByRole('button', { name: 'Árajánlat.pdf megnyitása' }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.locator('[data-pdf-pages] canvas').first().waitFor({ timeout: 15000 });
+  await dialog.getByText('1 oldal').waitFor();
+  assert(await dialog.getByRole('button', { name: 'Letöltés' }).count() === 1, 'no download button in the viewer');
+  await shot(page, 'viewer-pdf');
+  await context.close();
 });
 
 await check('language: English and German in the client header, saved on the client\'s own profile; help says its articles are Hungarian', async () => {

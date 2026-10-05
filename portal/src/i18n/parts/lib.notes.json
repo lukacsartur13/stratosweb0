@@ -1,0 +1,55 @@
+{
+ "Notes are not installed in the database yet (20261011000100).": {
+  "hu": "A jegyzetek még nincsenek telepítve az adatbázisban (20261011000100).",
+  "de": "Notizen sind in der Datenbank noch nicht installiert (20261011000100)."
+ },
+ "This account may not change notes.": {
+  "hu": "Ez a fiók nem módosíthat jegyzeteket.",
+  "de": "Dieses Konto darf keine Notizen ändern."
+ },
+ "The database refused those values. Check the lengths.": {
+  "hu": "Az adatbázis elutasította ezeket az értékeket. Ellenőrizd a hosszukat.",
+  "de": "Die Datenbank hat diese Werte abgelehnt. Prüfen Sie die Längen."
+ },
+ "A note needs a title.": {
+  "hu": "A jegyzetnek kell cím.",
+  "de": "Eine Notiz braucht einen Titel."
+ },
+ "A point needs some text.": {
+  "hu": "A pontnak kell szöveg.",
+  "de": "Ein Punkt braucht einen Text."
+ },
+ "Only the portal owner can add checkpoints to a project.": {
+  "hu": "Csak a portál tulajdonosa adhat mérföldkövet a projekthez.",
+  "de": "Nur der Portalinhaber kann einem Projekt Meilensteine hinzufügen."
+ },
+ "Write what happened.": {
+  "hu": "Írd le, mi történt.",
+  "de": "Beschreiben Sie, was passiert ist."
+ },
+ "Tasks": {
+  "hu": "Teendők",
+  "de": "Aufgaben"
+ },
+ "Call": {
+  "hu": "Hívás",
+  "de": "Anruf"
+ },
+ "E-mail": {
+  "hu": "E-mail",
+  "en": "E-mail",
+  "de": "E-Mail"
+ },
+ "Meeting": {
+  "hu": "Megbeszélés",
+  "de": "Termin"
+ },
+ "Message": {
+  "hu": "Üzenet",
+  "de": "Nachricht"
+ },
+ "Other": {
+  "hu": "Egyéb",
+  "de": "Sonstiges"
+ }
+}

@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls';
+import { ActivityLog } from '@/features/activity/ActivityLog';
+import { ClientNotesPanel } from '@/features/notes/ClientNotesPanel';
 import { ArrowLeft, Plus } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { can, canAccess } from '@/lib/permissions';
@@ -524,10 +526,13 @@ export function ClientDetailScreen() {
               ))}
             </ol>
           </Panel>
+
+          <ActivityLog target={{ organization_id: client.id }} mayEdit={mayEdit} reloadToken={reloadToken} />
         </div>
 
         {/* ------------------------------------------------- the rail */}
         <div className="col-span-12 grid min-w-0 gap-4 lg:col-span-4">
+          <ClientNotesPanel organizationId={client.id} mayEdit={mayEdit} reloadToken={reloadToken} />
           <Panel>
             <SectionHeader
               title={t('Contacts')}

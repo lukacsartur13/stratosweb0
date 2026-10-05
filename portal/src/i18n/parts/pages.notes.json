@@ -1,0 +1,118 @@
+{
+ "New checklist": {
+  "hu": "Új lista",
+  "de": "Neue Checkliste"
+ },
+ "New note": {
+  "hu": "Új jegyzet",
+  "de": "Neue Notiz"
+ },
+ "Every note": {
+  "hu": "Összes jegyzet",
+  "de": "Alle Notizen"
+ },
+ "Pinned": {
+  "hu": "Kitűzve",
+  "de": "Angeheftet"
+ },
+ "Search notes…": {
+  "hu": "Keresés a jegyzetekben…",
+  "de": "Notizen durchsuchen…"
+ },
+ "Search notes": {
+  "hu": "Keresés a jegyzetekben",
+  "de": "Notizen durchsuchen"
+ },
+ "No notes yet": {
+  "hu": "Még nincs jegyzet",
+  "de": "Noch keine Notizen"
+ },
+ "Start one with New note or New checklist — during a meeting, every line is saved as you press Enter.": {
+  "hu": "Kezdj egyet az Új jegyzet vagy az Új lista gombbal — megbeszélés közben minden sor mentődik, amint Entert nyomsz.",
+  "de": "Beginnen Sie mit „Neue Notiz“ oder „Neue Checkliste“ — während eines Termins wird jede Zeile gespeichert, sobald Sie Enter drücken."
+ },
+ "Choose a note": {
+  "hu": "Válassz jegyzetet",
+  "de": "Wählen Sie eine Notiz"
+ },
+ "Or start a new one. A checklist point with a date also appears on Today.": {
+  "hu": "Vagy kezdj egy újat. A dátummal ellátott listapont a Ma oldalon is megjelenik.",
+  "de": "Oder beginnen Sie eine neue. Ein Checklistenpunkt mit Datum erscheint auch unter „Heute“."
+ },
+ "Unpin": {
+  "hu": "Kitűzés levétele",
+  "de": "Loslösen"
+ },
+ "Pin": {
+  "hu": "Kitűzés",
+  "de": "Anheften"
+ },
+ "Archive": {
+  "hu": "Archiválás",
+  "de": "Archivieren"
+ },
+ "About": {
+  "hu": "Kiről",
+  "de": "Betrifft"
+ },
+ "Open the client": {
+  "hu": "Ügyfél megnyitása",
+  "de": "Kunden öffnen"
+ },
+ "Saved": {
+  "hu": "Mentve",
+  "de": "Gespeichert"
+ },
+ "Notes beside the list": {
+  "hu": "Jegyzet a lista mellé",
+  "de": "Notizen zur Liste"
+ },
+ "Write freely — it is saved when you leave the field.": {
+  "hu": "Írj szabadon — a mező elhagyásakor mentődik.",
+  "de": "Schreiben Sie frei — beim Verlassen des Feldes wird gespeichert."
+ },
+ "Add a checklist to this note": {
+  "hu": "Lista hozzáadása a jegyzethez",
+  "de": "Checkliste zu dieser Notiz hinzufügen"
+ },
+ "Checklist": {
+  "hu": "Lista",
+  "de": "Checkliste"
+ },
+ "New point": {
+  "hu": "Új pont",
+  "de": "Neuer Punkt"
+ },
+ "New point — Enter to add": {
+  "hu": "Új pont — Enterrel hozzáadod",
+  "de": "Neuer Punkt — mit Enter hinzufügen"
+ },
+ "Done: {text}": {
+  "hu": "Kész: {text}",
+  "de": "Erledigt: {text}"
+ },
+ "Point": {
+  "hu": "Pont",
+  "de": "Punkt"
+ },
+ "Make \"{text}\" a project checkpoint": {
+  "hu": "„{text}” legyen projekt-mérföldkő",
+  "de": "„{text}“ zum Projektmeilenstein machen"
+ },
+ "Remove {text}": {
+  "hu": "{text} eltávolítása",
+  "de": "{text} entfernen"
+ },
+ "Loading…": {
+  "hu": "Betöltés…",
+  "de": "Wird geladen…"
+ },
+ "This client has no open project.": {
+  "hu": "Ennek az ügyfélnek nincs nyitott projektje.",
+  "de": "Dieser Kunde hat kein offenes Projekt."
+ },
+ "Add to {project}": {
+  "hu": "Hozzáadás: {project}",
+  "de": "Zu {project} hinzufügen"
+ }
+}

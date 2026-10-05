@@ -26,6 +26,7 @@ import { buildRecordTimeline, useNoteMutation, useRecordDetail } from '@/lib/rec
 import { formatWhen } from '@/lib/leads';
 import { supabase, isConfigured } from '@/lib/supabase';
 import { t } from '@/lib/i18n';
+import { ActivityLog } from '@/features/activity/ActivityLog';
 
 /**
  * ONE OPPORTUNITY — the commercial detail (§13).
@@ -268,6 +269,8 @@ export function OpportunityDetailScreen() {
               ))}
             </ol>
           </Panel>
+
+          <ActivityLog target={{ opportunity_id: deal.id }} mayEdit={mayEdit} reloadToken={reloadToken} />
         </div>
 
         {/* ================================= 4/12 — commercial control */}

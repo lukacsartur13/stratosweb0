@@ -6,6 +6,7 @@ import { can, canAccess } from '@/lib/permissions';
 import { isImpactLead } from '@/lib/impactRules';
 import { useScope } from '@/lib/scope';
 import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls';
+import { ActivityLog } from '@/features/activity/ActivityLog';
 import { Grid } from '@/components/shell/PortalShell';
 import {
   Button, DataState, Panel, SectionHeader, Skeleton, StatusPill, Textarea, cn,
@@ -238,6 +239,8 @@ export function LeadDetailScreen() {
               </p>
             </div>
           </Panel>
+
+          <ActivityLog target={{ lead_id: lead.id }} mayEdit={mayEdit} reloadToken={reloadToken} />
         </div>
 
         {/* =========================================== 4/12 — the metadata */}

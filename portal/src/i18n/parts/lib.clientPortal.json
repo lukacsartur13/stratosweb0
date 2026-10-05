@@ -1,7 +1,7 @@
 {
  "A letöltés nem indult el. Lehet, hogy a megosztás időközben megszűnt — frissítsd az oldalt.": {
   "en": "The download didn't start. The share may have ended in the meantime — refresh the page.",
-  "de": "Der Download wurde nicht gestartet. Möglicherweise wurde die Freigabe inzwischen beendet — bitte laden Sie die Seite neu."
+  "de": "Der Download wurde nicht gestartet. Möglicherweise wurde die Freigabe inzwischen beendet — bitte lade die Seite neu."
  },
  "Megszakadt a kapcsolat a feltöltés közben.": {
   "en": "The connection dropped during the upload.",
@@ -9,7 +9,7 @@
  },
  "A feltöltést megszakítottad.": {
   "en": "You cancelled the upload.",
-  "de": "Sie haben das Hochladen abgebrochen."
+  "de": "Du hast das Hochladen abgebrochen."
  },
  "A feltöltés nem fejeződött be.": {
   "en": "The upload did not finish.",
@@ -21,7 +21,7 @@
  },
  "A beérkezett fájl mérete nem egyezik az elküldöttel. Töltsd fel újra.": {
   "en": "The size of the file received does not match the one sent. Please upload it again.",
-  "de": "Die Größe der empfangenen Datei stimmt nicht mit der gesendeten überein. Bitte laden Sie sie erneut hoch."
+  "de": "Die Größe der empfangenen Datei stimmt nicht mit der gesendeten überein. Bitte lade sie erneut hoch."
  },
  "A tárhely nem fogadta el a fájlt.": {
   "en": "The storage did not accept the file.",
@@ -29,7 +29,7 @@
  },
  "Ehhez a projekthez már nincs hozzáférésed, ezért a fájl nem került be.": {
   "en": "You no longer have access to this project, so the file was not added.",
-  "de": "Sie haben keinen Zugriff mehr auf dieses Projekt, daher wurde die Datei nicht hinzugefügt."
+  "de": "Du hast keinen Zugriff mehr auf dieses Projekt, daher wurde die Datei nicht hinzugefügt."
  },
  "Ez a fájltípus nem tölthető fel, vagy a tartalma nem egyezik a kiterjesztésével.": {
   "en": "This file type can't be uploaded, or its content doesn't match its extension.",
@@ -37,15 +37,15 @@
  },
  "Elérted a feltöltési korlátot. Várd meg a folyamatban lévőket, vagy próbáld újra később.": {
   "en": "You've reached the upload limit. Wait for the ones in progress, or try again later.",
-  "de": "Sie haben das Upload-Limit erreicht. Warten Sie bitte, bis die laufenden Uploads fertig sind, oder versuchen Sie es später erneut."
+  "de": "Du hast das Upload-Limit erreicht. Warte bitte, bis die laufenden Uploads fertig sind, oder versuch es später erneut."
  },
  "Ehhez a projekthez már nincs hozzáférésed.": {
   "en": "You no longer have access to this project.",
-  "de": "Sie haben keinen Zugriff mehr auf dieses Projekt."
+  "de": "Du hast keinen Zugriff mehr auf dieses Projekt."
  },
  "A feltöltés nem sikerült. Próbáld újra.": {
   "en": "The upload failed. Please try again.",
-  "de": "Das Hochladen ist fehlgeschlagen. Bitte versuchen Sie es erneut."
+  "de": "Das Hochladen ist fehlgeschlagen. Bitte versuch es erneut."
  },
  ".{ext} típusú fájl nem tölthető fel.": {
   "en": ".{ext} files can't be uploaded.",
@@ -61,11 +61,11 @@
  },
  "A fájl elküldve, de a visszaigazolás nem érkezett meg. Próbáld újra az ellenőrzéshez.": {
   "en": "The file was sent, but no confirmation arrived. Retry to check again.",
-  "de": "Die Datei wurde gesendet, aber die Bestätigung ist nicht eingegangen. Versuchen Sie es erneut, um sie zu prüfen."
+  "de": "Die Datei wurde gesendet, aber die Bestätigung ist nicht eingegangen. Versuch es erneut, um sie zu prüfen."
  },
  "A feltöltés váratlanul megszakadt. Próbáld újra.": {
   "en": "The upload stopped unexpectedly. Please try again.",
-  "de": "Das Hochladen wurde unerwartet unterbrochen. Bitte versuchen Sie es erneut."
+  "de": "Das Hochladen wurde unerwartet unterbrochen. Bitte versuch es erneut."
  },
  "PDF, Word/Excel/PowerPoint, szöveg és CSV, képek (PNG, JPG, GIF, WebP, TIFF, HEIC, SVG), PSD/AI/EPS, MP4/MOV/MP3, ZIP": {
   "en": "PDF, Word/Excel/PowerPoint, text and CSV, images (PNG, JPG, GIF, WebP, TIFF, HEIC, SVG), PSD/AI/EPS, MP4/MOV/MP3, ZIP",

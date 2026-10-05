@@ -644,3 +644,37 @@ Mit csinál:
 Ellenőrizve (helyben): `tests/portal-help-i18n.spec.ts` 5/5 (74 cikk fordítva, a szerkesztett kimarad, a
 forma ki van kényszerítve, a weboldal szövege kerül át, a kereső angolul és németül is a jó cikket adja);
 `scripts/portal-client-check.mjs` 20/20 és `scripts/portal-tracker-check.mjs` 52/52.
+
+## 21. Alapok: fájlmegnyitás, jegyzetek, Ma, tevékenységnapló (14. szakasz, „1. Alapok”)
+
+**Sorrend: a 20. szakasz migrációja (súgófordítás), majd ez, majd deploy.** Az új Jegyzetek és Ma
+képernyő a migráció előtt „not installed” hibát mutatna.
+
+1. SQL Editor: `supabase/migrations/20261011000100_notes_tasks_activity.sql` (ismételten is futtatható).
+2. Deploy (push a `main`-re).
+
+Mit csinál:
+
+- **Fájlmegnyitás letöltés nélkül** — a tulajdonosi dokumentumtárban (Preview) és az ügyfélportál
+  „Megosztott dokumentumok” oldalán (Megnyitás): **PDF** (PDF.js, oldalanként, nagyítással), **Word .docx**
+  (szövegként: címsorok, listák, táblázatok, képek; az elrendezés egyszerűsítve) és **Excel .xlsx**
+  (munkalaponként, táblázatként), a képek és szövegek mellett. Biztonság: a fájl semmit nem futtathat — a
+  PDF-szkriptek és az `eval` ki vannak kapcsolva, a Word-tartalom engedélylistás elemekből épül újra (link
+  nem kattintható, csak beágyazott raszterkép marad), HTML/SVG/régi .doc/.xls továbbra is csak letölthető.
+  A három olvasó (pdfjs-dist 4.10, mammoth, read-excel-file) csak megnyitáskor töltődik be. A PDF-olvasó
+  `.mjs` munkafájlja JavaScript-típussal megy ki (`netlify.toml`).
+- **Jegyzetek** (új menüpont): sima jegyzet vagy lista, ügyfélhez köthető, kitűzhető, kereshető,
+  archiválható. Megbeszélés közbeni gyors rögzítésre: Enter = a pont elmentve, a kurzor marad. Dátumos pont
+  = feladat; egy pont egy kattintással az ügyfél egyik projektjének mérföldkövévé alakítható (csak a
+  tulajdonos). Az ügyfél oldalán „Jegyzetek és listák” panel.
+- **Ma** (új menüpont): ami ma esedékes vagy késik — feladatok, sales-utánkövetések, projekt-mérföldkövek, a
+  mai megbeszélések; gyors feladatfelvétel (a „Teendők” listába).
+- **Tevékenységnapló** az ügyfél, a lead és a lehetőség oldalán: hívás / e-mail / megbeszélés / üzenet,
+  időponttal. Egy lead végleges törlése a naplóját is viszi.
+- Az ügyfélportál német szövege tegező; a fordítások csak akkor töltődnek le, ha valaki nyelvet választott
+  (az induló fájl ~258 KB maradt).
+- `supabase/checks/client-extras-verify.sql`: a súgó új `translations` oszlopát is elfogadja.
+
+Ellenőrizve (helyben): `tests/portal-notes-db.spec.ts` 5/5; dokumentum-ellenőrző 18/18 (valódi PDF,
+.docx és .xlsx mintákkal, `scripts/fixtures/`); ügyfélportál 21/21; tulajdonosi ellenőrző 55/55; minden
+portál-teszt (263 + 288) — kihagyott teszt nélkül.
