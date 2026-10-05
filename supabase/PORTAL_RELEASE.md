@@ -546,3 +546,37 @@ Ellenőrizve (helyben): PGlite `tests/portal-trash-db.spec.ts` 10/10; renderelt,
 `scripts/portal-tracker-check.mjs` 46/46 (4 új Kuka-eset, kontrasztmérés a Kuka oldalon);
 a meglévő portál-tesztek (node + desktop-1440) zöldek, köztük a dokumentumtár és az
 ügyfélportál definer-függvény szabályai.
+
+## 18. All fül, Impact-projekt jelentkezés nélkül, Impact-leadek törlése (11. szakasz)
+
+**Sorrend: migráció → deploy.** A frontend a migráció előtt sem törik el, de az „New Impact
+project” és az Impact-lead végleges törlése csak a migráció után működik.
+
+1. SQL Editor: `supabase/migrations/20261008000100_impact_direct.sql` (ismételten is futtatható).
+2. Ellenőrzés — mindkét sor `true`:
+
+```sql
+select 'impact_direct oszlop' as mi, exists (select 1 from information_schema.columns
+  where table_name = 'projects' and column_name = 'impact_direct') as ok
+union all select 'lead-törlés trigger', exists (select 1 from pg_trigger
+  where tgname = 'leads_delete_impact_application');
+```
+
+3. Deploy (push a `main`-re).
+
+Mit csinál:
+
+- **Projects → All:** minden projekt egy listában (egyszeri, havi, Impact; nyitott és lezárt,
+  a Kuka nélkül), típus-szűrővel és kereséssel. Felül négy szám: folyamatban lévő egyszeri
+  projektek (és a megállapodott értékük pénznemenként), futó havi szerződések (havidíjak),
+  folyamatban lévő Impact-projektek (piaci érték, ingyenes), és ami figyelmet kér (késik,
+  ügyfélre vár, elakadt). A különböző fajta összegeket sosem adja össze.
+- **Impact → New Impact project:** Impact-projekt jelentkezés nélkül (`impact_direct`), meglévő
+  vagy új ügyféllel. Ugyanúgy ingyenes, HUF, és csak piaci értékkel zárható le.
+- **Impact-lead törlése:** a jelentkezés oldalán „Move to trash” (a lead kerül a Kukába, és
+  kikerül az Impact-folyamatból), majd a Kukából véglegesen törölhető — csak a tulajdonos
+  törölheti. A jelentkezés vele együtt törlődik; ha indult belőle projekt, az megmarad
+  (jelentkezés nélküli Impact-projektként).
+
+Ellenőrizve (helyben): `tests/portal-trash-db.spec.ts` 12/12; `scripts/portal-tracker-check.mjs`
+49/49; a node- és desktop-tesztcsomag zöld (244 + 266).

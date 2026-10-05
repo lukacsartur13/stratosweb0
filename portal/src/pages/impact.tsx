@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowLeft, Play } from 'lucide-react';
+import { ArrowLeft, Play, Plus } from 'lucide-react';
 import { useScope } from '@/lib/scope';
 import { Grid } from '@/components/shell/PortalShell';
 import {
@@ -14,13 +14,15 @@ import {
   findClientMatches, uniqueSlug, useCheckpointTemplates, useClients, useTrackerRows, type Client, type Project,
 } from '@/lib/operations';
 import {
-  IMPACT_STATUSES, SETTABLE_IMPACT_STATUSES, impactAnswers, impactStatusLabel, impactStatusTone,
+  IMPACT_STATUSES, SETTABLE_IMPACT_STATUSES, impactAnswers, impactStatusLabel, impactStatusTone, parseMarketValue,
 } from '@/lib/impactRules';
 import {
   useImpactApplication, useImpactApplications, useImpactConflicts, useImpactMutations, useImpactProjects,
   useImpactSummary, useUncapturedImpactLeads, type ImpactApplication, type StartProjectInput,
 } from '@/lib/impact';
 import { safeUrl } from '@/pages/clients';
+import { useOperationsMutations } from '@/lib/operations';
+import { MoveToTrashButton } from '@/features/trash/TrashControls';
 
 /**
  * IMPACT — the free programme, kept apart from the paid business.
@@ -48,6 +50,7 @@ export function ImpactScreen() {
   const [params, setParams] = useSearchParams();
   const view: View = params.get('view') === 'active' ? 'active' : params.get('view') === 'closed' ? 'closed' : 'applications';
   const [statusFilter, setStatusFilter] = useState<string>('open');
+  const [creating, setCreating] = useState(false);
 
   const applications = useImpactApplications(reloadToken);
   const projects = useImpactProjects(reloadToken);
@@ -155,6 +158,7 @@ export function ImpactScreen() {
         </Panel>
       )}
 
+      <div className="flex flex-wrap items-center justify-between gap-2">
       <nav aria-label="Impact views" className="flex flex-wrap items-center gap-px">
         {([
           ['applications', `Applications (${applications.rows.length})`],
@@ -175,6 +179,16 @@ export function ImpactScreen() {
           </button>
         ))}
       </nav>
+        <Button size="sm" variant="primary" onClick={() => setCreating(true)}>
+          <Plus size={12} aria-hidden="true" /> New Impact project
+        </Button>
+      </div>
+      {creating && (
+        <NewImpactProjectDialog
+          onClose={() => setCreating(false)}
+          onCreated={(id) => { setCreating(false); navigate(`/projects/${id}`); }}
+        />
+      )}
 
       {view === 'applications' && (
         <Panel className="min-w-0">
@@ -347,7 +361,14 @@ export function ImpactApplicationScreen() {
         <Link to="/impact" className="t-note inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-paper">
           <ArrowLeft size={11} aria-hidden="true" /> Impact applications
         </Link>
-        <StatusPill tone={impactStatusTone(app.status)}>{impactStatusLabel(app.status)}</StatusPill>
+        <span className="flex flex-wrap items-center gap-2">
+          {/* The applicant's lead goes to the Trash; deleting it there deletes
+              this application too (20261008000100_impact_direct.sql). */}
+          {lead && (
+            <MoveToTrashButton kind="lead" id={lead.id} name={applicantName(app)} onTrashed={() => navigate('/impact')} />
+          )}
+          <StatusPill tone={impactStatusTone(app.status)}>{impactStatusLabel(app.status)}</StatusPill>
+        </span>
       </div>
 
       <Panel aria-label="Application summary" className="px-4 py-3.5">
@@ -595,6 +616,110 @@ function StartProjectDialog({ app, busy, onClose, onStart }: {
         </Field>
         <Field id="impact-template" label="Starting checkpoints" hint="Copied into the project — editing the template later never changes them.">
           <Select id="impact-template" className="w-full py-2.5 text-sm" value={templateId} onChange={(e) => setTemplateId(e.target.value)}>
+            <option value="">{matched ? `Match the service — ${matched.name} (${matched.steps.length} steps)` : 'Match the service'}</option>
+            {templates.live.map((t) => <option key={t.id} value={t.id}>{t.name} ({t.steps.length} steps)</option>)}
+            <option value="none">No checkpoints yet</option>
+          </Select>
+        </Field>
+        {error && <p role="alert" className="text-xs text-danger">{error}</p>}
+      </div>
+    </Dialog>
+  );
+}
+
+/**
+ * An Impact project without an application — for work agreed outside the
+ * Impact form (20261008000100_impact_direct.sql). Free like every Impact
+ * project: no fee, HUF, closed only with a market value.
+ */
+function NewImpactProjectDialog({ onClose, onCreated }: { onClose: () => void; onCreated: (id: string) => void }) {
+  const clients = useClients();
+  const templates = useCheckpointTemplates();
+  const ops = useOperationsMutations(() => {});
+  const [error, setError] = useState<string | null>(null);
+  const [form, setForm] = useState({
+    organization_id: '', client_name: '', name: '', service: 'Website', market_value: '',
+    start_date: new Date().toISOString().slice(0, 10), target_date: '', template: '',
+  });
+  const set = (key: keyof typeof form) => (e: { target: { value: string } }) => setForm((p) => ({ ...p, [key]: e.target.value }));
+  const matched = matchTemplate(templates.live, form.service);
+  const chosen = form.template === 'none' ? null : templates.live.find((t) => t.id === form.template) ?? matched;
+
+  const submit = async () => {
+    if (!form.organization_id && !form.client_name.trim()) { setError('Choose a client, or type the name of a new one.'); return; }
+    if (!form.name.trim()) { setError('A project needs a name.'); return; }
+    let market: number | null = null;
+    if (form.market_value.trim()) {
+      const parsed = parseMarketValue(form.market_value);
+      if ('error' in parsed) { setError(parsed.error); return; }
+      market = parsed.value;
+    }
+    let org = form.organization_id;
+    if (!org) {
+      const created = await ops.createClient({
+        name: form.client_name.trim(), slug: uniqueSlug(form.client_name, clients.rows.map((c) => c.slug)),
+        acquisition_source: 'impact', primary_service: 'Impact Program',
+      });
+      if (typeof created === 'string') { setError(created); return; }
+      org = created.id;
+    }
+    const result = await ops.createProject({
+      organization_id: org, name: form.name.trim(), slug: uniqueSlug(form.name, []),
+      service: form.service.trim() || null, status: 'planned', currency: 'HUF', value: null,
+      start_date: form.start_date || null, target_date: form.target_date || null,
+      program: 'impact', impact_direct: true, market_value: market,
+    }, chosen?.steps ?? []);
+    if (typeof result === 'string') { setError(result); return; }
+    onCreated(result.id);
+  };
+
+  return (
+    <Dialog
+      open
+      wide
+      onClose={onClose}
+      title="New Impact project"
+      description="For free work agreed outside the Impact form. It is counted with the other Impact projects and is never billed."
+      footer={<>
+        <Button size="sm" onClick={onClose}>Cancel</Button>
+        <Button size="sm" variant="primary" onClick={submit} disabled={ops.busy !== null}>Create</Button>
+      </>}
+    >
+      <div className="grid gap-3">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Field id="ni-client" label="Client">
+            <Select id="ni-client" className="w-full py-2.5 text-sm" value={form.organization_id} onChange={set('organization_id')}>
+              <option value="">New client…</option>
+              {clients.rows.filter((c: Client) => !c.archived_at).map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+            </Select>
+          </Field>
+          {!form.organization_id && (
+            <Field id="ni-client-name" label="New client's name">
+              <Input id="ni-client-name" value={form.client_name} onChange={set('client_name')} placeholder="e.g. Zöld Kör Egyesület" />
+            </Field>
+          )}
+        </div>
+        <Field id="ni-name" label="Project name">
+          <Input id="ni-name" value={form.name} onChange={set('name')} />
+        </Field>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Field id="ni-service" label="Service">
+            <Input id="ni-service" value={form.service} onChange={set('service')} />
+          </Field>
+          <Field id="ni-market" label="Market value (HUF)" hint="What it would cost a paying client. Can be added later; needed before closing.">
+            <Input id="ni-market" inputMode="numeric" value={form.market_value} onChange={set('market_value')} placeholder="e.g. 1 250 000" />
+          </Field>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Field id="ni-start" label="Start">
+            <Input id="ni-start" type="date" value={form.start_date} onChange={set('start_date')} />
+          </Field>
+          <Field id="ni-target" label="Deadline">
+            <Input id="ni-target" type="date" value={form.target_date} onChange={set('target_date')} />
+          </Field>
+        </div>
+        <Field id="ni-template" label="Checkpoints" hint="Copied into the project. Everything is editable afterwards.">
+          <Select id="ni-template" className="w-full py-2.5 text-sm" value={form.template} onChange={set('template')}>
             <option value="">{matched ? `Match the service — ${matched.name} (${matched.steps.length} steps)` : 'Match the service'}</option>
             {templates.live.map((t) => <option key={t.id} value={t.id}>{t.name} ({t.steps.length} steps)</option>)}
             <option value="none">No checkpoints yet</option>

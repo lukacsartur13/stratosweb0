@@ -227,15 +227,49 @@ test.describe('leads', () => {
     expect(JSON.stringify(log.rows)).not.toMatch(/Kiss|peter@|Tóth|adam@/);
   });
 
-  test('an Impact lead is blocked by its application; a team member may do nothing', async () => {
+  test('an Impact lead: only the owner deletes it, and its application goes with it', async () => {
     await ok(db, 'admin', `update leads set trashed_at = now() where id = $1`, [L.impact]);
-    // The owner is told why; an admin, whose RLS hides Impact, is refused by the foreign key.
-    const r = await as(db, 'owner', `select purge_lead($1)`, [L.impact]);
-    expect(r.error?.detail).toContain('Impact application');
     const a = await as(db, 'admin', `select purge_lead($1)`, [L.impact]);
-    expect(['23001', '23503']).toContain(a.error?.code);
-    expect(await exists(db, 'leads', L.impact)).toBe(true);
+    expect(a.error?.message).toContain('stratos:purge_forbidden');
     const t = await as(db, 'team', `select purge_lead($1)`, [L.impact]);
     expect(t.error?.message).toContain('stratos:purge_forbidden');
+    expect(await exists(db, 'leads', L.impact)).toBe(true);
+    await ok(db, 'owner', `select purge_lead($1)`, [L.impact]);
+    expect(await exists(db, 'leads', L.impact)).toBe(false);
+    const apps = await db.query<{ n: number }>(`select count(*)::int as n from impact_applications where lead_id = $1`, [L.impact]);
+    expect(apps.rows[0].n).toBe(0);
+  });
+});
+
+test.describe('Impact without an application', () => {
+  let db: PGlite;
+  test.beforeAll(async () => { db = await fresh(); });
+
+  test('the owner creates a direct Impact project; one without an application is still refused', async () => {
+    await ok(db, 'owner', `insert into projects (organization_id, name, slug, program, impact_direct, status, currency)
+                           values ($1, 'Direct', 'direct', 'impact', true, 'planned', 'HUF')`, [ORG.a]);
+    const bare = await as(db, 'owner', `insert into projects (organization_id, name, slug, program, status, currency)
+                                         values ($1, 'Bare', 'bare', 'impact', 'planned', 'HUF')`, [ORG.a]);
+    expect(bare.error?.message).toContain('stratos:impact_project_without_application');
+    const paid = await as(db, 'owner', `insert into projects (organization_id, name, slug, impact_direct, currency)
+                                         values ($1, 'Paid', 'paid-direct', true, 'HUF')`, [ORG.a]);
+    expect(paid.error?.message).toContain('projects_impact_direct_check');
+  });
+
+  test('deleting the lead of a started application keeps the project, as a direct one', async () => {
+    const [app] = await ok(db, 'owner', `select id from impact_applications where lead_id = $1`, [L.impact]);
+    await ok(db, 'owner', `update impact_applications set status = 'accepted' where id = $1`, [app.id]);
+    const [{ p }] = await ok(db, 'owner', `select impact_start_project($1, $2, null, null, null, 'Started', 'started', null, '{}') as p`,
+      [app.id, ORG.a]);
+    await ok(db, 'owner', `update projects set archived_at = now() where id = $1`, [p]);
+    const blocked = await as(db, 'owner', `select purge_project($1)`, [p]);
+    expect(blocked.error?.detail).toContain('Impact application');
+    await ok(db, 'owner', `update leads set trashed_at = now() where id = $1`, [L.impact]);
+    await ok(db, 'owner', `select purge_lead($1)`, [L.impact]);
+    const [proj] = (await db.query<{ impact_direct: boolean }>(`select impact_direct from projects where id = $1`, [p])).rows;
+    expect(proj.impact_direct).toBe(true);
+    await ok(db, 'owner', `update projects set archived_at = now() where id = $1`, [p]);
+    await ok(db, 'owner', `select purge_project($1)`, [p]);
+    expect(await exists(db, 'projects', p as string)).toBe(false);
   });
 });

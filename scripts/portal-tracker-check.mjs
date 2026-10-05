@@ -1125,6 +1125,55 @@ await check('trash: a lead moved to the Trash leaves Leads and shows the banner 
   await context.close();
 });
 
+/* ------------------------------------------------- All, Impact direct */
+
+await check('all: one list of every kind with its own figures; the kind filter narrows it', async () => {
+  const { page, context } = await open(browser);
+  await page.goto(`${BASE}/projects`);
+  await page.getByRole('button', { name: /^All \(/ }).click();
+  const list = page.getByRole('table');
+  for (const name of ['Late website', 'Website care', 'Tanoda website', 'Delivered site']) {
+    await list.getByRole('link', { name }).waitFor();
+  }
+  const strip = page.getByRole('region', { name: 'All projects' });
+  assert((await strip.innerText()).replace(/\s/g, '').includes('240000Ft'), 'monthly fees missing from the figures');
+  await shot(page, 'all-projects');
+  await page.getByLabel('Kind').selectOption('impact');
+  await list.getByRole('link', { name: 'Tanoda website' }).waitFor();
+  assert(!(await list.getByRole('link', { name: 'Late website' }).isVisible()), 'the kind filter did not narrow');
+  await context.close();
+});
+
+await check('impact: New Impact project creates a free, direct project without an application', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/impact`);
+  await page.getByRole('button', { name: 'New Impact project' }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByLabel('Client', { exact: true }).selectOption(ORG.id);
+  await dialog.getByLabel('Project name').fill('Menedékház website');
+  await dialog.getByLabel(/Market value/).fill('900 000');
+  await shot(page, 'impact-new');
+  await dialog.getByRole('button', { name: 'Create' }).click();
+  await page.waitForURL(/\/projects\/p-new-/);
+  const post = state.writes.find((w) => w.table === 'projects' && w.method === 'POST');
+  assert(post.body.program === 'impact' && post.body.impact_direct === true && post.body.value === null
+    && post.body.currency === 'HUF' && post.body.market_value === 900000, `wrong insert: ${JSON.stringify(post.body)}`);
+  assert(!state.writes.some((w) => w.table.startsWith('rpc:impact_start_project')), 'went through the application path');
+  await context.close();
+});
+
+await check('impact: an applicant\'s lead goes to the Trash from the application screen', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/impact/applications/a-new`);
+  page.once('dialog', (d) => d.accept());
+  await page.getByRole('button', { name: 'Move to trash' }).click();
+  await page.waitForURL(/\/impact$/);
+  assert(state.impactLead.trashed_at, 'the Impact lead was not moved to the Trash');
+  await context.close();
+});
+
 /* ------------------------------------------------------------- Sales */
 
 await check('sales: "Done" is one call per double click; the action leaves the follow-ups; a failure leaves it', async () => {
@@ -1290,7 +1339,7 @@ await check('owner: Appearance in the sidebar — System follows the device, Lig
   for (const scheme of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: scheme });
     await page.waitForFunction((t) => document.documentElement.dataset.theme === t, scheme);
-    for (const path of ['/', '/projects', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/trash', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
+    for (const path of ['/', '/projects', '/projects?view=all', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/trash', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
       await page.goto(`${BASE}${path}`);
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(150);

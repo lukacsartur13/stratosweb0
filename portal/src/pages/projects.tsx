@@ -7,7 +7,7 @@ import { useScope } from '@/lib/scope';
 import { useRows } from '@/lib/useRows';
 import { Grid } from '@/components/shell/PortalShell';
 import {
-  Badge, Button, Cell, DataLine, DataState, Dialog, ErrorState, Field, Input, NotRecorded,
+  Badge, Button, Cell, DataLine, DataState, Dialog, ErrorState, Field, Input, MetricCell, MetricStrip, NotRecorded,
   Panel, Row, SectionHeader, Select, Skeleton, StatusPill, Table, Textarea, cn,
 } from '@/components/ui';
 import { CURRENCIES, money, percent } from '@/lib/money';
@@ -55,7 +55,7 @@ import { InTrashBanner, MoveToTrashButton } from '@/features/trash/TrashControls
  * Active or Closed.
  */
 
-type View = 'active' | 'closed' | 'monthly';
+type View = 'all' | 'active' | 'closed' | 'monthly';
 type Flag = 'all' | 'late' | 'waiting' | 'blocked';
 
 export function ProjectsScreen() {
@@ -65,7 +65,8 @@ export function ProjectsScreen() {
   const [params, setParams] = useSearchParams();
   const mayEdit = canAccess(profile, 'manage_projects');
 
-  const view: View = params.get('view') === 'closed' ? 'closed' : params.get('view') === 'monthly' ? 'monthly' : 'active';
+  const requested = params.get('view');
+  const view: View = requested === 'closed' || requested === 'monthly' || requested === 'all' ? requested : 'active';
   const { rows, state, message, reload } = useProjects(reloadToken);
   const [query, setQuery] = useState('');
   const [flag, setFlag] = useState<Flag>('all');
@@ -86,6 +87,7 @@ export function ProjectsScreen() {
   );
   const monthly = useMemo(() => rows.filter((p) => !p.archived_at && isMonthly(p)), [rows]);
   const runningMonthly = monthly.filter((p) => !isClosedProject(p)).length;
+  const everything = useMemo(() => rows.filter((p) => !p.archived_at), [rows]);
   const tracker = useTrackerRows(
     present.map((p) => p.id),
     [...new Set(present.map((p) => p.organization_id))],
@@ -141,6 +143,7 @@ export function ProjectsScreen() {
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <nav aria-label="Project views" className="flex flex-wrap items-center gap-px">
           {([
+            ['all', `All (${everything.length})`],
             ['active', `Active (${activeCount})`],
             ['closed', `Closed (${closedCount})`],
             ['monthly', `Monthly contracts (${runningMonthly})`],
@@ -170,7 +173,9 @@ export function ProjectsScreen() {
         </div>
       </div>
 
-      {view === 'monthly' ? (
+      {view === 'all' ? (
+        <AllProjects rows={everything} summaries={summaries} state={state} message={message} onRetry={reload} />
+      ) : view === 'monthly' ? (
         <MonthlyContracts rows={monthly} state={state} message={message} onRetry={reload} />
       ) : (
       <Panel className="min-w-0">
@@ -298,6 +303,139 @@ export function ProjectsScreen() {
           onCreated={(id) => { setCreating(false); void reload(); navigate(`/projects/${id}`); }}
         />
       )}
+    </div>
+  );
+}
+
+/**
+ * ALL — every project in one place: one-off, monthly and Impact, open and
+ * closed, nothing in the Trash.
+ *
+ * The figures on top are counts and, per currency, sums that already exist
+ * elsewhere (one-off value of open projects, running monthly fees, Impact
+ * market value in progress). Never one total across kinds or currencies: a
+ * project value, a monthly fee and a donated market value are three different
+ * things.
+ */
+function AllProjects({
+  rows, summaries, state, message, onRetry,
+}: { rows: Project[]; summaries: Record<string, TrackerSummary>; state: string; message: string; onRetry: () => void }) {
+  const navigate = useNavigate();
+  const [query, setQuery] = useState('');
+  const [kind, setKind] = useState<'all' | 'one_off' | 'monthly' | 'impact'>('all');
+
+  const kindOf = (p: Project) => (p.program === 'impact' ? 'impact' : isMonthly(p) ? 'monthly' : 'one_off');
+  const open = (p: Project) => !isClosedProject(p) && p.status !== 'cancelled';
+  const oneOff = rows.filter((p) => kindOf(p) === 'one_off');
+  const impact = rows.filter((p) => kindOf(p) === 'impact');
+  const openOneOff = oneOff.filter(open);
+  const valueByCurrency = new Map<string, number>();
+  for (const p of openOneOff) {
+    if (p.value !== null) valueByCurrency.set(p.currency, (valueByCurrency.get(p.currency) ?? 0) + Number(p.value));
+  }
+  const fees = monthlyTotals(rows);
+  const impactOpen = impact.filter(open);
+  const impactValue = impactOpen.reduce((n, p) => n + Number(p.market_value ?? 0), 0);
+  const attention = openOneOff.filter((p) => {
+    const s = summaries[p.id];
+    return s && (s.late || s.waiting.length > 0 || s.blocked.length > 0);
+  }).length;
+  const sums = (m: Map<string, number> | { currency: string; total: number }[]) =>
+    (Array.isArray(m) ? m.map((t) => [t.currency, t.total] as const) : [...m.entries()])
+      .map(([c, v]) => money(v, c)).join(' · ') || '—';
+
+  const q = query.trim().toLowerCase();
+  const shown = rows
+    .filter((p) => kind === 'all' || kindOf(p) === kind)
+    .filter((p) => !q || [p.name, p.client?.name, p.service].some((f) => String(f ?? '').toLowerCase().includes(q)))
+    .sort((a, b) => Number(!open(a)) - Number(!open(b)) || a.name.localeCompare(b.name));
+
+  const kindBadge = (p: Project) => {
+    const k = kindOf(p);
+    return k === 'impact' ? <Badge tone="good">Impact</Badge>
+      : k === 'monthly' ? <Badge tone="neutral">Monthly</Badge>
+        : <span className="text-[11px] text-haze">One-off</span>;
+  };
+  const stateOf = (p: Project) => {
+    if (isClosedProject(p)) return <Badge tone="neutral">{isMonthly(p) ? 'Ended' : 'Closed'}</Badge>;
+    if (p.status === 'cancelled') return <Badge tone="neutral">Cancelled</Badge>;
+    if (isMonthly(p)) return <Badge tone="good">Running</Badge>;
+    return <StatusPill tone={projectStatusTone(p.status)}>{projectStatusLabel(p.status)}</StatusPill>;
+  };
+  const priceOf = (p: Project) => {
+    const k = kindOf(p);
+    if (k === 'impact') return p.market_value === null ? <span className="text-haze">free</span>
+      : <span className="text-haze">free · worth {money(p.market_value, 'HUF')}</span>;
+    if (k === 'monthly') return p.monthly_fee === null ? '—' : <>{money(p.monthly_fee, p.currency)} <span className="text-haze">/ month</span></>;
+    return money(p.value, p.currency) ?? '—';
+  };
+
+  return (
+    <div className="grid gap-4">
+      <MetricStrip label="All projects" className="xl:grid-cols-4">
+        <MetricCell label="One-off in progress" value={openOneOff.length}
+                    note={`${sums(valueByCurrency)} agreed value · ${oneOff.length - openOneOff.length} closed`} />
+        <MetricCell label="Monthly contracts" value={fees.reduce((n, t) => n + t.contracts, 0)}
+                    note={`${sums(fees)} per month`} />
+        <MetricCell label="Impact in progress" value={impactOpen.length}
+                    note={`${money(impactValue, 'HUF')} market value · free`} />
+        <MetricCell label="Needs attention" value={attention} tone={attention > 0 ? 'live' : 'default'}
+                    note="one-off projects late, waiting or blocked" />
+      </MetricStrip>
+
+      <Panel className="min-w-0">
+        <SectionHeader
+          title="Every project"
+          note={state === 'ready' ? `${shown.length} of ${rows.length}` : undefined}
+          action={
+            <div className="flex flex-wrap items-center gap-2">
+              <label className="sr-only" htmlFor="all-kind">Kind</label>
+              <Select id="all-kind" value={kind} onChange={(e) => setKind(e.target.value as typeof kind)}>
+                <option value="all">Every kind</option>
+                <option value="one_off">One-off</option>
+                <option value="monthly">Monthly</option>
+                <option value="impact">Impact</option>
+              </Select>
+              <Input type="search" value={query} onChange={(e) => setQuery(e.target.value)}
+                     placeholder="Project, client, service…" aria-label="Search every project"
+                     className="h-7 w-44 py-1 text-xs sm:w-56" />
+            </div>
+          }
+        />
+        {state === 'loading' && (
+          <div className="space-y-1.5 p-4" aria-busy="true">{[0, 1, 2].map((i) => <Skeleton key={i} className="h-8 w-full" />)}</div>
+        )}
+        {state === 'error' && <ErrorState message={message} onRetry={onRetry} />}
+        {state === 'ready' && shown.length === 0 && (
+          <DataState kind="empty" title={rows.length === 0 ? 'No projects yet' : 'Nothing matches'}
+                     body={rows.length === 0 ? 'Create one with New project.' : 'Nothing matches the search or the kind.'} />
+        )}
+        {state === 'ready' && shown.length > 0 && (
+          <Table
+            head={['Project', 'Kind', 'Company', 'State', { label: 'Price', align: 'right' }, 'Deadline / end']}
+            minWidth={840}
+            sticky
+          >
+            {shown.map((p) => (
+              <Row key={p.id} onClick={() => navigate(`/projects/${p.id}`)}>
+                <Cell className="min-w-0">
+                  <Link to={`/projects/${p.id}`} className={cn('text-[13px] hover:text-signal', open(p) ? 'text-paper' : 'text-haze')}>
+                    {p.name}
+                  </Link>
+                </Cell>
+                <Cell>{kindBadge(p)}</Cell>
+                <Cell className="truncate text-[11px] text-haze">{p.client?.name ?? '—'}</Cell>
+                <Cell>{stateOf(p)}</Cell>
+                <Cell align="right" className="num text-xs text-paper">{priceOf(p)}</Cell>
+                <Cell className="num whitespace-nowrap text-[11px] text-haze">
+                  {isClosedProject(p) ? shortDate(p.completed_at)
+                    : isMonthly(p) && !p.target_date ? 'open-ended' : shortDate(p.target_date)}
+                </Cell>
+              </Row>
+            ))}
+          </Table>
+        )}
+      </Panel>
     </div>
   );
 }

@@ -621,6 +621,9 @@ export function useOperationsMutations(onChanged: () => void) {
     opportunity_id?: string | null; responsible_id?: string | null;
     estimated_hours?: number | null; description?: string | null;
     billing?: 'one_off' | 'monthly'; monthly_fee?: number | null;
+    // A direct Impact project (20261008000100_impact_direct.sql): free, HUF,
+    // no application behind it.
+    program?: 'paid' | 'impact'; impact_direct?: boolean; market_value?: number | null;
   }, milestones: string[] = []): Promise<{ id: string } | string> => {
     if (!draft.organization_id) return 'A project needs a client.';
     if (!draft.name.trim()) return 'A project needs a name.';

@@ -36,6 +36,8 @@ export interface ImpactLead {
   message: string | null;
   payload: Record<string, unknown> | null;
   created_at: string;
+  /** Set = the lead is in the Trash (20261007000100_trash.sql). */
+  trashed_at?: string | null;
 }
 
 export interface ImpactApplication {
@@ -58,7 +60,7 @@ const APPLICATION_COLUMNS =
   'id, lead_id, status, status_changed_at, decision_note, organization_id, project_id, origin, '
   + 'legacy_lead_status, created_at, updated_at, '
   + 'lead:leads(id, name, company, email, phone, website, status, form_type, source, locale, '
-  + 'source_route, message, payload, created_at), '
+  + 'source_route, message, payload, created_at, trashed_at), '
   + 'project:projects(id, name, status, market_value)';
 
 export interface ImpactSummary {
@@ -110,7 +112,9 @@ export function useImpactApplications(reloadToken = 0, enabled = true) {
       setMessage(readMessage(error));
       return;
     }
-    setRows((data ?? []) as unknown as ImpactApplication[]);
+    // An application whose lead is in the Trash is out of the pipeline; it is
+    // deleted with the lead (20261008000100_impact_direct.sql).
+    setRows(((data ?? []) as unknown as ImpactApplication[]).filter((a) => !a.lead?.trashed_at));
     setState('ready');
   }, [reloadToken, enabled]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -232,6 +236,7 @@ export function useUncapturedImpactLeads(applications: ImpactApplication[], read
       const { data, error } = await supabase
         .from('leads').select('id, form_type, source')
         .or('form_type.eq.impact,and(form_type.is.null,source.ilike.impact)')
+        .is('trashed_at', null)
         .limit(1000);
       if (error) { console.error('[leads.impact]', error); return; }
       const captured = new Set(applications.map((a) => a.lead_id));
