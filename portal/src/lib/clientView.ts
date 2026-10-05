@@ -97,18 +97,20 @@ export const useClientHelp = (t = 0) => useRpc<HelpArticle>('client_help_article
 
 /* ------------------------------------------- phase 8: feedback, reschedule */
 
-export interface DemoFeedback { id: string; demo_id: string; project_id: string; body: string; created_at: string; read_at: string | null;
+export interface DemoFeedback { id: string; demo_id: string; project_id: string; account_id: string; body: string; created_at: string; read_at: string | null;
+  /** The owner's answer (20261013000100), shown to the client. */
+  owner_reply: string | null; replied_at: string | null;
   account?: { full_name: string; email: string } | null }
 export interface MeetingRequest {
-  id: string; meeting_id: string; project_id: string; proposed_starts_at: string; proposed_ends_at: string; time_zone: string;
+  id: string; meeting_id: string; project_id: string; account_id: string; proposed_starts_at: string; proposed_ends_at: string; time_zone: string;
   message: string | null; status: 'pending' | 'accepted' | 'declined' | 'withdrawn'; owner_note: string | null; created_at: string;
   decided_at: string | null; account?: { full_name: string; email: string } | null;
 }
 
 export const useDemoFeedback = (projectId: string | undefined, t = 0) => useOwnerRows<DemoFeedback>('demo_feedback',
-  'id, demo_id, project_id, body, created_at, read_at, account:client_accounts(full_name, email)', projectId, 'created_at', t);
+  'id, demo_id, project_id, account_id, body, created_at, read_at, owner_reply, replied_at, account:client_accounts(full_name, email)', projectId, 'created_at', t);
 export const useMeetingRequests = (projectId: string | undefined, t = 0) => useOwnerRows<MeetingRequest>('meeting_change_requests',
-  'id, meeting_id, project_id, proposed_starts_at, proposed_ends_at, time_zone, message, status, owner_note, created_at, decided_at, account:client_accounts(full_name, email)',
+  'id, meeting_id, project_id, account_id, proposed_starts_at, proposed_ends_at, time_zone, message, status, owner_note, created_at, decided_at, account:client_accounts(full_name, email)',
   projectId, 'created_at', t);
 
 // The hooks here name their reload token `t`; inside them, translate with `tr`.
@@ -149,7 +151,9 @@ export async function ownerDecideRequest(id: string, accept: boolean, note: stri
 }
 
 /* the client */
-export interface ClientFeedback { feedback_id: string; demo_id: string; body: string; created_at: string; seen: boolean }
+export interface ClientFeedback { feedback_id: string; demo_id: string; body: string; created_at: string; seen: boolean;
+  /** Stratos's answer, if any (20261013000100). */
+  reply?: string | null; replied_at?: string | null }
 export interface ClientMeetingRequest {
   request_id: string; meeting_id: string; proposed_starts_at: string; proposed_ends_at: string; time_zone: string; message: string | null;
   status: 'pending' | 'accepted' | 'declined' | 'withdrawn'; owner_note: string | null; created_at: string; decided_at: string | null;

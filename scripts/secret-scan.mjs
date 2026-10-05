@@ -127,6 +127,9 @@ const DESCRIBES_THE_RULE = new Set([
   'ARCHITECTURE.md',
   'netlify/functions/submit-lead.mjs',
   'supabase/migrations/20260801000200_rls.sql',
+  // Grants the notification sender's two functions to the server role BY NAME
+  // (and to nobody else). A role name in a GRANT, not a key.
+  'supabase/migrations/20261013000100_notifications.sql',
   // Read-only diagnostics run by hand against the live database. They name the
   // four default Postgres roles — including service_role — while explaining
   // which grants the new columns inherit and why `anon` holding them is not a

@@ -67,7 +67,8 @@
     "dependencies": "Runtime dependencies of the NETLIFY FUNCTIONS, and nothing else. The public site ships no third-party JavaScript and the portal has its own manifest; this block exists because Netlify bundles netlify/functions/* against the ROOT package.json, not against portal/. Omitting @supabase/supabase-js here is what made every lead submission crash with ERR_MODULE_NOT_FOUND at the store step — the SDK was installed under portal/node_modules, where the function cannot reach it."
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.47.10"
+    "@supabase/supabase-js": "^2.47.10",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",

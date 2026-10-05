@@ -709,3 +709,40 @@ Mit csinál:
 Ellenőrizve (helyben): `tests/portal-hours-db.spec.ts` 4/4; tulajdonosi ellenőrző 56/56 (rögzítés projektre
 és „Egyéb”-re, heti táblázat, kolléga sora, érvénytelen óra, a projekt naplózott órái); minden portál-teszt
 (267 + 288), kihagyás nélkül.
+
+## 23. Értesítések: e-mail az ügyfeleknek, push + e-mail a tulajdonosnak (16. szakasz, „2. Értesítések”)
+
+**Sorrend: 22. → ez a migráció → Netlify-kulcs → deploy.**
+
+1. SQL Editor: `supabase/migrations/20261013000100_notifications.sql` (ismételten is futtatható).
+2. Netlify → Site configuration → Environment variables, **Functions** hatókörrel, „Contains secret values”
+   bepipálva:
+   - `RESEND_API_KEY` — a Resend kulcsa (a `stratosweb.hu` domain a Resendben hitelesítve).
+   - `VAPID_PRIVATE_KEY` — a push privát kulcsa (a nyilvános párja a kódban van:
+     `portal/src/lib/push.ts` és `netlify/functions/notify-dispatch.mjs`; egy teszt őrzi, hogy egyezzen).
+   - Nem kötelező: `NOTIFY_FROM` (alap: `Stratos <portal@stratosweb.hu>`), `NOTIFY_REPLY_TO`
+     (alap: `lukacs.artur@media-stratos.com`).
+3. Deploy (push a `main`-re). A `notify-dispatch` ütemezett függvény percenként fut (csak az éles deployon).
+
+Mit csinál:
+
+- **A tulajdonos kap** (push a regisztrált eszközeire + e-mail): ügyfél fájlt töltött fel; észrevételt írt egy
+  demóhoz; új időpontot javasolt vagy visszavonta. Ezeket adatbázis-triggerek teszik a `notification_outbox`
+  sorba — egy hibás értesítés soha nem akaszt meg egy feltöltést (a trigger csak figyelmeztet).
+- **Az ügyfél kap e-mailt** (magyarul / angolul / németül tegezve, a választott nyelvén): megosztott dokumentum
+  vagy mappa, közzétett demó, új / módosult / elmaradt megbeszélés, döntés az időpont-javaslatáról, válasz az
+  észrevételére. A projekt oldalán az „E-mail the client” pipa (alapból bekapcsolva) dönti el, megy-e e-mail; a
+  megosztás ablakában ugyanígy.
+- **Válasz az ügyfél észrevételére:** a projekt oldalán „Answer”; az ügyfél a portálon az észrevétele alatt látja
+  („A Stratos válasza”).
+- **Címzett a küldés pillanatában dől el:** csak aktív ügyfélfiók, amelynek még él a hozzáférése a projekthez.
+  Egy futásban egy embernek egy e-mail és egy push megy, akárhány esemény gyűlt össze. Hibánál öt próbálkozás.
+- **Push a telefonra:** Beállítások → Notifications. iPhone-on előbb Safari → Megosztás → „Főképernyőhöz adás”,
+  onnan megnyitva a portált lehet bekapcsolni; „Send a test” próbaértesítést küld.
+- A naplóba semmi személyes nem kerül (csak darabszám, típus, HTTP-státusz).
+- `scripts/secret-scan.mjs`: a migráció a szerver-szerepkört név szerint kapja meg a GRANT-ben — kivételként
+  felvéve, kulcs nincs benne.
+
+Ellenőrizve (helyben): `tests/notify.spec.ts` 6/6 (szövegek minden nyelven, egy futás hamis Resenddel, VAPID-
+kulcspár); `tests/portal-client-extras-db.spec.ts` értesítési része 6/6; tulajdonosi ellenőrző 58/58; ügyfélportál
+22/22; dokumentum 18/18; minden teszt (2190), kihagyott vagy le nem futott nélkül.

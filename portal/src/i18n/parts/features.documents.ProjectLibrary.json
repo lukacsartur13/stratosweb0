@@ -306,5 +306,9 @@
  "Failed": {
   "hu": "Sikertelen",
   "de": "Fehlgeschlagen"
+ },
+ "E-mail the client when I share": {
+  "hu": "E-mail az ügyfélnek megosztáskor",
+  "de": "Kunden beim Teilen per E-Mail informieren"
  }
 }

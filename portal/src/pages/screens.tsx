@@ -1,12 +1,15 @@
-import type { ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { useRows, useSearch, formatDate, type LoadState } from '@/lib/useRows';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { useScope } from '@/lib/scope';
 import { ROLE_LABELS, type Role } from '@/lib/permissions';
 import { LanguageSwitch, useLanguage } from '@/features/i18n/LanguageGate';
 import { t, tc } from '@/lib/i18n';
+import { canAccess } from '@/lib/permissions';
+import { disablePush, enablePush, pushState, type PushState } from '@/lib/push';
+import { notifyOwnerTest } from '@/lib/notify';
 import {
-  Badge, Cell, DataState, ErrorState, Input, Panel, Row, SectionHeader, Skeleton, Table,
+  Badge, Button, Cell, DataState, ErrorState, Input, Panel, Row, SectionHeader, Skeleton, Table,
 } from '@/components/ui';
 
 /**
@@ -215,10 +218,71 @@ export function SettingsScreen() {
         </dl>
       </Panel>
       <LanguageSettings />
+      <NotificationSettings />
       <p className="t-note">
         {t('Infrastructure, credentials and deploy context are on the System screen.')}
       </p>
     </div>
+  );
+}
+
+/**
+ * Notifications on THIS device (20261013000100_notifications.sql): push for
+ * what clients do — uploads, feedback, new-time proposals — and the same by
+ * e-mail. On an iPhone, push needs the portal on the Home Screen first.
+ */
+function NotificationSettings() {
+  const { profile } = useAuth();
+  const isOwner = canAccess(profile, 'manage_projects');
+  const [state, setState] = useState<PushState | 'loading'>('loading');
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+
+  const refresh = () => { void pushState().then(setState).catch(() => setState('unsupported')); };
+  useEffect(refresh, []);
+
+  const enable = async () => {
+    setBusy(true);
+    const problem = await enablePush();
+    setBusy(false);
+    setMessage(problem === 'denied'
+      ? t('Notifications are blocked for this site. Allow them in the browser (or phone) settings, then try again.')
+      : problem ? t('This device could not be registered. Try again.') : t('Notifications are on for this device.'));
+    refresh();
+  };
+  const disable = async () => { setBusy(true); await disablePush(); setBusy(false); setMessage(null); refresh(); };
+  const test = async () => { setBusy(true); setMessage((await notifyOwnerTest()) ?? t('A test is on its way — it arrives within a minute.')); setBusy(false); };
+
+  return (
+    <Panel aria-label={t('Notifications')}>
+      <SectionHeader title={t('Notifications')} note={t('this device')} />
+      <div className="grid gap-2 px-4 py-3 text-[13px]" data-push-state={state}>
+        <p className="t-note">
+          {isOwner
+            ? t('When a client uploads a file, writes feedback on a demo or proposes a new meeting time, you get a push notification here and an e-mail.')
+            : t('Push notifications from the portal, on this device.')}
+        </p>
+        {state === 'loading' && <Skeleton className="h-8 w-48" />}
+        {state === 'needs-home-screen' && (
+          <ol className="grid list-decimal gap-1 pl-5 text-paper">
+            <li>{t('In Safari, tap the Share button (the square with an arrow).')}</li>
+            <li>{t('Choose “Add to Home Screen”, then Add.')}</li>
+            <li>{t('Open the portal from the new Stratos icon, sign in, and come back here to switch notifications on.')}</li>
+          </ol>
+        )}
+        {state === 'unsupported' && <p className="text-haze">{t('This browser cannot receive push notifications. You still get the e-mails.')}</p>}
+        {state === 'denied' && <p className="text-signal">{t('Notifications are blocked for this site. Allow them in the browser (or phone) settings, then reload.')}</p>}
+        {state === 'off' && <Button size="sm" variant="primary" className="justify-self-start" onClick={enable} disabled={busy}>{t('Turn on notifications on this device')}</Button>}
+        {state === 'on' && (
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge tone="good">{t('On for this device')}</Badge>
+            {isOwner && <Button size="sm" onClick={test} disabled={busy}>{t('Send a test')}</Button>}
+            <Button size="sm" variant="quiet" onClick={disable} disabled={busy}>{t('Turn off')}</Button>
+          </div>
+        )}
+        {message && <p role="status" className="text-xs text-haze">{message}</p>}
+      </div>
+    </Panel>
   );
 }
 

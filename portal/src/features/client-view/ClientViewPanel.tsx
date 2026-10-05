@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CalendarPlus, ExternalLink, Pencil, Plus } from 'lucide-react';
 import {
@@ -9,6 +9,7 @@ import {
   type Demo, type DemoFeedback, type Meeting, type MeetingRequest,
 } from '@/lib/clientView';
 import { t, intlLocale } from '@/lib/i18n';
+import { notifyClient, type ClientNotice } from '@/lib/notify';
 import { formatMeetingTime, googleCalendarUrl, isSafeHttpsUrl, nextMeeting, safeHttpsUrl, timeZoneOptions, wallClock, zonedToUtc } from '@/lib/meetings';
 
 /**
@@ -17,14 +18,35 @@ import { formatMeetingTime, googleCalendarUrl, isSafeHttpsUrl, nextMeeting, safe
  * assigned client accounts — demos only once published, meetings as soon as
  * they are saved — and to nobody else (client_portal_demos/meetings).
  */
+/**
+ * "E-mail the client": on by default, for this panel. Every change below that a
+ * client would want to know about — a published demo, a meeting scheduled,
+ * moved or cancelled, an answer to a proposal or to feedback — e-mails the
+ * project's clients while it is on (20261013000100_notifications.sql).
+ */
+const NotifyCtx = createContext<(kind: ClientNotice, payload: Record<string, unknown>, accountIds?: string[]) => Promise<string | null>>(
+  async () => null,
+);
+
 export function ClientViewPanel({ projectId, projectName }: { projectId: string; projectName: string }) {
   const [tick, setTick] = useState(0);
+  const [notify, setNotify] = useState(true);
   const reload = () => setTick((n) => n + 1);
+  const send = async (kind: ClientNotice, payload: Record<string, unknown>, accountIds?: string[]) =>
+    (notify ? notifyClient(kind, projectId, payload, accountIds) : null);
   return (
     <Panel aria-label={t('Client portal view')}>
-      <SectionHeader title={t('Client portal')} note={t('demos and meetings the assigned client sees')} />
+      <SectionHeader title={t('Client portal')} note={t('demos and meetings the assigned client sees')}
+        action={
+          <label className="flex items-center gap-1.5 text-[11px] text-haze" title={t('While ticked, the project\'s clients get an e-mail about what you change here.')}>
+            <input type="checkbox" checked={notify} onChange={(e) => setNotify(e.target.checked)} className="h-3.5 w-3.5 accent-signal" data-notify-client />
+            {t('E-mail the client')}
+          </label>
+        } />
+      <NotifyCtx.Provider value={send}>
       <Demos projectId={projectId} tick={tick} onChanged={reload} />
       <Meetings projectId={projectId} projectName={projectName} tick={tick} onChanged={reload} />
+      </NotifyCtx.Provider>
     </Panel>
   );
 }
@@ -35,6 +57,7 @@ function Demos({ projectId, tick, onChanged }: { projectId: string; tick: number
   const demos = useProjectDemos(projectId, tick);
   const feedback = useDemoFeedback(projectId, tick);
   const ops = useClientViewMutations(onChanged);
+  const send = useContext(NotifyCtx);
   const [editing, setEditing] = useState<Partial<Demo> | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -63,12 +86,20 @@ function Demos({ projectId, tick, onChanged }: { projectId: string; tick: number
               </a>
               {d.client_note && <p className="t-note">{d.client_note}</p>}
               <FeedbackList rows={feedback.rows.filter((f) => f.demo_id === d.id)}
-                onRead={async (f) => setError(await ops.save('demo_feedback', { read_at: f.read_at ? null : new Date().toISOString() }, f.id))} />
+                onRead={async (f) => setError(await ops.save('demo_feedback', { read_at: f.read_at ? null : new Date().toISOString() }, f.id))}
+                onReply={async (f, reply) => {
+                  const problem = await ops.save('demo_feedback', { owner_reply: reply }, f.id);
+                  if (problem) return problem;
+                  return send('feedback_replied', { reply: reply.slice(0, 300), title: d.title }, [f.account_id]);
+                }} />
             </div>
             <div className="flex shrink-0 flex-wrap gap-1">
               {!d.revoked_at && (
                 <Button size="sm" variant="quiet" disabled={ops.busy === d.id}
-                        onClick={async () => setError(await ops.save('project_demos', { published: !d.published }, d.id))}>
+                        onClick={async () => {
+                          const problem = await ops.save('project_demos', { published: !d.published }, d.id);
+                          setError(problem ?? (!d.published ? await send('demo_published', { title: d.title }) : null));
+                        }}>
                   {d.published ? t('Unpublish') : t('Publish')}
                 </Button>
               )}
@@ -86,8 +117,11 @@ function Demos({ projectId, tick, onChanged }: { projectId: string; tick: number
         <DemoDialog initial={editing} busy={ops.busy !== null} onClose={() => setEditing(null)}
           onSave={async (row) => {
             const problem = await ops.save('project_demos', editing.id ? row : { ...row, project_id: projectId, position: demos.rows.length * 10 }, editing.id);
-            if (!problem) setEditing(null);
-            return problem;
+            if (problem) return problem;
+            setEditing(null);
+            // Newly visible to the client: a new published demo, or one just published in the dialog.
+            if (row.published && !(editing.id && editing.published)) setError(await send('demo_published', { title: row.title }));
+            return null;
           }} />
       )}
     </section>
@@ -132,6 +166,8 @@ function Meetings({ projectId, projectName, tick, onChanged }: { projectId: stri
   const meetings = useProjectMeetings(projectId, tick);
   const requests = useMeetingRequests(projectId, tick);
   const ops = useClientViewMutations(onChanged);
+  const send = useContext(NotifyCtx);
+  const about = (m: { title?: string; starts_at?: string; time_zone?: string }) => ({ title: m.title, starts_at: m.starts_at, time_zone: m.time_zone });
   const [editing, setEditing] = useState<Partial<Meeting> | null>(null);
   const [error, setError] = useState<string | null>(null);
   const now = new Date();
@@ -148,12 +184,15 @@ function Meetings({ projectId, projectName, tick, onChanged }: { projectId: stri
         </p>
         <p className="t-note">{formatMeetingTime(m)}</p>
         <p className="t-note break-all">{m.location ?? ''}{m.location && m.join_url ? ' · ' : ''}{m.join_url ?? ''}</p>
-        <RequestList rows={requests.rows.filter((r) => r.meeting_id === m.id)} onDecided={onChanged} onError={setError} />
+        <RequestList rows={requests.rows.filter((r) => r.meeting_id === m.id)} meetingTitle={m.title} onDecided={onChanged} onError={setError} />
       </div>
       <div className="flex shrink-0 flex-wrap gap-1">
         <Button size="sm" variant="quiet" aria-label={t('Edit meeting {title}', { title: m.title })} onClick={() => setEditing(m)}><Pencil size={11} aria-hidden="true" /></Button>
         <Button size="sm" variant="quiet" disabled={ops.busy === m.id}
-                onClick={async () => setError(await ops.save('project_meetings', { cancelled_at: m.cancelled_at ? null : new Date().toISOString() }, m.id))}>
+                onClick={async () => {
+                  const problem = await ops.save('project_meetings', { cancelled_at: m.cancelled_at ? null : new Date().toISOString() }, m.id);
+                  setError(problem ?? await send(m.cancelled_at ? 'meeting_scheduled' : 'meeting_cancelled', about(m)));
+                }}>
           {m.cancelled_at ? t('Reinstate') : t('Cancel meeting')}
         </Button>
         {!m.cancelled_at && (
@@ -173,7 +212,7 @@ function Meetings({ projectId, projectName, tick, onChanged }: { projectId: stri
         <Button size="sm" onClick={() => setEditing({ time_zone: 'Europe/Budapest' })}><Plus size={11} aria-hidden="true" /> {t('Meeting')}</Button>
       </div>
       <p className="t-note px-4 pb-2 pt-1">
-        {t('Shown to the assigned client in the portal. No e-mail or calendar invitation is sent. A time changed here does not update a copy the client already saved to Google Calendar — the client portal says so.')}
+        {t('Shown to the assigned client in the portal; with “E-mail the client” ticked they also get an e-mail. No calendar invitation is sent: a time changed here does not update a copy the client already saved to Google Calendar — the client portal says so.')}
       </p>
       {meetings.state === 'loading' && <div className="px-4 pb-3"><Skeleton className="h-10 w-full" /></div>}
       {meetings.state === 'error' && <ErrorState message={meetings.message} onRetry={meetings.reload} />}
@@ -190,8 +229,12 @@ function Meetings({ projectId, projectName, tick, onChanged }: { projectId: stri
         <MeetingDialog initial={editing} busy={ops.busy !== null} onClose={() => setEditing(null)}
           onSave={async (r) => {
             const problem = await ops.save('project_meetings', editing.id ? r : { ...r, project_id: projectId }, editing.id);
-            if (!problem) setEditing(null);
-            return problem;
+            if (problem) return problem;
+            const moved = editing.id && (r.starts_at !== editing.starts_at || r.ends_at !== editing.ends_at);
+            setEditing(null);
+            if (!editing.id) setError(await send('meeting_scheduled', about(r)));
+            else if (moved && !editing.cancelled_at) setError(await send('meeting_changed', about(r)));
+            return null;
           }} />
       )}
     </section>
@@ -269,7 +312,12 @@ function MeetingDialog({ initial, busy, onClose, onSave }: {
 
 /* ============================================ client feedback, requests == */
 
-function FeedbackList({ rows, onRead }: { rows: DemoFeedback[]; onRead: (f: DemoFeedback) => void }) {
+function FeedbackList({ rows, onRead, onReply }: {
+  rows: DemoFeedback[]; onRead: (f: DemoFeedback) => void; onReply: (f: DemoFeedback, reply: string) => Promise<string | null>;
+}) {
+  const [answering, setAnswering] = useState<string | null>(null);
+  const [draft, setDraft] = useState('');
+  const [error, setError] = useState<string | null>(null);
   if (rows.length === 0) return null;
   return (
     <ul className="mt-2 grid gap-1" aria-label={t('Client feedback')}>
@@ -280,21 +328,49 @@ function FeedbackList({ rows, onRead }: { rows: DemoFeedback[]; onRead: (f: Demo
             {f.account?.full_name ?? t('Client')} · {new Date(f.created_at).toLocaleString(intlLocale('en-GB'), { dateStyle: 'medium', timeStyle: 'short' })}
             {' · '}{f.read_at ? t('read') : <Badge tone="warn">{t('New')}</Badge>}{' '}
             <button type="button" className="underline underline-offset-4 hover:text-paper" onClick={() => onRead(f)}>{f.read_at ? t('Mark unread') : t('Mark read')}</button>
+            {' · '}
+            <button type="button" className="underline underline-offset-4 hover:text-paper"
+                    onClick={() => { setAnswering(f.id); setDraft(f.owner_reply ?? ''); setError(null); }}>
+              {f.owner_reply ? t('Edit the answer') : t('Answer')}
+            </button>
           </p>
+          {f.owner_reply && answering !== f.id && (
+            <p className="mt-1 whitespace-pre-line border-l-2 border-signal/60 pl-2 text-haze" data-feedback-reply>{f.owner_reply}</p>
+          )}
+          {answering === f.id && (
+            <div className="mt-2 grid gap-1">
+              <label className="sr-only" htmlFor={`reply-${f.id}`}>{t('Answer')}</label>
+              <Textarea id={`reply-${f.id}`} rows={2} maxLength={2000} value={draft} onChange={(e) => setDraft(e.target.value)}
+                        placeholder={t('Your answer — the client sees it under their feedback.')} />
+              <div className="flex justify-end gap-1">
+                <Button size="sm" variant="quiet" onClick={() => setAnswering(null)}>{t('Cancel')}</Button>
+                <Button size="sm" variant="primary" disabled={!draft.trim()}
+                        onClick={async () => { const p = await onReply(f, draft.trim()); setError(p); if (!p) setAnswering(null); }}>
+                  {t('Send the answer')}
+                </Button>
+              </div>
+              {error && <p role="alert" className="text-xs text-danger">{error}</p>}
+            </div>
+          )}
         </li>
       ))}
     </ul>
   );
 }
 
-function RequestList({ rows, onDecided, onError }: { rows: MeetingRequest[]; onDecided: () => void; onError: (e: string | null) => void }) {
+function RequestList({ rows, meetingTitle, onDecided, onError }: { rows: MeetingRequest[]; meetingTitle: string; onDecided: () => void; onError: (e: string | null) => void }) {
   const [busy, setBusy] = useState<string | null>(null);
+  const send = useContext(NotifyCtx);
   const shown = rows.filter((r) => r.status === 'pending' || Date.now() - new Date(r.decided_at ?? r.created_at).getTime() < 14 * 864e5);
   if (shown.length === 0) return null;
   const decide = async (r: MeetingRequest, accept: boolean) => {
     const note = accept ? null : window.prompt(t('Optional note to the client (Hungarian):')) ?? null;
     setBusy(r.id);
-    onError(await ownerDecideRequest(r.id, accept, note));
+    const problem = await ownerDecideRequest(r.id, accept, note);
+    onError(problem ?? await send('reschedule_decided', {
+      decision: accept ? 'accepted' : 'declined', title: meetingTitle,
+      ...(accept ? { starts_at: r.proposed_starts_at, time_zone: r.time_zone } : {}),
+    }, [r.account_id]));
     setBusy(null);
     onDecided();
   };

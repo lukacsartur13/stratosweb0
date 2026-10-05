@@ -9,6 +9,7 @@ import {
 import { shortDate } from '@/lib/pipeline';
 import { intlLocale, t } from '@/lib/i18n';
 import { FileViewerDialog } from '@/features/documents/FileViewer';
+import { notifyClient } from '@/lib/notify';
 import {
   ALLOWED_SUMMARY, FAILURE_LABEL, MAX_DOCUMENT_BYTES, downloadDocument, folderPath, formatBytes, mayPreview,
   useDocumentMutations, useProjectLibrary, useUploader,
@@ -388,6 +389,7 @@ export function ProjectLibrary({
       {previewing && <PreviewDialog doc={previewing} onClose={() => setPreviewing(null)} />}
       {sharingTarget && (
         <ShareDialog
+          projectId={projectId}
           target={sharingTarget}
           accounts={sharing.accounts}
           shares={sharing.shares}
@@ -432,8 +434,9 @@ function ShareMark({ names, inherited = [] }: { names: string[]; inherited?: str
  * later — for as long as they stay inside.
  */
 function ShareDialog({
-  target, accounts, shares, inherited, folderName, onShare, onUnshare, onClose,
+  projectId, target, accounts, shares, inherited, folderName, onShare, onUnshare, onClose,
 }: {
+  projectId: string;
   target: { kind: 'document' | 'folder'; id: string; name: string };
   accounts: AssignedAccount[];
   shares: LiveShare[];
@@ -444,6 +447,15 @@ function ShareDialog({
   onClose: () => void;
 }) {
   const [problem, setProblem] = useState<string | null>(null);
+  // "E-mail the client", on by default (20261013000100_notifications.sql).
+  const [notify, setNotify] = useState(true);
+  const share = async (accountId: string) => {
+    const refused = await onShare(accountId, target.kind === 'document' ? { document_id: target.id } : { folder_id: target.id });
+    if (refused) { setProblem(refused); return; }
+    setProblem(notify
+      ? await notifyClient('document_shared', projectId, { name: target.kind === 'folder' ? `${target.name}/` : target.name }, [accountId])
+      : null);
+  };
   const direct = (accountId: string) => shares.find((x) => x.account_id === accountId
     && (target.kind === 'document' ? x.document_id === target.id : x.folder_id === target.id));
   return (
@@ -451,7 +463,13 @@ function ShareDialog({
             description={target.kind === 'folder'
               ? t('Sharing a folder gives access to everything in it — its subfolders and any file added later — for as long as it stays inside. Moving a file out ends that access.')
               : t('Only this file. Files are private until shared; a client downloads with a one-minute link, and a copy already downloaded cannot be taken back.')}
-            footer={<Button size="sm" onClick={onClose}>{t('Done')}</Button>}>
+            footer={<>
+              <label className="mr-auto flex items-center gap-1.5 text-[11px] text-haze">
+                <input type="checkbox" checked={notify} onChange={(e) => setNotify(e.target.checked)} className="h-3.5 w-3.5 accent-signal" data-notify-client />
+                {t('E-mail the client when I share')}
+              </label>
+              <Button size="sm" onClick={onClose}>{t('Done')}</Button>
+            </>}>
       {accounts.length === 0 ? (
         <p className="text-xs text-haze">{t('No client account is assigned to this project. Assign one on the client’s page first.')}</p>
       ) : (
@@ -469,8 +487,7 @@ function ShareDialog({
                 {s ? (
                   <Button size="sm" className={TOUCH} variant="danger" onClick={async () => setProblem(await onUnshare(s.id))}>{t('Stop sharing')}</Button>
                 ) : (
-                  <Button size="sm" className={TOUCH} onClick={async () => setProblem(await onShare(a.account_id,
-                    target.kind === 'document' ? { document_id: target.id } : { folder_id: target.id }))}>
+                  <Button size="sm" className={TOUCH} onClick={() => void share(a.account_id)}>
                     <Share2 size={11} aria-hidden="true" /> {t('Share')}
                   </Button>
                 )}

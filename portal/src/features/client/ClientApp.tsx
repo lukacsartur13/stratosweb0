@@ -440,6 +440,13 @@ function DemoFeedback({ demo, mine, onChanged }: { demo: ClientDemo; mine: Clien
                 <li key={f.feedback_id} className="rounded-sm border border-hairline px-3 py-2 text-[13px]">
                   <p className="whitespace-pre-line text-paper">{f.body}</p>
                   <p className="t-note mt-1">{hu(f.created_at)} · {f.seen ? t('A Stratos látta') : t('Még nem látta')}</p>
+                  {f.reply && (
+                    <div className="mt-2 border-l-2 border-signal/60 pl-2" data-feedback-reply>
+                      <p className="t-section">{t('A Stratos válasza')}</p>
+                      <p className="whitespace-pre-line text-paper">{f.reply}</p>
+                      {f.replied_at && <p className="t-note">{hu(f.replied_at)}</p>}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

@@ -155,5 +155,69 @@
   "en": "Rapidkert, Barbershop Győr and mentáliserő.hu are the references to start from.",
   "hu": "A Rapidkert, a Barbershop Győr és a mentáliserő.hu a kiinduló referenciák.",
   "de": "Rapidkert, Barbershop Győr und mentáliserő.hu sind die Referenzen für den Anfang."
+ },
+ "Notifications are blocked for this site. Allow them in the browser (or phone) settings, then try again.": {
+  "hu": "Ez az oldal le van tiltva az értesítésekből. Engedélyezd a böngésző (vagy a telefon) beállításaiban, aztán próbáld újra.",
+  "de": "Benachrichtigungen sind für diese Seite blockiert. Erlauben Sie sie in den Browser- (oder Telefon-)Einstellungen und versuchen Sie es erneut."
+ },
+ "This device could not be registered. Try again.": {
+  "hu": "Ezt az eszközt nem sikerült regisztrálni. Próbáld újra.",
+  "de": "Dieses Gerät konnte nicht registriert werden. Bitte erneut versuchen."
+ },
+ "Notifications are on for this device.": {
+  "hu": "Az értesítések be vannak kapcsolva ezen az eszközön.",
+  "de": "Benachrichtigungen sind für dieses Gerät eingeschaltet."
+ },
+ "A test is on its way — it arrives within a minute.": {
+  "hu": "A próbaértesítés úton van — egy percen belül megérkezik.",
+  "de": "Ein Test ist unterwegs — er kommt innerhalb einer Minute an."
+ },
+ "this device": {
+  "hu": "ez az eszköz",
+  "de": "dieses Gerät"
+ },
+ "When a client uploads a file, writes feedback on a demo or proposes a new meeting time, you get a push notification here and an e-mail.": {
+  "hu": "Ha egy ügyfél fájlt tölt fel, észrevételt ír egy demóhoz vagy új időpontot javasol, itt push-értesítést és e-mailt is kapsz.",
+  "de": "Wenn ein Kunde eine Datei hochlädt, Feedback zu einer Demo schreibt oder einen neuen Termin vorschlägt, erhalten Sie hier eine Push-Benachrichtigung und eine E-Mail."
+ },
+ "Push notifications from the portal, on this device.": {
+  "hu": "Push-értesítések a portálból, ezen az eszközön.",
+  "de": "Push-Benachrichtigungen aus dem Portal, auf diesem Gerät."
+ },
+ "In Safari, tap the Share button (the square with an arrow).": {
+  "hu": "A Safariban koppints a Megosztás gombra (a négyzet nyíllal).",
+  "de": "Tippen Sie in Safari auf die Teilen-Taste (das Quadrat mit dem Pfeil)."
+ },
+ "Choose “Add to Home Screen”, then Add.": {
+  "hu": "Válaszd a „Főképernyőhöz adás” lehetőséget, majd a Hozzáadás gombot.",
+  "de": "Wählen Sie „Zum Home-Bildschirm“ und dann „Hinzufügen“."
+ },
+ "Open the portal from the new Stratos icon, sign in, and come back here to switch notifications on.": {
+  "hu": "Nyisd meg a portált az új Stratos ikonról, jelentkezz be, és itt kapcsold be az értesítéseket.",
+  "de": "Öffnen Sie das Portal über das neue Stratos-Symbol, melden Sie sich an und schalten Sie hier die Benachrichtigungen ein."
+ },
+ "This browser cannot receive push notifications. You still get the e-mails.": {
+  "hu": "Ez a böngésző nem tud push-értesítést fogadni. Az e-maileket így is megkapod.",
+  "de": "Dieser Browser kann keine Push-Benachrichtigungen empfangen. Die E-Mails erhalten Sie trotzdem."
+ },
+ "Notifications are blocked for this site. Allow them in the browser (or phone) settings, then reload.": {
+  "hu": "Ez az oldal le van tiltva az értesítésekből. Engedélyezd a böngésző (vagy a telefon) beállításaiban, aztán töltsd újra az oldalt.",
+  "de": "Benachrichtigungen sind für diese Seite blockiert. Erlauben Sie sie in den Browser- (oder Telefon-)Einstellungen und laden Sie neu."
+ },
+ "Turn on notifications on this device": {
+  "hu": "Értesítések bekapcsolása ezen az eszközön",
+  "de": "Benachrichtigungen auf diesem Gerät einschalten"
+ },
+ "On for this device": {
+  "hu": "Bekapcsolva ezen az eszközön",
+  "de": "Auf diesem Gerät eingeschaltet"
+ },
+ "Send a test": {
+  "hu": "Próbaértesítés",
+  "de": "Test senden"
+ },
+ "Turn off": {
+  "hu": "Kikapcsolás",
+  "de": "Ausschalten"
  }
 }

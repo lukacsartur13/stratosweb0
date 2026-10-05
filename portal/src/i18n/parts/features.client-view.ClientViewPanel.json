@@ -294,5 +294,29 @@
  "Feedback": {
   "hu": "Észrevétel",
   "de": "Rückmeldung"
+ },
+ "While ticked, the project's clients get an e-mail about what you change here.": {
+  "hu": "Amíg be van pipálva, a projekt ügyfelei e-mailt kapnak arról, amit itt módosítasz.",
+  "de": "Solange das Häkchen gesetzt ist, erhalten die Kunden des Projekts eine E-Mail zu Ihren Änderungen hier."
+ },
+ "E-mail the client": {
+  "hu": "E-mail az ügyfélnek",
+  "de": "Kunde per E-Mail informieren"
+ },
+ "Shown to the assigned client in the portal; with “E-mail the client” ticked they also get an e-mail. No calendar invitation is sent: a time changed here does not update a copy the client already saved to Google Calendar — the client portal says so.": {
+  "hu": "A hozzárendelt ügyfél a portálon látja; ha be van pipálva az „E-mail az ügyfélnek”, e-mailt is kap. Naptármeghívó nem megy: az itt módosított időpont nem frissíti az ügyfél Google Naptárába korábban elmentett példányt — ezt az ügyfélportál jelzi neki.",
+  "de": "Der zugeordnete Kunde sieht es im Portal; ist „Kunde per E-Mail informieren“ angehakt, erhält er auch eine E-Mail. Es wird keine Kalendereinladung verschickt: Eine hier geänderte Zeit aktualisiert keinen Eintrag, den der Kunde bereits im Google Kalender gespeichert hat — das Kundenportal weist darauf hin."
+ },
+ "Edit the answer": {
+  "hu": "Válasz szerkesztése",
+  "de": "Antwort bearbeiten"
+ },
+ "Your answer — the client sees it under their feedback.": {
+  "hu": "A válaszod — az ügyfél az észrevétele alatt látja.",
+  "de": "Ihre Antwort — der Kunde sieht sie unter seiner Rückmeldung."
+ },
+ "Send the answer": {
+  "hu": "Válasz elküldése",
+  "de": "Antwort senden"
  }
 }

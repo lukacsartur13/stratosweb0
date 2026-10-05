@@ -159,7 +159,7 @@ function freshState() {
         outcome: 'review', issues: ['payment_date_unknown', 'marked_paid_amount_short', 'state_changed:paid->partially_paid'], derived_state: 'partially_paid', reviewed_at: null },
     ],
     paymentReads: 0, completeCalls: 0, completeAnswer: 'ok',
-    demos: [], meetings: [], helpReads: 0, feedback: [], requests: [], decisions: [],
+    demos: [], meetings: [], helpReads: 0, feedback: [], outbox: [], requests: [], decisions: [],
     help: [
       { id: 'ha-1', slug: 'portal-fajltipusok', question: 'Milyen fájlokat tölthetek fel?', answer: 'Fájlonként legfeljebb 50 MB.', topic: 'Ügyfélportál – feltöltés',
         alt_questions: ['mekkora fájl'], source: 'lib/documentRules.ts', status: 'published', review_note: null, position: 10, updated_at: new Date().toISOString() },
@@ -409,7 +409,7 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
     }
     if (url.includes('/rest/v1/checkpoint_templates')) return answer(owner ? TEMPLATES : []);
     // Phase 7 tables, as RLS answers them.
-    for (const [path, key] of [['project_demos', 'demos'], ['project_meetings', 'meetings'], ['help_articles', 'help'], ['demo_feedback', 'feedback'], ['meeting_change_requests', 'requests']]) {
+    for (const [path, key] of [['project_demos', 'demos'], ['project_meetings', 'meetings'], ['help_articles', 'help'], ['demo_feedback', 'feedback'], ['meeting_change_requests', 'requests'], ['notification_outbox', 'outbox']]) {
       if (!url.includes(`/rest/v1/${path}`)) continue;
       if (path === 'help_articles' && method === 'GET') state.helpReads += 1;
       if (!owner) return answer([]);
@@ -1531,6 +1531,49 @@ await check('owner: client feedback shows under the demo and in the inbox; a pro
   await page.waitForTimeout(400);
   assert(state.decisions.length === 1 && state.decisions[0].p_request === 'rq-1' && state.decisions[0].p_accept === true, JSON.stringify(state.decisions));
   assert(!state.writes.some((x) => x.table === 'meeting_change_requests'), 'the request table was written directly');
+  await context.close();
+});
+
+await check('notifications: publishing a demo and answering feedback e-mail the client; unticked, nothing is queued', async () => {
+  const state = freshState();
+  const h = (n) => new Date(Date.now() + n * 3600e3).toISOString();
+  state.demos.push({ id: 'dm-1', project_id: 'p-late', title: 'Weboldal demó', url: 'https://demo.example.com', client_note: null, published: false, revoked_at: null, position: 0, updated_at: h(0) });
+  state.feedback.push({ id: 'fb-1', demo_id: 'dm-1', project_id: 'p-late', account_id: 'ca-1', body: 'A logó legyen nagyobb.', created_at: h(-1), read_at: null, owner_reply: null, replied_at: null,
+    account: { full_name: 'Kovács Anna', email: 'anna@a.example' }, project: { name: 'Late website' }, demo: { title: 'Weboldal demó' } });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects/p-late`);
+  const panel = page.getByRole('region', { name: 'Client portal view' });
+  const box = panel.getByLabel('E-mail the client');
+  assert(await box.isChecked(), 'notify is not on by default');
+  await panel.getByRole('button', { name: 'Publish' }).click();
+  await panel.getByText('Visible to the client').waitFor();
+  await page.waitForTimeout(300);
+  let q = state.writes.filter((x) => x.table === 'notification_outbox');
+  assert(q.length === 1 && q[0].body.kind === 'demo_published' && q[0].body.audience === 'client' && q[0].body.project_id === 'p-late' && q[0].body.payload.title === 'Weboldal demó', JSON.stringify(q));
+  await panel.getByRole('button', { name: 'Answer', exact: true }).click();
+  await panel.getByPlaceholder('Your answer — the client sees it under their feedback.').fill('Rendben, nagyobb lesz.');
+  await panel.getByRole('button', { name: 'Send the answer' }).click();
+  await page.waitForTimeout(400);
+  const w = state.writes.find((x) => x.table === 'demo_feedback' && x.body.owner_reply);
+  assert(w && w.body.owner_reply === 'Rendben, nagyobb lesz.', JSON.stringify(w));
+  q = state.writes.filter((x) => x.table === 'notification_outbox');
+  assert(q.length === 2 && q[1].body.kind === 'feedback_replied' && JSON.stringify(q[1].body.account_ids) === '["ca-1"]', JSON.stringify(q));
+  await box.uncheck();
+  await panel.getByRole('button', { name: 'Unpublish' }).click();
+  await page.waitForTimeout(400);
+  assert(state.writes.filter((x) => x.table === 'notification_outbox').length === 2, 'queued while unticked');
+  await context.close();
+});
+
+await check('notifications: Settings explains push on this device and does not claim it is on', async () => {
+  const { page, context } = await open(browser);
+  await page.goto(`${BASE}/settings`);
+  await page.getByText('When a client uploads a file', { exact: false }).waitFor();
+  await page.locator('[data-push-state]:not([data-push-state="loading"])').waitFor();
+  const st = await page.locator('[data-push-state]').getAttribute('data-push-state');
+  assert(['off', 'unsupported', 'denied'].includes(st), `push state ${st}`);
+  if (st === 'denied') await page.getByText('Notifications are blocked for this site', { exact: false }).waitFor();
+  assert(!(await page.getByText('On for this device').count()), 'push shown as on without a subscription');
   await context.close();
 });
 

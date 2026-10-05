@@ -64,7 +64,7 @@ function freshState(over = {}) {
     objects: new Map(),
     puts: [], signs: [], requests: [], seq: 0,
     failPut: new Set(), revokeOnFinish: new Set(),
-    invites: [], shares: [],
+    invites: [], shares: [], outbox: [],
     verify: 'ok',
     demos: [{ demo_id: 'demo-1', project_id: P1, project_name: 'Rapidkert weboldal', title: 'Weboldal demó', url: 'https://demo.example.com/rapidkert',
       note: 'A kezdőlap és a kapcsolat oldal kész.', updated_at: now() }],
@@ -188,6 +188,10 @@ async function open(browser, { role = 'client', state = freshState(), viewport =
     }
     if (url.includes('/rest/v1/client_project_access')) {
       return json(route, role === 'owner' ? [{ account_id: 'acc-1', account: { full_name: 'Kovács Anna', email: 'anna@a.example', status: 'active', user_id: CLIENT.id } }] : []);
+    }
+    if (url.includes('/rest/v1/notification_outbox')) {
+      if (method === 'POST') { state.outbox.push(body()); return json(route, [], 201); }
+      return json(route, []);
     }
     if (url.includes('/rest/v1/document_shares')) {
       if (method === 'POST') { const b = body(); state.shares.push({ id: `s-${state.shares.length + 1}`, ...b }); return json(route, [], 201); }
@@ -421,7 +425,7 @@ await check('owner: invite from the client page — the link is shown once, sent
   await context.close();
 });
 
-await check('owner: share from the library — assigned accounts only, folder wording, and the client\'s upload shows who sent it', async () => {
+await check('owner: share from the library — assigned accounts only, the client is e-mailed, and the client\'s upload shows who sent it', async () => {
   const { page, context, state } = await open(browser, { role: 'owner' });
   await page.goto(`${BASE}/documents/${P1}`);
   await page.locator('li[data-document="d-2"]').getByText('from Kovács Anna').waitFor();
@@ -431,6 +435,11 @@ await check('owner: share from the library — assigned accounts only, folder wo
   await dialog.getByRole('button', { name: 'Share' }).click();
   await dialog.getByRole('button', { name: 'Stop sharing' }).waitFor();
   assert(state.shares.length === 1 && state.shares[0].document_id === 'd-1' && state.shares[0].account_id === 'acc-1', JSON.stringify(state.shares));
+  // "E-mail the client when I share" is on by default: one message, to that account only.
+  await page.waitForTimeout(200);
+  const ob = state.outbox;
+  assert(ob.length === 1 && ob[0].kind === 'document_shared' && ob[0].audience === 'client' && ob[0].project_id === P1
+    && ob[0].payload.name === 'Árajánlat.pdf' && JSON.stringify(ob[0].account_ids) === '["acc-1"]', JSON.stringify(ob));
   await dialog.getByRole('button', { name: 'Done' }).click();
   await page.locator('li[data-document="d-1"] [data-shared-with="Kovács Anna"]').waitFor();
   await context.close();
@@ -537,6 +546,20 @@ await check('Észrevételek: a client writes feedback under the demo by keyboard
   assert(state.feedback.length === 1 && state.feedback[0].body === 'A kapcsolat oldalon elírás van.' && state.feedback[0].demo_id === 'demo-1', JSON.stringify(state.feedback));
   await box.getByText('Még nem látta').waitFor();
   assert(!(await box.innerText()).match(/továbbítottam|elküldtük a kollégának/i), 'claims forwarding');
+  await context.close();
+});
+
+await check('Észrevételek: Stratos\'s answer is shown under the client\'s feedback', async () => {
+  const state = freshState();
+  state.feedback.push({ feedback_id: 'f-1', demo_id: 'demo-1', body: 'A logó legyen nagyobb.', created_at: new Date(Date.now() - 864e5).toISOString(), seen: true,
+    reply: 'Rendben, a jövő heti demóban már nagyobb lesz.', replied_at: new Date().toISOString() });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  const box = page.locator('[data-demo-feedback="demo-1"]');
+  await box.getByRole('button', { name: 'Észrevételek' }).click();
+  const reply = box.locator('[data-feedback-reply]');
+  await reply.getByText('A Stratos válasza').waitFor();
+  await reply.getByText('Rendben, a jövő heti demóban már nagyobb lesz.').waitFor();
   await context.close();
 });
 

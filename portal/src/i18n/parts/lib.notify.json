@@ -1,0 +1,10 @@
+{
+ "Saved — but the client could not be notified by e-mail.": {
+  "hu": "Elmentve — de az ügyfelet nem sikerült e-mailben értesíteni.",
+  "de": "Gespeichert — aber der Kunde konnte nicht per E-Mail benachrichtigt werden."
+ },
+ "The test could not be queued.": {
+  "hu": "A próbaértesítést nem sikerült elindítani.",
+  "de": "Die Testbenachrichtigung konnte nicht eingereiht werden."
+ }
+}

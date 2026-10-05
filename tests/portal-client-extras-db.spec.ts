@@ -490,3 +490,95 @@ test.describe('meeting reschedule requests', () => {
     }
   });
 });
+
+/* ==================================================== notifications (20261013000100) == */
+
+test.describe('notifications', () => {
+  let db: PGlite;
+  let anna: string;
+  let bela: string;
+  const outbox = async () => (await db.query<{ audience: string; kind: string; project_id: string; payload: Record<string, unknown> }>(
+    `select audience, kind, project_id, payload from notification_outbox order by created_at, kind`)).rows;
+  const claim = async () => (await db.query<{ id: string; kind: string; recipients: { email: string; locale: string | null }[]; project_name: string }>(
+    `select * from notification_claim(50)`)).rows;
+  test.beforeAll(async () => {
+    db = await fresh();
+    anna = await invite(db, ORG.a, 'Anna', 'anna@a.example', [P.a1], U.a1);
+    bela = await invite(db, ORG.a, 'Béla', 'bela@a.example', [P.a1], U.a2);
+  });
+
+  test('a client\'s upload, feedback and new-time proposal each tell the owner', async () => {
+    const [up] = await ok(db, 'a1', `select * from client_begin_upload($1, 'logo.png', 5, 'image/png', 'png')`, [P.a1]);
+    await storeObject(db, up.storage_path as string, 5);
+    await ok(db, 'a1', `select client_finish_upload($1)`, [up.id]);
+    const [d] = (await demo(db, P.a1)).rows;
+    await ok(db, 'a1', `select client_send_demo_feedback($1, 'A menü kicsi.')`, [d.id]);
+    const [m] = (await meeting(db, P.a1, 48)).rows;
+    const [{ id: req }] = await ok(db, 'a1', `select client_request_meeting_change($1, now() + interval '3 days', now() + interval '3 days 1 hour') as id`, [m.id]);
+    await ok(db, 'a1', `select client_withdraw_meeting_request($1)`, [req]);
+    const rows = await outbox();
+    expect(rows.map((r) => `${r.audience}:${r.kind}`)).toEqual(
+      ['owner:client_upload', 'owner:client_feedback', 'owner:client_reschedule', 'owner:client_reschedule_withdrawn']);
+    expect(rows[0].payload.name).toBe('logo.png');
+    expect(rows[1].payload.excerpt).toBe('A menü kicsi.');
+  });
+
+  test('only the owner writes a client message; a client and an admin cannot', async () => {
+    const msg = `insert into notification_outbox (audience, kind, project_id, payload) values ('client', 'demo_published', $1, '{"title":"Demó"}')`;
+    for (const who of ['admin', 'super2', 'a1'] as const) expect((await as(db, who, msg, [P.a1])).error, who).not.toBeNull();
+    expect((await as(db, 'owner', `insert into notification_outbox (audience, kind, project_id) values ('owner', 'client_upload', $1)`, [P.a1])).error).not.toBeNull();
+    await ok(db, 'owner', msg, [P.a1]);
+    await ok(db, 'owner', `insert into notification_outbox (audience, kind, project_id, account_ids, payload) values ('client', 'document_shared', $1, $2::uuid[], '{"name":"Szerződés.pdf"}')`, [P.a1, [bela]]);
+    expect((await as(db, 'a1', `select * from notification_outbox`)).rows).toEqual([]);
+  });
+
+  test('recipients are resolved when sending: the owner; the clients that have the project now, or the ones named', async () => {
+    const rows = await claim();
+    expect(rows.length).toBe(6);
+    const byKind = Object.fromEntries(rows.map((r) => [r.kind, r]));
+    expect(byKind.client_upload.recipients.map((x) => x.email)).toEqual(['owner@example.invalid']);
+    expect(byKind.demo_published.recipients.map((x) => x.email).sort()).toEqual(['anna@a.example', 'bela@a.example']);
+    expect(byKind.demo_published.recipients[0].locale).toBe('hu');
+    expect(byKind.document_shared.recipients.map((x) => x.email)).toEqual(['bela@a.example']);
+    // Claimed rows are not handed out twice while they are being sent.
+    expect(await claim()).toEqual([]);
+    for (const r of rows) await db.query(`select notification_done($1)`, [r.id]);
+    expect((await db.query(`select count(*)::int as n from notification_outbox where sent_at is null`)).rows[0]).toEqual({ n: 0 });
+  });
+
+  test('a client whose access was withdrawn is not mailed; a failure is retried, then given up', async () => {
+    await db.exec(`update client_project_access set revoked_at = now() where account_id = '${anna}'`);
+    await ok(db, 'owner', `insert into notification_outbox (audience, kind, project_id, payload) values ('client', 'meeting_scheduled', $1, '{}')`, [P.a1]);
+    let [row] = await claim();
+    expect(row.recipients.map((x) => x.email)).toEqual(['bela@a.example']);
+    await db.query(`select notification_done($1, 'resend 500')`, [row.id]);
+    [row] = await claim();
+    expect(row.kind).toBe('meeting_scheduled');
+    for (let i = 0; i < 3; i += 1) { await db.query(`select notification_done($1, 'resend 500')`, [row.id]); [row] = await claim(); }
+    await db.query(`select notification_done($1, 'resend 500')`, [row.id]);
+    expect(await claim()).toEqual([]);
+  });
+
+  test('the owner answers feedback: stamped by the database, read, and shown to the client; the client cannot change it', async () => {
+    const [f] = (await db.query<{ id: string }>(`select id from demo_feedback limit 1`)).rows;
+    await ok(db, 'owner', `update demo_feedback set owner_reply = 'Javítjuk holnapra.' where id = $1`, [f.id]);
+    const [row] = (await db.query<Record<string, unknown>>(`select replied_at, replied_by, read_at from demo_feedback where id = $1`, [f.id])).rows;
+    expect(row.replied_at).not.toBeNull();
+    expect(row.replied_by).toBe(U.owner);
+    expect(row.read_at).not.toBeNull();
+    // Anna gets the project again (a new assignment — a withdrawn one is never reopened).
+    await ok(db, 'owner', `insert into client_project_access (account_id, project_id) values ($1, $2)`, [anna, P.a1]);
+    const mine = await ok(db, 'a1', `select reply, replied_at from client_portal_demo_feedback()`);
+    expect(mine[0].reply).toBe('Javítjuk holnapra.');
+    expect((await as(db, 'owner', `update demo_feedback set body = 'más' where id = $1`, [f.id])).error?.message).toContain('feedback_fixed');
+  });
+
+  test('push: staff register their own device; re-registering replaces it; a client cannot', async () => {
+    const ep = 'https://fcm.googleapis.com/fcm/send/abc';
+    await ok(db, 'owner', `select push_subscribe($1, $2, $3, 'iPhone')`, [ep, 'B'.repeat(80), 'a'.repeat(16)]);
+    await ok(db, 'admin', `select push_subscribe($1, $2, $3, 'Mac')`, [ep, 'C'.repeat(80), 'b'.repeat(16)]);
+    expect((await db.query(`select user_id::text from push_subscriptions`)).rows).toEqual([{ user_id: U.admin }]);
+    expect((await ok(db, 'owner', `select * from push_subscriptions`)).length).toBe(0);
+    expect((await as(db, 'a1', `select push_subscribe($1, $2, $3)`, ['https://x.example/1', 'B'.repeat(80), 'a'.repeat(16)])).error?.message).toContain('push_forbidden');
+  });
+});
