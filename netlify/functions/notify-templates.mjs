@@ -32,6 +32,11 @@ const LINES = {
   client_feedback: ['{client} észrevételt írt a demóhoz ({project}): „{excerpt}”', '{client} wrote feedback on the demo ({project}): “{excerpt}”', '{client} hat Feedback zur Demo geschrieben ({project}): „{excerpt}“'],
   client_reschedule: ['{client} új időpontot javasol ({project}): {when}', '{client} proposes a new time ({project}): {when}', '{client} schlägt einen neuen Termin vor ({project}): {when}'],
   client_reschedule_withdrawn: ['{client} visszavonta az időpont-javaslatát ({project})', '{client} withdrew their proposed time ({project})', '{client} hat den Terminvorschlag zurückgezogen ({project})'],
+  client_message: ['{client} üzenetet írt ({project}): „{excerpt}”', '{client} wrote a message ({project}): “{excerpt}”', '{client} hat eine Nachricht geschrieben ({project}): „{excerpt}“'],
+  client_approved: ['{client} jóváhagyta a demót: {title} ({project})', '{client} approved the demo: {title} ({project})', '{client} hat die Demo freigegeben: {title} ({project})'],
+  client_changes_requested: ['{client} módosítást kér a demón ({title}, {project}): „{excerpt}”', '{client} asks for changes to the demo ({title}, {project}): “{excerpt}”', '{client} wünscht Änderungen an der Demo ({title}, {project}): „{excerpt}“'],
+  client_request_done: ['{client} kész: {title} ({project})', '{client} marked done: {title} ({project})', '{client} hat erledigt: {title} ({project})'],
+  client_survey: ['{client} értékelt: {score}/10 ({project})', '{client} rated you {score}/10 ({project})', '{client} hat {score}/10 bewertet ({project})'],
   test: ['Próbaértesítés — ha ezt látod, az értesítések működnek.', 'Test notification — if you can see this, notifications work.', 'Testbenachrichtigung — wenn Sie das sehen, funktionieren die Benachrichtigungen.'],
   // ---- to a client
   document_shared: ['Új dokumentumot osztottunk meg veled: {name}', 'We shared a new document with you: {name}', 'Wir haben ein neues Dokument mit dir geteilt: {name}'],
@@ -40,7 +45,16 @@ const LINES = {
   meeting_changed: ['Módosult a megbeszélés: {title} — {when}', 'The meeting has changed: {title} — {when}', 'Der Termin hat sich geändert: {title} — {when}'],
   meeting_cancelled: ['Elmarad a megbeszélés: {title} ({when})', 'The meeting is cancelled: {title} ({when})', 'Der Termin fällt aus: {title} ({when})'],
   reschedule_decided: ['Válaszoltunk az időpont-javaslatodra: {decision}', 'We answered your proposed time: {decision}', 'Wir haben auf deinen Terminvorschlag geantwortet: {decision}'],
+  request_added: ['Kérünk tőled valamit: {title}{due}', 'We need something from you: {title}{due}', 'Wir brauchen etwas von dir: {title}{due}'],
+  message_posted: ['Új üzenet a Stratostól: „{excerpt}”', 'New message from Stratos: “{excerpt}”', 'Neue Nachricht von Stratos: „{excerpt}“'],
+  approval_requested: ['Jóváhagyásodra vár egy demó: {title}', 'A demo is waiting for your approval: {title}', 'Eine Demo wartet auf deine Freigabe: {title}'],
+  survey_requested: ['Mennyire vagy elégedett velünk? Egy perc az egész, és sokat segít.', 'How happy are you with us? It takes a minute and helps us a lot.', 'Wie zufrieden bist du mit uns? Es dauert eine Minute und hilft uns sehr.'],
   feedback_replied: ['Válaszoltunk az észrevételedre: „{reply}”', 'We replied to your feedback: “{reply}”', 'Wir haben auf dein Feedback geantwortet: „{reply}“'],
+};
+
+const DUE = [' (határidő: {d})', ' (by {d})', ' (bis {d})'];
+const day = (iso, lang) => {
+  try { return new Intl.DateTimeFormat({ hu: 'hu-HU', en: 'en-GB', de: 'de-DE' }[lang], { month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)); } catch { return iso; }
 };
 
 const DECISION = { accepted: ['elfogadva', 'accepted', 'angenommen'], declined: ['nem fogadtuk el', 'declined', 'abgelehnt'] };
@@ -76,6 +90,8 @@ export function line(msg, lang) {
     reply: String(p.reply ?? '').slice(0, 200),
     when: p.starts_at ? when(p.starts_at, lang, p.time_zone || 'Europe/Budapest') : '',
     decision: DECISION[p.decision]?.[i] ?? '',
+    score: p.score ?? '',
+    due: p.due_on ? DUE[i].replace('{d}', day(p.due_on, lang)) : '',
   };
   return fill((LINES[msg.kind] ?? LINES.test)[i], ctx).replace(/\s+\(\)$/, '');
 }

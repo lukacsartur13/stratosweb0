@@ -1,0 +1,131 @@
+{
+ "Say what you need, e.g. \"Logo as SVG\".": {
+  "hu": "Írd le, mire van szükséged, pl. „Logó SVG-ben”.",
+  "de": "Geben Sie an, was Sie brauchen, z. B. „Logo als SVG“."
+ },
+ "Waiting on the client": {
+  "hu": "Az ügyfélre várunk",
+  "de": "Wir warten auf den Kunden"
+ },
+ "Request": {
+  "hu": "Kérés",
+  "de": "Anfrage"
+ },
+ "The client sees these under “Rád várunk” and marks them done. Open approvals and surveys are listed there too.": {
+  "hu": "Az ügyfél a „Rád várunk” részben látja és ott jelzi, ha kész. A nyitott jóváhagyások és kérdőívek is ott vannak.",
+  "en": "The client sees these under “Waiting for you” and marks them done. Open approvals and surveys are listed there too.",
+  "de": "Der Kunde sieht diese unter „Wir warten auf dich“ und meldet sie dort als erledigt. Offene Freigaben und Umfragen stehen ebenfalls dort."
+ },
+ "What do you need?": {
+  "hu": "Mire van szükséged?",
+  "de": "Was brauchen Sie?"
+ },
+ "Details for the client (optional)": {
+  "hu": "Részletek az ügyfélnek (nem kötelező)",
+  "de": "Details für den Kunden (optional)"
+ },
+ "Add request": {
+  "hu": "Kérés hozzáadása",
+  "de": "Anfrage hinzufügen"
+ },
+ "Nothing requested.": {
+  "hu": "Nincs nyitott kérés.",
+  "de": "Keine Anfrage."
+ },
+ "due {day}": {
+  "hu": "határidő: {day}",
+  "de": "fällig {day}"
+ },
+ "no due date": {
+  "hu": "nincs határidő",
+  "de": "ohne Frist"
+ },
+ "done by {name}, {when}": {
+  "hu": "kész — {name}, {when}",
+  "de": "erledigt von {name}, {when}"
+ },
+ "Mark seen": {
+  "hu": "Láttam",
+  "de": "Gesehen"
+ },
+ "Withdraw": {
+  "hu": "Visszavonás",
+  "de": "Zurückziehen"
+ },
+ "Messages": {
+  "hu": "Üzenetek",
+  "de": "Nachrichten"
+ },
+ "{n} new": {
+  "hu": "{n} új",
+  "de": "{n} neu"
+ },
+ "One thread with the project's clients. Answering marks their messages read.": {
+  "hu": "Egy közös szál a projekt ügyfeleivel. A válaszod olvasottnak jelöli az üzeneteiket.",
+  "de": "Ein gemeinsamer Verlauf mit den Kunden des Projekts. Eine Antwort markiert ihre Nachrichten als gelesen."
+ },
+ "No message yet.": {
+  "hu": "Még nincs üzenet.",
+  "de": "Noch keine Nachricht."
+ },
+ "Message thread": {
+  "hu": "Üzenetváltás",
+  "de": "Nachrichtenverlauf"
+ },
+ "Stratos": {
+  "hu": "Stratos",
+  "de": "Stratos"
+ },
+ "Message to the client": {
+  "hu": "Üzenet az ügyfélnek",
+  "de": "Nachricht an den Kunden"
+ },
+ "Send": {
+  "hu": "Küldés",
+  "de": "Senden"
+ },
+ "Satisfaction": {
+  "hu": "Elégedettség",
+  "de": "Zufriedenheit"
+ },
+ "Ask now": {
+  "hu": "Megkérdezem most",
+  "de": "Jetzt fragen"
+ },
+ "“How likely are you to recommend us?” 1–10. Asked automatically when the project is closed, and every quarter on a monthly contract; the client always gets an e-mail. From 7 up they are offered your Google review link (Settings).": {
+  "hu": "„Mennyire ajánlanál minket?” 1–10. Automatikusan megy a projekt lezárásakor, havi szerződésnél negyedévente; az ügyfél mindig e-mailt kap. 7-től felajánljuk neki a Google-értékelés linkjét (Beállítások).",
+  "de": "„Wie wahrscheinlich ist es, dass Sie uns weiterempfehlen?“ 1–10. Automatisch beim Abschluss des Projekts und vierteljährlich bei Monatsverträgen; der Kunde erhält immer eine E-Mail. Ab 7 wird ihm Ihr Google-Bewertungslink angeboten (Einstellungen)."
+ },
+ "Not asked yet.": {
+  "hu": "Még nem kérdeztük meg.",
+  "de": "Noch nicht gefragt."
+ },
+ "Waiting for the answer": {
+  "hu": "Válaszra vár",
+  "de": "Wartet auf Antwort"
+ },
+ "asked {when}": {
+  "hu": "kérdezve: {when}",
+  "de": "gefragt {when}"
+ },
+ "answered by {name}": {
+  "hu": "válaszolt: {name}",
+  "de": "beantwortet von {name}"
+ },
+ "opened the Google review page": {
+  "hu": "megnyitotta a Google-értékelést",
+  "de": "hat die Google-Bewertung geöffnet"
+ },
+ "At closing": {
+  "hu": "Lezáráskor",
+  "de": "Beim Abschluss"
+ },
+ "Quarterly": {
+  "hu": "Negyedéves",
+  "de": "Vierteljährlich"
+ },
+ "Asked by hand": {
+  "hu": "Kézzel kérve",
+  "de": "Manuell gefragt"
+ }
+}

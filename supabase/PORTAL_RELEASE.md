@@ -751,6 +751,10 @@ kulcspár); `tests/portal-client-extras-db.spec.ts` értesítési része 6/6; tu
 
 ## 24. Értesítések az adminoknak is (16b. szakasz)
 
+**Élesítve 2026-10-05:** push a `main`-re, utána a migráció hiba nélkül lefutott. Ugyanekkor a tulajdonos
+döntése: az admin (`info@media-stratos.com`) **helyettes** lett (`portal_add_delegate`, 20261003000100) —
+teljes tulajdonosi jog, így az értesítések linkje nála is a projektoldalra visz.
+
 **Sorrend: 23. → ez a migráció, majd deploy.**
 
 1. SQL Editor: `supabase/migrations/20261013000200_notify_staff.sql` (ismételten is futtatható).
@@ -762,10 +766,46 @@ Mit csinál (a tulajdonos döntése, 2026-10-05):
   észrevétel, időpont-javaslat. A tulajdonosi „owner” üzenet címzettje: a tulajdonos és minden super_admin / admin.
 - **Az admin is látja a Beállításokat:** saját fiók, nyelv, értesítések — push bekapcsolása az eszközén,
   „Send a test” (csak magának), és **„E-mailben is”** kapcsoló (`notification_prefs`, alapból bekapcsolva).
-- Megjegyzés: az értesítés linkje a projektoldalra mutat, amit csak a tulajdonos nyithat meg; az admin a
-  kezdőlapra kerül.
+- Az értesítés linkje a projektoldalra mutat, amit a tulajdonos és a helyettesei nyithatnak meg; egy nem
+  helyettes admin a kezdőlapra kerül.
 
 Ellenőrizve (helyben): `tests/notify.spec.ts` 7/7; `portal-client-extras-db` értesítési része (címzettek,
 e-mail-kapcsoló, saját próba) zöld; tulajdonosi ellenőrző 59/59 (admin: Beállítások, értesítési panel,
 e-mail-kapcsoló). Teljes futás: 2194 zöld, 2 hiba a `homepage-chrome` „navigating away and back” tesztben
 mobilon — ismétlésre 3/4-ben átmegy, a portált nem érinti.
+
+## 25. Ügyfélélmény: jóváhagyás, „Rád várunk”, üzenőfal, elégedettség (17. szakasz, „3. Ügyfélélmény”)
+
+**Sorrend: 24. → ez a migráció → deploy.**
+
+1. SQL Editor: `supabase/migrations/20261014000100_client_experience.sql` (ismételten is futtatható).
+2. Deploy (push a `main`-re).
+3. Beállítások → **Google review link**: a Google Cégprofilból („Értékelések kérése”) másolt link. Amíg
+   üres, az ügyfél köszönetet kap, de értékelést nem kérünk.
+
+Mit csinál (a tulajdonos döntései, 2026-10-05):
+
+- **Jóváhagyás (csak demó):** a projektoldalon egy közzétett demónál „Ask for approval”. Az ügyfél
+  „Jóváhagyom” vagy „Módosítást kérek” (ilyenkor kötelező leírni, mit). Egy kérésre egy válasz; a következő
+  körhöz „Ask again”. A választ csak az ügyfél írhatja.
+- **„Rád várunk”** az ügyfélportál tetején: a nyitott jóváhagyások, a kérdőív és a te kéréseid („Waiting on the
+  client” a projektoldalon: cím, részletek, határidő). Az ügyfél „Kész”-t nyom (megjegyzéssel); te
+  visszanyithatod vagy visszavonhatod.
+- **Üzenőfal:** projektenként egy szál, csatolmány nélkül; a projekt minden ügyfele látja. A válaszod olvasottnak
+  jelöli az ügyfél üzeneteit. Ügyfélenként legfeljebb 60 üzenet naponta.
+- **Elégedettség:** „Mennyire ajánlanál minket?” 1–10 + megjegyzés. Automatikusan megy a projekt lezárásakor
+  (egyszer, ha van aktív ügyfélfiókja), havi szerződésnél negyedévente (a negyedév utolsó hónapjában, ha a
+  szerződés az egész negyedévben futott — a percenkénti küldő indítja), vagy kézzel („Ask now”). Az ügyfél
+  mindig e-mailt kap. 7-től felajánljuk a Google-értékelést; látod, ha megnyitotta.
+- **Értesítések:** az ügyfél üzenete, jóváhagyása / módosítási kérése, „Kész” jelzése és értékelése push +
+  e-mail a tulajdonosnak és az adminoknak; a kérés, az üzenet és a jóváhagyási kérés e-mail az ügyfélnek, ha
+  be van pipálva az „E-mail the client”.
+- **Ügyfél-beérkező** (Projects): az olvasatlan üzenetek, a jóváhagyási válaszok, a kész kérések és az
+  értékelések is, amíg „Mark read” / „Mark seen” nincs rajtuk.
+- Az új ügyfélfüggvények egyetlen projekt- vagy dokumentumtáblát sem neveznek meg (mint a 4. szakaszban): a
+  `client_has_project()` és a `client_account_id()` dönt.
+
+Ellenőrizve (helyben): `tests/portal-client-experience-db.spec.ts` 18/18 (jogok, egyszeri válasz, határidő,
+üzenetkorlát, lezáráskori és negyedéves kérdőív, Google-link 7-től); `tests/notify.spec.ts`; tulajdonosi
+ellenőrző 61/61; ügyfélportál 24/24; dokumentum 18/18; teljes futás 2269 zöld, 1 hiba az ingadozó
+`homepage-chrome` mobil tesztben (külön feladat).

@@ -318,5 +318,45 @@
  "Send the answer": {
   "hu": "Válasz elküldése",
   "de": "Antwort senden"
+ },
+ "what the assigned client sees and does": {
+  "hu": "amit a hozzárendelt ügyfél lát és tesz",
+  "de": "was der zugeordnete Kunde sieht und tut"
+ },
+ "Ask again": {
+  "hu": "Újra kérem",
+  "de": "Erneut anfragen"
+ },
+ "Ask for approval": {
+  "hu": "Jóváhagyást kérek",
+  "de": "Freigabe anfragen"
+ },
+ "Waiting for approval": {
+  "hu": "Jóváhagyásra vár",
+  "de": "Wartet auf Freigabe"
+ },
+ "Approved": {
+  "hu": "Jóváhagyva",
+  "de": "Freigegeben"
+ },
+ "Changes requested": {
+  "hu": "Módosítást kért",
+  "de": "Änderungen gewünscht"
+ },
+ "Message": {
+  "hu": "Üzenet",
+  "de": "Nachricht"
+ },
+ "Approval": {
+  "hu": "Jóváhagyás",
+  "de": "Freigabe"
+ },
+ "Done": {
+  "hu": "Kész",
+  "de": "Erledigt"
+ },
+ "Rating": {
+  "hu": "Értékelés",
+  "de": "Bewertung"
  }
 }

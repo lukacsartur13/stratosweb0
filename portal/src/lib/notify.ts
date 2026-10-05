@@ -14,7 +14,9 @@ import { t } from '@/lib/i18n';
  */
 export type ClientNotice =
   | 'document_shared' | 'demo_published' | 'meeting_scheduled' | 'meeting_changed'
-  | 'meeting_cancelled' | 'reschedule_decided' | 'feedback_replied';
+  | 'meeting_cancelled' | 'reschedule_decided' | 'feedback_replied'
+  // 20261014000100
+  | 'request_added' | 'message_posted' | 'approval_requested';
 
 export async function notifyClient(kind: ClientNotice, projectId: string, payload: Record<string, unknown>, accountIds?: string[]): Promise<string | null> {
   if (!isConfigured) return null;

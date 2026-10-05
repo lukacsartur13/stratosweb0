@@ -358,5 +358,137 @@
  "A Stratos válasza": {
   "en": "Stratos's answer",
   "de": "Antwort von Stratos"
+ },
+ "Jóváhagytad": {
+  "en": "You approved it",
+  "de": "Du hast sie freigegeben"
+ },
+ "Módosítást kértél": {
+  "en": "You asked for changes",
+  "de": "Du hast Änderungen gewünscht"
+ },
+ "Jóváhagyásodra vár": {
+  "en": "Waiting for your approval",
+  "de": "Wartet auf deine Freigabe"
+ },
+ "Rád várunk": {
+  "en": "Waiting for you",
+  "de": "Wir warten auf dich"
+ },
+ "Most semmi nem vár rád.": {
+  "en": "Nothing is waiting for you right now.",
+  "de": "Gerade wartet nichts auf dich."
+ },
+ "Nemrég elintézve ({n})": {
+  "en": "Recently done ({n})",
+  "de": "Kürzlich erledigt ({n})"
+ },
+ "Kész": {
+  "en": "Done",
+  "de": "Erledigt"
+ },
+ "Jóváhagyásra vár": {
+  "en": "Waiting for approval",
+  "de": "Wartet auf Freigabe"
+ },
+ "Jóváhagyom": {
+  "en": "I approve",
+  "de": "Ich gebe frei"
+ },
+ "Módosítást kérek": {
+  "en": "I'd like changes",
+  "de": "Ich möchte Änderungen"
+ },
+ "Mit módosítsunk?": {
+  "en": "What should we change?",
+  "de": "Was sollen wir ändern?"
+ },
+ "Módosítási kérés elküldése": {
+  "en": "Send the change request",
+  "de": "Änderungswunsch senden"
+ },
+ "Kérés a Stratostól": {
+  "en": "Request from Stratos",
+  "de": "Bitte von Stratos"
+ },
+ "Határidő lejárt: {day}": {
+  "en": "Overdue: {day}",
+  "de": "Überfällig: {day}"
+ },
+ "Határidő: {day}": {
+  "en": "Due: {day}",
+  "de": "Fällig: {day}"
+ },
+ "Fájl leadása": {
+  "en": "Hand over a file",
+  "de": "Datei übergeben"
+ },
+ "Megjegyzés (nem kötelező)": {
+  "en": "Note (optional)",
+  "de": "Notiz (optional)"
+ },
+ "Jelzem, hogy kész": {
+  "en": "Mark as done",
+  "de": "Als erledigt melden"
+ },
+ "Köszönjük a visszajelzést!": {
+  "en": "Thank you for your feedback!",
+  "de": "Danke für dein Feedback!"
+ },
+ "Ha van egy perced, írnál rólunk egy Google-értékelést? Sokat segít, hogy mások is megtaláljanak.": {
+  "en": "If you have a minute, would you write us a Google review? It really helps others find us.",
+  "de": "Wenn du eine Minute hast: Schreibst du uns eine Google-Bewertung? Das hilft anderen sehr, uns zu finden."
+ },
+ "Google-értékelés írása": {
+  "en": "Write a Google review",
+  "de": "Google-Bewertung schreiben"
+ },
+ "Most nem": {
+  "en": "Not now",
+  "de": "Jetzt nicht"
+ },
+ "Bezárás": {
+  "en": "Close",
+  "de": "Schließen"
+ },
+ "Rövid kérdés": {
+  "en": "A quick question",
+  "de": "Eine kurze Frage"
+ },
+ "Mennyire ajánlanál minket egy ismerősödnek?": {
+  "en": "How likely are you to recommend us to a friend?",
+  "de": "Wie wahrscheinlich ist es, dass du uns weiterempfiehlst?"
+ },
+ "1 = egyáltalán nem, 10 = biztosan": {
+  "en": "1 = not at all, 10 = definitely",
+  "de": "1 = gar nicht, 10 = auf jeden Fall"
+ },
+ "Szeretnél még valamit hozzáfűzni? (nem kötelező)": {
+  "en": "Anything you'd like to add? (optional)",
+  "de": "Möchtest du noch etwas ergänzen? (optional)"
+ },
+ "Az üzenetek most nem tölthetők be.": {
+  "en": "The messages cannot be loaded right now.",
+  "de": "Die Nachrichten können gerade nicht geladen werden."
+ },
+ "Üzenetek": {
+  "en": "Messages",
+  "de": "Nachrichten"
+ },
+ "Üzenetek a Stratosnak": {
+  "en": "Messages with Stratos",
+  "de": "Nachrichten an Stratos"
+ },
+ "Te": {
+  "en": "You",
+  "de": "Du"
+ },
+ "Új üzenet": {
+  "en": "New message",
+  "de": "Neue Nachricht"
+ },
+ "A projekt minden résztvevője látja. Munkanapokon 1 munkanapon belül válaszolunk.": {
+  "en": "Everyone on the project sees it. On working days we reply within 1 working day.",
+  "de": "Alle Beteiligten des Projekts sehen sie. An Werktagen antworten wir innerhalb eines Werktags."
  }
 }

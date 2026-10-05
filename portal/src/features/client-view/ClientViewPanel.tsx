@@ -6,10 +6,12 @@ import {
 } from '@/components/ui';
 import {
   ownerDecideRequest, useClientInbox, useClientViewMutations, useDemoFeedback, useMeetingRequests, useProjectDemos, useProjectMeetings,
-  type Demo, type DemoFeedback, type Meeting, type MeetingRequest,
+  type Demo, type DemoFeedback, type InboxKind, type Meeting, type MeetingRequest,
 } from '@/lib/clientView';
 import { t, intlLocale } from '@/lib/i18n';
 import { notifyClient, type ClientNotice } from '@/lib/notify';
+import { Messages, Satisfaction, WaitingOnClient } from '@/features/client-view/ClientExperience';
+import { saveExperience } from '@/lib/clientExperience';
 import { formatMeetingTime, googleCalendarUrl, isSafeHttpsUrl, nextMeeting, safeHttpsUrl, timeZoneOptions, wallClock, zonedToUtc } from '@/lib/meetings';
 
 /**
@@ -36,7 +38,7 @@ export function ClientViewPanel({ projectId, projectName }: { projectId: string;
     (notify ? notifyClient(kind, projectId, payload, accountIds) : null);
   return (
     <Panel aria-label={t('Client portal view')}>
-      <SectionHeader title={t('Client portal')} note={t('demos and meetings the assigned client sees')}
+      <SectionHeader title={t('Client portal')} note={t('what the assigned client sees and does')}
         action={
           <label className="flex items-center gap-1.5 text-[11px] text-haze" title={t('While ticked, the project\'s clients get an e-mail about what you change here.')}>
             <input type="checkbox" checked={notify} onChange={(e) => setNotify(e.target.checked)} className="h-3.5 w-3.5 accent-signal" data-notify-client />
@@ -46,6 +48,9 @@ export function ClientViewPanel({ projectId, projectName }: { projectId: string;
       <NotifyCtx.Provider value={send}>
       <Demos projectId={projectId} tick={tick} onChanged={reload} />
       <Meetings projectId={projectId} projectName={projectName} tick={tick} onChanged={reload} />
+      <WaitingOnClient projectId={projectId} tick={tick} onChanged={reload} send={send} />
+      <Messages projectId={projectId} tick={tick} onChanged={reload} send={send} />
+      <Satisfaction projectId={projectId} tick={tick} onChanged={reload} />
       </NotifyCtx.Provider>
     </Panel>
   );
@@ -85,6 +90,9 @@ function Demos({ projectId, tick, onChanged }: { projectId: string; tick: number
                 {d.url} <ExternalLink size={10} aria-hidden="true" className="inline" />
               </a>
               {d.client_note && <p className="t-note">{d.client_note}</p>}
+              {!d.revoked_at && d.published && (
+                <Approval demo={d} onError={setError} onChanged={onChanged} />
+              )}
               <FeedbackList rows={feedback.rows.filter((f) => f.demo_id === d.id)}
                 onRead={async (f) => setError(await ops.save('demo_feedback', { read_at: f.read_at ? null : new Date().toISOString() }, f.id))}
                 onReply={async (f, reply) => {
@@ -125,6 +133,54 @@ function Demos({ projectId, tick, onChanged }: { projectId: string; tick: number
           }} />
       )}
     </section>
+  );
+}
+
+/**
+ * Approval (20261014000100): the owner asks; the client answers once —
+ * "Jóváhagyom" or "Módosítást kérek" with a note; the owner asks again for the
+ * next round.
+ */
+function Approval({ demo: d, onError, onChanged }: { demo: Demo; onError: (e: string | null) => void; onChanged: () => void }) {
+  const send = useContext(NotifyCtx);
+  const [busy, setBusy] = useState(false);
+  const set = async (patch: Record<string, unknown>, notify: boolean) => {
+    setBusy(true);
+    const problem = await saveExperience('project_demos', patch, d.id);
+    setBusy(false);
+    onError(problem ?? (notify ? await send('approval_requested', { title: d.title }) : null));
+    onChanged();
+  };
+  const ask = (
+    <button type="button" className="underline underline-offset-4 hover:text-paper" disabled={busy}
+            onClick={() => void set({ approval_requested_at: new Date().toISOString() }, true)}>
+      {d.approval_requested_at ? t('Ask again') : t('Ask for approval')}
+    </button>
+  );
+  return (
+    <div className="mt-1 text-[12px] text-haze" data-approval={d.approval_state ?? (d.approval_requested_at ? 'waiting' : 'none')}>
+      {!d.approval_requested_at && ask}
+      {d.approval_requested_at && !d.approval_state && (
+        <p>
+          <Badge tone="warn">{t('Waiting for approval')}</Badge>{' '}
+          <button type="button" className="underline underline-offset-4 hover:text-paper" disabled={busy}
+                  onClick={() => void set({ approval_requested_at: null }, false)}>{t('Withdraw')}</button>
+        </p>
+      )}
+      {d.approval_state && (
+        <>
+          <p>
+            {d.approval_state === 'approved' ? <Badge tone="good">{t('Approved')}</Badge> : <Badge tone="bad">{t('Changes requested')}</Badge>}
+            {d.approval_decided_at && ` ${new Date(d.approval_decided_at).toLocaleString(intlLocale('en-GB'), { dateStyle: 'medium', timeStyle: 'short' })}`}
+            {!d.approval_seen_at && <> <Badge tone="neutral">{t('New')}</Badge></>}
+            {' · '}{ask}
+            {!d.approval_seen_at && <>{' · '}<button type="button" className="underline underline-offset-4 hover:text-paper" disabled={busy}
+              onClick={() => void set({ approval_seen_at: new Date().toISOString() }, false)}>{t('Mark seen')}</button></>}
+          </p>
+          {d.approval_note && <p className="mt-1 whitespace-pre-line border-l-2 border-signal/60 pl-2">{d.approval_note}</p>}
+        </>
+      )}
+    </div>
   );
 }
 
@@ -395,10 +451,17 @@ function RequestList({ rows, meetingTitle, onDecided, onError }: { rows: Meeting
   );
 }
 
+const INBOX_LABEL: Record<InboxKind, string> = {
+  feedback: 'Feedback', request: 'New time', message: 'Message', approval: 'Approval', done: 'Done', survey: 'Rating',
+};
+const INBOX_TONE: Record<InboxKind, 'warn' | 'neutral' | 'good'> = {
+  feedback: 'neutral', request: 'warn', message: 'warn', approval: 'neutral', done: 'good', survey: 'neutral',
+};
+
 /**
- * The owner's inbox on the projects list: every unread demo feedback and every
- * pending time proposal, across projects. Nothing is e-mailed; this is where
- * they show up.
+ * The owner's inbox on the projects list: what clients did that is not yet
+ * read or seen, across projects. Each item opens its project, where it is
+ * answered or marked seen.
  */
 export function ClientInbox({ reloadToken = 0 }: { reloadToken?: number }) {
   const inbox = useClientInbox(true, reloadToken);
@@ -410,7 +473,7 @@ export function ClientInbox({ reloadToken = 0 }: { reloadToken?: number }) {
         {inbox.items.map((i) => (
           <li key={`${i.kind}-${i.id}`} className="flex flex-wrap items-baseline justify-between gap-2 border-b border-hairline px-4 py-2 last:border-0">
             <Link to={`/projects/${i.project_id}`} className="min-w-0 text-[13px] text-paper underline-offset-4 hover:underline">
-              <Badge tone={i.kind === 'request' ? 'warn' : 'neutral'}>{i.kind === 'request' ? t('New time') : t('Feedback')}</Badge>{' '}
+              <Badge tone={INBOX_TONE[i.kind]}>{t(INBOX_LABEL[i.kind])}</Badge>{' '}
               {i.project} · <span className="text-haze">{i.who}</span>
             </Link>
             <span className="t-note max-w-full truncate">{i.text}</span>

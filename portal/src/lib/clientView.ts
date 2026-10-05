@@ -18,6 +18,9 @@ import { t } from '@/lib/i18n';
 export interface Demo {
   id: string; project_id: string; title: string; url: string; client_note: string | null;
   published: boolean; revoked_at: string | null; position: number; updated_at: string;
+  /** Approval (20261014000100): asked when, and the client's answer. */
+  approval_requested_at?: string | null; approval_state?: 'approved' | 'changes' | null; approval_note?: string | null;
+  approval_decided_at?: string | null; approval_seen_at?: string | null;
 }
 export interface Meeting {
   id: string; project_id: string; title: string; starts_at: string; ends_at: string; time_zone: string;
@@ -61,7 +64,7 @@ function useOwnerRows<T>(table: string, columns: string, projectId: string | und
 }
 
 export const useProjectDemos = (projectId: string, t = 0) => useOwnerRows<Demo>('project_demos',
-  'id, project_id, title, url, client_note, published, revoked_at, position, updated_at', projectId, 'position', t);
+  'id, project_id, title, url, client_note, published, revoked_at, position, updated_at, approval_requested_at, approval_state, approval_note, approval_decided_at, approval_seen_at', projectId, 'position', t);
 export const useProjectMeetings = (projectId: string, t = 0) => useOwnerRows<Meeting>('project_meetings',
   'id, project_id, title, starts_at, ends_at, time_zone, join_url, location, client_note, cancelled_at, updated_at', projectId, 'starts_at', t);
 export const useHelpArticlesOwner = (t = 0) => useOwnerRows<OwnerHelpArticle>('help_articles',
@@ -116,26 +119,51 @@ export const useMeetingRequests = (projectId: string | undefined, t = 0) => useO
 // The hooks here name their reload token `t`; inside them, translate with `tr`.
 const tr = t;
 
-/** The owner's inbox across projects: unread feedback, pending time proposals. */
+export type InboxKind = 'feedback' | 'request' | 'message' | 'approval' | 'done' | 'survey';
+export interface InboxItem { kind: InboxKind; id: string; project_id: string; project: string; at: string; text: string; who: string }
+
+/**
+ * The owner's inbox across projects: unread feedback, pending time proposals —
+ * and (20261014000100) unread messages, approval answers, requests the client
+ * marked done and survey answers, until marked read or seen. Those four are
+ * optional: before that migration they are simply absent.
+ */
 export function useClientInbox(enabled: boolean, t = 0) {
   const [state, setState] = useState<State>(isConfigured ? 'loading' : 'unconfigured');
-  const [items, setItems] = useState<{ kind: 'feedback' | 'request'; id: string; project_id: string; project: string; at: string; text: string; who: string }[]>([]);
+  const [items, setItems] = useState<InboxItem[]>([]);
   const load = useCallback(async () => {
     if (!isConfigured || !enabled) return;
-    const [f, r] = await Promise.all([
+    const [f, r, m, a, d, s] = await Promise.all([
       supabase.from('demo_feedback').select('id, project_id, body, created_at, project:projects(name), demo:project_demos(title), account:client_accounts(full_name)')
         .is('read_at', null).order('created_at', { ascending: false }).limit(50),
       supabase.from('meeting_change_requests').select('id, project_id, created_at, proposed_starts_at, proposed_ends_at, time_zone, project:projects(name), meeting:project_meetings(title), account:client_accounts(full_name)')
         .eq('status', 'pending').order('created_at', { ascending: false }).limit(50),
+      supabase.from('project_messages').select('id, project_id, body, created_at, author_name, project:projects(name)')
+        .is('read_at', null).not('account_id', 'is', null).order('created_at', { ascending: false }).limit(50),
+      supabase.from('project_demos').select('id, project_id, title, approval_state, approval_note, approval_decided_at, project:projects(name)')
+        .not('approval_state', 'is', null).is('approval_seen_at', null).limit(50),
+      supabase.from('client_requests').select('id, project_id, title, done_at, done_note, project:projects(name), done_account:client_accounts(full_name)')
+        .not('done_at', 'is', null).is('seen_at', null).is('cancelled_at', null).limit(50),
+      supabase.from('client_surveys').select('id, project_id, score, comment, answered_at, project:projects(name), account:client_accounts(full_name)')
+        .not('answered_at', 'is', null).is('seen_at', null).limit(50),
     ]);
     if (f.error || r.error) { console.error('[client_inbox]', (f.error ?? r.error)?.code); setState('error'); return; }
     type Row = Record<string, unknown> & { project?: { name: string } | null; account?: { full_name: string } | null };
+    const rows = (x: { data: unknown; error: unknown }) => (x.error ? [] : ((x.data ?? []) as Row[]));
+    const base = (x: Row) => ({ id: x.id as string, project_id: x.project_id as string, project: x.project?.name ?? '—' });
     setItems([
-      ...((f.data ?? []) as unknown as Row[]).map((x) => ({ kind: 'feedback' as const, id: x.id as string, project_id: x.project_id as string, project: x.project?.name ?? '—',
+      ...rows(f).map((x) => ({ ...base(x), kind: 'feedback' as const,
         at: x.created_at as string, text: `${(x.demo as { title: string } | null)?.title ?? tr('Demó')}: ${x.body as string}`, who: x.account?.full_name ?? '' })),
-      ...((r.data ?? []) as unknown as Row[]).map((x) => ({ kind: 'request' as const, id: x.id as string, project_id: x.project_id as string, project: x.project?.name ?? '—',
+      ...rows(r).map((x) => ({ ...base(x), kind: 'request' as const,
         at: x.created_at as string, text: tr('{title} — new time proposed', { title: (x.meeting as { title: string } | null)?.title ?? tr('Megbeszélés') }), who: x.account?.full_name ?? '' })),
-    ].sort((a, b) => b.at.localeCompare(a.at)));
+      ...rows(m).map((x) => ({ ...base(x), kind: 'message' as const, at: x.created_at as string, text: x.body as string, who: (x.author_name as string) ?? '' })),
+      ...rows(a).map((x) => ({ ...base(x), kind: 'approval' as const, at: (x.approval_decided_at as string) ?? '',
+        text: `${x.title as string}: ${x.approval_state === 'approved' ? tr('approved') : tr('changes requested')}${x.approval_note ? ` — ${x.approval_note as string}` : ''}`, who: '' })),
+      ...rows(d).map((x) => ({ ...base(x), kind: 'done' as const, at: x.done_at as string,
+        text: `${x.title as string}${x.done_note ? ` — ${x.done_note as string}` : ''}`, who: (x.done_account as { full_name: string } | null)?.full_name ?? '' })),
+      ...rows(s).map((x) => ({ ...base(x), kind: 'survey' as const, at: x.answered_at as string,
+        text: `${x.score as number}/10${x.comment ? ` — ${x.comment as string}` : ''}`, who: x.account?.full_name ?? '' })),
+    ].sort((p, q) => q.at.localeCompare(p.at)));
     setState('ready');
   }, [enabled, t]);
   useEffect(() => { void load(); }, [load]);

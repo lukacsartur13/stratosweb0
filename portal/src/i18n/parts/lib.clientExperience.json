@@ -1,0 +1,38 @@
+{
+ "Írd le röviden, mit módosítsunk.": {
+  "en": "Briefly describe what we should change.",
+  "de": "Beschreib kurz, was wir ändern sollen."
+ },
+ "Erre már válaszoltál.": {
+  "en": "You have already answered this.",
+  "de": "Darauf hast du schon geantwortet."
+ },
+ "Ezt a demót most nem kell jóváhagynod.": {
+  "en": "This demo does not need your approval right now.",
+  "de": "Diese Demo musst du gerade nicht freigeben."
+ },
+ "Erre a kérdőívre már válaszoltatok.": {
+  "en": "This survey has already been answered.",
+  "de": "Diese Umfrage wurde bereits beantwortet."
+ },
+ "Válassz egy számot 1 és 10 között.": {
+  "en": "Choose a number from 1 to 10.",
+  "de": "Wähle eine Zahl von 1 bis 10."
+ },
+ "That answer is the client's; it cannot be changed here.": {
+  "hu": "Ez az ügyfél válasza, itt nem módosítható.",
+  "de": "Das ist die Antwort des Kunden; sie kann hier nicht geändert werden."
+ },
+ "A sent message cannot be changed.": {
+  "hu": "Elküldött üzenet nem módosítható.",
+  "de": "Eine gesendete Nachricht kann nicht geändert werden."
+ },
+ "The link must be a plain https:// address.": {
+  "hu": "A link csak egyszerű https:// cím lehet.",
+  "de": "Der Link muss eine einfache https://-Adresse sein."
+ },
+ "This feature is not installed on the database yet (20261014000100).": {
+  "hu": "Ez a funkció még nincs telepítve az adatbázisban (20261014000100).",
+  "de": "Diese Funktion ist in der Datenbank noch nicht installiert (20261014000100)."
+ }
+}

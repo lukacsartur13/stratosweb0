@@ -159,7 +159,7 @@ function freshState() {
         outcome: 'review', issues: ['payment_date_unknown', 'marked_paid_amount_short', 'state_changed:paid->partially_paid'], derived_state: 'partially_paid', reviewed_at: null },
     ],
     paymentReads: 0, completeCalls: 0, completeAnswer: 'ok',
-    demos: [], meetings: [], helpReads: 0, feedback: [], outbox: [], requests: [], decisions: [],
+    demos: [], meetings: [], helpReads: 0, feedback: [], outbox: [], asks: [], messages: [], surveys: [], settings: [{ id: true, google_review_url: null }], requests: [], decisions: [],
     help: [
       { id: 'ha-1', slug: 'portal-fajltipusok', question: 'Milyen fájlokat tölthetek fel?', answer: 'Fájlonként legfeljebb 50 MB.', topic: 'Ügyfélportál – feltöltés',
         alt_questions: ['mekkora fájl'], source: 'lib/documentRules.ts', status: 'published', review_note: null, position: 10, updated_at: new Date().toISOString() },
@@ -409,7 +409,8 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
     }
     if (url.includes('/rest/v1/checkpoint_templates')) return answer(owner ? TEMPLATES : []);
     // Phase 7 tables, as RLS answers them.
-    for (const [path, key] of [['project_demos', 'demos'], ['project_meetings', 'meetings'], ['help_articles', 'help'], ['demo_feedback', 'feedback'], ['meeting_change_requests', 'requests'], ['notification_outbox', 'outbox']]) {
+    for (const [path, key] of [['project_demos', 'demos'], ['project_meetings', 'meetings'], ['help_articles', 'help'], ['demo_feedback', 'feedback'], ['meeting_change_requests', 'requests'], ['notification_outbox', 'outbox'],
+      ['client_requests', 'asks'], ['project_messages', 'messages'], ['client_surveys', 'surveys'], ['portal_settings', 'settings']]) {
       if (!url.includes(`/rest/v1/${path}`)) continue;
       if (path === 'help_articles' && method === 'GET') state.helpReads += 1;
       if (!owner) return answer([]);
@@ -1590,6 +1591,85 @@ await check('notifications: an admin (not the owner) has Settings, the same noti
   assert(await mail.isChecked(), 'e-mails are off by default');
   await mail.uncheck();
   await page.waitForTimeout(300);
+  await context.close();
+});
+
+await check('client experience: answers show in the inbox; a request, a message and an approval request are e-mailed; Ask now makes a survey', async () => {
+  const state = freshState();
+  const h = (n) => new Date(Date.now() + n * 3600e3).toISOString();
+  state.demos.push({ id: 'dm-1', project_id: 'p-late', title: 'Weboldal demó', url: 'https://demo.example.com', client_note: null, published: true, revoked_at: null, position: 0, updated_at: h(0),
+    approval_requested_at: null, approval_state: null });
+  state.messages.push({ id: 'ms-1', project_id: 'p-late', account_id: 'ca-1', author_name: 'Kovács Anna', body: 'Mikor lesz kész?', created_at: h(-2), read_at: null, project: { name: 'Late website' } });
+  state.asks.push({ id: 'rq-1', project_id: 'p-late', title: 'Logó SVG-ben', details: null, due_on: null, created_at: h(-48), done_at: h(-1), done_note: 'Feltöltöttem.',
+    seen_at: null, cancelled_at: null, done_account: { full_name: 'Kovács Anna' }, project: { name: 'Late website' } });
+  state.surveys.push({ id: 'sv-1', project_id: 'p-late', reason: 'manual', period: null, created_at: h(-30), score: 9, comment: 'Gyorsak vagytok.', answered_at: h(-3),
+    google_clicked_at: h(-3), seen_at: null, cancelled_at: null, account: { full_name: 'Kovács Anna' }, project: { name: 'Late website' } });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/projects`);
+  const inbox = page.getByRole('region', { name: 'Client inbox' });
+  await inbox.getByText('3 waiting').waitFor();
+  for (const text of ['Mikor lesz kész?', 'Logó SVG-ben — Feltöltöttem.', '9/10 — Gyorsak vagytok.']) await inbox.getByText(text).waitFor();
+
+  await page.goto(`${BASE}/projects/p-late`);
+  const panel = page.getByRole('region', { name: 'Client portal view' });
+  const outbox = () => state.writes.filter((x) => x.table === 'notification_outbox').map((x) => x.body);
+
+  await panel.getByRole('button', { name: 'Ask for approval' }).click();
+  await panel.getByText('Waiting for approval').waitFor();
+  assert(state.writes.some((x) => x.table === 'project_demos' && x.body.approval_requested_at), 'approval not asked');
+  assert(outbox().some((o) => o.kind === 'approval_requested' && o.payload.title === 'Weboldal demó'), JSON.stringify(outbox()));
+
+  const waiting = panel.getByRole('region', { name: 'Waiting on the client' });
+  await waiting.getByText('Feltöltöttem.').waitFor();
+  await waiting.getByRole('button', { name: 'Mark seen' }).click();
+  await page.waitForTimeout(300);
+  assert(state.writes.some((x) => x.table === 'client_requests' && x.method === 'PATCH' && x.body.seen_at), 'not marked seen');
+  await waiting.getByRole('button', { name: 'Request' }).click();
+  await waiting.getByRole('button', { name: 'Add request' }).click();
+  await waiting.getByText('Say what you need', { exact: false }).waitFor();
+  await waiting.getByPlaceholder('What do you need?').fill('Szövegek a Rólunk oldalra');
+  await waiting.getByLabel('Due').fill('2026-10-20');
+  await waiting.getByRole('button', { name: 'Add request' }).click();
+  await page.waitForTimeout(400);
+  const rq = state.writes.find((x) => x.table === 'client_requests' && x.method === 'POST');
+  assert(rq && rq.body.title === 'Szövegek a Rólunk oldalra' && rq.body.due_on === '2026-10-20' && rq.body.project_id === 'p-late', JSON.stringify(rq));
+  assert(outbox().some((o) => o.kind === 'request_added' && o.payload.due_on === '2026-10-20'), JSON.stringify(outbox()));
+
+  const messages = panel.getByRole('region', { name: 'Messages' });
+  await messages.getByText('1 new').waitFor();
+  await messages.getByPlaceholder('Message to the client').fill('Pénteken.');
+  await messages.getByRole('button', { name: 'Send' }).click();
+  await page.waitForTimeout(400);
+  const ms = state.writes.find((x) => x.table === 'project_messages' && x.method === 'POST');
+  assert(ms && ms.body.body === 'Pénteken.' && ms.body.project_id === 'p-late' && !('account_id' in ms.body), JSON.stringify(ms));
+  assert(outbox().some((o) => o.kind === 'message_posted' && o.payload.excerpt === 'Pénteken.'), JSON.stringify(outbox()));
+
+  const sat = panel.getByRole('region', { name: 'Satisfaction' });
+  await sat.getByText('9/10').waitFor();
+  await sat.getByText('opened the Google review page', { exact: false }).waitFor();
+  await sat.getByRole('button', { name: 'Ask now' }).click();
+  await page.waitForTimeout(300);
+  const sv = state.writes.find((x) => x.table === 'client_surveys' && x.method === 'POST');
+  assert(sv && sv.body.reason === 'manual' && sv.body.project_id === 'p-late', JSON.stringify(sv));
+  await shot(page, 'owner-client-experience');
+  await context.close();
+});
+
+await check('settings: the Google review link refuses a non-https address and saves an https one', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/settings`);
+  await page.getByText('No link yet', { exact: false }).waitFor();
+  const input = page.locator('#google-review-url');
+  await input.fill('http://g.page/r/x');
+  await page.getByRole('region', { name: 'Google review link' }).getByRole('button', { name: 'Save' }).click();
+  await page.getByText('The link must be a plain https:// address.').waitFor();
+  assert(!state.writes.some((x) => x.table === 'portal_settings'), 'an http link was saved');
+  await input.fill('https://g.page/r/stratos/review');
+  await page.getByRole('region', { name: 'Google review link' }).getByRole('button', { name: 'Save' }).click();
+  await page.getByText('Saved.').waitFor();
+  const w = state.writes.find((x) => x.table === 'portal_settings');
+  assert(w && w.body.google_review_url === 'https://g.page/r/stratos/review', JSON.stringify(w));
   await context.close();
 });
 

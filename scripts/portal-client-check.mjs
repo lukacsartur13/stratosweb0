@@ -86,6 +86,7 @@ function freshState(over = {}) {
       { article_id: 'h3', topic: 'Ügyfélportál – megbeszélések', question: 'Hogyan tehetem be a naptáramba?', alt_questions: ['google naptár'], answer: 'A „Google Naptárba helyezés” gombbal.' },
     ],
     feedback: [], reqs: [],
+    approvals: [], asks: [], messages: [], surveys: [], calls: [],
     ...over,
   };
 }
@@ -177,6 +178,32 @@ async function open(browser, { role = 'client', state = freshState(), viewport =
       const r = state.reqs.find((x) => x.request_id === body().p_request); r.status = 'withdrawn'; r.decided_at = now(); return json(route, 'withdrawn');
     }
     if (url.includes('/rest/v1/rpc/client_portal_meeting_requests')) return json(route, role === 'client' ? state.reqs : []);
+    // Client experience (20261014000100), like the real functions.
+    if (url.includes('/rest/v1/rpc/client_portal_approvals')) return json(route, role === 'client' ? state.approvals : []);
+    if (url.includes('/rest/v1/rpc/client_portal_requests')) return json(route, role === 'client' ? state.asks : []);
+    if (url.includes('/rest/v1/rpc/client_portal_messages')) return json(route, role === 'client' ? state.messages : []);
+    if (url.includes('/rest/v1/rpc/client_portal_surveys')) return json(route, role === 'client' ? state.surveys : []);
+    for (const fn of ['client_decide_demo', 'client_complete_request', 'client_send_message', 'client_answer_survey', 'client_survey_google']) {
+      if (!url.includes(`/rest/v1/rpc/${fn}`)) continue;
+      const b = body();
+      state.calls.push({ fn, ...b });
+      if (fn === 'client_decide_demo') {
+        if (!b.p_approve && !b.p_note) return json(route, { code: 'P0001', message: 'stratos:approval_note_needed' }, 400);
+        Object.assign(state.approvals.find((a) => a.demo_id === b.p_demo), { state: b.p_approve ? 'approved' : 'changes', note: b.p_note, decided_at: now() });
+        return json(route, b.p_approve ? 'approved' : 'changes');
+      }
+      if (fn === 'client_complete_request') { Object.assign(state.asks.find((a) => a.request_id === b.p_request), { done_at: now(), done_note: b.p_note }); return json(route, 'done'); }
+      if (fn === 'client_send_message') {
+        state.messages.push({ message_id: `msg-${state.messages.length + 1}`, project_id: b.p_project, body: b.p_body, created_at: now(), from_stratos: false, author_name: 'Kovács Anna', mine: true });
+        return json(route, state.messages.at(-1).message_id);
+      }
+      if (fn === 'client_answer_survey') {
+        const sv = state.surveys.find((x) => x.survey_id === b.p_survey);
+        Object.assign(sv, { score: b.p_score, comment: b.p_comment, answered_at: now() });
+        return json(route, b.p_score >= 7 ? 'https://g.page/r/stratos/review' : null);
+      }
+      return json(route, null);
+    }
     if (url.includes('/rest/v1/rpc/client_help_articles')) { state.helpReads = (state.helpReads ?? 0) + 1; return json(route, role === 'client' ? state.help : []); }
     if (url.includes('/rest/v1/rpc/')) return json(route, []);
 
@@ -560,6 +587,81 @@ await check('Észrevételek: Stratos\'s answer is shown under the client\'s feed
   const reply = box.locator('[data-feedback-reply]');
   await reply.getByText('A Stratos válasza').waitFor();
   await reply.getByText('Rendben, a jövő heti demóban már nagyobb lesz.').waitFor();
+  await context.close();
+});
+
+await check('Rád várunk: approve a demo, ask for changes only with a note, mark a request done, answer the survey and get the Google link', async () => {
+  const state = freshState({
+    demos: [
+      { demo_id: 'demo-1', project_id: P1, project_name: 'Rapidkert weboldal', title: 'Weboldal demó', url: 'https://demo.example.com/rapidkert', note: null, updated_at: now() },
+      { demo_id: 'demo-2', project_id: P1, project_name: 'Rapidkert weboldal', title: 'Logó változatok', url: 'https://demo.example.com/logo', note: null, updated_at: now() },
+    ],
+    approvals: [
+      { demo_id: 'demo-1', project_id: P1, requested_at: now(), state: null, note: null, decided_at: null },
+      { demo_id: 'demo-2', project_id: P1, requested_at: now(), state: null, note: null, decided_at: null },
+    ],
+    asks: [{ request_id: 'rq-1', project_id: P1, title: 'Logó SVG-ben', details: 'AI vagy SVG fájl', due_on: '2020-01-01', created_at: now(), done_at: null, done_note: null }],
+    surveys: [{ survey_id: 'sv-1', project_id: P1, reason: 'closed', period: 'closed', created_at: now(), score: null, comment: null, answered_at: null, google_url: null }],
+  });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  const panel = page.getByRole('region', { name: 'Rád várunk' });
+  await panel.getByText('Logó SVG-ben').waitFor();
+  await panel.getByText('Határidő lejárt', { exact: false }).waitFor();
+
+  // Approve one demo.
+  await panel.locator('[data-approve="demo-1"]').getByRole('button', { name: 'Jóváhagyom' }).click();
+  await page.locator('[data-client-demo="demo-1"] [data-approval-state="approved"]').waitFor();
+  // Changes need a note.
+  const two = panel.locator('[data-approve="demo-2"]');
+  await two.getByRole('button', { name: 'Módosítást kérek' }).click();
+  assert(await two.getByRole('button', { name: 'Módosítási kérés elküldése' }).isDisabled(), 'changes sendable without a note');
+  await two.getByLabel('Mit módosítsunk?').fill('A színek legyenek világosabbak.');
+  await two.getByRole('button', { name: 'Módosítási kérés elküldése' }).click();
+  await page.locator('[data-client-demo="demo-2"] [data-approval-state="changes"]').waitFor();
+  assert(JSON.stringify(state.calls.filter((c) => c.fn === 'client_decide_demo').map((c) => [c.p_demo, c.p_approve, c.p_note])) ===
+    JSON.stringify([['demo-1', true, null], ['demo-2', false, 'A színek legyenek világosabbak.']]), JSON.stringify(state.calls));
+
+  // The request.
+  const ask = panel.locator('[data-client-ask="rq-1"]');
+  await ask.getByRole('button', { name: 'Kész' }).click();
+  await ask.getByLabel('Megjegyzés (nem kötelező)').fill('Feltöltöttem.');
+  await ask.getByRole('button', { name: 'Jelzem, hogy kész' }).click();
+  await panel.getByText('Nemrég elintézve (1)').waitFor();
+
+  // The survey: 9 → thanks and the Google link.
+  const sv = panel.locator('[data-survey-open="sv-1"]');
+  assert(await sv.getByRole('button', { name: 'Küldés' }).isDisabled(), 'survey sendable without a score');
+  await sv.getByRole('radio', { name: '9' }).click();
+  await sv.getByLabel('Szeretnél még valamit hozzáfűzni? (nem kötelező)').fill('Gyorsak voltatok.');
+  await sv.getByRole('button', { name: 'Küldés' }).click();
+  const thanks = panel.locator('[data-survey-thanks]');
+  await thanks.getByText('Köszönjük a visszajelzést!').waitFor();
+  const google = thanks.getByRole('link', { name: 'Google-értékelés írása', exact: false });
+  assert(await google.getAttribute('href') === 'https://g.page/r/stratos/review', 'google link');
+  const call = state.calls.find((c) => c.fn === 'client_answer_survey');
+  assert(call.p_score === 9 && call.p_comment === 'Gyorsak voltatok.', JSON.stringify(call));
+  await shot(page, 'client-waiting-for-you');
+  await thanks.getByRole('button', { name: 'Most nem' }).click();
+  await panel.getByText('Most semmi nem vár rád.').waitFor();
+  await context.close();
+});
+
+await check('Üzenetek: the client reads the thread and writes to Stratos', async () => {
+  const state = freshState({ messages: [
+    { message_id: 'msg-0', project_id: P1, body: 'Elküldtük a demót, nézd meg!', created_at: now(), from_stratos: true, author_name: 'Stratos', mine: false },
+  ] });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  const box = page.locator(`[data-client-messages="${P1}"]`);
+  await box.getByRole('button', { name: 'Üzenetek a Stratosnak (1)' }).click();
+  await box.getByText('Elküldtük a demót, nézd meg!').waitFor();
+  await box.getByLabel('Új üzenet').fill('Megnéztem, tetszik!');
+  await box.getByRole('button', { name: 'Küldés' }).click();
+  await box.getByText('Megnéztem, tetszik!', { exact: true }).waitFor();
+  const c = state.calls.find((x) => x.fn === 'client_send_message');
+  assert(c && c.p_project === P1 && c.p_body === 'Megnéztem, tetszik!', JSON.stringify(state.calls));
+  assert(await page.getByRole('region', { name: 'Rád várunk' }).getByText('Most semmi nem vár rád.').isVisible(), 'empty state');
   await context.close();
 });
 

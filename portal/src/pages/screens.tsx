@@ -6,7 +6,10 @@ import { ROLE_LABELS, type Role } from '@/lib/permissions';
 import { LanguageSwitch, useLanguage } from '@/features/i18n/LanguageGate';
 import { t, tc } from '@/lib/i18n';
 import { disablePush, enablePush, pushState, type PushState } from '@/lib/push';
+import { canAccess } from '@/lib/permissions';
 import { getEmailPref, notifyOwnerTest, setEmailPref } from '@/lib/notify';
+import { useGoogleReviewUrl } from '@/lib/clientExperience';
+import { isSafeHttpsUrl } from '@/lib/meetings';
 import {
   Badge, Button, Cell, DataState, ErrorState, Input, Panel, Row, SectionHeader, Skeleton, Table,
 } from '@/components/ui';
@@ -218,6 +221,7 @@ export function SettingsScreen() {
       </Panel>
       <LanguageSettings />
       <NotificationSettings />
+      {canAccess(profile, 'manage_projects') && <GoogleReviewSettings />}
       <p className="t-note">
         {t('Infrastructure, credentials and deploy context are on the System screen.')}
       </p>
@@ -300,6 +304,47 @@ function NotificationSettings() {
           </label>
         )}
         {message && <p role="status" className="text-xs text-haze">{message}</p>}
+      </div>
+    </Panel>
+  );
+}
+
+/**
+ * The Google review link the satisfaction survey offers a client who scores 7
+ * or more (20261014000100). The owner's; clients only ever see it next to
+ * such an answer.
+ */
+function GoogleReviewSettings() {
+  const review = useGoogleReviewUrl();
+  const [draft, setDraft] = useState<string | null>(null);
+  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
+  const value = draft ?? review.url ?? '';
+  const save = async () => {
+    const next = value.trim() || null;
+    if (next && !isSafeHttpsUrl(next)) return setMessage({ ok: false, text: t('The link must be a plain https:// address.') });
+    const problem = await review.save(next);
+    setMessage(problem ? { ok: false, text: problem } : { ok: true, text: t('Saved.') });
+    if (!problem) setDraft(null);
+  };
+  return (
+    <Panel aria-label={t('Google review link')}>
+      <SectionHeader title={t('Google review link')} />
+      <div className="grid gap-2 px-4 py-3 text-[13px]">
+        <p className="t-note">
+          {t('A client who answers the satisfaction survey with 7 or more is asked to write a Google review, with this link. In Google Business Profile: Ask for reviews → copy the link.')}
+        </p>
+        {review.state === 'loading' && <Skeleton className="h-8 w-full" />}
+        {review.state === 'error' && <p className="text-haze">{t('This feature is not installed on the database yet (20261014000100).')}</p>}
+        {review.state === 'ready' && (
+          <div className="flex flex-wrap items-center gap-2">
+            <label className="sr-only" htmlFor="google-review-url">{t('Google review link')}</label>
+            <Input id="google-review-url" type="url" inputMode="url" className="min-w-0 flex-1" placeholder="https://g.page/r/…/review"
+                   value={value} onChange={(e) => { setDraft(e.target.value); setMessage(null); }} />
+            <Button size="sm" variant="primary" onClick={save} disabled={draft === null}>{t('Save')}</Button>
+          </div>
+        )}
+        {review.state === 'ready' && !review.url && <p className="text-signal">{t('No link yet: clients are thanked, but not asked for a review.')}</p>}
+        {message && <p role="status" className={message.ok ? 'text-xs text-good' : 'text-xs text-danger'}>{message.text}</p>}
       </div>
     </Panel>
   );

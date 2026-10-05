@@ -223,5 +223,21 @@
  "Also by e-mail ({email})": {
   "hu": "E-mailben is ({email})",
   "de": "Auch per E-Mail ({email})"
+ },
+ "Saved.": {
+  "hu": "Elmentve.",
+  "de": "Gespeichert."
+ },
+ "Google review link": {
+  "hu": "Google-értékelés linkje",
+  "de": "Google-Bewertungslink"
+ },
+ "A client who answers the satisfaction survey with 7 or more is asked to write a Google review, with this link. In Google Business Profile: Ask for reviews → copy the link.": {
+  "hu": "Ha egy ügyfél 7-es vagy jobb pontot ad az elégedettségi kérdőíven, ezzel a linkkel kérjük Google-értékelésre. A Google Cégprofilban: Értékelések kérése → link másolása.",
+  "de": "Ein Kunde, der die Zufriedenheitsumfrage mit 7 oder mehr beantwortet, wird mit diesem Link um eine Google-Bewertung gebeten. Im Google-Unternehmensprofil: Um Rezensionen bitten → Link kopieren."
+ },
+ "No link yet: clients are thanked, but not asked for a review.": {
+  "hu": "Még nincs link: az ügyfelek köszönetet kapnak, de értékelést nem kérünk tőlük.",
+  "de": "Noch kein Link: Kunden wird gedankt, aber nicht um eine Bewertung gebeten."
  }
 }

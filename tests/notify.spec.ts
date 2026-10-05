@@ -12,7 +12,10 @@ import { readFileSync } from 'node:fs';
  */
 
 const KINDS = ['client_upload', 'client_feedback', 'client_reschedule', 'client_reschedule_withdrawn', 'test',
-  'document_shared', 'demo_published', 'meeting_scheduled', 'meeting_changed', 'meeting_cancelled', 'reschedule_decided', 'feedback_replied'];
+  'document_shared', 'demo_published', 'meeting_scheduled', 'meeting_changed', 'meeting_cancelled', 'reschedule_decided', 'feedback_replied',
+  // 20261014000100: client experience
+  'client_message', 'client_approved', 'client_changes_requested', 'client_request_done', 'client_survey',
+  'request_added', 'message_posted', 'approval_requested', 'survey_requested'];
 const msg = (kind: string, payload: Record<string, unknown> = {}) => ({
   id: `m-${kind}`, kind, audience: kind.startsWith('client_') || kind === 'test' ? 'owner' : 'client',
   project_id: 'p1', project_name: 'Rapidkert weboldal', payload,
@@ -22,11 +25,17 @@ test.describe('what a notification says', () => {
   test('every kind reads in every language, with no placeholder left', () => {
     for (const kind of KINDS) {
       for (const lang of LANGS) {
-        const s = line(msg(kind, { name: 'logo.png', title: 'Demó', excerpt: 'Szép', reply: 'Köszi', starts_at: '2026-10-07T08:00:00Z', decision: 'accepted' }), lang);
+        const s = line(msg(kind, { name: 'logo.png', title: 'Demó', excerpt: 'Szép', reply: 'Köszi', starts_at: '2026-10-07T08:00:00Z', decision: 'accepted', score: 9, due_on: '2026-10-12' }), lang);
         expect(s, `${kind}/${lang}`).not.toMatch(/\{\w+\}/);
         expect(s.length, `${kind}/${lang}`).toBeGreaterThan(10);
       }
     }
+  });
+
+  test('a request with a due date says the day; a survey score reads as n/10', () => {
+    expect(line(msg('request_added', { title: 'Logó', due_on: '2026-10-12' }), 'hu')).toBe('Kérünk tőled valamit: Logó (határidő: október 12.)');
+    expect(line(msg('request_added', { title: 'Logó' }), 'en')).toBe('We need something from you: Logó');
+    expect(line({ ...msg('client_survey', { score: 9 }), client_name: 'Kovács Anna' }, 'en')).toBe('Kovács Anna rated you 9/10 (Rapidkert weboldal)');
   });
 
   test('a client e-mail greets, links and says who it is from; a person\'s text is escaped in HTML', () => {
@@ -53,9 +62,11 @@ test.describe('what a notification says', () => {
 test.describe('one run of the sender', () => {
   function fakeDb(rows: unknown[]) {
     const done: { id: string; error: string | null }[] = [];
+    const quarterly: number[] = [];
     const db = {
       rpc: async (fn: string, args: Record<string, unknown>) => {
         if (fn === 'notification_claim') return { data: rows, error: null };
+        if (fn === 'survey_quarterly_due') { quarterly.push(1); return { data: 0, error: null }; }
         done.push({ id: args.p_id as string, error: (args.p_error as string) ?? null });
         return { data: null, error: null };
       },
@@ -63,8 +74,14 @@ test.describe('one run of the sender', () => {
         select: () => ({ in: async () => ({ data: [{ id: 'acc-1', full_name: 'Kovács Anna' }], error: null }) }),
       }),
     };
-    return { db, done };
+    return { db, done, quarterly };
   }
+
+  test('each run first creates the quarterly surveys that are due', async () => {
+    const { db, quarterly } = fakeDb([]);
+    await dispatch(db, { origin: 'https://stratosweb.hu' });
+    expect(quarterly).toEqual([1]);
+  });
 
   test('one e-mail per person; the client is greeted in their language; sent messages are marked', async () => {
     process.env.RESEND_API_KEY = 'test-key';

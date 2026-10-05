@@ -14,6 +14,10 @@ import {
   requestMeetingChange, sendDemoFeedback, useClientDemos, useClientFeedback, useClientHelp, useClientMeetingRequests, useClientMeetings,
   withdrawMeetingRequest, type ClientDemo, type ClientFeedback, type ClientMeeting, type ClientMeetingRequest,
 } from '@/lib/clientView';
+import {
+  answerSurvey, completeRequest, decideDemo, sendMessage, surveyGoogleClicked, useClientApprovals, useClientMessages,
+  useClientRequestsMine, useClientSurveys, type ClientApproval, type ClientMessage, type ClientRequestRow, type ClientSurvey,
+} from '@/lib/clientExperience';
 import { formatMeetingTime, googleCalendarUrl, nextMeeting, safeHttpsUrl, wallClock, zonedToUtc } from '@/lib/meetings';
 import { HelpChat } from '@/features/client/HelpChat';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
@@ -89,38 +93,53 @@ function ProjectsPage() {
   const meetings = useClientMeetings(tick);
   const feedback = useClientFeedback(tick);
   const requests = useClientMeetingRequests(tick);
+  const approvals = useClientApprovals(tick);
+  const asks = useClientRequestsMine(tick);
+  const messages = useClientMessages(tick);
+  const surveys = useClientSurveys(tick);
+  const names = new Map(projects.rows.map((p) => [p.project_id, p.project_name]));
   return (
-    <Panel>
-      <SectionHeader title={t('Projektjeim')} />
-      {projects.state === 'loading' && <Loading />}
-      {projects.state === 'error' && <ErrorState message={t('A projektek nem tölthetők be.')} onRetry={projects.reload} />}
-      {projects.state === 'ready' && projects.rows.length === 0 && (
-        <DataState kind="empty" title={t('Nincs projekt')} body={t('Jelenleg egy projekthez sincs hozzáférésed. Ha ez hiba, szólj a Stratosnak.')} />
-      )}
+    <>
       {projects.state === 'ready' && projects.rows.length > 0 && (
-        <ul className="grid">
-          {projects.rows.map((p) => (
-            <li key={p.project_id} className="grid gap-3 border-b border-hairline px-4 py-4 last:border-0" data-project={p.project_id}>
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="text-[15px] text-paper">{p.project_name}</h3>
-                <div className="flex flex-wrap gap-2">
-                  <Link to={`/megosztott?projekt=${p.project_id}`} className="t-note underline underline-offset-4 hover:text-paper max-sm:py-2">{t('Dokumentumok')}</Link>
-                  <Link to={`/nyersanyag?projekt=${p.project_id}`} className="t-note underline underline-offset-4 hover:text-paper max-sm:py-2">{t('Nyersanyag leadása')}</Link>
-                </div>
-              </div>
-              <ProjectMeetings rows={meetings.rows.filter((m) => m.project_id === p.project_id)} state={meetings.state}
-                requests={requests.rows} onChanged={refresh} />
-              <ProjectDemos rows={demos.rows.filter((d) => d.project_id === p.project_id)} state={demos.state}
-                feedback={feedback.rows} onChanged={refresh} />
-            </li>
-          ))}
-        </ul>
+        <WaitingForYou names={names} demos={demos.rows} approvals={approvals.rows} requests={asks.rows} surveys={surveys.rows}
+          ready={approvals.state === 'ready' && asks.state === 'ready' && surveys.state === 'ready'} onChanged={refresh} />
       )}
-    </Panel>
+      <Panel>
+        <SectionHeader title={t('Projektjeim')} />
+        {projects.state === 'loading' && <Loading />}
+        {projects.state === 'error' && <ErrorState message={t('A projektek nem tölthetők be.')} onRetry={projects.reload} />}
+        {projects.state === 'ready' && projects.rows.length === 0 && (
+          <DataState kind="empty" title={t('Nincs projekt')} body={t('Jelenleg egy projekthez sincs hozzáférésed. Ha ez hiba, szólj a Stratosnak.')} />
+        )}
+        {projects.state === 'ready' && projects.rows.length > 0 && (
+          <ul className="grid">
+            {projects.rows.map((p) => (
+              <li key={p.project_id} className="grid gap-3 border-b border-hairline px-4 py-4 last:border-0" data-project={p.project_id}>
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="text-[15px] text-paper">{p.project_name}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <Link to={`/megosztott?projekt=${p.project_id}`} className="t-note underline underline-offset-4 hover:text-paper max-sm:py-2">{t('Dokumentumok')}</Link>
+                    <Link to={`/nyersanyag?projekt=${p.project_id}`} className="t-note underline underline-offset-4 hover:text-paper max-sm:py-2">{t('Nyersanyag leadása')}</Link>
+                  </div>
+                </div>
+                <ProjectMeetings rows={meetings.rows.filter((m) => m.project_id === p.project_id)} state={meetings.state}
+                  requests={requests.rows} onChanged={refresh} />
+                <ProjectDemos rows={demos.rows.filter((d) => d.project_id === p.project_id)} state={demos.state}
+                  feedback={feedback.rows} approvals={approvals.rows} onChanged={refresh} />
+                <ProjectMessages projectId={p.project_id} rows={messages.rows.filter((m) => m.project_id === p.project_id)}
+                  state={messages.state} onChanged={refresh} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </Panel>
+    </>
   );
 }
 
-function ProjectDemos({ rows, state, feedback, onChanged }: { rows: ClientDemo[]; state: string; feedback: ClientFeedback[]; onChanged: () => void }) {
+function ProjectDemos({ rows, state, feedback, approvals, onChanged }: {
+  rows: ClientDemo[]; state: string; feedback: ClientFeedback[]; approvals: ClientApproval[]; onChanged: () => void;
+}) {
   if (state === 'error') return <p className="t-note">{t('A demók most nem tölthetők be.')}</p>;
   if (rows.length === 0) return null;
   return (
@@ -131,6 +150,7 @@ function ProjectDemos({ rows, state, feedback, onChanged }: { rows: ClientDemo[]
             <p className="t-section text-signal">{t('Demó')}</p>
             <p className="text-[15px] text-paper">{d.title}</p>
             {d.note && <p className="t-note mt-0.5">{d.note}</p>}
+            <ApprovalBadge approval={approvals.find((a) => a.demo_id === d.demo_id)} />
           </div>
           <a href={safeHttpsUrl(d.url)} target="_blank" rel="noopener noreferrer"
              className={cn('inline-flex items-center gap-1.5 rounded-sm bg-signal px-3 py-2 text-[13px] font-medium text-black hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal', TOUCH)}>
@@ -543,5 +563,246 @@ function Reschedule({ m, mine, onChanged }: { m: ClientMeeting; mine: ClientMeet
       )}
       {error && <p role="alert" className="text-xs text-danger">{error}</p>}
     </div>
+  );
+}
+
+/* ================================================ client experience == */
+
+const fieldCls = 'w-full rounded-sm border border-hair bg-field px-3 py-2 text-sm text-paper focus-visible:outline-2 focus-visible:outline-signal';
+const dayHu = (iso: string) => new Date(`${iso}T00:00:00`).toLocaleDateString(intlLocale('hu-HU'), { month: 'long', day: 'numeric' });
+const today = () => new Date().toLocaleDateString('sv-SE');
+
+function ApprovalBadge({ approval }: { approval?: ClientApproval }) {
+  if (!approval) return null;
+  return (
+    <p className="mt-1" data-approval-state={approval.state ?? 'waiting'}>
+      {approval.state === 'approved' ? <Badge tone="good">{t('Jóváhagytad')}</Badge>
+        : approval.state === 'changes' ? <Badge tone="warn">{t('Módosítást kértél')}</Badge>
+          : <Badge tone="warn">{t('Jóváhagyásodra vár')}</Badge>}
+    </p>
+  );
+}
+
+/**
+ * "Rád várunk": what Stratos is waiting for from the client — demos to
+ * approve, the owner's requests and an open satisfaction survey — on top of
+ * the projects page.
+ */
+function WaitingForYou({ names, demos, approvals, requests, surveys, ready, onChanged }: {
+  names: Map<string, string>; demos: ClientDemo[]; approvals: ClientApproval[]; requests: ClientRequestRow[];
+  surveys: ClientSurvey[]; ready: boolean; onChanged: () => void;
+}) {
+  const openApprovals = approvals.filter((a) => !a.state && demos.some((d) => d.demo_id === a.demo_id));
+  const open = requests.filter((r) => !r.done_at);
+  const done = requests.filter((r) => r.done_at).slice(0, 5);
+  const openSurveys = surveys.filter((s) => !s.answered_at);
+  const count = openApprovals.length + open.length + openSurveys.length;
+  if (!ready) return null;
+  return (
+    <Panel aria-label={t('Rád várunk')}>
+      <SectionHeader title={t('Rád várunk')} note={count ? `${count}` : undefined} />
+      {count === 0 && <p className="px-4 py-3 text-[13px] text-haze">{t('Most semmi nem vár rád.')}</p>}
+      <ul className="grid">
+        {openSurveys.map((s) => <li key={s.survey_id} className="border-b border-hairline px-4 py-3 last:border-0"><SurveyCard survey={s} project={names.get(s.project_id) ?? ''} onChanged={onChanged} /></li>)}
+        {openApprovals.map((a) => {
+          const d = demos.find((x) => x.demo_id === a.demo_id)!;
+          return <li key={a.demo_id} className="border-b border-hairline px-4 py-3 last:border-0"><ApprovalCard demo={d} onChanged={onChanged} /></li>;
+        })}
+        {open.map((r) => <li key={r.request_id} className="border-b border-hairline px-4 py-3 last:border-0"><RequestCard request={r} project={names.get(r.project_id) ?? ''} onChanged={onChanged} /></li>)}
+      </ul>
+      {done.length > 0 && (
+        <details className="border-t border-hairline px-4 py-2">
+          <summary className="t-note cursor-pointer">{t('Nemrég elintézve ({n})', { n: done.length })}</summary>
+          <ul className="mt-1 grid gap-1">
+            {done.map((r) => <li key={r.request_id} className="t-note"><Badge tone="good">{t('Kész')}</Badge> {r.title} · {names.get(r.project_id) ?? ''}</li>)}
+          </ul>
+        </details>
+      )}
+    </Panel>
+  );
+}
+
+function ApprovalCard({ demo, onChanged }: { demo: ClientDemo; onChanged: () => void }) {
+  const [changes, setChanges] = useState(false);
+  const [note, setNote] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const decide = async (approve: boolean) => {
+    if (!approve && !note.trim()) return setError(t('Írd le röviden, mit módosítsunk.'));
+    setBusy(true);
+    const problem = await decideDemo(demo.demo_id, approve, approve ? null : note.trim());
+    setBusy(false);
+    setError(problem);
+    if (!problem) onChanged();
+  };
+  const id = `appr-${demo.demo_id}`;
+  return (
+    <div className="grid gap-2 text-[13px]" data-approve={demo.demo_id}>
+      <div>
+        <p className="t-section text-signal">{t('Jóváhagyásra vár')}</p>
+        <p className="text-[15px] text-paper">{demo.title} <span className="t-note">· {demo.project_name}</span></p>
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        <a href={safeHttpsUrl(demo.url)} target="_blank" rel="noopener noreferrer" className={cn('inline-flex items-center gap-1 rounded-sm border border-hairline px-2.5 py-1.5 text-[12px] text-paper hover:bg-flare', TOUCH)}>
+          {t('Demó megtekintése')} <ExternalLink size={11} aria-hidden="true" /><span className="sr-only"> {t('(új lapon nyílik)')}</span>
+        </a>
+        <Button size="sm" variant="primary" className={TOUCH} disabled={busy} onClick={() => void decide(true)}>{t('Jóváhagyom')}</Button>
+        <Button size="sm" className={TOUCH} disabled={busy} aria-expanded={changes} aria-controls={id} onClick={() => setChanges(!changes)}>{t('Módosítást kérek')}</Button>
+      </div>
+      {changes && (
+        <div id={id} className="grid gap-2">
+          <label htmlFor={`${id}-note`} className="label">{t('Mit módosítsunk?')}</label>
+          <textarea id={`${id}-note`} rows={3} maxLength={2000} value={note} onChange={(e) => setNote(e.target.value)} className={fieldCls} />
+          <div><Button size="sm" variant="primary" className={TOUCH} disabled={busy || !note.trim()} onClick={() => void decide(false)}>{t('Módosítási kérés elküldése')}</Button></div>
+        </div>
+      )}
+      {error && <p role="alert" className="text-xs text-danger">{error}</p>}
+    </div>
+  );
+}
+
+function RequestCard({ request: r, project, onChanged }: { request: ClientRequestRow; project: string; onChanged: () => void }) {
+  const [open, setOpen] = useState(false);
+  const [note, setNote] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const late = r.due_on !== null && r.due_on < today();
+  const finish = async () => {
+    setBusy(true);
+    const problem = await completeRequest(r.request_id, note.trim() || null);
+    setBusy(false);
+    setError(problem);
+    if (!problem) onChanged();
+  };
+  const id = `req-${r.request_id}`;
+  return (
+    <div className="grid gap-2 text-[13px]" data-client-ask={r.request_id}>
+      <div>
+        <p className="t-section text-chrome">{t('Kérés a Stratostól')} · {project}</p>
+        <p className="text-[15px] text-paper">{r.title}</p>
+        {r.details && <p className="t-note whitespace-pre-line">{r.details}</p>}
+        {r.due_on && <p className={cn('t-note', late && 'text-danger')}>{late ? t('Határidő lejárt: {day}', { day: dayHu(r.due_on) }) : t('Határidő: {day}', { day: dayHu(r.due_on) })}</p>}
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        <Button size="sm" variant="primary" className={TOUCH} aria-expanded={open} aria-controls={id} onClick={() => setOpen(!open)}>{t('Kész')}</Button>
+        <Link to={`/nyersanyag?projekt=${r.project_id}`} className="t-note underline underline-offset-4 hover:text-paper max-sm:py-2">{t('Fájl leadása')}</Link>
+      </div>
+      {open && (
+        <div id={id} className="grid gap-2">
+          <label htmlFor={`${id}-note`} className="label">{t('Megjegyzés (nem kötelező)')}</label>
+          <textarea id={`${id}-note`} rows={2} maxLength={1000} value={note} onChange={(e) => setNote(e.target.value)} className={fieldCls} />
+          <div><Button size="sm" variant="primary" className={TOUCH} disabled={busy} onClick={() => void finish()}>{t('Jelzem, hogy kész')}</Button></div>
+        </div>
+      )}
+      {error && <p role="alert" className="text-xs text-danger">{error}</p>}
+    </div>
+  );
+}
+
+function SurveyCard({ survey, project, onChanged }: { survey: ClientSurvey; project: string; onChanged: () => void }) {
+  const [score, setScore] = useState<number | null>(null);
+  const [comment, setComment] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [thanks, setThanks] = useState<{ url: string | null } | null>(null);
+  const send = async () => {
+    if (score === null) return setError(t('Válassz egy számot 1 és 10 között.'));
+    setBusy(true);
+    const r = await answerSurvey(survey.survey_id, score, comment.trim() || null);
+    setBusy(false);
+    setError(r.problem);
+    if (!r.problem) setThanks({ url: r.url });
+  };
+  const id = `srv-${survey.survey_id}`;
+  if (thanks) {
+    return (
+      <div className="grid gap-2 text-[13px]" data-survey-thanks>
+        <p className="text-[15px] text-paper">{t('Köszönjük a visszajelzést!')}</p>
+        {thanks.url ? (
+          <>
+            <p className="text-haze">{t('Ha van egy perced, írnál rólunk egy Google-értékelést? Sokat segít, hogy mások is megtaláljanak.')}</p>
+            <div className="flex flex-wrap gap-2">
+              <a href={safeHttpsUrl(thanks.url)} target="_blank" rel="noopener noreferrer" onClick={() => void surveyGoogleClicked(survey.survey_id)}
+                 className={cn('inline-flex items-center gap-1.5 rounded-sm bg-signal px-3 py-2 text-[13px] font-medium text-black hover:opacity-90', TOUCH)}>
+                {t('Google-értékelés írása')} <ExternalLink size={12} aria-hidden="true" /><span className="sr-only"> {t('(új lapon nyílik)')}</span>
+              </a>
+              <Button size="sm" variant="quiet" className={TOUCH} onClick={onChanged}>{t('Most nem')}</Button>
+            </div>
+          </>
+        ) : (
+          <div><Button size="sm" variant="quiet" className={TOUCH} onClick={onChanged}>{t('Bezárás')}</Button></div>
+        )}
+      </div>
+    );
+  }
+  return (
+    <div className="grid gap-2 text-[13px]" data-survey-open={survey.survey_id}>
+      <div>
+        <p className="t-section text-chrome">{t('Rövid kérdés')} · {project}</p>
+        <p id={`${id}-q`} className="text-[15px] text-paper">{t('Mennyire ajánlanál minket egy ismerősödnek?')}</p>
+      </div>
+      <div role="radiogroup" aria-labelledby={`${id}-q`} className="flex flex-wrap gap-1">
+        {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+          <button key={n} type="button" role="radio" aria-checked={score === n} onClick={() => { setScore(n); setError(null); }}
+                  className={cn('h-10 w-10 rounded-sm border text-[14px] focus-visible:outline-2 focus-visible:outline-signal',
+                    score === n ? 'border-signal bg-signal font-medium text-black' : 'border-hairline text-paper hover:bg-flare')}>
+            {n}
+          </button>
+        ))}
+      </div>
+      <p className="t-note">{t('1 = egyáltalán nem, 10 = biztosan')}</p>
+      <label htmlFor={`${id}-c`} className="label">{t('Szeretnél még valamit hozzáfűzni? (nem kötelező)')}</label>
+      <textarea id={`${id}-c`} rows={2} maxLength={2000} value={comment} onChange={(e) => setComment(e.target.value)} className={fieldCls} />
+      <div><Button size="sm" variant="primary" className={TOUCH} disabled={busy || score === null} onClick={() => void send()}>{t('Küldés')}</Button></div>
+      {error && <p role="alert" className="text-xs text-danger">{error}</p>}
+    </div>
+  );
+}
+
+/** The project's message thread with Stratos. */
+function ProjectMessages({ projectId, rows, state, onChanged }: { projectId: string; rows: ClientMessage[]; state: string; onChanged: () => void }) {
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const id = `msgs-${projectId}`;
+  const send = async () => {
+    if (!text.trim()) return setError(t('Írj valamit az üzenetbe.'));
+    setBusy(true);
+    const problem = await sendMessage(projectId, text.trim());
+    setBusy(false);
+    setError(problem);
+    if (!problem) { setText(''); onChanged(); }
+  };
+  if (state === 'error') return <p className="t-note">{t('Az üzenetek most nem tölthetők be.')}</p>;
+  return (
+    <section aria-label={t('Üzenetek')} className="grid gap-2" data-client-messages={projectId}>
+      <button type="button" aria-expanded={open} aria-controls={id} onClick={() => setOpen(!open)}
+              className={cn('justify-self-start text-[13px] text-chrome underline underline-offset-4 hover:text-paper focus-visible:outline-2 focus-visible:outline-signal', TOUCH)}>
+        {t('Üzenetek a Stratosnak')}{rows.length ? ` (${rows.length})` : ''}
+      </button>
+      {open && (
+        <div id={id} className="grid gap-2">
+          {rows.length > 0 && (
+            <ol className="grid max-h-96 gap-1.5 overflow-y-auto" aria-label={t('Üzenetek')}>
+              {rows.slice(-50).map((m) => (
+                <li key={m.message_id} className={cn('max-w-[85%] rounded-sm border px-3 py-2 text-[13px]',
+                  m.from_stratos ? 'justify-self-start border-signal/40 bg-deck' : 'justify-self-end border-hairline bg-flare')}>
+                  <p className="whitespace-pre-line text-paper">{m.body}</p>
+                  <p className="t-note mt-1">{m.from_stratos ? 'Stratos' : m.mine ? t('Te') : m.author_name} · {hu(m.created_at)}</p>
+                </li>
+              ))}
+            </ol>
+          )}
+          <label htmlFor={`${id}-text`} className="label">{t('Új üzenet')}</label>
+          <textarea id={`${id}-text`} rows={3} maxLength={4000} value={text} onChange={(e) => setText(e.target.value)} className={fieldCls} />
+          <div className="flex flex-wrap items-center gap-2">
+            <Button size="sm" variant="primary" className={TOUCH} disabled={busy || !text.trim()} onClick={() => void send()}>{t('Küldés')}</Button>
+            <span className="t-note">{t('A projekt minden résztvevője látja. Munkanapokon 1 munkanapon belül válaszolunk.')}</span>
+          </div>
+          {error && <p role="alert" className="text-xs text-danger">{error}</p>}
+        </div>
+      )}
+    </section>
   );
 }

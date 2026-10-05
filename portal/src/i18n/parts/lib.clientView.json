@@ -74,5 +74,13 @@
  "Nem sikerült elküldeni. Próbáld újra.": {
   "en": "It could not be sent. Try again.",
   "de": "Senden fehlgeschlagen. Versuch es erneut."
+ },
+ "approved": {
+  "hu": "jóváhagyva",
+  "de": "freigegeben"
+ },
+ "changes requested": {
+  "hu": "módosítást kér",
+  "de": "Änderungen gewünscht"
  }
 }
