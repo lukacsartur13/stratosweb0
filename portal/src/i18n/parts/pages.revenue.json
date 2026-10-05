@@ -1,0 +1,118 @@
+{
+ "This feature is not installed on the database yet (20261016000100).": {
+  "hu": "Ez a funkció még nincs telepítve az adatbázisban (20261016000100).",
+  "de": "Diese Funktion ist in der Datenbank noch nicht installiert (20261016000100)."
+ },
+ "The revenue report could not be read.": {
+  "hu": "A bevételi riport nem tölthető be.",
+  "de": "Der Umsatzbericht konnte nicht geladen werden."
+ },
+ "No revenue recorded yet": {
+  "hu": "Még nincs rögzített bevétel",
+  "de": "Noch kein Umsatz erfasst"
+ },
+ "Payments recorded in the projects' payment schedules, and monthly contracts, appear here.": {
+  "hu": "Itt jelennek meg a projektek fizetési ütemtervében rögzített befizetések és a havi szerződések.",
+  "de": "Hier erscheinen die in den Zahlungsplänen der Projekte erfassten Zahlungen und die Monatsverträge."
+ },
+ "Amounts in different currencies are never added together.": {
+  "hu": "A különböző pénznemű összegeket sosem adjuk össze.",
+  "de": "Beträge in verschiedenen Währungen werden nie addiert."
+ },
+ "This year so far": {
+  "hu": "Idén eddig",
+  "de": "Dieses Jahr bisher"
+ },
+ "same period last year: {amount}": {
+  "hu": "tavaly ugyanekkor: {amount}",
+  "de": "Vorjahreszeitraum: {amount}"
+ },
+ "Last 12 months": {
+  "hu": "Utolsó 12 hónap",
+  "de": "Letzte 12 Monate"
+ },
+ "Monthly fees now": {
+  "hu": "Havi díjak most",
+  "de": "Monatsgebühren aktuell"
+ },
+ "running monthly contracts": {
+  "hu": "futó havi szerződések",
+  "de": "laufende Monatsverträge"
+ },
+ "Collected per month": {
+  "hu": "Befolyt bevétel havonta",
+  "de": "Eingänge pro Monat"
+ },
+ "Monthly fees (MRR)": {
+  "hu": "Havi díjak (MRR)",
+  "de": "Monatsgebühren (MRR)"
+ },
+ "last 12 months": {
+  "hu": "utolsó 12 hónap",
+  "de": "letzte 12 Monate"
+ },
+ "Series": {
+  "hu": "Adatsor",
+  "de": "Reihe"
+ },
+ "Collected": {
+  "hu": "Befolyt",
+  "de": "Eingänge"
+ },
+ "Money received, from the payments recorded in the projects' payment schedules — not invoices issued.": {
+  "hu": "A ténylegesen beérkezett pénz, a projektek fizetési ütemtervében rögzített befizetésekből — nem a kiállított számlák.",
+  "de": "Tatsächlich eingegangenes Geld, aus den in den Zahlungsplänen erfassten Zahlungen — nicht die ausgestellten Rechnungen."
+ },
+ "The monthly fee of every monthly contract running in that month.": {
+  "hu": "Az adott hónapban futó összes havi szerződés havi díja.",
+  "de": "Die Monatsgebühr aller in diesem Monat laufenden Monatsverträge."
+ },
+ "Where it came from": {
+  "hu": "Honnan jött",
+  "de": "Woher es kam"
+ },
+ "By": {
+  "hu": "Bontás",
+  "de": "Nach"
+ },
+ "Services": {
+  "hu": "Szolgáltatások",
+  "de": "Leistungen"
+ },
+ "This year": {
+  "hu": "Idén",
+  "de": "Dieses Jahr"
+ },
+ "12 months": {
+  "hu": "12 hónap",
+  "de": "12 Monate"
+ },
+ "3 years": {
+  "hu": "3 év",
+  "de": "3 Jahre"
+ },
+ "Nothing collected in this period.": {
+  "hu": "Ebben az időszakban nem folyt be bevétel.",
+  "de": "In diesem Zeitraum gab es keine Eingänge."
+ },
+ "Forecast": {
+  "hu": "Előrejelzés",
+  "de": "Prognose"
+ },
+ "next 6 months": {
+  "hu": "következő 6 hónap",
+  "de": "nächste 6 Monate"
+ },
+ "Expected": {
+  "hu": "Várható",
+  "de": "Erwartet"
+ },
+ "Deals (weighted)": {
+  "hu": "Ajánlatok (súlyozva)",
+  "de": "Angebote (gewichtet)"
+ },
+ "Expected = unpaid instalments by due date (anything overdue counts this month) + monthly fees not already in a schedule. Deals: open deals × their probability, in their expected close month — not added to the expected figure.": {
+  "hu": "Várható = a ki nem fizetett részletek esedékesség szerint (a lejártak ebben a hónapban számítanak) + az ütemtervben még nem szereplő havi díjak. Ajánlatok: a nyitott lehetőségek értéke × valószínűsége, a várható lezárás hónapjában — ez nincs hozzáadva a várhatóhoz.",
+  "de": "Erwartet = offene Raten nach Fälligkeit (Überfälliges zählt in diesem Monat) + Monatsgebühren, die noch in keinem Plan stehen. Angebote: offene Chancen × Wahrscheinlichkeit, im erwarteten Abschlussmonat — nicht zum erwarteten Betrag addiert."
+ }
+}

@@ -95,6 +95,7 @@ const NotesScreen = lazy(() => import('@/pages/notes').then((m) => ({ default: m
 const TodayScreen = lazy(() => import('@/pages/today').then((m) => ({ default: m.TodayScreen })));
 // Hours worked, per person per day (20261012000100_time_entries.sql).
 const HoursScreen = lazy(() => import('@/pages/hours').then((m) => ({ default: m.HoursScreen })));
+const RevenueScreen = lazy(() => import('@/pages/revenue').then((m) => ({ default: m.RevenueScreen })));
 
 /**
  * Nothing below this should ever show a visitor a stack trace. React unmounts
@@ -187,6 +188,9 @@ export default function App() {
                 <ProtectedRoute capability="manage_projects"><ProjectTemplatesScreen /></ProtectedRoute>} />
               <Route path="projects/:id" element={
                 <ProtectedRoute capability="view_projects"><ProjectDetailScreen /></ProtectedRoute>} />
+              {/* The revenue report: made of the payments, so owner-only like them. */}
+              <Route path="revenue" element={
+                <ProtectedRoute capability="view_projects"><RevenueScreen /></ProtectedRoute>} />
 
               {/* ------------------------------------ the Impact Program */}
               <Route path="impact" element={

@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
   Activity, Building2, CalendarCheck, ChartLine, Clock, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
-  Menu, NotebookPen, RefreshCw, ScrollText, Settings, Target, Trash2, Users, X,
+  Menu, NotebookPen, RefreshCw, ScrollText, Settings, Target, Trash2, Users, Wallet, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
@@ -83,6 +83,8 @@ const PRIMARY: NavItem[] = [
   // Who worked how many hours, on what — everybody's week.
   { to: '/hours',     label: 'Hours',     icon: Clock,           cap: 'manage_clients' },
   { to: '/projects',  label: 'Projects',  icon: FolderKanban,    cap: 'view_projects' },
+  // What came in and what is coming: built from the payments, owner-only.
+  { to: '/revenue',   label: 'Revenue',   icon: Wallet,          cap: 'view_projects' },
   // The free programme: its own pipeline and its own projects. Owner-only,
   // like Projects (see OWNER_CAPABILITIES).
   { to: '/impact',    label: 'Impact',    icon: HeartHandshake,  cap: 'view_impact' },
@@ -117,6 +119,7 @@ const TITLES: { path: string; title: string }[] = [
   { path: '/sales', title: 'Sales' },
   { path: '/system', title: 'System' },
   { path: '/projects', title: 'Projects' },
+  { path: '/revenue', title: 'Revenue' },
   { path: '/impact', title: 'Impact' },
   { path: '/documents', title: 'Documents' },
   { path: '/clients', title: 'Clients' },

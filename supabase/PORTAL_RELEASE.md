@@ -841,3 +841,28 @@ Mit csinál (a tulajdonos döntései, 2026-10-05):
 Ellenőrizve (helyben): `tests/portal-automations-db.spec.ts` 6/6 (egyszeri riasztás, önlezárás, küszöb, újbóli
 elakadás, láthatóság, jogok); `tests/notify.spec.ts` 10/10; tulajdonosi ellenőrző 62/62; teljes futás 2295 zöld,
 1 hiba a már ismert ingadozó `homepage-chrome` mobil tesztben.
+
+## 27. Bevételi riport (19. szakasz, „5. CRM” második része)
+
+**Sorrend: 26. → ez a migráció → deploy.**
+
+1. SQL Editor: `supabase/migrations/20261016000100_revenue_report.sql` (ismételten is futtatható).
+2. Deploy (push a `main`-re).
+
+Mit csinál (a tulajdonos döntése, 2026-10-05) — új menüpont: **Revenue** (Bevétel), csak a tulajdonosnak és a
+helyetteseinek, mert a befizetésekből készül:
+
+- **Fő számok:** idén eddig (tavaly ugyanekkorához képest), utolsó 12 hónap, ez a hónap, havi díjak most.
+- **Befolyt bevétel havonta** és **havi díjak (MRR)** az utolsó 12 hónapra. A „befolyt” a fizetési ütemtervben
+  rögzített befizetés — nem a kiállított számla.
+- **Honnan jött:** ügyfelenként vagy szolgáltatásonként, idén / 12 hónap / 3 év.
+- **Előrejelzés** a következő 6 hónapra: ki nem fizetett részletek esedékesség szerint (a lejártak ebben a
+  hónapban), + az ütemtervben még nem szereplő havi díjak = **várható**; mellette külön a nyitott ajánlatok
+  értéke × valószínűsége a várható lezárás hónapjában (dátum nélküli ajánlat nem szerepel).
+- Minden összeg pénznemenként; a különböző pénznemeket sosem adjuk össze (váltó, ha több van).
+- `portal_revenue_report()` SECURITY INVOKER: a hívó saját jogai döntenek; nem tulajdonosnak a pénzügyi részek
+  üresek.
+
+Ellenőrizve (helyben): `tests/portal-revenue-report-db.spec.ts` 4/4 (kézzel kiszámolt számokkal, rögzített
+napon); tulajdonosi ellenőrző 63/63 (menü, fő számok, bontás, előrejelzés, EUR külön, nem tulajdonosnak nincs
+menüpont); teljes futás 2307 zöld, 2 hiba a már ismert ingadozó `homepage-chrome` mobil tesztben.

@@ -300,6 +300,7 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
       return json(route, state.projects.filter((p) => !p.archived_at)
         .map((p) => ({ project_id: p.id, project_name: p.name, client_name: p.client?.name ?? null, closed: p.status === 'completed' })));
     }
+    if (url.includes('/rest/v1/rpc/portal_revenue_report')) return json(route, owner ? (state.revenue ?? []) : []);
     if (url.includes('/rest/v1/rpc/')) return json(route, []);
 
     if (url.includes('/rest/v1/impact_applications')) {
@@ -1706,6 +1707,48 @@ await check('automations: Today lists what needs attention with links; Done tick
   assert(ws.some((b) => b.auto_won_on === false) && ws.some((b) => b.auto_lead_hours === 8), JSON.stringify(ws));
   await shot(page, 'owner-automations');
   await context.close();
+});
+
+await check('revenue: owner sees collected, monthly fees, where it came from and the forecast; a non-owner has no Revenue', async () => {
+  const state = freshState();
+  const m = (offset) => { const d = new Date(); return new Date(Date.UTC(d.getFullYear(), d.getMonth() + offset, 1)).toISOString().slice(0, 10); };
+  state.revenue = [
+    { section: 'collected', month: m(0), key: null, label: null, currency: 'HUF', amount: 400000 },
+    { section: 'collected', month: m(-1), key: null, label: null, currency: 'HUF', amount: 250000 },
+    { section: 'client', month: m(0), key: 'o1', label: 'Rapidkert Kft.', currency: 'HUF', amount: 400000 },
+    { section: 'client', month: m(-1), key: 'o2', label: 'Ló Bt.', currency: 'HUF', amount: 250000 },
+    { section: 'service', month: m(0), key: 'Weboldal', label: 'Weboldal', currency: 'HUF', amount: 400000 },
+    { section: 'mrr', month: m(0), key: null, label: null, currency: 'HUF', amount: 150000 },
+    { section: 'forecast', month: m(1), key: 'scheduled', label: null, currency: 'HUF', amount: 1000000 },
+    { section: 'forecast', month: m(1), key: 'monthly', label: null, currency: 'HUF', amount: 150000 },
+    { section: 'forecast', month: m(2), key: 'pipeline', label: null, currency: 'HUF', amount: 600000 },
+    { section: 'collected', month: m(0), key: null, label: null, currency: 'EUR', amount: 1200 },
+  ];
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  await page.getByRole('link', { name: 'Revenue' }).first().click();
+  await page.waitForURL(/\/revenue$/);
+  await page.getByRole('region', { name: 'Key figures' }).getByText('Monthly fees now').waitFor();
+  const where = page.getByRole('region', { name: 'Where it came from' });
+  await where.getByText('Rapidkert Kft.').waitFor();
+  await where.getByRole('button', { name: 'Services' }).click();
+  await where.getByText('Weboldal').waitFor();
+  const next = page.locator(`[data-forecast="${m(1)}"]`);
+  const text = await next.innerText();
+  assert(/1\s?150\s?000/.test(text.replace(/\u00a0/g, ' ')), `forecast row: ${text}`);
+  // EUR is shown on its own, never added to HUF.
+  await page.getByRole('group', { name: 'Currency' }).getByRole('button', { name: 'EUR' }).click();
+  await where.getByText('Nothing collected in this period.').waitFor();
+  const pressed = await page.getByRole('group', { name: 'Currency' }).getByRole('button', { name: 'EUR' }).getAttribute('aria-pressed');
+  assert(pressed === 'true', `EUR pressed: ${pressed}`);
+  await shot(page, 'owner-revenue');
+  await context.close();
+
+  const other = await open(browser, { owner: false, state: freshState() });
+  await other.page.goto(`${BASE}/`);
+  await other.page.getByRole('link', { name: 'Sales' }).first().waitFor();
+  assert(await other.page.getByRole('link', { name: 'Revenue' }).count() === 0, 'Revenue in a non-owner nav');
+  await other.context.close();
 });
 
 /* ============================================================ theme === */

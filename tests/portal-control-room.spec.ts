@@ -65,7 +65,7 @@ test.describe('the shell', () => {
     // Today (what is due now) sits under the Dashboard; Notes beside Clients,
     // whose meetings they are mostly written in.
     expect(labels).toEqual([
-      'Dashboard', 'Today', 'Analytics', 'Leads', 'Sales', 'Clients', 'Notes', 'Hours', 'Projects', 'Impact', 'Documents', 'System',
+      'Dashboard', 'Today', 'Analytics', 'Leads', 'Sales', 'Clients', 'Notes', 'Hours', 'Projects', 'Revenue', 'Impact', 'Documents', 'System',
     ]);
   });
 
