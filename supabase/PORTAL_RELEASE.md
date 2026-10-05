@@ -868,3 +868,26 @@ helyetteseinek, mert a befizetésekből készül:
 Ellenőrizve (helyben): `tests/portal-revenue-report-db.spec.ts` 4/4 (kézzel kiszámolt számokkal, rögzített
 napon); tulajdonosi ellenőrző 63/63 (menü, fő számok, bontás, előrejelzés, EUR külön, nem tulajdonosnak nincs
 menüpont); teljes futás 2307 zöld, 2 hiba a már ismert ingadozó `homepage-chrome` mobil tesztben.
+
+## 28. Import és export (20. szakasz, „5. CRM” harmadik része)
+
+**Élesítve 2026-10-05:** nincs migráció; push a `main`-re.
+
+Új menüpont a Records csoportban: **Import & export** (admin és tulajdonos).
+
+- **Export (CSV):** leadek, ügyfelek a fő kapcsolattartóval, ajánlatok, munkaórák; a tulajdonosnak projektek és
+  befizetések is. A letöltött fájl pontosvesszős, UTF-8 BOM-mal: magyar Excelben dupla kattintással, ékezetekkel
+  nyílik. Mindenki csak azt exportálhatja, amit a portálon is lát (RLS). A `=`, `+`, `-`, `@` kezdetű szöveges
+  cellák elé aposztróf kerül, hogy egy űrlapba írt érték ne fusson képletként.
+- **Import (CSV, Excelből „CSV UTF-8”):** ügyfelek (név kötelező; weboldal, szolgáltatás, kapcsolattartó,
+  beosztás, e-mail, telefon) vagy leadek (e-mail kötelező; név, telefon, cég, weboldal, szolgáltatás, üzenet,
+  dátum, állapot). A fejlécet magyarul és angolul is felismeri; mintafájl letölthető.
+  - Előbb **terv**: hány sor kerül be, melyik marad ki és miért (már létező ügyfélnév / lead e-mail, hiányzó
+    kötelező mező, hibás e-mail vagy dátum), mely oszlopokat ismerte fel és melyeket hagy figyelmen kívül —
+    írás csak a megerősítés után. Semmit nem ír felül.
+  - Állapot oszlop nélkül a leadek „contacted” állapotba kerülnek, így régi leadekre nem jön válasz-emlékeztető.
+  - Legfeljebb 5000 sor és 5 MB egyszerre.
+
+Ellenőrizve (helyben): `tests/csv.spec.ts` 3/3 (írás, visszaolvasás, vesszős/tabos fájl, fejlécek, képletvédelem);
+tulajdonosi ellenőrző 64/64 (CSV letöltés BOM-mal és fejléccel, import terve, kihagyások, írás csak megerősítés
+után, kapcsolattartó); teljes futás 2309 zöld.

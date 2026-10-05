@@ -447,7 +447,16 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
       }
       return answer(applyFilters(url, state[key]));
     }
+    if (url.includes('/rest/v1/client_contacts') && method === 'POST') {
+      state.writes.push({ table: 'client_contacts', method, body: JSON.parse(req.postData() || '{}') });
+      return json(route, [], 201);
+    }
     if (url.includes('/rest/v1/client_contacts')) return answer(applyFilters(url, CONTACTS));
+    if (url.includes('/rest/v1/organizations') && method === 'POST') {
+      const body = JSON.parse(req.postData() || '{}');
+      state.writes.push({ table: 'organizations', method, body });
+      return json(route, single ? { id: `org-${state.writes.length}` } : [{ id: `org-${state.writes.length}` }], 201);
+    }
     if (url.includes('/rest/v1/organizations')) return answer(applyFilters(url, [{ ...ORG, slug: 'rapidkert', website: null, status: 'active', acquisition_source: null, acquisition_medium: null, acquisition_campaign: null, primary_service: null, archived_at: null, created_at: new Date().toISOString(), updated_at: new Date().toISOString() }]));
     if (url.includes('/rest/v1/opportunities')) {
       if (method === 'PATCH') {
@@ -1749,6 +1758,38 @@ await check('revenue: owner sees collected, monthly fees, where it came from and
   await other.page.getByRole('link', { name: 'Sales' }).first().waitFor();
   assert(await other.page.getByRole('link', { name: 'Revenue' }).count() === 0, 'Revenue in a non-owner nav');
   await other.context.close();
+});
+
+await check('import & export: a client list downloads as an Excel-ready CSV; an import shows its plan, skips duplicates and writes only on confirm', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  await page.getByRole('link', { name: 'Import & export' }).first().click();
+  await page.waitForURL(/\/data$/);
+  const [download] = await Promise.all([page.waitForEvent('download'), page.locator('[data-export="clients"]').click()]);
+  const csv = await (await import('node:fs/promises')).readFile(await download.path(), 'utf8');
+  assert(csv.charCodeAt(0) === 0xfeff, 'no BOM');
+  assert(csv.slice(1).split('\r\n')[0].startsWith('Client;Website;Status'), csv.slice(0, 80));
+  assert(csv.includes('Rapidkert Kft.'), 'client missing from the export');
+  assert(/stratos-clients-\d{4}-\d{2}-\d{2}\.csv/.test(download.suggestedFilename()), download.suggestedFilename());
+  // The owner exports projects and payments too.
+  assert(await page.locator('[data-export="payments"]').count() === 1, 'owner has no payments export');
+
+  const file = '\ufeffCégnév;Weboldal;Kapcsolattartó;E-mail;Kedvenc szín\r\nRapidkert Kft.;;;;\r\nKert Bt.;https://kert.example;Kiss Éva;eva@kert.example;zöld\r\n;;Senki;x@y.hu;\r\nRossz Kft.;;;nem-email;\r\n';
+  await page.locator('[data-import-file]').setInputFiles({ name: 'ugyfelek.csv', mimeType: 'text/csv', buffer: Buffer.from(file, 'utf8') });
+  const plan = page.locator('[data-import-plan]');
+  await plan.getByText('1 to import').waitFor();
+  await plan.getByText('3 skipped').waitFor();
+  await plan.getByText('ignored: Kedvenc szín', { exact: false }).waitFor();
+  assert(!state.writes.some((w) => w.table === 'organizations'), 'written before confirming');
+  await page.locator('[data-import-go]').click();
+  await page.locator('[data-import-result]').getByText('1 imported.').waitFor();
+  const org = state.writes.find((w) => w.table === 'organizations');
+  assert(org.body.name === 'Kert Bt.' && org.body.slug === 'kert-bt' && org.body.website === 'https://kert.example' && org.body.acquisition_source === 'import', JSON.stringify(org.body));
+  const contact = state.writes.find((w) => w.table === 'client_contacts');
+  assert(contact.body.name === 'Kiss Éva' && contact.body.email === 'eva@kert.example' && contact.body.is_primary === true, JSON.stringify(contact.body));
+  await shot(page, 'owner-import');
+  await context.close();
 });
 
 /* ============================================================ theme === */

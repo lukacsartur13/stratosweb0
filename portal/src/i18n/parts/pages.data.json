@@ -1,0 +1,130 @@
+{
+ "At most 5000 rows at a time.": {
+  "hu": "Egyszerre legfeljebb 5000 sor.",
+  "de": "Höchstens 5000 Zeilen auf einmal."
+ },
+ "CSV · opens in Excel": {
+  "hu": "CSV · Excelben megnyílik",
+  "de": "CSV · öffnet in Excel"
+ },
+ "Choose a CSV file": {
+  "hu": "CSV-fájl kiválasztása",
+  "de": "CSV-Datei auswählen"
+ },
+ "Columns recognised: {list}": {
+  "hu": "Felismert oszlopok: {list}",
+  "de": "Erkannte Spalten: {list}"
+ },
+ "Download CSV": {
+  "hu": "CSV letöltése",
+  "de": "CSV herunterladen"
+ },
+ "Download a template": {
+  "hu": "Minta letöltése",
+  "de": "Vorlage herunterladen"
+ },
+ "Export": {
+  "hu": "Export",
+  "de": "Export"
+ },
+ "From Excel: File → Save As → “CSV UTF-8”.": {
+  "hu": "Excelből: Fájl → Mentés másként → „CSV UTF-8”.",
+  "de": "Aus Excel: Datei → Speichern unter → „CSV UTF-8“."
+ },
+ "Import another file": {
+  "hu": "Másik fájl importálása",
+  "de": "Weitere Datei importieren"
+ },
+ "Import {n}": {
+  "hu": "{n} importálása",
+  "de": "{n} importieren"
+ },
+ "Import": {
+  "hu": "Import",
+  "de": "Import"
+ },
+ "Importing… {done}/{all}": {
+  "hu": "Importálás… {done}/{all}",
+  "de": "Import läuft… {done}/{all}"
+ },
+ "One client per row. Recognised columns: name (required), website, service, contact, role, e-mail, phone — in Hungarian or English. A client whose name already exists is skipped.": {
+  "hu": "Soronként egy ügyfél. Felismert oszlopok: név (kötelező), weboldal, szolgáltatás, kapcsolattartó, beosztás, e-mail, telefon — magyarul vagy angolul. Akinek a neve már szerepel, kimarad.",
+  "de": "Ein Kunde pro Zeile. Erkannte Spalten: Name (Pflicht), Website, Leistung, Ansprechpartner, Rolle, E-Mail, Telefon — auf Ungarisch oder Englisch. Ein Kunde, dessen Name schon existiert, wird übersprungen."
+ },
+ "One lead per row. Recognised columns: e-mail (required), name, phone, company, website, service, message, date, status. A lead whose e-mail already exists is skipped. Without a status column they are imported as “contacted”, so the reply reminder does not fire for old leads.": {
+  "hu": "Soronként egy lead. Felismert oszlopok: e-mail (kötelező), név, telefon, cég, weboldal, szolgáltatás, üzenet, dátum, állapot. Akinek az e-mailje már szerepel, kimarad. Állapot oszlop nélkül „megkeresve” állapotba kerülnek, így régi leadekre nem jön válasz-emlékeztető.",
+  "de": "Ein Lead pro Zeile. Erkannte Spalten: E-Mail (Pflicht), Name, Telefon, Firma, Website, Leistung, Nachricht, Datum, Status. Ein Lead, dessen E-Mail schon existiert, wird übersprungen. Ohne Statusspalte werden sie als „kontaktiert“ importiert, damit die Antwort-Erinnerung für alte Leads nicht auslöst."
+ },
+ "Preparing…": {
+  "hu": "Készül…",
+  "de": "Wird erstellt…"
+ },
+ "Skipped rows": {
+  "hu": "Kihagyott sorok",
+  "de": "Übersprungene Zeilen"
+ },
+ "The file has no rows under the header.": {
+  "hu": "A fejléc alatt nincs sor a fájlban.",
+  "de": "Die Datei hat keine Zeilen unter der Kopfzeile."
+ },
+ "The file is larger than 5 MB.": {
+  "hu": "A fájl nagyobb 5 MB-nál.",
+  "de": "Die Datei ist größer als 5 MB."
+ },
+ "clients or leads from CSV": {
+  "hu": "ügyfelek vagy leadek CSV-ből",
+  "de": "Kunden oder Leads aus CSV"
+ },
+ "ignored: {list}": {
+  "hu": "figyelmen kívül: {list}",
+  "de": "ignoriert: {list}"
+ },
+ "line {n}": {
+  "hu": "{n}. sor",
+  "de": "Zeile {n}"
+ },
+ "{n} imported.": {
+  "hu": "{n} importálva.",
+  "de": "{n} importiert."
+ },
+ "{n} skipped": {
+  "hu": "{n} kimarad",
+  "de": "{n} übersprungen"
+ },
+ "{n} to import": {
+  "hu": "{n} importálható",
+  "de": "{n} zu importieren"
+ },
+ "… and {n} more": {
+  "hu": "… és még {n}",
+  "de": "… und {n} weitere"
+ },
+ "every lead not in the Trash": {
+  "hu": "minden lead, ami nincs a Kukában",
+  "de": "alle Leads außerhalb des Papierkorbs"
+ },
+ "with their main contact": {
+  "hu": "a fő kapcsolattartóval",
+  "de": "mit dem Hauptkontakt"
+ },
+ "the sales pipeline, won and lost included": {
+  "hu": "az értékesítési folyamat, a megnyert és elvesztett is",
+  "de": "die Vertriebspipeline, gewonnene und verlorene inklusive"
+ },
+ "everybody's logged hours": {
+  "hu": "mindenki rögzített munkaórái",
+  "de": "die erfassten Stunden aller"
+ },
+ "paid, monthly and Impact": {
+  "hu": "fizetős, havi és Impact",
+  "de": "bezahlt, monatlich und Impact"
+ },
+ "Payments": {
+  "hu": "Befizetések",
+  "de": "Zahlungen"
+ },
+ "every recorded payment": {
+  "hu": "minden rögzített befizetés",
+  "de": "alle erfassten Zahlungen"
+ }
+}

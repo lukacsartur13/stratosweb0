@@ -95,6 +95,7 @@ const NotesScreen = lazy(() => import('@/pages/notes').then((m) => ({ default: m
 const TodayScreen = lazy(() => import('@/pages/today').then((m) => ({ default: m.TodayScreen })));
 // Hours worked, per person per day (20261012000100_time_entries.sql).
 const HoursScreen = lazy(() => import('@/pages/hours').then((m) => ({ default: m.HoursScreen })));
+const DataScreen = lazy(() => import('@/pages/data').then((m) => ({ default: m.DataScreen })));
 const RevenueScreen = lazy(() => import('@/pages/revenue').then((m) => ({ default: m.RevenueScreen })));
 
 /**
@@ -215,6 +216,8 @@ export default function App() {
                 <ProtectedRoute capability="manage_users"><UsersScreen /></ProtectedRoute>} />
               <Route path="activity" element={
                 <ProtectedRoute capability="view_activity"><ActivityScreen /></ProtectedRoute>} />
+              <Route path="data" element={
+                <ProtectedRoute capability="manage_clients"><DataScreen /></ProtectedRoute>} />
               <Route path="settings" element={
                 <ProtectedRoute capability="manage_settings"><SettingsScreen /></ProtectedRoute>} />
               <Route path="today" element={

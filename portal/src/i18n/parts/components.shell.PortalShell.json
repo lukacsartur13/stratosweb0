@@ -178,5 +178,9 @@
  "Hours": {
   "hu": "Munkaidő",
   "de": "Stunden"
+ },
+ "Import & export": {
+  "hu": "Import és export",
+  "de": "Import & Export"
  }
 }

@@ -42,6 +42,7 @@ const NODE_ONLY = [
   /portal-notes-db\.spec\.ts/,
   /portal-hours-db\.spec\.ts/,
   /notify\.spec\.ts/,
+  /csv\.spec\.ts/,
   /portal-client-extras\.spec\.ts/,
 ];
 

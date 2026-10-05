@@ -1,0 +1,75 @@
+{
+ "Created": {
+  "hu": "Létrehozva",
+  "de": "Erstellt"
+ },
+ "Deal": {
+  "hu": "Ajánlat",
+  "de": "Angebot"
+ },
+ "Next step on": {
+  "hu": "Következő lépés napja",
+  "de": "Nächster Schritt am"
+ },
+ "Paid on": {
+  "hu": "Fizetve",
+  "de": "Bezahlt am"
+ },
+ "Timeframe": {
+  "hu": "Időkeret",
+  "de": "Zeitrahmen"
+ },
+ "The existing clients could not be read. Try again.": {
+  "hu": "A meglévő ügyfeleket nem sikerült beolvasni. Próbáld újra.",
+  "de": "Die vorhandenen Kunden konnten nicht gelesen werden. Bitte erneut versuchen."
+ },
+ "The existing leads could not be read. Try again.": {
+  "hu": "A meglévő leadeket nem sikerült beolvasni. Próbáld újra.",
+  "de": "Die vorhandenen Leads konnten nicht gelesen werden. Bitte erneut versuchen."
+ },
+ "The export could not be read. Try again.": {
+  "hu": "Az exportot nem sikerült elkészíteni. Próbáld újra.",
+  "de": "Der Export konnte nicht erstellt werden. Bitte erneut versuchen."
+ },
+ "The file needs a column with the client name (e.g. \"Name\" or \"Cégnév\").": {
+  "hu": "A fájlban kell egy oszlop az ügyfél nevével (pl. „Cégnév” vagy „Name”).",
+  "de": "Die Datei braucht eine Spalte mit dem Kundennamen (z. B. „Name“ oder „Firma“).",
+  "en": "The file needs a column with the client name (e.g. \"Name\" or \"Cégnév\")."
+ },
+ "The file needs an e-mail column: every lead has an e-mail address.": {
+  "hu": "A fájlban kell egy e-mail oszlop: minden leadnek van e-mail címe.",
+  "de": "Die Datei braucht eine E-Mail-Spalte: Jeder Lead hat eine E-Mail-Adresse."
+ },
+ "a lead with this e-mail exists": {
+  "hu": "ezzel az e-maillel már van lead",
+  "de": "ein Lead mit dieser E-Mail existiert bereits"
+ },
+ "already a client": {
+  "hu": "már ügyfél",
+  "de": "bereits Kunde"
+ },
+ "no e-mail address": {
+  "hu": "nincs e-mail cím",
+  "de": "keine E-Mail-Adresse"
+ },
+ "no name": {
+  "hu": "nincs név",
+  "de": "kein Name"
+ },
+ "refused by the database": {
+  "hu": "az adatbázis nem fogadta el",
+  "de": "von der Datenbank abgelehnt"
+ },
+ "the date is not readable (use YYYY-MM-DD)": {
+  "hu": "a dátum nem olvasható (ÉÉÉÉ-HH-NN formában add meg)",
+  "de": "das Datum ist nicht lesbar (JJJJ-MM-TT verwenden)"
+ },
+ "the e-mail address is not valid": {
+  "hu": "az e-mail cím nem érvényes",
+  "de": "die E-Mail-Adresse ist ungültig"
+ },
+ "the name is too long": {
+  "hu": "a név túl hosszú",
+  "de": "der Name ist zu lang"
+ }
+}

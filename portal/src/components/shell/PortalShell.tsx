@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
   Activity, Building2, CalendarCheck, ChartLine, Clock, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
-  Menu, NotebookPen, RefreshCw, ScrollText, Settings, Target, Trash2, Users, Wallet, X,
+  ArrowDownUp, Menu, NotebookPen, RefreshCw, ScrollText, Settings, Target, Trash2, Users, Wallet, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
@@ -101,6 +101,8 @@ const SECONDARY: NavItem[] = [
   { to: '/help',         label: 'Help centre',  icon: LifeBuoy,   cap: 'manage_help' },
   { to: '/users',        label: 'Users',        icon: Users,      cap: 'manage_users' },
   { to: '/activity',     label: 'Activity',     icon: ScrollText, cap: 'view_activity' },
+  // CSV export of every list; clients and leads imported from CSV.
+  { to: '/data',         label: 'Import & export', icon: ArrowDownUp, cap: 'manage_clients' },
   { to: '/settings',     label: 'Settings',     icon: Settings,   cap: 'manage_settings' },
   // Projects, clients and leads moved to the Trash: restore or delete for good.
   { to: '/trash',        label: 'Trash',        icon: Trash2,     cap: 'manage_leads' },
@@ -120,6 +122,7 @@ const TITLES: { path: string; title: string }[] = [
   { path: '/system', title: 'System' },
   { path: '/projects', title: 'Projects' },
   { path: '/revenue', title: 'Revenue' },
+  { path: '/data', title: 'Import & export' },
   { path: '/impact', title: 'Impact' },
   { path: '/documents', title: 'Documents' },
   { path: '/clients', title: 'Clients' },
