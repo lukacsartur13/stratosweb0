@@ -712,6 +712,8 @@ Ellenőrizve (helyben): `tests/portal-hours-db.spec.ts` 4/4; tulajdonosi ellenő
 
 ## 23. Értesítések: e-mail az ügyfeleknek, push + e-mail a tulajdonosnak (16. szakasz, „2. Értesítések”)
 
+**Élesítve 2026-10-05:** a migráció hiba nélkül lefutott, a `VAPID_PRIVATE_KEY` a Netlifyban, utána push a `main`-re.
+
 **Sorrend: 22. → ez a migráció → Netlify-kulcs → deploy.**
 
 1. SQL Editor: `supabase/migrations/20261013000100_notifications.sql` (ismételten is futtatható).
