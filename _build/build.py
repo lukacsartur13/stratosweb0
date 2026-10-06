@@ -61,6 +61,14 @@ SLUGS = {
     "post-marketing": {"hu": "blog-online-marketing.html",      "en": "blog-online-marketing.html",        "de": "blog-online-marketing.html"},
     "post-logo":      {"hu": "blog-logo-keszites.html",         "en": "blog-logo-design.html",             "de": "blog-logo-gestaltung.html"},
     "post-webdesign": {"hu": "blog-webdesign.html",             "en": "blog-web-design.html",              "de": "blog-webdesign.html"},
+    # ---- local landing pages (2026-10-06): Hungarian only — see HU_ONLY.
+    #      en/de name the Hungarian file only so every table keyed by language
+    #      stays total; no English or German file is ever written for them.
+    "local-hub":      {"hu": "hol-dolgozunk.html",               "en": "hol-dolgozunk.html",               "de": "hol-dolgozunk.html"},
+    "local-gyor":     {"hu": "weboldal-keszites-gyor.html",      "en": "weboldal-keszites-gyor.html",      "de": "weboldal-keszites-gyor.html"},
+    "local-budapest": {"hu": "weboldal-keszites-budapest.html",  "en": "weboldal-keszites-budapest.html",  "de": "weboldal-keszites-budapest.html"},
+    "local-pest":     {"hu": "weboldal-keszites-pest-megye.html", "en": "weboldal-keszites-pest-megye.html", "de": "weboldal-keszites-pest-megye.html"},
+    "local-szeged":   {"hu": "weboldal-keszites-szeged.html",    "en": "weboldal-keszites-szeged.html",    "de": "weboldal-keszites-szeged.html"},
     "contact":     {"hu": "ugyfelszolgalat.html",          "en": "contact.html",               "de": "kontakt.html"},
     "quote":       {"hu": "arajanlat.html",                "en": "quote.html",                 "de": "angebot.html"},
     "privacy":     {"hu": "adatkezelesi-tajekoztato.html", "en": "privacy-policy.html",        "de": "datenschutz.html"},
@@ -189,6 +197,41 @@ LOCALE_NOINDEX = {
     "post-seo": ("en", "de"),
 }
 
+# ------------------------------------------------------- Hungarian-only routes
+#
+# The local landing pages, and why they exist again.
+#
+# A Győr page shipped once (e10538c) and was withdrawn the next deploy
+# (a5246f0): ONE route dedicated to ONE city said "this is a Győr company",
+# which narrowed a three-language positioning to buy a single local query.
+#
+# On 2026-10-06 the owner asked for local landings as the next SEO step, and
+# the shape answers that objection rather than ignoring it: a hub — "Hol
+# dolgozunk" — and four regions under it (Győr-Moson-Sopron, Budapest, Pest
+# vármegye, Szeged and Csongrád-Csanád), each carrying something only that
+# region has (a client there, how meetings happen there, the towns around it).
+# Several markets named side by side, with the Austrian and German work
+# untouched, is the opposite of a one-city company. The Győr route reuses its
+# old URL, so whatever a crawler remembers of it lands on content again; the
+# 301 that pointed it at /szolgaltatasok is gone from netlify.toml.
+#
+# They are Hungarian only: a local landing page for Budapest has no English or
+# German reader. No en/de file is written; the language switcher sends those
+# readers to the services page in their language; links to these routes from a
+# translated page are rewritten to that services page too (relink); the
+# hreflang set is hu + x-default (they are listed in LOCALE_NOINDEX for en/de,
+# which is exactly what that table means to every consumer of routes.json);
+# and routes.json names them under `huOnly`, so the tools that walk every
+# language's FILE skip the two that do not exist.
+HU_ONLY = ("local-hub", "local-gyor", "local-budapest", "local-pest", "local-szeged")
+for _k in HU_ONLY:
+    LOCALE_NOINDEX[_k] = ("en", "de")
+
+
+def served(key, lang):
+    """The route a link to `key` resolves to in `lang` (HU-only -> services)."""
+    return "services" if key in HU_ONLY and lang != "hu" else key
+
 
 def locale_indexable(key, lang):
     """Is THIS language version of the route meant to be indexed?"""
@@ -303,6 +346,12 @@ PLATELESS = {k for k, v in ORGS.items() if v.get("ink") in ("light", "colour")}
 # evidenced by the work itself — there is a page about each — and they carry a
 # scope label the collaborations cannot honestly carry.
 CLIENTS = ("rapidkert", "barbershop")
+# A tighter crop for the logo rail's fixed plate, where object-fit: contain
+# shrank the original's wide transparent margin into a mark half the size of
+# its neighbours. Same artwork, cropped to its bounds plus 6%; the homepage
+# keeps the original, which its own layout was sized around.
+CLIENT_RAIL_ASSET = {"rapidkert": "assets/img/client-rapidkert-tight.png"}
+
 CLIENT_MARKS = {
     "rapidkert": ("Rapidkert Kft.", "assets/img/client-rapidkert.png"),
     "barbershop": ("Barbershop Győr", "assets/img/client-barbershop.png"),
@@ -338,7 +387,11 @@ def logoset(lang, kind="rail", keys=None, base=""):
                     if v["ready"] and v["relationship"] == "collab"]
     items = []
     for k in keys:
-        o = ORGS.get(k)
+        # A client with a project route can be named too (CLIENT_MARKS) — the
+        # page that asks for it says what the relationship is.
+        o = ORGS.get(k) or ({"name": CLIENT_MARKS[k][0],
+                             "asset": CLIENT_RAIL_ASSET.get(k, CLIENT_MARKS[k][1]), "ready": True}
+                            if k in CLIENT_MARKS else None)
         if not o or not o["ready"] or not o["asset"]:
             continue
         # A plateless mark has only the band under it to be legible against.
@@ -702,11 +755,12 @@ def href(lang, key):
     # crawler the homepage is a URL the homepage itself disclaims.
     if key == "index":
         return HOME_PATH[lang]
-    return SLUGS[key][lang]
+    return SLUGS[served(key, lang)][lang]
 
 
 def cross(lang_from, lang_to, key):
     """Link to page `key` in another language."""
+    key = served(key, lang_to)
     if _ROOT_LINKS:
         return root_href(lang_to, key)
     if key == "index":
@@ -1267,6 +1321,7 @@ CONTACT_PHONE = "+36305848024"
 # schema.org type per route. Anything unlisted is a plain WebPage, which is the
 # safe answer rather than the lazy one: a wrong subtype is a wrong claim.
 PAGE_TYPE_SCHEMA = {
+    "local-hub": "CollectionPage",
     "about": "AboutPage",
     "contact": "ContactPage",
     "services": "CollectionPage",
@@ -1280,9 +1335,23 @@ BREADCRUMB_PARENT = {
     "sme": "services", "enterprise": "services",
     "branding": "services", "ads": "services", "seo": "services",
     "shop": "services",
+    # Services / Hol dolgozunk / <region>
+    "local-hub": "services",
+    "local-gyor": "local-hub", "local-budapest": "local-hub",
+    "local-pest": "local-hub", "local-szeged": "local-hub",
 }
 
 SCHEMA_LANG = {"hu": "hu-HU", "en": "en-GB", "de": "de-DE"}
+
+# The area each local page offers its service in (structured data only).
+LOCAL_AREAS = {
+    "local-gyor": [{"@type": "City", "name": "Győr"},
+                   {"@type": "AdministrativeArea", "name": "Győr-Moson-Sopron vármegye"}],
+    "local-budapest": [{"@type": "City", "name": "Budapest"}],
+    "local-pest": [{"@type": "AdministrativeArea", "name": "Pest vármegye"}],
+    "local-szeged": [{"@type": "City", "name": "Szeged"},
+                     {"@type": "AdministrativeArea", "name": "Csongrád-Csanád vármegye"}],
+}
 
 CRUMBS_RE = re.compile(r'<p class="crumbs">(.*?)</p>', re.S)
 TAG_RE = re.compile(r"<[^>]+>")
@@ -1296,8 +1365,10 @@ def crumb_chain(key):
         return ["index", "work", key]
     if key.startswith("post-"):
         return ["index", "blog", key]
-    parent = BREADCRUMB_PARENT.get(key)
-    return ["index", parent, key] if parent else ["index", key]
+    chain = [key]
+    while chain[0] in BREADCRUMB_PARENT:
+        chain.insert(0, BREADCRUMB_PARENT[chain[0]])
+    return ["index", *chain]
 
 
 def crumb_labels(body):
@@ -1573,6 +1644,22 @@ def build_structured_data(lang, key, title, desc, meta, body):
             "name": title.split("|")[0].strip(),
             "description": desc,
             "provider": {"@id": SITE + "/#organization"},
+            "mainEntityOfPage": {"@id": page_url + "#webpage"},
+        })
+
+    if key in HU_ONLY and key != "local-hub":
+        # The region this page is about, as the area the service is offered
+        # in. `areaServed` here is a statement about THIS page's offer, not a
+        # second statement of the organisation's reach (that is above).
+        area = LOCAL_AREAS[key]
+        graph.append({
+            "@type": "Service",
+            "@id": page_url + "#service",
+            "name": title.split("|")[0].strip(),
+            "serviceType": ["Weboldal készítés", "Keresőoptimalizálás"],
+            "description": desc,
+            "provider": {"@id": SITE + "/#organization"},
+            "areaServed": area,
             "mainEntityOfPage": {"@id": page_url + "#webpage"},
         })
 
@@ -1856,6 +1943,9 @@ def build_footer(lang, key):
     svc += "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
         for k in SERVICES)
+    # The local landing pages are Hungarian only (HU_ONLY), so is their link.
+    if lang == "hu":
+        svc += f'\n          <li><a href="{href(lang, "local-hub")}">Hol dolgozunk</a></li>'
 
     ceiling = CEILINGS.get(key, 30000)
     # Thin space between the thousands, which is how the altimeter reads it.
@@ -2061,7 +2151,7 @@ def expand_logosets(html, lang, base):
         kind, keylist = m.group(1), m.group(2)
         keys = [k.strip() for k in keylist.split(",")] if keylist else None
         if keys:
-            unknown = [k for k in keys if k not in ORGS]
+            unknown = [k for k in keys if k not in ORGS and k not in CLIENT_MARKS]
             if unknown:
                 raise SystemExit(f"logoset names no such organisation: {unknown}")
             lit = [k for k in keys if k in PLATELESS]
@@ -2104,6 +2194,7 @@ def relink(html, lang):
         target = BY_ANY.get(m.group(2))
         if target is None:
             return m.group(0)
+        target = served(target, lang)
         return f'{m.group(1)}="{SLUGS[target][lang]}{m.group(3)}"'
 
     html = LINK_RE.sub(swap, html)
@@ -2853,7 +2944,11 @@ def write_route_manifest():
                     # them; see LOCALE_NOINDEX above for why the list is what
                     # it is.
                     "localeNoindex": {k: list(v)
-                                      for k, v in sorted(LOCALE_NOINDEX.items())}},
+                                      for k, v in sorted(LOCALE_NOINDEX.items())},
+                    # Routes with NO English or German file at all (see
+                    # HU_ONLY). Anything that walks every language's file
+                    # skips the two that are not there.
+                    "huOnly": list(HU_ONLY)},
                    ensure_ascii=False, indent=1),
         encoding="utf-8")
 
@@ -2891,6 +2986,8 @@ def main():
 
         for stem, (meta, body) in frags.items():
             key = BY_HU[stem + ".html"]
+            if key in HU_ONLY and lang != "hu":
+                continue
             title = meta.get("title", "Stratos")
             desc = meta.get("desc", "")
             # Logo sets are expanded before translation. The token itself is
@@ -2956,7 +3053,8 @@ def main():
 
         where = "/" if lang == "hu" else f"/{lang}/"
         note = f"  ({len(missing)} untranslated)" if missing else ""
-        print(f"{lang}: {len(frags)} pages -> {where}{note}")
+        count = len(frags) - (0 if lang == "hu" else sum(1 for k in HU_ONLY if SLUGS[k]["hu"][:-5] in frags))
+        print(f"{lang}: {count} pages -> {where}{note}")
         if scripts:
             print(f"  inline js -> assets/js/{', '.join(sorted(scripts))}")
         # not inside i18n/ — that folder is only ever read as dictionaries

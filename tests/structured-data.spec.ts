@@ -365,7 +365,9 @@ test('a Service node describes a service and offers no price', () => {
       expect(service, `${doc.file}`).not.toHaveProperty('offers');
     }
   }
-  expect(services, 'six service pages in three languages').toBe(18);
+  // Six service pages in three languages, plus the four Hungarian-only local
+  // landing pages (HU_ONLY in _build/build.py), whose Service names its region.
+  expect(services, 'six service pages in three languages + four local pages').toBe(22);
 });
 
 test('sameAs lists only profiles the site itself links to', () => {
@@ -403,5 +405,6 @@ test('the breadcrumb trail matches the one the page renders', () => {
       expect(item.item, `${doc.file} item`).toMatch(/^https:\/\//);
     });
   }
-  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(81);
+  // 81 before the five Hungarian-only local pages (hub + four regions).
+  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(86);
 });

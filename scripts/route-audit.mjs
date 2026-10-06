@@ -70,13 +70,21 @@ const VIEWPORTS = QUICK
 const LANGS = ['hu', 'en', 'de'];
 
 async function routes() {
-  const { slugs } = JSON.parse(await readFile(join(ROOT, '_build', 'routes.json'), 'utf8'));
+  const { slugs, huOnly = [], localeNoindex = {} } = JSON.parse(await readFile(join(ROOT, '_build', 'routes.json'), 'utf8'));
   const out = [];
   for (const [key, byLang] of Object.entries(slugs)) {
     // The three homepages are a Vite bundle with their own regression tests;
     // this audit is about the generated routes.
     if (key === 'index') continue;
-    for (const lang of LANGS) out.push({ key, lang, url: `/${lang === 'hu' ? '' : lang + '/'}${byLang[lang]}` });
+    for (const lang of LANGS) {
+      // The local landing pages have no English or German file (HU_ONLY).
+      if (huOnly.includes(key) && lang !== 'hu') continue;
+      // A noindexed language version publishes no hreflang set; an indexed one
+      // names every indexed language plus x-default.
+      const skip = localeNoindex[key] ?? [];
+      const hreflang = skip.includes(lang) ? 0 : LANGS.filter((l) => !skip.includes(l)).length + 1;
+      out.push({ key, lang, hreflang, url: `/${lang === 'hu' ? '' : lang + '/'}${byLang[lang]}` });
+    }
   }
   return out;
 }
@@ -272,7 +280,7 @@ async function main() {
       if (!facts.description) problems.push('no meta description');
       if (!facts.canonical) problems.push('no canonical');
       if (!facts.ogTitle || !facts.ogImage) problems.push('incomplete Open Graph');
-      if (facts.hreflang < 4) problems.push(`${facts.hreflang} hreflang links, expected 4`);
+      if (facts.hreflang !== route.hreflang) problems.push(`${facts.hreflang} hreflang links, expected ${route.hreflang}`);
       if (facts.h1.length !== 1) problems.push(`${facts.h1.length} h1 elements`);
       if (!facts.hasMain) problems.push('no <main>');
       if (!facts.hasNav) problems.push('no navigation');

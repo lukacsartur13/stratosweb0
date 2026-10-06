@@ -130,6 +130,31 @@
    "en": "blog-web-design.html",
    "de": "blog-webdesign.html"
   },
+  "local-hub": {
+   "hu": "hol-dolgozunk.html",
+   "en": "hol-dolgozunk.html",
+   "de": "hol-dolgozunk.html"
+  },
+  "local-gyor": {
+   "hu": "weboldal-keszites-gyor.html",
+   "en": "weboldal-keszites-gyor.html",
+   "de": "weboldal-keszites-gyor.html"
+  },
+  "local-budapest": {
+   "hu": "weboldal-keszites-budapest.html",
+   "en": "weboldal-keszites-budapest.html",
+   "de": "weboldal-keszites-budapest.html"
+  },
+  "local-pest": {
+   "hu": "weboldal-keszites-pest-megye.html",
+   "en": "weboldal-keszites-pest-megye.html",
+   "de": "weboldal-keszites-pest-megye.html"
+  },
+  "local-szeged": {
+   "hu": "weboldal-keszites-szeged.html",
+   "en": "weboldal-keszites-szeged.html",
+   "de": "weboldal-keszites-szeged.html"
+  },
   "contact": {
    "hu": "ugyfelszolgalat.html",
    "en": "contact.html",
@@ -277,6 +302,31 @@
    "en": "/en/blog-web-design",
    "de": "/de/blog-webdesign"
   },
+  "local-hub": {
+   "hu": "/hol-dolgozunk",
+   "en": "/en/hol-dolgozunk",
+   "de": "/de/hol-dolgozunk"
+  },
+  "local-gyor": {
+   "hu": "/weboldal-keszites-gyor",
+   "en": "/en/weboldal-keszites-gyor",
+   "de": "/de/weboldal-keszites-gyor"
+  },
+  "local-budapest": {
+   "hu": "/weboldal-keszites-budapest",
+   "en": "/en/weboldal-keszites-budapest",
+   "de": "/de/weboldal-keszites-budapest"
+  },
+  "local-pest": {
+   "hu": "/weboldal-keszites-pest-megye",
+   "en": "/en/weboldal-keszites-pest-megye",
+   "de": "/de/weboldal-keszites-pest-megye"
+  },
+  "local-szeged": {
+   "hu": "/weboldal-keszites-szeged",
+   "en": "/en/weboldal-keszites-szeged",
+   "de": "/de/weboldal-keszites-szeged"
+  },
   "contact": {
    "hu": "/ugyfelszolgalat",
    "en": "/en/contact",
@@ -324,15 +374,47 @@
   "post-marketing": "full",
   "post-logo": "full",
   "post-webdesign": "full",
+  "local-hub": "full",
+  "local-gyor": "full",
+  "local-budapest": "full",
+  "local-pest": "full",
+  "local-szeged": "full",
   "contact": "full",
   "quote": "full",
   "privacy": "full",
   "imprint": "full"
  },
  "localeNoindex": {
+  "local-budapest": [
+   "en",
+   "de"
+  ],
+  "local-gyor": [
+   "en",
+   "de"
+  ],
+  "local-hub": [
+   "en",
+   "de"
+  ],
+  "local-pest": [
+   "en",
+   "de"
+  ],
+  "local-szeged": [
+   "en",
+   "de"
+  ],
   "post-seo": [
    "en",
    "de"
   ]
- }
+ },
+ "huOnly": [
+  "local-hub",
+  "local-gyor",
+  "local-budapest",
+  "local-pest",
+  "local-szeged"
+ ]
 }

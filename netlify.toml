@@ -134,26 +134,17 @@
 # rule in this file. Turning it on is safe TODAY for the same reason the loop
 # was imaginary: nothing here redirects in the opposing direction.
 #
-# The eight below are the URLs whose paths genuinely do not exist here.
+# The rules below are the URLs whose paths genuinely do not exist here.
 
-# The city page that existed for about fifteen minutes.
+# The city page that existed for about fifteen minutes — and is back.
 #
 # /weboldal-keszites-gyor.html and its two translations shipped in one deploy
-# and were withdrawn in the next: a route dedicated to one city states that the
-# company is a Győr company, which is the opposite of what the rest of the site
-# says — three languages, Austrian and German clients, Budapest. It narrowed the
-# positioning to buy one local query, and that is a bad trade.
-#
-# They are 301s and not simply gone because the sitemap listed them while they
-# were up, so a crawler may hold the URLs. A splat catches both the `.html` form
-# the sitemap named and the extensionless form Netlify's Pretty URLs rewrote the
-# internal links to. The services index is where the content went — nothing was
-# unique to the city page except the framing that was the problem.
-[[redirects]]
-  from = "/weboldal-keszites-gyor*"
-  to = "/szolgaltatasok.html"
-  status = 301
-
+# and were withdrawn in the next, because ONE route for ONE city said "this is
+# a Győr company". On 2026-10-06 the owner asked for local landing pages, and
+# the Hungarian route returned under a hub with four regions (HU_ONLY in
+# _build/build.py explains the shape). Its 301 is gone so the page answers
+# again on the URL a crawler may still hold. The two translations stay
+# redirected: the local pages are Hungarian only.
 [[redirects]]
   from = "/en/web-design-gyor*"
   to = "/en/bespoke-web-design"

@@ -59,7 +59,21 @@ const OWNERSHIP = [
   { term: 'keresőoptimalizálás', owner: 'keresooptimalizalas.html',
     qualifiers: ['helyi', 'webáruház', 'mi az a'] },
   { term: 'logó tervezés', owner: 'branding.html', qualifiers: [] },
+  // The local landing pages (2026-10-06, HU_ONLY in _build/build.py). A head
+  // term followed by a place is a different query with its own owner — see
+  // PLACES below.
+  { term: 'weboldal készítés győr', owner: 'weboldal-keszites-gyor.html', qualifiers: [] },
+  { term: 'weboldal készítés budapest', owner: 'weboldal-keszites-budapest.html', qualifiers: [] },
+  { term: 'weboldal készítés pest megye', owner: 'weboldal-keszites-pest-megye.html', qualifiers: [] },
+  { term: 'weboldal készítés szeged', owner: 'weboldal-keszites-szeged.html', qualifiers: [] },
 ];
+
+// A term immediately followed by one of these is the LOCAL query, not the head
+// term: "weboldal készítés budapesten" is the Budapest page's claim, not a
+// second claim on "weboldal készítés". Without it every local page would read
+// as a collision with the service page that owns the national term.
+// Stems, not words: "megyében" is megy-é-ben, so "pest megye" is not its prefix.
+const PLACES = ['győr', 'budapest', 'pest megy', 'pest vármegy', 'szeged', 'csongrád'];
 
 // A service page and the article about the same subject must not both read as
 // commercial landing pages. The article's title has to be a question — that is
@@ -91,7 +105,9 @@ function claims(text, term, qualifiers) {
   let i = text.indexOf(term);
   while (i !== -1) {
     const before = text.slice(0, i).trimEnd();
-    if (!qualifiers.some((q) => before.endsWith(q))) return true;
+    const after = text.slice(i + term.length).trimStart();
+    const local = !PLACES.some((p) => term.endsWith(p)) && PLACES.some((p) => after.startsWith(p));
+    if (!qualifiers.some((q) => before.endsWith(q)) && !local) return true;
     i = text.indexOf(term, i + 1);
   }
   return false;
