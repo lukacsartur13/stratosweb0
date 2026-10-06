@@ -396,10 +396,16 @@
    compounding languages that need it. English rarely produces a word long
    enough to want one, and would take a break where a reader does not expect
    it. */
-[lang='de'] :where(h1, h2, h3, h4, p, li, dd),
-[lang='hu'] :where(h1, h2, h3, h4, p, li, dd) {
+[lang='de'] :where(h1, h2, h3, h4, p, li, dd) {
   hyphens: auto;
 }
+/* Hungarian WAS here and is not any more (owner, 2026-10-06): the dictionary
+   breaks Hungarian at valid syllables that still read as damage in this face —
+   "kertépítő-nek", "Havidí-jas", "csi-nálsz" in body copy. Hungarian copy now
+   wraps between words only, and a heading whose longest word is wider than
+   its box is scaled down to fit it (fitWords in assets/js/main.js) instead of
+   being cut — "MUNKAMÓDSZE / R." was the overflow-wrap fallback doing exactly
+   what it is for, on a word the display size could not hold. */
 
 
 /* Except at signature size, where a hyphen is a defect rather than a fallback.

@@ -305,9 +305,11 @@
    of them, and that is a type-scale change wearing a bug fix's clothes. */
 [data-page-key="seo"] .phead h1 {
   font-size: max(2rem, min(var(--step-5), 5.7vw, 6rem));
-  hyphens: auto;
 }
-
-[data-page-key="seo"] .band h2.display {
+/* The hyphen was the narrow-screen half; in Hungarian it is withdrawn (see
+   type.css) and fitWords scales the heading instead. German keeps it. */
+[lang='de'][data-page-key="seo"] .phead h1,
+[lang='de'] [data-page-key="seo"] .phead h1,
+[lang='de'] [data-page-key="seo"] .band h2.display {
   hyphens: auto;
 }

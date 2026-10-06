@@ -105,9 +105,9 @@
    English is unaffected at every width — "ads management" breaks at a space. */
 [data-page-key="ads"] .phead h1 {
   font-size: max(2rem, min(var(--step-5), 7.25rem));
-  hyphens: auto;
 }
-
-[data-page-key="ads"] .band h2.display {
+/* German keeps the hyphen; Hungarian is fitted by fitWords (see type.css). */
+[lang='de'] [data-page-key="ads"] .phead h1,
+[lang='de'] [data-page-key="ads"] .band h2.display {
   hyphens: auto;
 }

@@ -304,6 +304,17 @@ ORGS = {
         "ready": True,
         "relationship": "collab",
     },
+    # ---- regional clients for the local landing pages (2026-10-06). The owner
+    # supplied the artwork and the region, and confirmed all four as clients.
+    # `client` keeps them out of the default collaborations rail — each appears
+    # only where a page names it.
+    "rsoil": {"name": "RS Oil", "asset": "assets/img/logo-rsoil.png", "ready": True, "relationship": "client"},
+    "godatafusion": {"name": "GoDataFusion", "asset": "assets/img/logo-godatafusion.png", "ready": True, "relationship": "client"},
+    "o2": {"name": "O2 Tanácsadó", "asset": "assets/img/logo-o2.png", "ready": True, "relationship": "client"},
+    # MindForge (formerly mentáliserő.hu, mentaltrening.com) — the client of
+    # the munka-mentaltrening case study, under its new name and domain.
+    "mindforge": {"name": "MindForge", "asset": "assets/img/logo-mindforge.png", "ready": True, "relationship": "client"},
+    "reverb": {"name": "Reverb Content", "asset": "assets/img/logo-reverb.png", "ready": True, "relationship": "client"},
     # ---- support relationships. Artwork arrived; neither is a collaboration.
     #
     # These two are the reason `relationship` exists as a field rather than a

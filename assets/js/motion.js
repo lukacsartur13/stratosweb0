@@ -305,20 +305,11 @@
   /* -------------------------------------------------- 5.4 DepthGallery */
 
   function depthGallery(el) {
-    const items = $$('[data-depth-item]', el);
-    if (!items.length) return;
-    if (RM) { el.classList.add('is-static'); return; }
-
-    register(el, (p) => {
-      items.forEach((it, i) => {
-        // Each item owns a slot; distance from the slot centre drives its
-        // recession. Z separation is small on purpose — the brief asks for
-        // depth, not a perspective funhouse.
-        const slot = (i + 0.5) / items.length;
-        const d = clamp(Math.abs(p - slot) * items.length, 0, 1);
-        it.style.setProperty('--depth', (1 - d).toFixed(3));
-      });
-    }, 0.6);
+    // Was scroll-driven: each card receded and faded with its distance from
+    // the viewport centre. Replaced (owner, 2026-10-06) by a static row whose
+    // cards lift a little on hover — see motion.css. The attribute stays on
+    // the markup so the hover styling has one hook.
+    el.classList.add('is-static');
   }
 
   /* ---------------------------------------------------- 5.5 MaskReveal */
@@ -348,7 +339,9 @@
     const from = (el.dataset.kineticFrom || '112 680 0').split(/\s+/).map(Number);
     const to = (el.dataset.kineticTo || '92 760 -0.02').split(/\s+/).map(Number);
     const apply = (t) => {
-      const wd = from[0] + (to[0] - from[0]) * t;
+      // fitWords (main.js) may cap the width axis so a long Hungarian word
+      // fits its box; the animation never widens past that cap.
+      const wd = Math.min(from[0] + (to[0] - from[0]) * t, Number(el.dataset.fitWdth) || Infinity);
       const wt = from[1] + (to[1] - from[1]) * t;
       const tr = from[2] + (to[2] - from[2]) * t;
       el.style.fontVariationSettings = `"wdth" ${wd.toFixed(1)}, "wght" ${wt.toFixed(0)}`;

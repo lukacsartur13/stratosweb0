@@ -204,18 +204,21 @@ for (const { route, lang } of DARK_ISLANDS) {
   });
 }
 
-test('the yellow card beside it is untouched and still yellow', async ({ page }) => {
+test('the lit card beside it stays distinct from the dark one — grey on paper, not yellow', async ({ page }) => {
   // §21: the two cards must not become the same card. The repair had to leave
-  // the black/yellow comparison intact, and `.panel--lit` is a genuinely light
-  // surface that wants the pale band's ink — so it is excluded from the island
-  // rules rather than swept up by them.
+  // the dark/lit comparison intact, and `.panel--lit` is excluded from the
+  // island rules rather than swept up by them.
+  //
+  // On a pale band the lit surface is GREY, not signal yellow (owner,
+  // 2026-10-06: no yellow on paper — main.css), with paper-coloured text. It
+  // is still a different card from the dark one beside it.
   await page.goto('/hirdeteskezeles.html');
   const lit = page.locator('.panel--lit').first();
   await expect(lit).toHaveCount(1);
   await lit.scrollIntoViewIfNeeded();
 
   const bg = await lit.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(bg, 'the Meta card is the signal-yellow surface').toMatch(/255,\s*238,\s*37/);
+  expect(bg, 'the Meta card is the grey lit surface on paper').toMatch(/87,\s*87,\s*87/);
 
   for (const role of ['h3', 'p', '.checks li', '.card__k']) {
     const n = await page.locator(`.panel--lit ${role}`).count();

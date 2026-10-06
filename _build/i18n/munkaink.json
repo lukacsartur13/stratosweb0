@@ -47,13 +47,13 @@
   "<span>Website</span><span>Booking-led</span><span>Hungarian and English</span>",
   "<span>Website</span><span>Buchungsgesteuert</span><span>Ungarisch und Englisch</span>"
  ],
- "A mentaltrening.com weboldalának nyitóképernyője: felülnézeti salakos teniszpálya, „Légy nyitott a változásra és szárnyakra lelsz!” címsorral.": [
-  "The opening screen of the mentaltrening.com website: an overhead view of a clay tennis court with the headline \"Be open to change and you'll find your wings!\"",
+ "A MindForge weboldalának nyitóképernyője: felülnézeti salakos teniszpálya, „Légy nyitott a változásra és szárnyakra lelsz!” címsorral.": [
+  "The opening screen of the MindForge website: an overhead view of a clay tennis court with the headline \"Be open to change and you'll find your wings!\"",
   "Der Startbildschirm der Website mentaltrening.com: ein Sandplatz aus der Vogelperspektive mit der Überschrift „Sei offen für Veränderung, und du bekommst Flügel!“"
  ],
- "mentáliserő.hu — mentáltréning": [
-  "mentáliserő.hu — mental coaching",
-  "mentáliserő.hu — Mentaltraining"
+ "MindForge — mentáltréning": [
+  "MindForge — mental coaching",
+  "MindForge — Mentaltraining"
  ],
  "Egy szakember, egy ígéret, egy gomb": [
   "One practitioner, one promise, one button",
@@ -63,9 +63,9 @@
   "Mental coaching for athletes. It is a one-person practice, so the site speaks in the first person singular, and the opening screen doesn't list services — it asks for a single decision.",
   "Mentaltraining für Sportlerinnen und Sportler. Es ist eine Ein-Personen-Praxis, deshalb spricht die Seite in der ersten Person Singular, und der Startbildschirm listet keine Leistungen auf, sondern verlangt eine einzige Entscheidung."
  ],
- "<span>Weboldal</span><span>Személyes márka</span><span>mentaltrening.com</span>": [
-  "<span>Website</span><span>Personal brand</span><span>mentaltrening.com</span>",
-  "<span>Website</span><span>Persönliche Marke</span><span>mentaltrening.com</span>"
+ "<span>Weboldal</span><span>Személyes márka</span><span>mindforge.hu</span>": [
+  "<span>Website</span><span>Personal brand</span><span>mindforge.hu</span>",
+  "<span>Website</span><span>Persönliche Marke</span><span>mindforge.hu</span>"
  ],
  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">További ügyfelek</span>": [
   "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Other clients</span>",
@@ -133,9 +133,9 @@
   "Work",
   "Projekte"
  ],
- "mentáliserő.hu": [
-  "mentáliserő.hu",
-  "mentáliserő.hu"
+ "MindForge": [
+  "MindForge",
+  "MindForge"
  ],
  "_chip": [
   "Also the related-link category chip on the service and project routes,",

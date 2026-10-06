@@ -396,6 +396,73 @@
      See netlify/functions/lead-contract.mjs for the request contract. */
 
 
+  /* ------------------------------------------------------ fit words */
+  /* Hungarian headings wrap between words only (type.css withdrew
+     `hyphens: auto` for Hungarian). A heading whose LONGEST word is wider
+     than its own box would otherwise be cut by the overflow-wrap safety net
+     with no hyphen — "MUNKAMÓDSZE / R." — so instead the heading is scaled
+     down until that word fits on one line. Measured with a probe inside the
+     heading itself, so it carries the heading's real font, weight, case and
+     letter-spacing. Nothing changes for a heading whose words already fit,
+     and English and German are left alone. */
+  const FIT_SELECTOR = 'h1, h2, h3, .display, .path__card h3';
+  /* Is any word of 6+ letters laid out across two lines? Read from the real
+     layout (a Range per word), so it is right whatever styles the word's own
+     span carries — the accent spans and the kinetic axes included. */
+  function splitWord(el) {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const range = document.createRange();
+    let n;
+    while ((n = walker.nextNode())) {
+      const re = /[^\s-]{6,}/g;
+      let m;
+      while ((m = re.exec(n.data))) {
+        range.setStart(n, m.index);
+        range.setEnd(n, m.index + m[0].length);
+        const rects = range.getClientRects();
+        if (rects.length > 1 && Math.abs(rects[0].top - rects[rects.length - 1].top) > 2) return true;
+      }
+    }
+    return false;
+  }
+  function fitWords() {
+    if ((document.documentElement.lang || '').slice(0, 2) !== 'hu') return;
+    $$(FIT_SELECTOR).forEach((el) => {
+      // Visually hidden headings (.vh) are 1px boxes by design.
+      if (el.closest('[data-no-fit], .vh') || el.clientWidth < 60) return;
+      el.style.fontSize = '';
+      if (el.dataset.fitWdth) el.style.fontVariationSettings = '';
+      delete el.dataset.fitWdth;
+      // Restore the author's max-width before measuring (see below).
+      if ('fitMw' in el.dataset) { el.style.maxWidth = el.dataset.fitMw; delete el.dataset.fitMw; }
+      if (!splitWord(el)) return;
+      // Many headings cap their measure in `ch`, which shrinks WITH the type —
+      // scaling the face would shrink the box too and never fit. Freeze the
+      // box at its current pixel width first.
+      el.dataset.fitMw = el.style.maxWidth;
+      el.style.maxWidth = `${el.getBoundingClientRect().width}px`;
+      // First narrow the face on its width axis (Archivo: wdth 62–125), which
+      // keeps the size; only then scale down. Down to wdth 75 and ~55% size.
+      const cs = getComputedStyle(el);
+      let wdth = Number((/"wdth"\s+([\d.]+)/.exec(cs.fontVariationSettings) || [])[1]) || 100;
+      const wght = (/"wght"\s+([\d.]+)/.exec(cs.fontVariationSettings) || [])[1];
+      let size = parseFloat(cs.fontSize);
+      for (let i = 0; i < 24 && splitWord(el); i += 1) {
+        if (wdth > 75) {
+          wdth = Math.max(75, wdth - 6);
+          // The kinetic animation (motion.js) reads this cap on every frame.
+          el.dataset.fitWdth = String(wdth);
+          el.style.fontVariationSettings = `"wdth" ${wdth}` + (wght ? `, "wght" ${wght}` : '');
+        } else {
+          size *= 0.95;
+          el.style.fontSize = `${size.toFixed(1)}px`;
+        }
+      }
+    });
+  }
+  let fitTimer = 0;
+  const refit = () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitWords, 120); };
+
   /* ---------------------------------------------------------- boot */
   function boot() {
     sizeMarquees();
@@ -407,8 +474,9 @@
     });
   }
 
-  window.addEventListener('load', boot);
-  window.addEventListener('resize', () => { sizeMarquees(); sizePaths(); });
-  document.addEventListener('DOMContentLoaded', () => { sizeMarquees(); sizePaths(); });
+  window.addEventListener('load', () => { boot(); fitWords(); setTimeout(fitWords, 1200); });
+  window.addEventListener('resize', () => { sizeMarquees(); sizePaths(); refit(); });
+  document.addEventListener('DOMContentLoaded', () => { sizeMarquees(); sizePaths(); fitWords(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWords);
   frame();
 })();

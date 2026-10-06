@@ -228,6 +228,22 @@ section { position: relative; }
    pale bands can use has no business being visible to it. */
 .band--pale { --signal-ink: #6E6200; }
 
+/* No yellow on paper, and no olive either (owner, 2026-10-06): on a pale band
+   the accent is GREY — the accent word, the check marks, the FAQ marker, the
+   focus ring, the primary button. #575757 is 6.4 : 1 on --paper. The signal
+   itself is redefined for the band, so every rule that says var(--signal)
+   follows without being named here; the dark cards and panels that sit inside
+   a pale band are dark surfaces and get the yellow back. */
+.band--pale { --signal-ink: #575757; --signal: #575757; }
+.band--pale :is(.card, .panel):not(.panel--lit) { --signal: #FFEE25; }
+.band--pale .btn:not(.btn--ghost) { --btn-fg: var(--paper); }
+.band--pale .panel--lit { color: var(--paper); }
+.band--pale .panel--lit .checks li { color: rgba(244,244,244,.86); }
+.band--pale .panel--lit .checks li::before { background: var(--paper); }
+.band--pale .panel--lit .card__k { color: rgba(244,244,244,.78); }
+.band--pale .panel--lit :is(p, h3, h4, li, .tags span) { color: rgba(244,244,244,.92); }
+.band--pale .panel--lit .tags span { border-color: rgba(244,244,244,.4); }
+
 .rule { border: 0; border-top: 1px solid var(--hair); }
 
 /* --------------------------------------------------------- nav
@@ -616,8 +632,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 .stat__l, .metric__l {
   overflow-wrap: break-word;
 }
-[lang='de'] :where(.stat__l, .metric__l),
-[lang='hu'] :where(.stat__l, .metric__l) {
+[lang='de'] :where(.stat__l, .metric__l) {
   hyphens: auto;
 }
 .stat__l {
@@ -666,8 +681,9 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 .path__card h3 {
   font-family: var(--display); text-transform: uppercase;
   font-size: clamp(1.35rem, 2.1vw, 1.95rem); margin-block: auto .8rem;
-  overflow-wrap: anywhere; hyphens: auto;
+  overflow-wrap: anywhere;
 }
+[lang='de'] .path__card h3 { hyphens: auto; }
 .path__card p { color: rgba(244,244,244,.7); font-size: var(--step-0); margin-bottom: 1.2rem; }
 
 .path__hint {

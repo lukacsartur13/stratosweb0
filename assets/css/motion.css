@@ -132,15 +132,20 @@
 
 [data-depth] { perspective: 1600px; }
 
+/* No scroll-driven recession any more (see depthGallery): every card is at
+   rest from the first paint, so nothing flashes faded before the script runs. */
 [data-depth] [data-depth-item] {
-  --depth: 0;
-  transform:
-    translateZ(calc((var(--depth) - 1) * 90px))
-    scale(calc(.94 + var(--depth) * .06));
-  opacity: calc(.42 + var(--depth) * .58);
-  transition: none;
+  transform: none; opacity: 1;
+  transition: transform .35s cubic-bezier(.2, .7, .2, 1), box-shadow .35s;
 }
-[data-depth].is-static [data-depth-item] { transform: none; opacity: 1; }
+/* The cards lift on hover instead of moving with the scroll (owner,
+   2026-10-06). Pointer devices only, and not under reduced motion. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  [data-depth].is-static [data-depth-item]:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px -18px rgba(0, 0, 0, .55);
+  }
+}
 
 /* ------------------------------------------------------------- MaskReveal */
 
