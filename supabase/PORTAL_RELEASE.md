@@ -894,6 +894,9 @@ után, kapcsolattartó); teljes futás 2309 zöld.
 
 ## 29. Google: Gmail-előzmények és naptár-szinkron (21. szakasz, „5. CRM” + „6. Google”)
 
+**Élesítve 2026-10-06:** Google Cloud kliens (Internal) és a három Netlify-kulcs beállítva, a migráció hiba
+nélkül lefutott, utána push a `main`-re.
+
 **Sorrend: 28. → Google Cloud beállítás → Netlify-kulcsok → ez a migráció → deploy → összekötés.**
 
 1. Google Cloud (a `lukacs.artur@media-stratos.com` Workspace-fiókkal), projekt „Stratos Portál”:
