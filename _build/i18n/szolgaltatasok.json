@@ -43,10 +43,6 @@
   "Web design for small businesses",
   "Website für kleine Unternehmen"
  ],
- "Nincs weboldalad, vagy van, de kínos megmutatni. Nem akarsz egyszerre több százezer forintot kifizetni egy olyan dologért, aminek a működéséhez utána is kell valaki. Tervezés, fejlesztés, tárhely és karbantartás egy fix havidíjban.": [
-  "You don't have a website, or you have one you'd rather not show anyone. You don't want to pay a large sum up front for something that still needs looking after afterwards. Design, development, hosting and maintenance in one fixed monthly fee.",
-  "Du hast keine Website, oder eine, die du ungern zeigst. Du willst nicht auf einmal eine große Summe für etwas zahlen, das danach weiter betreut werden muss. Gestaltung, Entwicklung, Hosting und Wartung in einer festen monatlichen Gebühr."
- ],
  "Egyéni vállalkozóknak, kis- és középvállalkozásoknak. Egyedi dizájn, kódból építve, nem oldalépítővel.": [
   "For sole traders and small to medium businesses. Custom design, built from code, not with a page builder.",
   "Für Einzelunternehmen sowie kleine und mittlere Betriebe. Individuelles Design, aus Code gebaut, nicht mit einem Baukasten."
@@ -210,10 +206,6 @@
  "Webshop és rendelési folyamat, ha a vállalkozásnak arra van szüksége.": [
   "Online shop and ordering flow, where the business needs one.",
   "Onlineshop und Bestellprozess, wenn das Unternehmen das braucht."
- ],
- "Keresőoptimalizálás: szerkezet, sebesség, metaadatok és szövegezés.": [
-  "Search optimisation: structure, speed, metadata and copy.",
-  "Suchmaschinenoptimierung: Struktur, Geschwindigkeit, Metadaten und Texte."
  ],
  "Szövegírás magyarul, angolul és németül.": [
   "Copywriting in Hungarian, English and German.",
@@ -381,5 +373,21 @@
  "Nincsenek előre meghirdetett csomagok. A professzionális weboldal készítés terjedelmét és árát a feladat összetettsége, a követelmények és az üzleti cél határozza meg, konzultáció után.": [
   "There are no published packages. Scope and price follow the complexity of the work, the requirements and the business objective, decided after a consultation.",
   "Es gibt keine vorgefertigten Pakete. Umfang und Preis richten sich nach der Komplexität der Aufgabe, den Anforderungen und dem Geschäftsziel — festgelegt nach der Beratung."
+ ],
+ "Egyedi weboldal": [
+  "Bespoke website",
+  "Individuelle Website"
+ ],
+ "Nincs weboldalad, vagy van, de kínos megmutatni. Egyedi oldal kell, ami a vevőid kérdéseire válaszol, és nem sablonból készül. Tervezés, szövegezés, fejlesztés és keresőoptimalizálás egyszeri, tételes projektdíjjal.": [
+  "You have no website, or you have one you would rather not show. You need a bespoke site that answers your customers' questions and is not built from a template. Design, copywriting, development and search engine optimisation for a one-off, itemised project fee.",
+  "Sie haben keine Website, oder eine, die Sie ungern zeigen. Sie brauchen eine individuelle Seite, die die Fragen Ihrer Kunden beantwortet und nicht aus einer Vorlage stammt. Konzept, Text, Entwicklung und Suchmaschinenoptimierung zu einem einmaligen, aufgeschlüsselten Projektpreis."
+ ],
+ "Amit egy csapattól megkapsz": [
+  "What you get from one team",
+  "Was Sie aus einem Team bekommen"
+ ],
+ "<span><a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">Keresőoptimalizált weboldal készítés</a>: szerkezet, sebesség, metaadatok és szövegezés.</span>": [
+  "<span><a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">Search-optimised web design</a>: structure, speed, metadata and copy.</span>",
+  "<span><a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">Suchmaschinenoptimiertes Webdesign</a>: Struktur, Geschwindigkeit, Metadaten und Text.</span>"
  ]
 }

@@ -52,7 +52,9 @@ const CHECK = process.argv.includes('--check');
 const OWNERSHIP = [
   { term: 'weboldal készítés', owner: 'szolgaltatasok.html',
     qualifiers: ['havidíjas', 'keresőoptimalizált', 'céges', 'egyedi', 'professzionális', 'ingyenes'] },
-  { term: 'keresőoptimalizált weboldal készítés', owner: 'szolgaltatasok.html',
+  // Moved to its own page on 2026-10-07 (it had no impressions as an h3 on
+  // /szolgaltatasok).
+  { term: 'keresőoptimalizált weboldal készítés', owner: 'keresooptimalizalt-weboldal-keszites.html',
     qualifiers: [], h3: true },
   { term: 'weboldal fejlesztés', owner: 'nagyvallalat.html',
     qualifiers: ['céges', 'egyedi', 'vállalati'] },

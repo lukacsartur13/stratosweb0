@@ -201,7 +201,6 @@ test.describe('the full-screen navigation is a modal layer', () => {
           footer: has('.foot'),
           arrivalOrShell: has('.arrival') ?? has('.shell'),
           skip: has('body > a.skip'),
-          navLinks: has('.nav__links'),
           navCta: has('.nav__cta'),
           // These three are the layer and what stays visible above it.
           menu: has('#menu'),
@@ -229,7 +228,6 @@ test.describe('the full-screen navigation is a modal layer', () => {
     expect(open.footer, 'the footer is still in the focus order behind the layer').toBe(true);
     expect(open.arrivalOrShell, 'the content shell is still reachable behind the layer').toBe(true);
     expect(open.skip, 'the skip link is still reachable behind the layer').toBe(true);
-    expect(open.navLinks, 'the faded header navigation is still focusable').toBe(true);
     expect(open.navCta, 'the faded header CTA is still focusable').toBe(true);
 
     expect(open.menu, 'the layer made itself inert').toBe(false);
@@ -443,14 +441,14 @@ test.describe('the full-screen navigation is a modal layer', () => {
         return {
           main: document.querySelector('#main')?.hasAttribute('inert') ?? null,
           footer: document.querySelector('.foot')?.hasAttribute('inert') ?? null,
-          navLinks: document.querySelector('.nav__links')?.hasAttribute('inert') ?? null,
+          navCta: document.querySelector('.nav__cta')?.hasAttribute('inert') ?? null,
           newsletterFocusable: nl ? document.activeElement === nl : null,
         };
       });
 
       expect(after.main, `the page was left inert after close ${cycle + 1}`).toBe(false);
       expect(after.footer, `the footer was left inert after close ${cycle + 1}`).toBe(false);
-      expect(after.navLinks, `the header navigation was left inert after close ${cycle + 1}`).toBe(false);
+      expect(after.navCta, `the header CTA was left inert after close ${cycle + 1}`).toBe(false);
       expect(
         after.newsletterFocusable,
         `the newsletter never became focusable again after close ${cycle + 1}`,

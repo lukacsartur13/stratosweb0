@@ -53,10 +53,6 @@
   "If you have a similar job, these are the next steps.",
   "Wenn du eine ähnliche Aufgabe hast, sind das die nächsten Schritte."
  ],
- "Ez a szolgáltatás áll a projekt mögött: tervezés, fejlesztés és karbantartás fix havidíjban.": [
-  "This is the service behind the project: design, development and maintenance in one fixed monthly fee.",
-  "Das ist die Leistung hinter dem Projekt: Gestaltung, Entwicklung und Wartung in einer festen monatlichen Gebühr."
- ],
  "Összes munkánk": [
   "All our work",
   "Alle Projekte"
@@ -311,5 +307,9 @@
  "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Munkáink</a> / <b>MindForge</b>": [
   "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Work</a> / <b>MindForge</b>",
   "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Projekte</a> / <b>MindForge</b>"
+ ],
+ "Ez a szolgáltatás áll a projekt mögött: tervezés, fejlesztés és keresőoptimalizálás egyszeri projektként.": [
+  "The service behind this project: design, development and search engine optimisation as a one-off project.",
+  "Die Leistung hinter diesem Projekt: Konzept, Entwicklung und Suchmaschinenoptimierung als einmaliges Projekt."
  ]
 }

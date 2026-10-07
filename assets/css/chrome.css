@@ -229,14 +229,12 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase; letter-spacing: .13em;
   padding: .55rem 1.1rem; border: 1px solid var(--hair);
   color: var(--paper); white-space: nowrap;
-  max-width: 0; overflow: hidden; opacity: 0; padding-inline: 0; border-width: 0;
-  /* The nav is a flex row and this is the item with the most give, so without
-     this it is the one that absorbs a full row — it was squeezed to 96px and
-     cut its own label in half. It opens from zero or it is not there; it is
-     never a partial word. */
+  /* Always there since 2026-10-07: the header is the logo, this button and
+     the menu, in every state above phone width (phones keep logo and menu).
+     flex: none so it is never
+     the item that gets squeezed into a partial word. */
   flex: 0 0 auto;
-  transition: max-width .5s var(--ease), opacity .35s var(--ease),
-              padding .5s var(--ease), background .25s, color .25s;
+  transition: padding .45s var(--ease), background .25s, color .25s;
 }
 .nav__cta:hover { background: var(--signal); color: var(--void); border-color: var(--signal); }
 
@@ -253,76 +251,20 @@ a { color: inherit; text-decoration: none; }
 .nav[data-state="journey"] .brand img { width: 18px; }
 .nav[data-state="journey"] .brand span { font-size: .82rem; }
 .nav[data-state="journey"] .burger { height: 34px; }
+/* The quote button is the tallest thing left in the row, so it compacts too —
+   otherwise it alone holds the journey header above the 40–52 px band. */
+.nav[data-state="journey"] .nav__cta { padding-block: .3rem; }
 .nav[data-state="journey"] .burger__t { font-size: 10px; }
 .nav[data-state="journey"] .brand__full { opacity: 0; }
 .nav[data-state="journey"] .brand__mark { opacity: 1; }
 .nav[data-state="journey"] .nav__alt { display: flex; opacity: 1; }
-@media (min-width: 1081px) {
-  /* The main navigation collapses into the menu trigger, which is the point of
-     the journey state — the ascent is the page, and the chrome gets out of it. */
-  .nav[data-state="journey"] .nav__links { display: none; }
-}
 
-/* ---- destination: the navigation returns and the CTA arrives.
-
-   The open width has to clear the longest label in any locale, measured with
-   this font at this tracking: "Projekt indítása" needs 187px, "Start a project"
-   and "Projekt starten" 178px. 22ch resolved to 169px and clipped all three —
-   `ch` is the width of a zero, and .13em of letter-spacing on every character
-   is not in that number. 26ch leaves room for a fallback mono, which is wider
-   than the webfont, without leaving a gap when the label is short: the box
-   still shrink-wraps its text, and this only sets the ceiling the transition
-   opens to. */
-.nav[data-state="destination"] .nav__cta {
-  max-width: 26ch; opacity: 1; padding-inline: 1.1rem; border-width: 1px;
-}
+/* ---- destination: full height again at the end of the page. */
 .nav[data-state="destination"] { padding-block: max(1.1rem, env(safe-area-inset-top)) 1.1rem; }
 
-.nav__links { display: flex; align-items: center; gap: clamp(1rem, 2.2vw, 2.2rem); }
-.nav__links > * { position: relative; }
-
-.navlink {
-  font-family: var(--data); font-size: var(--step--1);
-  text-transform: uppercase; letter-spacing: .13em;
-  padding: .4rem 0; display: inline-block;
-  color: rgba(244,244,244,.72);
-  transition: color .25s;
-}
-.navlink:hover, .navlink[aria-current="page"] { color: var(--paper); }
-.navlink[aria-current="page"]::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
-  height: 1px; background: var(--signal);
-}
-
-.drop { position: relative; }
-.drop__panel {
-  position: absolute; top: calc(100% + .8rem); left: -1rem;
-  min-width: 264px; background: var(--ink);
-  border: 1px solid var(--hair);
-  padding: .5rem; opacity: 0; visibility: hidden;
-  transform: translateY(-6px); transition: .25s var(--ease);
-}
-.drop:hover .drop__panel,
-.drop:focus-within .drop__panel { opacity: 1; visibility: visible; transform: none; }
-.drop__panel a {
-  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-  padding: .7rem .8rem; font-size: var(--step--1);
-  border-bottom: 1px solid rgba(244,244,244,.07);
-  transition: background .2s, color .2s, padding-left .25s var(--ease);
-}
-.drop__panel a:last-child { border-bottom: 0; }
-.drop__panel a:hover { background: rgba(255,238,37,.08); color: var(--signal); padding-left: 1.2rem; }
-.drop__panel em {
-  font-family: var(--data); font-style: normal; font-size: 9px;
-  letter-spacing: .16em; color: var(--haze);
-}
-
-/* Always present, at every width and in every state. The opening state shows
-   the primary navigation as well, and the trigger sits beside it: the layer is
-   the full index — services, work, contact, locale, project start — and making
-   it reachable only after you had scrolled would hide the site's own map behind
-   an interaction nobody is told about. In the journey state the navigation
-   collapses and this becomes the only control, which is the point of it. */
+/* Always present, at every width and in every state: the layer is the full
+   index — services, work, contact, locale — and since 2026-10-07 it is the only
+   navigation the header has. */
 .burger {
   display: flex; background: none; border: 0; cursor: pointer;
   height: 42px; padding: 0 0 0 .8rem; position: relative; z-index: 890;
@@ -392,9 +334,7 @@ a { color: inherit; text-decoration: none; }
 
 /* While the layer is open the header keeps only its identity and its toggle.
    Everything else it shows is already in the layer, larger and better set. */
-.menu-open .nav__links,
 .menu-open .nav__cta { opacity: 0; pointer-events: none; }
-.nav__links { transition: opacity .3s var(--ease); }
 
 /* The layer covers the viewport, so what is behind it must not stay in the tab
    order. `inert` is the modern answer and the header still needs to be
@@ -501,14 +441,12 @@ a { color: inherit; text-decoration: none; }
 }
 .menu .lang a[aria-current="true"] { color: var(--void); }
 
-@media (max-width: 1080px) {
-  .nav__links { display: none; }
-}
 /* §7.5 — the mobile header is `STRATOS  MENU` at the opening and
    `S/  08 420 M  MENU` during the journey. Desktop navigation links are never
    put into it: six uppercase destinations in 390 px is not a navigation. */
 @media (max-width: 640px) {
   .nav { padding-inline: var(--gut); gap: .8rem; }
+  /* Phones keep the old header, logo and menu only (owner, 2026-10-07). */
   .nav__cta { display: none; }
   .burger__t { font-size: 10px; letter-spacing: .12em; }
   .nav[data-state="journey"] .nav__alt { font-size: 10px; letter-spacing: .1em; }

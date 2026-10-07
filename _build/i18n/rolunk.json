@@ -131,14 +131,6 @@
   "We set the exact deadline during our consultation, based on the scope of the project and when the materials we need are available.",
   "Den genauen Termin legen wir im Abstimmungsgespräch fest — je nach Umfang des Projekts und danach, wann die nötigen Materialien vorliegen."
  ],
- "Miért előnyös a havidíjas konstrukció a nagy egyszeri költségek helyett?": [
-  "Why is a monthly fee better than a large one-off cost?",
-  "Warum ist die Monatsgebühr besser als hohe Einmalkosten?"
- ],
- "A havidíjas rendszer kiszámíthatóbb és könnyebben elérhető megoldást biztosít vállalkozások számára. Így nincs szükség nagy induló befektetésre, miközben a weboldal folyamatos támogatást és fejlesztési lehetőséget is kap.": [
-  "A monthly model is more predictable and more accessible for a business. There's no large upfront investment, and the website still gets continuous support and room to develop.",
-  "Ein Monatsmodell ist planbarer und für Unternehmen leichter zugänglich. Es braucht keine große Anfangsinvestition, und die Website erhält trotzdem laufenden Support und Entwicklungsspielraum."
- ],
  "Minden weboldalt a vállalkozás arculatához, céljaihoz és működéséhez igazítunk. A cél nem egy sablonos megoldás, hanem egy olyan rendszer, amely valóban tükrözi a márkát és támogatja az ügyfélszerzést.": [
   "Every website is fitted to the business's brand, goals and way of working. The aim isn't a templated solution but a system that genuinely reflects the brand and supports client acquisition.",
   "Jede Website wird an Marke, Ziele und Arbeitsweise des Unternehmens angepasst. Ziel ist keine Standardlösung, sondern ein System, das die Marke wirklich widerspiegelt und die Kundengewinnung unterstützt."
@@ -198,5 +190,13 @@
  "Hegyvonulat a felhők fölött — a Stratos névadó sztratoszférája.": [
   "A mountain range above the clouds — the stratosphere Stratos is named after.",
   "Eine Bergkette über den Wolken — die Stratosphäre, die Stratos den Namen gab."
+ ],
+ "Hogyan áraztok?": [
+  "How do you price your work?",
+  "Wie kalkulieren Sie Ihre Preise?"
+ ],
+ "Egyszeri, tételes projektdíjjal. A díjmentes felmérés után megkapod, mi készül, mennyi idő alatt és mennyiért — és az átadás után az oldal teljesen a tiéd, kötelező havi díj nélkül.": [
+  "With a one-off, itemised project fee. After the free assessment you get what will be built, how long it takes and what it costs — and after handover the site is entirely yours, with no compulsory monthly fee.",
+  "Mit einem einmaligen, aufgeschlüsselten Projektpreis. Nach der kostenlosen Analyse erhalten Sie, was entsteht, wie lange es dauert und was es kostet — und nach der Übergabe gehört die Website ganz Ihnen, ohne monatliche Pflichtgebühr."
  ]
 }

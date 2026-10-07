@@ -1,12 +1,4 @@
 {
- "Google és Meta hirdetéskezelés | Stratos": [
-  "Google and Meta ads management | Stratos",
-  "Google- und Meta-Werbeanzeigen | Stratos"
- ],
- "Google Ads és Meta hirdetéskezelés havidíjért, a hirdetési kerettől elkülönítve. Célközönség, kreatív, licit, konverziómérés. Ingyenes konzultáció.": [
-  "Google Ads and Meta ads management on a monthly fee, kept separate from the ad budget. Audience, creative, bidding, conversion tracking. Free consultation.",
-  "Google-Ads- und Meta-Werbebetreuung zum Monatshonorar, getrennt vom Werbebudget. Zielgruppen, Kreation, Gebote, Conversion-Messung. Beratung kostenlos."
- ],
  "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Hirdetéskezelés</b>": [
   "<a href=\"index.html\">Stratos</a> / Services / <b>Ads management</b>",
   "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Werbebetreuung</b>"
@@ -367,5 +359,13 @@
  "Ha a beszélgetésből az jön ki, hogy a keretedből most a <a class=\"tlink\" href=\"keresooptimalizalas.html\">keresőoptimalizálás</a> hozna többet, azt mondjuk meg. A hirdetés gyorsabb, de a keret végével leáll; a kettő együtt működik a legjobban.": [
   "If the conversation shows that <a class=\"tlink\" href=\"keresooptimalizalas.html\">SEO consultancy</a> would return more from your budget right now, that is what we will say. Ads are faster but stop with the budget; the two work best together.",
   "Wenn sich im Gespräch zeigt, dass <a class=\"tlink\" href=\"keresooptimalizalas.html\">SEO Betreuung</a> aus Ihrem Budget derzeit mehr bringen würde, sagen wir genau das. Werbung wirkt schneller, endet aber mit dem Budget; zusammen wirken beide am besten."
+ ],
+ "Hirdetéskezelés — Google Ads és Meta | Stratos": [
+  "Google and Meta ads management | Stratos",
+  "Google- und Meta-Werbeanzeigen | Stratos"
+ ],
+ "Hirdetéskezelés: Google Ads és Meta kampányok, a hirdetési kerettől elkülönített díjjal. Árak, célközönség, kreatív, konverziómérés. Ingyenes konzultáció.": [
+  "Ads management: Google Ads and Meta campaigns, with our fee kept separate from the ad budget. Pricing, audiences, creative, conversion tracking. Free consultation.",
+  "Anzeigenbetreuung: Google-Ads- und Meta-Kampagnen, unser Honorar getrennt vom Werbebudget. Preise, Zielgruppen, Kreation, Conversion-Messung. Kostenlose Beratung."
  ]
 }

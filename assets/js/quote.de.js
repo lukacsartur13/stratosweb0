@@ -65,14 +65,11 @@ const Q = [
     hint:'Facebook, Instagram, TikTok, LinkedIn — was immer vorhanden ist.'},
   {t:'radio',   q:'Bis wann soll die Website fertig sein?', req:1, other:1, id:'hatarido', cond:kkv,
     o:['Innerhalb einer Woche','Innerhalb eines Monats','Innerhalb einiger Monate']},
-  {t:'radio',   q:'Welches Zahlungsmodell wäre passend?', req:1, id:'konstrukcio', cond:kkv,
-    o:['Einmalige Gebühr','Monatsmodell','Beides interessiert mich, bitte um Angebot']},
+  // The monthly model is withdrawn (owner, 2026-10-07): projects are quoted
+  // as a one-off fee, so there is no payment-model question any more.
   {t:'radio',   q:'Gibt es ein geplantes Budget?', req:1, other:1, id:'koltsegkeret',
-    cond:()=> kkv() && ans('konstrukcio').value !== 'Monatsmodell',
-    o:['400 € – 800 €','800 € – 1.300 €','1.300 € – 2.600 €','Noch nicht, ich entscheide nach dem Angebot']},
-  {t:'radio',   q:'An welches Monatsbudget denkst du?', req:1, other:1, id:'havidij',
-    cond:()=> kkv() && ['Monatsmodell','Beides interessiert mich, bitte um Angebot'].includes(ans('konstrukcio').value),
-    o:['50 € – 100 € / Monat','100 € – 180 € / Monat','Über 180 € / Monat']},
+    cond:kkv,
+    o:['300.000 – 800.000 HUF','800.000 – 1.500.000 HUF','1.500.000 – 3.000.000 HUF','3.000.000 – 5.000.000 HUF','Noch nicht, ich entscheide nach dem Angebot']},
 
   // ===== NAGYVÁLLALATI ÁG =====
   {t:'textarea',q:'Womit beschäftigt sich das Unternehmen, und welche Abteilung betreut dieses Projekt?', req:1, cond:isNagy,

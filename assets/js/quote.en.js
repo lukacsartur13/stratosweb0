@@ -65,14 +65,11 @@ const Q = [
     hint:'Facebook, Instagram, TikTok, LinkedIn — whatever you have.'},
   {t:'radio',   q:'When does the website need to be finished?', req:1, other:1, id:'hatarido', cond:kkv,
     o:['Within 1 week','Within 1 month','Within a few months']},
-  {t:'radio',   q:'Which payment model would suit you?', req:1, id:'konstrukcio', cond:kkv,
-    o:['One-off fee','Monthly fee model','I\'m interested in both — please quote']},
+  // The monthly model is withdrawn (owner, 2026-10-07): projects are quoted
+  // as a one-off fee, so there is no payment-model question any more.
   {t:'radio',   q:'Do you have a planned budget?', req:1, other:1, id:'koltsegkeret',
-    cond:()=> kkv() && ans('konstrukcio').value !== 'Monthly fee model',
-    o:['€400 – €800','€800 – €1,300','€1,300 – €2,600','Not yet — I\'ll decide based on the quote']},
-  {t:'radio',   q:'What monthly budget are you thinking of?', req:1, other:1, id:'havidij',
-    cond:()=> kkv() && ['Monthly fee model','I\'m interested in both — please quote'].includes(ans('konstrukcio').value),
-    o:['€50 – €100 / month','€100 – €180 / month','Over €180 / month']},
+    cond:kkv,
+    o:['HUF 300,000 – 800,000','HUF 800,000 – 1,500,000','HUF 1,500,000 – 3,000,000','HUF 3,000,000 – 5,000,000','Not yet — I\'ll decide based on the quote']},
 
   // ===== NAGYVÁLLALATI ÁG =====
   {t:'textarea',q:'What does the company do, and which department is handling this project?', req:1, cond:isNagy,

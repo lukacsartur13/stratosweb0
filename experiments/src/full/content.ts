@@ -15,7 +15,7 @@
  *     homepage (_build/pages/index.html, "A gerinc — 7 200 méter");
  *   * the client logos and screenshots are the ones already shipped in
  *     assets/img/ and already used on index.html and kkv.html;
- *   * the ongoing-role text restates the monthly model described on kkv.html.
+ *   * the ongoing-role text states what we still look after for the client.
  *
  * `metric` is set ONLY where a figure has a named source. Rapidkert now carries
  * one: the total value of quote requests received from organic search, beside
@@ -109,7 +109,7 @@ const WORK_HU: CaseStudy[] = [
       label: 'Ajánlatkérés organikus keresésből',
     },
     ongoing:
-      'Az oldal karbantartása és a hirdetések folyamatos kezelése havidíjas konstrukcióban.',
+      'Az oldal karbantartása és a hirdetések folyamatos kezelése ma is nálunk van.',
     quote: {
       text: 'Az eredmények gyorsan láthatóak lettek: több megkeresés érkezett, és sokkal célzottabban találtak ránk azok az ügyfelek, akik valóban a szolgáltatásainkat keresték.',
       by: 'Győrffy Márton',
@@ -141,7 +141,7 @@ const WORK_HU: CaseStudy[] = [
       'Egyedi arculatú, gyorsan betöltő weboldal, a helyi keresésre optimalizált tartalommal.',
     result: 'Élő oldal, amely a saját nevére és a helyi keresésekre is megtalálható.',
     metric: null,
-    ongoing: 'Havidíjas üzemeltetés: tárhely, frissítések, tartalmi módosítások.',
+    ongoing: 'Üzemeltetés: tárhely, frissítések, tartalmi módosítások.',
     image: { src: '/assets/img/work-1.jpg', alt: 'A Barbershop Győr weboldala' },
     logo: { src: '/assets/img/client-barbershop.png', alt: 'Barbershop Győr' },
   },

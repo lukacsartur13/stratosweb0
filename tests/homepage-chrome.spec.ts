@@ -342,25 +342,21 @@ test.describe('the homepage flight deck', () => {
     expect(errors, `console errors:\n${errors.join('\n')}`).toEqual([]);
   });
 
-  test('desktop navigation is visible at the top and collapses into the trigger', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name.startsWith('mobile'), 'no desktop link row on a phone, by design');
+  test('the header is the logo, the quote button and the menu — nothing else', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name.startsWith('mobile'), 'phones keep logo and menu only, by design');
     if (testInfo.project.name === 'reduced-motion') await enableReducedMotion(page);
     await page.goto('/index.html');
 
-    // Opening: the destinations are on screen and reachable without opening
-    // anything. This is the assertion that separates a real header from a
-    // permanent hamburger.
-    const links = page.locator('.nav__links a');
-    await expect(links.first()).toBeVisible();
-    const opening = await links.count();
-    expect(opening, 'the opening header has no destinations').toBeGreaterThanOrEqual(4);
+    // 2026-10-07: the desktop link row duplicated the full-screen menu and was
+    // removed. What is left must be on screen in every state.
+    await expect(page.locator('.nav__links')).toHaveCount(0);
+    await expect(page.locator('header.nav nav')).toHaveCount(0);
+    await expect(page.locator('.nav__cta')).toBeVisible();
+    await expect(burger(page)).toBeVisible();
 
-    // Journey: the row collapses and the trigger takes over. The trigger is
-    // present in every state — that is the "navigation stays continuously
-    // accessible" promise — so what changes is the row, not the button.
     await scrollToFraction(page, 0.45);
     await expectState(page, 'journey');
-    await expect(links.first()).toBeHidden();
+    await expect(page.locator('.nav__cta')).toBeVisible();
     await expect(burger(page)).toBeVisible();
   });
 
@@ -993,7 +989,8 @@ test.describe('the Arrival sequence and the ground-control footer', () => {
     await page.goto('/rolunk.html');
     const sub = await destinations(page, 'header.nav');
 
-    expect(home.length, 'the homepage header row has no destinations').toBeGreaterThan(4);
+    // Logo and quote button since 2026-10-07; everything else is in the menu.
+    expect(home.length, 'the homepage header row has no destinations').toBeGreaterThanOrEqual(2);
     expect(home).toEqual(sub);
   });
 

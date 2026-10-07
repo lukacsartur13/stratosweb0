@@ -235,10 +235,6 @@
   "Case study",
   "Fallstudie"
  ],
- "Keresőoptimalizálás Győrben és Budapesten, havidíjas konstrukcióban. Technikai SEO, tartalom és helyi keresés, havi riporttal. Kérj díjmentes feltárást.": [
-  "SEO consultancy in Győr and Budapest, on a monthly fee. Technical SEO, content and local search, reported monthly. Ask for a free discovery.",
-  "SEO Betreuung in Győr und Budapest, zur Monatspauschale. Technisches SEO, Inhalte und lokale Suche, monatlich berichtet. Analyse kostenlos anfragen."
- ],
  "A kereslet<br>már megvan.<br><span class=\"sig\">Téged nem talál.</span>": [
   "The demand<br>is already there.<br><span class=\"sig\">It isn't finding you.</span>",
   "Die Nachfrage<br>ist längst da.<br><span class=\"sig\">Sie findet Sie nicht.</span>"
@@ -258,10 +254,6 @@
  "Helyi keresőoptimalizálás": [
   "Local SEO",
   "Lokales SEO"
- ],
- "Keresőoptimalizálás | SEO ügynökség és szakértő | Stratos": [
-  "SEO Consultancy | Technical, Content & Local SEO | Stratos",
-  "SEO Betreuung | Technik, Inhalte und lokale Suche | Stratos"
  ],
  "Keresőoptimalizálás,<br>ami ügyfelet hoz.<br><span class=\"sig\">Nem csak helyezést.</span>": [
   "SEO that brings<br>customers.<br><span class=\"sig\">Not just rankings.</span>",
@@ -323,10 +315,6 @@
   "The model is a monthly fee rather than a one-off project price because in SEO a one-off intervention goes stale. A technical fix holds for a year, until somebody touches the site; a page that has been written keeps working for as long as the question it answers stays relevant.",
   "Das Modell ist eine Monatspauschale und kein einmaliger Projektpreis, weil ein einmaliger Eingriff im SEO veraltet. Eine technische Korrektur hält ein Jahr, bis jemand die Website anfasst; ein geschriebener Text arbeitet so lange, wie die Frage relevant bleibt, die er beantwortet."
  ],
- "Ugyanezt a logikát követi a <a class=\"tlink\" href=\"kkv.html\">havidíjas weboldal</a> is: a nagy egyszeri számla helyett egy kiszámítható tétel, ami mellett a munka nem áll le az átadás napján.": [
-  "The <a class=\"tlink\" href=\"kkv.html\">website on a monthly fee</a> follows the same logic: instead of one large invoice, a predictable line item — and the work does not stop on handover day.",
-  "Dieselbe Logik folgt die <a class=\"tlink\" href=\"kkv.html\">Website zur Monatspauschale</a>: statt einer großen Einmalrechnung ein planbarer Posten — und die Arbeit endet nicht am Tag der Übergabe."
- ],
  "Mennyi idő, amíg<br>a keresőoptimalizálás<br><span class=\"sig\">eredményt hoz?</span>": [
   "How long before<br>SEO actually<br><span class=\"sig\">produces results?</span>",
   "Wie lange, bis<br>SEO wirklich<br><span class=\"sig\">Ergebnisse bringt?</span>"
@@ -374,5 +362,37 @@
  "Nem vagyunk győri ügynökség abban az értelemben, hogy csak Győrben dolgoznánk: három nyelven, magyar, osztrák és német ügyfelekkel is. De ha a te vevőd néhány kilométerre van tőled, akkor a helyi keresés az, ami pénzt hoz, és ahhoz ismerni kell a két piac különbségét. A székhelyünk és az elérhetőségeink az <a class=\"tlink\" href=\"impresszum.html\">impresszumban</a> szerepelnek.": [
   "We are not a Győr agency in the sense of only working in Győr: we work in three languages, with Hungarian, Austrian and German clients. But if your customer is a few kilometres away, local search is what brings the money, and that takes knowing the difference between the two markets. Our seat and contact details are in the <a class=\"tlink\" href=\"impresszum.html\">imprint</a>.",
   "Wir sind keine Győrer Agentur in dem Sinne, dass wir nur in Győr arbeiten: Wir arbeiten in drei Sprachen, mit ungarischen, österreichischen und deutschen Kunden. Aber wenn Ihr Kunde ein paar Kilometer entfernt sitzt, ist die lokale Suche das, was Geld bringt — und dafür muss man den Unterschied zwischen beiden Märkten kennen. Sitz und Kontaktdaten stehen im <a class=\"tlink\" href=\"impresszum.html\">Impressum</a>."
+ ],
+ "Keresőoptimalizálás ügynökség és SEO szakértő | Stratos": [
+  "SEO Consultancy | Technical, Content & Local SEO | Stratos",
+  "SEO Betreuung | Technik, Inhalte und lokale Suche | Stratos"
+ ],
+ "Keresőoptimalizálás ügynökség,<br>szakértő vagy <span class=\"sig\">tanácsadó?</span>": [
+  "An SEO agency,<br>a specialist or <span class=\"sig\">a consultant?</span>",
+  "SEO-Agentur,<br>Spezialist oder <span class=\"sig\">Berater?</span>"
+ ],
+ "Mit tartalmaz a keresőoptimalizálás szolgáltatás?": [
+  "What does an SEO service include?",
+  "Was gehört zu einer SEO-Betreuung?"
+ ],
+ "Havonta: technikai javítások (sebesség, szerkezet, strukturált adat), azoknak az oldalaknak a megírása vagy átírása, amiknek rangsorolniuk kell, a Google Cégprofil karbantartása, és egy érthető riport arról, mi mozdult. A pontos tartalmat a díjmentes feltárás után, tételesen írjuk le az ajánlatban.": [
+  "Every month: technical fixes (speed, structure, structured data), writing or rewriting the pages that need to rank, keeping the Google Business Profile in order, and a plain report on what moved. The exact scope is itemised in the quote, after the free audit.",
+  "Jeden Monat: technische Korrekturen (Geschwindigkeit, Struktur, strukturierte Daten), das Schreiben oder Überarbeiten der Seiten, die ranken sollen, die Pflege des Google-Unternehmensprofils und ein verständlicher Bericht darüber, was sich bewegt hat. Den genauen Umfang führen wir nach der kostenlosen Analyse im Angebot einzeln auf."
+ ],
+ "Keresőoptimalizáló cég vagy egyéni tanácsadó — melyik kell?": [
+  "An SEO company or an independent consultant — which do you need?",
+  "SEO-Agentur oder freier Berater — was brauchen Sie?"
+ ],
+ "Egy tanácsadó akkor elég, ha egy konkrét kérdésre kell válasz, és van, aki a javaslatokat végrehajtja. Ha nincs, egy cég a jobb választás, ahol ugyanaz a csapat méri, írja és javítja az oldalt. Nálunk mindkettő kérhető: egyszeri szakértői konzultáció vagy havidíjas munka.": [
+  "A consultant is enough when you need an answer to one specific question and someone to carry out the advice. If you do not have that person, a company is the better choice: the same team measures, writes and fixes the site. We do both: a one-off expert consultation or monthly work.",
+  "Ein Berater genügt, wenn Sie eine Antwort auf eine konkrete Frage brauchen und jemand die Empfehlungen umsetzt. Wenn nicht, ist eine Agentur die bessere Wahl: dasselbe Team misst, schreibt und verbessert die Website. Bei uns geht beides: eine einmalige Expertenberatung oder laufende Betreuung."
+ ],
+ "Ha az oldaladat is újra kell építeni, a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">keresőoptimalizált weboldal</a> egyszeri projektként készül, és a keresőoptimalizálás már az első verziójában benne van.": [
+  "If your site needs rebuilding too, a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">search-optimised website</a> is built as a one-off project, with SEO already in its first version.",
+  "Wenn auch Ihre Website neu gebaut werden muss, entsteht eine <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">suchmaschinenoptimierte Website</a> als einmaliges Projekt, mit SEO bereits in der ersten Version."
+ ],
+ "Keresőoptimalizálás szolgáltatás Győrben és Budapesten: technikai SEO, tartalom, helyi keresés és érthető havi riport. Kérj díjmentes feltárást.": [
+  "SEO services from Győr and Budapest: technical SEO, content, local search and a clear monthly report. Ask for a free audit.",
+  "SEO-Betreuung aus Győr und Budapest: technische SEO, Inhalte, lokale Suche und ein verständlicher Monatsbericht. Fordern Sie eine kostenlose Analyse an."
  ]
 }

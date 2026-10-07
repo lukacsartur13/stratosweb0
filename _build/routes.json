@@ -155,6 +155,11 @@
    "en": "weboldal-keszites-szeged.html",
    "de": "weboldal-keszites-szeged.html"
   },
+  "seo-web": {
+   "hu": "keresooptimalizalt-weboldal-keszites.html",
+   "en": "keresooptimalizalt-weboldal-keszites.html",
+   "de": "keresooptimalizalt-weboldal-keszites.html"
+  },
   "contact": {
    "hu": "ugyfelszolgalat.html",
    "en": "contact.html",
@@ -327,6 +332,11 @@
    "en": "/en/weboldal-keszites-szeged",
    "de": "/de/weboldal-keszites-szeged"
   },
+  "seo-web": {
+   "hu": "/keresooptimalizalt-weboldal-keszites",
+   "en": "/en/keresooptimalizalt-weboldal-keszites",
+   "de": "/de/keresooptimalizalt-weboldal-keszites"
+  },
   "contact": {
    "hu": "/ugyfelszolgalat",
    "en": "/en/contact",
@@ -379,6 +389,7 @@
   "local-budapest": "full",
   "local-pest": "full",
   "local-szeged": "full",
+  "seo-web": "full",
   "contact": "full",
   "quote": "full",
   "privacy": "full",
@@ -408,6 +419,10 @@
   "post-seo": [
    "en",
    "de"
+  ],
+  "seo-web": [
+   "en",
+   "de"
   ]
  },
  "huOnly": [
@@ -415,6 +430,7 @@
   "local-gyor",
   "local-budapest",
   "local-pest",
-  "local-szeged"
+  "local-szeged",
+  "seo-web"
  ]
 }

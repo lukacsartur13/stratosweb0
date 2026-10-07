@@ -260,9 +260,63 @@
   to = "/blog-miert-nem-hoz-ugyfelet.html"
   status = 301
 
+# The two posts above under the accented slugs Wix actually published them at
+# — Search Console (2026-10-07 export) still shows both, and the ASCII rules
+# above never match them. Literal and percent-encoded, for the same reason as
+# the service-page rule below.
+[[redirects]]
+  from = "/post/miért-nem-hoz-ügyfeleket-a-weboldalad-7-gyakori-hiba-amit-a-vállalkozások-többsége-elkövet"
+  to = "/blog-miert-nem-hoz-ugyfelet.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/mi%C3%A9rt-nem-hoz-%C3%BCgyfeleket-a-weboldalad-7-gyakori-hiba-amit-a-v%C3%A1llalkoz%C3%A1sok-t%C3%B6bbs%C3%A9ge-elk%C3%B6vet"
+  to = "/blog-miert-nem-hoz-ugyfelet.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/mennyi-ügyfelet-veszítesz-havonta-egy-elavult-weboldal-miatt"
+  to = "/blog-elavult-weboldal.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/mennyi-%C3%BCgyfelet-vesz%C3%ADtesz-havonta-egy-elavult-weboldal-miatt"
+  to = "/blog-elavult-weboldal.html"
+  status = 301
+
 # There is deliberately NO `/post/*` catch-all. All six posts are listed above
 # because the Wix sitemap listed exactly six; a wildcard would answer 200-after-
 # redirect for /post/anything-at-all and hide a real 404 behind the blog index.
+
+# The Wix site's Hungarian pages lived at English slugs, and Search Console
+# (2026-10-07 export, last 3 months) still shows them ranking — /about at 4.9,
+# /contact at 5.8, /weboldalfejlesztes at 6.6 — while they answered 404. Each
+# goes to the page that took over its job; /weboldalfejlesztes to the route
+# that owns "weboldal fejlesztés" (scripts/seo-ownership.mjs).
+[[redirects]]
+  from = "/about"
+  to = "/rolunk"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/ugyfelszolgalat"
+  status = 301
+
+[[redirects]]
+  from = "/solutions"
+  to = "/szolgaltatasok"
+  status = 301
+
+[[redirects]]
+  from = "/weboldalfejlesztes"
+  to = "/nagyvallalat"
+  status = 301
+
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/adatkezelesi-tajekoztato"
+  status = 301
 
 # Wix Bookings. This site has no scheduling system and Phase 9 forbids implying
 # one, so these do not go anywhere that says "booked" — they go to the contact

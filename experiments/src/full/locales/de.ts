@@ -196,8 +196,8 @@ export const DE: Record<string, string> = {
     'Die organische Suche brachte Angebotsanfragen im Wert von rund 110 Millionen HUF, ganz ohne Werbebudget; die Anzeigen brachten zusätzlich etwa 9 Millionen HUF.',
   '~110M Ft': '~110 Mio. HUF',
   'Ajánlatkérés organikus keresésből': 'Angebotsanfragen aus der organischen Suche',
-  'Az oldal karbantartása és a hirdetések folyamatos kezelése havidíjas konstrukcióban.':
-    'Wartung der Website und laufende Betreuung der Werbung im Monatsmodell.',
+  'Az oldal karbantartása és a hirdetések folyamatos kezelése ma is nálunk van.':
+    'Wartung der Website und laufende Betreuung der Werbung liegen weiterhin bei uns.',
   'Az eredmények gyorsan láthatóak lettek: több megkeresés érkezett, és sokkal célzottabban találtak ránk azok az ügyfelek, akik valóban a szolgáltatásainkat keresték.':
     'Die Ergebnisse waren schnell sichtbar: Es kamen mehr Anfragen, und die Kunden, die wirklich unsere Leistungen suchten, fanden uns deutlich gezielter.',
   'Győrffy Márton': 'Győrffy Márton',
@@ -216,8 +216,8 @@ export const DE: Record<string, string> = {
     'Eine schnell ladende Website mit eigenem Erscheinungsbild und für die lokale Suche optimierten Inhalten.',
   'Élő oldal, amely a saját nevére és a helyi keresésekre is megtalálható.':
     'Eine laufende Seite, die sowohl über den eigenen Namen als auch über lokale Suchanfragen zu finden ist.',
-  'Havidíjas üzemeltetés: tárhely, frissítések, tartalmi módosítások.':
-    'Betrieb im Monatsmodell: Hosting, Aktualisierungen, inhaltliche Änderungen.',
+  'Üzemeltetés: tárhely, frissítések, tartalmi módosítások.':
+    'Betrieb: Hosting, Aktualisierungen, inhaltliche Änderungen.',
   'A Barbershop Győr weboldala': 'Die Website von Barbershop Győr',
 
   // 3 · mentaltrening.com — 14 600 m

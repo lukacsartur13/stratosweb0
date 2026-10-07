@@ -224,7 +224,9 @@ async function main() {
           hreflang: [...document.querySelectorAll('link[rel="alternate"][hreflang]')].length,
           h1: [...document.querySelectorAll('h1')].map((h) => h.textContent.trim()),
           hasMain: !!q('main'),
-          hasNav: !!q('header.nav nav'),
+          // Since 2026-10-07 the header's only navigation is the menu trigger
+          // and the full-screen menu it controls.
+          hasNav: !!q('header.nav .burger[aria-controls="menu"]') && !!q('#menu nav'),
           hasFooter: !!q('footer') || document.body.dataset.noFooter === 'true',
           skipLink: !!q('a.skip'),
           primaryCta: !!q('main a.btn:not(.btn--ghost), main button.btn:not(.btn--ghost)'),

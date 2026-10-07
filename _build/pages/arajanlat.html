@@ -107,14 +107,11 @@ const Q = [
     hint:'Facebook, Instagram, TikTok, LinkedIn — ami van.'},
   {t:'radio',   q:'Mikorra kell elkészülnie a weboldalnak?', req:1, other:1, id:'hatarido', cond:kkv,
     o:['1 héten belül','1 hónapon belül','Pár hónapon belül']},
-  {t:'radio',   q:'Milyen fizetési konstrukció lenne megfelelő?', req:1, id:'konstrukcio', cond:kkv,
-    o:['Egyszeri díj','Havi díjas konstrukció','Mindkettő érdekel, kérek ajánlatot']},
+  // The monthly model is withdrawn (owner, 2026-10-07): projects are quoted
+  // as a one-off fee, so there is no payment-model question any more.
   {t:'radio',   q:'Van tervezett költségkeret?', req:1, other:1, id:'koltsegkeret',
-    cond:()=> kkv() && ans('konstrukcio').value !== 'Havi díjas konstrukció',
-    o:['150 000 Ft – 300 000 Ft','300 000 Ft – 500 000 Ft','500 000 Ft – 1 000 000 Ft','Még nincs, ajánlat alapján döntök']},
-  {t:'radio',   q:'Milyen havi díjkeretben gondolkodsz?', req:1, other:1, id:'havidij',
-    cond:()=> kkv() && ['Havi díjas konstrukció','Mindkettő érdekel, kérek ajánlatot'].includes(ans('konstrukcio').value),
-    o:['20 000 Ft – 40 000 Ft / hó','40 000 Ft – 70 000 Ft / hó','70 000 Ft felett / hó']},
+    cond:kkv,
+    o:['300 000 Ft – 800 000 Ft','800 000 Ft – 1 500 000 Ft','1 500 000 Ft – 3 000 000 Ft','3 000 000 Ft – 5 000 000 Ft','Még nincs, ajánlat alapján döntök']},
 
   // ===== NAGYVÁLLALATI ÁG =====
   {t:'textarea',q:'Mivel foglalkozik a cég, és melyik részleg kezeli ezt a projektet?', req:1, cond:isNagy,

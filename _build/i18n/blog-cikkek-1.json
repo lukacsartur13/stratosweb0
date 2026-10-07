@@ -271,22 +271,6 @@
   "A cheaper proposal is often cheaper because several of these aren't in it. That's fine — but you should know about it.",
   "Ein günstigeres Angebot ist oft deshalb günstiger, weil mehrere davon fehlen. Das ist in Ordnung — man sollte es nur wissen."
  ],
- "Egyszeri díj vagy havidíj?": [
-  "One-off fee or monthly fee?",
-  "Einmalige Gebühr oder monatliche Gebühr?"
- ],
- "Mindkettőnek van értelme, más helyzetben.": [
-  "Both make sense, in different situations.",
-  "Beides ist sinnvoll, in unterschiedlichen Situationen."
- ],
- "Az <strong>egyszeri díj</strong> akkor logikus, ha van saját csapatod vagy rendszeres fejlesztői partnered, aki utána viszi az oldalt. Ilyenkor az oldal a te eszközöd, és te döntesz a további költésről.": [
-  "A <strong>one-off fee</strong> makes sense if you have your own team or a regular development partner who takes the site on afterwards. Then the site is your asset and you decide on further spending.",
-  "Eine <strong>einmalige Gebühr</strong> ist sinnvoll, wenn du ein eigenes Team oder einen festen Entwicklungspartner hast, der die Website danach betreut. Dann ist die Website dein Werkzeug, und du entscheidest über weitere Ausgaben."
- ],
- "A <strong>havidíj</strong> akkor logikus, ha nem akarsz nagy egyszeri kiadást, és nem akarsz azzal foglalkozni, hogy ki frissíti, ki menti, ki javítja. Ilyenkor a folyamatos működés is a díj része. Mi ezt a modellt kínáljuk kis- és középvállalkozásoknak.": [
-  "A <strong>monthly fee</strong> makes sense if you don't want a large one-off outlay and don't want to think about who updates, backs up and fixes it. Then continuous operation is part of the fee. This is the model we offer small and medium businesses.",
-  "Eine <strong>monatliche Gebühr</strong> ist sinnvoll, wenn du keine große Einmalausgabe willst und dich nicht darum kümmern möchtest, wer aktualisiert, sichert und repariert. Dann gehört der laufende Betrieb zur Gebühr. Dieses Modell bieten wir kleinen und mittleren Unternehmen an."
- ],
  "Hogyan számold ki, mennyit ér neked?": [
   "How to work out what it's worth to you",
   "Wie du berechnest, was es dir wert ist"
@@ -342,10 +326,6 @@
  "A másik oldala ugyanennek a számolásnak.": [
   "The other side of the same calculation.",
   "Die andere Seite derselben Rechnung."
- ],
- "A havidíjas modell részletesen, azzal együtt, mi van benne.": [
-  "The monthly model in detail, including what it covers.",
-  "Das Monatsmodell im Detail, samt allem, was enthalten ist."
  ],
  "Ha konkrét ajánlatot szeretnél a saját projektedre.": [
   "If you want a concrete proposal for your own project.",
@@ -511,5 +491,33 @@
  "Mi az a keresőoptimalizálás, és mennyibe kerül?": [
   "What is SEO, and what does it cost?",
   "Was ist SEO, und was kostet es?"
+ ],
+ "Hogyan kövesd, hányadik vagy a Google-ben?": [
+  "How do you track where you rank on Google?",
+  "Wie verfolgen Sie, auf welchem Platz Sie bei Google stehen?"
+ ],
+ "A legegyszerűbb pozíciókövetés ingyenes: a Google Search Console Teljesítmény menüjében kifejezésenként látod az átlagos helyezést, a megjelenéseket és a kattintásokat. Hetente egyszer nézz rá, és ne egy-egy napot hasonlíts össze, hanem négyhetes időszakokat — a helyezés naponta ingadozik.": [
+  "The simplest rank tracking is free: in Google Search Console, under Performance, you see the average position, impressions and clicks for every query. Look once a week, and compare four-week periods rather than single days — positions move every day.",
+  "Die einfachste Positionsverfolgung ist kostenlos: In der Google Search Console sehen Sie unter Leistung für jede Suchanfrage die durchschnittliche Position, die Impressionen und die Klicks. Schauen Sie einmal pro Woche hinein und vergleichen Sie Vier-Wochen-Zeiträume statt einzelner Tage — die Position schwankt täglich."
+ ],
+ "Ha a 30. hely környékén vagy, a megjelenések száma kicsi és szeszélyes: néhány hely elmozdulás nullázhatja. Ez nem azt jelenti, hogy eltűntél, hanem hogy még nem vagy elég közel az első oldalhoz ahhoz, hogy stabilan lássanak. Ha sok kifejezést vagy a versenytársaidat is követnéd, arra fizetős pozíciókövető eszközök valók.": [
+  "Around position 30, impressions are few and erratic: a move of a few places can take them to zero. That does not mean you have vanished — only that you are not yet close enough to the first page to be seen steadily. If you want to track many queries or your competitors, that is what paid rank trackers are for.",
+  "Rund um Platz 30 sind die Impressionen wenige und sprunghaft: Ein paar Plätze Verschiebung können sie auf null bringen. Das heißt nicht, dass Sie verschwunden sind — nur, dass Sie der ersten Seite noch nicht nah genug sind, um stabil gesehen zu werden. Wer viele Suchanfragen oder die Konkurrenz verfolgen will, nutzt dafür kostenpflichtige Tools."
+ ],
+ "Mit tartalmazzon az egyszeri projektdíj?": [
+  "What should a one-off project fee include?",
+  "Was sollte ein einmaliger Projektpreis enthalten?"
+ ],
+ "Egy egyedi weboldalt egyszeri projektdíjért érdemes rendelni, és az ajánlatnak tételesen meg kell mondania, mi van benne: kutatás, szerkezet, szövegírás, dizájn, fejlesztés, keresőoptimalizálás és élesítés.": [
+  "A bespoke website is best ordered for a one-off project fee, and the quote should itemise what is in it: research, structure, copywriting, design, development, search engine optimisation and launch.",
+  "Eine individuelle Website bestellt man am besten zu einem einmaligen Projektpreis, und das Angebot sollte aufschlüsseln, was darin enthalten ist: Recherche, Struktur, Text, Design, Entwicklung, Suchmaschinenoptimierung und Launch."
+ ],
+ "Ami utána jön — tárhely, karbantartás, továbbfejlesztés —, azt külön, igény szerint érdemes megrendelni. Így az oldal a te eszközöd, és te döntesz a további költésről. Mi is így dolgozunk.": [
+  "What comes after — hosting, maintenance, further development — is best ordered separately, when you need it. That way the site is your tool, and you decide what to spend next. This is how we work too.",
+  "Was danach kommt — Hosting, Wartung, Weiterentwicklung —, bestellt man am besten separat, bei Bedarf. So bleibt die Website Ihr Werkzeug, und Sie entscheiden über weitere Ausgaben. So arbeiten auch wir."
+ ],
+ "Egyedi weboldal egyszeri projektdíjjal, azzal együtt, mi van benne.": [
+  "A bespoke website for a one-off project fee, and what it includes.",
+  "Eine individuelle Website zum einmaligen Projektpreis, und was dazugehört."
  ]
 }

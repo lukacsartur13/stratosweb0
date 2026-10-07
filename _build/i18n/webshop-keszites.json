@@ -103,10 +103,6 @@
   "Inside the monthly fee",
   "In der Monatsgebühr"
  ],
- "Havidíjas<br>weboldal készítés,<br><span class=\"sig\">karbantartással.</span>": [
-  "Search-optimised<br>web design,<br><span class=\"sig\">maintenance included.</span>",
-  "Suchmaschinen-<br>optimiertes Webdesign,<br><span class=\"sig\">inklusive Wartung.</span>"
- ],
  "Nem külön tétel és nem felár. Egy oldal, amit a Google nem talál meg, félkész oldal — akkor is, ha egyébként szép.": [
   "Not a line item and not a surcharge. A site Google cannot find is a half-finished site, however good it looks.",
   "Kein Zusatzposten und kein Aufpreis. Eine Seite, die Google nicht findet, ist eine halbfertige Seite — auch wenn sie gut aussieht."
@@ -114,10 +110,6 @@
  "SEO már az első verzióban": [
   "Search-optimised web design",
   "Suchmaschinenoptimiertes Webdesign"
- ],
- "A keresőoptimalizált weboldal készítés nálunk azt jelenti, hogy a szerkezet, a címsorok, a sebesség és a strukturált adat már az első verzióban rendben van — nem egy későbbi projekt javítja meg.": [
-  "Search-optimised web design here means the structure, the headings, the speed and the structured data are right in the first version — not fixed by a later project.",
-  "Suchmaschinenoptimiertes Webdesign heißt bei uns: Struktur, Überschriften, Geschwindigkeit und strukturierte Daten stimmen schon in der ersten Version — nicht erst durch ein späteres Projekt."
  ],
  "Utána": [
   "Afterwards",
@@ -127,21 +119,9 @@
   "Website maintenance",
   "Website-Wartung"
  ],
- "A weboldal karbantartás a havidíj része: biztonsági frissítés, mentés, tárhely, tartalommódosítás és hibajavítás. Nem kell külön megrendelned, és nem érkezik róla külön számla.": [
-  "Website maintenance is part of the monthly fee: security updates, backups, hosting, content changes and bug fixes. You do not order it separately and no separate invoice arrives for it.",
-  "Website-Wartung ist Teil der Monatsgebühr: Sicherheitsupdates, Backups, Hosting, Inhaltsänderungen und Fehlerbehebungen. Sie bestellen sie nicht extra, und es kommt keine gesonderte Rechnung."
- ],
  "Árazás": [
   "Pricing",
   "Preise"
- ],
- "Weboldal készítés árak, kiszámíthatóan": [
-  "Website pricing you can plan around",
-  "Website-Preise, mit denen Sie planen können"
- ],
- "A weboldal készítés árak nálunk nem egy nagy egyszeri szám, hanem egy fix havidíj. Árlistánk azért nincs, mert két egyforma feladat sincs — a díjmentes konzultáció után kapsz konkrét összeget.": [
-  "Website pricing here is not one large upfront number but a fixed monthly fee. We publish no price list because no two briefs are the same — you get a concrete figure after the free consultation.",
-  "Website-Preise sind bei uns keine große Einmalsumme, sondern eine feste Monatsgebühr. Eine Preisliste gibt es nicht, weil keine zwei Aufgaben gleich sind — nach der kostenlosen Beratung erhalten Sie eine konkrete Zahl."
  ],
  "Bővítés": [
   "Growth",
@@ -307,10 +287,6 @@
   "What does an online store cost?",
   "Was kostet ein Onlineshop?"
  ],
- "Attól függ, hány terméked van, hány variánssal, és mihez kell kapcsolódnia. Egy néhány száz termékes bolt havidíjas konstrukcióban is mehet, egy több ezer tételes, ERP-hez kötött rendszer projektalapon árazódik. A díjmentes konzultáció után kapsz konkrét számot.": [
-  "It depends on how many products you have, with how many variants, and what it has to connect to. A few-hundred-product store can run on the monthly fee; a several-thousand-item system tied to an ERP is priced per project. You get a concrete figure after the free consultation.",
-  "Das hängt davon ab, wie viele Produkte Sie haben, mit wie vielen Varianten und woran der Shop angebunden sein muss. Ein Shop mit einigen hundert Produkten läuft auch im Monatsmodell; ein System mit mehreren tausend Artikeln und ERP-Anbindung wird pro Projekt kalkuliert."
- ],
  "Át tudtok venni egy meglévő webáruházat?": [
   "Can you take over an existing store?",
   "Können Sie einen bestehenden Shop übernehmen?"
@@ -367,10 +343,6 @@
   "Ecommerce Web Design Agency | Custom Online Stores | Stratos",
   "Onlineshop-Erstellung und Entwicklung | Stratos"
  ],
- "Webshop készítés kódból, sablon nélkül: terméktörzs, fizetés, szállítás és készletkapcsolat. Havidíjban vagy projektalapon, méréssel együtt.": [
-  "Ecommerce web design and development from code, not a template: product data, payments, delivery and stock integration, measured end to end.",
-  "Onlineshops aus Code statt Vorlage: Produktdaten, Zahlung, Versand und Bestandsanbindung. Zur Monatsgebühr oder pro Projekt, von Anfang an gemessen."
- ],
  "Céges weboldal<br>fejlesztés és<br><span class=\"sig\">egyedi platformok.</span>": [
   "Corporate websites<br>and <span class=\"sig\">custom web<br>development.</span>",
   "Firmenwebsites<br>und <span class=\"sig\">individuelle Web-<br>entwicklung.</span>"
@@ -410,5 +382,13 @@
  "A kosár nem a végállomás, hanem a kezdet. Egy webáruháznál a dizájn a legkevesebb: a vevő ott dönt, ahol a szállítási költség kiderül, és ott hagyja ott, ahol egy mezőt nem ért.": [
   "The basket is not the finish line, it is the start. In an online store the design is the least of it: the customer decides where the shipping cost appears, and leaves where a field does not make sense.",
   "Der Warenkorb ist nicht das Ziel, sondern der Anfang. Bei einem Onlineshop ist das Design das Wenigste: Der Kunde entscheidet dort, wo die Versandkosten erscheinen, und bricht dort ab, wo ein Feld unverständlich ist."
+ ],
+ "Attól függ, hány terméked van, hány variánssal, és mihez kell kapcsolódnia. Egy néhány száz termékes bolt és egy több ezer tételes, ERP-hez kötött rendszer között nagyságrendi a különbség, de mindkettő egyszeri, tételes projektdíjjal árazódik. A díjmentes konzultáció után kapsz konkrét számot.": [
+  "It depends on how many products you have, with how many variants, and what it has to connect to. A shop with a few hundred products and a system with thousands of items tied to an ERP are an order of magnitude apart, but both are priced as a one-off, itemised project fee. You get a concrete figure after the free consultation.",
+  "Das hängt davon ab, wie viele Produkte Sie haben, mit wie vielen Varianten, und woran der Shop angebunden werden muss. Zwischen einem Shop mit einigen hundert Produkten und einem System mit tausenden Artikeln und ERP-Anbindung liegt eine Größenordnung, aber beide werden zu einem einmaligen, aufgeschlüsselten Projektpreis kalkuliert. Nach der kostenlosen Beratung erhalten Sie eine konkrete Zahl."
+ ],
+ "Webshop készítés kódból, sablon nélkül: terméktörzs, fizetés, szállítás és készletkapcsolat. Projektalapon, tételes ajánlattal, méréssel együtt.": [
+  "Online shops built in code, without templates: product catalogue, payment, shipping and stock integration. Priced per project with an itemised quote, measurement included.",
+  "Onlineshops aus Code, ohne Vorlage: Produktkatalog, Zahlung, Versand und Lageranbindung. Projektbasiert mit aufgeschlüsseltem Angebot, inklusive Messung."
  ]
 }

@@ -302,10 +302,6 @@
   "This is the service behind the Google Ads result: campaign build, measurement and continuous optimisation.",
   "Das ist die Leistung hinter dem Google Ads Ergebnis: Kampagnenaufbau, Messung und laufende Optimierung."
  ],
- "Ez a szolgáltatás áll a weboldal mögött: tervezés, fejlesztés és karbantartás fix havidíjban.": [
-  "This is the service behind the website: design, development and maintenance in one fixed monthly fee.",
-  "Das ist die Leistung hinter der Website: Gestaltung, Entwicklung und Wartung in einer festen monatlichen Gebühr."
- ],
  "Egy nagyszerű kert a felszín alatt kezdődik": [
   "A great garden starts below the surface",
   "Ein großartiger Garten beginnt unter der Oberfläche"
@@ -333,5 +329,9 @@
  "Egy élő oldal ugyanebből a szolgáltatásból: interaktív 3D weboldal egy kertépítő vállalkozásnak.": [
   "A live site from this same service: an interactive 3D website for a landscaping business.",
   "Eine Live-Website aus derselben Leistung: eine interaktive 3D-Website für einen Gartenbaubetrieb."
+ ],
+ "Ez a szolgáltatás áll a weboldal mögött: tervezés, fejlesztés és keresőoptimalizálás egyszeri projektként.": [
+  "The service behind this website: design, development and search engine optimisation as a one-off project.",
+  "Die Leistung hinter dieser Website: Konzept, Entwicklung und Suchmaschinenoptimierung als einmaliges Projekt."
  ]
 }

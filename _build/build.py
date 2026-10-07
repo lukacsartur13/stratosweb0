@@ -69,6 +69,8 @@ SLUGS = {
     "local-budapest": {"hu": "weboldal-keszites-budapest.html",  "en": "weboldal-keszites-budapest.html",  "de": "weboldal-keszites-budapest.html"},
     "local-pest":     {"hu": "weboldal-keszites-pest-megye.html", "en": "weboldal-keszites-pest-megye.html", "de": "weboldal-keszites-pest-megye.html"},
     "local-szeged":   {"hu": "weboldal-keszites-szeged.html",    "en": "weboldal-keszites-szeged.html",    "de": "weboldal-keszites-szeged.html"},
+    # ---- 2026-10-07: a Hungarian query (≈690/month) with no page answering it.
+    "seo-web":        {"hu": "keresooptimalizalt-weboldal-keszites.html", "en": "keresooptimalizalt-weboldal-keszites.html", "de": "keresooptimalizalt-weboldal-keszites.html"},
     "contact":     {"hu": "ugyfelszolgalat.html",          "en": "contact.html",               "de": "kontakt.html"},
     "quote":       {"hu": "arajanlat.html",                "en": "quote.html",                 "de": "angebot.html"},
     "privacy":     {"hu": "adatkezelesi-tajekoztato.html", "en": "privacy-policy.html",        "de": "datenschutz.html"},
@@ -98,11 +100,13 @@ assert len(BY_ANY) == len({(k, fn) for k, v in SLUGS.items() for fn in v.values(
     "two routes share a filename — relink() can no longer resolve one"
 
 NAV = ("about", "work", "blog", "contact")
-SERVICES = ("sme", "enterprise", "shop", "branding", "ads", "seo", "impact")
+# Branding is still a page (sitemap, content links) but no longer a menu item:
+# the owner took it out of the header and footer on 2026-10-07.
+SERVICES = ("sme", "enterprise", "shop", "ads", "seo", "impact")
 # The case studies and the six articles are reachable from their index routes
 # and from the pages they belong to, not from the global menu — a nav that
 # lists every leaf is a sitemap, not a navigation.
-MENU = ("index", "about", "services", "sme", "enterprise", "shop", "branding",
+MENU = ("index", "about", "services", "sme", "enterprise", "shop",
         "ads", "seo", "impact", "work", "blog", "contact", "quote")
 CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening")
 
@@ -223,7 +227,11 @@ LOCALE_NOINDEX = {
 # which is exactly what that table means to every consumer of routes.json);
 # and routes.json names them under `huOnly`, so the tools that walk every
 # language's FILE skip the two that do not exist.
-HU_ONLY = ("local-hub", "local-gyor", "local-budapest", "local-pest", "local-szeged")
+# "seo-web" joins them on 2026-10-07 for the same reason: it answers one
+# Hungarian query ("keresőoptimalizált weboldal készítés"), and the English and
+# German service pages already cover what a reader in those languages needs.
+HU_ONLY = ("local-hub", "local-gyor", "local-budapest", "local-pest", "local-szeged",
+           "seo-web")
 for _k in HU_ONLY:
     LOCALE_NOINDEX[_k] = ("en", "de")
 
@@ -855,38 +863,6 @@ def root_href(lang, key):
 
 
 # --------------------------------------------------------------------- chrome
-def build_nav(lang, key):
-    u = UI[lang]
-
-    def cur(k):
-        return ' aria-current="page"' if k == key else ""
-
-    first = (f'\n    <a class="navlink" href="{href(lang, "about")}"{cur("about")}>'
-             f'{u["nav"]["about"]}</a>')
-    # The overview route heads its own dropdown. Before Phase 8 the dropdown's
-    # trigger pointed at /kkv.html, so "Services" meant "the SME page" and there
-    # was no way to see the services as a set at all.
-    drop = (f'\n        <a href="{href(lang, "services")}"{cur("services")}>'
-            f'{u["svc_all"]} <em>—</em></a>')
-    drop += "".join(
-        f'\n        <a href="{href(lang, k)}"{cur(k)}>{u["svc"][k][0]} '
-        f'<em>{u["svc"][k][1]}</em></a>' for k in SERVICES)
-    in_svc = ' aria-current="true"' if key in SERVICES or key == "services" else ""
-    rest = "".join(
-        f'\n    <a class="navlink" href="{href(lang, k)}"{cur(k)}>{u["nav"][k]}</a>'
-        for k in NAV[1:])
-    return f"""{first}
-    <div class="drop">
-      <a class="navlink" href="{href(lang, 'services')}" aria-haspopup="true"{in_svc}>{u['services']}</a>
-      <div class="drop__panel">{drop}
-      </div>
-    </div>{rest}
-    {build_langs(lang, key)}
-    <a class="btn" href="{href(lang, 'quote')}" data-magnet><span>{u['quote_cta']}</span>
-      {"" if _ROOT_LINKS else ARROW}
-    </a>"""
-
-
 def build_langs(lang, key):
     """Compact HU / EN / DE switcher that keeps the reader on the same page."""
     items = "".join(
@@ -1223,9 +1199,10 @@ DECK = """<!-- Flight deck. Three deterministic states — opening, journey, des
     <span class="brand__wm"><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
   </a>
   <p class="nav__alt" aria-hidden="true"><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></p>
-  <nav class="nav__links" aria-label="{{nav_aria}}">{{nav}}
-  </nav>
-  <a class="nav__cta" href="{{quote_href}}">{{start}}</a>
+  <!-- 2026-10-07: logo, quote button and menu, nothing else. The desktop link
+       row duplicated the full-screen menu (which also carries the services and
+       the language switcher), so the owner took it out. -->
+  <a class="nav__cta" href="{{quote_href}}">{{quote_cta}}</a>
   <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="{{burger_aria}}"><span class="burger__t" aria-hidden="true"><span class="burger__open">{{menu_label}}</span><span class="burger__shut">{{close}}</span></span><span class="burger__bars" aria-hidden="true"><i></i><i></i></span></button>
 </header>
 
@@ -1345,7 +1322,7 @@ PAGE_TYPE_SCHEMA = {
 BREADCRUMB_PARENT = {
     "sme": "services", "enterprise": "services",
     "branding": "services", "ads": "services", "seo": "services",
-    "shop": "services",
+    "shop": "services", "seo-web": "services",
     # Services / Hol dolgozunk / <region>
     "local-hub": "services",
     "local-gyor": "local-hub", "local-budapest": "local-hub",
@@ -1644,7 +1621,7 @@ def build_structured_data(lang, key, title, desc, meta, body):
             ],
         })
 
-    if key in ("sme", "enterprise", "shop", "branding", "ads", "seo"):
+    if key in ("sme", "enterprise", "shop", "branding", "ads", "seo", "seo-web"):
         # No `offers`, no `priceRange`, no `areaServed`. The site publishes no
         # price for any of the four, and a Service node without an Offer is a
         # complete and valid description of a service that is quoted rather
@@ -1658,7 +1635,7 @@ def build_structured_data(lang, key, title, desc, meta, body):
             "mainEntityOfPage": {"@id": page_url + "#webpage"},
         })
 
-    if key in HU_ONLY and key != "local-hub":
+    if key in LOCAL_AREAS:
         # The region this page is about, as the area the service is offered
         # in. `areaServed` here is a statement about THIS page's offer, not a
         # second statement of the organisation's reach (that is above).
@@ -1709,12 +1686,12 @@ def build_deck(lang, key, base, home):
     return render(DECK, dict(
         base=base, home=home,
         brand_aria=u["brand_aria"], brand_alt=u["brand_alt"],
-        nav_aria=u["nav_aria"], burger_aria=u["burger_aria"],
+        burger_aria=u["burger_aria"], quote_cta=u["quote_cta"],
         alt_k=u["p85"]["alt"], unit_short=u["unit_short"],
         quote_href=quote, start=u["p85"]["start"],
         menu_label=u["p85"]["menu"], close=u["p85"]["close"],
         menu_aria_full=u["p85"]["menu_aria_full"],
-        nav=build_nav(lang, key), menu=build_menu(lang, key),
+        menu=build_menu(lang, key),
         langs=build_langs(lang, key),
     ))
 
@@ -1928,6 +1905,7 @@ def render(tpl, ctx):
 # sentence. Anything not listed gets the general line.
 ARCHETYPE_CTA = {
     **{k: "cta_service" for k in SERVICES},
+    "branding": "cta_service",
     "services": "cta_service",
     "work": "cta_work",
     **{k: "cta_work" for k in CASES},
@@ -2484,8 +2462,8 @@ GROUND_COPY = {
         "svc_h": "Négy szolgáltatás, egy rendszer",
         "svc": [
             ("sme", "Weboldal készítés KKV-nak",
-             "tervezés, fejlesztés, tárhely és folyamatos karbantartás egy fix havidíjban, "
-             "nagy egyszeri költség nélkül."),
+             "tervezés, szövegezés, fejlesztés és keresőoptimalizálás egyszeri, tételes "
+             "projektdíjjal — az átadás után minden a tiéd."),
             ("enterprise", "Weboldal és rendszerfejlesztés nagyvállalatoknak",
              "egyedi platformok, belső rendszerek, integrációk és üzemeltetés dedikált "
              "fejlesztőcsapattal."),
@@ -2495,19 +2473,18 @@ GROUND_COPY = {
              "célközönség-kutatás, kreatív, licitstratégia és konverziómérés — kampányok, "
              "amelyek nem elérést, hanem valódi megkeresést hoznak."),
         ],
-        "why_h": "Miért havidíjas konstrukcióban?",
-        "why": "A legtöbb magyar ügynökség egyszeri projektdíjban árazik, ami azt jelenti, "
-               "hogy a legnagyobb költség pont a legbizonytalanabb pillanatban, az elején "
-               "jelentkezik. Nálunk a tervezés, a fejlesztés, a tárhely és a karbantartás "
-               "egyetlen fix havidíjban van, így a weboldal nem egyszeri beruházás, hanem "
-               "működő eszköz, aminek kiszámítható a fenntartása. Ha egy év múlva változik "
-               "az üzleted, változik vele az oldal is, és nem kell újra nulláról kezdeni.",
+        "why_h": "Miért egyszeri projektdíjjal?",
+        "why": "Mert a weboldal a tiéd, nem bérlemény. A díjmentes felmérés után tételes "
+               "ajánlatot kapsz arról, mi készül, mennyi idő alatt és mennyiért: kutatás, "
+               "szerkezet, szöveg, dizájn, fejlesztés és keresőoptimalizálás. Az átadás után "
+               "nincs kötelező havi tétel, ami nélkül az oldal leállna — ha később bővítenél "
+               "vagy karbantartást kérsz, azt külön, igény szerint vállaljuk.",
         "how_h": "Hogyan dolgozunk",
         "how": "Minden projekt egy díjmentes konzultációval indul, ahol megnézzük, hol tart "
                "most a vállalkozásod, és mi az az egy dolog, ami a legtöbbet mozdítana rajta. "
                "Ebből készül a személyre szabott árajánlat — árlistánk azért nincs, mert két "
-               "egyforma feladat sincs. Az élesítés után nem tűnünk el: a karbantartás, a "
-               "mérés és a havi riport ugyanannak a szerződésnek a része.",
+               "egyforma feladat sincs. Az élesítés után sem tűnünk el: ha bővítenél, "
+               "mérnél vagy a keresőoptimalizálást folytatnád, ugyanaz a csapat viszi tovább.",
         "where_h": "Hol dolgozunk",
         "where": "Az irodánk Győr mellett van, és a Győr-Moson-Sopron vármegyei "
                  "vállalkozásokkal szívesen leülünk személyesen is. Budapesti és külföldi "
@@ -2520,9 +2497,9 @@ GROUND_COPY = {
         "faq_h": "Gyakori kérdések",
         "faq": [
             ("Mennyibe kerül egy weboldal készítés?",
-             "Nincs árlistánk, mert két egyforma feladat sincs. A KKV-oldalaink fix havidíjban "
-             "mennek, amiben benne van a tervezés, a fejlesztés, a tárhely és a karbantartás; a "
-             "nagyvállalati fejlesztéseket projektalapon árazzuk. A díjmentes konzultáció után "
+             "Nincs árlistánk, mert két egyforma feladat sincs. Minden weboldalt egyszeri, "
+             "tételes projektdíjjal árazunk, amiben benne van a tervezés, a szövegezés, a "
+             "fejlesztés és a keresőoptimalizálás. A díjmentes konzultáció után "
              "kapsz egy konkrét számot, és a blogunkon részletesen leírtuk, mi hajtja fel egy "
              "weboldal árát."),
             ("Mennyi idő alatt készül el?",
@@ -2537,17 +2514,16 @@ GROUND_COPY = {
             ("Szerkeszthetem magam a tartalmat?",
              "Igen, ahol ennek értelme van. Az oldal azon részeit, amiket rendszeresen "
              "frissíteni kell — árak, nyitvatartás, hírek, referenciák — kapsz felülethez "
-             "hozzáférést. Ami ritkán változik, azt mi módosítjuk, a havidíj részeként."),
+             "hozzáférést. Ami ritkán változik, azt kérésre mi módosítjuk."),
             ("Csak Győrben és Budapesten dolgoztok?",
              "Nem, csak ott tudunk személyesen leülni. Ügyfeleink egy része az ország más "
              "pontjairól való, és dolgozunk osztrák és német cégeknek is — magyarul, angolul "
              "és németül. Az online együttműködés az elmúlt években semmivel nem bizonyult "
              "lassabbnak a személyesnél."),
             ("Mi történik, ha elégedetlen vagyok?",
-             "A havidíjas konstrukció felmondható, és az oldal a tiéd marad — nem tartjuk "
-             "túszként a domaint vagy a tartalmat. Ez a modell csak akkor éri meg nekünk, ha "
-             "hosszú távon elégedett vagy, ami elég erős ösztönző ahhoz, hogy ne kelljen "
-             "szerződéssel kényszeríteni."),
+             "A munka szakaszokban halad, és minden szakasz végén jóváhagyod, amit látsz — a "
+             "demót, a szövegeket, a kész oldalt. Ami nem jó, azt az átadás előtt javítjuk. "
+             "Az oldal, a domain és a tartalom a tiéd, nem tartjuk túszként semmit."),
         ],
     },
     "en": {
@@ -2565,8 +2541,8 @@ GROUND_COPY = {
         "svc_h": "Four services, one system",
         "svc": [
             ("sme", "Web design for small and medium businesses",
-             "design, development, hosting and continuous maintenance in one fixed monthly "
-             "fee, with no large upfront cost."),
+             "design, copywriting, development and search engine optimisation for a "
+             "one-off, itemised project fee — and after handover, it is all yours."),
             ("enterprise", "Bespoke web development for enterprises",
              "custom platforms, internal systems, integrations and operations with a "
              "dedicated development team."),
@@ -2577,19 +2553,19 @@ GROUND_COPY = {
              "audience research, creative, bidding strategy and conversion tracking — "
              "campaigns that bring enquiries rather than reach."),
         ],
-        "why_h": "Why a monthly fee?",
-        "why": "Most agencies price a website as a one-off project, which puts the largest "
-               "cost at the most uncertain moment: the very beginning. With us, design, "
-               "development, hosting and maintenance sit in one fixed monthly fee, so the "
-               "site is not a single investment but a working tool with a predictable running "
-               "cost. When your business changes a year from now, the site changes with it, "
-               "and nothing starts from zero again.",
+        "why_h": "Why a one-off project fee?",
+        "why": "Because the website is yours, not a rental. After a free assessment you get "
+               "an itemised quote for what will be built, how long it takes and what it "
+               "costs: research, structure, copy, design, development and search engine "
+               "optimisation. After handover there is no compulsory monthly charge the site "
+               "depends on — if you want to extend it later or need maintenance, we take that "
+               "on separately, on request.",
         "how_h": "How we work",
         "how": "Every project starts with a free consultation, where we look at where your "
                "business stands today and which single change would move it furthest. The "
                "quote is written from that conversation — we publish no price list, because "
-               "no two briefs are the same. We do not disappear after launch: maintenance, "
-               "measurement and the monthly report are part of the same agreement.",
+               "no two briefs are the same. We do not disappear after launch either: if you "
+               "extend the site, measure it or continue the SEO, the same team carries it on.",
         "where_h": "Where we work",
         "where": "Our office is just outside Győr, and we are happy to meet businesses across "
                  "Győr-Moson-Sopron county in person. We work with clients in Budapest and "
@@ -2601,9 +2577,9 @@ GROUND_COPY = {
         "faq_h": "Frequently asked questions",
         "faq": [
             ("How much does a website cost?",
-             "We publish no price list, because no two briefs are the same. Our small-business "
-             "sites run on a fixed monthly fee that covers design, development, hosting and "
-             "maintenance; enterprise work is priced per project. You get a concrete number "
+             "We publish no price list, because no two briefs are the same. Every website is "
+             "priced as a one-off, itemised project fee covering design, copywriting, "
+             "development and search engine optimisation. You get a concrete number "
              "after the free consultation, and our blog sets out in detail what drives the "
              "price of a website."),
             ("How long does it take?",
@@ -2617,16 +2593,16 @@ GROUND_COPY = {
             ("Can I edit the content myself?",
              "Yes, where that makes sense. You get access to the parts that need regular "
              "updating — prices, opening hours, news, references. What rarely changes, we "
-             "change for you, as part of the monthly fee."),
+             "change for you on request."),
             ("Do you only work in Győr and Budapest?",
              "No, those are only the places we can meet in person. Some of our clients are "
              "elsewhere in Hungary, and we work for Austrian and German companies too — in "
              "Hungarian, English and German. Working online has proved no slower than meeting "
              "in person."),
             ("What happens if I am not happy?",
-             "The monthly agreement can be ended and the site stays yours — we do not hold the "
-             "domain or the content hostage. This model only works for us if you are satisfied "
-             "over the long run, which is a stronger incentive than any contract clause."),
+             "The work moves in stages, and you approve each one — the demo, the copy, the "
+             "finished site. Whatever is not right gets fixed before handover. The site, the "
+             "domain and the content are yours; we hold nothing hostage."),
         ],
     },
     "de": {
@@ -2644,8 +2620,8 @@ GROUND_COPY = {
         "svc_h": "Vier Leistungen, ein System",
         "svc": [
             ("sme", "Webdesign für kleine und mittlere Unternehmen",
-             "Konzept, Entwicklung, Hosting und laufende Wartung in einer festen "
-             "Monatsgebühr, ohne hohe Einmalkosten."),
+             "Konzept, Text, Entwicklung und Suchmaschinenoptimierung zu einem einmaligen, "
+             "aufgeschlüsselten Projektpreis — nach der Übergabe gehört alles Ihnen."),
             ("enterprise", "Webentwicklung für Großunternehmen",
              "individuelle Plattformen, interne Systeme, Integrationen und Betrieb mit einem "
              "festen Entwicklungsteam."),
@@ -2655,20 +2631,19 @@ GROUND_COPY = {
              "Zielgruppenrecherche, Kreation, Gebotsstrategie und Conversion-Messung — "
              "Kampagnen, die Anfragen bringen statt Reichweite."),
         ],
-        "why_h": "Warum eine Monatsgebühr?",
-        "why": "Die meisten Agenturen rechnen eine Website als einmaliges Projekt ab, wodurch "
-               "die größten Kosten genau im unsichersten Moment anfallen: ganz am Anfang. Bei "
-               "uns stecken Konzept, Entwicklung, Hosting und Wartung in einer festen "
-               "Monatsgebühr, damit die Website keine einmalige Investition ist, sondern ein "
-               "funktionierendes Werkzeug mit kalkulierbaren Betriebskosten. Ändert sich Ihr "
-               "Geschäft in einem Jahr, ändert sich die Seite mit, und nichts beginnt wieder "
-               "bei null.",
+        "why_h": "Warum ein einmaliger Projektpreis?",
+        "why": "Weil die Website Ihnen gehört und nicht gemietet ist. Nach einer kostenlosen "
+               "Analyse erhalten Sie ein aufgeschlüsseltes Angebot: was entsteht, wie lange "
+               "es dauert und was es kostet — Recherche, Struktur, Text, Design, Entwicklung "
+               "und Suchmaschinenoptimierung. Nach der Übergabe gibt es keine Pflichtgebühr, "
+               "ohne die die Seite stillstünde. Erweiterungen oder Wartung übernehmen wir "
+               "separat, auf Wunsch.",
         "how_h": "Wie wir arbeiten",
         "how": "Jedes Projekt beginnt mit einer kostenlosen Beratung, in der wir ansehen, wo "
                "Ihr Unternehmen heute steht und welche eine Änderung es am weitesten bringen "
                "würde. Daraus entsteht das individuelle Angebot — eine Preisliste gibt es "
-               "nicht, weil keine zwei Aufgaben gleich sind. Nach dem Launch verschwinden wir "
-               "nicht: Wartung, Messung und der monatliche Report gehören zum selben Vertrag.",
+               "nicht, weil keine zwei Aufgaben gleich sind. Auch nach dem Launch verschwinden wir "
+               "nicht: Erweiterung, Messung oder laufende SEO übernimmt dasselbe Team.",
         "where_h": "Wo wir arbeiten",
         "where": "Unser Büro liegt bei Győr, und mit Unternehmen aus dem Komitat "
                  "Győr-Moson-Sopron treffen wir uns gerne persönlich. Mit Kundinnen und Kunden "
@@ -2682,9 +2657,8 @@ GROUND_COPY = {
         "faq": [
             ("Was kostet eine Website?",
              "Wir veröffentlichen keine Preisliste, weil keine zwei Aufgaben gleich sind. "
-             "Unsere Websites für kleine Unternehmen laufen zu einer festen Monatsgebühr, die "
-             "Konzept, Entwicklung, Hosting und Wartung enthält; Projekte für Großunternehmen "
-             "rechnen wir pro Projekt ab. Nach der kostenlosen Beratung bekommen Sie eine "
+             "Jede Website rechnen wir als einmaligen, aufgeschlüsselten Projektpreis ab, der "
+             "Konzept, Text, Entwicklung und Suchmaschinenoptimierung enthält. Nach der kostenlosen Beratung bekommen Sie eine "
              "konkrete Zahl."),
             ("Wie lange dauert es?",
              "Eine typische Website für ein kleines Unternehmen dauert vier bis sechs Wochen "
@@ -2699,17 +2673,16 @@ GROUND_COPY = {
             ("Kann ich die Inhalte selbst bearbeiten?",
              "Ja, wo es sinnvoll ist. Für die Bereiche, die regelmäßig aktualisiert werden — "
              "Preise, Öffnungszeiten, Neuigkeiten, Referenzen — bekommen Sie Zugang. Was sich "
-             "selten ändert, ändern wir für Sie, als Teil der Monatsgebühr."),
+             "selten ändert, ändern wir auf Wunsch für Sie."),
             ("Arbeiten Sie nur in Győr und Budapest?",
              "Nein, dort können wir uns nur persönlich treffen. Ein Teil unserer Kunden sitzt "
              "anderswo in Ungarn, und wir arbeiten auch für österreichische und deutsche "
              "Unternehmen — auf Ungarisch, Englisch und Deutsch. Die Zusammenarbeit online hat "
              "sich als nicht langsamer erwiesen."),
             ("Was, wenn ich unzufrieden bin?",
-             "Die Monatsvereinbarung ist kündbar und die Website bleibt Ihre — wir halten "
-             "weder Domain noch Inhalte fest. Dieses Modell lohnt sich für uns nur, wenn Sie "
-             "langfristig zufrieden sind, und das ist ein stärkerer Anreiz als jede "
-             "Vertragsklausel."),
+             "Die Arbeit läuft in Etappen, und Sie geben jede frei — die Demo, die Texte, die "
+             "fertige Seite. Was nicht passt, korrigieren wir vor der Übergabe. Website, "
+             "Domain und Inhalte gehören Ihnen; wir halten nichts fest."),
         ],
     },
 }
