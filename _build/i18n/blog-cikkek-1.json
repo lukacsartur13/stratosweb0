@@ -508,10 +508,6 @@
   "What should a one-off project fee include?",
   "Was sollte ein einmaliger Projektpreis enthalten?"
  ],
- "Egy egyedi weboldalt egyszeri projektdíjért érdemes rendelni, és az ajánlatnak tételesen meg kell mondania, mi van benne: kutatás, szerkezet, szövegírás, dizájn, fejlesztés, keresőoptimalizálás és élesítés.": [
-  "A bespoke website is best ordered for a one-off project fee, and the quote should itemise what is in it: research, structure, copywriting, design, development, search engine optimisation and launch.",
-  "Eine individuelle Website bestellt man am besten zu einem einmaligen Projektpreis, und das Angebot sollte aufschlüsseln, was darin enthalten ist: Recherche, Struktur, Text, Design, Entwicklung, Suchmaschinenoptimierung und Launch."
- ],
  "Ami utána jön — tárhely, karbantartás, továbbfejlesztés —, azt külön, igény szerint érdemes megrendelni. Így az oldal a te eszközöd, és te döntesz a további költésről. Mi is így dolgozunk.": [
   "What comes after — hosting, maintenance, further development — is best ordered separately, when you need it. That way the site is your tool, and you decide what to spend next. This is how we work too.",
   "Was danach kommt — Hosting, Wartung, Weiterentwicklung —, bestellt man am besten separat, bei Bedarf. So bleibt die Website Ihr Werkzeug, und Sie entscheiden über weitere Ausgaben. So arbeiten auch wir."
@@ -519,5 +515,13 @@
  "Egyedi weboldal egyszeri projektdíjjal, azzal együtt, mi van benne.": [
   "A bespoke website for a one-off project fee, and what it includes.",
   "Eine individuelle Website zum einmaligen Projektpreis, und was dazugehört."
+ ],
+ "Ha az oldal szerkezetét az alapoktól, a keresésre építve kell felépíteni.": [
+  "If the structure of the site has to be built from the ground up, around search.",
+  "Wenn die Struktur der Website von Grund auf und für die Suche aufgebaut werden muss."
+ ],
+ "Egy egyedi weboldalt egyszeri projektdíjért érdemes rendelni, és az ajánlatnak tételesen meg kell mondania, mi van benne: kutatás, szerkezet, szövegírás, dizájn, fejlesztés, keresőoptimalizálás és élesítés. Ha a keresőoptimalizálás kimarad az első verzióból, utólag drágább pótolni — ezért a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">keresőoptimalizált weboldal</a> eleve erre a szerkezetre épül.": [
+  "A bespoke website is best ordered for a one-off project fee, and the quote should itemise what is in it: research, structure, copywriting, design, development, search engine optimisation and launch. If SEO is left out of the first version, it costs more to add later — which is why a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">search-optimised website</a> is built on that structure from the start.",
+  "Eine individuelle Website bestellt man am besten zu einem einmaligen Projektpreis, und das Angebot sollte aufschlüsseln, was darin enthalten ist: Recherche, Struktur, Text, Design, Entwicklung, Suchmaschinenoptimierung und Launch. Fehlt die Suchmaschinenoptimierung in der ersten Version, ist sie später teurer nachzuholen — deshalb baut eine <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">suchmaschinenoptimierte Website</a> von Anfang an auf dieser Struktur auf."
  ]
 }

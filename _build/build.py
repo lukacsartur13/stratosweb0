@@ -1199,7 +1199,7 @@ DECK = """<!-- Flight deck. Three deterministic states — opening, journey, des
      navigation. -->
 <header class="nav" data-state="opening">
   <a class="brand" href="{{home}}" aria-label="{{brand_aria}}">
-    <img src="{{base}}assets/img/plane-cursor.png" alt="{{brand_alt}}">
+    <img src="{{base}}assets/img/plane-cursor.png" alt="">
     <span class="brand__wm"><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
   </a>
   <p class="nav__alt" aria-hidden="true"><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></p>
@@ -1736,7 +1736,7 @@ SHELL = """<!DOCTYPE html>
 <a class="skip" href="#main">{{skip}}</a>
 <div class="grain" aria-hidden="true"></div>
 <canvas class="contrail" aria-hidden="true"></canvas>
-<div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt="{{brand_alt}}"></div>
+<div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt=""></div>
 {{instruments}}
 
 {{deck}}
@@ -1770,7 +1770,7 @@ SHELL = """<!DOCTYPE html>
 # panel, because there the climb *is* the page.
 RAIL = """
 <aside class="rail" aria-hidden="true">
-  <img class="rail__mark" src="{{base}}assets/img/plane-cursor.png" alt="{{brand_alt}}">
+  <img class="rail__mark" src="{{base}}assets/img/plane-cursor.png" alt="">
   <div class="rail__tape"><div class="rail__ticks"></div></div>
   <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">{{unit}}</span></div>
   <div class="rail__layer">{{layer0}}</div>
@@ -1821,7 +1821,7 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
   <div class="wrap">
     <div class="foot__grid">
       <div>
-        <a class="brand" href="{{home}}" style="margin-bottom:1.4rem" aria-label="{{brand_aria}}"><img src="{{base}}assets/img/plane-cursor.png" alt="{{brand_alt}}"><span>Stratos</span></a>
+        <a class="brand" href="{{home}}" style="margin-bottom:1.4rem" aria-label="{{brand_aria}}"><img src="{{base}}assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
         <p class="muted" style="max-width:32ch;font-size:var(--step--1)">{{nl_lede}}</p>
         <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
           <label class="vh" for="nl">{{nl_label}}</label>
@@ -1938,6 +1938,7 @@ def build_footer(lang, key):
         for k in SERVICES)
     # The local landing pages are Hungarian only (HU_ONLY), so is their link.
     if lang == "hu":
+        svc += f'\n          <li><a href="{href(lang, "seo-web")}">Keresőoptimalizált weboldal</a></li>'
         svc += f'\n          <li><a href="{href(lang, "local-hub")}">Hol dolgozunk</a></li>'
 
     ceiling = CEILINGS.get(key, 30000)
