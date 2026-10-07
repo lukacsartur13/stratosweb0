@@ -132,7 +132,7 @@ function Importer() {
           <p className="t-note">{t('Columns recognised: {list}', { list: shown.join(', ') })}{plan.unknown.length ? ` · ${t('ignored: {list}', { list: plan.unknown.join(', ') })}` : ''}</p>
           {plan.ready.length > 0 && (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[480px] text-[12px]">
+              <table className="m-stack w-full min-w-[480px] text-[12px]">
                 <thead><tr className="border-b border-hairline text-left">{shown.map((k) => <th key={k} className="label px-2 py-1 font-normal">{k}</th>)}</tr></thead>
                 <tbody>
                   {plan.ready.slice(0, 5).map((r, i) => (

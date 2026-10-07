@@ -180,3 +180,89 @@
     gap: 16px;
   }
 }
+
+/*
+  PHONES (below `sm`, 640px) — 2026-10-07
+  =======================================
+  The screens were laid out for a desk and squeezed onto a phone. Four rules
+  here change their shape instead, for every screen at once:
+
+  1. A table becomes a list of cards. No sideways scrolling: each row is a card,
+     its first cell the title, every other cell a "label — value" line. The
+     labels are the column heads, copied onto the cells by lib/stackTables.ts.
+     Opt in with `m-stack` on the <table> (the shared <Table> always does).
+  2. A grid child may shrink below its content (`min-width: 0`), so one wide
+     thing inside a section can no longer push the whole page sideways.
+  3. A row of filter dropdowns becomes an even two-column grid, the search
+     field across the full width, instead of a ragged pile of natural widths.
+  4. Controls are at least 40px tall, which is what a thumb can hit.
+*/
+@media (max-width: 639.98px) {
+  /* 1 — tables as cards */
+  table.m-stack { display: block; min-width: 0 !important; width: 100%; }
+  table.m-stack thead {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  table.m-stack tbody { display: block; }
+  table.m-stack tr { display: flex; flex-direction: column; padding: 10px 16px; }
+  table.m-stack td {
+    display: block; padding: 3px 0 !important; text-align: right !important;
+    overflow-wrap: anywhere; min-height: 22px;
+  }
+  table.m-stack td::before {
+    content: attr(data-label);
+    float: left; margin-right: 12px; max-width: 45%;
+    text-align: left;
+    font-family: theme('fontFamily.data'); font-size: 10px; line-height: 18px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgb(var(--c-haze));
+  }
+  table.m-stack td::after { content: ''; display: table; clear: both; }
+  /* The card's title (lib/stackTables.ts picks it): first, full width, left. */
+  table.m-stack td[data-title] { order: -1; text-align: left !important; padding-bottom: 6px !important; }
+  table.m-stack td[data-title]::before,
+  table.m-stack td[data-label='']::before { content: none; }
+  table.m-stack td button { min-height: 32px; }
+  /* A cell spanning the row is a message (empty state, "show more"), not a field. */
+  table.m-stack td[colspan] { text-align: center !important; }
+  table.m-stack td:empty { display: none; }
+  /* A cell with nothing but a dash says nothing on a card. */
+  table.m-stack td[data-empty] { display: none; }
+
+  /* 2 — nothing inside a grid pushes the page wider than the screen */
+  main .grid > *, main .grid-12 > * { min-width: 0; }
+
+  /* 3 — filter rows (two or more dropdowns side by side; a single dropdown in
+     a row is an editor, like a milestone's status, and keeps its own layout) */
+  main .flex-wrap:has(> select ~ select) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  main .flex-wrap:has(> select ~ select) > select { width: 100%; min-width: 0; }
+  main .flex-wrap:has(> select ~ select) > input:not([type='checkbox']):not([type='radio']),
+  main .flex-wrap:has(> select ~ select) > div:has(> input[type='search']),
+  main .flex-wrap:has(> select ~ select) > div:has(> input[type='text']) { grid-column: 1 / -1; }
+
+  /* 4 — thumb-sized controls */
+  main select, main input:not([type='checkbox']):not([type='radio']):not([type='range']),
+  [role='dialog'] select, [role='dialog'] input:not([type='checkbox']):not([type='radio']) {
+    min-height: 40px; font-size: 16px; /* 16px also stops iOS zooming into the field */
+  }
+  main button, [role='dialog'] button, main [role='tab'] { min-height: 40px; }
+  main input[type='checkbox'], main input[type='radio'] { width: 18px; height: 18px; }
+
+  /* A row of view tabs scrolls sideways as ONE line rather than breaking in two. */
+  .m-tabs {
+    flex-wrap: nowrap !important; overflow-x: auto; scrollbar-width: none;
+    margin-inline: -16px; padding-inline: 16px;
+  }
+  .m-tabs::-webkit-scrollbar { display: none; }
+  .m-tabs > * { flex: none; }
+  .m-tabs > a { padding-block: 12px; }
+  .m-tabs { min-width: 0; max-width: calc(100% + 32px); }
+
+  /* A full-width control inside a card line (the hours grid's day cells) sits
+     beside its label, not under it. */
+  table.m-stack td > button.w-full { width: auto; min-width: 64px; }
+}

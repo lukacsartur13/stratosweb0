@@ -157,7 +157,8 @@ export function SectionHeader({
     <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-hairline px-4 py-2.5">
       <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-0.5">
         <Heading className="t-section text-chrome">{title}</Heading>
-        {note && <span className="t-note truncate">{note}</span>}
+        {/* One line on a desk; on a phone a long note wraps instead of being cut. */}
+        {note && <span className="t-note sm:truncate">{note}</span>}
       </div>
       {action}
     </header>
@@ -370,8 +371,9 @@ export function NoFigure({ reason }: { reason: string }) {
 /**
  * The one horizontally-scrolling container in this product.
  *
- * The wrapper scrolls, not the page: a wide table on a phone must never give
- * the whole document a horizontal scrollbar. `sticky` heads are opt-in, for the
+ * The wrapper scrolls, not the page: a wide table must never give the whole
+ * document a horizontal scrollbar. Below 640px it does not scroll at all: the
+ * rows become cards (`m-stack`, styles.css "PHONES", lib/stackTables.ts). `sticky` heads are opt-in, for the
  * long lists where the columns leave the screen before the rows do.
  */
 export function Table({
@@ -391,7 +393,8 @@ export function Table({
 
   return (
     <div className="overflow-x-auto">
-      <table className={cn('w-full border-collapse text-sm', min)}>
+      {/* `m-stack`: one card per row on a phone (styles.css, PHONES). */}
+      <table className={cn('m-stack w-full border-collapse text-sm', min)}>
         <thead className={cn(sticky && 'sticky top-0 z-10 bg-deck')}>
           <tr className="border-b border-hair">
             {head.map((h) => {

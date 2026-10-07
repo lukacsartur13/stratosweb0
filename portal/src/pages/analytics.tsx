@@ -72,7 +72,7 @@ export function AnalyticsScreen() {
       {/* One control row, and it holds only what the command bar does not:
           the comparison, and the jump list. */}
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <nav aria-label={t('Analytics sections')} className="flex flex-wrap gap-x-4 gap-y-1">
+        <nav aria-label={t('Analytics sections')} className="m-tabs flex flex-wrap gap-x-4 gap-y-1">
           {SECTIONS.map((s) => (
             <a key={s.id} href={`#${s.id}`} className="t-section hover:text-paper">{t(s.label)}</a>
           ))}

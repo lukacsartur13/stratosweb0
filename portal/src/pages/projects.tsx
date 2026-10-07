@@ -1268,7 +1268,9 @@ function CheckpointRow({
     <li className="border-b border-hairline px-4 py-2.5 last:border-0" data-checkpoint={m.state}>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
         <span className={cn('h-1.5 w-1.5 shrink-0 rounded-full', STATE_DOT[m.state] ?? 'bg-chrome/30')} aria-hidden="true" />
-        <span className={cn('min-w-0 flex-1 text-[13px]', m.state === 'done' ? 'text-haze line-through' : 'text-paper')}>
+        {/* On a phone the title takes its own line and the due date, state and
+            actions wrap under it — side by side they overlapped the date. */}
+        <span className={cn('min-w-0 flex-1 text-[13px] max-sm:basis-[calc(100%-1.5rem)]', m.state === 'done' ? 'text-haze line-through' : 'text-paper')}>
           {m.title}
         </span>
         {meta && (

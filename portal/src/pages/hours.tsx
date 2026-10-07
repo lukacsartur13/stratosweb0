@@ -76,7 +76,7 @@ export function HoursScreen() {
         {week.state === 'error' && <ErrorState message={week.message} onRetry={week.reload} />}
         {week.state === 'ready' && (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[720px] border-collapse text-[12px]" data-hours-week>
+            <table className="m-stack w-full min-w-[720px] border-collapse text-[12px]" data-hours-week>
               <thead>
                 <tr className="text-haze">
                   <th className="t-section px-4 py-2 text-left font-normal">{t('Person')}</th>

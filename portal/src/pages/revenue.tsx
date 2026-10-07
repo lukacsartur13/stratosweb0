@@ -137,7 +137,7 @@ function Forecast({ rows, currency }: { rows: Rows; currency: string }) {
     <Panel aria-label={t('Forecast')}>
       <SectionHeader title={t('Forecast')} note={t('next 6 months')} />
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[640px] text-[13px]">
+        <table className="m-stack w-full min-w-[640px] text-[13px]">
           <thead>
             <tr className="border-b border-hairline text-left">
               <th className="label px-4 py-2 font-normal">{t('Month')}</th>

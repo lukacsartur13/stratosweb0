@@ -5,6 +5,7 @@ import './styles.css';
 import { ensureDictionaries } from './i18n';
 import { setLang } from './lib/i18n';
 import { readStoredLang } from './features/i18n/LanguageGate';
+import { startTableLabels } from './lib/stackTables';
 
 // This device's last language, and — only if there is one — its translations,
 // before the first render, so a chosen language never flashes the source text.
@@ -19,6 +20,8 @@ const start = () => createRoot(el).render(
     <App />
   </StrictMode>,
 );
+
+startTableLabels();
 
 if (stored) void ensureDictionaries().finally(start);
 else start();
