@@ -1,18 +1,18 @@
 {
- "generated": "2026-10-07T16:07:55.688Z",
+ "generated": "2026-10-07T19:24:44.590Z",
  "origin": "https://stratosweb.hu",
  "previewOrigin": false,
  "excludedFromAudit": [
   "/portal/"
  ],
  "counts": {
-  "documents": 96,
+  "documents": 99,
   "indexable": 85,
-  "noindex": 8,
+  "noindex": 11,
   "notFound": 3,
   "sitemapEntries": 85,
   "failures": 0,
-  "warnings": 20
+  "warnings": 31
  },
  "robots": {
   "disallow": [
@@ -37,6 +37,26 @@
    "route": "/de/projekt-barbershop.html",
    "rule": "hreflang-noindex",
    "detail": "hreflang=\"de\" -> /de/projekt-barbershop is noindex"
+  },
+  {
+   "route": "/de/projekt-godatafusion.html",
+   "rule": "description-length",
+   "detail": "183 characters (outside 70–165)"
+  },
+  {
+   "route": "/de/projekt-godatafusion.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"hu\" -> /munka-godatafusion is noindex"
+  },
+  {
+   "route": "/de/projekt-godatafusion.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"en\" -> /en/work-godatafusion is noindex"
+  },
+  {
+   "route": "/de/projekt-godatafusion.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"de\" -> /de/projekt-godatafusion is noindex"
   },
   {
    "route": "/de/projekt-mentaltrening.html",
@@ -74,6 +94,26 @@
    "detail": "hreflang=\"de\" -> /de/projekt-barbershop is noindex"
   },
   {
+   "route": "/en/work-godatafusion.html",
+   "rule": "description-length",
+   "detail": "172 characters (outside 70–165)"
+  },
+  {
+   "route": "/en/work-godatafusion.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"hu\" -> /munka-godatafusion is noindex"
+  },
+  {
+   "route": "/en/work-godatafusion.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"en\" -> /en/work-godatafusion is noindex"
+  },
+  {
+   "route": "/en/work-godatafusion.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"de\" -> /de/projekt-godatafusion is noindex"
+  },
+  {
    "route": "/en/work-mentaltrening.html",
    "rule": "hreflang-noindex",
    "detail": "hreflang=\"hu\" -> /munka-mentaltrening is noindex"
@@ -107,6 +147,21 @@
    "route": "/munka-barbershop.html",
    "rule": "hreflang-noindex",
    "detail": "hreflang=\"de\" -> /de/projekt-barbershop is noindex"
+  },
+  {
+   "route": "/munka-godatafusion.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"hu\" -> /munka-godatafusion is noindex"
+  },
+  {
+   "route": "/munka-godatafusion.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"en\" -> /en/work-godatafusion is noindex"
+  },
+  {
+   "route": "/munka-godatafusion.html",
+   "rule": "hreflang-noindex",
+   "detail": "hreflang=\"de\" -> /de/projekt-godatafusion is noindex"
   },
   {
    "route": "/munka-mentaltrening.html",
@@ -201,7 +256,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 36
+   "inboundLinks": 37
   },
   {
    "route": "/arajanlat.html",
@@ -249,7 +304,7 @@
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/blog-elavult-weboldal.html",
@@ -769,7 +824,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/branding.html",
@@ -895,7 +950,7 @@
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/blog-google-erste-seite.html",
@@ -1405,7 +1460,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/branding.html",
@@ -1501,7 +1556,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 30
+   "inboundLinks": 31
   },
   {
    "route": "/de/impact-programm.html",
@@ -1549,7 +1604,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/impressum.html",
@@ -1597,13 +1652,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 30
+   "inboundLinks": 31
   },
   {
    "route": "/de/index.html",
    "served": "/de/",
    "file": "dist/de/index.html",
-   "bytes": 76136,
+   "bytes": 76191,
    "is404": false,
    "lang": "de",
    "title": "Webdesign und Entwicklung | Stratos",
@@ -1645,7 +1700,7 @@
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "inboundLinks": 33
+   "inboundLinks": 34
   },
   {
    "route": "/de/kontakt.html",
@@ -1693,7 +1748,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/onlineshop-erstellung.html",
@@ -1741,13 +1796,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/projekt-barbershop.html",
    "served": "/de/projekt-barbershop",
    "file": "dist/de/projekt-barbershop.html",
-   "bytes": 24017,
+   "bytes": 24055,
    "is404": false,
    "lang": "de",
    "title": "Barbershop Győr — buchungsgesteuerte Website | Stratos",
@@ -1791,10 +1846,57 @@
    "inSitemap": false
   },
   {
+   "route": "/de/projekt-godatafusion.html",
+   "served": "/de/projekt-godatafusion",
+   "file": "dist/de/projekt-godatafusion.html",
+   "bytes": 26868,
+   "is404": false,
+   "lang": "de",
+   "title": "GoDataFusion — 3D-Website und SEO in drei Sprachen | Stratos",
+   "description": "Fallstudie: die Website eines Bauvermessungsbüros, auf der ein 3D-Gebäudemodell, das sich beim Scrollen verwandelt, die drei Leistungen zeigt. SEO auf Ungarisch, Englisch und Deutsch.",
+   "h1": [
+    "Aus Wirklichkeit werden Daten. An einem Gebäude gezeigt."
+   ],
+   "canonical": "https://stratosweb.hu/de/projekt-godatafusion",
+   "canonicalPath": "/de/projekt-godatafusion",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/munka-godatafusion"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/work-godatafusion"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/projekt-godatafusion"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/munka-godatafusion"
+    }
+   ],
+   "robotsMeta": "noindex, follow",
+   "indexable": false,
+   "og": {
+    "title": "GoDataFusion — 3D-Website und SEO in drei Sprachen | Stratos",
+    "description": "Fallstudie: die Website eines Bauvermessungsbüros, auf der ein 3D-Gebäudemodell, das sich beim Scrollen verwandelt, die drei Leistungen zeigt. SEO auf Ungarisch, Englisch und Deutsch.",
+    "image": "https://stratosweb.hu/assets/img/case-godatafusion-hero.jpg",
+    "url": "https://stratosweb.hu/de/projekt-godatafusion",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": false
+  },
+  {
    "route": "/de/projekt-mentaltrening.html",
    "served": "/de/projekt-mentaltrening",
    "file": "dist/de/projekt-mentaltrening.html",
-   "bytes": 23894,
+   "bytes": 23935,
    "is404": false,
    "lang": "de",
    "title": "MindForge — Website für Mentaltraining | Stratos",
@@ -1841,7 +1943,7 @@
    "route": "/de/projekt-rapidkert.html",
    "served": "/de/projekt-rapidkert",
    "file": "dist/de/projekt-rapidkert.html",
-   "bytes": 31049,
+   "bytes": 31065,
    "is404": false,
    "lang": "de",
    "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
@@ -1883,13 +1985,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 6
+   "inboundLinks": 7
   },
   {
    "route": "/de/projekte.html",
    "served": "/de/projekte",
    "file": "dist/de/projekte.html",
-   "bytes": 24339,
+   "bytes": 25414,
    "is404": false,
    "lang": "de",
    "title": "Projekte — Live-Websites und Kundenprojekte | Stratos",
@@ -1931,7 +2033,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/seo-betreuung.html",
@@ -1979,7 +2081,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/ueber-uns.html",
@@ -2027,7 +2129,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/webdesign-kmu.html",
@@ -2075,7 +2177,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/webentwicklung-agentur.html",
@@ -2123,13 +2225,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/de/website-erstellen-lassen.html",
    "served": "/de/website-erstellen-lassen",
    "file": "dist/de/website-erstellen-lassen.html",
-   "bytes": 32506,
+   "bytes": 32519,
    "is404": false,
    "lang": "de",
    "title": "Website erstellen lassen | Webdesign Agentur | Stratos",
@@ -2171,7 +2273,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/de/werbeanzeigen.html",
@@ -2219,7 +2321,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/404.html",
@@ -2297,7 +2399,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/ads-management.html",
@@ -2345,13 +2447,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/bespoke-web-design.html",
    "served": "/en/bespoke-web-design",
    "file": "dist/en/bespoke-web-design.html",
-   "bytes": 31679,
+   "bytes": 31692,
    "is404": false,
    "lang": "en",
    "title": "Bespoke Web Design Agency | Custom Websites | Stratos",
@@ -2393,7 +2495,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/en/bespoke-web-development.html",
@@ -2441,7 +2543,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/blog-google-business-profile.html",
@@ -2951,7 +3053,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/branding.html",
@@ -3047,7 +3149,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/ecommerce-web-design.html",
@@ -3095,7 +3197,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/impact-program.html",
@@ -3143,7 +3245,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/imprint.html",
@@ -3191,13 +3293,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 30
+   "inboundLinks": 31
   },
   {
    "route": "/en/index.html",
    "served": "/en/",
    "file": "dist/en/index.html",
-   "bytes": 75502,
+   "bytes": 75557,
    "is404": false,
    "lang": "en",
    "title": "Web design and development | Stratos",
@@ -3239,7 +3341,7 @@
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "inboundLinks": 33
+   "inboundLinks": 34
   },
   {
    "route": "/en/privacy-policy.html",
@@ -3287,7 +3389,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 30
+   "inboundLinks": 31
   },
   {
    "route": "/en/quote.html",
@@ -3335,7 +3437,7 @@
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/seo-consultancy.html",
@@ -3383,7 +3485,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/web-design-small-business.html",
@@ -3431,13 +3533,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/en/work-barbershop.html",
    "served": "/en/work-barbershop",
    "file": "dist/en/work-barbershop.html",
-   "bytes": 23299,
+   "bytes": 23312,
    "is404": false,
    "lang": "en",
    "title": "Barbershop Győr — a booking-led website | Stratos",
@@ -3481,10 +3583,57 @@
    "inSitemap": false
   },
   {
+   "route": "/en/work-godatafusion.html",
+   "served": "/en/work-godatafusion",
+   "file": "dist/en/work-godatafusion.html",
+   "bytes": 26140,
+   "is404": false,
+   "lang": "en",
+   "title": "GoDataFusion — 3D website and SEO in three languages | Stratos",
+   "description": "Case study: a construction surveying firm's website, where a 3D building model that transforms as you scroll shows the three services. SEO in Hungarian, English and German.",
+   "h1": [
+    "Reality into data. Shown on one building."
+   ],
+   "canonical": "https://stratosweb.hu/en/work-godatafusion",
+   "canonicalPath": "/en/work-godatafusion",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/munka-godatafusion"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/work-godatafusion"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/projekt-godatafusion"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/munka-godatafusion"
+    }
+   ],
+   "robotsMeta": "noindex, follow",
+   "indexable": false,
+   "og": {
+    "title": "GoDataFusion — 3D website and SEO in three languages | Stratos",
+    "description": "Case study: a construction surveying firm's website, where a 3D building model that transforms as you scroll shows the three services. SEO in Hungarian, English and German.",
+    "image": "https://stratosweb.hu/assets/img/case-godatafusion-hero.jpg",
+    "url": "https://stratosweb.hu/en/work-godatafusion",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": false
+  },
+  {
    "route": "/en/work-mentaltrening.html",
    "served": "/en/work-mentaltrening",
    "file": "dist/en/work-mentaltrening.html",
-   "bytes": 23263,
+   "bytes": 23338,
    "is404": false,
    "lang": "en",
    "title": "MindForge — mental coaching website | Stratos",
@@ -3531,7 +3680,7 @@
    "route": "/en/work-rapidkert.html",
    "served": "/en/work-rapidkert",
    "file": "dist/en/work-rapidkert.html",
-   "bytes": 30128,
+   "bytes": 30144,
    "is404": false,
    "lang": "en",
    "title": "Rapidkert — 3D website and SEO case study | Stratos",
@@ -3573,13 +3722,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 6
+   "inboundLinks": 7
   },
   {
    "route": "/en/work.html",
    "served": "/en/work",
    "file": "dist/en/work.html",
-   "bytes": 23740,
+   "bytes": 24762,
    "is404": false,
    "lang": "en",
    "title": "Work — live websites and client projects | Stratos",
@@ -3621,7 +3770,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 31
+   "inboundLinks": 32
   },
   {
    "route": "/hirdeteskezeles.html",
@@ -3669,7 +3818,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/hol-dolgozunk.html",
@@ -3709,7 +3858,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 34
+   "inboundLinks": 35
   },
   {
    "route": "/impact-program.html",
@@ -3757,7 +3906,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/impresszum.html",
@@ -3805,13 +3954,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 36
+   "inboundLinks": 37
   },
   {
    "route": "/index.html",
    "served": "/",
    "file": "dist/index.html",
-   "bytes": 76816,
+   "bytes": 76871,
    "is404": false,
    "lang": "hu",
    "title": "Weboldal készítés és fejlesztés | Stratos",
@@ -3853,7 +4002,7 @@
    "jsonLd": 1,
    "breadcrumb": false,
    "inSitemap": true,
-   "inboundLinks": 39
+   "inboundLinks": 40
   },
   {
    "route": "/keresooptimalizalas.html",
@@ -3901,13 +4050,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/keresooptimalizalt-weboldal-keszites.html",
    "served": "/keresooptimalizalt-weboldal-keszites",
    "file": "dist/keresooptimalizalt-weboldal-keszites.html",
-   "bytes": 31385,
+   "bytes": 31450,
    "is404": false,
    "lang": "hu",
    "title": "Keresőoptimalizált weboldal készítés | Stratos",
@@ -3941,7 +4090,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 5
+   "inboundLinks": 6
   },
   {
    "route": "/kkv.html",
@@ -3989,13 +4138,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/munka-barbershop.html",
    "served": "/munka-barbershop",
    "file": "dist/munka-barbershop.html",
-   "bytes": 24528,
+   "bytes": 24555,
    "is404": false,
    "lang": "hu",
    "title": "Barbershop Győr — foglalásvezérelt weboldal | Stratos",
@@ -4039,10 +4188,57 @@
    "inSitemap": false
   },
   {
+   "route": "/munka-godatafusion.html",
+   "served": "/munka-godatafusion",
+   "file": "dist/munka-godatafusion.html",
+   "bytes": 27243,
+   "is404": false,
+   "lang": "hu",
+   "title": "GoDataFusion — 3D weboldal és háromnyelvű SEO | Stratos",
+   "description": "Esettanulmány: építőipari felmérő cég weboldala, ahol egy görgetésre alakuló 3D épületmodell mutatja meg a három szolgáltatást. Magyar, angol és német SEO.",
+   "h1": [
+    "A valóságból adat. Egy épületen megmutatva."
+   ],
+   "canonical": "https://stratosweb.hu/munka-godatafusion",
+   "canonicalPath": "/munka-godatafusion",
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/munka-godatafusion"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/work-godatafusion"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/projekt-godatafusion"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/munka-godatafusion"
+    }
+   ],
+   "robotsMeta": "noindex, follow",
+   "indexable": false,
+   "og": {
+    "title": "GoDataFusion — 3D weboldal és háromnyelvű SEO | Stratos",
+    "description": "Esettanulmány: építőipari felmérő cég weboldala, ahol egy görgetésre alakuló 3D épületmodell mutatja meg a három szolgáltatást. Magyar, angol és német SEO.",
+    "image": "https://stratosweb.hu/assets/img/case-godatafusion-hero.jpg",
+    "url": "https://stratosweb.hu/munka-godatafusion",
+    "type": "website"
+   },
+   "twitterCard": "summary_large_image",
+   "clientRendered": false,
+   "jsonLd": 1,
+   "breadcrumb": true,
+   "inSitemap": false
+  },
+  {
    "route": "/munka-mentaltrening.html",
    "served": "/munka-mentaltrening",
    "file": "dist/munka-mentaltrening.html",
-   "bytes": 24477,
+   "bytes": 24480,
    "is404": false,
    "lang": "hu",
    "title": "MindForge — mentáltréning weboldal | Stratos",
@@ -4089,7 +4285,7 @@
    "route": "/munka-rapidkert.html",
    "served": "/munka-rapidkert",
    "file": "dist/munka-rapidkert.html",
-   "bytes": 32023,
+   "bytes": 32039,
    "is404": false,
    "lang": "hu",
    "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
@@ -4131,13 +4327,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 9
+   "inboundLinks": 10
   },
   {
    "route": "/munkaink.html",
    "served": "/munkaink",
    "file": "dist/munkaink.html",
-   "bytes": 25037,
+   "bytes": 26087,
    "is404": false,
    "lang": "hu",
    "title": "Munkáink — élő weboldalak és ügyfélprojektek | Stratos",
@@ -4179,7 +4375,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/nagyvallalat.html",
@@ -4227,7 +4423,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/rolunk.html",
@@ -4275,13 +4471,13 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/szolgaltatasok.html",
    "served": "/szolgaltatasok",
    "file": "dist/szolgaltatasok.html",
-   "bytes": 33304,
+   "bytes": 33317,
    "is404": false,
    "lang": "hu",
    "title": "Weboldal készítés — négy szolgáltatás, egy rendszer | Stratos",
@@ -4323,7 +4519,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/ugyfelszolgalat.html",
@@ -4371,7 +4567,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   },
   {
    "route": "/weboldal-keszites-budapest.html",
@@ -4579,7 +4775,7 @@
    "jsonLd": 1,
    "breadcrumb": true,
    "inSitemap": true,
-   "inboundLinks": 37
+   "inboundLinks": 38
   }
  ]
 }

@@ -75,6 +75,11 @@
    "en": "work-mentaltrening.html",
    "de": "projekt-mentaltrening.html"
   },
+  "case-godatafusion": {
+   "hu": "munka-godatafusion.html",
+   "en": "work-godatafusion.html",
+   "de": "projekt-godatafusion.html"
+  },
   "blog": {
    "hu": "blog.html",
    "en": "blog.html",
@@ -252,6 +257,11 @@
    "en": "/en/work-mentaltrening",
    "de": "/de/projekt-mentaltrening"
   },
+  "case-godatafusion": {
+   "hu": "/munka-godatafusion",
+   "en": "/en/work-godatafusion",
+   "de": "/de/projekt-godatafusion"
+  },
   "blog": {
    "hu": "/blog",
    "en": "/en/blog",
@@ -373,6 +383,7 @@
   "case-rapidkert": "full",
   "case-barbershop": "summary",
   "case-mentaltrening": "summary",
+  "case-godatafusion": "summary",
   "blog": "full",
   "post-seo": "full",
   "post-arak": "full",

@@ -407,6 +407,7 @@ test('the breadcrumb trail matches the one the page renders', () => {
     });
   }
   // 81 before the five Hungarian-only local pages (hub + four regions), 87
-  // with the Hungarian-only seo-web page.
-  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(87);
+  // with the Hungarian-only seo-web page, 90 with the GoDataFusion case study
+  // in three languages.
+  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(90);
 });

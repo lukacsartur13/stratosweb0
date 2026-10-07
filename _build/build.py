@@ -50,6 +50,7 @@ SLUGS = {
     "case-rapidkert":    {"hu": "munka-rapidkert.html",    "en": "work-rapidkert.html",        "de": "projekt-rapidkert.html"},
     "case-barbershop":   {"hu": "munka-barbershop.html",   "en": "work-barbershop.html",       "de": "projekt-barbershop.html"},
     "case-mentaltrening": {"hu": "munka-mentaltrening.html", "en": "work-mentaltrening.html",  "de": "projekt-mentaltrening.html"},
+    "case-godatafusion": {"hu": "munka-godatafusion.html", "en": "work-godatafusion.html",    "de": "projekt-godatafusion.html"},
     "blog":        {"hu": "blog.html",                     "en": "blog.html",                  "de": "blog.html"},
     "post-seo":       {"hu": "blog-google-elso-oldal.html",     "en": "blog-google-first-page.html",       "de": "blog-google-erste-seite.html"},
     "post-arak":      {"hu": "blog-weboldal-arak.html",         "en": "blog-website-cost.html",            "de": "blog-website-kosten.html"},
@@ -108,7 +109,7 @@ SERVICES = ("sme", "enterprise", "shop", "ads", "seo", "impact")
 # lists every leaf is a sitemap, not a navigation.
 MENU = ("index", "about", "services", "sme", "enterprise", "shop",
         "ads", "seo", "impact", "work", "blog", "contact", "quote")
-CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening")
+CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening", "case-godatafusion")
 
 # ---------------------------------------------------------- case-study status
 #
@@ -155,6 +156,9 @@ CASE_STATUS = {
     "case-rapidkert": "full",
     "case-barbershop": "summary",
     "case-mentaltrening": "summary",
+    # 2026-10-07: media, challenge, design and technical account are on the
+    # page; results are not yet (the site is new). `summary` until they are.
+    "case-godatafusion": "summary",
 }
 
 

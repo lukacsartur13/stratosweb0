@@ -1367,7 +1367,9 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 }
 .case__media {
   position: relative; overflow: hidden; background: var(--ink);
-  aspect-ratio: 4 / 3;
+  /* 16:10 since 2026-10-07: the screenshots are whole 1440x900 frames of the
+     live sites, so the card shows them uncut. */
+  aspect-ratio: 16 / 10;
   /* A second guard, on the other axis. The column width already bounds this at
      ordinary desktop sizes, but a short landscape window (844x390) turns 4/3
      into an image taller than the useful viewport, which §9.4 rules out. The
@@ -1448,6 +1450,16 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
    cost nothing visually. */
 .frame { position: relative; overflow: hidden; background: var(--ink); }
 .frame img { width: 100%; height: auto; display: block; }
+/* A case study's screenshot at its own proportions and a readable size, not
+   stretched edge to edge: the full 16:10 frame of the live site, never
+   cropped, at most 880px wide (the files are 1760px, so it stays sharp). */
+.frame--shot {
+  max-width: 880px; margin-inline: auto; overflow: visible; background: none;
+}
+.frame--shot img { border: 1px solid var(--hair); }
+/* Two or three of them side by side on a wide screen. */
+.shots { display: grid; gap: clamp(1.5rem, 4vw, 2.5rem); }
+@media (min-width: 900px) { .shots--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .frame figcaption {
   margin-top: .8rem;
   font-family: var(--data); font-size: var(--step--1);
