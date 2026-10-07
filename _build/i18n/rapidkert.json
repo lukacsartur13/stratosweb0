@@ -46,10 +46,6 @@
   "Rapidkert builds gardens above ground. We built the digital system beneath its growth.",
   "Rapidkert baut Gärten über der Erde. Wir haben das digitale System darunter gebaut, aus dem das Wachstum kommt."
  ],
- "<span>3D webélmény</span><span>Webfejlesztés</span><span>SEO</span><span>Google Ads</span><span>Digitális stratégia</span>": [
-  "<span>3D web experience</span><span>Web development</span><span>SEO</span><span>Google Ads</span><span>Digital strategy</span>",
-  "<span>3D-Weberlebnis</span><span>Webentwicklung</span><span>SEO</span><span>Google Ads</span><span>Digitalstrategie</span>"
- ],
  "<span><b>Szektor</b> kertépítés, öntözéstechnika</span> <span><b>Amit szállítottunk</b> akvizíció és weboldal</span> <span><b>Nyelv</b> magyar, angol</span> <span><b>Élő cím</b> rapidkert.com</span>": [
   "<span><b>Sector</b> landscaping, irrigation</span> <span><b>What we delivered</b> acquisition and website</span> <span><b>Languages</b> Hungarian, English</span> <span><b>Live at</b> rapidkert.com</span>",
   "<span><b>Branche</b> Gartenbau, Bewässerungstechnik</span> <span><b>Unsere Leistung</b> Akquise und Website</span> <span><b>Sprachen</b> Ungarisch, Englisch</span> <span><b>Live unter</b> rapidkert.com</span>"
@@ -333,5 +329,41 @@
  "Ez a szolgáltatás áll a weboldal mögött: tervezés, fejlesztés és keresőoptimalizálás egyszeri projektként.": [
   "The service behind this website: design, development and search engine optimisation as a one-off project.",
   "Die Leistung hinter dieser Website: Konzept, Entwicklung und Suchmaschinenoptimierung als einmaliges Projekt."
+ ],
+ "<span>Awwwards Honorable Mention</span><span>3D webélmény</span><span>Webfejlesztés</span><span>SEO</span><span>Google Ads</span><span>Digitális stratégia</span>": [
+  "<span>Awwwards Honorable Mention</span><span>3D web experience</span><span>Web development</span><span>SEO</span><span>Google Ads</span><span>Digital strategy</span>",
+  "<span>Awwwards Honorable Mention</span><span>3D-Weberlebnis</span><span>Webentwicklung</span><span>SEO</span><span>Google Ads</span><span>Digitalstrategie</span>"
+ ],
+ "Nemzetközi elismerés": [
+  "International recognition",
+  "Internationale Auszeichnung"
+ ],
+ "Awwwards <span class=\"sig\">Honorable Mention.</span>": [
+  "Awwwards <span class=\"sig\">Honorable Mention.</span>",
+  "Awwwards <span class=\"sig\">Honorable Mention.</span>"
+ ],
+ "A rapidkert.com 2026. augusztus 30-án Awwwards Honorable Mention elismerést kapott. Az Awwwards a webdizájn egyik legismertebb nemzetközi díja: zsűrije a dizájnt, a használhatóságot, a kreativitást és a tartalmat pontozza, a világ minden tájáról beküldött oldalak közül.": [
+  "On 30 August 2026 rapidkert.com received an Awwwards Honorable Mention. Awwwards is one of the best-known international web design awards: its jury scores design, usability, creativity and content across sites submitted from all over the world.",
+  "Am 30. August 2026 erhielt rapidkert.com eine Awwwards Honorable Mention. Awwwards ist eine der bekanntesten internationalen Auszeichnungen für Webdesign: Die Jury bewertet Design, Usability, Kreativität und Inhalt von Websites, die aus der ganzen Welt eingereicht werden."
+ ],
+ "Egy magyar kertépítő cég weboldala ezzel ugyanabban a mezőnyben szerepel, mint a nemzetközi márkák és ügynökségek munkái.": [
+  "With it, a Hungarian landscaping company's website stands in the same field as the work of international brands and agencies.",
+  "Damit steht die Website eines ungarischen Gartenbaubetriebs im selben Feld wie die Arbeiten internationaler Marken und Agenturen."
+ ],
+ "Forrás: <a class=\"tlink\" href=\"https://www.awwwards.com/sites/rapidkert\" rel=\"noopener\" target=\"_blank\">awwwards.com/sites/rapidkert</a>": [
+  "Source: <a class=\"tlink\" href=\"https://www.awwwards.com/sites/rapidkert\" rel=\"noopener\" target=\"_blank\">awwwards.com/sites/rapidkert</a>",
+  "Quelle: <a class=\"tlink\" href=\"https://www.awwwards.com/sites/rapidkert\" rel=\"noopener\" target=\"_blank\">awwwards.com/sites/rapidkert</a>"
+ ],
+ "Következő projekt — a valóságból adat, egy 3D épületen megmutatva.": [
+  "Next project — reality into data, shown on one 3D building.",
+  "Nächstes Projekt — aus Wirklichkeit werden Daten, an einem 3D-Gebäude gezeigt."
+ ],
+ "Awwwards Honorable Mention": [
+  "Awwwards Honorable Mention",
+  "Awwwards Honorable Mention"
+ ],
+ "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos": [
+  "Rapidkert — award-winning 3D website and SEO | Stratos",
+  "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos"
  ]
 }

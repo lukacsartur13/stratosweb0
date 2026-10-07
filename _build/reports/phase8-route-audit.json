@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T19:31:14.556Z",
+  "generatedAt": "2026-10-07T21:41:51.537Z",
   "viewports": [
     "1920x1080",
     "1440x900",
@@ -1228,9 +1228,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -1268,9 +1268,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -1308,9 +1308,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -1331,10 +1331,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -1350,7 +1350,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -1371,10 +1371,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -1390,7 +1390,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -1411,10 +1411,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -1430,7 +1430,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -1703,7 +1703,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -1742,7 +1742,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -1781,7 +1781,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -5088,9 +5088,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -5128,9 +5128,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -5168,9 +5168,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -5191,10 +5191,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -5210,7 +5210,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -5231,10 +5231,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -5250,7 +5250,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -5271,10 +5271,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -5290,7 +5290,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -5563,7 +5563,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -5602,7 +5602,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -5641,7 +5641,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -8948,9 +8948,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -8988,9 +8988,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -9028,9 +9028,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -9051,10 +9051,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -9070,7 +9070,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -9091,10 +9091,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -9110,7 +9110,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -9131,10 +9131,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -9150,7 +9150,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -9423,7 +9423,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -9462,7 +9462,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -9501,7 +9501,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -12808,9 +12808,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -12848,9 +12848,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -12888,9 +12888,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -12911,10 +12911,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -12930,7 +12930,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -12951,10 +12951,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -12970,7 +12970,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -12991,10 +12991,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -13010,7 +13010,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -13283,7 +13283,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -13322,7 +13322,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -13361,7 +13361,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -16668,9 +16668,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -16708,9 +16708,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -16748,9 +16748,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -16771,10 +16771,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -16790,7 +16790,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -16811,10 +16811,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -16830,7 +16830,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -16851,10 +16851,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -16870,7 +16870,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -17143,7 +17143,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -17182,7 +17182,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -17221,7 +17221,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -20528,9 +20528,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -20568,9 +20568,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -20608,9 +20608,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -20631,10 +20631,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -20650,7 +20650,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -20671,10 +20671,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -20690,7 +20690,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -20711,10 +20711,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -20730,7 +20730,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -21003,7 +21003,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -21042,7 +21042,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -21081,7 +21081,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -24388,9 +24388,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -24428,9 +24428,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -24468,9 +24468,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -24491,10 +24491,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -24510,7 +24510,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -24531,10 +24531,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -24550,7 +24550,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -24571,10 +24571,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -24590,7 +24590,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -24863,7 +24863,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -24902,7 +24902,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -24941,7 +24941,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -28248,9 +28248,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -28288,9 +28288,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -28328,9 +28328,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -28351,10 +28351,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -28370,7 +28370,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -28391,10 +28391,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -28410,7 +28410,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -28431,10 +28431,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -28450,7 +28450,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -28723,7 +28723,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -28762,7 +28762,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -28801,7 +28801,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -32108,9 +32108,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -32148,9 +32148,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -32188,9 +32188,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -32211,10 +32211,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -32230,7 +32230,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -32251,10 +32251,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -32270,7 +32270,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -32291,10 +32291,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -32310,7 +32310,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -32583,7 +32583,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -32622,7 +32622,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -32661,7 +32661,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -35968,9 +35968,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -36008,9 +36008,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -36048,9 +36048,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -36071,10 +36071,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -36090,7 +36090,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -36111,10 +36111,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -36130,7 +36130,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -36151,10 +36151,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -36170,7 +36170,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -36443,7 +36443,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -36482,7 +36482,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -36521,7 +36521,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -39828,9 +39828,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -39868,9 +39868,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -39908,9 +39908,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -39931,10 +39931,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -39950,7 +39950,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -39971,10 +39971,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -39990,7 +39990,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -40011,10 +40011,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -40030,7 +40030,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -40303,7 +40303,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -40342,7 +40342,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -40381,7 +40381,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -43688,9 +43688,9 @@
         "internalLinks": [
           "index.html",
           "munka-rapidkert.html",
+          "munka-godatafusion.html",
           "munka-barbershop.html",
           "munka-mentaltrening.html",
-          "munka-godatafusion.html",
           "ugyfelszolgalat.html",
           "ugyfelszolgalat.html"
         ],
@@ -43728,9 +43728,9 @@
         "internalLinks": [
           "index.html",
           "work-rapidkert.html",
+          "work-godatafusion.html",
           "work-barbershop.html",
           "work-mentaltrening.html",
-          "work-godatafusion.html",
           "contact.html",
           "contact.html"
         ],
@@ -43768,9 +43768,9 @@
         "internalLinks": [
           "index.html",
           "projekt-rapidkert.html",
+          "projekt-godatafusion.html",
           "projekt-barbershop.html",
           "projekt-mentaltrening.html",
-          "projekt-godatafusion.html",
           "kontakt.html",
           "kontakt.html"
         ],
@@ -43791,10 +43791,10 @@
       "lang": "hu",
       "facts": {
         "lang": "hu",
-        "title": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "title": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "description": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
         "canonical": "https://stratosweb.hu/munka-rapidkert",
-        "ogTitle": "Rapidkert — 3D weboldal és SEO esettanulmány | Stratos",
+        "ogTitle": "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -43810,7 +43810,7 @@
           "munkaink.html",
           "hirdeteskezeles.html",
           "kkv.html",
-          "munka-barbershop.html",
+          "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -43831,10 +43831,10 @@
       "lang": "en",
       "facts": {
         "lang": "en",
-        "title": "Rapidkert — 3D website and SEO case study | Stratos",
+        "title": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "description": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
         "canonical": "https://stratosweb.hu/en/work-rapidkert",
-        "ogTitle": "Rapidkert — 3D website and SEO case study | Stratos",
+        "ogTitle": "Rapidkert — award-winning 3D website and SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -43850,7 +43850,7 @@
           "work.html",
           "ads-management.html",
           "web-design-small-business.html",
-          "work-barbershop.html",
+          "work-godatafusion.html",
           "work.html",
           "contact.html"
         ],
@@ -43871,10 +43871,10 @@
       "lang": "de",
       "facts": {
         "lang": "de",
-        "title": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "title": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "description": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
         "canonical": "https://stratosweb.hu/de/projekt-rapidkert",
-        "ogTitle": "Rapidkert — 3D-Website und SEO-Fallstudie | Stratos",
+        "ogTitle": "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/work-rapidkert.jpg",
         "hreflang": 4,
         "h1": [
@@ -43890,7 +43890,7 @@
           "projekte.html",
           "werbeanzeigen.html",
           "webdesign-kmu.html",
-          "projekt-barbershop.html",
+          "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
         ],
@@ -44163,7 +44163,7 @@
           "index.html",
           "munkaink.html",
           "keresooptimalizalt-weboldal-keszites.html",
-          "munka-rapidkert.html",
+          "munka-barbershop.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
         ],
@@ -44202,7 +44202,7 @@
           "index.html",
           "work.html",
           "bespoke-web-design.html",
-          "work-rapidkert.html",
+          "work-barbershop.html",
           "work.html",
           "contact.html"
         ],
@@ -44241,7 +44241,7 @@
           "index.html",
           "projekte.html",
           "website-erstellen-lassen.html",
-          "projekt-rapidkert.html",
+          "projekt-barbershop.html",
           "projekte.html",
           "kontakt.html"
         ],
