@@ -138,19 +138,15 @@
 #   https://stratosweb.hu/kkv                200
 #   https://stratosweb.hu/kkv.html           200   (Pretty URLs would 301 this)
 #
-# So there is no second rule to collide with, and there never was a loop. The
-# real reason to leave this alone is smaller and it is not a risk: `absolute()`
-# in _build/build.py emits the EXTENSIONLESS form as the canonical, the hreflang
-# set, og:url and the sitemap entry, and the .html twin carries that same
-# canonical. Google reads it and files the twin under "Alternate page with
-# proper canonical tag" — 47 of them, which is the duplicate being resolved
-# correctly rather than a defect to chase. 87 forced rules would buy a tidier
-# access log and nothing a crawler acts on differently.
+# So there is no second rule to collide with, and there never was a loop.
 #
-# If that ever stops being true, the fix is one dashboard setting — Site
-# configuration -> Build & deploy -> Post processing -> Pretty URLs — and not a
-# rule in this file. Turning it on is safe TODAY for the same reason the loop
-# was imaginary: nothing here redirects in the opposing direction.
+# 2026-10-08: the twins are now redirected after all. Search Console showed the
+# .html forms still collecting impressions and positions of their own next to
+# the canonical, which splits what one URL should hold. The rules are not
+# written here by hand: scripts/assemble.mjs generates dist/_redirects from the
+# route manifest (one `/kkv.html /kkv 301!` per page and language), and Netlify
+# applies that file before this one. Every `to` in this file therefore names
+# the extensionless path, so a legacy URL is one hop, never two.
 #
 # The rules below are the URLs whose paths genuinely do not exist here.
 
@@ -250,32 +246,32 @@
 # accumulated link equity.
 [[redirects]]
   from = "/post/mennyibe-kerul-egy-weboldal-2026"
-  to = "/blog-weboldal-arak.html"
+  to = "/blog-weboldal-arak"
   status = 301
 
 [[redirects]]
   from = "/post/google-vagy-facebook-hirdetes-2026"
-  to = "/blog-google-vagy-facebook.html"
+  to = "/blog-google-vagy-facebook"
   status = 301
 
 [[redirects]]
   from = "/post/google-cegprofil-beallitasa-lepesrol-lepesre"
-  to = "/blog-google-cegprofil.html"
+  to = "/blog-google-cegprofil"
   status = 301
 
 [[redirects]]
   from = "/post/mennyi-ugyfelet-veszitesz-elavult-weboldal"
-  to = "/blog-elavult-weboldal.html"
+  to = "/blog-elavult-weboldal"
   status = 301
 
 [[redirects]]
   from = "/post/hogyan-kerulj-a-google-elso-oldalara"
-  to = "/blog-google-elso-oldal.html"
+  to = "/blog-google-elso-oldal"
   status = 301
 
 [[redirects]]
   from = "/post/miert-nem-hoz-ugyfeleket-a-weboldalad"
-  to = "/blog-miert-nem-hoz-ugyfelet.html"
+  to = "/blog-miert-nem-hoz-ugyfelet"
   status = 301
 
 # The two posts above under the accented slugs Wix actually published them at
@@ -284,22 +280,22 @@
 # the service-page rule below.
 [[redirects]]
   from = "/post/miért-nem-hoz-ügyfeleket-a-weboldalad-7-gyakori-hiba-amit-a-vállalkozások-többsége-elkövet"
-  to = "/blog-miert-nem-hoz-ugyfelet.html"
+  to = "/blog-miert-nem-hoz-ugyfelet"
   status = 301
 
 [[redirects]]
   from = "/post/mi%C3%A9rt-nem-hoz-%C3%BCgyfeleket-a-weboldalad-7-gyakori-hiba-amit-a-v%C3%A1llalkoz%C3%A1sok-t%C3%B6bbs%C3%A9ge-elk%C3%B6vet"
-  to = "/blog-miert-nem-hoz-ugyfelet.html"
+  to = "/blog-miert-nem-hoz-ugyfelet"
   status = 301
 
 [[redirects]]
   from = "/post/mennyi-ügyfelet-veszítesz-havonta-egy-elavult-weboldal-miatt"
-  to = "/blog-elavult-weboldal.html"
+  to = "/blog-elavult-weboldal"
   status = 301
 
 [[redirects]]
   from = "/post/mennyi-%C3%BCgyfelet-vesz%C3%ADtesz-havonta-egy-elavult-weboldal-miatt"
-  to = "/blog-elavult-weboldal.html"
+  to = "/blog-elavult-weboldal"
   status = 301
 
 # There is deliberately NO `/post/*` catch-all. All six posts are listed above
@@ -346,7 +342,7 @@
 # preferred instead, delete these three rules and nothing else changes.
 [[redirects]]
   from = "/book-online"
-  to = "/ugyfelszolgalat.html"
+  to = "/ugyfelszolgalat"
   status = 301
 
 # The Wix service slug contains a non-ASCII character. Netlify matches the
@@ -357,12 +353,12 @@
 # silently miss.
 [[redirects]]
   from = "/service-page/ingyenes-konzultáció"
-  to = "/ugyfelszolgalat.html"
+  to = "/ugyfelszolgalat"
   status = 301
 
 [[redirects]]
   from = "/service-page/ingyenes-konzult%C3%A1ci%C3%B3"
-  to = "/ugyfelszolgalat.html"
+  to = "/ugyfelszolgalat"
   status = 301
 
 [[redirects]]
