@@ -29,6 +29,24 @@
   NODE_VERSION = "22"
 
 #------------------------------------------------------------------ redirects
+# The old Wix domain (2026-10-08). media-stratos.com and www.media-stratos.com
+# are domain aliases of this site, so without these two rules they would serve
+# a second copy of every page. They come first because the first matching rule
+# wins: every path moves, permanently, to the same path on stratosweb.hu, where
+# the Wix-era paths (/about, /post/…) have their own 301s further down. The
+# mail records on that domain (MX, SPF, DMARC) are untouched by any of this.
+[[redirects]]
+  from = "https://media-stratos.com/*"
+  to = "https://stratosweb.hu/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.media-stratos.com/*"
+  to = "https://stratosweb.hu/:splat"
+  status = 301
+  force = true
+
 # The portal is a single-page app: a direct hit on /portal/leads must return the
 # SPA shell and let the router resolve the path, rather than 404. Everything
 # under /portal that is not a real file falls through to index.html.
