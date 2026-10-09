@@ -201,9 +201,13 @@ def indexable(key):
 #
 # REVERSING THIS IS ONE LINE. Empty the dict and rebuild: the robots meta, the
 # hreflang set and the sitemap all come from it.
-LOCALE_NOINDEX = {
-    "post-seo": ("en", "de"),
-}
+# 2026-10-09: REVERSED. The owner asked for the two translations back in the
+# index. The crawl-budget argument does not hold for a site of ~100 URLs, and
+# the "no presence in those markets" one was wrong: the site states Austrian
+# and German clients. Indexed, the articles build topical weight and pass it on
+# through their links; their closing section now points at the SEO service in
+# the reader's language.
+LOCALE_NOINDEX = {}
 
 # ------------------------------------------------------- Hungarian-only routes
 #

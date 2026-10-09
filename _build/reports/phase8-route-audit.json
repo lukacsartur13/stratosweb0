@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T21:41:51.537Z",
+  "generatedAt": "2026-10-09T17:11:13.574Z",
   "viewports": [
     "1920x1080",
     "1440x900",
@@ -1349,7 +1349,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -1389,7 +1389,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -1429,7 +1429,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -1954,7 +1954,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -1969,9 +1969,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -1997,7 +1998,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -2012,9 +2013,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -2040,7 +2042,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -2055,9 +2057,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -2096,6 +2099,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -2138,6 +2142,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -2180,6 +2185,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -3214,6 +3220,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -3254,6 +3261,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -3345,6 +3353,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -5209,7 +5218,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -5249,7 +5258,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -5289,7 +5298,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -5814,7 +5823,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -5829,9 +5838,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -5857,7 +5867,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -5872,9 +5882,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -5900,7 +5911,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -5915,9 +5926,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -5956,6 +5968,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -5998,6 +6011,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -6040,6 +6054,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -7074,6 +7089,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -7114,6 +7130,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -7205,6 +7222,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -9069,7 +9087,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -9109,7 +9127,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -9149,7 +9167,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -9674,7 +9692,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -9689,9 +9707,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -9717,7 +9736,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -9732,9 +9751,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -9760,7 +9780,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -9775,9 +9795,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -9816,6 +9837,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -9858,6 +9880,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -9900,6 +9923,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -10934,6 +10958,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -10974,6 +10999,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -11065,6 +11091,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -12929,7 +12956,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -12969,7 +12996,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -13009,7 +13036,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -13534,7 +13561,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -13549,9 +13576,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -13577,7 +13605,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -13592,9 +13620,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -13620,7 +13649,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -13635,9 +13664,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -13676,6 +13706,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -13718,6 +13749,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -13760,6 +13792,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -14794,6 +14827,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -14834,6 +14868,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -14925,6 +14960,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -16789,7 +16825,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -16829,7 +16865,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -16869,7 +16905,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -17394,7 +17430,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -17409,9 +17445,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -17437,7 +17474,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -17452,9 +17489,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -17480,7 +17518,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -17495,9 +17533,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -17536,6 +17575,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -17578,6 +17618,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -17620,6 +17661,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -18654,6 +18696,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -18694,6 +18737,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -18785,6 +18829,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -20649,7 +20694,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -20689,7 +20734,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -20729,7 +20774,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -21254,7 +21299,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -21269,9 +21314,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -21297,7 +21343,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -21312,9 +21358,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -21340,7 +21387,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -21355,9 +21402,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -21396,6 +21444,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -21438,6 +21487,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -21480,6 +21530,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -22514,6 +22565,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -22554,6 +22606,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -22645,6 +22698,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -24509,7 +24563,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -24549,7 +24603,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -24589,7 +24643,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -25114,7 +25168,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -25129,9 +25183,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -25157,7 +25212,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -25172,9 +25227,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -25200,7 +25256,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -25215,9 +25271,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -25256,6 +25313,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -25298,6 +25356,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -25340,6 +25399,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -26374,6 +26434,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -26414,6 +26475,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -26505,6 +26567,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -28369,7 +28432,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -28409,7 +28472,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -28449,7 +28512,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -28974,7 +29037,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -28989,9 +29052,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -29017,7 +29081,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -29032,9 +29096,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -29060,7 +29125,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -29075,9 +29140,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -29116,6 +29182,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -29158,6 +29225,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -29200,6 +29268,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -30234,6 +30303,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -30274,6 +30344,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -30365,6 +30436,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -32229,7 +32301,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -32269,7 +32341,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -32309,7 +32381,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -32834,7 +32906,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -32849,9 +32921,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -32877,7 +32950,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -32892,9 +32965,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -32920,7 +32994,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -32935,9 +33009,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -32976,6 +33051,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -33018,6 +33094,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -33060,6 +33137,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -34094,6 +34172,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -34134,6 +34213,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -34225,6 +34305,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -36089,7 +36170,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -36129,7 +36210,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -36169,7 +36250,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -36694,7 +36775,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -36709,9 +36790,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -36737,7 +36819,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -36752,9 +36834,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -36780,7 +36863,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -36795,9 +36878,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -36836,6 +36920,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -36878,6 +36963,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -36920,6 +37006,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -37954,6 +38041,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -37994,6 +38082,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -38085,6 +38174,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -39949,7 +40039,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -39989,7 +40079,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -40029,7 +40119,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -40554,7 +40644,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -40569,9 +40659,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -40597,7 +40688,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -40612,9 +40703,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -40640,7 +40732,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -40655,9 +40747,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -40696,6 +40789,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -40738,6 +40832,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -40780,6 +40875,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -41814,6 +41910,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -41854,6 +41951,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -41945,6 +42043,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",
@@ -43809,7 +43908,7 @@
           "index.html",
           "munkaink.html",
           "hirdeteskezeles.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-godatafusion.html",
           "munkaink.html",
           "ugyfelszolgalat.html"
@@ -43849,7 +43948,7 @@
           "index.html",
           "work.html",
           "ads-management.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "work-godatafusion.html",
           "work.html",
           "contact.html"
@@ -43889,7 +43988,7 @@
           "index.html",
           "projekte.html",
           "werbeanzeigen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "projekt-godatafusion.html",
           "projekte.html",
           "kontakt.html"
@@ -44414,7 +44513,7 @@
         "canonical": "https://stratosweb.hu/blog-google-elso-oldal",
         "ogTitle": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 2,
+        "hreflang": 4,
         "h1": [
           "Hogyan kerülj a Google első oldalára? 7 lépés"
         ],
@@ -44429,9 +44528,10 @@
           "blog-keresooptimalizalas.html",
           "ugyfelszolgalat.html",
           "blog-google-cegprofil.html",
+          "keresooptimalizalas.html",
           "blog-google-cegprofil.html",
           "blog-miert-nem-hoz-ugyfelet.html",
-          "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "kkv.html",
           "ugyfelszolgalat.html"
         ],
@@ -44457,7 +44557,7 @@
         "canonical": "https://stratosweb.hu/en/blog-google-first-page",
         "ogTitle": "How to reach Google's first page — 7 steps | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "How to reach Google's first page — 7 steps"
         ],
@@ -44472,9 +44572,10 @@
           "blog-what-is-seo.html",
           "contact.html",
           "blog-google-business-profile.html",
+          "seo-consultancy.html",
           "blog-google-business-profile.html",
           "blog-no-enquiries.html",
-          "web-design-small-business.html",
+          "bespoke-web-design.html",
           "web-design-small-business.html",
           "contact.html"
         ],
@@ -44500,7 +44601,7 @@
         "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
         "ogTitle": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
         "ogImage": "https://stratosweb.hu/assets/img/blog-1.jpg",
-        "hreflang": 0,
+        "hreflang": 4,
         "h1": [
           "Wie kommst du auf Googles erste Seite? 7 Schritte"
         ],
@@ -44515,9 +44616,10 @@
           "blog-was-ist-seo.html",
           "kontakt.html",
           "blog-google-unternehmensprofil.html",
+          "seo-betreuung.html",
           "blog-google-unternehmensprofil.html",
           "blog-keine-anfragen.html",
-          "webdesign-kmu.html",
+          "website-erstellen-lassen.html",
           "webdesign-kmu.html",
           "kontakt.html"
         ],
@@ -44556,6 +44658,7 @@
           "index.html",
           "blog.html",
           "ugyfelszolgalat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "blog-elavult-weboldal.html",
           "kkv.html",
           "arajanlat.html",
@@ -44598,6 +44701,7 @@
           "index.html",
           "blog.html",
           "contact.html",
+          "bespoke-web-design.html",
           "blog-outdated-website.html",
           "web-design-small-business.html",
           "quote.html",
@@ -44640,6 +44744,7 @@
           "index.html",
           "blog.html",
           "kontakt.html",
+          "website-erstellen-lassen.html",
           "blog-veraltete-website.html",
           "webdesign-kmu.html",
           "angebot.html",
@@ -45674,6 +45779,7 @@
           "weboldal-keszites-pest-megye.html",
           "weboldal-keszites-szeged.html",
           "keresooptimalizalas.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "arajanlat.html",
           "ugyfelszolgalat.html"
         ],
@@ -45714,6 +45820,7 @@
           "hol-dolgozunk.html",
           "arajanlat.html",
           "kkv.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "munka-rapidkert.html",
           "munka-barbershop.html",
           "ugyfelszolgalat.html",
@@ -45805,6 +45912,7 @@
           "szolgaltatasok.html",
           "hol-dolgozunk.html",
           "arajanlat.html",
+          "keresooptimalizalt-weboldal-keszites.html",
           "ugyfelszolgalat.html",
           "blog-weboldal-arak.html",
           "weboldal-keszites-budapest.html",

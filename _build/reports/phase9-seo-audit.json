@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-07T23:41:08.769Z",
+ "generated": "2026-10-09T17:03:52.198Z",
  "origin": "https://stratosweb.hu",
  "previewOrigin": false,
  "excludedFromAudit": [
@@ -7,10 +7,10 @@
  ],
  "counts": {
   "documents": 99,
-  "indexable": 85,
-  "noindex": 11,
+  "indexable": 87,
+  "noindex": 9,
   "notFound": 3,
-  "sitemapEntries": 85,
+  "sitemapEntries": 87,
   "failures": 0,
   "warnings": 31
  },
@@ -406,7 +406,7 @@
    "route": "/blog-google-elso-oldal.html",
    "served": "/blog-google-elso-oldal",
    "file": "dist/blog-google-elso-oldal.html",
-   "bytes": 25881,
+   "bytes": 26378,
    "is404": false,
    "lang": "hu",
    "title": "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos",
@@ -420,6 +420,14 @@
     {
      "hreflang": "hu",
      "href": "https://stratosweb.hu/blog-google-elso-oldal"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-google-first-page"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-google-erste-seite"
     },
     {
      "hreflang": "x-default",
@@ -956,7 +964,7 @@
    "route": "/de/blog-google-erste-seite.html",
    "served": "/de/blog-google-erste-seite",
    "file": "dist/de/blog-google-erste-seite.html",
-   "bytes": 24813,
+   "bytes": 25441,
    "is404": false,
    "lang": "de",
    "title": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
@@ -966,9 +974,26 @@
    ],
    "canonical": "https://stratosweb.hu/de/blog-google-erste-seite",
    "canonicalPath": "/de/blog-google-erste-seite",
-   "alternates": [],
-   "robotsMeta": "noindex, follow",
-   "indexable": false,
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-google-first-page"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-google-erste-seite"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
    "og": {
     "title": "Wie kommst du auf Googles erste Seite? 7 Schritte | Stratos",
     "description": "Für Googles erste Seite braucht es System, keine Magie. Sieben Schritte, die ein kleines Unternehmen selbst gehen kann.",
@@ -980,7 +1005,8 @@
    "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": true,
-   "inSitemap": false
+   "inSitemap": true,
+   "inboundLinks": 7
   },
   {
    "route": "/de/blog-google-oder-facebook.html",
@@ -1658,11 +1684,11 @@
    "route": "/de/index.html",
    "served": "/de/",
    "file": "dist/de/index.html",
-   "bytes": 76077,
+   "bytes": 76185,
    "is404": false,
    "lang": "de",
    "title": "Webdesign und Entwicklung | Stratos",
-   "description": "Webdesign, Branding und Werbeanzeigen aus einer Hand, zur festen Monatsgebühr. Vom Kleinunternehmen bis zum Konzern, in drei Sprachen.",
+   "description": "Webdesign, Webentwicklung, Branding und Werbeanzeigen aus einer Hand — im Code gebaut, zum Projektpreis. Vom Kleinunternehmen bis zum Konzern, in drei Sprachen.",
    "h1": [
     "Wir bauen keine Websites.\n    Höhe bauen wir.\n    Stratos · Webdesign und Digitalagentur"
    ],
@@ -1690,7 +1716,7 @@
    "indexable": true,
    "og": {
     "title": "Webdesign und Entwicklung | Stratos",
-    "description": "Webdesign, Branding und Werbeanzeigen aus einer Hand, zur festen Monatsgebühr. Vom Kleinunternehmen bis zum Konzern, in drei Sprachen.",
+    "description": "Webdesign, Webentwicklung, Branding und Werbeanzeigen aus einer Hand — im Code gebaut, zum Projektpreis. Vom Kleinunternehmen bis zum Konzern, in drei Sprachen.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
     "url": "https://stratosweb.hu/de/",
     "type": "website"
@@ -2597,7 +2623,7 @@
    "route": "/en/blog-google-first-page.html",
    "served": "/en/blog-google-first-page",
    "file": "dist/en/blog-google-first-page.html",
-   "bytes": 23911,
+   "bytes": 24523,
    "is404": false,
    "lang": "en",
    "title": "How to reach Google's first page — 7 steps | Stratos",
@@ -2607,9 +2633,26 @@
    ],
    "canonical": "https://stratosweb.hu/en/blog-google-first-page",
    "canonicalPath": "/en/blog-google-first-page",
-   "alternates": [],
-   "robotsMeta": "noindex, follow",
-   "indexable": false,
+   "alternates": [
+    {
+     "hreflang": "hu",
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
+    },
+    {
+     "hreflang": "en",
+     "href": "https://stratosweb.hu/en/blog-google-first-page"
+    },
+    {
+     "hreflang": "de",
+     "href": "https://stratosweb.hu/de/blog-google-erste-seite"
+    },
+    {
+     "hreflang": "x-default",
+     "href": "https://stratosweb.hu/blog-google-elso-oldal"
+    }
+   ],
+   "robotsMeta": null,
+   "indexable": true,
    "og": {
     "title": "How to reach Google's first page — 7 steps | Stratos",
     "description": "Getting onto Google's first page takes a system, not magic. Seven steps a small business can work through on its own.",
@@ -2621,7 +2664,8 @@
    "clientRendered": false,
    "jsonLd": 1,
    "breadcrumb": true,
-   "inSitemap": false
+   "inSitemap": true,
+   "inboundLinks": 7
   },
   {
    "route": "/en/blog-google-or-facebook.html",
@@ -3299,11 +3343,11 @@
    "route": "/en/index.html",
    "served": "/en/",
    "file": "dist/en/index.html",
-   "bytes": 75439,
+   "bytes": 75603,
    "is404": false,
    "lang": "en",
-   "title": "Web design and development | Stratos",
-   "description": "Web design, branding and ads management from one team, on a monthly fee. From small businesses to enterprises, in three languages.",
+   "title": "Web Development & Web Design Agency in Győr | Stratos",
+   "description": "Web development, web design, branding and ads from one team in Győr, Hungary — built in code, quoted per project. In English, German and Hungarian.",
    "h1": [
     "We do not build websites.\n    Altitude is what we build.\n    Stratos · Web design and digital agency"
    ],
@@ -3330,8 +3374,8 @@
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Web design and development | Stratos",
-    "description": "Web design, branding and ads management from one team, on a monthly fee. From small businesses to enterprises, in three languages.",
+    "title": "Web Development & Web Design Agency in Győr | Stratos",
+    "description": "Web development, web design, branding and ads from one team in Győr, Hungary — built in code, quoted per project. In English, German and Hungarian.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
     "url": "https://stratosweb.hu/en/",
     "type": "website"
@@ -3960,11 +4004,11 @@
    "route": "/index.html",
    "served": "/",
    "file": "dist/index.html",
-   "bytes": 76839,
+   "bytes": 76851,
    "is404": false,
    "lang": "hu",
    "title": "Weboldal készítés és fejlesztés | Stratos",
-   "description": "Weboldal készítés, branding és hirdetéskezelés egy kézben, havidíjas konstrukcióban. KKV-tól nagyvállalatig, magyarul, angolul és németül.",
+   "description": "Weboldal készítés, branding és hirdetéskezelés egy kézben, egyedi ajánlattal. Győrből, KKV-tól nagyvállalatig, magyarul, angolul és németül.",
    "h1": [
     "Nem weboldalakat építünk.\n    Magasságot építünk.\n    Stratos · Weboldal készítés és digitális ügynökség"
    ],
@@ -3992,7 +4036,7 @@
    "indexable": true,
    "og": {
     "title": "Weboldal készítés és fejlesztés | Stratos",
-    "description": "Weboldal készítés, branding és hirdetéskezelés egy kézben, havidíjas konstrukcióban. KKV-tól nagyvállalatig, magyarul, angolul és németül.",
+    "description": "Weboldal készítés, branding és hirdetéskezelés egy kézben, egyedi ajánlattal. Győrből, KKV-tól nagyvállalatig, magyarul, angolul és németül.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
     "url": "https://stratosweb.hu/",
     "type": "website"
