@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-09T17:18:29.095Z",
+ "generated": "2026-10-09T17:19:44.174Z",
  "origin": "https://stratosweb.hu",
  "previewOrigin": false,
  "excludedFromAudit": [
@@ -2017,11 +2017,11 @@
    "route": "/de/projekte.html",
    "served": "/de/projekte",
    "file": "dist/de/projekte.html",
-   "bytes": 25391,
+   "bytes": 25455,
    "is404": false,
    "lang": "de",
    "title": "Projekte — Webdesign und Webentwicklung | Stratos",
-   "description": "Webdesign und Webentwicklung aus Győr: eine von Awwwards ausgezeichnete 3D-Website, eine dreisprachige Bau-Website und mehr — mit Ergebnissen.",
+   "description": "Webdesign und Webentwicklung: eine von Awwwards ausgezeichnete 3D-Website, eine dreisprachige Bau-Website, ein Barbershop und Mentaltraining — mit Ergebnissen.",
    "h1": [
     "Live-Websites,keine Portfoliobilder."
    ],
@@ -2049,7 +2049,7 @@
    "indexable": true,
    "og": {
     "title": "Projekte — Webdesign und Webentwicklung | Stratos",
-    "description": "Webdesign und Webentwicklung aus Győr: eine von Awwwards ausgezeichnete 3D-Website, eine dreisprachige Bau-Website und mehr — mit Ergebnissen.",
+    "description": "Webdesign und Webentwicklung: eine von Awwwards ausgezeichnete 3D-Website, eine dreisprachige Bau-Website, ein Barbershop und Mentaltraining — mit Ergebnissen.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
     "url": "https://stratosweb.hu/de/projekte",
     "type": "website"
@@ -3343,11 +3343,11 @@
    "route": "/en/index.html",
    "served": "/en/",
    "file": "dist/en/index.html",
-   "bytes": 75648,
+   "bytes": 75636,
    "is404": false,
    "lang": "en",
-   "title": "Web Development & Web Design Agency in Győr | Stratos",
-   "description": "Web development, web design, branding and ads from one team in Győr, Hungary — built in code, quoted per project. In English, German and Hungarian.",
+   "title": "Web Development & Web Design Agency | Stratos",
+   "description": "Web development, web design, branding and ads from one team — built in code, quoted per project. From small businesses to enterprises, in three languages.",
    "h1": [
     "We do not build websites.\n    Altitude is what we build.\n    Stratos · Web design and digital agency"
    ],
@@ -3374,8 +3374,8 @@
    "robotsMeta": null,
    "indexable": true,
    "og": {
-    "title": "Web Development & Web Design Agency in Győr | Stratos",
-    "description": "Web development, web design, branding and ads from one team in Győr, Hungary — built in code, quoted per project. In English, German and Hungarian.",
+    "title": "Web Development & Web Design Agency | Stratos",
+    "description": "Web development, web design, branding and ads from one team — built in code, quoted per project. From small businesses to enterprises, in three languages.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
     "url": "https://stratosweb.hu/en/",
     "type": "website"
@@ -3772,11 +3772,11 @@
    "route": "/en/work.html",
    "served": "/en/work",
    "file": "dist/en/work.html",
-   "bytes": 24779,
+   "bytes": 24843,
    "is404": false,
    "lang": "en",
    "title": "Work — web design and web development projects | Stratos",
-   "description": "Web design and web development from Győr, Hungary: an Awwwards-honoured 3D site, a three-language construction site, and more — with results.",
+   "description": "Web design and web development: an Awwwards-honoured 3D landscaping site, a three-language construction site, a barbershop and mental training — with results.",
    "h1": [
     "Live sites,not portfolio pictures."
    ],
@@ -3804,7 +3804,7 @@
    "indexable": true,
    "og": {
     "title": "Work — web design and web development projects | Stratos",
-    "description": "Web design and web development from Győr, Hungary: an Awwwards-honoured 3D site, a three-language construction site, and more — with results.",
+    "description": "Web design and web development: an Awwwards-honoured 3D landscaping site, a three-language construction site, a barbershop and mental training — with results.",
     "image": "https://stratosweb.hu/assets/img/hero.jpg",
     "url": "https://stratosweb.hu/en/work",
     "type": "website"
