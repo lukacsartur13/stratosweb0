@@ -1206,7 +1206,7 @@ DECK = """<!-- Flight deck. Three deterministic states — opening, journey, des
     <img src="{{base}}assets/img/plane-cursor.png" alt="">
     <span class="brand__wm"><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
   </a>
-  <p class="nav__alt" aria-hidden="true"><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></p>
+  <p class="nav__alt" aria-hidden="true" data-nosnippet><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></p>
   <!-- 2026-10-07: logo, quote button and menu, nothing else. The desktop link
        row duplicated the full-screen menu (which also carries the services and
        the language switcher), so the owner took it out. -->
@@ -1217,7 +1217,11 @@ DECK = """<!-- Flight deck. Three deterministic states — opening, journey, des
 <!-- Full-viewport editorial navigation (§7.4). Still a plain list of anchors:
      no router, no interception, so middle-click, ctrl-click, back and the
      browser's own history all behave exactly as they did. -->
-<div class="menu" id="menu" hidden>
+<!-- data-nosnippet (here, on the rail and on the altitude readouts): Google was
+     quoting the menu's service list with its altitude figures ("Web
+     development 9,400 M") as a page's search snippet. Navigation and
+     instrument read-outs are never what a result should say. -->
+<div class="menu" id="menu" hidden data-nosnippet>
   <div class="menu__veil" data-menu-dismiss></div>
   <nav class="menu__panel" aria-label="{{menu_aria_full}}">
     <svg class="menu__trace" data-trace viewBox="0 0 120 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
@@ -1773,7 +1777,7 @@ SHELL = """<!DOCTYPE html>
 # Subpages carry the altimeter rail; the homepage carries the full instrument
 # panel, because there the climb *is* the page.
 RAIL = """
-<aside class="rail" aria-hidden="true">
+<aside class="rail" aria-hidden="true" data-nosnippet>
   <img class="rail__mark" src="{{base}}assets/img/plane-cursor.png" alt="">
   <div class="rail__tape"><div class="rail__ticks"></div></div>
   <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">{{unit}}</span></div>
@@ -1812,7 +1816,7 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge>
       <path d="M600 120 V 228" class="trace__lit"/>
       <circle class="trace__node" cx="600" cy="120" r="4"/>
     </svg>
-    <p class="arrival__state" aria-hidden="true"><span>{{ceiling_label}}</span><span>{{converge_state}}</span></p>
+    <p class="arrival__state" aria-hidden="true" data-nosnippet><span>{{ceiling_label}}</span><span>{{converge_state}}</span></p>
     <p class="arrival__lede">{{converge_lede}}</p>
     <h2 class="arrival__h display" data-kinetic data-kinetic-from="104 700 0" data-kinetic-to="88 780 -.015">{{cta_head}}</h2>
     <p class="arrival__cta converge__cta">

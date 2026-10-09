@@ -62,7 +62,7 @@
 <canvas class="contrail" aria-hidden="true"></canvas>
 <div class="plane-cursor" aria-hidden="true"><img src="../assets/img/plane-cursor.png" alt="" width="96" height="96"></div>
 
-<aside class="rail" aria-hidden="true">
+<aside class="rail" aria-hidden="true" data-nosnippet>
   <img class="rail__mark" src="../assets/img/plane-cursor.png" alt="" width="96" height="96">
   <div class="rail__tape"><div class="rail__ticks"></div></div>
   <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">METRES</span></div>
@@ -80,7 +80,7 @@
     <img src="../assets/img/plane-cursor.png" alt="" width="96" height="96">
     <span class="brand__wm"><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
   </a>
-  <p class="nav__alt" aria-hidden="true"><span class="nav__alt-k">ALT</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">M</span></p>
+  <p class="nav__alt" aria-hidden="true" data-nosnippet><span class="nav__alt-k">ALT</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">M</span></p>
   <!-- 2026-10-07: logo, quote button and menu, nothing else. The desktop link
        row duplicated the full-screen menu (which also carries the services and
        the language switcher), so the owner took it out. -->
@@ -91,7 +91,11 @@
 <!-- Full-viewport editorial navigation (§7.4). Still a plain list of anchors:
      no router, no interception, so middle-click, ctrl-click, back and the
      browser's own history all behave exactly as they did. -->
-<div class="menu" id="menu" hidden>
+<!-- data-nosnippet (here, on the rail and on the altitude readouts): Google was
+     quoting the menu's service list with its altitude figures ("Web
+     development 9,400 M") as a page's search snippet. Navigation and
+     instrument read-outs are never what a result should say. -->
+<div class="menu" id="menu" hidden data-nosnippet>
   <div class="menu__veil" data-menu-dismiss></div>
   <nav class="menu__panel" aria-label="Full navigation">
     <svg class="menu__trace" data-trace viewBox="0 0 120 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
@@ -187,7 +191,7 @@
       <path d="M600 120 V 228" class="trace__lit"/>
       <circle class="trace__node" cx="600" cy="120" r="4"/>
     </svg>
-    <p class="arrival__state" aria-hidden="true"><span>30 000 M</span><span>CALIBRATION COMPLETE</span></p>
+    <p class="arrival__state" aria-hidden="true" data-nosnippet><span>30 000 M</span><span>CALIBRATION COMPLETE</span></p>
     <p class="arrival__lede">Where should we take your business next?</p>
     <h2 class="arrival__h display" data-kinetic data-kinetic-from="104 700 0" data-kinetic-to="88 780 -.015">Your next altitude starts here.</h2>
     <p class="arrival__cta converge__cta">
