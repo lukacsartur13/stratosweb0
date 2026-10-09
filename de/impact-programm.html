@@ -76,7 +76,7 @@
      down the document you are. The old direction-based hide/show is gone; a
      header that vanishes because you nudged the wheel upward is jitter, not
      navigation. -->
-<header class="nav" data-state="opening">
+<header class="nav" data-state="opening" data-nosnippet>
   <a class="brand" href="/de/" aria-label="Stratos — Startseite">
     <img src="../assets/img/plane-cursor.png" alt="" width="96" height="96">
     <span class="brand__wm"><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
@@ -92,10 +92,12 @@
 <!-- Full-viewport editorial navigation (§7.4). Still a plain list of anchors:
      no router, no interception, so middle-click, ctrl-click, back and the
      browser's own history all behave exactly as they did. -->
-<!-- data-nosnippet (here, on the rail and on the altitude readouts): Google was
-     quoting the menu's service list with its altitude figures ("Web
-     development 9,400 M") as a page's search snippet. Navigation and
-     instrument read-outs are never what a result should say. -->
+<!-- data-nosnippet (here, on the header, the rail, the closing CTA and the
+     footer): Google was quoting the menu's service list with its altitude
+     figures ("Web development 9,400 M") as a page's search snippet. A snippet
+     must come from the page's own content; navigation, chrome and instrument
+     read-outs never should. Links inside stay crawlable — nosnippet only
+     keeps the TEXT out of the result. -->
 <div class="menu" id="menu" hidden data-nosnippet>
   <div class="menu__veil" data-menu-dismiss></div>
   <nav class="menu__panel" aria-label="Vollständige Navigation">
@@ -540,7 +542,7 @@
     </div>
   </section>
 </main>
-<section class="arrival" data-converge>
+<section class="arrival" data-converge data-nosnippet>
   <div class="wrap">
     <svg class="arrival__trace" data-trace data-trace-stagger="0.5" viewBox="0 0 1200 240" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <path d="M0 12 C 300 12, 420 120, 600 120"/>
@@ -557,7 +559,7 @@
     </p>
   </div>
 </section>
-<footer class="foot">
+<footer class="foot" data-nosnippet>
   <div class="wrap">
     <div class="foot__grid">
       <div>

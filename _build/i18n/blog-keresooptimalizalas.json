@@ -3,10 +3,6 @@
   "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>SEO</b>",
   "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>SEO</b>"
  ],
- "Mi az a keresőoptimalizálás, mit tudsz belőle ingyen megcsinálni, mennyibe kerül, ha nem magad csinálod, és mi a helyzet a mobilalkalmazásokkal.": [
-  "What SEO actually is, how much of it you can do for free, what it costs if you don't, and how app stores differ.",
-  "Was SEO wirklich ist, wie viel davon Sie kostenlos erledigen können, was es sonst kostet und wie es in App-Stores läuft."
- ],
  "A keresőoptimalizálás nem egy titkos technika, hanem néhány unalmas döntés, amit vagy meghozol, vagy nem. Ez a cikk arról szól, melyiket tudod magad meghozni, és melyikért érdemes fizetni.": [
   "SEO is not a secret technique but a handful of dull decisions you either make or don't. This is about which ones you can make yourself and which are worth paying for.",
   "SEO ist keine Geheimtechnik, sondern eine Handvoll langweiliger Entscheidungen, die Sie treffen oder nicht. Hier geht es darum, welche Sie selbst treffen können und für welche sich Bezahlen lohnt."
@@ -46,10 +42,6 @@
  "<b>Sebesség.</b> A PageSpeed Insights ingyen megmondja, mi lassítja az oldalad. A javítások fele — túl nagy képek, felesleges betűkészletek — fejlesztő nélkül is megoldható.": [
   "<b>Speed.</b> PageSpeed Insights tells you free of charge what is slowing the site down. Half the fixes — oversized images, unused fonts — need no developer.",
   "<b>Geschwindigkeit.</b> PageSpeed Insights sagt Ihnen kostenlos, was die Seite bremst. Die Hälfte der Korrekturen — zu große Bilder, ungenutzte Schriften — braucht keinen Entwickler."
- ],
- "Mennyibe kerül, ha nem magad csinálod?": [
-  "What does it cost if you don't do it yourself?",
-  "Was kostet es, wenn Sie es nicht selbst machen?"
  ],
  "A google keresőoptimalizálás árak Magyarországon nagyjából három sávban mozognak, és a különbség nem a minőség, hanem a terjedelem.": [
   "Google SEO prices in Hungary sit in roughly three bands, and what separates them is scope, not quality.",
@@ -119,16 +111,28 @@
   "If you would rather not do it all yourself, but with someone who measures it too.",
   "Wenn Sie es nicht allein machen wollen, sondern mit jemandem, der auch misst."
  ],
- "Mi az a keresőoptimalizálás, és mennyibe kerül? | Stratos": [
-  "What is SEO, and what does it cost? | Stratos",
-  "Was ist SEO, und was kostet es? | Stratos"
- ],
- "Mi az a keresőoptimalizálás, és mennyibe kerül?": [
-  "What is SEO, and what does it cost?",
-  "Was ist SEO, und was kostet es?"
- ],
  "SEO ügynökség és szakértő": [
   "SEO consultancy",
   "SEO Betreuung"
+ ],
+ "Mi az a keresőoptimalizálás? SEO útmutató kezdőknek | Stratos": [
+  "What is SEO? A beginner's guide | Stratos",
+  "Was ist SEO? Ein Leitfaden für Einsteiger | Stratos"
+ ],
+ "Mi az a keresőoptimalizálás? SEO útmutató kezdőknek": [
+  "What is SEO? A beginner's guide",
+  "Was ist SEO? Ein Leitfaden für Einsteiger"
+ ],
+ "Mikor érdemes szakemberre bízni?": [
+  "When is it worth handing it to a specialist?",
+  "Wann lohnt es sich, Fachleute zu beauftragen?"
+ ],
+ "Mi az a keresőoptimalizálás, mit tudsz belőle magad, ingyen megcsinálni, mikor érdemes szakemberre bízni, és mi a helyzet a mobilalkalmazásokkal.": [
+  "What SEO is, what you can do yourself for free, when it is worth handing to a specialist, and what about mobile apps.",
+  "Was SEO ist, was Sie selbst kostenlos erledigen können, wann sich Fachleute lohnen und wie es bei mobilen Apps aussieht."
+ ],
+ "Hogy nálunk mi mennyibe kerül és mi van benne, azt a <a class=\"tlink\" href=\"keresooptimalizalas.html\">keresőoptimalizálás szolgáltatás</a> oldalán írtuk le.": [
+  "What it costs with us, and what is included, is on our <a class=\"tlink\" href=\"keresooptimalizalas.html\">SEO service</a> page.",
+  "Was es bei uns kostet und was enthalten ist, steht auf der Seite unserer <a class=\"tlink\" href=\"keresooptimalizalas.html\">SEO-Betreuung</a>."
  ]
 }

@@ -488,10 +488,6 @@
   "Write down what people ask you on the phone. Those phrases are your starting point, not the ones you would use at a trade conference. If you are still at the basics, our article on <a class=\"tlink\" href=\"blog-what-is-seo.html\">what SEO is</a> gives you the frame first.",
   "Schreiben Sie auf, was man Sie am Telefon fragt. Diese Formulierungen sind Ihr Ausgangspunkt, nicht die von einer Fachkonferenz. Wenn Sie noch bei den Grundlagen sind, gibt unser Artikel <a class=\"tlink\" href=\"blog-was-ist-seo.html\">Was ist SEO</a> zuerst den Rahmen."
  ],
- "Mi az a keresőoptimalizálás, és mennyibe kerül?": [
-  "What is SEO, and what does it cost?",
-  "Was ist SEO, und was kostet es?"
- ],
  "Hogyan kövesd, hányadik vagy a Google-ben?": [
   "How do you track where you rank on Google?",
   "Wie verfolgen Sie, auf welchem Platz Sie bei Google stehen?"
@@ -527,5 +523,9 @@
  "Ha nem magad csinálnád: a lépéseket mi visszük végig, havonta érthető riporttal.": [
   "If you would rather not do it yourself: we take the steps for you, with a clear monthly report.",
   "Wenn Sie es nicht selbst machen möchten: Wir übernehmen die Schritte, mit einem verständlichen Monatsbericht."
+ ],
+ "Mi az a keresőoptimalizálás? SEO útmutató kezdőknek": [
+  "What is SEO? A beginner's guide",
+  "Was ist SEO? Ein Leitfaden für Einsteiger"
  ]
 }
