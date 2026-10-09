@@ -16,52 +16,52 @@ const Q = [
   {t:'email',   q:'E-Mail-Adresse:', req:1, id:'email'},
 
   // ===== KKV ÁG =====
-  {t:'textarea',q:'Womit beschäftigt sich dein Unternehmen? (kurze Beschreibung)', req:1, cond:kkv},
-  {t:'text',    q:'Habt ihr eine aktuelle Website? Wenn ja, wie lautet die Adresse?', id:'weboldal', cond:kkv},
-  {t:'radio',   q:'Wie hast du uns gefunden?', other:1, cond:kkv,
+  {t:'textarea',q:'Womit beschäftigt sich Ihr Unternehmen? (kurze Beschreibung)', req:1, cond:kkv},
+  {t:'text',    q:'Haben Sie eine aktuelle Website? Wenn ja, wie lautet die Adresse?', id:'weboldal', cond:kkv},
+  {t:'radio',   q:'Wie haben Sie uns gefunden?', other:1, cond:kkv,
     o:['Google-Suche','Facebook / Instagram','TikTok','Empfehlung aus dem Bekanntenkreis']},
   {t:'check',   q:'Was ist das Ziel der Website? (Mehrfachauswahl)', req:1, other:1, cond:kkv,
     o:['Mehr Kunden gewinnen','Online verkaufen (Shop)','Terminbuchung','Markenaufbau']},
-  {t:'radio',   q:'Wer sind deine Hauptkunden?', req:1, cond:kkv,
+  {t:'radio',   q:'Wer sind Ihre Hauptkunden?', req:1, cond:kkv,
     o:['Privatkunden (B2C)','Firmenkunden (B2B)','Beides']},
-  {t:'radio',   q:'Brauchst du eine ein- oder mehrsprachige Website?', other:1, cond:kkv,
-    hint:'Wenn du mehrere Sprachen brauchst, liste sie bitte im Feld „Sonstiges“ auf.',
+  {t:'radio',   q:'Brauchen Sie eine ein- oder mehrsprachige Website?', other:1, cond:kkv,
+    hint:'Wenn Sie mehrere Sprachen brauchen, listen Sie sie bitte im Feld „Sonstiges“ auf.',
     o:['Einsprachig','Mehrsprachig']},
-  {t:'textarea',q:'Liste deine Leistungen / Produkte auf und markiere, was am wichtigsten ist.', req:1, cond:kkv,
-    hint:'Wenn du saisonale oder Aktionsangebote hast, schreib sie ebenfalls hierher.'},
-  {t:'textarea',q:'Welche Menüpunkte / Unterseiten stellst du dir vor?', cond:kkv,
-    hint:'Zum Beispiel: Start, Leistungen, Über uns, Preise, Kontakt. Wenn du noch keine Vorstellung hast, lass es leer — wir schlagen etwas vor.'},
+  {t:'textarea',q:'Listen Sie Ihre Leistungen / Produkte auf und markieren Sie, was am wichtigsten ist.', req:1, cond:kkv,
+    hint:'Wenn Sie saisonale oder Aktionsangebote haben, schreiben Sie sie ebenfalls hierher.'},
+  {t:'textarea',q:'Welche Menüpunkte / Unterseiten stellen Sie sich vor?', cond:kkv,
+    hint:'Zum Beispiel: Start, Leistungen, Über uns, Preise, Kontakt. Wenn Sie noch keine Vorstellung haben, lassen Sie es leer — wir schlagen etwas vor.'},
   {t:'check',   q:'Welche Funktionen braucht die Seite?', req:1, other:1, id:'funkciok', cond:kkv,
     o:['Terminbuchungssystem','Onlineshop','Kontaktformular','Chat / Messenger / WhatsApp','Blog','Newsletter-Anmeldung','Automatische Angebotsanfrage','CRM','Zahlungssystem','Werbe-Tracking (Meta Pixel, Google Ads)']},
-  {t:'textarea',q:'Onlineshop-Details: Mit wie vielen Produkten würdet ihr starten, braucht ihr eine Versandintegration (z. B. DHL, GLS), und gibt es einen bevorzugten Zahlungsanbieter (z. B. Stripe, PayPal, Klarna)?',
+  {t:'textarea',q:'Onlineshop-Details: Mit wie vielen Produkten würden Sie starten, brauchen Sie eine Versandintegration (z. B. DHL, GLS), und gibt es einen bevorzugten Zahlungsanbieter (z. B. Stripe, PayPal, Klarna)?',
     cond:()=> kkv() && (ans('funkciok').value||[]).includes('Onlineshop')},
-  {t:'radio',   q:'Hast du bereits ein Logo / Erscheinungsbild?', req:1, cond:kkv,
+  {t:'radio',   q:'Haben Sie bereits ein Logo / Erscheinungsbild?', req:1, cond:kkv,
     o:['Logo und vollständiges Erscheinungsbild (Farben, Schriften, Brandbook)','Nur ein Logo','Nein, Erscheinungsbild wird ebenfalls benötigt']},
-  {t:'radio',   q:'Hast du eine eigene Domain und Hosting?', other:1, cond:kkv,
-    hint:'Die Domain ist die Adresse der Website (z. B. firma.de). Wenn du es weißt, trag im Feld „Sonstiges“ ein, wo sie registriert ist.',
+  {t:'radio',   q:'Haben Sie eine eigene Domain und Hosting?', other:1, cond:kkv,
+    hint:'Die Domain ist die Adresse der Website (z. B. firma.de). Wenn Sie es wissen, tragen Sie im Feld „Sonstiges“ ein, wo sie registriert ist.',
     o:['Ja, und ich habe Zugriff','Ja, aber ich verwalte sie nicht','Noch nicht']},
   {t:'radio',   q:'Wer liefert die Inhalte (Texte, Bilder)?', req:1, cond:kkv,
     o:['Wir liefern alles','Teilweise vorhanden, wir brauchen Hilfe','Wir wünschen vollständige Texterstellung und Bildmaterial']},
-  {t:'radio',   q:'Möchtest du die Seite später selbst bearbeiten?', cond:kkv,
-    o:['Ja, ich möchte Bearbeitungsmöglichkeit und Einweisung','Nein, die Änderungen würde ich euch überlassen','Weiß ich noch nicht']},
+  {t:'radio',   q:'Möchten Sie die Seite später selbst bearbeiten?', cond:kkv,
+    o:['Ja, ich möchte Bearbeitungsmöglichkeit und Einweisung','Nein, die Änderungen würde ich Ihnen überlassen','Weiß ich noch nicht']},
   {t:'textarea',q:'Eine ausführlichere Beschreibung des Unternehmens für die Texterstellung', cond:kkv,
-    hint:'Optional — wenn du bereits Vorstellungsmaterial hast (Website, Facebook-Seite, Broschüre), reicht ein Link.'},
-  {t:'radio',   q:'Welcher Stil gefällt dir am besten?', req:1, other:1, cond:kkv,
+    hint:'Optional — wenn Sie bereits Vorstellungsmaterial haben (Website, Facebook-Seite, Broschüre), reicht ein Link.'},
+  {t:'radio',   q:'Welcher Stil gefällt Ihnen am besten?', req:1, other:1, cond:kkv,
     o:['Klar, minimalistisch','Modern, dynamisch','Hochwertig, elegant','Kreativ, mutig']},
   {t:'radio',   q:'Formensprache:', req:1, cond:kkv,
     o:['Abgerundete Elemente (weich, freundlich)','Kantige, blockartige, strukturierte Elemente (seriös, technisch)','Gemischt']},
   {t:'radio',   q:'Farben:', req:1, other:1, cond:kkv,
-    hint:'Wenn du eine konkrete Farbpalette hast, trag die Farbcodes im Feld „Sonstiges“ ein (z. B. ABCD25).',
+    hint:'Wenn Sie eine konkrete Farbpalette haben, tragen Sie die Farbcodes im Feld „Sonstiges“ ein (z. B. ABCD25).',
     o:['Hell (Weiß, Beige, Pastell)','Dunkel (Schwarz, Anthrazit, tiefe Töne)','Markenfarben dominieren']},
   {t:'radio',   q:'Wie auffällig soll die Seite sein?', req:1, cond:kkv,
     o:['Klar und schnell — die Funktion zählt','Modern, mit dezenten Animationen','Ein beeindruckendes „Wow“-Erlebnis mit Scroll-Animationen']},
-  {t:'textarea',q:'Gibt es eine Website, die dir gefällt? Und eine, die dir gar nicht gefällt? (Links)', cond:kkv,
+  {t:'textarea',q:'Gibt es eine Website, die Ihnen gefällt? Und eine, die Ihnen gar nicht gefällt? (Links)', cond:kkv,
     hint:'Ein Negativbeispiel hilft mindestens so viel wie ein Positivbeispiel.'},
-  {t:'textarea',q:'Wer sind deine Hauptwettbewerber, und worin unterscheidest du dich?', cond:kkv},
-  {t:'radio',   q:'Schaltet ihr aktuell Werbung?', req:1, other:1, cond:kkv,
-    hint:'Falls ja, nenne die Plattform bitte im Feld „Sonstiges“.',
+  {t:'textarea',q:'Wer sind Ihre Hauptwettbewerber, und worin unterscheiden Sie sich?', cond:kkv},
+  {t:'radio',   q:'Schalten Sie aktuell Werbung?', req:1, other:1, cond:kkv,
+    hint:'Falls ja, nennen Sie die Plattform bitte im Feld „Sonstiges“.',
     o:['Ja','Nein']},
-  {t:'text',    q:'Links zu euren Social-Media-Seiten:', cond:kkv,
+  {t:'text',    q:'Links zu Ihren Social-Media-Seiten:', cond:kkv,
     hint:'Facebook, Instagram, TikTok, LinkedIn — was immer vorhanden ist.'},
   {t:'radio',   q:'Bis wann soll die Website fertig sein?', req:1, other:1, id:'hatarido', cond:kkv,
     o:['Innerhalb einer Woche','Innerhalb eines Monats','Innerhalb einiger Monate']},
@@ -102,13 +102,13 @@ const Q = [
     hint:'Wettbewerber oder andere Unternehmensseiten, die Orientierung geben — als positives oder negatives Beispiel.'},
 
   // ===== KÖZÖS: zárás =====
-  {t:'radio',   q:'Möchtest du eine kostenlose Beratung anfragen?', id:'konzultacio',
+  {t:'radio',   q:'Möchten Sie eine kostenlose Beratung anfragen?', id:'konzultacio',
     o:['Ja','Ich brauche keine']},
   {t:'radio',   q:'Wie sollen wir uns abstimmen?', other:1,
-    hint:'Im Feld „Sonstiges“ kannst du angeben, wann du am besten erreichbar bist.',
+    hint:'Im Feld „Sonstiges“ können Sie angeben, wann Sie am besten erreichbar sind.',
     o:['Telefonisch','Google Meet / Videocall','Persönlich'],
     cond:()=> ans('konzultacio').value === 'Ja'},
-  {t:'textarea',q:'Gibt es noch etwas, das du für wichtig hältst?'},
+  {t:'textarea',q:'Gibt es noch etwas, das Sie für wichtig halten?'},
   {t:'consent', q:'Datenschutzerklärung', req:1,
     o:['Mit dem Absenden dieses Formulars erkläre ich, dass ich die Datenschutzerklärung und ihre Bedingungen gelesen habe und akzeptiere.']},
 ];
@@ -159,9 +159,9 @@ function render(){
   let f = '';
   const saved = answers[step] || {};
   if(['text','tel','email'].includes(d.t)){
-    f = `<input type="${d.t==='text'?'text':d.t}" id="inp" placeholder="Hier deine Antwort eingeben…" value="${esc(saved.value||'')}">`;
+    f = `<input type="${d.t==='text'?'text':d.t}" id="inp" placeholder="Hier Ihre Antwort eingeben…" value="${esc(saved.value||'')}">`;
   } else if(d.t === 'textarea'){
-    f = `<textarea id="inp" placeholder="Hier deine Antwort eingeben…">${esc(saved.value||'')}</textarea>`;
+    f = `<textarea id="inp" placeholder="Hier Ihre Antwort eingeben…">${esc(saved.value||'')}</textarea>`;
   } else if(d.t === 'radio'){
     f = `<div class="opts">` +
       d.o.map(o=>`<label class="opt radio${saved.value===o?' selected':''}"><input type="radio" name="r" value="${esc(o)}"><span class="box"></span>${esc(o)}</label>`).join('') +
@@ -282,7 +282,7 @@ function renderIntro(){
     <div class="quiz__num">Stratos · Anforderungen</div>
     <h1>Website<br>Anforderungs-<br>fragebogen</h1>
     <p>Jede Frage erscheint auf einer eigenen Seite. Mit einem Stern (<span class="quiz__req">*</span>) markierte Fragen sind Pflichtfelder.</p>
-    <p>Auf Basis deiner Antworten melden wir uns innerhalb weniger Stunden mit weiteren Informationen und einem individuellen Angebot.</p>
+    <p>Auf Basis Ihrer Antworten melden wir uns innerhalb weniger Stunden mit weiteren Informationen und einem individuellen Angebot.</p>
     <p>Geschätzte Bearbeitungszeit: 8 Minuten.</p>
     <div class="quiz__nav"><button id="start">Starten</button><span class="quiz__enter">ENTER ↵</span></div>
   </div>`;
@@ -348,7 +348,7 @@ const DONE_HTML = {
   success: () => `<div class="quiz__step quiz__done" data-state="success">
       <div class="quiz__mark">✓</div>
       <h1 class="quiz__q">Danke fürs Ausfüllen.</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">Wir haben deine Antworten erfasst und melden uns in Kürze.</p>
+      <p class="quiz__hint" style="margin:1rem auto 0">Wir haben Ihre Antworten erfasst und melden uns in Kürze.</p>
       <div class="quiz__nav" style="justify-content:center"><a class="btn" href="index.html"><span>Zurück zur Startseite</span></a></div>
     </div>`,
   invalid: msg => `<div class="quiz__step quiz__done" data-state="invalid">
@@ -358,12 +358,12 @@ const DONE_HTML = {
     </div>`,
   limited: () => `<div class="quiz__step quiz__done" data-state="limited">
       <h1 class="quiz__q">Zu viele Übermittlungen hintereinander.</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">Bitte warte eine Minute und versuch es dann erneut.</p>
+      <p class="quiz__hint" style="margin:1rem auto 0">Bitte warten Sie eine Minute und versuchen Sie es dann erneut.</p>
       <div class="quiz__nav" style="justify-content:center"><button id="retry">Erneut versuchen</button></div>
     </div>`,
   error: () => `<div class="quiz__step quiz__done" data-state="error">
       <h1 class="quiz__q">Beim Senden ist ein Fehler aufgetreten.</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">Bitte versuch es erneut oder schreib an<a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a>.</p>
+      <p class="quiz__hint" style="margin:1rem auto 0">Bitte versuchen Sie es erneut oder schreiben Sie an<a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a>.</p>
       <div class="quiz__nav" style="justify-content:center"><button id="retry">Erneut versuchen</button></div>
     </div>`,
 };
@@ -401,7 +401,7 @@ async function renderDone(){
   const name = fields.kitolto.length >= 2 ? fields.kitolto : fields.cegnev;
   if(name.length < 2){
     sending = false;
-    finish('invalid', 'Bitte gib den Firmen- oder Ansprechpartnernamen an.');
+    finish('invalid', 'Bitte geben Sie den Firmen- oder Ansprechpartnernamen an.');
     return;
   }
   const problem = window.Stratos.lead.validate('questionnaire', fields);

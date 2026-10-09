@@ -9,7 +9,7 @@
  ],
  "Töltsd ki a kérdőívet pár perc alatt, és a válaszaid alapján személyre szabott árajánlattal keresünk.": [
   "Fill in the questionnaire in a few minutes and we'll come back with a quote tailored to your answers.",
-  "Füll den Fragebogen in wenigen Minuten aus, und wir melden uns mit einem auf deine Antworten zugeschnittenen Angebot."
+  "Füllen Sie den Fragebogen in wenigen Minuten aus, und wir melden uns mit einem auf Ihre Antworten zugeschnittenen Angebot."
  ],
  "Nagyvállalat / multinacionális cég": [
   "Large enterprise / multinational",
@@ -45,15 +45,15 @@
  ],
  "Mivel foglalkozik a céged? (rövid bemutatás)": [
   "What does your company do? (short description)",
-  "Womit beschäftigt sich dein Unternehmen? (kurze Beschreibung)"
+  "Womit beschäftigt sich Ihr Unternehmen? (kurze Beschreibung)"
  ],
  "Van jelenlegi weboldalatok? Ha igen, mi a címe?": [
   "Do you have a current website? If so, what's the address?",
-  "Habt ihr eine aktuelle Website? Wenn ja, wie lautet die Adresse?"
+  "Haben Sie eine aktuelle Website? Wenn ja, wie lautet die Adresse?"
  ],
  "Hogyan találtál ránk?": [
   "How did you find us?",
-  "Wie hast du uns gefunden?"
+  "Wie haben Sie uns gefunden?"
  ],
  "Google keresés": [
   "Google search",
@@ -89,7 +89,7 @@
  ],
  "Kik a fő ügyfeleid?": [
   "Who are your main clients?",
-  "Wer sind deine Hauptkunden?"
+  "Wer sind Ihre Hauptkunden?"
  ],
  "Lakossági (B2C)": [
   "Consumers (B2C)",
@@ -101,11 +101,11 @@
  ],
  "Egynyelvű vagy többnyelvű weboldalra van szükséged?": [
   "Do you need a single-language or a multilingual website?",
-  "Brauchst du eine ein- oder mehrsprachige Website?"
+  "Brauchen Sie eine ein- oder mehrsprachige Website?"
  ],
  "Ha több nyelv kell, kérlek sorold fel őket az egyéb részben.": [
   "If you need several languages, please list them in the other field.",
-  "Wenn du mehrere Sprachen brauchst, liste sie bitte im Feld „Sonstiges“ auf."
+  "Wenn Sie mehrere Sprachen brauchen, listen Sie sie bitte im Feld „Sonstiges“ auf."
  ],
  "Egynyelvű": [
   "Single-language",
@@ -117,19 +117,19 @@
  ],
  "Sorold fel a szolgáltatásaidat / termékeidet, és jelöld meg, melyik a legfontosabb!": [
   "List your services / products and mark which one matters most.",
-  "Liste deine Leistungen / Produkte auf und markiere, was am wichtigsten ist."
+  "Listen Sie Ihre Leistungen / Produkte auf und markieren Sie, was am wichtigsten ist."
  ],
  "Ha vannak szezonális vagy akciós ajánlataid, azokat is írd ide.": [
   "If you have seasonal or promotional offers, add them here too.",
-  "Wenn du saisonale oder Aktionsangebote hast, schreib sie ebenfalls hierher."
+  "Wenn Sie saisonale oder Aktionsangebote haben, schreiben Sie sie ebenfalls hierher."
  ],
  "Milyen menüpontokat / aloldalakat képzelsz el?": [
   "What menu items / subpages do you have in mind?",
-  "Welche Menüpunkte / Unterseiten stellst du dir vor?"
+  "Welche Menüpunkte / Unterseiten stellen Sie sich vor?"
  ],
  "Például: Főoldal, Szolgáltatások, Rólunk, Árak, Kapcsolat. Ha nincs elképzelésed, hagyd üresen — javaslunk mi.": [
   "For example: Home, Services, About, Pricing, Contact. If you have no idea yet, leave it empty — we'll suggest something.",
-  "Zum Beispiel: Start, Leistungen, Über uns, Preise, Kontakt. Wenn du noch keine Vorstellung hast, lass es leer — wir schlagen etwas vor."
+  "Zum Beispiel: Start, Leistungen, Über uns, Preise, Kontakt. Wenn Sie noch keine Vorstellung haben, lassen Sie es leer — wir schlagen etwas vor."
  ],
  "Milyen funkciók kellenek az oldalra?": [
   "What features does the site need?",
@@ -165,11 +165,11 @@
  ],
  "Webshop részletek: kb. hány termékkel indulnátok, kell-e szállítási integráció (pl. Foxpost, GLS), és van-e preferált fizetési szolgáltató (pl. SimplePay, Barion, Stripe)?": [
   "Online shop details: roughly how many products would you start with, do you need a shipping integration (e.g. DHL, GLS), and do you have a preferred payment provider (e.g. Stripe, PayPal, Klarna)?",
-  "Onlineshop-Details: Mit wie vielen Produkten würdet ihr starten, braucht ihr eine Versandintegration (z. B. DHL, GLS), und gibt es einen bevorzugten Zahlungsanbieter (z. B. Stripe, PayPal, Klarna)?"
+  "Onlineshop-Details: Mit wie vielen Produkten würden Sie starten, brauchen Sie eine Versandintegration (z. B. DHL, GLS), und gibt es einen bevorzugten Zahlungsanbieter (z. B. Stripe, PayPal, Klarna)?"
  ],
  "Van kész logód / arculatod?": [
   "Do you already have a logo / visual identity?",
-  "Hast du bereits ein Logo / Erscheinungsbild?"
+  "Haben Sie bereits ein Logo / Erscheinungsbild?"
  ],
  "Van logó és teljes arculat (színek, betűtípusok, brandbook)": [
   "Logo and full identity (colours, typefaces, brand book)",
@@ -185,11 +185,11 @@
  ],
  "Van saját domain és tárhely?": [
   "Do you have your own domain and hosting?",
-  "Hast du eine eigene Domain und Hosting?"
+  "Haben Sie eine eigene Domain und Hosting?"
  ],
  "A domain a weboldal címe (pl. cegnev.hu). Ha tudod, az egyéb mezőbe írd be, kinél van regisztrálva.": [
   "The domain is the website's address (e.g. company.com). If you know, write in the other field where it's registered.",
-  "Die Domain ist die Adresse der Website (z. B. firma.de). Wenn du es weißt, trag im Feld „Sonstiges“ ein, wo sie registriert ist."
+  "Die Domain ist die Adresse der Website (z. B. firma.de). Wenn Sie es wissen, tragen Sie im Feld „Sonstiges“ ein, wo sie registriert ist."
  ],
  "Van, és hozzáférek": [
   "Yes, and I have access",
@@ -221,7 +221,7 @@
  ],
  "Szeretnéd később saját kezűleg szerkeszteni az oldalt?": [
   "Would you like to edit the site yourself later?",
-  "Möchtest du die Seite später selbst bearbeiten?"
+  "Möchten Sie die Seite später selbst bearbeiten?"
  ],
  "Igen, kell szerkeszthetőség és betanítás": [
   "Yes — I want editing access and training",
@@ -229,7 +229,7 @@
  ],
  "Nem, a módosításokat rátok bíznám": [
   "No, I'd leave the changes to you",
-  "Nein, die Änderungen würde ich euch überlassen"
+  "Nein, die Änderungen würde ich Ihnen überlassen"
  ],
  "Még nem tudom": [
   "I don't know yet",
@@ -241,11 +241,11 @@
  ],
  "Opcionális — ha van meglévő bemutatkozó anyagod (weboldal, Facebook-oldal, prospektus), elég belinkelned.": [
   "Optional — if you already have introductory material (website, Facebook page, brochure), a link is enough.",
-  "Optional — wenn du bereits Vorstellungsmaterial hast (Website, Facebook-Seite, Broschüre), reicht ein Link."
+  "Optional — wenn Sie bereits Vorstellungsmaterial haben (Website, Facebook-Seite, Broschüre), reicht ein Link."
  ],
  "Milyen stílus tetszik leginkább?": [
   "Which style appeals to you most?",
-  "Welcher Stil gefällt dir am besten?"
+  "Welcher Stil gefällt Ihnen am besten?"
  ],
  "Letisztult, minimal": [
   "Clean, minimal",
@@ -281,7 +281,7 @@
  ],
  "Ha van konkrét színpaletta, az egyéb mezőbe várjuk a színkódokat! (pl: ABCD25)": [
   "If you have a specific palette, put the colour codes in the other field (e.g. ABCD25).",
-  "Wenn du eine konkrete Farbpalette hast, trag die Farbcodes im Feld „Sonstiges“ ein (z. B. ABCD25)."
+  "Wenn Sie eine konkrete Farbpalette haben, tragen Sie die Farbcodes im Feld „Sonstiges“ ein (z. B. ABCD25)."
  ],
  "Világos (fehér, bézs, pasztell)": [
   "Light (white, beige, pastel)",
@@ -313,7 +313,7 @@
  ],
  "Van olyan weboldal, ami tetszik? És olyan, ami kifejezetten nem? (linkek)": [
   "Is there a website you like? And one you definitely don't? (links)",
-  "Gibt es eine Website, die dir gefällt? Und eine, die dir gar nicht gefällt? (Links)"
+  "Gibt es eine Website, die Ihnen gefällt? Und eine, die Ihnen gar nicht gefällt? (Links)"
  ],
  "A negatív példa legalább annyit segít, mint a pozitív.": [
   "A negative example helps at least as much as a positive one.",
@@ -321,19 +321,19 @@
  ],
  "Kik a fő versenytársaid, és miben vagy más, mint ők?": [
   "Who are your main competitors, and how are you different?",
-  "Wer sind deine Hauptwettbewerber, und worin unterscheidest du dich?"
+  "Wer sind Ihre Hauptwettbewerber, und worin unterscheiden Sie sich?"
  ],
  "Futtattok jelenleg hirdetéseket?": [
   "Are you currently running ads?",
-  "Schaltet ihr aktuell Werbung?"
+  "Schalten Sie aktuell Werbung?"
  ],
  "Ha igen, kérlek a platformot részletezd az egyéb mezőben.": [
   "If yes, please specify the platform in the other field.",
-  "Falls ja, nenne die Plattform bitte im Feld „Sonstiges“."
+  "Falls ja, nennen Sie die Plattform bitte im Feld „Sonstiges“."
  ],
  "Közösségi média oldalaitok linkjei:": [
   "Links to your social media pages:",
-  "Links zu euren Social-Media-Seiten:"
+  "Links zu Ihren Social-Media-Seiten:"
  ],
  "Facebook, Instagram, TikTok, LinkedIn — ami van.": [
   "Facebook, Instagram, TikTok, LinkedIn — whatever you have.",
@@ -573,7 +573,7 @@
  ],
  "Szeretnél ingyenes konzultációt igényelni?": [
   "Would you like to request a free consultation?",
-  "Möchtest du eine kostenlose Beratung anfragen?"
+  "Möchten Sie eine kostenlose Beratung anfragen?"
  ],
  "Nincs rá szükségem": [
   "I don't need one",
@@ -585,7 +585,7 @@
  ],
  "Az egyéb mezőbe írhatod, mikor vagy leginkább elérhető.": [
   "Use the other field to say when you're most reachable.",
-  "Im Feld „Sonstiges“ kannst du angeben, wann du am besten erreichbar bist."
+  "Im Feld „Sonstiges“ können Sie angeben, wann Sie am besten erreichbar sind."
  ],
  "Telefonon": [
   "By phone",
@@ -601,7 +601,7 @@
  ],
  "Van bármi, amit fontosnak tartasz még hozzátenni?": [
   "Is there anything else you think is important to add?",
-  "Gibt es noch etwas, das du für wichtig hältst?"
+  "Gibt es noch etwas, das Sie für wichtig halten?"
  ],
  "Adatkezelési Nyilatkozat": [
   "Privacy statement",
@@ -613,7 +613,7 @@
  ],
  "Ide írd a választ…": [
   "Type your answer here…",
-  "Hier deine Antwort eingeben…"
+  "Hier Ihre Antwort eingeben…"
  ],
  "Egyéb": [
   "Other",
@@ -681,7 +681,7 @@
  ],
  "A kitöltés alapján pár órán belül keresni fogunk a további információkkal és a személyre szabott árajánlattal.": [
   "Based on your answers we'll be in touch within a few hours with more information and a tailored quote.",
-  "Auf Basis deiner Antworten melden wir uns innerhalb weniger Stunden mit weiteren Informationen und einem individuellen Angebot."
+  "Auf Basis Ihrer Antworten melden wir uns innerhalb weniger Stunden mit weiteren Informationen und einem individuellen Angebot."
  ],
  "Becsült kitöltési idő: 8 perc.": [
   "Estimated time to complete: 8 minutes.",
@@ -721,7 +721,7 @@
  ],
  "Válaszaidat rögzítettük, hamarosan felvesszük veled a kapcsolatot.": [
   "We've recorded your answers and will be in touch shortly.",
-  "Wir haben deine Antworten erfasst und melden uns in Kürze."
+  "Wir haben Ihre Antworten erfasst und melden uns in Kürze."
  ],
  "Vissza a főoldalra": [
   "Back to the home page",
@@ -733,7 +733,7 @@
  ],
  "Kérlek próbáld újra, vagy írj a": [
   "Please try again, or write to",
-  "Bitte versuch es erneut oder schreib an"
+  "Bitte versuchen Sie es erneut oder schreiben Sie an"
  ],
  "címre.": [
   ".",
@@ -761,11 +761,11 @@
  ],
  "Kérlek, várj egy percet, aztán próbáld újra.": [
   "Please wait a minute, then try again.",
-  "Bitte warte eine Minute und versuch es dann erneut."
+  "Bitte warten Sie eine Minute und versuchen Sie es dann erneut."
  ],
  "Kérjük, add meg a vállalkozás vagy a kapcsolattartó nevét.": [
   "Please give the business or contact name.",
-  "Bitte gib den Firmen- oder Ansprechpartnernamen an."
+  "Bitte geben Sie den Firmen- oder Ansprechpartnernamen an."
  ],
  "Ez az e-mail cím nem tűnik helyesnek.": [
   "That email address does not look right.",
@@ -773,7 +773,7 @@
  ],
  "Kérjük, ellenőrizd a megadott adatokat.": [
   "Please check the details you entered.",
-  "Bitte überprüfe die eingegebenen Daten."
+  "Bitte überprüfen Sie die eingegebenen Daten."
  ],
  "[…a válaszok itt megszakadtak]": [
   "[…the answers were cut off here]",

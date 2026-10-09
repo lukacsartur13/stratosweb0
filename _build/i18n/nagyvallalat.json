@@ -45,7 +45,7 @@
  ],
  "Ügyfélportálok, belső eszközök, SaaS felületek. Kódból építve, a folyamataitokra szabva — nem sablonból, nem oldalépítőből.": [
   "Client portals, internal tools, SaaS interfaces. Written in code and fitted to your processes — not from a template, not from a page builder.",
-  "Kundenportale, interne Werkzeuge, SaaS-Oberflächen. In Code gebaut und auf eure Prozesse zugeschnitten — nicht aus einer Vorlage, nicht aus einem Baukasten."
+  "Kundenportale, interne Werkzeuge, SaaS-Oberflächen. In Code gebaut und auf Ihre Prozesse zugeschnitten — nicht aus einer Vorlage, nicht aus einem Baukasten."
  ],
  "Rendszer­integráció": [
   "System<br>integration",
@@ -53,7 +53,7 @@
  ],
  "ERP, CRM, fizetési és logisztikai rendszerek összekötése. API-k, adatszinkron és egységes adatfolyam a meglévő infrastruktúrátokkal.": [
   "Connecting ERP, CRM, payment and logistics systems. APIs, data sync and a single data flow across your existing infrastructure.",
-  "Verbindung von ERP, CRM, Zahlungs- und Logistiksystemen. APIs, Datensynchronisation und ein einheitlicher Datenfluss mit eurer bestehenden Infrastruktur."
+  "Verbindung von ERP, CRM, Zahlungs- und Logistiksystemen. APIs, Datensynchronisation und ein einheitlicher Datenfluss mit Ihrer bestehenden Infrastruktur."
  ],
  "Design system és arculat": [
   "Design system and identity",
@@ -61,7 +61,7 @@
  ],
  "Skálázható komponenskönyvtár és egységes arculat minden felületen — hogy a márkátok minden piacon és terméken konzisztens legyen.": [
   "A scalable component library and a consistent identity across every surface — so your brand stays coherent across markets and products.",
-  "Eine skalierbare Komponentenbibliothek und ein einheitliches Erscheinungsbild auf allen Flächen — damit eure Marke über Märkte und Produkte hinweg konsistent bleibt."
+  "Eine skalierbare Komponentenbibliothek und ein einheitliches Erscheinungsbild auf allen Flächen — damit Ihre Marke über Märkte und Produkte hinweg konsistent bleibt."
  ],
  "Biztonság és megfelelőség": [
   "Security and compliance",
@@ -73,7 +73,7 @@
  ],
  "Nálatok dolgozó, felskálázható csapat: fejlesztők, dizájner, projektvezető. Rugalmas kapacitás a terheléshez igazítva.": [
   "A scalable team working with you: developers, a designer and a project lead. Flexible capacity matched to the workload.",
-  "Ein skalierbares Team an eurer Seite: Entwickler, Designer, Projektleitung. Flexible Kapazität, an die Auslastung angepasst."
+  "Ein skalierbares Team an Ihrer Seite: Entwickler, Designer, Projektleitung. Flexible Kapazität, an die Auslastung angepasst."
  ],
  "Üzemeltetés és SLA": [
   "Operations and SLA",
@@ -97,7 +97,7 @@
  ],
  "Feltérképezzük a folyamataitokat, a meglévő rendszereket és a célokat. Architektúra, ütemterv és mérhető KPI-ok — még a fejlesztés előtt.": [
   "We map your processes, existing systems and goals. Architecture, timeline and measurable KPIs — before any development starts.",
-  "Wir erfassen eure Prozesse, bestehenden Systeme und Ziele. Architektur, Zeitplan und messbare KPIs — noch vor der Entwicklung."
+  "Wir erfassen Ihre Prozesse, bestehenden Systeme und Ziele. Architektur, Zeitplan und messbare KPIs — noch vor der Entwicklung."
  ],
  "Fejlesztés dedikált csapattal": [
   "Development with a dedicated team",
@@ -105,7 +105,7 @@
  ],
  "Sprintekben dolgozunk, kéthetente látható eredménnyel. Design system, fejlesztés, integrációk és folyamatos egyeztetés a ti stakeholdereitekkel.": [
   "We work in sprints with visible output every two weeks. Design system, development, integrations and continuous alignment with your stakeholders.",
-  "Wir arbeiten in Sprints mit sichtbarem Ergebnis alle zwei Wochen. Designsystem, Entwicklung, Integrationen und laufende Abstimmung mit euren Stakeholdern."
+  "Wir arbeiten in Sprints mit sichtbarem Ergebnis alle zwei Wochen. Designsystem, Entwicklung, Integrationen und laufende Abstimmung mit Ihren Stakeholdern."
  ],
  "Élesítés és folyamatos fejlesztés": [
   "Launch and continuous development",
@@ -113,7 +113,7 @@
  ],
  "Kontrollált bevezetés, betanítás és átadás. Onnantól SLA mellett üzemeltetünk és folyamatosan fejlesztünk tovább — veletek együtt.": [
   "A controlled rollout, training and handover. From then on we operate under SLA and keep developing — together with you.",
-  "Ein kontrollierter Rollout, Schulung und Übergabe. Ab dann betreiben wir unter SLA und entwickeln laufend weiter — gemeinsam mit euch."
+  "Ein kontrollierter Rollout, Schulung und Übergabe. Ab dann betreiben wir unter SLA und entwickeln laufend weiter — gemeinsam mit Ihnen."
  ],
  "Miért jobb,<br>mint több<br>beszállítóval?": [
   "Why is it better<br>than several<br>suppliers?",
@@ -129,7 +129,7 @@
  ],
  "A forráskód, a dokumentáció és minden szellemi termék a tiétek — nincs vendor lock-in.": [
   "The source code, documentation and all intellectual property are yours — no vendor lock-in.",
-  "Quellcode, Dokumentation und sämtliches geistiges Eigentum gehören euch — kein Vendor-Lock-in."
+  "Quellcode, Dokumentation und sämtliches geistiges Eigentum gehören Ihnen — kein Vendor-Lock-in."
  ],
  "Modern stack: React/Next.js, Node, TypeScript, felhő- és konténeralapú infrastruktúra.": [
   "A modern stack: React/Next.js, Node, TypeScript, cloud and container-based infrastructure.",
@@ -145,7 +145,7 @@
  ],
  "Milyen SLA-t és rendelkezésre állást vállaltok?": [
   "What SLA and uptime do you commit to?",
-  "Welches SLA und welche Verfügbarkeit sagt ihr zu?"
+  "Welches SLA und welche Verfügbarkeit sagen Sie zu?"
  ],
  "Az üzleti kritikusságtól függően definiálunk SLA-t: garantált rendelkezésre állást (jellemzően 99,9%), definiált reakció- és megoldási időket, valamint eszkalációs folyamatot. A pontos szinteket a szerződésben rögzítjük, és riportokban követjük.": [
   "We define the SLA according to business criticality: guaranteed uptime (typically 99.9%), defined response and resolution times, and an escalation process. Exact levels are set in the contract and tracked in reports.",
@@ -153,19 +153,19 @@
  ],
  "Hogyan illeszkedtek a meglévő rendszereinkhez és folyamatainkhoz?": [
   "How do you fit into our existing systems and processes?",
-  "Wie fügt ihr euch in unsere bestehenden Systeme und Prozesse ein?"
+  "Wie fügen Sie sich in unsere bestehenden Systeme und Prozesse ein?"
  ],
  "A fejlesztést a meglévő infrastruktúrátokra tervezzük: ERP, CRM, SSO, fizetési és logisztikai rendszerek integrációjával. Igazodunk a belső folyamataitokhoz, a biztonsági előírásaitokhoz és a fejlesztési sztenderdjeitekhez, legyen szó cloud vagy on-premise környezetről.": [
   "We design development around your existing infrastructure, integrating ERP, CRM, SSO, payment and logistics systems. We follow your internal processes, security requirements and development standards, whether the environment is cloud or on-premise.",
-  "Wir planen die Entwicklung auf eurer bestehenden Infrastruktur, mit Integration von ERP, CRM, SSO, Zahlungs- und Logistiksystemen. Wir richten uns nach euren internen Prozessen, Sicherheitsvorgaben und Entwicklungsstandards — ob Cloud oder On-Premise."
+  "Wir planen die Entwicklung auf Ihrer bestehenden Infrastruktur, mit Integration von ERP, CRM, SSO, Zahlungs- und Logistiksystemen. Wir richten uns nach Ihren internen Prozessen, Sicherheitsvorgaben und Entwicklungsstandards — ob Cloud oder On-Premise."
  ],
  "Hogyan kezelitek az adatbiztonságot és a GDPR-megfelelőséget?": [
   "How do you handle data security and GDPR compliance?",
-  "Wie geht ihr mit Datensicherheit und DSGVO-Konformität um?"
+  "Wie gehen Sie mit Datensicherheit und DSGVO-Konformität um?"
  ],
  "A biztonság a tervezés része, nem utólagos réteg: hozzáférés-kezelés, titkosítás, auditnaplózás és rendszeres biztonsági tesztek. GDPR-megfelelő adatkezelést, adatfeldolgozói szerződést és igény esetén penetrációs teszteket, valamint a belső compliance-előírásaitokhoz igazodó folyamatot biztosítunk.": [
   "Security is part of the design, not a layer added afterwards: access management, encryption, audit logging and regular security testing. We provide GDPR-compliant data handling, a data processing agreement, penetration tests on request, and a process aligned with your internal compliance requirements.",
-  "Sicherheit ist Teil der Konzeption, keine nachträgliche Schicht: Zugriffsverwaltung, Verschlüsselung, Audit-Logging und regelmäßige Sicherheitstests. Wir bieten DSGVO-konforme Datenverarbeitung, einen Auftragsverarbeitungsvertrag, auf Wunsch Penetrationstests und einen Prozess, der euren internen Compliance-Vorgaben folgt."
+  "Sicherheit ist Teil der Konzeption, keine nachträgliche Schicht: Zugriffsverwaltung, Verschlüsselung, Audit-Logging und regelmäßige Sicherheitstests. Wir bieten DSGVO-konforme Datenverarbeitung, einen Auftragsverarbeitungsvertrag, auf Wunsch Penetrationstests und einen Prozess, der Ihren internen Compliance-Vorgaben folgt."
  ],
  "Skálázható a megoldás több piacra és nagy terhelésre?": [
   "Does the solution scale to multiple markets and heavy load?",
@@ -173,7 +173,7 @@
  ],
  "Igen. A rendszereket eleve skálázható architektúrára tervezzük: több nyelv és piac, terheléshez igazodó infrastruktúra, cache és CDN, valamint moduláris felépítés. Ahogy nőtök, a rendszer és a hozzá rendelt csapatkapacitás is együtt skálázódik.": [
   "Yes. We design the systems on a scalable architecture from the start: multiple languages and markets, load-adaptive infrastructure, caching and CDN, and a modular build. As you grow, both the system and the assigned team capacity scale with you.",
-  "Ja. Wir entwerfen die Systeme von Anfang an auf skalierbarer Architektur: mehrere Sprachen und Märkte, lastabhängige Infrastruktur, Caching und CDN sowie modularer Aufbau. Wenn ihr wachst, skalieren System und zugeordnete Teamkapazität mit."
+  "Ja. Wir entwerfen die Systeme von Anfang an auf skalierbarer Architektur: mehrere Sprachen und Märkte, lastabhängige Infrastruktur, Caching und CDN sowie modularer Aufbau. Wenn Sie wachsen, skalieren System und zugeordnete Teamkapazität mit."
  ],
  "Hogyan áll fel és hogyan skálázódik a dedikált csapat?": [
   "How is the dedicated team assembled and scaled?",
@@ -181,7 +181,7 @@
  ],
  "A projekthez dedikált csapatot rendelünk — fejlesztők, dizájner és egy állandó projektvezető, aki a ti oldalatokon egy kapcsolattartó. A kapacitást a terheléshez igazítjuk: fel- és leskálázzuk a csapatot a roadmap és a sprintek igényei szerint.": [
   "We assign a dedicated team to the project — developers, a designer and a permanent project lead who is your single point of contact. Capacity follows the workload: we scale the team up and down according to the roadmap and sprint needs.",
-  "Wir stellen dem Projekt ein dediziertes Team zur Seite — Entwickler, Designer und eine feste Projektleitung als eure einzige Ansprechperson. Die Kapazität folgt der Auslastung: Wir skalieren das Team nach Roadmap und Sprintbedarf hoch und runter."
+  "Wir stellen dem Projekt ein dediziertes Team zur Seite — Entwickler, Designer und eine feste Projektleitung als Ihre einzige Ansprechperson. Die Kapazität folgt der Auslastung: Wir skalieren das Team nach Roadmap und Sprintbedarf hoch und runter."
  ],
  "Kié a forráskód és a szellemi tulajdon?": [
   "Who owns the source code and the intellectual property?",
@@ -189,19 +189,19 @@
  ],
  "A forráskód, a dokumentáció és minden szellemi termék a tiétek. A repókhoz és a környezetekhez teljes hozzáférést adunk, a folyamat átlátható, és bármikor átvehető akár a belső csapatotok által is — nincs vendor lock-in.": [
   "The source code, documentation and all intellectual property are yours. We give full access to the repositories and environments, the process is transparent, and your internal team can take it over at any time — no vendor lock-in.",
-  "Quellcode, Dokumentation und sämtliches geistiges Eigentum gehören euch. Wir geben vollen Zugriff auf Repositories und Umgebungen, der Prozess ist transparent, und euer internes Team kann jederzeit übernehmen — kein Vendor-Lock-in."
+  "Quellcode, Dokumentation und sämtliches geistiges Eigentum gehören Ihnen. Wir geben vollen Zugriff auf Repositories und Umgebungen, der Prozess ist transparent, und Ihr internes Team kann jederzeit übernehmen — kein Vendor-Lock-in."
  ],
  "Milyen technológiákkal dolgoztok?": [
   "What technologies do you work with?",
-  "Mit welchen Technologien arbeitet ihr?"
+  "Mit welchen Technologien arbeiten Sie?"
  ],
  "Modern, jól támogatott stacket használunk (pl. React/Next.js, Node, TypeScript, felhő- és konténeralapú infrastruktúra), de mindig az adott feladathoz és a ti meglévő környezetetekhez választjuk a megfelelő eszközt. A cél a hosszú távon karbantartható, ipari sztenderdeket követő megoldás.": [
   "We use a modern, well-supported stack (React/Next.js, Node, TypeScript, cloud and container-based infrastructure), but we always pick the right tool for the task and for your existing environment. The goal is a long-term maintainable solution that follows industry standards.",
-  "Wir nutzen einen modernen, gut unterstützten Stack (z. B. React/Next.js, Node, TypeScript, Cloud- und containerbasierte Infrastruktur), wählen das Werkzeug aber immer passend zur Aufgabe und zu eurer bestehenden Umgebung. Ziel ist eine langfristig wartbare Lösung nach Industriestandards."
+  "Wir nutzen einen modernen, gut unterstützten Stack (z. B. React/Next.js, Node, TypeScript, Cloud- und containerbasierte Infrastruktur), wählen das Werkzeug aber immer passend zur Aufgabe und zu Ihrer bestehenden Umgebung. Ziel ist eine langfristig wartbare Lösung nach Industriestandards."
  ],
  "Átvesztek meglévő, más által fejlesztett rendszert?": [
   "Do you take over existing systems built by someone else?",
-  "Übernehmt ihr bestehende, von anderen entwickelte Systeme?"
+  "Übernehmen Sie bestehende, von anderen entwickelte Systeme?"
  ],
  "Igen. Először technikai auditot végzünk: átnézzük a kódot, az architektúrát és a kockázatokat, majd javaslatot teszünk a stabilizálásra, továbbfejlesztésre vagy szükség esetén a fokozatos újraépítésre. Az átvételt kontrolláltan, a működés megszakítása nélkül végezzük.": [
   "Yes. First we run a technical audit: we review the code, the architecture and the risks, then propose stabilisation, further development or, where needed, a gradual rebuild. The handover is controlled and doesn't interrupt operations.",
@@ -217,19 +217,19 @@
  ],
  "Milyen szerződéses és elszámolási modellben dolgoztok?": [
   "What contract and billing models do you work with?",
-  "In welchen Vertrags- und Abrechnungsmodellen arbeitet ihr?"
+  "In welchen Vertrags- und Abrechnungsmodellen arbeiten Sie?"
  ],
  "A projekt jellegétől függően dolgozhatunk fix áras keretben, dedikált csapat (time &amp; material) modellben vagy folyamatos üzemeltetési retainerben. A beszerzési, jogi és compliance-folyamataitokhoz igazodunk, és minden feltételt keretszerződésben rögzítünk.": [
   "Depending on the nature of the project we can work to a fixed-price scope, a dedicated team (time &amp; material) model or an ongoing operations retainer. We adapt to your procurement, legal and compliance processes and set all terms in a framework agreement.",
-  "Je nach Projektcharakter arbeiten wir im Festpreisrahmen, im Modell des dedizierten Teams (Time &amp; Material) oder im laufenden Betriebs-Retainer. Wir passen uns euren Beschaffungs-, Rechts- und Compliance-Prozessen an und halten alle Bedingungen in einem Rahmenvertrag fest."
+  "Je nach Projektcharakter arbeiten wir im Festpreisrahmen, im Modell des dedizierten Teams (Time &amp; Material) oder im laufenden Betriebs-Retainer. Wir passen uns Ihren Beschaffungs-, Rechts- und Compliance-Prozessen an und halten alle Bedingungen in einem Rahmenvertrag fest."
  ],
  "Építsük meg a <span class=\"sig\">rendszereteket.</span>": [
   "Let's build <span class=\"sig\">your system.</span>",
-  "Bauen wir <span class=\"sig\">euer System.</span>"
+  "Bauen wir <span class=\"sig\">Ihr System.</span>"
  ],
  "Ahány beszállító, annyi illesztés, felelős és csúszás. Egyeztessünk, és megmutatjuk, hogyan visz egy dedikált csapat minden fejlesztést egy roadmapre, egy felelőshöz és egy SLA alá.": [
   "Every extra supplier means another seam, another owner and another delay. Let's talk, and we'll show you how a dedicated team brings every build onto one roadmap, one owner and one SLA.",
-  "Jeder zusätzliche Dienstleister bedeutet eine weitere Schnittstelle, einen weiteren Verantwortlichen und eine weitere Verzögerung. Sprechen wir — wir zeigen euch, wie ein dediziertes Team jede Entwicklung auf eine Roadmap, einen Verantwortlichen und ein SLA bringt."
+  "Jeder zusätzliche Dienstleister bedeutet eine weitere Schnittstelle, einen weiteren Verantwortlichen und eine weitere Verzögerung. Sprechen wir — wir zeigen Ihnen, wie ein dediziertes Team jede Entwicklung auf eine Roadmap, einen Verantwortlichen und ein SLA bringt."
  ],
  "_p85": [
   "Phase 8.5 — stage keys for the pinned rollout sequence."
