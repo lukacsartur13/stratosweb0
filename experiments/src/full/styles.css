@@ -162,8 +162,29 @@ img { max-width: 100%; height: auto; }
 
    See assets/js/home-history.js for the other half of this problem: that file
    reserves the *settled* height on a back navigation, this one reserves the
-   first screen on a first visit. */
-main.journey:empty { min-height: 100svh; }
+   first screen on a first visit.
+
+   The host is `.journey` — a `<main>` on the prototype, the `<div>` inside
+   `<main>` on the homepage — so the selector names the class and not the tag. */
+.journey:empty { min-height: 100svh; }
+
+/* Scroll anchoring must not latch onto the statement under the journey.
+
+   `assets/css/chrome.css` says why for everything after the journey — on a Back
+   navigation the browser anchors down there and holds it still while the
+   journey grows above it, which lands the visitor at the bottom of the page —
+   and switches it off for `body.journey-home > .ground`. The statement is now
+   inside `<main>`, after the mount host, so that selector no longer reaches it
+   and this one does. */
+.journey-home main > .ground { overflow-anchor: none; }
+
+/* …except on a fresh arrival, where holding still is exactly right: a link
+   into the statement or the footer must not be carried away by the journey
+   mounting above it. `src/full/readerPlace.ts` sets the class, before the
+   mount and only when the navigation is not a Back, Forward or reload. */
+html.journey-anchored body.journey-home main > .ground,
+html.journey-anchored body.journey-home > .arrival,
+html.journey-anchored body.journey-home > .foot { overflow-anchor: auto; }
 
 /* ------------------------------------------------------- the opening frame ==
    What the document says before it becomes the journey.
@@ -239,7 +260,8 @@ main.journey:empty { min-height: 100svh; }
 }
 
 .jboot__act { margin: 0.4rem 0 0; }
-.jboot__act a {
+.jboot__act a,
+.jtext__links a {
   display: inline-block;
   font-family: var(--data);
   font-size: 0.78rem;
@@ -250,6 +272,176 @@ main.journey:empty { min-height: 100svh; }
   border-bottom: 1px solid var(--signal);
   padding-bottom: 0.35rem;
 }
+
+/* ------------------------------------------------- the narrative, set plainly ==
+   The other ten stages, under the opening frame, as static markup.
+
+   Generated into the shell by `staticNarrative()` in
+   `experiments/vite.home.config.ts` from the tables both compositions read —
+   see `src/full/staticJourney.ts`. It is what a reader who never moves gets:
+   a visitor without JavaScript, and a crawler. Anyone who does move gets the
+   composition instead; `createRoot`'s first commit replaces this together
+   with the opening frame.
+
+   Plain on purpose. It is a column of type on the page's own ground, in the
+   same faces, sizes and colours the opening frame quotes from the panels —
+   signal eyebrows, light display headlines with the one emphasised word in
+   signal, chrome body copy — so it reads as the journey's words without
+   pretending to be the journey. Nothing is hidden, clipped or faded: it is
+   ordinary visible content, for whoever is reading it. */
+.jtext {
+  padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(4rem, 11vh, 8rem);
+}
+
+/* Never a scroll anchor, and neither is the frame above it.
+
+   On a Back navigation the browser restores an offset measured against the
+   *composition*, and it lands in this static text until the mount replaces it.
+   Anything that reflowed this text in between — a late font swap — would, with
+   an anchor in here, carry the restored offset along with it, and the
+   composition would then mount under a number it was never measured against.
+   Unanchored, the offset stays exactly what the browser restored. (The same
+   reasoning is why the static stages do not share the composition's ids — see
+   `STATIC_ID` in src/full/readerPlace.ts.) */
+.jboot,
+.jtext { overflow-anchor: none; }
+
+.jtext__stage {
+  max-width: 46rem;
+  padding-block: clamp(3rem, 8vh, 5.5rem);
+  border-top: 1px solid var(--hair);
+  overflow-wrap: break-word;
+}
+
+.jtext p { margin: 0 0 1rem; max-width: 62ch; color: var(--chrome); }
+
+.jtext__eyebrow,
+.jtext .jtext__label {
+  font: 500 0.72rem/1.6 var(--data);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.jtext .jtext__eyebrow { margin-bottom: 1rem; color: var(--signal); }
+.jtext__eyebrow span { margin-left: 0.8em; color: var(--haze); }
+.jtext .jtext__label { margin: 0 0 0.5rem; color: var(--haze); }
+
+.jtext__h {
+  margin: 0 0 1.2rem;
+  max-width: 22ch;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 1rem + 1.8vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+}
+.jtext__h em { font-style: normal; color: var(--signal); }
+
+.jtext .jtext__lead {
+  font-size: clamp(0.98rem, 0.94rem + 0.22vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--paper);
+}
+.jtext .jtext__meta { font: 0.8rem/1.6 var(--data); color: var(--haze); }
+
+.jtext h3 {
+  margin: 0 0 0.3rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--paper);
+}
+
+.jtext ol,
+.jtext ul {
+  display: grid;
+  gap: 1.1rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jtext__at {
+  font: 500 0.72rem/1.6 var(--data);
+  letter-spacing: 0.12em;
+  color: var(--haze);
+}
+
+.jtext__steps li { padding-left: 1rem; border-left: 1px solid var(--hair); }
+.jtext__steps p { margin: 0; }
+
+.jtext__collab { margin-top: 2.2rem; }
+.jtext .jtext__marks { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
+/* The rail's own plate — `.collab__item img` — for the same reason: three of
+   these marks are dark artwork that would vanish on this ground. */
+.jtext__marks img {
+  display: block;
+  width: 116px;
+  height: 64px;
+  padding: 8px 12px;
+  background: #dce4ea;
+  border-radius: 2px;
+  object-fit: contain;
+}
+
+.jtext__case {
+  margin-top: 2.4rem;
+  padding: clamp(1.2rem, 2.4vw, 2rem);
+  background: rgba(4, 8, 14, 0.5);
+  border: 1px solid var(--hair);
+}
+.jtext__case h3 { font-weight: 300; font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+.jtext__case figure { margin: 1.2rem 0; }
+.jtext__case figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--hair);
+}
+.jtext__metric strong { font-size: 1.6rem; font-weight: 300; color: var(--signal); }
+
+.jtext .jtext__links { display: flex; flex-wrap: wrap; gap: 1rem 1.6rem; margin-top: 1.4rem; }
+.jtext p:not(.jtext__links) a {
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-color: var(--signal);
+  text-underline-offset: 0.3em;
+}
+
+.jtext__ring { margin-top: 1.8rem; }
+.jtext__ring ul { gap: 0.5rem; margin-top: 0.6rem; color: var(--chrome); }
+.jtext__ring b { color: var(--paper); font-weight: 600; }
+
+.jtext__checks dl {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+  gap: 0.35rem 1rem;
+  margin: 0.6rem 0 0;
+}
+.jtext__checks dt {
+  font: 500 0.7rem/1.75 var(--data);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--haze);
+}
+.jtext__checks dd { margin: 0; color: var(--chrome); }
+@media (max-width: 40rem) {
+  .jtext__checks dl { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+  .jtext__checks dd { margin-bottom: 0.6rem; }
+}
+
+.jtext .jtext__index { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0 1.4rem; }
+.jtext__index a {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--hair);
+  color: var(--chrome);
+  font-size: 0.9rem;
+}
+.jtext__index i { font: normal 0.72rem/1.6 var(--data); color: var(--haze); }
 
 /* ============================================================== the track ===
    One sticky stage, spanning the entire journey *including* the closing CTA.

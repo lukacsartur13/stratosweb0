@@ -90,49 +90,48 @@ export const INTL_TAG: Record<Locale, string> = {
 };
 
 /**
- * The site's pages, by locale.
+ * The site's pages, by locale — as the URLs the site actually serves.
  *
- * The three language trees use translated filenames — `rolunk.html`,
- * `about.html`, `ueber-uns.html` — so a homepage link cannot be one string with
- * a prefix swapped onto it. This is the same mapping `_build/build.py` applies
- * when it generates the other eleven pages; it is repeated here rather than
- * imported because the Python build and the Vite build do not share a runtime,
- * and a footer that links to a 404 in German is worse than a little duplication.
+ * Read from `_build/routes.json`, which `_build/build.py` writes from the same
+ * slug table it renders every other route and the homepage's own chrome from.
+ * Its `canonical` map is root-absolute and extensionless — `/munka-rapidkert`,
+ * `/en/work-rapidkert` — which is the address the deployed host serves and the
+ * one each page's `<link rel="canonical">` names.
  *
- * `npm run build` regenerates the static pages from the same source, so a
- * rename shows up as a broken link in the link check rather than silently.
+ * WHY NOT `<locale>/<file>.html` ANY MORE
+ * ---------------------------------------
+ * This used to be a hand-kept copy of the slug table, producing `.html` paths.
+ * Two things were wrong with that. Production 301s every `.html` URL to its
+ * extensionless canonical, and the host's post-processing rewrites only the
+ * links it can see in static HTML — a link React inserts at runtime went out in
+ * the redirecting form, so every journey link cost a redirect and pointed a
+ * crawler at a non-canonical URL. And the copy had drifted: the English and
+ * German entries for two service pages still named slugs the site had since
+ * renamed. Reading the generated table removes both — there is nothing here to
+ * drift, and the form is the canonical one by construction.
+ *
+ * Only the `canonical` member is imported, so that table is all the bundle
+ * carries.
  */
 type PageId = 'sme' | 'enterprise' | 'branding' | 'ads' | 'quote' | 'contact' | 'about'
   | 'imprint' | 'privacy' | 'work' | 'caseRapidkert';
 
-const PAGES: Record<Locale, Record<PageId, string>> = {
-  hu: {
-    sme: 'kkv.html', enterprise: 'nagyvallalat.html', branding: 'branding.html',
-    ads: 'hirdeteskezeles.html', quote: 'arajanlat.html', contact: 'ugyfelszolgalat.html',
-    about: 'rolunk.html', imprint: 'impresszum.html', privacy: 'adatkezelesi-tajekoztato.html',
-    work: 'munkaink.html', caseRapidkert: 'munka-rapidkert.html',
-  },
-  en: {
-    sme: 'web-design-sme.html', enterprise: 'web-design-enterprise.html', branding: 'branding.html',
-    ads: 'ads-management.html', quote: 'quote.html', contact: 'contact.html',
-    about: 'about.html', imprint: 'imprint.html', privacy: 'privacy-policy.html',
-    work: 'work.html', caseRapidkert: 'work-rapidkert.html',
-  },
-  de: {
-    sme: 'webdesign-kmu.html', enterprise: 'webdesign-grossunternehmen.html', branding: 'branding.html',
-    ads: 'werbeanzeigen.html', quote: 'angebot.html', contact: 'kontakt.html',
-    about: 'ueber-uns.html', imprint: 'impressum.html', privacy: 'datenschutz.html',
-    work: 'projekte.html', caseRapidkert: 'projekt-rapidkert.html',
-  },
-};
+/** This module's page ids, as `_build/routes.json` names them. A key the
+ *  generator stops emitting is a type error here rather than a dead link. */
+const ROUTE_KEY = {
+  sme: 'sme', enterprise: 'enterprise', branding: 'branding', ads: 'ads', quote: 'quote',
+  contact: 'contact', about: 'about', imprint: 'imprint', privacy: 'privacy', work: 'work',
+  caseRapidkert: 'case-rapidkert',
+} as const satisfies Record<PageId, keyof typeof canonical>;
 
-/** Absolute URL of one page in the active locale. */
+/** Root-absolute, extensionless URL of one page, in the active locale by default. */
 export function pageHref(id: PageId, locale: Locale = active): string {
-  return HOME_PATH[locale] + PAGES[locale][id];
+  return canonical[ROUTE_KEY[id]][locale];
 }
 
 type Table = Record<string, string>;
 
+import { canonical } from '../../../_build/routes.json';
 import { EN } from './locales/en';
 import { DE } from './locales/de';
 import { MESSAGES, type MessageKey } from './locales/messages';

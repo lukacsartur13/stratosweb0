@@ -218,12 +218,17 @@ async function atRest(
  *
  * `f >= 1` still means the very bottom of the DOCUMENT, because the five
  * callers that pass 1 want the Arrival and the footer, which are down there.
+ *
+ * The journey is the mount host, `.journey`. It used to be `<main>` itself;
+ * `<main>` now also wraps the written statement after it, so naming the
+ * landmark here would measure the journey plus the statement — the same
+ * coordinate drift this function exists to remove.
  */
 async function scrollToFraction(page: Page, f: number) {
   await settle(page);
   await page.evaluate((fraction) => {
     if (fraction >= 1) { window.scrollTo(0, 1e7); return; }
-    const track = document.querySelector('main.journey') as HTMLElement | null;
+    const track = document.querySelector('.journey') as HTMLElement | null;
     if (track && track.offsetHeight > innerHeight) {
       const travel = track.offsetHeight - innerHeight;
       window.scrollTo(0, track.offsetTop + travel * fraction);

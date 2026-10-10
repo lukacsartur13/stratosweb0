@@ -68,25 +68,19 @@
     <a class="skip" href="#main">Zum Inhalt springen</a>
     <!--stratos:deck-->
 
-    <!-- The React mount host *is* the main landmark — see home/hu.html for why.
-         In short: React renders into a container and never replaces it, so a
-         landmark that is the container exists in the parsed shell before any
-         module is fetched and survives every mount underneath it. -->
-    <!-- `data-motion-external`: everything inside this element belongs to the
-         journey's own clock. assets/js/motion.js registers no primitive in
-         here, which matters because the eleven panels carry `data-stage` and
-         `data-kinetic` — two of that file's own primitive hooks. -->
-    <main class="journey" id="main" tabindex="-1" data-motion-external>
-      <!--stratos:opening-->
+    <!-- The main landmark holds everything the page says — the journey and the
+         written statement under it — and is never touched by React. See
+         home/hu.html for why, and for the mount host inside it. -->
+    <main id="main" tabindex="-1">
+      <div class="journey" id="journey" data-motion-external>
+        <!--stratos:opening-->
+        <!--stratos:narrative-->
+      </div>
+
+      <!--stratos:ground-->
     </main>
 
-    <!-- The homepage's written statement. Outside <main> because <main> is
-         React's container and its first commit empties it; see `GROUND` in
-         _build/build.py. -->
-    <!--stratos:ground-->
-
-    <!-- Arrival, then the shared ground-control footer. Outside <main>, after
-         it, so the landmark React owns stays exactly one element. -->
+    <!-- Arrival, then the shared ground-control footer, after the landmark. -->
     <!--stratos:footer-->
     <script type="module" src="/src/full/main.tsx"></script>
     <!--stratos:scripts-->

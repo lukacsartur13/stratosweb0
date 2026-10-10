@@ -557,6 +557,11 @@ function Instrument({ onReady }: { onReady: () => void }) {
   );
 }
 
+/** Module scope, so the ref's identity is stable and React never re-runs it. */
+const hideFromAssistiveTech = (canvas: HTMLCanvasElement | null) => {
+  canvas?.setAttribute('aria-hidden', 'true');
+};
+
 /**
  * The scene no longer needs a handle on its host element.
  *
@@ -644,6 +649,10 @@ export default function MobileInstrument({
       // slot. Named, not positional.
       className="mv-alt__gl"
       data-testid="mobile-instrument-canvas"
+      // Decorative: the readout and the prose carry everything it shows. On
+      // the canvas element itself — `<Canvas>` spreads its props onto the
+      // wrapper above, and its ref reaches the canvas in the inserting commit.
+      ref={hideFromAssistiveTech}
     >
       <InstrumentCamera />
       <InstrumentLights />
