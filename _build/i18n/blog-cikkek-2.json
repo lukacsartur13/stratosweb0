@@ -24,10 +24,6 @@
   "<span>Category <b>Advertising</b></span> <span>Written by <b>Stratos</b></span>",
   "<span>Kategorie <b>Werbung</b></span> <span>Geschrieben von <b>Stratos</b></span>"
  ],
- "Illusztráció a Google és Facebook hirdetésekről szóló cikkhez.": [
-  "Illustration for the article about Google and Facebook advertising.",
-  "Illustration zum Artikel über Google- und Facebook-Werbung."
- ],
  "A különbség egyetlen mondatban: a Google-hirdetés olyan embert talál meg, aki már keresi, amit árulsz. A Meta-hirdetés (Facebook, Instagram) olyan embert szólít meg, aki nem keresi — de a leírás alapján érdekelhetné.": [
   "The difference in one sentence: Google advertising finds someone already looking for what you sell. Meta advertising (Facebook, Instagram) addresses someone who isn't looking — but who, on the description, might be interested.",
   "Der Unterschied in einem Satz: Google-Werbung findet jemanden, der bereits sucht, was Sie verkaufen. Meta-Werbung (Facebook, Instagram) spricht jemanden an, der nicht sucht — den es der Beschreibung nach aber interessieren könnte."
@@ -152,10 +148,6 @@
  "<span>Kategória <b>Számolás</b></span> <span>Írta <b>Stratos</b></span>": [
   "<span>Category <b>Doing the maths</b></span> <span>Written by <b>Stratos</b></span>",
   "<span>Kategorie <b>Rechnen</b></span> <span>Geschrieben von <b>Stratos</b></span>"
- ],
- "Illusztráció az elavult weboldal költségéről szóló cikkhez.": [
-  "Illustration for the article about the cost of an outdated website.",
-  "Illustration zum Artikel über die Kosten einer veralteten Website."
  ],
  "Egy elavult weboldal nem küld számlát. Nem sípol, nem áll le, nem hívja fel a figyelmet magára. Egyszerűen csak kevesebb megkeresés érkezik, mint amennyi érkezhetne — és ez a különbség sehol nem látszik, mert az elmaradt ügyfél nem hagy nyomot.": [
   "An outdated website doesn't send an invoice. It doesn't beep, it doesn't stop, it doesn't draw attention to itself. Simply fewer enquiries arrive than could — and that difference shows up nowhere, because the client who didn't come leaves no trace.",
@@ -306,10 +298,6 @@
   "<span>Category <b>Conversion</b></span> <span>Written by <b>Stratos</b></span>",
   "<span>Kategorie <b>Conversion</b></span> <span>Geschrieben von <b>Stratos</b></span>"
  ],
- "Illusztráció a weboldal konverziós hibáiról szóló cikkhez.": [
-  "Illustration for the article about website conversion mistakes.",
-  "Illustration zum Artikel über Conversion-Fehler auf Websites."
- ],
  "Előbb egy fontos elágazás: ha kevés a látogató, az forgalmi probléma, és arról máshol írtunk. Ez a cikk arról szól, amikor <em>van</em> forgalom, de nincs megkeresés.": [
   "First, an important fork: if visitor numbers are low, that's a traffic problem, and we wrote about it elsewhere. This article is about having traffic <em>and</em> no enquiries.",
   "Zuerst eine wichtige Weggabelung: Wenn die Besucherzahlen niedrig sind, ist das ein Traffic-Problem, darüber haben wir an anderer Stelle geschrieben. In diesem Artikel geht es darum, dass Traffic <em>da</em> ist, aber keine Anfragen kommen."
@@ -425,5 +413,17 @@
  "Az első ok részletesen: mit mondjon az első képernyő.": [
   "The first reason in detail: what the first screen should say.",
   "Der erste Grund im Detail: was der erste Bildschirm sagen soll."
+ ],
+ "Fekete háttéren króm hatású absztrakt szalagok, sárga nagybetűs felirattal: „Google hirdetés vagy Facebook hirdetés? Melyik éri meg jobban 2026-ban?”.": [
+  "Chrome-like abstract ribbons on a black background with a yellow Hungarian headline: “Google hirdetés vagy Facebook hirdetés? Melyik éri meg jobban 2026-ban?” (Google ads or Facebook ads? Which pays off better in 2026?).",
+  "Chromartige abstrakte Bänder auf schwarzem Grund mit gelber ungarischer Überschrift: „Google hirdetés vagy Facebook hirdetés? Melyik éri meg jobban 2026-ban?“ (Google- oder Facebook-Werbung? Was lohnt sich 2026 mehr?)."
+ ],
+ "Fekete háttéren króm hatású absztrakt szalagok, sárga nagybetűs felirattal: „Mennyi ügyfelet veszítesz havonta egy elavult weboldal miatt?”.": [
+  "Chrome-like abstract ribbons on a black background with a yellow Hungarian headline: “Mennyi ügyfelet veszítesz havonta egy elavult weboldal miatt?” (How many customers does an outdated website cost you each month?).",
+  "Chromartige abstrakte Bänder auf schwarzem Grund mit gelber ungarischer Überschrift: „Mennyi ügyfelet veszítesz havonta egy elavult weboldal miatt?“ (Wie viele Kunden kostet Sie eine veraltete Website jeden Monat?)."
+ ],
+ "Fekete háttéren króm hatású absztrakt szalagok, sárga nagybetűs felirattal: „Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba, amit a vállalkozások többsége elkövet”.": [
+  "Chrome-like abstract ribbons on a black background with a yellow Hungarian headline: “Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba, amit a vállalkozások többsége elkövet” (Why isn't your website bringing in customers? 7 common mistakes most businesses make).",
+  "Chromartige abstrakte Bänder auf schwarzem Grund mit gelber ungarischer Überschrift: „Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba, amit a vállalkozások többsége elkövet“ (Warum bringt Ihre Website keine Kunden? 7 häufige Fehler, die die meisten Unternehmen machen)."
  ]
 }

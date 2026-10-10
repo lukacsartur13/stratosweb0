@@ -91,6 +91,18 @@ test.describe('asset packaging', () => {
         const rel = normalize(join(dirname(page), raw)).replace(/\\/g, '/');
         if (!tracked.has(rel)) missing.push(`${rel}  <- ${page}`);
       }
+      // srcset candidates too: the responsive variants under assets/img/resp
+      // are committed files like any other (2026-10-10), and a missing one is
+      // a broken image on exactly the phones that pick it.
+      for (const [, set] of html.matchAll(/srcset="([^"]+)"/g)) {
+        for (const cand of set.split(',')) {
+          const raw = cand.trim().split(/\s+/)[0];
+          if (!/^(?:\.\.\/)*assets\//.test(raw)) continue;
+          references += 1;
+          const rel = normalize(join(dirname(page), raw)).replace(/\\/g, '/');
+          if (!tracked.has(rel)) missing.push(`${rel}  <- ${page} (srcset)`);
+        }
+      }
     }
 
     expect(references, 'no asset references found — the matcher is broken').toBeGreaterThan(100);

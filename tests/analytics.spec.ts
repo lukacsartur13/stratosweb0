@@ -189,8 +189,9 @@ test.describe('what the shipped build actually configures', () => {
 
     expect(cfg.ga4.allowHosts).toContain('stratosweb.hu');
     expect(cfg.ga4.allowHosts).toContain('www.stratosweb.hu');
-    // Integration testing happens here until the domain cutover.
-    expect(cfg.ga4.allowHosts).toContain('stratosweb1.netlify.app');
+    // The netlify.app hosts 301 to stratosweb.hu since 2026-10-10 (netlify.toml),
+    // so nothing is ever measured there.
+    expect(cfg.ga4.allowHosts).not.toContain('stratosweb1.netlify.app');
 
     for (const forbidden of ['localhost', '127.0.0.1', 'media-stratos.com', 'www.media-stratos.com']) {
       expect(cfg.ga4.allowHosts, `${forbidden} must not be measured`).not.toContain(forbidden);
@@ -209,8 +210,11 @@ test.describe('what the shipped build actually configures', () => {
     const csp = toml.slice(from, toml.indexOf(fence, toml.indexOf(fence, from) + 3));
     expect(csp.length).toBeGreaterThan(100);
 
-    expect(csp).toContain('https://www.googletagmanager.com');
-    expect(csp).toContain('https://www.google-analytics.com');
+    // The GA4 set from Google's CSP guide: wildcard tag and collection hosts,
+    // which cover the regional endpoints (2026-10-10).
+    expect(csp).toContain("script-src 'self' https://*.googletagmanager.com");
+    expect(csp).toContain('https://*.google-analytics.com');
+    expect(csp).toContain('https://*.analytics.google.com');
     // Adding these is what turns analytics into ad tracking.
     expect(csp).not.toContain('doubleclick');
     expect(csp).not.toContain('googleadservices');

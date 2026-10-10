@@ -1,7 +1,7 @@
 {
- "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Branding</b>": [
-  "<a href=\"index.html\">Stratos</a> / Services / <b>Branding</b>",
-  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Branding</b>"
+ "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Szolgáltatások</a> / <b>Branding</b>": [
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Services</a> / <b>Branding</b>",
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Leistungen</a> / <b>Branding</b>"
  ],
  "Egy szín.<br>Egy szlogen.<br><span class=\"sig\">És te jutsz eszükbe.</span>": [
   "One colour.<br>One line.<br><span class=\"sig\">And they think of you.</span>",

@@ -47,6 +47,24 @@
   status = 301
   force = true
 
+# The Netlify default hosts (2026-10-10). Since the cutover they served a
+# complete, crawlable copy of every page, held off only by rel=canonical, which
+# is a hint; a redirect is the signal Google treats as decisive. Production and
+# its branch alias move the same way the old domain does. Deploy previews
+# (deploy-preview-N--stratosweb1) are other hosts, unaffected, and keep their
+# Disallow-all robots.txt from scripts/assemble.mjs.
+[[redirects]]
+  from = "https://stratosweb1.netlify.app/*"
+  to = "https://stratosweb.hu/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://main--stratosweb1.netlify.app/*"
+  to = "https://stratosweb.hu/:splat"
+  status = 301
+  force = true
+
 # The portal is a single-page app: a direct hit on /portal/leads must return the
 # SPA shell and let the router resolve the path, rather than 404. Everything
 # under /portal that is not a real file falls through to index.html.
@@ -371,6 +389,21 @@
   to = "/portal/"
   status = 302
 
+# Localised not-found pages. LAST on purpose, and not forced: a rule without
+# `force` only applies when no file matches, and every 301 above (and in the
+# generated _redirects) is checked first, so this catches only what nothing
+# else answers. Without it Netlify served the root /404.html — Hungarian — for
+# every missing /en/ and /de/ URL. See build_not_found in _build/build.py.
+[[redirects]]
+  from = "/en/*"
+  to = "/en/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/de/*"
+  to = "/de/404.html"
+  status = 404
+
 #-------------------------------------------------------------------- headers
 [[headers]]
   for = "/*"
@@ -378,7 +411,7 @@
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=()"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
     Cross-Origin-Opener-Policy = "same-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
@@ -447,12 +480,17 @@
     #
     # What was added, and nothing beyond it:
     #
-    #   script-src   www.googletagmanager.com   gtag.js itself.
+    #   script-src   *.googletagmanager.com     gtag.js itself.
     #   connect-src  *.google-analytics.com     where events are sent. The
     #                *.analytics.google.com     wildcards cover the regional
-    #                www.googletagmanager.com   endpoints GA4 picks at runtime.
-    #   img-src      www.google-analytics.com   the pixel fallback used when
-    #                www.googletagmanager.com   sendBeacon/fetch are unavailable.
+    #                *.googletagmanager.com     endpoints GA4 picks at runtime.
+    #   img-src      *.google-analytics.com     the pixel fallback used when
+    #                *.googletagmanager.com     sendBeacon/fetch are unavailable.
+    #
+    # (2026-10-10: widened from the www. hosts to the wildcards, which is the
+    # GA4 set Google's own CSP guide lists — developers.google.com/tag-platform
+    # /security/guides/csp — because the regional pixel and tag hosts sit
+    # outside www. and were being refused.)
     #
     # What was deliberately NOT added:
     #
@@ -469,12 +507,12 @@
     # them. See assets/js/analytics.js.
     Content-Security-Policy = """
       default-src 'self';
-      script-src 'self' https://www.googletagmanager.com;
+      script-src 'self' https://*.googletagmanager.com;
       worker-src 'self' blob:;
       style-src 'self' 'unsafe-inline';
       font-src 'self';
-      img-src 'self' data: blob: https://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com;
-      connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com;
+      img-src 'self' data: blob: https://*.supabase.co https://*.google-analytics.com https://*.googletagmanager.com;
+      connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;
       form-action 'self';
       frame-ancestors 'none';
       base-uri 'self';
@@ -514,6 +552,46 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# The homepage's Vite output carries a content hash in every file name
+# (main-CEPC1L0J.js), so a changed file is a new URL: immutable, like the
+# portal's. The rest of /assets is versioned by query string or not at all,
+# and keeps the week.
+[[headers]]
+  for = "/assets/home/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Files that are not pages and should never be a search result on their own:
+# the licence texts beside the fonts, the 3D models and their decoder, and
+# llms.txt (written for language models, which read it regardless). Crawling
+# stays allowed — a noindex has to be fetched to be obeyed.
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/draco/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/models/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# Served as application/octet-stream by default, which is not what a .glb is.
+[[headers]]
+  for = "/models/*.glb"
+  [headers.values]
+    Content-Type = "model/gltf-binary"
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    X-Robots-Tag = "noindex"
 
 [[headers]]
   for = "/api/*"

@@ -123,6 +123,9 @@
     io.observe(el);
   });
 
+  /* The markup carries the FINAL figure ("78%", "15+"), so a reader that never
+     runs this — a crawler, a reader view, a failed script — gets the number and
+     not a "0%". The count starts from zero only when the animation does. */
   function countUp(el) {
     const to = parseFloat(el.dataset.count);
     const suffix = el.dataset.suffix || '';
@@ -403,8 +406,11 @@
      with no hyphen — "MUNKAMÓDSZE / R." — so instead the heading is scaled
      down until that word fits on one line. Measured with a probe inside the
      heading itself, so it carries the heading's real font, weight, case and
-     letter-spacing. Nothing changes for a heading whose words already fit,
-     and English and German are left alone. */
+     letter-spacing. Nothing changes for a heading whose words already fit.
+     (2026-10-10: English and German too. Display headings set
+     `hyphens: manual` in every language, so a German compound at display size
+     — "UNTERNEHMEN" on a 320px phone — had the same choice between being cut
+     and being scaled, and was being cut.) */
   const FIT_SELECTOR = 'h1, h2, h3, .display, .path__card h3';
   /* Is any word of 6+ letters laid out across two lines? Read from the real
      layout (a Range per word), so it is right whatever styles the word's own
@@ -426,7 +432,6 @@
     return false;
   }
   function fitWords() {
-    if ((document.documentElement.lang || '').slice(0, 2) !== 'hu') return;
     $$(FIT_SELECTOR).forEach((el) => {
       // Visually hidden headings (.vh) are 1px boxes by design.
       if (el.closest('[data-no-fit], .vh') || el.clientWidth < 60) return;

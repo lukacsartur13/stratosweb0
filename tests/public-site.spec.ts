@@ -364,12 +364,17 @@ test.describe('reduced motion', () => {
 });
 
 test.describe('deploy artefacts', () => {
-  test('robots.txt keeps the portal out of the index', async ({ request }) => {
+  test('robots.txt lets crawlers read the portal noindex, and the header is there', async ({ request }) => {
     const res = await request.get('/robots.txt');
     expect(res.status()).toBe(200);
     const body = await res.text();
-    expect(body).toContain('Disallow: /portal');
+    // A Disallow would hide the X-Robots-Tag that keeps /portal out of the
+    // index, and leave the bare URL indexable from links.
+    expect(body).not.toContain('Disallow: /portal');
+    expect(body).toContain('Disallow: /api/');
     expect(body).toContain('Sitemap:');
+    const toml = fs.readFileSync(path.resolve(process.cwd(), 'netlify.toml'), 'utf8');
+    expect(toml).toMatch(/for = "\/portal\/\*"[\s\S]*?X-Robots-Tag = "noindex/);
   });
 
   test('sitemap.xml lists all three languages', async ({ request }) => {
@@ -397,16 +402,25 @@ test.describe('deploy artefacts', () => {
    * kind of thing that stays wrong for a year, so it is asserted rather than
    * reviewed.
    *
-   * Also the one place `<lastmod>` is checked for absence — see the note in
+   * Also the one place `<lastmod>` is checked — see the note in
    * scripts/assemble.mjs. A build-clock lastmod tells every crawler that all 60
    * pages changed on every deploy, and a signal that always says "everything
-   * changed" carries the same information as one that never changes.
+   * changed" carries the same information as one that never changes. Since
+   * 2026-10-10 only the Hungarian blog posts carry one, and it must be the
+   * date the post itself states (front matter, from git), never today's.
    */
   test('every sitemap URL is the canonical of the page it points at', async ({ request }) => {
     const body = await (await request.get('/sitemap.xml')).text();
     const locs = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
     expect(locs.length).toBeGreaterThan(50);
-    expect(body).not.toContain('<lastmod>');
+    const manifest = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), '_build', 'routes.json'), 'utf8'));
+    for (const m of body.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)) {
+      const name = new URL(m[1]).pathname.replace(/^\//, '') + '.html';
+      const key = Object.keys(manifest.slugs).find((k) => manifest.slugs[k].hu === name);
+      expect(key && key.startsWith('post-'), `${m[1]}: lastmod on a page that is not a Hungarian post`).toBe(true);
+      expect(m[2], `${m[1]} lastmod`).toBe(manifest.updated[key!]);
+    }
+    expect([...body.matchAll(/<lastmod>/g)].length, 'one lastmod per Hungarian post').toBe(Object.keys(manifest.updated).length);
 
     for (const loc of locs) {
       const path = new URL(loc).pathname;

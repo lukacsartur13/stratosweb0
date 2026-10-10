@@ -1,7 +1,7 @@
 {
- "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Keresőoptimalizálás</b>": [
-  "<a href=\"index.html\">Stratos</a> / Services / <b>SEO consultancy</b>",
-  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>SEO Betreuung</b>"
+ "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Szolgáltatások</a> / <b>Keresőoptimalizálás</b>": [
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Services</a> / <b>SEO consultancy</b>",
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Leistungen</a> / <b>SEO Betreuung</b>"
  ],
  "Minden nap beírják a Google-be, amit te árulsz. A keresőoptimalizálás arról szól, hogy ilyenkor a te oldalad jöjjön elő.": [
   "Every day someone types what you sell into Google. SEO consultancy is the work of making sure your page is what comes back.",
@@ -79,9 +79,9 @@
   "Rapidkert received roughly HUF 110 million in quote requests from organic search — with no ad spend at all. On top of that, advertising brought in around HUF 9 million.",
   "Rapidkert erhielt aus der organischen Suche Angebotsanfragen im Wert von rund 110 Mio. HUF — ganz ohne Werbebudget. Die Anzeigen brachten zusätzlich rund 9 Mio. HUF."
  ],
- "Az egész esettanulmány": [
-  "The full case study",
-  "Die ganze Fallstudie"
+ "A teljes Rapidkert esettanulmány": [
+  "The full Rapidkert case study",
+  "Die ganze Rapidkert-Fallstudie"
  ],
  "Négy hónap,<br>négy szakasz": [
   "Four months,<br>four stages",
@@ -331,9 +331,9 @@
   "SEO in Győr<br>and <span class=\"sig\">Budapest</span>",
   "SEO in Győr<br>und <span class=\"sig\">Budapest</span>"
  ],
- "A cég székhelye Győr mellett van, az ügyfelek fele budapesti, a munka pedig távolról is ugyanaz. A helyi keresés viszont nem ugyanaz.": [
-  "The company is seated just outside Győr, half the clients are in Budapest, and the work is the same at a distance. Local search is not.",
-  "Der Sitz des Unternehmens liegt bei Győr, die Hälfte der Kunden sitzt in Budapest, und die Arbeit ist aus der Ferne dieselbe. Die lokale Suche ist es nicht."
+ "Az irodánk <a class=\"tlink\" href=\"weboldal-keszites-gyor.html\">Győrben</a> van, az ügyfelek fele <a class=\"tlink\" href=\"weboldal-keszites-budapest.html\">budapesti</a>, a munka pedig távolról is ugyanaz. A helyi keresés viszont nem ugyanaz.": [
+  "Our office is in Győr, half the clients are in Budapest, and the work is the same at a distance. Local search is not.",
+  "Unser Büro ist in Győr, die Hälfte der Kunden sitzt in Budapest, und die Arbeit ist aus der Ferne dieselbe. Die lokale Suche ist es nicht."
  ],
  "Győr és környéke": [
   "Győr and around it",

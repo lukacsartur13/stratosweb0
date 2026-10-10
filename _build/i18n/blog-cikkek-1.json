@@ -50,10 +50,6 @@
   "<span>Category <b>SEO</b></span> <span>Written by <b>Stratos</b></span>",
   "<span>Kategorie <b>SEO</b></span> <span>Geschrieben von <b>Stratos</b></span>"
  ],
- "Illusztráció a keresőoptimalizálásról szóló cikkhez.": [
-  "Illustration for the article about search engine optimisation.",
-  "Illustration zum Artikel über Suchmaschinenoptimierung."
- ],
  "A keresőoptimalizálás körül két féligazság kering. Az egyik szerint pénz kérdése az egész, a másik szerint trükk. Egyik sem igaz. A Google azt próbálja eldönteni, hogy a te oldalad válaszol-e legjobban arra, amit valaki beírt — és ehhez olyan jeleket használ, amelyek nagy részét te magad állítod be.": [
   "Two half-truths circulate about search optimisation. One says it's all about money, the other that it's a trick. Neither is true. Google is trying to decide whether your page answers what somebody typed best — and it uses signals that you set yourself, for the most part.",
   "Über Suchmaschinenoptimierung kursieren zwei Halbwahrheiten. Die eine sagt, es sei nur eine Geldfrage, die andere, es sei ein Trick. Beides stimmt nicht. Google versucht zu entscheiden, ob Ihre Seite am besten auf das antwortet, was jemand eingegeben hat — und nutzt dafür Signale, die Sie größtenteils selbst setzen."
@@ -106,9 +102,9 @@
   "4. Sort out the headings",
   "4. Bringen Sie die Überschriften in Ordnung"
  ],
- "Minden oldalon pontosan egy H1 legyen, és az mondja meg, miről szól az oldal. Alatta H2-k tagolják a tartalmat. Ez nem esztétikai kérdés: a kereső ebből olvassa ki az oldal szerkezetét, a képernyőolvasót használó látogató pedig szó szerint ezen navigál.": [
-  "Every page should carry exactly one H1, and it should say what the page is about. H2s below it break up the content. This isn't an aesthetic question: search engines read the page's structure from it, and a visitor using a screen reader literally navigates by it.",
-  "Jede Seite sollte genau eine H1 haben, und diese sollte sagen, worum es geht. Darunter gliedern H2 den Inhalt. Das ist keine ästhetische Frage: Suchmaschinen lesen daraus die Seitenstruktur, und wer einen Screenreader nutzt, navigiert buchstäblich darüber."
+ "Minden oldalon legyen egy egyértelmű H1, ami megmondja, miről szól az oldal, alatta pedig H2-k tagolják a tartalmat. A Google nem ír elő pontos címsorszámot, de a tiszta szerkezetből könnyebben érti az oldalt, a képernyőolvasót használó látogató pedig szó szerint ezen navigál.": [
+  "Give every page one clear H1 that says what the page is about, with H2s below it breaking up the content. Google prescribes no exact number of headings, but it reads a clean structure more easily, and a visitor using a screen reader literally navigates by it.",
+  "Jede Seite sollte eine klare H1 haben, die sagt, worum es geht; darunter gliedern H2 den Inhalt. Google schreibt keine bestimmte Anzahl von Überschriften vor, versteht eine saubere Struktur aber leichter — und wer einen Screenreader nutzt, navigiert buchstäblich darüber."
  ],
  "5. Gyorsítsd fel az oldalt": [
   "5. Make the page faster",
@@ -183,9 +179,9 @@
   "How much does a website cost in 2026? | Stratos",
   "Was kostet eine Website 2026? | Stratos"
  ],
- "A weboldal ára nem egy szám, hanem egy tartomány. Mi hajtja fel a költséget, mi nincs benne az ajánlatokban, és mennyit ér neked?": [
-  "A website's price is a range, not a number. What drives the cost, what quotes leave out, and what it is worth to you.",
-  "Der Preis einer Website ist eine Spanne, keine Zahl. Was ihn treibt, was Angebote auslassen, und was sie Ihnen wert ist."
+ "Mitől függ egy weboldal ára? Mi hajtja fel a költséget, mi marad ki az ajánlatokból, és hogyan döntsd el, mennyit ér neked.": [
+  "What does a website's price depend on? What drives the cost, what quotes leave out, and how to decide what it is worth to you.",
+  "Wovon hängt der Preis einer Website ab? Was die Kosten treibt, was Angebote auslassen und wie Sie entscheiden, was sie Ihnen wert ist."
  ],
  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Árak</b>": [
   "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Pricing</b>",
@@ -198,10 +194,6 @@
  "<span>Kategória <b>Árak</b></span> <span>Írta <b>Stratos</b></span>": [
   "<span>Category <b>Pricing</b></span> <span>Written by <b>Stratos</b></span>",
   "<span>Kategorie <b>Preise</b></span> <span>Geschrieben von <b>Stratos</b></span>"
- ],
- "Illusztráció a weboldal árakról szóló cikkhez.": [
-  "Illustration for the article about website pricing.",
-  "Illustration zum Artikel über Website-Preise."
  ],
  "A weboldal olyan, mint az iroda: lehet bérelni egy sarokasztalt, és lehet építtetni egy házat. Mindkettő „iroda”, és a kettő ára között nagyságrend van. Ez nem árazási trükk, hanem a feladat különbsége.": [
   "A website is like an office: you can rent a desk in a corner, or you can have a building put up. Both are \"an office\", and there's an order of magnitude between them. That isn't a pricing trick, it's a difference in the task.",
@@ -352,10 +344,6 @@
   "<span>Category <b>Local search</b></span> <span>Written by <b>Stratos</b></span>",
   "<span>Kategorie <b>Lokale Suche</b></span> <span>Geschrieben von <b>Stratos</b></span>"
  ],
- "Illusztráció a Google Cégprofilról szóló cikkhez.": [
-  "Illustration for the article about the Google Business Profile.",
-  "Illustration zum Artikel über das Google-Unternehmensprofil."
- ],
  "Amikor valaki beír egy szolgáltatást és egy településnevet, a találati lista tetején nem weboldalak vannak, hanem térképes találatok. Ezek a Google Cégprofilokból jönnek. Ha nincs profilod, ebből a mezőből egyszerűen hiányzol — függetlenül attól, milyen jó a weboldalad.": [
   "When somebody types a service and a place name, the top of the results isn't websites — it's map results. Those come from Google Business Profiles. Without a profile you're simply absent from that block, no matter how good your website is.",
   "Wenn jemand eine Leistung und einen Ortsnamen eingibt, stehen oben in der Trefferliste keine Websites, sondern Kartentreffer. Diese stammen aus Google-Unternehmensprofilen. Ohne Profil fehlen Sie in diesem Block schlicht — egal, wie gut Ihre Website ist."
@@ -420,9 +408,9 @@
   "Reviews are the most important trust signal in local search. Two practical things matter:",
   "Bewertungen sind das wichtigste Vertrauenssignal in der lokalen Suche. Zwei praktische Dinge zählen:"
  ],
- "kérd személyesen, a munka végén, amikor az ügyfél elégedett;": [
-  "ask in person, at the end of the job, when the client is happy;",
-  "fragen Sie persönlich, am Ende der Arbeit, wenn der Kunde zufrieden ist;"
+ "kérj értékelést minden ügyfeledtől a munka végén, személyesen és nyomásgyakorlás nélkül — ne csak azoktól, akikről tudod, hogy elégedettek, mert a válogatott kérés a Google szabályai szerint tiltott;": [
+  "ask every client for a review at the end of the job, in person and without pressure — not only the ones you know are happy, because asking selectively is against Google's rules;",
+  "bitten Sie jeden Kunden am Ende der Arbeit um eine Bewertung, persönlich und ohne Druck — nicht nur die, von denen Sie wissen, dass sie zufrieden sind, denn eine selektive Bitte verstößt gegen die Regeln von Google;"
  ],
  "válaszolj mindegyikre — a rosszakra is, higgadtan és tényszerűen.": [
   "reply to every one — including the bad ones, calmly and factually.",
@@ -476,9 +464,9 @@
   "Google and Meta campaigns, with measurement and a report you can read.",
   "Google- und Meta-Kampagnen, mit Messung und verständlichem Bericht."
  ],
- "A másik nagy költségtétel, ugyanígy tartományban.": [
-  "The other big cost item, also in a range.",
-  "Der andere große Kostenblock, ebenfalls als Spanne."
+ "Mit csinál pontosan a SEO, és mikor éri meg.": [
+  "What SEO actually does, and when it pays off.",
+  "Was SEO genau leistet und wann es sich lohnt."
  ],
  "A cégprofil az egyik ingyenes eszköz a négyből.": [
   "The business profile is one of the four free tools.",
@@ -527,5 +515,17 @@
  "Mi az a keresőoptimalizálás? SEO útmutató kezdőknek": [
   "What is SEO? A beginner's guide",
   "Was ist SEO? Ein Leitfaden für Einsteiger"
+ ],
+ "Fekete háttéren króm hatású absztrakt szalagok, sárga nagybetűs felirattal: „Hogyan kerülj a Google első oldalára? Keresőoptimalizálás 7 lépésben”.": [
+  "Chrome-like abstract ribbons on a black background with a yellow Hungarian headline: “Hogyan kerülj a Google első oldalára? Keresőoptimalizálás 7 lépésben” (How to reach Google's first page? SEO in 7 steps).",
+  "Chromartige abstrakte Bänder auf schwarzem Grund mit gelber ungarischer Überschrift: „Hogyan kerülj a Google első oldalára? Keresőoptimalizálás 7 lépésben“ (Wie Sie auf die erste Google-Seite kommen – SEO in 7 Schritten)."
+ ],
+ "Fekete háttéren króm hatású absztrakt szalagok, sárga nagybetűs felirattal: „Mennyibe kerül egy weboldal 2026-ban? Így számold ki, mennyit ér neked”.": [
+  "Chrome-like abstract ribbons on a black background with a yellow Hungarian headline: “Mennyibe kerül egy weboldal 2026-ban? Így számold ki, mennyit ér neked” (What does a website cost in 2026? How to work out what it is worth to you).",
+  "Chromartige abstrakte Bänder auf schwarzem Grund mit gelber ungarischer Überschrift: „Mennyibe kerül egy weboldal 2026-ban? Így számold ki, mennyit ér neked“ (Was kostet eine Website 2026? So berechnen Sie, was sie Ihnen wert ist)."
+ ],
+ "Fekete háttéren króm hatású absztrakt szalagok, sárga nagybetűs felirattal: „Google Cégprofil beállítása lépésről lépésre: így hozz ingyen ügyfeleket a környékedről”.": [
+  "Chrome-like abstract ribbons on a black background with a yellow Hungarian headline: “Google Cégprofil beállítása lépésről lépésre: így hozz ingyen ügyfeleket a környékedről” (Setting up a Google Business Profile step by step: free customers from your area).",
+  "Chromartige abstrakte Bänder auf schwarzem Grund mit gelber ungarischer Überschrift: „Google Cégprofil beállítása lépésről lépésre: így hozz ingyen ügyfeleket a környékedről“ (Google-Unternehmensprofil Schritt für Schritt einrichten: kostenlos Kunden aus Ihrer Umgebung gewinnen)."
  ]
 }

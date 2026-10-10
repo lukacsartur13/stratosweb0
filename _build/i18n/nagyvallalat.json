@@ -1,7 +1,7 @@
 {
- "Dedikált fejlesztőcsapat": [
-  "Dedicated development team",
-  "Dediziertes Entwicklungsteam"
+ "Projektre szabott fejlesztőcsapat": [
+  "Development team built for the project",
+  "Projektbezogenes Entwicklungsteam"
  ],
  "Nagyvállalati SLA": [
   "Enterprise SLA",
@@ -15,9 +15,9 @@
   "Admin interface",
   "Admin-Oberfläche"
  ],
- "Garantált rendelkezésre állás": [
-  "Guaranteed uptime",
-  "Garantierte Verfügbarkeit"
+ "Jellemző SLA-szint: rendelkezésre állás": [
+  "Typical SLA level: uptime",
+  "Typisches SLA-Niveau: Verfügbarkeit"
  ],
  "&lt; 4 óra": [
   "&lt; 4 hours",
@@ -79,9 +79,9 @@
   "Operations and SLA",
   "Betrieb und SLA"
  ],
- "Monitoring, hibakezelés, verziózás, mentések és skálázás. Garantált rendelkezésre állás és definiált reakcióidők.": [
-  "Monitoring, incident handling, versioning, backups and scaling. Guaranteed uptime and defined response times.",
-  "Monitoring, Störungsbehebung, Versionierung, Backups und Skalierung. Garantierte Verfügbarkeit und definierte Reaktionszeiten."
+ "Monitoring, hibakezelés, verziózás, mentések és skálázás. Szerződésben rögzített rendelkezésre állás és reakcióidők.": [
+  "Monitoring, incident handling, versioning, backups and scaling. Uptime and response times fixed in the contract.",
+  "Monitoring, Störungsbehebung, Versionierung, Backups und Skalierung. Vertraglich festgelegte Verfügbarkeit und Reaktionszeiten."
  ],
  "Így dolgozunk<br>együtt a<br>bevezetésig": [
   "How we work<br>together up to<br>go-live",
@@ -270,9 +270,9 @@
   "Bespoke web development,<br><span class=\"sig\">one partner.</span>",
   "Individuelle Webentwicklung,<br><span class=\"sig\">ein Partner.</span>"
  ],
- "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Weboldal fejlesztés</b>": [
-  "<a href=\"index.html\">Stratos</a> / Services / <b>Bespoke web development</b>",
-  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Webentwicklung</b>"
+ "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Szolgáltatások</a> / <b>Weboldal fejlesztés</b>": [
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Services</a> / <b>Bespoke web development</b>",
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Leistungen</a> / <b>Webentwicklung</b>"
  ],
  "Élesítés": [
   "Launch",

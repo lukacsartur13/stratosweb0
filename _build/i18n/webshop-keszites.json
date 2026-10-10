@@ -139,9 +139,9 @@
   "From here,<br>but not<br>only for here.",
   "Von hier,<br>aber nicht<br>nur für hier."
  ],
- "Az irodánk Győr mellett van, így a weboldal készítés Győrben azt is jelentheti, hogy indulás előtt leülünk egy kávéra. A megyei ügyfelekkel ez a szokásos menet, és tapasztalatunk szerint az első negyvenöt perc személyesen többet ad, mint három e-mail.": [
-  "Our office is just outside Győr, so web design in Győr can also mean sitting down over a coffee before anything starts. With clients in the county that is the usual route, and in our experience the first forty-five minutes in person are worth more than three emails.",
-  "Unser Büro liegt bei Győr, sodass Webdesign in Győr auch heißen kann, dass wir uns vor dem Start auf einen Kaffee treffen. Mit Kunden im Komitat ist das der übliche Weg, und nach unserer Erfahrung bringen die ersten fünfundvierzig Minuten persönlich mehr als drei E-Mails."
+ "Az irodánk <a class=\"tlink\" href=\"weboldal-keszites-gyor.html\">Győrben</a> van, így a weboldal készítés Győrben azt is jelentheti, hogy indulás előtt leülünk egy kávéra. A megyei ügyfelekkel ez a szokásos menet, és tapasztalatunk szerint az első negyvenöt perc személyesen többet ad, mint három e-mail.": [
+  "Our office is in Győr, so web design in Győr can also mean sitting down over a coffee before anything starts. With clients in the county that is the usual route, and in our experience the first forty-five minutes in person are worth more than three emails.",
+  "Unser Büro ist in Győr, sodass Webdesign in Győr auch heißen kann, dass wir uns vor dem Start auf einen Kaffee treffen. Mit Kunden im Komitat ist das der übliche Weg, und nach unserer Erfahrung bringen die ersten fünfundvierzig Minuten persönlich mehr als drei E-Mails."
  ],
  "A weboldal készítés Budapesten és az ország bármely pontján ugyanígy működik, csak a beszélgetés videóhívás. Dolgozunk osztrák és német cégeknek is — magyarul, angolul és németül. Az elmúlt években ez semmivel sem bizonyult lassabbnak a személyesnél.": [
   "Web design in Budapest and anywhere else in the country works the same way, only the conversation is a video call. We also work for Austrian and German companies, in Hungarian, English and German. Over the past years that has proved no slower than meeting in person.",
@@ -179,9 +179,9 @@
   "SLA and monitoring",
   "SLA und Monitoring"
  ],
- "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Webshop készítés</b>": [
-  "<a href=\"index.html\">Stratos</a> / Services / <b>Ecommerce web design</b>",
-  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Onlineshop-Erstellung</b>"
+ "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Szolgáltatások</a> / <b>Webshop készítés</b>": [
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Services</a> / <b>Ecommerce web design</b>",
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Leistungen</a> / <b>Onlineshop-Erstellung</b>"
  ],
  "A kosár<br>nem a végállomás.<br><span class=\"sig\">A kezdet.</span>": [
   "The basket<br>is not the finish line.<br><span class=\"sig\">It is the start.</span>",

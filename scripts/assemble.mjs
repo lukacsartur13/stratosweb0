@@ -85,6 +85,13 @@ async function main() {
 
   await minifyAssets();
 
+  // Browsers and crawlers ask for these two at the root whatever the <head>
+  // says (Google's favicon fetcher included), so they are served there too.
+  for (const [from, to] of [['assets/img/favicon.ico', 'favicon.ico'],
+                            ['assets/img/apple-touch-icon.png', 'apple-touch-icon.png']]) {
+    if (existsSync(join(ROOT, from))) await cp(join(ROOT, from), join(DIST, to));
+  }
+
   await writeFile(join(DIST, 'robots.txt'), robots(), 'utf8');
   await writeFile(join(DIST, 'sitemap.xml'), await sitemap(pages), 'utf8');
   await writeFile(join(DIST, '_redirects'), htmlTwins(), 'utf8');
@@ -210,10 +217,13 @@ async function minifyAssets() {
 }
 
 function robots() {
-  // Disallowing /portal is a hint to well-behaved crawlers so the sign-in page
-  // stays out of search results. It is not access control — see the RLS
-  // migration for that — and it deliberately does not name anything that is not
-  // already discoverable.
+  // /portal is NOT disallowed (2026-10-10). Every /portal response carries
+  // `X-Robots-Tag: noindex` (netlify.toml), and a crawler can only obey a
+  // noindex it is allowed to fetch: behind a Disallow, Google could still index
+  // the bare /portal/login URL from links, with no title and no way to read the
+  // header saying not to. Keeping it out of the index is the header's job, and
+  // access control is RLS's — see the migration. /api/ stays disallowed: it
+  // answers to POSTs and has nothing to read.
   // A preview must not be crawlable. Until the custom domain is attached this
   // site is served from a netlify.app subdomain, and a second indexable copy of
   // the same pages competes with the real one for the same queries — with the
@@ -231,7 +241,6 @@ function robots() {
   return [
     'User-agent: *',
     'Allow: /',
-    'Disallow: /portal',
     'Disallow: /api/',
     '',
     `Sitemap: ${SITE_URL}/sitemap.xml`,
@@ -256,6 +265,8 @@ const {
   // in _build/build.py, which explains why the one entry is there.
   localeNoindex: LOCALE_NOINDEX = {},
   huOnly: HU_ONLY_LIST = [],
+  // Real last-change dates of the blog posts (YYYY-MM-DD); see sitemap().
+  updated: UPDATED = {},
 } = JSON.parse(await readFile(MANIFEST, 'utf8'));
 const HU_ONLY = new Set(HU_ONLY_LIST);
 
@@ -309,9 +320,12 @@ const PRIORITY = {
 // optional in the sitemap protocol and is a hint rather than an instruction, so
 // omitting it costs a hint we could not give truthfully anyway.
 //
-// If it is wanted later, the derivation is `git log -1 --format=%cs` over
-// `_build/pages/<stem>.html` and `_build/i18n/<stem>.json`, taking the later of
-// the two, with the whole block skipped when git is unavailable.
+// 2026-10-10: the blog posts now carry real dates in their front matter,
+// written from git by _build/stamp_dates.py (committed, so a shallow clone
+// cannot turn them into deploy dates). Those — and only those — are emitted, on
+// the Hungarian URL, whose text the date describes. Google's own wording: use
+// lastmod "for all the pages in your sitemap, or just the ones you're confident
+// about". Everything else still has none.
 // -----------------------------------------------------------------------------
 async function sitemap() {
   const urls = [];
@@ -344,6 +358,7 @@ async function sitemap() {
       urls.push(
         `  <url>\n` +
         `    <loc>${SITE_URL}/${path}</loc>\n` +
+        (i === 0 && UPDATED[key] ? `    <lastmod>${UPDATED[key]}</lastmod>\n` : '') +
         `    <changefreq>monthly</changefreq>\n` +
         `    <priority>${i === 0 ? (PRIORITY[key] ?? '0.6') : '0.5'}</priority>\n` +
         alts + '\n' +

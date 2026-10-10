@@ -275,7 +275,10 @@
       analytics_storage: 'granted',
     });
     gtag('config', GA4.measurementId, {
-      anonymize_ip: true,
+      /* No `anonymize_ip`: GA4 never logs or stores IP addresses, and the flag
+         is a Universal Analytics parameter GA4 ignores. `Secure` so the _ga
+         cookies are never sent over plain HTTP. */
+      cookie_flags: 'SameSite=Lax;Secure',
       allow_google_signals: false,
       allow_ad_personalization_signals: false,
       /* Page views are sent by this adapter, from the taxonomy, so GA4's own
@@ -465,16 +468,18 @@
   }
 
   var DEST = [
-    ['quote', /(arajanlat|quote|angebot)\.html/],
-    ['contact', /(ugyfelszolgalat|contact|kontakt)\.html/],
+    /* `(\.html)?(?=[?#]|$)`: production links are extensionless (Netlify
+       rewrites the static `x.html` hrefs), the source files still say `.html`. */
+    ['quote', /(arajanlat|quote|angebot)(\.html)?(?=[?#]|$)/],
+    ['contact', /(ugyfelszolgalat|contact|kontakt)(\.html)?(?=[?#]|$)/],
     ['impact', /impact-program/],
     ['case', /(munka|work|projekt)-/],
-    ['work', /(munkaink|work|projekte)\.html/],
+    ['work', /(munkaink|work|projekte)(\.html)?(?=[?#]|$)/],
     ['article', /blog-/],
-    ['blog', /blog\.html/],
+    ['blog', /blog(\.html)?(?=[?#]|$)/],
     ['service', /(kkv|nagyvallalat|branding|hirdeteskezeles|szolgaltatasok|web-design|ads-management|services|webdesign|werbeanzeigen|leistungen)/],
     ['legal', /(adatkezelesi|impresszum|privacy|imprint|datenschutz|impressum)/],
-    ['home', /(^\/?$|index\.html)/],
+    ['home', /(^\/?$|^\/(en|de)\/?$|index\.html)/],
   ];
 
   function destinationOf(href) {

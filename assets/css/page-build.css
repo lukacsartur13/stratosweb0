@@ -151,7 +151,7 @@
 /* ---- reduced motion and no-JS: the pin releases and the three stages become
    ordinary stacked sections. The interface object shows its finished state
    once, at the top, rather than repeating three times down the page. */
-.build.is-static .build__grid { grid-template-columns: 1fr; }
+.build.is-static .build__grid { grid-template-columns: minmax(0, 1fr); }
 .build.is-static .build__stages { min-height: 0; display: block; }
 .build.is-static .build__stage { grid-area: auto; }
 .build.is-static .build__ui { order: -1; margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
@@ -169,7 +169,7 @@
 @media (max-width: 860px) {
   .build[data-stage] { height: auto !important; }
   .build .stage__pin { position: static; min-height: 0; display: block; }
-  .build__grid { grid-template-columns: 1fr; }
+  .build__grid { grid-template-columns: minmax(0, 1fr); }
   .build__stages { min-height: 0; display: block; }
   .build__stage {
     grid-area: auto;

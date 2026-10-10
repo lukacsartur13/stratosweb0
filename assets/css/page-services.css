@@ -108,6 +108,9 @@
 
 .svc__panel {
   display: grid;
+  /* A flex item's automatic minimum is its widest word; on a 320px phone that
+     pushed the stacked panels 31px past the screen. */
+  min-width: 0;
   align-content: center;
   gap: clamp(.5rem, 1.4vw, .9rem);
   padding-right: clamp(1rem, 3vw, 2.5rem);

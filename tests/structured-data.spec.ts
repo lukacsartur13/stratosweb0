@@ -288,7 +288,7 @@ test('nothing claims a rating, a review, a price or an award', () => {
     'offers', 'price', 'priceRange', 'priceSpecification',
     'award', 'awards', 'numberOfEmployees', 'foundingDate', 'founder',
     'geo', 'openingHours', 'openingHoursSpecification',
-    'taxID', 'vatID', 'legalName', 'duns', 'leiCode', 'naics', 'isicV4',
+    'vatID', 'duns', 'leiCode', 'naics', 'isicV4',
     'employee', 'member', 'potentialAction',
   ];
   // `address` and `areaServed` came OFF this list, and the distinction is the
@@ -299,6 +299,10 @@ test('nothing claims a rating, a review, a price or an award', () => {
   // footer of all 69 routes. Marking up a fact the site already states is what
   // structured data is for; `geo`, `openingHours` and `priceRange` stay
   // forbidden because those the site genuinely does not publish anywhere.
+  // `legalName` and `taxID` came off it on 2026-10-10 for the same reason as
+  // `address`: /impresszum states the operator ("Lukács Artúr e.v.") and the
+  // tax number, as Hungarian law requires. `vatID` stays — that is the EU
+  // number, which the site does not state.
   for (const doc of docs) {
     const serialised = JSON.stringify(doc.graph);
     for (const key of forbidden) {
@@ -307,16 +311,28 @@ test('nothing claims a rating, a review, a price or an award', () => {
   }
 });
 
-test('an article carries no invented publication date', () => {
-  // The six blog fragments carry no date in their front matter. A date here
-  // could only have been produced by the build clock or by the git history,
-  // and both would be a fabricated fact about when something was written.
+test('an article carries exactly the dates its fragment states, never the build clock', async () => {
+  // The dates live in each post's front matter, written from git by
+  // _build/stamp_dates.py and committed (2026-10-10). The markup may say
+  // nothing the fragment does not: no build-time date, no guessed one.
+  const manifest = JSON.parse(await readFile(join(ROOT, '_build', 'routes.json'), 'utf8'));
+  const fragmentOf = (file: string) => {
+    const rel = file.replace(/^dist\//, '');
+    const [lang, name] = rel.includes('/') ? rel.split('/') : ['hu', rel];
+    const key = Object.keys(manifest.slugs).find((k) => manifest.slugs[k][lang] === name);
+    return key ? join(ROOT, '_build', 'pages', manifest.slugs[key].hu) : null;
+  };
   for (const doc of docs) {
     for (const article of nodesOfType(doc, 'Article')) {
-      expect(article, `${doc.file}`).not.toHaveProperty('datePublished');
-      expect(article, `${doc.file}`).not.toHaveProperty('dateModified');
+      const frag = fragmentOf(doc.file);
+      expect(frag, `${doc.file} has no fragment`).toBeTruthy();
+      const head = (await readFile(frag!, 'utf8')).split('\n---\n')[0];
+      const fm = (k: string) => (new RegExp(`^${k}:\\s*(.+)$`, 'm').exec(head) || [])[1]?.trim();
+      expect(article.datePublished, `${doc.file} datePublished`).toBe(fm('published'));
+      expect(article.dateModified, `${doc.file} dateModified`).toBe(fm('updated'));
       expect(article.headline, `${doc.file} headline`).toBeTruthy();
-      expect(article.image, `${doc.file} image`).toMatch(/^https:\/\//);
+      // Only an image the post shows; four posts have none.
+      if (article.image) expect(article.image, `${doc.file} image`).toMatch(/^https:\/\//);
       expect(article.inLanguage, `${doc.file} inLanguage`).toMatch(/^(hu|en|de)-/);
       expect(article.author['@id'], `${doc.file} author`).toMatch(/#organization$/);
       expect(article.publisher['@id'], `${doc.file} publisher`).toMatch(/#organization$/);

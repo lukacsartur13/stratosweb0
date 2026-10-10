@@ -43,9 +43,9 @@
   "How much does a website cost in 2026?",
   "Was kostet eine Website 2026?"
  ],
- "Nulla forinttól több millióig terjednek a weboldal árak. Megmutatjuk, mitől függ a költség, és hogyan számold ki, mennyit ér egy weboldal a vállalkozásodnak.": [
-  "Website prices run from nothing to tens of thousands. We show what drives the cost and how to work out what a website is worth to your business.",
-  "Website-Preise reichen von null bis zu mehreren Zehntausend. Wir zeigen, wovon die Kosten abhängen und wie Sie berechnen, was Ihnen eine Website wert ist."
+ "Arra, hogy mennyibe kerül egy weboldal, nincs egyetlen szám. Megmutatjuk, mitől függ a költség, és hogyan számold ki, mennyit ér egy weboldal a vállalkozásodnak.": [
+  "There is no single number for what a website costs. We show what drives the cost and how to work out what a website is worth to your business.",
+  "Auf die Frage, was eine Website kostet, gibt es keine einzelne Zahl. Wir zeigen, wovon die Kosten abhängen und wie Sie berechnen, was Ihnen eine Website wert ist."
  ],
  "Helyi keresés": [
   "Local search",
@@ -207,9 +207,9 @@
   "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Yes\" required> <span>By continuing I confirm that I accept the terms set out in the <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">privacy policy</a>. *</span>",
   "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Ja\" required> <span>Mit dem Fortfahren bestätige ich, dass ich die Bestimmungen der <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Datenschutzerklärung</a> akzeptiere. *</span>"
  ],
- "<input type=\"checkbox\" name=\"hirlevel\" value=\"Igen\"> <span>Hozzájárulok, hogy a Stratos Media e-mailben értesítsen az újdonságokról és frissítésekről.</span>": [
-  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Yes\"> <span>I agree that Stratos Media may email me about news and updates.</span>",
-  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Ja\"> <span>Ich bin einverstanden, dass Stratos Media mich per E-Mail über Neuigkeiten und Updates informiert.</span>"
+ "<input type=\"checkbox\" name=\"hirlevel\" value=\"Igen\"> <span>Hozzájárulok, hogy a Stratos Webdesign e-mailben értesítsen az újdonságokról és frissítésekről.</span>": [
+  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Yes\"> <span>I agree that Stratos Webdesign may email me about news and updates.</span>",
+  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Ja\"> <span>Ich bin einverstanden, dass Stratos Webdesign mich per E-Mail über Neuigkeiten und Updates informiert.</span>"
  ],
  "A *-gal jelölt mezők kitöltése kötelező.": [
   "Fields marked with * are required.",
@@ -219,9 +219,9 @@
   "Imprint | Stratos",
   "Impressum | Stratos"
  ],
- "A Stratos Media üzemeltetőjének adatai, elérhetőségek és tárhelyszolgáltató.": [
-  "Details of the operator of Stratos Media, contact information and hosting provider.",
-  "Angaben zum Betreiber von Stratos Media, Kontaktdaten und Hosting-Anbieter."
+ "A Stratos Webdesign üzemeltetőjének adatai, elérhetőségek és tárhelyszolgáltató.": [
+  "Details of the operator of Stratos Webdesign, contact information and hosting provider.",
+  "Angaben zum Betreiber von Stratos Webdesign, Kontaktdaten und Hosting-Anbieter."
  ],
  "<a href=\"index.html\">Stratos</a> / <b>Impresszum</b>": [
   "<a href=\"index.html\">Stratos</a> / <b>Imprint</b>",

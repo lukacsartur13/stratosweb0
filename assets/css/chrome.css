@@ -68,7 +68,10 @@
   --step-2:  clamp(1.5rem, 1.2rem + 1.5vw, 2.4rem);
   --step-3:  clamp(2rem, 1.4rem + 3vw, 4rem);
   --step-4:  clamp(2.1rem, 1rem + 5.2vw, 6.2rem);
-  --step-5:  clamp(2rem, .3rem + 6vw, 8rem);
+  /* Never below --step-4. The two fluid curves cross at 1400px, so under that
+     width an .h-xl H1 rendered SMALLER than an .h-lg H2 on the same page — at
+     1280px 81.6px against 82.6px. `max()` keeps the scale monotonic. */
+  --step-5:  clamp(2.1rem, max(1rem + 5.2vw, .3rem + 6vw), 8rem);
 
   /* geometry */
   --rail: 78px;
@@ -463,7 +466,8 @@ a { color: inherit; text-decoration: none; }
 
 /* The display face, used by the Arrival headline. */
 .display {
-  font-family: var(--display); text-transform: uppercase;
+  /* The wide shim, not --display's: see 'Archivo Display Fallback' in type.css. */
+  font-family: var(--font-display-wide, var(--display)); text-transform: uppercase;
   font-weight: 400;
   font-variation-settings: 'wdth' var(--wd), 'wght' var(--wt);
   letter-spacing: -.018em; line-height: .88;
@@ -812,8 +816,16 @@ html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
   font-size: var(--step-0); color: rgba(244,244,244,.72);
   transition: color .25s, padding-left .3s var(--ease);
   display: inline-block;
+  /* A 24px minimum target (WCAG 2.2 target size): the text alone was 19px tall. */
+  min-height: 24px; padding-block: .15rem;
 }
 .foot ul a:hover { color: var(--signal); padding-left: .4rem; }
+/* The two city links inside the status line read as part of that line. */
+.foot__status a {
+  font-size: inherit; color: inherit; min-height: 0; padding-block: 0;
+  text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px;
+}
+.foot__status a:hover { padding-left: 0; }
 /* The seat, set to match the two contact lines above it rather than to stand
    out. <address> is the right element for it — that is what the element is for
    — and it arrives with the browser's italic and with full opacity, neither of
@@ -924,4 +936,19 @@ html:not(.motion-ready) [data-trace] path { stroke-dashoffset: 0 !important; }
 @media (max-width: 380px) {
   .consent__actions { flex-direction: column; }
   .consent__btn { flex: 1 1 auto; width: 100%; }
+}
+
+/* Small phones (2026-10-10 audit): the banner covered 42–54% of a 360px
+   screen, and its body copy re-wrapped when Archivo arrived, shifting the
+   banner a second time. Tighter spacing, and the body in the system face,
+   which is already there and never swaps. Both answers stay identical. */
+@media (max-width: 400px) {
+  .consent__wrap { padding: .75rem 1rem; gap: .6rem; }
+  .consent__title { margin-bottom: .25rem; }
+  .consent__body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.4;
+  }
+  .consent__actions { gap: .5rem; }
+  .consent__btn { padding-block: .55rem; }
 }

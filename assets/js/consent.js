@@ -47,7 +47,7 @@
        generated markup (build_footer in _build/build.py), not something this
        file renders, so a fallback here would be a second copy that is never
        read. Every key above IS read below — see the Workstream E inventory. */
-    consent_privacy_href: 'adatkezelesi-tajekoztato.html',
+    consent_privacy_href: '/adatkezelesi-tajekoztato',
   };
   try {
     var block = document.getElementById('i18n');
@@ -70,6 +70,10 @@
     banner.className = 'consent';
     banner.setAttribute('role', 'region');
     banner.setAttribute('aria-label', T.consent_title);
+    /* Googlebot never stores a consent choice, so it renders this banner on
+       every page — and on a few short pages it was the largest text block, the
+       one Google could pick as the result snippet. */
+    banner.setAttribute('data-nosnippet', '');
     banner.hidden = true;
 
     var wrap = document.createElement('div');

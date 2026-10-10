@@ -77,13 +77,20 @@ async function redirects(): Promise<Redirect[]> {
   return out;
 }
 
+// Redirect targets are the extensionless canonical URLs (2026-10-09), which
+// Netlify serves from `<path>.html`; a target that already names a file is
+// checked as it is.
 const emitted = async (path: string) => {
-  try {
-    await access(join(ROOT, 'dist', path.replace(/^\//, '')));
-    return true;
-  } catch {
-    return false;
+  const rel = path.replace(/^\//, '');
+  for (const candidate of rel.endsWith('.html') || rel === '' ? [rel] : [rel, `${rel}.html`]) {
+    try {
+      await access(join(ROOT, 'dist', candidate));
+      return true;
+    } catch {
+      /* try the next spelling */
+    }
   }
+  return false;
 };
 
 test.describe('legacy redirect configuration (Netlify runtime validation pending deployment)', () => {
@@ -97,10 +104,11 @@ test.describe('legacy redirect configuration (Netlify runtime validation pending
     /* The destination is asserted as the CONTACT PAGE, by its emitted path.
        `/ugyfelszolgalat.html` is the Hungarian slug of the page whose canonical
        key is `contact` — see the SLUGS table in _build/build.py — so "→
-       /contact" and "→ /ugyfelszolgalat.html" are the same statement about the
+       /contact" and "→ /ugyfelszolgalat" are the same statement about the
        same route, one in page keys and one in URLs. This asserts the URL,
-       because that is what Netlify serves. */
-    expect(rule!.to).toBe('/ugyfelszolgalat.html');
+       because that is what Netlify serves — extensionless, as the canonical
+       is, so the redirect is one hop and not two. */
+    expect(rule!.to).toBe('/ugyfelszolgalat');
 
     // And the destination is a page the build actually emits. A redirect to a
     // 404 is the one failure a redirect map cannot survive.
@@ -118,7 +126,7 @@ test.describe('legacy redirect configuration (Netlify runtime validation pending
       const rule = rules.find((r) => r.from === from);
       expect(rule, `${from} has no redirect rule`).toBeDefined();
       expect(rule!.status).toBe(301);
-      expect(rule!.to).toBe('/ugyfelszolgalat.html');
+      expect(rule!.to).toBe('/ugyfelszolgalat');
     }
   });
 
@@ -128,9 +136,10 @@ test.describe('legacy redirect configuration (Netlify runtime validation pending
 
     const dangling: string[] = [];
     for (const rule of rules) {
-      // Only the ones that name a built file. `/portal/login` and `/portal/` are
-      // client-routed and are covered by portal.spec.ts, not by a file check.
-      if (!rule.to.endsWith('.html')) continue;
+      // Only the ones that name a site page. `/portal/...` is client-routed and
+      // covered by portal.spec.ts; absolute host moves and the localised 404
+      // fallbacks name no page of their own.
+      if (/^https?:/.test(rule.to) || rule.to.startsWith('/portal') || rule.status === 404) continue;
       if (!(await emitted(rule.to))) dangling.push(`${rule.from} -> ${rule.to}`);
     }
     expect(dangling, `redirects pointing at pages the build does not emit`).toEqual([]);

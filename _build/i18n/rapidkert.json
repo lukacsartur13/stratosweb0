@@ -46,9 +46,9 @@
   "Rapidkert builds gardens above ground. We built the digital system beneath its growth.",
   "Rapidkert baut Gärten über der Erde. Wir haben das digitale System darunter gebaut, aus dem das Wachstum kommt."
  ],
- "<span><b>Szektor</b> kertépítés, öntözéstechnika</span> <span><b>Amit szállítottunk</b> akvizíció és weboldal</span> <span><b>Nyelv</b> magyar, angol</span> <span><b>Élő cím</b> rapidkert.com</span>": [
-  "<span><b>Sector</b> landscaping, irrigation</span> <span><b>What we delivered</b> acquisition and website</span> <span><b>Languages</b> Hungarian, English</span> <span><b>Live at</b> rapidkert.com</span>",
-  "<span><b>Branche</b> Gartenbau, Bewässerungstechnik</span> <span><b>Unsere Leistung</b> Akquise und Website</span> <span><b>Sprachen</b> Ungarisch, Englisch</span> <span><b>Live unter</b> rapidkert.com</span>"
+ "<span><b>Szektor</b> kertépítés, öntözéstechnika</span> <span><b>Amit szállítottunk</b> akvizíció és weboldal</span> <span><b>Nyelv</b> magyar, angol</span> <span><b>Élő cím</b> <a href=\"https://rapidkert.com/\" target=\"_blank\" rel=\"noopener\">rapidkert.com</a></span>": [
+  "<span><b>Sector</b> landscaping, irrigation</span> <span><b>What we delivered</b> acquisition and website</span> <span><b>Languages</b> Hungarian, English</span> <span><b>Live at</b> <a href=\"https://rapidkert.com/\" target=\"_blank\" rel=\"noopener\">rapidkert.com</a></span>",
+  "<span><b>Branche</b> Gartenbau, Bewässerungstechnik</span> <span><b>Unsere Leistung</b> Akquise und Website</span> <span><b>Sprachen</b> Ungarisch, Englisch</span> <span><b>Live unter</b> <a href=\"https://rapidkert.com/\" target=\"_blank\" rel=\"noopener\">rapidkert.com</a></span>"
  ],
  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Üzleti eredmény</span>": [
   "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Business impact</span>",
@@ -194,9 +194,9 @@
   "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Interactive 3D experience</span>",
   "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Interaktives 3D-Erlebnis</span>"
  ],
- "A Rapidkert interaktív 3D kertépítő weboldala a Stratos Mediától: a nyitóképernyőn a kert és az alatta lévő talaj térbeli keresztmetszete, rétegekre bontva.": [
-  "Rapidkert interactive 3D landscaping website by Stratos Media: the opening screen shows a three-dimensional cross-section of the garden and the ground beneath it, separated into layers.",
-  "Die interaktive 3D-Website von Rapidkert Gartenbau, umgesetzt von Stratos Media: Der Startbildschirm zeigt einen räumlichen Querschnitt durch den Garten und den Boden darunter, in Schichten aufgetrennt."
+ "A Rapidkert interaktív 3D kertépítő weboldala a Stratos Webdesigntól: a nyitóképernyőn a kert és az alatta lévő talaj térbeli keresztmetszete, rétegekre bontva.": [
+  "Rapidkert interactive 3D landscaping website by Stratos Webdesign: the opening screen shows a three-dimensional cross-section of the garden and the ground beneath it, separated into layers.",
+  "Die interaktive 3D-Website von Rapidkert Gartenbau, umgesetzt von Stratos Webdesign: Der Startbildschirm zeigt einen räumlichen Querschnitt durch den Garten und den Boden darunter, in Schichten aufgetrennt."
  ],
  "A felszín csak az utolsó réteg": [
   "The surface is only the final layer",
@@ -314,9 +314,9 @@
   "SEO and Google Ads",
   "SEO und Google Ads"
  ],
- "A Rapidkert interaktív 3D kertépítő weboldala a Stratos Mediától: a nyitóképernyőn a kert és az alatta lévő talaj térbeli keresztmetszete.": [
-  "Rapidkert interactive 3D landscaping website by Stratos Media: the opening screen shows a three-dimensional cross-section of the garden and the ground beneath it.",
-  "Die interaktive 3D-Website von Rapidkert Gartenbau, umgesetzt von Stratos Media: Der Startbildschirm zeigt einen räumlichen Querschnitt durch den Garten und den Boden darunter."
+ "A Rapidkert interaktív 3D kertépítő weboldala a Stratos Webdesigntól: a nyitóképernyőn a kert és az alatta lévő talaj térbeli keresztmetszete.": [
+  "Rapidkert interactive 3D landscaping website by Stratos Webdesign: the opening screen shows a three-dimensional cross-section of the garden and the ground beneath it.",
+  "Die interaktive 3D-Website von Rapidkert Gartenbau, umgesetzt von Stratos Webdesign: Der Startbildschirm zeigt einen räumlichen Querschnitt durch den Garten und den Boden darunter."
  ],
  "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Interaktív 3D weboldal</span></a>": [
   "<a href=\"munka-rapidkert.html\"><span class=\"proofidx__n\">Rapidkert Kft.</span><span class=\"proofidx__s\">Interactive 3D website</span></a>",
@@ -362,9 +362,9 @@
   "Awwwards Honorable Mention",
   "Awwwards Honorable Mention"
  ],
- "Rapidkert — Awwwards-díjas 3D weboldal és SEO | Stratos": [
-  "Rapidkert — award-winning 3D website and SEO | Stratos",
-  "Rapidkert — ausgezeichnete 3D-Website und SEO | Stratos"
+ "Rapidkert — 3D weboldal és SEO, Awwwards-elismeréssel | Stratos": [
+  "Rapidkert — 3D website and SEO, recognised by Awwwards | Stratos",
+  "Rapidkert — 3D-Website und SEO, von Awwwards gewürdigt | Stratos"
  ],
  "Ez a szolgáltatás áll a weboldal mögött: előbb a kulcsszavak és a szerkezet, aztán a dizájn.": [
   "The service behind this website: keywords and structure first, then the design.",

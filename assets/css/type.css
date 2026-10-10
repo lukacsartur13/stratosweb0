@@ -200,6 +200,23 @@
   line-gap-override: 0%;
 }
 
+/* The display headings are set at wdth 112 / wght 680 (--wd, --wt), which is
+   about 14% wider than the shim above renders the same words in (measured over
+   the DE service page's 14 display headings: 1.1415). So at 360px a heading
+   wrapped onto fewer lines in the fallback and re-wrapped when Archivo landed —
+   /de/webdesign-kmu's H1 went from 84 to 141px, CLS 0.26 on a throttled phone.
+   This shim is scaled to the WIDTH instead of the x-height (101.4% x 1.1415),
+   with the line box divided back by the same factor, so a heading breaks
+   where the webfont will break it. */
+@font-face {
+  font-family: 'Archivo Display Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Liberation Sans');
+  size-adjust: 115.7%;
+  ascent-override: 75.9%;
+  descent-override: 18.1%;
+  line-gap-override: 0%;
+}
+
 @font-face {
   font-family: 'JetBrains Mono Fallback';
   src: local('Menlo'), local('Consolas'), local('DejaVu Sans Mono'), local('Courier New');
@@ -220,6 +237,8 @@
     'Helvetica Neue', Arial, sans-serif;
   --font-body: 'Archivo', 'Archivo Fallback', -apple-system, BlinkMacSystemFont,
     'Helvetica Neue', Arial, sans-serif;
+  --font-display-wide: 'Archivo', 'Archivo Display Fallback', -apple-system,
+    BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace,
     'SF Mono', Menlo, monospace;
 

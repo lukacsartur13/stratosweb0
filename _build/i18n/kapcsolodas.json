@@ -150,7 +150,7 @@
  "_shell": "The questionnaire's server-rendered intro shell.",
  "Weboldal<br>igényfelmérő<br>kérdőív": [
   "Website<br>requirements<br>questionnaire",
-  "Website-<br>Bedarfs-<br>fragebogen"
+  "Website-<br>Bedarfs&shy;fragebogen"
  ],
  "Minden kérdés külön oldalon jelenik meg. A csillaggal (<span class=\"quiz__req\">*</span>) jelölt kérdések kötelezőek.": [
   "Each question appears on its own screen. Questions marked with a star (<span class=\"quiz__req\">*</span>) are required.",

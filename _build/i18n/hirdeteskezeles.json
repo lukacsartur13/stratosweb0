@@ -1,7 +1,7 @@
 {
- "<a href=\"index.html\">Stratos</a> / Szolgáltatások / <b>Hirdetéskezelés</b>": [
-  "<a href=\"index.html\">Stratos</a> / Services / <b>Ads management</b>",
-  "<a href=\"index.html\">Stratos</a> / Leistungen / <b>Werbebetreuung</b>"
+ "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Szolgáltatások</a> / <b>Hirdetéskezelés</b>": [
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Services</a> / <b>Ads management</b>",
+  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Leistungen</a> / <b>Werbebetreuung</b>"
  ],
  "Nem elérést<br>veszel.<br><span class=\"sig\">Ügyfelet.</span>": [
   "You're not<br>buying reach.<br><span class=\"sig\">You're buying clients.</span>",
@@ -317,8 +317,8 @@
   "Was die Plattform bekommt"
  ],
  "Ez a pénz nem hozzánk folyik be, hanem a Google-höz és a Metához, és te látod a saját fiókodban, forintra. A legtöbb kis- és középvállalkozásnak havi 80–150 ezer forintos kerettel érdemes indulni: ez alatt nehéz annyi adatot gyűjteni, amiből optimalizálni lehet.": [
-  "This money never reaches us — it goes to Google and Meta, and you see it in your own account to the forint. For most small and medium businesses a monthly budget of HUF 80,000–150,000 is the sensible starting point: below that it is hard to gather enough data to optimise on.",
-  "Dieses Geld fließt nicht zu uns, sondern an Google und Meta, und Sie sehen es auf Forint genau in Ihrem eigenen Konto. Für die meisten kleinen und mittleren Unternehmen ist ein Monatsbudget von 80.000–150.000 HUF der sinnvolle Einstieg: darunter lassen sich kaum genug Daten für die Optimierung sammeln."
+  "This money never reaches us — it goes to Google and Meta, and you see it in your own account to the cent. For most small and medium businesses a monthly budget of around €200–400 is the sensible starting point: below that it is hard to gather enough data to optimise on.",
+  "Dieses Geld fließt nicht zu uns, sondern an Google und Meta, und Sie sehen es auf den Cent genau in Ihrem eigenen Konto. Für die meisten kleinen und mittleren Unternehmen ist ein Monatsbudget von etwa 200–400 € der sinnvolle Einstieg: darunter lassen sich kaum genug Daten für die Optimierung sammeln."
  ],
  "A díj": [
   "The fee",
@@ -341,8 +341,8 @@
   "Wann sich zeigt, ob es sich lohnt"
  ],
  "Az első 2–4 hét tanulási és adatgyűjtési szakasz, utána optimalizálunk élesben; reális elvárás, hogy 4–6 hét után látszik a stabil irány. Addig nem tudod, mennyibe kerül nálad egy megkeresés — utána forintra tudod, és erről szól a havi riport.": [
-  "The first 2–4 weeks are learning and data collection, after which we optimise live; a realistic expectation is a stable direction after 4–6 weeks. Until then you do not know what an enquiry costs in your market — after that you know it to the forint, and that is what the monthly report is about.",
-  "Die ersten 2–4 Wochen sind Lern- und Datenphase, danach optimieren wir im laufenden Betrieb; realistisch ist eine stabile Richtung nach 4–6 Wochen. Bis dahin wissen Sie nicht, was eine Anfrage bei Ihnen kostet — danach wissen Sie es auf den Forint genau, und genau davon handelt der Monatsreport."
+  "The first 2–4 weeks are learning and data collection, after which we optimise live; a realistic expectation is a stable direction after 4–6 weeks. Until then you do not know what an enquiry costs in your market — after that you know it to the cent, and that is what the monthly report is about.",
+  "Die ersten 2–4 Wochen sind Lern- und Datenphase, danach optimieren wir im laufenden Betrieb; realistisch ist eine stabile Richtung nach 4–6 Wochen. Bis dahin wissen Sie nicht, was eine Anfrage bei Ihnen kostet — danach wissen Sie es auf den Cent genau, und genau davon handelt der Monatsreport."
  ],
  "A Google Ads kezelés és a Meta kampányok díja nem külön tétel: egy díjban van benne mindkét felület, mert a két csatorna egy költségvetésért verseng, és külön optimalizálni őket azt jelentené, hogy senki nem nézi a kettő együttes eredményét.": [
   "Google Ads management and Meta campaigns are not billed separately: one fee covers both, because the two channels compete for one budget, and optimising them apart would mean nobody is looking at what the pair returns together.",
@@ -367,5 +367,9 @@
  "Hirdetéskezelés: Google Ads és Meta kampányok, a hirdetési kerettől elkülönített díjjal. Árak, célközönség, kreatív, konverziómérés. Ingyenes konzultáció.": [
   "Ads management: Google Ads and Meta campaigns, with our fee kept separate from the ad budget. Pricing, audiences, creative, conversion tracking. Free consultation.",
   "Anzeigenbetreuung: Google-Ads- und Meta-Kampagnen, unser Honorar getrennt vom Werbebudget. Preise, Zielgruppen, Kreation, Conversion-Messung. Kostenlose Beratung."
+ ],
+ "Fejhallgatós ember laptopon dolgozik egy sötét teraszon.": [
+  "A person in headphones working on a laptop on a dark terrace.",
+  "Eine Person mit Kopfhörern arbeitet auf einer dunklen Terrasse am Laptop."
  ]
 }

@@ -521,6 +521,12 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
 
 /* --------------------------------------------------------- grids */
 .grid { display: grid; gap: clamp(1.5rem, 3vw, 3rem); }
+/* A grid item's automatic minimum is its min-content width, so one long word in
+   a display heading ("KERESŐOPTIMALIZÁLÁS?") widened the whole column past the
+   screen on phones, and html/body `overflow-x: clip` hid the cut instead of
+   showing it. Zero minimum: the column stays the width of its track, and the
+   heading is fitted to it (fitWords in main.js) rather than clipped. */
+.grid > * { min-width: 0; }
 .g-2 { grid-template-columns: repeat(2, 1fr); }
 .g-3 { grid-template-columns: repeat(3, 1fr); }
 .g-4 { grid-template-columns: repeat(4, 1fr); }
@@ -532,7 +538,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
   .g-3 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 760px) {
-  .g-2, .g-3, .g-4, .g-split, .g-sticky { grid-template-columns: 1fr; }
+  .g-2, .g-3, .g-4, .g-split, .g-sticky { grid-template-columns: minmax(0, 1fr); }
 }
 
 .sticky { position: sticky; top: 7rem; }
@@ -1674,6 +1680,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: .95; }
   text-transform: uppercase; letter-spacing: .14em; color: var(--haze);
 }
 .article__by b { color: var(--paper); font-weight: 400; }
+.article__by a { color: inherit; text-decoration: underline; text-underline-offset: .22em; text-decoration-thickness: 1px; }
 
 /* ------------------------------------------------------- editorial index rows
    The work index and the article index. Not an equal-card grid (§15): one row

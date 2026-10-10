@@ -451,8 +451,15 @@ async function main() {
     if (!PREVIEW && !robots.includes('Sitemap:')) {
       failures.push({ route: '/robots.txt', rule: 'robots-sitemap', detail: 'no Sitemap: line' });
     }
-    if (!/Disallow:\s*\/portal/.test(robots)) {
-      failures.push({ route: '/robots.txt', rule: 'portal', detail: 'the portal is not disallowed' });
+    // The portal is kept out of the index by `X-Robots-Tag: noindex` on every
+    // /portal response (netlify.toml), and a crawler can only obey a noindex it
+    // may fetch — so robots.txt must NOT disallow it (2026-10-10). /api/ stays
+    // disallowed.
+    if (!PREVIEW && /Disallow:\s*\/portal/.test(robots)) {
+      failures.push({ route: '/robots.txt', rule: 'portal', detail: 'the portal is disallowed, so its noindex header cannot be read' });
+    }
+    if (!PREVIEW && !/Disallow:\s*\/api\//.test(robots)) {
+      failures.push({ route: '/robots.txt', rule: 'api', detail: '/api/ is not disallowed' });
     }
   }
 

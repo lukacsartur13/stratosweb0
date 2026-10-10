@@ -439,5 +439,17 @@
   "local-pest",
   "local-szeged",
   "seo-web"
- ]
+ ],
+ "updated": {
+  "post-arak": "2026-10-10",
+  "post-cegprofil": "2026-10-10",
+  "post-elavult": "2026-10-10",
+  "post-hirdetes": "2026-10-10",
+  "post-konverzio": "2026-10-10",
+  "post-logo": "2026-08-27",
+  "post-marketing": "2026-10-09",
+  "post-seo": "2026-10-10",
+  "post-seo-alap": "2026-10-10",
+  "post-webdesign": "2026-08-27"
+ }
 }

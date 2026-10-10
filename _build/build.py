@@ -244,9 +244,20 @@ for _k in HU_ONLY:
     LOCALE_NOINDEX[_k] = ("en", "de")
 
 
-def served(key, lang):
-    """The route a link to `key` resolves to in `lang` (HU-only -> services)."""
-    return "services" if key in HU_ONLY and lang != "hu" else key
+def served(key, lang, here=None):
+    """The route a link to `key` resolves to in `lang`.
+
+    A Hungarian-only route has no English or German page, so its links there go
+    to the nearest page that does exist: the search-optimised-website service to
+    the SEO service (the anchor says "search-optimised"; the services hub was a
+    vaguer target, and on the hub itself the link pointed at its own page), the
+    regional pages to the services hub. `here` is the page being written, so a
+    link never resolves to the page it sits on."""
+    if key not in HU_ONLY or lang == "hu":
+        return key
+    if key == "seo-web" and here != "seo":
+        return "seo"
+    return "services"
 
 
 def locale_indexable(key, lang):
@@ -483,7 +494,7 @@ UI = {
         "f_contact": "Kapcsolat",
         "f_social": "Közösség",
         "f_gbp": "Google Cégprofil",
-        "f_rights": "© 2026 Stratos Media Agency — Minden jog fenntartva.",
+        "f_rights": "© 2026 Stratos Webdesign — Minden jog fenntartva.",
         "f_privacy": "Adatkezelési tájékoztató",
         "f_imprint": "Impresszum",
         # ---- Phase 8.5: flight-deck header, full-screen menu, Arrival footer.
@@ -538,7 +549,7 @@ UI = {
             "consent_settings": "Süti-beállítások",
             "consent_state_granted": "A mérés jelenleg engedélyezve van.",
             "consent_state_denied": "A mérés jelenleg le van tiltva.",
-            "consent_privacy_href": "adatkezelesi-tajekoztato.html",
+            "consent_privacy_href": "/adatkezelesi-tajekoztato",
         },
     },
     "en": {
@@ -587,7 +598,7 @@ UI = {
         "f_contact": "Contact",
         "f_social": "Social",
         "f_gbp": "Google Business Profile",
-        "f_rights": "© 2026 Stratos Media Agency — All rights reserved.",
+        "f_rights": "© 2026 Stratos Webdesign — All rights reserved.",
         "f_privacy": "Privacy policy",
         "f_imprint": "Imprint",
         "p85": {
@@ -633,7 +644,7 @@ UI = {
             "consent_settings": "Cookie settings",
             "consent_state_granted": "Measurement is currently enabled.",
             "consent_state_denied": "Measurement is currently disabled.",
-            "consent_privacy_href": "privacy-policy.html",
+            "consent_privacy_href": "/en/privacy-policy",
         },
     },
     "de": {
@@ -681,7 +692,7 @@ UI = {
         "f_contact": "Kontakt",
         "f_social": "Social Media",
         "f_gbp": "Google Unternehmensprofil",
-        "f_rights": "© 2026 Stratos Media Agency — Alle Rechte vorbehalten.",
+        "f_rights": "© 2026 Stratos Webdesign — Alle Rechte vorbehalten.",
         "f_privacy": "Datenschutzerklärung",
         "f_imprint": "Impressum",
         "p85": {
@@ -727,7 +738,7 @@ UI = {
             "consent_settings": "Cookie-Einstellungen",
             "consent_state_granted": "Die Messung ist derzeit aktiviert.",
             "consent_state_denied": "Die Messung ist derzeit deaktiviert.",
-            "consent_privacy_href": "datenschutz.html",
+            "consent_privacy_href": "/de/datenschutz",
         },
     },
 }
@@ -738,11 +749,11 @@ LEGAL_NOTE = {
     "hu": "",
     "en": '<p class="legal__note" role="note"><b>Please note:</b> this is a courtesy '
           'translation. In any question of interpretation the '
-          '<a href="%s" hreflang="hu" lang="hu">Hungarian version</a> is the '
+          '<a href="%s" hreflang="hu">Hungarian version</a> is the '
           'legally binding one.</p>',
     "de": '<p class="legal__note" role="note"><b>Hinweis:</b> Dies ist eine Übersetzung '
           'zur Information. In allen Auslegungsfragen ist die '
-          '<a href="%s" hreflang="hu" lang="hu">ungarische Fassung</a> rechtlich '
+          '<a href="%s" hreflang="hu">ungarische Fassung</a> rechtlich '
           'verbindlich.</p>',
 }
 
@@ -1012,15 +1023,87 @@ SITE = (os.environ.get("SITE_URL")
         or "https://stratosweb.hu").strip().rstrip("/")
 
 # Open Graph needs an absolute image URL, and a page that names none still has
-# to preview as something rather than as a blank card. This is the homepage
-# hero, which is ours and is already the site's most representative image; a
-# fragment overrides it with an `og_image:` line in its front matter.
-DEFAULT_OG_IMAGE = ("assets/img/hero.jpg", 1800, 1012)
+# to preview as something rather than as a blank card. A fragment overrides it
+# with an `og_image:` line in its front matter (and `og_image_alt:` when the
+# image is not one the page shows with its own alt text).
+#
+# 2026-10-10: this was hero.jpg, an abstract render of black liquid spheres,
+# and it was the share image — and the Article/primary image — of 66 pages, 63
+# of which never show it. Now a 1200x630 crop of the team photo the enterprise
+# page already uses: people at work, the right shape for a link preview.
+DEFAULT_OG_IMAGE = ("assets/img/og-stratos.jpg", 1200, 630)
+DEFAULT_OG_ALT = {
+    "hu": "Csapat laptopokon dolgozik egy ovális asztal körül, felülnézetből.",
+    "en": "A team working on laptops around an oval table, seen from above.",
+    "de": "Ein Team arbeitet an Laptops an einem ovalen Tisch, von oben gesehen.",
+}
+
+
+# Article bylines: the posts said "Írta Stratos" with no link and no date.
+# The name now links to the page that says who Stratos is, and the dates come
+# from the front matter that _build/stamp_dates.py writes from git.
+BYLINE = {
+    "hu": {"published": "Közzétéve", "updated": "Frissítve",
+           "months": ["január", "február", "március", "április", "május", "június", "július",
+                      "augusztus", "szeptember", "október", "november", "december"]},
+    "en": {"published": "Published", "updated": "Updated",
+           "months": ["January", "February", "March", "April", "May", "June", "July",
+                      "August", "September", "October", "November", "December"]},
+    "de": {"published": "Veröffentlicht", "updated": "Aktualisiert",
+           "months": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli",
+                      "August", "September", "Oktober", "November", "Dezember"]},
+}
+
+
+def human_date(iso, lang):
+    y, m, d = (int(x) for x in iso[:10].split("-"))
+    month = BYLINE[lang]["months"][m - 1]
+    if lang == "hu":
+        return f"{y}. {month} {d}."
+    if lang == "de":
+        return f"{d}. {month} {y}"
+    return f"{d} {month} {y}"
+
+
+def dress_byline(body, lang, meta):
+    """Link the byline's author to the About page and add the post's dates."""
+    m = re.search(r'(<p class="article__by">)(.*?)(</p>)', body, re.S)
+    if not m:
+        return body
+    inner = re.sub(r"<b>Stratos</b>",
+                   f'<b><a href="{href(lang, "about")}">Stratos</a></b>', m.group(2), count=1)
+    spans = ""
+    for field in ("published", "updated"):
+        iso = meta.get(field)
+        if not iso:
+            continue
+        if field == "updated" and meta.get("published", "")[:10] == iso[:10]:
+            continue
+        spans += (f'\n        <span>{BYLINE[lang][field]} <b><time datetime="{iso}">'
+                  f'{human_date(iso, lang)}</time></b></span>')
+    return body[:m.start()] + m.group(1) + inner.rstrip() + spans + "\n      " + m.group(3) + body[m.end():]
+
+
+def image_shown(image, body):
+    """True when the page body renders `image` as an <img>."""
+    name = image.rsplit("/", 1)[-1]
+    return re.search(r'<img\b[^>]*\ssrc="[^"]*' + re.escape(name) + '"', body) is not None
+
+
+def image_alt(image, body):
+    """The alt text the page itself gives `image`, or None."""
+    name = image.rsplit("/", 1)[-1]
+    for tag in re.findall(r"<img\b[^>]*>", body):
+        if re.search(r'\ssrc="[^"]*' + re.escape(name) + '"', tag):
+            m = re.search(r'\salt="([^"]*)"', tag)
+            if m and m.group(1).strip():
+                return m.group(1)
+    return None
 
 OG_LOCALE = {"hu": "hu_HU", "en": "en_GB", "de": "de_DE"}
 
 
-def build_social(lang, key, title, desc, meta):
+def build_social(lang, key, title, desc, meta, body="", table=None):
     """Canonical, Open Graph and Twitter tags.
 
     Before Phase 8 none of the 33 generated routes carried any of this — only
@@ -1032,24 +1115,35 @@ def build_social(lang, key, title, desc, meta):
     second copy of the title to keep in step.
     """
     image, width, height = DEFAULT_OG_IMAGE
+    alt = DEFAULT_OG_ALT[lang]
     if meta.get("og_image"):
         image = meta["og_image"]
-        width = meta.get("og_image_width", "")
-        height = meta.get("og_image_height", "")
+        width, height = image_size(image) or ("", "")
+        alt = meta.get("og_image_alt", "")
+        if alt and table:
+            alt = table.get(tr.normalise(alt), alt)
+        alt = alt or image_alt(image, body) or ""
 
+    # Only the locales this page exists in. A Hungarian-only route advertised
+    # en_GB and de_DE alternates that answer 404.
     alt_locales = "".join(
         f'\n<meta property="og:locale:alternate" content="{OG_LOCALE[l]}">'
-        for l in LANGS if l != lang)
+        for l in LANGS if l != lang and (l == "hu" or key not in HU_ONLY))
 
     dims = ""
     if width and height:
         dims = (f'\n<meta property="og:image:width" content="{width}">'
                 f'\n<meta property="og:image:height" content="{height}">')
+    if alt:
+        dims += f'\n<meta property="og:image:alt" content="{html_mod.escape(html_mod.unescape(alt))}">'
+    twitter_alt = (f'\n<meta name="twitter:image:alt" content="{html_mod.escape(html_mod.unescape(alt))}">'
+                   if alt else "")
+    og_type = "article" if key.startswith("post-") else "website"
 
     return f"""
 <link rel="canonical" href="{SITE}{absolute(lang, key)}">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Stratos">
+<meta property="og:type" content="{og_type}">
+<meta property="og:site_name" content="Stratos Webdesign">
 <meta property="og:locale" content="{OG_LOCALE[lang]}">{alt_locales}
 <meta property="og:url" content="{SITE}{absolute(lang, key)}">
 <meta property="og:title" content="{title}">
@@ -1058,7 +1152,7 @@ def build_social(lang, key, title, desc, meta):
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="{SITE}/{image}">"""
+<meta name="twitter:image" content="{SITE}/{image}">{twitter_alt}"""
 
 
 # ---------------------------------------------------------------- analytics
@@ -1107,10 +1201,8 @@ GA4_MEASUREMENT_ID = "G-JZD43PHJ41"
 # browser against the real hostname, so it holds even if a configured build is
 # served from somewhere unexpected.
 #
-#   stratosweb1.netlify.app   the current address. Until the domain cutover
-#                             this is where integration testing happens, and
-#                             its traffic is marked `staging` so it can be
-#                             separated from real visitors.
+#   (stratosweb1.netlify.app was listed until 2026-10-10, as the pre-cutover
+#   address; it now 301s to stratosweb.hu — see netlify.toml — so it is gone.)
 #   stratosweb.hu             the intended production domain, and its www form.
 #   www.stratosweb.hu         Live only after the cutover; today these still
 #                             serve the old Wix site. Listing them now means the
@@ -1121,7 +1213,6 @@ GA4_MEASUREMENT_ID = "G-JZD43PHJ41"
 GA4_ALLOWED_HOSTS = [
     "stratosweb.hu",
     "www.stratosweb.hu",
-    "stratosweb1.netlify.app",
 ]
 
 # Which of those hosts is the real site. Everything else on the allowlist is
@@ -1201,28 +1292,32 @@ DECK = """<!-- Flight deck. Three deterministic states — opening, journey, des
      down the document you are. The old direction-based hide/show is gone; a
      header that vanishes because you nudged the wheel upward is jitter, not
      navigation. -->
-<header class="nav" data-state="opening" data-nosnippet>
+<header class="nav" data-state="opening">
   <a class="brand" href="{{home}}" aria-label="{{brand_aria}}">
     <img src="{{base}}assets/img/plane-cursor.png" alt="">
-    <span class="brand__wm"><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
+    <span class="brand__wm" data-nosnippet><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
   </a>
-  <p class="nav__alt" aria-hidden="true" data-nosnippet><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></p>
+  <div class="nav__alt" aria-hidden="true" data-nosnippet><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></div>
   <!-- 2026-10-07: logo, quote button and menu, nothing else. The desktop link
        row duplicated the full-screen menu (which also carries the services and
        the language switcher), so the owner took it out. -->
-  <a class="nav__cta" href="{{quote_href}}">{{quote_cta}}</a>
-  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="{{burger_aria}}"><span class="burger__t" aria-hidden="true"><span class="burger__open">{{menu_label}}</span><span class="burger__shut">{{close}}</span></span><span class="burger__bars" aria-hidden="true"><i></i><i></i></span></button>
+  <a class="nav__cta" href="{{quote_href}}"><span data-nosnippet>{{quote_cta}}</span></a>
+  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="{{burger_aria}}"><span class="burger__t" aria-hidden="true" data-nosnippet><span class="burger__open">{{menu_label}}</span><span class="burger__shut">{{close}}</span></span><span class="burger__bars" aria-hidden="true"><i></i><i></i></span></button>
 </header>
 
 <!-- Full-viewport editorial navigation (§7.4). Still a plain list of anchors:
      no router, no interception, so middle-click, ctrl-click, back and the
      browser's own history all behave exactly as they did. -->
-<!-- data-nosnippet (here, on the header, the rail, the closing CTA and the
+<!-- data-nosnippet (here, in the header, the rail, the closing CTA and the
      footer): Google was quoting the menu's service list with its altitude
      figures ("Web development 9,400 M") as a page's search snippet. A snippet
      must come from the page's own content; navigation, chrome and instrument
      read-outs never should. Links inside stay crawlable — nosnippet only
-     keeps the TEXT out of the result. -->
+     keeps the TEXT out of the result.
+     Google honours the attribute on <span>, <div> and <section> ONLY
+     (developers.google.com/search/docs/crawling-indexing/robots-meta-tag), so
+     it sits on those inside <header>, <aside> and <footer>, never on the
+     landmark itself, where it is silently ignored. -->
 <div class="menu" id="menu" hidden data-nosnippet>
   <div class="menu__veil" data-menu-dismiss></div>
   <nav class="menu__panel" aria-label="{{menu_aria_full}}">
@@ -1499,20 +1594,30 @@ def build_structured_data(lang, key, title, desc, meta, body):
         # correct per the owner; the Business Profile is the place they have to
         # agree, and it is listed under Stratos Webdesign.
         #
-        # "Stratos Media Agency" stays as a second alternate rather than being
-        # dropped: it is the name in the footer's copyright line and in the
-        # LinkedIn handle, so it is a real alias whether or not it is the one
-        # to lead with.
+        # 2026-10-10: one public name everywhere. The footer, the titles of
+        # /rolunk, the consent line and the Impact page used to say "Stratos
+        # Media", "Stratos Media Agency" or "Stratos Web" — six variants across
+        # the site, the Business Profile and the social profiles, which is the
+        # opposite of what Google's site-name and local guidance ask for. They
+        # now say Stratos Webdesign, the alternates are the short form and the
+        # domain (last, as the site-names documentation recommends), and the
+        # WebSite node below carries the same pair.
         "name": "Stratos Webdesign",
-        "alternateName": ["Stratos", "Stratos Media Agency"],
+        "alternateName": ["Stratos", "stratosweb.hu"],
+        # The operator, as /impresszum states it: a sole proprietorship (e.v.)
+        # and its Hungarian tax number. Not a vatID — that is the EU form.
+        "legalName": "Lukács Artúr e.v.",
+        "taxID": "91381611-2-28",
         "url": SITE + "/",
+        # On a solid square (2026-10-10): the transparent silver plane was close
+        # to invisible on the white Google shows a logo against.
         "logo": {
             "@type": "ImageObject",
-            "url": SITE + "/assets/img/logo.png",
+            "url": SITE + "/assets/img/logo-square.png",
             "width": 512,
             "height": 512,
         },
-        "image": SITE + "/assets/img/logo.png",
+        "image": SITE + "/assets/img/logo-square.png",
         "email": CONTACT_EMAIL,
         "telephone": "+36 30 584 8024",
         # The SEAT, and it deliberately does not match the Google Business
@@ -1530,10 +1635,24 @@ def build_structured_data(lang, key, title, desc, meta, body):
         # both as they are. Recorded here so the next audit reads a decision
         # rather than a defect and does not quietly rewrite 90 pages.
         #
-        # If it is ever revisited, the schema.org way to say both at once is an
-        # `address` for the seat plus a `location` Place for the office; that
-        # was not done here because it changes what the pages claim, and the
-        # instruction was to leave it alone.
+        # Revisited 2026-10-10, after the SEO audit (the owner asked for every
+        # fixable finding to be fixed): the seat stays the `address`, and the
+        # office the Business Profile shows is now stated too — in the footer,
+        # on the contact page and here, as a `location` Place, which is the
+        # schema.org way to say both at once. No opening hours: the site still
+        # publishes none.
+        "location": {
+            "@type": "Place",
+            "name": "Stratos Webdesign iroda",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Gesztenyefa út 4.",
+                "addressLocality": "Győr",
+                "addressRegion": "Győr-Moson-Sopron",
+                "postalCode": "9027",
+                "addressCountry": "HU",
+            },
+        },
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Arany János utca 13.",
@@ -1548,9 +1667,10 @@ def build_structured_data(lang, key, title, desc, meta, body):
         # It was Győr, Budapest and the county once, alongside a route dedicated
         # to the city, and both were withdrawn together: naming a town as the
         # area served reads as a claim about how far the company reaches, and
-        # this one reaches as far as it has languages. That reasoning was right
-        # about the ROUTE — /weboldal-keszites-gyor is still 301'd in
-        # netlify.toml and is not coming back — and wrong about this list.
+        # this one reaches as far as it has languages. The route came back on
+        # 2026-10-06 as one of four regional pages under /hol-dolgozunk, and
+        # this list names every region those pages serve (Pest and Szeged were
+        # missing until 2026-10-10).
         #
         # areaServed is not exclusive. A ProfessionalService that serves three
         # countries and names two cities inside one of them has said more than
@@ -1568,6 +1688,8 @@ def build_structured_data(lang, key, title, desc, meta, body):
             {"@type": "City", "name": "Győr"},
             {"@type": "City", "name": "Budapest"},
             {"@type": "AdministrativeArea", "name": "Győr-Moson-Sopron vármegye"},
+            {"@type": "AdministrativeArea", "name": "Pest vármegye"},
+            {"@type": "City", "name": "Szeged"},
             {"@type": "Country", "name": "Magyarország"},
             {"@type": "Country", "name": "Österreich"},
             {"@type": "Country", "name": "Deutschland"},
@@ -1580,7 +1702,8 @@ def build_structured_data(lang, key, title, desc, meta, body):
         "@type": "WebSite",
         "@id": SITE + "/#website",
         "url": SITE + "/",
-        "name": "Stratos",
+        "name": "Stratos Webdesign",
+        "alternateName": ["Stratos", "stratosweb.hu"],
         "publisher": {"@id": SITE + "/#organization"},
         "inLanguage": [SCHEMA_LANG[l] for l in LANGS],
     }
@@ -1593,11 +1716,12 @@ def build_structured_data(lang, key, title, desc, meta, body):
         "description": desc,
         "inLanguage": SCHEMA_LANG[lang],
         "isPartOf": {"@id": SITE + "/#website"},
-        "primaryImageOfPage": {
-            "@type": "ImageObject",
-            "url": SITE + "/" + image,
-        },
     }
+    # Only an image the page actually shows is its primary image. The default
+    # share image is a share image; on a page that never renders it, naming it
+    # here described the page with a picture the reader never sees.
+    if image_shown(image, body):
+        webpage["primaryImageOfPage"] = {"@type": "ImageObject", "url": SITE + "/" + image}
 
     graph = [organisation, website, webpage]
 
@@ -1666,20 +1790,30 @@ def build_structured_data(lang, key, title, desc, meta, body):
         })
 
     if key.startswith("post-"):
-        # datePublished and dateModified are deliberately absent — see the note
-        # at the head of this section. Author and publisher are the same
-        # organisation, which is what the site says: the posts carry no byline.
-        graph.append({
+        # Dates come from the fragment's front matter (`published`, `updated`),
+        # which _build/stamp_dates.py writes from the git history: the commit
+        # that added the post and the last one that changed its text. Real
+        # dates, never the build time — see the note at the head of this
+        # section. The byline says "Stratos" and links to /rolunk, so author
+        # and publisher are the same organisation.
+        article = {
             "@type": "Article",
             "@id": page_url + "#article",
             "headline": title.split("|")[0].strip(),
             "description": desc,
-            "image": SITE + "/" + image,
             "inLanguage": SCHEMA_LANG[lang],
             "author": {"@id": SITE + "/#organization"},
             "publisher": {"@id": SITE + "/#organization"},
             "mainEntityOfPage": {"@id": page_url + "#webpage"},
-        })
+        }
+        # Article.image only when the post shows it (four posts have no image).
+        if image_shown(image, body):
+            article["image"] = SITE + "/" + image
+        if meta.get("published"):
+            article["datePublished"] = meta["published"]
+        if meta.get("updated"):
+            article["dateModified"] = meta["updated"]
+        graph.append(article)
 
     payload = json.dumps(
         {"@context": "https://schema.org", "@graph": graph},
@@ -1717,8 +1851,9 @@ SHELL = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{desc}}">
-<link rel="icon" href="{{base}}assets/img/favicon.png">
-<link rel="apple-touch-icon" href="{{base}}assets/img/favicon.png">{{robots}}{{alternates}}{{social}}{{jsonld}}
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="{{base}}assets/img/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="{{base}}assets/img/apple-touch-icon.png">{{robots}}{{alternates}}{{social}}{{jsonld}}
 {{fontpreload}}
 <link rel="stylesheet" href="{{base}}assets/css/type.css">
 <!-- The site chrome — tokens, flight deck, full-screen menu, Arrival, footer.
@@ -1779,11 +1914,11 @@ SHELL = """<!DOCTYPE html>
 # Subpages carry the altimeter rail; the homepage carries the full instrument
 # panel, because there the climb *is* the page.
 RAIL = """
-<aside class="rail" aria-hidden="true" data-nosnippet>
+<aside class="rail" aria-hidden="true">
   <img class="rail__mark" src="{{base}}assets/img/plane-cursor.png" alt="">
-  <div class="rail__tape"><div class="rail__ticks"></div></div>
-  <div class="rail__read"><b class="rail__alt">420</b><span class="rail__unit">{{unit}}</span></div>
-  <div class="rail__layer">{{layer0}}</div>
+  <div class="rail__tape" data-nosnippet><div class="rail__ticks"></div></div>
+  <div class="rail__read" data-nosnippet><b class="rail__alt">420</b><span class="rail__unit">{{unit}}</span></div>
+  <div class="rail__layer" data-nosnippet>{{layer0}}</div>
 </aside>
 """
 
@@ -1818,7 +1953,7 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge data-nosnippet
       <path d="M600 120 V 228" class="trace__lit"/>
       <circle class="trace__node" cx="600" cy="120" r="4"/>
     </svg>
-    <p class="arrival__state" aria-hidden="true" data-nosnippet><span>{{ceiling_label}}</span><span>{{converge_state}}</span></p>
+    <p class="arrival__state" aria-hidden="true"><span>{{ceiling_label}}</span><span>{{converge_state}}</span></p>
     <p class="arrival__lede">{{converge_lede}}</p>
     <h2 class="arrival__h display" data-kinetic data-kinetic-from="104 700 0" data-kinetic-to="88 780 -.015">{{cta_head}}</h2>
     <p class="arrival__cta converge__cta">
@@ -1827,8 +1962,8 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge data-nosnippet
     </p>
   </div>
 </section>
-<footer class="foot" data-nosnippet>
-  <div class="wrap">
+<footer class="foot">
+  <div class="wrap" data-nosnippet>
     <div class="foot__grid">
       <div>
         <a class="brand" href="{{home}}" style="margin-bottom:1.4rem" aria-label="{{brand_aria}}"><img src="{{base}}assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
@@ -1871,7 +2006,7 @@ FOOTER = """<section class="arrival{{arrival_mod}}" data-converge data-nosnippet
         <ul>
           <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
           <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
-          <li><address class="foot__nap">9151 Abda, Arany János utca 13.</address></li>
+          <li><address class="foot__nap">{{f_office}} 9027 Győr, Gesztenyefa út 4.<br>{{f_seat}} 9151 Abda, Arany János utca 13.</address></li>
         </ul>
         <h3 style="margin-top:1.6rem">{{f_social}}</h3>
         <ul>
@@ -1988,7 +2123,16 @@ def build_footer(lang, key):
         # An invisible glyph in the markup is worse than no glyph.
         arrow="" if home else ARROW,
         f_status=p["status_group"], st_reply=p["st_reply"],
-        st_where=p["st_where"], st_langs=p["st_langs"],
+        # Hungarian only: the two cities link to their regional pages, which
+        # exist in Hungarian only.
+        st_where=(f'<a href="{href(lang, "local-gyor")}">Győr</a> és '
+                  f'<a href="{href(lang, "local-budapest")}">Budapest</a>'
+                  if lang == "hu" else p["st_where"]),
+        st_langs=p["st_langs"],
+        # The office the Business Profile shows, and the registered seat the
+        # imprint has to state — both real, both said (2026-10-10).
+        f_office={"hu": "Iroda:", "en": "Office:", "de": "Büro:"}[lang],
+        f_seat={"hu": "Székhely:", "en": "Registered office:", "de": "Firmensitz:"}[lang],
         f_langs=build_langs(lang, key), to_top=p["to_top"],
         # The consent withdrawal path, on every page. Emitted only when the
         # build actually requires consent, so a site with measurement off does
@@ -2104,6 +2248,65 @@ def stamp_images(html):
     return IMG_RE.sub(stamp, html)
 
 
+# ----------------------------------------------------------- responsive images
+# Every raster image used to ship once, at its export size: 1800px photos to a
+# 400px phone, 600-1800px logos into a 176px slot, and no WebP anywhere. The
+# variants are pre-rendered by _build/make_variants.py into assets/img/resp/
+# (committed; this build needs no imaging library) and stamped here as a
+# srcset. `src` stays the original JPEG/PNG, so anything that ignores srcset
+# gets exactly what it got before. An image with no variants is left alone.
+RESP_DIR = ROOT / "assets" / "img" / "resp"
+_variant_cache = {}
+
+# The rendered width of each kind of image, for `sizes`. Over-stating is safe
+# (a larger file than needed); under-stating would blur, so each is the widest
+# box that kind of image is ever drawn in.
+SIZES = (
+    (re.compile(r'class="[^"]*\bphead__bg\b'), "100vw"),
+    (re.compile(r'src="[^"]*/(?:logo|client)-[^"]*"'), "176px"),
+    (re.compile(r'class="[^"]*\bproofshot\b'), "(max-width: 920px) 100vw, 880px"),
+    (re.compile(r'src="[^"]*/case-[^"]*"'), "(max-width: 920px) 100vw, 880px"),
+    (re.compile(r'src="[^"]*/team-[^"]*"'), "(max-width: 760px) 100vw, 50vw"),
+)
+
+
+def variants(stem):
+    """[(width, filename)] for one source image, narrowest first."""
+    if stem not in _variant_cache:
+        found = []
+        for f in RESP_DIR.glob(f"{stem}-*.webp"):
+            m = re.fullmatch(re.escape(stem) + r"-(\d+)\.webp", f.name)
+            if m:
+                found.append((int(m.group(1)), f.name))
+        _variant_cache[stem] = sorted(found)
+    return _variant_cache[stem]
+
+
+def stamp_srcset(html):
+    def stamp(m):
+        attrs = m.group(1)
+        if "srcset=" in attrs:
+            return m.group(0)
+        src = SRC_RE.search(attrs)
+        if not src:
+            return m.group(0)
+        path = src.group(1)
+        mm = re.match(r"^((?:\.\./|/)?assets/img/)([^/\"]+)\.(?:jpe?g|png)$", path)
+        if not mm:
+            return m.group(0)
+        found = variants(mm.group(2))
+        if not found:
+            return m.group(0)
+        srcset = ", ".join(f"{mm.group(1)}resp/{name} {w}w" for w, name in found)
+        tag = m.group(0)
+        sizes = next((v for rx, v in SIZES if rx.search(tag)), "100vw")
+        if "sizes=" not in attrs:
+            attrs += f' sizes="{sizes}"'
+        return f'<img{attrs} srcset="{srcset}">'
+
+    return IMG_RE.sub(stamp, html)
+
+
 # --------------------------------------------------------------------- links
 LINK_RE = re.compile(r'(href|src)="([^"#?]+\.html)((?:[#?][^"]*)?)"')
 ASSET_RE = re.compile(r'(href|src)="(assets/)')
@@ -2192,13 +2395,13 @@ def gate_case_links(html):
     return CASELINK_RE.sub(swap, html)
 
 
-def relink(html, lang):
+def relink(html, lang, here=None):
     """Point every in-site link at this language's filenames and asset depth."""
     def swap(m):
         target = BY_ANY.get(m.group(2))
         if target is None:
             return m.group(0)
-        target = served(target, lang)
+        target = served(target, lang, here)
         return f'{m.group(1)}="{SLUGS[target][lang]}{m.group(3)}"'
 
     html = LINK_RE.sub(swap, html)
@@ -2472,16 +2675,21 @@ GROUND_COPY = {
         "p2": "Amikor azt mondjuk, hogy nem weboldalakat építünk, hanem magasságot, "
               "akkor arra gondolunk, hogy a látható felület mögött mindig egy mérhető "
               "rendszer áll. Egy honlapkészítés önmagában még nem hoz ügyfelet: ahhoz a "
-              "szerkezetnek, a szövegnek, a keresőoptimalizálásnak és a hirdetéseknek "
+              "szerkezetnek, a szövegnek, a [[seo:keresőoptimalizálásnak]] és a hirdetéseknek "
               "együtt kell működniük, különben a legszebb oldal is csak egy névjegykártya marad.",
-        "svc_h": "Négy szolgáltatás, egy rendszer",
+        "svc_h": "Hat szolgáltatás, egy rendszer",
         "svc": [
             ("sme", "Weboldal készítés KKV-nak",
              "tervezés, szövegezés, fejlesztés és keresőoptimalizálás egyszeri, tételes "
              "projektdíjjal — az átadás után minden a tiéd."),
             ("enterprise", "Weboldal és rendszerfejlesztés nagyvállalatoknak",
-             "egyedi platformok, belső rendszerek, integrációk és üzemeltetés dedikált "
-             "fejlesztőcsapattal."),
+             "egyedi platformok, belső rendszerek, integrációk és üzemeltetés projektre "
+             "szabott fejlesztőcsapattal."),
+            ("shop", "Webshop készítés",
+             "kódból, sablon nélkül: terméktörzs, fizetés, szállítás és készletkapcsolat, "
+             "tételes ajánlattal."),
+            ("seo", "Keresőoptimalizálás",
+             "technikai SEO, tartalom és helyi keresés, érthető riporttal arról, mi változott."),
             ("branding", "Branding és arculattervezés",
              "logó, színvilág, tipográfia, képi stílus és hangnem egyetlen rendszerbe rendezve."),
             ("ads", "Google és Meta hirdetéskezelés",
@@ -2501,10 +2709,11 @@ GROUND_COPY = {
                "egyforma feladat sincs. Az élesítés után sem tűnünk el: ha bővítenél, "
                "mérnél vagy a keresőoptimalizálást folytatnád, ugyanaz a csapat viszi tovább.",
         "where_h": "Hol dolgozunk",
-        "where": "Az irodánk Győr mellett van, és a Győr-Moson-Sopron vármegyei "
-                 "vállalkozásokkal szívesen leülünk személyesen is. Budapesti és külföldi "
-                 "ügyfeleinkkel online dolgozunk, ami az elmúlt években semmivel sem "
-                 "bizonyult lassabbnak. Ha nem tudod eldönteni, melyik szolgáltatás kellene, "
+        "where": "Az irodánk [[local-gyor:Győrben]] van, és a Győr-Moson-Sopron vármegyei "
+                 "vállalkozásokkal szívesen leülünk személyesen is. [[local-budapest:Budapesten]] "
+                 "rendszeresen ott vagyunk, ott is személyesen egyeztetünk; a többi régióról a "
+                 "[[local-hub:Hol dolgozunk]] oldalon írtunk. Külföldi ügyfeleinkkel online "
+                 "dolgozunk, ami az elmúlt években semmivel sem bizonyult lassabbnak. Ha nem tudod eldönteni, melyik szolgáltatás kellene, "
                  "írj nekünk: a beszélgetés ingyenes, és a végén akkor is okosabb leszel, ha "
                  "nem velünk dolgozol tovább.",
         "who_h": "Kikkel dolgozunk",
@@ -2553,14 +2762,19 @@ GROUND_COPY = {
               "does not bring you customers: the structure, the copy, the search engine "
               "optimisation and the advertising have to work together, or even the most "
               "beautiful page stays a business card.",
-        "svc_h": "Four services, one system",
+        "svc_h": "Six services, one system",
         "svc": [
             ("sme", "Web design for small and medium businesses",
              "design, copywriting, development and search engine optimisation for a "
              "one-off, itemised project fee — and after handover, it is all yours."),
             ("enterprise", "Bespoke web development for enterprises",
              "custom platforms, internal systems, integrations and operations with a "
-             "dedicated development team."),
+             "development team built for the project."),
+            ("shop", "Ecommerce web design",
+             "built in code, not on a template: catalogue, payment, shipping and stock "
+             "integration, quoted item by item."),
+            ("seo", "Search engine optimisation",
+             "technical SEO, content and local search, with a plain report on what changed."),
             ("branding", "Branding and identity design",
              "logo, colour, typography, image style and tone of voice arranged into a single "
              "system."),
@@ -2582,9 +2796,10 @@ GROUND_COPY = {
                "no two briefs are the same. We do not disappear after launch either: if you "
                "extend the site, measure it or continue the SEO, the same team carries it on.",
         "where_h": "Where we work",
-        "where": "Our office is just outside Győr, and we are happy to meet businesses across "
-                 "Győr-Moson-Sopron county in person. We work with clients in Budapest and "
-                 "abroad online, which over the past years has proved no slower at all. If "
+        "where": "Our office is in Győr, and we are happy to meet businesses across "
+                 "Győr-Moson-Sopron county in person. We are in Budapest regularly and meet "
+                 "clients there in person too. We work with clients abroad online, which over "
+                 "the past years has proved no slower at all. If "
                  "you cannot tell which service you need, write to us: the conversation is "
                  "free, and you will know more at the end of it either way.",
         "who_h": "Who we work with",
@@ -2632,14 +2847,20 @@ GROUND_COPY = {
               "Eine Website allein bringt noch keine Kunden: Struktur, Text, "
               "Suchmaschinenoptimierung und Werbung müssen zusammenspielen, sonst bleibt auch "
               "die schönste Seite eine Visitenkarte.",
-        "svc_h": "Vier Leistungen, ein System",
+        "svc_h": "Sechs Leistungen, ein System",
         "svc": [
             ("sme", "Webdesign für kleine und mittlere Unternehmen",
              "Konzept, Text, Entwicklung und Suchmaschinenoptimierung zu einem einmaligen, "
              "aufgeschlüsselten Projektpreis — nach der Übergabe gehört alles Ihnen."),
             ("enterprise", "Webentwicklung für Großunternehmen",
              "individuelle Plattformen, interne Systeme, Integrationen und Betrieb mit einem "
-             "festen Entwicklungsteam."),
+             "projektbezogenen Entwicklungsteam."),
+            ("shop", "Onlineshop-Erstellung",
+             "in Code gebaut statt aus einer Vorlage: Katalog, Zahlung, Versand und "
+             "Lageranbindung, Posten für Posten angeboten."),
+            ("seo", "Suchmaschinenoptimierung",
+             "technisches SEO, Inhalte und lokale Suche, mit einem verständlichen Bericht "
+             "darüber, was sich verändert hat."),
             ("branding", "Branding und Corporate Design",
              "Logo, Farbwelt, Typografie, Bildsprache und Tonalität in einem einzigen System."),
             ("ads", "Google- und Meta-Werbeanzeigen",
@@ -2660,9 +2881,10 @@ GROUND_COPY = {
                "nicht, weil keine zwei Aufgaben gleich sind. Auch nach dem Launch verschwinden wir "
                "nicht: Erweiterung, Messung oder laufende SEO übernimmt dasselbe Team.",
         "where_h": "Wo wir arbeiten",
-        "where": "Unser Büro liegt bei Győr, und mit Unternehmen aus dem Komitat "
-                 "Győr-Moson-Sopron treffen wir uns gerne persönlich. Mit Kundinnen und Kunden "
-                 "in Budapest und im Ausland arbeiten wir online, was sich in den letzten "
+        "where": "Unser Büro ist in Győr, und mit Unternehmen aus dem Komitat "
+                 "Győr-Moson-Sopron treffen wir uns gerne persönlich. In Budapest sind wir "
+                 "regelmäßig und treffen Kundinnen und Kunden auch dort persönlich. Mit "
+                 "Kundinnen und Kunden im Ausland arbeiten wir online, was sich in den letzten "
                  "Jahren als keineswegs langsamer erwiesen hat. Wenn Sie nicht wissen, welche "
                  "Leistung Sie brauchen, schreiben Sie uns: Das Gespräch ist kostenlos, und "
                  "Sie wissen danach in jedem Fall mehr.",
@@ -2703,9 +2925,24 @@ GROUND_COPY = {
 }
 
 
+_GROUND_LINK = re.compile(r"\[\[([a-z-]+):([^\]]+)\]\]")
+
+
+def _ground_links(text, lang):
+    """`[[route-key:text]]` -> a root-absolute link (plain text where the route
+    has no page in this language)."""
+    def link(m):
+        key, label = m.group(1), m.group(2)
+        if key in HU_ONLY and lang != "hu":
+            return label
+        return f'<a href="{root_href(lang, key)}">{label}</a>'
+    return _GROUND_LINK.sub(link, text)
+
+
 def build_ground(lang):
     """The homepage's written statement for one locale."""
-    g = GROUND_COPY[lang]
+    g = {k: (_ground_links(v, lang) if isinstance(v, str) else v)
+         for k, v in GROUND_COPY[lang].items()}
     svc = "".join(
         f'\n          <li><a href="{root_href(lang, k)}">{name}</a> — {line}</li>'
         for k, name, line in g["svc"])
@@ -2777,8 +3014,15 @@ def write_home_chrome():
 # exist. A crawler then indexes the homepage under a dozen dead addresses, and a
 # visitor who mistyped is told nothing at all — they simply arrive somewhere
 # else and have to work out that they did. Netlify serves `404.html` from the
-# publish root with a real 404 status, and serves `<dir>/404.html` for paths
-# under that directory, which is what makes the localised version possible.
+# publish root with a real 404 status. It does NOT pick `<dir>/404.html` for
+# paths under that directory by itself (measured 2026-10-10: /en/nonexistent
+# answered the Hungarian page), so the last two rules in netlify.toml map
+# /en/* and /de/* to their own 404 with status 404.
+#
+# Every href and src in it is ROOT-ABSOLUTE. The same document answers for a
+# missing URL at any depth — /en/a/b/c — where a relative `../assets/css/…`
+# resolves to /en/a/assets/… and the page arrives with no stylesheet and no
+# script. See `_root_absolute`.
 #
 # WHAT IT DELIBERATELY DOES NOT DO
 #   * no automatic redirect, of any delay;
@@ -2837,6 +3081,26 @@ NOT_FOUND_BODY = """
   </section>"""
 
 
+_REL_REF_RE = re.compile(r'(\s(?:href|src)=")(?![/#]|[a-z][a-z0-9+.-]*:)([^"]*)"')
+
+
+def _root_absolute(doc, lang):
+    """Rewrite every relative href/src in `doc` to a root-absolute path, as the
+    document resolves it from its own directory (/ or /en/ or /de/)."""
+    import posixpath
+    here = "/" if lang == "hu" else f"/{lang}/"
+
+    def fix(m):
+        ref = m.group(2)
+        cut = min([i for i in (ref.find("?"), ref.find("#")) if i >= 0], default=len(ref))
+        path, tail = ref[:cut], ref[cut:]
+        resolved = posixpath.normpath(posixpath.join(here, path)) if path else here
+        if path.endswith("/") and not resolved.endswith("/"):
+            resolved += "/"
+        return f'{m.group(1)}{resolved}{tail}"'
+    return _REL_REF_RE.sub(fix, doc)
+
+
 def build_not_found(lang):
     """The 404 document for one locale."""
     u = UI[lang]
@@ -2854,7 +3118,7 @@ def build_not_found(lang):
         rail_aria=u["rail_aria"], brand_alt=u["brand_alt"],
         **{f"hud{i}": v for i, v in enumerate(u["hud"])}))
 
-    return render(SHELL, dict(
+    return _root_absolute(render(SHELL, dict(
         lang=lang, title=t["title"], desc=t["lede"], base=base,
         brand_alt=u["brand_alt"],
         # No alternates, no canonical, no Open Graph, no JSON-LD. See above.
@@ -2874,7 +3138,7 @@ def build_not_found(lang):
             eyebrow=t["eyebrow"], head=t["head"], lede=t["lede"],
             nav_aria=u["nav_aria"], links=links)),
         footer=build_footer(lang, "index"),
-    ))
+    )), lang)
 
 
 def write_not_found():
@@ -2917,7 +3181,7 @@ def prune_renamed(outdir, lang):
             print(f"  pruned {lang}/{f.name} -> now {SLUGS[m.group(1).decode()][lang]}")
 
 
-def write_route_manifest():
+def write_route_manifest(updated=None):
     """The slug table, as data, for the tools downstream of this script.
 
     scripts/assemble.mjs used to carry a hand-copied duplicate of SLUGS to build
@@ -2947,7 +3211,13 @@ def write_route_manifest():
                     # Routes with NO English or German file at all (see
                     # HU_ONLY). Anything that walks every language's file
                     # skips the two that are not there.
-                    "huOnly": list(HU_ONLY)},
+                    "huOnly": list(HU_ONLY),
+                    # The last text change of each post's Hungarian fragment,
+                    # from its front matter (_build/stamp_dates.py). The
+                    # sitemap uses it as <lastmod> for the HU URL only: the
+                    # EN/DE text lives in shared dictionaries whose history
+                    # is not per post, so for them no date is claimed.
+                    "updated": dict(sorted((updated or {}).items()))},
                    ensure_ascii=False, indent=1),
         encoding="utf-8")
 
@@ -2967,7 +3237,9 @@ def main():
     if missing_frag:
         sys.exit(f"slug entries with no fragment: {', '.join(sorted(missing_frag))}")
 
-    write_route_manifest()
+    write_route_manifest({BY_HU[stem + ".html"]: meta["updated"][:10]
+                          for stem, (meta, _) in frags.items()
+                          if meta.get("updated") and stem + ".html" in BY_HU})
     write_home_chrome()
     write_not_found()
 
@@ -2999,6 +3271,8 @@ def main():
                 title = table.get(tr.normalise(title), title)
                 desc = table.get(tr.normalise(desc), desc)
                 body = tr.apply(body, table, missing)
+            if key.startswith("post-"):
+                body = dress_byline(body, lang, meta)
             if "<!--legal-note-->" in body:
                 note = LEGAL_NOTE[lang]
                 body = body.replace("<!--legal-note-->",
@@ -3018,7 +3292,7 @@ def main():
                 lang=lang, title=title, desc=desc,
                 base=base, brand_alt=u["brand_alt"],
                 alternates=build_alternates(key, lang),
-                social=build_social(lang, key, title, desc, meta),
+                social=build_social(lang, key, title, desc, meta, body, table),
                 # After translation and after the legal note, so the breadcrumb
                 # it reads is the one this page will actually render.
                 jsonld=build_structured_data(lang, key, title, desc, meta, body),
@@ -3031,7 +3305,11 @@ def main():
                 # are worth following; it is simply not a page to rank as a case
                 # study. `follow` keeps the outbound equity, `noindex` keeps the
                 # claim honest.
-                robots="" if locale_indexable(key, lang)
+                # max-image-preview:large lets Search and Discover show a large
+                # preview of the page's images; without it Google may only use
+                # a thumbnail.
+                robots='\n<meta name="robots" content="max-image-preview:large">'
+                       if locale_indexable(key, lang)
                        else '\n<meta name="robots" content="noindex, follow">',
                 body_class="",
                 instruments=chrome,
@@ -3044,8 +3322,8 @@ def main():
                 body=body,
                 footer=build_footer(lang, key) if show_footer else "",
             ))
-            html, script = externalise_js(relink(html, lang), key, lang, base)
-            html = stamp_images(html)
+            html, script = externalise_js(relink(html, lang, key), key, lang, base)
+            html = stamp_srcset(stamp_images(html))
             if script:
                 scripts.append(script)
             (outdir / SLUGS[key][lang]).write_text(html, encoding="utf-8")
