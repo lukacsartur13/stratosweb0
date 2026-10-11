@@ -36,8 +36,8 @@ function collectErrors(page: Page) {
 // generated static document whose altitude readout was `<b class="rail__alt">`
 // inside a decorative rail, seeded at 420 m, with the hero call to action
 // inside a `.st--valley` section. None of that markup exists any more: the
-// homepage is the React Meridian ascent, client-rendered into the `<main
-// id="main">` the locale shell ships as its mount host, and it publishes
+// homepage is the React Meridian ascent, client-rendered into the mount host
+// inside the locale shell's `<main id="main">`, and it publishes
 // `data-testid` hooks precisely so tests do not have to name its class
 // structure.
 //
@@ -169,7 +169,9 @@ test.describe('homepage', () => {
     // and still means "the primary call to action in the opening panel".
     const quote = page.getByTestId('cta-primary-hero');
     await expect(quote).toBeVisible({ timeout: 10_000 });
-    await expect(quote).toHaveAttribute('href', /arajanlat\.html$/);
+    // Root-absolute and extensionless: the canonical URL from
+    // `_build/routes.json`, not the `.html` form production 301s away from.
+    await expect(quote).toHaveAttribute('href', '/arajanlat');
 
     await quote.click();
     await expect(page).toHaveURL(/arajanlat/);
@@ -193,8 +195,8 @@ test.describe('homepage', () => {
     ).toBeAttached();
     await expect(page.locator('[data-testid^="stage-"]')).toHaveCount(11);
     await expect(page.getByTestId('stage-destination')).toBeAttached();
-    await expect(page.getByTestId('cta-primary')).toHaveAttribute('href', /arajanlat\.html$/);
-    await expect(page.getByTestId('cta-contact')).toHaveAttribute('href', /ugyfelszolgalat\.html$/);
+    await expect(page.getByTestId('cta-primary')).toHaveAttribute('href', '/arajanlat');
+    await expect(page.getByTestId('cta-contact')).toHaveAttribute('href', '/ugyfelszolgalat');
   });
 
   test('the stage the visitor is in is exposed to assistive technology', async ({ page }, testInfo) => {
@@ -242,9 +244,9 @@ test.describe('homepage', () => {
   });
 
   for (const [locale, path, quote] of [
-    ['hu', '/index.html', 'arajanlat.html'],
-    ['en', '/en/index.html', 'quote.html'],
-    ['de', '/de/index.html', 'angebot.html'],
+    ['hu', '/index.html', '/arajanlat'],
+    ['en', '/en/index.html', '/en/quote'],
+    ['de', '/de/index.html', '/de/angebot'],
   ] as const) {
     test(`the ${locale} homepage is its own entry point with its own links`, async ({ page }) => {
       // Direct entry, not a language switch: each locale is a real page at a
@@ -255,7 +257,7 @@ test.describe('homepage', () => {
       expect(res?.status(), path).toBeLessThan(400);
       await expect(page.locator('html')).toHaveAttribute('lang', locale);
       await expect(page.locator('h1')).toBeVisible();
-      await expect(page.getByTestId('cta-primary-hero')).toHaveAttribute('href', new RegExp(`${quote}$`));
+      await expect(page.getByTestId('cta-primary-hero')).toHaveAttribute('href', quote);
       await homepageReady(page);
       await expect(await altitudeReadout(page)).toHaveText(/\d/);
     });

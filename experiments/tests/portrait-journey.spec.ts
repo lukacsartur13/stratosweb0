@@ -688,11 +688,11 @@ test.describe('portrait — the content', () => {
   test('the calls to action are real anchors with real destinations @smoke', async ({ page }) => {
     await open(page);
 
-    await expect(page.getByTestId('cta-primary')).toHaveAttribute('href', '/arajanlat.html');
-    await expect(page.getByTestId('cta-primary-hero')).toHaveAttribute('href', '/arajanlat.html');
+    await expect(page.getByTestId('cta-primary')).toHaveAttribute('href', '/arajanlat');
+    await expect(page.getByTestId('cta-primary-hero')).toHaveAttribute('href', '/arajanlat');
     await expect(page.getByTestId('cta-secondary')).toHaveAttribute('href', '#stage-selected-work');
-    await expect(page.getByTestId('cta-contact')).toHaveAttribute('href', '/ugyfelszolgalat.html');
-    await expect(page.getByTestId('cta-qualify')).toHaveAttribute('href', '/arajanlat.html');
+    await expect(page.getByTestId('cta-contact')).toHaveAttribute('href', '/ugyfelszolgalat');
+    await expect(page.getByTestId('cta-qualify')).toHaveAttribute('href', '/arajanlat');
   });
 
   test('the chapters are announced in reading order, and unwound in reverse', async ({ page }) => {

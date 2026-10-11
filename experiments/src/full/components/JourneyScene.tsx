@@ -145,6 +145,11 @@ function DevSceneHandle() {
   return null;
 }
 
+/** Module scope, so the ref's identity is stable and React never re-runs it. */
+const hideFromAssistiveTech = (canvas: HTMLCanvasElement | null) => {
+  canvas?.setAttribute('aria-hidden', 'true');
+};
+
 export default function JourneyScene({
   simplified,
   parallax,
@@ -352,6 +357,11 @@ export default function JourneyScene({
         gl.toneMappingExposure = 1.05;
         gl.setClearColor('#04060a', 1);
       }}
+      // On the canvas itself, not only on `.stage__surface` around it: the
+      // scene carries nothing the prose does not. `<Canvas>` spreads its props
+      // onto its wrapper div, and its ref is the one way to reach the element
+      // in the same commit that inserts it — `onCreated` comes a beat later.
+      ref={hideFromAssistiveTech}
       // No shadow map anywhere in the journey. One hero object that lights
       // itself does not need a second depth pass, and on a phone that pass is
       // the entire budget.

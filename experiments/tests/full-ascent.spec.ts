@@ -669,11 +669,11 @@ test.describe('the content survives without the canvas', () => {
   test('the calls to action are real anchors with real destinations', async ({ page }) => {
     await page.goto('./');
 
-    await expect(page.getByTestId('cta-primary')).toHaveAttribute('href', '/arajanlat.html');
-    await expect(page.getByTestId('cta-primary-hero')).toHaveAttribute('href', '/arajanlat.html');
+    await expect(page.getByTestId('cta-primary')).toHaveAttribute('href', '/arajanlat');
+    await expect(page.getByTestId('cta-primary-hero')).toHaveAttribute('href', '/arajanlat');
     await expect(page.getByTestId('cta-secondary')).toHaveAttribute('href', '#stage-selected-work');
-    await expect(page.getByTestId('cta-contact')).toHaveAttribute('href', '/ugyfelszolgalat.html');
-    await expect(page.getByTestId('cta-qualify')).toHaveAttribute('href', '/arajanlat.html');
+    await expect(page.getByTestId('cta-contact')).toHaveAttribute('href', '/ugyfelszolgalat');
+    await expect(page.getByTestId('cta-qualify')).toHaveAttribute('href', '/arajanlat');
 
     // Every in-page anchor resolves to an element that exists.
     const dangling = await page.evaluate(() =>

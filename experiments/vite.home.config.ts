@@ -6,6 +6,8 @@ import { siteAssets } from './vite-site-assets';
 import { siteOrigin } from '../scripts/site-origin.mjs';
 import { MESSAGES } from './src/full/locales/messages';
 import { pageHref, type Locale } from './src/full/i18n';
+import { staticJourney } from './src/full/staticJourney';
+import { STATIC_ID } from './src/full/readerPlace';
 
 /**
  * The homepage build: the Altimeter Meridian ascent, served at `/`, `/en/` and
@@ -177,8 +179,12 @@ function openingFrame(): Plugin {
     const line1 = escape(MESSAGES['calibration.title.a'][lang]);
     const em = escape(MESSAGES['calibration.title.em'][lang]);
     const line2 = escape(MESSAGES['calibration.title.b'][lang]);
+    // The calibration stage, as far as the static text is concerned: its stage
+    // index links here. The static id prefix, not the composition's
+    // `stage-calibration` — see `STATIC_ID` in src/full/readerPlace.ts for the
+    // Back-button defect a shared id caused.
     return [
-      '<div class="jboot" data-journey-opening>',
+      `<div class="jboot" id="${STATIC_ID}calibration" data-journey-opening>`,
       '  <h1 class="jboot__h">',
       `    <span>${line1}</span>`,
       `    <span><em>${em}</em> ${line2}</span>`,
@@ -205,6 +211,41 @@ function openingFrame(): Plugin {
           throw new Error(`${ctx.filename} has no ${token} — the homepage shell lost its opening frame`);
         }
         return html.split(token).join(frame(lang));
+      },
+    },
+  };
+}
+
+/**
+ * The rest of the journey's words, as static markup after the opening frame.
+ *
+ * The opening frame put the first screen in the HTML; this puts the other ten
+ * stages there too — every heading and paragraph, the collaboration marks as
+ * `<img alt>`, the featured case and its links, the checkpoints and the stage
+ * index — so a reader that never moves (a crawler, a visitor with no
+ * JavaScript) gets the page's whole argument rather than its first two
+ * sentences. See `src/full/staticJourney.ts` for what is and is not in it, and
+ * why it is a plain third rendering rather than a prerender of a composition.
+ *
+ * It sits below the opening frame, which is one viewport tall, so the first
+ * screen is exactly what it was. `createRoot`'s first commit replaces both.
+ */
+function staticNarrative(): Plugin {
+  return {
+    name: 'stratos-static-narrative',
+    enforce: 'pre',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, ctx) {
+        const lang = /home\/(hu|en|de)\.html$/.exec(ctx.filename.replace(/\\/g, '/'))?.[1] as
+          | Locale
+          | undefined;
+        if (!lang) throw new Error(`no locale for ${ctx.filename} — the homepage shells are home/{hu,en,de}.html`);
+        const token = '<!--stratos:narrative-->';
+        if (!html.includes(token)) {
+          throw new Error(`${ctx.filename} has no ${token} — the homepage shell lost its static narrative`);
+        }
+        return html.split(token).join(staticJourney(lang));
       },
     },
   };
@@ -431,6 +472,7 @@ export default defineConfig({
     react(),
     injectChrome(),
     openingFrame(),
+    staticNarrative(),
     substituteOrigin(),
     inlineCriticalCss(),
     journeyChunks(),

@@ -16,6 +16,10 @@
     "noEmit": true,
     "isolatedModules": true,
     "allowImportingTsExtensions": true,
+    // `src/full/i18n.ts` reads its page URLs from `_build/routes.json`, and the
+    // homepage config imports that module (and, through the static journey,
+    // `content.ts`) at build time.
+    "resolveJsonModule": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo"
   },
   "include": ["vite.config.ts", "vite.full.config.ts", "vite.home.config.ts"]

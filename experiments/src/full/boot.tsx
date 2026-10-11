@@ -17,6 +17,10 @@ import { MobileHome } from './mobile/MobileHome';
 import { isMobileHomepage } from './mobile/device';
 import { JourneyFallback } from './components/JourneyFallback';
 
+// Homepage only — `main.tsx` calls it right before `mount`. It lives in this
+// chunk rather than the entry so the entry stays the size it was.
+export { keepReaderPlace } from './readerPlace';
+
 /**
  * The last-resort net, and deliberately not the first one.
  *
@@ -45,8 +49,8 @@ class JourneyBoundary extends Component<{ children: ReactNode }, { failed: boole
 
   render() {
     if (!this.state.failed) return this.props.children;
-    // No <main> of its own: the landmark is the mount host in the HTML shell,
-    // and this renders *inside* it. Wrapping this in a second <main> would give
+    // No <main> of its own: the landmark is in the HTML shell, and this renders
+    // *inside* it. Wrapping this in a second <main> would give
     // the crashed page two main landmarks, one nested in the other.
     return (
       <div className="journey__stage" style={{ position: 'relative' }}>
@@ -112,21 +116,23 @@ if (import.meta.env.DEV) {
 }
 
 /**
- * The mount host is the `<main id="main" tabindex="-1">` in the locale shell,
- * not a `<div id="root">`.
+ * The mount host is `<div class="journey" id="journey">` inside the locale
+ * shell's `<main id="main" tabindex="-1">` — and on the prototype, `#main`
+ * itself, which is the one place the two entries differ.
  *
- * React owns a container's *children*; the container element itself is never
- * replaced, re-created or unmounted. Mounting onto the landmark therefore makes
- * it a fixed point: it is in the parsed HTML before the first module request,
- * it is still the same node after hydration, after every re-render, and after
- * the error boundary above swaps the whole tree for a static instrument.
+ * Either way the landmark is in the parsed HTML before the first module
+ * request and React never replaces it: React owns a container's *children*,
+ * never the container or anything around it. So `#main` is a fixed point —
+ * there before the mount, the same node after every re-render, and after the
+ * error boundary above swaps the whole tree for a static instrument.
  *
  * That is what the transition controller needs. `assets/js/transitions.js`
  * moves focus to `#main` the moment the destination document is revealed, and
- * before this change the homepage had nothing there to move focus to for the
- * second or so it took React and a 1 MB scene chunk to arrive. The only fix
- * available on the old structure was to poll until the landmark appeared, which
- * lands a focus change on a visitor who has already started reading.
+ * when the homepage's landmark was rendered by React it had nothing there to
+ * move focus to for the second or so it took React and a 1 MB scene chunk to
+ * arrive. On the homepage the landmark now also wraps the written statement
+ * after the journey, which a container could not: its first commit would have
+ * emptied it.
  */
 /**
  * The one fork between the two homepages.
@@ -160,11 +166,13 @@ function Homepage() {
  * `prototype.tsx` immediately, because that route has no opening frame.
  *
  * `createRoot` empties the container on its first commit, which is what removes
- * the static opening frame the shell shipped — see `openingFrame()` in
+ * the static text the shell shipped — the opening frame and the narrative under
+ * it, see `openingFrame()` and `staticNarrative()` in
  * `experiments/vite.home.config.ts`. The frame and the journey's own first
  * screen say the same two sentences, so what the visitor sees is the type
  * settling into its composition rather than one block of copy replacing
- * another.
+ * another; the narrative is below the fold, and `keepReaderPlace` handles the
+ * reader who was already down there.
  */
 export function mount(host: HTMLElement): void {
   createRoot(host).render(

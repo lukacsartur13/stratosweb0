@@ -26,9 +26,13 @@
 // begins when the visitor begins it, and there is no reading of this page on
 // which a WebGL renderer has to exist before they have touched it.
 //
-// So the document now ships its own opening frame — the same headline and the
-// same lead sentence, as static markup in the shell (`openingFrame()` in
-// `experiments/vite.home.config.ts`) — and this file waits.
+// So the document now ships its own words — the opening frame (the same
+// headline and lead sentence the journey opens with) and, below the fold, the
+// other ten stages set plainly, as static markup in the shell (`openingFrame()`
+// and `staticNarrative()` in `experiments/vite.home.config.ts`) — and this file
+// waits. Only the *composition* is deferred: everything the journey says is in
+// the HTML from the first byte, for a reader who never moves as much as for one
+// who does.
 //
 // WHAT COUNTS AS "BEGINNING"
 // --------------------------
@@ -71,12 +75,22 @@
 //
 // WHAT IT COSTS, HONESTLY
 // -----------------------
-// A visitor who never interacts sees the opening frame, the Arrival and the
-// footer, and never the journey. That is the correct outcome — they read the
-// two sentences the page opens with and left — but it is a real difference from
-// before, and it is the reason the chunk is prefetched at idle: by the time the
-// first `pointermove` arrives, the bytes are usually already local, so what the
-// deferral costs at the moment of engagement is the mount, not the download.
+// A visitor who never interacts gets the journey's words but not the journey:
+// the opening frame, the narrative set plainly under it, the statement, the
+// Arrival and the footer. That is the correct outcome for a reader who never
+// moves — a crawler is the common one — and it is why the chunk is prefetched
+// at idle for everyone else: by the time the first `pointermove` arrives, the
+// bytes are usually already local, so what the deferral costs at the moment of
+// engagement is the mount, not the download.
+//
+// It used to cost more. Until the narrative was in the shell, a reader who
+// never moved — Googlebot, measured with its smartphone agent and no input —
+// got the opening frame and the statement and nothing of the journey: 881
+// words, no "Six areas" stage, no client marks, and no link to the Rapidkert
+// case study, which the journey is the only part of the homepage to carry.
+// A deferral that decides what a search engine can read is not a performance
+// decision any more, so the words stopped being deferred and only the
+// renderer is.
 // =============================================================================
 
 // Eager, and the only thing in this file that is: `styles.css` carries the skip
@@ -91,7 +105,8 @@ import './styles.css';
 // second copy of it that could answer differently.
 import { isMobileHomepage } from './mobile/device';
 
-const host = document.getElementById('main');
+// The mount host is the `<div class="journey">` inside `<main>` — see the shell.
+const host = document.getElementById('journey');
 
 /** See the note above. `capture` so nothing inside can stop one first. */
 const EVENTS = [
@@ -111,7 +126,14 @@ function start(): void {
   if (started || !host) return;
   started = true;
   for (const type of EVENTS) removeEventListener(type, start, LISTEN);
-  void import('./boot').then((boot) => boot.mount(host));
+  void import('./boot').then((boot) => {
+    // Before the mount, while the static text is still the page: it records
+    // where the reader is so the composition arriving cannot move them. See
+    // `readerPlace.ts` — a link into the statement under the journey used to
+    // be carried ten to nineteen thousand pixels away from its target.
+    boot.keepReaderPlace(host);
+    boot.mount(host);
+  });
 }
 
 for (const type of EVENTS) addEventListener(type, start, LISTEN);
@@ -138,10 +160,15 @@ for (const type of EVENTS) addEventListener(type, start, LISTEN);
  *                                `assets/js/home-history.js` is what made the
  *                                document tall enough for that offset to
  *                                survive; this is the other half of it.
- *   a fragment                   `/#stage-selected-work` is a request for
- *                                something only the journey renders. `#main` is
- *                                excluded: that is the skip link, and it points
- *                                at the opening frame, which is already there.
+ *   a fragment                   `/#stage-selected-work` is a request for a
+ *                                stage, and `/#ground-h` for the statement
+ *                                below the journey — either way the visitor
+ *                                starts somewhere other than the opening frame,
+ *                                and `keepReaderPlace` (readerPlace.ts) keeps
+ *                                them there while the journey arrives. `#main`
+ *                                is excluded: that is the skip link, and it
+ *                                points at the opening frame, which is already
+ *                                there.
  *   a BFCache restore            the same document handed back with a life
  *                                ahead of it, and a scroll position it had
  *                                before.
