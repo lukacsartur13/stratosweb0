@@ -1,0 +1,198 @@
+{
+ "_note": [
+  "The homepage (_build/pages/index.html). Title and description are the three",
+  "search-owned strings the homepage has carried since the SEO ownership pass;",
+  "they are copied verbatim from the previous Vite shells and must not drift.",
+  "The Rapidkert figure is the case study's: quote requests from organic search,",
+  "never revenue, never summed with the 9M from ads (see rapidkert.json).",
+  "German addresses the reader with Sie."
+ ],
+ "Weboldal készítés és fejlesztés | Stratos": [
+  "Web Development &amp; Web Design Agency in Győr | Stratos",
+  "Webdesign und Entwicklung | Stratos"
+ ],
+ "Weboldal készítés, branding és hirdetéskezelés egy kézben, egyedi ajánlattal. Győrből, KKV-tól nagyvállalatig, magyarul, angolul és németül.": [
+  "Web development, web design, branding and ads from one team in Győr, Hungary — built in code, quoted per project. In English, German and Hungarian.",
+  "Webdesign, Webentwicklung, Branding und Werbeanzeigen aus einer Hand — im Code gebaut, zum Projektpreis. Vom Kleinunternehmen bis zum Konzern, in drei Sprachen."
+ ],
+ "<span class=\"hero__k t-micro\">Stratos — weboldal készítés és digitális rendszerek</span> <span class=\"hero__m t-monument\">Olyat építünk,<br> amit nem lehet<br> összetéveszteni.</span>": [
+  "<span class=\"hero__k t-micro\">Stratos — web design and development</span> <span class=\"hero__m t-monument\">Built to be<br> unmistakable.</span>",
+  "<span class=\"hero__k t-micro\">Stratos — Webdesign und Webentwicklung</span> <span class=\"hero__m t-monument\">Unverwechselbar<br> gebaut.</span>"
+ ],
+ "Digitális élmények és egyedi rendszerek olyan cégeknek, amelyeknél az átlag nem opció.": [
+  "Digital experiences and custom systems for companies where average is not an option.",
+  "Digitale Erlebnisse und individuelle Systeme für Unternehmen, für die Durchschnitt keine Option ist."
+ ],
+ "Rapidkert — 3D weboldal, SEO és Google Ads": [
+  "Rapidkert — 3D website, SEO and Google Ads",
+  "Rapidkert — 3D-Website, SEO und Google Ads"
+ ],
+ "A felszín csak<br> az utolsó réteg.": [
+  "The surface is<br> only the last layer.",
+  "Die Oberfläche ist<br> nur die letzte Schicht."
+ ],
+ "~110M Ft": [
+  "~110M HUF",
+  "~110 Mio. HUF"
+ ],
+ "Ajánlatkérési érték organikus keresésből": [
+  "Quote requests from organic search",
+  "Angebotsanfragen aus der organischen Suche"
+ ],
+ "<span class=\"still__a\">Nem mindenhez kell látvány.</span> <span class=\"still__b lit\">Csak ahhoz, amit nélküle rosszabbul lehetne elmondani.</span>": [
+  "<span class=\"still__a\">Not everything needs spectacle.</span> <span class=\"still__b lit\">Only what would be told worse without it.</span>",
+  "<span class=\"still__a\">Nicht alles braucht Effekte.</span> <span class=\"still__b lit\">Nur das, was sich ohne sie schlechter erzählen ließe.</span>"
+ ],
+ "GoDataFusion — építőipari adat és felmérés": [
+  "GoDataFusion — construction data and surveying",
+  "GoDataFusion — Baudaten und Vermessung"
+ ],
+ "A valóságból adat.": [
+  "Reality into data.",
+  "Aus Wirklichkeit werden Daten."
+ ],
+ "Egy építőipari adatcég háromnyelvű weboldala, ahol egyetlen 3D épület mutatja meg mindhárom szolgáltatást.": [
+  "A trilingual website for a construction data company, where a single 3D building shows all three of its services.",
+  "Die dreisprachige Website eines Bau-Datenunternehmens, auf der ein einziges 3D-Gebäude alle drei Leistungen zeigt."
+ ],
+ "<span class=\"mode__k\">Capture</span><span class=\"mode__d\">360° helyszíni dokumentáció</span>": [
+  "<span class=\"mode__k\">Capture</span><span class=\"mode__d\">360° site documentation</span>",
+  "<span class=\"mode__k\">Capture</span><span class=\"mode__d\">360°-Baustellendokumentation</span>"
+ ],
+ "<span class=\"mode__k\">Measure</span><span class=\"mode__d\">Terepmodell és szintvonalak</span>": [
+  "<span class=\"mode__k\">Measure</span><span class=\"mode__d\">Terrain model and contours</span>",
+  "<span class=\"mode__k\">Measure</span><span class=\"mode__d\">Geländemodell und Höhenlinien</span>"
+ ],
+ "<span class=\"mode__k\">Quantify</span><span class=\"mode__d\">Mennyiség a tervlapból</span>": [
+  "<span class=\"mode__k\">Quantify</span><span class=\"mode__d\">Quantities from the drawing</span>",
+  "<span class=\"mode__k\">Quantify</span><span class=\"mode__d\">Mengen aus dem Plan</span>"
+ ],
+ "A projekt": [
+  "The project",
+  "Das Projekt"
+ ],
+ "Amit csinálunk": [
+  "What we do",
+  "Was wir tun"
+ ],
+ "Élmények": [
+  "Experiences",
+  "Erlebnisse"
+ ],
+ "Weboldalak, webshopok és interaktív felületek, amelyek egy cég legerősebb érvei lesznek.": [
+  "Websites, online shops and interactive interfaces that become a company’s strongest argument.",
+  "Websites, Onlineshops und interaktive Oberflächen, die zum stärksten Argument eines Unternehmens werden."
+ ],
+ "<a href=\"kkv.html\">Weboldal KKV-nak</a>": [
+  "<a href=\"kkv.html\">Web design for small businesses</a>",
+  "<a href=\"kkv.html\">Webdesign für KMU</a>"
+ ],
+ "<a href=\"webshop-keszites.html\">Webshop készítés</a>": [
+  "<a href=\"webshop-keszites.html\">Ecommerce web design</a>",
+  "<a href=\"webshop-keszites.html\">Onlineshop-Erstellung</a>"
+ ],
+ "<a href=\"branding.html\">Branding</a>": [
+  "<a href=\"branding.html\">Branding</a>",
+  "<a href=\"branding.html\">Branding</a>"
+ ],
+ "Rendszerek": [
+  "Systems",
+  "Systeme"
+ ],
+ "Ügyfélportálok, kalkulátorok, belső rendszerek és integrációk — ERP-hez, CRM-hez, fizetéshez kötve.": [
+  "Client portals, calculators, internal systems and integrations — connected to ERP, CRM and payments.",
+  "Kundenportale, Kalkulatoren, interne Systeme und Integrationen — angebunden an ERP, CRM und Zahlung."
+ ],
+ "Webfejlesztés nagyvállalatoknak": [
+  "Bespoke web development",
+  "Webentwicklung für Unternehmen"
+ ],
+ "Növekedés": [
+  "Growth",
+  "Wachstum"
+ ],
+ "Keresőoptimalizálás, hirdetés és mérés ott, ahol a látogatóból ügyfélnek kell lennie.": [
+  "Search, advertising and measurement wherever a visitor has to become a client.",
+  "Suchmaschinenoptimierung, Werbung und Messung überall dort, wo aus Besuchern Kunden werden müssen."
+ ],
+ "<a href=\"hirdeteskezeles.html\">Hirdetéskezelés</a>": [
+  "<a href=\"hirdeteskezeles.html\">Ads management</a>",
+  "<a href=\"hirdeteskezeles.html\">Google- und Meta-Werbeanzeigen</a>"
+ ],
+ "Ahogy dolgozunk": [
+  "How we work",
+  "Wie wir arbeiten"
+ ],
+ "Előbb redukálunk.": [
+  "We reduce first.",
+  "Zuerst reduzieren wir."
+ ],
+ "Ha mindent egyszerre mondunk, semmi nem marad meg. Azzal kezdünk, amit el lehet hagyni.": [
+  "Say everything at once and nothing stays. We start with what can be left out.",
+  "Wer alles auf einmal sagt, dem bleibt nichts im Gedächtnis. Wir beginnen mit dem, was wegfallen kann."
+ ],
+ "A technológia az ötletet követi.": [
+  "Technology follows the idea.",
+  "Die Technik folgt der Idee."
+ ],
+ "3D-t, animációt és egyedi kódot ott használunk, ahol az üzenet erősebb lesz tőle. Máshol nem.": [
+  "We use 3D, motion and custom code where they make the message stronger. Nowhere else.",
+  "3D, Animation und eigener Code kommen dort zum Einsatz, wo sie die Botschaft stärker machen. Nirgends sonst."
+ ],
+ "Amit építünk, annak működnie kell.": [
+  "What we build has to work.",
+  "Was wir bauen, muss funktionieren."
+ ],
+ "Sebességben, használhatóságban és üzletileg — az átadás után is.": [
+  "In speed, in use and in business terms — after handover, too.",
+  "In Geschwindigkeit, Bedienbarkeit und wirtschaftlich — auch nach der Übergabe."
+ ],
+ "Nagy szervezeteknek": [
+  "For larger organisations",
+  "Für größere Organisationen"
+ ],
+ "Ugyanaz a csapat, az első beszélgetéstől.": [
+  "One team, from the first conversation.",
+  "Ein Team, vom ersten Gespräch an."
+ ],
+ "Aki az első megbeszélésen ül, az viszi végig a munkát — az élesítés után is.": [
+  "The people in the first meeting carry the work through — and past launch.",
+  "Wer im ersten Gespräch sitzt, führt die Arbeit bis zum Ende — auch über den Launch hinaus."
+ ],
+ "A kód a tiétek.": [
+  "The code is yours.",
+  "Der Code gehört Ihnen."
+ ],
+ "Forráskód, dokumentáció és hozzáférések. Nincs bezártság egy beszállítóhoz.": [
+  "Source code, documentation and access. No vendor lock-in.",
+  "Quellcode, Dokumentation und Zugänge. Kein Vendor-Lock-in."
+ ],
+ "Kéthetente látható eredmény.": [
+  "Visible progress every two weeks.",
+  "Sichtbare Ergebnisse alle zwei Wochen."
+ ],
+ "Sprintek, rendszeres demó, átlátható backlog — a belső csapatotokkal együtt.": [
+  "Sprints, regular demos, a transparent backlog — alongside your internal team.",
+  "Sprints, regelmäßige Demos, ein transparentes Backlog — gemeinsam mit Ihrem internen Team."
+ ],
+ "Biztonság és megfelelőség.": [
+  "Security and compliance.",
+  "Sicherheit und Compliance."
+ ],
+ "Hozzáférés-kezelés, auditnapló, GDPR-megfelelő adatkezelés, és SLA, ahol az üzlet megkívánja.": [
+  "Access control, audit logging, GDPR-compliant data handling, and an SLA where the business needs one.",
+  "Zugriffsverwaltung, Audit-Protokoll, DSGVO-konforme Datenverarbeitung und ein SLA, wo das Geschäft es verlangt."
+ ],
+ "Fejlesztés nagyvállalatoknak": [
+  "Enterprise development",
+  "Entwicklung für Unternehmen"
+ ],
+ "Ha nagy a tét,<br> beszéljünk.": [
+  "High stakes?<br> Let’s talk.",
+  "Viel auf dem Spiel?<br> Dann sprechen wir."
+ ],
+ "Egy rövid beszélgetés után tudni fogod, mi segítene — és mi nem.": [
+  "After one short conversation you will know what would help — and what would not.",
+  "Nach einem kurzen Gespräch wissen Sie, was helfen würde — und was nicht."
+ ]
+}

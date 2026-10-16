@@ -2,15 +2,6 @@ import { test, expect, type Page } from './helpers/navigation-boundary';
 import fs from 'node:fs';
 import path from 'node:path';
 import { enableReducedMotion, matchesReducedMotion } from './helpers/reduced-motion';
-import { altitudeReadout, bootJourneyOnLoad, homepageReady, isMobileHomepage, stageReadout } from './helpers/homepage';
-
-// The homepage waits for a first move before it mounts the journey — see
-// `bootJourneyOnLoad`. Every navigation in this file gets one, on every
-// document it loads, so what these tests assert about is a page a visitor is
-// reading rather than one they have only landed on.
-test.beforeEach(async ({ page }) => {
-  await bootJourneyOnLoad(page);
-});
 
 
 /**
@@ -32,236 +23,152 @@ function collectErrors(page: Page) {
 // =============================================================================
 // The homepage.
 //
-// Three of the tests below were written against the *previous* homepage — a
-// generated static document whose altitude readout was `<b class="rail__alt">`
-// inside a decorative rail, seeded at 420 m, with the hero call to action
-// inside a `.st--valley` section. None of that markup exists any more: the
-// homepage is the React Meridian ascent, client-rendered into the mount host
-// inside the locale shell's `<main id="main">`, and it publishes
-// `data-testid` hooks precisely so tests do not have to name its class
-// structure.
+// Since 2026-10-16 the homepage is a generated static document on the v2 shell
+// (_build/pages/index.html), not the React/WebGL ascent these tests used to
+// drive. The questions they asked mostly survive — does it load cleanly, does
+// the primary action reach the questionnaire, is every locale its own entry
+// point — and they are asked of the new page. The questions that were about
+// the instrument (altitude, stages, live regions) went with it.
 //
-// They are rewritten here rather than deleted or re-pointed one selector at a
-// time. Each one existed to answer a question about the product, and the
-// question survived the rewrite even though the markup did not:
-//
-//   * "loads with the hero, the altimeter and no console errors" asked whether
-//     the homepage boots and shows an altitude instrument at all, rather than
-//     silently degrading to a plain document. Still the right question. The
-//     readout is now `data-testid="altitude-value"` inside
-//     `data-testid="altitude-hud"`, and the reduced-motion path deliberately
-//     has neither — the HUD owns the clock and there is nothing to advance when
-//     nothing moves — so that path asserts the static instrument instead of
-//     asserting nothing.
-//
-//   * "altitude climbs as the visitor scrolls" asked whether the readout is
-//     driven by the scroll rather than being a decorative number. Still the
-//     right question, with two changed facts: the journey now starts at 0 m
-//     rather than 420 m, and its ceiling is 30 000 m. The old assertion
-//     `atTop >= 420` was a *seed value* assertion — it described the previous
-//     page's decorative starting number and nothing about behaviour — so it is
-//     replaced by the range check that does carry meaning.
-//
-//   * "the hero call to action reaches the questionnaire" asked whether the
-//     primary CTA is reachable and lands on the quote page. Still the right
-//     question. The `.boot` preloader it waited on no longer exists; waiting
-//     for the hero CTA itself to become visible is the same wait with one fewer
-//     assumption about how the page starts up.
-//
-// The remaining assertion that is genuinely gone is the `.rail__alt` markup
-// itself. It is not recreated: a decorative rail on the previous homepage is
-// not a product requirement, and a test that exists to keep dead markup alive
-// is a test that prevents the work it was written to protect.
+// Two are new, and they are the redesign's own non-negotiables, so they are
+// asserted rather than trusted: nothing on the page asks for WebGL, and every
+// scene is in the HTML before a single script has run.
 // =============================================================================
-test.describe('homepage', () => {
-  /**
-   * The live readout, and the two ways the page is allowed not to have one.
-   *
-   * Resolved per composition. The homepage is two pages now — the desktop
-   * cinematic journey and the simplified portrait one — and they mount
-   * different instruments. What every assertion below is actually about is the
-   * page reporting a live altitude, which both do; `altitudeReadout` is the one
-   * place that knows which element is carrying it.
-   */
-  const readout = (page: Page) => altitudeReadout(page);
-
-  test('loads with the hero, the altimeter and no console errors', async ({ page }, testInfo) => {
-    const errors = collectErrors(page);
-    if (testInfo.project.name === 'reduced-motion') await enableReducedMotion(page);
-    await page.goto('/index.html');
-
-    await expect(page).toHaveTitle(/Stratos/);
-    await expect(page.locator('h1')).toBeVisible();
-
-    if (await matchesReducedMotion(page)) {
-      // No clock, by design — so the promise here is the static instrument and
-      // the readable document, not a live number. Asserting the readout under
-      // reduced motion would be asserting a thing the page is deliberately not
-      // building.
-      // The portrait composition has no renderer to decline, so it has no
-      // fallback either: under reduced motion it is the same document with the
-      // travel taken out of it, and its telemetry keeps reading. §24.
-      if (await isMobileHomepage(page)) {
-        await expect(page.getByTestId('mobile-altimeter')).toBeVisible();
-        await expect(await readout(page)).toHaveText(/\d/);
-      } else {
-        await expect(page.getByTestId('journey-fallback')).toBeVisible();
-        await expect(await readout(page)).toHaveCount(0);
-      }
-    } else {
-      // The altitude readout is the spine of the whole page; if it is missing,
-      // the ascent has silently degraded to a plain document.
-      await homepageReady(page);
-      await expect(await readout(page)).toHaveText(/\d/);
+/**
+ * Scroll the page to its end in reading-sized steps, the way a visitor does, so
+ * anything that waits to be seen has been seen. By script rather than the
+ * wheel: mobile WebKit has no wheel to emulate.
+ */
+async function readToTheEnd(page: Page) {
+  await page.evaluate(async () => {
+    const step = Math.round(innerHeight * 0.6);
+    for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 90));
     }
-
-    expect(errors, `console errors:\n${errors.join('\n')}`).toEqual([]);
   });
+  await page.waitForTimeout(500);
+}
 
-  test('altitude climbs as the visitor scrolls', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name === 'reduced-motion', 'no scroll-driven clock on that path');
+const SCENES = ['.hero', '.take', '.still', '.gdf', '.caps', '.ways', '.marks', '.close'];
+
+test.describe('homepage', () => {
+  test('loads as a static document: no errors, no canvas, no WebGL, no bundle', async ({ page }) => {
+    const errors = collectErrors(page);
+    const requests: string[] = [];
+    page.on('request', (r) => requests.push(r.url()));
+    await page.addInitScript(() => {
+      const w = window as unknown as { __gl: number };
+      w.__gl = 0;
+      const original = HTMLCanvasElement.prototype.getContext;
+      HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, type: string, ...rest: unknown[]) {
+        if (/webgl/i.test(type)) w.__gl += 1;
+        return (original as (...a: unknown[]) => unknown).call(this, type, ...rest);
+      } as typeof HTMLCanvasElement.prototype.getContext;
+    });
     await page.goto('/index.html');
-    await homepageReady(page);
-    const live = await readout(page);
-    await expect(live).toBeVisible();
+    // Read it the way a visitor does, to the end, so anything lazy has asked.
+    await readToTheEnd(page);
 
-    const read = async () => Number((await live.innerText()).replace(/[^\d]/g, ''));
-
-    // The journey begins on the ground. The previous homepage seeded its
-    // decorative readout at 420 m; this one starts the ascent at zero and says
-    // so, and the damped clock needs a moment to settle onto it after boot.
-    await expect(live).toHaveText('0', { timeout: 10_000 });
-    const atTop = await read();
-
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight * 0.6));
-    await page.waitForTimeout(1_700); // the clock damps towards the scroll position
-    const later = await read();
-
-    expect(later, 'the readout did not respond to the scroll').toBeGreaterThan(atTop);
-    // The journey is declared as 0 m to 30 000 m. Nothing should read outside it.
-    expect(later).toBeLessThanOrEqual(30_000);
-    expect(atTop).toBeGreaterThanOrEqual(0);
+    expect(errors).toEqual([]);
+    await expect(page.locator('canvas')).toHaveCount(0);
+    expect(await page.evaluate(() => (window as unknown as { __gl: number }).__gl)).toBe(0);
+    await expect(page.locator('script[type="module"]')).toHaveCount(0);
+    expect(requests.filter((u) => /\.glb(\?|$)|\/draco\/|\/models\/|\/assets\/home\//.test(u))).toEqual([]);
   });
 
   test('the page never scrolls sideways', async ({ page }) => {
     await page.goto('/index.html');
-    // Measure scrollability, not content width: a decorative layer wider than
-    // the glass is fine as long as the visitor cannot drag the page off-centre.
-    await page.evaluate(() => window.scrollTo(9999, 0));
-    await page.waitForTimeout(200);
-    expect(await page.evaluate(() => window.scrollX)).toBe(0);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
   });
 
   test('has one h1 and a skip link', async ({ page }) => {
     await page.goto('/index.html');
     await expect(page.locator('h1')).toHaveCount(1);
-    await expect(page.locator('a[href="#main"], a.skip, a[href^="#"]').first()).toBeAttached();
+    await expect(page.locator('a.skip[href="#main"]')).toHaveCount(1);
   });
 
-  test('the hero call to action reaches the questionnaire', async ({ page }, testInfo) => {
-    if (testInfo.project.name === 'reduced-motion') await enableReducedMotion(page);
+  test('the hero call to action reaches the questionnaire', async ({ page }) => {
     await page.goto('/index.html');
-
-    // The hero's own CTA, by its published hook rather than by its position in
-    // the document. Scoping still matters for the same reason it did before —
-    // the closing panel carries a second link to the same page — but the reason
-    // to prefer the hook is that it survives a layout change and a class rename
-    // and still means "the primary call to action in the opening panel".
-    const quote = page.getByTestId('cta-primary-hero');
-    await expect(quote).toBeVisible({ timeout: 10_000 });
-    // Root-absolute and extensionless: the canonical URL from
-    // `_build/routes.json`, not the `.html` form production 301s away from.
-    await expect(quote).toHaveAttribute('href', '/arajanlat');
-
-    await quote.click();
-    await expect(page).toHaveURL(/arajanlat/);
-    await expect(page.locator('h1, .quiz').first()).toBeVisible();
+    const cta = page.locator('.hero a.btn');
+    await expect(cta).toBeVisible();
+    await expect(cta).toHaveAttribute('href', '/arajanlat.html');
+    await cta.click();
+    await expect(page).toHaveURL(/\/arajanlat(\.html)?$/);
   });
 
-  test('the journey initialises: track, stages and the closing call to action', async ({ page }, testInfo) => {
-    if (testInfo.project.name === 'reduced-motion') await enableReducedMotion(page);
+  test('the GoDataFusion screen follows the mode that is chosen', async ({ page }) => {
     await page.goto('/index.html');
-
-    // What "the homepage booted" means, as behaviour rather than as markup: the
-    // scroll track exists, every narrative stage rendered into it, and the
-    // journey ends on a call to action. This is the assertion the old
-    // "the altimeter is present" test was reaching for, made against the thing
-    // the page is actually promising.
-    // The container, whichever composition built it. The desktop journey's is
-    // its sticky track; the portrait one has no track at all, and its absence
-    // there is the point rather than a regression.
-    await expect(
-      page.locator('[data-testid="journey-track"], [data-testid="mobile-home"]').first(),
-    ).toBeAttached();
-    await expect(page.locator('[data-testid^="stage-"]')).toHaveCount(11);
-    await expect(page.getByTestId('stage-destination')).toBeAttached();
-    await expect(page.getByTestId('cta-primary')).toHaveAttribute('href', '/arajanlat');
-    await expect(page.getByTestId('cta-contact')).toHaveAttribute('href', '/ugyfelszolgalat');
+    const modes = page.locator('.gdf [data-mode]');
+    await expect(modes).toHaveCount(3);
+    await modes.nth(1).scrollIntoViewIfNeeded();
+    await modes.nth(1).click();
+    await expect(modes.nth(1)).toHaveAttribute('aria-pressed', 'true');
+    await expect(modes.nth(0)).toHaveAttribute('aria-pressed', 'false');
+    await expect(page.locator('.gdf [data-mode-panel="1"]')).toHaveClass(/is-active/);
+    await expect(page.locator('.gdf [data-mode-panel="0"]')).toHaveAttribute('aria-hidden', 'true');
   });
 
-  test('the stage the visitor is in is exposed to assistive technology', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name === 'reduced-motion', 'that path announces its own discrete states');
-    await page.goto('/index.html');
-    await homepageReady(page);
-
-    const stage = await stageReadout(page);
-    await expect(stage).toHaveText(/\S/);
-
-    // The readout is *inside* a polite live region, which is not the same as
-    // carrying the attribute itself: the desktop composition puts `aria-live`
-    // on the paragraph and the name in a span within it, the portrait one puts
-    // both on the same element. What has to be true either way is that a
-    // screen reader is told when the stage changes, and `closest` is the
-    // question that asks that rather than asking about the markup.
-    expect(
-      await stage.evaluate((el) => !!el.closest('[aria-live="polite"]')),
-      'the stage name is not inside a polite live region',
-    ).toBe(true);
-
-    // The desktop composition has a second live region — what the *instrument*
-    // has done, as distinct from where the *page* is — because it has an
-    // instrument that restructures itself six times behind the copy. The
-    // portrait composition's altimeter carries its state in the drawing's own
-    // `role="img"` label instead, which is announced on focus rather than
-    // interrupting, and one polite region on a page is the right number when
-    // there is only one thing changing.
-    const instrument = page.getByTestId('meridian-description');
-    const twoRegions = (await instrument.count()) > 0;
-    if (twoRegions) await expect(instrument).toHaveText(/\d/);
-
-    const before = {
-      stage: await stage.innerText(),
-      instrument: twoRegions ? await instrument.innerText() : '',
-    };
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight * 0.75));
-    await page.waitForTimeout(2_200);
-
-    expect(
-      (await stage.innerText()) !== before.stage ||
-        (twoRegions && (await instrument.innerText()) !== before.instrument),
-      'the stage live region did not change after three quarters of the journey',
-    ).toBe(true);
-  });
-
-  for (const [locale, path, quote] of [
-    ['hu', '/index.html', '/arajanlat'],
-    ['en', '/en/index.html', '/en/quote'],
-    ['de', '/de/index.html', '/de/angebot'],
+  for (const [locale, path, quote, work] of [
+    ['hu', '/index.html', '/arajanlat.html', '/munkaink.html'],
+    ['en', '/en/index.html', '/en/quote.html', '/en/work.html'],
+    ['de', '/de/index.html', '/de/angebot.html', '/de/projekte.html'],
   ] as const) {
     test(`the ${locale} homepage is its own entry point with its own links`, async ({ page }) => {
-      // Direct entry, not a language switch: each locale is a real page at a
-      // real URL, declares its own language, and links into that language's
-      // page tree rather than into Hungarian. The previous homepage's tests
-      // checked only that /en/ and /de/ returned a document.
       const res = await page.goto(path);
       expect(res?.status(), path).toBeLessThan(400);
       await expect(page.locator('html')).toHaveAttribute('lang', locale);
       await expect(page.locator('h1')).toBeVisible();
-      await expect(page.getByTestId('cta-primary-hero')).toHaveAttribute('href', quote);
-      await homepageReady(page);
-      await expect(await altitudeReadout(page)).toHaveText(/\d/);
+      await expect(page.locator('.hero a.btn')).toHaveAttribute('href', quote);
+      await expect(page.locator(`.hdr a[href="${work}"]`).first()).toHaveCount(1);
+      // Every in-site link on the page points into this language's tree (or at
+      // a shared asset), never back into Hungarian by accident.
+      if (locale !== 'hu') {
+        const stray = await page.evaluate((lang) =>
+          Array.from(document.querySelectorAll<HTMLAnchorElement>('main a[href^="/"]'))
+            .map((a) => a.getAttribute('href') as string)
+            .filter((h) => !h.startsWith(`/${lang}/`)), locale);
+        expect(stray, 'Hungarian links on a translated homepage').toEqual([]);
+      }
     });
   }
+});
+
+test.describe('homepage, without JavaScript', () => {
+  test.use({ javaScriptEnabled: false });
+
+  test('every scene, every word and every link is in the HTML', async ({ page }) => {
+    await page.goto('/index.html');
+    for (const scene of SCENES) await expect(page.locator(`main ${scene}`), scene).toHaveCount(1);
+    await expect(page.locator('main h2')).toHaveCount(7);
+    // The proof, as the case study states it.
+    await expect(page.locator('.take')).toContainText('~110M Ft');
+    await expect(page.locator('.take')).toContainText('Ajánlatkérési érték organikus keresésből');
+    // Both projects, and every service page, linked from the homepage.
+    for (const href of ['/munka-rapidkert.html', '/munka-godatafusion.html', '/szolgaltatasok.html',
+      '/kkv.html', '/nagyvallalat.html', '/webshop-keszites.html', '/branding.html',
+      '/keresooptimalizalas.html', '/hirdeteskezeles.html', '/arajanlat.html']) {
+      await expect(page.locator(`main a[href="${href}"]`).first(), href).toHaveCount(1);
+    }
+    // Nothing is waiting for a script to become visible.
+    const hidden = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('main *'))
+        .filter((el) => el.matches('.is-pre, .is-dim')).length);
+    expect(hidden).toBe(0);
+  });
+
+  test('the SME pricing argument is not on the homepage', async ({ page }) => {
+    // It lives on /kkv, which the homepage links to; the homepage argues for
+    // the conversation, not for a fee model.
+    await page.goto('/index.html');
+    const text = (await page.locator('main').innerText()).toLowerCase();
+    for (const phrase of ['projektdíj', 'mennyibe kerül', 'havidíj', 'havi díj']) {
+      expect(text, phrase).not.toContain(phrase);
+    }
+  });
 });
 
 test.describe('structure and content', () => {
@@ -306,23 +213,24 @@ test.describe('structure and content', () => {
 });
 
 test.describe('reduced motion', () => {
-  test('the ascent degrades to a readable document', async ({ page }, testInfo) => {
+  test('the homepage is complete and lit without motion', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'reduced-motion', 'reduced-motion project only');
 
     // Activated at runtime and verified inside the page — see
-    // tests/helpers/reduced-motion.ts for why the declarative project option is
-    // not trusted here.
+    // tests/helpers/reduced-motion.ts for why the declarative option is not
+    // trusted here.
     const verify = await enableReducedMotion(page);
     await page.goto('/index.html');
     await verify();
 
-    // Every stage must be readable, not just the one currently pinned.
-    const hidden = await page.evaluate(() =>
-      Array.from(document.querySelectorAll('.st__stage > *'))
-        .filter((el) => Number(getComputedStyle(el).opacity) < 0.9).length,
-    );
-    expect(hidden).toBe(0);
-
+    // Reduced motion is not a degraded mode: the static state is the design.
+    // Nothing is ever put into its pre-state, so nothing waits to be revealed
+    // or lit, wherever the reader is on the page.
+    await readToTheEnd(page);
+    const waiting = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('[data-reveal], [data-light]'))
+        .filter((el) => el.matches('.is-pre, .is-dim') || Number(getComputedStyle(el).opacity) < 0.99).length);
+    expect(waiting).toBe(0);
     await expect(page.locator('h1')).toBeVisible();
   });
 

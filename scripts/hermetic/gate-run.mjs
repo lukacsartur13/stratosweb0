@@ -84,7 +84,6 @@ const EXPECT_TEST = flag('expect-test');
 const EXPECT_CONFIG = flag('expect-config');
 const OUT_DIR = resolve(flag('out', join(ROOT, '_build/reports/hermetic-gate/runs', RUN_ID)));
 const MAIN_PORT = Number(flag('main-port', 4322));
-const FULL_PORT = Number(flag('full-port', 4327));
 
 mkdirSync(OUT_DIR, { recursive: true });
 mkdirSync(join(OUT_DIR, 'logs'), { recursive: true });
@@ -202,7 +201,6 @@ function armCanaries() {
     ['tests', join(ROOT, 'tests')],
     ['assets', join(ROOT, 'assets')],
     ['portal-src', join(ROOT, 'portal/src')],
-    ['experiments-src', join(ROOT, 'experiments/src')],
     ['scripts', join(ROOT, 'scripts')],
   ];
   for (const [name, dir] of targets) {
@@ -414,12 +412,10 @@ const readManifest = (p) => (existsSync(p) ? JSON.parse(readFileSync(p, 'utf8'))
 // which gates a server fault could possibly have affected.
 // ---------------------------------------------------------------------------
 const MAIN_JSON = join(OUT_DIR, 'playwright-main.json');
-const FULL_JSON = join(OUT_DIR, 'playwright-full.json');
 
 const GATES = [
   { id: 'typecheck', cmd: 'npm', args: ['run', 'typecheck'], server: false },
   { id: 'fingerprint-check', cmd: 'npm', args: ['run', 'fingerprint:check'], server: false },
-  { id: 'draco-check', cmd: 'npm', args: ['run', 'draco:check'], server: false },
   { id: 'secret-scan', cmd: 'npm', args: ['run', 'scan:secrets'], server: false },
   { id: 'seo-audit', cmd: 'npm', args: ['run', 'audit:seo:check'], server: false },
   { id: 'conversion-audit', cmd: 'npm', args: ['run', 'audit:conversion:check'], server: false },
@@ -430,13 +426,6 @@ const GATES = [
     server: true,
     env: { PLAYWRIGHT_JSON_OUTPUT_NAME: MAIN_JSON, STRATOS_GATE_SERVER: '1', ...NAV_DIAG_ENV },
     json: MAIN_JSON,
-  },
-  {
-    id: 'playwright-full',
-    cmd: 'npx', args: ['playwright', 'test', '--config', 'playwright.full.config.ts'],
-    server: true,
-    env: { PLAYWRIGHT_JSON_OUTPUT_NAME: FULL_JSON, STRATOS_GATE_SERVER: '1', ...NAV_DIAG_ENV },
-    json: FULL_JSON,
   },
 ];
 
@@ -476,12 +465,12 @@ async function main() {
   if (!has('skip-build')) {
     log('phase 1: build (declared mutation window)');
     const b1 = await run('build', 'npm', ['run', 'build']);
-    const b2 = await run('build-full', 'npm', ['run', 'build:full']);
+    // The WebGL prototype build (`build:full`) and its suite went with the
+    // homepage runtime on 2026-10-16; the site build is the whole build.
     result.build = {
       site: { exitCode: b1.exitCode, durationMs: b1.durationMs, log: b1.logPath },
-      experiments: { exitCode: b2.exitCode, durationMs: b2.durationMs, log: b2.logPath },
     };
-    if (b1.exitCode !== 0 || b2.exitCode !== 0) {
+    if (b1.exitCode !== 0) {
       result.invalidReasons.push('BUILD_FAILED');
     }
   } else {
@@ -521,7 +510,6 @@ async function main() {
   log('phase 3: starting owned servers');
   try {
     result.servers.push(await startServer('main', MAIN_PORT, SERVER_KIND));
-    result.servers.push(await startServer('full', FULL_PORT, SERVER_KIND));
   } catch (err) {
     result.invalidReasons.push(`SERVER_START_FAILED ${err.message}`);
   }
@@ -614,7 +602,7 @@ async function main() {
   if (stillAlive.length) result.invalidReasons.push(`ORPHANED_PROCESSES=${stillAlive.length}`);
 
   const portsHeld = [];
-  for (const p of [MAIN_PORT, FULL_PORT]) {
+  for (const p of [MAIN_PORT]) {
     try {
       const out = execFileSync('lsof', ['-nP', `-iTCP:${p}`, '-sTCP:LISTEN'], { encoding: 'utf8' }).trim();
       if (out) portsHeld.push({ port: p, holder: out.split('\n').slice(1).join('\n') });

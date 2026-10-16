@@ -70,9 +70,9 @@ const ARCHETYPE = new Proxy(ARCHETYPE_BY_KEY, {
       : 'uncategorised'),
 });
 
-// Which build produced the document. The homepage is a Vite/React bundle; every
-// other route is a Python-generated fragment in the shared SHELL.
-const TEMPLATE = (key) => (key === 'index' ? 'experiments/home (Vite + R3F)' : '_build/build.py SHELL + _build/pages/*.html');
+// Which shell produced the document. Every route is a Python-generated
+// fragment; the homepage is on the v2 shell (SHELL_V2_ROUTES in build.py).
+const TEMPLATE = (key) => (key === 'index' ? '_build/build.py SHELL_V2 + _build/pages/index.html' : '_build/build.py SHELL + _build/pages/*.html');
 
 const LOCALES = ['hu', 'en', 'de'];
 

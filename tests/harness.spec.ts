@@ -1,13 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { bootJourneyOnLoad } from './helpers/homepage';
-
-// The homepage waits for a first move before it mounts the journey — see
-// `bootJourneyOnLoad`. Every navigation in this file gets one, on every
-// document it loads, so what these tests assert about is a page a visitor is
-// reading rather than one they have only landed on.
-test.beforeEach(async ({ page }) => {
-  await bootJourneyOnLoad(page);
-});
 
 
 /**
@@ -129,11 +120,12 @@ test.describe('the test environment itself', () => {
      */
     const FLOOR = SOFTWARE_RASTER ? 2 : 12;
 
+    // The homepage has been a static document since 2026-10-16 — no canvas,
+    // no render loop — so this now measures the browser's own frame budget on
+    // the page the suite visits most, which is what Playwright's two-frame
+    // stability wait actually depends on.
     await page.goto('/index.html');
-    await page.waitForSelector('[data-testid="altitude-hud"], [data-testid="mobile-telemetry"]', {
-      state: 'visible',
-      timeout: 30_000,
-    });
+    await page.locator('h1').waitFor({ state: 'visible', timeout: 30_000 });
 
     /**
      * Best of three one-second samples, not the first one.

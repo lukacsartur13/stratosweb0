@@ -91,7 +91,7 @@ import { execFileSync } from 'node:child_process';
 const GROUPS = {
   product: [
     'assets', 'en', 'de', 'portal/src', 'portal/index.html', 'portal/public',
-    'experiments/src', 'netlify', 'supabase', 'public',
+    'netlify', 'supabase',
     '_build/pages', '_build/i18n', '_build/partials', '_build/build.py',
   ],
   // Every executable TEST INPUT, not merely the directory the main config
@@ -113,24 +113,22 @@ const GROUPS = {
   // too high. They were in neither group: the product group hashes
   // `experiments/src`, which does not contain them.
   //
+  // (2026-10-16: experiments/ and its three configs are gone with the WebGL
+  // homepage, so the group is `tests` and `scripts` again — this time because
+  // they are genuinely the only test inputs left.)
+  //
   // The rule the group now follows: a file is a test input if the harness
   // executes it or imports it while deciding pass or fail. Membership is by
   // that question, never by which directory a config's `testDir` names.
   test: [
     'tests',
-    'experiments/tests',
-    'experiments/terrain-mask.mjs',
-    'experiments/valley-metrics.mjs',
     'scripts',
   ],
   config: [
-    'playwright.config.ts', 'playwright.full.config.ts',
-    'playwright.experiments.config.ts', 'playwright.mountains.config.ts',
+    'playwright.config.ts',
     'package.json', 'package-lock.json', 'netlify.toml',
     'portal/package.json', 'portal/package-lock.json', 'portal/tsconfig.json',
     'portal/vite.config.ts',
-    'experiments/package.json', 'experiments/package-lock.json',
-    'experiments/tsconfig.json',
   ],
   dist: ['dist'],
 };

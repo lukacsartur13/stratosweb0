@@ -235,11 +235,6 @@ async function main() {
         type: one(html, /<meta property="og:type" content="([^"]*)"/),
       },
       twitterCard: one(html, /<meta name="twitter:card" content="([^"]*)"/),
-      // An empty mount point plus a module bundle: the document's content is
-      // JavaScript's to produce. Only the three homepage shells are built this
-      // way, and it changes which questions this script can answer about them.
-      clientRendered: /<main[^>]*class="journey"[^>]*>\s*<\/main>/.test(html)
-        && /<script[^>]*type="module"/.test(html),
       jsonLd: (html.match(/<script type="application\/ld\+json">/g) ?? []).length,
       breadcrumb: html.includes('"BreadcrumbList"'),
       inSitemap: sitemapPaths.has(route) || sitemapPaths.has(served)
@@ -268,19 +263,10 @@ async function main() {
     if (!p.title) fail(p.route, 'title', 'no <title>');
     if (!p.description) fail(p.route, 'description', 'no meta description');
 
-    // The three homepages are a React application: their <h1> is in the bundle
-    // and does not exist in the shell this script reads. Failing them here
-    // would be reporting on the wrong artefact — the question "does the
-    // homepage have exactly one h1" is answered by a browser, and is, in
-    // tests/public-site.spec.ts `has one h1 and a skip link`. Recorded as a
-    // deferral with the name of the test that covers it, so it is a pointer
-    // rather than an exemption.
-    if (p.clientRendered) {
-      p.h1Source = 'rendered — see tests/public-site.spec.ts "has one h1 and a skip link"';
-    } else {
-      if (p.h1.length !== 1) fail(p.route, 'h1', `${p.h1.length} <h1> elements`);
-      if (p.h1.length === 1 && !p.h1[0]) fail(p.route, 'h1', 'the <h1> is empty');
-    }
+    // Every route, the homepage included: since 2026-10-16 the homepage is a
+    // generated page like the rest, and its <h1> is in the HTML this reads.
+    if (p.h1.length !== 1) fail(p.route, 'h1', `${p.h1.length} <h1> elements`);
+    if (p.h1.length === 1 && !p.h1[0]) fail(p.route, 'h1', 'the <h1> is empty');
 
     if (p.title && p.title.length > TITLE_MAX) {
       warn(p.route, 'title-length', `${p.title.length} characters (over ${TITLE_MAX})`);
@@ -435,7 +421,7 @@ async function main() {
       if (!m) continue;
       const path = m[1].trim();
       robotsFindings.push(path);
-      if (/^\/(assets|models|draco)\b/.test(path)) {
+      if (/^\/assets\b/.test(path)) {
         failures.push({
           route: '/robots.txt', rule: 'robots-blocks-rendering',
           detail: `Disallow: ${path} blocks resources the page needs to render`,

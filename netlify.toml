@@ -428,49 +428,13 @@
     #   'self' on script-src only      no inline scripts, no CDN, no eval; the
     #                                  WebGL shaders are strings, not scripts.
     #   frame-ancestors 'none'         belt and braces with X-Frame-Options.
-    #   worker-src 'self' blob:        three's DRACOLoader builds its decoder
-    #                                  Worker from a blob: URL. See the block
-    #                                  below — this is measured, not assumed.
+    #   worker-src 'self'              stated rather than left to fall back to
+    #                                  script-src: the portal's PDF viewer runs
+    #                                  pdf.js in a same-origin module worker.
+    #                                  (2026-10-16: `blob:` is gone with the
+    #                                  homepage's three.js DRACOLoader, the only
+    #                                  thing that ever built a worker from one.)
     #
-    # ON worker-src, AND WHY THERE IS NO 'wasm-unsafe-eval' HERE
-    # ----------------------------------------------------------
-    # The two mountain GLBs require KHR_draco_mesh_compression, so they do not
-    # parse without a decoder. `experiments/probe-draco-csp.mjs` serves the real
-    # files under the real header and measures what Chromium actually does;
-    # `_build/reports/draco-csp-probe.txt` is its output. What it found:
-    #
-    #   * The blocker is `worker-src`, not WebAssembly. DRACOLoader creates its
-    #     worker from a blob: URL; with no worker-src set the policy falls back
-    #     to `script-src 'self'`, which refuses blob:. Chromium's own words:
-    #     "Creating a worker from 'blob:…' violates the following Content
-    #     Security Policy directive: \"script-src 'self'\". Note that
-    #     'worker-src' was not explicitly set, so 'script-src' is used as a
-    #     fallback. The action has been blocked."
-    #
-    #   * The failure is a HANG, not an error. `GLTFLoader.loadAsync` never
-    #     settles, because the worker that would have answered was never
-    #     started. Nothing rejects and nothing logs beyond the violation.
-    #
-    #   * Adding 'wasm-unsafe-eval' on its own fixes nothing — same hang, same
-    #     violation, because the worker still never starts.
-    #
-    #   * With worker-src fixed and NOTHING else added, the self-hosted
-    #     JavaScript decoder decodes both files: 106 ms for the 131,884-triangle
-    #     desktop asset and 76 ms for the 48,336-triangle mobile one, once, in a
-    #     worker, off the main thread.
-    #
-    #   * 'wasm-unsafe-eval' would additionally allow the WASM decoder, which is
-    #     about four times faster at 24 ms / 19 ms. It is therefore *faster*,
-    #     and it is not *required*: the brief's rule is that it may only be used
-    #     if demonstrably required, and a working decoder at a one-off 106 ms in
-    #     a worker means it is not. So the narrower policy ships and
-    #     `MOUNTAIN_DECODER` in mountainAsset.ts is pinned to 'js' to match it.
-    #     Widening the policy and flipping that constant is a two-line change if
-    #     the decode cost ever turns out to matter on a real device.
-    #
-    # blob: on worker-src is a small allowance in this policy specifically:
-    # script-src stays 'self' with no unsafe-inline and no eval, so there is no
-    # route by which injected script could author the blob in the first place.
     # GOOGLE ANALYTICS 4 — the one deliberate widening of this policy
     # -------------------------------------------------------------
     # Added in Phase 9 because GA4 was approved as the measurement provider. It
@@ -508,7 +472,7 @@
     Content-Security-Policy = """
       default-src 'self';
       script-src 'self' https://*.googletagmanager.com;
-      worker-src 'self' blob:;
+      worker-src 'self';
       style-src 'self' 'unsafe-inline';
       font-src 'self';
       img-src 'self' data: blob: https://*.supabase.co https://*.google-analytics.com https://*.googletagmanager.com;
@@ -553,39 +517,13 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
-# The homepage's Vite output carries a content hash in every file name
-# (main-CEPC1L0J.js), so a changed file is a new URL: immutable, like the
-# portal's. The rest of /assets is versioned by query string or not at all,
-# and keeps the week.
-[[headers]]
-  for = "/assets/home/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
 # Files that are not pages and should never be a search result on their own:
-# the licence texts beside the fonts, the 3D models and their decoder, and
-# llms.txt (written for language models, which read it regardless). Crawling
-# stays allowed — a noindex has to be fetched to be obeyed.
+# the licence texts beside the fonts, and llms.txt (written for language
+# models, which read it regardless). Crawling stays allowed — a noindex has to
+# be fetched to be obeyed.
 [[headers]]
   for = "/assets/fonts/*"
   [headers.values]
-    X-Robots-Tag = "noindex"
-
-[[headers]]
-  for = "/draco/*"
-  [headers.values]
-    X-Robots-Tag = "noindex"
-
-[[headers]]
-  for = "/models/*"
-  [headers.values]
-    X-Robots-Tag = "noindex"
-
-# Served as application/octet-stream by default, which is not what a .glb is.
-[[headers]]
-  for = "/models/*.glb"
-  [headers.values]
-    Content-Type = "model/gltf-binary"
     X-Robots-Tag = "noindex"
 
 [[headers]]

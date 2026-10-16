@@ -2,42 +2,24 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "dist",
-      "runtimeExecutable": "npx",
+      "name": "site",
+      "runtimeExecutable": "node",
       "runtimeArgs": [
-        "--prefix",
-        "experiments",
-        "vite",
-        "preview",
-        "--config",
-        "experiments/vite.home.config.ts",
-        "--port",
+        "scripts/test-server.mjs",
+        "4330",
+        "."
+      ],
+      "port": 4330
+    },
+    {
+      "name": "dist",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/test-server.mjs",
         "4326",
-        "--strictPort"
+        "dist"
       ],
       "port": 4326
-    },
-    {
-      "name": "full-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "--prefix",
-        "experiments",
-        "run",
-        "dev:full"
-      ],
-      "port": 5176
-    },
-    {
-      "name": "home-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "--prefix",
-        "experiments",
-        "run",
-        "dev:home"
-      ],
-      "port": 5177
     },
     {
       "name": "portal",

@@ -31,10 +31,9 @@
 //
 // WHY A SEPARATE STEP, AND WHY LAST
 // ---------------------------------
-// `npm run build` is generate -> build:site -> build:home -> build:portal. The
-// three homepage shells are written by Vite in build:home, AFTER assemble.mjs
-// has run, so a pass inside the assembler would miss exactly the three routes
-// with the most JavaScript. This runs at the end and sees every emitted page.
+// `npm run build` is generate -> build:site -> llms -> build:portal ->
+// strip:comments. Running at the end means every emitted page is seen, after
+// every step that could still change one.
 //
 // dist/portal is skipped: Vite already content-hashes the portal's filenames,
 // and netlify.toml caches /portal/assets/* immutable on that basis.

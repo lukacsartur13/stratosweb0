@@ -1,10 +1,10 @@
 /* ==========================================================================
    STRATOS — the typography system.
 
-   One file, two consumers: the eleven generated static pages (via
-   assets/css/main.css) and the Altimeter Meridian homepage (via
-   experiments/src/full/styles.css). Every font declaration on this site
-   originates here. A component that wants a different size reaches for a token;
+   One file, two consumers: the routes on the original shell (via
+   assets/css/main.css) and the routes on the v2 shell, the homepage first (via
+   assets/css/system.css, which reads the family tokens below). Every font
+   declaration on this site originates here. A component that wants a different size reaches for a token;
    it does not name a family, a weight or a pixel value of its own.
 
    ---------------------------------------------------------------------------

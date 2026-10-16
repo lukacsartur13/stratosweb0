@@ -84,6 +84,7 @@ async function main() {
   }
 
   await minifyAssets();
+  await inlineHomeCss();
 
   // Browsers and crawlers ask for these two at the root whatever the <head>
   // says (Google's favicon fetcher included), so they are served there too.
@@ -142,21 +143,15 @@ function htmlTwins() {
 //     assets/css/chrome.css        36,638 -> 16,085 bytes   (9,948 -> 3,610 br)
 //     assets/css/type.css          17,282 ->  7,113         (4,482 -> 1,297 br)
 //     assets/css/transitions.css   13,931 ->  3,980         (3,720 ->   821 br)
-//     assets/js/home-history.js    12,113 ->  1,128         (3,910 ->   498 br)
 //     assets/js/transitions.js     38,516 ->  5,360        (11,077 -> 1,925 br)
 //
-// The first four of those are RENDER-BLOCKING: three stylesheets in <head> on
-// every route, and one synchronous script on the homepage that has to run
-// before first layout. Together they were 22 KB of compressed bytes standing
-// between a visitor on a phone and the first paint, and roughly a third of that
-// was prose addressed to whoever next opens the file.
+// The stylesheets are RENDER-BLOCKING: three in <head> on every route. Together
+// they were 22 KB of compressed bytes standing between a visitor on a phone and
+// the first paint, and roughly a third of that was prose addressed to whoever
+// next opens the file.
 //
-// This runs before `build:home`, which is load-bearing in one more way than the
-// ordering note below says: `inlineCriticalCss()` in
-// experiments/vite.home.config.ts reads the three stylesheets back out of dist
-// and puts them inside the three homepage shells, so the bytes it inlines are
-// the minified ones. Inlining the source would put 68 KB of comments into three
-// documents.
+// `inlineHomeCss()` runs straight after this, so the bytes it puts inside the
+// three homepages are the minified ones.
 //
 // WHY NOT MINIFY IN PLACE, OR CHECK IN A MINIFIED COPY
 // ---------------------------------------------------
@@ -168,8 +163,8 @@ function htmlTwins() {
 // -----
 // Before fingerprinting, which is the last step of `npm run build`: the hash in
 // `?v=` is taken from the bytes in dist/, so it has to be taken from the bytes
-// that ship. Vite already minifies everything under assets/home and
-// portal/assets, and neither is touched here.
+// that ship. Vite already minifies everything under portal/assets, which is
+// not touched here.
 //
 // A file that esbuild refuses is a build failure rather than a file that
 // silently ships unminified — a syntax error it can see is one the browser will
@@ -214,6 +209,55 @@ async function minifyAssets() {
   }
 
   console.log(`assemble: minified ${count} shared assets, ${(saved / 1024).toFixed(1)} KB of source removed`);
+}
+
+// ------------------------------------------------------- homepage inline CSS
+//
+// The homepage's three stylesheets — type.css, system.css, home.css — go inside
+// its three documents instead of being linked.
+//
+// WHY ONLY THE HOMEPAGE
+// The homepage is the page people arrive on, most often cold and most often on
+// a phone, and three render-blocking requests cannot even be discovered until
+// its HTML has arrived: a whole round trip before the first paint. Inlined, the
+// first paint waits on one response. The other routes keep linking the shared
+// files, because there a cached stylesheet is worth more than a saved request.
+// (The previous homepage did the same, from its Vite build; this is the same
+// decision for a static page.)
+//
+// `url(../fonts/…)` resolves against the stylesheet while it is a stylesheet
+// and against the document once it is inlined — `/en/fonts/…` from /en/ — so
+// it is made root-absolute here, which means the same thing in both places.
+const HOME_DOCS = ['index.html', join('en', 'index.html'), join('de', 'index.html')];
+const HOME_CSS = /<link rel="stylesheet" href="\/assets\/css\/(type|system|home)\.css">/g;
+
+async function inlineHomeCss() {
+  for (const doc of HOME_DOCS) {
+    const path = join(DIST, doc);
+    if (!existsSync(path)) {
+      console.error(`assemble: ${doc} is missing — run \`npm run generate\` first`);
+      process.exit(1);
+    }
+    const html = await readFile(path, 'utf8');
+    let count = 0;
+    const out = [];
+    for (const m of html.matchAll(HOME_CSS)) out.push(m);
+    let result = html;
+    for (const m of out) {
+      const css = (await readFile(join(DIST, 'assets', 'css', `${m[1]}.css`), 'utf8'))
+        .split('url(../fonts/').join('url(/assets/fonts/');
+      result = result.replace(m[0], `<style>${css}</style>`);
+      count += 1;
+    }
+    // A homepage that stopped linking them would ship with no inlined style
+    // and look, in this log, exactly like one that did.
+    if (count !== 3) {
+      console.error(`assemble: ${doc} links ${count} of its 3 stylesheets — the homepage head changed shape`);
+      process.exit(1);
+    }
+    await writeFile(path, result, 'utf8');
+  }
+  console.log('assemble: homepage stylesheets inlined into 3 documents');
 }
 
 function robots() {
