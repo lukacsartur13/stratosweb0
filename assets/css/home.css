@@ -9,6 +9,17 @@
    Stratos is quiet; the work is where the page gets loud.
    ========================================================================== */
 
+/* ------------------------------------------------------- the atmosphere */
+/* Stratos's own material, the way plaster is Immersive Garden's: the page
+   itself, not a thing on it. The paper cools, a few levels, from the warm
+   ground of the hero to the thin air above the last scene. Nobody sees it
+   change; the bottom of the page simply feels higher than the top. (The haze
+   a screen arrives out of lives with GoDataFusion, below.) */
+body {
+  background:
+    linear-gradient(180deg, var(--c-bg) 0, var(--c-bg) 28%, #EFF0EE 70%, #EAEDEC 100%);
+}
+
 /* ------------------------------------------------------------- 01 · hero */
 /* One statement, one sentence, one action. The page's light comes on once, at
    load: the field fades up and the words move from recessive to present. The
@@ -39,6 +50,7 @@
 @keyframes field-on { from { opacity: 0; } }
 .hero__m { animation: light-on 1400ms var(--ease-std) 120ms both; }
 .hero.light-field::before { animation: field-on 1800ms var(--ease-std) both; }
+
 
 @media (max-width: 760px) {
   .hero { min-height: 88svh; padding-bottom: var(--sp-8); }
@@ -171,7 +183,7 @@
   background: none;
   text-align: left;
   color: var(--c-ink-2);
-  cursor: pointer;
+  cursor: var(--cursor-hot);
   transition: color var(--dur-state) var(--ease-std);
 }
 .mode[data-mode="0"] { --mc: #34C6D3; }
@@ -210,6 +222,20 @@
   transition: opacity 520ms var(--ease-std);
 }
 .gdf__shot.is-active { opacity: 1; }
+/* The screen arrives out of haze, the way a city arrives through cloud: a veil
+   of the page's own air that lifts off as the surface is revealed. */
+.gdf__surface::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(0deg, #EFF0EE 0, rgba(239, 240, 238, 0.9) 42%, rgba(239, 240, 238, 0) 100%);
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform 1500ms var(--ease-out) 80ms, opacity 1300ms var(--ease-out) 200ms;
+}
+.gdf__surface.is-pre::after { opacity: 1; transform: none; transition: none; }
 
 @media (max-width: 960px) {
   .gdf__grid { display: flex; flex-direction: column; align-items: stretch; gap: 0; }

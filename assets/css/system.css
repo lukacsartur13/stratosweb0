@@ -56,9 +56,9 @@
   /* Type. Three roles and nothing between them: Monument (statements), Editorial
      (titles, leads, body) and Micro (rare metadata). Sizes are fluid between a
      375px phone and a 1728px desktop and stop there. */
-  --t-monument:  clamp(2.5rem, 1.05rem + 6.2vw, 7.5rem);
-  --t-statement: clamp(2.125rem, 1.1rem + 4.1vw, 5.25rem);
-  --t-title:     clamp(1.75rem, 1.15rem + 2.4vw, 3.25rem);
+  --t-monument:  clamp(2.25rem, 1.1rem + 4.4vw, 5.75rem);
+  --t-statement: clamp(1.75rem, 1rem + 2.9vw, 3.75rem);
+  --t-title:     clamp(1.375rem, 1rem + 1.5vw, 2.375rem);
   --t-lead:      clamp(1.125rem, 1.02rem + 0.45vw, 1.375rem);
   --t-body:      1.0625rem;
   --t-small:     0.9375rem;
@@ -138,6 +138,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-kerning: normal;
+  /* Aboreto has one weight and no italic; a bold or italic inside a headline
+     is drawn as the face is, never smeared into a fake one. */
+  font-synthesis: none;
   overflow-x: clip;
 }
 
@@ -189,26 +192,96 @@ button { font: inherit; color: inherit; }
   padding-inline: var(--gutter);
 }
 
+/* ---------------------------------------------------------------- cursor */
+/* The cursor is the logo's paper plane (owner, 2026-10-16). This is the
+   native one — what every visitor gets without script, on reduced motion, and
+   the instant before shell.js takes over with a plane that turns (below). Its hotspot is the nose (30, 2), so the plane flies to
+   what it points at. Over anything clickable it climbs (the same plane, 16°
+   nose-up) — the affordance the hand used to give. Fields keep the text caret.
+   Mouse and trackpad only; a touch screen has no cursor to replace.
+
+   The images carry a thin ink rim, so the chrome plane reads on the paper and
+   needs nothing on the graphite. Written out longhand rather than through a
+   custom property: a browser that cannot parse `image-set()` in a cursor drops
+   that one declaration and keeps the plain url() before it. */
+:root { --cursor-hot: pointer; }
+@media (hover: hover) and (pointer: fine) {
+  html {
+    cursor: url("/assets/img/cursor-plane.png") 30 2, auto;
+    cursor: -webkit-image-set(url("/assets/img/cursor-plane.png") 1x, url("/assets/img/cursor-plane@2x.png") 2x) 30 2, auto;
+    cursor: image-set(url("/assets/img/cursor-plane.png") 1x, url("/assets/img/cursor-plane@2x.png") 2x) 30 2, auto;
+  }
+  :root { --cursor-hot: url("/assets/img/cursor-plane-climb.png") 30 2, pointer; }
+  @supports (cursor: -webkit-image-set(url("/assets/img/cursor-plane-climb.png") 1x) 30 2, pointer) {
+    :root { --cursor-hot: -webkit-image-set(url("/assets/img/cursor-plane-climb.png") 1x, url("/assets/img/cursor-plane-climb@2x.png") 2x) 30 2, pointer; }
+  }
+  @supports (cursor: image-set(url("/assets/img/cursor-plane-climb.png") 1x) 30 2, pointer) {
+    :root { --cursor-hot: image-set(url("/assets/img/cursor-plane-climb.png") 1x, url("/assets/img/cursor-plane-climb@2x.png") 2x) 30 2, pointer; }
+  }
+}
+:where(a[href], button, summary, label[for], select, [role="button"],
+  input[type="checkbox"], input[type="radio"], input[type="submit"], input[type="button"]) {
+  cursor: var(--cursor-hot);
+}
+:where(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="button"], [type="range"]), textarea, [contenteditable="true"]) {
+  cursor: text;
+}
+:where(button, input, select, textarea):disabled { cursor: not-allowed; }
+
+/* For a mouse, shell.js replaces the native plane with one that turns toward
+   where it is flying. The element is its picture and nothing else; the nose
+   (30, 2) is the transform origin, so rotation and lift pivot on the pointer.
+   While it flies, the page's own cursor rules — set at every specificity —
+   must not draw a second cursor, hence `!important`; fields keep the caret,
+   and the plane fades out over them. */
+.cursor-plane {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483000;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: 30px 2px;
+  transition: opacity 140ms linear;
+  will-change: transform;
+}
+.cursor-plane img { display: block; width: 32px; height: 32px; }
+.has-plane .cursor-plane { opacity: 1; }
+.has-plane .cursor-plane.is-off { opacity: 0; }
+.has-plane, .has-plane * { cursor: none !important; }
+.has-plane :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="button"], [type="range"]), textarea, [contenteditable="true"]) { cursor: text !important; }
+
 /* ------------------------------------------------------------ typography */
+/* Headlines are set in Aboreto (owner, 2026-10-16), the face of the wordmark:
+   one weight, unicase capitals, an inscription rather than a headline. It is
+   quieter than the 520-weight Archivo it replaces, so the sizes came down and
+   the tracking opened up. `uppercase` changes nothing in Aboreto — its
+   lowercase already is capitals — and exists for the fallback: Arial in
+   capitals is Aboreto's width (see 'Aboreto Fallback' in type.css), so a
+   heading breaks in the same place before and after the face arrives.
+   Figures stay in Archivo (`.t-num`): words are inscribed, numbers measured. */
 .t-monument,
 .t-statement {
   font-family: var(--font-display);
-  font-weight: var(--w-monument);
-  font-stretch: var(--s-monument);
-  letter-spacing: -0.038em;
-  line-height: 0.98;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.04;
   text-wrap: balance;
+  text-transform: uppercase;
 }
 .t-monument  { font-size: var(--t-monument); }
-.t-statement { font-size: var(--t-statement); letter-spacing: -0.032em; line-height: 1.02; }
+.t-statement { font-size: var(--t-statement); line-height: 1.06; }
 
 .t-title {
   font-family: var(--font-display);
   font-size: var(--t-title);
-  font-weight: var(--w-title);
-  letter-spacing: -0.025em;
-  line-height: 1.06;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
   text-wrap: balance;
+  text-transform: uppercase;
 }
 
 .t-lead {
@@ -233,6 +306,7 @@ button { font: inherit; color: inherit; }
 }
 
 .t-num { font-variant-numeric: tabular-nums lining-nums; }
+.t-title.t-num { font-family: var(--font-body); font-weight: var(--w-title); letter-spacing: -0.025em; text-transform: none; }
 
 .on-dark { color: var(--c-on-dark); }
 .on-dark .t-lead,
@@ -258,7 +332,7 @@ button { font: inherit; color: inherit; }
   font-weight: var(--w-ui);
   letter-spacing: 0.002em;
   white-space: nowrap;
-  cursor: pointer;
+  cursor: var(--cursor-hot);
   transition: background-color var(--dur-ui) var(--ease-std);
 }
 .btn:hover { background: #2C2C2A; }
@@ -523,7 +597,7 @@ button { font: inherit; color: inherit; }
   background: transparent;
   font-size: 0.875rem;
   font-weight: var(--w-ui);
-  cursor: pointer;
+  cursor: var(--cursor-hot);
 }
 .hdr__menu:hover { background: rgba(20, 20, 19, 0.045); }
 .hdr__bars { position: relative; width: 16px; height: 10px; }
@@ -671,7 +745,7 @@ html.is-locked, html.is-locked body { overflow: hidden; }
 }
 .ftr__bottom a, .ftr__bottom button { color: var(--c-ink-2); }
 .ftr__bottom a:hover, .ftr__bottom button:hover { color: var(--c-ink); }
-.ftr__bottom button { padding: 0; border: 0; background: none; font-size: inherit; cursor: pointer; }
+.ftr__bottom button { padding: 0; border: 0; background: none; font-size: inherit; cursor: var(--cursor-hot); }
 .ftr__legal { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-5); }
 .ftr__end { display: flex; align-items: center; gap: var(--sp-5); margin-left: auto; }
 .ftr__end img { width: auto; height: 22px; opacity: 0.55; filter: grayscale(1); }

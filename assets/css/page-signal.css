@@ -6,7 +6,7 @@
 .signal__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(0.8rem, 2vw, 1.75rem); border-top: 1px solid var(--c-line); }
 .signal__list li { display: grid; align-content: start; gap: 0.45rem; padding-top: clamp(1rem, 2vw, 1.4rem); }
 .signal__n { font-size: var(--t-micro); font-weight: var(--w-ui); color: var(--c-ink-2); font-variant-numeric: tabular-nums; }
-.signal__t { font-family: var(--font-display); font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem); font-weight: var(--w-title); letter-spacing: -0.012em; }
+.signal__t { font-family: var(--font-display); font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem); font-weight: 400; letter-spacing: 0.025em; text-transform: uppercase; }
 .signal__w { font-size: var(--t-small); line-height: 1.5; color: var(--c-ink-2); }
 @media (max-width: 1100px) { .signal__list { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--sp-6); } }
 @media (max-width: 700px) { .signal__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

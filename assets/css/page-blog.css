@@ -9,7 +9,7 @@
 .idx__row > a { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(1rem, 3vw, 2rem); padding-block: clamp(1.4rem, 3.2vw, 2.2rem); align-items: baseline; }
 .idx__n { font-size: var(--t-micro); font-weight: var(--w-ui); color: var(--c-ink-2); font-variant-numeric: tabular-nums; }
 .idx__meta { display: block; margin-bottom: 0.6rem; }
-.idx__t { max-width: 26ch; font-family: var(--font-display); font-size: clamp(1.375rem, 1.15rem + 1vw, 2rem); font-weight: var(--w-title); letter-spacing: -0.02em; line-height: 1.12; transition: color var(--dur-ui) var(--ease-std); }
+.idx__t { max-width: 26ch; font-family: var(--font-display); font-size: clamp(1.375rem, 1.15rem + 1vw, 2rem); font-weight: 400; letter-spacing: 0.025em; line-height: 1.12; transition: color var(--dur-ui) var(--ease-std); text-transform: uppercase; }
 .idx__w { display: block; margin-top: 0.75rem; max-width: 56ch; color: var(--c-ink-2); line-height: 1.55; }
 .idx__row:hover .idx__t, .idx__row:focus-within .idx__t { color: var(--c-ink-2); }
 .idx__stage { position: sticky; top: calc(var(--hdr-h) + var(--hdr-top) + 2rem); aspect-ratio: 16 / 10; overflow: hidden; border-radius: var(--r-lg); background: var(--c-bg-recess); box-shadow: inset 0 0 0 1px var(--c-line); }

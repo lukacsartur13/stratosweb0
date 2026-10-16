@@ -264,3 +264,46 @@ test.describe('one shell on every page', () => {
     await expect(trigger).toBeFocused();
   });
 });
+
+test.describe('the cursor', () => {
+  // The logo's paper plane (owner, 2026-10-16). Native everywhere as the
+  // fallback; for a mouse, a plane that turns the way it flies. Asked on every
+  // project, because the answer depends on the device: a touch screen and a
+  // reader who asked for reduced motion get the static one and no element.
+  const transform = (page: Page) =>
+    page.locator('.cursor-plane').evaluate((el) => (el as HTMLElement).style.transform);
+  const rotation = (t: string) => Number(/rotate\((-?[\d.]+)deg\)/.exec(t)?.[1]);
+  const flip = (t: string) => Number(/scale\([\d.]+,\s*(-?[\d.]+)\)/.exec(t)?.[1]);
+
+  test('the plane flies the way the pointer moves, and steps aside for a caret', async ({ page }) => {
+    await page.goto('/ugyfelszolgalat.html');
+    const env = await page.evaluate(() => ({
+      fine: matchMedia('(hover: hover) and (pointer: fine)').matches,
+      reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    }));
+    if (!env.fine || env.reduce) {
+      await page.waitForTimeout(300);
+      await expect(page.locator('.cursor-plane'), 'no moving plane without a mouse, or on reduced motion').toHaveCount(0);
+      return;
+    }
+    // The native plane is the cursor until the element takes over.
+    expect(await page.evaluate(() => getComputedStyle(document.body).cursor)).toContain('cursor-plane');
+
+    await page.mouse.move(300, 500);
+    await page.mouse.move(700, 500, { steps: 14 });
+    await expect(page.locator('html')).toHaveClass(/has-plane/);
+    await expect.poll(async () => Math.abs(rotation(await transform(page)) - 35), { message: 'east: the art turned 35° down to level' }).toBeLessThan(4);
+    expect(flip(await transform(page)), 'east: upright').toBeGreaterThan(0.9);
+    expect(await page.evaluate(() => getComputedStyle(document.body).cursor), 'one cursor at a time').toBe('none');
+
+    await page.mouse.move(300, 500, { steps: 14 });
+    await expect.poll(async () => flip(await transform(page)), { message: 'west: mirrored, so never upside down' }).toBeLessThan(-0.9);
+
+    const field = page.locator('main input[type="email"], main input[type="text"]').first();
+    await field.scrollIntoViewIfNeeded();
+    const box = (await field.boundingBox())!;
+    await page.mouse.move(box.x + 20, box.y + box.height / 2, { steps: 4 });
+    await expect(page.locator('.cursor-plane')).toHaveClass(/is-off/);
+    expect(await field.evaluate((el) => getComputedStyle(el).cursor), 'fields keep the caret').toBe('text');
+  });
+});

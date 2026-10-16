@@ -42,24 +42,49 @@ desktop 1440 — **78 % paper, 13 % dark field** (Rapidkert surface, closing sce
 
 ## 2. Typography
 
-Archivo (variable: wght 100–900, wdth 62–125), self-hosted, already preloaded. Aboreto
-only for the wordmark. **JetBrains Mono is not used by the new system at all** — the
-uppercase-mono label vocabulary was the HUD language the brief retires.
+**Two faces, two roles** (revised 2026-10-16, owner: "use Aboreto for headlines"; see
+`06-immersive-reference.md`). **Aboreto** — the wordmark's face — sets every headline:
+one weight, unicase capitals, an inscription rather than a shout. **Archivo** (variable,
+wght 100–900, wdth 62–125) sets body, UI, labels and every figure: words are inscribed,
+numbers are measured. Both self-hosted and preloaded (Aboreto's 1 kB ő/ű file on HU
+pages only). JetBrains Mono is not used.
 
-Three roles, nothing between them:
-
-| Role | Token | Size (375 → 1728 px) | Settings |
+| Role | Token | Size (390 → 1440 px) | Settings |
 |---|---|---|---|
-| **Monument** | `--t-monument` | 40 → 120 px | wght 520, wdth 94 %, tracking −0.038em, leading 0.98, sentence case |
-| | `--t-statement` | 34 → 84 px | same family, leading 1.02 |
-| **Editorial** | `--t-title` | 28 → 52 px | wght 520, tracking −0.025em |
-| | `--t-lead` | 18 → 22 px | ink-2, leading 1.45 |
-| | `--t-body` / `--t-small` | 17 / 15 px | ink-2, leading 1.55 |
-| **Micro** | `--t-micro` | 13 px | wght 520, +0.01em, **sentence case**, ink-2. Rare by rule: a project name above its scene, a section name above a list. |
+| **Monument** | `--t-monument` | 36 → 81 px | Aboreto 400, +0.005em, leading 1.04 |
+| | `--t-statement` | 28 → 58 px | Aboreto 400, +0.005em, leading 1.06 |
+| **Editorial** | `--t-title` | 22 → 38 px | Aboreto 400, +0.01em, leading 1.1 |
+| | small headings (card, row, article h2/h3) | 18 → 24 px | Aboreto 400, +0.025em |
+| | `--t-lead` | 18 → 22 px | Archivo, ink-2, leading 1.45 |
+| | `--t-body` / `--t-small` | 17 / 15 px | Archivo, ink-2, leading 1.55 |
+| **Figures** | `.t-num`, ledger, price, stat | — | Archivo 520, tabular lining |
+| **Micro** | `--t-micro` | 13 px | Archivo 520, +0.01em, **sentence case**, ink-2 |
 
-Width 94 % on Monument is what lets "összetéveszteni." and "unverwechselbar" sit on one
-375 px line at 40 px without dropping a size. Line breaks in statements are authored
+Kept in Archivo on purpose: FAQ questions, pull quotes and the article key line — they are
+sentences, and a sentence in capitals is tiring to read.
+
+Headlines carry `text-transform: uppercase`. It changes nothing in Aboreto (its lowercase
+already is capitals); it makes the **fallback** draw capitals too, and `Aboreto Fallback`
+(local Arial at `size-adjust: 97.4%`, measured over ten headlines, ±3 %) gives them
+Aboreto's width — so a headline wraps where the webfont will wrap it and the swap cannot
+move the layout. `font-synthesis: none` on the body: Aboreto's one weight is never faked
+bold or italic. `fitWords` (shell.js) goes straight to scaling for Aboreto, which has no
+width axis.
+
+"összetéveszteni." fits a 390 px line at 36 px. Line breaks in statements are authored
 (`<br>` in the source and in each translation), not left to the browser.
+
+### The cursor
+
+The logo's paper plane (owner, 2026-10-16). **Native** first (`system.css`): a CSS cursor,
+hotspot on the nose (30, 2); over anything clickable the plane climbs 16° nose-up
+(`--cursor-hot`, in place of every `cursor: pointer`); fields keep the text caret; disabled
+controls show not-allowed. 32 px with a 2× version and a thin ink rim so the chrome reads on
+paper. **Turning** for a mouse (`shell.js`, not on touch, not on reduced motion): the native
+cursor is hidden (`.has-plane`) and `.cursor-plane` follows the pointer, eased only in its
+heading, mirrored rather than upside down when flying left, lifting 1.16× over clickable
+things, fading over fields. Files: `assets/img/cursor-plane{,-climb}{,@2x}.png`, drawn from
+`plane-cursor.png`, the header mark.
 
 ## 3. Space and layout
 
@@ -162,7 +187,7 @@ The 35 fragments were not rewritten; their classes were restyled. The rules:
 
 | Old component | Now |
 |---|---|
-| `.display` + `.h-xl/-lg/-md/-sm` (uppercase, Archivo wide) | sentence case; `h-xl` = Monument, `h-lg` = Statement, `h-md` = Title, `h-sm` = small title |
+| `.display` + `.h-xl/-lg/-md/-sm` (uppercase, Archivo wide) | Aboreto (since 2026-10-16); `h-xl` = Monument, `h-lg` = Statement, `h-md` = Title, `h-sm` = small title |
 | `.sig` (yellow word) | **light, not colour**: a heading that carries one is recessive (`--c-ink-3`) and the `.sig` words are the lit ones (`--c-ink`) |
 | `.eyebrow`, `.card__k`, `.smark`, `.crumbs`, `.phead__meta` (uppercase mono) | Micro: 13 px Archivo, sentence case, `--c-ink-2`; section numbers hidden |
 | `.band--pale` (light band on a black site) | a tonal lift: `--c-surface` with hairlines |

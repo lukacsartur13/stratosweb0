@@ -95,7 +95,14 @@ harmadik elem a JSON-tömbökben.
 | `--c-dark` | `#1B1B1A` | grafit — egy oldal egyetlen sötét pillanata (záró jelenet) |
 | `--c-signal` | `#FFEE25` | a márka sárgája — csak kijelölés, fókusz sötéten, egy „jelzőfény" |
 
-Betűk: **Archivo** (címek és szöveg, mondatkezdő írásmóddal), **Aboreto** (csak a logó).
+Betűk: **Aboreto** a címekre (és a logóra) — a betűtípus maga csupa nagybetű, a forrásban
+a címet továbbra is mondatkezdő írásmóddal írd; **Archivo** minden másra: szöveg, gombok,
+címkék, GYIK-kérdések és minden szám (pl. „~110M Ft”).
+
+Kurzor: a logó papírrepülője, egérrel arra fordul, amerre a kurzort húzod (érintőképernyőn
+nincs kurzor; „csökkentett mozgás” beállításnál álló repülő). Kattintható elem fölött kicsit
+megnő, szövegmezőben a szokásos szövegkurzor jelenik meg. Új, saját kurzort ne adj egy elemnek:
+ami kattintható, `cursor: var(--cursor-hot)`-ot kap.
 
 Fájlok: `assets/css/system.css` (rendszer), `site.css` (az aloldalak közös
 szókincse: `.phead`, `.band`, `.card`, `.faq`, `.launch`…), `home.css` (főoldal),

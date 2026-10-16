@@ -858,7 +858,10 @@ def build_font_preload(lang, base):
     """
     faces = ["archivo/archivo-normal-latin.woff2", "aboreto/aboreto-normal-latin.woff2"]
     if lang == "hu":
-        faces.append("archivo/archivo-normal-latin-ext.woff2")
+        # Since 2026-10-16 Aboreto sets the headlines, and a Hungarian H1
+        # carries ő or ű as often as not: its 1 kB latin-ext joins Archivo's.
+        faces += ["archivo/archivo-normal-latin-ext.woff2",
+                  "aboreto/aboreto-normal-latin-ext.woff2"]
     return "".join(
         f'\n<link rel="preload" href="{base}assets/fonts/{f}" as="font" '
         f'type="font/woff2" crossorigin>'

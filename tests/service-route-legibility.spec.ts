@@ -217,6 +217,15 @@ test('the lit card stays distinct from the plain one beside it, and readable', a
   const lit = page.locator('.panel--lit').first();
   await expect(lit).toHaveCount(1);
   await lit.scrollIntoViewIfNeeded();
+  // Contrast is read against the composited background, so the card must have
+  // finished arriving: mid-fade its light text sits over the paper behind it
+  // (1.47 : 1 once, on mobile-430 under a full parallel run).
+  await expect.poll(() => lit.evaluate((el) => {
+    for (let e: Element | null = el; e; e = e.parentElement) {
+      if (e.classList.contains('is-pre') || getComputedStyle(e).opacity !== '1') return false;
+    }
+    return true;
+  }), { message: 'the lit card has finished arriving' }).toBe(true);
 
   // 2026-10-16: the lit card is the graphite surface of the new system. Asserted
   // as "not the same surface as its neighbour", not as a colour value.

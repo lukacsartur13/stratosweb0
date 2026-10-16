@@ -1,6 +1,6 @@
 /* ==========================================================================
-   STRATOS — the shell's behaviour. Four small things, no dependencies, no
-   animation loop, nothing the page needs in order to be read.
+   STRATOS — the shell's behaviour. Six small things, no dependencies, no
+   standing animation loop, nothing the page needs in order to be read.
 
      1. The header: a hairline once the page has moved, and the sheet that
         holds the navigation under 961px.
@@ -12,6 +12,8 @@
         it does not.
      5. One active surface: `[data-modes]` switches which of a set of panels is
         shown, from a list of buttons.
+     6. The plane: for a mouse, the logo's paper plane follows the pointer
+        and turns to fly the way it moves.
 
    The static page is the design. Without this file — blocked, failed, or a
    reader who asked for reduced motion — every element is in its final, lit,
@@ -147,7 +149,7 @@
      Hungarian hyphenation — so a heading whose longest word is wider than its
      own box would be cut mid-word by the overflow-wrap safety net
      ("Keresőoptimalizál / ás"). Such a heading is narrowed on Archivo's width
-     axis first, then scaled, until the word fits on one line. A heading whose
+     axis first where it has one, then scaled, until the word fits on one line. A heading whose
      words already fit is never touched. (Ported from the old main.js, where it
      was the one layout job worth keeping.) */
   var FIT = 'h1, h2, h3, .display';
@@ -182,9 +184,11 @@
       el.style.maxWidth = el.getBoundingClientRect().width + 'px';
       var cs = getComputedStyle(el);
       var stretch = parseFloat(cs.fontStretch) || 100;
+      // Only Archivo has a width axis; Aboreto headlines go straight to scale.
+      var axis = /archivo/i.test(cs.fontFamily.split(',')[0]);
       var size = parseFloat(cs.fontSize);
       for (var n = 0; n < 24 && splitWord(el); n++) {
-        if (stretch > 78) { stretch -= 4; el.style.fontStretch = stretch + '%'; }
+        if (axis && stretch > 78) { stretch -= 4; el.style.fontStretch = stretch + '%'; }
         else { size *= 0.95; el.style.fontSize = size.toFixed(1) + 'px'; }
       }
     }
@@ -232,4 +236,88 @@
 
     show((group.querySelector('[data-mode].is-active') || buttons[0]).getAttribute('data-mode'));
   })(groups[g]);
+
+  /* ------------------------------------------------------------ the plane */
+  /* The cursor is the logo's paper plane, and it turns to fly the way the
+     pointer moves (owner, 2026-10-16). system.css already draws it as a
+     native cursor — what a touch screen, a reader who asked for reduced
+     motion, or a page whose script never ran gets, and that is complete. For
+     a mouse, the native cursor is hidden and one small element takes over:
+
+       position   written in the event itself, so the nose is on the pointer;
+       heading    eased toward the direction of travel and never upside down:
+                  reversing rolls the plane over (its height through zero);
+       clickable  the plane lifts, 1.16×, where the hand used to appear;
+       fields     it steps aside for the text caret.
+
+     The frame loop runs only while the turn is still settling, then stops.
+     Nothing is enabled until the image has loaded, so a failed request leaves
+     the native plane in charge rather than no cursor at all. */
+  var fine = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!reduce && fine && window.requestAnimationFrame) (function () {
+    var NX = 30, NY = 2, ART = -35;   // the nose in the 32px image; the art flies 35° up-right
+    var HOT = 'a[href], button, summary, label[for], select, [role="button"], input[type="checkbox"], input[type="radio"], input[type="submit"], input[type="button"]';
+    var FIELD = 'input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="range"]), textarea, [contenteditable="true"]';
+    var el = doc.createElement('div');
+    el.className = 'cursor-plane';
+    el.setAttribute('aria-hidden', 'true');
+    var img = new Image(32, 32);
+    img.alt = '';
+
+    var x = 0, y = 0, vx = 0, vy = 0;
+    var heading = ART, angle = ART;   // degrees, screen space (y down)
+    var flip = 1, flipTo = 1, lift = 1, liftTo = 1;
+    var frame = 0, live = false, ready = false, hot = false, pressed = false;
+    var size = function () { liftTo = (hot ? 1.16 : 1) * (pressed ? 0.86 : 1); };
+
+    var apply = function () {
+      // Mirrored, the art's axis points 35° down instead of up, so the offset
+      // that aligns it with the heading changes sign with the flip.
+      el.style.transform = 'translate3d(' + (x - NX) + 'px,' + (y - NY) + 'px,0) rotate(' +
+        (angle - ART * flip).toFixed(2) + 'deg) scale(' + lift.toFixed(3) + ',' + (lift * flip).toFixed(3) + ')';
+    };
+    var step = function () {
+      frame = 0;
+      var d = ((heading - angle + 540) % 360) - 180;
+      angle += d * 0.24;
+      flip += (flipTo - flip) * 0.2;
+      lift += (liftTo - lift) * 0.3;
+      apply();
+      if (Math.abs(d) > 0.3 || Math.abs(flipTo - flip) > 0.01 || Math.abs(liftTo - lift) > 0.005) frame = window.requestAnimationFrame(step);
+    };
+    var kick = function () { if (!frame) frame = window.requestAnimationFrame(step); };
+    var show = function () { if (ready && live) root.classList.add('has-plane'); };
+    var hide = function () { live = false; root.classList.remove('has-plane'); };
+
+    window.addEventListener('pointermove', function (e) {
+      if (e.pointerType && e.pointerType !== 'mouse') { hide(); return; }
+      var dx = e.clientX - x, dy = e.clientY - y;
+      x = e.clientX; y = e.clientY;
+      if (!live) { live = true; vx = vy = 0; show(); }
+      else {
+        vx = vx * 0.55 + dx * 0.45;
+        vy = vy * 0.55 + dy * 0.45;
+        if (vx * vx + vy * vy > 2.2) {
+          heading = Math.atan2(vy, vx) * 180 / Math.PI;
+          var c = Math.cos(heading * Math.PI / 180);
+          if (c > 0.26) flipTo = 1; else if (c < -0.26) flipTo = -1;
+        }
+      }
+      var t = e.target && e.target.closest ? e.target : null;
+      el.classList.toggle('is-off', !!(t && t.closest(FIELD)));
+      hot = !!(t && t.closest(HOT));
+      size();
+      apply();
+      kick();
+    }, { passive: true });
+    window.addEventListener('pointerdown', function () { pressed = true; size(); kick(); }, { passive: true });
+    window.addEventListener('pointerup', function () { pressed = false; size(); kick(); }, { passive: true });
+    // Out of the window, into an iframe, or the window loses focus: the
+    // native cursor comes back until the pointer moves here again.
+    doc.addEventListener('mouseout', function (e) { if (!e.relatedTarget) hide(); });
+    window.addEventListener('blur', hide);
+
+    img.onload = function () { ready = true; el.appendChild(img); doc.body.appendChild(el); show(); };
+    img.src = '/assets/img/cursor-plane@2x.png';
+  })();
 })();
