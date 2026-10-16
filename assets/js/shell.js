@@ -8,7 +8,9 @@
         below the fold, and lit when they reach the middle of the screen.
      3. Arrival: `[data-reveal]` elements fade up once, the first time they
         are seen. Same contract — only what is not yet visible is ever hidden.
-     4. One active surface: `[data-modes]` switches which of a set of panels is
+     4. Fit words: a heading whose longest word would break is narrowed until
+        it does not.
+     5. One active surface: `[data-modes]` switches which of a set of panels is
         shown, from a list of buttons.
 
    The static page is the design. Without this file — blocked, failed, or a
@@ -139,6 +141,58 @@
       revealIO.observe(reveals[r]);
     }
   }
+
+  /* ------------------------------------------------------------ fit words */
+  /* Hungarian headings break between words only — browsers have no dependable
+     Hungarian hyphenation — so a heading whose longest word is wider than its
+     own box would be cut mid-word by the overflow-wrap safety net
+     ("Keresőoptimalizál / ás"). Such a heading is narrowed on Archivo's width
+     axis first, then scaled, until the word fits on one line. A heading whose
+     words already fit is never touched. (Ported from the old main.js, where it
+     was the one layout job worth keeping.) */
+  var FIT = 'h1, h2, h3, .display';
+  var splitWord = function (el) {
+    var walker = doc.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    var range = doc.createRange();
+    var node;
+    while ((node = walker.nextNode())) {
+      var re = /[^\s-]{6,}/g;
+      var m;
+      while ((m = re.exec(node.data))) {
+        range.setStart(node, m.index);
+        range.setEnd(node, m.index + m[0].length);
+        var rects = range.getClientRects();
+        if (rects.length > 1 && Math.abs(rects[0].top - rects[rects.length - 1].top) > 2) return true;
+      }
+    }
+    return false;
+  };
+  var fitWords = function () {
+    var list = doc.querySelectorAll(FIT);
+    for (var i = 0; i < list.length; i++) {
+      var el = list[i];
+      if (el.closest('.vh') || el.clientWidth < 60) continue;
+      el.style.fontSize = '';
+      el.style.fontStretch = '';
+      if ('fitMw' in el.dataset) { el.style.maxWidth = el.dataset.fitMw; delete el.dataset.fitMw; }
+      if (!splitWord(el)) continue;
+      // A measure in `ch` shrinks with the type, so the box is frozen at its
+      // current width before the face is scaled inside it.
+      el.dataset.fitMw = el.style.maxWidth;
+      el.style.maxWidth = el.getBoundingClientRect().width + 'px';
+      var cs = getComputedStyle(el);
+      var stretch = parseFloat(cs.fontStretch) || 100;
+      var size = parseFloat(cs.fontSize);
+      for (var n = 0; n < 24 && splitWord(el); n++) {
+        if (stretch > 78) { stretch -= 4; el.style.fontStretch = stretch + '%'; }
+        else { size *= 0.95; el.style.fontSize = size.toFixed(1) + 'px'; }
+      }
+    }
+  };
+  var fitTimer = 0;
+  var refit = function () { window.clearTimeout(fitTimer); fitTimer = window.setTimeout(fitWords, 140); };
+  if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(fitWords); else fitWords();
+  window.addEventListener('resize', refit, { passive: true });
 
   /* ------------------------------------------------- one active surface */
   var groups = doc.querySelectorAll('[data-modes]');

@@ -4,8 +4,9 @@
 > rounded surfaces and controlled spotlight lighting frame exceptional work, while
 > movement and interface disappear whenever they are not necessary.**
 
-Source of truth: `assets/css/system.css` (system) and `assets/css/home.css` (the first
-composition built on it). Behaviour: `assets/js/shell.js` (3.6 KB minified, 1.3 KB
+Source of truth: `assets/css/system.css` (system), `assets/css/home.css` (the homepage)
+and `assets/css/site.css` (the page vocabulary every other route is written in), plus
+the per-page `page-*.css`. Behaviour: `assets/js/shell.js` (3.6 KB minified, 1.3 KB
 gzip, no dependencies). Markup: `HEADER_V2`, `FOOTER_V2`, `SHELL_V2` in `_build/build.py`.
 
 Tokens are namespaced (`--c-` colour, `--t-` type, `--r-` radius, `--sp-` space) so the new
@@ -136,6 +137,7 @@ Floating rounded box (16 px radius, 56 px tall, 12 px from the top; 14 px/52/8 o
 translucent paper with an 18 px backdrop blur and a hairline. **Stable**: it never hides,
 shrinks or bounces; once the page moves it gains a soft shadow.
 
+* On every route since the site-wide migration (see §12).
 * ≥ 961 px: wordmark · Work / Capabilities / About / Insights (HU: Munkáink ·
   Szolgáltatások · Rólunk · Blog; DE: Projekte · Leistungen · Über uns · Insights) ·
   HU/EN/DE · **Projekt indítása**.
@@ -154,7 +156,39 @@ services incl. HU local pages, contact + NAP + status, profiles); legal line wit
 consent switch, language switcher and GDPR mark. No Arrival, no trace, no ceiling, no
 "return to 0 m".
 
-## 11. Quality tests every scene is held to
+## 11. The page vocabulary (site.css)
+
+The 35 fragments were not rewritten; their classes were restyled. The rules:
+
+| Old component | Now |
+|---|---|
+| `.display` + `.h-xl/-lg/-md/-sm` (uppercase, Archivo wide) | sentence case; `h-xl` = Monument, `h-lg` = Statement, `h-md` = Title, `h-sm` = small title |
+| `.sig` (yellow word) | **light, not colour**: a heading that carries one is recessive (`--c-ink-3`) and the `.sig` words are the lit ones (`--c-ink`) |
+| `.eyebrow`, `.card__k`, `.smark`, `.crumbs`, `.phead__meta` (uppercase mono) | Micro: 13 px Archivo, sentence case, `--c-ink-2`; section numbers hidden |
+| `.band--pale` (light band on a black site) | a tonal lift: `--c-surface` with hairlines |
+| `.card`, `.panel`, `.choice > *`, `.why-card` | machined surfaces: `--r-lg`, surface tone, hairline, top highlight, no lift on hover |
+| `.panel--lit` (yellow) | the graphite surface in its row |
+| `.launch` | mid-page: a light raised surface. **The one a page ends on** (`main > section:last-child`) is the page's single dark moment |
+| `.launch--quiet` | a hairline and nothing else |
+| — | `.pclose`: the shared closing scene, added by the generator when a page does not end on a launch of its own (archetype-specific question; not on quote, contact, legal, 404) |
+| `.faq` | hairline rows; open = the mark turns × and goes to ink, the rule under the entry darkens |
+| `.field`, `.quiz` inputs and options | `--r-sm` surfaces with a hairline; focus = 1.5 px ink ring |
+| `[data-stage]` build sequence, `[data-rail]` service rail, `[data-depth]`, `[data-mask]`, `[data-trace]` | **static**: every step / service / card in the flow at once, nothing pinned, no drawn traces |
+| `.logoset` | quiet ink at rest, each mark's own colour on hover (white/saturated marks sit on a graphite chip) |
+
+Every small label uses `--c-ink-2` (≥ 6.3 : 1); `--c-ink-3` is reserved for type ≥ 24 px,
+which `tests/service-route-legibility.spec.ts` measures.
+
+## 12. What the whole-site migration removed
+
+The dark flight deck and its full-screen menu, the altimeter rail, the plane cursor and
+contrail, the grain, the Arrival footer, magnetic buttons, page transitions, and the
+files that drew them: `main.css`, `chrome.css`, `motion.css`, `transitions.css`,
+`main.js`, `header.js`, `motion.js`, `transitions.js`. One job of `main.js` was kept and
+ported to `shell.js`: *fit words* — a heading whose longest Hungarian word would break
+mid-word is narrowed on the width axis, then scaled, until it fits.
+
+## 13. Quality tests every scene is held to
 
 * **Static screenshot** — the kill-test stills (`shots/kill-*.png`) are JavaScript off,
   every light and transition removed.

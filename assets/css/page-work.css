@@ -1,0 +1,71 @@
+/* ==========================================================================
+   /munkaink — the work index (brief §31).
+
+   Three flagships, each the width of the page: one large picture in its own
+   project world, then one idea, one proof where the project has published one,
+   one paragraph. Below them the archive, smaller and quieter. The strongest
+   work sells the company; the chrome stays out of its way.
+   ========================================================================== */
+.flags { display: grid; gap: clamp(4rem, 9vw, 8rem); }
+.flag { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); color: inherit; }
+.flag__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-xl);
+  background: var(--c-dark);
+  box-shadow: inset 0 0 0 1px rgba(20, 20, 19, 0.06);
+}
+.flag__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 1200ms var(--ease-out);
+}
+.flag:hover .flag__media img { transform: scale(1.015); }
+.flag__text {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 4fr);
+  gap: clamp(1.25rem, 3vw, 3rem);
+  align-items: start;
+}
+.flag__text:not(:has(.flag__proof)) { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.flag__head h3 {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-size: var(--t-title);
+  font-weight: var(--w-title);
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+.flag__v {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--t-title);
+  font-weight: var(--w-title);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.flag__c { display: block; margin-top: 0.4rem; max-width: 22ch; font-size: var(--t-small); color: var(--c-ink-2); }
+.flag__body p { color: var(--c-ink-2); max-width: 48ch; }
+.flag__body .case__meta { margin-top: 1rem; }
+@media (max-width: 900px) {
+  .flag__text, .flag__text:not(:has(.flag__proof)) { grid-template-columns: 1fr; }
+  /* The screens are 16:10 captures; a taller crop on a phone would cut
+     through the client's own headline, so they are shown whole. */
+  .flag__media { border-radius: var(--r-lg); aspect-ratio: 16 / 10; }
+}
+
+.flags__more { margin-top: clamp(4rem, 9vw, 7rem); padding-top: var(--sp-4); border-top: 1px solid var(--c-line); }
+.archive { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: var(--sp-6); margin-top: var(--sp-5); }
+.arch { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: var(--sp-5); align-items: center; color: inherit; }
+.arch__media { display: block; overflow: hidden; aspect-ratio: 16 / 10; border-radius: var(--r-md); background: var(--c-bg-recess); }
+.arch__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--ease-out); }
+.arch:hover .arch__media img { transform: scale(1.02); }
+.arch h3 { margin: 0.4rem 0 0.5rem; font-family: var(--font-display); font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem); font-weight: var(--w-title); letter-spacing: -0.015em; line-height: 1.2; }
+.arch p { font-size: var(--t-small); color: var(--c-ink-2); }
+@media (max-width: 560px) { .arch { grid-template-columns: 1fr; } }

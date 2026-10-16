@@ -102,9 +102,9 @@ for (const locale of LOCALES) {
           } catch { return false; }
         }).length);
       expect(webgl, 'no 3D context on a 404').toBe(0);
-      expect(await page.evaluate(() =>
-        [...document.querySelectorAll('canvas')].map((c) => c.className)))
-        .toEqual(['contrail']);
+      // The cursor contrail went with the original shell (2026-10-16); the
+      // site now ships no canvas at all.
+      expect(await page.evaluate(() => document.querySelectorAll('canvas').length)).toBe(0);
 
       expect(await page.evaluate(() =>
         document.documentElement.scrollWidth - document.documentElement.clientWidth))

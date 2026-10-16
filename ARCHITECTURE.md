@@ -39,18 +39,18 @@ of colour tokens.
 | Source | `_build/pages/*.html` (Hungarian only), `_build/i18n/*.json` |
 | Generator | `_build/build.py` — owns `<head>`, both shells, header, footer, nav |
 | Output | `*.html`, `en/*.html`, `de/*.html` (homepage: `index.html`, `en/index.html`, `de/index.html`) |
-| Styles | v2 shell: `assets/css/type.css`, `system.css`, `home.css` · original shell: `type.css`, `chrome.css`, `main.css`, `motion.css`, `transitions.css` |
-| Behaviour | v2 shell: `assets/js/shell.js` · original shell: `main.js`, `header.js`, `motion.js`, `transitions.js` · both: `lead.js`, `analytics.js`, `consent.js` |
+| Styles | `assets/css/type.css` (faces), `system.css` (the design system), then `home.css` on the homepage or `site.css` + the page's `page-*.css` everywhere else |
+| Behaviour | `assets/js/shell.js` (header, sheet, light states, fit words, switcher), `lead.js` (forms), `analytics.js` + `consent.js` (measurement, after consent), `quote.*.js` (the questionnaire) |
 
-### Two shells, during a migration
+### One shell
 
-The October 2026 redesign introduced a second shell — light, typography-led,
-no altitude instrument — and moved exactly one route onto it, the homepage
-(`SHELL_V2_ROUTES` in build.py). The other routes keep the original shell (the
-dark flight deck and the altimeter rail) until the new direction is approved;
-moving a route is adding its key to that set. Both shells read the same slug
-table, the same dictionaries and the same `<head>` builders, so canonical,
-hreflang, Open Graph and JSON-LD are identical in kind on either.
+Every route is rendered by `render_v2` into `SHELL_V2`: a floating header, the page,
+an optional closing scene, a quiet footer. The homepage moved first (2026-10-16) as
+the proof of concept; once it was approved the other routes followed, and the
+original shell — the dark flight deck, the full-screen menu, the altimeter rail, the
+Arrival footer — was removed. The fragments kept their words and markup; `site.css`
+restyles the vocabulary they are written in, which is what keeps the dictionaries,
+the headings and the internal links exactly as they were.
 
 The design system is written down in
 `_build/reports/stratos-redesign/02-design-system.md`.

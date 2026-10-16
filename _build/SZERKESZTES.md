@@ -37,8 +37,8 @@ A 12 oldal tartalma a `_build/pages/` alatt van, mindegyik fájl elején egy rö
 ```
 title: …
 desc: …
-ceiling: 30000     ← meddig másszon a magasságmérő ezen az oldalon
-footer: no         ← opcionális; elhagyja a láblécet (a kérdőív használja)
+css: build         ← opcionális; betölti az assets/css/page-build.css-t
+footer: no         ← opcionális; elhagyja a láblécet és a záró jelenetet (a kérdőív használja)
 ---
 <a törzs HTML-je>
 ```
@@ -68,10 +68,9 @@ nem triplázódik.
   `"magyar szöveg": ["english", "deutsch"]`. Ha egy kulcs hiányzik, az adott
   szöveg magyarul marad, és a build ír egy `_build/missing-en.json`-t —
   törött oldal soha nem keletkezik.
-- **Fejléc, lábléc, gombok, magasságmérő**: nem fordítófájlban, hanem a
-  `build.py` `UI` szótárában (ott van a nyelvváltó, a légköri rétegek neve és a
-  számformátum is).
-- **A JS**: az `assets/js/main.js` nyelvfüggetlen; a szövegeket a `<script
+- **Fejléc, lábléc, gombok, záró jelenet**: nem fordítófájlban, hanem a
+  `build.py` `UI` és `V2_UI` szótárában (ott van a nyelvváltó is).
+- **A JS**: az `assets/js/lead.js` nyelvfüggetlen; a szövegeket a `<script
   id="i18n">` JSON-blokkból olvassa, amit a generátor ír bele.
 - **SEO**: minden oldal kap `hreflang` alternatívákat és `x-default`-ot
   a magyarra.
@@ -83,29 +82,35 @@ harmadik elem a JSON-tömbökben.
 
 ## Designrendszer
 
-| Token | Érték | Honnan |
+2026 októberétől az oldal világos, tipográfiára épülő rendszert használ
+(„Soft Machinery"). A teljes leírás: `_build/reports/stratos-redesign/02-design-system.md`.
+
+| Token | Érték | Mire |
 |---|---|---|
-| `--void` | `#000000` | régi oldal háttere |
-| `--signal` | `#FFEE25` | a márka sárgája |
-| `--chrome` | `#CBDCE9` | a logó króm papírrepülőjének csúcsfénye |
-| `--paper` | `#F4F4F4` | régi oldal világos sávja |
-| `--haze` | `#757575` | régi oldal szürkéje |
+| `--c-bg` | `#F3F2EE` | meleg papír — az alapfelület |
+| `--c-surface` | `#FAFAF8` | kiemelt felület (kártyák, mezők) |
+| `--c-ink` | `#141413` | szöveg, elsődleges gomb |
+| `--c-ink-2` | `#5A5954` | másodlagos szöveg |
+| `--c-ink-3` | `#8A8983` | csak nagy címek „sötétített" része |
+| `--c-dark` | `#1B1B1A` | grafit — egy oldal egyetlen sötét pillanata (záró jelenet) |
+| `--c-signal` | `#FFEE25` | a márka sárgája — csak kijelölés, fókusz sötéten, egy „jelzőfény" |
 
-Betűk: **Aboreto** (display, a régi oldalról), **Instrument Sans** (kenyérszöveg),
-**JetBrains Mono** (adat, címkék, gombok).
+Betűk: **Archivo** (címek és szöveg, mondatkezdő írásmóddal), **Aboreto** (csak a logó).
 
-### A vezérgondolat
+Fájlok: `assets/css/system.css` (rendszer), `site.css` (az aloldalak közös
+szókincse: `.phead`, `.band`, `.card`, `.faq`, `.launch`…), `home.css` (főoldal),
+`page-*.css` (oldalspecifikus). Viselkedés: `assets/js/shell.js`.
 
-A Stratos név a sztratoszférából ered, és a régi oldal saját mondata szerint
-„a versenytársak még a földön járnak". Ezt az oldal szó szerint méri:
+Szabályok röviden:
 
-- **Magasságmérő sáv** a bal szélen (mobilon alul) — valódi repülőgép-magasságmérő
-  szalag, ami görgetésre méterben számol, és jelzi a légköri réteget
-  (troposzféra → sztratoszféra → mezoszféra). Nem dísz: ez a haladásjelző.
-- **A kurzor maga a logó** — a króm papírrepülő a mozgás irányába fordul, sárga
-  kondenzcsíkot húz. Érintőképernyőn és `prefers-reduced-motion` esetén kikapcsol.
-- A szolgáltatások vízszintesen görgő „emelkedési szakaszok", mindegyik saját
-  magassággal — ugyanaz a skála, mint a menü legördülőjében.
+- **A kiemelés fény, nem szín.** Egy címben a `<span class="sig">` rész a „megvilágított":
+  a cím többi része halványabb, a kiemelt rész teljes fekete.
+- **Egy oldal egyetlen sötét pillanata a záró jelenet.** A `.launch` csak akkor sötét,
+  ha az oldal utolsó szekciójában van; máskor világos felület. Ha az oldal nem
+  ilyen launch-csal zárul, a generátor hozzáad egy közös záró jelenetet (`CLOSE_V2`).
+- **Nincs görgetésre mozgó elem.** A korábbi rögzített szakaszok (`data-stage`,
+  `data-rail`) statikusan, egymás alatt jelennek meg; a magasságmérő, a kurzor és a
+  kondenzcsík megszűnt.
 
 ## Kérdőív (`arajanlat.html`)
 
@@ -115,11 +120,9 @@ A megadott wizard beépítve: kérdésenként egy képernyő, a 2. kérdésnél 
 
 Két dolgot igazítottam a többi oldalhoz:
 
-- a stílus a site tokenjeit használja (éles sarkok a lekerekítettek helyett,
-  olvasható kenyérbetű a válaszlehetőségeken) — ha a lekerekített változat kell,
-  a `.quiz` blokk a `main.css`-ben egy helyen átírható;
-- a magasságmérő itt **a kérdőív haladását** mutatja, nem a görgetést, így a
-  kitöltés végére ér fel a sztratoszférába.
+- a stílus a rendszer tokenjeit használja (lekerekített válaszlehetőségek,
+  olvasható kenyérbetű) — a `.quiz` blokk a `site.css`-ben egy helyen átírható;
+- a haladást a lap tetején egy vékony sáv és kérdésenként egy pont mutatja.
 
 ### Az összes űrlap éles
 

@@ -424,6 +424,13 @@ npm run build   =  generate (python)      every page x 3 languages, homepage inc
 
 Title, description, canonical, hreflang, Open Graph and JSON-LD come from the
 same functions as every other route; the three titles and descriptions are the
-same strings the Vite shells carried. Only the homepage is on the v2 shell for
-now; the other routes keep `SHELL` until the new direction is approved.
-Everything about the decision is in `_build/reports/stratos-redesign/`.
+same strings the Vite shells carried.
+
+Since the homepage direction was approved, **every route and the 404 pages are on
+the same shell**. The fragments were not rewritten — `assets/css/site.css` restyles
+the page vocabulary they are written in (`.phead`, `.band`, `.card`, `.faq`,
+`.launch`, …), so their words, headings, links and translations are unchanged. The
+dark flight deck, the full-screen menu, the altimeter rail, the cursor contrail and
+`main.css`/`chrome.css`/`motion.css`/`main.js`/`header.js`/`motion.js`/
+`transitions.*` are gone. Everything about the decision is in
+`_build/reports/stratos-redesign/`.

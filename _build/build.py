@@ -100,15 +100,12 @@ BY_ANY = {fn: k for k, v in SLUGS.items() for fn in v.values()}
 assert len(BY_ANY) == len({(k, fn) for k, v in SLUGS.items() for fn in v.values()}), \
     "two routes share a filename — relink() can no longer resolve one"
 
-NAV = ("about", "work", "blog", "contact")
 # Branding is still a page (sitemap, content links) but no longer a menu item:
 # the owner took it out of the header and footer on 2026-10-07.
 SERVICES = ("sme", "enterprise", "shop", "ads", "seo", "impact")
-# The case studies and the six articles are reachable from their index routes
-# and from the pages they belong to, not from the global menu — a nav that
+# The case studies and the articles are reachable from their index routes and
+# from the pages they belong to, not from the global navigation — a nav that
 # lists every leaf is a sitemap, not a navigation.
-MENU = ("index", "about", "services", "sme", "enterprise", "shop",
-        "ads", "seo", "impact", "work", "blog", "contact", "quote")
 CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening", "case-godatafusion")
 
 # ---------------------------------------------------------- case-study status
@@ -386,14 +383,24 @@ PLATELESS = {k for k, v in ORGS.items() if v.get("ink") in ("light", "colour")}
 CLIENTS = ("rapidkert", "barbershop")
 # A tighter crop for the logo rail's fixed plate, where object-fit: contain
 # shrank the original's wide transparent margin into a mark half the size of
-# its neighbours. Same artwork, cropped to its bounds plus 6%; the homepage
-# keeps the original, which its own layout was sized around.
-CLIENT_RAIL_ASSET = {"rapidkert": "assets/img/client-rapidkert-tight.png"}
+# its neighbours. Same artwork, cropped to its bounds plus 6%. Barbershop's
+# square file is 39% empty top and bottom, the same problem (2026-10-16).
+CLIENT_RAIL_ASSET = {"rapidkert": "assets/img/client-rapidkert-tight.png",
+                     "barbershop": "assets/img/client-barbershop-tight.png"}
 
 CLIENT_MARKS = {
     "rapidkert": ("Rapidkert Kft.", "assets/img/client-rapidkert.png"),
     "barbershop": ("Barbershop Győr", "assets/img/client-barbershop.png"),
 }
+
+# `{{logoset:<kind>:all}}` — every mark the homepage and the about page show
+# (owner, 2026-10-16: "all our logos"): the clients with a project route, then
+# every ready collaboration and client in table order, so a mark approved here
+# appears on both without either fragment being touched. The support
+# relationships stay out; the shared heading would misstate them.
+ALL_MARKS = tuple(CLIENT_MARKS) + tuple(
+    k for k, v in ORGS.items()
+    if v["ready"] and v["relationship"] in ("collab", "client"))
 
 
 def logoset(lang, kind="rail", keys=None, base=""):
@@ -450,20 +457,10 @@ UI = {
         "name": "Magyar",
         "skip": "Ugrás a tartalomra",
         "brand_aria": "Stratos — főoldal",
-        "brand_alt": "Stratos — weboldal készítés és digitális ügynökség Győrben",
         "nav_aria": "Fő navigáció",
         "menu_aria": "Mobil navigáció",
-        "burger_aria": "Menü",
         "lang_aria": "Nyelvválasztás",
         "services": "Szolgáltatások",
-        "quote_cta": "Árajánlat",
-        "unit": "MÉTER",
-        "unit_short": "M",
-        "boot": "RENDSZEREK INDÍTÁSA",
-        "skip_top": "UGRÁS 30 000 MÉTERRE",
-        "hud": ["MAGASSÁG M", "OXIGÉN %", "HŐMÉRSÉKLET °C", "EMELKEDÉS M/S", "RÉTEG"],
-        "rail_aria": "Az emelkedés szakaszai",
-        "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"],
         "nav": {"about": "Rólunk", "work": "Munkáink", "blog": "Blog",
                 "contact": "Kapcsolat"},
         "svc_all": "Minden szolgáltatás",
@@ -490,7 +487,6 @@ UI = {
         "nl_label": "E-mail cím",
         "nl_placeholder": "e-mail cím",
         "nl_button": "Szóljatok",
-        "f_links": "Linkek",
         "f_contact": "Kapcsolat",
         "f_social": "Közösség",
         "f_gbp": "Google Cégprofil",
@@ -502,25 +498,12 @@ UI = {
         # response expectation is the Contact page's own wording; the location
         # is the one in the site description. Nothing in this block is new fact.
         "p85": {
-            "alt": "MAG",
-            "menu": "MENÜ",
-            "close": "Bezárás",
-            "menu_aria_full": "Teljes navigáció",
             "start": "Projekt indítása",
-            "explore": "Kiemelt munkáink",
-            "nav_group": "Navigáció",
-            "cap_group": "Amit csinálunk",
-            "status_group": "Állapot",
             "st_reply": "Válasz jellemzően pár órán belül",
             "st_where": "Győr és Budapest",
             "st_langs": "Magyarul, angolul és németül dolgozunk",
-            "to_top": "VISSZA 0 MÉTERRE",
-            "converge_state": "KALIBRÁCIÓ KÉSZ",
             # The homepage is the one route that actually flies the ascent, so
             # its convergence reports the ascent rather than the calibration.
-            "converge_state_home": "EMELKEDÉS BEFEJEZVE",
-            "converge_lede": "Hova vigyük innen a vállalkozásodat?",
-            "cta_head": "A következő szint innen indul.",
             # Archetype-specific closing lines (brief §8.5).
             "cta_service": "Hasonló feladatod van?",
             "cta_work": "Építsük meg a következő projektet.",
@@ -557,20 +540,10 @@ UI = {
         "name": "English",
         "skip": "Skip to content",
         "brand_aria": "Stratos — home",
-        "brand_alt": "Stratos — web design and digital agency in Győr, Hungary",
         "nav_aria": "Main navigation",
         "menu_aria": "Mobile navigation",
-        "burger_aria": "Menu",
         "lang_aria": "Choose language",
         "services": "Services",
-        "quote_cta": "Get a quote",
-        "unit": "METRES",
-        "unit_short": "M",
-        "boot": "SYSTEMS STARTING",
-        "skip_top": "SKIP TO 30,000 M",
-        "hud": ["ALTITUDE M", "OXYGEN %", "TEMPERATURE °C", "CLIMB M/S", "LAYER"],
-        "rail_aria": "Stages of the ascent",
-        "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"],
         "nav": {"about": "About", "work": "Work", "blog": "Blog",
                 "contact": "Contact"},
         "svc_all": "All services",
@@ -594,7 +567,6 @@ UI = {
         "nl_label": "Email address",
         "nl_placeholder": "email address",
         "nl_button": "Tell me",
-        "f_links": "Links",
         "f_contact": "Contact",
         "f_social": "Social",
         "f_gbp": "Google Business Profile",
@@ -602,23 +574,10 @@ UI = {
         "f_privacy": "Privacy policy",
         "f_imprint": "Imprint",
         "p85": {
-            "alt": "ALT",
-            "menu": "MENU",
-            "close": "Close",
-            "menu_aria_full": "Full navigation",
             "start": "Start a project",
-            "explore": "Explore selected work",
-            "nav_group": "Navigate",
-            "cap_group": "Capabilities",
-            "status_group": "Status",
             "st_reply": "A reply usually within a few hours",
             "st_where": "Győr and Budapest",
             "st_langs": "We work in Hungarian, English and German",
-            "to_top": "RETURN TO 0 M",
-            "converge_state": "CALIBRATION COMPLETE",
-            "converge_state_home": "ASCENT COMPLETE",
-            "converge_lede": "Where should we take your business next?",
-            "cta_head": "Your next altitude starts here.",
             "cta_service": "Have a similar challenge?",
             "cta_work": "Build the next project with us.",
             "cta_about": "Let's see what we can build together.",
@@ -652,20 +611,10 @@ UI = {
         "name": "Deutsch",
         "skip": "Zum Inhalt springen",
         "brand_aria": "Stratos — Startseite",
-        "brand_alt": "Stratos — Webdesign und Digitalagentur in Győr, Ungarn",
         "nav_aria": "Hauptnavigation",
         "menu_aria": "Mobile Navigation",
-        "burger_aria": "Menü",
         "lang_aria": "Sprache wählen",
         "services": "Leistungen",
-        "quote_cta": "Angebot",
-        "unit": "METER",
-        "unit_short": "M",
-        "boot": "SYSTEME STARTEN",
-        "skip_top": "DIREKT AUF 30.000 M",
-        "hud": ["HÖHE M", "SAUERSTOFF %", "TEMPERATUR °C", "STEIGEN M/S", "SCHICHT"],
-        "rail_aria": "Etappen des Aufstiegs",
-        "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"],
         "nav": {"about": "Über uns", "work": "Projekte", "blog": "Blog",
                 "contact": "Kontakt"},
         "svc_all": "Alle Leistungen",
@@ -688,7 +637,6 @@ UI = {
         "nl_label": "E-Mail-Adresse",
         "nl_placeholder": "E-Mail-Adresse",
         "nl_button": "Bescheid geben",
-        "f_links": "Links",
         "f_contact": "Kontakt",
         "f_social": "Social Media",
         "f_gbp": "Google Unternehmensprofil",
@@ -696,23 +644,10 @@ UI = {
         "f_privacy": "Datenschutzerklärung",
         "f_imprint": "Impressum",
         "p85": {
-            "alt": "HÖHE",
-            "menu": "MENÜ",
-            "close": "Schließen",
-            "menu_aria_full": "Vollständige Navigation",
             "start": "Projekt starten",
-            "explore": "Ausgewählte Arbeiten",
-            "nav_group": "Navigation",
-            "cap_group": "Leistungen",
-            "status_group": "Status",
             "st_reply": "Antwort in der Regel innerhalb weniger Stunden",
             "st_where": "Győr und Budapest",
             "st_langs": "Wir arbeiten auf Ungarisch, Englisch und Deutsch",
-            "to_top": "ZURÜCK AUF 0 M",
-            "converge_state": "KALIBRIERUNG ABGESCHLOSSEN",
-            "converge_state_home": "AUFSTIEG ABGESCHLOSSEN",
-            "converge_lede": "Wohin soll es mit Ihrem Unternehmen als Nächstes gehen?",
-            "cta_head": "Die nächste Höhe beginnt hier.",
             "cta_service": "Eine ähnliche Aufgabe?",
             "cta_work": "Bauen wir gemeinsam das nächste Projekt.",
             "cta_about": "Sehen wir, was wir gemeinsam aufbauen können.",
@@ -756,10 +691,6 @@ LEGAL_NOTE = {
           '<a href="%s" hreflang="hu">ungarische Fassung</a> rechtlich '
           'verbindlich.</p>',
 }
-
-ARROW = ('<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">'
-         '<path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>')
-
 
 # --------------------------------------------------------------------- paths
 # Link mode.
@@ -891,41 +822,6 @@ def build_langs(lang, key):
         for l in LANGS)
     return (f'<div class="lang" role="group" aria-label="{UI[lang]["lang_aria"]}">'
             f'{items}</div>')
-
-
-# The full-screen menu's primary column. Six destinations, numbered, large.
-# The services are a second column rather than six more numbered lines, and the
-# case studies are in neither: under the `summary` status they do not get public
-# case-study navigation, so the Work index is the one route that leads to them.
-MENU_PRIMARY = ("index", "about", "services", "work", "blog", "contact")
-
-
-def build_menu(lang, key):
-    """The §7.4 editorial navigation layer.
-
-    Two columns. The left is the six primary destinations at display size,
-    numbered — the number is the Meridian's station marker, not decoration, so
-    it is `aria-hidden` and the link text stands alone. The right is the service
-    architecture, which is a list of five and reads better as one.
-    """
-    u = UI[lang]
-    primary = "".join(
-        '\n        <li><a href="%s"%s><b aria-hidden="true">%02d</b><span>%s</span></a></li>'
-        % (href(lang, k), ' aria-current="page"' if k == key else "", i + 1, u["menu"][k])
-        for i, k in enumerate(MENU_PRIMARY))
-    svc = "".join(
-        '\n        <li><a href="%s"%s>%s<em>%s</em></a></li>'
-        % (href(lang, k), ' aria-current="page"' if k == key else "",
-           u["svc"][k][0], u["svc"][k][1])
-        for k in SERVICES)
-    return f"""
-    <ul class="menu__primary">{primary}
-    </ul>
-    <div class="menu__svc">
-      <p class="menu__h" id="menu-svc-h">{u['services']}</p>
-      <ul aria-labelledby="menu-svc-h">{svc}
-      </ul>
-    </div>"""
 
 
 def build_font_preload(lang, base):
@@ -1278,61 +1174,6 @@ def analytics_head(base):
         + f'\n<script src="{base}assets/js/analytics.js" defer></script>'
         + consent
     )
-
-
-# The flight deck and the full-screen navigation layer, as one template.
-#
-# Used by SHELL — every route not yet on the v2 shell, and the 404 pages. One
-# copy of the markup, one copy of the CSS in assets/css/chrome.css, one copy of
-# the behaviour in assets/js/header.js. The homepage carries HEADER_V2 instead.
-DECK = """<!-- Flight deck. Three deterministic states — opening, journey, destination —
-     written to `data-state` by assets/js/header.js from one number: how far
-     down the document you are. The old direction-based hide/show is gone; a
-     header that vanishes because you nudged the wheel upward is jitter, not
-     navigation. -->
-<header class="nav" data-state="opening">
-  <a class="brand" href="{{home}}" aria-label="{{brand_aria}}">
-    <img src="{{base}}assets/img/plane-cursor.png" alt="">
-    <span class="brand__wm" data-nosnippet><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
-  </a>
-  <div class="nav__alt" aria-hidden="true" data-nosnippet><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></div>
-  <!-- 2026-10-07: logo, quote button and menu, nothing else. The desktop link
-       row duplicated the full-screen menu (which also carries the services and
-       the language switcher), so the owner took it out. -->
-  <a class="nav__cta" href="{{quote_href}}"><span data-nosnippet>{{quote_cta}}</span></a>
-  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="{{burger_aria}}"><span class="burger__t" aria-hidden="true" data-nosnippet><span class="burger__open">{{menu_label}}</span><span class="burger__shut">{{close}}</span></span><span class="burger__bars" aria-hidden="true"><i></i><i></i></span></button>
-</header>
-
-<!-- Full-viewport editorial navigation (§7.4). Still a plain list of anchors:
-     no router, no interception, so middle-click, ctrl-click, back and the
-     browser's own history all behave exactly as they did. -->
-<!-- data-nosnippet (here, in the header, the rail, the closing CTA and the
-     footer): Google was quoting the menu's service list with its altitude
-     figures ("Web development 9,400 M") as a page's search snippet. A snippet
-     must come from the page's own content; navigation, chrome and instrument
-     read-outs never should. Links inside stay crawlable — nosnippet only
-     keeps the TEXT out of the result.
-     Google honours the attribute on <span>, <div> and <section> ONLY
-     (developers.google.com/search/docs/crawling-indexing/robots-meta-tag), so
-     it sits on those inside <header>, <aside> and <footer>, never on the
-     landmark itself, where it is silently ignored. -->
-<div class="menu" id="menu" hidden data-nosnippet>
-  <div class="menu__veil" data-menu-dismiss></div>
-  <nav class="menu__panel" aria-label="{{menu_aria_full}}">
-    <svg class="menu__trace" data-trace viewBox="0 0 120 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path d="M8 0 V600"/>
-    </svg>
-    {{menu}}
-    <div class="menu__aside">
-      {{langs}}
-      <a class="btn menu__cta" href="{{quote_href}}">{{start}}</a>
-      <div class="menu__foot">
-        <a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a>
-        <a href="tel:+36305848024">+36 30 584 8024</a>
-      </div>
-    </div>
-  </nav>
-</div>"""
 
 
 # ============================================================ structured data
@@ -1808,326 +1649,8 @@ def build_structured_data(lang, key, title, desc, meta, body):
             + payload + "</script>")
 
 
-def build_deck(lang, key, base, home):
-    """Render the flight deck for one route. `home` is the wordmark's href —
-    relative on the generated routes, root-absolute on the homepage."""
-    u = UI[lang]
-    quote = root_href(lang, "quote") if base == "/" else href(lang, "quote")
-    return render(DECK, dict(
-        base=base, home=home,
-        brand_aria=u["brand_aria"], brand_alt=u["brand_alt"],
-        burger_aria=u["burger_aria"], quote_cta=u["quote_cta"],
-        alt_k=u["p85"]["alt"], unit_short=u["unit_short"],
-        quote_href=quote, start=u["p85"]["start"],
-        menu_label=u["p85"]["menu"], close=u["p85"]["close"],
-        menu_aria_full=u["p85"]["menu_aria_full"],
-        menu=build_menu(lang, key),
-        langs=build_langs(lang, key),
-    ))
-
-
-SHELL = """<!DOCTYPE html>
-<html lang="{{lang}}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{title}}</title>
-<meta name="description" content="{{desc}}">
-<link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="icon" href="{{base}}assets/img/favicon-192.png" sizes="192x192" type="image/png">
-<link rel="apple-touch-icon" href="{{base}}assets/img/apple-touch-icon.png">{{robots}}{{alternates}}{{social}}{{jsonld}}
-{{fontpreload}}
-<link rel="stylesheet" href="{{base}}assets/css/type.css">
-<!-- The site chrome — tokens, flight deck, full-screen menu, Arrival, footer.
-     Before main.css because it carries the token block main.css reads, and
-     because the homepage links this file and not main.css. See chrome.css. -->
-<link rel="stylesheet" href="{{base}}assets/css/chrome.css">
-<link rel="stylesheet" href="{{base}}assets/css/main.css">
-<link rel="stylesheet" href="{{base}}assets/css/motion.css">
-<link rel="stylesheet" href="{{base}}assets/css/transitions.css">{{extra_css}}
-<script id="i18n" type="application/json">{{i18n}}</script>
-<!-- The canonical lead submission controller. In <head> with `defer` on
-     purpose: deferred scripts run in document order after parsing, so this is
-     guaranteed to have defined `window.Stratos.lead` before any per-page
-     script in <body> runs — including the generated questionnaire wizard,
-     which is a separate file and cannot import it. It also reads the i18n
-     block above, which parsing has already delivered by then. -->
-<script src="{{base}}assets/js/lead.js" defer></script>{{analytics}}
-</head>
-<!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
-     is translated, so /en/web-design-small-business.html and /de/webdesign-kmu.html are
-     both `sme`. Anything that needs to know what a page *is* should read this
-     rather than parse the URL. -->
-<body data-ceiling="{{ceiling}}" data-page-key="{{pagekey}}"{{body_class}}>
-
-<a class="skip" href="#main">{{skip}}</a>
-<div class="grain" aria-hidden="true"></div>
-<canvas class="contrail" aria-hidden="true"></canvas>
-<div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt=""></div>
-{{instruments}}
-
-{{deck}}
-
-<div class="shell">
-<main id="main">
-{{body}}
-</main>
-{{footer}}
-</div>
-
-<script src="{{base}}assets/js/main.js"></script>
-<!-- The flight deck. Not deferred: the header's opening state is above the
-     fold on every route, and a header that snaps into place one frame after
-     paint is a layout shift the user watches happen. -->
-<script src="{{base}}assets/js/header.js"></script>
-<!-- The Meridian Trace motion primitives. `defer` because every primitive
-     measures layout at boot — an SVG path's length is wrong until the web fonts
-     have settled the box around it — and because nothing on the page depends on
-     it having run. See assets/js/motion.js. -->
-<script src="{{base}}assets/js/motion.js" defer></script>
-<!-- Page transitions. First-party, so the policy stays `script-src 'self'`, and
-     `defer` rather than `async` so it runs after parsing. It is not ordered
-     before `pagereveal` and does not need to be — see assets/js/transitions.js. -->
-<script src="{{base}}assets/js/transitions.js" defer></script>{{extra_js}}
-</body>
-</html>
-"""
-
-# Subpages carry the altimeter rail; the homepage carries the full instrument
-# panel, because there the climb *is* the page.
-RAIL = """
-<aside class="rail" aria-hidden="true">
-  <img class="rail__mark" src="{{base}}assets/img/plane-cursor.png" alt="">
-  <div class="rail__tape" data-nosnippet><div class="rail__ticks"></div></div>
-  <div class="rail__read" data-nosnippet><b class="rail__alt">420</b><span class="rail__unit">{{unit}}</span></div>
-  <div class="rail__layer" data-nosnippet>{{layer0}}</div>
-</aside>
-"""
-
-# The home page is a single continuous ascent: valley floor to stratosphere.
-# Everything below the content is one world — sky shader, weather, the range
-# itself, the route line drawn across it — and it is all a function of one
-# number, the altitude. The instruments read that number; they do not compute
-# anything of their own.
-# The HUD chrome was the old homepage's flight instrument. Removed with it.
-
-# ARRIVAL / GROUND CONTROL — the §8 footer.
-#
-# The old footer was a rule followed by four columns of links, which is the one
-# thing §8.1 names as not good enough: it ended the page without concluding it.
-# This one has three movements.
-#
-#   1. Convergence. The page's own Meridian Trace runs out of the content and
-#      meets itself. A system state, then one question.
-#   2. The hero CTA the whole page has been walking towards. Its headline is
-#      archetype-specific — a service page asks a service question, an article
-#      asks an article question — so it reads as this page's conclusion rather
-#      than as the same block stamped 66 times.
-#   3. The information grid, and only then the utility line.
-#
-# The homepage gets the full cinematic version of movement 1; every other route
-# gets a short one, per §8.5.
-FOOTER = """<section class="arrival{{arrival_mod}}" data-converge data-nosnippet>
-  <div class="wrap">
-    <svg class="arrival__trace" data-trace data-trace-stagger="0.5" viewBox="0 0 1200 240" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path d="M0 12 C 300 12, 420 120, 600 120"/>
-      <path d="M1200 12 C 900 12, 780 120, 600 120"/>
-      <path d="M600 120 V 228" class="trace__lit"/>
-      <circle class="trace__node" cx="600" cy="120" r="4"/>
-    </svg>
-    <p class="arrival__state" aria-hidden="true"><span>{{ceiling_label}}</span><span>{{converge_state}}</span></p>
-    <p class="arrival__lede">{{converge_lede}}</p>
-    <h2 class="arrival__h display" data-kinetic data-kinetic-from="104 700 0" data-kinetic-to="88 780 -.015">{{cta_head}}</h2>
-    <p class="arrival__cta converge__cta">
-      <a class="btn" href="{{quote}}" data-magnet><span>{{start}}</span>{{arrow}}</a>
-      <a class="btn btn--ghost" href="{{work}}"><span>{{explore}}</span></a>
-    </p>
-  </div>
-</section>
-<footer class="foot">
-  <div class="wrap" data-nosnippet>
-    <div class="foot__grid">
-      <div>
-        <a class="brand" href="{{home}}" style="margin-bottom:1.4rem" aria-label="{{brand_aria}}"><img src="{{base}}assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
-        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">{{nl_lede}}</p>
-        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
-          <label class="vh" for="nl">{{nl_label}}</label>
-          <input id="nl" type="email" name="email" placeholder="{{nl_placeholder}}" required>
-          <div class="hp" aria-hidden="true">
-            <label for="hp-foot">Company website</label>
-            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
-          </div>
-          <button type="submit">{{nl_button}}</button>
-        </form>
-        <p class="form__note" style="margin-top:.6rem" role="status"></p>
-      </div>
-      <div>
-        <h3>{{f_links}}</h3>
-        <ul>{{f_pages}}
-        </ul>
-      </div>
-      <div>
-        <h3>{{f_services}}</h3>
-        <ul>{{f_svc}}
-        </ul>
-      </div>
-      <div>
-        <h3>{{f_contact}}</h3>
-        <!-- Name, address, phone, in text, on every page.
-             The address is the third of those and it was the missing one: the
-             footer had the mail and the number, and the seat existed only in
-             the JSON-LD and on /impresszum.html. A local result wants the three
-             to agree wherever they appear, and a crawler reads the visible
-             copy as readily as the graph. The wording is the imprint's own
-             line — "9151 Abda, Arany János utca 13." — not a second rendering
-             of it, so there is one string to keep true.
-             `address` rather than a third <li>: this IS the contact address of
-             the nearest article, which is what the element is for, and it
-             carries the microformat class the same way the JSON-LD carries the
-             PostalAddress. -->
-        <ul>
-          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
-          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
-          <li><address class="foot__nap">{{f_office}} 9027 Győr, Gesztenyefa út 4.<br>{{f_seat}} 9151 Abda, Arany János utca 13.</address></li>
-        </ul>
-        <h3 style="margin-top:1.6rem">{{f_social}}</h3>
-        <ul>
-          <li><a href="https://www.linkedin.com/company/stratos-media-agency" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/stratosweb/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=61590329356257" target="_blank" rel="noopener">Facebook</a></li>
-          <li><a href="https://maps.google.com/?cid=2524074190501925711" target="_blank" rel="noopener">{{f_gbp}}</a></li>
-        </ul>
-      </div>
-      <!-- Status. Three statements, every one of them already published
-           elsewhere on this site: the reply expectation is the Contact page's
-           own sentence, the location is the one in the site description, and
-           the languages are the three locales this build emits. Nothing here
-           is an availability claim the site cannot support. -->
-      <div>
-        <h3>{{f_status}}</h3>
-        <ul class="foot__status">
-          <li>{{st_reply}}</li>
-          <li>{{st_where}}</li>
-          <li>{{st_langs}}</li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot__bottom">
-      <span>{{f_rights}}</span>
-      <span class="foot__utility">
-        <a href="{{privacy}}">{{f_privacy}}</a>
-        <a href="{{imprint}}">{{f_imprint}}</a>{{f_consent}}
-        {{f_langs}}
-        <button class="foot__top" type="button" data-to-top>{{to_top}}</button>
-        <img src="{{base}}assets/img/gdpr.png" alt="GDPR Ready">
-      </span>
-    </div>
-  </div>
-</footer>"""
-
-
 def render(tpl, ctx):
     return re.sub(r"\{\{(\w+)\}\}", lambda m: str(ctx[m.group(1)]), tpl)
-
-
-# Which closing question a route asks. §8.5: the same core system, archetype-
-# specific language — so a service page's footer concludes a service argument
-# and an article's concludes the article, instead of 66 routes repeating one
-# sentence. Anything not listed gets the general line.
-ARCHETYPE_CTA = {
-    **{k: "cta_service" for k in SERVICES},
-    "branding": "cta_service",
-    "services": "cta_service",
-    "work": "cta_work",
-    **{k: "cta_work" for k in CASES},
-    "about": "cta_about",
-    "impact": "cta_about",
-    **{k: "cta_article" for k in POSTS},
-    "blog": "cta_article",
-}
-
-# The altitude the convergence reports. It is the page's own ceiling — the same
-# number the altimeter rail has been climbing towards all the way down — so the
-# footer closes the instrument rather than announcing an unrelated figure.
-CEILINGS = {"impact": 30000, "ads": 17000, "enterprise": 9400,
-            "seo": 6200, "branding": 4800, "sme": 1200}
-
-
-def build_footer(lang, key):
-    u = UI[lang]
-    p = u["p85"]
-    pages = "".join(
-        f'\n          <li><a href="{href(lang, k)}">{u["menu"][k]}</a></li>'
-        for k in ("about", "work", "contact", "blog", "quote"))
-    svc = f'\n          <li><a href="{href(lang, "services")}">{u["svc_all"]}</a></li>'
-    svc += "".join(
-        f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
-        for k in SERVICES)
-    # The local landing pages are Hungarian only (HU_ONLY), so is their link.
-    if lang == "hu":
-        svc += f'\n          <li><a href="{href(lang, "seo-web")}">Keresőoptimalizált weboldal</a></li>'
-        svc += f'\n          <li><a href="{href(lang, "local-hub")}">Hol dolgozunk</a></li>'
-
-    ceiling = CEILINGS.get(key, 30000)
-    # Thin space between the thousands, which is how the altimeter reads it.
-    ceiling_label = f"{ceiling:,}".replace(",", " ") + " " + u["unit_short"]
-
-    home = key == "index"
-
-    return render(FOOTER, dict(
-        home=href(lang, "index"),
-        brand_aria=u["brand_aria"], brand_alt=u["brand_alt"],
-        # Root-absolute on the homepage, for the reason root_href gives: one
-        # application, three URLs, and a dev server that serves it from a fourth.
-        base="/" if _ROOT_LINKS else ("" if lang == "hu" else "../"),
-        nl_lede=u["nl_lede"], nl_label=u["nl_label"],
-        nl_placeholder=u["nl_placeholder"], nl_button=u["nl_button"],
-        f_links=u["f_links"], f_pages=pages, f_services=u["services"], f_svc=svc,
-        f_contact=u["f_contact"], f_social=u["f_social"], f_rights=u["f_rights"],
-        f_gbp=u["f_gbp"],
-        privacy=href(lang, "privacy"), f_privacy=u["f_privacy"],
-        imprint=href(lang, "imprint"), f_imprint=u["f_imprint"],
-        # ---- Phase 8.5
-        arrival_mod=" arrival--home" if home else "",
-        ceiling_label=ceiling_label,
-        # The homepage has actually flown the 30 000 m the label reports, so it
-        # says so. Every other route is reporting its own ceiling as a position
-        # on the instrument, which is what "calibration complete" means there.
-        converge_state=p["converge_state_home"] if home else p["converge_state"],
-        converge_lede=p["converge_lede"],
-        cta_head=p[ARCHETYPE_CTA.get(key, "cta_head")] if key in ARCHETYPE_CTA else p["cta_head"],
-        quote=href(lang, "quote"), start=p["start"],
-        work=href(lang, "work"), explore=p["explore"],
-        # No arrow glyph on the homepage — the same rule `build_nav` applies to
-        # the header's own button. `.btn svg` is sized in main.css, which the
-        # homepage does not link: its buttons are the journey's, and an inline
-        # SVG with a viewBox and no dimensions collapsed to 0×0 inside one.
-        # An invisible glyph in the markup is worse than no glyph.
-        arrow="" if home else ARROW,
-        f_status=p["status_group"], st_reply=p["st_reply"],
-        # Hungarian only: the two cities link to their regional pages, which
-        # exist in Hungarian only.
-        st_where=(f'<a href="{href(lang, "local-gyor")}">Győr</a> és '
-                  f'<a href="{href(lang, "local-budapest")}">Budapest</a>'
-                  if lang == "hu" else p["st_where"]),
-        st_langs=p["st_langs"],
-        # The office the Business Profile shows, and the registered seat the
-        # imprint has to state — both real, both said (2026-10-10).
-        f_office={"hu": "Iroda:", "en": "Office:", "de": "Büro:"}[lang],
-        f_seat={"hu": "Székhely:", "en": "Registered office:", "de": "Firmensitz:"}[lang],
-        f_langs=build_langs(lang, key), to_top=p["to_top"],
-        # The consent withdrawal path, on every page. Emitted only when the
-        # build actually requires consent, so a site with measurement off does
-        # not offer to change a setting that does not exist. Ships `hidden` and
-        # is revealed by assets/js/consent.js, so it never appears as a dead
-        # control if scripting is unavailable.
-        f_consent=(
-            f'\n        <button class="foot__consent" type="button" '
-            f'data-consent-settings hidden>{u["js"]["consent_settings"]}</button>'
-            if (analytics_config() or {}).get("requireConsent") else ""
-        ),
-    ))
-
 
 
 # ------------------------------------------------------------------- images
@@ -2339,6 +1862,8 @@ def expand_logosets(html, lang, base):
     def render(m):
         kind, keylist = m.group(1), m.group(2)
         keys = [k.strip() for k in keylist.split(",")] if keylist else None
+        if keys == ["all"]:
+            keys = list(ALL_MARKS)
         if keys:
             unknown = [k for k in keys if k not in ORGS and k not in CLIENT_MARKS]
             if unknown:
@@ -2522,10 +2047,13 @@ def load_dict(lang):
 #
 # WHICH ROUTES ARE ON IT
 # ----------------------
-# One, the homepage. It is the proof of concept the rest of the site is
-# reviewed against, and the other routes keep SHELL — and the flight deck, the
-# altimeter rail and main.css — until that direction is approved. Moving a
-# route is adding its key here and, if it needs one, a stylesheet below.
+# All of them, and the 404 pages. The homepage moved first (2026-10-16) as the
+# proof of concept; once it was approved every other route followed, and the
+# original shell — the dark flight deck, the full-screen menu, the altimeter
+# rail, the Arrival footer and main.css/chrome.css/motion.css under them — was
+# removed. The routes keep their fragments word for word: site.css restyles the
+# page vocabulary they are written in, which is what keeps the dictionaries,
+# the headings and the internal links exactly as they were.
 #
 # WHAT THE HOMEPAGE USED TO BE
 # ----------------------------
@@ -2540,14 +2068,9 @@ def load_dict(lang):
 # EVERY LINK IS ROOT-ABSOLUTE
 # ---------------------------
 # The homepage is served as `/`, `/en/` and `/de/`, and a host is free to answer
-# `/en` without the slash. A relative `about.html` resolves to `/about.html`
-# there. So the v2 chrome is rendered inside `root_links()` and the body is run
-# through `_root_absolute()` — the same rule the 404 pages follow, for the same
-# reason.
-SHELL_V2_ROUTES = {"index"}
-
-# The page-level stylesheet for a route on the new shell, if it has one.
-V2_CSS = {"index": "home"}
+# `/en` without the slash; a 404 answers at any depth. A relative `about.html`
+# resolves wrongly from either. So the chrome is rendered inside `root_links()`
+# and the body is run through `_root_absolute()`, on every route alike.
 
 V2_UI = {
     "hu": {
@@ -2559,6 +2082,9 @@ V2_UI = {
         "tagline": "Digitális élmények és egyedi rendszerek — Győrből, magyarul, "
                    "angolul és németül.",
         "pages": "Oldalak",
+        "close_head": "Ha nagy a tét, beszéljünk.",
+        "close_lede": "Egy rövid beszélgetés után tudni fogod, mi segítene — és mi nem.",
+        "close_work": "Munkáink",
     },
     "en": {
         "nav": (("work", "Work"), ("services", "Capabilities"),
@@ -2569,6 +2095,9 @@ V2_UI = {
         "tagline": "Digital experiences and custom systems — from Győr, in "
                    "Hungarian, English and German.",
         "pages": "Pages",
+        "close_head": "High stakes? Let’s talk.",
+        "close_lede": "After one short conversation you will know what would help — and what would not.",
+        "close_work": "Our work",
     },
     "de": {
         "nav": (("work", "Projekte"), ("services", "Leistungen"),
@@ -2579,6 +2108,9 @@ V2_UI = {
         "tagline": "Digitale Erlebnisse und individuelle Systeme — aus Győr, auf "
                    "Ungarisch, Englisch und Deutsch.",
         "pages": "Seiten",
+        "close_head": "Viel auf dem Spiel? Dann sprechen wir.",
+        "close_lede": "Nach einem kurzen Gespräch wissen Sie, was helfen würde — und was nicht.",
+        "close_work": "Unsere Projekte",
     },
 }
 
@@ -2618,6 +2150,7 @@ SHELL_V2 = """<!DOCTYPE html>
 <main id="main" tabindex="-1">
 {{body}}
 </main>
+{{close}}
 {{footer}}
 </body>
 </html>
@@ -2789,7 +2322,7 @@ def build_footer_v2(lang, key):
         privacy=href(lang, "privacy"), f_privacy=u["f_privacy"],
         imprint=href(lang, "imprint"), f_imprint=u["f_imprint"],
         # Ships `hidden`; assets/js/consent.js reveals it, so it is never a dead
-        # control when scripting is unavailable. Same rule as SHELL's footer.
+        # control when scripting is unavailable.
         f_consent=(
             f'<button class="ftr__consent" type="button" data-consent-settings hidden>'
             f'{u["js"]["consent_settings"]}</button>'
@@ -2799,32 +2332,103 @@ def build_footer_v2(lang, key):
     ))
 
 
+# The closing scene every page ends on, unless the page already ends on one of
+# its own. It replaces the old Arrival band: one question in the page's own
+# archetype, one action, the way to the work — on the graphite field that is
+# the page's one dark moment. Outside <main>, like the Arrival was, and kept out
+# of search snippets: it is the site's sentence, not the page's.
+CLOSE_V2 = """<section class="pclose" aria-labelledby="pclose-h" data-nosnippet>
+  <div class="pclose__frame">
+    <div class="pclose__surface on-dark light-field">
+      <h2 class="pclose__h t-statement" id="pclose-h">{{head}}</h2>
+      <div class="pclose__foot">
+        <p class="pclose__lede t-lead">{{lede}}</p>
+        <p class="pclose__act"><a class="btn btn--light" href="{{quote}}" data-cta-placement="closing">{{start}}{{arrow}}</a> <a class="link" href="{{second}}">{{second_label}}</a></p>
+      </div>
+    </div>
+  </div>
+</section>"""
+
+# Which closing question a route asks: a service page asks a service question,
+# an article an article question, so the same scene reads as this page's
+# conclusion rather than as one block stamped on sixty routes.
+CLOSE_ARCHETYPE = {
+    **{k: "cta_service" for k in SERVICES},
+    "branding": "cta_service", "services": "cta_service", "seo-web": "cta_service",
+    **{k: "cta_service" for k in HU_ONLY},
+    "work": "cta_work", **{k: "cta_work" for k in CASES},
+    "about": "cta_about", "impact": "cta_about",
+    **{k: "cta_article" for k in POSTS}, "blog": "cta_article",
+}
+# Routes that end without it: the questionnaire is the destination, the contact
+# page is a form, legal text is not a sales page.
+NO_CLOSE = {"index", "quote", "contact", "privacy", "imprint", "404"}
+_SECTIONS_RE = re.compile(r"<section\b[^>]*>.*?</section>", re.S)
+
+
+def ends_on_launch(body):
+    """Does the fragment's last section carry its own closing (dark) launch?"""
+    sections = _SECTIONS_RE.findall(body)
+    return bool(sections) and bool(
+        re.search(r'class="launch(?![^"]*launch--quiet)[^"]*"', sections[-1]))
+
+
+def build_close_v2(lang, key):
+    """The closing scene for one route, or "". Call inside `root_links()`."""
+    u, v = UI[lang], V2_UI[lang]
+    work_side = key == "work" or key in CASES
+    head = u["p85"][CLOSE_ARCHETYPE[key]] if key in CLOSE_ARCHETYPE else v["close_head"]
+    return render(CLOSE_V2, dict(
+        head=head, lede=v["close_lede"],
+        quote=href(lang, "quote"), start=u["p85"]["start"], arrow=ARROW_V2,
+        second=href(lang, "services" if work_side else "work"),
+        second_label=u["menu"]["services"] if work_side else v["close_work"],
+    ))
+
+
 _ASSET_REL_RE = re.compile(r'(\s(?:href|src)=")assets/')
 
 
-def render_v2(lang, key, title, desc, meta, body, table, js):
-    """One route on the new shell: the whole document, root-absolute."""
+def render_v2(lang, key, title, desc, meta, body, table, js, *,
+              footer=True, head=None, chrome_key=None):
+    """One route on the shell: the whole document, root-absolute.
+
+    `head` replaces the route's robots/alternates/social/JSON-LD (the 404 pages
+    carry none of the last three); `chrome_key` is the route the header and
+    footer are drawn for when the document is not a route of its own.
+    """
     # Assets first, before relink() can give them a `../` they would then have
     # to lose again; srcset is stamped from these paths later.
     body = _ASSET_REL_RE.sub(r"\1/assets/", body)
+    chrome = chrome_key or key
     with root_links():
-        header = build_header_v2(lang, key)
-        footer = build_footer_v2(lang, key)
-    css = V2_CSS.get(key)
+        header = build_header_v2(lang, chrome)
+        foot = build_footer_v2(lang, chrome) if footer else ""
+        close = ("" if key in NO_CLOSE or not footer or ends_on_launch(body)
+                 else build_close_v2(lang, key))
+    if head is None:
+        head = dict(
+            robots='\n<meta name="robots" content="max-image-preview:large">'
+                   if locale_indexable(key, lang)
+                   else '\n<meta name="robots" content="noindex, follow">',
+            alternates=build_alternates(key, lang),
+            social=build_social(lang, key, title, desc, meta, body, table),
+            jsonld=build_structured_data(lang, key, title, desc, meta, body),
+        )
+    # The homepage is its own composition; every other document speaks the
+    # shared page vocabulary in site.css, plus the stylesheet its front matter
+    # names (`css: build` -> page-build.css).
+    sheets = ["home"] if key == "index" else ["site"]
+    extra_css = "".join(f'\n<link rel="stylesheet" href="/assets/css/{n}.css">' for n in sheets)
+    extra_css += page_css(meta, "/")
     html = render(SHELL_V2, dict(
-        lang=lang, title=title, desc=desc,
-        robots='\n<meta name="robots" content="max-image-preview:large">'
-               if locale_indexable(key, lang)
-               else '\n<meta name="robots" content="noindex, follow">',
-        alternates=build_alternates(key, lang),
-        social=build_social(lang, key, title, desc, meta, body, table),
-        jsonld=build_structured_data(lang, key, title, desc, meta, body),
+        lang=lang, title=title, desc=desc, **head,
         fontpreload=build_font_preload(lang, "/"),
-        extra_css=(f'\n<link rel="stylesheet" href="/assets/css/{css}.css">' if css else ""),
+        extra_css=extra_css,
         i18n=json.dumps(js, ensure_ascii=False),
         analytics=analytics_head("/"),
         pagekey=key, skip=UI[lang]["skip"],
-        header=header, body=body, footer=footer,
+        header=header, body=body, close=close, footer=foot,
     ))
     # The fragment links Hungarian filenames; relink() localises them, and
     # _root_absolute() resolves them from the route's own directory.
@@ -2931,40 +2535,21 @@ def build_not_found(lang):
     """The 404 document for one locale."""
     u = UI[lang]
     t = NOT_FOUND[lang]
-    base = "" if lang == "hu" else "../"
-
     links = "".join(
         f'\n          <li><a href="{href(lang, key)}">{label}</a></li>'
         for key, label in t["links"])
-
-    js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
-    chrome = render(RAIL, dict(
-        base=base, unit=u["unit"], unit_short=u["unit_short"],
-        layer0=u["layers"][0], boot=u["boot"], skip_top=u["skip_top"],
-        rail_aria=u["rail_aria"], brand_alt=u["brand_alt"],
-        **{f"hud{i}": v for i, v in enumerate(u["hud"])}))
-
-    return _root_absolute(render(SHELL, dict(
-        lang=lang, title=t["title"], desc=t["lede"], base=base,
-        brand_alt=u["brand_alt"],
-        # No alternates, no canonical, no Open Graph, no JSON-LD. See above.
-        alternates="", social="", jsonld="",
-        robots='\n<meta name="robots" content="noindex, follow">',
-        fontpreload=build_font_preload(lang, base),
-        i18n=json.dumps(js, ensure_ascii=False),
-        analytics=analytics_head(base),
-        # Not a route key, and deliberately not one of the real ones: an event
-        # reported as `contact` from a 404 is worse than one reported as `404`.
-        pagekey="404", ceiling="0",
-        body_class="", instruments=chrome, extra_css="", extra_js="",
-        skip=u["skip"], unit=u["unit"], layer0=u["layers"][0],
-        burger_aria=u["burger_aria"],
-        deck=build_deck(lang, "index", base, href(lang, "index")),
-        body=render(NOT_FOUND_BODY, dict(
-            eyebrow=t["eyebrow"], head=t["head"], lede=t["lede"],
-            nav_aria=u["nav_aria"], links=links)),
-        footer=build_footer(lang, "index"),
-    )), lang)
+    body = render(NOT_FOUND_BODY, dict(
+        eyebrow=t["eyebrow"], head=t["head"], lede=t["lede"],
+        nav_aria=u["nav_aria"], links=links))
+    # Not a route key, and deliberately not one of the real ones: an event
+    # reported as `contact` from a 404 is worse than one reported as `404`.
+    # No alternates, no canonical, no Open Graph, no JSON-LD. See above.
+    return render_v2(
+        lang, "404", t["title"], t["lede"], {}, body, None,
+        dict(u["js"], locale=u["locale"]),
+        head=dict(robots='\n<meta name="robots" content="noindex, follow">',
+                  alternates="", social="", jsonld=""),
+        chrome_key="index")
 
 
 def write_not_found():
@@ -2991,7 +2576,7 @@ def prune_renamed(outdir, lang):
     routes were in that state after the SEO ownership pass.
 
     The test is the page's own `data-page-key`, not the filename: a file is
-    stale only if THIS generator wrote it (the attribute is in SHELL and
+    stale only if THIS generator wrote it (the attribute is in SHELL_V2 and
     nothing else emits it) and the route it names is now served from a
     different filename. That is why a hand-written page, an asset, or one of
     the `<name> 2.html` copies iCloud leaves behind is never a candidate —
@@ -3077,7 +2662,7 @@ def main():
         # pruned by the same key test rather than being exempt from it.
         prune_renamed(outdir, lang)
         u = UI[lang]
-        js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
+        js = dict(u["js"], locale=u["locale"])
 
         for stem, (meta, body) in frags.items():
             key = BY_HU[stem + ".html"]
@@ -3089,8 +2674,7 @@ def main():
             # not a sentence, and what it produces is organisation names and
             # asset paths — feed either to the translator and they arrive in
             # missing-en.json as strings nobody can translate.
-            body = expand_logosets(body, lang, "/" if key in SHELL_V2_ROUTES
-                                   else "" if lang == "hu" else "../")
+            body = expand_logosets(body, lang, "/")
             body = gate_case_links(body)
             if table:
                 title = table.get(tr.normalise(title), title)
@@ -3103,57 +2687,10 @@ def main():
                 body = body.replace("<!--legal-note-->",
                                     note % cross(lang, "hu", key) if note else "")
 
-            if key in SHELL_V2_ROUTES:
-                html = render_v2(lang, key, title, desc, meta, body, table, js)
-                html = stamp_srcset(stamp_images(html))
-                (outdir / SLUGS[key][lang]).write_text(html, encoding="utf-8")
-                continue
-
             show_footer = meta.get("footer", "yes").lower() not in ("no", "false", "0")
-            base = "" if lang == "hu" else "../"
-            # The `mode: flight` branch and its HUD chrome went with the old
-            # homepage — see the migration note in README.md. Every remaining
-            # page carries the altimeter rail.
-            chrome = render(RAIL, dict(
-                base=base, unit=u["unit"], unit_short=u["unit_short"],
-                layer0=u["layers"][0], boot=u["boot"], skip_top=u["skip_top"],
-                rail_aria=u["rail_aria"], brand_alt=u["brand_alt"],
-                **{f"hud{i}": v for i, v in enumerate(u["hud"])}))
-            html = render(SHELL, dict(
-                lang=lang, title=title, desc=desc,
-                base=base, brand_alt=u["brand_alt"],
-                alternates=build_alternates(key, lang),
-                social=build_social(lang, key, title, desc, meta, body, table),
-                # After translation and after the legal note, so the breadcrumb
-                # it reads is the one this page will actually render.
-                jsonld=build_structured_data(lang, key, title, desc, meta, body),
-                fontpreload=build_font_preload(lang, base),
-                i18n=json.dumps(js, ensure_ascii=False),
-                analytics=analytics_head(base),
-                pagekey=key,
-                ceiling=meta.get("ceiling", "20000"),
-                # A `summary` or `draft` case study is reachable and its links
-                # are worth following; it is simply not a page to rank as a case
-                # study. `follow` keeps the outbound equity, `noindex` keeps the
-                # claim honest.
-                # max-image-preview:large lets Search and Discover show a large
-                # preview of the page's images; without it Google may only use
-                # a thumbnail.
-                robots='\n<meta name="robots" content="max-image-preview:large">'
-                       if locale_indexable(key, lang)
-                       else '\n<meta name="robots" content="noindex, follow">',
-                body_class="",
-                instruments=chrome,
-                extra_css=page_css(meta, base),
-                extra_js="",
-                skip=u["skip"], unit=u["unit"], layer0=u["layers"][0],
-                burger_aria=u["burger_aria"],
-                # ---- Phase 8.5 flight deck, shared with the React homepage
-                deck=build_deck(lang, key, base, href(lang, "index")),
-                body=body,
-                footer=build_footer(lang, key) if show_footer else "",
-            ))
-            html, script = externalise_js(relink(html, lang, key), key, lang, base)
+            html = render_v2(lang, key, title, desc, meta, body, table, js,
+                             footer=show_footer)
+            html, script = externalise_js(html, key, lang, "/")
             html = stamp_srcset(stamp_images(html))
             if script:
                 scripts.append(script)

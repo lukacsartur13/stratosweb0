@@ -240,20 +240,27 @@ test.describe('it fits', () => {
   }
 });
 
-test.describe('the original deck, where it still lives', () => {
-  test('a subpage menu opens and Escape returns focus to its trigger', async ({ page }) => {
+test.describe('one shell on every page', () => {
+  // Since the whole site moved to the v2 shell there is one header and one
+  // footer. The questions the old deck tests asked of the subpages are asked of
+  // this one, on a subpage.
+  test('a subpage carries the same header, marking where you are', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/munkaink.html');
-    const burger = page.locator('.burger');
-    await burger.click();
-    await expect(page.locator('#menu')).toBeVisible();
-    await expect(burger).toHaveAttribute('aria-expanded', 'true');
-    await page.keyboard.press('Escape');
-    await expect(burger).toHaveAttribute('aria-expanded', 'false');
-    await expect(burger).toBeFocused();
+    await expect(page.locator('.hdr .brand')).toHaveAttribute('href', '/');
+    await expect(page.locator('.hdr__nav a[aria-current="page"]')).toHaveText('Munkáink');
+    await expect(page.locator('footer.ftr form[data-lead="newsletter"]')).toHaveCount(1);
+    await expect(page.locator('.nav, #menu, .rail, .arrival, .plane-cursor, canvas')).toHaveCount(0);
   });
 
-  test('every subpage still leads home to /', async ({ page }) => {
-    await page.goto('/munkaink.html');
-    await expect(page.locator('.nav .brand')).toHaveAttribute('href', '/');
+  test('the sheet opens on a subpage and Escape returns focus to its trigger', async ({ page }) => {
+    await page.setViewportSize(PHONE);
+    await page.goto('/kkv.html');
+    const trigger = page.locator('.hdr__menu');
+    await trigger.click();
+    await expect(page.locator('#hdr-sheet')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await expect(trigger).toBeFocused();
   });
 });

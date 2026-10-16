@@ -315,8 +315,9 @@
 }
 
 /* --------------------------------------------------------------- 07 · marks */
-/* Proof that is established rather than advertised: one static row, in the
-   ink of the page, at the volume of a footnote. */
+/* Proof that is established rather than advertised: every mark, in static rows
+   of the page's ink, at the volume of a footnote. Twelve marks fill rows of six,
+   four or three exactly. */
 .marks { padding: var(--sp-7) 0 var(--sp-8); }
 .marks__k { margin-bottom: var(--sp-6); }
 .logoset--marks {
@@ -348,6 +349,9 @@
    own colour. Touch screens keep the quiet row — there is no hover to wait for. */
 @media (hover: hover) {
   .logoset--marks li:hover img { filter: none; opacity: 1; }
+}
+@media (max-width: 1100px) {
+  .logoset--marks { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
   .logoset--marks { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--sp-5); }

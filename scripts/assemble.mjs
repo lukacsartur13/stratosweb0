@@ -138,17 +138,15 @@ function htmlTwins() {
 // --------------------------------------------------
 // These files are unusually comment-dense — deliberately, and that is not going
 // to change, because the comments are where the reasons live. The cost of that
-// on the wire is not small and it is entirely recoverable:
+// on the wire is not small and it is entirely recoverable (measured before the
+// October 2026 redesign, on files that have since been replaced):
 //
 //     assets/css/chrome.css        36,638 -> 16,085 bytes   (9,948 -> 3,610 br)
 //     assets/css/type.css          17,282 ->  7,113         (4,482 -> 1,297 br)
-//     assets/css/transitions.css   13,931 ->  3,980         (3,720 ->   821 br)
-//     assets/js/transitions.js     38,516 ->  5,360        (11,077 -> 1,925 br)
 //
-// The stylesheets are RENDER-BLOCKING: three in <head> on every route. Together
-// they were 22 KB of compressed bytes standing between a visitor on a phone and
-// the first paint, and roughly a third of that was prose addressed to whoever
-// next opens the file.
+// The stylesheets are RENDER-BLOCKING — type.css, system.css and site.css in
+// <head> on every route — so every byte of prose they carry stands between a
+// visitor on a phone and the first paint.
 //
 // `inlineHomeCss()` runs straight after this, so the bytes it puts inside the
 // three homepages are the minified ones.

@@ -292,6 +292,28 @@ button { font: inherit; color: inherit; }
 .link:hover { text-decoration-color: currentColor; }
 .on-dark .link { color: var(--c-on-dark); }
 
+/* The secondary button. A hairline instead of a fill — used where two actions
+   must weigh exactly the same (the consent banner) or one must recede. */
+.btn--ghost {
+  background: transparent;
+  color: var(--c-ink);
+  box-shadow: inset 0 0 0 1px var(--c-line-strong);
+}
+.btn--ghost:hover { background: rgba(20, 20, 19, 0.05); }
+.btn--ghost:active { background: rgba(20, 20, 19, 0.09); }
+
+.tlink {
+  font: inherit;
+  font-weight: var(--w-ui);
+  color: var(--c-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--c-line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color var(--dur-ui) var(--ease-std);
+}
+.tlink:hover { text-decoration-color: currentColor; }
+
 /* A tag is a pill only because it is semantically a tag. */
 .tag {
   display: inline-flex;
@@ -661,6 +683,50 @@ html.is-locked, html.is-locked body { overflow: hidden; }
 @media (max-width: 480px) {
   .ftr__end { margin-left: 0; width: 100%; justify-content: space-between; }
 }
+
+/* --------------------------------------------------------------- consent */
+/* The measurement consent banner, built by assets/js/consent.js. Docked, not
+   modal: it covers nothing, traps nothing, and the page reads the same whether
+   or not it is answered. The two answers are the same button — no colour, size
+   or weight advantage for either, which is the whole point of it. */
+.consent {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 70;
+  padding-inline: max(8px, calc(var(--gutter) - 18px));
+}
+.consent[hidden] { display: none; }
+.consent__wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4) var(--sp-6);
+  max-width: 980px;
+  margin-inline: auto;
+  padding: var(--sp-5) var(--sp-6);
+  border-radius: var(--r-md);
+  background: rgba(250, 250, 248, 0.94);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: inset 0 0 0 1px var(--c-line), 0 18px 48px -24px rgba(20, 20, 19, 0.35);
+}
+.consent__text { flex: 1 1 32ch; min-width: 0; }
+.consent__title { margin-bottom: var(--sp-1); font-size: var(--t-small); font-weight: 600; color: var(--c-ink); }
+.consent__body { max-width: 72ch; font-size: var(--t-small); line-height: 1.55; color: var(--c-ink-2); }
+.consent__body .tlink { margin-left: 0.25em; }
+.consent__actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+.consent__btn { height: 44px; white-space: nowrap; }
+@media (max-width: 620px) {
+  .consent__wrap { padding: var(--sp-4); }
+  .consent__actions { width: 100%; }
+  /* Half the row each, whatever the answers say; a long answer wraps rather
+     than overflowing its own button. */
+  .consent__btn { flex: 1 1 0; justify-content: center; white-space: normal; text-wrap: balance; height: auto; min-height: 44px; padding-block: 0.5rem; }
+}
+.ftr__consent[hidden] { display: none; }
 
 /* --------------------------------------------------------- reduced motion */
 /* Not a degraded mode: the static state IS the design. Transitions go, the

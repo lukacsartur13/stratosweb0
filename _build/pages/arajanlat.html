@@ -1,6 +1,5 @@
 title: Weboldal igényfelmérő kérdőív | Stratos
 desc: Töltsd ki a kérdőívet pár perc alatt, és a válaszaid alapján személyre szabott árajánlattal keresünk.
-ceiling: 30000
 footer: no
 css: quiz
 ---
@@ -184,9 +183,6 @@ const nextVisible = (from,dir) => {
   return dir>0 ? vis.find(i=>i>from) : [...vis].reverse().find(i=>i<from);
 };
 
-// a magasságmérő a kérdőív haladását követi, nem a görgetést
-const setAltitude = p => window.Stratos && window.Stratos.setProgress(p);
-
 function render(){
   window.scrollTo(0,0);
   if(step === -1) return renderIntro();
@@ -195,7 +191,6 @@ function render(){
   const vis = visibleIdx();
   const pos = vis.indexOf(step);
   bar.style.width = (pos/vis.length*100)+'%';
-  setAltitude(pos/vis.length);
   drawPath(pos, vis.length);
 
   let f = '';
@@ -319,7 +314,6 @@ function next(){
 function renderIntro(){
   bar.style.width='0';
   if(pathTotal>0) drawPath(-1, pathTotal);
-  setAltitude(0);
   app.innerHTML = `<div class="quiz__step quiz__intro">
     <div class="quiz__num">Stratos · Igényfelmérő</div>
     <h1>Weboldal<br>igényfelmérő<br>kérdőív</h1>
@@ -434,7 +428,6 @@ async function renderDone(){
 
   bar.style.width='100%';
   if(pathTotal>0) drawPath(pathTotal, pathTotal);
-  setAltitude(1);
   finish('submitting');
 
   const fields = collectFields();

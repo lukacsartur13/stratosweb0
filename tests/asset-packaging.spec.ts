@@ -85,10 +85,15 @@ test.describe('asset packaging', () => {
       const html = readFileSync(join(ROOT, page), 'utf8');
       // src="…" and href="…" pointing anywhere inside assets/, with any
       // ?v= fingerprint or #fragment stripped. Relative "../assets/…" from the
-      // language trees resolves against the page's own directory.
-      for (const [, raw] of html.matchAll(/(?:src|href)="((?:\.\.\/)*assets\/[^"?#]+)/g)) {
+      // language trees resolves against the page's own directory; the
+      // root-absolute "/assets/…" every page has used since 2026-10-16
+      // resolves against the repository root.
+      const resolveRef = (raw: string) => (raw.startsWith('/')
+        ? raw.slice(1)
+        : normalize(join(dirname(page), raw)).replace(/\\/g, '/'));
+      for (const [, raw] of html.matchAll(/(?:src|href)="((?:\.\.\/)*\/?assets\/[^"?#]+)/g)) {
         references += 1;
-        const rel = normalize(join(dirname(page), raw)).replace(/\\/g, '/');
+        const rel = resolveRef(raw);
         if (!tracked.has(rel)) missing.push(`${rel}  <- ${page}`);
       }
       // srcset candidates too: the responsive variants under assets/img/resp
@@ -97,9 +102,9 @@ test.describe('asset packaging', () => {
       for (const [, set] of html.matchAll(/srcset="([^"]+)"/g)) {
         for (const cand of set.split(',')) {
           const raw = cand.trim().split(/\s+/)[0];
-          if (!/^(?:\.\.\/)*assets\//.test(raw)) continue;
+          if (!/^(?:\.\.\/)*\/?assets\//.test(raw)) continue;
           references += 1;
-          const rel = normalize(join(dirname(page), raw)).replace(/\\/g, '/');
+          const rel = resolveRef(raw);
           if (!tracked.has(rel)) missing.push(`${rel}  <- ${page} (srcset)`);
         }
       }
