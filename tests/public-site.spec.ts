@@ -112,6 +112,29 @@ test.describe('homepage', () => {
     await expect(page.locator('.gdf [data-mode-panel="0"]')).toHaveAttribute('aria-hidden', 'true');
   });
 
+  test('the GoDataFusion screen rests on the opening screen; a mode shows while the pointer is on it', async ({ page }) => {
+    // Owner, 2026-10-16: at rest the case study's opening screen; resting on
+    // a mode shows that mode's screen; leaving the scene goes back.
+    await page.goto('/index.html');
+    const rest = page.locator('.gdf [data-mode-panel="rest"]');
+    await expect(rest).toHaveClass(/is-active/);
+    await expect(rest).toHaveAttribute('src', /case-godatafusion-hero/);
+    await expect(page.locator('.gdf [data-mode][aria-pressed="true"]')).toHaveCount(0);
+    if (!(await page.evaluate(() => matchMedia('(hover: hover) and (pointer: fine)').matches))) return;
+
+    const measure = page.locator('.gdf [data-mode="1"]');
+    await measure.scrollIntoViewIfNeeded();
+    await measure.hover();
+    await expect(page.locator('.gdf [data-mode-panel="1"]')).toHaveClass(/is-active/);
+    await expect(rest).toHaveAttribute('aria-hidden', 'true');
+    // Onto the screen itself: the preview holds, so it can be looked at.
+    await page.locator('.gdf__surface').hover();
+    await expect(page.locator('.gdf [data-mode-panel="1"]')).toHaveClass(/is-active/);
+    // Out of the scene: back to rest.
+    await page.locator('.caps').hover();
+    await expect(rest).toHaveClass(/is-active/);
+  });
+
   for (const [locale, path, quote, work] of [
     ['hu', '/index.html', '/arajanlat.html', '/munkaink.html'],
     ['en', '/en/index.html', '/en/quote.html', '/en/work.html'],

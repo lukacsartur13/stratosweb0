@@ -18,7 +18,7 @@
    The static page is the design. Without this file — blocked, failed, or a
    reader who asked for reduced motion — every element is in its final, lit,
    visible state, the header links are all reachable through the sheet's
-   `hidden` fallback below, and the first panel of every switcher is showing.
+   `hidden` fallback below, and every switcher shows its resting panel.
    ========================================================================== */
 (function () {
   'use strict';
@@ -199,17 +199,28 @@
   window.addEventListener('resize', refit, { passive: true });
 
   /* ------------------------------------------------- one active surface */
+  /* A list of mode buttons and the panels they show. A group may have a
+     resting panel (`data-mode-panel="rest"`): what it shows when nothing is
+     chosen, and what it returns to. Resting the mouse on a mode previews it,
+     anywhere inside the group the preview holds — so the eye can move from
+     the list to the screen — and leaving the group goes back to what is
+     chosen. A click or tap chooses (again: back to rest); focus previews, as
+     hover does, for the keyboard. `aria-pressed` is the choice, the lit dot
+     is what is showing. */
   var groups = doc.querySelectorAll('[data-modes]');
   for (var g = 0; g < groups.length; g++) (function (group) {
     var buttons = group.querySelectorAll('[data-mode]');
     var panels = group.querySelectorAll('[data-mode-panel]');
-    var hoverTimer = 0;
+    var rest = group.querySelector('[data-mode-panel="rest"]') ? 'rest' : null;
+    var hoverTimer = 0, backTimer = 0;
+    var active = group.querySelector('[data-mode].is-active');
+    var chosen = active ? active.getAttribute('data-mode') : (rest || buttons[0].getAttribute('data-mode'));
 
     var show = function (index) {
       for (var i = 0; i < buttons.length; i++) {
-        var on = buttons[i].getAttribute('data-mode') === index;
-        buttons[i].classList.toggle('is-active', on);
-        buttons[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+        var mode = buttons[i].getAttribute('data-mode');
+        buttons[i].classList.toggle('is-active', mode === index);
+        buttons[i].setAttribute('aria-pressed', mode === chosen ? 'true' : 'false');
       }
       for (var j = 0; j < panels.length; j++) {
         var visible = panels[j].getAttribute('data-mode-panel') === index;
@@ -220,21 +231,39 @@
         else panels[j].setAttribute('aria-hidden', 'true');
       }
     };
+    var back = function (delay) {
+      window.clearTimeout(backTimer);
+      backTimer = window.setTimeout(function () { show(chosen); }, delay);
+    };
 
     for (var b = 0; b < buttons.length; b++) (function (btn) {
-      btn.addEventListener('click', function () { show(btn.getAttribute('data-mode')); });
-      btn.addEventListener('focus', function () { show(btn.getAttribute('data-mode')); });
-      // A fine pointer may preview by resting on a mode. The short delay is
-      // intent, so sweeping across the list does not strobe the screen.
+      var mode = btn.getAttribute('data-mode');
+      btn.addEventListener('click', function () {
+        window.clearTimeout(hoverTimer);
+        chosen = rest && chosen === mode ? rest : mode;
+        show(chosen);
+      });
+      btn.addEventListener('focus', function () { window.clearTimeout(backTimer); show(mode); });
+      btn.addEventListener('blur', function () { back(160); });
+      // The short delay is intent, so sweeping across the list does not
+      // strobe the screen.
       btn.addEventListener('pointerenter', function (e) {
         if (e.pointerType !== 'mouse') return;
         window.clearTimeout(hoverTimer);
-        hoverTimer = window.setTimeout(function () { show(btn.getAttribute('data-mode')); }, 140);
+        window.clearTimeout(backTimer);
+        hoverTimer = window.setTimeout(function () { show(mode); }, 140);
       });
       btn.addEventListener('pointerleave', function () { window.clearTimeout(hoverTimer); });
     })(buttons[b]);
 
-    show((group.querySelector('[data-mode].is-active') || buttons[0]).getAttribute('data-mode'));
+    group.addEventListener('pointerenter', function () { window.clearTimeout(backTimer); });
+    group.addEventListener('pointerleave', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      window.clearTimeout(hoverTimer);
+      back(220);
+    });
+
+    show(chosen);
   })(groups[g]);
 
   /* ------------------------------------------------------------ the plane */
