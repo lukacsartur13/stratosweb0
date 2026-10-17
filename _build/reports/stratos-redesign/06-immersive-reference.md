@@ -103,6 +103,38 @@ Two quiet moves remain, both CSS:
 
 Reduced motion: the haze is off; without script the screen is simply there.
 
+### Homepage: the cloud deck, and the plane's strip through it (2026-10-17)
+
+The owner's sequence: a cloud texture in the page's colour, connected clouds; stronger,
+with contour, colours may move minimally; a little blue; a reference image of a packed
+cumulus carpet; and the plane should reveal the texture in thick strips.
+
+- **The deck** — `assets/img/home-clouds.webp`, a seamless 1600 px tile (37 kB) rendered
+  by `scripts/home-clouds.py`: a height field of spheres on spheres (large puffs, medium
+  and small ones grown out of their surface), every sphere wrapping at the tile's edge,
+  lit from the upper left with a soft half-Lambert term, crevices falling into a breath
+  of blue through two scales of occlusion. It is the body background of the homepage,
+  scrolling with the page; 1000 px on phones.
+- **Legibility** — measured on the tile's darkest crevice: ink-2 5.49 : 1; the recessive
+  tone is one step darker on this page (#83827C, was #8A8983) so it holds 3.02 : 1 there
+  and 3.5 : 1 on open paper. The ascent gradient is gone; the clouds are the atmosphere.
+- **The strip** — for a mouse (not touch, not reduced motion), the plane leaves a thick
+  band behind it, narrowing to nothing over 1.5 s, in which the deck shows at full
+  strength (`home-clouds-trail.webp`, white tops, sky-blue crevices). One 2D canvas
+  behind the content, so panels and text stay on top; the band lives in page
+  coordinates, so it stays on the clouds while the page scrolls. It is one opaque shape
+  drawn at a fifth of the resolution and scaled up (the soft edge), filled with the
+  strong tile only inside its bounds. Nothing — canvas or its 93 kB texture — exists
+  until the mouse first moves; nothing runs once the band has gone.
+- **Cost** — in a GPU-backed Chromium (Apple M4), a 240-move sweep: median frame
+  16.7 ms, p95 17.4 ms, worst 18 ms, no long tasks. (Headless software rendering
+  overstates canvas work many times over; measured there it is heavy, which is why the
+  numbers above are from a real GPU.) Homepage cold load, desktop: 474 KB raw, 20
+  requests, LCP 80 ms, CLS 0; phone LCP 592 ms.
+- **Tests** — `homepage-shell.spec.ts` asserts no canvas until a mouse moves, a strip
+  behind the content that paints and then clears, and none on a subpage; the static-
+  document test keeps "no canvas, no WebGL" for a visit that never moves a mouse.
+
 ## 5. Measured
 
 | Homepage, cold, local | Homepage commit | With horizons | Final |

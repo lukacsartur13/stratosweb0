@@ -306,4 +306,49 @@ test.describe('the cursor', () => {
     await expect(page.locator('.cursor-plane')).toHaveClass(/is-off/);
     expect(await field.evaluate((el) => getComputedStyle(el).cursor), 'fields keep the caret').toBe('text');
   });
+
+  test('on the homepage the plane draws a strip through the clouds, behind the content', async ({ page }) => {
+    // Owner, 2026-10-17: the plane reveals the cloud texture in thick strips.
+    await page.goto('/');
+    const env = await page.evaluate(() => ({
+      fine: matchMedia('(hover: hover) and (pointer: fine)').matches,
+      reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    }));
+    const trail = page.locator('canvas.cloud-trail');
+    await page.waitForTimeout(400);
+    await expect(trail, 'nothing at all until a mouse moves').toHaveCount(0);
+    await page.mouse.move(200, 400);
+    await page.mouse.move(260, 420, { steps: 4 });
+    if (!env.fine || env.reduce) {
+      await page.waitForTimeout(600);
+      await expect(trail, 'no strip without a mouse, or on reduced motion').toHaveCount(0);
+      return;
+    }
+    await expect(trail).toHaveCount(1, { timeout: 5000 });
+    const style = await trail.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return { z: cs.zIndex, events: cs.pointerEvents, hidden: el.getAttribute('aria-hidden') };
+    });
+    expect(style, 'behind the content, never a target, never read out').toEqual({ z: '-1', events: 'none', hidden: 'true' });
+    // Something is drawn where the plane has just flown, and nothing once it is gone.
+    const painted = () => trail.evaluate((el) => {
+      const c = el as HTMLCanvasElement;
+      const d = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data;
+      let n = 0;
+      for (let i = 3; i < d.length; i += 4 * 97) if (d[i] > 0) n++;
+      return n;
+    });
+    await page.mouse.move(300, 450);
+    await page.mouse.move(900, 450, { steps: 24 });
+    await expect.poll(painted, { message: 'a strip behind the plane' }).toBeGreaterThan(0);
+    await expect.poll(painted, { message: 'and gone again', timeout: 5000 }).toBe(0);
+  });
+
+  test('a subpage has no strip: only the homepage names a cloud trail', async ({ page }) => {
+    await page.goto('/munkaink.html');
+    await page.mouse.move(300, 400);
+    await page.mouse.move(700, 420, { steps: 8 });
+    await page.waitForTimeout(800);
+    await expect(page.locator('canvas.cloud-trail')).toHaveCount(0);
+  });
 });

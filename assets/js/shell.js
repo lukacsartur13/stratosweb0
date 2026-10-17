@@ -13,7 +13,8 @@
      5. One active surface: `[data-modes]` switches which of a set of panels is
         shown, from a list of buttons.
      6. The plane: for a mouse, the logo's paper plane follows the pointer
-        and turns to fly the way it moves.
+        and turns to fly the way it moves; on the homepage it leaves a strip
+        through the clouds.
 
    The static page is the design. Without this file — blocked, failed, or a
    reader who asked for reduced motion — every element is in its final, lit,
@@ -296,7 +297,7 @@
     var x = 0, y = 0, vx = 0, vy = 0;
     var heading = ART, angle = ART;   // degrees, screen space (y down)
     var flip = 1, flipTo = 1, lift = 1, liftTo = 1;
-    var frame = 0, live = false, ready = false, hot = false, pressed = false;
+    var frame = 0, live = false, ready = false, hot = false, pressed = false, trail = null;
     var size = function () { liftTo = (hot ? 1.16 : 1) * (pressed ? 0.86 : 1); };
 
     var apply = function () {
@@ -324,6 +325,7 @@
       x = e.clientX; y = e.clientY;
       if (!live) { live = true; vx = vy = 0; show(); }
       else {
+        if (trail) trail.push(x, y);
         vx = vx * 0.55 + dx * 0.45;
         vy = vy * 0.55 + dy * 0.45;
         if (vx * vx + vy * vy > 2.2) {
@@ -348,5 +350,104 @@
 
     img.onload = function () { ready = true; el.appendChild(img); doc.body.appendChild(el); show(); };
     img.src = '/assets/img/cursor-plane@2x.png';
+
+    /* The trail. Where the page names a `--cloud-trail` (the homepage), the
+       plane flies through the clouds (owner, 2026-10-17): a thick strip
+       behind it, in which the deck shows at full strength — whiter tops,
+       sky-blue crevices — narrowing to nothing over a second and a half like
+       a comet's tail. One canvas behind the content, so dark panels and text
+       stay on top; the strip lives in page coordinates, so it stays on the
+       clouds it crossed while the page scrolls; nothing runs once it has
+       gone.
+
+       The strip is one opaque shape (segments drawn at full alpha cannot
+       stack into beads or steps where they overlap), drawn at a fifth of the
+       resolution and scaled up, which is what softens its edge — a blur for
+       nothing. The canvas is at 1×, as the cloud tile itself is; the strong
+       deck is filled only inside the strip's bounds. */
+    var trailSrc = /url\(["']?([^"')]+)["']?\)/.exec(getComputedStyle(doc.body).getPropertyValue('--cloud-trail'));
+    if (trailSrc && window.DOMMatrix) (function () {
+      var LIFE = 1500, HEAD = 78, LO = 5;
+      var cv = doc.createElement('canvas'), off = doc.createElement('canvas');
+      var ctx = cv.getContext('2d'), octx = off.getContext('2d');
+      if (!ctx || !octx) return;
+      cv.className = 'cloud-trail';
+      cv.setAttribute('aria-hidden', 'true');
+      var tex = new Image();
+      var pattern = null, pts = [], raf = 0;
+      var fit = function () {
+        cv.width = window.innerWidth; cv.height = window.innerHeight;
+        off.width = Math.ceil(cv.width / LO); off.height = Math.ceil(cv.height / LO);
+      };
+      var draw = function () {
+        raf = 0;
+        var now = window.performance.now();
+        while (pts.length && now - pts[0].t > LIFE) pts.shift();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, cv.width, cv.height);
+        if (pts.length < 2) return;
+        var sx = window.scrollX, sy = window.scrollY;
+        // 1. The shape, opaque, on the small offscreen canvas.
+        octx.setTransform(1, 0, 0, 1, 0, 0);
+        octx.clearRect(0, 0, off.width, off.height);
+        octx.setTransform(1 / LO, 0, 0, 1 / LO, 0, 0);
+        octx.lineCap = octx.lineJoin = 'round';
+        octx.strokeStyle = '#000';
+        var x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+        for (var q = 1; q < pts.length; q++) {
+          var life = 1 - (now - pts[q].t) / LIFE;
+          octx.lineWidth = Math.max(1, HEAD * Math.pow(life, 0.7));
+          octx.beginPath();
+          octx.moveTo(pts[q - 1].x - sx, pts[q - 1].y - sy);
+          octx.lineTo(pts[q].x - sx, pts[q].y - sy);
+          octx.stroke();
+          if (pts[q].x < x0) x0 = pts[q].x; if (pts[q].x > x1) x1 = pts[q].x;
+          if (pts[q].y < y0) y0 = pts[q].y; if (pts[q].y > y1) y1 = pts[q].y;
+        }
+        // 2. Scaled up onto the visible canvas: the smoothing is the soft edge.
+        var bx = Math.max(0, x0 - sx - HEAD), by = Math.max(0, y0 - sy - HEAD);
+        var bw = Math.min(cv.width, x1 - sx + HEAD) - bx, bh = Math.min(cv.height, y1 - sy + HEAD) - by;
+        if (bw <= 0 || bh <= 0) { raf = window.requestAnimationFrame(draw); return; }
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(off, bx / LO, by / LO, bw / LO, bh / LO, bx, by, bw, bh);
+        // 3. The strong deck, filled into it, aligned with the page's own
+        //    background: the tile's origin is the page's, so it moves with
+        //    scroll exactly as the background does.
+        ctx.globalCompositeOperation = 'source-in';
+        var k = parseFloat(getComputedStyle(doc.body).backgroundSize) / tex.naturalWidth || 1;
+        pattern.setTransform(new window.DOMMatrix([k, 0, 0, k, -sx, -sy]));
+        ctx.fillStyle = pattern;
+        ctx.fillRect(bx, by, bw, bh);
+        ctx.globalCompositeOperation = 'source-over';
+        raf = window.requestAnimationFrame(draw);
+      };
+      // Nothing — not the canvas, not its 90 kB of texture — until the mouse
+      // first moves: a reader who never uses one gets the page and no more.
+      var started = false;
+      trail = {
+        push: function (px, py) {
+          if (!started) { started = true; tex.src = trailSrc[1]; }
+          if (!pattern) return;
+          pts.push({ x: px + window.scrollX, y: py + window.scrollY, t: window.performance.now() });
+          if (!raf) raf = window.requestAnimationFrame(draw);
+        }
+      };
+      tex.onload = function () {
+        var ready = function () {
+          pattern = ctx.createPattern(tex, 'repeat');
+          fit();
+          doc.body.appendChild(cv);
+          window.addEventListener('resize', fit, { passive: true });
+          // Use the texture once, invisibly, while nothing is happening, so
+          // its decode and upload are not paid by the first flight.
+          ctx.fillStyle = pattern;
+          ctx.fillRect(0, 0, 1, 1);
+          ctx.clearRect(0, 0, 1, 1);
+        };
+        var idle = window.requestIdleCallback || function (fn) { return window.setTimeout(fn, 200); };
+        (tex.decode ? tex.decode() : Promise.resolve()).then(function () { idle(ready); }, function () { idle(ready); });
+      };
+    })();
   })();
 })();

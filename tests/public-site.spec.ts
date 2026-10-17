@@ -71,6 +71,9 @@ test.describe('homepage', () => {
     await readToTheEnd(page);
 
     expect(errors).toEqual([]);
+    // No canvas: the one 2D canvas the page may ever hold is the plane's
+    // strip through the clouds (owner, 2026-10-17), and that is made only
+    // once a mouse has moved — this visit never moves one. No WebGL, ever.
     await expect(page.locator('canvas')).toHaveCount(0);
     expect(await page.evaluate(() => (window as unknown as { __gl: number }).__gl)).toBe(0);
     await expect(page.locator('script[type="module"]')).toHaveCount(0);

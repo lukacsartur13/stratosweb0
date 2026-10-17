@@ -11,13 +11,42 @@
 
 /* ------------------------------------------------------- the atmosphere */
 /* Stratos's own material, the way plaster is Immersive Garden's: the page
-   itself, not a thing on it. The paper cools, a few levels, from the warm
-   ground of the hero to the thin air above the last scene. Nobody sees it
-   change; the bottom of the page simply feels higher than the top. (The haze
-   a screen arrives out of lives with GoDataFusion, below.) */
+   itself, not a thing on it: a connected deck of cloud.
+
+   The deck (scripts/home-clouds.py, seamless, 1600 px, 37 kB) is packed
+   cumulus seen from above — puffs on puffs, lit from the upper left, the
+   crevices a breath of blue — in the paper's colour (owner, 2026-10-17, with
+   a reference image). It scrolls with the page — no fixed layer, nothing
+   repainted on scroll. On a phone it is drawn smaller, so a screen holds a
+   deck rather than three puffs. Where the paper plane flies, shell.js draws a
+   strip through it with the full-strength copy, `--cloud-trail` (see
+   .cloud-trail below).
+
+   The darkest crevice would take the recessive tone to 2.7 : 1, so on this
+   page that tone is one step darker: 3.0 : 1 there, 3.5 : 1 on open paper.
+   The body tone (ink-2) stays above 5.4 : 1 everywhere. (The haze a screen
+   arrives out of lives with GoDataFusion, below.) */
+:root { --c-ink-3: #83827C; }
 body {
-  background:
-    linear-gradient(180deg, var(--c-bg) 0, var(--c-bg) 28%, #EFF0EE 70%, #EAEDEC 100%);
+  --cloud-trail: url("/assets/img/home-clouds-trail.webp");
+  background: var(--c-bg) url("/assets/img/home-clouds.webp") 0 0 / 1600px auto repeat;
+}
+@media (max-width: 760px) {
+  body { background-size: 1000px auto; }
+}
+/* Behind everything but the page itself: the panels and the words stay on
+   top of the strip. Never a target, never in the accessibility tree. */
+/* Its own compositor layer: each frame redraws the strip and nothing else,
+   rather than repainting the page that sits on top of it. */
+.cloud-trail {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  will-change: transform;
+  contain: strict;
 }
 
 /* ------------------------------------------------------------- 01 · hero */

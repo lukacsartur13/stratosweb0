@@ -84,7 +84,9 @@ paper. **Turning** for a mouse (`shell.js`, not on touch, not on reduced motion)
 cursor is hidden (`.has-plane`) and `.cursor-plane` follows the pointer, eased only in its
 heading, mirrored rather than upside down when flying left, lifting 1.16× over clickable
 things, fading over fields. Files: `assets/img/cursor-plane{,-climb}{,@2x}.png`, drawn from
-`plane-cursor.png`, the header mark.
+`plane-cursor.png`, the header mark. On the homepage (the page that names `--cloud-trail`)
+it leaves a thick strip through the cloud deck in which the clouds show at full strength —
+see `06-immersive-reference.md`.
 
 ## 3. Space and layout
 
