@@ -26,6 +26,12 @@
 // `pinHeight / height` advancing after the pin had let go. The third build
 // stage got 5.6% of its own pinned window.
 //
+// 2026-10-16: the redesign removed the pins. The build sequence and the
+// services rail are now laid out in their static form, all at once; section C
+// asserts that form instead — every stage and every service on screen, in
+// order, inside the viewport — which is the guarantee the timing contract
+// existed to approximate.
+//
 // WHAT IT DELIBERATELY DOES NOT DO
 //
 // It does not assert colours. A contract that spells `rgb(110, 98, 0)` breaks
@@ -123,18 +129,14 @@ async function readSettled(page: Page, selector: string, nth = 0): Promise<Readi
 }
 
 /**
- * The motion system has decided.
- *
- * `motion.js` sets `motion-ready` on the root as the first thing `boot()` does,
- * after `load` — and until it has, `[data-stage-item]` is still wearing the
- * pre-reveal `opacity: 0` that motion.css gives it, mid-transition on its way
- * to wherever it is going. Reading a settled state before that marker exists
- * measures the page shrugging, not the page. It is the same readiness idiom the
- * homepage suite uses with `window.Stratos.header`, for the same reason.
+ * The page has loaded and its fonts have settled — the only readiness left now
+ * that no motion system decides what is shown. (This used to wait for the
+ * `motion-ready` class motion.js set; motion.js is gone.)
  */
-const motionReady = (page: Page) =>
-  page.waitForFunction(() => document.documentElement.classList.contains('motion-ready'),
-    null, { timeout: 15_000 });
+const motionReady = async (page: Page) => {
+  await page.waitForLoadState('load');
+  await page.evaluate(() => document.fonts.ready.then(() => true));
+};
 
 /**
  * The document has stopped growing.
@@ -204,21 +206,33 @@ for (const { route, lang } of DARK_ISLANDS) {
   });
 }
 
-test('the lit card beside it stays distinct from the dark one — grey on paper, not yellow', async ({ page }) => {
+test('the lit card stays distinct from the plain one beside it, and readable', async ({ page }) => {
   // §21: the two cards must not become the same card. The repair had to leave
   // the dark/lit comparison intact, and `.panel--lit` is excluded from the
   // island rules rather than swept up by them.
   //
-  // On a pale band the lit surface is GREY, not signal yellow (owner,
-  // 2026-10-06: no yellow on paper — main.css), with paper-coloured text. It
-  // is still a different card from the dark one beside it.
+  // On paper the lit surface is never signal yellow (owner, 2026-10-06: no
+  // yellow on paper). It is still a different card from the one beside it.
   await page.goto('/hirdeteskezeles.html');
   const lit = page.locator('.panel--lit').first();
   await expect(lit).toHaveCount(1);
   await lit.scrollIntoViewIfNeeded();
+  // Contrast is read against the composited background, so the card must have
+  // finished arriving: mid-fade its light text sits over the paper behind it
+  // (1.47 : 1 once, on mobile-430 under a full parallel run).
+  await expect.poll(() => lit.evaluate((el) => {
+    for (let e: Element | null = el; e; e = e.parentElement) {
+      if (e.classList.contains('is-pre') || getComputedStyle(e).opacity !== '1') return false;
+    }
+    return true;
+  }), { message: 'the lit card has finished arriving' }).toBe(true);
 
+  // 2026-10-16: the lit card is the graphite surface of the new system. Asserted
+  // as "not the same surface as its neighbour", not as a colour value.
   const bg = await lit.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(bg, 'the Meta card is the grey lit surface on paper').toMatch(/87,\s*87,\s*87/);
+  const plain = await page.locator('.panel:not(.panel--lit)').first()
+    .evaluate((el) => getComputedStyle(el).backgroundColor);
+  expect(bg, 'the lit card is a different surface from the plain one beside it').not.toBe(plain);
 
   for (const role of ['h3', 'p', '.checks li', '.card__k']) {
     const n = await page.locator(`.panel--lit ${role}`).count();
@@ -298,35 +312,37 @@ test.describe('the FAQ on a pale band', () => {
     const closed = await settledSnapshot();
     await sum.click();
     await expect(det).toHaveAttribute('open', '');
-    const open = await settledSnapshot();
-
-    expect(open.mark, 'the mark takes the accent when the entry opens').not.toBe(closed.mark);
-    expect(open.spin, 'the mark rotates from + to x').not.toBe(closed.spin);
-    expect(open.rule, 'an open entry is bracketed by an accent rule').not.toBe(closed.rule);
+    // Waited for, not sampled: the rule's colour is transitioned, and on a
+    // busy machine two equal readings can come before the transition has
+    // started (failed that way twice under the full parallel suite).
+    await expect.poll(async () => (await read()).mark, { message: 'the mark takes the accent when the entry opens' }).not.toBe(closed.mark);
+    await expect.poll(async () => (await read()).spin, { message: 'the mark rotates from + to x' }).not.toBe(closed.spin);
+    await expect.poll(async () => (await read()).rule, { message: 'an open entry is bracketed by an accent rule' }).not.toBe(closed.rule);
   });
 
-  test('the same accordion on a DARK band keeps the full signal', async ({ page }) => {
-    // Both branches of `--faq-accent` are live in production: kkv, nagyvallalat
-    // and hirdeteskezeles put the FAQ on a pale band, rolunk and impact-program
-    // on a dark one. On dark, `--signal` is 15.86 : 1 and needs no substitute,
-    // so the accent stays the brand yellow exactly as before.
+  test('the same accordion on the About page gives the same signal', async ({ page }) => {
+    // There used to be a dark-band variant of this accordion (rolunk,
+    // impact-program) with its own yellow accent. Every band is light now, so
+    // the contract is that the one accordion behaves the same everywhere.
     await page.goto('/rolunk.html');
     const det = page.locator('.faq details').first();
     await det.scrollIntoViewIfNeeded();
     const sum = det.locator('summary');
-
-    readable(await readSettled(page, '.faq summary'), 'closed question on dark');
-    await sum.click();
-    await expect(det).toHaveAttribute('open', '');
-    readable(await readSettled(page, '.faq summary'), 'open question on dark');
-    readable(await readSettled(page, '.faq .faq__a'), 'answer on dark');
-
-    const accent = await sum.evaluate((el) => ({
+    const cue = () => sum.evaluate((el) => ({
       mark: getComputedStyle(el, '::after').backgroundImage,
       rule: getComputedStyle(el.parentElement as Element).borderBottomColor,
     }));
-    expect(accent.mark, 'the mark is signal yellow on a dark band').toMatch(/255,\s*238,\s*37/);
-    expect(accent.rule, 'so is the rule under the open entry').toMatch(/255,\s*238,\s*37/);
+
+    readable(await readSettled(page, '.faq summary'), 'closed question');
+    const closed = await cue();
+    await sum.click();
+    await expect(det).toHaveAttribute('open', '');
+    readable(await readSettled(page, '.faq summary'), 'open question');
+    readable(await readSettled(page, '.faq .faq__a'), 'answer');
+    await page.waitForTimeout(450);
+    const open = await cue();
+    expect(open.mark, 'the mark changes when the entry opens').not.toBe(closed.mark);
+    expect(open.rule, 'so does the rule under it').not.toBe(closed.rule);
   });
 
   test('it is operable and legible from the keyboard alone', async ({ page }) => {
@@ -357,128 +373,47 @@ test.describe('the FAQ on a pale band', () => {
 const STAGED = ['/kkv.html', '/nagyvallalat.html'];
 
 for (const route of STAGED) {
-  test(`every build stage gets a fair share of the pinned window (${route})`, async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name === 'reduced-motion', 'the pin is released under reduced motion; covered below');
+  test(`every build stage is on screen at once, in order (${route})`, async ({ page }) => {
     await page.goto(route);
     await motionReady(page);
     await settled(page);
-
-    const geo = await page.evaluate(() => {
-      const el = document.querySelector('[data-stage]') as HTMLElement;
-      const pin = el.querySelector('.stage__pin') as HTMLElement;
-      return {
-        docTop: Math.round(el.getBoundingClientRect().top + scrollY),
-        height: Math.round(el.getBoundingClientRect().height),
-        pinH: Math.round(pin.getBoundingClientRect().height),
-        stages: el.querySelectorAll('[data-stage-item]').length,
-        sticky: getComputedStyle(pin).position,
-      };
-    });
-    // Below 860 the sequence is authored as a stacked list instead — a
-    // different, and correct, design rather than a broken pin.
-    test.skip(geo.sticky !== 'sticky', 'this width renders the sequence as flowed text');
-
-    // Walk the section and record which stage is live while the pin is stuck.
-    const dwell = new Map<string, number>();
-    let unpinnedProgress = 0, samples = 0, pinnedSamples = 0;
-    const STEP = 40;
-    for (let y = Math.max(0, geo.docTop - 200); y <= geo.docTop + geo.height; y += STEP) {
-      // Scroll and read in ONE round trip, with two frames between them. The
-      // driver is a rAF loop, so a read scheduled by a separate `evaluate` is
-      // racing it: under parallel load the reply can arrive before the tick
-      // that acts on the new position, and the sample lands on the previous
-      // stage. Waiting for two frames in-page removes the race rather than
-      // hoping the machine is fast — an earlier draft of this file was green
-      // alone and red in a full run for exactly that reason.
-      const s = await page.evaluate(async (v) => {
-        // `behavior: 'instant'` because main.css sets `scroll-behavior: smooth`
-        // on the root. A plain `scrollTo` starts an animation, and two frames
-        // later the page has barely left where it was — 97 samples, none of
-        // them pinned, and a contract that reported the section never pins.
-        scrollTo({ top: v, behavior: 'instant' });
-        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-        const el = document.querySelector('[data-stage]') as HTMLElement;
-        const pin = el.querySelector('.stage__pin') as HTMLElement;
-        const r = el.getBoundingClientRect(), pr = pin.getBoundingClientRect();
-        return {
-          at: el.dataset.stageAt ?? '?',
-          p: Number(getComputedStyle(el).getPropertyValue('--stage-p')) || 0,
-          pinned: Math.abs(pr.top) < 2 && r.top <= 1 && r.bottom >= pr.height - 1,
-        };
-      }, y);
-      samples++;
-      if (s.pinned) { pinnedSamples++; dwell.set(s.at, (dwell.get(s.at) ?? 0) + STEP); }
-      else if (s.p > 0 && s.p < 1) unpinnedProgress += STEP;
+    const stages = page.locator('[data-stage-item]');
+    const n = await stages.count();
+    expect(n).toBeGreaterThan(1);
+    const tops: number[] = [];
+    for (let i = 0; i < n; i++) {
+      const s = stages.nth(i);
+      await s.scrollIntoViewIfNeeded();
+      await expect(s, `stage ${i} is shown`).toBeVisible();
+      expect(await s.evaluate((el) => getComputedStyle(el).opacity), `stage ${i} opacity`).toBe('1');
+      readable(await read(page, '[data-stage-item] .build__k', i), `${route} stage ${i} label`);
+      readable(await read(page, '[data-stage-item] h3', i), `${route} stage ${i} title`);
+      tops.push(await s.evaluate((el) => el.getBoundingClientRect().top + scrollY));
     }
-
-    // Every stage is reached, and reached while it can still be read.
-    expect(dwell.size,
-      `every stage becomes the live one while pinned — geo=${JSON.stringify(geo)} ` +
-      `samples=${samples} pinnedSamples=${pinnedSamples} dwell=${JSON.stringify([...dwell])}`,
-    ).toBe(geo.stages);
-
-    const total = [...dwell.values()].reduce((a, c) => a + c, 0);
-    const fair = 1 / geo.stages;
-    for (const [at, px] of dwell) {
-      // Half a fair share is the contract. The defect gave the last stage 5.6%
-      // of a 33% share; the repair gives each an even third. A generous floor
-      // keeps this true under sampling noise and future re-authoring of the
-      // section's height, and still fails the bug by a wide margin.
-      expect(px / total, `stage ${at} is readable for ${(100 * px / total).toFixed(1)}% of the pinned window`)
-        .toBeGreaterThan(fair / 2);
+    // Stacked, not layered: each stage starts below the one before it, so no
+    // two of them share the same place on the page.
+    for (let i = 1; i < n; i++) {
+      expect(tops[i], `stage ${i} sits below stage ${i - 1}`).toBeGreaterThan(tops[i - 1]);
     }
-
-    // And nothing advances after the pin lets go: the section is one viewport
-    // taller than its travel so that viewport can HOLD the end state.
-    expect(unpinnedProgress, 'progress keeps advancing after the pin released').toBeLessThanOrEqual(STEP);
   });
 }
 
-test('the services rail finishes its travel before it comes unstuck', async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name === 'reduced-motion', 'the rail is static under reduced motion');
+test('the five services are rows in the page, none of them off screen sideways', async ({ page }) => {
   await page.goto('/szolgaltatasok.html');
   await motionReady(page);
   await settled(page);
-
-  const geo = await page.evaluate(() => {
-    const el = document.querySelector('[data-rail]') as HTMLElement;
-    const pin = el.querySelector('.rail__pin') as HTMLElement;
-    return {
-      docTop: Math.round(el.getBoundingClientRect().top + scrollY),
-      height: Math.round(el.getBoundingClientRect().height),
-      travel: Number(getComputedStyle(el).getPropertyValue('--rail-travel').replace('px', '')) || 0,
-      static: el.classList.contains('is-static'),
-      panels: el.querySelectorAll('[data-rail-panel]').length,
-    };
-  });
-  test.skip(geo.static || geo.travel === 0, 'the rail is a vertical list at this width');
-
-  let atRelease = 0, lastPanel = '0';
-  for (let y = Math.max(0, geo.docTop - 200); y <= geo.docTop + geo.height; y += 40) {
-    // Same single round trip with two frames as the stage loop above.
-    const s = await page.evaluate(async (v) => {
-      scrollTo({ top: v, behavior: 'instant' });
-      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-      const el = document.querySelector('[data-rail]') as HTMLElement;
-      const pin = el.querySelector('.rail__pin') as HTMLElement;
-      const track = el.querySelector('[data-rail-track]') as HTMLElement;
-      const r = el.getBoundingClientRect(), pr = pin.getBoundingClientRect();
-      const m = /translate3d\(([-\d.]+)px/.exec(track.style.transform);
-      return {
-        x: m ? Math.abs(+m[1]) : 0,
-        at: el.dataset.railAt ?? '0',
-        pinned: Math.abs(pr.top) < 2 && r.top <= 1 && r.bottom >= pr.height - 1,
-      };
-    }, y);
-    if (s.pinned) { atRelease = s.x; lastPanel = s.at; }
+  const panels = page.locator('[data-rail-panel]');
+  const n = await panels.count();
+  expect(n).toBeGreaterThanOrEqual(5);
+  const vw = await page.evaluate(() => document.documentElement.clientWidth);
+  for (let i = 0; i < n; i++) {
+    const p = panels.nth(i);
+    await p.scrollIntoViewIfNeeded();
+    await expect(p).toBeVisible();
+    const box = await p.boundingBox();
+    expect(box && box.x >= 0 && box.x + box.width <= vw + 1, `service ${i} fits the viewport`).toBe(true);
+    readable(await read(page, '[data-rail-panel] h3', i), `service ${i} title`);
   }
-
-  // It used to reach 55–66% and panel 2 of 4 before the section let go, so the
-  // last panels only ever appeared while the whole thing was scrolling away.
-  expect(atRelease / geo.travel, 'share of the rail travelled while still pinned')
-    .toBeGreaterThan(0.9);
-  expect(Number(lastPanel), 'the last panel is reached while the rail is still pinned')
-    .toBe(geo.panels - 1);
 });
 
 // -----------------------------------------------------------------------------
@@ -557,7 +492,8 @@ test('the repaired routes keep their section order', async ({ page }) => {
   // is allowed to move this. It sits between the process and the mid-page CTA
   // deliberately: the cost question is the one a reader has by then, and the
   // CTA reads differently once it is answered. Everything around it is in the
-  // order §38 left it.
+  // order §38 left it. (The Arrival band that used to close the list went with
+  // the original shell; this page ends on its own closing launch.)
   await page.goto('/hirdeteskezeles.html');
   const bands = await page.evaluate(() =>
     [...document.querySelectorAll('section')].map((s) => s.className.trim()));
@@ -565,6 +501,6 @@ test('the repaired routes keep their section order', async ({ page }) => {
     'phead', 'band band--tight', 'band', 'band band--pale', 'band',
     'band band--pale',
     'band band--tight', 'band band--tight', 'band band--tight',
-    'band band--pale', 'band band--tight', 'band', 'arrival',
+    'band band--pale', 'band band--tight', 'band',
   ]);
 });

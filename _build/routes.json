@@ -170,6 +170,11 @@
    "en": "contact.html",
    "de": "kontakt.html"
   },
+  "booking": {
+   "hu": "idopontfoglalas.html",
+   "en": "book-a-call.html",
+   "de": "termin-buchen.html"
+  },
   "quote": {
    "hu": "arajanlat.html",
    "en": "quote.html",
@@ -352,6 +357,11 @@
    "en": "/en/contact",
    "de": "/de/kontakt"
   },
+  "booking": {
+   "hu": "/idopontfoglalas",
+   "en": "/en/book-a-call",
+   "de": "/de/termin-buchen"
+  },
   "quote": {
    "hu": "/arajanlat",
    "en": "/en/quote",
@@ -402,6 +412,7 @@
   "local-szeged": "full",
   "seo-web": "full",
   "contact": "full",
+  "booking": "full",
   "quote": "full",
   "privacy": "full",
   "imprint": "full"

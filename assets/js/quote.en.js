@@ -142,9 +142,6 @@ const nextVisible = (from,dir) => {
   return dir>0 ? vis.find(i=>i>from) : [...vis].reverse().find(i=>i<from);
 };
 
-// a magasságmérő a kérdőív haladását követi, nem a görgetést
-const setAltitude = p => window.Stratos && window.Stratos.setProgress(p);
-
 function render(){
   window.scrollTo(0,0);
   if(step === -1) return renderIntro();
@@ -153,7 +150,6 @@ function render(){
   const vis = visibleIdx();
   const pos = vis.indexOf(step);
   bar.style.width = (pos/vis.length*100)+'%';
-  setAltitude(pos/vis.length);
   drawPath(pos, vis.length);
 
   let f = '';
@@ -177,7 +173,7 @@ function render(){
       (d.other?`<div class="other-input${sel.includes('Other')?' show':''}"><input type="text" id="other" placeholder="Other…" value="${esc(saved.other||'')}"></div>`:'');
   } else if(d.t === 'consent'){
     f = `<div class="opts"><label class="opt"><input type="checkbox" id="inp"${saved.value?' checked':''}><span class="box"></span>${esc(d.o[0])}</label></div>
-         <p class="quiz__hint" style="margin-top:1rem">Privacy statement:<a href="privacy-policy.html" target="_blank" rel="noopener">privacy-policy</a></p>`;
+         <p class="quiz__hint" style="margin-top:1rem">Privacy statement:<a href="/en/privacy-policy.html" target="_blank" rel="noopener">privacy-policy</a></p>`;
   }
 
   const isLast = nextVisible(step,1) === undefined;
@@ -277,7 +273,6 @@ function next(){
 function renderIntro(){
   bar.style.width='0';
   if(pathTotal>0) drawPath(-1, pathTotal);
-  setAltitude(0);
   app.innerHTML = `<div class="quiz__step quiz__intro">
     <div class="quiz__num">Stratos · Requirements</div>
     <h1>Website<br>requirements<br>questionnaire</h1>
@@ -349,7 +344,7 @@ const DONE_HTML = {
       <div class="quiz__mark">✓</div>
       <h1 class="quiz__q">Thank you for filling it in.</h1>
       <p class="quiz__hint" style="margin:1rem auto 0">We've recorded your answers and will be in touch shortly.</p>
-      <div class="quiz__nav" style="justify-content:center"><a class="btn" href="index.html"><span>Back to the home page</span></a></div>
+      <div class="quiz__nav" style="justify-content:center"><a class="btn" href="/en/index.html"><span>Back to the home page</span></a></div>
     </div>`,
   invalid: msg => `<div class="quiz__step quiz__done" data-state="invalid">
       <h1 class="quiz__q">Something is missing.</h1>
@@ -391,7 +386,6 @@ async function renderDone(){
 
   bar.style.width='100%';
   if(pathTotal>0) drawPath(pathTotal, pathTotal);
-  setAltitude(1);
   finish('submitting');
 
   const fields = collectFields();

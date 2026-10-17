@@ -1,7 +1,7 @@
 # Stratos Media
 
-The public site is a climb from 420 m to 30,000 m. The portal is the instrument
-panel behind it.
+The public site is a quiet, light, typography-led argument for the work. The
+portal is the instrument panel behind it.
 
 ```
 media-stratos.com
@@ -163,34 +163,13 @@ npm test
 npm run scan:secrets  # repository-wide, exits 1 on any finding
 ```
 
-### The full-ascent suite
+### The suites that went with the WebGL homepage
 
-`npm run test:full` covers the 0–30 000 m journey. It needs a route that a
-normal production build does not emit, so run it through:
-
-```bash
-npm run validate:full
-```
-
-which clears `dist/experiments` and `test-results`, runs the ordinary
-production build, then runs `test:full` (which builds the experiment route
-itself before invoking Playwright).
-
-It deliberately does *not* clear `experiments/screenshots/` — those are the
-accepted art-direction stills, written by `shots-mountains.mjs`, and a test run
-is not entitled to delete the evidence a human signed off on.
-
-**The order is the point, and it is not interchangeable.** `scripts/assemble.mjs`
-clears every entry in `dist/` except `portal`, so a production build run *after*
-`build:full` deletes the route the suite is about to request. `validate:full`
-builds production first and the experiment route second.
-
-The experiment route is deliberately not part of `npm run build`: it is
-`noindex` development output and does not belong in every production bundle.
-That is what makes the dependency easy to forget, so it is enforced rather than
-documented — `playwright.full.config.ts` refuses to start its static server
-unless `dist/experiments/stratos-ascent-full/index.html` exists, and fails with
-the command to run instead of a wall of 404s.
+`test:full`, `validate:full`, `test:mountains`, `test:experiments`, the bench,
+shot and probe scripts, and their three Playwright configs tested the 0–30 000 m
+WebGL ascent and its prototypes. They were removed with it on 2026-10-16 — see
+`_build/reports/stratos-redesign/`. The art-direction stills they produced were
+never in git and are kept locally in `_backup/experiments-local/`.
 
 ### What each command runs, and what it reported
 
@@ -206,22 +185,17 @@ figure without those two things as unverified.
 
 | Command | Projects | Result |
 |---|---|---|
-| `npm test` | 6 | 567 passed, 40 skipped, 4 failed — see the note below |
-| `npm run validate:full` | 5 | see below |
-| `npm run test:experiments` | 1 | the 0–8 000 m prototype, run on demand |
+| `npm test` | 9 | 2 201 passed, 15 skipped, 3 failed — see the note below |
 
-**Baseline date: 6 August 2026**, against the build produced by `npm run build`
-on the same day. Re-record both numbers and the date together; a count without
-its command and date goes stale silently, which is how the previous one did.
+**Baseline date: 16 October 2026**, against the build produced by `npm run build`
+on the same day (branch `redesign/quiet-authority`). Re-record both numbers and
+the date together; a count without its command and date goes stale silently,
+which is how the previous one did.
 
-> **The 4 failures are a known, load-dependent flake, not a regression.** They
-> are `homepage-chrome.spec.ts` "opens from every header state" and "focus is
-> trapped inside the layer while it is open", on the two desktop projects. Each
-> passes in isolation, every time, but takes anywhere from 2.4 s to 10.7 s: the
-> homepage drives a ~1 MB WebGL bundle, and under full parallel load these
-> cross the 30 s test timeout. Verified pre-existing on 6 August 2026 by
-> stashing all working changes, rebuilding, and reproducing the same failures at
-> `HEAD`. If you need a clean signal, run that spec on its own.
+> **The 3 failures were 90 s timeouts, not assertions**: `lead-forms.spec.ts`
+> "the deployed bundle" (it reads every text file in `dist/` off the
+> iCloud-backed volume) on the two phone projects, in a run that shared the
+> machine with a screenshot job. The same tests pass in isolation in 274 ms.
 
 #### `npm test` — the production regression suite
 
@@ -230,15 +204,6 @@ iPhone 13 (390×844), iPhone 14 Pro Max (430×932), and a reduced-motion pass.
 The 10 skips are project-scoped by design — the reduced-motion assertions run
 only in their own project, and the scroll-driven altitude tests are skipped
 there because that path deliberately has no scroll-driven clock.
-
-#### `npm run validate:full` — the 0–30 000 m journey
-
-Five projects: desktop 1440×900, three phone widths (390×844, 430×932,
-375×667) and a reduced-motion pass. Most of its skips are the arithmetic tests,
-which assert pure functions and are marked device-independent: they run once, in
-the `desktop` project, and are skipped in the other four. A skip count of
-roughly four times the number of arithmetic tests is the expected shape, not a
-sign that something is not running.
 
 #### What is not covered by any of them
 
@@ -256,13 +221,16 @@ suite is not read as covering them.
 
 What the suites cover:
 
-- Homepage loads, altitude climbs with scroll and stays inside 0–30 000 m
+- The homepage is a static document: every scene in the HTML with JavaScript
+  off, no canvas, no WebGL context, no module bundle, no model or decoder request
 - No console errors, no sideways scrolling at any width
 - All 12 Hungarian pages plus the EN and DE homepages respond with titles and
   descriptions; `hreflang` and `x-default` are present
 - Every image declares `alt`
 - The hero CTA reaches the questionnaire
-- Reduced motion turns the ascent into a readable document with nothing hidden
+- Under reduced motion nothing on the homepage is ever dimmed or held back
+- The v2 header and sheet: focus, Escape, inert background, scroll lock, every
+  link resolves; the footer keeps the lead form, NAP, profiles and consent
 - Portal boots, is `noindex`, redirects unauthenticated visitors, and refuses
   protected routes
 - Sign-in validates before submitting; there is no route to create an account
@@ -279,27 +247,6 @@ What the suites cover:
 - **No emitted asset contains a Web3Forms URL, an `access_key`, or the key that
   was previously exposed**
 - **No emitted bundle contains a service role key**
-- The journey stage at a given altitude is the same in both scroll directions,
-  and the mountain root carries its canonical transform even while hidden
-- The mountain range's silhouette is gated on shape, not only on placement —
-  see `experiments/silhouette-metrics.mjs`
-
-### The Phase 5 probes
-
-Not part of any suite. They need the dev server, they take minutes rather than
-seconds, and each answers one question a pass/fail assertion cannot:
-
-```bash
-npm run dev:home                          # serves :5177, in another terminal
-node experiments/probe-determinism.mjs    # stage, root transform, settled scroll state
-node experiments/probe-geometry.mjs       # what the geometry counter is counting
-node experiments/probe-screenshots.mjs    # where the screenshot variation is
-node experiments/probe-assets.mjs         # every image decodes, dev and production
-node experiments/validate-flatrun.mjs     # the shape gate, against both populations
-node experiments/shots-mountains.mjs      # the accepted stills, with their metrics
-```
-
-Each exits non-zero on a real failure. `PHASE_5C.md` records what they found.
 
 ### Running the authenticated tests
 
@@ -457,50 +404,33 @@ gitignored on purpose: a point-in-time safety net, not history.
 
 ---
 
-## The homepage is a Vite build (2026-08-03)
+## The homepage is a generated page again (2026-10-16)
 
-`/`, `/en/` and `/de/` are the Altimeter Meridian ascent, built by
-`npm run build:home` from `experiments/vite.home.config.ts`. The other eleven
-pages per language are still generated by `_build/build.py`.
+From 2026-08-03 to 2026-10-16, `/`, `/en/` and `/de/` were the Altimeter
+Meridian ascent: a React + three.js bundle built from `experiments/`. That
+runtime, its models, its Draco decoder and its suites are gone (redesign brief:
+no mandatory WebGL on the homepage). The homepage is now
+`_build/pages/index.html`, translated by `_build/i18n/home.json`, rendered by
+`_build/build.py` on the **v2 shell** (`SHELL_V2`, `HEADER_V2`, `FOOTER_V2`;
+styles `assets/css/system.css` + `home.css`, behaviour `assets/js/shell.js`).
 
 ```
-npm run build   =  generate (python)      11 pages x 3 languages
-                -> build:site (assemble)  dist/ + robots + sitemap
-                -> build:home (vite)      dist/{index,en/index,de/index}.html
+npm run build   =  generate (python)      every page x 3 languages, homepage included
+                -> build:site (assemble)  dist/ + robots + sitemap; homepage CSS inlined
+                -> llms                   dist/llms.txt
                 -> build:portal (vite)    dist/portal
+                -> strip:comments, fingerprint, fonts:check
 ```
 
-Order matters: `build:site` clears and populates `dist/`, then `build:home`
-overwrites the three homepages. `build:home` runs with `emptyOutDir: false` for
-exactly that reason.
+Title, description, canonical, hreflang, Open Graph and JSON-LD come from the
+same functions as every other route; the three titles and descriptions are the
+same strings the Vite shells carried.
 
-**One chunk graph, three documents.** The three shells in `experiments/home/`
-are separate Rollup inputs that share one bundle, so all three reference the
-same `/assets/home/*.js`. Switching language costs one 2.9 kB document and no
-JavaScript re-download. The locale reaches the app through `<html lang>`, so it
-is correct before any script runs.
-
-**Metadata.** `hreflang` (hu/en/de/x-default) and the per-language title and
-description are migrated verbatim from the pages they replace. `rel=canonical`
-and Open Graph / Twitter cards are **new** — the previous homepage carried
-neither, in any language.
-
-**Translations.** The homepage narrative is Hungarian on all three routes. That
-is the pre-existing state, not a regression: `npm run generate` used to report
-`45 untranslated` for both `en` and `de` against the old homepage, and it now
-reports none, because those 45 strings *were* the old homepage. The layer that
-replaces them is `experiments/src/full/i18n.ts`, keyed on the Hungarian source
-sentence exactly as `_build/i18n.py` is. `npm run i18n:meridian` writes the
-worklist to `_build/missing-meridian-{en,de}.json` — 110 strings today.
-
-Read the "WHAT IS WIRED, AND WHAT IS NOT" note in `i18n.ts` before translating:
-the content tables, stage labels and footer are routed through the layer; about
-54 strings of narrative prose written directly as JSX are not yet, and closing
-that gap is hand work.
-
-**Removed with the old homepage:** `_build/pages/index.html`,
-`_build/i18n/index.json`, `assets/css/flight.css`, `assets/js/flight.js`, the
-`mode: flight` branch and the HUD chrome in `build.py`. The `SLUGS["index"]`
-entry stays — it is how every subpage links home. `experiments/bench.mjs` lost
-its old-hero arm; those numbers survive in `CURRENT_HERO_NOTE.md` and the
-regression baseline as history, not as a live comparison.
+Since the homepage direction was approved, **every route and the 404 pages are on
+the same shell**. The fragments were not rewritten — `assets/css/site.css` restyles
+the page vocabulary they are written in (`.phead`, `.band`, `.card`, `.faq`,
+`.launch`, …), so their words, headings, links and translations are unchanged. The
+dark flight deck, the full-screen menu, the altimeter rail, the cursor contrail and
+`main.css`/`chrome.css`/`motion.css`/`main.js`/`header.js`/`motion.js`/
+`transitions.*` are gone. Everything about the decision is in
+`_build/reports/stratos-redesign/`.

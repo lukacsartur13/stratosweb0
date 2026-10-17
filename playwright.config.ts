@@ -44,6 +44,8 @@ const NODE_ONLY = [
   /notify\.spec\.ts/,
   /csv\.spec\.ts/,
   /google\.spec\.ts/,
+  /booking\.spec\.ts/,
+  /portal-booking-db\.spec\.ts/,
   /portal-client-extras\.spec\.ts/,
 ];
 
@@ -65,7 +67,13 @@ const NODE_ONLY = [
 // WebKit — and are excluded from the rest rather than run seven times over.
 // `desktop-webkit` and `portrait-chromium` exist for these two files only and
 // carry no other tests; the suite's totals elsewhere are unchanged by them.
-const HARDENING = [/homepage-modality\.spec\.ts/, /homepage-history\.spec\.ts/];
+//
+// 2026-10-16: both suites went with the WebGL homepage. The question they were
+// built to answer — does the navigation behave the same in both engines, at
+// desktop and at phone width — is now asked of the v2 shell by
+// homepage-shell.spec.ts, so that file takes their place on the same four
+// projects.
+const HARDENING = [/homepage-shell\.spec\.ts/];
 
 // Two suites are viewport-independent: they read data attributes, class names
 // and storage, and render nothing. What they *are* sensitive to is the engine —
@@ -263,7 +271,7 @@ export default defineConfig({
       // tidiness cost rather than a correctness one — it is quantified in
       // resource-map.md rather than traded away here.
       testMatch: [
-        /homepage-chrome\.spec\.ts/, /public-site\.spec\.ts/, /mobile-homepage-simple\.spec\.ts/,
+        /homepage-shell\.spec\.ts/, /public-site\.spec\.ts/,
       ],
       ...heavyWorkers,
       // The site promises a readable document without animation, and this

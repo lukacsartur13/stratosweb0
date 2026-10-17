@@ -10,6 +10,7 @@
 //   accessToken             a fresh access token from a refresh token
 //   parseAddresses          "Name <a@b>, c@d" → [{ email, name }]
 //   eventBody               a Portal meeting as a Google Calendar event
+//   google                  one Google API call → { ok, status, body }
 // =============================================================================
 import { createCipheriv, createDecipheriv, createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 
@@ -17,7 +18,11 @@ export const SCOPES = [
   'openid', 'email',
   'https://www.googleapis.com/auth/gmail.readonly',
   'https://www.googleapis.com/auth/calendar.events',
+  // Booking (20261018000100): which times are busy, across the calendars that
+  // count — and nothing else about them.
+  'https://www.googleapis.com/auth/calendar.freebusy',
 ];
+export const FREEBUSY_SCOPE = 'https://www.googleapis.com/auth/calendar.freebusy';
 export const REDIRECT_PATH = '/api/google-oauth';
 
 export const __net = { fetch: (...args) => globalThis.fetch(...args) };
@@ -107,6 +112,15 @@ export async function accessToken({ refreshToken, clientId, clientSecret }) {
   if (res.status === 400 && body.error === 'invalid_grant') throw new Error('revoked');
   if (!res.ok || !body.access_token) throw new Error(`refresh ${res.status}`);
   return body.access_token;
+}
+
+/** One Google API call with an access token → { ok, status, body }. */
+export async function google(token, url, init = {}) {
+  const res = await __net.fetch(url, { ...init, headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json', ...(init.headers ?? {}) } });
+  const text = await res.text();
+  let body = null;
+  try { body = text ? JSON.parse(text) : null; } catch { body = null; }
+  return { ok: res.ok, status: res.status, body };
 }
 
 /** "Anna <a@b.hu>, c@d.hu" → [{ email: 'a@b.hu', name: 'Anna' }, { email: 'c@d.hu', name: null }] */

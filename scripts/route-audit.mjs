@@ -186,7 +186,15 @@ async function main() {
       const consoleErrors = [];
       const failedRequests = [];
 
-      page.on('console', (m) => { if (m.type() === 'error') consoleErrors.push(m.text()); });
+      // This server has files only, no functions: the booking page's own
+      // request for free times (/api/booking) answers 404 here, and Chromium
+      // logs that as a console error. The function is tested in-process
+      // (tests/booking.spec.ts); a failing /api/ resource is not a page fault.
+      page.on('console', (m) => {
+        if (m.type() !== 'error') return;
+        if (/\/api\//.test(m.location()?.url ?? '') && /Failed to load resource/.test(m.text())) return;
+        consoleErrors.push(m.text());
+      });
       page.on('requestfailed', (r) => {
         const u = r.url();
         if (u.startsWith(BASE)) failedRequests.push(`${u} — ${r.failure()?.errorText ?? 'failed'}`);

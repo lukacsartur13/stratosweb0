@@ -185,6 +185,9 @@ test.describe('structure', () => {
       // 20261012000100: project NAMES for logging hours — staff admins only,
       // name, client name and closed flag, nothing else (the owner's decision).
       'time_projects',
+      // 20261018000100: booking — the caller's own account and projects (for
+      // the booking function) and their own bookings; same client rules.
+      'client_booking_identity', 'client_portal_bookings',
     ].sort());
     expect((await db.query(`select table_name from information_schema.views where table_schema = 'public'`)).rows).toEqual([]);
   });

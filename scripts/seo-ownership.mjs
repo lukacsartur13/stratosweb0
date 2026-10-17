@@ -184,8 +184,8 @@ if (home) {
   if (alsoHome.length) {
     console.log(`\nseo-ownership: the homepage also claims ${alsoHome.map((t) => `"${t}"`).join(', ')}`);
     console.log('  Not a failure — see 05-hu-implemented.md section E. Homepage and');
-    console.log('  category hub co-ranking is expected; the homepage is Vite-built and');
-    console.log('  outside the routes this guard governs.');
+    console.log('  category hub co-ranking is expected, and the homepage is outside the');
+    console.log('  routes this guard governs.');
   }
 }
 

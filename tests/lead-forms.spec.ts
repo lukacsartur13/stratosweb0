@@ -575,9 +575,18 @@ test.describe('questionnaire', () => {
 });
 
 test.describe('the deployed bundle', () => {
-  /** Every text file Netlify would publish. */
+  /** Every text file Netlify would publish.
+
+      Not the "name 2.html" copies iCloud leaves beside a file when a folder
+      syncs from two machines: Netlify builds from a git clone, where they do
+      not exist (.gitignore refuses them), so they are not published — the same
+      rule asset-packaging.spec.ts applies. There were 298 of them in dist/ on
+      2026-10-16, many evicted to the cloud, and reading those under a full
+      parallel run is what pushed this scan past its timeout. */
+  const isDuplicate = (name: string) => / \d+$/.test(name.replace(/\.[^.]+$/, ''));
   async function emitted(dir = DIST, out: string[] = []) {
     for (const entry of await readdir(dir, { withFileTypes: true })) {
+      if (isDuplicate(entry.name)) continue;
       const path = join(dir, entry.name);
       if (entry.isDirectory()) await emitted(path, out);
       else if (/\.(html|js|mjs|css|json|txt|xml|map)$/i.test(entry.name)) out.push(path);

@@ -73,6 +73,8 @@ SLUGS = {
     # ---- 2026-10-07: a Hungarian query (≈690/month) with no page answering it.
     "seo-web":        {"hu": "keresooptimalizalt-weboldal-keszites.html", "en": "keresooptimalizalt-weboldal-keszites.html", "de": "keresooptimalizalt-weboldal-keszites.html"},
     "contact":     {"hu": "ugyfelszolgalat.html",          "en": "contact.html",               "de": "kontakt.html"},
+    # ---- 2026-10-18: booking a free Google Meet consultation (/api/booking).
+    "booking":     {"hu": "idopontfoglalas.html",          "en": "book-a-call.html",           "de": "termin-buchen.html"},
     "quote":       {"hu": "arajanlat.html",                "en": "quote.html",                 "de": "angebot.html"},
     "privacy":     {"hu": "adatkezelesi-tajekoztato.html", "en": "privacy-policy.html",        "de": "datenschutz.html"},
     "imprint":     {"hu": "impresszum.html",               "en": "imprint.html",               "de": "impressum.html"},
@@ -100,15 +102,12 @@ BY_ANY = {fn: k for k, v in SLUGS.items() for fn in v.values()}
 assert len(BY_ANY) == len({(k, fn) for k, v in SLUGS.items() for fn in v.values()}), \
     "two routes share a filename — relink() can no longer resolve one"
 
-NAV = ("about", "work", "blog", "contact")
 # Branding is still a page (sitemap, content links) but no longer a menu item:
 # the owner took it out of the header and footer on 2026-10-07.
 SERVICES = ("sme", "enterprise", "shop", "ads", "seo", "impact")
-# The case studies and the six articles are reachable from their index routes
-# and from the pages they belong to, not from the global menu — a nav that
+# The case studies and the articles are reachable from their index routes and
+# from the pages they belong to, not from the global navigation — a nav that
 # lists every leaf is a sitemap, not a navigation.
-MENU = ("index", "about", "services", "sme", "enterprise", "shop",
-        "ads", "seo", "impact", "work", "blog", "contact", "quote")
 CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening", "case-godatafusion")
 
 # ---------------------------------------------------------- case-study status
@@ -386,14 +385,24 @@ PLATELESS = {k for k, v in ORGS.items() if v.get("ink") in ("light", "colour")}
 CLIENTS = ("rapidkert", "barbershop")
 # A tighter crop for the logo rail's fixed plate, where object-fit: contain
 # shrank the original's wide transparent margin into a mark half the size of
-# its neighbours. Same artwork, cropped to its bounds plus 6%; the homepage
-# keeps the original, which its own layout was sized around.
-CLIENT_RAIL_ASSET = {"rapidkert": "assets/img/client-rapidkert-tight.png"}
+# its neighbours. Same artwork, cropped to its bounds plus 6%. Barbershop's
+# square file is 39% empty top and bottom, the same problem (2026-10-16).
+CLIENT_RAIL_ASSET = {"rapidkert": "assets/img/client-rapidkert-tight.png",
+                     "barbershop": "assets/img/client-barbershop-tight.png"}
 
 CLIENT_MARKS = {
     "rapidkert": ("Rapidkert Kft.", "assets/img/client-rapidkert.png"),
     "barbershop": ("Barbershop Győr", "assets/img/client-barbershop.png"),
 }
+
+# `{{logoset:<kind>:all}}` — every mark the homepage and the about page show
+# (owner, 2026-10-16: "all our logos"): the clients with a project route, then
+# every ready collaboration and client in table order, so a mark approved here
+# appears on both without either fragment being touched. The support
+# relationships stay out; the shared heading would misstate them.
+ALL_MARKS = tuple(CLIENT_MARKS) + tuple(
+    k for k, v in ORGS.items()
+    if v["ready"] and v["relationship"] in ("collab", "client"))
 
 
 def logoset(lang, kind="rail", keys=None, base=""):
@@ -450,20 +459,10 @@ UI = {
         "name": "Magyar",
         "skip": "Ugrás a tartalomra",
         "brand_aria": "Stratos — főoldal",
-        "brand_alt": "Stratos — weboldal készítés és digitális ügynökség Győrben",
         "nav_aria": "Fő navigáció",
         "menu_aria": "Mobil navigáció",
-        "burger_aria": "Menü",
         "lang_aria": "Nyelvválasztás",
         "services": "Szolgáltatások",
-        "quote_cta": "Árajánlat",
-        "unit": "MÉTER",
-        "unit_short": "M",
-        "boot": "RENDSZEREK INDÍTÁSA",
-        "skip_top": "UGRÁS 30 000 MÉTERRE",
-        "hud": ["MAGASSÁG M", "OXIGÉN %", "HŐMÉRSÉKLET °C", "EMELKEDÉS M/S", "RÉTEG"],
-        "rail_aria": "Az emelkedés szakaszai",
-        "layers": ["TROPOSZFÉRA", "SZTRATOSZFÉRA", "MEZOSZFÉRA"],
         "nav": {"about": "Rólunk", "work": "Munkáink", "blog": "Blog",
                 "contact": "Kapcsolat"},
         "svc_all": "Minden szolgáltatás",
@@ -477,9 +476,9 @@ UI = {
             "impact": ("Impact Program", "30 000 M"),
         },
         "menu": {
-            "index": "Főoldal", "about": "Rólunk", "services": "Szolgáltatások",
+            "index": "Főoldal", "about": "A Stratos", "services": "Megoldásaink",
             "sme": "KKV", "enterprise": "Nagyvállalat", "branding": "Branding",
-            "ads": "Hirdetés", "seo": "SEO", "shop": "Webshop", "impact": "Impact", "work": "Munkáink",
+            "ads": "Hirdetés", "seo": "SEO", "shop": "Webshop", "impact": "Impact", "work": "Ügyfeleink",
             "blog": "Blog", "contact": "Kapcsolat", "quote": "Árajánlat",
         },
         # A hírlevél még nem létezik: a beküldés eltárolja a címet, és semmi
@@ -490,7 +489,6 @@ UI = {
         "nl_label": "E-mail cím",
         "nl_placeholder": "e-mail cím",
         "nl_button": "Szóljatok",
-        "f_links": "Linkek",
         "f_contact": "Kapcsolat",
         "f_social": "Közösség",
         "f_gbp": "Google Cégprofil",
@@ -502,25 +500,12 @@ UI = {
         # response expectation is the Contact page's own wording; the location
         # is the one in the site description. Nothing in this block is new fact.
         "p85": {
-            "alt": "MAG",
-            "menu": "MENÜ",
-            "close": "Bezárás",
-            "menu_aria_full": "Teljes navigáció",
             "start": "Projekt indítása",
-            "explore": "Kiemelt munkáink",
-            "nav_group": "Navigáció",
-            "cap_group": "Amit csinálunk",
-            "status_group": "Állapot",
             "st_reply": "Válasz jellemzően pár órán belül",
             "st_where": "Győr és Budapest",
             "st_langs": "Magyarul, angolul és németül dolgozunk",
-            "to_top": "VISSZA 0 MÉTERRE",
-            "converge_state": "KALIBRÁCIÓ KÉSZ",
             # The homepage is the one route that actually flies the ascent, so
             # its convergence reports the ascent rather than the calibration.
-            "converge_state_home": "EMELKEDÉS BEFEJEZVE",
-            "converge_lede": "Hova vigyük innen a vállalkozásodat?",
-            "cta_head": "A következő szint innen indul.",
             # Archetype-specific closing lines (brief §8.5).
             "cta_service": "Hasonló feladatod van?",
             "cta_work": "Építsük meg a következő projektet.",
@@ -557,20 +542,10 @@ UI = {
         "name": "English",
         "skip": "Skip to content",
         "brand_aria": "Stratos — home",
-        "brand_alt": "Stratos — web design and digital agency in Győr, Hungary",
         "nav_aria": "Main navigation",
         "menu_aria": "Mobile navigation",
-        "burger_aria": "Menu",
         "lang_aria": "Choose language",
         "services": "Services",
-        "quote_cta": "Get a quote",
-        "unit": "METRES",
-        "unit_short": "M",
-        "boot": "SYSTEMS STARTING",
-        "skip_top": "SKIP TO 30,000 M",
-        "hud": ["ALTITUDE M", "OXYGEN %", "TEMPERATURE °C", "CLIMB M/S", "LAYER"],
-        "rail_aria": "Stages of the ascent",
-        "layers": ["TROPOSPHERE", "STRATOSPHERE", "MESOSPHERE"],
         "nav": {"about": "About", "work": "Work", "blog": "Blog",
                 "contact": "Contact"},
         "svc_all": "All services",
@@ -584,9 +559,9 @@ UI = {
             "impact": ("Impact Program", "30,000 M"),
         },
         "menu": {
-            "index": "Home", "about": "About", "services": "Services",
+            "index": "Home", "about": "Stratos", "services": "Solutions",
             "sme": "SME", "enterprise": "Enterprise", "branding": "Branding",
-            "ads": "Ads", "seo": "SEO", "shop": "Stores", "impact": "Impact", "work": "Work",
+            "ads": "Ads", "seo": "SEO", "shop": "Stores", "impact": "Impact", "work": "Clients",
             "blog": "Blog",
             "contact": "Contact", "quote": "Get a quote",
         },
@@ -594,7 +569,6 @@ UI = {
         "nl_label": "Email address",
         "nl_placeholder": "email address",
         "nl_button": "Tell me",
-        "f_links": "Links",
         "f_contact": "Contact",
         "f_social": "Social",
         "f_gbp": "Google Business Profile",
@@ -602,23 +576,10 @@ UI = {
         "f_privacy": "Privacy policy",
         "f_imprint": "Imprint",
         "p85": {
-            "alt": "ALT",
-            "menu": "MENU",
-            "close": "Close",
-            "menu_aria_full": "Full navigation",
             "start": "Start a project",
-            "explore": "Explore selected work",
-            "nav_group": "Navigate",
-            "cap_group": "Capabilities",
-            "status_group": "Status",
             "st_reply": "A reply usually within a few hours",
             "st_where": "Győr and Budapest",
             "st_langs": "We work in Hungarian, English and German",
-            "to_top": "RETURN TO 0 M",
-            "converge_state": "CALIBRATION COMPLETE",
-            "converge_state_home": "ASCENT COMPLETE",
-            "converge_lede": "Where should we take your business next?",
-            "cta_head": "Your next altitude starts here.",
             "cta_service": "Have a similar challenge?",
             "cta_work": "Build the next project with us.",
             "cta_about": "Let's see what we can build together.",
@@ -652,20 +613,10 @@ UI = {
         "name": "Deutsch",
         "skip": "Zum Inhalt springen",
         "brand_aria": "Stratos — Startseite",
-        "brand_alt": "Stratos — Webdesign und Digitalagentur in Győr, Ungarn",
         "nav_aria": "Hauptnavigation",
         "menu_aria": "Mobile Navigation",
-        "burger_aria": "Menü",
         "lang_aria": "Sprache wählen",
         "services": "Leistungen",
-        "quote_cta": "Angebot",
-        "unit": "METER",
-        "unit_short": "M",
-        "boot": "SYSTEME STARTEN",
-        "skip_top": "DIREKT AUF 30.000 M",
-        "hud": ["HÖHE M", "SAUERSTOFF %", "TEMPERATUR °C", "STEIGEN M/S", "SCHICHT"],
-        "rail_aria": "Etappen des Aufstiegs",
-        "layers": ["TROPOSPHÄRE", "STRATOSPHÄRE", "MESOSPHÄRE"],
         "nav": {"about": "Über uns", "work": "Projekte", "blog": "Blog",
                 "contact": "Kontakt"},
         "svc_all": "Alle Leistungen",
@@ -679,16 +630,15 @@ UI = {
             "impact": ("Impact-Programm", "30.000 M"),
         },
         "menu": {
-            "index": "Start", "about": "Über uns", "services": "Leistungen",
+            "index": "Start", "about": "Stratos", "services": "Lösungen",
             "sme": "KMU", "enterprise": "Konzerne", "branding": "Branding",
-            "ads": "Werbung", "seo": "SEO", "shop": "Shop", "impact": "Impact", "work": "Projekte",
+            "ads": "Werbung", "seo": "SEO", "shop": "Shop", "impact": "Impact", "work": "Kunden",
             "blog": "Blog", "contact": "Kontakt", "quote": "Angebot",
         },
         "nl_lede": "Unser Newsletter entsteht gerade. Hinterlassen Sie Ihre Adresse, dann sagen wir Bescheid, sobald er startet.",
         "nl_label": "E-Mail-Adresse",
         "nl_placeholder": "E-Mail-Adresse",
         "nl_button": "Bescheid geben",
-        "f_links": "Links",
         "f_contact": "Kontakt",
         "f_social": "Social Media",
         "f_gbp": "Google Unternehmensprofil",
@@ -696,23 +646,10 @@ UI = {
         "f_privacy": "Datenschutzerklärung",
         "f_imprint": "Impressum",
         "p85": {
-            "alt": "HÖHE",
-            "menu": "MENÜ",
-            "close": "Schließen",
-            "menu_aria_full": "Vollständige Navigation",
             "start": "Projekt starten",
-            "explore": "Ausgewählte Arbeiten",
-            "nav_group": "Navigation",
-            "cap_group": "Leistungen",
-            "status_group": "Status",
             "st_reply": "Antwort in der Regel innerhalb weniger Stunden",
             "st_where": "Győr und Budapest",
             "st_langs": "Wir arbeiten auf Ungarisch, Englisch und Deutsch",
-            "to_top": "ZURÜCK AUF 0 M",
-            "converge_state": "KALIBRIERUNG ABGESCHLOSSEN",
-            "converge_state_home": "AUFSTIEG ABGESCHLOSSEN",
-            "converge_lede": "Wohin soll es mit Ihrem Unternehmen als Nächstes gehen?",
-            "cta_head": "Die nächste Höhe beginnt hier.",
             "cta_service": "Eine ähnliche Aufgabe?",
             "cta_work": "Bauen wir gemeinsam das nächste Projekt.",
             "cta_about": "Sehen wir, was wir gemeinsam aufbauen können.",
@@ -756,10 +693,6 @@ LEGAL_NOTE = {
           '<a href="%s" hreflang="hu">ungarische Fassung</a> rechtlich '
           'verbindlich.</p>',
 }
-
-ARROW = ('<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">'
-         '<path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>')
-
 
 # --------------------------------------------------------------------- paths
 # Link mode.
@@ -893,41 +826,6 @@ def build_langs(lang, key):
             f'{items}</div>')
 
 
-# The full-screen menu's primary column. Six destinations, numbered, large.
-# The services are a second column rather than six more numbered lines, and the
-# case studies are in neither: under the `summary` status they do not get public
-# case-study navigation, so the Work index is the one route that leads to them.
-MENU_PRIMARY = ("index", "about", "services", "work", "blog", "contact")
-
-
-def build_menu(lang, key):
-    """The §7.4 editorial navigation layer.
-
-    Two columns. The left is the six primary destinations at display size,
-    numbered — the number is the Meridian's station marker, not decoration, so
-    it is `aria-hidden` and the link text stands alone. The right is the service
-    architecture, which is a list of five and reads better as one.
-    """
-    u = UI[lang]
-    primary = "".join(
-        '\n        <li><a href="%s"%s><b aria-hidden="true">%02d</b><span>%s</span></a></li>'
-        % (href(lang, k), ' aria-current="page"' if k == key else "", i + 1, u["menu"][k])
-        for i, k in enumerate(MENU_PRIMARY))
-    svc = "".join(
-        '\n        <li><a href="%s"%s>%s<em>%s</em></a></li>'
-        % (href(lang, k), ' aria-current="page"' if k == key else "",
-           u["svc"][k][0], u["svc"][k][1])
-        for k in SERVICES)
-    return f"""
-    <ul class="menu__primary">{primary}
-    </ul>
-    <div class="menu__svc">
-      <p class="menu__h" id="menu-svc-h">{u['services']}</p>
-      <ul aria-labelledby="menu-svc-h">{svc}
-      </ul>
-    </div>"""
-
-
 def build_font_preload(lang, base):
     """Preload only the font files the first screen genuinely needs.
 
@@ -962,7 +860,10 @@ def build_font_preload(lang, base):
     """
     faces = ["archivo/archivo-normal-latin.woff2", "aboreto/aboreto-normal-latin.woff2"]
     if lang == "hu":
-        faces.append("archivo/archivo-normal-latin-ext.woff2")
+        # Since 2026-10-16 Aboreto sets the headlines, and a Hungarian H1
+        # carries ő or ű as often as not: its 1 kB latin-ext joins Archivo's.
+        faces += ["archivo/archivo-normal-latin-ext.woff2",
+                  "aboreto/aboreto-normal-latin-ext.woff2"]
     return "".join(
         f'\n<link rel="preload" href="{base}assets/fonts/{f}" as="font" '
         f'type="font/woff2" crossorigin>'
@@ -1280,68 +1181,9 @@ def analytics_head(base):
     )
 
 
-# The flight deck and the full-screen navigation layer, as one template.
-#
-# Extracted from SHELL because there are two surfaces now. The 66 generated
-# routes get it through SHELL; the React homepage gets the same rendered
-# string through `write_home_chrome()`, which its Vite build substitutes into
-# the three locale shells. One copy of the markup, one copy of the CSS in
-# assets/css/chrome.css, one copy of the behaviour in assets/js/header.js.
-DECK = """<!-- Flight deck. Three deterministic states — opening, journey, destination —
-     written to `data-state` by assets/js/header.js from one number: how far
-     down the document you are. The old direction-based hide/show is gone; a
-     header that vanishes because you nudged the wheel upward is jitter, not
-     navigation. -->
-<header class="nav" data-state="opening">
-  <a class="brand" href="{{home}}" aria-label="{{brand_aria}}">
-    <img src="{{base}}assets/img/plane-cursor.png" alt="">
-    <span class="brand__wm" data-nosnippet><span class="brand__full">Stratos</span><span class="brand__mark" aria-hidden="true">S/</span></span>
-  </a>
-  <div class="nav__alt" aria-hidden="true" data-nosnippet><span class="nav__alt-k">{{alt_k}}</span><b class="nav__alt-v">00000</b><span class="nav__alt-u">{{unit_short}}</span></div>
-  <!-- 2026-10-07: logo, quote button and menu, nothing else. The desktop link
-       row duplicated the full-screen menu (which also carries the services and
-       the language switcher), so the owner took it out. -->
-  <a class="nav__cta" href="{{quote_href}}"><span data-nosnippet>{{quote_cta}}</span></a>
-  <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="{{burger_aria}}"><span class="burger__t" aria-hidden="true" data-nosnippet><span class="burger__open">{{menu_label}}</span><span class="burger__shut">{{close}}</span></span><span class="burger__bars" aria-hidden="true"><i></i><i></i></span></button>
-</header>
-
-<!-- Full-viewport editorial navigation (§7.4). Still a plain list of anchors:
-     no router, no interception, so middle-click, ctrl-click, back and the
-     browser's own history all behave exactly as they did. -->
-<!-- data-nosnippet (here, in the header, the rail, the closing CTA and the
-     footer): Google was quoting the menu's service list with its altitude
-     figures ("Web development 9,400 M") as a page's search snippet. A snippet
-     must come from the page's own content; navigation, chrome and instrument
-     read-outs never should. Links inside stay crawlable — nosnippet only
-     keeps the TEXT out of the result.
-     Google honours the attribute on <span>, <div> and <section> ONLY
-     (developers.google.com/search/docs/crawling-indexing/robots-meta-tag), so
-     it sits on those inside <header>, <aside> and <footer>, never on the
-     landmark itself, where it is silently ignored. -->
-<div class="menu" id="menu" hidden data-nosnippet>
-  <div class="menu__veil" data-menu-dismiss></div>
-  <nav class="menu__panel" aria-label="{{menu_aria_full}}">
-    <svg class="menu__trace" data-trace viewBox="0 0 120 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path d="M8 0 V600"/>
-    </svg>
-    {{menu}}
-    <div class="menu__aside">
-      {{langs}}
-      <a class="btn menu__cta" href="{{quote_href}}">{{start}}</a>
-      <div class="menu__foot">
-        <a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a>
-        <a href="tel:+36305848024">+36 30 584 8024</a>
-      </div>
-    </div>
-  </nav>
-</div>"""
-
-
 # ============================================================ structured data
 #
-# Phase 9, Workstream G. One generator for all 69 routes, including the three
-# homepage shells, which receive it through home-chrome.json like the rest of
-# their <head>.
+# Phase 9, Workstream G. One generator for all 69 routes, on either shell.
 #
 # THE RULE THAT SHAPED EVERY DECISION BELOW
 # -----------------------------------------
@@ -1436,6 +1278,8 @@ BREADCRUMB_PARENT = {
     "local-hub": "services",
     "local-gyor": "local-hub", "local-budapest": "local-hub",
     "local-pest": "local-hub", "local-szeged": "local-hub",
+    # Kapcsolat / Időpontfoglalás
+    "booking": "contact",
 }
 
 SCHEMA_LANG = {"hu": "hu-HU", "en": "en-GB", "de": "de-DE"}
@@ -1745,20 +1589,6 @@ def build_structured_data(lang, key, title, desc, meta, body):
             ],
         })
 
-    if key == "index":
-        graph.append({
-            "@type": "FAQPage",
-            "@id": page_url + "#faq",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": q,
-                    "acceptedAnswer": {"@type": "Answer", "text": a},
-                }
-                for q, a in GROUND_COPY[lang]["faq"]
-            ],
-        })
-
     if key in ("sme", "enterprise", "shop", "branding", "ads", "seo", "seo-web"):
         # No `offers`, no `priceRange`, no `areaServed`. The site publishes no
         # price for any of the four, and a Service node without an Offer is a
@@ -1826,326 +1656,8 @@ def build_structured_data(lang, key, title, desc, meta, body):
             + payload + "</script>")
 
 
-def build_deck(lang, key, base, home):
-    """Render the flight deck for one route. `home` is the wordmark's href —
-    relative on the generated routes, root-absolute on the homepage."""
-    u = UI[lang]
-    quote = root_href(lang, "quote") if base == "/" else href(lang, "quote")
-    return render(DECK, dict(
-        base=base, home=home,
-        brand_aria=u["brand_aria"], brand_alt=u["brand_alt"],
-        burger_aria=u["burger_aria"], quote_cta=u["quote_cta"],
-        alt_k=u["p85"]["alt"], unit_short=u["unit_short"],
-        quote_href=quote, start=u["p85"]["start"],
-        menu_label=u["p85"]["menu"], close=u["p85"]["close"],
-        menu_aria_full=u["p85"]["menu_aria_full"],
-        menu=build_menu(lang, key),
-        langs=build_langs(lang, key),
-    ))
-
-
-SHELL = """<!DOCTYPE html>
-<html lang="{{lang}}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{title}}</title>
-<meta name="description" content="{{desc}}">
-<link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="icon" href="{{base}}assets/img/favicon-192.png" sizes="192x192" type="image/png">
-<link rel="apple-touch-icon" href="{{base}}assets/img/apple-touch-icon.png">{{robots}}{{alternates}}{{social}}{{jsonld}}
-{{fontpreload}}
-<link rel="stylesheet" href="{{base}}assets/css/type.css">
-<!-- The site chrome — tokens, flight deck, full-screen menu, Arrival, footer.
-     Before main.css because it carries the token block main.css reads, and
-     because the homepage links this file and not main.css. See chrome.css. -->
-<link rel="stylesheet" href="{{base}}assets/css/chrome.css">
-<link rel="stylesheet" href="{{base}}assets/css/main.css">
-<link rel="stylesheet" href="{{base}}assets/css/motion.css">
-<link rel="stylesheet" href="{{base}}assets/css/transitions.css">{{extra_css}}
-<script id="i18n" type="application/json">{{i18n}}</script>
-<!-- The canonical lead submission controller. In <head> with `defer` on
-     purpose: deferred scripts run in document order after parsing, so this is
-     guaranteed to have defined `window.Stratos.lead` before any per-page
-     script in <body> runs — including the generated questionnaire wizard,
-     which is a separate file and cannot import it. It also reads the i18n
-     block above, which parsing has already delivered by then. -->
-<script src="{{base}}assets/js/lead.js" defer></script>{{analytics}}
-</head>
-<!-- data-page-key is the canonical page key from SLUGS, not the slug: the slug
-     is translated, so /en/web-design-small-business.html and /de/webdesign-kmu.html are
-     both `sme`. Anything that needs to know what a page *is* should read this
-     rather than parse the URL. -->
-<body data-ceiling="{{ceiling}}" data-page-key="{{pagekey}}"{{body_class}}>
-
-<a class="skip" href="#main">{{skip}}</a>
-<div class="grain" aria-hidden="true"></div>
-<canvas class="contrail" aria-hidden="true"></canvas>
-<div class="plane-cursor" aria-hidden="true"><img src="{{base}}assets/img/plane-cursor.png" alt=""></div>
-{{instruments}}
-
-{{deck}}
-
-<div class="shell">
-<main id="main">
-{{body}}
-</main>
-{{footer}}
-</div>
-
-<script src="{{base}}assets/js/main.js"></script>
-<!-- The flight deck. Not deferred: the header's opening state is above the
-     fold on every route, and a header that snaps into place one frame after
-     paint is a layout shift the user watches happen. -->
-<script src="{{base}}assets/js/header.js"></script>
-<!-- The Meridian Trace motion primitives. `defer` because every primitive
-     measures layout at boot — an SVG path's length is wrong until the web fonts
-     have settled the box around it — and because nothing on the page depends on
-     it having run. See assets/js/motion.js. -->
-<script src="{{base}}assets/js/motion.js" defer></script>
-<!-- Page transitions. First-party, so the policy stays `script-src 'self'`, and
-     `defer` rather than `async` so it runs after parsing. It is not ordered
-     before `pagereveal` and does not need to be — see assets/js/transitions.js. -->
-<script src="{{base}}assets/js/transitions.js" defer></script>{{extra_js}}
-</body>
-</html>
-"""
-
-# Subpages carry the altimeter rail; the homepage carries the full instrument
-# panel, because there the climb *is* the page.
-RAIL = """
-<aside class="rail" aria-hidden="true">
-  <img class="rail__mark" src="{{base}}assets/img/plane-cursor.png" alt="">
-  <div class="rail__tape" data-nosnippet><div class="rail__ticks"></div></div>
-  <div class="rail__read" data-nosnippet><b class="rail__alt">420</b><span class="rail__unit">{{unit}}</span></div>
-  <div class="rail__layer" data-nosnippet>{{layer0}}</div>
-</aside>
-"""
-
-# The home page is a single continuous ascent: valley floor to stratosphere.
-# Everything below the content is one world — sky shader, weather, the range
-# itself, the route line drawn across it — and it is all a function of one
-# number, the altitude. The instruments read that number; they do not compute
-# anything of their own.
-# The HUD chrome was the old homepage's flight instrument. Removed with it.
-
-# ARRIVAL / GROUND CONTROL — the §8 footer.
-#
-# The old footer was a rule followed by four columns of links, which is the one
-# thing §8.1 names as not good enough: it ended the page without concluding it.
-# This one has three movements.
-#
-#   1. Convergence. The page's own Meridian Trace runs out of the content and
-#      meets itself. A system state, then one question.
-#   2. The hero CTA the whole page has been walking towards. Its headline is
-#      archetype-specific — a service page asks a service question, an article
-#      asks an article question — so it reads as this page's conclusion rather
-#      than as the same block stamped 66 times.
-#   3. The information grid, and only then the utility line.
-#
-# The homepage gets the full cinematic version of movement 1; every other route
-# gets a short one, per §8.5.
-FOOTER = """<section class="arrival{{arrival_mod}}" data-converge data-nosnippet>
-  <div class="wrap">
-    <svg class="arrival__trace" data-trace data-trace-stagger="0.5" viewBox="0 0 1200 240" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path d="M0 12 C 300 12, 420 120, 600 120"/>
-      <path d="M1200 12 C 900 12, 780 120, 600 120"/>
-      <path d="M600 120 V 228" class="trace__lit"/>
-      <circle class="trace__node" cx="600" cy="120" r="4"/>
-    </svg>
-    <p class="arrival__state" aria-hidden="true"><span>{{ceiling_label}}</span><span>{{converge_state}}</span></p>
-    <p class="arrival__lede">{{converge_lede}}</p>
-    <h2 class="arrival__h display" data-kinetic data-kinetic-from="104 700 0" data-kinetic-to="88 780 -.015">{{cta_head}}</h2>
-    <p class="arrival__cta converge__cta">
-      <a class="btn" href="{{quote}}" data-magnet><span>{{start}}</span>{{arrow}}</a>
-      <a class="btn btn--ghost" href="{{work}}"><span>{{explore}}</span></a>
-    </p>
-  </div>
-</section>
-<footer class="foot">
-  <div class="wrap" data-nosnippet>
-    <div class="foot__grid">
-      <div>
-        <a class="brand" href="{{home}}" style="margin-bottom:1.4rem" aria-label="{{brand_aria}}"><img src="{{base}}assets/img/plane-cursor.png" alt=""><span>Stratos</span></a>
-        <p class="muted" style="max-width:32ch;font-size:var(--step--1)">{{nl_lede}}</p>
-        <form class="newsletter" data-lead="newsletter" style="margin-top:1.2rem">
-          <label class="vh" for="nl">{{nl_label}}</label>
-          <input id="nl" type="email" name="email" placeholder="{{nl_placeholder}}" required>
-          <div class="hp" aria-hidden="true">
-            <label for="hp-foot">Company website</label>
-            <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
-          </div>
-          <button type="submit">{{nl_button}}</button>
-        </form>
-        <p class="form__note" style="margin-top:.6rem" role="status"></p>
-      </div>
-      <div>
-        <h3>{{f_links}}</h3>
-        <ul>{{f_pages}}
-        </ul>
-      </div>
-      <div>
-        <h3>{{f_services}}</h3>
-        <ul>{{f_svc}}
-        </ul>
-      </div>
-      <div>
-        <h3>{{f_contact}}</h3>
-        <!-- Name, address, phone, in text, on every page.
-             The address is the third of those and it was the missing one: the
-             footer had the mail and the number, and the seat existed only in
-             the JSON-LD and on /impresszum.html. A local result wants the three
-             to agree wherever they appear, and a crawler reads the visible
-             copy as readily as the graph. The wording is the imprint's own
-             line — "9151 Abda, Arany János utca 13." — not a second rendering
-             of it, so there is one string to keep true.
-             `address` rather than a third <li>: this IS the contact address of
-             the nearest article, which is what the element is for, and it
-             carries the microformat class the same way the JSON-LD carries the
-             PostalAddress. -->
-        <ul>
-          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
-          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
-          <li><address class="foot__nap">{{f_office}} 9027 Győr, Gesztenyefa út 4.<br>{{f_seat}} 9151 Abda, Arany János utca 13.</address></li>
-        </ul>
-        <h3 style="margin-top:1.6rem">{{f_social}}</h3>
-        <ul>
-          <li><a href="https://www.linkedin.com/company/stratos-media-agency" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/stratosweb/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=61590329356257" target="_blank" rel="noopener">Facebook</a></li>
-          <li><a href="https://maps.google.com/?cid=2524074190501925711" target="_blank" rel="noopener">{{f_gbp}}</a></li>
-        </ul>
-      </div>
-      <!-- Status. Three statements, every one of them already published
-           elsewhere on this site: the reply expectation is the Contact page's
-           own sentence, the location is the one in the site description, and
-           the languages are the three locales this build emits. Nothing here
-           is an availability claim the site cannot support. -->
-      <div>
-        <h3>{{f_status}}</h3>
-        <ul class="foot__status">
-          <li>{{st_reply}}</li>
-          <li>{{st_where}}</li>
-          <li>{{st_langs}}</li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot__bottom">
-      <span>{{f_rights}}</span>
-      <span class="foot__utility">
-        <a href="{{privacy}}">{{f_privacy}}</a>
-        <a href="{{imprint}}">{{f_imprint}}</a>{{f_consent}}
-        {{f_langs}}
-        <button class="foot__top" type="button" data-to-top>{{to_top}}</button>
-        <img src="{{base}}assets/img/gdpr.png" alt="GDPR Ready">
-      </span>
-    </div>
-  </div>
-</footer>"""
-
-
 def render(tpl, ctx):
     return re.sub(r"\{\{(\w+)\}\}", lambda m: str(ctx[m.group(1)]), tpl)
-
-
-# Which closing question a route asks. §8.5: the same core system, archetype-
-# specific language — so a service page's footer concludes a service argument
-# and an article's concludes the article, instead of 66 routes repeating one
-# sentence. Anything not listed gets the general line.
-ARCHETYPE_CTA = {
-    **{k: "cta_service" for k in SERVICES},
-    "branding": "cta_service",
-    "services": "cta_service",
-    "work": "cta_work",
-    **{k: "cta_work" for k in CASES},
-    "about": "cta_about",
-    "impact": "cta_about",
-    **{k: "cta_article" for k in POSTS},
-    "blog": "cta_article",
-}
-
-# The altitude the convergence reports. It is the page's own ceiling — the same
-# number the altimeter rail has been climbing towards all the way down — so the
-# footer closes the instrument rather than announcing an unrelated figure.
-CEILINGS = {"impact": 30000, "ads": 17000, "enterprise": 9400,
-            "seo": 6200, "branding": 4800, "sme": 1200}
-
-
-def build_footer(lang, key):
-    u = UI[lang]
-    p = u["p85"]
-    pages = "".join(
-        f'\n          <li><a href="{href(lang, k)}">{u["menu"][k]}</a></li>'
-        for k in ("about", "work", "contact", "blog", "quote"))
-    svc = f'\n          <li><a href="{href(lang, "services")}">{u["svc_all"]}</a></li>'
-    svc += "".join(
-        f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
-        for k in SERVICES)
-    # The local landing pages are Hungarian only (HU_ONLY), so is their link.
-    if lang == "hu":
-        svc += f'\n          <li><a href="{href(lang, "seo-web")}">Keresőoptimalizált weboldal</a></li>'
-        svc += f'\n          <li><a href="{href(lang, "local-hub")}">Hol dolgozunk</a></li>'
-
-    ceiling = CEILINGS.get(key, 30000)
-    # Thin space between the thousands, which is how the altimeter reads it.
-    ceiling_label = f"{ceiling:,}".replace(",", " ") + " " + u["unit_short"]
-
-    home = key == "index"
-
-    return render(FOOTER, dict(
-        home=href(lang, "index"),
-        brand_aria=u["brand_aria"], brand_alt=u["brand_alt"],
-        # Root-absolute on the homepage, for the reason root_href gives: one
-        # application, three URLs, and a dev server that serves it from a fourth.
-        base="/" if _ROOT_LINKS else ("" if lang == "hu" else "../"),
-        nl_lede=u["nl_lede"], nl_label=u["nl_label"],
-        nl_placeholder=u["nl_placeholder"], nl_button=u["nl_button"],
-        f_links=u["f_links"], f_pages=pages, f_services=u["services"], f_svc=svc,
-        f_contact=u["f_contact"], f_social=u["f_social"], f_rights=u["f_rights"],
-        f_gbp=u["f_gbp"],
-        privacy=href(lang, "privacy"), f_privacy=u["f_privacy"],
-        imprint=href(lang, "imprint"), f_imprint=u["f_imprint"],
-        # ---- Phase 8.5
-        arrival_mod=" arrival--home" if home else "",
-        ceiling_label=ceiling_label,
-        # The homepage has actually flown the 30 000 m the label reports, so it
-        # says so. Every other route is reporting its own ceiling as a position
-        # on the instrument, which is what "calibration complete" means there.
-        converge_state=p["converge_state_home"] if home else p["converge_state"],
-        converge_lede=p["converge_lede"],
-        cta_head=p[ARCHETYPE_CTA.get(key, "cta_head")] if key in ARCHETYPE_CTA else p["cta_head"],
-        quote=href(lang, "quote"), start=p["start"],
-        work=href(lang, "work"), explore=p["explore"],
-        # No arrow glyph on the homepage — the same rule `build_nav` applies to
-        # the header's own button. `.btn svg` is sized in main.css, which the
-        # homepage does not link: its buttons are the journey's, and an inline
-        # SVG with a viewBox and no dimensions collapsed to 0×0 inside one.
-        # An invisible glyph in the markup is worse than no glyph.
-        arrow="" if home else ARROW,
-        f_status=p["status_group"], st_reply=p["st_reply"],
-        # Hungarian only: the two cities link to their regional pages, which
-        # exist in Hungarian only.
-        st_where=(f'<a href="{href(lang, "local-gyor")}">Győr</a> és '
-                  f'<a href="{href(lang, "local-budapest")}">Budapest</a>'
-                  if lang == "hu" else p["st_where"]),
-        st_langs=p["st_langs"],
-        # The office the Business Profile shows, and the registered seat the
-        # imprint has to state — both real, both said (2026-10-10).
-        f_office={"hu": "Iroda:", "en": "Office:", "de": "Büro:"}[lang],
-        f_seat={"hu": "Székhely:", "en": "Registered office:", "de": "Firmensitz:"}[lang],
-        f_langs=build_langs(lang, key), to_top=p["to_top"],
-        # The consent withdrawal path, on every page. Emitted only when the
-        # build actually requires consent, so a site with measurement off does
-        # not offer to change a setting that does not exist. Ships `hidden` and
-        # is revealed by assets/js/consent.js, so it never appears as a dead
-        # control if scripting is unavailable.
-        f_consent=(
-            f'\n        <button class="foot__consent" type="button" '
-            f'data-consent-settings hidden>{u["js"]["consent_settings"]}</button>'
-            if (analytics_config() or {}).get("requireConsent") else ""
-        ),
-    ))
-
 
 
 # ------------------------------------------------------------------- images
@@ -2357,6 +1869,8 @@ def expand_logosets(html, lang, base):
     def render(m):
         kind, keylist = m.group(1), m.group(2)
         keys = [k.strip() for k in keylist.split(",")] if keylist else None
+        if keys == ["all"]:
+            keys = list(ALL_MARKS)
         if keys:
             unknown = [k for k in keys if k not in ORGS and k not in CLIENT_MARKS]
             if unknown:
@@ -2531,478 +2045,395 @@ def load_dict(lang):
     return table
 
 
-# --------------------------------------------------------------- the homepage
+# --------------------------------------------------------- the new shell (v2)
 #
-# The homepage is the one route this script does not generate. It is a React and
-# WebGL bundle built by experiments/vite.home.config.ts from three hand-written
-# locale shells, and it stays that way — see ARCHITECTURE.md for why rebuilding
-# the ascent as a generated page was never on the table.
+# The design system of the October 2026 redesign: a light, typography-led
+# shell — a floating header, a quiet footer — styled by assets/css/system.css
+# and driven by assets/js/shell.js. The rules are written down in
+# _build/reports/stratos-redesign/02-design-system.md.
 #
-# What it was missing was the site: it had no header, no menu, and a footer of
-# its own invention. The answer is not a second navigation system for one route.
-# It is this: the chrome is rendered here, by the one place that owns the slug
-# table, the six destinations, the five services and all three locales, and
-# handed to the Vite build as four strings per language. The homepage then
-# carries byte-identical header, menu, Arrival and footer markup to the other 66
-# routes, styled by the same assets/css/chrome.css and driven by the same
-# assets/js/header.js.
+# WHICH ROUTES ARE ON IT
+# ----------------------
+# All of them, and the 404 pages. The homepage moved first (2026-10-16) as the
+# proof of concept; once it was approved every other route followed, and the
+# original shell — the dark flight deck, the full-screen menu, the altimeter
+# rail, the Arrival footer and main.css/chrome.css/motion.css under them — was
+# removed. The routes keep their fragments word for word: site.css restyles the
+# page vocabulary they are written in, which is what keeps the dictionaries,
+# the headings and the internal links exactly as they were.
 #
-# The four slots are ordinary HTML comments in the shells, so a shell is still a
-# valid document to open, and a shell that loses one is a build error rather
-# than a page that quietly ships without a footer.
-HOME_HEAD = """<!-- The site chrome, generated by _build/build.py. Same stylesheet as the
-         other 66 routes; main.css is deliberately NOT linked, because it
-         carries the page-level resets the journey's own stylesheet contradicts.
-         See the note at the top of assets/css/chrome.css. -->
-    <link rel="stylesheet" href="/assets/css/chrome.css">
-    <!-- motion.css is deliberately absent, and so is main.css. The journey's
-         eleven panels carry `data-stage` and `data-kinetic`, which are two of
-         that file's own primitives, driven here by the journey's clock instead.
-         The two primitives the chrome actually needs — TraceLine and
-         CTAConvergence — live in chrome.css above. assets/js/motion.js keeps out
-         of the journey subtree for the same reason; see `data-motion-external`. -->
-    <script id="i18n" type="application/json">{{i18n}}</script>
-    <!-- The canonical lead controller, for the footer newsletter. Event-bound
-         only: it starts no loop and reads no layout. -->
-    <script src="/assets/js/lead.js" defer></script>{{analytics}}"""
-
-# Not deferred, for the reason SHELL gives: the header's opening state is above
-# the fold and a header that snaps into place a frame after paint is a layout
-# shift the visitor watches happen. It is at the end of <body>, after the header
-# markup it binds to.
-HOME_SCRIPTS = """<script src="/assets/js/header.js"></script>
-    <script src="/assets/js/motion.js" defer></script>"""
-
-
-HOME_SHELLS = Path(__file__).resolve().parent.parent / "experiments" / "home"
-_TITLE_RE = re.compile(r"<title>(.*?)</title>", re.S)
-_DESC_RE = re.compile(r'<meta name="description" content="(.*?)"', re.S)
-
-
-def home_meta(lang):
-    """The homepage's own title and description, READ from its shell.
-
-    The three shells are the homepage's <head> and they state these two facts;
-    the structured data has to agree with them. Copying them into this file
-    would be a second copy that drifts silently, and the drift would only ever
-    show up as a Search Console warning months later. So it is read, and a shell
-    that stops stating either one fails the build here rather than shipping a
-    JSON-LD `name` that no longer matches the `<title>` beside it.
-    """
-    path = HOME_SHELLS / f"{lang}.html"
-    html = path.read_text(encoding="utf-8")
-    title = _TITLE_RE.search(html)
-    desc = _DESC_RE.search(html)
-    if not title or not desc:
-        sys.exit(f"{path}: homepage shell has no <title> or no meta description")
-    unescape = lambda s: (s.replace("&amp;", "&").replace("&lt;", "<")
-                          .replace("&gt;", ">").replace("&quot;", '"'))
-    return unescape(title.group(1).strip()), unescape(desc.group(1).strip())
-
-
-# ==================================================================== ground
+# WHAT THE HOMEPAGE USED TO BE
+# ----------------------------
+# A React + three.js bundle built by experiments/vite.home.config.ts, which took
+# its header, footer and written statement from this file through
+# _build/home-chrome.json and its title and description from three hand-written
+# shells. It is now an ordinary fragment, _build/pages/index.html, translated by
+# the same dictionaries as every other route (_build/i18n/home.json), and its
+# <head> is built by the same functions — so the canonical, the hreflang set,
+# Open Graph and the JSON-LD come from one place again.
 #
-# The homepage's written statement, between the ascent and the arrival.
-#
-# WHY IT EXISTS AT ALL
-# --------------------
-# `<main class="journey">` is React's container and `mount()` empties it, so
-# the opening frame inside it is gone the moment the first commit lands. What
-# survived to a crawl was the chrome and little else: 194 rendered words, one
-# content heading, and a page whose <title> promised "Győr & Budapest" while
-# the body said it once, in the footer's status list. An external audit put
-# page quality at 44% on exactly that — under 250 words, one paragraph, and no
-# overlap between the title, the H1 and the text underneath them.
-#
-# So this is the part of the homepage that is written rather than flown. It
-# sits OUTSIDE the mount host — after `</main>`, before the arrival — which is
-# the only reason it survives; anything inside the journey is React's to
-# discard on its first commit. It is generated here rather than authored in
-# the three shells for the same reason the header and the footer are: one slug
-# table, one set of service names, three locales that must not drift apart.
-#
-# WHY THE COPY IS WHAT IT IS
-# --------------------------
-# Every service name links to its own route with the words a visitor would
-# actually search for, never "read more" — the four service pages had 6, 4, 2
-# and 2 in-copy inbound links between them while the contact page had 40, so
-# the internal link graph was feeding the pages that do not need to rank. And
-# the vocabulary is deliberately the customer's: "weboldal készítés" and
-# "honlapkészítés" appear here because the site said "webdesign" 141 times and
-# those two once and never — a Hungarian market the site had written itself
-# out of one word at a time.
+# EVERY LINK IS ROOT-ABSOLUTE
+# ---------------------------
+# The homepage is served as `/`, `/en/` and `/de/`, and a host is free to answer
+# `/en` without the slash; a 404 answers at any depth. A relative `about.html`
+# resolves wrongly from either. So the chrome is rendered inside `root_links()`
+# and the body is run through `_root_absolute()`, on every route alike.
 
-GROUND = """<section class="ground" aria-labelledby="ground-h">
-  <div class="wrap">
-    <p class="ground__eyebrow">{{eyebrow}}</p>
-    <h2 class="ground__h display" id="ground-h">{{h}}</h2>
-    <div class="ground__cols">
-      <div class="ground__lede">
-        <p>{{p1}}</p>
-        <p>{{p2}}</p>
-      </div>
-      <div class="ground__body">
-        <h3>{{svc_h}}</h3>
-        <ul class="ground__svc">{{svc}}
-        </ul>
-        <h3>{{why_h}}</h3>
-        <p>{{why}}</p>
-        <h3>{{how_h}}</h3>
-        <p>{{how}}</p>
-        <h3>{{where_h}}</h3>
-        <p>{{where}}</p>
-        <h3>{{who_h}}</h3>
-        <p>{{who}}</p>
-      </div>
-    </div>
-    <div class="ground__faq">
-      <h3 class="ground__faq-h">{{faq_h}}</h3>
-      <dl>{{faq}}
-      </dl>
-    </div>
-  </div>
-</section>
-"""
-
-GROUND_COPY = {
+V2_UI = {
     "hu": {
-        "eyebrow": "FÖLDI IRÁNYÍTÁS",
-        "h": "Weboldal készítés Győrben és Budapesten",
-        "p1": "A Stratos digitális ügynökség: weboldalt tervezünk és fejlesztünk, "
-              "arculatot építünk, és Google- meg Meta-hirdetéseket kezelünk. Magyar, "
-              "angol és német nyelven dolgozunk, és ugyanaz a csapat viszi végig a "
-              "munkát az első beszélgetéstől az élesítésig, majd azon is túl.",
-        "p2": "Amikor azt mondjuk, hogy nem weboldalakat építünk, hanem magasságot, "
-              "akkor arra gondolunk, hogy a látható felület mögött mindig egy mérhető "
-              "rendszer áll. Egy honlapkészítés önmagában még nem hoz ügyfelet: ahhoz a "
-              "szerkezetnek, a szövegnek, a [[seo:keresőoptimalizálásnak]] és a hirdetéseknek "
-              "együtt kell működniük, különben a legszebb oldal is csak egy névjegykártya marad.",
-        "svc_h": "Hat szolgáltatás, egy rendszer",
-        "svc": [
-            ("sme", "Weboldal készítés KKV-nak",
-             "tervezés, szövegezés, fejlesztés és keresőoptimalizálás egyszeri, tételes "
-             "projektdíjjal — az átadás után minden a tiéd."),
-            ("enterprise", "Weboldal és rendszerfejlesztés nagyvállalatoknak",
-             "egyedi platformok, belső rendszerek, integrációk és üzemeltetés projektre "
-             "szabott fejlesztőcsapattal."),
-            ("shop", "Webshop készítés",
-             "kódból, sablon nélkül: terméktörzs, fizetés, szállítás és készletkapcsolat, "
-             "tételes ajánlattal."),
-            ("seo", "Keresőoptimalizálás",
-             "technikai SEO, tartalom és helyi keresés, érthető riporttal arról, mi változott."),
-            ("branding", "Branding és arculattervezés",
-             "logó, színvilág, tipográfia, képi stílus és hangnem egyetlen rendszerbe rendezve."),
-            ("ads", "Google és Meta hirdetéskezelés",
-             "célközönség-kutatás, kreatív, licitstratégia és konverziómérés — kampányok, "
-             "amelyek nem elérést, hanem valódi megkeresést hoznak."),
-        ],
-        "why_h": "Miért egyszeri projektdíjjal?",
-        "why": "Mert a weboldal a tiéd, nem bérlemény. A díjmentes felmérés után tételes "
-               "ajánlatot kapsz arról, mi készül, mennyi idő alatt és mennyiért: kutatás, "
-               "szerkezet, szöveg, dizájn, fejlesztés és keresőoptimalizálás. Az átadás után "
-               "nincs kötelező havi tétel, ami nélkül az oldal leállna — ha később bővítenél "
-               "vagy karbantartást kérsz, azt külön, igény szerint vállaljuk.",
-        "how_h": "Hogyan dolgozunk",
-        "how": "Minden projekt egy díjmentes konzultációval indul, ahol megnézzük, hol tart "
-               "most a vállalkozásod, és mi az az egy dolog, ami a legtöbbet mozdítana rajta. "
-               "Ebből készül a személyre szabott árajánlat — árlistánk azért nincs, mert két "
-               "egyforma feladat sincs. Az élesítés után sem tűnünk el: ha bővítenél, "
-               "mérnél vagy a keresőoptimalizálást folytatnád, ugyanaz a csapat viszi tovább.",
-        "where_h": "Hol dolgozunk",
-        "where": "Az irodánk [[local-gyor:Győrben]] van, és a Győr-Moson-Sopron vármegyei "
-                 "vállalkozásokkal szívesen leülünk személyesen is. [[local-budapest:Budapesten]] "
-                 "rendszeresen ott vagyunk, ott is személyesen egyeztetünk; a többi régióról a "
-                 "[[local-hub:Hol dolgozunk]] oldalon írtunk. Külföldi ügyfeleinkkel online "
-                 "dolgozunk, ami az elmúlt években semmivel sem bizonyult lassabbnak. Ha nem tudod eldönteni, melyik szolgáltatás kellene, "
-                 "írj nekünk: a beszélgetés ingyenes, és a végén akkor is okosabb leszel, ha "
-                 "nem velünk dolgozol tovább.",
-        "who_h": "Kikkel dolgozunk",
-        "who": "Nincs olyan iparág, amire szakosodtunk volna, és ezt szándékosan nem is akarjuk. Építettünk oldalt kertépítő cégnek, borbélyüzletnek, mentáltréning-szakembernek, ipari beszállítónak és nonprofit szervezetnek — a feladat mindegyiknél ugyanaz volt: megérteni, kinek szól, mit kell megértenie az első képernyőn, és mi az a lépés, amit meg akarunk könnyíteni neki. Ami valóban közös az ügyfeleinkben, az nem a szakma, hanem a hozzáállás: mindegyikük komolyan veszi, amit csinál, és nem egy kipipálandó weboldalt keres, hanem valamit, ami dolgozik helyette. Ha te is így gondolkodsz, akkor jó helyen jársz, függetlenül attól, hogy mekkora a cég és mivel foglalkozik.",
-        "faq_h": "Gyakori kérdések",
-        "faq": [
-            ("Mennyibe kerül egy weboldal készítés?",
-             "Nincs árlistánk, mert két egyforma feladat sincs. Minden weboldalt egyszeri, "
-             "tételes projektdíjjal árazunk, amiben benne van a tervezés, a szövegezés, a "
-             "fejlesztés és a keresőoptimalizálás. A díjmentes konzultáció után "
-             "kapsz egy konkrét számot, és a blogunkon részletesen leírtuk, mi hajtja fel egy "
-             "weboldal árát."),
-            ("Mennyi idő alatt készül el?",
-             "Egy tipikus kisvállalkozói weboldal négy-hat hét a szerződéstől az élesítésig, ha "
-             "a tartalom időben megvan. A leggyakoribb csúszás nem a fejlesztés, hanem a "
-             "szövegek és a fotók — ezért segítünk mindkettőben."),
-            ("Kell hozzá WordPress vagy más rendszer?",
-             "Nem. Minden oldalunkat egyedileg fejlesztjük, ezért nincs sablon, nincs "
-             "bővítménydzsungel és nincs havonta érkező biztonsági frissítés, amit valakinek "
-             "le kell futtatnia. Cserébe gyorsabb, biztonságosabb, és pontosan azt tudja, "
-             "amire szükség van."),
-            ("Szerkeszthetem magam a tartalmat?",
-             "Igen, ahol ennek értelme van. Az oldal azon részeit, amiket rendszeresen "
-             "frissíteni kell — árak, nyitvatartás, hírek, referenciák — kapsz felülethez "
-             "hozzáférést. Ami ritkán változik, azt kérésre mi módosítjuk."),
-            ("Csak Győrben és Budapesten dolgoztok?",
-             "Nem, csak ott tudunk személyesen leülni. Ügyfeleink egy része az ország más "
-             "pontjairól való, és dolgozunk osztrák és német cégeknek is — magyarul, angolul "
-             "és németül. Az online együttműködés az elmúlt években semmivel nem bizonyult "
-             "lassabbnak a személyesnél."),
-            ("Mi történik, ha elégedetlen vagyok?",
-             "A munka szakaszokban halad, és minden szakasz végén jóváhagyod, amit látsz — a "
-             "demót, a szövegeket, a kész oldalt. Ami nem jó, azt az átadás előtt javítjuk. "
-             "Az oldal, a domain és a tartalom a tiéd, nem tartjuk túszként semmit."),
-        ],
+        # The three destinations renamed by the owner, 2026-10-17: Munkáink →
+        # Ügyfeleink, Szolgáltatások → Megoldásaink, Rólunk → A Stratos; EN and
+        # DE carry the same meaning. Only the navigation's words changed: the
+        # pages keep their addresses, titles and headings.
+        "nav": (("work", "Ügyfeleink"), ("services", "Megoldásaink"),
+                ("about", "A Stratos"), ("blog", "Blog")),
+        "contact": "Kapcsolat",
+        "menu": "Menü", "close": "Bezárás", "menu_aria": "Menü megnyitása",
+        "tagline": "Digitális élmények és egyedi rendszerek — Győrből, magyarul, "
+                   "angolul és németül.",
+        "pages": "Oldalak",
+        "close_head": "Ha nagy a tét, beszéljünk.",
+        "close_lede": "Egy rövid beszélgetés után tudni fogod, mi segítene — és mi nem.",
+        "close_work": "Ügyfeleink",
     },
     "en": {
-        "eyebrow": "GROUND CONTROL",
-        "h": "Web design and development from Győr and Budapest",
-        "p1": "Stratos is a digital agency: we design and build websites, develop brand "
-              "identities, and run Google and Meta advertising campaigns. We work in "
-              "Hungarian, English and German, and the same team carries a project from the "
-              "first conversation through launch and well past it.",
-        "p2": "When we say we do not build websites but altitude, we mean that there is "
-              "always a measurable system behind the visible surface. A website on its own "
-              "does not bring you customers: the structure, the copy, the search engine "
-              "optimisation and the advertising have to work together, or even the most "
-              "beautiful page stays a business card.",
-        "svc_h": "Six services, one system",
-        "svc": [
-            ("sme", "Web design for small and medium businesses",
-             "design, copywriting, development and search engine optimisation for a "
-             "one-off, itemised project fee — and after handover, it is all yours."),
-            ("enterprise", "Bespoke web development for enterprises",
-             "custom platforms, internal systems, integrations and operations with a "
-             "development team built for the project."),
-            ("shop", "Ecommerce web design",
-             "built in code, not on a template: catalogue, payment, shipping and stock "
-             "integration, quoted item by item."),
-            ("seo", "Search engine optimisation",
-             "technical SEO, content and local search, with a plain report on what changed."),
-            ("branding", "Branding and identity design",
-             "logo, colour, typography, image style and tone of voice arranged into a single "
-             "system."),
-            ("ads", "Google and Meta ads management",
-             "audience research, creative, bidding strategy and conversion tracking — "
-             "campaigns that bring enquiries rather than reach."),
-        ],
-        "why_h": "Why a one-off project fee?",
-        "why": "Because the website is yours, not a rental. After a free assessment you get "
-               "an itemised quote for what will be built, how long it takes and what it "
-               "costs: research, structure, copy, design, development and search engine "
-               "optimisation. After handover there is no compulsory monthly charge the site "
-               "depends on — if you want to extend it later or need maintenance, we take that "
-               "on separately, on request.",
-        "how_h": "How we work",
-        "how": "Every project starts with a free consultation, where we look at where your "
-               "business stands today and which single change would move it furthest. The "
-               "quote is written from that conversation — we publish no price list, because "
-               "no two briefs are the same. We do not disappear after launch either: if you "
-               "extend the site, measure it or continue the SEO, the same team carries it on.",
-        "where_h": "Where we work",
-        "where": "Our office is in Győr, and we are happy to meet businesses across "
-                 "Győr-Moson-Sopron county in person. We are in Budapest regularly and meet "
-                 "clients there in person too. We work with clients abroad online, which over "
-                 "the past years has proved no slower at all. If "
-                 "you cannot tell which service you need, write to us: the conversation is "
-                 "free, and you will know more at the end of it either way.",
-        "who_h": "Who we work with",
-        "who": "There is no industry we specialise in, and that is deliberate. We have built sites for a landscaping firm, a barbershop, a mental-training practitioner, an industrial supplier and a nonprofit — and the job was the same every time: understand who it is for, what they need to grasp on the first screen, and which single step we are trying to make easier. What our clients actually have in common is not a trade but an attitude: each of them takes their work seriously and is not looking for a website to tick off, but for something that works on their behalf. If you think that way too, you are in the right place, whatever the size of the company.",
-        "faq_h": "Frequently asked questions",
-        "faq": [
-            ("How much does a website cost?",
-             "We publish no price list, because no two briefs are the same. Every website is "
-             "priced as a one-off, itemised project fee covering design, copywriting, "
-             "development and search engine optimisation. You get a concrete number "
-             "after the free consultation, and our blog sets out in detail what drives the "
-             "price of a website."),
-            ("How long does it take?",
-             "A typical small-business site is four to six weeks from signature to launch, if "
-             "the content is ready on time. The usual delay is not development but the copy "
-             "and the photography — which is why we help with both."),
-            ("Do you use WordPress or a similar system?",
-             "No. Every site we build is developed from scratch, so there is no template, no "
-             "plugin jungle and no monthly security update someone has to remember to run. In "
-             "return it is faster, safer, and does exactly what it needs to."),
-            ("Can I edit the content myself?",
-             "Yes, where that makes sense. You get access to the parts that need regular "
-             "updating — prices, opening hours, news, references. What rarely changes, we "
-             "change for you on request."),
-            ("Do you only work in Győr and Budapest?",
-             "No, those are only the places we can meet in person. Some of our clients are "
-             "elsewhere in Hungary, and we work for Austrian and German companies too — in "
-             "Hungarian, English and German. Working online has proved no slower than meeting "
-             "in person."),
-            ("What happens if I am not happy?",
-             "The work moves in stages, and you approve each one — the demo, the copy, the "
-             "finished site. Whatever is not right gets fixed before handover. The site, the "
-             "domain and the content are yours; we hold nothing hostage."),
-        ],
+        "nav": (("work", "Clients"), ("services", "Solutions"),
+                ("about", "Stratos"), ("blog", "Insights")),
+        "contact": "Contact",
+        "menu": "Menu", "close": "Close", "menu_aria": "Open the menu",
+        "tagline": "Digital experiences and custom systems — from Győr, in "
+                   "Hungarian, English and German.",
+        "pages": "Pages",
+        "close_head": "High stakes? Let’s talk.",
+        "close_lede": "After one short conversation you will know what would help — and what would not.",
+        "close_work": "Our clients",
     },
     "de": {
-        "eyebrow": "BODENKONTROLLE",
-        "h": "Webdesign und Entwicklung aus Győr und Budapest",
-        "p1": "Stratos ist eine Digitalagentur: Wir gestalten und entwickeln Websites, bauen "
-              "Markenauftritte auf und betreuen Google- und Meta-Kampagnen. Wir arbeiten auf "
-              "Ungarisch, Englisch und Deutsch, und dasselbe Team begleitet ein Projekt vom "
-              "ersten Gespräch bis zum Launch und weit darüber hinaus.",
-        "p2": "Wenn wir sagen, dass wir keine Websites bauen, sondern Höhe, dann meinen wir "
-              "damit, dass hinter der sichtbaren Oberfläche immer ein messbares System steht. "
-              "Eine Website allein bringt noch keine Kunden: Struktur, Text, "
-              "Suchmaschinenoptimierung und Werbung müssen zusammenspielen, sonst bleibt auch "
-              "die schönste Seite eine Visitenkarte.",
-        "svc_h": "Sechs Leistungen, ein System",
-        "svc": [
-            ("sme", "Webdesign für kleine und mittlere Unternehmen",
-             "Konzept, Text, Entwicklung und Suchmaschinenoptimierung zu einem einmaligen, "
-             "aufgeschlüsselten Projektpreis — nach der Übergabe gehört alles Ihnen."),
-            ("enterprise", "Webentwicklung für Großunternehmen",
-             "individuelle Plattformen, interne Systeme, Integrationen und Betrieb mit einem "
-             "projektbezogenen Entwicklungsteam."),
-            ("shop", "Onlineshop-Erstellung",
-             "in Code gebaut statt aus einer Vorlage: Katalog, Zahlung, Versand und "
-             "Lageranbindung, Posten für Posten angeboten."),
-            ("seo", "Suchmaschinenoptimierung",
-             "technisches SEO, Inhalte und lokale Suche, mit einem verständlichen Bericht "
-             "darüber, was sich verändert hat."),
-            ("branding", "Branding und Corporate Design",
-             "Logo, Farbwelt, Typografie, Bildsprache und Tonalität in einem einzigen System."),
-            ("ads", "Google- und Meta-Werbeanzeigen",
-             "Zielgruppenrecherche, Kreation, Gebotsstrategie und Conversion-Messung — "
-             "Kampagnen, die Anfragen bringen statt Reichweite."),
-        ],
-        "why_h": "Warum ein einmaliger Projektpreis?",
-        "why": "Weil die Website Ihnen gehört und nicht gemietet ist. Nach einer kostenlosen "
-               "Analyse erhalten Sie ein aufgeschlüsseltes Angebot: was entsteht, wie lange "
-               "es dauert und was es kostet — Recherche, Struktur, Text, Design, Entwicklung "
-               "und Suchmaschinenoptimierung. Nach der Übergabe gibt es keine Pflichtgebühr, "
-               "ohne die die Seite stillstünde. Erweiterungen oder Wartung übernehmen wir "
-               "separat, auf Wunsch.",
-        "how_h": "Wie wir arbeiten",
-        "how": "Jedes Projekt beginnt mit einer kostenlosen Beratung, in der wir ansehen, wo "
-               "Ihr Unternehmen heute steht und welche eine Änderung es am weitesten bringen "
-               "würde. Daraus entsteht das individuelle Angebot — eine Preisliste gibt es "
-               "nicht, weil keine zwei Aufgaben gleich sind. Auch nach dem Launch verschwinden wir "
-               "nicht: Erweiterung, Messung oder laufende SEO übernimmt dasselbe Team.",
-        "where_h": "Wo wir arbeiten",
-        "where": "Unser Büro ist in Győr, und mit Unternehmen aus dem Komitat "
-                 "Győr-Moson-Sopron treffen wir uns gerne persönlich. In Budapest sind wir "
-                 "regelmäßig und treffen Kundinnen und Kunden auch dort persönlich. Mit "
-                 "Kundinnen und Kunden im Ausland arbeiten wir online, was sich in den letzten "
-                 "Jahren als keineswegs langsamer erwiesen hat. Wenn Sie nicht wissen, welche "
-                 "Leistung Sie brauchen, schreiben Sie uns: Das Gespräch ist kostenlos, und "
-                 "Sie wissen danach in jedem Fall mehr.",
-        "who_h": "Mit wem wir arbeiten",
-        "who": "Es gibt keine Branche, auf die wir uns spezialisiert haben, und das ist Absicht. Wir haben Websites für einen Gartenbaubetrieb, einen Barbershop, eine Mentaltrainerin, einen Industriezulieferer und eine gemeinnützige Organisation gebaut — und die Aufgabe war jedes Mal dieselbe: verstehen, für wen sie ist, was auf dem ersten Bildschirm ankommen muss und welchen einen Schritt wir erleichtern wollen. Gemeinsam ist unseren Kunden nicht die Branche, sondern die Haltung: Sie alle nehmen ihre Arbeit ernst und suchen keine Website zum Abhaken, sondern etwas, das für sie arbeitet. Wenn Sie so denken, sind Sie hier richtig — unabhängig von der Größe des Unternehmens.",
-        "faq_h": "Häufige Fragen",
-        "faq": [
-            ("Was kostet eine Website?",
-             "Wir veröffentlichen keine Preisliste, weil keine zwei Aufgaben gleich sind. "
-             "Jede Website rechnen wir als einmaligen, aufgeschlüsselten Projektpreis ab, der "
-             "Konzept, Text, Entwicklung und Suchmaschinenoptimierung enthält. Nach der kostenlosen Beratung bekommen Sie eine "
-             "konkrete Zahl."),
-            ("Wie lange dauert es?",
-             "Eine typische Website für ein kleines Unternehmen dauert vier bis sechs Wochen "
-             "von der Unterschrift bis zum Launch, wenn die Inhalte rechtzeitig vorliegen. Die "
-             "übliche Verzögerung ist nicht die Entwicklung, sondern Text und Fotos — deshalb "
-             "helfen wir bei beidem."),
-            ("Nutzen Sie WordPress oder ein ähnliches System?",
-             "Nein. Jede Website entwickeln wir individuell, deshalb gibt es keine Vorlage, "
-             "keinen Plugin-Dschungel und kein monatliches Sicherheitsupdate, an das jemand "
-             "denken muss. Dafür ist sie schneller, sicherer und kann genau das, was gebraucht "
-             "wird."),
-            ("Kann ich die Inhalte selbst bearbeiten?",
-             "Ja, wo es sinnvoll ist. Für die Bereiche, die regelmäßig aktualisiert werden — "
-             "Preise, Öffnungszeiten, Neuigkeiten, Referenzen — bekommen Sie Zugang. Was sich "
-             "selten ändert, ändern wir auf Wunsch für Sie."),
-            ("Arbeiten Sie nur in Győr und Budapest?",
-             "Nein, dort können wir uns nur persönlich treffen. Ein Teil unserer Kunden sitzt "
-             "anderswo in Ungarn, und wir arbeiten auch für österreichische und deutsche "
-             "Unternehmen — auf Ungarisch, Englisch und Deutsch. Die Zusammenarbeit online hat "
-             "sich als nicht langsamer erwiesen."),
-            ("Was, wenn ich unzufrieden bin?",
-             "Die Arbeit läuft in Etappen, und Sie geben jede frei — die Demo, die Texte, die "
-             "fertige Seite. Was nicht passt, korrigieren wir vor der Übergabe. Website, "
-             "Domain und Inhalte gehören Ihnen; wir halten nichts fest."),
-        ],
+        "nav": (("work", "Kunden"), ("services", "Lösungen"),
+                ("about", "Stratos"), ("blog", "Insights")),
+        "contact": "Kontakt",
+        "menu": "Menü", "close": "Schließen", "menu_aria": "Menü öffnen",
+        "tagline": "Digitale Erlebnisse und individuelle Systeme — aus Győr, auf "
+                   "Ungarisch, Englisch und Deutsch.",
+        "pages": "Seiten",
+        "close_head": "Viel auf dem Spiel? Dann sprechen wir.",
+        "close_lede": "Nach einem kurzen Gespräch wissen Sie, was helfen würde — und was nicht.",
+        "close_work": "Unsere Projekte",
     },
 }
 
+# One arrow glyph for the new system. Sized by `.arrow` in system.css, so it can
+# never collapse to 0×0 the way an unsized SVG inside a foreign stylesheet did.
+ARROW_V2 = ('<svg class="arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true" '
+            'focusable="false"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5" '
+            'stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
+            'stroke-linejoin="round"/></svg>')
 
-_GROUND_LINK = re.compile(r"\[\[([a-z-]+):([^\]]+)\]\]")
+SHELL_V2 = """<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F3F2EE">
+<title>{{title}}</title>
+<meta name="description" content="{{desc}}">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/img/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">{{robots}}{{alternates}}{{social}}{{jsonld}}
+{{fontpreload}}
+<link rel="stylesheet" href="/assets/css/type.css">
+<link rel="stylesheet" href="/assets/css/system.css">{{extra_css}}
+<script id="i18n" type="application/json">{{i18n}}</script>
+<!-- The lead controller, for the footer form, and the shell: header, light
+     states, the one-active-surface switcher. Both deferred, neither needed for
+     the page to read or to navigate. There is no other script on this page
+     besides measurement, which waits for consent. -->
+<script src="/assets/js/lead.js" defer></script>{{analytics}}
+<script src="/assets/js/shell.js" defer></script>
+</head>
+<body class="sys" data-page-key="{{pagekey}}">
+<a class="skip" href="#main">{{skip}}</a>
+{{header}}
+<main id="main" tabindex="-1">
+{{body}}
+</main>
+{{close}}
+{{footer}}
+</body>
+</html>
+"""
+
+# The header. A floating bar: the mark, the languages, one action and the menu,
+# on every screen. The menu is one full-page sheet for every width (owner,
+# 2026-10-17): the destinations centred in Aboreto over a drifting deck of
+# clouds. The sheet sits beside the box, not in it, because the box's backdrop
+# filter would make it the containing block of anything fixed inside it.
+# `data-nosnippet` sits on <div>/<span> inside the landmarks, never on them,
+# because that is the only place Google honours it.
+HEADER_V2 = """<header class="hdr" data-hdr>
+  <div class="hdr__box">
+    <div class="hdr__bar">
+      <a class="brand" href="{{home}}" aria-label="{{brand_aria}}"><img src="/assets/img/plane-cursor.png" alt=""><span class="brand__wm" data-nosnippet>Stratos</span></a>
+      <div class="hdr__end" data-nosnippet>
+        {{langs}}
+        <a class="btn btn--sm hdr__cta" href="{{quote}}">{{start}}</a>
+        <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="hdr-sheet" aria-label="{{menu_aria}}" data-label-open="{{menu_aria}}" data-label-close="{{close}}"><span class="hdr__menu-t" aria-hidden="true">{{menu}}</span><span class="hdr__bars" aria-hidden="true"><i></i><i></i></span></button>
+      </div>
+    </div>
+  </div>
+  <div class="hdr__sheet" id="hdr-sheet" hidden>
+    <div class="sheet__sky" aria-hidden="true"></div>
+    <nav class="sheet__nav" aria-label="{{nav_aria}}">
+      <div data-nosnippet>
+        <ul class="sheet__primary">{{sheet_nav}}
+        </ul>
+        <ul class="sheet__svc" aria-label="{{services}}">{{sheet_svc}}
+        </ul>
+      </div>
+    </nav>
+    <div class="sheet__end" data-nosnippet>
+      {{langs}}
+      <a class="btn" href="{{quote}}">{{start}}</a>
+    </div>
+  </div>
+</header>"""
+
+# The footer. Everything the old one carried that a visitor or a crawler uses —
+# the newsletter form and its honeypot, NAP, the four profiles the JSON-LD
+# names, the local links, the consent switch, the language switcher — and none
+# of the instrument: no convergence trace, no ceiling, no "return to 0 m".
+FOOTER_V2 = """<footer class="ftr">
+  <div class="wrap" data-nosnippet>
+    <div class="ftr__top">
+      <div>
+        <a class="brand" href="{{home}}" aria-label="{{brand_aria}}"><img src="/assets/img/plane-cursor.png" alt=""><span class="brand__wm">Stratos</span></a>
+        <p class="ftr__line">{{tagline}}</p>
+      </div>
+      <form class="ftr__nl" data-lead="newsletter">
+        <p class="t-small">{{nl_lede}}</p>
+        <label class="vh" for="nl">{{nl_label}}</label>
+        <div class="ftr__field">
+          <input id="nl" type="email" name="email" placeholder="{{nl_placeholder}}" autocomplete="email" required>
+          <button class="btn btn--sm" type="submit">{{nl_button}}</button>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="hp-foot">Company website</label>
+          <input id="hp-foot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+        </div>
+        <p class="ftr__note form__note" role="status"></p>
+      </form>
+    </div>
+    <div class="ftr__grid">
+      <div>
+        <p class="ftr__h">{{f_pages_h}}</p>
+        <ul>{{f_pages}}
+        </ul>
+      </div>
+      <div>
+        <p class="ftr__h">{{f_services}}</p>
+        <ul>{{f_svc}}
+        </ul>
+      </div>
+      <div>
+        <p class="ftr__h">{{f_contact}}</p>
+        <ul>
+          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
+          <li><address class="ftr__nap">{{f_office}} 9027 Győr, Gesztenyefa út 4.<br>{{f_seat}} 9151 Abda, Arany János utca 13.</address></li>
+        </ul>
+        <ul class="ftr__status">
+          <li>{{st_reply}}</li>
+          <li>{{st_where}}</li>
+          <li>{{st_langs}}</li>
+        </ul>
+      </div>
+      <div>
+        <p class="ftr__h">{{f_social}}</p>
+        <ul>
+          <li><a href="https://www.linkedin.com/company/stratos-media-agency" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/stratosweb/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61590329356257" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://maps.google.com/?cid=2524074190501925711" target="_blank" rel="noopener">{{f_gbp}}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr__bottom">
+      <span>{{f_rights}}</span>
+      <span class="ftr__legal"><a href="{{privacy}}">{{f_privacy}}</a><a href="{{imprint}}">{{f_imprint}}</a>{{f_consent}}</span>
+      <span class="ftr__end">{{f_langs}}<img src="/assets/img/gdpr.png" alt="GDPR Ready"></span>
+    </div>
+  </div>
+</footer>"""
 
 
-def _ground_links(text, lang):
-    """`[[route-key:text]]` -> a root-absolute link (plain text where the route
-    has no page in this language)."""
-    def link(m):
-        key, label = m.group(1), m.group(2)
-        if key in HU_ONLY and lang != "hu":
-            return label
-        return f'<a href="{root_href(lang, key)}">{label}</a>'
-    return _GROUND_LINK.sub(link, text)
-
-
-def build_ground(lang):
-    """The homepage's written statement for one locale."""
-    g = {k: (_ground_links(v, lang) if isinstance(v, str) else v)
-         for k, v in GROUND_COPY[lang].items()}
-    svc = "".join(
-        f'\n          <li><a href="{root_href(lang, k)}">{name}</a> — {line}</li>'
-        for k, name, line in g["svc"])
-    faq = "".join(
-        f'\n        <div><dt>{q}</dt><dd>{a}</dd></div>'
-        for q, a in g["faq"])
-    return render(GROUND, dict(
-        eyebrow=g["eyebrow"], h=g["h"], p1=g["p1"], p2=g["p2"],
-        svc_h=g["svc_h"], svc=svc,
-        why_h=g["why_h"], why=g["why"],
-        how_h=g["how_h"], how=g["how"],
-        where_h=g["where_h"], where=g["where"],
-        who_h=g["who_h"], who=g["who"],
-        faq_h=g["faq_h"], faq=faq,
+def build_header_v2(lang, key):
+    """The v2 header for one route. Call inside `root_links()`."""
+    u, v = UI[lang], V2_UI[lang]
+    current = lambda k: ' aria-current="page"' if k == key else ""
+    sheet_nav = "".join(
+        f'\n          <li><a href="{href(lang, k)}"{current(k)}>{label}</a></li>'
+        for k, label in (*v["nav"], ("contact", v["contact"])))
+    sheet_svc = "".join(
+        f'\n          <li><a href="{href(lang, k)}"{current(k)}>{u["svc"][k][0]}</a></li>'
+        for k in SERVICES)
+    return render(HEADER_V2, dict(
+        home=href(lang, "index"), brand_aria=u["brand_aria"],
+        nav_aria=u["nav_aria"],
+        langs=build_langs(lang, key),
+        quote=href(lang, "quote"), start=u["p85"]["start"],
+        menu=v["menu"], close=v["close"], menu_aria=v["menu_aria"],
+        sheet_nav=sheet_nav, services=u["services"], sheet_svc=sheet_svc,
     ))
 
 
-def build_home_chrome(lang):
-    """The five chrome strings for one homepage locale."""
-    home_title, home_desc = home_meta(lang)
-    u = UI[lang]
-    js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
+def build_footer_v2(lang, key):
+    """The v2 footer for one route. Call inside `root_links()`."""
+    u, v = UI[lang], V2_UI[lang]
+    p = u["p85"]
+    pages = "".join(
+        f'\n          <li><a href="{href(lang, k)}">{u["menu"][k]}</a></li>'
+        for k in ("about", "work", "contact", "blog", "quote"))
+    svc = f'\n          <li><a href="{href(lang, "services")}">{u["svc_all"]}</a></li>'
+    svc += "".join(
+        f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
+        for k in SERVICES)
+    # The local landing pages are Hungarian only (HU_ONLY), so is their link.
+    if lang == "hu":
+        svc += f'\n          <li><a href="{href(lang, "seo-web")}">Keresőoptimalizált weboldal</a></li>'
+        svc += f'\n          <li><a href="{href(lang, "local-hub")}">Hol dolgozunk</a></li>'
+    return render(FOOTER_V2, dict(
+        home=href(lang, "index"), brand_aria=u["brand_aria"],
+        tagline=v["tagline"],
+        nl_lede=u["nl_lede"], nl_label=u["nl_label"],
+        nl_placeholder=u["nl_placeholder"], nl_button=u["nl_button"],
+        f_pages_h=v["pages"], f_pages=pages,
+        f_services=u["services"], f_svc=svc,
+        f_contact=u["f_contact"], f_social=u["f_social"], f_gbp=u["f_gbp"],
+        f_office={"hu": "Iroda:", "en": "Office:", "de": "Büro:"}[lang],
+        f_seat={"hu": "Székhely:", "en": "Registered office:", "de": "Firmensitz:"}[lang],
+        st_reply=p["st_reply"],
+        # Hungarian only: the two cities link to their regional pages, which
+        # exist in Hungarian only.
+        st_where=(f'<a href="{href(lang, "local-gyor")}">Győr</a> és '
+                  f'<a href="{href(lang, "local-budapest")}">Budapest</a>'
+                  if lang == "hu" else p["st_where"]),
+        st_langs=p["st_langs"],
+        f_rights=u["f_rights"],
+        privacy=href(lang, "privacy"), f_privacy=u["f_privacy"],
+        imprint=href(lang, "imprint"), f_imprint=u["f_imprint"],
+        # Ships `hidden`; assets/js/consent.js reveals it, so it is never a dead
+        # control when scripting is unavailable.
+        f_consent=(
+            f'<button class="ftr__consent" type="button" data-consent-settings hidden>'
+            f'{u["js"]["consent_settings"]}</button>'
+            if (analytics_config() or {}).get("requireConsent") else ""
+        ),
+        f_langs=build_langs(lang, key),
+    ))
+
+
+# The closing scene every page ends on, unless the page already ends on one of
+# its own. It replaces the old Arrival band: one question in the page's own
+# archetype, one action, the way to the work — on the graphite field that is
+# the page's one dark moment. Outside <main>, like the Arrival was, and kept out
+# of search snippets: it is the site's sentence, not the page's.
+CLOSE_V2 = """<section class="pclose" aria-labelledby="pclose-h" data-nosnippet>
+  <div class="pclose__frame">
+    <div class="pclose__surface on-dark light-field">
+      <h2 class="pclose__h t-statement" id="pclose-h">{{head}}</h2>
+      <div class="pclose__foot">
+        <p class="pclose__lede t-lead">{{lede}}</p>
+        <p class="pclose__act"><a class="btn btn--light" href="{{quote}}" data-cta-placement="closing">{{start}}{{arrow}}</a> <a class="link" href="{{second}}">{{second_label}}</a></p>
+      </div>
+    </div>
+  </div>
+</section>"""
+
+# Which closing question a route asks: a service page asks a service question,
+# an article an article question, so the same scene reads as this page's
+# conclusion rather than as one block stamped on sixty routes.
+CLOSE_ARCHETYPE = {
+    **{k: "cta_service" for k in SERVICES},
+    "branding": "cta_service", "services": "cta_service", "seo-web": "cta_service",
+    **{k: "cta_service" for k in HU_ONLY},
+    "work": "cta_work", **{k: "cta_work" for k in CASES},
+    "about": "cta_about", "impact": "cta_about",
+    **{k: "cta_article" for k in POSTS}, "blog": "cta_article",
+}
+# Routes that end without it: the questionnaire is the destination, the contact
+# page is a form, legal text is not a sales page.
+NO_CLOSE = {"index", "quote", "contact", "booking", "privacy", "imprint", "404"}
+_SECTIONS_RE = re.compile(r"<section\b[^>]*>.*?</section>", re.S)
+
+
+def ends_on_launch(body):
+    """Does the fragment's last section carry its own closing (dark) launch?"""
+    sections = _SECTIONS_RE.findall(body)
+    return bool(sections) and bool(
+        re.search(r'class="launch(?![^"]*launch--quiet)[^"]*"', sections[-1]))
+
+
+def build_close_v2(lang, key):
+    """The closing scene for one route, or "". Call inside `root_links()`."""
+    u, v = UI[lang], V2_UI[lang]
+    work_side = key == "work" or key in CASES
+    head = u["p85"][CLOSE_ARCHETYPE[key]] if key in CLOSE_ARCHETYPE else v["close_head"]
+    return render(CLOSE_V2, dict(
+        head=head, lede=v["close_lede"],
+        quote=href(lang, "quote"), start=u["p85"]["start"], arrow=ARROW_V2,
+        second=href(lang, "services" if work_side else "work"),
+        second_label=u["menu"]["services"] if work_side else v["close_work"],
+    ))
+
+
+_ASSET_REL_RE = re.compile(r'(\s(?:href|src)=")assets/')
+
+
+def render_v2(lang, key, title, desc, meta, body, table, js, *,
+              footer=True, head=None, chrome_key=None):
+    """One route on the shell: the whole document, root-absolute.
+
+    `head` replaces the route's robots/alternates/social/JSON-LD (the 404 pages
+    carry none of the last three); `chrome_key` is the route the header and
+    footer are drawn for when the document is not a route of its own.
+    """
+    # Assets first, before relink() can give them a `../` they would then have
+    # to lose again; srcset is stamped from these paths later.
+    body = _ASSET_REL_RE.sub(r"\1/assets/", body)
+    chrome = chrome_key or key
     with root_links():
-        return {
-            "head": render(HOME_HEAD, dict(
-                i18n=json.dumps(js, ensure_ascii=False),
-                analytics=analytics_head("/"))) + build_structured_data(
-                    # The homepage renders no breadcrumb trail — it is the root
-                    # of every trail — so an empty body is the honest input and
-                    # `breadcrumb()` correctly returns None for it. Title and
-                    # description come from the shells' own <head>, which is
-                    # where the homepage states them; they are repeated here
-                    # rather than re-derived, and asserted equal by
-                    # tests/structured-data.spec.ts.
-                    lang, "index", home_title, home_desc, {}, ""),
-            # `base="/"` so the wordmark's plane resolves from `/`, `/en/` and
-            # `/de/` alike, and from the dev server's `/home/hu.html`.
-            #
-            # Stamped, exactly as the 66 generated routes are. The homepage
-            # takes its chrome through this file rather than through the page
-            # loop, so it was the one route where `stamp_images` never ran —
-            # and it is the route that could least afford it. Three unsized
-            # images (the header's plane, the footer's plane, the GDPR mark)
-            # sat in a document whose <main> is empty until React mounts, so
-            # each one landed into a layout that was already moving. Lighthouse
-            # named all three under `unsized-images` on the deployed site.
-            "deck": stamp_images(build_deck(lang, "index", "/", HOME_PATH[lang])),
-            # The written statement, substituted after `</main>`. Outside the
-            # mount host on purpose — see the note above `GROUND`.
-            "ground": build_ground(lang),
-            "footer": stamp_images(build_footer(lang, "index")),
-            "scripts": HOME_SCRIPTS,
-        }
-
-
-def write_home_chrome():
-    (Path(__file__).resolve().parent / "home-chrome.json").write_text(
-        json.dumps({l: build_home_chrome(l) for l in LANGS},
-                   ensure_ascii=False, indent=1),
-        encoding="utf-8")
+        header = build_header_v2(lang, chrome)
+        foot = build_footer_v2(lang, chrome) if footer else ""
+        close = ("" if key in NO_CLOSE or not footer or ends_on_launch(body)
+                 else build_close_v2(lang, key))
+    if head is None:
+        head = dict(
+            robots='\n<meta name="robots" content="max-image-preview:large">'
+                   if locale_indexable(key, lang)
+                   else '\n<meta name="robots" content="noindex, follow">',
+            alternates=build_alternates(key, lang),
+            social=build_social(lang, key, title, desc, meta, body, table),
+            jsonld=build_structured_data(lang, key, title, desc, meta, body),
+        )
+    # The homepage is its own composition; every other document speaks the
+    # shared page vocabulary in site.css, plus the stylesheet its front matter
+    # names (`css: build` -> page-build.css).
+    sheets = ["home"] if key == "index" else ["site"]
+    extra_css = "".join(f'\n<link rel="stylesheet" href="/assets/css/{n}.css">' for n in sheets)
+    extra_css += page_css(meta, "/")
+    html = render(SHELL_V2, dict(
+        lang=lang, title=title, desc=desc, **head,
+        fontpreload=build_font_preload(lang, "/"),
+        extra_css=extra_css,
+        i18n=json.dumps(js, ensure_ascii=False),
+        analytics=analytics_head("/"),
+        pagekey=key, skip=UI[lang]["skip"],
+        header=header, body=body, close=close, footer=foot,
+    ))
+    # The fragment links Hungarian filenames; relink() localises them, and
+    # _root_absolute() resolves them from the route's own directory.
+    return _root_absolute(relink(html, lang, key), lang)
 
 
 # ===================================================================== 404
@@ -3044,8 +2475,8 @@ NOT_FOUND = {
         "head": "Ez az oldal nincs meg.",
         "lede": "Vagy elírás történt a címben, vagy azóta átkerült máshova. "
                 "Innen a négy leggyakoribb célpont egy kattintás:",
-        "links": [("index", "Kezdőlap"), ("services", "Szolgáltatások"),
-                  ("work", "Munkáink"), ("contact", "Kapcsolat")],
+        "links": [("index", "Kezdőlap"), ("services", "Megoldásaink"),
+                  ("work", "Ügyfeleink"), ("contact", "Kapcsolat")],
     },
     "en": {
         "title": "Page not found | Stratos",
@@ -3053,8 +2484,8 @@ NOT_FOUND = {
         "head": "This page isn’t here.",
         "lede": "Either the address has a typo in it, or the page has moved "
                 "since you last saw it. The four most likely destinations:",
-        "links": [("index", "Home"), ("services", "Services"),
-                  ("work", "Work"), ("contact", "Contact")],
+        "links": [("index", "Home"), ("services", "Solutions"),
+                  ("work", "Clients"), ("contact", "Contact")],
     },
     "de": {
         "title": "Seite nicht gefunden | Stratos",
@@ -3062,8 +2493,8 @@ NOT_FOUND = {
         "head": "Diese Seite gibt es nicht.",
         "lede": "Entweder ist ein Tippfehler in der Adresse, oder die Seite ist "
                 "inzwischen umgezogen. Die vier wahrscheinlichsten Ziele:",
-        "links": [("index", "Startseite"), ("services", "Leistungen"),
-                  ("work", "Projekte"), ("contact", "Kontakt")],
+        "links": [("index", "Startseite"), ("services", "Lösungen"),
+                  ("work", "Kunden"), ("contact", "Kontakt")],
     },
 }
 
@@ -3105,40 +2536,21 @@ def build_not_found(lang):
     """The 404 document for one locale."""
     u = UI[lang]
     t = NOT_FOUND[lang]
-    base = "" if lang == "hu" else "../"
-
     links = "".join(
         f'\n          <li><a href="{href(lang, key)}">{label}</a></li>'
         for key, label in t["links"])
-
-    js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
-    chrome = render(RAIL, dict(
-        base=base, unit=u["unit"], unit_short=u["unit_short"],
-        layer0=u["layers"][0], boot=u["boot"], skip_top=u["skip_top"],
-        rail_aria=u["rail_aria"], brand_alt=u["brand_alt"],
-        **{f"hud{i}": v for i, v in enumerate(u["hud"])}))
-
-    return _root_absolute(render(SHELL, dict(
-        lang=lang, title=t["title"], desc=t["lede"], base=base,
-        brand_alt=u["brand_alt"],
-        # No alternates, no canonical, no Open Graph, no JSON-LD. See above.
-        alternates="", social="", jsonld="",
-        robots='\n<meta name="robots" content="noindex, follow">',
-        fontpreload=build_font_preload(lang, base),
-        i18n=json.dumps(js, ensure_ascii=False),
-        analytics=analytics_head(base),
-        # Not a route key, and deliberately not one of the real ones: an event
-        # reported as `contact` from a 404 is worse than one reported as `404`.
-        pagekey="404", ceiling="0",
-        body_class="", instruments=chrome, extra_css="", extra_js="",
-        skip=u["skip"], unit=u["unit"], layer0=u["layers"][0],
-        burger_aria=u["burger_aria"],
-        deck=build_deck(lang, "index", base, href(lang, "index")),
-        body=render(NOT_FOUND_BODY, dict(
-            eyebrow=t["eyebrow"], head=t["head"], lede=t["lede"],
-            nav_aria=u["nav_aria"], links=links)),
-        footer=build_footer(lang, "index"),
-    )), lang)
+    body = render(NOT_FOUND_BODY, dict(
+        eyebrow=t["eyebrow"], head=t["head"], lede=t["lede"],
+        nav_aria=u["nav_aria"], links=links))
+    # Not a route key, and deliberately not one of the real ones: an event
+    # reported as `contact` from a 404 is worse than one reported as `404`.
+    # No alternates, no canonical, no Open Graph, no JSON-LD. See above.
+    return render_v2(
+        lang, "404", t["title"], t["lede"], {}, body, None,
+        dict(u["js"], locale=u["locale"]),
+        head=dict(robots='\n<meta name="robots" content="noindex, follow">',
+                  alternates="", social="", jsonld=""),
+        chrome_key="index")
 
 
 def write_not_found():
@@ -3165,7 +2577,7 @@ def prune_renamed(outdir, lang):
     routes were in that state after the SEO ownership pass.
 
     The test is the page's own `data-page-key`, not the filename: a file is
-    stale only if THIS generator wrote it (the attribute is in SHELL and
+    stale only if THIS generator wrote it (the attribute is in SHELL_V2 and
     nothing else emits it) and the route it names is now served from a
     different filename. That is why a hand-written page, an asset, or one of
     the `<name> 2.html` copies iCloud leaves behind is never a candidate —
@@ -3232,15 +2644,13 @@ def main():
         sys.exit(f"fragments with no slug entry: {', '.join(sorted(unknown))}")
     # The reverse is just as much a bug: a slug with no fragment produces a
     # nav link, a sitemap entry and an hreflang set pointing at a 404.
-    missing_frag = {k for k, v in SLUGS.items()
-                    if k != "index" and v["hu"][:-5] not in frags}
+    missing_frag = {k for k, v in SLUGS.items() if v["hu"][:-5] not in frags}
     if missing_frag:
         sys.exit(f"slug entries with no fragment: {', '.join(sorted(missing_frag))}")
 
     write_route_manifest({BY_HU[stem + ".html"]: meta["updated"][:10]
                           for stem, (meta, _) in frags.items()
                           if meta.get("updated") and stem + ".html" in BY_HU})
-    write_home_chrome()
     write_not_found()
 
     for lang in LANGS:
@@ -3253,7 +2663,7 @@ def main():
         # pruned by the same key test rather than being exempt from it.
         prune_renamed(outdir, lang)
         u = UI[lang]
-        js = dict(u["js"], locale=u["locale"], unit=u["unit"], layers=u["layers"])
+        js = dict(u["js"], locale=u["locale"])
 
         for stem, (meta, body) in frags.items():
             key = BY_HU[stem + ".html"]
@@ -3265,7 +2675,7 @@ def main():
             # not a sentence, and what it produces is organisation names and
             # asset paths — feed either to the translator and they arrive in
             # missing-en.json as strings nobody can translate.
-            body = expand_logosets(body, lang, "" if lang == "hu" else "../")
+            body = expand_logosets(body, lang, "/")
             body = gate_case_links(body)
             if table:
                 title = table.get(tr.normalise(title), title)
@@ -3279,50 +2689,9 @@ def main():
                                     note % cross(lang, "hu", key) if note else "")
 
             show_footer = meta.get("footer", "yes").lower() not in ("no", "false", "0")
-            base = "" if lang == "hu" else "../"
-            # The `mode: flight` branch and its HUD chrome went with the old
-            # homepage — see the migration note in README.md. Every remaining
-            # page carries the altimeter rail.
-            chrome = render(RAIL, dict(
-                base=base, unit=u["unit"], unit_short=u["unit_short"],
-                layer0=u["layers"][0], boot=u["boot"], skip_top=u["skip_top"],
-                rail_aria=u["rail_aria"], brand_alt=u["brand_alt"],
-                **{f"hud{i}": v for i, v in enumerate(u["hud"])}))
-            html = render(SHELL, dict(
-                lang=lang, title=title, desc=desc,
-                base=base, brand_alt=u["brand_alt"],
-                alternates=build_alternates(key, lang),
-                social=build_social(lang, key, title, desc, meta, body, table),
-                # After translation and after the legal note, so the breadcrumb
-                # it reads is the one this page will actually render.
-                jsonld=build_structured_data(lang, key, title, desc, meta, body),
-                fontpreload=build_font_preload(lang, base),
-                i18n=json.dumps(js, ensure_ascii=False),
-                analytics=analytics_head(base),
-                pagekey=key,
-                ceiling=meta.get("ceiling", "20000"),
-                # A `summary` or `draft` case study is reachable and its links
-                # are worth following; it is simply not a page to rank as a case
-                # study. `follow` keeps the outbound equity, `noindex` keeps the
-                # claim honest.
-                # max-image-preview:large lets Search and Discover show a large
-                # preview of the page's images; without it Google may only use
-                # a thumbnail.
-                robots='\n<meta name="robots" content="max-image-preview:large">'
-                       if locale_indexable(key, lang)
-                       else '\n<meta name="robots" content="noindex, follow">',
-                body_class="",
-                instruments=chrome,
-                extra_css=page_css(meta, base),
-                extra_js="",
-                skip=u["skip"], unit=u["unit"], layer0=u["layers"][0],
-                burger_aria=u["burger_aria"],
-                # ---- Phase 8.5 flight deck, shared with the React homepage
-                deck=build_deck(lang, key, base, href(lang, "index")),
-                body=body,
-                footer=build_footer(lang, key) if show_footer else "",
-            ))
-            html, script = externalise_js(relink(html, lang, key), key, lang, base)
+            html = render_v2(lang, key, title, desc, meta, body, table, js,
+                             footer=show_footer)
+            html, script = externalise_js(html, key, lang, "/")
             html = stamp_srcset(stamp_images(html))
             if script:
                 scripts.append(script)

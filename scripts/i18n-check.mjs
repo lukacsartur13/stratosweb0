@@ -25,7 +25,7 @@ const only = args.filter((a) => !a.startsWith('--'));
 
 // Written in Hungarian: the client portal.
 // (ClientAccountsPanel sits in that folder but is the owner's, in English.)
-const HUNGARIAN_SOURCE = [/^features\/client\/(ClientApp|HelpChat|AcceptInvite)\.tsx$/, /^lib\/clientPortal\.ts$/];
+const HUNGARIAN_SOURCE = [/^features\/client\/(ClientApp|ClientBooking|HelpChat|AcceptInvite)\.tsx$/, /^lib\/clientPortal\.ts$/];
 const HU_CHARS = /[áéíóöőúüűÁÉÍÓÖŐÚÜŰ]/;
 
 const walk = (dir) => readdirSync(dir).flatMap((name) => {

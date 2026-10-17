@@ -37,60 +37,38 @@ of colour tokens.
 | | |
 |---|---|
 | Source | `_build/pages/*.html` (Hungarian only), `_build/i18n/*.json` |
-| Generator | `_build/build.py` — owns `<head>`, header, footer, nav, altimeter |
-| Output | `*.html`, `en/*.html`, `de/*.html` |
-| Styles | `assets/css/main.css`, `assets/css/flight.css` |
-| Behaviour | `assets/js/main.js`, `assets/js/flight.js` |
+| Generator | `_build/build.py` — owns `<head>`, both shells, header, footer, nav |
+| Output | `*.html`, `en/*.html`, `de/*.html` (homepage: `index.html`, `en/index.html`, `de/index.html`) |
+| Styles | `assets/css/type.css` (faces), `system.css` (the design system), then `home.css` on the homepage or `site.css` + the page's `page-*.css` everywhere else |
+| Behaviour | `assets/js/shell.js` (header, sheet, light states, fit words, switcher), `lead.js` (forms), `analytics.js` + `consent.js` (measurement, after consent), `quote.*.js` (the questionnaire) |
 
-### The ascent
+### One shell
 
-One number drives everything: altitude. `flight.js` derives it from scroll
-position and writes four custom properties once per frame:
+Every route is rendered by `render_v2` into `SHELL_V2`: a floating header, the page,
+an optional closing scene, a quiet footer. The homepage moved first (2026-10-16) as
+the proof of concept; once it was approved the other routes followed, and the
+original shell — the dark flight deck, the full-screen menu, the altimeter rail, the
+Arrival footer — was removed. The fragments kept their words and markup; `site.css`
+restyles the vocabulary they are written in, which is what keeps the dictionaries,
+the headings and the internal links exactly as they were.
 
-| Property | Range | Meaning |
-|---|---|---|
-| `--alt` | 0…1 | 420 m → 30,000 m, the whole journey |
-| `--climb` | 0…1 | 420 m → 8,848 m, the mountain |
-| `--fly` | 0…1 | 8,848 m → 30,000 m, the flight |
-| `--p` | 0…1 | progress through the current stage |
+The design system is written down in
+`_build/reports/stratos-redesign/02-design-system.md`.
 
-Every moving part — the sky shader, the ridge parallax, the route line, the
-craft, the globe, the instrument readouts — is a pure function of those. Nothing
-animates on its own clock. That is why they cannot drift out of sync, and it is
-why a stage can declare its own altitude band in markup:
+### No WebGL
 
-```html
-<section class="st" data-from="8848" data-to="9600" data-label="Csúcs">
-```
-
-The readout shows 8,848 m exactly when the summit stage is centred. The numbers
-on screen are the real structure of the document.
-
-### Atmospheric progression
-
-The sky is a fragment shader (`flight.js`, `skyTop`/`skyBot`). The daylight
-window is deliberately short — daylight peaks at `--alt` ≈ 0.14 (~4,500 m) and
-the blue is fully drained by 0.55. A real climb loses colour fast, and holding a
-bright daytime blue into the upper stages flattens the second half of the page.
-
-Once the blue is gone the atmosphere returns as a **limb**: a thin lit band along
-the bottom edge, the air seen edge-on. It keeps a light source in frame without
-undoing the darkness the upper stages exist to deliver.
-
-The ridge range fades out by ~12,800 m and sinks fast on `--fly`, because above
-the summit you are moving *away* from the ground, not past it.
+From August to October 2026 the homepage was a React + three.js ascent with a
+3D altimeter, built separately by Vite. It was removed in the redesign, with its
+models, its Draco decoder and the CSP allowance the decoder needed. The public
+site now ships no framework and no canvas; the homepage's scripts are four
+deferred files, about 25 KB in total.
 
 ### Degradation
 
-Three tiers, none of which lose content:
-
-1. **WebGL + motion** — the full ascent.
-2. **No WebGL** — `.no-sky` swaps the shader for a CSS gradient; everything else
-   still moves.
-3. **`prefers-reduced-motion`** — stages stop pinning, all transforms and
-   opacity animations are dropped, the page becomes an ordinary readable
-   document in order. This path is built in `flight.css`, not bolted on, and is
-   asserted by a dedicated Playwright project.
+The static page is the design. `shell.js` only ever *dims* or *holds back*
+elements that are still below the fold, so without it — blocked, failed, or a
+reader who asked for `prefers-reduced-motion` — every element is in its final,
+visible state, and no information depends on motion or hover.
 
 ---
 
@@ -261,7 +239,8 @@ resolve, and applies the headers in `netlify.toml`.
 strings passed to `gl.shaderSource`, not scripts, so they are unaffected.
 
 `style-src` needs `'unsafe-inline'`: Google Fonts injects an inline `<style>`,
-and the ascent sets per-frame custom properties on element `style` attributes.
+and the original shell's rail and motion primitives set custom properties on
+element `style` attributes.
 Removing it would mean self-hosting the fonts and moving the custom properties to
 a stylesheet updated via CSSOM — worth doing, not done.
 

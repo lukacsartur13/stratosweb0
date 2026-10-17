@@ -17,9 +17,11 @@ const KINDS = ['client_upload', 'client_feedback', 'client_reschedule', 'client_
   'client_message', 'client_approved', 'client_changes_requested', 'client_request_done', 'client_survey',
   'request_added', 'message_posted', 'approval_requested', 'survey_requested',
   // 20261015000100: automations
-  'auto_lead_unanswered', 'auto_deal_stale', 'auto_deal_won', 'auto_instalment_overdue', 'auto_deadline_soon'];
+  'auto_lead_unanswered', 'auto_deal_stale', 'auto_deal_won', 'auto_instalment_overdue', 'auto_deadline_soon',
+  // 20261018000100: booking
+  'booking_made', 'booking_moved', 'booking_cancelled'];
 const msg = (kind: string, payload: Record<string, unknown> = {}) => ({
-  id: `m-${kind}`, kind, audience: kind.startsWith('client_') || kind === 'test' ? 'owner' : 'client',
+  id: `m-${kind}`, kind, audience: kind.startsWith('client_') || kind.startsWith('booking_') || kind === 'test' ? 'owner' : 'client',
   project_id: 'p1', project_name: 'Rapidkert weboldal', payload,
 });
 
@@ -49,6 +51,13 @@ test.describe('what a notification says', () => {
     expect(compose([lead], { audience: 'owner', lang: 'hu', origin: 'https://stratosweb.hu' }).push.url).toBe('https://stratosweb.hu/portal/leads/l-1');
     const deal = msg('auto_deal_stale', { title: 'Webshop', opportunity_id: 'o-1', days: 14 });
     expect(compose([deal], { audience: 'owner', lang: 'de', origin: 'https://stratosweb.hu' }).push.url).toBe('https://stratosweb.hu/portal/sales/o-1');
+  });
+
+  test('bookings read as one line in Budapest time and link to the bookings page', () => {
+    const made = { ...msg('booking_made', { name: 'Kovács Anna', starts_at: '2026-11-02T08:00:00Z', time_zone: 'Europe/Budapest', lead_id: 'l-1' }), project_id: null };
+    expect(line(made, 'hu')).toBe('Új időpontfoglalás: Kovács Anna — 2026. november 2., hétfő 09:00');
+    expect(line({ ...made, kind: 'booking_cancelled' }, 'en')).toMatch(/^Kovács Anna cancelled their booking \(Monday,? 2 November 2026,? at 09:00\)$/);
+    expect(compose([made], { audience: 'owner', lang: 'hu', origin: 'https://stratosweb.hu' }).push.url).toBe('https://stratosweb.hu/portal/bookings');
   });
 
   test('a client e-mail greets, links and says who it is from; a person\'s text is escaped in HTML', () => {

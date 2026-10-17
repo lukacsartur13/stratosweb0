@@ -18,11 +18,10 @@
 // goes stale the first time a slug moves, and nothing would fail when it did.
 //
 // WHY IT READS dist/ AND NOT THE SOURCE TREE
-// The three homepage shells are built by Vite in `build:home`; index.html at
-// the repo root is a template with no <title> at all. Reading source would
-// index the homepage — the most important line in the file — as untitled. So
-// this runs after the pages exist, which is why it is its own step rather than
-// part of assemble.mjs, where robots.txt and sitemap.xml are written.
+// dist/ is what Netlify publishes, and the titles and descriptions there are
+// the ones after translation and after every build step. So this runs after
+// the pages exist, which is why it is its own step rather than part of
+// assemble.mjs, where robots.txt and sitemap.xml are written.
 //
 // HUNGARIAN, WITH THE OTHER TWO NAMED
 // One llms.txt per origin, and this origin's x-default is Hungarian. The
@@ -50,7 +49,7 @@ const SECTIONS = [
   ['A cég', ['index', 'about', 'services']],
   ['Szolgáltatások', ['sme', 'enterprise', 'branding', 'ads', 'seo', 'shop', 'impact']],
   ['Referenciák', ['work', 'case-rapidkert', 'case-barbershop', 'case-mentaltrening', 'case-godatafusion']],
-  ['Kapcsolat', ['contact', 'quote']],
+  ['Kapcsolat', ['contact', 'booking', 'quote']],
   ['Blog', ['blog', 'post-seo', 'post-seo-alap', 'post-arak', 'post-cegprofil',
             'post-hirdetes', 'post-elavult', 'post-konverzio', 'post-marketing',
             'post-logo', 'post-webdesign']],

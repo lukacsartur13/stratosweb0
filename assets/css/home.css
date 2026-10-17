@@ -1,0 +1,464 @@
+/* ==========================================================================
+   STRATOS — the homepage composition.
+
+   Eight scenes on the system in assets/css/system.css. Nothing here defines a
+   colour, a size or a curve the system does not already name, except the two
+   project worlds (Rapidkert's soil, GoDataFusion's screen), which are the
+   client's colours and nobody else's.
+
+   Stratos is quiet; the work is where the page gets loud.
+   ========================================================================== */
+
+/* ------------------------------------------------------- the atmosphere */
+/* Stratos's own material, the way plaster is Immersive Garden's: the page
+   itself, not a thing on it: a connected deck of cloud.
+
+   The deck (scripts/home-clouds.py, seamless, 1600 px, 37 kB) is packed
+   cumulus seen from above — puffs on puffs, lit from the upper left, the
+   crevices a breath of blue — in the paper's colour (owner, 2026-10-17, with
+   a reference image). It scrolls with the page — no fixed layer, nothing
+   repainted on scroll. On a phone it is drawn smaller, so a screen holds a
+   deck rather than three puffs. Where the paper plane flies, shell.js draws a
+   strip through it with the full-strength copy, `--cloud-trail` (see
+   .cloud-trail below).
+
+   The darkest crevice would take the recessive tone to 2.7 : 1, so on this
+   page that tone is one step darker: 3.0 : 1 there, 3.5 : 1 on open paper.
+   The body tone (ink-2) stays above 5.4 : 1 everywhere. (The haze a screen
+   arrives out of lives with GoDataFusion, below.) */
+:root { --c-ink-3: #83827C; }
+body {
+  --cloud-trail: url("/assets/img/home-clouds-trail.webp");
+  background: var(--c-bg) url("/assets/img/home-clouds.webp") 0 0 / 1600px auto repeat;
+}
+@media (max-width: 760px) {
+  body { background-size: 1000px auto; }
+}
+/* The plane's strip lies over the page, under the header, and multiplies:
+   over the clouds it turns them into the strong deck, over the words it
+   leaves them dark, and shell.js cuts it away from photographs, the project
+   screens and the dark panels so it never tints them. It sits on top rather
+   than behind because Safari can composite a layer behind the page under
+   the page's own background, where nothing of it shows. Never a target,
+   never in the accessibility tree. */
+.cloud-trail {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* ------------------------------------------------------------- 01 · hero */
+/* One statement, one sentence, one action. The page's light comes on once, at
+   load: the field fades up and the words move from recessive to present. The
+   static state — and the reduced-motion state — is the finished one. */
+.hero {
+  --lx: 28%;
+  --ly: 62%;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100svh;
+  padding: calc(var(--hdr-h) + var(--hdr-top) + var(--sp-8)) 0 clamp(3rem, 9vh, 7rem);
+}
+.hero__wrap { width: 100%; }
+.hero__h { font-weight: inherit; }
+.hero__k { display: block; margin-bottom: clamp(1.25rem, 3.2vh, 2.25rem); }
+.hero__m { display: block; max-width: 16ch; text-wrap: initial; }
+.hero__foot {
+  display: grid;
+  grid-template-columns: minmax(0, 30rem) auto;
+  justify-content: space-between;
+  align-items: end;
+  gap: var(--sp-6);
+  margin-top: clamp(2.25rem, 7vh, 5rem);
+}
+.hero__lede { color: var(--c-ink-2); }
+
+@keyframes light-on { from { color: var(--c-ink-3); } }
+@keyframes field-on { from { opacity: 0; } }
+.hero__m { animation: light-on 1400ms var(--ease-std) 120ms both; }
+.hero.light-field::before { animation: field-on 1800ms var(--ease-std) both; }
+
+
+@media (max-width: 760px) {
+  .hero { min-height: 88svh; padding-bottom: var(--sp-8); }
+  .hero__foot { grid-template-columns: 1fr; gap: var(--sp-5); }
+  .hero__foot .btn { justify-self: start; }
+}
+
+/* ---------------------------------------------------- 02 · Rapidkert takeover */
+/* The Stratos interface steps back and a project world takes the screen: a
+   surface in the client's soil, the live site rising out of its lower edge.
+   Blade Light is the reveal — the screen opens from a slit, as if lit through
+   one — and then the scene holds still. The surface is as tall as its content
+   and the whole screenshot (owner, 2026-10-17): it used to be held to 94% of
+   the viewport, which cut the photo off below its headline — at 1440×900 only
+   57% of it showed, without the buttons, the figures or the foot of the 3D
+   block. */
+.take__frame { padding-inline: clamp(0.5rem, 1.4vw, 1.5rem); }
+.take__surface {
+  --soil: #17140F;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 3.4vw, 3.25rem) clamp(1.5rem, 4.4vw, 4.5rem) 0;
+  border-radius: var(--r-display);
+  background:
+    radial-gradient(80% 60% at 78% 100%, rgba(120, 92, 52, 0.22), rgba(120, 92, 52, 0) 70%),
+    var(--soil);
+  color: #EEEAE0;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 244, 220, 0.06);
+}
+.take__surface > * { position: relative; z-index: 1; }
+.take__surface .t-micro,
+.take__surface .t-small { color: #B4AC9C; }
+.take__surface .tag { color: #CFC7B6; border-color: rgba(238, 234, 224, 0.16); }
+
+.take__head { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-4); }
+.take__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--sp-7);
+  margin-top: clamp(2.5rem, 9vh, 7rem);
+}
+.take__h { max-width: 14ch; color: #F4F0E6; }
+.take__proof { min-width: 15rem; padding-bottom: 0.4rem; }
+.take__v { color: #F4F0E6; }
+.take__c { margin-top: 0.35rem; max-width: 22ch; }
+.take__proof .link { margin-top: var(--sp-5); color: #F4F0E6; }
+
+.take__shot {
+  width: min(100%, 1240px);
+  margin: clamp(2.5rem, 7vh, 5rem) auto 0;
+  border-radius: var(--r-md) var(--r-md) 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255, 244, 220, 0.09), 0 -40px 90px -50px rgba(255, 214, 150, 0.35);
+  transition:
+    clip-path 1300ms var(--ease-out) 150ms,
+    filter 1300ms var(--ease-out) 150ms;
+}
+.take__shot img { display: block; width: 100%; height: auto; }
+.take__surface.is-pre .take__shot {
+  clip-path: inset(46% 0 46% 0 round var(--r-md));
+  filter: brightness(0.55);
+}
+
+@media (max-width: 760px) {
+  .take__surface { padding: 1.25rem 1.25rem 0; }
+  .take__head { flex-wrap: wrap; row-gap: var(--sp-3); }
+  .take__body { grid-template-columns: 1fr; gap: var(--sp-6); margin-top: var(--sp-7); }
+  .take__proof { min-width: 0; }
+  /* The full screen, edge to edge of the surface, rather than a crop that
+     would cut through the client's own headline. */
+  .take__shot { width: calc(100% + 2.5rem); margin: var(--sp-7) -1.25rem 0; border-radius: 0; }
+}
+
+/* ------------------------------------------------------------ 03 · silence */
+/* The light moves from the setup to the answer. Static: the answer is lit and
+   the setup recessive, which is the composition. */
+.still {
+  --lx: 30%;
+  --ly: 55%;
+  display: flex;
+  align-items: center;
+  min-height: 86svh;
+  padding: var(--sp-scene) 0;
+}
+.still__h { max-width: 19ch; }
+.still__a, .still__b { display: block; }
+.still__a { color: var(--c-ink-3); transition: color var(--dur-light) var(--ease-std); }
+.still__b { margin-top: 0.12em; }
+.still.is-dim .still__a { color: var(--c-ink); }
+.still.light-field::before { transition: opacity var(--dur-light) var(--ease-std); }
+.still.is-dim::before { opacity: 0; }
+@media (max-width: 760px) {
+  .still { min-height: 72svh; padding: var(--sp-9) 0; }
+}
+
+/* -------------------------------------------------------- 04 · GoDataFusion */
+/* The second proof does not repeat the first. On paper, split, with one active
+   surface: the client's three services are the three states of one screen,
+   and each brings its own colour into the room only while it is chosen. */
+.gdf { padding: var(--sp-scene) 0 calc(var(--sp-scene) * 0.5); }
+.gdf__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 8fr);
+  gap: clamp(2rem, 5.5vw, 6.5rem);
+  align-items: center;
+}
+.gdf__h { margin-top: var(--sp-3); }
+.gdf__lede { margin-top: var(--sp-5); max-width: 36ch; }
+.gdf__text > .link { margin-top: var(--sp-6); }
+
+.modes { margin-top: var(--sp-7); border-top: 1px solid var(--c-line); }
+.mode {
+  --mc: var(--c-ink);
+  display: grid;
+  grid-template-columns: 1.25rem 7rem minmax(0, 1fr);
+  align-items: baseline;
+  width: 100%;
+  min-height: 56px;
+  padding: 0.95rem 0.25rem;
+  border: 0;
+  border-bottom: 1px solid var(--c-line);
+  background: none;
+  text-align: left;
+  color: var(--c-ink-2);
+  cursor: var(--cursor-hot);
+  transition: color var(--dur-state) var(--ease-std);
+}
+.mode[data-mode="0"] { --mc: #34C6D3; }
+.mode[data-mode="1"] { --mc: #8FD14F; }
+.mode[data-mode="2"] { --mc: #EE5A3A; }
+.mode::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-line-strong);
+  transform: translateY(-1px);
+  transition: background-color var(--dur-state) var(--ease-std), box-shadow var(--dur-state) var(--ease-std);
+}
+.mode__k { font-size: 1.125rem; font-weight: var(--w-title); letter-spacing: -0.012em; }
+.mode__d { font-size: var(--t-small); }
+.mode:hover { color: var(--c-ink); }
+.mode.is-active { color: var(--c-ink); }
+.mode.is-active::before { background: var(--mc); box-shadow: 0 0 0 4px color-mix(in srgb, var(--mc) 18%, transparent); }
+
+.gdf__surface {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--r-xl);
+  background: #090A0C;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 34px 70px -52px rgba(20, 20, 19, 0.5);
+}
+.gdf__shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 520ms var(--ease-std);
+}
+.gdf__shot.is-active { opacity: 1; }
+/* The screen arrives out of haze, the way a city arrives through cloud: a veil
+   of the page's own air that lifts off as the surface is revealed. */
+.gdf__surface::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(0deg, #EFF0EE 0, rgba(239, 240, 238, 0.9) 42%, rgba(239, 240, 238, 0) 100%);
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform 1500ms var(--ease-out) 80ms, opacity 1300ms var(--ease-out) 200ms;
+}
+.gdf__surface.is-pre::after { opacity: 1; transform: none; transition: none; }
+
+@media (max-width: 960px) {
+  .gdf__grid { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .gdf__text { display: contents; }
+  .gdf__surface { order: 4; margin-top: var(--sp-7); border-radius: var(--r-lg); }
+  .modes { order: 5; margin-top: var(--sp-5); }
+  .gdf__text > .link { order: 6; align-self: flex-start; }
+  .mode { grid-template-columns: 1.25rem 6.25rem minmax(0, 1fr); }
+}
+
+/* -------------------------------------------------------- 05 · capabilities */
+/* Consecutive paper scenes share one gap rather than adding two: each takes
+   half a scene on the side it shares. */
+/* Three rows of type. At rest: typography only. Under the pointer or focus, a
+   machined surface rises behind the row — the one place on the page where the
+   interface answers back. Nothing it shows depends on it. */
+.caps { padding: calc(var(--sp-scene) * 0.5) 0; }
+.caps__k { margin-bottom: clamp(1.5rem, 4vw, 3rem); }
+.caps__list { border-top: 1px solid var(--c-line); }
+.cap {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+  gap: var(--sp-6);
+  align-items: baseline;
+  padding: clamp(1.75rem, 3.6vw, 3.25rem) clamp(0.25rem, 1.6vw, 1.75rem);
+  border-bottom: 1px solid var(--c-line);
+}
+.cap::before {
+  content: "";
+  position: absolute;
+  inset: 6px calc(-1 * clamp(0.25rem, 1vw, 1rem));
+  z-index: -1;
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(60% 120% at 12% 0%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 70%),
+    var(--c-surface);
+  box-shadow: inset 0 0 0 1px var(--c-line), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  transform: scale(0.99);
+  transition: opacity var(--dur-state) var(--ease-std), transform var(--dur-state) var(--ease-out);
+}
+.cap:hover::before,
+.cap:focus-within::before { opacity: 1; transform: none; }
+.cap__d { max-width: 38ch; }
+.cap__l { display: grid; gap: 0.4rem; font-size: var(--t-small); }
+.cap__l a {
+  color: var(--c-ink-2);
+  text-decoration: underline;
+  text-decoration-color: var(--c-line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+  transition: color var(--dur-ui) var(--ease-std), text-decoration-color var(--dur-ui) var(--ease-std);
+}
+.cap__l a:hover { color: var(--c-ink); text-decoration-color: currentColor; }
+
+@media (max-width: 860px) {
+  .cap { grid-template-columns: 1fr; gap: var(--sp-3); }
+  .cap__l { margin-top: var(--sp-3); grid-auto-flow: row; }
+}
+
+/* ---------------------------------------------------------- 06 · principles */
+/* Principles, not a process diagram — each lit as it becomes the one being
+   read. Under them, the four answers a large organisation asks first. */
+.ways { padding: calc(var(--sp-scene) * 0.5) 0 var(--sp-9); }
+.ways__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  column-gap: var(--sp-6);
+  row-gap: clamp(4.5rem, 10vw, 9rem);
+}
+.ways__k { grid-column: 1; padding-top: 0.6rem; }
+.principles { grid-column: 2; display: grid; gap: clamp(2.75rem, 6vw, 5rem); }
+.principle {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: var(--sp-6);
+  align-items: baseline;
+}
+.principle .t-body { max-width: 32ch; }
+
+.ledger { grid-column: 2; }
+.ledger__k { margin-bottom: var(--sp-4); }
+.ledger__list > div {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--sp-6);
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--c-line);
+}
+.ledger__list > div:last-child { border-bottom: 1px solid var(--c-line); }
+.ledger dt { font-size: var(--t-body); font-weight: var(--w-ui); color: var(--c-ink); }
+.ledger dd { font-size: var(--t-small); line-height: 1.5; color: var(--c-ink-2); }
+.ledger .link { margin-top: var(--sp-6); }
+
+@media (max-width: 860px) {
+  .ways__grid { grid-template-columns: 1fr; row-gap: var(--sp-9); }
+  .ways__k, .principles, .ledger { grid-column: 1; }
+  .ways__k { padding-top: 0; margin-bottom: calc(-1 * var(--sp-7)); }
+  .principle { grid-template-columns: 1fr; gap: var(--sp-3); }
+  .ledger__list > div { grid-template-columns: 1fr; gap: var(--sp-2); }
+}
+
+/* --------------------------------------------------------------- 07 · marks */
+/* Proof that is established rather than advertised: every mark, in static rows
+   of the page's ink, at the volume of a footnote. Twelve marks fill rows of six,
+   four or three exactly. */
+.marks { padding: var(--sp-7) 0 var(--sp-8); }
+.marks__k { margin-bottom: var(--sp-6); }
+.logoset--marks {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: center;
+  margin: 0;
+  padding: var(--sp-6) 0 0;
+  list-style: none;
+  border-top: 1px solid var(--c-line);
+}
+/* One box for every mark, wide enough to hold a wordmark at reading height and
+   tall enough that a square emblem is not reduced to a dot: the box is the
+   constant and each mark finds its own size inside it. */
+.logoset--marks li { display: flex; align-items: center; justify-content: center; height: 84px; }
+.logoset--marks img {
+  width: auto;
+  height: auto;
+  max-width: min(100%, 148px);
+  max-height: 64px;
+  object-fit: contain;
+  filter: grayscale(1) contrast(1.15) brightness(0.9);
+  opacity: 0.68;
+  mix-blend-mode: multiply;
+  transition: filter var(--dur-state) var(--ease-std), opacity var(--dur-state) var(--ease-std);
+}
+/* At rest the marks are one quiet ink; under the pointer each one takes back its
+   own colour. Touch screens keep the quiet row — there is no hover to wait for. */
+@media (hover: hover) {
+  .logoset--marks li:hover img { filter: none; opacity: 1; }
+}
+@media (max-width: 1100px) {
+  .logoset--marks { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .logoset--marks { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--sp-5); }
+  .logoset--marks li { height: 64px; }
+  .logoset--marks img { max-height: 48px; }
+}
+
+/* --------------------------------------------------------------- 08 · close */
+/* The page's one dark field that belongs to Stratos rather than to a client.
+   The light returns as a residual warmth behind the words, and the brand's
+   yellow appears once, as a beacon, and nowhere else on the page. */
+.close { padding: var(--sp-scene) 0 var(--sp-6); }
+.close__frame { padding-inline: clamp(0.5rem, 1.4vw, 1.5rem); }
+.close__surface {
+  --lx: 24%;
+  --ly: 40%;
+  position: relative;
+  isolation: isolate;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding: clamp(4.5rem, 11vw, 10rem) clamp(1.5rem, 6vw, 6.5rem) clamp(2.5rem, 5.5vw, 5rem);
+  border-radius: var(--r-display);
+  background: var(--c-dark);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.close__surface.light-field::before { inset: 0; }
+.close__beacon {
+  position: absolute;
+  top: clamp(1.75rem, 4vw, 3.25rem);
+  left: clamp(1.5rem, 6vw, 6.5rem);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-signal);
+  box-shadow: 0 0 0 6px rgba(255, 238, 37, 0.07), 0 0 26px 6px rgba(255, 238, 37, 0.22);
+}
+.close__h { max-width: 13ch; color: var(--c-on-dark); }
+.close__foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--sp-6);
+  margin-top: clamp(3rem, 8vw, 6.5rem);
+}
+.close__lede { max-width: 30ch; }
+.close__act { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4) var(--sp-6); }
+.close__act .link { font-weight: 400; color: var(--c-on-dark-2); }
+.close__act .link:hover { color: var(--c-on-dark); }
+
+@media (max-width: 760px) {
+  .close__foot { flex-direction: column; align-items: flex-start; }
+  .close__act { flex-direction: column; align-items: flex-start; }
+}

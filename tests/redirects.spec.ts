@@ -94,21 +94,21 @@ const emitted = async (path: string) => {
 };
 
 test.describe('legacy redirect configuration (Netlify runtime validation pending deployment)', () => {
-  test('/book-online is declared as a 301 to the contact page', async () => {
+  test('/book-online is declared as a 301 to the booking page', async () => {
     const rules = await redirects();
     const rule = rules.find((r) => r.from === '/book-online');
 
     expect(rule, '/book-online has no redirect rule in netlify.toml').toBeDefined();
     expect(rule!.status, '/book-online is not a permanent redirect').toBe(301);
 
-    /* The destination is asserted as the CONTACT PAGE, by its emitted path.
-       `/ugyfelszolgalat.html` is the Hungarian slug of the page whose canonical
-       key is `contact` — see the SLUGS table in _build/build.py — so "→
-       /contact" and "→ /ugyfelszolgalat" are the same statement about the
-       same route, one in page keys and one in URLs. This asserts the URL,
-       because that is what Netlify serves — extensionless, as the canonical
-       is, so the redirect is one hop and not two. */
-    expect(rule!.to).toBe('/ugyfelszolgalat');
+    /* The destination is asserted as the BOOKING PAGE, by its emitted path.
+       `/idopontfoglalas.html` is the Hungarian slug of the page whose canonical
+       key is `booking` — see the SLUGS table in _build/build.py. Until
+       2026-10-18 the site had no scheduling system and these went to the
+       contact page. This asserts the URL, because that is what Netlify serves
+       — extensionless, as the canonical is, so the redirect is one hop and not
+       two. */
+    expect(rule!.to).toBe('/idopontfoglalas');
 
     // And the destination is a page the build actually emits. A redirect to a
     // 404 is the one failure a redirect map cannot survive.
@@ -126,7 +126,7 @@ test.describe('legacy redirect configuration (Netlify runtime validation pending
       const rule = rules.find((r) => r.from === from);
       expect(rule, `${from} has no redirect rule`).toBeDefined();
       expect(rule!.status).toBe(301);
-      expect(rule!.to).toBe('/ugyfelszolgalat');
+      expect(rule!.to).toBe('/idopontfoglalas');
     }
   });
 

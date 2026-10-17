@@ -1,0 +1,183 @@
+title: Időpontfoglalás: díjmentes online konzultáció | Stratos
+desc: Foglalj 30 perces, díjmentes online konzultációt. Csak a valóban szabad időpontokat látod, a Google Meet-meghívót azonnal megkapod e-mailben.
+css: booking
+---
+  <section class="phead phead--index">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Stratos</a> / <a href="ugyfelszolgalat.html">Kapcsolat</a> / <b>Időpontfoglalás</b></p>
+      <h1 class="display h-xl">Foglalj egy<br><span class="sig">félórát.</span></h1>
+      <div class="grid g-split" style="align-items:end">
+        <p class="lede">
+          Díjmentes online konzultáció Google Meeten. Csak azokat az időpontokat
+          látod, amikor tényleg ráérünk, és a meghívót a Meet-linkkel azonnal
+          megkapod e-mailben.
+        </p>
+        <div>
+          <p class="note">
+            Ha inkább írnál, az is jó:
+            <a class="tlink" href="ugyfelszolgalat.html">rövid üzenet vagy igényfelmérő</a>.
+            Válasz jellemzően egy munkanapon belül.
+          </p>
+        </div>
+      </div>
+      <p class="phead__meta">
+        <span><b>Hossz</b> 30 perc</span>
+        <span><b>Helyszín</b> Google Meet</span>
+        <span><b>Díj</b> nincs</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ foglalás -->
+  <!-- A naptár a böngészőben épül fel az /api/booking válaszából
+       (assets/js/booking.js). Amíg nincs válasz — vagy ha a foglalás épp nem
+       elérhető —, a szöveg és a kapcsolati link akkor is ott van. -->
+  <section class="band" id="foglalas" tabindex="-1">
+    <div class="wrap">
+      <p class="smark"><span class="smark__n" aria-hidden="true">01</span><span class="smark__t">Időpont</span></p>
+      <div class="booking" data-booking>
+
+        <div class="booking__pick" data-booking-pick>
+          <div class="grid g-split" style="margin-bottom:clamp(1.2rem,3vw,2rem)">
+            <h2 class="display h-md" style="max-width:16ch">Válassz napot és <span class="sig">időpontot.</span></h2>
+            <p class="note" style="align-self:end">Az időpontok budapesti idő szerint értendők.</p>
+          </div>
+          <div class="booking__days" role="group" aria-label="Napok" data-booking-days></div>
+          <div class="booking__times" role="group" aria-label="Időpontok" data-booking-times></div>
+          <p class="form__status booking__state" role="status" aria-live="polite" data-booking-state>Szabad időpontok betöltése…</p>
+        </div>
+
+        <form class="form booking__form" data-booking-form hidden novalidate>
+          <div class="booking__chosen">
+            <p class="booking__chosen-k">Kiválasztott időpont</p>
+            <p class="booking__chosen-v" data-booking-chosen></p>
+            <button class="link booking__back" type="button" data-booking-back>Másik időpontot választok</button>
+          </div>
+          <div class="grid g-2" style="gap:1.4rem">
+            <div class="field">
+              <label for="bk-name">Név *</label>
+              <input id="bk-name" name="name" required autocomplete="name" maxlength="120">
+            </div>
+            <div class="field">
+              <label for="bk-email">E-mail *</label>
+              <input id="bk-email" name="email" type="email" required autocomplete="email" maxlength="254">
+            </div>
+            <div class="field">
+              <label for="bk-company">Vállalkozás neve</label>
+              <input id="bk-company" name="company" autocomplete="organization" maxlength="160">
+            </div>
+            <div class="field">
+              <label for="bk-phone">Telefonszám</label>
+              <input id="bk-phone" name="phone" type="tel" autocomplete="tel" maxlength="40">
+            </div>
+          </div>
+          <div class="field">
+            <label for="bk-topic">Miről beszélgetnél? *</label>
+            <textarea id="bk-topic" name="topic" required maxlength="1000" placeholder="Pár mondat elég: mit csinál a vállalkozásod, és miben segítsünk?"></textarea>
+          </div>
+          <label class="check">
+            <input type="checkbox" name="consent" value="Igen" required>
+            <span>A foglalással kijelentem, hogy elfogadtam az
+              <a class="tlink" href="adatkezelesi-tajekoztato.html">Adatvédelmi nyilatkozatban</a>
+              foglaltakat. *</span>
+          </label>
+          <div class="hp" aria-hidden="true">
+            <label for="hp-booking">Company website</label>
+            <input id="hp-booking" type="text" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="btn-row" style="margin-top:.6rem">
+            <button class="btn" type="submit"><span>Lefoglalom</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4"/></svg>
+            </button>
+          </div>
+          <p class="form__note">A *-gal jelölt mezők kitöltése kötelező. A meghívót a Google küldi a megadott címre.</p>
+          <p class="form__status" role="status" aria-live="polite" data-booking-form-state></p>
+        </form>
+
+        <div class="booking__done" data-booking-done hidden tabindex="-1">
+          <h2 class="display h-md">Lefoglaltuk.</h2>
+          <p class="booking__when" data-booking-done-when></p>
+          <p class="prose">A Google-meghívót a Meet-linkkel elküldtük erre a címre: <b data-booking-done-email></b>. Ha nem látod pár percen belül, nézd meg a Promóciók vagy a Spam mappát is.</p>
+          <p data-booking-done-meet hidden><a class="tlink" href="#" data-booking-meet-link target="_blank" rel="noopener">A Google Meet-link</a></p>
+          <p class="note">Ha közbejön valami, legkésőbb 12 órával előtte lemondhatod vagy áthelyezheted a meghívóban lévő linkkel, vagy innen: <a class="tlink" href="#" data-booking-manage-link>a foglalásom kezelése</a>.</p>
+        </div>
+
+        <div class="booking__manage" data-booking-manage hidden tabindex="-1">
+          <h2 class="display h-md">A foglalásod</h2>
+          <p class="booking__when" data-booking-manage-when></p>
+          <p class="prose" data-booking-manage-note></p>
+          <div class="btn-row" data-booking-manage-actions hidden>
+            <button class="btn btn--ghost" type="button" data-booking-cancel><span>Lemondom</span></button>
+            <button class="btn" type="button" data-booking-move><span>Másik időpontra teszem</span></button>
+          </div>
+          <p class="form__status" role="status" aria-live="polite" data-booking-manage-state></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ hogyan működik -->
+  <section class="band band--pale">
+    <div class="wrap">
+      <p class="smark"><span class="smark__n" aria-hidden="true">02</span><span class="smark__t">Hogyan működik</span></p>
+      <div class="grid g-split" style="margin-bottom:clamp(1.5rem,4vw,2.5rem)">
+        <h2 class="display h-md" style="max-width:14ch">Négy lépés, <span class="sig">két perc.</span></h2>
+        <p class="prose" style="align-self:end">
+          A naptárunkból élőben látod, mikor érünk rá. Amit lefoglalsz, az a
+          tiéd: más már nem foglalhatja el.
+        </p>
+      </div>
+      <div class="steps">
+        <article class="step" data-reveal>
+          <h3>Időpont</h3>
+          <p>Hétköznap 9 és 17 óra között, legalább egy nappal előre és legfeljebb 30 napra előre.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Pár adat</h3>
+          <p>A neved, az e-mail-címed és néhány mondat arról, miről beszélgetnénk.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Meghívó</h3>
+          <p>A Google azonnal elküldi a meghívót a Meet-linkkel. Egy kattintással a saját naptáradba teheted.</p>
+        </article>
+        <article class="step" data-reveal>
+          <h3>Ha közbejön valami</h3>
+          <p>Legkésőbb 12 órával előtte a meghívóban lévő linkkel lemondhatod vagy másik időpontra teheted.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- A booking.js szövegei: a fordító ugyanúgy cseréli őket, mint az oldal
+       többi szövegét, a szkript innen olvassa ki. Nem látható. -->
+  <ul class="booking__copy" hidden data-booking-copy>
+    <li data-k="loading">Szabad időpontok betöltése…</li>
+    <li data-k="none">A következő hetekben most nincs szabad időpont. Írj nekünk, és egyeztetünk.</li>
+    <li data-k="off">Az online foglalás most nem elérhető. Írj nekünk, és egyeztetünk időpontot.</li>
+    <li data-k="error">Nem sikerült betölteni az időpontokat. Próbáld újra kicsit később.</li>
+    <li data-k="contact_link">Üzenet küldése</li>
+    <li data-k="sending">Foglalás folyamatban…</li>
+    <li data-k="taken">Ezt az időpontot közben lefoglalták. Válassz egy másikat.</li>
+    <li data-k="email_open">Erről az e-mail-címről már van élő foglalás. A meghívóban lévő linkkel áthelyezheted.</li>
+    <li data-k="invalid">Nézd át a megjelölt mezőket.</li>
+    <li data-k="need_name">Add meg a neved.</li>
+    <li data-k="need_email">Adj meg egy érvényes e-mail-címet.</li>
+    <li data-k="need_topic">Írj pár szót arról, miről beszélgetnénk.</li>
+    <li data-k="need_consent">A foglaláshoz el kell fogadnod az adatvédelmi nyilatkozatot.</li>
+    <li data-k="bad_phone">Ez nem tűnik telefonszámnak.</li>
+    <li data-k="limited">Túl sok próbálkozás. Várj néhány percet, és próbáld újra.</li>
+    <li data-k="failed">A foglalás nem sikerült. Próbáld újra.</li>
+    <li data-k="more">További napok</li>
+    <li data-k="manage_loading">A foglalásod betöltése…</li>
+    <li data-k="not_found">Ezt a foglalást nem találjuk. Lehet, hogy a link hiányos — nézd meg a meghívóban.</li>
+    <li data-k="active">Ha közbejön valami, legkésőbb 12 órával előtte lemondhatod vagy másik időpontra teheted.</li>
+    <li data-k="locked">Ezt a foglalást már nem lehet online módosítani. Ha közbejött valami, írj nekünk.</li>
+    <li data-k="cancelled">Ez a foglalás le van mondva.</li>
+    <li data-k="confirm_cancel">Biztosan lemondod? Kattints még egyszer a Lemondom gombra.</li>
+    <li data-k="cancel_done">Lemondtuk. A Google értesítést küld róla, és az időpont felszabadult.</li>
+    <li data-k="move_pick">Válaszd ki az új időpontot.</li>
+    <li data-k="move_done">Áthelyeztük. A Google elküldi a frissített meghívót.</li>
+    <li data-k="too_late">Ez már túl közel van ahhoz, hogy online módosítsd. Írj nekünk.</li>
+  </ul>
+  <script src="assets/js/booking.js" defer></script>

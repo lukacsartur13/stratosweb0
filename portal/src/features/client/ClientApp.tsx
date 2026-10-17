@@ -20,6 +20,7 @@ import {
 } from '@/lib/clientExperience';
 import { formatMeetingTime, googleCalendarUrl, nextMeeting, safeHttpsUrl, wallClock, zonedToUtc } from '@/lib/meetings';
 import { HelpChat } from '@/features/client/HelpChat';
+import { BookingPage } from '@/features/client/ClientBooking';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { LanguageSwitch } from '@/features/i18n/LanguageGate';
 import { getLang, intlLocale, t } from '@/lib/i18n';
@@ -27,9 +28,10 @@ import { getLang, intlLocale, t } from '@/lib/i18n';
 /**
  * THE CLIENT PORTAL — what a client account sees, in Hungarian.
  *
- * Four pages and nothing else: Projektjeim (with the project's published demos
- * and upcoming meetings), Megosztott dokumentumok, Nyersanyag leadása and
- * Segítség (the help assistant). The staff screens are never rendered for a client (the
+ * Five pages and nothing else: Projektjeim (with the project's published demos
+ * and upcoming meetings), Megosztott dokumentumok, Nyersanyag leadása, Időpont
+ * (booking a Google Meet call, ClientBooking.tsx) and Segítség (the help
+ * assistant). The staff screens are never rendered for a client (the
  * layout renders this instead of them), and none of their data could be read
  * anyway: every read here is a `client_portal_*` function with fixed columns.
  */
@@ -42,11 +44,11 @@ export function ClientApp() {
   const { pathname } = useLocation();
   const me = useClientMe();
 
-  if (!['/', '/megosztott', '/nyersanyag', '/segitseg'].includes(pathname)) return <Navigate to="/" replace />;
+  if (!['/', '/megosztott', '/nyersanyag', '/idopont', '/segitseg'].includes(pathname)) return <Navigate to="/" replace />;
 
   const page = pathname === '/megosztott' ? <SharedPage /> : pathname === '/nyersanyag' ? <RawMaterialPage />
-    : pathname === '/segitseg' ? <HelpPage /> : <ProjectsPage />;
-  const tabs: [string, string][] = [['/', t('Projektjeim')], ['/megosztott', t('Megosztott dokumentumok')], ['/nyersanyag', t('Nyersanyag leadása')], ['/segitseg', t('Segítség')]];
+    : pathname === '/idopont' ? <BookingPage /> : pathname === '/segitseg' ? <HelpPage /> : <ProjectsPage />;
+  const tabs: [string, string][] = [['/', t('Projektjeim')], ['/megosztott', t('Megosztott dokumentumok')], ['/nyersanyag', t('Nyersanyag leadása')], ['/idopont', t('Időpont')], ['/segitseg', t('Segítség')]];
 
   return (
     <div className="min-h-dvh" lang={getLang() ?? 'hu'}>

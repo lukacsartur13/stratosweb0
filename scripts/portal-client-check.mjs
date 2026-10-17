@@ -87,10 +87,28 @@ function freshState(over = {}) {
     ],
     feedback: [], reqs: [],
     approvals: [], asks: [], messages: [], surveys: [], calls: [],
+    // Booking (20261018000100): /api/booking and client_portal_bookings.
+    bookings: [], bookingCalls: [], bookingOff: false, takenStart: null,
     ...over,
   };
 }
 const json = (route, body, status = 200) => route.fulfill({ status, contentType: 'application/json', body: JSON.stringify(body) });
+/** Free times from two days ahead: five days, every 30 minutes from 9:00 Budapest — what /api/booking would answer. */
+function freeSlots(minutes) {
+  const out = [];
+  const base = new Date(Date.now() + 2 * 864e5);
+  for (let d = 0; d < 5; d += 1) {
+    const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Budapest' }).format(new Date(base.getTime() + d * 864e5));
+    // 09:00 Budapest is 07:00 or 08:00 UTC; the offset of that day decides.
+    const noon = new Date(`${day}T12:00:00Z`);
+    const offset = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Budapest', hour: '2-digit', hourCycle: 'h23' }).format(noon)) - 12;
+    for (let m = 9 * 60; m + minutes <= 12 * 60; m += 30) {
+      const start = new Date(Date.parse(`${day}T00:00:00Z`) + (m - offset * 60) * 60_000);
+      out.push({ start: start.toISOString(), end: new Date(start.getTime() + minutes * 60_000).toISOString() });
+    }
+  }
+  return out;
+}
 
 async function open(browser, { role = 'client', state = freshState(), viewport = { width: 1280, height: 900 }, session = true, colorScheme = 'dark' } = {}) {
   const context = await browser.newContext({ viewport, locale: 'hu-HU', acceptDownloads: true, colorScheme });
@@ -111,6 +129,35 @@ async function open(browser, { role = 'client', state = freshState(), viewport =
       state.invites.push({ b, auth: req.headers().authorization });
       if (b.email === 'admin@example.invalid') return json(route, { ok: false, code: 'EMAIL_IS_STAFF' }, 409);
       return json(route, { ok: true, account_id: 'acc-new', kind: 'invite', link: 'https://stratosweb.hu/portal/accept-invite#token_hash=SECRET-HASH-123&type=invite' });
+    }
+    if (url.includes('/api/booking')) {
+      const auth = req.headers().authorization ?? null;
+      if (state.bookingOff) return json(route, { ok: false, code: 'CALENDAR_NOT_CONNECTED' }, 503);
+      if (method === 'GET') {
+        const minutes = Number(new URL(url).searchParams.get('minutes')) || 30;
+        state.bookingCalls.push({ method, minutes, auth });
+        return json(route, { ok: true, timeZone: 'Europe/Budapest', minutes, options: [30, 60], changeHours: 12, slots: freeSlots(minutes),
+          projects: role === 'client' ? state.projects.map((p) => ({ id: p.project_id, name: p.project_name })) : undefined });
+      }
+      const b = body();
+      state.bookingCalls.push({ method, ...b, auth });
+      if (b.action === 'book') {
+        if (b.start === state.takenStart) return json(route, { ok: false, code: 'TAKEN' }, 409);
+        const end = new Date(Date.parse(b.start) + b.minutes * 60_000).toISOString();
+        const project = state.projects.find((p) => p.project_id === b.projectId);
+        state.bookings.push({ booking_id: `bk-${state.bookings.length + 1}`, starts_at: b.start, ends_at: end, time_zone: 'Europe/Budapest', status: 'confirmed',
+          meet_url: 'https://meet.google.com/abc-defg-hij', project_id: project?.project_id ?? null, project_name: project?.project_name ?? null, topic: b.topic || null, can_change: true });
+        return json(route, { ok: true, booking: { id: state.bookings.at(-1).booking_id, start: b.start, end, manageUrl: null } });
+      }
+      const mine = state.bookings.find((x) => x.booking_id === b.id);
+      if (!mine) return json(route, { ok: false, code: 'NOT_FOUND' }, 404);
+      if (b.action === 'cancel') { mine.status = 'cancelled'; mine.can_change = false; return json(route, { ok: true }); }
+      if (b.action === 'move') {
+        const length = Date.parse(mine.ends_at) - Date.parse(mine.starts_at);
+        Object.assign(mine, { starts_at: b.start, ends_at: new Date(Date.parse(b.start) + length).toISOString() });
+        return json(route, { ok: true, booking: { id: mine.booking_id, start: b.start } });
+      }
+      return json(route, { ok: false, code: 'ACTION' }, 400);
     }
     if (url.includes('/api/portal-')) return json(route, { ok: false }, 503);
     if (url.startsWith(`http://127.0.0.1:${PORT}/`)) return route.continue();
@@ -177,6 +224,7 @@ async function open(browser, { role = 'client', state = freshState(), viewport =
     if (url.includes('/rest/v1/rpc/client_withdraw_meeting_request')) {
       const r = state.reqs.find((x) => x.request_id === body().p_request); r.status = 'withdrawn'; r.decided_at = now(); return json(route, 'withdrawn');
     }
+    if (url.includes('/rest/v1/rpc/client_portal_bookings')) return json(route, role === 'client' ? state.bookings : []);
     if (url.includes('/rest/v1/rpc/client_portal_meeting_requests')) return json(route, role === 'client' ? state.reqs : []);
     // Client experience (20261014000100), like the real functions.
     if (url.includes('/rest/v1/rpc/client_portal_approvals')) return json(route, role === 'client' ? state.approvals : []);
@@ -298,7 +346,7 @@ await check('a client gets only the Hungarian client portal; staff routes redire
   const { page, context, state } = await open(browser);
   await page.goto(`${BASE}/`);
   await page.getByRole('navigation', { name: 'Ügyfélportál' }).waitFor();
-  for (const tab of ['Projektjeim', 'Megosztott dokumentumok', 'Nyersanyag leadása']) {
+  for (const tab of ['Projektjeim', 'Megosztott dokumentumok', 'Nyersanyag leadása', 'Időpont']) {
     assert(await page.getByRole('navigation', { name: 'Ügyfélportál' }).getByRole('link', { name: tab }).count() === 1, `missing tab ${tab}`);
   }
   await page.getByText('Rapidkert weboldal').waitFor();
@@ -691,6 +739,76 @@ await check('Új időpont javaslása: sent as a proposal in the meeting\'s zone;
   await context.close();
 });
 
+await check('Időpont: free times live, 60 minutes for their project, as themselves; listed with Join; moved; cancelled after a second click', async () => {
+  const state = freshState({ projects: [{ project_id: P1, project_name: 'Rapidkert weboldal' }, { project_id: P2, project_name: 'Webshop' }] });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/idopont`);
+  await page.getByRole('link', { name: 'Időpont' }).waitFor();
+  await page.getByText('Még nincs foglalásod. Lent választhatsz időpontot.').waitFor();
+  const panel = page.locator('[data-client-booking-new="book"]');
+  await panel.getByRole('button', { name: '60 perc' }).click();
+  await panel.getByRole('group', { name: 'Időpontok' }).getByRole('button').first().waitFor();
+  assert(state.bookingCalls.some((c) => c.method === 'GET' && c.minutes === 60 && c.auth === 'Bearer mock-access-token'), JSON.stringify(state.bookingCalls));
+  const days = panel.getByRole('group', { name: 'Napok' }).getByRole('button');
+  await days.nth(1).click();
+  const time = panel.getByRole('group', { name: 'Időpontok' }).getByRole('button').first();
+  const label = (await time.textContent()).trim();
+  assert(label === '09:00', `first time reads ${label}`);
+  await time.click();
+  await panel.getByLabel('Melyik projektről?').selectOption({ label: 'Webshop' });
+  await panel.getByLabel('Miről beszélgetnénk? (nem kötelező)').fill('Termékoldalak');
+  await panel.getByRole('button', { name: 'Lefoglalom' }).click();
+  await page.getByText(/^Lefoglaltuk: .*A Google-meghívót a Meet-linkkel elküldtük/).waitFor();
+  const sent = state.bookingCalls.find((c) => c.action === 'book');
+  assert(sent.minutes === 60 && sent.projectId === P2 && sent.topic === 'Termékoldalak' && !('name' in sent) && !('email' in sent), JSON.stringify(sent));
+  const wall = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Budapest', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(sent.start));
+  assert(wall === '09:00', `booked ${wall} Budapest`);
+  const row = page.locator('[data-client-booking="bk-1"]');
+  await row.getByRole('link', { name: 'Csatlakozás' }).waitFor();
+  assert(await row.getByText('Webshop').isVisible(), 'project not shown');
+  // Move it to the first time of the third day.
+  await row.getByRole('button', { name: 'Áthelyezés' }).click();
+  const move = page.locator('[data-client-booking-new="move"]');
+  await move.getByRole('group', { name: 'Napok' }).getByRole('button').nth(2).click();
+  await move.getByRole('group', { name: 'Időpontok' }).getByRole('button').first().click();
+  await move.getByRole('button', { name: 'Áthelyezem ide' }).click();
+  await page.getByText(/^Áthelyeztük: /).waitFor();
+  assert(state.bookingCalls.some((c) => c.action === 'move' && c.id === 'bk-1'), 'no move sent');
+  assert(state.bookingCalls.filter((c) => c.method === 'GET').some((c) => c.minutes === 60), 'the move did not ask for 60-minute times');
+  // Cancel: the first click only asks.
+  await row.getByRole('button', { name: 'Lemondás' }).click();
+  assert(!state.bookingCalls.some((c) => c.action === 'cancel'), 'cancelled on the first click');
+  await row.getByRole('button', { name: 'Biztosan lemondod?' }).click();
+  await page.getByText('Lemondtuk. A Google értesítést küld róla.').waitFor();
+  assert(state.bookings[0].status === 'cancelled', 'not cancelled');
+  await shot(page, 'booking');
+  await context.close();
+});
+
+await check('Időpont: a time taken meanwhile is refused and the times reload; not connected reads as unavailable', async () => {
+  const state = freshState();
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/idopont`);
+  const panel = page.locator('[data-client-booking-new="book"]');
+  const time = panel.getByRole('group', { name: 'Időpontok' }).getByRole('button').first();
+  await time.waitFor();
+  const gets = state.bookingCalls.filter((c) => c.method === 'GET').length;
+  state.takenStart = freeSlots(30)[0].start;
+  await time.click();
+  await panel.getByRole('button', { name: 'Lefoglalom' }).click();
+  await panel.getByText('Ezt az időpontot közben lefoglalták. Válassz egy másikat.').waitFor();
+  await panel.getByRole('group', { name: 'Időpontok' }).getByRole('button').first().waitFor();
+  assert(state.bookingCalls.filter((c) => c.method === 'GET').length > gets, 'times not reloaded');
+  assert(state.bookings.length === 0, 'booked anyway');
+  await context.close();
+  const off = await open(browser, { state: freshState({ bookingOff: true }) });
+  await off.page.goto(`${BASE}/idopont`);
+  await off.page.locator('[data-client-booking-off]').getByText('Az online foglalás most nem elérhető. Írj nekünk, és egyeztetünk időpontot.').waitFor();
+  const bad = await lowContrast(off.page);
+  assert(bad.length === 0, `contrast: ${JSON.stringify(bad.slice(0, 3))}`);
+  await off.context.close();
+});
+
 /* ============================================================ theme === */
 
 const themeOf = (page) => page.evaluate(() => ({ theme: document.documentElement.dataset.theme, pref: document.documentElement.dataset.themePref,
@@ -787,7 +905,7 @@ await check('language: English and German in the client header, saved on the cli
   await shot(page, 'lang-en');
   await page.getByRole('radio', { name: 'Deutsch' }).click();
   await page.getByRole('navigation', { name: 'Kundenportal' }).waitFor();
-  for (const path of ['/', '/megosztott', '/nyersanyag']) {
+  for (const path of ['/', '/megosztott', '/nyersanyag', '/idopont']) {
     await page.goto(`${BASE}${path}`);
     await page.waitForLoadState('networkidle');
     const bad = await lowContrast(page);

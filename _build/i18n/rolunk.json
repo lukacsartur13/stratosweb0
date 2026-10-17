@@ -198,5 +198,73 @@
  "Egyszeri, tételes projektdíjjal. A díjmentes felmérés után megkapod, mi készül, mennyi idő alatt és mennyiért — és az átadás után az oldal teljesen a tiéd, kötelező havi díj nélkül.": [
   "With a one-off, itemised project fee. After the free assessment you get what will be built, how long it takes and what it costs — and after handover the site is entirely yours, with no compulsory monthly fee.",
   "Mit einem einmaligen, aufgeschlüsselten Projektpreis. Nach der kostenlosen Analyse erhalten Sie, was entsteht, wie lange es dauert und was es kostet — und nach der Übergabe gehört die Website ganz Ihnen, ohne monatliche Pflichtgebühr."
+ ],
+ "Rólunk — kis csapat, közvetlen felelősség | Stratos": [
+  "About — a small team, direct responsibility | Stratos",
+  "Über uns — kleines Team, direkte Verantwortung | Stratos"
+ ],
+ "Kis csapat, közvetlen felelősség: azok tervezik, fejlesztik és viszik tovább a munkát, akikkel az első beszélgetésen ülsz. Ismerd meg a Stratost.": [
+  "A small team with direct responsibility: the people in your first meeting are the ones who design, build and carry the work on. Meet Stratos.",
+  "Kleines Team, direkte Verantwortung: Wer im ersten Gespräch sitzt, entwirft, entwickelt und betreut die Arbeit weiter. Lernen Sie Stratos kennen."
+ ],
+ "Kis csapat.<br><span class=\"sig\">Nagy felelősség.</span>": [
+  "A small team.<br><span class=\"sig\">Full responsibility.</span>",
+  "Kleines Team.<br><span class=\"sig\">Große Verantwortung.</span>"
+ ],
+ "A Stratos szándékosan kicsi. Kevés projekt, közvetlen kapcsolat, és ugyanazok az emberek az első beszélgetéstől az élesítésig — és azon túl.": [
+  "Stratos is small on purpose. Few projects, direct contact, and the same people from the first conversation to launch — and beyond it.",
+  "Stratos ist bewusst klein. Wenige Projekte, direkter Kontakt und dieselben Menschen vom ersten Gespräch bis zum Launch — und darüber hinaus."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Miért maradunk kicsik</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Why we stay small</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Warum wir klein bleiben</span>"
+ ],
+ "Azzal beszélsz, <span class=\"sig\">aki csinálja.</span>": [
+  "You talk to <span class=\"sig\">the people who do the work.</span>",
+  "Sie sprechen mit denen, <span class=\"sig\">die die Arbeit machen.</span>"
+ ],
+ "Közvetlen kapcsolat": [
+  "Direct contact",
+  "Direkter Kontakt"
+ ],
+ "Nincs account manager a döntés és a munka között: azokkal egyeztetsz, akik tervezik és építik az oldaladat.": [
+  "No account manager between the decision and the work: you deal with the people who design and build your site.",
+  "Kein Account Manager zwischen Entscheidung und Arbeit: Sie sprechen mit denen, die Ihre Website entwerfen und bauen."
+ ],
+ "Egy kézben": [
+  "One pair of hands",
+  "In einer Hand"
+ ],
+ "Tervezés, fejlesztés, szöveg és hirdetés egy projekten belül marad, így minden kérdésnek és minden hibának egy gazdája van.": [
+  "Design, development, copy and advertising stay inside one project, so every question and every fault has one owner.",
+  "Konzept, Entwicklung, Text und Werbung bleiben in einem Projekt, so hat jede Frage und jeder Fehler genau einen Verantwortlichen."
+ ],
+ "Mesterség": [
+  "Craft",
+  "Handwerk"
+ ],
+ "Minden felület kódból, sablon nélkül készül — olyan részletességgel, amit szívesen kiteszünk a saját portfóliónkba.": [
+  "Every interface is built in code, without a template — to a level of detail we would put in our own portfolio.",
+  "Jede Oberfläche entsteht im Code, ohne Vorlage — in einer Sorgfalt, die wir selbst gern in unser Portfolio stellen."
+ ],
+ "Fegyelem": [
+  "Discipline",
+  "Disziplin"
+ ],
+ "Mérhető célok, dokumentált átadás, és a forráskód meg a hozzáférések a tiétek.": [
+  "Measurable goals, a documented handover, and the source code and access are yours.",
+  "Messbare Ziele, eine dokumentierte Übergabe, und Quellcode und Zugänge gehören Ihnen."
+ ],
+ "Akikkel dolgozol": [
+  "The people you work with",
+  "Mit wem Sie arbeiten"
+ ],
+ "Alapító, partner. Weboldalakat és ügyfélszerző rendszereket tervez és épít — a stratégiától a kódig.": [
+  "Founder, partner. Designs and builds websites and client-acquisition systems — from strategy to code.",
+  "Gründer, Partner. Entwirft und baut Websites und Systeme zur Kundengewinnung — von der Strategie bis zum Code."
+ ],
+ "Partner, hirdetéskezelés. Google- és Meta-kampányokat épít és kezel, és azt méri, mennyi valódi megkeresést hoznak.": [
+  "Partner, advertising. Builds and runs Google and Meta campaigns, and measures how many real enquiries they bring.",
+  "Partner, Werbung. Baut und betreut Google- und Meta-Kampagnen und misst, wie viele echte Anfragen sie bringen."
  ]
 }

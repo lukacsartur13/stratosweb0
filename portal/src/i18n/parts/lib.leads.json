@@ -134,5 +134,9 @@
  "The database refused that note.": {
   "hu": "Az adatbázis elutasította a jegyzetet.",
   "de": "Die Datenbank hat diese Notiz abgelehnt."
+ },
+ "Booking": {
+  "hu": "Időpontfoglalás",
+  "de": "Terminbuchung"
  }
 }
