@@ -1,5 +1,5 @@
 /* ==========================================================================
-   STRATOS — the shell's behaviour. Six small things, no dependencies, no
+   STRATOS — the shell's behaviour. Seven small things, no dependencies, no
    standing animation loop, nothing the page needs in order to be read.
 
      1. The header: a hairline once the page has moved, and the sheet that
@@ -15,6 +15,7 @@
      6. The plane: for a mouse, the logo's paper plane follows the pointer
         and turns to fly the way it moves; on the homepage it leaves a strip
         through the clouds.
+     7. The smooth wheel: a mouse wheel glides instead of stepping.
 
    The static page is the design. Without this file — blocked, failed, or a
    reader who asked for reduced motion — every element is in its final, lit,
@@ -347,26 +348,47 @@
     // native cursor comes back until the pointer moves here again.
     doc.addEventListener('mouseout', function (e) { if (!e.relatedTarget) hide(); });
     window.addEventListener('blur', hide);
+    // Leaving the page, and coming back to it from the back/forward cache: a
+    // frozen page can lose a frame it had asked for, and a loop that believes
+    // a frame is pending never asks again. So both loops are cancelled on the
+    // way out, and the page comes back with the native plane until the mouse
+    // moves.
+    var settle = function () {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = 0;
+      hide();
+      if (trail) trail.reset();
+    };
+    window.addEventListener('pagehide', settle);
+    window.addEventListener('pageshow', function (e) { if (e.persisted) settle(); });
 
     img.onload = function () { ready = true; el.appendChild(img); doc.body.appendChild(el); show(); };
     img.src = '/assets/img/cursor-plane@2x.png';
 
     /* The trail. Where the page names a `--cloud-trail` (the homepage), the
        plane flies through the clouds (owner, 2026-10-17): a thick strip
-       behind it, in which the deck shows at full strength — whiter tops,
-       sky-blue crevices — narrowing to nothing over a second and a half like
-       a comet's tail. One canvas behind the content, so dark panels and text
-       stay on top; the strip lives in page coordinates, so it stays on the
-       clouds it crossed while the page scrolls; nothing runs once it has
-       gone.
+       behind it, in which the deck shows at full strength — sky-blue
+       crevices — narrowing to nothing over a second and a half like a
+       comet's tail. One canvas over the page, multiplied onto it (home.css),
+       cut away from photographs and dark panels; the strip lives in page
+       coordinates, so it stays on the clouds it crossed while the page
+       scrolls; nothing runs once it has gone.
 
        The strip is one opaque shape (segments drawn at full alpha cannot
        stack into beads or steps where they overlap), drawn at a fifth of the
        resolution and scaled up, which is what softens its edge — a blur for
        nothing. The canvas is at 1×, as the cloud tile itself is; the strong
        deck is filled only inside the strip's bounds. */
-    var trailSrc = /url\(["']?([^"')]+)["']?\)/.exec(getComputedStyle(doc.body).getPropertyValue('--cloud-trail'));
-    if (trailSrc && window.DOMMatrix) (function () {
+    var trailVar = getComputedStyle(doc.body).getPropertyValue('--cloud-trail');
+    var trailSrc = /url\(\s*["']?([^"')]+?)["']?\s*\)/.exec(trailVar);
+    // Safari (26.6) hands a custom property's url() back CSS-escaped —
+    // `\/assets\/img\/home-clouds-trail\.webp` — and an image asked for at
+    // that address fails, so the strip never had a texture there. Undo the
+    // escapes: hex ones (`\2f `) and single characters (`\/`) alike.
+    if (trailSrc) trailSrc[1] = trailSrc[1].replace(/\\([0-9a-fA-F]{1,6})\s?|\\(.)/g, function (m, hex, ch) {
+      return hex ? String.fromCodePoint(parseInt(hex, 16)) : ch;
+    });
+    if (trailSrc) (function () {
       var LIFE = 1500, HEAD = 78, LO = 5;
       var cv = doc.createElement('canvas'), off = doc.createElement('canvas');
       var ctx = cv.getContext('2d'), octx = off.getContext('2d');
@@ -374,12 +396,16 @@
       cv.className = 'cloud-trail';
       cv.setAttribute('aria-hidden', 'true');
       var tex = new Image();
-      var pattern = null, pts = [], raf = 0;
+      var pattern = null, pts = [], raf = 0, masks = [];
       var fit = function () {
         cv.width = window.innerWidth; cv.height = window.innerHeight;
         off.width = Math.ceil(cv.width / LO); off.height = Math.ceil(cv.height / LO);
       };
+      // A frame that throws stops the strip, never the page.
       var draw = function () {
+        try { paint(); } catch (err) { raf = 0; }
+      };
+      var paint = function () {
         raf = 0;
         var now = window.performance.now();
         while (pts.length && now - pts[0].t > LIFE) pts.shift();
@@ -418,10 +444,24 @@
         //    background: the tile's origin is the page's, so it moves with
         //    scroll exactly as the background does.
         ctx.globalCompositeOperation = 'source-in';
+        // The tile is placed by moving the canvas, not the pattern: a
+        // pattern's own transform is the less dependable path.
         var k = parseFloat(getComputedStyle(doc.body).backgroundSize) / tex.naturalWidth || 1;
-        pattern.setTransform(new window.DOMMatrix([k, 0, 0, k, -sx, -sy]));
+        ctx.setTransform(k, 0, 0, k, -sx, -sy);
         ctx.fillStyle = pattern;
-        ctx.fillRect(bx, by, bw, bh);
+        ctx.fillRect((bx + sx) / k, (by + sy) / k, bw / k, bh / k);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        // 4. Never over a photograph, a project screen or a dark panel.
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.fillStyle = '#000';
+        for (var m = 0; m < masks.length; m++) {
+          var r = masks[m].getBoundingClientRect();
+          if (r.right < bx || r.left > bx + bw || r.bottom < by || r.top > by + bh || !r.width) continue;
+          var rad = parseFloat(getComputedStyle(masks[m]).borderTopLeftRadius) || 0;
+          ctx.beginPath();
+          if (ctx.roundRect) ctx.roundRect(r.left, r.top, r.width, r.height, rad); else ctx.rect(r.left, r.top, r.width, r.height);
+          ctx.fill();
+        }
         ctx.globalCompositeOperation = 'source-over';
         raf = window.requestAnimationFrame(draw);
       };
@@ -429,6 +469,13 @@
       // first moves: a reader who never uses one gets the page and no more.
       var started = false;
       trail = {
+        reset: function () {
+          if (raf) window.cancelAnimationFrame(raf);
+          raf = 0;
+          pts = [];
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.clearRect(0, 0, cv.width, cv.height);
+        },
         push: function (px, py) {
           if (!started) { started = true; tex.src = trailSrc[1]; }
           if (!pattern) return;
@@ -438,6 +485,11 @@
       };
       tex.onload = function () {
         var ready = function () {
+          // Not the plane's own picture (the strip would be cut away right
+          // under it) and not the header's (the header is above the strip).
+          masks = [].filter.call(
+            doc.querySelectorAll('img, picture, video, .take__surface, .gdf__surface, .close__surface, .pclose__surface, .btn'),
+            function (el) { return !el.closest('.cursor-plane, .hdr'); });
           pattern = ctx.createPattern(tex, 'repeat');
           fit();
           doc.body.appendChild(cv);
@@ -448,13 +500,67 @@
           ctx.fillRect(0, 0, 1, 1);
           ctx.clearRect(0, 0, 1, 1);
         };
-        // Idle, but never later than 300 ms: a mouse that keeps moving keeps
-        // the page from ever being idle, and the strip must not wait for it.
-        var idle = window.requestIdleCallback
-          ? function (fn) { return window.requestIdleCallback(fn, { timeout: 300 }); }
-          : function (fn) { return window.setTimeout(fn, 120); };
-        (tex.decode ? tex.decode() : Promise.resolve()).then(function () { idle(ready); }, function () { idle(ready); });
+        // A plain timer: `decode()` and the idle callback both waited on
+        // things Safari need not deliver, and the strip never started there.
+        window.setTimeout(function () {
+          try { ready(); } catch (err) { /* no strip, and nothing else broken */ }
+        }, 60);
       };
     })();
+  })();
+
+  /* ----------------------------------------------------- the smooth wheel */
+  /* A wheel glides (owner, 2026-10-17, after immersive-g.com, which runs
+     Lenis at a lerp of about 0.05): each notch moves where the page is going,
+     not the page, and the page eases there — so an uneven finger on the
+     wheel draws one smooth curve instead of a stutter. The page still
+     scrolls natively: the scrollbar, the keyboard, find-in-page, anchors and
+     assistive technology move it as they always did, and the glide adopts
+     wherever they leave it. A wheel over anything that scrolls on its own
+     (the open menu, a field) is left alone, and so are zoom (ctrl + wheel)
+     and sideways scrolling. Mouse and trackpad only — touch scrolls
+     natively — and nothing at all for a reader who asked for less motion. */
+  if (!reduce && fine && window.requestAnimationFrame) (function () {
+    var EASE = 3;   // per second; Lenis's lerp 0.05 at 60 fps
+    var target = 0, current = 0, last = 0, frame = 0, then = 0;
+    var bottom = function () { return Math.max(0, root.scrollHeight - window.innerHeight); };
+    var ownScroll = function (el, dy) {
+      for (; el && el !== doc.body && el !== root; el = el.parentElement) {
+        if (el.matches && el.matches('textarea, select, [contenteditable="true"]')) return true;
+        var oy = getComputedStyle(el).overflowY;
+        if ((oy === 'auto' || oy === 'scroll' || oy === 'overlay') && el.scrollHeight > el.clientHeight + 1) {
+          if (dy < 0 ? el.scrollTop > 0 : el.scrollTop + el.clientHeight < el.scrollHeight - 1) return true;
+        }
+      }
+      return false;
+    };
+    var stop = function () {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = 0; then = 0;
+    };
+    var step = function (t) {
+      var dt = then ? Math.min(0.1, (t - then) / 1000) : 1 / 60;
+      then = t;
+      current += (target - current) * (1 - Math.exp(-EASE * dt));
+      if (Math.abs(target - current) < 0.5) current = target;
+      window.scrollTo(0, current);
+      last = window.scrollY;
+      if (current === target) { frame = 0; then = 0; } else frame = window.requestAnimationFrame(step);
+    };
+    window.addEventListener('wheel', function (e) {
+      if (e.ctrlKey || e.defaultPrevented || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (doc.querySelector('.hdr.is-open')) return;
+      var dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
+      if (!dy || ownScroll(e.target, dy)) return;
+      e.preventDefault();
+      if (!frame) current = target = last = window.scrollY;   // start from where the page is
+      target = Math.max(0, Math.min(bottom(), target + dy));
+      if (!frame) frame = window.requestAnimationFrame(step);
+    }, { passive: false });
+    // Anything else that moves the page wins: the glide stops where it is.
+    window.addEventListener('scroll', function () {
+      if (frame && Math.abs(window.scrollY - last) > 2) { stop(); current = target = window.scrollY; }
+    }, { passive: true });
+    window.addEventListener('pagehide', stop);
   })();
 })();

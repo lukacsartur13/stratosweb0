@@ -34,19 +34,21 @@ body {
 @media (max-width: 760px) {
   body { background-size: 1000px auto; }
 }
-/* Behind everything but the page itself: the panels and the words stay on
-   top of the strip. Never a target, never in the accessibility tree. */
-/* Its own compositor layer: each frame redraws the strip and nothing else,
-   rather than repainting the page that sits on top of it. */
+/* The plane's strip lies over the page, under the header, and multiplies:
+   over the clouds it turns them into the strong deck, over the words it
+   leaves them dark, and shell.js cuts it away from photographs, the project
+   screens and the dark panels so it never tints them. It sits on top rather
+   than behind because Safari can composite a layer behind the page under
+   the page's own background, where nothing of it shows. Never a target,
+   never in the accessibility tree. */
 .cloud-trail {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 40;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  will-change: transform;
-  contain: strict;
+  mix-blend-mode: multiply;
 }
 
 /* ------------------------------------------------------------- 01 · hero */

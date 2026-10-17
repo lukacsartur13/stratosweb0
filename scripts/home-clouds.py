@@ -4,9 +4,12 @@
 #
 #   assets/img/home-clouds.webp        the page: the paper's own colour, a
 #                                      breath of blue in the crevices
-#   assets/img/home-clouds-trail.webp  the same deck at full strength, white
-#                                      tops and sky-blue crevices — what the
-#                                      paper plane reveals where it flies
+#   assets/img/home-clouds-trail.webp  what the paper plane reveals where it
+#                                      flies: the deck at full strength, sky-
+#                                      blue crevices — stored as the ratio of
+#                                      the strong deck to the page's, because
+#                                      the strip is laid over the page with
+#                                      `multiply` (page × ratio = strong deck)
 #
 #     python3 scripts/home-clouds.py [N] [seed]        # default 1600, 5
 #
@@ -110,9 +113,13 @@ def save(c, name):
 
 #                    lit top          paper            shade            crevice
 page = paint((251, 250, 247), (243, 242, 238), (232, 234, 235), (223, 228, 235))
-trail = paint((255, 255, 255), (234, 239, 245), (200, 213, 228), (154, 178, 205))
+strong = paint((255, 255, 255), (234, 239, 245), (200, 213, 228), (154, 178, 205))
 save(page, "home-clouds.webp")
-save(trail, "home-clouds-trail.webp")
+# The strip is drawn on top of the page with `multiply` — on top, because a
+# layer behind the page is one Safari's compositor can put under the page's
+# own background. Multiplying by strong ÷ page turns the deck into the strong
+# deck exactly, and leaves dark things (the text) dark.
+save(np.clip(strong / np.maximum(page, 1e-3), 0, 1), "home-clouds-trail.webp")
 
 lo = lum(page).min()
 for tok, c in (("ink-2", (0x5A, 0x59, 0x54)), ("ink-3 (home)", (0x83, 0x82, 0x7C))):

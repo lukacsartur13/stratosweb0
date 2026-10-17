@@ -307,7 +307,7 @@ test.describe('the cursor', () => {
     expect(await field.evaluate((el) => getComputedStyle(el).cursor), 'fields keep the caret').toBe('text');
   });
 
-  test('on the homepage the plane draws a strip through the clouds, behind the content', async ({ page }) => {
+  test('on the homepage the plane draws a strip through the clouds, under the header', async ({ page }) => {
     // Owner, 2026-10-17: the plane reveals the cloud texture in thick strips.
     await page.goto('/');
     const env = await page.evaluate(() => ({
@@ -327,9 +327,13 @@ test.describe('the cursor', () => {
     await expect(trail).toHaveCount(1, { timeout: 5000 });
     const style = await trail.evaluate((el) => {
       const cs = getComputedStyle(el);
-      return { z: cs.zIndex, events: cs.pointerEvents, hidden: el.getAttribute('aria-hidden') };
+      const hdr = getComputedStyle(document.querySelector('.hdr')!).zIndex;
+      return { below: Number(cs.zIndex) < Number(hdr), blend: cs.mixBlendMode, events: cs.pointerEvents, hidden: el.getAttribute('aria-hidden') };
     });
-    expect(style, 'behind the content, never a target, never read out').toEqual({ z: '-1', events: 'none', hidden: 'true' });
+    // On top of the page, multiplied onto it — not behind it, where Safari's
+    // compositor can bury a layer under the page's own background.
+    expect(style, 'over the page, under the header, never a target, never read out')
+      .toEqual({ below: true, blend: 'multiply', events: 'none', hidden: 'true' });
     // Something is drawn where the plane has just flown, and nothing once it is gone.
     const painted = () => trail.evaluate((el) => {
       const c = el as HTMLCanvasElement;
@@ -344,11 +348,96 @@ test.describe('the cursor', () => {
     await expect.poll(painted, { message: 'and gone again', timeout: 5000 }).toBe(0);
   });
 
+  test('the plane and its strip come back after the page is left and restored', async ({ page }) => {
+    // Owner, 2026-10-17: away to /branding and back, and the effect was gone.
+    // A page restored from the back/forward cache can lose a frame it had
+    // asked for; both loops are reset on the way out. Simulated here with the
+    // page-transition events, as automation does not keep pages in that cache.
+    await page.goto('/');
+    const env = await page.evaluate(() => ({
+      fine: matchMedia('(hover: hover) and (pointer: fine)').matches,
+      reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    }));
+    test.skip(!env.fine || env.reduce, 'the plane is for a mouse, and not on reduced motion');
+    const fly = async () => { await page.mouse.move(300, 450); await page.mouse.move(900, 470, { steps: 24 }); };
+    const painted = () => page.locator('canvas.cloud-trail').evaluate((el) => {
+      const c = el as HTMLCanvasElement;
+      const d = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data;
+      let n = 0;
+      for (let i = 3; i < d.length; i += 4 * 97) if (d[i] > 0) n++;
+      return n;
+    });
+    await fly();
+    await expect(page.locator('canvas.cloud-trail')).toHaveCount(1, { timeout: 5000 });
+    await page.evaluate(() => {
+      window.dispatchEvent(new PageTransitionEvent('pagehide', { persisted: true }));
+      window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+    });
+    await expect(page.locator('html'), 'back with the native plane').not.toHaveClass(/has-plane/);
+    await fly();
+    await expect(page.locator('html')).toHaveClass(/has-plane/);
+    await expect.poll(painted, { message: 'the strip draws again' }).toBeGreaterThan(0);
+  });
+
+  test('the strip finds its texture even when the address comes back CSS-escaped', async ({ page }) => {
+    // Owner, 2026-10-17: no strip at all in Safari 26.6. Safari serialises the
+    // custom property's url() with escapes — `url(\\/assets\\/img\\/…\\.webp)` —
+    // and the image at that literal address failed. Reproduced here by writing
+    // the address escaped in the CSS itself, which every engine hands back as
+    // written.
+    await page.route('**/', async (route) => {
+      if (route.request().resourceType() !== 'document') return route.continue();
+      const res = await route.fetch();
+      const html = (await res.text()).replace(
+        /--cloud-trail:\s*url\(\/assets\/img\/home-clouds-trail\.webp\)/,
+        '--cloud-trail:url(\\/assets\\/img\\/home-clouds-trail\\.webp)',
+      );
+      expect(html, 'the page names its trail as the test expects').toContain('home-clouds-trail\\.webp');
+      await route.fulfill({ response: res, body: html });
+    });
+    await page.goto('/');
+    const env = await page.evaluate(() => ({
+      fine: matchMedia('(hover: hover) and (pointer: fine)').matches,
+      reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    }));
+    test.skip(!env.fine || env.reduce, 'the plane is for a mouse, and not on reduced motion');
+    const asked: string[] = [];
+    page.on('request', (r) => { if (/home-clouds-trail/.test(r.url())) asked.push(new URL(r.url()).pathname); });
+    await page.mouse.move(300, 450);
+    await page.mouse.move(900, 470, { steps: 24 });
+    await expect(page.locator('canvas.cloud-trail')).toHaveCount(1, { timeout: 5000 });
+    expect(asked, 'the texture is asked for at its real address').toContain('/assets/img/home-clouds-trail.webp');
+  });
+
   test('a subpage has no strip: only the homepage names a cloud trail', async ({ page }) => {
     await page.goto('/munkaink.html');
     await page.mouse.move(300, 400);
     await page.mouse.move(700, 420, { steps: 8 });
     await page.waitForTimeout(800);
     await expect(page.locator('canvas.cloud-trail')).toHaveCount(0);
+  });
+});
+
+test.describe('the smooth wheel', () => {
+  // Owner, 2026-10-17, after immersive-g.com: a wheel glides instead of
+  // stepping, and an uneven finger still draws one smooth curve.
+  test('a wheel glides to where it was sent; anything else still moves the page at once', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/munkaink.html');
+    const env = await page.evaluate(() => ({
+      fine: matchMedia('(hover: hover) and (pointer: fine)').matches,
+      reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    }));
+    test.skip(!env.fine, 'wheels are for a mouse or a trackpad');
+    await page.mouse.move(700, 450);
+    await page.mouse.wheel(0, 600);
+    const early = await page.evaluate(() => new Promise<number>((r) => requestAnimationFrame(() => requestAnimationFrame(() => r(scrollY)))));
+    if (!env.reduce) expect(early, 'a glide, not a jump').toBeLessThan(450);
+    await expect.poll(() => page.evaluate(() => Math.round(scrollY)), { message: 'arrives where it was sent' }).toBeGreaterThan(590);
+    // Anything else wins: a script (as the keyboard, an anchor or the scrollbar would).
+    await page.mouse.wheel(0, 800);
+    await page.evaluate(() => window.scrollTo(0, 120));
+    await page.waitForTimeout(500);
+    expect(await page.evaluate(() => Math.round(scrollY)), 'the glide yields').toBeLessThan(140);
   });
 });

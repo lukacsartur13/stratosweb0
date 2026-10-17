@@ -312,11 +312,12 @@ test.describe('the FAQ on a pale band', () => {
     const closed = await settledSnapshot();
     await sum.click();
     await expect(det).toHaveAttribute('open', '');
-    const open = await settledSnapshot();
-
-    expect(open.mark, 'the mark takes the accent when the entry opens').not.toBe(closed.mark);
-    expect(open.spin, 'the mark rotates from + to x').not.toBe(closed.spin);
-    expect(open.rule, 'an open entry is bracketed by an accent rule').not.toBe(closed.rule);
+    // Waited for, not sampled: the rule's colour is transitioned, and on a
+    // busy machine two equal readings can come before the transition has
+    // started (failed that way twice under the full parallel suite).
+    await expect.poll(async () => (await read()).mark, { message: 'the mark takes the accent when the entry opens' }).not.toBe(closed.mark);
+    await expect.poll(async () => (await read()).spin, { message: 'the mark rotates from + to x' }).not.toBe(closed.spin);
+    await expect.poll(async () => (await read()).rule, { message: 'an open entry is bracketed by an accent rule' }).not.toBe(closed.rule);
   });
 
   test('the same accordion on the About page gives the same signal', async ({ page }) => {

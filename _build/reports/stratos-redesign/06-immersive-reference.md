@@ -120,12 +120,28 @@ cumulus carpet; and the plane should reveal the texture in thick strips.
   and 3.5 : 1 on open paper. The ascent gradient is gone; the clouds are the atmosphere.
 - **The strip** — for a mouse (not touch, not reduced motion), the plane leaves a thick
   band behind it, narrowing to nothing over 1.5 s, in which the deck shows at full
-  strength (`home-clouds-trail.webp`, white tops, sky-blue crevices). One 2D canvas
-  behind the content, so panels and text stay on top; the band lives in page
-  coordinates, so it stays on the clouds while the page scrolls. It is one opaque shape
-  drawn at a fifth of the resolution and scaled up (the soft edge), filled with the
-  strong tile only inside its bounds. Nothing — canvas or its 93 kB texture — exists
-  until the mouse first moves; nothing runs once the band has gone.
+  strength with sky-blue crevices. One 2D canvas **over** the page, under the header,
+  laid on with `multiply`; its tile (`home-clouds-trail.webp`) is the ratio of the strong
+  deck to the page's, so over the clouds the result is exactly the strong deck and over
+  the words they stay dark. It is cut away from photographs, project screens, the dark
+  panels and buttons. (It first lay *behind* the content at z-index −1: Safari's
+  compositor put it under the page's own background, and the owner saw nothing in Safari;
+  behind the content it was also buried under the hero's glow.) **In Safari 26.6 it then
+  still never appeared**: Safari returns the custom property's `url()` CSS-escaped
+  (`url(\/assets\/img\/…\.webp)`), and that address resolves to a host called "assets",
+  so the texture never loaded. Found by having the page report its startup stages from
+  the owner's own Safari to a local log; shell.js now unescapes the address, and a test
+  serves the escaped form to every engine. The band lives in page
+  coordinates; nothing — canvas or texture — exists until the mouse first moves; both
+  loops are cancelled on `pagehide`, so a page restored from the back/forward cache starts
+  clean.
+- **The smooth wheel** (every page) — after immersive-g.com, which runs Lenis at a lerp of
+  about 0.05: a wheel notch moves the target and the page eases there (`1 − e^(−3·dt)` per
+  frame), so an uneven finger draws one smooth curve. Measured against theirs, one 100 px
+  notch: 5, 9, 14, 18 … 92 px over 50 frames — the same curve. The page still scrolls
+  natively; the scrollbar, keyboard, anchors and find-in-page win at once and the glide
+  adopts the position. Not over the open menu or fields, not with ctrl (zoom), not
+  sideways, not on touch, not on reduced motion.
 - **Cost** — in a GPU-backed Chromium (Apple M4), a 240-move sweep: median frame
   16.7 ms, p95 17.4 ms, worst 18 ms, no long tasks. (Headless software rendering
   overstates canvas work many times over; measured there it is heavy, which is why the
