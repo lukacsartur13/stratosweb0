@@ -490,5 +490,9 @@
  "A projekt minden résztvevője látja. Munkanapokon 1 munkanapon belül válaszolunk.": {
   "en": "Everyone on the project sees it. On working days we reply within 1 working day.",
   "de": "Alle Beteiligten des Projekts sehen sie. An Werktagen antworten wir innerhalb eines Werktags."
+ },
+ "Időpont": {
+  "en": "Book a call",
+  "de": "Termin"
  }
 }

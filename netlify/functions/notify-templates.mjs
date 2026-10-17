@@ -43,6 +43,10 @@ const LINES = {
   auto_deal_won: ['Megnyert üzlet, még nincs projekt: {title}{detail}', 'Won, but no project yet: {title}{detail}', 'Gewonnen, aber noch kein Projekt: {title}{detail}'],
   auto_instalment_overdue: ['Lejárt fizetés: {title}{detail} — {amount} ({day} óta)', 'Overdue payment: {title}{detail} — {amount} (since {day})', 'Überfällige Zahlung: {title}{detail} — {amount} (seit {day})'],
   auto_deadline_soon: ['Közeleg a határidő: {title}{detail} — {day}', 'Deadline coming up: {title}{detail} — {day}', 'Frist naht: {title}{detail} — {day}'],
+  // booking (20261018000100): what a guest or a client did
+  booking_made: ['Új időpontfoglalás: {name} — {when}', 'New booking: {name} — {when}', 'Neue Terminbuchung: {name} — {when}'],
+  booking_moved: ['{name} áthelyezte a foglalását: {when}', '{name} moved their booking: {when}', '{name} hat die Buchung verschoben: {when}'],
+  booking_cancelled: ['{name} lemondta a foglalását ({when})', '{name} cancelled their booking ({when})', '{name} hat die Buchung storniert ({when})'],
   test: ['Próbaértesítés — ha ezt látod, az értesítések működnek.', 'Test notification — if you can see this, notifications work.', 'Testbenachrichtigung — wenn Sie das sehen, funktionieren die Benachrichtigungen.'],
   // ---- to a client
   document_shared: ['Új dokumentumot osztottunk meg veled: {name}', 'We shared a new document with you: {name}', 'Wir haben ein neues Dokument mit dir geteilt: {name}'],
@@ -120,6 +124,7 @@ export function target(msg, audience) {
     return '/portal/';
   }
   const p = msg.payload ?? {};
+  if (String(msg.kind).startsWith('booking_')) return '/portal/bookings';
   if (p.lead_id) return `/portal/leads/${p.lead_id}`;
   if (p.opportunity_id) return `/portal/sales/${p.opportunity_id}`;
   if (msg.project_id) return `/portal/projects/${msg.project_id}`;

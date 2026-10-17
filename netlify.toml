@@ -350,17 +350,15 @@
   to = "/adatkezelesi-tajekoztato"
   status = 301
 
-# Wix Bookings. This site has no scheduling system and Phase 9 forbids implying
-# one, so these do not go anywhere that says "booked" — they go to the contact
-# page, which is where getting in touch now happens.
-#
-# REQUIRES USER DECISION: contact, or a 404. Contact is the recommendation — a
-# bookmark that lands on the page you can actually reach us from beats a dead
-# end, and nothing on that page claims an appointment was made. If a 404 is
-# preferred instead, delete these three rules and nothing else changes.
+# Wix Bookings. Since 2026-10-18 the site books again — a free Google Meet
+# consultation from the owner's live calendar (/api/booking) — so the three
+# Wix entry points go to the booking page. Until the owner's Google account is
+# connected that page says booking is unavailable and links to the contact
+# page, so a bookmark never lands on a dead end. To send them back to contact,
+# change the three `to` lines to "/ugyfelszolgalat".
 [[redirects]]
   from = "/book-online"
-  to = "/ugyfelszolgalat"
+  to = "/idopontfoglalas"
   status = 301
 
 # The Wix service slug contains a non-ASCII character. Netlify matches the
@@ -371,12 +369,12 @@
 # silently miss.
 [[redirects]]
   from = "/service-page/ingyenes-konzultáció"
-  to = "/ugyfelszolgalat"
+  to = "/idopontfoglalas"
   status = 301
 
 [[redirects]]
   from = "/service-page/ingyenes-konzult%C3%A1ci%C3%B3"
-  to = "/ugyfelszolgalat"
+  to = "/idopontfoglalas"
   status = 301
 
 [[redirects]]

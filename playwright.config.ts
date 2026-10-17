@@ -44,6 +44,8 @@ const NODE_ONLY = [
   /notify\.spec\.ts/,
   /csv\.spec\.ts/,
   /google\.spec\.ts/,
+  /booking\.spec\.ts/,
+  /portal-booking-db\.spec\.ts/,
   /portal-client-extras\.spec\.ts/,
 ];
 

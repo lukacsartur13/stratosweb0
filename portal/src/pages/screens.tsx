@@ -396,8 +396,13 @@ function GoogleSettings() {
             </p>
             <p className="t-note">{t('E-mails last read: {when}', { when: when(a.gmail_synced_at) })}</p>
             {a.last_error === 'revoked' && <p className="text-danger">{t('Google no longer accepts this connection. Connect again.')}</p>}
+            {/* The booking page (20261018000100) reads the portal owner's free/busy
+                times, a permission connections made before it do not have. */}
+            {profile?.is_owner && a.last_error !== 'revoked' && !a.scopes.includes('calendar.freebusy') && (
+              <p className="text-danger" data-google-freebusy="missing">{t('The booking page cannot see when you are busy yet: connect Google again and allow it to see your free/busy times.')}</p>
+            )}
             <div className="flex flex-wrap gap-2">
-              {a.last_error === 'revoked' && <Button size="sm" variant="primary" onClick={connect} disabled={busy}>{t('Connect Google')}</Button>}
+              {(a.last_error === 'revoked' || (profile?.is_owner && !a.scopes.includes('calendar.freebusy'))) && <Button size="sm" variant="primary" onClick={connect} disabled={busy}>{t('Connect Google')}</Button>}
               <Button size="sm" variant="quiet" onClick={disconnect} disabled={busy}>{t('Disconnect')}</Button>
             </div>
           </>

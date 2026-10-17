@@ -182,5 +182,9 @@
  "Import & export": {
   "hu": "Import és export",
   "de": "Import & Export"
+ },
+ "Bookings": {
+  "hu": "Foglalások",
+  "de": "Buchungen"
  }
 }

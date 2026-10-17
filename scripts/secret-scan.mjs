@@ -136,6 +136,8 @@ const DESCRIBES_THE_RULE = new Set([
   'supabase/migrations/20261015000100_automations.sql',
   // The same, for the Google sync's functions.
   'supabase/migrations/20261017000100_google.sql',
+  // The same, for the booking function's (20261018000100).
+  'supabase/migrations/20261018000100_booking.sql',
   // Read-only diagnostics run by hand against the live database. They name the
   // four default Postgres roles — including service_role — while explaining
   // which grants the new columns inherit and why `anon` holding them is not a

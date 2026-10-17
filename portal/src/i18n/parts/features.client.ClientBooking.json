@@ -1,0 +1,138 @@
+{
+ "Ezt az időpontot közben lefoglalták. Válassz egy másikat.": {
+  "en": "Someone has just booked that time. Please choose another.",
+  "de": "Dieser Termin wurde gerade gebucht. Wähle bitte einen anderen."
+ },
+ "Ez az időpont már nem foglalható. Válassz egy másikat.": {
+  "en": "That time can no longer be booked. Please choose another.",
+  "de": "Dieser Termin ist nicht mehr buchbar. Wähle bitte einen anderen."
+ },
+ "Egyszerre legfeljebb három nyitott foglalásod lehet.": {
+  "en": "You can have at most three open bookings at a time.",
+  "de": "Du kannst höchstens drei offene Buchungen gleichzeitig haben."
+ },
+ "Ez már túl közel van ahhoz, hogy online módosítsd. Írj nekünk.": {
+  "en": "This is too close to change online. Please write to us.",
+  "de": "Dafür ist es zu kurzfristig für eine Online-Änderung. Schreib uns bitte."
+ },
+ "Ez a foglalás már nem él.": {
+  "en": "This booking is no longer active.",
+  "de": "Diese Buchung ist nicht mehr aktiv."
+ },
+ "Túl sok próbálkozás. Várj néhány percet, és próbáld újra.": {
+  "en": "Too many attempts. Please wait a few minutes and try again.",
+  "de": "Zu viele Versuche. Warte bitte ein paar Minuten und versuche es erneut."
+ },
+ "Az online foglalás most nem elérhető. Írj nekünk, és egyeztetünk időpontot.": {
+  "en": "Online booking is not available right now. Write to us and we will arrange a time.",
+  "de": "Die Online-Buchung ist gerade nicht verfügbar. Schreib uns, wir vereinbaren einen Termin."
+ },
+ "Nem sikerült. Próbáld újra.": {
+  "en": "That did not work. Please try again.",
+  "de": "Das hat nicht geklappt. Versuche es bitte erneut."
+ },
+ "Foglalásaid": {
+  "en": "Your bookings",
+  "de": "Deine Buchungen"
+ },
+ "Nincs kapcsolat": {
+  "en": "Not connected",
+  "de": "Keine Verbindung"
+ },
+ "A foglalásaid nem tölthetők be.": {
+  "en": "Your bookings could not be loaded.",
+  "de": "Deine Buchungen konnten nicht geladen werden."
+ },
+ "Még nincs foglalásod. Lent választhatsz időpontot.": {
+  "en": "You have no bookings yet. Pick a time below.",
+  "de": "Du hast noch keine Buchung. Wähle unten einen Termin."
+ },
+ "Lemondtuk. A Google értesítést küld róla.": {
+  "en": "Cancelled. Google will send you a notice.",
+  "de": "Abgesagt. Google schickt dir eine Benachrichtigung."
+ },
+ "Áthelyezés": {
+  "en": "Move",
+  "de": "Verschieben"
+ },
+ "Biztosan lemondod?": {
+  "en": "Really cancel?",
+  "de": "Wirklich absagen?"
+ },
+ "Lemondás": {
+  "en": "Cancel",
+  "de": "Absagen"
+ },
+ "Ez már nem módosítható online. Ha közbejött valami, írj nekünk.": {
+  "en": "This can no longer be changed online. If something has come up, write to us.",
+  "de": "Das lässt sich online nicht mehr ändern. Falls etwas dazwischengekommen ist, schreib uns."
+ },
+ "Áthelyeztük: {when}. A Google elküldi a frissített meghívót.": {
+  "en": "Moved: {when}. Google will send you the updated invitation.",
+  "de": "Verschoben: {when}. Google schickt dir die aktualisierte Einladung."
+ },
+ "Lefoglaltuk: {when}. A Google-meghívót a Meet-linkkel elküldtük a fiókod e-mail-címére.": {
+  "en": "Booked: {when}. The Google invitation with the Meet link has gone to your account's e-mail address.",
+  "de": "Gebucht: {when}. Die Google-Einladung mit dem Meet-Link ist an die E-Mail-Adresse deines Kontos unterwegs."
+ },
+ "Új időpont": {
+  "en": "New booking",
+  "de": "Neuer Termin"
+ },
+ "Google Meet, budapesti idő szerint": {
+  "en": "Google Meet, Budapest time",
+  "de": "Google Meet, Budapester Zeit"
+ },
+ "Mégse": {
+  "en": "Never mind",
+  "de": "Abbrechen"
+ },
+ "Csak azokat az időpontokat látod, amikor ráérünk. A meghívót a Google küldi a fiókod e-mail-címére, Meet-linkkel.": {
+  "en": "You only see the times when we are free. Google sends the invitation, with a Meet link, to your account's e-mail address.",
+  "de": "Du siehst nur die Zeiten, zu denen wir frei sind. Google schickt die Einladung mit Meet-Link an die E-Mail-Adresse deines Kontos."
+ },
+ "Hossz": {
+  "en": "Length",
+  "de": "Dauer"
+ },
+ "{n} perc": {
+  "en": "{n} minutes",
+  "de": "{n} Minuten"
+ },
+ "A következő hetekben most nincs szabad időpont. Írj nekünk, és egyeztetünk.": {
+  "en": "There are no free times in the coming weeks. Write to us and we will find one.",
+  "de": "In den nächsten Wochen ist kein Termin frei. Schreib uns, wir finden einen."
+ },
+ "Napok": {
+  "en": "Days",
+  "de": "Tage"
+ },
+ "További napok": {
+  "en": "More days",
+  "de": "Weitere Tage"
+ },
+ "Időpontok": {
+  "en": "Times",
+  "de": "Uhrzeiten"
+ },
+ "Melyik projektről?": {
+  "en": "Which project is it about?",
+  "de": "Um welches Projekt geht es?"
+ },
+ "Általános": {
+  "en": "General",
+  "de": "Allgemein"
+ },
+ "Miről beszélgetnénk? (nem kötelező)": {
+  "en": "What should we talk about? (optional)",
+  "de": "Worüber sollen wir sprechen? (optional)"
+ },
+ "Áthelyezem ide": {
+  "en": "Move it here",
+  "de": "Hierher verschieben"
+ },
+ "Lefoglalom": {
+  "en": "Book this time",
+  "de": "Termin buchen"
+ }
+}

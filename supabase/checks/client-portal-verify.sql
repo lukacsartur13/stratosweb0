@@ -36,7 +36,10 @@ select 'definer functions reading projects or the library are exactly the client
                    then array['client_portal_demos', 'client_portal_meetings'] else '{}'::text[] end
            -- 20261012000100, when applied: project NAMES for logging hours, staff admins only
            || case when to_regprocedure('public.time_projects()') is not null
-                   then array['time_projects'] else '{}'::text[] end) x),
+                   then array['time_projects'] else '{}'::text[] end
+           -- 20261018000100, when applied: booking — the caller's own account, projects and bookings
+           || case when to_regprocedure('public.client_portal_bookings()') is not null
+                   then array['client_booking_identity', 'client_portal_bookings'] else '{}'::text[] end) x),
        null
 union all
 select 'client storage policies present',

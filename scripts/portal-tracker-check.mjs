@@ -160,6 +160,21 @@ function freshState() {
     ],
     paymentReads: 0, completeCalls: 0, completeAnswer: 'ok',
     demos: [], meetings: [], helpReads: 0, feedback: [], outbox: [], asks: [], messages: [], surveys: [], settings: [{ id: true, google_review_url: null, auto_lead_on: true, auto_lead_hours: 24, auto_deal_on: true, auto_deal_days: 14, auto_won_on: true, auto_overdue_on: true, auto_deadline_on: true, auto_deadline_days: 3 }], alerts: [], emails: [], google: [], requests: [], decisions: [],
+    // Booking (20261018000100): the rules, the diary, and what /api/booking answers.
+    bookingSettings: [{ singleton: true, enabled: true, time_zone: 'Europe/Budapest', weekdays: [1, 2, 3, 4, 5], day_start: '09:00:00', day_end: '17:00:00',
+      public_minutes: 30, client_minutes: [30, 60], buffer_minutes: 15, notice_hours: 24, horizon_days: 30, daily_max: 4, change_hours: 12, updated_at: new Date().toISOString() }],
+    bookings: [
+      { id: 'bk-pub', kind: 'public', status: 'confirmed', starts_at: new Date(Date.now() + 50 * 3600e3).toISOString(), ends_at: new Date(Date.now() + 50.5 * 3600e3).toISOString(),
+        time_zone: 'Europe/Budapest', guest_name: 'Kovács Anna', guest_email: 'anna@kert.example', guest_company: 'Kert Kft.', guest_phone: '+36 30 123 4567', topic: 'Új webshop', locale: 'hu',
+        lead_id: 'l-new', organization_id: null, project_id: null, meet_url: 'https://meet.google.com/abc-defg-hij', cancelled_at: null, cancelled_by: null, moved_count: 1, created_at: new Date().toISOString(), project: null },
+      { id: 'bk-cli', kind: 'client', status: 'confirmed', starts_at: new Date(Date.now() + 74 * 3600e3).toISOString(), ends_at: new Date(Date.now() + 75 * 3600e3).toISOString(),
+        time_zone: 'Europe/Budapest', guest_name: 'Rapid Béla', guest_email: 'bela@rapidkert.example', guest_company: null, guest_phone: null, topic: null, locale: 'hu',
+        lead_id: null, organization_id: ORG.id, project_id: 'p-late', meet_url: 'https://meet.google.com/xyz-abcd-efg', cancelled_at: null, cancelled_by: null, moved_count: 0, created_at: new Date().toISOString(), project: { name: 'Late website' } },
+      { id: 'bk-old', kind: 'public', status: 'cancelled', starts_at: new Date(Date.now() - 50 * 3600e3).toISOString(), ends_at: new Date(Date.now() - 49.5 * 3600e3).toISOString(),
+        time_zone: 'Europe/Budapest', guest_name: 'Szabó Cili', guest_email: 'cili@example.invalid', guest_company: null, guest_phone: null, topic: 'Logó', locale: 'en',
+        lead_id: null, organization_id: null, project_id: null, meet_url: null, cancelled_at: new Date().toISOString(), cancelled_by: 'guest', moved_count: 0, created_at: new Date().toISOString(), project: null },
+    ],
+    bookingApi: 'ok', bookingCalls: [],
     help: [
       { id: 'ha-1', slug: 'portal-fajltipusok', question: 'Milyen fájlokat tölthetek fel?', answer: 'Fájlonként legfeljebb 50 MB.', topic: 'Ügyfélportál – feltöltés',
         alt_questions: ['mekkora fájl'], source: 'lib/documentRules.ts', status: 'published', review_note: null, position: 10, updated_at: new Date().toISOString() },
@@ -212,6 +227,22 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
     const single = String(req.headers().accept || '').includes('pgrst.object');
     const answer = (rows) => json(route, single ? rows[0] ?? null : rows);
 
+    if (url.includes('/api/booking')) {
+      const b = method === 'POST' ? JSON.parse(req.postData() || '{}') : null;
+      state.bookingCalls.push({ method, body: b, auth: req.headers().authorization ?? null });
+      if (method === 'GET') {
+        if (state.bookingApi !== 'ok') return json(route, { ok: false, code: state.bookingApi }, 503);
+        const at = (hours) => new Date(Date.now() + hours * 3600e3).toISOString();
+        return json(route, { ok: true, timeZone: 'Europe/Budapest', minutes: 30, options: [30], changeHours: 12, slots: [26, 27, 28].map((n) => ({ start: at(n), end: at(n + 0.5) })) });
+      }
+      if (b?.action === 'cancel') {
+        const row = state.bookings.find((x) => x.id === b.id);
+        if (!row) return json(route, { ok: false, code: 'NOT_FOUND' }, 404);
+        Object.assign(row, { status: 'cancelled', cancelled_at: new Date().toISOString(), cancelled_by: 'owner' });
+        return json(route, { ok: true });
+      }
+      return json(route, { ok: false, code: 'ACTION' }, 400);
+    }
     if (url.includes('/api/portal-')) return json(route, { ok: false, error: 'mock' }, 503);
     if (url.includes('/api/google-oauth')) {
       state.googleCalls = [...(state.googleCalls ?? []), { body: JSON.parse(req.postData() || '{}'), auth: req.headers().authorization ?? null }];
@@ -414,6 +445,18 @@ async function open(browser, { owner = true, reducedMotion = 'no-preference', st
       return answer(applyFilters(url, state.milestones));
     }
     if (url.includes('/rest/v1/checkpoint_templates')) return answer(owner ? TEMPLATES : []);
+    // Booking (20261018000100), as RLS answers it: admins read both; the owner updates the rules.
+    if (url.includes('/rest/v1/booking_settings')) {
+      if (method === 'PATCH') {
+        const body = JSON.parse(req.postData() || '{}');
+        state.writes.push({ table: 'booking_settings', method, body });
+        if (!owner) return json(route, []);
+        Object.assign(state.bookingSettings[0], body, { updated_at: new Date().toISOString() });
+        return json(route, [{ singleton: true }]);
+      }
+      return answer(state.bookingSettings);
+    }
+    if (url.includes('/rest/v1/bookings')) return answer(applyFilters(url, state.bookings));
     // Phase 7 tables, as RLS answers them.
     for (const [path, key] of [['project_demos', 'demos'], ['project_meetings', 'meetings'], ['help_articles', 'help'], ['demo_feedback', 'feedback'], ['meeting_change_requests', 'requests'], ['notification_outbox', 'outbox'],
       ['client_requests', 'asks'], ['project_messages', 'messages'], ['client_surveys', 'surveys'], ['portal_settings', 'settings'], ['automation_alerts', 'alerts'], ['email_messages', 'emails'], ['google_accounts', 'google']]) {
@@ -1837,6 +1880,59 @@ await check('google: Settings connects through the server; the lead shows its e-
   await context.close();
 });
 
+await check('bookings: whether the page takes bookings, the diary with its links, cancel through the server after a second click, the rules saved; Settings asks to reconnect for free/busy', async () => {
+  const state = freshState();
+  state.google.push({ user_id: USER.id, google_email: 'owner@media-stratos.example', scopes: 'openid email https://www.googleapis.com/auth/calendar.events',
+    connected_at: new Date().toISOString(), gmail_synced_at: null, calendar_synced_at: null, last_error: null });
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/settings`);
+  const google = page.getByRole('region', { name: 'Google' });
+  await google.locator('[data-google-freebusy="missing"]').waitFor();
+  assert(await google.getByRole('button', { name: 'Connect Google' }).count() === 1, 'no reconnect button');
+
+  await page.getByRole('link', { name: 'Bookings' }).first().click();
+  await page.locator('[data-booking-ready="ready"]').getByText('Taking bookings: 3 free times in the coming weeks.').waitFor();
+  assert(state.bookingCalls.some((c) => c.method === 'GET'), 'the page was not asked');
+  const upcoming = page.locator('[data-bookings-upcoming]');
+  await upcoming.locator('[data-booking-row="bk-pub"]').waitFor();
+  assert(await upcoming.locator('[data-booking-row]').count() === 2, 'upcoming rows');
+  const pub = upcoming.locator('[data-booking-row="bk-pub"]');
+  assert(await pub.getByRole('link', { name: 'Lead' }).getAttribute('href') === '/portal/leads/l-new', 'lead link');
+  assert(await pub.getByRole('link', { name: 'Join' }).getAttribute('href') === 'https://meet.google.com/abc-defg-hij', 'meet link');
+  assert(await pub.getByText('moved 1×').isVisible(), 'moved count');
+  assert(await upcoming.locator('[data-booking-row="bk-cli"]').getByRole('link', { name: 'Late website' }).getAttribute('href') === '/portal/projects/p-late', 'project link');
+  await shot(page, 'bookings');
+
+  await pub.getByRole('button', { name: 'Cancel', exact: true }).click();
+  assert(!state.bookingCalls.some((c) => c.body?.action === 'cancel'), 'cancelled on the first click');
+  await pub.getByRole('button', { name: 'Confirm cancel' }).click();
+  await upcoming.locator('[data-booking-row]').nth(1).waitFor({ state: 'detached' });
+  const sent = state.bookingCalls.find((c) => c.body?.action === 'cancel');
+  assert(sent.body.id === 'bk-pub' && /^Bearer /.test(sent.auth ?? ''), JSON.stringify(sent));
+  const past = page.getByRole('region', { name: 'Past and cancelled' });
+  await past.getByRole('button', { name: 'Show' }).click();
+  await past.getByText('Cancelled by you').waitFor();
+  assert(await past.getByText('Cancelled by the guest').isVisible(), 'the guest-cancelled one');
+
+  const rules = page.locator('[data-booking-rules]');
+  await rules.getByLabel('Most bookings a day').fill('6');
+  await rules.getByRole('checkbox', { name: 'Fri' }).uncheck();
+  await rules.getByRole('button', { name: 'Save rules' }).click();
+  await rules.getByText('Saved. The booking page uses the new rules at once.').waitFor();
+  const w = state.writes.find((x) => x.table === 'booking_settings');
+  assert(w.body.daily_max === 6 && JSON.stringify(w.body.weekdays) === '[1,2,3,4]' && w.body.day_start === '09:00' && !('time_zone' in w.body), JSON.stringify(w.body));
+  await rules.getByLabel('Until', { exact: true }).fill('08:00');
+  await rules.getByRole('button', { name: 'Save rules' }).click();
+  await rules.getByText('The day must end after it starts.').waitFor();
+  assert(state.writes.filter((x) => x.table === 'booking_settings').length === 1, 'an impossible day was saved');
+
+  state.bookingApi = 'CALENDAR_RECONNECT';
+  await page.reload();
+  await page.locator('[data-booking-ready="CALENDAR_RECONNECT"]').getByText('connect Google again in Settings', { exact: false }).waitFor();
+  assert(await page.getByRole('link', { name: 'Open Settings → Google' }).getAttribute('href') === '/portal/settings', 'settings link');
+  await context.close();
+});
+
 /* ============================================================ theme === */
 
 await check('owner: Appearance in the sidebar — System follows the device, Light/Dark stick; every owner screen reads at 4.5:1 in both', async () => {
@@ -1855,7 +1951,7 @@ await check('owner: Appearance in the sidebar — System follows the device, Lig
   for (const scheme of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: scheme });
     await page.waitForFunction((t) => document.documentElement.dataset.theme === t, scheme);
-    for (const path of ['/', '/today', '/notes', '/hours', '/projects', '/projects?view=all', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/trash', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
+    for (const path of ['/', '/today', '/bookings', '/notes', '/hours', '/projects', '/projects?view=all', '/projects/p-late', '/projects?view=monthly', '/projects/m-care', '/trash', '/sales?view=table', '/sales/deal-1', '/leads/l-new', '/impact', '/help', `/clients/${ORG.id}`]) {
       await page.goto(`${BASE}${path}`);
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(150);

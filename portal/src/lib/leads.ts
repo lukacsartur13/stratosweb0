@@ -52,12 +52,13 @@ export const STATUS: Record<string, { label: string; tone: 'neutral' | 'good' | 
 export const statusLabel = (status: string) => (STATUS[status] ? t(STATUS[status].label) : status);
 export const statusTone = (status: string) => STATUS[status]?.tone ?? 'neutral';
 
-/** The four public forms, plus the pre-envelope fallback. */
+/** The four public forms, the booking page (20261018000100), plus the pre-envelope fallback. */
 export const FORM_LABEL: Record<string, string> = {
   newsletter: 'Newsletter',
   contact: 'Contact',
   impact: 'Impact',
   questionnaire: 'Questionnaire',
+  booking: 'Booking',
   website: 'Website',
 };
 

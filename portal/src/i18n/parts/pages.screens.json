@@ -355,5 +355,9 @@
  "not yet": {
   "hu": "még nem",
   "de": "noch nicht"
+ },
+ "The booking page cannot see when you are busy yet: connect Google again and allow it to see your free/busy times.": {
+  "hu": "Az időpontfoglaló oldal még nem látja, mikor vagy elfoglalt: kösd össze újra a Google-fiókot, és engedélyezd a foglaltsági adatok megtekintését.",
+  "de": "Die Buchungsseite sieht noch nicht, wann Sie beschäftigt sind: Google erneut verbinden und die Frei/Gebucht-Zeiten freigeben."
  }
 }

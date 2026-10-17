@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
-  Activity, Building2, CalendarCheck, ChartLine, Clock, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
+  Activity, Building2, CalendarCheck, CalendarClock, ChartLine, Clock, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
   ArrowDownUp, Menu, NotebookPen, RefreshCw, ScrollText, Settings, Target, Trash2, Users, Wallet, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -74,6 +74,8 @@ const PRIMARY: NavItem[] = [
   { to: '/',          label: 'Dashboard', icon: LayoutDashboard, cap: 'view_dashboard' },
   // What is due today or late: tasks, follow-ups, checkpoints, meetings.
   { to: '/today',     label: 'Today',     icon: CalendarCheck,   cap: 'manage_clients' },
+  // Calls booked on the public page and by clients: Google Meet, in the owner's calendar.
+  { to: '/bookings',  label: 'Bookings',  icon: CalendarClock,   cap: 'manage_clients' },
   { to: '/analytics', label: 'Analytics', icon: ChartLine,       cap: 'view_analytics' },
   { to: '/leads',     label: 'Leads',     icon: Inbox,           cap: 'view_leads' },
   { to: '/sales',     label: 'Sales',     icon: Target,          cap: 'view_sales' },
@@ -132,6 +134,7 @@ const TITLES: { path: string; title: string }[] = [
   { path: '/settings', title: 'Settings' },
   { path: '/trash', title: 'Trash' },
   { path: '/today', title: 'Today' },
+  { path: '/bookings', title: 'Bookings' },
   { path: '/notes', title: 'Notes' },
   { path: '/hours', title: 'Hours' },
 ];

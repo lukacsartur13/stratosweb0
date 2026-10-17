@@ -49,7 +49,7 @@ const SECTIONS = [
   ['A cég', ['index', 'about', 'services']],
   ['Szolgáltatások', ['sme', 'enterprise', 'branding', 'ads', 'seo', 'shop', 'impact']],
   ['Referenciák', ['work', 'case-rapidkert', 'case-barbershop', 'case-mentaltrening', 'case-godatafusion']],
-  ['Kapcsolat', ['contact', 'quote']],
+  ['Kapcsolat', ['contact', 'booking', 'quote']],
   ['Blog', ['blog', 'post-seo', 'post-seo-alap', 'post-arak', 'post-cegprofil',
             'post-hirdetes', 'post-elavult', 'post-konverzio', 'post-marketing',
             'post-logo', 'post-webdesign']],

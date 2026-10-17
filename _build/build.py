@@ -73,6 +73,8 @@ SLUGS = {
     # ---- 2026-10-07: a Hungarian query (≈690/month) with no page answering it.
     "seo-web":        {"hu": "keresooptimalizalt-weboldal-keszites.html", "en": "keresooptimalizalt-weboldal-keszites.html", "de": "keresooptimalizalt-weboldal-keszites.html"},
     "contact":     {"hu": "ugyfelszolgalat.html",          "en": "contact.html",               "de": "kontakt.html"},
+    # ---- 2026-10-18: booking a free Google Meet consultation (/api/booking).
+    "booking":     {"hu": "idopontfoglalas.html",          "en": "book-a-call.html",           "de": "termin-buchen.html"},
     "quote":       {"hu": "arajanlat.html",                "en": "quote.html",                 "de": "angebot.html"},
     "privacy":     {"hu": "adatkezelesi-tajekoztato.html", "en": "privacy-policy.html",        "de": "datenschutz.html"},
     "imprint":     {"hu": "impresszum.html",               "en": "imprint.html",               "de": "impressum.html"},
@@ -1276,6 +1278,8 @@ BREADCRUMB_PARENT = {
     "local-hub": "services",
     "local-gyor": "local-hub", "local-budapest": "local-hub",
     "local-pest": "local-hub", "local-szeged": "local-hub",
+    # Kapcsolat / Időpontfoglalás
+    "booking": "contact",
 }
 
 SCHEMA_LANG = {"hu": "hu-HU", "en": "en-GB", "de": "de-DE"}
@@ -2359,7 +2363,7 @@ CLOSE_ARCHETYPE = {
 }
 # Routes that end without it: the questionnaire is the destination, the contact
 # page is a form, legal text is not a sales page.
-NO_CLOSE = {"index", "quote", "contact", "privacy", "imprint", "404"}
+NO_CLOSE = {"index", "quote", "contact", "booking", "privacy", "imprint", "404"}
 _SECTIONS_RE = re.compile(r"<section\b[^>]*>.*?</section>", re.S)
 
 

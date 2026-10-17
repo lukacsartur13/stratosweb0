@@ -1,0 +1,250 @@
+{
+ "Taking bookings: {n} free times in the coming weeks.": {
+  "hu": "Foglalható: {n} szabad időpont a következő hetekben.",
+  "de": "Buchbar: {n} freie Termine in den kommenden Wochen."
+ },
+ "Taking bookings, but there is no free time in the coming weeks.": {
+  "hu": "Foglalható, de a következő hetekben nincs szabad időpont.",
+  "de": "Buchbar, aber in den kommenden Wochen ist kein Termin frei."
+ },
+ "Not taking bookings: connect your Google account in Settings.": {
+  "hu": "Nem foglalható: kösd össze a Google-fiókodat a Beállításokban.",
+  "de": "Nicht buchbar: Google-Konto in den Einstellungen verbinden."
+ },
+ "Not taking bookings: connect Google again in Settings, so the booking page may see when you are busy.": {
+  "hu": "Nem foglalható: kösd össze újra a Google-fiókot a Beállításokban, hogy a foglalóoldal lássa, mikor vagy elfoglalt.",
+  "de": "Nicht buchbar: Google in den Einstellungen erneut verbinden, damit die Buchungsseite die belegten Zeiten sieht."
+ },
+ "Not taking bookings: Google is not set up on the server yet (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_TOKEN_KEY).": {
+  "hu": "Nem foglalható: a Google még nincs beállítva a szerveren (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_TOKEN_KEY).",
+  "de": "Nicht buchbar: Google ist auf dem Server noch nicht eingerichtet (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_TOKEN_KEY)."
+ },
+ "Not taking bookings: this feature is not installed on the database yet (20261018000100).": {
+  "hu": "Nem foglalható: ez a funkció még nincs telepítve az adatbázisban (20261018000100).",
+  "de": "Nicht buchbar: Diese Funktion ist in der Datenbank noch nicht installiert (20261018000100)."
+ },
+ "Switched off: the booking page says online booking is not available.": {
+  "hu": "Kikapcsolva: a foglalóoldal azt írja, hogy az online foglalás nem elérhető.",
+  "de": "Ausgeschaltet: Die Buchungsseite meldet, dass Online-Buchung nicht verfügbar ist."
+ },
+ "Not taking bookings: Google Calendar could not be reached. Try again in a few minutes.": {
+  "hu": "Nem foglalható: a Google Naptár nem érhető el. Próbáld újra pár perc múlva.",
+  "de": "Nicht buchbar: Google Kalender ist nicht erreichbar. In ein paar Minuten erneut versuchen."
+ },
+ "The booking page could not be checked.": {
+  "hu": "A foglalóoldal állapota nem ellenőrizhető.",
+  "de": "Die Buchungsseite konnte nicht geprüft werden."
+ },
+ "This booking is no longer active.": {
+  "hu": "Ez a foglalás már nem él.",
+  "de": "Diese Buchung ist nicht mehr aktiv."
+ },
+ "Google Calendar refused the change. Nothing was cancelled; try again.": {
+  "hu": "A Google Naptár elutasította a módosítást. Semmi nem lett lemondva, próbáld újra.",
+  "de": "Google Kalender hat die Änderung abgelehnt. Nichts wurde abgesagt; erneut versuchen."
+ },
+ "Connect Google again in Settings, then cancel.": {
+  "hu": "Kösd össze újra a Google-fiókot a Beállításokban, aztán mondd le.",
+  "de": "Google in den Einstellungen erneut verbinden, dann absagen."
+ },
+ "The booking could not be cancelled. Try again.": {
+  "hu": "A foglalást nem sikerült lemondani. Próbáld újra.",
+  "de": "Die Buchung konnte nicht abgesagt werden. Erneut versuchen."
+ },
+ "Booking page": {
+  "hu": "Foglalóoldal",
+  "de": "Buchungsseite"
+ },
+ "Free Google Meet calls from your live calendar": {
+  "hu": "Díjmentes Google Meet-hívások az élő naptáradból",
+  "de": "Kostenlose Google-Meet-Gespräche aus Ihrem Live-Kalender"
+ },
+ "Attention": {
+  "hu": "Figyelem",
+  "de": "Achtung"
+ },
+ "Open Settings → Google": {
+  "hu": "Beállítások → Google megnyitása",
+  "de": "Einstellungen → Google öffnen"
+ },
+ "Public page:": {
+  "hu": "Nyilvános oldal:",
+  "de": "Öffentliche Seite:"
+ },
+ "Clients book in their portal, under {tab}.": {
+  "hu": "Az ügyfelek a portáljukon foglalnak, a(z) {tab} fülön.",
+  "de": "Kunden buchen in ihrem Portal unter {tab}."
+ },
+ "Change a booking here, not by dragging it in Google Calendar: the portal and the free times follow what is booked here.": {
+  "hu": "A foglalást itt módosítsd, ne a Google Naptárban húzd át: a portál és a szabad időpontok az itteni foglalásokat követik.",
+  "de": "Buchungen hier ändern, nicht im Google Kalender verschieben: Portal und freie Termine richten sich nach den Buchungen hier."
+ },
+ "Upcoming bookings": {
+  "hu": "Közelgő foglalások",
+  "de": "Anstehende Buchungen"
+ },
+ "{n} booked": {
+  "hu": "{n} foglalás",
+  "de": "{n} gebucht"
+ },
+ "This feature is not installed on the database yet (20261018000100).": {
+  "hu": "Ez a funkció még nincs telepítve az adatbázisban (20261018000100).",
+  "de": "Diese Funktion ist in der Datenbank noch nicht installiert (20261018000100)."
+ },
+ "The bookings could not be read.": {
+  "hu": "A foglalások nem olvashatók be.",
+  "de": "Die Buchungen konnten nicht gelesen werden."
+ },
+ "Nothing booked yet.": {
+  "hu": "Még nincs foglalás.",
+  "de": "Noch nichts gebucht."
+ },
+ "Past and cancelled": {
+  "hu": "Lezajlott és lemondott",
+  "de": "Vergangen und abgesagt"
+ },
+ "the last 30 days": {
+  "hu": "az elmúlt 30 nap",
+  "de": "die letzten 30 Tage"
+ },
+ "Hide": {
+  "hu": "Elrejtés",
+  "de": "Ausblenden"
+ },
+ "Cancelled by {who}": {
+  "hu": "Lemondta: {who}",
+  "de": "Abgesagt von: {who}"
+ },
+ "the client": {
+  "hu": "az ügyfél",
+  "de": "der Kunde"
+ },
+ "the guest": {
+  "hu": "a vendég",
+  "de": "der Gast"
+ },
+ "Took place": {
+  "hu": "Lezajlott",
+  "de": "Stattgefunden"
+ },
+ "Public": {
+  "hu": "Nyilvános",
+  "de": "Öffentlich"
+ },
+ "moved {n}×": {
+  "hu": "{n}× áthelyezve",
+  "de": "{n}× verschoben"
+ },
+ "Join": {
+  "hu": "Csatlakozás",
+  "de": "Beitreten"
+ },
+ "Confirm cancel": {
+  "hu": "Biztosan lemondod?",
+  "de": "Absage bestätigen"
+ },
+ "Keep it": {
+  "hu": "Marad",
+  "de": "Behalten"
+ },
+ "Choose at least one day.": {
+  "hu": "Válassz legalább egy napot.",
+  "de": "Mindestens einen Tag wählen."
+ },
+ "Choose at least one length for clients.": {
+  "hu": "Válassz legalább egy hosszt az ügyfeleknek.",
+  "de": "Mindestens eine Dauer für Kunden wählen."
+ },
+ "The day must end after it starts.": {
+  "hu": "A nap végének a kezdete után kell lennie.",
+  "de": "Das Tagesende muss nach dem Beginn liegen."
+ },
+ "Saved. The booking page uses the new rules at once.": {
+  "hu": "Mentve. A foglalóoldal azonnal az új szabályokat használja.",
+  "de": "Gespeichert. Die Buchungsseite nutzt die neuen Regeln sofort."
+ },
+ "These values are not allowed: times on the quarter hour, sensible limits.": {
+  "hu": "Ezek az értékek nem engedélyezettek: negyedórás időpontok és észszerű határok kellenek.",
+  "de": "Diese Werte sind nicht erlaubt: Zeiten auf die Viertelstunde, sinnvolle Grenzen."
+ },
+ "Only the portal owner can change the rules.": {
+  "hu": "A szabályokat csak a portál tulajdonosa módosíthatja.",
+  "de": "Nur der Portalinhaber kann die Regeln ändern."
+ },
+ "The rules could not be saved. Try again.": {
+  "hu": "A szabályokat nem sikerült menteni. Próbáld újra.",
+  "de": "Die Regeln konnten nicht gespeichert werden. Erneut versuchen."
+ },
+ "Rules": {
+  "hu": "Szabályok",
+  "de": "Regeln"
+ },
+ "Budapest time": {
+  "hu": "budapesti idő szerint",
+  "de": "Budapester Zeit"
+ },
+ "Only the portal owner changes these": {
+  "hu": "Ezeket csak a portál tulajdonosa módosítja",
+  "de": "Nur der Portalinhaber ändert diese"
+ },
+ "Online booking is on": {
+  "hu": "Az online foglalás be van kapcsolva",
+  "de": "Online-Buchung ist eingeschaltet"
+ },
+ "From": {
+  "hu": "Kezdés",
+  "de": "Von"
+ },
+ "Until": {
+  "hu": "Vége",
+  "de": "Bis"
+ },
+ "Public call length": {
+  "hu": "Nyilvános hívás hossza",
+  "de": "Dauer öffentlicher Gespräche"
+ },
+ "{n} minutes": {
+  "hu": "{n} perc",
+  "de": "{n} Minuten"
+ },
+ "Client call lengths": {
+  "hu": "Ügyfélhívások hossza",
+  "de": "Dauer von Kundengesprächen"
+ },
+ "{n} min": {
+  "hu": "{n} perc",
+  "de": "{n} Min."
+ },
+ "Gap between bookings (minutes)": {
+  "hu": "Szünet két foglalás között (perc)",
+  "de": "Abstand zwischen Buchungen (Minuten)"
+ },
+ "Earliest: hours ahead": {
+  "hu": "Legkorábban: ennyi órával előre",
+  "de": "Frühestens: Stunden im Voraus"
+ },
+ "Latest: days ahead": {
+  "hu": "Legkésőbb: ennyi napra előre",
+  "de": "Spätestens: Tage im Voraus"
+ },
+ "Most bookings a day": {
+  "hu": "Legfeljebb ennyi foglalás egy napon",
+  "de": "Höchstens Buchungen pro Tag"
+ },
+ "Guests may cancel or move until (hours before)": {
+  "hu": "Lemondás vagy áthelyezés legkésőbb (órával előtte)",
+  "de": "Absagen oder verschieben bis (Stunden vorher)"
+ },
+ "Only your primary Google calendar counts as busy. An all-day event counts only if it is set to “Busy” in Google Calendar (all-day events are “Free” by default).": {
+  "hu": "Csak a fő Google-naptárad számít foglaltnak. Egy egész napos esemény csak akkor számít, ha a Google Naptárban „Elfoglalt”-ra van állítva (az egész napos események alapból „Szabad” jelölésűek).",
+  "de": "Nur Ihr Hauptkalender bei Google zählt als belegt. Ein ganztägiger Termin zählt nur, wenn er in Google Kalender auf „Beschäftigt“ steht (ganztägige Termine sind standardmäßig „Verfügbar“)."
+ },
+ "Last changed: {when}": {
+  "hu": "Utoljára módosítva: {when}",
+  "de": "Zuletzt geändert: {when}"
+ },
+ "Save rules": {
+  "hu": "Szabályok mentése",
+  "de": "Regeln speichern"
+ }
+}

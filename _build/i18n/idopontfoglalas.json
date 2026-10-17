@@ -1,0 +1,277 @@
+{
+ "_comment": [
+  "2026-10-18 — the booking page (/idopontfoglalas): a free Google Meet",
+  "consultation booked from the owner's live calendar, and the guest's own",
+  "booking (cancel / move). Strings under ul[data-booking-copy] are read by",
+  "assets/js/booking.js. German addresses the reader with Sie, like the rest",
+  "of the German site."
+ ],
+ "Időpontfoglalás: díjmentes online konzultáció | Stratos": [
+  "Book a call: free online consultation | Stratos",
+  "Termin buchen: kostenlose Online-Beratung | Stratos"
+ ],
+ "Foglalj 30 perces, díjmentes online konzultációt. Csak a valóban szabad időpontokat látod, a Google Meet-meghívót azonnal megkapod e-mailben.": [
+  "Book a free 30-minute online consultation. You only see times that are genuinely free, and the Google Meet invitation reaches your inbox straight away.",
+  "Buchen Sie eine kostenlose 30-minütige Online-Beratung. Sie sehen nur wirklich freie Termine, und die Google-Meet-Einladung kommt sofort per E-Mail."
+ ],
+ "<a href=\"index.html\">Stratos</a> / <a href=\"ugyfelszolgalat.html\">Kapcsolat</a> / <b>Időpontfoglalás</b>": [
+  "<a href=\"index.html\">Stratos</a> / <a href=\"ugyfelszolgalat.html\">Contact</a> / <b>Book a call</b>",
+  "<a href=\"index.html\">Stratos</a> / <a href=\"ugyfelszolgalat.html\">Kontakt</a> / <b>Termin buchen</b>"
+ ],
+ "Foglalj egy<br><span class=\"sig\">félórát.</span>": [
+  "Book<br><span class=\"sig\">thirty minutes.</span>",
+  "Buchen Sie<br><span class=\"sig\">eine halbe Stunde.</span>"
+ ],
+ "Díjmentes online konzultáció Google Meeten. Csak azokat az időpontokat látod, amikor tényleg ráérünk, és a meghívót a Meet-linkkel azonnal megkapod e-mailben.": [
+  "A free online consultation on Google Meet. You only see the times when we are genuinely free, and the invitation with the Meet link reaches your inbox straight away.",
+  "Eine kostenlose Online-Beratung über Google Meet. Sie sehen nur die Zeiten, zu denen wir wirklich frei sind, und die Einladung mit dem Meet-Link erhalten Sie sofort per E-Mail."
+ ],
+ "Ha inkább írnál, az is jó: <a class=\"tlink\" href=\"ugyfelszolgalat.html\">rövid üzenet vagy igényfelmérő</a>. Válasz jellemzően egy munkanapon belül.": [
+  "Rather write? That works too: <a class=\"tlink\" href=\"ugyfelszolgalat.html\">a short message or the full brief</a>. We usually reply within one working day.",
+  "Lieber schreiben? Auch gut: <a class=\"tlink\" href=\"ugyfelszolgalat.html\">eine kurze Nachricht oder der Fragebogen</a>. Antwort in der Regel innerhalb eines Werktags."
+ ],
+ "<span><b>Hossz</b> 30 perc</span> <span><b>Helyszín</b> Google Meet</span> <span><b>Díj</b> nincs</span>": [
+  "<span><b>Length</b> 30 minutes</span> <span><b>Where</b> Google Meet</span> <span><b>Fee</b> none</span>",
+  "<span><b>Dauer</b> 30 Minuten</span> <span><b>Ort</b> Google Meet</span> <span><b>Kosten</b> keine</span>"
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Időpont</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Time</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Termin</span>"
+ ],
+ "Válassz napot és <span class=\"sig\">időpontot.</span>": [
+  "Pick a day and <span class=\"sig\">a time.</span>",
+  "Wählen Sie Tag und <span class=\"sig\">Uhrzeit.</span>"
+ ],
+ "Az időpontok budapesti idő szerint értendők.": [
+  "Times are shown in Budapest time.",
+  "Alle Zeiten in Budapester Zeit."
+ ],
+ "Napok": [
+  "Days",
+  "Tage"
+ ],
+ "Időpontok": [
+  "Times",
+  "Uhrzeiten"
+ ],
+ "Szabad időpontok betöltése…": [
+  "Loading free times…",
+  "Freie Termine werden geladen…"
+ ],
+ "Kiválasztott időpont": [
+  "Your chosen time",
+  "Ihr gewählter Termin"
+ ],
+ "Másik időpontot választok": [
+  "Choose another time",
+  "Anderen Termin wählen"
+ ],
+ "Név *": [
+  "Name *",
+  "Name *"
+ ],
+ "Vállalkozás neve": [
+  "Business name",
+  "Name des Unternehmens"
+ ],
+ "Miről beszélgetnél? *": [
+  "What would you like to talk about? *",
+  "Worüber möchten Sie sprechen? *"
+ ],
+ "Pár mondat elég: mit csinál a vállalkozásod, és miben segítsünk?": [
+  "A few sentences are enough: what your business does and how we can help.",
+  "Ein paar Sätze genügen: was Ihr Unternehmen macht und wobei wir helfen können."
+ ],
+ "<input type=\"checkbox\" name=\"consent\" value=\"Igen\" required> <span>A foglalással kijelentem, hogy elfogadtam az <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Adatvédelmi nyilatkozatban</a> foglaltakat. *</span>": [
+  "<input type=\"checkbox\" name=\"consent\" value=\"Yes\" required> <span>By booking I confirm that I accept the terms set out in the <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">privacy policy</a>. *</span>",
+  "<input type=\"checkbox\" name=\"consent\" value=\"Ja\" required> <span>Mit der Buchung bestätige ich, dass ich die Bestimmungen der <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Datenschutzerklärung</a> akzeptiere. *</span>"
+ ],
+ "Lefoglalom": [
+  "Book this time",
+  "Termin buchen"
+ ],
+ "A *-gal jelölt mezők kitöltése kötelező. A meghívót a Google küldi a megadott címre.": [
+  "Fields marked * are required. Google sends the invitation to the address you give.",
+  "Mit * markierte Felder sind Pflichtfelder. Die Einladung sendet Google an die angegebene Adresse."
+ ],
+ "Lefoglaltuk.": [
+  "Booked.",
+  "Gebucht."
+ ],
+ "A Google-meghívót a Meet-linkkel elküldtük erre a címre: <b data-booking-done-email></b>. Ha nem látod pár percen belül, nézd meg a Promóciók vagy a Spam mappát is.": [
+  "We have sent the Google invitation with the Meet link to <b data-booking-done-email></b>. If you cannot see it within a few minutes, check your Promotions or Spam folder too.",
+  "Die Google-Einladung mit dem Meet-Link ist unterwegs an <b data-booking-done-email></b>. Falls sie in ein paar Minuten nicht da ist, sehen Sie bitte auch im Werbung- oder Spam-Ordner nach."
+ ],
+ "<a class=\"tlink\" href=\"#\" data-booking-meet-link target=\"_blank\" rel=\"noopener\">A Google Meet-link</a>": [
+  "<a class=\"tlink\" href=\"#\" data-booking-meet-link target=\"_blank\" rel=\"noopener\">The Google Meet link</a>",
+  "<a class=\"tlink\" href=\"#\" data-booking-meet-link target=\"_blank\" rel=\"noopener\">Der Google-Meet-Link</a>"
+ ],
+ "Ha közbejön valami, legkésőbb 12 órával előtte lemondhatod vagy áthelyezheted a meghívóban lévő linkkel, vagy innen: <a class=\"tlink\" href=\"#\" data-booking-manage-link>a foglalásom kezelése</a>.": [
+  "If something comes up, you can cancel or move it up to 12 hours before, with the link in the invitation or from here: <a class=\"tlink\" href=\"#\" data-booking-manage-link>manage my booking</a>.",
+  "Falls etwas dazwischenkommt, können Sie den Termin bis 12 Stunden vorher absagen oder verschieben – über den Link in der Einladung oder hier: <a class=\"tlink\" href=\"#\" data-booking-manage-link>meine Buchung verwalten</a>."
+ ],
+ "A foglalásod": [
+  "Your booking",
+  "Ihre Buchung"
+ ],
+ "<span>Lemondom</span>": [
+  "<span>Cancel it</span>",
+  "<span>Absagen</span>"
+ ],
+ "<span>Másik időpontra teszem</span>": [
+  "<span>Move it to another time</span>",
+  "<span>Verschieben</span>"
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Hogyan működik</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">How it works</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">So funktioniert es</span>"
+ ],
+ "Négy lépés, <span class=\"sig\">két perc.</span>": [
+  "Four steps, <span class=\"sig\">two minutes.</span>",
+  "Vier Schritte, <span class=\"sig\">zwei Minuten.</span>"
+ ],
+ "A naptárunkból élőben látod, mikor érünk rá. Amit lefoglalsz, az a tiéd: más már nem foglalhatja el.": [
+  "You see our calendar live, so you know when we are free. The time you book is yours: nobody else can take it.",
+  "Sie sehen unseren Kalender live und wissen, wann wir frei sind. Der Termin, den Sie buchen, gehört Ihnen: Niemand sonst kann ihn belegen."
+ ],
+ "Időpont": [
+  "A time",
+  "Termin"
+ ],
+ "Hétköznap 9 és 17 óra között, legalább egy nappal előre és legfeljebb 30 napra előre.": [
+  "Weekdays between 9:00 and 17:00, at least one day and at most 30 days ahead.",
+  "Werktags zwischen 9 und 17 Uhr, mindestens einen Tag und höchstens 30 Tage im Voraus."
+ ],
+ "Pár adat": [
+  "A few details",
+  "Ein paar Angaben"
+ ],
+ "A neved, az e-mail-címed és néhány mondat arról, miről beszélgetnénk.": [
+  "Your name, your e-mail address and a few sentences about what we should talk about.",
+  "Ihr Name, Ihre E-Mail-Adresse und ein paar Sätze dazu, worüber wir sprechen sollen."
+ ],
+ "Meghívó": [
+  "The invitation",
+  "Die Einladung"
+ ],
+ "A Google azonnal elküldi a meghívót a Meet-linkkel. Egy kattintással a saját naptáradba teheted.": [
+  "Google sends the invitation with the Meet link straight away. One click puts it in your own calendar.",
+  "Google sendet die Einladung mit dem Meet-Link sofort. Mit einem Klick landet sie in Ihrem Kalender."
+ ],
+ "Ha közbejön valami": [
+  "If something comes up",
+  "Falls etwas dazwischenkommt"
+ ],
+ "Legkésőbb 12 órával előtte a meghívóban lévő linkkel lemondhatod vagy másik időpontra teheted.": [
+  "Up to 12 hours before, the link in the invitation lets you cancel it or move it to another time.",
+  "Bis 12 Stunden vorher können Sie über den Link in der Einladung absagen oder verschieben."
+ ],
+ "A következő hetekben most nincs szabad időpont. Írj nekünk, és egyeztetünk.": [
+  "There are no free times in the coming weeks. Write to us and we will find one.",
+  "In den nächsten Wochen ist leider kein Termin frei. Schreiben Sie uns, wir finden einen."
+ ],
+ "Az online foglalás most nem elérhető. Írj nekünk, és egyeztetünk időpontot.": [
+  "Online booking is not available right now. Write to us and we will arrange a time.",
+  "Die Online-Buchung ist gerade nicht verfügbar. Schreiben Sie uns, wir vereinbaren einen Termin."
+ ],
+ "Nem sikerült betölteni az időpontokat. Próbáld újra kicsit később.": [
+  "The free times could not be loaded. Please try again a little later.",
+  "Die freien Termine konnten nicht geladen werden. Bitte versuchen Sie es etwas später noch einmal."
+ ],
+ "Foglalás folyamatban…": [
+  "Booking…",
+  "Wird gebucht…"
+ ],
+ "Ezt az időpontot közben lefoglalták. Válassz egy másikat.": [
+  "Someone has just booked that time. Please choose another.",
+  "Dieser Termin wurde gerade gebucht. Bitte wählen Sie einen anderen."
+ ],
+ "Erről az e-mail-címről már van élő foglalás. A meghívóban lévő linkkel áthelyezheted.": [
+  "This e-mail address already has an open booking. You can move it with the link in the invitation.",
+  "Für diese E-Mail-Adresse gibt es bereits eine offene Buchung. Sie können sie über den Link in der Einladung verschieben."
+ ],
+ "Nézd át a megjelölt mezőket.": [
+  "Please check the marked fields.",
+  "Bitte prüfen Sie die markierten Felder."
+ ],
+ "Add meg a neved.": [
+  "Please enter your name.",
+  "Bitte geben Sie Ihren Namen an."
+ ],
+ "Adj meg egy érvényes e-mail-címet.": [
+  "Please enter a valid e-mail address.",
+  "Bitte geben Sie eine gültige E-Mail-Adresse an."
+ ],
+ "Írj pár szót arról, miről beszélgetnénk.": [
+  "Please write a few words about what we should talk about.",
+  "Bitte schreiben Sie kurz, worüber wir sprechen sollen."
+ ],
+ "A foglaláshoz el kell fogadnod az adatvédelmi nyilatkozatot.": [
+  "To book, please accept the privacy policy.",
+  "Für die Buchung müssen Sie die Datenschutzerklärung akzeptieren."
+ ],
+ "Ez nem tűnik telefonszámnak.": [
+  "That does not look like a phone number.",
+  "Das sieht nicht nach einer Telefonnummer aus."
+ ],
+ "Túl sok próbálkozás. Várj néhány percet, és próbáld újra.": [
+  "Too many attempts. Please wait a few minutes and try again.",
+  "Zu viele Versuche. Bitte warten Sie einige Minuten und versuchen Sie es erneut."
+ ],
+ "A foglalás nem sikerült. Próbáld újra.": [
+  "The booking did not go through. Please try again.",
+  "Die Buchung hat nicht geklappt. Bitte versuchen Sie es erneut."
+ ],
+ "További napok": [
+  "More days",
+  "Weitere Tage"
+ ],
+ "A foglalásod betöltése…": [
+  "Loading your booking…",
+  "Ihre Buchung wird geladen…"
+ ],
+ "Ezt a foglalást nem találjuk. Lehet, hogy a link hiányos — nézd meg a meghívóban.": [
+  "We cannot find this booking. The link may be incomplete — please check the invitation.",
+  "Diese Buchung finden wir nicht. Vielleicht ist der Link unvollständig – bitte prüfen Sie die Einladung."
+ ],
+ "Ha közbejön valami, legkésőbb 12 órával előtte lemondhatod vagy másik időpontra teheted.": [
+  "If something comes up, you can cancel it or move it to another time up to 12 hours before.",
+  "Falls etwas dazwischenkommt, können Sie bis 12 Stunden vorher absagen oder verschieben."
+ ],
+ "Ezt a foglalást már nem lehet online módosítani. Ha közbejött valami, írj nekünk.": [
+  "This booking can no longer be changed online. If something has come up, write to us.",
+  "Diese Buchung lässt sich online nicht mehr ändern. Falls etwas dazwischengekommen ist, schreiben Sie uns."
+ ],
+ "Ez a foglalás le van mondva.": [
+  "This booking has been cancelled.",
+  "Diese Buchung wurde abgesagt."
+ ],
+ "Biztosan lemondod? Kattints még egyszer a Lemondom gombra.": [
+  "Are you sure? Click Cancel it once more.",
+  "Sind Sie sicher? Klicken Sie noch einmal auf Absagen."
+ ],
+ "Lemondtuk. A Google értesítést küld róla, és az időpont felszabadult.": [
+  "Cancelled. Google will send you a notice, and the time is free again.",
+  "Abgesagt. Google schickt Ihnen eine Benachrichtigung, und der Termin ist wieder frei."
+ ],
+ "Válaszd ki az új időpontot.": [
+  "Choose the new time.",
+  "Wählen Sie den neuen Termin."
+ ],
+ "Áthelyeztük. A Google elküldi a frissített meghívót.": [
+  "Moved. Google will send you the updated invitation.",
+  "Verschoben. Google schickt Ihnen die aktualisierte Einladung."
+ ],
+ "Ez már túl közel van ahhoz, hogy online módosítsd. Írj nekünk.": [
+  "This is too close to change online. Please write to us.",
+  "Dafür ist es zu kurzfristig für eine Online-Änderung. Bitte schreiben Sie uns."
+ ],
+ "Inkább rögtön beszélnél? <a class=\"tlink\" href=\"idopontfoglalas.html\">Foglalj időpontot online</a> — 30 perc Google Meeten, a naptárunk szabad időpontjaiból.": [
+  "Rather talk straight away? <a class=\"tlink\" href=\"idopontfoglalas.html\">Book a call online</a> — 30 minutes on Google Meet, at a time our calendar has free.",
+  "Lieber gleich sprechen? <a class=\"tlink\" href=\"idopontfoglalas.html\">Buchen Sie online einen Termin</a> — 30 Minuten über Google Meet, zu einer freien Zeit in unserem Kalender."
+ ],
+ "Üzenet küldése": [
+  "Send us a message",
+  "Nachricht senden"
+ ]
+}

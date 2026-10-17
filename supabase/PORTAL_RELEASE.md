@@ -929,3 +929,86 @@ Ellenőrizve (helyben): `tests/portal-google-db.spec.ts` 5/5 (token olvashatatla
 naplózás és automatizálás-lezárás, láthatóság, naptár-jelölés és visszaírás); `tests/google.spec.ts` 7/7
 (titkosítás, aláírt state, címek, esemény, naptár- és Gmail-szinkron hamis Google-lel, OAuth-végpont);
 tulajdonosi ellenőrző 65/65; teljes futás 2341 zöld + 1 ingadozó weboldal-teszt (újrafuttatva zöld).
+
+## 30. Időpontfoglalás: Google Meet a tulajdonos naptárából (22. szakasz)
+
+**Sorrend: 29. (Google) élesítve → ez a migráció → deploy → a tulajdonos még egyszer összeköti a Google-t.**
+
+1. Ha a 29. pont még nincs élesítve: annak 1–3. lépése (Google Cloud, Netlify-kulcsok, migráció). A foglaláshoz
+   **új kulcs nem kell**: ugyanaz a `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_TOKEN_KEY`.
+2. SQL Editor: `supabase/migrations/20261018000100_booking.sql` (ismételten is futtatható).
+3. Deploy — csak a tulajdonos engedélyével.
+4. A portál tulajdonosa: Beállítások → **Google → Connect Google** még egyszer. A Google ekkor egy új engedélyt is
+   kér (*a naptárak foglaltságának megtekintése* — csak az, hogy mikor foglalt, az események tartalma nem). Amíg ez
+   nincs meg, a portál Foglalások oldala „Not taking bookings” jelzést mutat, a nyilvános oldal pedig azt, hogy az
+   online foglalás most nem elérhető, a kapcsolati oldal linkjével. A Beállítások Google-paneljén piros sor jelzi.
+   Ha a Google az összekötéskor hibát ír a jogosultságra: Google Cloud → Google Auth Platform → **Data access** →
+   add hozzá a `https://www.googleapis.com/auth/calendar.freebusy` jogosultságot, majd kösd össze újra. A Google
+   engedélyképernyőjén ne vedd ki a pipát a foglaltság megtekintése elől — enélkül a foglalás nem indul el.
+5. Próba: Foglalások → „Live — Taking bookings: N free times”; a nyilvános oldalon (`/idopontfoglalas`) foglalás
+   egy másik saját e-mail-címmel → a meghívó Meet-linkkel megérkezik, az esemény a naptárban van, a lead a
+   Leadek között; a meghívóban lévő linkkel lemondás → a Google erről is levelet küld.
+
+Mit csinál (a tulajdonos döntései, 2026-10-18 — a Foglalások → Rules panelen bármikor módosíthatók):
+
+- **Ki foglalhat:** a nyilvános oldalon bárki (díjmentes konzultáció, 30 perc; leadként kerül be, ha az e-mail-címhez
+  már van élő lead, ahhoz kapcsolódik), a portálban a bejelentkezett ügyfelek az **Időpont** fülön (30 vagy 60 perc,
+  a saját projektjükhöz; a nevük és címük a fiókjukból jön).
+- **Mikor:** hétfő–péntek 9:00–17:00 budapesti idő szerint, félóránként; két foglalás között 15 perc szünet;
+  legalább 24 órával előre, legfeljebb 30 napra előre; naponta legfeljebb 4 foglalás. Egy e-mail-címnek egyszerre
+  egy nyitott nyilvános foglalása lehet, egy ügyfélnek legfeljebb három.
+- **Foglalt idő:** csak a tulajdonos fő Google-naptára számít (`calendar_ids = {primary}`). A szabad időpontokat
+  a `/api/booking` minden megnyitáskor élőben kérdezi a Google-tól (freeBusy), foglalás előtt pedig még egyszer.
+  Ha a Google nem érhető el, nincs szabad időpont és nincs foglalás — sosem „szabad” a bizonytalan.
+- **Dupla foglalás nincs:** az adatbázis egy kizárási szabállyal (`bookings_no_overlap`) eleve nem enged két
+  átfedő megerősített foglalást (a 15 perces szünettel együtt), akkor sem, ha ketten egyszerre kattintanak.
+- **A foglalás:** azonnal esemény a tulajdonos naptárában, Google Meet-linkkel, a vendég meghívva,
+  `sendUpdates=all` — a meghívót a **Google** küldi a vendégnek, a portál nem küld levelet. Ha a Google elutasítja,
+  a foglalás nem jön létre (`failed`), az időpont azonnal újra szabad.
+- **Lemondás, áthelyezés:** legkésőbb 12 órával előtte. A nyilvános vendég a meghívóban és a visszaigazoló képernyőn
+  lévő privát linkkel (`/idopontfoglalas#m=…` — a token a címsor `#` utáni részében van, így szerverre, naplóba nem
+  kerül; az adatbázisban csak a lenyomata), az ügyfél a portálban. A tulajdonos és az adminok a Foglalások oldalon
+  bármikor lemondhatják. A Google minden változásról értesíti a vendéget.
+- **Értesítés:** új foglalás, áthelyezés és a vendég/ügyfél lemondása a meglévő értesítési rendszeren megy a
+  tulajdonosnak és az adminoknak (push + e-mail, „Új időpontfoglalás: …”), a Foglalások oldalra mutató linkkel.
+
+Tudnivalók a tulajdonosnak:
+
+- **Egész napos esemény** a Google Naptárban alapból „Szabad” — nem foglal. Ha egy egész napot le akarsz zárni,
+  állítsd „Elfoglalt”-ra, vagy használj „Házon kívül” eseményt.
+- **A foglalást a portálban módosítsd**, ne a Google Naptárban húzd át: a portál és a szabad időpontok a portálbeli
+  foglalást követik. (Ha a Google-ben törlöd, az időpont a portálban foglalt marad, amíg ott le nem mondod.)
+- A Google-összekötéskor most minden admin consent-képernyője kéri a foglaltsági engedélyt is (a jogosultságlista
+  közös); a foglalóoldal csak a portál tulajdonosáét használja.
+- A régi Wix-címek (`/book-online`, `/service-page/ingyenes-konzultáció`) mostantól a foglalóoldalra visznek
+  (`netlify.toml`). Vissza a kapcsolati oldalra: a három szabály `to` sora legyen `"/ugyfelszolgalat"`.
+- Kikapcsolás: Foglalások → Rules → „Online booking is on” ki. Teljes elzárás:
+  `revoke execute on function client_booking_identity(), client_portal_bookings() from authenticated;`
+  és a `booking` Netlify-függvény törlése a következő deployból.
+
+### Adatkezelési tájékoztató — javasolt kiegészítés (JÓVÁHAGYÁSRA VÁR, a webhelyen még nincs bent)
+
+A jogi szöveg a tulajdonosé; az alábbi a jelenlegi tájékoztató szerkezetébe illő tervezet.
+
+- *Kezelt személyes adatok köre* alá új alcím, **„Időpontfoglalás esetén”**: név; e-mail cím; cégnév és telefonszám
+  (ha megadásra kerül); a beszélgetés témája; a foglalt időpont; a foglalás kezelésére szolgáló, csak a foglalónál
+  lévő link visszafejthetetlen lenyomata. Ügyfélportálon foglalt időpontnál: a fiók neve és e-mail címe, a projekt.
+- *Adatfeldolgozók*, a Google Ireland Ltd. bejegyzés kiegészítése: „Google Workspace (Google Naptár, Google Meet):
+  a lefoglalt időpont a Stratos naptárában jön létre, a meghívót és a Google Meet-linket a Google küldi a foglaló
+  által megadott e-mail-címre. A szabad időpontok megállapításához a Stratos naptárának csak a foglaltsága kerül
+  lekérdezésre.”
+- *Az adatkezelés időtartama*: „időpontfoglalási adatok: legfeljebb 5 év” (a kapcsolatfelvételi adatokkal azonos) —
+  vagy amit a tulajdonos dönt.
+- **Döntendő:** a jogalap (a foglalóűrlapon az adatvédelmi nyilatkozat elfogadása kötelező, mint a kapcsolati
+  űrlapon; szerződés előkészítése is szóba jöhet) és a fenti időtartam.
+
+Ellenőrizve (helyben, 2026-10-18, valódi Google-fiók nélkül): `tests/portal-booking-db.spec.ts` 11/11 (szabályok,
+átfedés-tiltás az adatbázisban, lead és értesítés, áthelyezés, lemondás, ügyfél, jogosultságok, ismételt futtatás);
+`tests/booking.spec.ts` 18/18 (időzóna és óraátállítás, rács, szabad idő, űrlap, esemény, freeBusy, PostgREST-hívások,
+és a `/api/booking` végig PGlite-on hamis Google-lel: foglalás Meet-kéréssel és `sendUpdates=all`, ütközés, Google
+elutasítás, robotszűrés, privát link, áthelyezés, lemondás, ügyfél, kikapcsolás); `tests/booking-page.spec.ts` 8×4
+nézetméret (nyilvános oldal HU/EN/DE); ügyfélportál-ellenőrző 26/26 (+2: Időpont fül), tulajdonosi ellenőrző 66/66
+(+1: Foglalások, szabályok, Google-újraösszekötés); teljes futás 2150 zöld — a közben talált szerkezeti tesztek
+(menüsorrend, definer-függvények listája, tárolt értékből épített link) javítva, újrafuttatva 212/212; a két
+`asset-packaging` teszt csak addig piros, amíg az új fájlok nincsenek commitolva. A
+`scripts/pg-integration-check.mjs` (valódi Postgres 17) nem futott: ezen a gépen nincs helyi Postgres.
