@@ -107,11 +107,7 @@
 <section class="phead">
     <div class="wrap">
       <p class="crumbs"><a href="/de/index.html">Stratos</a> / <a href="/de/website-erstellen-lassen.html">Leistungen</a> / <b>Branding</b></p>
-      <!-- Az arculat maga a demonstráció: ugyanaz a mondat, ahogy a betűk
-           szélessége és vastagsága a görgetéssel a pontos felől a határozott
-           felé mozdul. A tengelyek a változó betűtípus valódi tengelyei, nem
-           torzítás — csökkentett mozgásnál egyszerűen a végállapotában áll. -->
-      <h1 class="display h-xl" data-kinetic data-kinetic-from="118 560 0.01" data-kinetic-to="88 780 -0.018">Logo- und Marken-<br>gestaltung, an die<br><span class="sig">man sich erinnert.</span></h1>
+      <h1 class="display h-xl">Logo- und Marken-<br>gestaltung, an die<br><span class="sig">man sich erinnert.</span></h1>
       <div class="grid g-split" style="align-items:end">
         <p class="lede">Eine Farbe, ein Satz — und man denkt an Sie. Markenaufbau von A bis Z: Sie bekommen kein Logo, sondern ein System, mit Farbwelt, Schriften, Bildsprache und dem Ton, in dem Sie sprechen.</p>
         <div>
@@ -146,25 +142,43 @@
   </section>
 
   <!-- ============================================ élő példa: a saját arculatunk -->
+  <!-- A Stratos saját rendszere, ahogy most a weboldalon él (2026-10-17): a
+       színek, és hogy mennyi jut belőlük egy oldalra — a főoldalon mérve,
+       1440 px széles képernyőn, minden képpontot besorolva. A színek inline
+       állnak, mert itt ők a tárgy, nem az oldal palettája. -->
   <section class="band band--tight">
     <div class="wrap">
       <p class="eyebrow" style="margin-bottom:1.6rem">Ein lebendiges System — unser eigenes</p>
       <div class="swatches" data-reveal>
-        <div class="swatch" style="background:#000;color:#F4F4F4;border:1px solid var(--hair)">
-          <b>Void</b><em>#000000</em>
+        <div class="swatch" style="background:#F3F2EE;color:#141413">
+          <b>Paper</b><em>#F3F2EE</em>
         </div>
-        <div class="swatch" style="background:#FFEE25;color:#000">
+        <div class="swatch" style="background:#1B1B1A;color:#EEEDE8">
+          <b>Graphite</b><em>#1B1B1A</em>
+        </div>
+        <div class="swatch" style="background:#5A5954;color:#F3F2EE">
+          <b>Stone</b><em>#5A5954</em>
+        </div>
+        <div class="swatch" style="background:#9AB2CD;color:#141413">
+          <b>Sky</b><em>#9AB2CD</em>
+        </div>
+        <div class="swatch" style="background:#FFEE25;color:#141413">
           <b>Signal</b><em>#FFEE25</em>
         </div>
-        <div class="swatch" style="background:#CBDCE9;color:#000">
-          <b>Chrome</b><em>#CBDCE9</em>
+      </div>
+
+      <div class="share">
+        <div class="share__bar" aria-hidden="true">
+          <i style="flex:76;background:#F3F2EE url(/assets/img/home-clouds.webp) 0 0/420px auto"></i><i style="flex:19;background:#1B1B1A"></i><i style="flex:4;background:#9AB2CD"></i><i style="flex:1;background:linear-gradient(90deg,#5B4630,#1F6B4E,#2E7DD7)"></i><i style="flex:0 0 3px;background:#FFEE25"></i>
         </div>
-        <div class="swatch" style="background:#F4F4F4;color:#000">
-          <b>Paper</b><em>#F4F4F4</em>
-        </div>
-        <div class="swatch" style="background:#757575;color:#000">
-          <b>Haze</b><em>#757575</em>
-        </div>
+        <ul class="share__key bare" role="list">
+          <li><b>76 %</b> Paper — die Seite und ihre Wolken</li>
+          <li><b>19 %</b> Graphite und Ink — der Text und die dunklen Flächen</li>
+          <li><b>4 %</b> Sky — der Schatten in den Wolken</li>
+          <li><b>1 %</b> die Farben der Arbeiten</li>
+          <li><b>&lt;0,1 %</b> Signal — ein einziger Punkt</li>
+        </ul>
+        <p class="share__note">Auf der Startseite gemessen, auf einem 1440 px breiten Bildschirm, jedes Pixel zugeordnet.</p>
       </div>
 
       <div class="grid g-2" style="margin-top:clamp(2rem,5vw,3rem)">
@@ -174,12 +188,22 @@
             <span class="s display" style="font-size:var(--step-2)">Stratosphäre</span>
           </div>
           <div>
-            <span class="k">Fließtext — Instrument Sans</span>
+            <span class="k">Fließtext — Archivo</span>
             <span class="s" style="font-size:var(--step-1)">Die Marke ist der Faden, der alles verbindet.</span>
           </div>
           <div>
-            <span class="k">Daten — JetBrains Mono</span>
-            <span class="s" style="font-family:var(--data);font-size:var(--step-1)">30.000 M · TROPOSPHÄRE</span>
+            <span class="k">Zahlen — Archivo, tabellarisch</span>
+            <span class="s t-num" style="font-size:var(--step-1)">0123456789 · 1440 px · 76 %</span>
+          </div>
+          <div class="typespec__row">
+            <span class="typespec__mark" aria-hidden="true"><img src="/assets/img/plane-cursor.png" alt="" width="40" height="40"></span>
+            <span class="k">Zeichen — der Papierflieger</span>
+            <span class="s" style="font-size:var(--step-1)">Im Logo und auf der Website als Mauszeiger.</span>
+          </div>
+          <div class="typespec__row">
+            <span class="typespec__cloud" aria-hidden="true"></span>
+            <span class="k">Material — eine Wolkendecke</span>
+            <span class="s" style="font-size:var(--step-1)">In der Farbe der Seite, mit einem Hauch Blau.</span>
           </div>
         </div>
         <div class="prose">

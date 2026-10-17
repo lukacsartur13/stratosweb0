@@ -39,25 +39,13 @@
   "A living system — our own",
   "Ein lebendiges System — unser eigenes"
  ],
- "Void": [
-  "Void",
-  "Void"
- ],
  "Signal": [
   "Signal",
   "Signal"
  ],
- "Chrome": [
-  "Chrome",
-  "Chrome"
- ],
  "Paper": [
   "Paper",
   "Paper"
- ],
- "Haze": [
-  "Haze",
-  "Haze"
  ],
  "Display — Aboreto": [
   "Display — Aboreto",
@@ -67,21 +55,9 @@
   "Stratosphere",
   "Stratosphäre"
  ],
- "Kenyérszöveg — Instrument Sans": [
-  "Body copy — Instrument Sans",
-  "Fließtext — Instrument Sans"
- ],
  "A márka a fonál, ami mindent összeköt.": [
   "The brand is the thread that ties everything together.",
   "Die Marke ist der Faden, der alles verbindet."
- ],
- "Adat — JetBrains Mono": [
-  "Data — JetBrains Mono",
-  "Daten — JetBrains Mono"
- ],
- "30 000 M · TROPOSZFÉRA": [
-  "30,000 M · TROPOSPHERE",
-  "30.000 M · TROPOSPHÄRE"
  ],
  "Egy arculat akkor működik, ha megismételhető. Ezért nem képeket adunk át, hanem szabályokat: melyik szín hol, melyik betű mekkorán, mi az, ami sosem változik.": [
   "An identity works when it's repeatable. So we don't hand over pictures, we hand over rules: which colour goes where, which typeface at what size, and what never changes.",
@@ -234,5 +210,69 @@
  "A brandépítés egyszeri projektdíjjal készül, amit a felmérés után tételesen, előre megadunk — meglepetések nélkül. Sok esetben összekapcsolható a weboldallal, így egy projektben készül az arculat és az oldal.": [
   "Brand building is done for a one-off project fee, itemised upfront after the assessment — no surprises. It can often be combined with the website, so the identity and the site are made in one project.",
   "Markenaufbau erfolgt zu einem einmaligen Projektpreis, den wir nach der Analyse aufgeschlüsselt und vorab nennen — ohne Überraschungen. Oft lässt er sich mit der Website verbinden, sodass Erscheinungsbild und Website in einem Projekt entstehen."
+ ],
+ "Graphite": [
+  "Graphite",
+  "Graphite"
+ ],
+ "Stone": [
+  "Stone",
+  "Stone"
+ ],
+ "Sky": [
+  "Sky",
+  "Sky"
+ ],
+ "<b>76%</b> Paper — a lap és a felhők": [
+  "<b>76%</b> Paper — the page and its clouds",
+  "<b>76 %</b> Paper — die Seite und ihre Wolken"
+ ],
+ "<b>19%</b> Graphite és Ink — a szöveg és a sötét felületek": [
+  "<b>19%</b> Graphite and Ink — the text and the dark surfaces",
+  "<b>19 %</b> Graphite und Ink — der Text und die dunklen Flächen"
+ ],
+ "<b>4%</b> Sky — a felhők árnyéka": [
+  "<b>4%</b> Sky — the shadow in the clouds",
+  "<b>4 %</b> Sky — der Schatten in den Wolken"
+ ],
+ "<b>1%</b> a munkák színei": [
+  "<b>1%</b> the colours of the work",
+  "<b>1 %</b> die Farben der Arbeiten"
+ ],
+ "<b>&lt;0,1%</b> Signal — egyetlen pont": [
+  "<b>&lt;0.1%</b> Signal — a single point",
+  "<b>&lt;0,1 %</b> Signal — ein einziger Punkt"
+ ],
+ "A főoldalon mérve, 1440 px széles képernyőn, minden képpontot besorolva.": [
+  "Measured on the homepage, on a 1440 px wide screen, every pixel classified.",
+  "Auf der Startseite gemessen, auf einem 1440 px breiten Bildschirm, jedes Pixel zugeordnet."
+ ],
+ "Kenyérszöveg — Archivo": [
+  "Body copy — Archivo",
+  "Fließtext — Archivo"
+ ],
+ "Számok — Archivo, táblázatos": [
+  "Figures — Archivo, tabular",
+  "Zahlen — Archivo, tabellarisch"
+ ],
+ "0123456789 · 1440 px · 76%": [
+  "0123456789 · 1440 px · 76%",
+  "0123456789 · 1440 px · 76 %"
+ ],
+ "Jel — a papírrepülő": [
+  "Mark — the paper plane",
+  "Zeichen — der Papierflieger"
+ ],
+ "A logóban, és a weboldalon kurzorként.": [
+  "In the logo, and on the website as the cursor.",
+  "Im Logo und auf der Website als Mauszeiger."
+ ],
+ "Anyag — felhőtakaró": [
+  "Material — a cloud deck",
+  "Material — eine Wolkendecke"
+ ],
+ "A lap színében, egy lehelet kékkel.": [
+  "In the colour of the page, with a breath of blue.",
+  "In der Farbe der Seite, mit einem Hauch Blau."
  ]
 }
