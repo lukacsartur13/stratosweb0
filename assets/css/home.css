@@ -91,9 +91,13 @@ body {
 
 /* ---------------------------------------------------- 02 · Rapidkert takeover */
 /* The Stratos interface steps back and a project world takes the screen: a
-   near-full-viewport surface in the client's soil, the live site rising out of
-   its lower edge. Blade Light is the reveal — the screen opens from a slit, as
-   if lit through one — and then the scene holds still. */
+   surface in the client's soil, the live site rising out of its lower edge.
+   Blade Light is the reveal — the screen opens from a slit, as if lit through
+   one — and then the scene holds still. The surface is as tall as its content
+   and the whole screenshot (owner, 2026-10-17): it used to be held to 94% of
+   the viewport, which cut the photo off below its headline — at 1440×900 only
+   57% of it showed, without the buttons, the figures or the foot of the 3D
+   block. */
 .take__frame { padding-inline: clamp(0.5rem, 1.4vw, 1.5rem); }
 .take__surface {
   --soil: #17140F;
@@ -102,7 +106,6 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 1680px;
-  height: clamp(640px, 94svh, 1020px);
   margin-inline: auto;
   padding: clamp(1.5rem, 3.4vw, 3.25rem) clamp(1.5rem, 4.4vw, 4.5rem) 0;
   border-radius: var(--r-display);
@@ -133,8 +136,6 @@ body {
 .take__proof .link { margin-top: var(--sp-5); color: #F4F0E6; }
 
 .take__shot {
-  flex: 1;
-  min-height: 0;
   width: min(100%, 1240px);
   margin: clamp(2.5rem, 7vh, 5rem) auto 0;
   border-radius: var(--r-md) var(--r-md) 0 0;
@@ -144,23 +145,20 @@ body {
     clip-path 1300ms var(--ease-out) 150ms,
     filter 1300ms var(--ease-out) 150ms;
 }
-.take__shot img { width: 100%; height: auto; }
+.take__shot img { display: block; width: 100%; height: auto; }
 .take__surface.is-pre .take__shot {
   clip-path: inset(46% 0 46% 0 round var(--r-md));
   filter: brightness(0.55);
 }
 
 @media (max-width: 760px) {
-  .take__surface {
-    height: auto;
-    padding: 1.25rem 1.25rem 0;
-  }
+  .take__surface { padding: 1.25rem 1.25rem 0; }
   .take__head { flex-wrap: wrap; row-gap: var(--sp-3); }
   .take__body { grid-template-columns: 1fr; gap: var(--sp-6); margin-top: var(--sp-7); }
   .take__proof { min-width: 0; }
   /* The full screen, edge to edge of the surface, rather than a crop that
      would cut through the client's own headline. */
-  .take__shot { flex: none; width: calc(100% + 2.5rem); margin: var(--sp-7) -1.25rem 0; border-radius: 0; }
+  .take__shot { width: calc(100% + 2.5rem); margin: var(--sp-7) -1.25rem 0; border-radius: 0; }
 }
 
 /* ------------------------------------------------------------ 03 · silence */
