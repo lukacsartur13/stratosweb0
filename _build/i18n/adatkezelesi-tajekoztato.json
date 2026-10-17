@@ -474,5 +474,37 @@
  "<b>E-mail szolgáltató:</b> az Adatkezelő levelezőrendszerének szolgáltatója. A weboldal rendszere önmagában nem küld e-mailt; az érdeklődésekre az Adatkezelő a saját e-mail fiókjából válaszol.": [
   "<b>Email provider:</b> the provider of the Controller's own mail system. The website itself sends no email; the Controller replies to enquiries from their own mailbox.",
   "<b>E-Mail-Anbieter:</b> der Anbieter des E-Mail-Systems des Verantwortlichen. Die Website selbst versendet keine E-Mails; der Verantwortliche antwortet auf Anfragen aus dem eigenen Postfach."
+ ],
+ "online konzultáció időpontjának foglalása (Google Meet)": [
+  "booking a time for an online consultation (Google Meet)",
+  "Buchung eines Termins für eine Online-Beratung (Google Meet)"
+ ],
+ "Időpontfoglalás esetén": [
+  "When booking a consultation",
+  "Bei einer Terminbuchung"
+ ],
+ "cégnév és telefonszám (ha megadásra kerül)": [
+  "company name and phone number (if provided)",
+  "Firmenname und Telefonnummer (sofern angegeben)"
+ ],
+ "a beszélgetés témája és a foglalt időpont": [
+  "the topic of the conversation and the time booked",
+  "das Thema des Gesprächs und der gebuchte Termin"
+ ],
+ "a foglalás kezelésére szolgáló, csak a foglalónál lévő link visszafejthetetlen lenyomata — magát a linket nem tároljuk": [
+  "an irreversible fingerprint of the link for managing the booking, which only the person booking holds — the link itself is not stored",
+  "ein nicht umkehrbarer Fingerabdruck des Links zur Verwaltung der Buchung, den nur die buchende Person besitzt — der Link selbst wird nicht gespeichert"
+ ],
+ "ügyfélportálon foglalt időpontnál: a fiók neve és e-mail címe, valamint a projekt": [
+  "for a time booked in the client portal: the account's name and email address, and the project",
+  "bei einem im Kundenportal gebuchten Termin: Name und E-Mail-Adresse des Kontos sowie das Projekt"
+ ],
+ "időpontfoglalási adatok: legfeljebb 5 év": [
+  "booking data: no more than 5 years",
+  "Buchungsdaten: höchstens 5 Jahre"
+ ],
+ "<b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Workspace (Google Naptár és Google Meet) az időpontfoglaláshoz. A lefoglalt időpont a Stratos naptárában jön létre, a meghívót és a Google Meet-linket a Google küldi a foglaló által megadott e-mail-címre. A szabad időpontok megállapításához a Stratos naptárának csak a foglaltsága kerül lekérdezésre.": [
+  "<b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Workspace (Google Calendar and Google Meet) for booking consultations. A booked time is created in Stratos's calendar, and Google sends the invitation and the Google Meet link to the email address the person booking gave. To work out the free times, only whether Stratos's calendar is busy is queried.",
+  "<b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Irland. Dienst: Google Workspace (Google Kalender und Google Meet) für Terminbuchungen. Ein gebuchter Termin wird im Kalender von Stratos angelegt; die Einladung und den Google-Meet-Link sendet Google an die E-Mail-Adresse, die die buchende Person angegeben hat. Zur Ermittlung freier Termine wird nur abgefragt, wann der Kalender von Stratos belegt ist."
  ]
 }

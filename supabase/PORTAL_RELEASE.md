@@ -986,9 +986,9 @@ Tudnivalók a tulajdonosnak:
   `revoke execute on function client_booking_identity(), client_portal_bookings() from authenticated;`
   és a `booking` Netlify-függvény törlése a következő deployból.
 
-### Adatkezelési tájékoztató — javasolt kiegészítés (JÓVÁHAGYÁSRA VÁR, a webhelyen még nincs bent)
+### Adatkezelési tájékoztató — kiegészítés (a tulajdonos jóváhagyta 2026-10-18; a webhelyen HU/EN/DE)
 
-A jogi szöveg a tulajdonosé; az alábbi a jelenlegi tájékoztató szerkezetébe illő tervezet.
+A jogi szöveg a tulajdonosé; az alábbi tervezetet jóváhagyta, és így került a tájékoztatóba (`_build/pages/adatkezelesi-tajekoztato.html`, fordítás: `_build/i18n/adatkezelesi-tajekoztato.json`). A célok közé bekerült az „online konzultáció időpontjának foglalása (Google Meet)” sor is; a Google Workspace külön adatfeldolgozó-sor, így a Google Analytics sorának „hozzájárulás nélkül semmi nem kerül a Google-höz” mondata továbbra is csak a mérésre vonatkozik.
 
 - *Kezelt személyes adatok köre* alá új alcím, **„Időpontfoglalás esetén”**: név; e-mail cím; cégnév és telefonszám
   (ha megadásra kerül); a beszélgetés témája; a foglalt időpont; a foglalás kezelésére szolgáló, csak a foglalónál
@@ -999,8 +999,8 @@ A jogi szöveg a tulajdonosé; az alábbi a jelenlegi tájékoztató szerkezeté
   lekérdezésre.”
 - *Az adatkezelés időtartama*: „időpontfoglalási adatok: legfeljebb 5 év” (a kapcsolatfelvételi adatokkal azonos) —
   vagy amit a tulajdonos dönt.
-- **Döntendő:** a jogalap (a foglalóűrlapon az adatvédelmi nyilatkozat elfogadása kötelező, mint a kapcsolati
-  űrlapon; szerződés előkészítése is szóba jöhet) és a fenti időtartam.
+- Időtartam: 5 év (jóváhagyva). Jogalapot a tájékoztató egyik célnál sem nevez meg — ez a meglévő, jogászra váró
+  hiány (a fájlban `REQUIRES LEGAL REVIEW`), a foglalás nem változtatott rajta.
 
 Ellenőrizve (helyben, 2026-10-18, valódi Google-fiók nélkül): `tests/portal-booking-db.spec.ts` 11/11 (szabályok,
 átfedés-tiltás az adatbázisban, lead és értesítés, áthelyezés, lemondás, ügyfél, jogosultságok, ismételt futtatás);
@@ -1012,3 +1012,8 @@ nézetméret (nyilvános oldal HU/EN/DE); ügyfélportál-ellenőrző 26/26 (+2:
 (menüsorrend, definer-függvények listája, tárolt értékből épített link) javítva, újrafuttatva 212/212; a két
 `asset-packaging` teszt csak addig piros, amíg az új fájlok nincsenek commitolva. A
 `scripts/pg-integration-check.mjs` (valódi Postgres 17) nem futott: ezen a gépen nincs helyi Postgres.
+
+**Élesítve 2026-10-18:** a `redesign/quiet-authority` ág (az új dizájnnal együtt) beolvadt a `main`-be (`26f9148`),
+push után a Netlify kitette; a tulajdonos lefuttatta a migrációt és újra összekötötte a Google-t. Utána az élő
+`/api/booking` 316 szabad időpontot adott (első: hétfő 9:00 budapesti idő szerint). Az adatkezelési tájékoztató
+kiegészítése a jóváhagyás után került be.
