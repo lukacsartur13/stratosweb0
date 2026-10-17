@@ -551,22 +551,6 @@ button { font: inherit; color: inherit; }
   padding-top: 1px;
 }
 
-.hdr__nav { flex: 1; }
-.hdr__nav ul { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
-.hdr__nav a {
-  display: inline-flex;
-  align-items: center;
-  height: 40px;
-  padding: 0 0.85rem;
-  border-radius: 10px;
-  font-size: 0.875rem;
-  font-weight: var(--w-ui);
-  color: var(--c-ink-2);
-  transition: color var(--dur-ui) var(--ease-std), background-color var(--dur-ui) var(--ease-std);
-}
-.hdr__nav a:hover { color: var(--c-ink); background: rgba(20, 20, 19, 0.045); }
-.hdr__nav a[aria-current="page"] { color: var(--c-ink); }
-
 .hdr__end { display: flex; align-items: center; gap: var(--sp-3); margin-left: auto; }
 
 .lang { display: inline-flex; gap: 2px; }
@@ -587,7 +571,7 @@ button { font: inherit; color: inherit; }
 .lang a[aria-current] { color: var(--c-ink); }
 
 .hdr__menu {
-  display: none;
+  display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   height: 40px;
@@ -615,33 +599,7 @@ button { font: inherit; color: inherit; }
 .hdr.is-open .hdr__bars i:first-child { top: 4.25px; transform: rotate(45deg); }
 .hdr.is-open .hdr__bars i:last-child { top: 4.25px; transform: rotate(-45deg); }
 
-/* The sheet opens inside the same box: the bar grows into the menu rather than
-   a second layer arriving over it. */
-.hdr__sheet { padding: var(--sp-2) 18px var(--sp-5); }
-.hdr__sheet[hidden] { display: none; }
-.sheet__primary { list-style: none; margin: 0; padding: 0; }
-.sheet__primary a {
-  display: flex;
-  align-items: center;
-  min-height: 52px;
-  font-size: 1.5rem;
-  font-weight: var(--w-title);
-  letter-spacing: -0.02em;
-  border-bottom: 1px solid var(--c-line);
-}
-.sheet__svc { margin-top: var(--sp-5); }
-.sheet__svc p { margin-bottom: var(--sp-2); }
-.sheet__svc ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: var(--sp-5); }
-.sheet__svc a { display: block; padding: 0.4rem 0; font-size: var(--t-small); color: var(--c-ink-2); break-inside: avoid; }
-.sheet__end { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); margin-top: var(--sp-6); }
-.sheet__end .btn { flex: 1; }
-
-@media (min-width: 961px) {
-  .hdr__sheet { display: none !important; }
-}
 @media (max-width: 960px) {
-  .hdr__nav { display: none; }
-  .hdr__menu { display: inline-flex; }
   .hdr__end .lang { display: none; }
 }
 @media (max-width: 640px) {
@@ -650,28 +608,153 @@ button { font: inherit; color: inherit; }
   .hdr__box { border-radius: 14px; }
 }
 
-/* A veil behind the open sheet, so it reads as a layer over the page rather
-   than a list pinned on top of it. Part of the header element, so it costs no
-   extra markup; a tap on it closes the sheet (shell.js). */
-.hdr::before {
-  content: "";
+/* The menu: one full page, on every screen (owner, 2026-10-17). It drops
+   from the top like a blind, the destinations stand in the middle in
+   Aboreto, and behind them the deck drifts from the bottom-right corner to
+   the top-left, as if a wind were blowing. The bar stays above it, so the
+   menu button turned into a cross closes it where it was opened. */
+.hdr__box { position: relative; z-index: 1; }
+.hdr.is-open .hdr__box {
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.hdr__sheet {
+  --sky-tile: 1600px;
+  --sky-time: 72s;
   position: fixed;
   inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+  align-items: center;
+  padding: calc(var(--hdr-top) + var(--hdr-h) + var(--sp-5)) var(--gutter) var(--sp-6);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--c-bg);
+  pointer-events: auto;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 420ms var(--ease-std);
+}
+.hdr.is-open .hdr__sheet {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 760ms var(--ease-out);
+}
+.hdr__sheet[hidden] { display: none; }
+.sheet__nav:focus { outline: none; }
+
+/* One tile wider and taller than the screen, slid by exactly one tile, so
+   the loop has no seam. Moved by transform, never by background-position:
+   the drift is the compositor's, not a repaint per frame. */
+.sheet__sky {
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: -1;
-  background: rgba(236, 235, 230, 0.72);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  opacity: 0;
+  width: calc(100% + var(--sky-tile));
+  height: calc(100% + var(--sky-tile));
+  background: var(--c-bg) url("/assets/img/home-clouds.webp") 0 0 / var(--sky-tile) auto repeat;
+  animation: sheet-wind var(--sky-time) linear infinite;
+  will-change: transform;
   pointer-events: none;
+}
+@keyframes sheet-wind {
+  to { transform: translate3d(calc(-1 * var(--sky-tile)), calc(-1 * var(--sky-tile)), 0); }
+}
+@media (max-width: 760px) {
+  .hdr__sheet { --sky-tile: 1000px; --sky-time: 45s; }
+}
+
+.sheet__nav { width: 100%; text-align: center; }
+.sheet__primary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.1rem, 1.2vh, 0.6rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* Sized so a word of fourteen capitals (SZOLGÁLTATÁSOK, 9.6em with its
+   padding) fits a 320px phone on one line, which leaves today's longest,
+   MEGOLDÁSAINK, room to spare; and so the five fit a short laptop screen. */
+.sheet__primary a {
+  display: inline-block;
+  padding: 0.06em 0.18em;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, min(8.6vw, 9vh), 5rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--c-ink);
   transition: opacity var(--dur-state) var(--ease-std);
 }
-.hdr.is-open::before { opacity: 1; pointer-events: auto; }
-.hdr__sheet nav:focus { outline: none; }
+.sheet__primary a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+.sheet__primary:has(a:hover) a:not(:hover) { opacity: 0.32; }
 
-/* The open sheet owns the viewport on a phone, so the page under it must not
-   scroll. Set by shell.js, removed on close. */
+.sheet__svc {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 clamp(1rem, 2.4vw, 1.75rem);
+  max-width: 62rem;
+  margin: clamp(1.5rem, 5vh, 3rem) auto 0;
+  padding: 0;
+  list-style: none;
+}
+.sheet__svc a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  font-size: var(--t-small);
+  color: var(--c-ink-2);
+  transition: color var(--dur-ui) var(--ease-std);
+}
+.sheet__svc a:hover, .sheet__svc a[aria-current="page"] { color: var(--c-ink); }
+
+/* What the bar has no room for on a narrow screen: the languages under
+   961px, the action under 641px. */
+.sheet__end { display: flex; align-items: center; justify-content: center; gap: var(--sp-5); margin-top: var(--sp-6); }
+@media (min-width: 961px) { .sheet__end { display: none; } }
+@media (min-width: 641px) { .sheet__end .btn { display: none; } }
+
+/* The lines arrive after the blind, one after another; on the way out they
+   simply go with it. */
+.sheet__primary li, .sheet__svc, .sheet__end {
+  opacity: 0;
+  transform: translateY(0.9rem);
+  transition: opacity 240ms var(--ease-std), transform 240ms var(--ease-std);
+}
+.hdr.is-open .sheet__primary li, .hdr.is-open .sheet__svc, .hdr.is-open .sheet__end {
+  opacity: 1;
+  transform: none;
+  transition: opacity 560ms var(--ease-out) var(--in, 0ms), transform 760ms var(--ease-out) var(--in, 0ms);
+}
+.sheet__primary li:nth-child(1) { --in: 180ms; }
+.sheet__primary li:nth-child(2) { --in: 230ms; }
+.sheet__primary li:nth-child(3) { --in: 280ms; }
+.sheet__primary li:nth-child(4) { --in: 330ms; }
+.sheet__primary li:nth-child(5) { --in: 380ms; }
+.sheet__svc { --in: 460ms; }
+.sheet__end { --in: 500ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hdr__sheet, .hdr.is-open .hdr__sheet { clip-path: none; transition: none; }
+  .sheet__sky { animation: none; }
+  .sheet__primary li, .sheet__svc, .sheet__end { opacity: 1; transform: none; transition: none; }
+}
+
+/* The open menu owns the viewport, so the page under it must not scroll.
+   Set by shell.js, removed on close. The gutter stays, so a page with a
+   classic scrollbar does not jump sideways when it is locked. */
+html { scrollbar-gutter: stable; }
 html.is-locked, html.is-locked body { overflow: hidden; }
-.hdr.is-open .hdr__box { max-height: calc(100svh - 2 * var(--hdr-top)); overflow-y: auto; overscroll-behavior: contain; }
 
 /* ---------------------------------------------------------------- footer */
 .ftr {

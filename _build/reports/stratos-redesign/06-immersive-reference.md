@@ -151,6 +151,41 @@ cumulus carpet; and the plane should reveal the texture in thick strips.
   behind the content that paints and then clears, and none on a subpage; the static-
   document test keeps "no canvas, no WebGL" for a visit that never moves a mouse.
 
+### Site-wide: the menu is one full page, and the wind moves the deck (2026-10-17)
+
+The owner: on desktop and phone alike, one full-page hamburger menu with the current
+items, opened from the right of the header's *Projekt indítása*; the cloud texture moving
+behind it from the bottom-right corner to the top-left, as if a wind were blowing; the
+destinations centred, in Aboreto.
+
+- **The bar** carries no links of its own any more, on any screen: the mark, HU/EN/DE
+  (over 960 px), *Projekt indítása* (over 640 px) and, right of it, *Menü* with its two
+  bars, which turn into a cross while the menu is open. The bar stays above the menu and
+  loses its frosted box, so it floats on the clouds.
+- **The menu** — `#hdr-sheet`, beside the box rather than inside it (the box's backdrop
+  filter would otherwise be the containing block of anything fixed in it). It drops from
+  the top like a blind (`clip-path`, 760 ms out, 420 ms back), and the lines follow it
+  one after another. Ügyfeleink · Megoldásaink · A Stratos · Blog · Kapcsolat (renamed by
+  the owner the same day from Munkáink, Szolgáltatások, Rólunk; EN Clients · Solutions ·
+  Stratos, DE Kunden · Lösungen · Stratos; the footer and the 404 follow, the pages keep
+  their addresses, titles and headings), in Aboreto, centred, up to 80 px — sized so a word
+  of fourteen capitals (9.6 em with its padding) fits a 320 px phone on one line and the
+  five fit a short laptop screen; the current page is
+  underlined, and under a hovered line the others fade. Under them, small and grey, the
+  six service pages; on a phone, the languages and the action at its foot.
+- **The wind** — the homepage's own tile, one tile larger than the screen each way, slid
+  diagonally by exactly one tile with `transform` (72 s at 1600 px; 45 s at 1000 px on
+  phones, the same speed), so the loop has no seam and the drift is the compositor's, not
+  a repaint per frame. The tile is fetched only when a pointer, a focus or a touch reaches
+  the button. Measured in a GPU-backed Chromium at 2× density, 1440 and 1728 wide: median
+  frame 16.7 ms, worst 17.8 ms, none over 20 ms. Reduced motion: the same sky, still; no
+  blind, no stagger.
+- **Behaviour** — focus moves into the navigation, every other child of the body is
+  `inert` and the page is scroll-locked (with a stable scrollbar gutter, so a classic
+  scrollbar does not make the page jump), Escape or the cross closes it and focus returns
+  to the button, a link closes it at once, the back/forward cache never restores it open.
+  Without the script the footer still carries every destination.
+
 ## 5. Measured
 
 | Homepage, cold, local | Homepage commit | With horizons | Final |
@@ -188,8 +223,8 @@ are gone), `t2-*`/`t3-*` the reviewed horizon versions, kept for the record.
 
 ## 6. Next
 
-1. **The menu sheet** — their strongest single moment, translated without a horizon: the
-   sheet opens graphite, the five destinations in Aboreto, centred, the beacon as its one light.
+1. ~~The menu sheet~~ — built (§4, the full-page menu): on the drifting clouds rather than
+   graphite, at the owner's direction.
 2. **The Work archive as their list** — category small and grey, name in Aboreto; on hover a
    hairline, the others fade, a small still appears.
 3. **Case-study media** take the haze arrival.

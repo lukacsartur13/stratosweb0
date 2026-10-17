@@ -35,9 +35,9 @@ async function readToTheEnd(page: Page) {
 
 const PHONE = { width: 390, height: 844 };
 
-async function openSheet(page: Page) {
-  await page.setViewportSize(PHONE);
-  await page.goto('/index.html');
+async function openSheet(page: Page, viewport = PHONE, path = '/index.html') {
+  await page.setViewportSize(viewport);
+  await page.goto(path);
   const trigger = page.locator('.hdr__menu');
   await expect(trigger).toBeVisible();
   await trigger.click();
@@ -45,21 +45,25 @@ async function openSheet(page: Page) {
   return trigger;
 }
 
+const WIDE = { width: 1440, height: 900 };
+
 test.describe('the header', () => {
-  test('wide screens show four destinations, the languages and one action', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
+  // Since 2026-10-17 the bar carries no links of its own on any screen: the
+  // mark, the languages, one action, and right of it the menu.
+  test('wide screens show the mark, the languages, one action and the menu after it', async ({ page }) => {
+    await page.setViewportSize(WIDE);
     await page.goto('/index.html');
-    const links = page.locator('.hdr__nav a');
-    await expect(links).toHaveCount(4);
-    await expect(links).toHaveText(['Munkáink', 'Szolgáltatások', 'Rólunk', 'Blog']);
+    await expect(page.locator('.hdr__bar a:not(.brand):not(.hdr__cta):not(.lang a)')).toHaveCount(0);
     await expect(page.locator('.hdr__cta')).toHaveAttribute('href', '/arajanlat.html');
     await expect(page.locator('.hdr__end .lang a')).toHaveCount(3);
     await expect(page.locator('.hdr__end .lang a[aria-current]')).toHaveText('HU');
-    await expect(page.locator('.hdr__menu')).toBeHidden();
+    const cta = await page.locator('.hdr__cta').boundingBox();
+    const menu = await page.locator('.hdr__menu').boundingBox();
+    expect(menu && cta && menu.x >= cta.x + cta.width).toBe(true);
   });
 
   test('it holds still: no hiding, no resizing, a hairline once the page moves', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.setViewportSize(WIDE);
     await page.goto('/index.html');
     const box = page.locator('.hdr__box');
     const before = await box.boundingBox();
@@ -84,17 +88,72 @@ test.describe('the header', () => {
   });
 });
 
-test.describe('the sheet', () => {
+test.describe('the menu', () => {
   test('opens from the trigger, names itself, and locks the page under it', async ({ page }) => {
     const trigger = await openSheet(page);
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
     await expect(trigger).toHaveAttribute('aria-controls', 'hdr-sheet');
     await expect(page.locator('html')).toHaveClass(/is-locked/);
-    // The page behind is out of reach, not merely covered.
-    expect(await page.evaluate(() => document.getElementById('main')?.inert)).toBe(true);
-    expect(await page.evaluate(() => (document.querySelector('.ftr') as HTMLElement | null)?.inert)).toBe(true);
+    // The page behind is out of reach, not merely covered: everything in the
+    // body but the header.
+    expect(await page.evaluate(() =>
+      [...document.body.children].filter((el) => !el.matches('.hdr') && !(el as HTMLElement).inert).length)).toBe(0);
+    expect(await page.evaluate(() => (document.querySelector('.hdr') as HTMLElement).inert)).toBe(false);
     // Focus lands inside the navigation, not on the page behind it.
     expect(await page.evaluate(() => !!document.activeElement?.closest('#hdr-sheet'))).toBe(true);
+  });
+
+  test('on a wide screen too it is the whole page, its destinations centred in Aboreto', async ({ page }) => {
+    await openSheet(page, WIDE);
+    const sheet = await page.locator('#hdr-sheet').boundingBox();
+    expect(sheet).toEqual({ x: 0, y: 0, width: expect.any(Number), height: WIDE.height });
+    expect(sheet!.width).toBeGreaterThan(WIDE.width - 20);
+    const links = page.locator('#hdr-sheet .sheet__primary a');
+    // The owner's names since 2026-10-17 (Munkáink, Szolgáltatások, Rólunk before).
+    await expect(links).toHaveText(['Ügyfeleink', 'Megoldásaink', 'A Stratos', 'Blog', 'Kapcsolat']);
+    for (const box of await links.evaluateAll((as) => as.map((a) => a.getBoundingClientRect().toJSON()))) {
+      expect(Math.abs(box.x + box.width / 2 - sheet!.width / 2)).toBeLessThan(2);
+    }
+    const look = await links.first().evaluate((a) => {
+      const cs = getComputedStyle(a);
+      return { family: cs.fontFamily, transform: cs.textTransform };
+    });
+    expect(look.family).toMatch(/^"?Aboreto/);
+    expect(look.transform).toBe('uppercase');
+    // The bar stays above it, so the cross closes it where it was opened.
+    await expect(page.locator('.hdr__menu')).toBeVisible();
+    await expect(page.locator('.hdr__cta')).toBeVisible();
+  });
+
+  test('behind it the clouds drift from the bottom-right towards the top-left', async ({ page }) => {
+    await openSheet(page, WIDE);
+    const sky = page.locator('#hdr-sheet .sheet__sky');
+    await expect(sky).toHaveCSS('background-image', /home-clouds\.webp/);
+    const at = () => sky.evaluate((el) => { const m = new DOMMatrix(getComputedStyle(el).transform); return [m.e, m.f]; });
+    const [x0, y0] = await at();
+    await page.waitForTimeout(600);
+    const [x1, y1] = await at();
+    // A reader who asked for reduced motion gets the same sky, standing still.
+    if (await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      expect([x1, y1]).toEqual([x0, y0]);
+      return;
+    }
+    expect(x1).toBeLessThan(x0);
+    expect(y1).toBeLessThan(y0);
+  });
+
+  test('every word fits a phone on one line, in all three languages', async ({ page }) => {
+    for (const path of ['/index.html', '/en/', '/de/']) {
+      await openSheet(page, { width: 320, height: 640 }, path);
+      const lines = await page.locator('#hdr-sheet .sheet__primary a').evaluateAll((as) =>
+        as.map((a) => ({ t: a.textContent, h: a.getBoundingClientRect().height, w: a.getBoundingClientRect().width,
+          lh: parseFloat(getComputedStyle(a).fontSize) * 1.1 })));
+      for (const l of lines) {
+        expect(l.h, `${path} ${l.t}`).toBeLessThan(l.lh * 1.6);
+        expect(l.w, `${path} ${l.t}`).toBeLessThanOrEqual(320);
+      }
+      await page.keyboard.press('Escape');
+    }
   });
 
   test('Escape closes it and focus goes back to the trigger', async ({ page }) => {
@@ -107,31 +166,36 @@ test.describe('the sheet', () => {
     expect(await page.evaluate(() => document.getElementById('main')?.inert)).toBe(false);
   });
 
-  test('a tap outside the box closes it', async ({ page }) => {
-    await openSheet(page);
-    await page.mouse.click(PHONE.width / 2, PHONE.height - 20);
-    await expect(page.locator('#hdr-sheet')).toBeHidden();
-  });
-
   test('the trigger closes it, and says so while it is open', async ({ page }) => {
-    const trigger = await openSheet(page);
+    const trigger = await openSheet(page, WIDE);
     await expect(trigger).toHaveAttribute('aria-label', 'Bezárás');
     await trigger.click();
     await expect(page.locator('#hdr-sheet')).toBeHidden();
     await expect(trigger).toHaveAttribute('aria-label', 'Menü megnyitása');
   });
 
-  test('growing past the breakpoint closes it rather than stranding a locked page', async ({ page }) => {
-    await openSheet(page);
-    await page.setViewportSize({ width: 1280, height: 844 });
-    await expect(page.locator('html')).not.toHaveClass(/is-locked/);
-    expect(await page.evaluate(() => document.getElementById('main')?.inert)).toBe(false);
+  test('opened again while it is still rolling up, it stays open', async ({ page }) => {
+    const trigger = await openSheet(page, WIDE);
+    await trigger.click();
+    await trigger.click();
+    await page.waitForTimeout(700);
+    await expect(page.locator('#hdr-sheet')).toBeVisible();
+    await expect(page.locator('.hdr')).toHaveClass(/is-open/);
   });
 
   test('its destinations are ordinary links and they navigate', async ({ page }) => {
     await openSheet(page);
-    await page.locator('#hdr-sheet a', { hasText: 'Munkáink' }).click();
+    await page.locator('#hdr-sheet a', { hasText: 'Ügyfeleink' }).click();
     await expect(page).toHaveURL(/\/munkaink(\.html)?$/);
+  });
+
+  test('a phone gets the languages and the action at its foot; a wide screen has them in the bar', async ({ page }) => {
+    await openSheet(page);
+    await expect(page.locator('#hdr-sheet .sheet__end .lang a')).toHaveCount(3);
+    await expect(page.locator('#hdr-sheet .sheet__end .btn')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await openSheet(page, WIDE);
+    await expect(page.locator('#hdr-sheet .sheet__end')).toBeHidden();
   });
 });
 
@@ -248,12 +312,12 @@ test.describe('one shell on every page', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/munkaink.html');
     await expect(page.locator('.hdr .brand')).toHaveAttribute('href', '/');
-    await expect(page.locator('.hdr__nav a[aria-current="page"]')).toHaveText('Munkáink');
+    await expect(page.locator('#hdr-sheet .sheet__primary a[aria-current="page"]')).toHaveText('Ügyfeleink');
     await expect(page.locator('footer.ftr form[data-lead="newsletter"]')).toHaveCount(1);
     await expect(page.locator('.nav, #menu, .rail, .arrival, .plane-cursor, canvas')).toHaveCount(0);
   });
 
-  test('the sheet opens on a subpage and Escape returns focus to its trigger', async ({ page }) => {
+  test('the menu opens on a subpage and Escape returns focus to its trigger', async ({ page }) => {
     await page.setViewportSize(PHONE);
     await page.goto('/kkv.html');
     const trigger = page.locator('.hdr__menu');

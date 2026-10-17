@@ -2,8 +2,8 @@
    STRATOS — the shell's behaviour. Seven small things, no dependencies, no
    standing animation loop, nothing the page needs in order to be read.
 
-     1. The header: a hairline once the page has moved, and the sheet that
-        holds the navigation under 961px.
+     1. The header: a hairline once the page has moved, and the full-page
+        menu that holds the navigation on every screen.
      2. Light: `[data-light]` elements are dimmed only while they are still
         below the fold, and lit when they reach the middle of the screen.
      3. Arrival: `[data-reveal]` elements fade up once, the first time they
@@ -19,8 +19,8 @@
 
    The static page is the design. Without this file — blocked, failed, or a
    reader who asked for reduced motion — every element is in its final, lit,
-   visible state, the header links are all reachable through the sheet's
-   `hidden` fallback below, and every switcher shows its resting panel.
+   visible state, every destination is in the footer, and every switcher
+   shows its resting panel.
    ========================================================================== */
 (function () {
   'use strict';
@@ -38,8 +38,11 @@
     var text = button && button.querySelector('.hdr__menu-t');
     var label = text ? text.textContent : '';
     if (nav) nav.setAttribute('tabindex', '-1');
-    var outside = [doc.getElementById('main'), doc.querySelector('.ftr'), doc.querySelector('.skip')];
     var ticking = false;
+    var hideTimer = 0;
+    // The drop back up takes 420ms (system.css); the sheet leaves the
+    // accessibility tree only once it has gone.
+    var SHUT = reduce ? 0 : 440;
 
     var paint = function () {
       ticking = false;
@@ -50,11 +53,14 @@
     }, { passive: true });
     paint();
 
+    // Everything but the header is out of reach while the menu is open: the
+    // page, the closing section, the footer, the skip link.
     var setInert = function (on) {
-      for (var i = 0; i < outside.length; i++) {
-        if (!outside[i]) continue;
-        if (on) outside[i].setAttribute('inert', '');
-        else outside[i].removeAttribute('inert');
+      var kids = doc.body.children;
+      for (var i = 0; i < kids.length; i++) {
+        if (kids[i] === hdr) continue;
+        if (on) kids[i].setAttribute('inert', '');
+        else kids[i].removeAttribute('inert');
       }
     };
 
@@ -62,7 +68,11 @@
 
     var open = function () {
       if (!sheet || isOpen()) return;
+      window.clearTimeout(hideTimer);
       sheet.hidden = false;
+      // Commit the closed blind before opening it, or there is nothing to
+      // drop from.
+      void sheet.offsetHeight;
       hdr.classList.add('is-open');
       root.classList.add('is-locked');
       button.setAttribute('aria-expanded', 'true');
@@ -75,36 +85,39 @@
       if (nav) nav.focus({ preventScroll: true });
     };
 
-    var close = function (returnFocus) {
+    var close = function (returnFocus, now) {
       if (!sheet || !isOpen()) return;
       hdr.classList.remove('is-open');
       root.classList.remove('is-locked');
-      sheet.hidden = true;
       button.setAttribute('aria-expanded', 'false');
       button.setAttribute('aria-label', button.getAttribute('data-label-open'));
       if (text) text.textContent = label;
       setInert(false);
+      window.clearTimeout(hideTimer);
+      var hide = function () { if (!isOpen()) sheet.hidden = true; };
+      if (now || !SHUT) hide(); else hideTimer = window.setTimeout(hide, SHUT);
       if (returnFocus) button.focus({ preventScroll: true });
     };
 
     if (button && sheet) {
       button.addEventListener('click', function () { isOpen() ? close(true) : open(); });
-      sheet.addEventListener('click', function (e) { if (e.target.closest('a')) close(false); });
+      sheet.addEventListener('click', function (e) { if (e.target.closest('a')) close(false, true); });
       doc.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && isOpen()) close(true);
       });
-      doc.addEventListener('pointerdown', function (e) {
-        // The veil behind the sheet belongs to the header element, so "outside"
-        // means outside the box, not outside the header.
-        if (isOpen() && !e.target.closest('.hdr__box')) close(false);
+      // The clouds behind the menu are fetched the moment a hand moves
+      // towards it, so the deck is there when the blind drops.
+      var warm = function () {
+        warm = null;
+        var sky = sheet.querySelector('.sheet__sky');
+        var url = sky && /url\(\s*["']?([^"')]+?)["']?\s*\)/.exec(getComputedStyle(sky).backgroundImage);
+        if (url) new Image().src = url[1];
+      };
+      ['pointerenter', 'focus', 'touchstart'].forEach(function (type) {
+        button.addEventListener(type, function () { if (warm) warm(); }, { passive: true });
       });
-      // The sheet only exists under 961px; growing past it closes it rather
-      // than leaving a locked page behind an invisible menu.
-      var wide = window.matchMedia('(min-width: 961px)');
-      var onWide = function () { if (wide.matches) close(false); };
-      if (wide.addEventListener) wide.addEventListener('change', onWide);
-      // Coming back through the history cache must not restore an open sheet.
-      window.addEventListener('pagehide', function () { close(false); });
+      // Coming back through the history cache must not restore an open menu.
+      window.addEventListener('pagehide', function () { close(false, true); });
     }
   }
 

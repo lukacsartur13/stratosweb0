@@ -474,9 +474,9 @@ UI = {
             "impact": ("Impact Program", "30 000 M"),
         },
         "menu": {
-            "index": "Főoldal", "about": "Rólunk", "services": "Szolgáltatások",
+            "index": "Főoldal", "about": "A Stratos", "services": "Megoldásaink",
             "sme": "KKV", "enterprise": "Nagyvállalat", "branding": "Branding",
-            "ads": "Hirdetés", "seo": "SEO", "shop": "Webshop", "impact": "Impact", "work": "Munkáink",
+            "ads": "Hirdetés", "seo": "SEO", "shop": "Webshop", "impact": "Impact", "work": "Ügyfeleink",
             "blog": "Blog", "contact": "Kapcsolat", "quote": "Árajánlat",
         },
         # A hírlevél még nem létezik: a beküldés eltárolja a címet, és semmi
@@ -557,9 +557,9 @@ UI = {
             "impact": ("Impact Program", "30,000 M"),
         },
         "menu": {
-            "index": "Home", "about": "About", "services": "Services",
+            "index": "Home", "about": "Stratos", "services": "Solutions",
             "sme": "SME", "enterprise": "Enterprise", "branding": "Branding",
-            "ads": "Ads", "seo": "SEO", "shop": "Stores", "impact": "Impact", "work": "Work",
+            "ads": "Ads", "seo": "SEO", "shop": "Stores", "impact": "Impact", "work": "Clients",
             "blog": "Blog",
             "contact": "Contact", "quote": "Get a quote",
         },
@@ -628,9 +628,9 @@ UI = {
             "impact": ("Impact-Programm", "30.000 M"),
         },
         "menu": {
-            "index": "Start", "about": "Über uns", "services": "Leistungen",
+            "index": "Start", "about": "Stratos", "services": "Lösungen",
             "sme": "KMU", "enterprise": "Konzerne", "branding": "Branding",
-            "ads": "Werbung", "seo": "SEO", "shop": "Shop", "impact": "Impact", "work": "Projekte",
+            "ads": "Werbung", "seo": "SEO", "shop": "Shop", "impact": "Impact", "work": "Kunden",
             "blog": "Blog", "contact": "Kontakt", "quote": "Angebot",
         },
         "nl_lede": "Unser Newsletter entsteht gerade. Hinterlassen Sie Ihre Adresse, dann sagen wir Bescheid, sobald er startet.",
@@ -2077,37 +2077,38 @@ def load_dict(lang):
 
 V2_UI = {
     "hu": {
-        "nav": (("work", "Munkáink"), ("services", "Szolgáltatások"),
-                ("about", "Rólunk"), ("blog", "Blog")),
+        # The three destinations renamed by the owner, 2026-10-17: Munkáink →
+        # Ügyfeleink, Szolgáltatások → Megoldásaink, Rólunk → A Stratos; EN and
+        # DE carry the same meaning. Only the navigation's words changed: the
+        # pages keep their addresses, titles and headings.
+        "nav": (("work", "Ügyfeleink"), ("services", "Megoldásaink"),
+                ("about", "A Stratos"), ("blog", "Blog")),
         "contact": "Kapcsolat",
         "menu": "Menü", "close": "Bezárás", "menu_aria": "Menü megnyitása",
-        "sheet_aria": "Teljes navigáció",
         "tagline": "Digitális élmények és egyedi rendszerek — Győrből, magyarul, "
                    "angolul és németül.",
         "pages": "Oldalak",
         "close_head": "Ha nagy a tét, beszéljünk.",
         "close_lede": "Egy rövid beszélgetés után tudni fogod, mi segítene — és mi nem.",
-        "close_work": "Munkáink",
+        "close_work": "Ügyfeleink",
     },
     "en": {
-        "nav": (("work", "Work"), ("services", "Capabilities"),
-                ("about", "About"), ("blog", "Insights")),
+        "nav": (("work", "Clients"), ("services", "Solutions"),
+                ("about", "Stratos"), ("blog", "Insights")),
         "contact": "Contact",
         "menu": "Menu", "close": "Close", "menu_aria": "Open the menu",
-        "sheet_aria": "Full navigation",
         "tagline": "Digital experiences and custom systems — from Győr, in "
                    "Hungarian, English and German.",
         "pages": "Pages",
         "close_head": "High stakes? Let’s talk.",
         "close_lede": "After one short conversation you will know what would help — and what would not.",
-        "close_work": "Our work",
+        "close_work": "Our clients",
     },
     "de": {
-        "nav": (("work", "Projekte"), ("services", "Leistungen"),
-                ("about", "Über uns"), ("blog", "Insights")),
+        "nav": (("work", "Kunden"), ("services", "Lösungen"),
+                ("about", "Stratos"), ("blog", "Insights")),
         "contact": "Kontakt",
         "menu": "Menü", "close": "Schließen", "menu_aria": "Menü öffnen",
-        "sheet_aria": "Vollständige Navigation",
         "tagline": "Digitale Erlebnisse und individuelle Systeme — aus Győr, auf "
                    "Ungarisch, Englisch und Deutsch.",
         "pages": "Seiten",
@@ -2159,39 +2160,37 @@ SHELL_V2 = """<!DOCTYPE html>
 </html>
 """
 
-# The header. A floating bar; under 961px the links fold into a sheet that opens
-# inside the same box. `data-nosnippet` sits on <div>/<span> inside the
-# landmarks, never on them, because that is the only place Google honours it.
+# The header. A floating bar: the mark, the languages, one action and the menu,
+# on every screen. The menu is one full-page sheet for every width (owner,
+# 2026-10-17): the destinations centred in Aboreto over a drifting deck of
+# clouds. The sheet sits beside the box, not in it, because the box's backdrop
+# filter would make it the containing block of anything fixed inside it.
+# `data-nosnippet` sits on <div>/<span> inside the landmarks, never on them,
+# because that is the only place Google honours it.
 HEADER_V2 = """<header class="hdr" data-hdr>
   <div class="hdr__box">
     <div class="hdr__bar">
       <a class="brand" href="{{home}}" aria-label="{{brand_aria}}"><img src="/assets/img/plane-cursor.png" alt=""><span class="brand__wm" data-nosnippet>Stratos</span></a>
-      <nav class="hdr__nav" aria-label="{{nav_aria}}">
-        <div data-nosnippet><ul>{{nav}}
-        </ul></div>
-      </nav>
       <div class="hdr__end" data-nosnippet>
         {{langs}}
         <a class="btn btn--sm hdr__cta" href="{{quote}}">{{start}}</a>
         <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="hdr-sheet" aria-label="{{menu_aria}}" data-label-open="{{menu_aria}}" data-label-close="{{close}}"><span class="hdr__menu-t" aria-hidden="true">{{menu}}</span><span class="hdr__bars" aria-hidden="true"><i></i><i></i></span></button>
       </div>
     </div>
-    <div class="hdr__sheet" id="hdr-sheet" hidden>
-      <nav aria-label="{{sheet_aria}}">
-        <div data-nosnippet>
-          <ul class="sheet__primary">{{sheet_nav}}
-          </ul>
-          <div class="sheet__svc">
-            <p class="t-micro">{{services}}</p>
-            <ul>{{sheet_svc}}
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="sheet__end" data-nosnippet>
-        {{langs}}
-        <a class="btn" href="{{quote}}">{{start}}</a>
+  </div>
+  <div class="hdr__sheet" id="hdr-sheet" hidden>
+    <div class="sheet__sky" aria-hidden="true"></div>
+    <nav class="sheet__nav" aria-label="{{nav_aria}}">
+      <div data-nosnippet>
+        <ul class="sheet__primary">{{sheet_nav}}
+        </ul>
+        <ul class="sheet__svc" aria-label="{{services}}">{{sheet_svc}}
+        </ul>
       </div>
+    </nav>
+    <div class="sheet__end" data-nosnippet>
+      {{langs}}
+      <a class="btn" href="{{quote}}">{{start}}</a>
     </div>
   </div>
 </header>"""
@@ -2268,24 +2267,19 @@ def build_header_v2(lang, key):
     """The v2 header for one route. Call inside `root_links()`."""
     u, v = UI[lang], V2_UI[lang]
     current = lambda k: ' aria-current="page"' if k == key else ""
-    nav = "".join(
-        f'\n          <li><a href="{href(lang, k)}"{current(k)}>{label}</a></li>'
-        for k, label in v["nav"])
     sheet_nav = "".join(
-        f'\n            <li><a href="{href(lang, k)}"{current(k)}>{label}</a></li>'
+        f'\n          <li><a href="{href(lang, k)}"{current(k)}>{label}</a></li>'
         for k, label in (*v["nav"], ("contact", v["contact"])))
-    sheet_svc = f'\n              <li><a href="{href(lang, "services")}">{u["svc_all"]}</a></li>'
-    sheet_svc += "".join(
-        f'\n              <li><a href="{href(lang, k)}"{current(k)}>{u["svc"][k][0]}</a></li>'
+    sheet_svc = "".join(
+        f'\n          <li><a href="{href(lang, k)}"{current(k)}>{u["svc"][k][0]}</a></li>'
         for k in SERVICES)
     return render(HEADER_V2, dict(
         home=href(lang, "index"), brand_aria=u["brand_aria"],
-        nav_aria=u["nav_aria"], nav=nav,
+        nav_aria=u["nav_aria"],
         langs=build_langs(lang, key),
         quote=href(lang, "quote"), start=u["p85"]["start"],
         menu=v["menu"], close=v["close"], menu_aria=v["menu_aria"],
-        sheet_aria=v["sheet_aria"], sheet_nav=sheet_nav,
-        services=u["services"], sheet_svc=sheet_svc,
+        sheet_nav=sheet_nav, services=u["services"], sheet_svc=sheet_svc,
     ))
 
 
@@ -2477,8 +2471,8 @@ NOT_FOUND = {
         "head": "Ez az oldal nincs meg.",
         "lede": "Vagy elírás történt a címben, vagy azóta átkerült máshova. "
                 "Innen a négy leggyakoribb célpont egy kattintás:",
-        "links": [("index", "Kezdőlap"), ("services", "Szolgáltatások"),
-                  ("work", "Munkáink"), ("contact", "Kapcsolat")],
+        "links": [("index", "Kezdőlap"), ("services", "Megoldásaink"),
+                  ("work", "Ügyfeleink"), ("contact", "Kapcsolat")],
     },
     "en": {
         "title": "Page not found | Stratos",
@@ -2486,8 +2480,8 @@ NOT_FOUND = {
         "head": "This page isn’t here.",
         "lede": "Either the address has a typo in it, or the page has moved "
                 "since you last saw it. The four most likely destinations:",
-        "links": [("index", "Home"), ("services", "Services"),
-                  ("work", "Work"), ("contact", "Contact")],
+        "links": [("index", "Home"), ("services", "Solutions"),
+                  ("work", "Clients"), ("contact", "Contact")],
     },
     "de": {
         "title": "Seite nicht gefunden | Stratos",
@@ -2495,8 +2489,8 @@ NOT_FOUND = {
         "head": "Diese Seite gibt es nicht.",
         "lede": "Entweder ist ein Tippfehler in der Adresse, oder die Seite ist "
                 "inzwischen umgezogen. Die vier wahrscheinlichsten Ziele:",
-        "links": [("index", "Startseite"), ("services", "Leistungen"),
-                  ("work", "Projekte"), ("contact", "Kontakt")],
+        "links": [("index", "Startseite"), ("services", "Lösungen"),
+                  ("work", "Kunden"), ("contact", "Kontakt")],
     },
 }
 

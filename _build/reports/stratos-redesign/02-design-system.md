@@ -139,7 +139,7 @@ finished composition.
 | Token | Value | Use |
 |---|---|---|
 | `--dur-ui` | 180 ms | colour, hover |
-| `--dur-state` | 360 ms | surfaces, sheet, mode switch |
+| `--dur-state` | 360 ms | surfaces, mode switch, the menu's hover fade |
 | `--dur-reveal` | 720 ms | arrival (opacity + 14 px or scale 0.98 → 1) |
 | `--dur-light` | 1100 ms | light state changes |
 | `--ease-out` | `cubic-bezier(.2,.7,.1,1)` | things arriving |
@@ -165,14 +165,18 @@ translucent paper with an 18 px backdrop blur and a hairline. **Stable**: it nev
 shrinks or bounces; once the page moves it gains a soft shadow.
 
 * On every route since the site-wide migration (see §12).
-* ≥ 961 px: wordmark · Work / Capabilities / About / Insights (HU: Munkáink ·
-  Szolgáltatások · Rólunk · Blog; DE: Projekte · Leistungen · Über uns · Insights) ·
-  HU/EN/DE · **Projekt indítása**.
-* ≤ 960 px: wordmark · Menü. The sheet opens *inside the same box* over a blurred veil:
-  the four destinations + Kapcsolat, the full service list, languages and the action.
-  Focus moves into the navigation, the page behind is `inert` and scroll-locked, Escape /
-  veil tap / growing past the breakpoint close it, focus returns to the trigger.
-* No route is removed; the service pages remain reachable from the sheet, the footer and
+* Every width (since 2026-10-17): wordmark · HU/EN/DE (≥ 961 px) · **Projekt indítása**
+  (≥ 641 px) · **Menü**, right of the action. The bar has no links of its own.
+* The menu is one full page over everything but the bar: it drops like a blind, the
+  destinations (HU: Ügyfeleink · Megoldásaink · A Stratos · Blog · Kapcsolat; EN:
+  Clients · Solutions · Stratos · Insights · Contact; DE: Kunden · Lösungen · Stratos ·
+  Insights · Kontakt — the owner's names since 2026-10-17, for the pages still at
+  `munkaink`, `szolgaltatasok`, `rolunk`; the footer's page list says the same) centred in Aboreto up to 80 px, the six service pages small under
+  them, languages and the action at the foot on a phone. Behind them the homepage's cloud
+  tile drifts from the bottom-right to the top-left (compositor-only `transform`, one tile
+  per loop). Focus moves into the navigation, the rest of the body is `inert` and
+  scroll-locked, Escape or the cross close it, focus returns to the button.
+* No route is removed; the service pages remain reachable from the menu, the footer and
   the homepage's capabilities.
 
 ## 10. Footer
