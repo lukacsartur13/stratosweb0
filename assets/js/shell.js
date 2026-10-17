@@ -393,7 +393,10 @@
         octx.setTransform(1 / LO, 0, 0, 1 / LO, 0, 0);
         octx.lineCap = octx.lineJoin = 'round';
         octx.strokeStyle = '#000';
-        var x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+        // The bounds take in every point, the first included: a fast or
+        // jumpy mouse leaves long segments, and a box that missed the first
+        // would cut the strip off square.
+        var x0 = pts[0].x, y0 = pts[0].y, x1 = pts[0].x, y1 = pts[0].y;
         for (var q = 1; q < pts.length; q++) {
           var life = 1 - (now - pts[q].t) / LIFE;
           octx.lineWidth = Math.max(1, HEAD * Math.pow(life, 0.7));
@@ -445,7 +448,11 @@
           ctx.fillRect(0, 0, 1, 1);
           ctx.clearRect(0, 0, 1, 1);
         };
-        var idle = window.requestIdleCallback || function (fn) { return window.setTimeout(fn, 200); };
+        // Idle, but never later than 300 ms: a mouse that keeps moving keeps
+        // the page from ever being idle, and the strip must not wait for it.
+        var idle = window.requestIdleCallback
+          ? function (fn) { return window.requestIdleCallback(fn, { timeout: 300 }); }
+          : function (fn) { return window.setTimeout(fn, 120); };
         (tex.decode ? tex.decode() : Promise.resolve()).then(function () { idle(ready); }, function () { idle(ready); });
       };
     })();
