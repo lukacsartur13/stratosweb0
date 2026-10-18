@@ -66,7 +66,7 @@ FORMATS = {
 def deck(w, h):
     """The page's cloud tile, repeated from the top-left as the page does."""
     tile = Image.open(ROOT / "assets/img/home-clouds.webp").convert("RGB")
-    t = round(tile.width * DECK * X)
+    t = round(1600 * DECK * X)   # the tile's width on the page, whatever its pixels
     tile = tile.resize((t, t), Image.LANCZOS)
     im = Image.new("RGB", (w, h), BG)
     for y in range(0, h, t):

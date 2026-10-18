@@ -13,7 +13,9 @@
 /* Stratos's own material, the way plaster is Immersive Garden's: the page
    itself, not a thing on it: a connected deck of cloud.
 
-   The deck (scripts/home-clouds.py, seamless, 1600 px, 37 kB) is packed
+   The deck (scripts/home-clouds.py, seamless, laid at 1600 px and drawn at
+   3200 so a Retina screen gets a pixel of cloud for each of its own; 195 kB,
+   because at a lower quality the puffs turned into blocks) is packed
    cumulus seen from above — puffs on puffs, lit from the upper left, the
    crevices a breath of blue — in the paper's colour (owner, 2026-10-17, with
    a reference image). It scrolls with the page — no fixed layer, nothing

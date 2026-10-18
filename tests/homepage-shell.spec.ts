@@ -482,6 +482,56 @@ test.describe('the cursor', () => {
   });
 });
 
+test.describe("the buttons' letters", () => {
+  // Owner, 2026-10-18: on hover the wordmark's face runs through a button's
+  // label, one letter at a time — three at once looked like a fault, and the
+  // first build spread a bare label's letters apart by the button's gap.
+  test('one letter at a time turns to Aboreto, nothing moves, and the label is put back', async ({ page }) => {
+    await page.goto('/');
+    const env = await page.evaluate(() => ({
+      fine: matchMedia('(hover: hover) and (pointer: fine)').matches,
+      reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    }));
+    test.skip(!env.fine || env.reduce, 'the sweep is for a mouse, and not on reduced motion');
+    // The hero's button holds its label straight in the flex box, with no
+    // span of its own: the case that broke.
+    const btn = page.locator('.hero .btn');
+    await btn.scrollIntoViewIfNeeded();
+    const before = await btn.evaluate((el) => {
+      const w = window as unknown as { __seen: { most: number; dw: number; face: string; seq: string } };
+      w.__seen = { most: 0, dw: 0, face: '', seq: '' };
+      new MutationObserver((ms) => {
+        for (const m of ms) if ((m.target as Element).classList.contains('is-mark')) w.__seen.seq += m.target.textContent;
+      }).observe(el, { subtree: true, attributes: true, attributeFilter: ['class'] });
+      const w0 = el.getBoundingClientRect().width;
+      const watch = () => {
+        const lit = el.querySelectorAll('.is-mark');
+        w.__seen.most = Math.max(w.__seen.most, lit.length);
+        w.__seen.dw = Math.max(w.__seen.dw, Math.abs(el.getBoundingClientRect().width - w0));
+        if (lit[0]) w.__seen.face = getComputedStyle(lit[0]).fontFamily;
+        requestAnimationFrame(watch);
+      };
+      requestAnimationFrame(watch);
+      return { html: el.innerHTML, letters: el.textContent!.replace(/\s/g, '') };
+    });
+    const box = (await btn.boundingBox())!;
+    await page.mouse.move(box.x - 40, box.y + box.height / 2);
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 4 });
+    await expect.poll(() => page.evaluate(() => (window as unknown as { __seen: { most: number } }).__seen.most),
+      { message: 'the sweep ran' }).toBe(1);
+    await expect.poll(() => btn.evaluate((el) => el.innerHTML), { message: 'and the label is as it was' }).toBe(before.html);
+    const seen = await page.evaluate(() => (window as unknown as { __seen: { most: number; dw: number; face: string; seq: string } }).__seen);
+    expect(seen.most, 'never more than one letter at once').toBe(1);
+    // Every letter once, in order, and once only: a resting mouse must not
+    // start it again when the letters under it are unwrapped (Chromium).
+    await page.waitForTimeout(600);
+    expect(await page.evaluate(() => (window as unknown as { __seen: { seq: string } }).__seen.seq), 'each letter, in order, once')
+      .toBe(before.letters);
+    expect(seen.face, 'in the wordmark face').toMatch(/Aboreto/);
+    expect(seen.dw, 'the button never changes width').toBeLessThan(1);
+  });
+});
+
 test.describe('the smooth wheel', () => {
   // Owner, 2026-10-17, after immersive-g.com: a wheel glides instead of
   // stepping, and an uneven finger still draws one smooth curve.
