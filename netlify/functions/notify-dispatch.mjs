@@ -18,7 +18,7 @@
 //   RESEND_API_KEY       e-mail; without it nothing is e-mailed (logged)
 //   VAPID_PRIVATE_KEY    push;  without it nothing is pushed (logged)
 //   NOTIFY_FROM          default: Stratos <portal@stratosweb.hu>
-//   NOTIFY_REPLY_TO      default: lukacs.artur@media-stratos.com
+//   NOTIFY_REPLY_TO      default: hello@stratosweb.hu
 //   SUPABASE_URL + SUPABASE_SECRET_KEY / SUPABASE_SERVICE_ROLE_KEY (as for the other functions)
 //   PORTAL_ORIGIN or URL  the links in the messages
 //
@@ -43,7 +43,7 @@ async function sendEmail({ to, subject, text, html }) {
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       from: env('NOTIFY_FROM') || 'Stratos <portal@stratosweb.hu>',
-      reply_to: env('NOTIFY_REPLY_TO') || 'lukacs.artur@media-stratos.com',
+      reply_to: env('NOTIFY_REPLY_TO') || 'hello@stratosweb.hu',
       to: [to], subject, text, html,
     }),
   });
@@ -55,7 +55,7 @@ async function sendEmail({ to, subject, text, html }) {
 async function sendPush(db, userIds, payload) {
   const priv = env('VAPID_PRIVATE_KEY');
   if (!priv || userIds.length === 0) return { sent: 0, skipped: !priv };
-  webpush.setVapidDetails(`mailto:${env('NOTIFY_REPLY_TO') || 'lukacs.artur@media-stratos.com'}`, VAPID_PUBLIC_KEY, priv);
+  webpush.setVapidDetails(`mailto:${env('NOTIFY_REPLY_TO') || 'hello@stratosweb.hu'}`, VAPID_PUBLIC_KEY, priv);
   const { data: subs, error } = await db.from('push_subscriptions').select('id, endpoint, p256dh, auth, failures').in('user_id', userIds);
   if (error) { console.error('[notify] push_subscriptions', error.code); return { sent: 0 }; }
   let sent = 0;

@@ -113,7 +113,7 @@
        "we will reply shortly" to that is a promise the software cannot keep.
        See _build/reports/phase9-email-operations.md. */
     thanks_newsletter: 'Megjegyeztük a címed. Hírlevelet még nem küldünk — az első levél akkor érkezik, amikor a hírlevél elindul.',
-    fail: 'A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com',
+    fail: 'A küldés nem sikerült. Írj közvetlenül: hello@stratosweb.hu',
     invalid: 'Kérjük, ellenőrizd a kiemelt mezőket.',
     need_name: 'Kérjük, add meg a nevedet.',
     need_email: 'Ez az e-mail cím nem tűnik helyesnek.',

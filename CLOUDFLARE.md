@@ -12,7 +12,7 @@ Nothing here is required for the site to work. It is the hardening pass.
 
 | Type | Name | Value | Proxy |
 |---|---|---|---|
-| CNAME | `media-stratos.com` | `<site>.netlify.app` | **Proxied** |
+| CNAME | `stratosweb.hu` | `<site>.netlify.app` | **Proxied** |
 | CNAME | `www` | `<site>.netlify.app` | **Proxied** |
 
 Add the apex and `www` as custom domains in Netlify **first**, and let Netlify
@@ -102,15 +102,15 @@ more in bounced visitors than it saves.
 
 ```bash
 # Security headers survive the proxy
-curl -sI https://media-stratos.com | grep -iE 'strict-transport|content-security|x-content-type'
+curl -sI https://stratosweb.hu | grep -iE 'strict-transport|content-security|x-content-type'
 
 # The portal is not cached at the edge
-curl -sI https://media-stratos.com/portal/ | grep -i 'cf-cache-status'
+curl -sI https://stratosweb.hu/portal/ | grep -i 'cf-cache-status'
 # expect BYPASS or DYNAMIC — never HIT
 
 # Rate limiting bites
 for i in $(seq 1 12); do
-  curl -s -o /dev/null -w "%{http_code} " -X POST https://media-stratos.com/api/lead \
+  curl -s -o /dev/null -w "%{http_code} " -X POST https://stratosweb.hu/api/lead \
     -H 'content-type: application/json' -d '{}'
 done
 # expect 4xx codes to appear before the twelfth

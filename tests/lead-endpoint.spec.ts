@@ -45,7 +45,7 @@ function request(
     },
   };
   if (method !== 'GET') init.body = raw ?? JSON.stringify(body);
-  return handler(new Request('https://media-stratos.com/api/lead', init));
+  return handler(new Request('https://stratosweb.hu/api/lead', init));
 }
 
 /** A complete, valid envelope for each form, with every gate satisfied. */
@@ -867,7 +867,7 @@ test.describe('POST /api/lead — the store cannot be reached', () => {
     const text = JSON.stringify(body);
     expect(text).not.toMatch(/ERR_MODULE_NOT_FOUND|var\/task|supabase-js|errorType|trace|at /);
     // And it still tells the visitor something they can act on.
-    expect(text).toMatch(/lukacs\.artur@media-stratos\.com/);
+    expect(text).toMatch(/hello@stratosweb\.hu/);
   });
 
   test('a store that returns null is the same clean 503', async () => {

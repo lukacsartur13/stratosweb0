@@ -47,9 +47,9 @@
   "<b>Phone:</b> <a href=\"tel:+36305848024\">+36 30 584 8024</a>",
   "<b>Telefon:</b> <a href=\"tel:+36305848024\">+36 30 584 8024</a>"
  ],
- "<b>E-mail:</b> <a href=\"mailto:info@media-stratos.com\">info@media-stratos.com</a>": [
-  "<b>Email:</b> <a href=\"mailto:info@media-stratos.com\">info@media-stratos.com</a>",
-  "<b>E-Mail:</b> <a href=\"mailto:info@media-stratos.com\">info@media-stratos.com</a>"
+ "<b>E-mail:</b> <a href=\"mailto:hello@stratosweb.hu\">hello@stratosweb.hu</a>": [
+  "<b>Email:</b> <a href=\"mailto:hello@stratosweb.hu\">hello@stratosweb.hu</a>",
+  "<b>E-Mail:</b> <a href=\"mailto:hello@stratosweb.hu\">hello@stratosweb.hu</a>"
  ],
  "<b>Weboldal:</b> <a href=\"https://stratosweb.hu\">https://stratosweb.hu</a>": [
   "<b>Website:</b> <a href=\"https://stratosweb.hu\">https://stratosweb.hu</a>",
@@ -471,9 +471,13 @@
   "We record newsletter requests, but no newsletter system is running at present: signing up does not trigger a confirmation email, and no newsletter is sent. Your request stays on record until you ask us to delete it.",
   "Wir erfassen Newsletter-Anfragen, ein Newsletter-System ist derzeit jedoch nicht in Betrieb: Nach der Anmeldung folgt keine automatische Bestätigungs-E-Mail, und es wird kein Newsletter versendet. Ihre Anfrage bleibt erfasst, bis Sie deren Löschung verlangen."
  ],
- "<b>E-mail szolgáltató:</b> az Adatkezelő levelezőrendszerének szolgáltatója. A weboldal rendszere önmagában nem küld e-mailt; az érdeklődésekre az Adatkezelő a saját e-mail fiókjából válaszol.": [
-  "<b>Email provider:</b> the provider of the Controller's own mail system. The website itself sends no email; the Controller replies to enquiries from their own mailbox.",
-  "<b>E-Mail-Anbieter:</b> der Anbieter des E-Mail-Systems des Verantwortlichen. Die Website selbst versendet keine E-Mails; der Verantwortliche antwortet auf Anfragen aus dem eigenen Postfach."
+ "<b>E-mail szolgáltató:</b> Google Ireland Ltd. — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Workspace, a Stratos levelezése; az érdeklődésekre az Adatkezelő innen válaszol.": [
+  "<b>Email provider:</b> Google Ireland Ltd. — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Workspace, Stratos's mailboxes; the Controller replies to enquiries from there.",
+  "<b>E-Mail-Anbieter:</b> Google Ireland Ltd. — Gordon House, Barrow Street, Dublin 4, Irland. Dienst: Google Workspace, das E-Mail-System von Stratos; von dort antwortet der Verantwortliche auf Anfragen."
+ ],
+ "<b>Levélküldő szolgáltató:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Amerikai Egyesült Államok. Szolgáltatás: a Portál automatikus e-mailjeinek kézbesítése (például értesítés az ügyfeleknek a projektjükről), amelyhez a címzett nevét és e-mail-címét kapja meg; valamint a Stratosnak szóló belső jelzés új beküldésről, amely személyes adatot nem tartalmaz.": [
+  "<b>Email delivery provider:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, United States. Service: delivering the Portal's automatic emails (for example, notifying clients about their project), for which it receives the recipient's name and email address; and an internal alert to Stratos about a new submission, which contains no personal data.",
+  "<b>E-Mail-Versanddienst:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Vereinigte Staaten. Dienst: Zustellung der automatischen E-Mails des Portals (zum Beispiel Benachrichtigungen an Kundinnen und Kunden über ihr Projekt), wofür er Namen und E-Mail-Adresse der empfangenden Person erhält; sowie ein interner Hinweis an Stratos über eine neue Einsendung, der keine personenbezogenen Daten enthält."
  ],
  "online konzultáció időpontjának foglalása (Google Meet)": [
   "booking a time for an online consultation (Google Meet)",

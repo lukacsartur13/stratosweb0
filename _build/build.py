@@ -520,7 +520,7 @@ UI = {
             # A hírlevélnek saját visszajelzése van: a fenti egy választ ígér,
             # amely egy hírlevél-kérésre nem érkezik meg.
             "thanks_newsletter": "Megjegyeztük a címed. Hírlevelet még nem küldünk — az első levél akkor érkezik, amikor a hírlevél elindul.",
-            "fail": "A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com",
+            "fail": "A küldés nem sikerült. Írj közvetlenül: hello@stratosweb.hu",
             "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.",
             "need_name": "Kérjük, add meg a nevedet.",
             "need_email": "Ez az e-mail cím nem tűnik helyesnek.",
@@ -591,7 +591,7 @@ UI = {
             "sent": "Sent",
             "thanks": "Thank you — we'll reply to the address you gave us shortly.",
             "thanks_newsletter": "We have your address. There is no newsletter yet — the first one arrives when it launches.",
-            "fail": "Sending failed. Write to us directly: lukacs.artur@media-stratos.com",
+            "fail": "Sending failed. Write to us directly: hello@stratosweb.hu",
             "invalid": "Please check the highlighted fields.",
             "need_name": "Please give us your name.",
             "need_email": "That email address does not look right.",
@@ -661,7 +661,7 @@ UI = {
             "sent": "Gesendet",
             "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.",
             "thanks_newsletter": "Wir haben Ihre Adresse. Einen Newsletter gibt es noch nicht — die erste Ausgabe kommt, sobald er startet.",
-            "fail": "Das Senden ist fehlgeschlagen. Schreiben Sie uns direkt: lukacs.artur@media-stratos.com",
+            "fail": "Das Senden ist fehlgeschlagen. Schreiben Sie uns direkt: hello@stratosweb.hu",
             "invalid": "Bitte überprüfen Sie die markierten Felder.",
             "need_name": "Bitte geben Sie Ihren Namen an.",
             "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.",
@@ -1254,7 +1254,7 @@ SOCIAL_PROFILES = [
 ]
 
 # Published in the footer of every page, in every language.
-CONTACT_EMAIL = "lukacs.artur@media-stratos.com"
+CONTACT_EMAIL = "hello@stratosweb.hu"
 CONTACT_PHONE = "+36305848024"
 
 # schema.org type per route. Anything unlisted is a plain WebPage, which is the
@@ -2238,7 +2238,7 @@ FOOTER_V2 = """<footer class="ftr">
       <div>
         <p class="ftr__h">{{f_contact}}</p>
         <ul>
-          <li><a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a></li>
+          <li><a href="mailto:hello@stratosweb.hu">hello@stratosweb.hu</a></li>
           <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
           <li><address class="ftr__nap">{{f_office}} 9027 Győr, Gesztenyefa út 4.<br>{{f_seat}} 9151 Abda, Arany János utca 13.</address></li>
         </ul>

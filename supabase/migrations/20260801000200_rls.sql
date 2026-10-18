@@ -196,7 +196,7 @@ create policy activity_select_admin on activity_logs for select using (is_admin(
 -- 'client'), then run this ONCE in the Supabase SQL editor, which executes as
 -- table owner and is not subject to the policies above:
 --
---   update profiles set role = 'super_admin' where email = 'you@media-stratos.com';
+--   update profiles set role = 'super_admin' where email = 'you@stratosweb.hu';
 --
 -- Every later role change goes through the portal's Users screen, which is
 -- itself gated by profiles_admin_write.

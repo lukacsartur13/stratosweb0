@@ -5,7 +5,7 @@
 Stratos is **two applications behind one domain**, not one application.
 
 ```
-media-stratos.com
+stratosweb.hu
 ├── /                 static, generated, trilingual  ← the public site
 ├── /portal/*         React SPA                      ← private
 └── /api/*            Netlify Functions              ← the only public write path
@@ -184,7 +184,7 @@ There is no self-service path to an elevated role. Sign the first user up
 through the portal — they land as `client` — then run once in the SQL editor:
 
 ```sql
-update profiles set role = 'super_admin' where email = 'you@media-stratos.com';
+update profiles set role = 'super_admin' where email = 'you@stratosweb.hu';
 ```
 
 Every later change goes through the Users screen, gated by

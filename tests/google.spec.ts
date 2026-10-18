@@ -103,11 +103,11 @@ test('gmail: only messages with a known address are stored, matched to the lead/
   const original = __net.fetch;
   const msgs: Record<string, unknown> = {
     a: { id: 'a', threadId: 't', internalDate: '1759600000000', snippet: 'Szia!', payload: { headers: [
-      { name: 'From', value: 'Anna <anna@kert.example>' }, { name: 'To', value: 'owner@media-stratos.example' }, { name: 'Subject', value: 'Kérdés' }] } },
+      { name: 'From', value: 'Anna <anna@kert.example>' }, { name: 'To', value: 'owner@stratosweb.example' }, { name: 'Subject', value: 'Kérdés' }] } },
     b: { id: 'b', threadId: 't', internalDate: '1759600100000', snippet: 'Küldöm', payload: { headers: [
-      { name: 'From', value: 'Owner <owner@media-stratos.example>' }, { name: 'To', value: 'anna@kert.example' }, { name: 'Cc', value: 'cili@b.example' }, { name: 'Subject', value: 'Re: Kérdés' }] } },
+      { name: 'From', value: 'Owner <owner@stratosweb.example>' }, { name: 'To', value: 'anna@kert.example' }, { name: 'Cc', value: 'cili@b.example' }, { name: 'Subject', value: 'Re: Kérdés' }] } },
     c: { id: 'c', threadId: 'x', internalDate: '1759600200000', snippet: 'Hírlevél', payload: { headers: [
-      { name: 'From', value: 'news@shop.example' }, { name: 'To', value: 'owner@media-stratos.example' }, { name: 'Subject', value: 'Akció' }] } },
+      { name: 'From', value: 'news@shop.example' }, { name: 'To', value: 'owner@stratosweb.example' }, { name: 'Subject', value: 'Akció' }] } },
   };
   __net.fetch = async (url: string) => {
     if (url.includes('/messages?')) return new Response(JSON.stringify({ messages: [{ id: 'a' }, { id: 'b' }, { id: 'c' }] }), { status: 200 });
@@ -120,7 +120,7 @@ test('gmail: only messages with a known address are stored, matched to the lead/
       ['anna@kert.example', [{ email: 'anna@kert.example', lead_id: 'l-1', organization_id: null, opportunity_id: null }]],
       ['cili@b.example', [{ email: 'cili@b.example', lead_id: null, organization_id: 'o-1', opportunity_id: 'd-1' }]],
     ]);
-    const r = await syncGmail(db, { user_id: 'u-1', google_email: 'owner@media-stratos.example', gmail_synced_at: null },
+    const r = await syncGmail(db, { user_id: 'u-1', google_email: 'owner@stratosweb.example', gmail_synced_at: null },
       { tokenFor: async () => 'tok', known, now: 1759600300000 });
     expect(r.stored).toBe(2);
     const stored = db.calls.filter((c) => c.fn === 'email_store').map((c) => c.args);

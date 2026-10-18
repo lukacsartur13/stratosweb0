@@ -162,13 +162,13 @@ test.describe('google', () => {
   let db: PGlite;
   test.beforeAll(async () => {
     db = await fresh();
-    await account(db, U.owner, 'owner@media-stratos.example');
-    await account(db, U.admin, 'admin@media-stratos.example');
+    await account(db, U.owner, 'owner@stratosweb.example');
+    await account(db, U.admin, 'admin@stratosweb.example');
   });
 
   test('a connected account: its owner reads it but never the token; nobody else reads it; it can be disconnected', async () => {
     const [mine] = await ok(db, 'owner', `select user_id, google_email, scopes from google_accounts`);
-    expect(mine).toEqual({ user_id: U.owner, google_email: 'owner@media-stratos.example', scopes: 'gmail calendar' });
+    expect(mine).toEqual({ user_id: U.owner, google_email: 'owner@stratosweb.example', scopes: 'gmail calendar' });
     expect((await as(db, 'owner', `select refresh_token_enc from google_accounts`)).error?.code).toBe('42501');
     expect((await as(db, 'owner', `select * from google_accounts`)).error?.code).toBe('42501');
     expect(await ok(db, 'super2', `select user_id from google_accounts`)).toEqual([]);
@@ -176,7 +176,7 @@ test.describe('google', () => {
     expect((await as(db, 'owner', `update google_accounts set google_email = 'x' where user_id = $1`, [U.owner])).error).not.toBeNull();
     await ok(db, 'admin', `delete from google_accounts where user_id = $1`, [U.admin]);
     expect((await db.query(`select count(*)::int as n from google_accounts`)).rows[0]).toEqual({ n: 1 });
-    await account(db, U.admin, 'admin@media-stratos.example');
+    await account(db, U.admin, 'admin@stratosweb.example');
   });
 
   test('the known addresses: leads, client contacts and deal contacts, lower-cased; the sync key only', async () => {
@@ -192,8 +192,8 @@ test.describe('google', () => {
 
   const store = (gmail: string, direction: 'in' | 'out', lead: string | null, org: string | null = null) =>
     db.query(`select email_store($1, $2, 't1', $3, $4, 'Owner', $5::text[], 'Árajánlat', 'Küldöm az ajánlatot…', now(), $6, $7, null) as made`,
-      [U.owner, gmail, direction, direction === 'out' ? 'owner@media-stratos.example' : 'anna@kert.example',
-       direction === 'out' ? ['anna@kert.example'] : ['owner@media-stratos.example'], lead, org]);
+      [U.owner, gmail, direction, direction === 'out' ? 'owner@stratosweb.example' : 'anna@kert.example',
+       direction === 'out' ? ['anna@kert.example'] : ['owner@stratosweb.example'], lead, org]);
 
   test('a message is stored once; an outgoing one to a new lead is logged and answers the "no reply" alert', async () => {
     expect(await db.query(`select automation_run()`).then((r) => r.rows.length)).toBe(1);

@@ -128,7 +128,7 @@ test.describe('one run of the sender', () => {
       expect(toAnna.text).toContain('Startseite');
       expect(toAnna.text).toContain('Kick-off');
       expect(toAnna.from).toBe('Stratos <portal@stratosweb.hu>');
-      expect(toAnna.reply_to).toBe('lukacs.artur@media-stratos.com');
+      expect(toAnna.reply_to).toBe('hello@stratosweb.hu');
       const toOwner = sent.find((s) => s.to[0] === 'owner@example.invalid')!;
       expect(toOwner.subject).toContain('Kovács Anna feltöltött egy fájlt: logo.png');
       expect(done.map((d) => d.error)).toEqual([null, null, null, null]);

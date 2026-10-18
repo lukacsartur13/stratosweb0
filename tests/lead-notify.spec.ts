@@ -19,11 +19,13 @@ import { test, expect } from '@playwright/test';
 type Notify = {
   notifyLeadCreated: (s: Record<string, unknown>) => Promise<{ sent: boolean; reason: string }>;
   buildNotification: (s: Record<string, unknown>) => Record<string, unknown>;
+  buildEmail: (s: Record<string, unknown>) => { subject: string; text: string };
 };
 
 let serial = 0;
 async function load(env: Record<string, string | undefined>): Promise<Notify> {
-  for (const key of ['LEAD_NOTIFY_TRANSPORT', 'LEAD_NOTIFY_WEBHOOK_URL', 'SITE_URL', 'URL']) {
+  for (const key of ['LEAD_NOTIFY_TRANSPORT', 'LEAD_NOTIFY_WEBHOOK_URL', 'LEAD_NOTIFY_EMAIL_TO',
+    'RESEND_API_KEY', 'NOTIFY_FROM', 'SITE_URL', 'URL']) {
     delete process.env[key];
   }
   for (const [key, value] of Object.entries(env)) {
@@ -193,6 +195,72 @@ test.describe('the webhook transport', () => {
     });
     expect((await notify.notifyLeadCreated(SUMMARY)).reason).toBe('unknown-transport');
   });
+});
+
+/* ============================================================== the e-mail = */
+
+test.describe('the email transport', () => {
+  const EMAIL = { LEAD_NOTIFY_TRANSPORT: 'email', LEAD_NOTIFY_EMAIL_TO: 'hello@stratosweb.hu', RESEND_API_KEY: 're_test' };
+
+  test('sends one e-mail through Resend to the company inbox', async () => {
+    const notify = await load(EMAIL);
+    const probe = captureFetch(ok);
+    try {
+      expect(await notify.notifyLeadCreated(SUMMARY)).toEqual({ sent: true, reason: 'ok' });
+      expect(probe.calls).toHaveLength(1);
+      expect(probe.calls[0].url).toBe('https://api.resend.com/emails');
+      expect(probe.calls[0].init.headers.authorization).toBe('Bearer re_test');
+      const body = JSON.parse(probe.calls[0].init.body);
+      expect(body.to).toEqual(['hello@stratosweb.hu']);
+      expect(body.from).toBe('Stratos <portal@stratosweb.hu>');
+      expect(body.subject).toContain('contact');
+      expect(body.text).toContain('/ugyfelszolgalat.html');
+      expect(body.text).toContain(SUMMARY.leadId);
+      expect(body.text).toContain('/portal/leads');
+    } finally {
+      probe.restore();
+    }
+  });
+
+  test('carries no personal data, the same as the webhook', async () => {
+    const notify = await load(EMAIL);
+    const hostile = {
+      ...SUMMARY, name: 'Kovács János', email: 'janos@example.com', phone: '+36 30 000 0000',
+      message: 'Szeretnék árajánlatot kérni.', company: 'Példa Kft.',
+    };
+    const serialised = JSON.stringify(notify.buildEmail(hostile));
+    for (const secret of ['Kovács', 'János', 'janos@example.com', '+36 30 000 0000', 'árajánlatot', 'Példa Kft.']) {
+      expect(serialised, `leaked ${secret}`).not.toContain(secret);
+    }
+  });
+
+  test('refuses without a Resend key, and without an address', async () => {
+    const probe = captureFetch(ok);
+    try {
+      const noKey = await load({ ...EMAIL, RESEND_API_KEY: undefined });
+      expect((await noKey.notifyLeadCreated(SUMMARY)).reason).toBe('no-key');
+      const noAddress = await load({ ...EMAIL, LEAD_NOTIFY_EMAIL_TO: 'hello' });
+      expect((await noAddress.notifyLeadCreated(SUMMARY)).reason).toBe('bad-address');
+      expect(probe.calls).toEqual([]);
+    } finally {
+      probe.restore();
+    }
+  });
+
+  for (const [name, impl] of [
+    ['Resend answers 422', async () => new Response('{}', { status: 422 })],
+    ['Resend is unreachable', async () => { throw new Error('ECONNREFUSED'); }],
+  ] as [string, () => Promise<Response>][]) {
+    test(`${name}: resolves false, never throws`, async () => {
+      const notify = await load(EMAIL);
+      const probe = captureFetch(impl as any);
+      try {
+        expect((await notify.notifyLeadCreated(SUMMARY)).sent).toBe(false);
+      } finally {
+        probe.restore();
+      }
+    });
+  }
 });
 
 /* ================================================ never at the lead's cost = */
