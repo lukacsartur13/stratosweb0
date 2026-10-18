@@ -1,5 +1,5 @@
 /* ==========================================================================
-   STRATOS — the shell's behaviour. Nine small things, no dependencies, no
+   STRATOS — the shell's behaviour. Ten small things, no dependencies, no
    standing animation loop, nothing the page needs in order to be read.
 
      1. The header: a hairline once the page has moved, and the full-page
@@ -19,6 +19,8 @@
      8. The buttons' letters: for a mouse, the wordmark's face runs through a
         button's label as it arrives on it.
      9. The logo carousel: on a phone, a set of client marks runs as a loop.
+    10. The site videos: chosen, loaded and played only when they near the
+        screen.
 
    The static page is the design. Without this file — blocked, failed, or a
    reader who asked for reduced motion — every element is in its final, lit,
@@ -780,5 +782,46 @@
         for (var i = 0; i < held.length; i++) held[i].classList.remove('is-held');
       }, { passive: true });
     });
+  })();
+
+  /* ------------------------------------------------------- the site videos */
+  /* A `video[data-video]` (the home page's Rapidkert scene: the client's whole
+     home page, scrolled; owner, 2026-10-18) ships with its poster and its
+     sources' addresses in data-src, so the page downloads none of it. The
+     first time it nears the screen, the first source whose media matches and
+     whose codec this browser plays becomes its src — the phone's size or the
+     desktop's, HEVC or H.264 — and it plays while it is on the screen and
+     rests when it is not. A reader who asked for less motion or to save data
+     keeps the poster, which is the site's first screen. */
+  var conn = navigator.connection;
+  if (!reduce && !(conn && conn.saveData) && 'IntersectionObserver' in window) (function () {
+    var videos = doc.querySelectorAll('video[data-video]');
+    if (!videos.length) return;
+    var load = function (v) {
+      var sources = v.querySelectorAll('source[data-src]');
+      for (var i = 0; i < sources.length; i++) {
+        var media = sources[i].getAttribute('media');
+        if (media && !(window.matchMedia && window.matchMedia(media).matches)) continue;
+        if (!v.canPlayType(sources[i].getAttribute('type') || '')) continue;
+        v.src = sources[i].getAttribute('data-src');
+        return true;
+      }
+      return false;
+    };
+    var near = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        near.unobserve(e.target);
+        if (load(e.target)) seen.observe(e.target);
+      });
+    }, { rootMargin: '600px 0px' });
+    // Autoplay can still be refused (iOS in Low Power Mode): the poster stays.
+    var seen = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+        else e.target.pause();
+      });
+    });
+    for (var i = 0; i < videos.length; i++) near.observe(videos[i]);
   })();
 })();

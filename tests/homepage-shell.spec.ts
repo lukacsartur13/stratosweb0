@@ -568,6 +568,39 @@ test.describe('the logos on a phone', () => {
   });
 });
 
+test.describe('the Rapidkert scene', () => {
+  // Owner, 2026-10-18: a video of the client's whole home page instead of a
+  // screenshot of its first screen.
+  test('plays the site as a video once it is seen, with nothing downloaded before', async ({ page }) => {
+    const mp4: string[] = [];
+    page.on('request', (r) => { if (/\.mp4(\?|$)/.test(r.url())) mp4.push(new URL(r.url()).pathname); });
+    await page.goto('/');
+    const v = page.locator('.take video[data-video]');
+    await expect(v).toHaveAttribute('poster', /case-rapidkert-home-poster\.webp/);
+    expect(await v.getAttribute('aria-label'), 'named for a screen reader').toBeTruthy();
+    expect(mp4, 'no video with the page').toEqual([]);
+    const env = await page.evaluate(() => {
+      const el = document.querySelector('video[data-video]') as HTMLVideoElement;
+      const playable = [...el.querySelectorAll('source')].some((s) => el.canPlayType(s.getAttribute('type')!));
+      return { playable, reduce: matchMedia('(prefers-reduced-motion: reduce)').matches };
+    });
+    await v.scrollIntoViewIfNeeded();
+    if (env.reduce || !env.playable) {
+      // Chromium as Playwright ships it plays neither codec; such a browser,
+      // and a reader who asked for less motion, keep the poster.
+      await page.waitForTimeout(800);
+      expect(await v.evaluate((el: HTMLVideoElement) => el.paused), 'the poster, still').toBe(true);
+      return;
+    }
+    const small = (page.viewportSize()!.width <= 760);
+    await expect.poll(() => v.evaluate((el: HTMLVideoElement) => el.currentSrc), { message: 'a source chosen' })
+      .toMatch(small ? /rapidkert-home-960-(hevc|h264)\.mp4$/ : /rapidkert-home-1920-(hevc|h264)\.mp4$/);
+    await expect.poll(() => v.evaluate((el: HTMLVideoElement) => el.currentTime), { message: 'and playing', timeout: 15000 }).toBeGreaterThan(0.5);
+    await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+    await expect.poll(() => v.evaluate((el: HTMLVideoElement) => el.paused), { message: 'resting off the screen' }).toBe(true);
+  });
+});
+
 test.describe('the smooth wheel', () => {
   // Owner, 2026-10-17, after immersive-g.com: a wheel glides instead of
   // stepping, and an uneven finger still draws one smooth curve.
