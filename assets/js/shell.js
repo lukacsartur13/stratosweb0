@@ -1,5 +1,5 @@
 /* ==========================================================================
-   STRATOS — the shell's behaviour. Eight small things, no dependencies, no
+   STRATOS — the shell's behaviour. Nine small things, no dependencies, no
    standing animation loop, nothing the page needs in order to be read.
 
      1. The header: a hairline once the page has moved, and the full-page
@@ -18,6 +18,7 @@
      7. The smooth wheel: a mouse wheel glides instead of stepping.
      8. The buttons' letters: for a mouse, the wordmark's face runs through a
         button's label as it arrives on it.
+     9. The logo carousel: on a phone, a set of client marks runs as a loop.
 
    The static page is the design. Without this file — blocked, failed, or a
    reader who asked for reduced motion — every element is in its final, lit,
@@ -694,5 +695,90 @@
       var btn = e.target && e.target.closest ? e.target.closest('.btn') : null;
       if (btn && !(e.relatedTarget && btn.contains(e.relatedTarget))) drop(inside, btn);
     }, { passive: true });
+  })();
+
+  /* --------------------------------------------------- the logo carousel */
+  /* On a phone a set of three or more client marks runs as a carousel, in
+     colour (owner, 2026-10-18; system.css draws it). Fewer than three would
+     only repeat themselves, so they stay put. A set is framed the first time
+     it comes near the screen, so its marks still load lazily; it rests while
+     it is off the screen and holds still under a finger. The copies are
+     hidden from assistive technology, which reads the set once. */
+  var phone = window.matchMedia && window.matchMedia('(max-width: 760px)');
+  if (!reduce && phone && 'IntersectionObserver' in window) (function () {
+    var SPEED = 32;   // px per second
+    var sets = [].filter.call(doc.querySelectorAll('.logoset[data-logo-group]'), function (ul) {
+      return ul.querySelectorAll('[data-logo]').length >= 3;
+    });
+    if (!sets.length) return;
+    var build = function (ul) {
+      var rail = doc.createElement('div');
+      var kind = /logoset--(\w+)/.exec(ul.className);
+      rail.className = 'logo-rail' + (kind ? ' logo-rail--' + kind[1] : '');
+      ul.parentNode.insertBefore(rail, ul);
+      var rows = [ul];
+      // The home page's twelve run as two rows in opposite directions
+      // (owner, 2026-10-18), every other mark in each, so the two rows
+      // never show the same mark at once. Two real lists, six and six: a
+      // screen reader still hears each mark once.
+      if (kind && kind[1] === 'marks') {
+        var second = ul.cloneNode(false);
+        [].slice.call(ul.children).forEach(function (li, i) { if (i % 2) second.appendChild(li); });
+        second.classList.add('is-reverse');
+        rows.push(second);
+      }
+      rows.forEach(function (row) {
+        var view = doc.createElement('div');
+        view.className = 'logo-rail__view';
+        rail.appendChild(view);
+        view.appendChild(row);
+        loop(row, view);
+      });
+    };
+    var loop = function (ul, view) {
+      var marks = [].slice.call(ul.children);
+      // It is about to be seen, and its copies must not arrive blank.
+      marks.forEach(function (li) { var img = li.querySelector('img'); if (img) img.loading = 'eager'; });
+      ul.classList.add('is-rail');
+      // One set's width, from the fixed boxes in system.css. The row is
+      // copied until it outruns one set plus the widest phone screen, so a
+      // slide of one set never shows its end, turned sideways or not.
+      var one = ul.offsetWidth;
+      for (var n = 0; n < 12 && ul.offsetWidth < one + Math.max(view.clientWidth, 760); n++) {
+        marks.forEach(function (li) {
+          var copy = li.cloneNode(true);
+          copy.setAttribute('aria-hidden', 'true');
+          copy.setAttribute('data-rail-copy', '');
+          var img = copy.querySelector('img');
+          if (img) img.alt = '';
+          ul.appendChild(copy);
+        });
+      }
+      ul.style.setProperty('--rail-shift', -one + 'px');
+      ul.style.setProperty('--rail-time', (one / SPEED).toFixed(1) + 's');
+    };
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && !e.target.classList.contains('is-rail')) build(e.target);
+        var rail = e.target.closest('.logo-rail');
+        if (rail) rail.classList.toggle('is-paused', !e.isIntersecting);
+      });
+    }, { rootMargin: '400px 0px' });
+    // Watched only while the screen is a phone's; a tablet turned upright
+    // becomes one.
+    var watch = function () { if (phone.matches) sets.forEach(function (ul) { io.observe(ul); }); };
+    watch();
+    if (phone.addEventListener) phone.addEventListener('change', watch);
+    doc.addEventListener('pointerdown', function (e) {
+      var rail = e.target.closest ? e.target.closest('.logo-rail') : null;
+      if (rail) rail.classList.add('is-held');
+    }, { passive: true });
+    // A finger lifted, or taken over by the page's own scrolling.
+    ['pointerup', 'pointercancel'].forEach(function (type) {
+      doc.addEventListener(type, function () {
+        var held = doc.querySelectorAll('.logo-rail.is-held');
+        for (var i = 0; i < held.length; i++) held[i].classList.remove('is-held');
+      }, { passive: true });
+    });
   })();
 })();
