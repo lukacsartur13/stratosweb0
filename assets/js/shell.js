@@ -1,5 +1,5 @@
 /* ==========================================================================
-   STRATOS — the shell's behaviour. Seven small things, no dependencies, no
+   STRATOS — the shell's behaviour. Eight small things, no dependencies, no
    standing animation loop, nothing the page needs in order to be read.
 
      1. The header: a hairline once the page has moved, and the full-page
@@ -16,6 +16,8 @@
         and turns to fly the way it moves; on the homepage it leaves a strip
         through the clouds.
      7. The smooth wheel: a mouse wheel glides instead of stepping.
+     8. The buttons' letters: for a mouse, the wordmark's face runs through a
+        button's label as it arrives on it.
 
    The static page is the design. Without this file — blocked, failed, or a
    reader who asked for reduced motion — every element is in its final, lit,
@@ -388,10 +390,14 @@
        scrolls; nothing runs once it has gone.
 
        The strip is one opaque shape (segments drawn at full alpha cannot
-       stack into beads or steps where they overlap), drawn at a fifth of the
-       resolution and scaled up, which is what softens its edge — a blur for
-       nothing. The canvas is at 1×, as the cloud tile itself is; the strong
-       deck is filled only inside the strip's bounds. */
+       stack into beads or steps where they overlap), drawn at a quarter of
+       the resolution, blurred there and scaled up. The blur is the soft
+       edge, and a blurred shape scales up smooth where a hard one showed
+       its steps — the strip looked pixelated (owner, 2026-10-18). It is a
+       shadow's blur, because that is the canvas blur Safari draws. The
+       canvas is at the screen's own density, up to 2×, as the cloud tile
+       now is, so the deck inside the strip is as sharp as the page's; it
+       is filled only inside the strip's bounds. */
     var trailVar = getComputedStyle(doc.body).getPropertyValue('--cloud-trail');
     var trailSrc = /url\(\s*["']?([^"')]+?)["']?\s*\)/.exec(trailVar);
     // Safari (26.6) hands a custom property's url() back CSS-escaped —
@@ -402,17 +408,28 @@
       return hex ? String.fromCodePoint(parseInt(hex, 16)) : ch;
     });
     if (trailSrc) (function () {
-      var LIFE = 1500, HEAD = 78, LO = 5;
-      var cv = doc.createElement('canvas'), off = doc.createElement('canvas');
-      var ctx = cv.getContext('2d'), octx = off.getContext('2d');
-      if (!ctx || !octx) return;
+      var LIFE = 1500, HEAD = 78, LO = 4, SOFT = 3;
+      var cv = doc.createElement('canvas'), off = doc.createElement('canvas'), soft = doc.createElement('canvas');
+      var ctx = cv.getContext('2d'), octx = off.getContext('2d'), sctx = soft.getContext('2d');
+      if (!ctx || !octx || !sctx) return;
       cv.className = 'cloud-trail';
       cv.setAttribute('aria-hidden', 'true');
       var tex = new Image();
-      var pattern = null, pts = [], raf = 0, masks = [];
+      var pattern = null, pts = [], raf = 0, masks = [], dpr = 1;
+      var density = function () { return Math.min(2, window.devicePixelRatio || 1); };
+      // The canvas's box is the viewport without its scrollbars, so its
+      // pixels are counted from that, not from innerWidth: a canvas squeezed
+      // into a narrower box is blurred, and its deck slides off the page's.
       var fit = function () {
-        cv.width = window.innerWidth; cv.height = window.innerHeight;
-        off.width = Math.ceil(cv.width / LO); off.height = Math.ceil(cv.height / LO);
+        var w = root.clientWidth, h = root.clientHeight;
+        dpr = density();
+        cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+        off.width = Math.ceil(w / LO); off.height = Math.ceil(h / LO);
+        // Twice as wide: the shape is drawn on the right half and its blurred
+        // shadow falls on the left, which is the half that is used — so
+        // nothing rests on a browser drawing the shadow of something outside
+        // the canvas.
+        soft.width = off.width * 2; soft.height = off.height;
       };
       // A frame that throws stops the strip, never the page.
       var draw = function () {
@@ -422,6 +439,8 @@
         raf = 0;
         var now = window.performance.now();
         while (pts.length && now - pts[0].t > LIFE) pts.shift();
+        // The window was dragged to a screen of another density, or zoomed.
+        if (density() !== dpr) fit();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, cv.width, cv.height);
         if (pts.length < 2) return;
@@ -446,13 +465,21 @@
           if (pts[q].x < x0) x0 = pts[q].x; if (pts[q].x > x1) x1 = pts[q].x;
           if (pts[q].y < y0) y0 = pts[q].y; if (pts[q].y > y1) y1 = pts[q].y;
         }
-        // 2. Scaled up onto the visible canvas: the smoothing is the soft edge.
+        // 2. Blurred at that size — the soft edge — then scaled up onto the
+        //    visible canvas. Bounds in CSS px; the canvas is `dpr` times that.
+        var W = cv.width / dpr, Hh = cv.height / dpr;
         var bx = Math.max(0, x0 - sx - HEAD), by = Math.max(0, y0 - sy - HEAD);
-        var bw = Math.min(cv.width, x1 - sx + HEAD) - bx, bh = Math.min(cv.height, y1 - sy + HEAD) - by;
+        var bw = Math.min(W, x1 - sx + HEAD) - bx, bh = Math.min(Hh, y1 - sy + HEAD) - by;
         if (bw <= 0 || bh <= 0) { raf = window.requestAnimationFrame(draw); return; }
+        sctx.setTransform(1, 0, 0, 1, 0, 0);
+        sctx.clearRect(0, 0, soft.width, soft.height);
+        sctx.shadowColor = '#000';
+        sctx.shadowBlur = SOFT;
+        sctx.shadowOffsetX = -off.width;
+        sctx.drawImage(off, off.width, 0);
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(off, bx / LO, by / LO, bw / LO, bh / LO, bx, by, bw, bh);
+        ctx.drawImage(soft, bx / LO, by / LO, bw / LO, bh / LO, bx * dpr, by * dpr, bw * dpr, bh * dpr);
         // 3. The strong deck, filled into it, aligned with the page's own
         //    background: the tile's origin is the page's, so it moves with
         //    scroll exactly as the background does.
@@ -460,10 +487,10 @@
         // The tile is placed by moving the canvas, not the pattern: a
         // pattern's own transform is the less dependable path.
         var k = parseFloat(getComputedStyle(doc.body).backgroundSize) / tex.naturalWidth || 1;
-        ctx.setTransform(k, 0, 0, k, -sx, -sy);
+        ctx.setTransform(k * dpr, 0, 0, k * dpr, -sx * dpr, -sy * dpr);
         ctx.fillStyle = pattern;
         ctx.fillRect((bx + sx) / k, (by + sy) / k, bw / k, bh / k);
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         // 4. Never over a photograph, a project screen or a dark panel.
         ctx.globalCompositeOperation = 'destination-out';
         ctx.fillStyle = '#000';
@@ -478,7 +505,7 @@
         ctx.globalCompositeOperation = 'source-over';
         raf = window.requestAnimationFrame(draw);
       };
-      // Nothing — not the canvas, not its 90 kB of texture — until the mouse
+      // Nothing — not the canvas, not its 340 kB of texture — until the mouse
       // first moves: a reader who never uses one gets the page and no more.
       var started = false;
       trail = {
@@ -500,9 +527,12 @@
         var ready = function () {
           // Not the plane's own picture (the strip would be cut away right
           // under it) and not the header's (the header is above the strip).
+          // Not the client marks either: they are ink on the clouds with
+          // nothing behind them, and cutting their boxes out left a pale
+          // rectangle behind each logo the plane crossed (owner, 2026-10-18).
           masks = [].filter.call(
             doc.querySelectorAll('img, picture, video, .take__surface, .gdf__surface, .close__surface, .pclose__surface, .btn'),
-            function (el) { return !el.closest('.cursor-plane, .hdr'); });
+            function (el) { return !el.closest('.cursor-plane, .hdr, .logoset'); });
           pattern = ctx.createPattern(tex, 'repeat');
           fit();
           doc.body.appendChild(cv);
@@ -575,5 +605,94 @@
       if (frame && Math.abs(window.scrollY - last) > 2) { stop(); current = target = window.scrollY; }
     }, { passive: true });
     window.addEventListener('pagehide', stop);
+  })();
+
+  /* ------------------------------------------------- the buttons' letters */
+  /* A mouse arriving on a button runs the wordmark's face through its label
+     (owner, 2026-10-18, after a site whose links shuffle their letters on
+     hover): one letter at a time turns to Aboreto, from the first to the
+     last, in under a second, and the label is itself again. One,
+     never a band: three at once read as a rendering fault (owner, same day).
+
+     The letters are wrapped only while the sweep runs, and the label's own
+     text node is put back after, so at rest the button's markup and name are
+     what the page shipped. A swept letter keeps the width its Archivo letter
+     had — Aboreto's wider capital overhangs its neighbours for a frame rather
+     than pushing them — and takes no height, so the label never moves. If a
+     script rewrites the label mid-sweep (a form saying it is sending), its
+     words win and nothing is put back. Mouse only; nothing for a reader who
+     asked for less motion. */
+  if (!reduce && fine && window.requestAnimationFrame) (function () {
+    var STEP = 55, MIN = 400, MAX = 1100;   // ms per letter, and the sweep's bounds — slow enough to see each letter (owner, 2026-10-18)
+    var running = [], inside = [];
+    var drop = function (list, el) { var i = list.indexOf(el); if (i !== -1) list.splice(i, 1); };
+    var sweep = function (btn) {
+      var walker = doc.createTreeWalker(btn, NodeFilter.SHOW_TEXT);
+      var nodes = [], node;
+      while ((node = walker.nextNode())) {
+        if (/\S/.test(node.data) && !(node.parentNode.closest && node.parentNode.closest('svg'))) nodes.push(node);
+      }
+      if (!nodes.length) return;
+      var parts = [], letters = [];
+      nodes.forEach(function (text) {
+        // One inline wrapper per text node: a label that sits straight in
+        // the button is a flex item, and loose letters would each become one,
+        // spread apart by the button's gap.
+        var wrap = doc.createElement('span'), kids = [];
+        Array.from(text.data).forEach(function (ch) {
+          var kid;
+          // A space stays text: an inline-block holding only a space has
+          // no width at all.
+          if (/\s/.test(ch)) kid = doc.createTextNode(ch);
+          else { kid = doc.createElement('span'); kid.className = 'btn__l'; kid.textContent = ch; letters.push(kid); }
+          kids.push(kid);
+          wrap.appendChild(kid);
+        });
+        parts.push({ text: text, parent: text.parentNode, wrap: wrap, kids: kids });
+        text.parentNode.replaceChild(wrap, text);
+      });
+      // Each letter's own width, read once, before any of them changes face.
+      var widths = letters.map(function (l) { return l.getBoundingClientRect().width; });
+      letters.forEach(function (l, i) { l.style.width = widths[i] + 'px'; });
+      var n = letters.length, dur = Math.max(MIN, Math.min(MAX, n * STEP));
+      var lit = [], t0 = 0, cur = -1;
+      var restore = function () {
+        parts.forEach(function (p) {
+          if (p.wrap.parentNode !== p.parent || p.wrap.childNodes.length !== p.kids.length) return;
+          p.parent.replaceChild(p.text, p.wrap);
+        });
+        drop(running, btn);
+      };
+      var frame = function (t) {
+        if (!t0) t0 = t;
+        // The lit letter: 0 to n − 1, then past the last, where the label is
+        // all its own face again. Never more than one step a frame, so a
+        // slow frame delays a letter rather than skipping it.
+        var at = cur = Math.min(cur + 1, Math.floor((t - t0) / dur * n));
+        for (var i = 0; i < n; i++) {
+          var on = i === at;
+          if (on !== !!lit[i]) { lit[i] = on; letters[i].classList.toggle('is-mark', on); }
+        }
+        if (at < n) window.requestAnimationFrame(frame); else restore();
+      };
+      running.push(btn);
+      window.requestAnimationFrame(frame);
+    };
+    // Once per arrival, and armed again only when the mouse has left. Not
+    // "relatedTarget is outside": when the letters under a resting mouse are
+    // unwrapped, Chromium reports the mouse arriving on the button again,
+    // from the letter that is gone — and the sweep would run for ever.
+    doc.addEventListener('pointerover', function (e) {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      var btn = e.target && e.target.closest ? e.target.closest('.btn') : null;
+      if (!btn || inside.indexOf(btn) !== -1) return;
+      inside.push(btn);
+      if (running.indexOf(btn) === -1) try { sweep(btn); } catch (err) { /* the label stays as it is */ }
+    }, { passive: true });
+    doc.addEventListener('pointerout', function (e) {
+      // From a letter already unwrapped there is no button to leave.
+      var btn = e.target && e.target.closest ? e.target.closest('.btn') : null;
+      if (btn && !(e.relatedTarget && btn.contains(e.relatedTarget))) drop(inside, btn);
+    }, { passive: true });
   })();
 })();

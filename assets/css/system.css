@@ -340,6 +340,19 @@ button { font: inherit; color: inherit; }
 .btn--light { background: var(--c-on-dark); color: var(--c-ink); }
 .btn--light:hover { background: #FFFFFF; }
 .btn--sm { height: 40px; padding: 0 1rem; border-radius: 12px; font-size: 0.875rem; }
+/* A letter of the label while the wordmark's face runs through it on hover
+   (shell.js wraps the letters for the sweep and unwraps them after). Lit, it
+   keeps its Archivo width (set by the script) and takes no height of its own,
+   so Aboreto overhangs its neighbours for a frame and nothing moves. One
+   weight only, so never a synthesised bold. */
+.btn__l.is-mark {
+  display: inline-block;
+  line-height: 0;
+  text-align: center;
+  font-family: var(--font-mark);
+  font-weight: 400;
+  font-synthesis: none;
+}
 
 .arrow {
   width: 1em;
