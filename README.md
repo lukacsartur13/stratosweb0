@@ -4,7 +4,7 @@ The public site is a quiet, light, typography-led argument for the work. The
 portal is the instrument panel behind it.
 
 ```
-media-stratos.com
+stratosweb.hu
 ├── /              static, trilingual (HU · EN · DE), no runtime dependencies
 ├── /portal/*      React SPA — admin now, client accounts next
 └── /api/*         Netlify Functions
@@ -136,7 +136,7 @@ bundle, and the public site is static output from `_build/build.py`.
    `client`. Promote it once, in the SQL editor:
 
    ```sql
-   update profiles set role = 'super_admin' where email = 'you@media-stratos.com';
+   update profiles set role = 'super_admin' where email = 'you@stratosweb.hu';
    ```
 
    There is deliberately no other path to an elevated role. Every later change

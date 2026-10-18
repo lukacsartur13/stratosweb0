@@ -1882,7 +1882,7 @@ await check('google: Settings connects through the server; the lead shows its e-
 
 await check('bookings: whether the page takes bookings, the diary with its links, cancel through the server after a second click, the rules saved; Settings asks to reconnect for free/busy', async () => {
   const state = freshState();
-  state.google.push({ user_id: USER.id, google_email: 'owner@media-stratos.example', scopes: 'openid email https://www.googleapis.com/auth/calendar.events',
+  state.google.push({ user_id: USER.id, google_email: 'owner@stratosweb.example', scopes: 'openid email https://www.googleapis.com/auth/calendar.events',
     connected_at: new Date().toISOString(), gmail_synced_at: null, calendar_synced_at: null, last_error: null });
   const { page, context } = await open(browser, { state });
   await page.goto(`${BASE}/settings`);

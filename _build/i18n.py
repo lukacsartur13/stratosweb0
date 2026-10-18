@@ -56,7 +56,7 @@ SKIP_EXACT = {
     'Igényfelmérő – KKV', 'Igényfelmérő – nagyvállalat',
     'width', 'style', 'show', 'selected', 'checked', 'value', 'span',
     '.opt input', '.opt', '.other-input', 'label.opt', 'input',
-    'lukacs.artur@media-stratos.com', 'Stratos', 'GDPR', 'SEO', 'CRM', 'ERP',
+    'hello@stratosweb.hu', 'Stratos', 'GDPR', 'SEO', 'CRM', 'ERP',
     'SAP', 'HubSpot', 'Salesforce', 'LinkedIn', 'Instagram', 'Facebook',
     'TikTok', 'Google', 'Meta', 'B2B', 'B2C', 'ISO', 'WCAG', 'NDA', 'API',
     'SLA', 'SSO', 'BI', 'IT',

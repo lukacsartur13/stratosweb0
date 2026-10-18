@@ -636,6 +636,8 @@ main > section:last-child .launch:not(.launch--quiet) :focus-visible { outline-c
 .portrait { position: relative; overflow: hidden; max-width: 470px; border-radius: var(--r-lg); background: var(--c-bg-recess); }
 .portrait img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 20%; }
 .portrait figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.2rem; color: #F4F2EC; background: linear-gradient(transparent, rgba(20, 20, 19, 0.72)); }
+/* A partner's own address, under the photo — the caption sits on the photo itself. */
+.portrait-mail { margin-top: 0.75rem; font-size: var(--t-small); overflow-wrap: anywhere; }
 
 /* The contact page sends focus to its message field after a deep link. */
 #uzenet:focus { outline: none; }

@@ -60,7 +60,7 @@ async function fresh(withPhase6 = true) {
   for (const f of files.filter((x) => x <= '20260928000200_owner_tracker.sql')) await db.exec(read(MIGRATIONS, f));
   await db.exec(`
     insert into auth.users (id, email) values
-      ('${U.owner}', 'owner@example.invalid'), ('${U.delegate}', 'info@example.invalid'), ('${U.admin}', 'admin2@example.invalid'),
+      ('${U.owner}', 'owner@example.invalid'), ('${U.delegate}', 'delegate@example.invalid'), ('${U.admin}', 'admin2@example.invalid'),
       ('${U.super2}', 'super2@example.invalid'), ('${U.team}', 'team@example.invalid'), ('${U.client}', 'client@a.example');
     update profiles set role = 'super_admin' where id in ('${U.owner}', '${U.super2}');
     update profiles set role = 'admin' where id in ('${U.delegate}', '${U.admin}');
@@ -104,7 +104,7 @@ test.describe('a named delegate has exactly the owner\'s rights', () => {
   test.beforeAll(async () => {
     db = await fresh();
     await db.exec(`insert into leads (name, email, form_type, source) values ('Imp', 'imp@example.invalid', 'impact', 'impact')`);
-    await db.query(`select portal_add_delegate('INFO@example.invalid ')`);
+    await db.query(`select portal_add_delegate('DELEGATE@example.invalid ')`);
   });
 
   test('the delegate reaches everything the owner reaches', async () => {
@@ -134,7 +134,7 @@ test.describe('a named delegate has exactly the owner\'s rights', () => {
     for (const who of ['owner', 'delegate', 'admin', 'anon'] as const) {
       expect((await as(db, who, `select * from portal_owner_delegates`)).error?.code, who).toBe('42501');
       expect((await as(db, who, `select portal_add_delegate('admin2@example.invalid')`)).error?.code, who).toBe('42501');
-      expect((await as(db, who, `select portal_remove_delegate('info@example.invalid')`)).error?.code, who).toBe('42501');
+      expect((await as(db, who, `select portal_remove_delegate('delegate@example.invalid')`)).error?.code, who).toBe('42501');
     }
   });
 
@@ -158,7 +158,7 @@ test.describe('a named delegate has exactly the owner\'s rights', () => {
   });
 
   test('removing the delegate ends the access; the owner keeps it', async () => {
-    expect((await db.query<{ x: boolean }>(`select portal_remove_delegate('info@example.invalid') as x`)).rows[0].x).toBe(true);
+    expect((await db.query<{ x: boolean }>(`select portal_remove_delegate('delegate@example.invalid') as x`)).rows[0].x).toBe(true);
     expect((await reach(db, 'delegate')).projects).toBe(0);
     expect((await reach(db, 'owner')).projects).toBe(1);
   });
@@ -167,7 +167,7 @@ test.describe('a named delegate has exactly the owner\'s rights', () => {
 test.describe('rollback and re-apply', () => {
   test('rollback restores owner-only and keeps the list; re-applying restores the delegate', async () => {
     const db = await fresh();
-    await db.query(`select portal_add_delegate('info@example.invalid')`);
+    await db.query(`select portal_add_delegate('delegate@example.invalid')`);
     await db.exec(read(CHECKS, 'owner-delegates-rollback.sql'));
     expect((await reach(db, 'delegate')).projects).toBe(0);
     expect((await reach(db, 'owner')).projects).toBe(1);
