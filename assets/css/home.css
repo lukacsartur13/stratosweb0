@@ -147,7 +147,9 @@ body {
     clip-path 1300ms var(--ease-out) 150ms,
     filter 1300ms var(--ease-out) 150ms;
 }
-.take__shot img { display: block; width: 100%; height: auto; }
+.take__shot img, .take__shot video { display: block; width: 100%; height: auto; }
+/* The site's own dark under the poster, for the moment before it arrives. */
+.take__shot video { background: #12110E; }
 .take__surface.is-pre .take__shot {
   clip-path: inset(46% 0 46% 0 round var(--r-md));
   filter: brightness(0.55);
