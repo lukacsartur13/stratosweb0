@@ -532,6 +532,42 @@ test.describe("the buttons' letters", () => {
   });
 });
 
+test.describe('the logos on a phone', () => {
+  // Owner, 2026-10-18: on a phone the logos are in colour everywhere, in a
+  // carousel; on the home page in two rows running opposite ways that never
+  // show the same logo at once.
+  test('in colour, and on the home page two carousels running opposite ways with different marks', async ({ page }) => {
+    await page.goto('/');
+    test.skip(page.viewportSize()!.width > 760, 'the carousel is for a phone');
+    const reduce = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const sets = page.locator('.logoset--marks');
+    await sets.first().scrollIntoViewIfNeeded();
+    expect(await sets.first().locator('img').first().evaluate((el) => getComputedStyle(el).filter), 'in its own colour').toBe('none');
+    if (reduce) {
+      await expect(sets, 'no motion for a reader who asked for less: one set, in its rows').toHaveCount(1);
+      await expect(sets.first()).not.toHaveClass(/is-rail/);
+      return;
+    }
+    await expect(sets, 'two rows').toHaveCount(2);
+    await expect(sets.nth(0)).toHaveClass(/is-rail/);
+    await expect(sets.nth(1)).toHaveClass(/is-rail/);
+    const marks = (i: number) => sets.nth(i).locator('[data-logo]:not([data-rail-copy]) img').evaluateAll((els) => els.map((el) => (el as HTMLImageElement).alt));
+    const [one, two] = [await marks(0), await marks(1)];
+    expect(one.length + two.length, 'every mark, once').toBe(12);
+    expect(one.filter((m) => two.includes(m)), 'no mark in both rows').toEqual([]);
+    const copies = page.locator('[data-rail-copy]');
+    expect(await copies.count(), 'copied so the loop has no seam').toBeGreaterThan(0);
+    expect(await copies.evaluateAll((els) => els.every((el) => el.getAttribute('aria-hidden') === 'true' && el.querySelector('img')!.alt === '')),
+      'the copies are not read out').toBe(true);
+    const x = (i: number) => sets.nth(i).evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).m41);
+    const [a0, b0] = [await x(0), await x(1)];
+    await page.waitForTimeout(400);
+    expect(await x(0), 'the first row runs left').toBeLessThan(a0);
+    expect(await x(1), 'the second runs right').toBeGreaterThan(b0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 'and never scrolls the page sideways').toBe(0);
+  });
+});
+
 test.describe('the smooth wheel', () => {
   // Owner, 2026-10-17, after immersive-g.com: a wheel glides instead of
   // stepping, and an uneven finger still draws one smooth curve.

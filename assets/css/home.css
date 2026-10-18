@@ -414,6 +414,15 @@ body {
   .logoset--marks { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--sp-5); }
   .logoset--marks li { height: 64px; }
   .logoset--marks img { max-height: 48px; }
+  /* As a carousel (system.css) the row moves, so its rule stays on the frame. */
+  .logo-rail--marks { padding-top: var(--sp-5); border-top: 1px solid var(--c-line); }
+}
+/* Split into two rows on a phone (shell.js) and then turned sideways past a
+   phone's width: six a row and one rule over both, so the halves read as the
+   one grid they were. */
+@media (min-width: 761px) {
+  .logo-rail--marks .logoset--marks { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .logo-rail__view + .logo-rail__view .logoset--marks { padding-top: clamp(1rem, 3vw, 3rem); border-top: 0; }
 }
 
 /* --------------------------------------------------------------- 08 · close */

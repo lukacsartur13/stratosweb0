@@ -854,6 +854,49 @@ html.is-locked, html.is-locked body { overflow: hidden; }
   .ftr__end { margin-left: 0; width: 100%; justify-content: space-between; }
 }
 
+/* ------------------------------------------------------ logos on a phone */
+/* On a phone every client mark is in its own colour (owner, 2026-10-18): the
+   quiet grey gave a mark back its colour under the pointer, and a phone has
+   no pointer to wait for. A set of three or more runs as a carousel: shell.js
+   frames it, copies the marks until the row outruns the screen, and slides it
+   one set's width per cycle, so the loop has no seam. Without the script, or
+   for a reader who asked for less motion, the set stays in its rows, in
+   colour. [data-logo-group] is in the selectors to outrank site.css and
+   home.css, which load after this file. */
+@media (max-width: 760px) {
+  .logoset[data-logo-group] [data-logo] img { filter: none; opacity: 1; }
+  .logo-rail__view {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  }
+  .logoset[data-logo-group].is-rail {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    width: max-content;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    animation: logo-rail var(--rail-time, 40s) linear infinite;
+  }
+  /* A fixed box per mark, with the gap as its margin, so a set's width is
+     known before a single image has loaded. */
+  .logoset[data-logo-group].is-rail [data-logo] { flex: none; width: 112px; height: 60px; min-width: 0; margin-right: 28px; }
+  .logoset[data-logo-group].is-rail [data-logo] img { max-width: 100%; max-height: 40px; }
+  /* A second row (the home page's) runs the other way. */
+  .logoset[data-logo-group].is-rail.is-reverse { animation-direction: reverse; }
+  .logo-rail__view + .logo-rail__view { margin-top: var(--sp-3); }
+  /* Off the screen it rests; under a finger it holds still to be read. */
+  .logo-rail.is-paused .logoset, .logo-rail.is-held .logoset { animation-play-state: paused; }
+}
+@keyframes logo-rail { to { transform: translate3d(var(--rail-shift, -50%), 0, 0); } }
+/* Wider than a phone the frame is no box at all and the copies are gone. */
+@media (min-width: 761px) {
+  .logo-rail, .logo-rail__view { display: contents; }
+  .logoset [data-rail-copy] { display: none; }
+}
+
 /* --------------------------------------------------------------- consent */
 /* The measurement consent banner, built by assets/js/consent.js. Docked, not
    modal: it covers nothing, traps nothing, and the page reads the same whether
