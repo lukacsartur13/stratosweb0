@@ -54,6 +54,8 @@ const NODE_ONLY = [
   /email-automations\.spec\.ts/,
   // The Claude connector (netlify/functions/portal-mcp.mjs), against a mocked Supabase.
   /portal-mcp\.spec\.ts/,
+  // The app's and widgets' summary (netlify/functions/portal-widget.mjs), against a mocked Supabase.
+  /portal-widget\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are
