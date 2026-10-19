@@ -3,12 +3,13 @@
 A Claude (claude.ai, a Claude asztali és mobil app, a Claude Code) **custom
 connectorként** csatlakozik a Portálhoz, és a tulajdonos nevében olvashat és
 írhat benne: leadek, ügyfelek, projektek, befizetések, jegyzetek, munkaidő,
-foglalások, Impact Program, hírlevél — minden, amit a tulajdonosi fiók a
-Portálban elér.
+foglalások, Impact Program, hírlevél, a projektek dokumentumtára — minden, amit
+a tulajdonosi fiók a Portálban elér. Ügyfelet is meghívhat, és hírlevelet is
+kiküldhet (ez utóbbit csak kifejezett megerősítéssel).
 
 ```
-Claude ──POST /api/mcp──▶ netlify/functions/portal-mcp.mjs ──PostgREST, a TULAJDONOS tokenjével──▶ Supabase (RLS)
-   │                                      │
+Claude ──POST /api/mcp──▶ netlify/functions/portal-mcp.mjs ──PostgREST + Storage, a TULAJDONOS tokenjével──▶ Supabase (RLS, bucket-policyk)
+   │                                      ├─ invite_client ──▶ portal-invite.mjs (ugyanaz, mint a Portál Meghívás gombja)
    │ 401 + WWW-Authenticate               └─ /.well-known/oauth-protected-resource/api/mcp
    ▼                                                  "a bejelentkezés a Supabase Auth-nál van"
 Supabase Auth OAuth 2.1 szerver ──▶ /portal/oauth/consent  (bejelentkezés + Engedélyezés)
@@ -17,10 +18,14 @@ Supabase Auth OAuth 2.1 szerver ──▶ /portal/oauth/consent  (bejelentkezés
 - **Bejelentkezés:** a Supabase Auth saját OAuth 2.1 szervere (béta). A Claude
   regisztrálja magát (dynamic client registration), a tulajdonos a Portálban
   belép és jóváhagy, a Claude kap egy tokent, és maga frissíti.
-- **A token egy normál Supabase felhasználói JWT.** Minden lekérdezés a
-  tulajdonosként fut, az RLS dönt mindenről, pontosan úgy, mint a Portálban.
-  Szerverkulcs adathoz soha nem kerül (csak a séma leírásához, ha a tulajdonos
-  tokenjével az nem olvasható).
+- **A token egy normál Supabase felhasználói JWT.** Minden lekérdezés és minden
+  fájlművelet a tulajdonosként fut, az RLS és a `project-documents` bucket
+  policyjai döntenek mindenről, pontosan úgy, mint a Portálban. Szerverkulcs
+  adathoz soha nem kerül (csak a séma leírásához, ha a tulajdonos tokenjével az
+  nem olvasható). Kivétel nélkül ugyanez a meghívóra: az `invite_client` a
+  tulajdonos tokenjével a `portal-invite.mjs`-t hívja — azt, amit a Portál
+  Meghívás gombja —, és az a saját, ott leírt két szűk esetben használja a
+  szerverkulcsot (a bejelentkezési fiók megkeresése és létrehozása).
 - **Csak a tulajdonos:** minden kérésnél a GoTrue ellenőrzi a tokent (egy
   visszavont munkamenet azonnal kizár), és a szerver megkérdezi az
   `is_owner()`-t. Más fiók 403-at kap.
@@ -41,8 +46,12 @@ Supabase Auth OAuth 2.1 szerver ──▶ /portal/oauth/consent  (bejelentkezés
    kulcsot ajánlja az OAuth szerverhez.
 3. **Netlify:** új környezeti változó nem kell. A függvény a meglévőket olvassa:
    `SUPABASE_URL` és `SUPABASE_ANON_KEY` (vagy a `VITE_` megfelelőik).
-   A `SUPABASE_SECRET_KEY` nem kötelező: csak akkor kell, ha a Supabase a séma
-   leírását (PostgREST OpenAPI) a nyilvános kulccsal nem adja ki.
+   A `SUPABASE_SECRET_KEY` az adateszközökhöz nem kötelező: csak akkor kell, ha
+   a Supabase a séma leírását (PostgREST OpenAPI) a nyilvános kulccsal nem adja
+   ki. Az `invite_client` ugyanazokkal a változókkal működik, mint a Portál
+   meghívója (`SUPABASE_SECRET_KEY`, `PORTAL_ORIGIN` vagy `URL` —
+   `CLIENT_PORTAL.md`); a kiküldött hírlevelet a meglévő ütemezett
+   `newsletter-dispatch` viszi ki (Resend).
 4. **Deploy** (a szokásos módon, a `main` ágról).
 
 ## 2. Csatlakoztatás
@@ -89,7 +98,7 @@ Végül a Claude-ban: *„Hány új lead jött ezen a héten, és honnan?”*
 
 ## 4. Mit tud
 
-Hat eszköz (`netlify/functions/portal-mcp.mjs`):
+Tizenegy eszköz (`netlify/functions/portal-mcp.mjs`):
 
 | Eszköz | Mit csinál |
 |---|---|
@@ -98,16 +107,37 @@ Hat eszköz (`netlify/functions/portal-mcp.mjs`):
 | `insert` | 1–200 sor felvétele (upserttel is) |
 | `update` | módosítás — csak szűrővel, és visszavonódik, ha több sort érintene, mint `max_rows` (alap: 25) |
 | `delete` | végleges törlés — csak szűrővel, `max_rows` (alap: 10) |
-| `call_function` | a Portál adatbázis-függvényei (purge, riportok, meghívó előkészítése …) |
+| `call_function` | a Portál adatbázis-függvényei (purge, riportok, kampány leállítása …) — azokat kivéve, amelyek egy lenti eszköz lépései (pl. `newsletter_campaign_send`, `client_invite_prepare`): ezekre az eszközt kell használni |
+| `list_documents` | egy projekt dokumentumtára: fájlok mappaúttal, mérettel, típussal, állapottal, és a projekt mappái; a Kuka csak `include_trash`-sel |
+| `read_document` | egy fájl: `.txt`, `.md`, `.csv` esetén a szövege (hosszúnál lapozva, `offset`); minden másnál (PDF, kép, Office, ZIP) csak az adatai és egy **5 percig érvényes letöltőlink** — a tartalmát nem olvassa |
+| `upload_document` | új `.txt` / `.md` / `.csv` fájl (max. 512 KB szöveg) egy projektbe vagy mappájába, a Portál saját négy lépésével (függő sor → aláírt feltöltő link → PUT → ellenőrzés); semmit nem ír felül, foglalt névnél számoz (`jegyzet (2).md`) |
+| `invite_client` | ügyfélfiók meghívása vagy újrameghívása a megadott projektekkel — ugyanaz, mint a Portál Meghívás gombja; **egyszer használható belépési linket ad vissza**, e-mailt nem küld; minden hívás új linket ad, a korábbi érvénytelen lesz |
+| `send_newsletter_campaign` | egy piszkozat kampány kiküldése a közönsége minden megerősített feliratkozójának. **`confirm: true` nélkül nem küld semmit**, csak megmutatja a tárgyat, a közönséget és a címzettek számát; a Claude ezt megmutatja, rákérdez, és csak igen után hívja újra `confirm: true`-val. Utána percek alatt kimegy, visszavonni nem lehet (a még ki nem ment részt a `newsletter_campaign_cancel` állítja le) |
+
+A `describe`, `query`, `list_documents` és `read_document` csak olvas; az
+`invite_client` és a `send_newsletter_campaign` *destructive*-ként van jelölve,
+így a Claude ezekre mindig rákérdez, ha a beállításod ezt kéri.
 
 A Claude az indulásnál útmutatót is kap: a projekt/ügyfél törlése a Kukába
 helyezés (`archived_at`), a leadé `trashed_at`; végleges törlés csak a `purge_*`
 függvényekkel, és csak ha kéred; sok sort vagy visszafordíthatatlanul érintő
-változás előtt kérdezzen.
+változás előtt kérdezzen; a hírlevelet csak a te igened után erősítse meg.
 
-**Amit nem tud (még):** a dokumentumtár fájljainak *tartalmát* (csak a
-rekordjaikat), és a Netlify-függvények műveleteit — meghívó link generálása,
-hírlevél kiküldése, Google szinkron. Ezek külön eszközként hozzáadhatók.
+**Amit nem tud (még):**
+
+- PDF, Word/Excel, kép és más nem szöveges fájl *tartalmát* kiolvasni — ezekre
+  csak letöltőlinket ad; és ilyen fájlt feltölteni (azt a Portálban);
+- `.json` fájl: a dokumentumtár nem fogad el ilyet (`DOCUMENTS.md` §3), így
+  olvasni sincs mit;
+- fájl átnevezése, mozgatása, Kukába tétele külön eszközzel — ez az `update`-tel
+  (`project_documents.name`, `trashed_at`) és a `call_function`-nel
+  (`document_move`, `document_restore`) megy, ugyanazokkal a szabályokkal;
+- a meghívó linket e-mailben elküldeni — a Portál sem teszi, a linket neked
+  kell továbbítanod;
+- hírlevél-előnézet és tesztküldés magadnak — ezek a Portál Hírlevél oldalán
+  vannak;
+- Google szinkron, foglalási naptár, számlázás — ezek Netlify-függvényei nincsenek
+  a connectorban.
 
 ## 5. Biztonság
 
@@ -118,10 +148,21 @@ hírlevél kiküldése, Google szinkron. Ezek külön eszközként hozzáadható
 - **Lecsatlakoztatás:** töröld a connectort a Claude-ban, **és** a Supabase-ben
   Authentication → OAuth Apps alatt töröld a Claude klienst — ez a kiadott
   tokeneket is visszavonja.
-- **Prompt injection:** a sorokban mások által írt szöveg van (a weboldal
-  űrlapjai, ügyfélüzenetek, e-mailek). A szerver ezt adatnak jelöli a Claude
-  felé, de a módosító eszközökre (`update`, `delete`, `call_function`) a
-  claude.ai-ban maradjon a „kérdezzen rá” beállítás, ne „Always allow”.
+- **Prompt injection:** a sorokban és a fájlokban mások által írt szöveg van (a
+  weboldal űrlapjai, ügyfélüzenetek, e-mailek, az ügyfelek által leadott
+  nyersanyag). A szerver ezt adatnak jelöli a Claude felé, de a módosító
+  eszközökre (`update`, `delete`, `call_function`, `upload_document`,
+  `invite_client`, `send_newsletter_campaign`) a claude.ai-ban maradjon a
+  „kérdezzen rá” beállítás, ne „Always allow”.
+- **A hírlevél kiküldése** két lépés: a `confirm` nélküli hívás semmit nem
+  küld, a `confirm: true` csak logikai `true` lehet (nem „yes”, nem `1`). A
+  `call_function` nem futtatja a `newsletter_campaign_send`-et, így a
+  megerősítés nem kerülhető meg.
+- **A meghívó link** belépési jog egy ügyfélfiókhoz: a Claude-beszélgetésben
+  megjelenik, és ott meg is marad. Küldd tovább, és ha rossz helyre került, egy
+  új `invite_client` hívás (vagy a Portál Meghívás gombja) érvényteleníti.
+- **Letöltőlinkek:** 5 percig élnek, a tulajdonos tokenjével kért aláírt
+  Storage-linkek; a fájlt mellékletként adják.
 - **Naplózás:** a Claude módosításai a tulajdonos nevében történnek. Ahol az
   adatbázis triggerrel naplóz (`activity_logs`, pl. egy lead státuszváltása),
   ott ugyanúgy bekerülnek; általános írásnapló nincs. A tokenben a `client_id`
@@ -140,4 +181,5 @@ hírlevél kiküldése, Google szinkron. Ezek külön eszközként hozzáadható
 | Jóváhagyás után 403 | nem a tulajdonosi fiókkal léptél be |
 | A token kiadása elbukik jóváhagyás után | HS256 kulcs és `openid` scope (1.2) |
 
-Tesztek: `tests/portal-mcp.spec.ts` (mockolt Supabase, `--project=node`).
+Tesztek: `tests/portal-mcp.spec.ts` (mockolt Supabase és Storage,
+`--project=node`).

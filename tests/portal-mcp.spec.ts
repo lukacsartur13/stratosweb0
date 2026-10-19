@@ -6,20 +6,31 @@ import { test, expect } from '@playwright/test';
  * proves: how Claude is sent to sign in, that only the owner's live token gets
  * past the door, the MCP handshake, that every tool becomes the PostgREST call
  * it should AS THE OWNER, that writes cannot run without a filter or past their
- * row limit, and that the server key never touches data. What it does not
- * prove: that real Supabase issues and accepts the tokens as scripted — that is
- * the setup check in supabase/CLAUDE_CONNECTOR.md §3.
+ * row limit, that the document tools take the Portal's own upload path through
+ * Storage with the owner's token, that invite_client is portal-invite.mjs
+ * itself, that a newsletter goes out only with confirm: true, and that the
+ * server key never touches data. What it does not prove: that real Supabase
+ * issues and accepts the tokens as scripted — that is the setup check in
+ * supabase/CLAUDE_CONNECTOR.md §3 — nor real Storage's answers, which are
+ * scripted here from DOCUMENTS.md §4–5.
  */
 
-type Handler = { default: (r: Request) => Promise<Response>; __net: { fetch: typeof fetch } };
+type Handler = {
+  default: (r: Request) => Promise<Response>;
+  __net: { fetch: typeof fetch };
+  __functions: { invite: (r: Request) => Promise<Response> };
+};
 
 const ENV = {
   SUPABASE_URL: 'https://mock.supabase.invalid',
   SUPABASE_SECRET_KEY: 'server-key-that-must-never-be-echoed',
   SUPABASE_ANON_KEY: 'public-key',
 };
-const KEYS = [...Object.keys(ENV), 'VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY', 'SUPABASE_SERVICE_ROLE_KEY'];
+const KEYS = [...Object.keys(ENV), 'VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY', 'SUPABASE_SERVICE_ROLE_KEY', 'PORTAL_ORIGIN', 'URL'];
 const ORIGIN = 'https://stratosweb.hu';
+const id = (n: number) => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
+const [PROJECT, DOC, FOLDER, SUBFOLDER, CAMPAIGN, ORG, ACCOUNT, USER] = [201, 401, 501, 502, 601, 101, 301, 701].map(id);
+const KEY = `${PROJECT}/${DOC}`;
 
 let serial = 0;
 async function load(env: Record<string, string | undefined> = ENV): Promise<Handler> {
@@ -27,6 +38,20 @@ async function load(env: Record<string, string | undefined> = ENV): Promise<Hand
   for (const [k, v] of Object.entries(env)) if (v !== undefined) process.env[k] = v;
   serial += 1;
   return (await import(`../netlify/functions/portal-mcp.mjs?case=${serial}`)) as unknown as Handler;
+}
+
+/**
+ * portal-invite.mjs reads its environment once, when first imported — so the
+ * copy portal-mcp imports holds whatever the first test in this worker set. The
+ * invite tests give portal-mcp a fresh copy, loaded with an origin, through its
+ * seam (the seam itself is checked to hold the real function).
+ */
+async function withInvite(h: Handler, w: World) {
+  process.env.PORTAL_ORIGIN = ORIGIN;
+  serial += 1;
+  const inv = (await import(`../netlify/functions/portal-invite.mjs?mcp=${serial}`)) as unknown as Handler;
+  inv.__net.fetch = backend(w);
+  h.__functions.invite = inv.default;
 }
 
 const OPENAPI = {
@@ -55,7 +80,7 @@ const OPENAPI = {
   },
 };
 
-interface Call { method: string; path: string; query: URLSearchParams; auth: string; apikey: string; prefer: string; body: unknown }
+interface Call { method: string; path: string; query: URLSearchParams; headers: Headers; auth: string; apikey: string; prefer: string; body: unknown }
 interface World { owner: boolean; schemaForOwner: boolean; calls: Call[]; reply?: (c: Call) => Response | undefined }
 const world = (over: Partial<World> = {}): World => ({ owner: true, schemaForOwner: true, calls: [], ...over });
 
@@ -70,10 +95,12 @@ function backend(w: World): typeof fetch {
       method: init?.method ?? 'GET',
       path: url.pathname,
       query: url.searchParams,
+      headers: h,
       auth: h.get('authorization') ?? '',
       apikey: h.get('apikey') ?? '',
       prefer: h.get('prefer') ?? '',
-      body: init?.body ? JSON.parse(String(init.body)) : undefined,
+      // JSON for PostgREST and Storage's own API; raw bytes for an upload.
+      body: typeof init?.body === 'string' ? JSON.parse(init.body) : init?.body ?? undefined,
     };
     w.calls.push(c);
     const live = c.auth === 'Bearer owner-jwt' || c.auth === 'Bearer staff-jwt';
@@ -180,15 +207,20 @@ test.describe('the protocol', () => {
     expect(await res.text()).toBe('');
   });
 
-  test('tools/list: six tools, the reading ones marked read-only', async () => {
+  test('tools/list: eleven tools, the reading ones read-only, the Portal\'s actions destructive', async () => {
     const h = await load();
     h.__net.fetch = backend(world());
     const { result } = await (await post(h, { jsonrpc: '2.0', id: 1, method: 'tools/list' })).json();
     const byName = Object.fromEntries(result.tools.map((t: { name: string }) => [t.name, t]));
-    expect(Object.keys(byName).sort()).toEqual(['call_function', 'delete', 'describe', 'insert', 'query', 'update']);
-    expect(byName.describe.annotations.readOnlyHint).toBe(true);
-    expect(byName.query.annotations.readOnlyHint).toBe(true);
-    expect(byName.delete.annotations.destructiveHint).toBe(true);
+    expect(Object.keys(byName).sort()).toEqual([
+      'call_function', 'delete', 'describe', 'insert', 'invite_client', 'list_documents', 'query', 'read_document',
+      'send_newsletter_campaign', 'update', 'upload_document',
+    ]);
+    for (const name of ['describe', 'query', 'list_documents', 'read_document']) expect(byName[name].annotations.readOnlyHint).toBe(true);
+    for (const name of ['delete', 'invite_client', 'send_newsletter_campaign']) expect(byName[name].annotations.destructiveHint).toBe(true);
+    expect(byName.upload_document.annotations).toMatchObject({ readOnlyHint: false, destructiveHint: false });
+    expect(byName.send_newsletter_campaign.inputSchema.properties.confirm.type).toBe('boolean');
+    expect(byName.send_newsletter_campaign.inputSchema.required).toEqual(['campaign_id']);
     for (const t of result.tools) expect(t.inputSchema.type).toBe('object');
     expect(JSON.stringify(result)).not.toContain('"run"');
   });
@@ -326,11 +358,306 @@ test.describe('the tools', () => {
     await tool(h, 'update', { table: 'leads', filters: ['id=eq.a'], values: { status: 'new' } });
     await tool(h, 'delete', { table: 'leads', filters: ['id=eq.a'] });
     await tool(h, 'call_function', { name: 'purge_lead', args: { p_id: 'a' } });
+    await tool(h, 'list_documents', { project_id: PROJECT });
+    await tool(h, 'read_document', { document_id: DOC });
+    await tool(h, 'upload_document', { project_id: PROJECT, name: 'a.txt', content: 'a' });
+    await tool(h, 'send_newsletter_campaign', { campaign_id: CAMPAIGN });
     const notSchema = w.calls.filter((c) => c.path !== '/rest/v1/');
-    expect(notSchema.length).toBeGreaterThan(10);
+    expect(notSchema.length).toBeGreaterThan(20);
     for (const c of notSchema) {
       expect(c.auth).not.toContain(ENV.SUPABASE_SECRET_KEY);
       expect(c.apikey).not.toBe(ENV.SUPABASE_SECRET_KEY);
     }
+  });
+});
+
+test.describe('the document library', () => {
+  const DOC_ROW = {
+    id: DOC, project_id: PROJECT, folder_id: SUBFOLDER, name: 'Jegyzet.md', byte_size: 12, content_kind: 'text',
+    upload_state: 'ready', storage_path: KEY, created_at: '2026-10-19T10:00:00Z', trashed_at: null,
+  };
+  const bytesOf = (s: string) => new TextEncoder().encode(s);
+
+  test('list_documents: the project\'s files with their folder paths, as the owner, the trash left out', async () => {
+    const h = await load();
+    const w = world({
+      reply: (c) => {
+        if (c.path === '/rest/v1/document_folders') {
+          return reply(200, [
+            { id: FOLDER, parent_id: null, name: 'Szerződések', trashed_at: null },
+            { id: SUBFOLDER, parent_id: FOLDER, name: '2026', trashed_at: null },
+            { id: id(503), parent_id: null, name: 'Régi', trashed_at: '2026-10-01T00:00:00Z' },
+          ]);
+        }
+        if (c.path === '/rest/v1/project_documents') return reply(200, [{ ...DOC_ROW, storage_path: undefined }]);
+        return undefined;
+      },
+    });
+    h.__net.fetch = backend(w);
+    const out = await tool(h, 'list_documents', { project_id: PROJECT });
+    expect(out.data.documents).toBe(1);
+    expect(out.data.rows[0]).toMatchObject({ id: DOC, name: 'Jegyzet.md', folder: 'Szerződések/2026' });
+    expect(out.data.folders).toEqual([{ id: FOLDER, path: 'Szerződések' }, { id: SUBFOLDER, path: 'Szerződések/2026' }]);
+    const docs = dataCalls(w).find((c) => c.path === '/rest/v1/project_documents')!;
+    expect(docs).toMatchObject({ method: 'GET', auth: 'Bearer owner-jwt' });
+    expect(docs.query.get('project_id')).toBe(`eq.${PROJECT}`);
+    expect(docs.query.get('trashed_at')).toBe('is.null');
+
+    await tool(h, 'list_documents', { project_id: PROJECT, include_trash: true });
+    expect(dataCalls(w).filter((c) => c.path === '/rest/v1/project_documents')[1].query.has('trashed_at')).toBe(false);
+    expect((await tool(h, 'list_documents', { project_id: 'x' })).isError).toBe(true);
+  });
+
+  test('read_document: a text file comes back as its text, read from Storage as the owner, in pages', async () => {
+    const h = await load();
+    const body = `# Jegyzet\n${'á'.repeat(150_000)}`;
+    const w = world({
+      reply: (c) => {
+        if (c.path === '/rest/v1/project_documents') return reply(200, [DOC_ROW]);
+        if (c.path === `/storage/v1/object/authenticated/project-documents/${KEY}`) return new Response(bytesOf(body));
+        return undefined;
+      },
+    });
+    h.__net.fetch = backend(w);
+    const first = await tool(h, 'read_document', { document_id: DOC });
+    expect(first.isError).toBe(false);
+    expect(first.data.document).toMatchObject({ id: DOC, name: 'Jegyzet.md' });
+    expect(first.data.document.storage_path).toBeUndefined();
+    expect(first.data.text.startsWith('# Jegyzet\ná')).toBe(true);
+    expect(first.data.text.length).toBe(100_000);
+    expect(first.data.page).toContain('Continue with offset 100000');
+    const rest = await tool(h, 'read_document', { document_id: DOC, offset: 100_000 });
+    expect(rest.data.text.length).toBe(body.length - 100_000);
+    const get = dataCalls(w).find((c) => c.path.startsWith('/storage/'))!;
+    expect(get).toMatchObject({ method: 'GET', auth: 'Bearer owner-jwt', apikey: ENV.SUPABASE_ANON_KEY });
+    expect(dataCalls(w).some((c) => c.path.includes('/object/sign/'))).toBe(false);
+  });
+
+  test('read_document: any other file is a five-minute download link, never read here', async () => {
+    const h = await load();
+    const pdf = { ...DOC_ROW, name: 'Ajánlat őszi.pdf', content_kind: 'pdf', byte_size: 90_000 };
+    const w = world({
+      reply: (c) => {
+        if (c.path === '/rest/v1/project_documents') return reply(200, [pdf]);
+        if (c.path === `/storage/v1/object/sign/project-documents/${KEY}`) {
+          return reply(200, { signedURL: `/object/sign/project-documents/${KEY}?token=signed` });
+        }
+        return undefined;
+      },
+    });
+    h.__net.fetch = backend(w);
+    const out = await tool(h, 'read_document', { document_id: DOC });
+    expect(out.data.download_url)
+      .toBe(`${ENV.SUPABASE_URL}/storage/v1/object/sign/project-documents/${KEY}?token=signed&download=Ajanlat%20oszi.pdf`);
+    expect(out.data.expires_in_seconds).toBe(300);
+    expect(out.data.text).toBeUndefined();
+    const sign = dataCalls(w).find((c) => c.path.startsWith('/storage/'))!;
+    expect(sign).toMatchObject({ method: 'POST', auth: 'Bearer owner-jwt', body: { expiresIn: 300 } });
+    expect(dataCalls(w).some((c) => c.path.includes('/object/authenticated/'))).toBe(false);
+  });
+
+  test('read_document: an unfinished upload or an unknown id is refused before Storage', async () => {
+    const h = await load();
+    let rows: unknown[] = [{ ...DOC_ROW, upload_state: 'pending' }];
+    const w = world({ reply: (c) => (c.path === '/rest/v1/project_documents' ? reply(200, rows) : undefined) });
+    h.__net.fetch = backend(w);
+    expect((await tool(h, 'read_document', { document_id: DOC })).data.error).toContain('pending');
+    rows = [];
+    expect((await tool(h, 'read_document', { document_id: DOC })).isError).toBe(true);
+    expect(dataCalls(w).some((c) => c.path.startsWith('/storage/'))).toBe(false);
+  });
+
+  test('upload_document: the Portal\'s four steps, as the owner — pending row, signed link, PUT, finish', async () => {
+    const h = await load();
+    const w = world({
+      reply: (c) => {
+        if (c.path === '/rest/v1/rpc/document_begin_upload') return reply(200, [{ id: DOC, name: 'Jegyzet (2).md', storage_path: KEY }]);
+        if (c.path === `/storage/v1/object/upload/sign/project-documents/${KEY}`) {
+          return reply(200, { url: `/object/upload/sign/project-documents/${KEY}?token=upload` });
+        }
+        if (c.method === 'PUT') return reply(200, { Key: `project-documents/${KEY}` });
+        if (c.path === '/rest/v1/rpc/document_finish_upload') return reply(200, 'ready');
+        return undefined;
+      },
+    });
+    h.__net.fetch = backend(w);
+    const content = 'Megbeszélés: árajánlat jövő hétre.\n';
+    const out = await tool(h, 'upload_document', { project_id: PROJECT, folder_id: FOLDER, name: 'Jegyzet.md', content });
+    expect(out.isError).toBe(false);
+    expect(out.data.uploaded).toEqual({ id: DOC, name: 'Jegyzet (2).md', project_id: PROJECT, folder_id: FOLDER, byte_size: bytesOf(content).length });
+
+    const [begin, sign, put, finish] = dataCalls(w);
+    expect(begin).toMatchObject({ method: 'POST', path: '/rest/v1/rpc/document_begin_upload', auth: 'Bearer owner-jwt' });
+    expect(begin.body).toEqual({
+      p_project: PROJECT, p_folder: FOLDER, p_name: 'Jegyzet.md', p_size: bytesOf(content).length, p_type: 'text/markdown', p_kind: 'text',
+    });
+    expect(sign).toMatchObject({ method: 'POST', auth: 'Bearer owner-jwt' });
+    expect(put.method).toBe('PUT');
+    expect(put.path).toBe(`/storage/v1/object/upload/sign/project-documents/${KEY}`);
+    expect(put.query.get('token')).toBe('upload');
+    expect(put.auth).toBe('');
+    expect(put.apikey).toBe(ENV.SUPABASE_ANON_KEY);
+    expect(new TextDecoder().decode(put.body as Uint8Array)).toBe(content);
+    expect(put.headers.get('content-type')).toBe('application/octet-stream');
+    expect(put.headers.get('x-upsert')).toBe('false');
+    expect(finish).toMatchObject({ method: 'POST', path: '/rest/v1/rpc/document_finish_upload', body: { p_id: DOC } });
+  });
+
+  test('upload_document: Storage\'s refusal leaves the row failed, as the Portal\'s uploader does', async () => {
+    const h = await load();
+    const w = world({
+      reply: (c) => {
+        if (c.path === '/rest/v1/rpc/document_begin_upload') return reply(200, [{ id: DOC, name: 'a.txt', storage_path: KEY }]);
+        if (c.path.startsWith('/storage/v1/object/upload/sign/') && c.method === 'POST') {
+          return reply(200, { url: `/object/upload/sign/project-documents/${KEY}?token=upload` });
+        }
+        if (c.method === 'PUT') return reply(400, { error: 'InvalidMimeType', message: 'mime type not supported' });
+        return undefined;
+      },
+    });
+    h.__net.fetch = backend(w);
+    const out = await tool(h, 'upload_document', { project_id: PROJECT, name: 'a.txt', content: 'hello' });
+    expect(out.isError).toBe(true);
+    expect(out.data.error).toMatchObject({ status: 400, storage: 'InvalidMimeType' });
+    const mark = dataCalls(w).find((c) => c.method === 'PATCH')!;
+    expect(mark.path).toBe('/rest/v1/project_documents');
+    expect(mark.body).toEqual({ upload_state: 'failed', failure_reason: 'storage_refused' });
+    expect(mark.query.get('upload_state')).toBe('eq.pending');
+    expect(dataCalls(w).some((c) => c.path === '/rest/v1/rpc/document_finish_upload')).toBe(false);
+  });
+
+  test('upload_document refuses what the Portal would — before any row exists', async () => {
+    const h = await load();
+    const w = world();
+    h.__net.fetch = backend(w);
+    // The same verdicts as the Portal's own check (sniffKind) on the same bytes.
+    const { sniffKind } = await import('../portal/src/lib/documentRules');
+    const refused = ['<!doctype html><p>hi', '  <svg onload=x>', '%PDF-1.7 fake', '{\\rtf1 x', 'GIF89a…', 'ID3 tag', '1234ftypisom'];
+    for (const content of refused) {
+      expect(sniffKind(bytesOf(content), 'txt'), content).not.toBe('text');
+      expect((await tool(h, 'upload_document', { project_id: PROJECT, name: 'a.txt', content })).isError, content).toBe(true);
+    }
+    expect(sniffKind(bytesOf('név;összeg\nA;1'), 'csv')).toBe('text');
+    for (const name of ['a.pdf', 'a.html', 'a.json', 'noextension']) {
+      expect((await tool(h, 'upload_document', { project_id: PROJECT, name, content: 'x' })).isError, name).toBe(true);
+    }
+    expect((await tool(h, 'upload_document', { project_id: PROJECT, name: 'a.txt', content: 'x'.repeat(600 * 1024) })).isError).toBe(true);
+    expect((await tool(h, 'upload_document', { project_id: 'nope', name: 'a.txt', content: 'x' })).isError).toBe(true);
+    expect(dataCalls(w)).toHaveLength(0);
+  });
+
+  test('the steps of an upload cannot be run around the tool', async () => {
+    const h = await load();
+    const w = world();
+    h.__net.fetch = backend(w);
+    for (const name of ['document_begin_upload', 'document_finish_upload']) {
+      const out = await tool(h, 'call_function', { name, args: {} });
+      expect(out.data.error).toContain('upload_document');
+    }
+    expect(dataCalls(w)).toHaveLength(0);
+  });
+});
+
+test.describe('the Portal\'s actions', () => {
+  test('invite_client is portal-invite.mjs itself', async () => {
+    const h = await load();
+    const real = (await import('../netlify/functions/portal-invite.mjs')) as unknown as Handler;
+    expect(h.__functions.invite).toBe(real.default);
+  });
+
+  test('invite_client: the invite flow with the owner\'s token, the one-time link back', async () => {
+    const h = await load();
+    const w = world({
+      reply: (c) => {
+        if (c.path === '/rest/v1/rpc/client_invite_prepare') return reply(200, [{ account_id: ACCOUNT, user_id: null }]);
+        if (c.path === '/rest/v1/profiles') return reply(200, []);
+        if (c.path === '/auth/v1/admin/generate_link') {
+          return reply(200, { user: { id: USER }, properties: { hashed_token: 'hash123', verification_type: 'invite' } });
+        }
+        if (c.path === '/rest/v1/rpc/client_invite_attach') return reply(200, null);
+        return undefined;
+      },
+    });
+    h.__net.fetch = backend(w);
+    await withInvite(h, w);
+    const out = await tool(h, 'invite_client', {
+      organization_id: ORG, full_name: 'Kert Elek', email: 'Elek@Rapidkert.hu', project_ids: [PROJECT],
+    });
+    expect(out.isError).toBe(false);
+    expect(out.data).toMatchObject({ account_id: ACCOUNT, kind: 'invite', link: `${ORIGIN}/portal/accept-invite#token_hash=hash123&type=invite` });
+
+    const prepare = w.calls.find((c) => c.path === '/rest/v1/rpc/client_invite_prepare')!;
+    expect(prepare.auth).toBe('Bearer owner-jwt');
+    expect(prepare.body).toEqual({ p_organization: ORG, p_contact: null, p_name: 'Kert Elek', p_email: 'elek@rapidkert.hu', p_projects: [PROJECT] });
+    expect(w.calls.find((c) => c.path === '/rest/v1/rpc/client_invite_attach')).toMatchObject({ auth: 'Bearer owner-jwt', body: { p_account: ACCOUNT, p_user: USER } });
+    // The server key only where portal-invite.mjs documents it: finding and creating the auth user.
+    for (const c of w.calls.filter((x) => x.auth.includes(ENV.SUPABASE_SECRET_KEY))) {
+      expect(['/rest/v1/profiles', '/auth/v1/admin/generate_link']).toContain(c.path);
+    }
+  });
+
+  test('invite_client: a refusal comes back as portal-invite\'s own code, and no account is created', async () => {
+    const h = await load();
+    const w = world({
+      reply: (c) => (c.path === '/rest/v1/rpc/client_invite_prepare'
+        ? reply(409, { code: 'P0001', message: 'stratos:client_email_is_staff' })
+        : undefined),
+    });
+    h.__net.fetch = backend(w);
+    await withInvite(h, w);
+    const out = await tool(h, 'invite_client', { organization_id: ORG, full_name: 'Kert Elek', email: 'hello@stratosweb.hu' });
+    expect(out.isError).toBe(true);
+    expect(out.data.error).toMatchObject({ status: 409, code: 'EMAIL_IS_STAFF' });
+    expect(w.calls.some((c) => c.path.startsWith('/auth/v1/admin/'))).toBe(false);
+  });
+
+  const CAMPAIGN_ROW = { id: CAMPAIGN, subject: 'Őszi hírek', preheader: null, audience: 'hu', status: 'draft' };
+  const newsletterWorld = (campaign: Record<string, unknown> = CAMPAIGN_ROW) => world({
+    reply: (c) => {
+      if (c.path === '/rest/v1/newsletter_campaigns') return reply(200, [campaign]);
+      if (c.path === '/rest/v1/newsletter_subscribers') return reply(200, [{ id: 's' }], { 'content-range': '0-0/42' });
+      if (c.path === '/rest/v1/rpc/newsletter_campaign_send') return reply(200, 42);
+      return undefined;
+    },
+  });
+  const sends = (w: World) => w.calls.filter((c) => c.path === '/rest/v1/rpc/newsletter_campaign_send');
+
+  test('send_newsletter_campaign without confirm: what would go out, and nothing sent', async () => {
+    const h = await load();
+    const w = newsletterWorld();
+    h.__net.fetch = backend(w);
+    for (const confirm of [undefined, false, 'true', 'yes', 1]) {
+      const out = await tool(h, 'send_newsletter_campaign', { campaign_id: CAMPAIGN, ...(confirm === undefined ? {} : { confirm }) });
+      expect(out.data.sent).toBe(false);
+      expect(out.data.would_send).toMatchObject({ subject: 'Őszi hírek', audience: 'hu', recipients: 42 });
+    }
+    expect(sends(w)).toHaveLength(0);
+    const count = w.calls.find((c) => c.path === '/rest/v1/newsletter_subscribers')!;
+    expect(count).toMatchObject({ auth: 'Bearer owner-jwt', prefer: 'count=exact' });
+    expect(count.query.get('status')).toBe('eq.confirmed');
+    expect(count.query.get('locale')).toBe('eq.hu');
+  });
+
+  test('send_newsletter_campaign with confirm: true queues it through the Portal\'s own function, as the owner', async () => {
+    const h = await load();
+    const w = newsletterWorld();
+    h.__net.fetch = backend(w);
+    const out = await tool(h, 'send_newsletter_campaign', { campaign_id: CAMPAIGN, confirm: true });
+    expect(out.data).toMatchObject({ sent: true, queued: 42, campaign_id: CAMPAIGN });
+    expect(sends(w)).toHaveLength(1);
+    expect(sends(w)[0]).toMatchObject({ method: 'POST', auth: 'Bearer owner-jwt', body: { p_id: CAMPAIGN } });
+  });
+
+  test('send_newsletter_campaign: only a draft, and never through call_function', async () => {
+    const h = await load();
+    const w = newsletterWorld({ ...CAMPAIGN_ROW, status: 'sent' });
+    h.__net.fetch = backend(w);
+    expect((await tool(h, 'send_newsletter_campaign', { campaign_id: CAMPAIGN, confirm: true })).data.error).toContain('only a draft');
+    const around = await tool(h, 'call_function', { name: 'newsletter_campaign_send', args: { p_id: CAMPAIGN } });
+    expect(around.data.error).toContain('send_newsletter_campaign');
+    for (const name of ['client_invite_prepare', 'client_invite_attach']) {
+      expect((await tool(h, 'call_function', { name, args: {} })).data.error).toContain('invite_client');
+    }
+    expect(sends(w)).toHaveLength(0);
   });
 });
