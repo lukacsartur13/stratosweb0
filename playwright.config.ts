@@ -52,6 +52,8 @@ const NODE_ONLY = [
   /newsletter\.spec\.ts/,
   // The automatic e-mails (20261019000200).
   /email-automations\.spec\.ts/,
+  // The Claude connector (netlify/functions/portal-mcp.mjs), against a mocked Supabase.
+  /portal-mcp\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are

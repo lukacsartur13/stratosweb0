@@ -141,6 +141,15 @@ Every file is its own item with its own progress, error and **Retry**; up to two
 upload at a time, and one failing never stops the others. The file picker
 (**Upload**) and drag-and-drop do the same thing.
 
+**One exception, for small text only:** the Claude connector's `upload_document`
+(`CLAUDE_CONNECTOR.md`) sends a `.txt`, `.md` or `.csv` of at most 512 KB
+through `netlify/functions/portal-mcp.mjs` — with the **owner's own token**,
+through the same steps 1–5 (the content check is `sniffKind`'s text rule), so
+Storage and the database apply exactly the policies above. Its `read_document`
+reads a text file with that token, and answers anything else with a signed
+link of five minutes. `tests/portal-documents.spec.ts` names it as the only
+function allowed to touch the bucket.
+
 | Failure | Handling |
 | --- | --- |
 | Type refused (§3) | Fails before any request; no Retry (it cannot help). |
@@ -319,7 +328,7 @@ local stack (`supabase start`, Docker):
 
 | Layer | Command | Talks to | Proves |
 | --- | --- | --- | --- |
-| Rules and contracts | `npm run test:documents` (with the next) → `tests/portal-documents.spec.ts` | nothing | content detection, the allowlist verdicts, preview rules, key classification, the build refusing a secret key, no iframe/HTML injection/unzipping, no server function touching documents, no CSP loosening |
+| Rules and contracts | `npm run test:documents` (with the next) → `tests/portal-documents.spec.ts` | nothing | content detection, the allowlist verdicts, preview rules, key classification, the build refusing a secret key, no iframe/HTML injection/unzipping, no server function touching documents but the Claude connector, no CSP loosening |
 | Database (PGlite) | `npm run test:documents` → `tests/portal-documents-db.spec.ts` | real Postgres 18.3 in WebAssembly, with a stand-in `storage` catalogue | every SQL rule and policy: lifecycle, links per path, no overwrite, types, names, folders, trash, access for every role, the SQL-editor checks, rollback |
 | Rendered UI (mock) | `npm run check:documents:ui` → `scripts/portal-documents-check.mjs` | a fake PostgREST **and** Storage in the browser | the screens and the upload client's behaviour: per-file errors and retries, fresh links, keyboard and phone use |
 | **Live (real Supabase)** | `npm run check:documents:live` → `scripts/documents-live-check.mjs` | a **local** Supabase: Auth, PostgREST, Storage | what only the real services can: the bucket's limits and MIME rule, link lifetime, reuse of an old link, upsert refusal, expiry of download links, every role against real Storage |

@@ -199,10 +199,18 @@ test.describe('who sees the library', () => {
     expect(read('portal', 'src', 'pages', 'projects.tsx')).toMatch(/canAccess\(profile, 'view_documents'\) && \(\s*<div[^>]*>\s*<ProjectLibrary/);
   });
 
-  test('no server function touches documents, and none receives a file', () => {
+  test('no server function touches documents, and none receives a file — but the Claude connector, as the owner', () => {
     const dir = path.join(ROOT, 'netlify', 'functions');
     for (const f of fs.readdirSync(dir).filter((n) => !/ \d+\./.test(n))) {
       const body = fs.readFileSync(path.join(dir, f), 'utf8');
+      // The one exception (supabase/CLAUDE_CONNECTOR.md): it reads files and
+      // adds small text files with the OWNER's own token, so Storage runs the
+      // same policies as for the Portal, through the Portal's four upload steps
+      // — proven call by call in tests/portal-mcp.spec.ts. Still no form upload.
+      if (f === 'portal-mcp.mjs') {
+        expect(body).not.toMatch(/multipart/);
+        continue;
+      }
       expect(body, f).not.toMatch(/project[-_]documents|document_folders|\.storage\b|multipart/);
     }
   });
