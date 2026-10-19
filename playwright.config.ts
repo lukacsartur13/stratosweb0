@@ -47,6 +47,11 @@ const NODE_ONLY = [
   /booking\.spec\.ts/,
   /portal-booking-db\.spec\.ts/,
   /portal-client-extras\.spec\.ts/,
+  // The newsletter (20261019000100): the database, the functions, the e-mails.
+  /newsletter-db\.spec\.ts/,
+  /newsletter\.spec\.ts/,
+  // The automatic e-mails (20261019000200).
+  /email-automations\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are

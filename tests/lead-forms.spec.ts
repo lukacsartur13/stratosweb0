@@ -437,7 +437,7 @@ test.describe('newsletter', () => {
     const sent = await interceptLead(page);
 
     await page.fill('#nl', 'reader@example.com');
-    await page.getByRole('button', { name: 'Szóljatok' }).click();
+    await page.getByRole('button', { name: 'Feliratkozom' }).click();
 
     const note = page.locator('.form__note[data-state="success"]');
     await expect(note).toBeVisible({ timeout: 15_000 });
@@ -447,12 +447,12 @@ test.describe('newsletter', () => {
     // No name to give, and none invented in the page: the endpoint owns that.
     expect(sent[0].fields.name).toBeUndefined();
 
-    // What the visitor is told must be what happens. There is no newsletter
-    // system: the address is stored and nothing is sent. The general success
-    // message promises a reply, so the newsletter has its own — and the
-    // assertion is that the reply promise is NOT what appears here.
+    // What the visitor is told must be what happens: a double opt-in e-mail
+    // (netlify/functions/newsletter*.mjs) — conditionally, because an address
+    // already on the list gets none and the form never says who is. The
+    // general success message promises a reply; that is NOT what appears here.
     await expect(note).not.toContainText(/válaszolunk/i);
-    await expect(note).toContainText(/hírlevelet még nem küldünk/i);
+    await expect(note).toContainText(/ha ez a cím még nem volt a listán, küldtünk rá egy megerősítő levelet/i);
   });
 
   test('the blog signup posts to the same endpoint', async ({ page }) => {
@@ -461,7 +461,7 @@ test.describe('newsletter', () => {
 
     await page.fill('#nl2', 'reader@example.com');
     await page.locator('form[data-lead="newsletter"]').first()
-      .getByRole('button', { name: 'Szóljatok' }).click();
+      .getByRole('button', { name: 'Feliratkozom' }).click();
 
     await expect(page.locator('.form__note[data-state="success"]').first())
       .toBeVisible({ timeout: 15_000 });
@@ -683,53 +683,44 @@ test.describe('the deployed bundle', () => {
 });
 
 /* ==========================================================================
-   Phase 9, Workstreams K and S — the public copy must match what happens.
+   The public copy must match what happens.
 
-   The newsletter is the case where the two had drifted furthest apart. Three
-   places promised email that no system sends: the footer signup ("subscribe to
-   our newsletter", "Subscribe"), the blog signup, which additionally promised a
-   FREQUENCY ("rarely, but with substance"), and the success message every form
-   shares, which promises a reply.
+   Phase 9 (Workstreams K and S) found three places promising e-mail that no
+   system sent, and made them say so. Since 2026-10-18 the newsletter exists,
+   with double opt-in (netlify/functions/newsletter*.mjs, 20261019000100), so
+   the copy now says what DOES happen: a confirmation e-mail, and leaving at
+   any time. What it still must not do is promise a frequency nobody has
+   committed to.
 
-   Nothing was broken. A visitor gave an address, the address was stored, and
-   they were told they had subscribed to something. That is the kind of claim
-   that costs nothing until someone asks why no newsletter ever arrived.
-
-   These assertions are on the built pages in all three languages, because the
-   promise has to be absent in each of them and a translation is exactly where
-   one would survive.
+   On the built pages in all three languages, because a translation is
+   exactly where a stale promise survives.
    ========================================================================== */
-test.describe('the newsletter does not claim to send anything', () => {
+test.describe('the newsletter says what happens, and promises no frequency', () => {
+  // `scope` is the signup itself: the footer form, or the blog's card.
   const PAGES = [
-    { route: '/rolunk.html', field: '#nl' },
-    { route: '/en/about.html', field: '#nl' },
-    { route: '/de/ueber-uns.html', field: '#nl' },
-    { route: '/blog.html', field: '#nl2' },
-    { route: '/en/blog.html', field: '#nl2' },
-    { route: '/de/blog.html', field: '#nl2' },
+    { route: '/rolunk.html', field: '#nl', scope: '.ftr__nl', says: /megerősítő levelet küldünk/i },
+    { route: '/en/about.html', field: '#nl', scope: '.ftr__nl', says: /send a confirmation e-mail/i },
+    { route: '/de/ueber-uns.html', field: '#nl', scope: '.ftr__nl', says: /Bestätigungs-E-Mail/i },
+    { route: '/blog.html', field: '#nl2', scope: '.post:has(#nl2)', says: /megerősítő levelet küldünk/i },
+    { route: '/en/blog.html', field: '#nl2', scope: '.post:has(#nl2)', says: /send a confirmation e-mail/i },
+    { route: '/de/blog.html', field: '#nl2', scope: '.post:has(#nl2)', says: /Bestätigungs-E-Mail/i },
   ];
 
-  for (const { route, field } of PAGES) {
-    test(`${route} offers the form without promising delivery`, async ({ page }) => {
+  for (const { route, field, scope, says } of PAGES) {
+    test(`${route} offers the form, names the confirmation e-mail, promises no frequency`, async ({ page }) => {
       await page.goto(route);
       await expect(page.locator(field)).toBeVisible();
 
+      const signup = await page.locator(scope).innerText();
+      expect(signup, `${route} does not mention the confirmation e-mail`).toMatch(says);
+      for (const claim of [/hetente|havonta/i, /\bweekly\b|\bmonthly\b/i, /wöchentlich|monatlich/i]) {
+        expect(signup, `${route} promises a frequency: ${claim}`).not.toMatch(claim);
+      }
+      // Anywhere on the page: the frequency words the pre-Phase-9 copy used,
+      // and the "not built yet" wording that is no longer true.
       const text = await page.locator('body').innerText();
-
-      // Words that assert a subscription exists, or that mail will arrive, or
-      // how often. Each of these was on the page before Phase 9.
-      for (const claim of [
-        /subscribe to our newsletter/i,
-        /iratkozz fel a hírlevelünkre/i,
-        /abonniere unseren newsletter/i,
-        /elküldjük e-mailben/i,
-        /we['’]ll send you .* by email/i,
-        /senden wir .* per e-mail/i,
-        /\britkán\b/i,          // a frequency claim
-        /\brarely\b/i,
-        /\bselten\b/i,
-      ]) {
-        expect(text, `${route} still claims: ${claim}`).not.toMatch(claim);
+      for (const stale of [/\britkán\b/i, /\brarely\b/i, /\bselten\b/i, /még készül/i, /still being built/i, /entsteht gerade/i]) {
+        expect(text, `${route}: ${stale}`).not.toMatch(stale);
       }
     });
   }

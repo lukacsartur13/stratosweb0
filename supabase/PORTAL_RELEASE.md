@@ -1017,3 +1017,145 @@ nézetméret (nyilvános oldal HU/EN/DE); ügyfélportál-ellenőrző 26/26 (+2:
 push után a Netlify kitette; a tulajdonos lefuttatta a migrációt és újra összekötötte a Google-t. Utána az élő
 `/api/booking` 316 szabad időpontot adott (első: hétfő 9:00 budapesti idő szerint). Az adatkezelési tájékoztató
 kiegészítése a jóváhagyás után került be.
+
+## 32. Hírlevél: dupla megerősítés, üdvözlő levél, kampányok a portálból (23. szakasz)
+
+**Sorrend: a tájékoztató jóváhagyása → migráció → deploy → Resend-webhook → próba.** (A 31. szakasz a `main`-en van.)
+
+1. Nézd át és hagyd jóvá az adatkezelési tájékoztató módosítását (lent). A webhelyen már benne van HU/EN/DE.
+2. SQL Editor: `supabase/migrations/20261019000100_newsletter.sql`. Ismételten is futtatható. A régi
+   hírlevél-leadeket csak az első futáskor veszi át, **függőben lévő** címként: senki nem kap tőle levelet.
+3. Netlify → Environment variables (Functions): a `RESEND_API_KEY` már megvan, a portál értesítései is ezt
+   használják. Nem kötelező: `NEWSLETTER_FROM` (alapból `Stratos <hirlevel@stratosweb.hu>`; a stratosweb.hu a
+   Resendben hitelesítve van, új DNS nem kell) és `NEWSLETTER_REPLY_TO` (alapból `hello@stratosweb.hu`).
+4. Deploy — csak a tulajdonos engedélyével. Két új függvény indul: `newsletter` (`/api/newsletter/*`) és
+   `newsletter-dispatch` (percenként).
+5. Resend → Webhooks → Add endpoint: `https://stratosweb.hu/api/newsletter/webhook`, események: `email.bounced`
+   és `email.complained`. A kapott „Signing secret”-et (`whsec_…`) tedd be Netlify-ba `RESEND_WEBHOOK_SECRET`
+   néven, majd deployolj újra. Enélkül a visszapattanó címek a listán maradnak (a végpont 503-at ad).
+6. Próba: a láblécben iratkozz fel egy saját címmel → megerősítő levél → „Igen, feliratkozom” → üdvözlő levél →
+   Portál → **Newsletter**: a cím „Confirmed”. Ezután: új levél → Preview → Send a test to me → küldés.
+7. A régi kérések: Portál → Newsletter → **Ask them to confirm**. Mindenki egy megerősítő levelet kap. Aki 30 napon
+   belül nem erősít meg, automatikusan törlődik. Amíg nem nyomod meg, nekik semmi nem megy ki.
+
+Mit csinál (a tulajdonos döntése, 2026-10-18: dupla megerősítés + üdvözlő, saját rendszer a portálon):
+
+- **Feliratkozás:** a lábléc vagy a blog űrlapja, illetve a kapcsolati űrlap pipája (most már: „Feliratkozom a
+  Stratos hírlevelére is…”). Ebből függőben lévő cím lesz és megerősítő levél. A levélben lévő link egy **gombos
+  oldalt** nyit, és csak a gomb erősít meg, mert a levélszkennerek megnyitják a linkeket, de gombot nem nyomnak.
+  Egy címre 2 percen belül nem megy újabb megerősítő, naponta legfeljebb 3. A link 30 napig érvényes. A meg nem
+  erősített cím az utolsó megerősítő után 30 nappal törlődik. Az űrlap válasza minden esetben ugyanaz, így nem árulja
+  el, ki van már a listán.
+- **Üdvözlő levél** a megerősítés után: három blogcikk a feliratkozó nyelvén, és leiratkozás.
+- **Minden levél** (üdvözlő és hírlevél) lábléce megnevezi a feladót (Lukács Artúr e.v., 9151 Abda, Arany János
+  utca 13.), és tartalmaz leiratkozó linket. A levélben `List-Unsubscribe` és `List-Unsubscribe-Post` fejléc is van,
+  így a Gmail és a Yahoo saját „Leiratkozás” gombja egy kattintással működik. A leiratkozó oldalon van „Mégis
+  maradok” gomb.
+- **Kampány:** Portál → Newsletter. Megadod a tárgyat, az előnézeti sort, a közönséget (mind / magyar / angol /
+  német) és a szöveget egyszerű jelöléssel (`## cím`, `- lista`, `**félkövér**`, `[szöveg](https://…)`). Van
+  előnézet, próbalevél magadnak, és küldés. A küldést a `newsletter-dispatch` végzi percenként, 100-as kötegekben,
+  legfeljebb 500 levelet percenként. A „Stop sending” megállítja.
+- **Visszapattanás vagy spamjelzés:** a webhook leveszi a címet a listáról.
+- **Jogosultság:** a lista és a kampányok az adminoké (`is_admin()`). A tokeneket és az IP-lenyomatot a portál sem
+  olvashatja.
+
+Tudnivalók a tulajdonosnak:
+
+- **Resend-csomag:** az ingyenes csomag napi 100 és havi 3000 levelet enged. Nagyobb kampány a napi keretnél
+  megáll (429). A dispatcher percenként újrapróbálja, a kiküldés másnap folytatódik. Gyorsabb kiküldéshez Pro
+  csomag kell.
+- A hírlevél-feliratkozások **továbbra is leadként is** bekerülnek („Newsletter subscriber”). Ha ez zavaró, külön
+  döntés.
+- A hírlevél most a fő domainről megy. A Resend azt javasolja, hogy a marketing külön aldomainről menjen (pl.
+  `news.stratosweb.hu`), hogy egy rossz kampány ne rontsa a portál leveleinek kézbesíthetőségét. Nagyobb listánál
+  érdemes átállni (ehhez új DNS kell).
+- Leállítás: a migráció ACCESS blokkjában a szerverkulcs szerepének adott `newsletter_subscribe` végrehajtási jogot
+  vond vissza (`revoke execute on function newsletter_subscribe(text, text, text, text, text) from …`) — ezután a
+  feliratkozás csak leadként tárolódik, levél nem megy ki.
+
+### Adatkezelési tájékoztató — TERVEZET (a tulajdonos jóváhagyására vár; a webhelyen HU/EN/DE)
+
+- *Célok:* „hírlevél-kérések fogadása és nyilvántartása” → „hírlevél küldése azoknak, akik feliratkoztak és ezt
+  e-mailben megerősítették”.
+- *Hírlevél-feliratkozás esetén:* e-mail cím és nyelv; a feliratkozás módja, oldala és időpontja; a megerősítés,
+  illetve a leiratkozás időpontja és módja; az IP-cím sózott lenyomata; melyik hírlevél ment ki és mikor. Mellette
+  a kétlépcsős folyamat, a 30 napos törlés, a 2026-10-18 előtti kérések kezelése (legfeljebb egy megerősítő levél),
+  és a leiratkozás.
+- *Időtartam:* „a leiratkozásig; utána a címet csak azért őrizzük meg, hogy ne küldjünk rá újra hírlevelet —
+  kérésre ezt is töröljük. Meg nem erősített feliratkozás: legfeljebb 30 nap.”
+- *Adatfeldolgozók:* új sor: Plus Five Five, Inc. (Resend), 2261 Market Street #5039, San Francisco, CA 94114, USA.
+  Adattovábbítás: EU általános szerződési feltételek (SCC) és EU–USA adatvédelmi keretrendszer, a Resend DPA-ja
+  szerint (resend.com/legal/dpa, 2026-10-18). Az „E-mail szolgáltató” sorból kikerült a már nem igaz mondat: „a
+  weboldal rendszere önmagában nem küld e-mailt”.
+- A jogalap továbbra sincs megnevezve. Ez a meglévő, jogászra váró hiány (`REQUIRES LEGAL REVIEW`). A hírlevélnél ez
+  a hozzájárulás lenne (GDPR 6. cikk (1) a), Grt. 6. §).
+
+Ellenőrizve (helyben, 2026-10-18, valódi Supabase és Resend nélkül):
+- `tests/newsletter-db.spec.ts` 20/20, PGlite-on: régi kérések átvétele, dupla megerősítés és korlátai, újrapróbálás,
+  lejárat, 30 napos törlés, leiratkozás és visszairatkozás, visszapattanás, kampánysor, 429, leállítás,
+  jogosultságok.
+- `tests/newsletter.spec.ts` 18/18: sablonok mindhárom nyelven, jelölés és HTML-escape, oldalak, webhook-aláírás.
+  Végig PGlite-on hamis Resenddel: `/api/lead` → megerősítő → gomb → üdvözlő → leiratkozás → vissza → egykattintásos
+  leiratkozás → visszapattanás → kampány a dispatcherrel → 429 → újrapróbált megerősítő → portál előnézet és teszt.
+- `tests/lead-forms.spec.ts` (új hírlevélszöveg HU/EN/DE).
+- A node-os tesztek: 560 zöld. A `gate-independence` a titokkereső kivétellistájának bővítése után zöld.
+- `tests/portal-control-room.spec.ts` + `tests/portal-revenue.spec.ts` 113/113.
+- Portál: típusellenőrzés, build és i18n-ellenőrzés hibátlan (0 hiányzó fordítás).
+- Az oldalak és a levelek böngészőben, asztali és telefonos méretben ellenőrizve.
+
+## 33. Automatikus levelek: visszaigazolás, hívás előtti emlékeztető, üdvözlő sorozat, új cikkek (24. szakasz)
+
+**Sorrend: 32. (hírlevél) → ez a migráció → deploy → az üdvözlő sorozat átnézése és bekapcsolása.** Új kulcs nem kell.
+
+1. SQL Editor: `supabase/migrations/20261019000200_email_automations.sql` (a hírlevél-migráció után; ismételten is
+   futtatható).
+2. Deploy. Új függvényfájl nincs: a visszaigazolást a `/api/lead` küldi, a többit a percenkénti `newsletter-dispatch`.
+   Mostantól a build minden futáskor elkészíti az `assets/data/newsletter-feed.json` fájlt (a cikkek és az
+   esettanulmányok listája).
+3. Portál → Newsletter → **Welcome series**: a 3 előre megírt levél (HU/EN/DE) **ki van kapcsolva**. Olvasd át,
+   javítsd, ahol kell, és lépésenként kapcsold be.
+4. Próba: küldd el a kapcsolati űrlapot egy saját címmel. Pár másodpercen belül meg kell érkeznie a „Megkaptuk az
+   üzeneted” levélnek.
+
+Mit csinál (a tulajdonos döntése, 2026-10-19):
+
+- **Visszaigazolás beküldés után:** a kapcsolati űrlap, az árajánlat-kérdőív és az Impact-jelentkezés után megy ki, a
+  beküldés nyelvén. A levél azt mondja, amit a webhely is: kapcsolat → „jellemzően egy munkanapon belül válaszolunk”,
+  kérdőív → „pár órán belül keresünk… árajánlattal”, Impact → „átnézzük, e-mailben jelentkezünk, a kiválasztás nem
+  garantált”. Mellette van időpontfoglalás link (Impactnál az Impact-oldal linkje). **Csak rögzített szöveg megy ki,
+  a beküldött tartalomból semmi** (név, üzenet, válaszok sem), így az űrlappal nem lehet idegen címre idegen szöveget
+  küldetni. Egy címre 24 órán belül legfeljebb egy ilyen levél megy. A feladó a portál feladója
+  (`NOTIFY_FROM`, alapból `portal@stratosweb.hu`), a válaszcím `hello@`. Ha a küldés nem sikerül, a beküldés attól
+  még rendben van.
+- **Hívás előtti emlékeztető:** kb. 24 órával a hívás előtt megy ki, benne az időpont budapesti idő szerint, a Meet-link
+  gombként, a nyilvános foglalóknak egy rövid „mit érdemes előkészíteni” lista, és hogy hogyan lehet lemondani vagy
+  áthelyezni (a Google-meghívóból, illetve ügyfélként a portálon). Nem megy, ha az időpontot 25 órán belül foglalták
+  vagy helyezték át, mert a Google meghívója épp akkor ment ki. Áthelyezéskor az emlékeztető újraindul, lemondott
+  hívásra nem megy.
+- **Üdvözlő sorozat:** a megerősítés után a bekapcsolt lépések mennek ki, a feliratkozó nyelvén, sorrendben,
+  mindegyik a maga napján (a megerősítéstől számolva: 3, 7, 14 nap). A 3 napnál többet késő lépést kihagyja, nem
+  küldi el későn. Aki a sorozat előtt iratkozott fel, nem kapja meg. Leiratkozó link minden levélben van.
+- **Új cikk vagy esettanulmány:** a küldő 10 percenként megnézi a webhely listáját. Ami új, arról nyelvenként egy
+  kampány készül („Új cikk: …”, „Új esettanulmány: …”, a leírással és a linkkel), és kimegy annak a nyelvnek a
+  megerősített feliratkozóinak. Ami az első olvasáskor már a listán volt, azt csak megjegyzi, nem küldi ki. A
+  Portálon (Newsletter → Automatic announcements) átállítható: azonnal küldi / csak tervezetet készít / ki. Az
+  automatikus kampányok a kampánylistában „Automatic” jelölést kapnak, és ott meg is állíthatók.
+
+Adatkezelési tájékoztató — TERVEZET (jóváhagyásra vár; a webhelyen HU/EN/DE):
+- A hírlevél célja kiegészül: „…ennek része néhány bemutatkozó levél a feliratkozás után, és értesítés új cikkekről,
+  esettanulmányokról”.
+- A Resend sorában a kézbesített levelek közé bekerül: „az űrlapok beküldésének visszaigazolása, a foglalt időpont
+  előtti emlékeztető”.
+- Más nem változik: a visszaigazolás a kapcsolatfelvétel, az emlékeztető az időpontfoglalás része, új adat nem
+  keletkezik.
+
+Ellenőrizve (helyben, 2026-10-19, valódi Supabase és Resend nélkül):
+- `tests/email-automations.spec.ts` 14/14, PGlite-on hamis Resenddel:
+  - visszaigazolás mindhárom űrlapra a beküldött szöveg nélkül, naponta egy, a hírlevél-űrlapra nem;
+  - emlékeztető: mikor megy, a későn foglalt, az áthelyezett és a lemondott hívás;
+  - a sorozat: kikapcsolva semmi, bekapcsolva lépésenként, a kihagyott lépések, a régi feliratkozó, a leiratkozott;
+  - bejelentések: az első lista csak megjegyzés, utána kampány és kiküldés, a „draft” és az „off” mód, a hibás lista;
+  - jogosultságok;
+  - a webhely listájának minden tétele létező oldalra mutat.
+- Az összes node-os teszt: 574 zöld.
+- A levelek böngészőben is ellenőrizve.

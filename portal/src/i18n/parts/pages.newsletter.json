@@ -1,0 +1,734 @@
+{
+ "Hungarian": {
+  "hu": "Magyar",
+  "de": "Ungarisch"
+ },
+ "English": {
+  "hu": "Angol",
+  "de": "Englisch"
+ },
+ "German": {
+  "hu": "Német",
+  "de": "Deutsch"
+ },
+ "All languages": {
+  "hu": "Minden nyelv",
+  "de": "Alle Sprachen"
+ },
+ "Newsletter form": {
+  "hu": "Hírlevél-űrlap",
+  "de": "Newsletter-Formular"
+ },
+ "Contact form": {
+  "hu": "Kapcsolati űrlap",
+  "de": "Kontaktformular"
+ },
+ "Before launch": {
+  "hu": "Indulás előtti",
+  "de": "Vor dem Start"
+ },
+ "Confirmed": {
+  "hu": "Megerősítve",
+  "de": "Bestätigt"
+ },
+ "Unsubscribed": {
+  "hu": "Leiratkozott",
+  "de": "Abgemeldet"
+ },
+ "Bounced": {
+  "hu": "Visszapattant",
+  "de": "Unzustellbar"
+ },
+ "Marked as spam": {
+  "hu": "Spamnek jelölte",
+  "de": "Als Spam markiert"
+ },
+ "by the link in an e-mail": {
+  "hu": "egy levélben lévő linkkel",
+  "de": "über den Link in einer E-Mail"
+ },
+ "with their mail app’s unsubscribe button": {
+  "hu": "a levelezője leiratkozás gombjával",
+  "de": "über die Abmelden-Schaltfläche des Mailprogramms"
+ },
+ "here in the portal": {
+  "hu": "itt, a portálon",
+  "de": "hier im Portal"
+ },
+ "the address bounced": {
+  "hu": "a cím visszapattant",
+  "de": "die Adresse war unzustellbar"
+ },
+ "they marked an e-mail as spam": {
+  "hu": "spamnek jelölt egy levelet",
+  "de": "eine E-Mail wurde als Spam markiert"
+ },
+ "Sending": {
+  "hu": "Küldés alatt",
+  "de": "Wird gesendet"
+ },
+ "Sent": {
+  "hu": "Elküldve",
+  "de": "Gesendet"
+ },
+ "Stopped": {
+  "hu": "Leállítva",
+  "de": "Gestoppt"
+ },
+ "This feature is not installed on the database yet (20261019000100).": {
+  "hu": "Ez a funkció még nincs telepítve az adatbázisban (20261019000100).",
+  "de": "Diese Funktion ist in der Datenbank noch nicht installiert (20261019000100)."
+ },
+ "Nobody in this audience has confirmed yet, so there is no one to send it to.": {
+  "hu": "Ebben a körben még senki nem erősített meg, így nincs kinek elküldeni.",
+  "de": "In dieser Zielgruppe hat noch niemand bestätigt, es gibt also keine Empfänger."
+ },
+ "This is no longer a draft: it was sent or deleted meanwhile.": {
+  "hu": "Ez már nem vázlat: időközben elküldték vagy törölték.",
+  "de": "Das ist kein Entwurf mehr: Er wurde inzwischen gesendet oder gelöscht."
+ },
+ "Your account may not do this.": {
+  "hu": "A fiókod ehhez nem jogosult.",
+  "de": "Ihr Konto darf das nicht."
+ },
+ "The database refused these values. Check the lengths.": {
+  "hu": "Az adatbázis elutasította ezeket az értékeket. Ellenőrizd a hosszukat.",
+  "de": "Die Datenbank hat diese Werte abgelehnt. Längen prüfen."
+ },
+ "That did not work. Try again.": {
+  "hu": "Nem sikerült. Próbáld újra.",
+  "de": "Das hat nicht geklappt. Erneut versuchen."
+ },
+ "Write a subject.": {
+  "hu": "Írj tárgyat.",
+  "de": "Betreff eingeben."
+ },
+ "The subject can be at most {n} characters.": {
+  "hu": "A tárgy legfeljebb {n} karakter lehet.",
+  "de": "Der Betreff darf höchstens {n} Zeichen lang sein."
+ },
+ "The preheader can be at most {n} characters.": {
+  "hu": "Az előnézeti szöveg legfeljebb {n} karakter lehet.",
+  "de": "Der Vorschautext darf höchstens {n} Zeichen lang sein."
+ },
+ "Write the text of the e-mail.": {
+  "hu": "Írd meg a levél szövegét.",
+  "de": "Text der E-Mail eingeben."
+ },
+ "The text can be at most {n} characters.": {
+  "hu": "A szöveg legfeljebb {n} karakter lehet.",
+  "de": "Der Text darf höchstens {n} Zeichen lang sein."
+ },
+ "Only admins may preview or send the newsletter.": {
+  "hu": "A hírlevelet csak admin nézheti meg előre és küldheti ki.",
+  "de": "Nur Admins dürfen den Newsletter in der Vorschau sehen oder senden."
+ },
+ "The server refused the e-mail: check the subject and the text.": {
+  "hu": "A szerver elutasította a levelet: ellenőrizd a tárgyat és a szöveget.",
+  "de": "Der Server hat die E-Mail abgelehnt: Betreff und Text prüfen."
+ },
+ "E-mail is not set up on the server yet (RESEND_API_KEY).": {
+  "hu": "Az e-mail-küldés még nincs beállítva a szerveren (RESEND_API_KEY).",
+  "de": "E-Mail ist auf dem Server noch nicht eingerichtet (RESEND_API_KEY)."
+ },
+ "Resend did not accept the e-mail. Try again in a few minutes.": {
+  "hu": "A Resend nem fogadta el a levelet. Próbáld újra pár perc múlva.",
+  "de": "Resend hat die E-Mail nicht angenommen. In ein paar Minuten erneut versuchen."
+ },
+ "The server could not be reached. Check the connection and try again.": {
+  "hu": "A szerver nem érhető el. Ellenőrizd a kapcsolatot, és próbáld újra.",
+  "de": "Der Server ist nicht erreichbar. Verbindung prüfen und erneut versuchen."
+ },
+ "The newsletter function is not on the server yet.": {
+  "hu": "A hírlevél-funkció még nincs fent a szerveren.",
+  "de": "Die Newsletter-Funktion ist noch nicht auf dem Server."
+ },
+ "The server could not do it. Try again.": {
+  "hu": "A szerver ezt nem tudta elvégezni. Próbáld újra.",
+  "de": "Der Server konnte das nicht ausführen. Erneut versuchen."
+ },
+ "Discard the changes you have not saved?": {
+  "hu": "Elveted a nem mentett módosításokat?",
+  "de": "Nicht gespeicherte Änderungen verwerfen?"
+ },
+ "The draft was deleted.": {
+  "hu": "A vázlat törölve.",
+  "de": "Der Entwurf wurde gelöscht."
+ },
+ "Queued for 1 subscriber. It goes out over the next few minutes.": {
+  "hu": "Sorba állítva 1 feliratkozónak. A következő percekben megy ki.",
+  "de": "Für 1 Abonnenten eingereiht. Der Versand läuft in den nächsten Minuten."
+ },
+ "Queued for {n} subscribers. It goes out over the next few minutes.": {
+  "hu": "Sorba állítva {n} feliratkozónak. A következő percekben megy ki.",
+  "de": "Für {n} Abonnenten eingereiht. Der Versand läuft in den nächsten Minuten."
+ },
+ "Old requests": {
+  "hu": "Régi jelentkezések",
+  "de": "Alte Anfragen"
+ },
+ "from before the newsletter existed": {
+  "hu": "a hírlevél indulása előttről",
+  "de": "aus der Zeit vor dem Newsletter"
+ },
+ "Confirmation requests queued: {n}. The e-mails go out within a few minutes; whoever does not confirm in 30 days is deleted.": {
+  "hu": "Megerősítési kérés sorba állítva: {n}. A levelek pár percen belül kimennek; aki 30 napon belül nem erősít meg, törlődik.",
+  "de": "Bestätigungsanfragen eingereiht: {n}. Die E-Mails gehen in wenigen Minuten raus; wer nicht innerhalb von 30 Tagen bestätigt, wird gelöscht."
+ },
+ "Addresses that asked for the newsletter before it existed: {n}.": {
+  "hu": "A hírlevél indulása előtt jelentkezett címek: {n}.",
+  "de": "Adressen, die den Newsletter angefragt haben, bevor es ihn gab: {n}."
+ },
+ "They are not subscribers and get nothing until they confirm. Ask them once: each gets one e-mail with a confirmation link.": {
+  "hu": "Ők nem feliratkozók, és semmit nem kapnak, amíg meg nem erősítenek. Kérd meg őket egyszer: mindegyik kap egy levelet megerősítő linkkel.",
+  "de": "Sie sind keine Abonnenten und erhalten nichts, bis sie bestätigen. Einmal anfragen: Jede Adresse erhält eine E-Mail mit Bestätigungslink."
+ },
+ "Confirm: ask all {n}": {
+  "hu": "Biztosan kiküldöd? ({n} cím)",
+  "de": "Bestätigen: alle {n} anfragen"
+ },
+ "Ask them to confirm": {
+  "hu": "Megerősítés kérése",
+  "de": "Um Bestätigung bitten"
+ },
+ "Not now": {
+  "hu": "Most nem",
+  "de": "Nicht jetzt"
+ },
+ "Whoever does not confirm within 30 days is deleted automatically.": {
+  "hu": "Aki 30 napon belül nem erősít meg, automatikusan törlődik.",
+  "de": "Wer nicht innerhalb von 30 Tagen bestätigt, wird automatisch gelöscht."
+ },
+ "Sending now · refreshed every 10 seconds": {
+  "hu": "Küldés folyamatban · 10 másodpercenként frissül",
+  "de": "Versand läuft · alle 10 Sekunden aktualisiert"
+ },
+ "1 campaign": {
+  "hu": "1 kampány",
+  "de": "1 Kampagne"
+ },
+ "{n} campaigns": {
+  "hu": "{n} kampány",
+  "de": "{n} Kampagnen"
+ },
+ "Campaigns": {
+  "hu": "Kampányok",
+  "de": "Kampagnen"
+ },
+ "New campaign": {
+  "hu": "Új kampány",
+  "de": "Neue Kampagne"
+ },
+ "The campaigns could not be read.": {
+  "hu": "A kampányok nem olvashatók be.",
+  "de": "Die Kampagnen konnten nicht gelesen werden."
+ },
+ "No campaigns yet.": {
+  "hu": "Még nincs kampány.",
+  "de": "Noch keine Kampagnen."
+ },
+ "edited {when}": {
+  "hu": "szerkesztve: {when}",
+  "de": "bearbeitet {when}"
+ },
+ "recipients: {n}": {
+  "hu": "címzett: {n}",
+  "de": "Empfänger: {n}"
+ },
+ "{n} sent": {
+  "hu": "{n} elküldve",
+  "de": "{n} gesendet"
+ },
+ "{n} not delivered": {
+  "hu": "{n} nem ment ki",
+  "de": "{n} nicht zugestellt"
+ },
+ "started {when}": {
+  "hu": "elindítva: {when}",
+  "de": "gestartet {when}"
+ },
+ "stopped {when}": {
+  "hu": "leállítva: {when}",
+  "de": "gestoppt {when}"
+ },
+ "finished {when}": {
+  "hu": "befejezve: {when}",
+  "de": "abgeschlossen {when}"
+ },
+ "Sending progress": {
+  "hu": "Küldés állása",
+  "de": "Versandfortschritt"
+ },
+ "{sent} of {total} sent": {
+  "hu": "{sent} / {total} elküldve",
+  "de": "{sent} von {total} gesendet"
+ },
+ "View": {
+  "hu": "Megnyitás",
+  "de": "Ansehen"
+ },
+ "Confirm stop": {
+  "hu": "Biztosan leállítod?",
+  "de": "Stopp bestätigen"
+ },
+ "Stop sending": {
+  "hu": "Küldés leállítása",
+  "de": "Versand stoppen"
+ },
+ "Keep sending": {
+  "hu": "Menjen tovább",
+  "de": "Weiter senden"
+ },
+ "Whoever has not got it yet will not get it. This cannot be undone.": {
+  "hu": "Aki még nem kapta meg, már nem is kapja meg. Ez nem vonható vissza.",
+  "de": "Wer ihn noch nicht erhalten hat, erhält ihn nicht mehr. Das lässt sich nicht rückgängig machen."
+ },
+ "Draft saved.": {
+  "hu": "Vázlat mentve.",
+  "de": "Entwurf gespeichert."
+ },
+ "Sent to {to}.": {
+  "hu": "Elküldve ide: {to}.",
+  "de": "Gesendet an {to}."
+ },
+ "Not saved yet": {
+  "hu": "Még nincs mentve",
+  "de": "Noch nicht gespeichert"
+ },
+ "Saved {when}": {
+  "hu": "Mentve: {when}",
+  "de": "Gespeichert {when}"
+ },
+ "Nobody in this audience has confirmed yet.": {
+  "hu": "Ebben a körben még senki nem erősített meg.",
+  "de": "In dieser Zielgruppe hat noch niemand bestätigt."
+ },
+ "Confirmed subscribers in this audience: {n}": {
+  "hu": "Megerősített feliratkozók ebben a körben: {n}",
+  "de": "Bestätigte Abonnenten in dieser Zielgruppe: {n}"
+ },
+ "Discard changes": {
+  "hu": "Módosítások elvetése",
+  "de": "Änderungen verwerfen"
+ },
+ "The changes are not saved.": {
+  "hu": "A módosítások nincsenek mentve.",
+  "de": "Die Änderungen sind nicht gespeichert."
+ },
+ "Keep editing": {
+  "hu": "Szerkesztés folytatása",
+  "de": "Weiter bearbeiten"
+ },
+ "Subject": {
+  "hu": "Tárgy",
+  "de": "Betreff"
+ },
+ "{n} of {max} characters": {
+  "hu": "{n} / {max} karakter",
+  "de": "{n} von {max} Zeichen"
+ },
+ "Preheader (optional)": {
+  "hu": "Előnézeti szöveg (nem kötelező)",
+  "de": "Vorschautext (optional)"
+ },
+ "Shown after the subject in the inbox.": {
+  "hu": "A postafiókban a tárgy után látszik.",
+  "de": "Wird im Posteingang nach dem Betreff angezeigt."
+ },
+ "Text": {
+  "hu": "Szöveg",
+  "de": "Text"
+ },
+ "A blank line starts a new paragraph.": {
+  "hu": "Üres sor új bekezdést kezd.",
+  "de": "Eine Leerzeile beginnt einen neuen Absatz."
+ },
+ "at the start of a line makes a heading.": {
+  "hu": "a sor elején címsort készít.",
+  "de": "am Zeilenanfang ergibt eine Überschrift."
+ },
+ "at the start of a line makes a list item.": {
+  "hu": "a sor elején listaelemet készít.",
+  "de": "am Zeilenanfang ergibt einen Listenpunkt."
+ },
+ "makes it bold.": {
+  "hu": "félkövérré teszi.",
+  "de": "macht es fett."
+ },
+ "makes a link.": {
+  "hu": "linket készít.",
+  "de": "ergibt einen Link."
+ },
+ "The unsubscribe link and the company footer are added automatically.": {
+  "hu": "A leiratkozó linket és a céges láblécet automatikusan hozzáadjuk.",
+  "de": "Abmeldelink und Firmenfußzeile werden automatisch ergänzt."
+ },
+ "Save draft": {
+  "hu": "Vázlat mentése",
+  "de": "Entwurf speichern"
+ },
+ "Rendering…": {
+  "hu": "Előnézet készül…",
+  "de": "Wird gerendert…"
+ },
+ "Preview": {
+  "hu": "Előnézet",
+  "de": "Vorschau"
+ },
+ "Send a test to me": {
+  "hu": "Teszt küldése magamnak",
+  "de": "Test an mich senden"
+ },
+ "Confirm: send to {n}": {
+  "hu": "Biztosan kiküldöd? ({n} címzett)",
+  "de": "Bestätigen: an {n} senden"
+ },
+ "Send to 1 subscriber": {
+  "hu": "Küldés 1 feliratkozónak",
+  "de": "An 1 Abonnenten senden"
+ },
+ "Send to {n} subscribers": {
+  "hu": "Küldés {n} feliratkozónak",
+  "de": "An {n} Abonnenten senden"
+ },
+ "Not yet": {
+  "hu": "Még ne",
+  "de": "Noch nicht"
+ },
+ "Confirm delete": {
+  "hu": "Biztosan törlöd?",
+  "de": "Löschen bestätigen"
+ },
+ "Delete draft": {
+  "hu": "Vázlat törlése",
+  "de": "Entwurf löschen"
+ },
+ "It goes out over the next few minutes to every confirmed subscriber in the audience, and cannot be changed after. You can stop it while it is going out.": {
+  "hu": "A következő percekben kimegy a kör minden megerősített feliratkozójának, utána már nem módosítható. Küldés közben leállíthatod.",
+  "de": "Er geht in den nächsten Minuten an alle bestätigten Abonnenten der Zielgruppe und lässt sich danach nicht mehr ändern. Während des Versands kann er gestoppt werden."
+ },
+ "Changed since this preview: preview again to see it.": {
+  "hu": "Az előnézet óta változott: kérj új előnézetet.",
+  "de": "Seit dieser Vorschau geändert: Vorschau erneut erstellen."
+ },
+ "E-mail preview": {
+  "hu": "E-mail előnézete",
+  "de": "E-Mail-Vorschau"
+ },
+ "Plain-text version": {
+  "hu": "Egyszerű szöveges változat",
+  "de": "Nur-Text-Version"
+ },
+ "Who it did not reach could not be read.": {
+  "hu": "Nem olvasható be, kihez nem jutott el.",
+  "de": "Es konnte nicht gelesen werden, wen er nicht erreicht hat."
+ },
+ "Not delivered": {
+  "hu": "Nem kézbesítve",
+  "de": "Nicht zugestellt"
+ },
+ "skipped: they left before their turn": {
+  "hu": "kihagyva: leiratkozott, mielőtt sorra került",
+  "de": "übersprungen: vor dem Versand abgemeldet"
+ },
+ "refused after {n} tries": {
+  "hu": "{n} próbálkozás után elutasítva",
+  "de": "nach {n} Versuchen abgelehnt"
+ },
+ "Subscribers": {
+  "hu": "Feliratkozók",
+  "de": "Abonnenten"
+ },
+ "Only confirmed addresses get campaigns": {
+  "hu": "Kampányt csak megerősített cím kap",
+  "de": "Kampagnen gehen nur an bestätigte Adressen"
+ },
+ "The subscribers could not be read.": {
+  "hu": "A feliratkozók nem olvashatók be.",
+  "de": "Die Abonnenten konnten nicht gelesen werden."
+ },
+ "not confirmed yet": {
+  "hu": "még nem erősítettek meg",
+  "de": "noch nicht bestätigt"
+ },
+ "Bounced or spam": {
+  "hu": "Visszapattant vagy spam",
+  "de": "Unzustellbar oder Spam"
+ },
+ "Everyone": {
+  "hu": "Mindenki",
+  "de": "Alle"
+ },
+ "Search e-mail…": {
+  "hu": "E-mail keresése…",
+  "de": "E-Mail suchen…"
+ },
+ "Search subscribers": {
+  "hu": "Feliratkozók keresése",
+  "de": "Abonnenten suchen"
+ },
+ "The list holds the newest {n} of {total}; the counts cover everyone.": {
+  "hu": "A lista a legújabb {n} címet mutatja ({total} összesen); a számok mindenkire vonatkoznak.",
+  "de": "Die Liste zeigt die neuesten {n} von {total}; die Zahlen umfassen alle."
+ },
+ "No address matches.": {
+  "hu": "Nincs egyező cím.",
+  "de": "Keine passende Adresse."
+ },
+ "Nobody here yet.": {
+  "hu": "Itt még nincs senki.",
+  "de": "Hier ist noch niemand."
+ },
+ "The confirmation e-mail failed: {error}": {
+  "hu": "A megerősítő levél nem ment ki: {error}",
+  "de": "Die Bestätigungs-E-Mail ist fehlgeschlagen: {error}"
+ },
+ "Confirmation e-mail sent {when}. Deleted on {date} unless they confirm.": {
+  "hu": "Megerősítő levél elküldve: {when}. Ha addig nem erősít meg, törlődik: {date}.",
+  "de": "Bestätigungs-E-Mail gesendet {when}. Ohne Bestätigung gelöscht am {date}."
+ },
+ "Confirmation e-mail on its way (asked {when}).": {
+  "hu": "A megerősítő levél úton van (kérve: {when}).",
+  "de": "Bestätigungs-E-Mail unterwegs (angefragt {when})."
+ },
+ "Never asked to confirm: gets nothing.": {
+  "hu": "Még nem kértük meg, hogy erősítsen meg: semmit nem kap.",
+  "de": "Noch nie um Bestätigung gebeten: erhält nichts."
+ },
+ "Not erased: it is gone already, or your account may not erase.": {
+  "hu": "Nem törlődött: vagy már nincs meg, vagy a fiókod nem törölhet.",
+  "de": "Nicht gelöscht: Die Adresse ist schon weg, oder Ihr Konto darf nicht löschen."
+ },
+ "signed up {date}": {
+  "hu": "feliratkozott: {date}",
+  "de": "angemeldet {date}"
+ },
+ "confirmed {date}": {
+  "hu": "megerősítette: {date}",
+  "de": "bestätigt {date}"
+ },
+ "left {date}": {
+  "hu": "kilépett: {date}",
+  "de": "abgemeldet {date}"
+ },
+ "Confirm unsubscribe": {
+  "hu": "Biztosan leiratkoztatod?",
+  "de": "Abmeldung bestätigen"
+ },
+ "Unsubscribe": {
+  "hu": "Leiratkoztatás",
+  "de": "Abmelden"
+ },
+ "For erasure requests": {
+  "hu": "Törlési kérelemhez",
+  "de": "Für Löschanfragen"
+ },
+ "Confirm erase": {
+  "hu": "Biztosan véglegesen törlöd?",
+  "de": "Löschung bestätigen"
+ },
+ "Erase": {
+  "hu": "Végleges törlés",
+  "de": "Löschen"
+ },
+ "They get nothing more, and anything queued for them is skipped. They can sign up again on the website.": {
+  "hu": "Nem kap több levelet, és ami sorban állt neki, kimarad. A weboldalon újra feliratkozhat.",
+  "de": "Die Adresse erhält nichts mehr, und alles für sie Eingereihte wird übersprungen. Auf der Website ist eine erneute Anmeldung möglich."
+ },
+ "For an erasure request: the address and the record of what was sent to it are deleted for good. To only stop the e-mails, unsubscribe instead.": {
+  "hu": "Törlési kérelemhez: a cím és a neki küldött levelek nyilvántartása végleg törlődik. Ha csak a leveleket állítanád le, inkább leiratkoztasd.",
+  "de": "Für Löschanfragen: Die Adresse und der Nachweis, was an sie ging, werden endgültig gelöscht. Um nur die E-Mails zu stoppen, stattdessen abmelden."
+ },
+ "This feature is not installed on the database yet (20261019000200).": {
+  "hu": "Ez a funkció még nincs telepítve az adatbázisban (20261019000200).",
+  "de": "Diese Funktion ist in der Datenbank noch nicht installiert (20261019000200)."
+ },
+ "There is already a step at this position.": {
+  "hu": "Ezen a helyen már van levél a sorozatban.",
+  "de": "An dieser Position gibt es bereits einen Schritt."
+ },
+ "These values are not allowed: the position is 1 to 10, the day 1 to 365.": {
+  "hu": "Ezek az értékek nem megengedettek: a sorszám 1 és 10, a nap 1 és 365 között lehet.",
+  "de": "Diese Werte sind nicht zulässig: Die Position liegt zwischen 1 und 10, der Tag zwischen 1 und 365."
+ },
+ "This step was deleted meanwhile.": {
+  "hu": "Ezt a levelet időközben törölték.",
+  "de": "Dieser Schritt wurde inzwischen gelöscht."
+ },
+ "The position is a whole number from 1 to {max}.": {
+  "hu": "A sorszám 1 és {max} közötti egész szám lehet.",
+  "de": "Die Position ist eine ganze Zahl von 1 bis {max}."
+ },
+ "The day is a whole number from {min} to {max}.": {
+  "hu": "A nap {min} és {max} közötti egész szám lehet.",
+  "de": "Der Tag ist eine ganze Zahl von {min} bis {max}."
+ },
+ "for {key}": {
+  "hu": "ehhez: {key}",
+  "de": "zu {key}"
+ },
+ "Automatic": {
+  "hu": "Automatikus",
+  "de": "Automatisch"
+ },
+ "Each language with confirmed subscribers gets it at once. It shows under Campaigns, marked Automatic.": {
+  "hu": "Minden nyelv megerősített feliratkozói azonnal megkapják. A Kampányok között látod, Automatikus jelöléssel.",
+  "de": "Die bestätigten Abonnenten jeder Sprache erhalten sie sofort. Sie erscheint unter Kampagnen, markiert als Automatisch."
+ },
+ "A draft per language waits under Campaigns, marked Automatic. Nothing goes out until you send it.": {
+  "hu": "Nyelvenként egy vázlat vár a Kampányok között, Automatikus jelöléssel. Semmi nem megy ki, amíg el nem küldöd.",
+  "de": "Pro Sprache wartet ein Entwurf unter Kampagnen, markiert als Automatisch. Nichts geht raus, bevor er gesendet wird."
+ },
+ "New articles and case studies are only remembered: nothing is sent or drafted.": {
+  "hu": "Az új cikkeket és esettanulmányokat csak megjegyezzük: semmi nem megy ki, vázlat sem készül.",
+  "de": "Neue Artikel und Fallstudien werden nur vermerkt: Es wird nichts gesendet und kein Entwurf erstellt."
+ },
+ "Already on the site at launch — not announced": {
+  "hu": "Már az induláskor fent volt — nem jelentettük be",
+  "de": "Beim Start schon auf der Website — nicht angekündigt"
+ },
+ "no campaign": {
+  "hu": "nincs kampány",
+  "de": "keine Kampagne"
+ },
+ "Automatic announcements": {
+  "hu": "Automatikus bejelentések",
+  "de": "Automatische Ankündigungen"
+ },
+ "new articles and case studies": {
+  "hu": "új cikkek és esettanulmányok",
+  "de": "neue Artikel und Fallstudien"
+ },
+ "The announcement settings could not be read.": {
+  "hu": "A bejelentések beállításai nem olvashatók be.",
+  "de": "Die Einstellungen für Ankündigungen konnten nicht gelesen werden."
+ },
+ "When a new article or case study is published on the site, it is announced to the subscribers of each language within ten minutes. What was already on the site when this started is only remembered, never announced.": {
+  "hu": "Ha új cikk vagy esettanulmány jelenik meg a weboldalon, tíz percen belül bejelentjük minden nyelv feliratkozóinak. Ami már fent volt, amikor ez elindult, azt csak megjegyezzük, sosem jelentjük be.",
+  "de": "Erscheint ein neuer Artikel oder eine neue Fallstudie auf der Website, wird dies innerhalb von zehn Minuten den Abonnenten jeder Sprache angekündigt. Was beim Start bereits auf der Website war, wird nur vermerkt, nie angekündigt."
+ },
+ "When something new is published": {
+  "hu": "Ha valami új jelenik meg",
+  "de": "Wenn etwas Neues erscheint"
+ },
+ "Send at once": {
+  "hu": "Azonnali kiküldés",
+  "de": "Sofort senden"
+ },
+ "Only make a draft": {
+  "hu": "Csak vázlat készüljön",
+  "de": "Nur einen Entwurf erstellen"
+ },
+ "Seen on the site, newest first": {
+  "hu": "A weboldalon látott tételek, a legújabb elöl",
+  "de": "Auf der Website gesehen, neueste zuerst"
+ },
+ "Nothing seen yet. The site’s list is read every ten minutes; the first reading is only remembered.": {
+  "hu": "Még semmi. A weboldal listáját tízpercenként olvassuk be; az első beolvasást csak megjegyezzük.",
+  "de": "Noch nichts gesehen. Die Liste der Website wird alle zehn Minuten gelesen; die erste Lesung wird nur vermerkt."
+ },
+ "Case study": {
+  "hu": "Esettanulmány",
+  "de": "Fallstudie"
+ },
+ "first seen {when}": {
+  "hu": "először látva: {when}",
+  "de": "zuerst gesehen {when}"
+ },
+ "The newest {n} are shown.": {
+  "hu": "A legújabb {n} látszik.",
+  "de": "Die neuesten {n} werden angezeigt."
+ },
+ "no steps in this language": {
+  "hu": "ezen a nyelven nincs levél",
+  "de": "keine Schritte in dieser Sprache"
+ },
+ "{on} of {n} switched on": {
+  "hu": "{on} / {n} bekapcsolva",
+  "de": "{on} von {n} eingeschaltet"
+ },
+ "Welcome series": {
+  "hu": "Üdvözlő sorozat",
+  "de": "Willkommensserie"
+ },
+ "A series has at most {n} steps.": {
+  "hu": "Egy sorozatban legfeljebb {n} levél lehet.",
+  "de": "Eine Serie hat höchstens {n} Schritte."
+ },
+ "Add a step": {
+  "hu": "Levél hozzáadása",
+  "de": "Schritt hinzufügen"
+ },
+ "The welcome series could not be read.": {
+  "hu": "Az üdvözlő sorozat nem olvasható be.",
+  "de": "Die Willkommensserie konnte nicht gelesen werden."
+ },
+ "Language of the series": {
+  "hu": "A sorozat nyelve",
+  "de": "Sprache der Serie"
+ },
+ "Each confirmed subscriber gets the switched-on steps of their language in order, each on its day, counted from when they confirmed. A step more than 3 days overdue (one added later, say) is skipped, not sent late. Whoever had confirmed before the series existed gets none of it.": {
+  "hu": "Minden megerősített feliratkozó a saját nyelvén kapja meg a bekapcsolt leveleket, sorrendben, mindegyiket a maga napján, a megerősítéstől számolva. Ha egy levél több mint 3 napot késne (például mert később adtad hozzá), kimarad, nem megy ki későn. Aki már a sorozat előtt megerősített, semmit nem kap belőle.",
+  "de": "Jeder bestätigte Abonnent erhält die eingeschalteten Schritte seiner Sprache der Reihe nach, jeden an seinem Tag, gezählt ab der Bestätigung. Ein Schritt, der mehr als 3 Tage überfällig ist (etwa weil er später hinzugefügt wurde), wird übersprungen, nicht verspätet gesendet. Wer schon vor der Serie bestätigt hatte, erhält nichts davon."
+ },
+ "The series is off in this language: it has no steps yet.": {
+  "hu": "A sorozat ezen a nyelven ki van kapcsolva: még nincs benne levél.",
+  "de": "Die Serie ist in dieser Sprache aus: Sie hat noch keine Schritte."
+ },
+ "The series is off in this language: no step is switched on. The drafts below are waiting to be read and switched on.": {
+  "hu": "A sorozat ezen a nyelven ki van kapcsolva: egyik levél sincs bekapcsolva. Az alábbi vázlatok arra várnak, hogy elolvasd és bekapcsold őket.",
+  "de": "Die Serie ist in dieser Sprache aus: Kein Schritt ist eingeschaltet. Die Entwürfe unten warten darauf, gelesen und eingeschaltet zu werden."
+ },
+ "Switched on": {
+  "hu": "Bekapcsolva",
+  "de": "Eingeschaltet"
+ },
+ "day {n}": {
+  "hu": "{n}. nap",
+  "de": "Tag {n}"
+ },
+ "Its day is not after the step before it, so it is already due when that one goes out: it follows right after, or is skipped if by then it is more than 3 days late.": {
+  "hu": "A napja nem későbbi az előtte lévő levélénél, így amikor az kimegy, ez már esedékes: rögtön utána megy, vagy kimarad, ha addigra több mint 3 napot késik.",
+  "de": "Sein Tag liegt nicht nach dem des vorigen Schritts, er ist also schon fällig, wenn jener rausgeht: Er folgt direkt danach oder wird übersprungen, wenn er dann mehr als 3 Tage zu spät ist."
+ },
+ "The step was deleted.": {
+  "hu": "A levél törölve.",
+  "de": "Der Schritt wurde gelöscht."
+ },
+ "Saved. It is switched on.": {
+  "hu": "Mentve. Be van kapcsolva.",
+  "de": "Gespeichert. Er ist eingeschaltet."
+ },
+ "Saved. It stays switched off.": {
+  "hu": "Mentve. Kikapcsolva marad.",
+  "de": "Gespeichert. Er bleibt ausgeschaltet."
+ },
+ "Step {n}": {
+  "hu": "{n}. levél",
+  "de": "Schritt {n}"
+ },
+ "New step": {
+  "hu": "Új levél",
+  "de": "Neuer Schritt"
+ },
+ "Position": {
+  "hu": "Sorszám",
+  "de": "Position"
+ },
+ "The order of the e-mails, 1 to {max}.": {
+  "hu": "A levelek sorrendje (1–{max}).",
+  "de": "Die Reihenfolge der E-Mails, 1 bis {max}."
+ },
+ "Days after they confirmed, {min} to {max}.": {
+  "hu": "Hány nappal a megerősítés után ({min}–{max}).",
+  "de": "Tage nach der Bestätigung, {min} bis {max}."
+ },
+ "Only switched-on steps are sent. Read it and send a test to yourself before you switch it on.": {
+  "hu": "Csak a bekapcsolt levelek mennek ki. Mielőtt bekapcsolod, olvasd el, és küldj magadnak egy tesztet.",
+  "de": "Nur eingeschaltete Schritte werden gesendet. Vor dem Einschalten lesen und einen Test an sich selbst senden."
+ },
+ "Delete step": {
+  "hu": "Levél törlése",
+  "de": "Schritt löschen"
+ }
+}

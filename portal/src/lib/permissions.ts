@@ -50,6 +50,11 @@ export type Capability =
   | 'view_media'
   | 'manage_users'
   | 'manage_settings'
+  // The newsletter (20261019000100_newsletter.sql): its subscribers, the
+  // campaigns written and sent from the Portal. The same two roles as
+  // `is_admin()`, which every policy and function behind it checks; this
+  // decides whether the nav item and the route are drawn.
+  | 'manage_newsletter'
   | 'view_activity'
   // Property-wide traffic reporting. Staff-wide would be the easy default and
   // is the wrong one: this is a business-level view of the whole site, not the
@@ -72,13 +77,13 @@ const MATRIX: Record<Role, Capability[]> = {
     'view_clients', 'manage_clients', 'view_sales', 'manage_sales',
     'view_case_studies', 'manage_case_studies',
     'manage_content', 'view_media', 'manage_users', 'manage_settings', 'view_activity',
-    'view_analytics', 'view_system',
+    'view_analytics', 'view_system', 'manage_newsletter',
   ],
   admin: [
     'view_dashboard', 'view_leads', 'manage_leads',
     'view_clients', 'manage_clients', 'view_sales', 'manage_sales',
     'view_case_studies', 'manage_case_studies',
-    'manage_content', 'view_media', 'view_activity', 'view_analytics', 'view_system',
+    'manage_content', 'view_media', 'view_activity', 'view_analytics', 'view_system', 'manage_newsletter',
     // Settings: their own account, language and notifications (2026-10-05).
     'manage_settings',
   ],

@@ -207,9 +207,9 @@
   "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Yes\" required> <span>By continuing I confirm that I accept the terms set out in the <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">privacy policy</a>. *</span>",
   "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Ja\" required> <span>Mit dem Fortfahren bestätige ich, dass ich die Bestimmungen der <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Datenschutzerklärung</a> akzeptiere. *</span>"
  ],
- "<input type=\"checkbox\" name=\"hirlevel\" value=\"Igen\"> <span>Hozzájárulok, hogy a Stratos Webdesign e-mailben értesítsen az újdonságokról és frissítésekről.</span>": [
-  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Yes\"> <span>I agree that Stratos Webdesign may email me about news and updates.</span>",
-  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Ja\"> <span>Ich bin einverstanden, dass Stratos Webdesign mich per E-Mail über Neuigkeiten und Updates informiert.</span>"
+ "<input type=\"checkbox\" name=\"hirlevel\" value=\"Igen\"> <span>Feliratkozom a Stratos hírlevelére is — megerősítő levelet kapok, és bármikor leiratkozhatok.</span>": [
+  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Yes\"> <span>Also subscribe me to the Stratos newsletter — I will get a confirmation e-mail and can unsubscribe at any time.</span>",
+  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Ja\"> <span>Ich möchte auch den Stratos-Newsletter erhalten — ich bekomme eine Bestätigungs-E-Mail und kann mich jederzeit abmelden.</span>"
  ],
  "A *-gal jelölt mezők kitöltése kötelező.": [
   "Fields marked with * are required.",
@@ -303,17 +303,13 @@
   "For any question, write to <a href=\"mailto:lukacs.artur@media-stratos.com\">lukacs.artur@media-stratos.com</a> or call <a href=\"tel:+36305848024\">+36 30 584 8024</a>.",
   "Bei Fragen schreiben Sie an <a href=\"mailto:lukacs.artur@media-stratos.com\">lukacs.artur@media-stratos.com</a> oder rufen Sie an unter <a href=\"tel:+36305848024\">+36 30 584 8024</a>."
  ],
- "A hírlevelünk még készül.": [
-  "Our newsletter is still being built.",
-  "Unser Newsletter entsteht gerade."
+ "Amit tanulunk, első kézből.": [
+  "What we learn, first hand.",
+  "Was wir lernen, aus erster Hand."
  ],
- "Add meg a címed, és szólunk, amint elindul. Addig nem küldünk semmit.": [
-  "Leave your address and we'll tell you when it starts. Until then we send nothing.",
-  "Hinterlassen Sie Ihre Adresse, dann sagen wir Bescheid, sobald er startet. Bis dahin senden wir nichts."
- ],
- "Szóljatok": [
-  "Tell me",
-  "Bescheid geben"
+ "Weboldal, keresőoptimalizálás, online marketing — akkor írunk, ha van mit mondanunk. Megerősítő levelet küldünk, és bármikor leiratkozhatsz.": [
+  "Websites, search optimisation, online marketing — we write when we have something to say. We will send a confirmation e-mail, and you can unsubscribe at any time.",
+  "Websites, Suchmaschinenoptimierung, Online-Marketing — wir schreiben, wenn wir etwas zu sagen haben. Sie erhalten eine Bestätigungs-E-Mail und können sich jederzeit abmelden."
  ],
  "Illusztráció a keresőoptimalizálásról szóló cikkhez.": [
   "Illustration for the article about search engine optimisation.",

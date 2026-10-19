@@ -129,11 +129,10 @@ css: blog
 
         <div class="post" data-reveal style="border-color:var(--signal)">
           <span class="post__meta sig">Hírlevél</span>
-          <h3>A hírlevelünk még készül.</h3>
-          <!-- Az előző szöveg e-mailben küldött cikkeket ígért, sőt gyakoriságot
-               is ("ritkán") — hírlevélküldő rendszer viszont nincs, és egyetlen
-               levél sem ment ki soha. Lásd phase9-email-operations.md. -->
-          <p>Add meg a címed, és szólunk, amint elindul. Addig nem küldünk semmit.</p>
+          <h3>Amit tanulunk, első kézből.</h3>
+          <!-- 2026-10-18 óta valódi hírlevél, dupla megerősítéssel
+               (netlify/functions/newsletter*.mjs). Gyakoriságot nem ígér. -->
+          <p>Weboldal, keresőoptimalizálás, online marketing — akkor írunk, ha van mit mondanunk. Megerősítő levelet küldünk, és bármikor leiratkozhatsz.</p>
           <form class="newsletter" data-lead="newsletter" style="margin-top:auto">
             <label class="vh" for="nl2">E-mail cím</label>
             <input id="nl2" type="email" name="email" placeholder="e-mail cím" required>
@@ -141,7 +140,7 @@ css: blog
               <label for="hp-nl2">Company website</label>
               <input id="hp-nl2" type="text" name="company_website" tabindex="-1" autocomplete="off">
             </div>
-            <button type="submit">Szóljatok</button>
+            <button type="submit">Feliratkozom</button>
           </form>
           <p class="form__note" style="margin-top:.6rem" role="status"></p>
         </div>

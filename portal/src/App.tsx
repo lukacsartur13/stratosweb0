@@ -96,6 +96,8 @@ const TodayScreen = lazy(() => import('@/pages/today').then((m) => ({ default: m
 // Hours worked, per person per day (20261012000100_time_entries.sql).
 const HoursScreen = lazy(() => import('@/pages/hours').then((m) => ({ default: m.HoursScreen })));
 const BookingsScreen = lazy(() => import('@/pages/bookings').then((m) => ({ default: m.BookingsScreen })));
+// The newsletter: subscribers and campaigns (20261019000100_newsletter.sql).
+const NewsletterScreen = lazy(() => import('@/pages/newsletter').then((m) => ({ default: m.NewsletterScreen })));
 const DataScreen = lazy(() => import('@/pages/data').then((m) => ({ default: m.DataScreen })));
 const RevenueScreen = lazy(() => import('@/pages/revenue').then((m) => ({ default: m.RevenueScreen })));
 
@@ -170,6 +172,8 @@ export default function App() {
                 <ProtectedRoute capability="view_leads"><LeadsScreen /></ProtectedRoute>} />
               <Route path="leads/:id" element={
                 <ProtectedRoute capability="view_leads"><LeadDetailScreen /></ProtectedRoute>} />
+              <Route path="newsletter" element={
+                <ProtectedRoute capability="manage_newsletter"><NewsletterScreen /></ProtectedRoute>} />
               <Route path="system" element={
                 <ProtectedRoute capability="view_system"><SystemScreen /></ProtectedRoute>} />
 

@@ -1,0 +1,312 @@
+{
+ "items": [
+  {
+   "key": "post-seo",
+   "type": "post",
+   "published": "2026-08-05T20:10:36+02:00",
+   "langs": {
+    "hu": {
+     "title": "Hogyan kerülj a Google első oldalára? 7 lépés",
+     "desc": "Nem varázslat kell a Google első oldalához, hanem rendszer. Hét lépés, amit egy kisvállalkozás magától is végig tud csinálni.",
+     "url": "/blog-google-elso-oldal"
+    },
+    "en": {
+     "title": "How to reach Google's first page — 7 steps",
+     "desc": "Getting onto Google's first page takes a system, not magic. Seven steps a small business can work through on its own.",
+     "url": "/en/blog-google-first-page"
+    },
+    "de": {
+     "title": "Wie kommen Sie auf Googles erste Seite? 7 Schritte",
+     "desc": "Für Googles erste Seite braucht es System, keine Magie. Sieben Schritte, die ein kleines Unternehmen selbst gehen kann.",
+     "url": "/de/blog-google-erste-seite"
+    }
+   }
+  },
+  {
+   "key": "post-arak",
+   "type": "post",
+   "published": "2026-08-05T20:10:36+02:00",
+   "langs": {
+    "hu": {
+     "title": "Mennyibe kerül egy weboldal 2026-ban?",
+     "desc": "Mitől függ egy weboldal ára? Mi hajtja fel a költséget, mi marad ki az ajánlatokból, és hogyan döntsd el, mennyit ér neked.",
+     "url": "/blog-weboldal-arak"
+    },
+    "en": {
+     "title": "How much does a website cost in 2026?",
+     "desc": "What does a website's price depend on? What drives the cost, what quotes leave out, and how to decide what it is worth to you.",
+     "url": "/en/blog-website-cost"
+    },
+    "de": {
+     "title": "Was kostet eine Website 2026?",
+     "desc": "Wovon hängt der Preis einer Website ab? Was die Kosten treibt, was Angebote auslassen und wie Sie entscheiden, was sie Ihnen wert ist.",
+     "url": "/de/blog-website-kosten"
+    }
+   }
+  },
+  {
+   "key": "post-cegprofil",
+   "type": "post",
+   "published": "2026-08-05T20:10:36+02:00",
+   "langs": {
+    "hu": {
+     "title": "Google Cégprofil beállítása lépésről lépésre",
+     "desc": "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásnak. Nyolc lépés a beállítástól a karbantartásig.",
+     "url": "/blog-google-cegprofil"
+    },
+    "en": {
+     "title": "Setting up a Google Business Profile",
+     "desc": "A Google Business Profile is the strongest free tool a local business has. Eight steps from setup to upkeep.",
+     "url": "/en/blog-google-business-profile"
+    },
+    "de": {
+     "title": "Google-Unternehmensprofil einrichten",
+     "desc": "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug lokaler Unternehmen. Acht Schritte von der Einrichtung bis zur Pflege.",
+     "url": "/de/blog-google-unternehmensprofil"
+    }
+   }
+  },
+  {
+   "key": "post-hirdetes",
+   "type": "post",
+   "published": "2026-08-05T20:10:36+02:00",
+   "langs": {
+    "hu": {
+     "title": "Google vagy Facebook hirdetés 2026-ban?",
+     "desc": "Rossz a kérdés. Megmutatjuk, melyik platform mire való, mikor melyiket érdemes választani, és miért a rendszer hozza az ügyfeleket, nem a platform.",
+     "url": "/blog-google-vagy-facebook"
+    },
+    "en": {
+     "title": "Google or Facebook ads in 2026?",
+     "desc": "It's the wrong question. We show what each platform is for, when to choose which, and why clients come from the system, not the platform.",
+     "url": "/en/blog-google-or-facebook"
+    },
+    "de": {
+     "title": "Google- oder Facebook-Werbung 2026?",
+     "desc": "Falsche Frage. Wir zeigen, wofür welche Plattform gut ist, wann sich welche lohnt und warum die Kunden vom System kommen, nicht von der Plattform.",
+     "url": "/de/blog-google-oder-facebook"
+    }
+   }
+  },
+  {
+   "key": "post-elavult",
+   "type": "post",
+   "published": "2026-08-05T20:10:36+02:00",
+   "langs": {
+    "hu": {
+     "title": "Mit veszítesz egy elavult weboldallal?",
+     "desc": "Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Végigvezetünk a számoláson, és megmutatjuk, mit érdemes megmérni előtte.",
+     "url": "/blog-elavult-weboldal"
+    },
+    "en": {
+     "title": "What an outdated website costs you",
+     "desc": "There's one number no business owner ever sees: the clients they lost. We walk through the calculation and show what to measure first.",
+     "url": "/en/blog-outdated-website"
+    },
+    "de": {
+     "title": "Was eine veraltete Website kostet",
+     "desc": "Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Wir gehen die Rechnung durch und zeigen, was Sie vorher messen sollten.",
+     "url": "/de/blog-veraltete-website"
+    }
+   }
+  },
+  {
+   "key": "post-konverzio",
+   "type": "post",
+   "published": "2026-08-05T20:10:36+02:00",
+   "langs": {
+    "hu": {
+     "title": "Miért nem hoz ügyfelet a weboldalad?",
+     "desc": "Van weboldalad, mégsem jönnek az ügyfelek. A hét leggyakoribb ok, amit a legtöbb vállalkozás elkövet — és hogyan javítsd ki mindegyiket.",
+     "url": "/blog-miert-nem-hoz-ugyfelet"
+    },
+    "en": {
+     "title": "Why your website brings no clients",
+     "desc": "You have a website but the clients aren't coming. The seven most common causes most businesses run into — and how to fix each one.",
+     "url": "/en/blog-no-enquiries"
+    },
+    "de": {
+     "title": "Warum Ihre Website keine Kunden bringt",
+     "desc": "Sie haben eine Website, aber die Kunden bleiben aus. Die sieben häufigsten Ursachen, in die die meisten Unternehmen laufen — und wie Sie jede beheben.",
+     "url": "/de/blog-keine-anfragen"
+    }
+   }
+  },
+  {
+   "key": "post-seo-alap",
+   "type": "post",
+   "published": "2026-08-25T20:02:54+02:00",
+   "langs": {
+    "hu": {
+     "title": "Mi az a keresőoptimalizálás? SEO útmutató kezdőknek",
+     "desc": "Mi az a keresőoptimalizálás, mit tudsz belőle magad, ingyen megcsinálni, mikor érdemes szakemberre bízni, és mi a helyzet a mobilalkalmazásokkal.",
+     "url": "/blog-keresooptimalizalas"
+    },
+    "en": {
+     "title": "What is SEO? A beginner's guide",
+     "desc": "What SEO is, what you can do yourself for free, when it is worth handing to a specialist, and what about mobile apps.",
+     "url": "/en/blog-what-is-seo"
+    },
+    "de": {
+     "title": "Was ist SEO? Ein Leitfaden für Einsteiger",
+     "desc": "Was SEO ist, was Sie selbst kostenlos erledigen können, wann sich Fachleute lohnen und wie es bei mobilen Apps aussieht.",
+     "url": "/de/blog-was-ist-seo"
+    }
+   }
+  },
+  {
+   "key": "post-marketing",
+   "type": "post",
+   "published": "2026-08-25T20:02:54+02:00",
+   "langs": {
+    "hu": {
+     "title": "Online marketing kisvállalkozásnak: mivel kezdd?",
+     "desc": "Melyik marketing eszközök érik meg egy kisvállalkozásnak, mikor kell social media ügynökség, és megéri-e digitális marketing képzésre menni.",
+     "url": "/blog-online-marketing"
+    },
+    "en": {
+     "title": "Online marketing for a small business",
+     "desc": "Which marketing channels are worth it for a small business, when a social media agency makes sense, and whether a digital marketing course pays off.",
+     "url": "/en/blog-online-marketing"
+    },
+    "de": {
+     "title": "Online-Marketing für kleine Unternehmen",
+     "desc": "Welche Marketingkanäle sich für ein kleines Unternehmen lohnen, wann eine Social-Media-Agentur sinnvoll ist und ob sich eine Weiterbildung auszahlt.",
+     "url": "/de/blog-online-marketing"
+    }
+   }
+  },
+  {
+   "key": "post-logo",
+   "type": "post",
+   "published": "2026-08-25T20:02:54+02:00",
+   "langs": {
+    "hu": {
+     "title": "Mire figyelj logó készítésnél: mit kérj, mit ne?",
+     "desc": "Mennyibe kerül a logó készítés, mit kell megkapnod a végén, és mi az a három hiba, amitől a legtöbb logó használhatatlan lesz a gyakorlatban.",
+     "url": "/blog-logo-keszites"
+    },
+    "en": {
+     "title": "Getting a logo made: what to ask for",
+     "desc": "What getting a logo made costs, what you must receive at the end, and the three mistakes that leave most logos unusable in practice.",
+     "url": "/en/blog-logo-design"
+    },
+    "de": {
+     "title": "Ein Logo erstellen lassen: was verlangen?",
+     "desc": "Was ein Logo kostet, was Sie am Ende erhalten müssen, und die drei Fehler, die die meisten Logos praktisch unbrauchbar machen.",
+     "url": "/de/blog-logo-gestaltung"
+    }
+   }
+  },
+  {
+   "key": "post-webdesign",
+   "type": "post",
+   "published": "2026-08-25T20:02:54+02:00",
+   "langs": {
+    "hu": {
+     "title": "Webdesign: mitől jó egy weboldal design?",
+     "desc": "Mi különbözteti meg a jó webdesignt a széptől, mit nézz meg egy honlap designon, mielőtt jóváhagyod, és miért nem ízlés kérdése a döntés.",
+     "url": "/blog-webdesign"
+    },
+    "en": {
+     "title": "Web design: what makes one good?",
+     "desc": "What separates good web design from pretty web design, what to check before approving a layout, and why the decision is not a matter of taste.",
+     "url": "/en/blog-web-design"
+    },
+    "de": {
+     "title": "Webdesign: was macht ein gutes aus?",
+     "desc": "Was gutes Webdesign von hübschem unterscheidet, was Sie vor der Freigabe prüfen sollten und warum die Entscheidung keine Geschmacksfrage ist.",
+     "url": "/de/blog-webdesign"
+    }
+   }
+  },
+  {
+   "key": "case-rapidkert",
+   "type": "case",
+   "published": null,
+   "langs": {
+    "hu": {
+     "title": "Rapidkert — 3D weboldal és SEO, Awwwards-elismeréssel",
+     "desc": "Interaktív 3D weboldal, SEO és Google Ads a Rapidkertnek — nagyjából 110 millió Ft ajánlatkérés organikus keresésből és 9 millió Ft hirdetésből.",
+     "url": "/munka-rapidkert"
+    },
+    "en": {
+     "title": "Rapidkert — 3D website and SEO, recognised by Awwwards",
+     "desc": "An interactive 3D website, SEO and Google Ads for Rapidkert — around HUF 110 million in quote requests from organic search and HUF 9 million from ads.",
+     "url": "/en/work-rapidkert"
+    },
+    "de": {
+     "title": "Rapidkert — 3D-Website und SEO, von Awwwards gewürdigt",
+     "desc": "Eine interaktive 3D-Website, SEO und Google Ads für Rapidkert — rund 110 Mio. HUF an Angebotsanfragen aus der organischen Suche und 9 Mio. HUF aus Anzeigen.",
+     "url": "/de/projekt-rapidkert"
+    }
+   }
+  },
+  {
+   "key": "case-barbershop",
+   "type": "case",
+   "published": null,
+   "langs": {
+    "hu": {
+     "title": "Barbershop Győr — foglalásvezérelt weboldal",
+     "desc": "Esettanulmány: borbélyüzlet weboldala, ahol a nyitóképernyő egyetlen dolga az időpontfoglalás. Valódi Google-értékelések, kétnyelvű felület.",
+     "url": "/munka-barbershop"
+    },
+    "en": {
+     "title": "Barbershop Győr — a booking-led website",
+     "desc": "Case study: a barbershop website where the opening screen has one job — booking. Real Google reviews, a bilingual interface.",
+     "url": "/en/work-barbershop"
+    },
+    "de": {
+     "title": "Barbershop Győr — buchungsgesteuerte Website",
+     "desc": "Fallstudie: die Website eines Barbershops, deren Startbildschirm nur eine Aufgabe hat — die Terminbuchung. Echte Google-Bewertungen, zweisprachige Oberfläche.",
+     "url": "/de/projekt-barbershop"
+    }
+   }
+  },
+  {
+   "key": "case-mentaltrening",
+   "type": "case",
+   "published": null,
+   "langs": {
+    "hu": {
+     "title": "MindForge — mentáltréning weboldal",
+     "desc": "Esettanulmány: sportolóknak szóló mentáltréning weboldala. Egyszemélyes szolgáltatás, személyes hangvétel, egyetlen döntés a nyitóképernyőn.",
+     "url": "/munka-mentaltrening"
+    },
+    "en": {
+     "title": "MindForge — mental coaching website",
+     "desc": "Case study: a mental coaching website for athletes. A one-person practice, a personal tone of voice, a single decision on the opening screen.",
+     "url": "/en/work-mentaltrening"
+    },
+    "de": {
+     "title": "MindForge — Website für Mentaltraining",
+     "desc": "Fallstudie: eine Website für Mentaltraining im Sport. Eine Ein-Personen-Praxis, ein persönlicher Ton, eine einzige Entscheidung auf dem Startbildschirm.",
+     "url": "/de/projekt-mentaltrening"
+    }
+   }
+  },
+  {
+   "key": "case-godatafusion",
+   "type": "case",
+   "published": null,
+   "langs": {
+    "hu": {
+     "title": "GoDataFusion — 3D weboldal és háromnyelvű SEO",
+     "desc": "Esettanulmány: építőipari felmérő cég weboldala, ahol egy görgetésre alakuló 3D épületmodell mutatja meg a három szolgáltatást. Magyar, angol és német SEO.",
+     "url": "/munka-godatafusion"
+    },
+    "en": {
+     "title": "GoDataFusion — 3D website and SEO in three languages",
+     "desc": "Case study: a construction surveying firm's website, where a 3D building model that transforms as you scroll shows the three services. SEO in Hungarian, English and German.",
+     "url": "/en/work-godatafusion"
+    },
+    "de": {
+     "title": "GoDataFusion — 3D-Website und SEO in drei Sprachen",
+     "desc": "Fallstudie: die Website eines Bauvermessungsbüros, auf der ein 3D-Gebäudemodell, das sich beim Scrollen verwandelt, die drei Leistungen zeigt. SEO auf Ungarisch, Englisch und Deutsch.",
+     "url": "/de/projekt-godatafusion"
+    }
+   }
+  }
+ ]
+}

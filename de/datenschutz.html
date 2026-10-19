@@ -40,7 +40,7 @@
 <link rel="stylesheet" href="/assets/css/type.css">
 <link rel="stylesheet" href="/assets/css/system.css">
 <link rel="stylesheet" href="/assets/css/site.css">
-<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "thanks_newsletter": "Wir haben Ihre Adresse. Einen Newsletter gibt es noch nicht — die erste Ausgabe kommt, sobald er startet.", "fail": "Das Senden ist fehlgeschlagen. Schreiben Sie uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfen Sie die markierten Felder.", "need_name": "Bitte geben Sie Ihren Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürzen Sie es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warten Sie eine Minute.", "consent_title": "Messung und Cookies", "consent_body": "Mit Google Analytics würden wir sehen, wie die Website genutzt wird. Es lädt und setzt Cookies nur, wenn Sie zustimmen. Namen, E-Mail-Adressen, Telefonnummern und Formularinhalte senden wir nie.", "consent_accept": "Einverstanden", "consent_decline": "Nicht zustimmen", "consent_more": "Datenschutzerklärung", "consent_settings": "Cookie-Einstellungen", "consent_state_granted": "Die Messung ist derzeit aktiviert.", "consent_state_denied": "Die Messung ist derzeit deaktiviert.", "consent_privacy_href": "/de/datenschutz", "locale": "de-DE"}</script>
+<script id="i18n" type="application/json">{"sending": "Wird gesendet…", "sent": "Gesendet", "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.", "thanks_newsletter": "Danke! Falls diese Adresse noch nicht auf der Liste stand, haben wir eine Bestätigungs-E-Mail geschickt — klicken Sie auf die Schaltfläche darin. Nicht gefunden? Sehen Sie im Spam-Ordner nach.", "fail": "Das Senden ist fehlgeschlagen. Schreiben Sie uns direkt: lukacs.artur@media-stratos.com", "invalid": "Bitte überprüfen Sie die markierten Felder.", "need_name": "Bitte geben Sie Ihren Namen an.", "need_email": "Diese E-Mail-Adresse sieht nicht richtig aus.", "too_long": "Eines der Felder ist zu lang — bitte kürzen Sie es.", "limited": "Zu viele Übermittlungen hintereinander. Bitte warten Sie eine Minute.", "consent_title": "Messung und Cookies", "consent_body": "Mit Google Analytics würden wir sehen, wie die Website genutzt wird. Es lädt und setzt Cookies nur, wenn Sie zustimmen. Namen, E-Mail-Adressen, Telefonnummern und Formularinhalte senden wir nie.", "consent_accept": "Einverstanden", "consent_decline": "Nicht zustimmen", "consent_more": "Datenschutzerklärung", "consent_settings": "Cookie-Einstellungen", "consent_state_granted": "Die Messung ist derzeit aktiviert.", "consent_state_denied": "Die Messung ist derzeit deaktiviert.", "consent_privacy_href": "/de/datenschutz", "locale": "de-DE"}</script>
 <!-- The lead controller, for the footer form, and the shell: header, light
      states, the one-active-surface switcher. Both deferred, neither needed for
      the page to read or to navigate. There is no other script on this page
@@ -144,7 +144,7 @@
           <li>Ermöglichung der Kontaktaufnahme</li>
           <li>Angebotserstellung und Kundenkommunikation</li>
           <li>Buchung eines Termins für eine Online-Beratung (Google Meet)</li>
-          <li>Newsletter-Anfragen entgegennehmen und erfassen</li>
+          <li>Versand des Newsletters an alle, die sich angemeldet und dies per E-Mail bestätigt haben — dazu gehören einige Vorstellungs-E-Mails nach der Anmeldung und Hinweise auf neue Artikel und Fallstudien</li>
           <li>Erbringung der Leistungen</li>
           <li>Betrieb und Weiterentwicklung der Website</li>
           <li>Statistik- und Analysezwecke</li>
@@ -180,8 +180,14 @@
           <li>bei einem im Kundenportal gebuchten Termin: Name und E-Mail-Adresse des Kontos sowie das Projekt</li>
         </ul>
         <h3>Bei Newsletter-Anmeldung</h3>
-        <ul><li>E-Mail-Adresse</li></ul>
-        <p class="note">Wir erfassen Newsletter-Anfragen, ein Newsletter-System ist derzeit jedoch nicht in Betrieb: Nach der Anmeldung folgt keine automatische Bestätigungs-E-Mail, und es wird kein Newsletter versendet. Ihre Anfrage bleibt erfasst, bis Sie deren Löschung verlangen.</p>
+        <ul>
+          <li>E-Mail-Adresse und gewählte Sprache</li>
+          <li>wie Sie sich angemeldet haben (Newsletter-Formular oder Kontrollkästchen im Kontaktformular), auf welcher Seite und wann</li>
+          <li>wann Sie bestätigt haben und, falls Sie sich abmelden, wann und wie</li>
+          <li>ein gesalzener, nicht umkehrbarer Fingerabdruck der IP-Adresse — die IP-Adresse selbst wird nicht gespeichert</li>
+          <li>welche Newsletter wir Ihnen wann gesendet haben</li>
+        </ul>
+        <p class="note">Die Anmeldung erfolgt in zwei Schritten: Wir senden eine Bestätigungs-E-Mail an die angegebene Adresse und versenden den Newsletter erst, wenn Sie mit der Schaltfläche darin bestätigen. Eine nicht bestätigte Anmeldung wird 30 Tage nach der letzten Bestätigungs-E-Mail automatisch gelöscht. Anfragen, die vor dem Start des Newsletters (18. Oktober 2026) erfasst wurden, gelten nicht als Anmeldung: Sie erhalten höchstens eine Bestätigungs-E-Mail. Am Ende jedes Newsletters können Sie sich mit einem Klick abmelden; eine nicht zustellbare Adresse oder eine, die unsere E-Mail als Spam meldet, wird von der Liste entfernt.</p>
 
         <!-- REQUIRES LEGAL REVIEW — two gaps a lawyer has to close, both of them
              Article 13 requirements that cannot be written by guessing:
@@ -210,7 +216,7 @@
         <ul>
           <li>Kontaktdaten: höchstens 5 Jahre</li>
           <li>Buchungsdaten: höchstens 5 Jahre</li>
-          <li>Newsletter-Daten: bis zum Widerruf der Einwilligung</li>
+          <li>Newsletter-Daten: bis zur Abmeldung; danach bewahren wir die Adresse nur auf, damit wir ihr keinen Newsletter mehr senden — auf Wunsch löschen wir auch diese. Eine nicht bestätigte Anmeldung: höchstens 30 Tage.</li>
           <li>Rechnungsdaten: 8 Jahre (nach ungarischem Rechnungslegungsgesetz)</li>
         </ul>
 
@@ -227,7 +233,8 @@
                exact. Removed rather than replaced with a different guess. When
                the provider is known, add it here with its legal entity and
                address, in the same shape as the two above. -->
-          <li><b>E-Mail-Anbieter:</b> der Anbieter des E-Mail-Systems des Verantwortlichen. Die Website selbst versendet keine E-Mails; der Verantwortliche antwortet auf Anfragen aus dem eigenen Postfach.</li>
+          <li><b>E-Mail-Anbieter:</b> der Anbieter des E-Mail-Systems des Verantwortlichen; der Verantwortliche antwortet auf Anfragen aus dem eigenen Postfach.</li>
+          <li><b>E-Mail-Versand:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Vereinigte Staaten. Leistung: Zustellung der automatischen E-Mails der Website und des Portals — Newsletter, Anmeldebestätigungen, Bestätigungen abgesendeter Formulare, Erinnerungen vor einem gebuchten Termin und Benachrichtigungen des Kundenportals. Die Übermittlung erfolgt auf Grundlage der EU-Standardvertragsklauseln und des EU-U.S. Data Privacy Framework.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Irland. Dienst: Google-Analytics-4-Reichweitenmessung, ausschließlich bei ausdrücklicher Einwilligung der Besucherin oder des Besuchers. Ohne Einwilligung wird Google Analytics nicht geladen, und es gelangen keinerlei Daten zu Google.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Irland. Dienst: Google Workspace (Google Kalender und Google Meet) für Terminbuchungen. Ein gebuchter Termin wird im Kalender von Stratos angelegt; die Einladung und den Google-Meet-Link sendet Google an die E-Mail-Adresse, die die buchende Person angegeben hat. Zur Ermittlung freier Termine wird nur abgefragt, wann der Kalender von Stratos belegt ist.</li>
         </ul>
@@ -296,11 +303,11 @@
         <p class="ftr__line">Digitale Erlebnisse und individuelle Systeme — aus Győr, auf Ungarisch, Englisch und Deutsch.</p>
       </div>
       <form class="ftr__nl" data-lead="newsletter">
-        <p class="t-small">Unser Newsletter entsteht gerade. Hinterlassen Sie Ihre Adresse, dann sagen wir Bescheid, sobald er startet.</p>
+        <p class="t-small">Unser Newsletter: Websites, SEO, Online-Marketing. Sie erhalten eine Bestätigungs-E-Mail und können sich jederzeit abmelden.</p>
         <label class="vh" for="nl">E-Mail-Adresse</label>
         <div class="ftr__field">
           <input id="nl" type="email" name="email" placeholder="E-Mail-Adresse" autocomplete="email" required>
-          <button class="btn btn--sm" type="submit">Bescheid geben</button>
+          <button class="btn btn--sm" type="submit">Abonnieren</button>
         </div>
         <div class="hp" aria-hidden="true">
           <label for="hp-foot">Company website</label>
