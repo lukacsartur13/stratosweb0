@@ -16,8 +16,9 @@ Supabase Auth OAuth 2.1 szerver ──▶ /portal/oauth/consent  (bejelentkezés
 ```
 
 - **Bejelentkezés:** a Supabase Auth saját OAuth 2.1 szervere (béta). A Claude
-  regisztrálja magát (dynamic client registration), a tulajdonos a Portálban
-  belép és jóváhagy, a Claude kap egy tokent, és maga frissíti.
+  egy kézzel regisztrált OAuth appal (Client ID + Secret) jelentkezik, a
+  tulajdonos a Portálban belép és jóváhagy, a Claude kap egy tokent, és maga
+  frissíti.
 - **A token egy normál Supabase felhasználói JWT.** Minden lekérdezés és minden
   fájlművelet a tulajdonosként fut, az RLS és a `project-documents` bucket
   policyjai döntenek mindenről, pontosan úgy, mint a Portálban. Szerverkulcs
@@ -37,14 +38,26 @@ Supabase Auth OAuth 2.1 szerver ──▶ /portal/oauth/consent  (bejelentkezés
    - **Authorization Path:** `/portal/oauth/consent`
      (a Site URL `https://stratosweb.hu`, a kettő együtt adja a jóváhagyó oldal
      címét: `https://stratosweb.hu/portal/oauth/consent`);
-   - **Allow Dynamic OAuth Apps** (dynamic client registration): be. Enélkül a
-     Claude nem tudja magát regisztrálni.
-2. **Project Settings → JWT Keys:** ha a projekt még a régi, HS256 JWT secrettel
+   - **Allow Dynamic OAuth Apps** (dynamic client registration): **ki**. Így
+     bárki nem regisztrálhat appot; a Claude-ot kézzel vesszük fel (1.2).
+2. **Authentication → OAuth Apps → új app** — a Claude-é, egyszer:
+   - Name: `Claude`
+   - Redirect URIs: `https://claude.ai/api/mcp/auth_callback` és
+     `https://claude.com/api/mcp/auth_callback`
+   - Public Client: **ki** (így kap secretet; utólag nem módosítható)
+   - Token Endpoint Auth Method: **Request body (`client_secret_post`)** — a
+     claude.ai így küldi a secretet. `client_secret_basic`-kel a token kiadása
+     elbukik: *invalid authentication method* (2026-10-19, a Supabase Auth
+     naplójában).
+   - Mentés után másold ki a **Client ID**-t és a **Client Secret**-et (a
+     secret általában csak egyszer látszik; ha elveszett: *regenerate*, és írd
+     át a connectorban is).
+3. **Project Settings → JWT Keys:** ha a projekt még a régi, HS256 JWT secrettel
    ír alá, válts aszimmetrikus kulcsra (RS256/ES256). A connector csak `email`
    scope-ot kér, így HS256 mellett is működnie kell — de ha egy kliens `openid`-t
    kér, HS256-tal az ID token kiadása elbukik, és a Supabase is az aszimmetrikus
-   kulcsot ajánlja az OAuth szerverhez.
-3. **Netlify:** új környezeti változó nem kell. A függvény a meglévőket olvassa:
+   kulcsot ajánlja az OAuth szerverhez. (2026-10-19: ES256, rendben.)
+4. **Netlify:** új környezeti változó nem kell. A függvény a meglévőket olvassa:
    `SUPABASE_URL` és `SUPABASE_ANON_KEY` (vagy a `VITE_` megfelelőik).
    A `SUPABASE_SECRET_KEY` az adateszközökhöz nem kötelező: csak akkor kell, ha
    a Supabase a séma leírását (PostgREST OpenAPI) a nyilvános kulccsal nem adja
@@ -52,7 +65,7 @@ Supabase Auth OAuth 2.1 szerver ──▶ /portal/oauth/consent  (bejelentkezés
    meghívója (`SUPABASE_SECRET_KEY`, `PORTAL_ORIGIN` vagy `URL` —
    `CLIENT_PORTAL.md`); a kiküldött hírlevelet a meglévő ütemezett
    `newsletter-dispatch` viszi ki (Resend).
-4. **Deploy** (a szokásos módon, a `main` ágról).
+5. **Deploy** (a szokásos módon, a `main` ágról). Élesítve: 2026-10-19, `edf7cac`.
 
 ## 2. Csatlakoztatás
 
@@ -61,18 +74,22 @@ connector*
 
 - Name: `Stratos Portal`
 - URL: `https://stratosweb.hu/api/mcp`
+- **Advanced settings:** OAuth Client ID és OAuth Client Secret — az 1.2-ben
+  kimásolt két érték
 
-→ *Connect* → megnyílik a Portál → belépsz a tulajdonosi fiókkal →
+→ *Add* → *Connect* → megnyílik a Portál → belépsz a tulajdonosi fiókkal →
 **Engedélyezés**. A Claude-ban ezután a beszélgetésnél bekapcsolhatod a
 connectort (a `+` / eszközök menüben).
 
-**Claude Code:**
+Egy app elég a claude.ai-hoz, az asztali és a mobil apphoz: mindhárom a
+claude.ai címén tér vissza. Egy jóváhagyás után a Supabase megjegyzi, így egy
+újracsatlakozásnál (*Reconnect*) már nem kérdez újra.
 
-```bash
-claude mcp add --transport http stratos-portal https://stratosweb.hu/api/mcp
-```
-
-Utána a Claude Code-ban a `/mcp` paranccsal válaszd ki, és *Authenticate*.
+**Claude Code:** a böngészős bejelentkezése egy helyi (`localhost`) címre tér
+vissza, ezért ehhez **külön OAuth app kell** ezzel a visszatérési címmel, és a
+Claude Code-ban a Client ID / Secret megadása. Ezt még nem próbáltuk ki; ha
+kell, a pontos lépéseket akkor érdemes a Claude Code aktuális dokumentációjából
+venni.
 
 ## 3. Ellenőrzés
 
@@ -141,10 +158,14 @@ változás előtt kérdezzen; a hírlevelet csak a te igened után erősítse me
 
 ## 5. Biztonság
 
-- **Ki fér hozzá:** csak a tulajdonos, csak az általa jóváhagyott kliens. A
-  dynamic client registration miatt bárki regisztrálhat klienst, de tokent csak
-  a tulajdonos jóváhagyása ad; a jóváhagyó oldal megmutatja, hová megy vissza a
-  token, és figyelmeztet, ha az nem a Claude címe (`claude.ai` / `claude.com`).
+- **Ki fér hozzá:** csak a tulajdonos, csak a kézzel felvett Claude appon át.
+  A dynamic client registration szándékosan ki van kapcsolva: így nem létezhet
+  idegen app, amely a tokent máshová vinné, és nincs mit „Claude”-nak álcázni.
+  (Ha egyszer mégis bekapcsolnád: tokent akkor is csak a tulajdonos jóváhagyása
+  ad, és a jóváhagyó oldal figyelmeztet, ha a visszatérési cím nem `claude.ai` /
+  `claude.com` — de onnantól ez a figyelmeztetés az egyetlen védelem.)
+- **A Client Secret** jelszó: csak a connector beállításaiba kerül. Ha kiszivárog,
+  a Supabase-ben *regenerate*, és írd át a connectorban.
 - **Lecsatlakoztatás:** töröld a connectort a Claude-ban, **és** a Supabase-ben
   Authentication → OAuth Apps alatt töröld a Claude klienst — ez a kiadott
   tokeneket is visszavonja.
@@ -174,12 +195,13 @@ változás előtt kérdezzen; a hírlevelet csak a te igened után erősítse me
 
 | Tünet | Ok |
 |---|---|
-| A Claude „couldn't connect”-et mond, a Portál meg sem nyílik | az OAuth szerver nincs bekapcsolva, vagy a dynamic registration ki van kapcsolva (1.1) |
+| A Claude „couldn't connect”-et mond, a Portál meg sem nyílik | az OAuth szerver nincs bekapcsolva (1.1), vagy a connectorban nincs megadva a Client ID / Secret (2.) — dynamic registration nélkül a Claude magától nem tud regisztrálni |
+| Jóváhagyás után *Connection issue* / „stopped working, reconnect” | a token kiadása elbukott. A Supabase Auth naplójában (`/oauth/token`): *invalid authentication method* → az app nem `client_secret_post` (1.2); *invalid client* → rossz vagy újragenerált secret |
 | A Portál 404-et vagy a nyitóoldalt mutatja jóváhagyás helyett | rossz az Authorization Path (1.1) |
-| A Supabase visszautasítja a visszairányítást | Authentication → URL Configuration → Redirect URLs: add hozzá a `https://claude.ai/api/mcp/auth_callback` és `https://claude.com/api/mcp/auth_callback` címet |
+| A Supabase visszautasítja a visszairányítást | az app Redirect URIs listájából hiányzik a Claude címe (1.2) |
 | „A kérés nem érvényes” | a kérés 10 perc után lejár, vagy már válaszoltál rá — indítsd újra a Claude-ból |
 | Jóváhagyás után 403 | nem a tulajdonosi fiókkal léptél be |
-| A token kiadása elbukik jóváhagyás után | HS256 kulcs és `openid` scope (1.2) |
+| A token kiadása elbukik jóváhagyás után, és a módszer rendben van | HS256 kulcs és `openid` scope (1.3) |
 
 Tesztek: `tests/portal-mcp.spec.ts` (mockolt Supabase és Storage,
 `--project=node`).
