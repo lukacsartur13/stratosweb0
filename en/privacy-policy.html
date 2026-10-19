@@ -40,7 +40,7 @@
 <link rel="stylesheet" href="/assets/css/type.css">
 <link rel="stylesheet" href="/assets/css/system.css">
 <link rel="stylesheet" href="/assets/css/site.css">
-<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "thanks_newsletter": "We have your address. There is no newsletter yet — the first one arrives when it launches.", "fail": "Sending failed. Write to us directly: hello@stratosweb.hu", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "consent_title": "Measurement and cookies", "consent_body": "We would use Google Analytics to see how the site is used. It loads, and sets cookies, only if you agree. We never send names, email addresses, phone numbers or anything typed into a form.", "consent_accept": "Accept", "consent_decline": "Decline", "consent_more": "Privacy policy", "consent_settings": "Cookie settings", "consent_state_granted": "Measurement is currently enabled.", "consent_state_denied": "Measurement is currently disabled.", "consent_privacy_href": "/en/privacy-policy", "locale": "en-GB"}</script>
+<script id="i18n" type="application/json">{"sending": "Sending…", "sent": "Sent", "thanks": "Thank you — we'll reply to the address you gave us shortly.", "thanks_newsletter": "Thank you! If this address was not on the list yet, we've sent it a confirmation e-mail — click the button in it. Can't see it? Check your Promotions or Spam folder.", "fail": "Sending failed. Write to us directly: hello@stratosweb.hu", "invalid": "Please check the highlighted fields.", "need_name": "Please give us your name.", "need_email": "That email address does not look right.", "too_long": "One of the fields is too long — please shorten it.", "limited": "Too many submissions in a row. Please wait a minute.", "consent_title": "Measurement and cookies", "consent_body": "We would use Google Analytics to see how the site is used. It loads, and sets cookies, only if you agree. We never send names, email addresses, phone numbers or anything typed into a form.", "consent_accept": "Accept", "consent_decline": "Decline", "consent_more": "Privacy policy", "consent_settings": "Cookie settings", "consent_state_granted": "Measurement is currently enabled.", "consent_state_denied": "Measurement is currently disabled.", "consent_privacy_href": "/en/privacy-policy", "locale": "en-GB"}</script>
 <!-- The lead controller, for the footer form, and the shell: header, light
      states, the one-active-surface switcher. Both deferred, neither needed for
      the page to read or to navigate. There is no other script on this page
@@ -144,7 +144,7 @@
           <li>enabling contact</li>
           <li>preparing quotes and client communication</li>
           <li>booking a time for an online consultation (Google Meet)</li>
-          <li>receiving and recording newsletter requests</li>
+          <li>sending the newsletter to those who subscribed and confirmed it by e-mail — including a few introductory e-mails after subscribing, and notice of new articles and case studies</li>
           <li>performing services</li>
           <li>operating and developing the website</li>
           <li>statistical and analytical purposes</li>
@@ -180,8 +180,14 @@
           <li>for a time booked in the client portal: the account's name and email address, and the project</li>
         </ul>
         <h3>When subscribing to the newsletter</h3>
-        <ul><li>email address</li></ul>
-        <p class="note">We record newsletter requests, but no newsletter system is running at present: signing up does not trigger a confirmation email, and no newsletter is sent. Your request stays on record until you ask us to delete it.</p>
+        <ul>
+          <li>email address and the chosen language</li>
+          <li>how you subscribed (the newsletter form or the contact form's checkbox), on which page and when</li>
+          <li>when you confirmed, and if you unsubscribe, when and how</li>
+          <li>a salted, irreversible fingerprint of the IP address — the IP address itself is not stored</li>
+          <li>which newsletters we sent you, and when</li>
+        </ul>
+        <p class="note">Subscribing takes two steps: we send a confirmation e-mail to the address given, and send newsletters only once you confirm with the button in it. An unconfirmed request is deleted automatically 30 days after the last confirmation e-mail. Requests recorded before the newsletter launched (18 October 2026) are not treated as subscriptions: they receive at most one confirmation e-mail. You can unsubscribe with one click at the bottom of every newsletter; an address that cannot be delivered to, or that reports our e-mail as spam, is taken off the list.</p>
 
         <!-- REQUIRES LEGAL REVIEW — two gaps a lawyer has to close, both of them
              Article 13 requirements that cannot be written by guessing:
@@ -211,7 +217,7 @@
         <ul>
           <li>contact data: no more than 5 years</li>
           <li>booking data: no more than 5 years</li>
-          <li>newsletter data: until consent is withdrawn</li>
+          <li>newsletter data: until you unsubscribe; after that we keep the address only so that we never send it a newsletter again — on request we delete that too. An unconfirmed signup: at most 30 days.</li>
           <li>invoicing data: 8 years (under the Hungarian Accounting Act)</li>
         </ul>
 
@@ -226,7 +232,7 @@
                entity and address are from its DPA (resend.com/legal/dpa,
                Exhibit B). -->
           <li><b>Email provider:</b> Google Ireland Ltd. — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Workspace, Stratos's mailboxes; the Controller replies to enquiries from there.</li>
-          <li><b>Email delivery provider:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, United States. Service: delivering the Portal's automatic emails (for example, notifying clients about their project), for which it receives the recipient's name and email address; and an internal alert to Stratos about a new submission, which contains no personal data.</li>
+          <li><b>Email delivery provider:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, United States. Service: delivering the automatic emails of the website and the Portal — the newsletter, subscription confirmations, confirmations of form submissions, reminders before a booked call and the Portal's notifications (for example, to clients about their project) — for which it receives the recipient's email address and, where known, their name; and an internal alert to Stratos about a new submission, which contains no personal data. Transfers rely on the EU Standard Contractual Clauses and the EU-U.S. Data Privacy Framework.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Analytics 4 audience measurement, only where the visitor has explicitly consented. Without consent Google Analytics is not loaded and no data reaches Google.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Workspace (Google Calendar and Google Meet) for booking consultations. A booked time is created in Stratos's calendar, and Google sends the invitation and the Google Meet link to the email address the person booking gave. To work out the free times, only whether Stratos's calendar is busy is queried.</li>
         </ul>
@@ -295,11 +301,11 @@
         <p class="ftr__line">Digital experiences and custom systems — from Győr, in Hungarian, English and German.</p>
       </div>
       <form class="ftr__nl" data-lead="newsletter">
-        <p class="t-small">Our newsletter is still being built. Leave your address and we'll tell you when it starts.</p>
+        <p class="t-small">Get our newsletter: websites, SEO, online marketing. We'll send a confirmation e-mail, and you can unsubscribe at any time.</p>
         <label class="vh" for="nl">Email address</label>
         <div class="ftr__field">
           <input id="nl" type="email" name="email" placeholder="email address" autocomplete="email" required>
-          <button class="btn btn--sm" type="submit">Tell me</button>
+          <button class="btn btn--sm" type="submit">Subscribe</button>
         </div>
         <div class="hp" aria-hidden="true">
           <label for="hp-foot">Company website</label>

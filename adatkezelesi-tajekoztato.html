@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="/assets/css/type.css">
 <link rel="stylesheet" href="/assets/css/system.css">
 <link rel="stylesheet" href="/assets/css/site.css">
-<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "thanks_newsletter": "Megjegyeztük a címed. Hírlevelet még nem küldünk — az első levél akkor érkezik, amikor a hírlevél elindul.", "fail": "A küldés nem sikerült. Írj közvetlenül: hello@stratosweb.hu", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "consent_title": "Mérés és sütik", "consent_body": "A Google Analytics segítségével néznénk meg, hogyan használják az oldalt. Csak akkor tölt be és csak akkor helyez el sütit, ha ehhez hozzájárulsz. Nevet, e-mail címet, telefonszámot és űrlapokba írt szöveget soha nem küldünk el.", "consent_accept": "Elfogadom", "consent_decline": "Nem járulok hozzá", "consent_more": "Adatkezelési tájékoztató", "consent_settings": "Süti-beállítások", "consent_state_granted": "A mérés jelenleg engedélyezve van.", "consent_state_denied": "A mérés jelenleg le van tiltva.", "consent_privacy_href": "/adatkezelesi-tajekoztato", "locale": "hu-HU"}</script>
+<script id="i18n" type="application/json">{"sending": "Küldés…", "sent": "Elküldve", "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.", "thanks_newsletter": "Köszönjük! Ha ez a cím még nem volt a listán, küldtünk rá egy megerősítő levelet — kattints a benne lévő gombra. Nem látod? Nézd meg a Promóciók vagy a Spam mappát.", "fail": "A küldés nem sikerült. Írj közvetlenül: hello@stratosweb.hu", "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.", "need_name": "Kérjük, add meg a nevedet.", "need_email": "Ez az e-mail cím nem tűnik helyesnek.", "too_long": "Az egyik mező túl hosszú — kérjük, rövidítsd le.", "limited": "Túl sok beküldés egymás után. Kérlek, várj egy percet.", "consent_title": "Mérés és sütik", "consent_body": "A Google Analytics segítségével néznénk meg, hogyan használják az oldalt. Csak akkor tölt be és csak akkor helyez el sütit, ha ehhez hozzájárulsz. Nevet, e-mail címet, telefonszámot és űrlapokba írt szöveget soha nem küldünk el.", "consent_accept": "Elfogadom", "consent_decline": "Nem járulok hozzá", "consent_more": "Adatkezelési tájékoztató", "consent_settings": "Süti-beállítások", "consent_state_granted": "A mérés jelenleg engedélyezve van.", "consent_state_denied": "A mérés jelenleg le van tiltva.", "consent_privacy_href": "/adatkezelesi-tajekoztato", "locale": "hu-HU"}</script>
 <!-- The lead controller, for the footer form, and the shell: header, light
      states, the one-active-surface switcher. Both deferred, neither needed for
      the page to read or to navigate. There is no other script on this page
@@ -161,7 +161,7 @@
           <li>kapcsolatfelvétel biztosítása</li>
           <li>ajánlatkészítés és ügyfélkommunikáció</li>
           <li>online konzultáció időpontjának foglalása (Google Meet)</li>
-          <li>hírlevél-kérések fogadása és nyilvántartása</li>
+          <li>hírlevél küldése azoknak, akik feliratkoztak és ezt e-mailben megerősítették — ennek része néhány bemutatkozó levél a feliratkozás után, és értesítés új cikkekről, esettanulmányokról</li>
           <li>szolgáltatások teljesítése</li>
           <li>weboldal működtetése és fejlesztése</li>
           <li>statisztikai és elemzési célok</li>
@@ -204,12 +204,15 @@
           <li>ügyfélportálon foglalt időpontnál: a fiók neve és e-mail címe, valamint a projekt</li>
         </ul>
         <h3>Hírlevél-feliratkozás esetén</h3>
-        <ul><li>e-mail cím</li></ul>
+        <ul>
+          <li>e-mail cím és a választott nyelv</li>
+          <li>a feliratkozás módja (hírlevél-űrlap vagy a kapcsolati űrlap jelölőnégyzete), oldala és időpontja</li>
+          <li>a megerősítés időpontja, leiratkozáskor annak időpontja és módja</li>
+          <li>az IP-cím sózott, visszafejthetetlen lenyomata — magát az IP-címet nem tároljuk</li>
+          <li>melyik hírlevelet és mikor küldtük Önnek</li>
+        </ul>
         <p class="note">
-          A hírlevél-kéréseket rögzítjük, hírlevélküldő rendszer azonban jelenleg nem
-          működik: feliratkozás után nem érkezik automatikus visszaigazoló levél, és a
-          rendszer nem küld hírlevelet. A kérése addig marad nyilvántartva, amíg annak
-          törlését nem kéri.
+          A feliratkozás kétlépcsős: a megadott címre megerősítő levelet küldünk, és hírlevelet csak akkor küldünk, ha Ön a levélben lévő gombbal megerősíti a feliratkozást. A meg nem erősített kérést az utolsó megerősítő levél után 30 nappal automatikusan töröljük. A hírlevél indulása (2026. október 18.) előtt rögzített kéréseket nem tekintjük feliratkozásnak: ezekre legfeljebb egy megerősítő levelet küldünk. Minden hírlevél alján egy kattintással leiratkozhat; a kézbesíthetetlen, illetve a levelünket spamként jelző címet a listáról levesszük.
         </p>
 
         <!-- REQUIRES LEGAL REVIEW — two gaps a lawyer has to close, both of them
@@ -240,7 +243,7 @@
         <ul>
           <li>kapcsolatfelvételi adatok: legfeljebb 5 év</li>
           <li>időpontfoglalási adatok: legfeljebb 5 év</li>
-          <li>hírlevél adatok: a hozzájárulás visszavonásáig</li>
+          <li>hírlevél adatok: a leiratkozásig; utána a címet csak azért őrizzük meg, hogy ne küldjünk rá újra hírlevelet — kérésre ezt is töröljük. Meg nem erősített feliratkozás: legfeljebb 30 nap.</li>
           <li>számlázási adatok: 8 év (a számviteli törvény alapján)</li>
         </ul>
 
@@ -258,7 +261,7 @@
                entity and address are from its DPA (resend.com/legal/dpa,
                Exhibit B). -->
           <li><b>E-mail szolgáltató:</b> Google Ireland Ltd. — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Workspace, a Stratos levelezése; az érdeklődésekre az Adatkezelő innen válaszol.</li>
-          <li><b>Levélküldő szolgáltató:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Amerikai Egyesült Államok. Szolgáltatás: a Portál automatikus e-mailjeinek kézbesítése (például értesítés az ügyfeleknek a projektjükről), amelyhez a címzett nevét és e-mail-címét kapja meg; valamint a Stratosnak szóló belső jelzés új beküldésről, amely személyes adatot nem tartalmaz.</li>
+          <li><b>Levélküldő szolgáltató:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Amerikai Egyesült Államok. Szolgáltatás: a weboldal és a Portál automatikus e-mailjeinek kézbesítése — a hírlevél, a feliratkozás megerősítése, az űrlapok beküldésének visszaigazolása, a foglalt időpont előtti emlékeztető és a Portál értesítései (például az ügyfeleknek a projektjükről) —, amelyhez a címzett e-mail-címét, és ha ismert, a nevét kapja meg; valamint a Stratosnak szóló belső jelzés új beküldésről, amely személyes adatot nem tartalmaz. Az adattovábbítás az EU általános szerződési feltételei (SCC) és az EU–USA adatvédelmi keretrendszer alapján történik.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Analytics 4 látogatottságmérés, kizárólag a látogató kifejezett hozzájárulása esetén. Hozzájárulás hiányában a Google Analytics nem töltődik be, és semmilyen adat nem kerül a Google-höz.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Workspace (Google Naptár és Google Meet) az időpontfoglaláshoz. A lefoglalt időpont a Stratos naptárában jön létre, a meghívót és a Google Meet-linket a Google küldi a foglaló által megadott e-mail-címre. A szabad időpontok megállapításához a Stratos naptárának csak a foglaltsága kerül lekérdezésre.</li>
         </ul>
@@ -376,11 +379,11 @@
         <p class="ftr__line">Digitális élmények és egyedi rendszerek — Győrből, magyarul, angolul és németül.</p>
       </div>
       <form class="ftr__nl" data-lead="newsletter">
-        <p class="t-small">A hírlevelünk még készül. Add meg a címed, és szólunk, amint elindul.</p>
+        <p class="t-small">Iratkozz fel a hírlevelünkre: weboldal, SEO, online marketing. Megerősítő levelet küldünk, és bármikor leiratkozhatsz.</p>
         <label class="vh" for="nl">E-mail cím</label>
         <div class="ftr__field">
           <input id="nl" type="email" name="email" placeholder="e-mail cím" autocomplete="email" required>
-          <button class="btn btn--sm" type="submit">Szóljatok</button>
+          <button class="btn btn--sm" type="submit">Feliratkozom</button>
         </div>
         <div class="hp" aria-hidden="true">
           <label for="hp-foot">Company website</label>

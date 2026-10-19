@@ -64,9 +64,10 @@ test.describe('the shell', () => {
     const labels = [...primary![1].matchAll(/label: '([^']+)'/g)].map((m) => m[1]);
     // Today (what is due now) sits under the Dashboard, and Bookings (the calls
     // booked from the public page and by clients, 20261018000100) under Today;
-    // Notes beside Clients, whose meetings they are mostly written in.
+    // Notes beside Clients, whose meetings they are mostly written in; the
+    // Newsletter (20261019000100) after Leads, the website's other sign-ups.
     expect(labels).toEqual([
-      'Dashboard', 'Today', 'Bookings', 'Analytics', 'Leads', 'Sales', 'Clients', 'Notes', 'Hours', 'Projects', 'Revenue', 'Impact', 'Documents', 'System',
+      'Dashboard', 'Today', 'Bookings', 'Analytics', 'Leads', 'Newsletter', 'Sales', 'Clients', 'Notes', 'Hours', 'Projects', 'Revenue', 'Impact', 'Documents', 'System',
     ]);
   });
 

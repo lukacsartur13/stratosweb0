@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
   Activity, Building2, CalendarCheck, CalendarClock, ChartLine, Clock, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
-  ArrowDownUp, Menu, NotebookPen, RefreshCw, ScrollText, Settings, Target, Trash2, Users, Wallet, X,
+  ArrowDownUp, Mail, Menu, NotebookPen, RefreshCw, ScrollText, Settings, Target, Trash2, Users, Wallet, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
@@ -78,6 +78,8 @@ const PRIMARY: NavItem[] = [
   { to: '/bookings',  label: 'Bookings',  icon: CalendarClock,   cap: 'manage_clients' },
   { to: '/analytics', label: 'Analytics', icon: ChartLine,       cap: 'view_analytics' },
   { to: '/leads',     label: 'Leads',     icon: Inbox,           cap: 'view_leads' },
+  // The double opt-in list and the campaigns sent to it. Admins only.
+  { to: '/newsletter', label: 'Newsletter', icon: Mail,          cap: 'manage_newsletter' },
   { to: '/sales',     label: 'Sales',     icon: Target,          cap: 'view_sales' },
   { to: '/clients',   label: 'Clients',   icon: Building2,       cap: 'view_clients' },
   // Working notes and checklists, optionally about a client.
@@ -120,6 +122,7 @@ const SECONDARY: NavItem[] = [
 const TITLES: { path: string; title: string }[] = [
   { path: '/analytics', title: 'Analytics' },
   { path: '/leads', title: 'Leads' },
+  { path: '/newsletter', title: 'Newsletter' },
   { path: '/sales', title: 'Sales' },
   { path: '/system', title: 'System' },
   { path: '/projects', title: 'Projects' },

@@ -68,7 +68,7 @@ desc: Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR 
           <li>kapcsolatfelvétel biztosítása</li>
           <li>ajánlatkészítés és ügyfélkommunikáció</li>
           <li>online konzultáció időpontjának foglalása (Google Meet)</li>
-          <li>hírlevél-kérések fogadása és nyilvántartása</li>
+          <li>hírlevél küldése azoknak, akik feliratkoztak és ezt e-mailben megerősítették — ennek része néhány bemutatkozó levél a feliratkozás után, és értesítés új cikkekről, esettanulmányokról</li>
           <li>szolgáltatások teljesítése</li>
           <li>weboldal működtetése és fejlesztése</li>
           <li>statisztikai és elemzési célok</li>
@@ -111,12 +111,15 @@ desc: Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR 
           <li>ügyfélportálon foglalt időpontnál: a fiók neve és e-mail címe, valamint a projekt</li>
         </ul>
         <h3>Hírlevél-feliratkozás esetén</h3>
-        <ul><li>e-mail cím</li></ul>
+        <ul>
+          <li>e-mail cím és a választott nyelv</li>
+          <li>a feliratkozás módja (hírlevél-űrlap vagy a kapcsolati űrlap jelölőnégyzete), oldala és időpontja</li>
+          <li>a megerősítés időpontja, leiratkozáskor annak időpontja és módja</li>
+          <li>az IP-cím sózott, visszafejthetetlen lenyomata — magát az IP-címet nem tároljuk</li>
+          <li>melyik hírlevelet és mikor küldtük Önnek</li>
+        </ul>
         <p class="note">
-          A hírlevél-kéréseket rögzítjük, hírlevélküldő rendszer azonban jelenleg nem
-          működik: feliratkozás után nem érkezik automatikus visszaigazoló levél, és a
-          rendszer nem küld hírlevelet. A kérése addig marad nyilvántartva, amíg annak
-          törlését nem kéri.
+          A feliratkozás kétlépcsős: a megadott címre megerősítő levelet küldünk, és hírlevelet csak akkor küldünk, ha Ön a levélben lévő gombbal megerősíti a feliratkozást. A meg nem erősített kérést az utolsó megerősítő levél után 30 nappal automatikusan töröljük. A hírlevél indulása (2026. október 18.) előtt rögzített kéréseket nem tekintjük feliratkozásnak: ezekre legfeljebb egy megerősítő levelet küldünk. Minden hírlevél alján egy kattintással leiratkozhat; a kézbesíthetetlen, illetve a levelünket spamként jelző címet a listáról levesszük.
         </p>
 
         <!-- REQUIRES LEGAL REVIEW — two gaps a lawyer has to close, both of them
@@ -147,7 +150,7 @@ desc: Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR 
         <ul>
           <li>kapcsolatfelvételi adatok: legfeljebb 5 év</li>
           <li>időpontfoglalási adatok: legfeljebb 5 év</li>
-          <li>hírlevél adatok: a hozzájárulás visszavonásáig</li>
+          <li>hírlevél adatok: a leiratkozásig; utána a címet csak azért őrizzük meg, hogy ne küldjünk rá újra hírlevelet — kérésre ezt is töröljük. Meg nem erősített feliratkozás: legfeljebb 30 nap.</li>
           <li>számlázási adatok: 8 év (a számviteli törvény alapján)</li>
         </ul>
 
@@ -165,7 +168,7 @@ desc: Hogyan gyűjtjük, használjuk és kezeljük a személyes adatokat a GDPR 
                entity and address are from its DPA (resend.com/legal/dpa,
                Exhibit B). -->
           <li><b>E-mail szolgáltató:</b> Google Ireland Ltd. — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Workspace, a Stratos levelezése; az érdeklődésekre az Adatkezelő innen válaszol.</li>
-          <li><b>Levélküldő szolgáltató:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Amerikai Egyesült Államok. Szolgáltatás: a Portál automatikus e-mailjeinek kézbesítése (például értesítés az ügyfeleknek a projektjükről), amelyhez a címzett nevét és e-mail-címét kapja meg; valamint a Stratosnak szóló belső jelzés új beküldésről, amely személyes adatot nem tartalmaz.</li>
+          <li><b>Levélküldő szolgáltató:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Amerikai Egyesült Államok. Szolgáltatás: a weboldal és a Portál automatikus e-mailjeinek kézbesítése — a hírlevél, a feliratkozás megerősítése, az űrlapok beküldésének visszaigazolása, a foglalt időpont előtti emlékeztető és a Portál értesítései (például az ügyfeleknek a projektjükről) —, amelyhez a címzett e-mail-címét, és ha ismert, a nevét kapja meg; valamint a Stratosnak szóló belső jelzés új beküldésről, amely személyes adatot nem tartalmaz. Az adattovábbítás az EU általános szerződési feltételei (SCC) és az EU–USA adatvédelmi keretrendszer alapján történik.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Analytics 4 látogatottságmérés, kizárólag a látogató kifejezett hozzájárulása esetén. Hozzájárulás hiányában a Google Analytics nem töltődik be, és semmilyen adat nem kerül a Google-höz.</li>
           <li><b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Workspace (Google Naptár és Google Meet) az időpontfoglaláshoz. A lefoglalt időpont a Stratos naptárában jön létre, a meghívót és a Google Meet-linket a Google küldi a foglaló által megadott e-mail-címre. A szabad időpontok megállapításához a Stratos naptárának csak a foglaltsága kerül lekérdezésre.</li>
         </ul>

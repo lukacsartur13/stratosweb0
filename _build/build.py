@@ -481,14 +481,14 @@ UI = {
             "ads": "Hirdetés", "seo": "SEO", "shop": "Webshop", "impact": "Impact", "work": "Ügyfeleink",
             "blog": "Blog", "contact": "Kapcsolat", "quote": "Árajánlat",
         },
-        # A hírlevél még nem létezik: a beküldés eltárolja a címet, és semmi
-        # több nem történik vele. A korábbi szöveg ("iratkozz fel",
-        # "Feliratkozom") olyan szolgáltatást ígért, amely nincs — lásd
-        # _build/reports/phase9-email-operations.md.
-        "nl_lede": "A hírlevelünk még készül. Add meg a címed, és szólunk, amint elindul.",
+        # A hírlevél 2026-10-18 óta működik, dupla megerősítéssel
+        # (netlify/functions/newsletter*.mjs): a beküldés után megerősítő levél
+        # megy, és csak a benne lévő gomb után lesz valaki feliratkozó. A szöveg
+        # ezt mondja; gyakoriságot nem ígér.
+        "nl_lede": "Iratkozz fel a hírlevelünkre: weboldal, SEO, online marketing. Megerősítő levelet küldünk, és bármikor leiratkozhatsz.",
         "nl_label": "E-mail cím",
         "nl_placeholder": "e-mail cím",
-        "nl_button": "Szóljatok",
+        "nl_button": "Feliratkozom",
         "f_contact": "Kapcsolat",
         "f_social": "Közösség",
         "f_gbp": "Google Cégprofil",
@@ -518,8 +518,10 @@ UI = {
             "sent": "Elküldve",
             "thanks": "Köszönjük — hamarosan válaszolunk a megadott címre.",
             # A hírlevélnek saját visszajelzése van: a fenti egy választ ígér,
-            # amely egy hírlevél-kérésre nem érkezik meg.
-            "thanks_newsletter": "Megjegyeztük a címed. Hírlevelet még nem küldünk — az első levél akkor érkezik, amikor a hírlevél elindul.",
+            # amely egy hírlevél-kérésre nem érkezik. Feltételes, mert egy már
+            # feliratkozott cím nem kap új megerősítőt, és az űrlap nem árulja
+            # el, ki van a listán.
+            "thanks_newsletter": "Köszönjük! Ha ez a cím még nem volt a listán, küldtünk rá egy megerősítő levelet — kattints a benne lévő gombra. Nem látod? Nézd meg a Promóciók vagy a Spam mappát.",
             "fail": "A küldés nem sikerült. Írj közvetlenül: hello@stratosweb.hu",
             "invalid": "Kérjük, ellenőrizd a kiemelt mezőket.",
             "need_name": "Kérjük, add meg a nevedet.",
@@ -565,10 +567,10 @@ UI = {
             "blog": "Blog",
             "contact": "Contact", "quote": "Get a quote",
         },
-        "nl_lede": "Our newsletter is still being built. Leave your address and we'll tell you when it starts.",
+        "nl_lede": "Get our newsletter: websites, SEO, online marketing. We'll send a confirmation e-mail, and you can unsubscribe at any time.",
         "nl_label": "Email address",
         "nl_placeholder": "email address",
-        "nl_button": "Tell me",
+        "nl_button": "Subscribe",
         "f_contact": "Contact",
         "f_social": "Social",
         "f_gbp": "Google Business Profile",
@@ -590,7 +592,7 @@ UI = {
             "sending": "Sending…",
             "sent": "Sent",
             "thanks": "Thank you — we'll reply to the address you gave us shortly.",
-            "thanks_newsletter": "We have your address. There is no newsletter yet — the first one arrives when it launches.",
+            "thanks_newsletter": "Thank you! If this address was not on the list yet, we've sent it a confirmation e-mail — click the button in it. Can't see it? Check your Promotions or Spam folder.",
             "fail": "Sending failed. Write to us directly: hello@stratosweb.hu",
             "invalid": "Please check the highlighted fields.",
             "need_name": "Please give us your name.",
@@ -635,10 +637,10 @@ UI = {
             "ads": "Werbung", "seo": "SEO", "shop": "Shop", "impact": "Impact", "work": "Kunden",
             "blog": "Blog", "contact": "Kontakt", "quote": "Angebot",
         },
-        "nl_lede": "Unser Newsletter entsteht gerade. Hinterlassen Sie Ihre Adresse, dann sagen wir Bescheid, sobald er startet.",
+        "nl_lede": "Unser Newsletter: Websites, SEO, Online-Marketing. Sie erhalten eine Bestätigungs-E-Mail und können sich jederzeit abmelden.",
         "nl_label": "E-Mail-Adresse",
         "nl_placeholder": "E-Mail-Adresse",
-        "nl_button": "Bescheid geben",
+        "nl_button": "Abonnieren",
         "f_contact": "Kontakt",
         "f_social": "Social Media",
         "f_gbp": "Google Unternehmensprofil",
@@ -660,7 +662,7 @@ UI = {
             "sending": "Wird gesendet…",
             "sent": "Gesendet",
             "thanks": "Danke — wir melden uns in Kürze an der angegebenen Adresse.",
-            "thanks_newsletter": "Wir haben Ihre Adresse. Einen Newsletter gibt es noch nicht — die erste Ausgabe kommt, sobald er startet.",
+            "thanks_newsletter": "Danke! Falls diese Adresse noch nicht auf der Liste stand, haben wir eine Bestätigungs-E-Mail geschickt — klicken Sie auf die Schaltfläche darin. Nicht gefunden? Sehen Sie im Spam-Ordner nach.",
             "fail": "Das Senden ist fehlgeschlagen. Schreiben Sie uns direkt: hello@stratosweb.hu",
             "invalid": "Bitte überprüfen Sie die markierten Felder.",
             "need_name": "Bitte geben Sie Ihren Namen an.",
@@ -2634,6 +2636,43 @@ def write_route_manifest(updated=None):
         encoding="utf-8")
 
 
+def write_newsletter_feed(frags):
+    """The articles and case studies, as data, for the newsletter's announcements.
+
+    netlify/functions/mail-automations.mjs reads this file from the live site
+    every ten minutes; a key it has not seen before becomes one campaign per
+    language (20261019000200_email_automations.sql). So a new post or case
+    study is announced by deploying it, and nothing else. Only what a reader
+    can reach goes in: every post, and every case study that is not a draft —
+    in each language whose title has a translation, at its canonical URL.
+    """
+    tables = {lang: load_dict(lang) for lang in LANGS}
+    items = []
+    for kind, keys in (("post", POSTS), ("case", CASES)):
+        for key in keys:
+            if kind == "case" and case_status(key) == "draft":
+                continue
+            meta, _ = frags[SLUGS[key]["hu"][:-5]]
+            title = re.sub(r"\s*\|\s*Stratos\s*$", "", meta.get("title", "")).strip()
+            desc = meta.get("desc", "").strip()
+            langs = {}
+            for lang in LANGS:
+                if lang != "hu" and (key in HU_ONLY or key in LOCALE_NOINDEX and lang in LOCALE_NOINDEX[key]):
+                    continue
+                table = tables[lang]
+                if lang != "hu" and tr.normalise(meta.get("title", "")) not in table and tr.normalise(title) not in table:
+                    continue
+                full = table.get(tr.normalise(meta.get("title", ""))) if lang != "hu" else None
+                t = re.sub(r"\s*\|\s*Stratos\s*$", "", full).strip() if full else (table.get(tr.normalise(title), title) if lang != "hu" else title)
+                d = table.get(tr.normalise(desc), desc) if lang != "hu" else desc
+                langs[lang] = {"title": t, "desc": d, "url": absolute(lang, key)}
+            if langs:
+                items.append({"key": key, "type": kind, "published": meta.get("published"), "langs": langs})
+    out = ROOT / "assets" / "data" / "newsletter-feed.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps({"items": items}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+
+
 def main():
     if not PAGES.is_dir():
         sys.exit(f"missing {PAGES}")
@@ -2652,6 +2691,7 @@ def main():
                           for stem, (meta, _) in frags.items()
                           if meta.get("updated") and stem + ".html" in BY_HU})
     write_not_found()
+    write_newsletter_feed(frags)
 
     for lang in LANGS:
         table = load_dict(lang)

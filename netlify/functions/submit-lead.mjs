@@ -44,6 +44,13 @@
 //                              insert — an idempotent replay does not ring the
 //                              doorbell a second time for a lead that was
 //                              already announced.
+//  12. newsletter        —     the newsletter form, or the contact form's box:
+//                              a double opt-in request and its confirmation
+//                              e-mail (newsletter-core.mjs). Never changes the
+//                              answer either, on the same terms.
+//  13. receipt           —     "we have it" to the sender of a contact form,
+//                              questionnaire or Impact application
+//                              (mail-automations.mjs), alongside 12.
 //
 //
 // TWO CONTRACTS, FOR NOW
@@ -70,6 +77,8 @@
 // =============================================================================
 
 import { notifyLeadCreated } from './lead-notify.mjs';
+import { mailConfig, originOf, subscribe as subscribeNewsletter } from './newsletter-core.mjs';
+import { RECEIPT_FORMS, sendReceipt, transactionalMail } from './mail-automations.mjs';
 import {
   MAX_BODY_BYTES,
   MIN_FILL_MS,
@@ -194,6 +203,8 @@ export const __store = {
        * with the service key, which is the correct shape for an audit row.
        */
       logActivity: (row) => supabase.from('activity_logs').insert(row),
+      /** The newsletter's server functions (20261019000100_newsletter.sql). */
+      rpc: (fn, args) => supabase.rpc(fn, args),
     };
   },
 };
@@ -439,6 +450,43 @@ export default async (request) => {
     ).catch((error) => {
       audit('timeline.failed', envelope, { leadId: data.id, reason: String(error?.message ?? error) });
     });
+
+    // ---- 12. the newsletter -------------------------------------------------
+    // The newsletter form, or the contact form's "send me the newsletter" box,
+    // starts a double opt-in: a pending subscriber and a confirmation e-mail.
+    // Isolated like the notification — `subscribeNewsletter` never throws and
+    // is capped at 4 s; a confirmation that could not be sent stays due and the
+    // dispatcher retries it. The visitor's answer is the same whatever the
+    // outcome, "already subscribed" included, so the form tells nobody whether
+    // an address is on the list.
+    const wantsNewsletter = envelope.formType === 'newsletter'
+      || (envelope.formType === 'contact' && envelope.fields.hirlevel === true);
+    // ---- 13. the receipt ----------------------------------------------------
+    // "We have it", in fixed words (nothing the sender typed is repeated), at
+    // most one per address per day. Run alongside 12 rather than after it, so
+    // the two 4-second ceilings do not add up.
+    const wantsReceipt = RECEIPT_FORMS.includes(envelope.formType);
+    if ((wantsNewsletter || wantsReceipt) && typeof store.rpc === 'function') {
+      const [nl, receipt] = await Promise.all([
+        wantsNewsletter ? subscribeNewsletter(store, mailConfig(), {
+          email: envelope.fields.email,
+          locale: envelope.locale,
+          source: envelope.formType === 'contact' ? 'contact' : 'newsletter',
+          route: envelope.route,
+          ipHash: row.ip_hash,
+          origin: originOf(),
+        }) : null,
+        wantsReceipt ? sendReceipt(store, transactionalMail(), {
+          leadId: data.id,
+          email: envelope.fields.email || envelope.fields.mail,
+          formType: envelope.formType,
+          locale: envelope.locale,
+          origin: originOf(),
+        }) : null,
+      ]);
+      if (nl) audit('newsletter', envelope, { leadId: data.id, outcome: nl.outcome, sent: nl.sent ?? null });
+      if (receipt) audit('receipt', envelope, { leadId: data.id, sent: receipt.sent, reason: receipt.reason });
+    }
 
     return json(200, { ok: true, submissionId: envelope.submissionId, leadId: data.id });
   }

@@ -147,10 +147,6 @@
   "contact data: no more than 5 years",
   "Kontaktdaten: höchstens 5 Jahre"
  ],
- "hírlevél adatok: a hozzájárulás visszavonásáig": [
-  "newsletter data: until consent is withdrawn",
-  "Newsletter-Daten: bis zum Widerruf der Einwilligung"
- ],
  "számlázási adatok: 8 év (a számviteli törvény alapján)": [
   "invoicing data: 8 years (under the Hungarian Accounting Act)",
   "Rechnungsdaten: 8 Jahre (nach ungarischem Rechnungslegungsgesetz)"
@@ -423,10 +419,6 @@
   "Refusing consent does not restrict use of the website in any way: the site works in full without measurement.",
   "Die Ablehnung schränkt die Nutzung der Website in keiner Weise ein: Die Seite funktioniert auch ohne Messung vollständig."
  ],
- "hírlevél-kérések fogadása és nyilvántartása": [
-  "receiving and recording newsletter requests",
-  "Newsletter-Anfragen entgegennehmen und erfassen"
- ],
  "böngésző által küldött eszközazonosító szöveg (user agent)": [
   "the device identification string your browser sends (user agent)",
   "die vom Browser gesendete Geräte-Kennung (User Agent)"
@@ -467,17 +459,9 @@
   "The campaign labels come only from the five parameters above: every other value in the link is ignored. We do not read or store advertising click identifiers (such as <code>gclid</code> or <code>fbclid</code>). These values stay in your browser's session storage until you close the tab, and reach us only if you actually submit a form.",
   "Die Kampagnen-Kennungen stammen ausschließlich aus den fünf oben genannten Parametern: jeder andere Wert im Link wird ignoriert. Werbe-Klick-Kennungen (etwa <code>gclid</code> oder <code>fbclid</code>) lesen und speichern wir nicht. Diese Werte bleiben bis zum Schließen des Tabs im Sitzungsspeicher des Browsers und erreichen uns nur, wenn Sie tatsächlich ein Formular absenden."
  ],
- "A hírlevél-kéréseket rögzítjük, hírlevélküldő rendszer azonban jelenleg nem működik: feliratkozás után nem érkezik automatikus visszaigazoló levél, és a rendszer nem küld hírlevelet. A kérése addig marad nyilvántartva, amíg annak törlését nem kéri.": [
-  "We record newsletter requests, but no newsletter system is running at present: signing up does not trigger a confirmation email, and no newsletter is sent. Your request stays on record until you ask us to delete it.",
-  "Wir erfassen Newsletter-Anfragen, ein Newsletter-System ist derzeit jedoch nicht in Betrieb: Nach der Anmeldung folgt keine automatische Bestätigungs-E-Mail, und es wird kein Newsletter versendet. Ihre Anfrage bleibt erfasst, bis Sie deren Löschung verlangen."
- ],
  "<b>E-mail szolgáltató:</b> Google Ireland Ltd. — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Workspace, a Stratos levelezése; az érdeklődésekre az Adatkezelő innen válaszol.": [
   "<b>Email provider:</b> Google Ireland Ltd. — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Workspace, Stratos's mailboxes; the Controller replies to enquiries from there.",
   "<b>E-Mail-Anbieter:</b> Google Ireland Ltd. — Gordon House, Barrow Street, Dublin 4, Irland. Dienst: Google Workspace, das E-Mail-System von Stratos; von dort antwortet der Verantwortliche auf Anfragen."
- ],
- "<b>Levélküldő szolgáltató:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Amerikai Egyesült Államok. Szolgáltatás: a Portál automatikus e-mailjeinek kézbesítése (például értesítés az ügyfeleknek a projektjükről), amelyhez a címzett nevét és e-mail-címét kapja meg; valamint a Stratosnak szóló belső jelzés új beküldésről, amely személyes adatot nem tartalmaz.": [
-  "<b>Email delivery provider:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, United States. Service: delivering the Portal's automatic emails (for example, notifying clients about their project), for which it receives the recipient's name and email address; and an internal alert to Stratos about a new submission, which contains no personal data.",
-  "<b>E-Mail-Versanddienst:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Vereinigte Staaten. Dienst: Zustellung der automatischen E-Mails des Portals (zum Beispiel Benachrichtigungen an Kundinnen und Kunden über ihr Projekt), wofür er Namen und E-Mail-Adresse der empfangenden Person erhält; sowie ein interner Hinweis an Stratos über eine neue Einsendung, der keine personenbezogenen Daten enthält."
  ],
  "online konzultáció időpontjának foglalása (Google Meet)": [
   "booking a time for an online consultation (Google Meet)",
@@ -510,5 +494,37 @@
  "<b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Írország. Szolgáltatás: Google Workspace (Google Naptár és Google Meet) az időpontfoglaláshoz. A lefoglalt időpont a Stratos naptárában jön létre, a meghívót és a Google Meet-linket a Google küldi a foglaló által megadott e-mail-címre. A szabad időpontok megállapításához a Stratos naptárának csak a foglaltsága kerül lekérdezésre.": [
   "<b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Ireland. Service: Google Workspace (Google Calendar and Google Meet) for booking consultations. A booked time is created in Stratos's calendar, and Google sends the invitation and the Google Meet link to the email address the person booking gave. To work out the free times, only whether Stratos's calendar is busy is queried.",
   "<b>Google Ireland Ltd.</b> — Gordon House, Barrow Street, Dublin 4, Irland. Dienst: Google Workspace (Google Kalender und Google Meet) für Terminbuchungen. Ein gebuchter Termin wird im Kalender von Stratos angelegt; die Einladung und den Google-Meet-Link sendet Google an die E-Mail-Adresse, die die buchende Person angegeben hat. Zur Ermittlung freier Termine wird nur abgefragt, wann der Kalender von Stratos belegt ist."
+ ],
+ "e-mail cím és a választott nyelv": [
+  "email address and the chosen language",
+  "E-Mail-Adresse und gewählte Sprache"
+ ],
+ "a feliratkozás módja (hírlevél-űrlap vagy a kapcsolati űrlap jelölőnégyzete), oldala és időpontja": [
+  "how you subscribed (the newsletter form or the contact form's checkbox), on which page and when",
+  "wie Sie sich angemeldet haben (Newsletter-Formular oder Kontrollkästchen im Kontaktformular), auf welcher Seite und wann"
+ ],
+ "a megerősítés időpontja, leiratkozáskor annak időpontja és módja": [
+  "when you confirmed, and if you unsubscribe, when and how",
+  "wann Sie bestätigt haben und, falls Sie sich abmelden, wann und wie"
+ ],
+ "melyik hírlevelet és mikor küldtük Önnek": [
+  "which newsletters we sent you, and when",
+  "welche Newsletter wir Ihnen wann gesendet haben"
+ ],
+ "A feliratkozás kétlépcsős: a megadott címre megerősítő levelet küldünk, és hírlevelet csak akkor küldünk, ha Ön a levélben lévő gombbal megerősíti a feliratkozást. A meg nem erősített kérést az utolsó megerősítő levél után 30 nappal automatikusan töröljük. A hírlevél indulása (2026. október 18.) előtt rögzített kéréseket nem tekintjük feliratkozásnak: ezekre legfeljebb egy megerősítő levelet küldünk. Minden hírlevél alján egy kattintással leiratkozhat; a kézbesíthetetlen, illetve a levelünket spamként jelző címet a listáról levesszük.": [
+  "Subscribing takes two steps: we send a confirmation e-mail to the address given, and send newsletters only once you confirm with the button in it. An unconfirmed request is deleted automatically 30 days after the last confirmation e-mail. Requests recorded before the newsletter launched (18 October 2026) are not treated as subscriptions: they receive at most one confirmation e-mail. You can unsubscribe with one click at the bottom of every newsletter; an address that cannot be delivered to, or that reports our e-mail as spam, is taken off the list.",
+  "Die Anmeldung erfolgt in zwei Schritten: Wir senden eine Bestätigungs-E-Mail an die angegebene Adresse und versenden den Newsletter erst, wenn Sie mit der Schaltfläche darin bestätigen. Eine nicht bestätigte Anmeldung wird 30 Tage nach der letzten Bestätigungs-E-Mail automatisch gelöscht. Anfragen, die vor dem Start des Newsletters (18. Oktober 2026) erfasst wurden, gelten nicht als Anmeldung: Sie erhalten höchstens eine Bestätigungs-E-Mail. Am Ende jedes Newsletters können Sie sich mit einem Klick abmelden; eine nicht zustellbare Adresse oder eine, die unsere E-Mail als Spam meldet, wird von der Liste entfernt."
+ ],
+ "hírlevél adatok: a leiratkozásig; utána a címet csak azért őrizzük meg, hogy ne küldjünk rá újra hírlevelet — kérésre ezt is töröljük. Meg nem erősített feliratkozás: legfeljebb 30 nap.": [
+  "newsletter data: until you unsubscribe; after that we keep the address only so that we never send it a newsletter again — on request we delete that too. An unconfirmed signup: at most 30 days.",
+  "Newsletter-Daten: bis zur Abmeldung; danach bewahren wir die Adresse nur auf, damit wir ihr keinen Newsletter mehr senden — auf Wunsch löschen wir auch diese. Eine nicht bestätigte Anmeldung: höchstens 30 Tage."
+ ],
+ "hírlevél küldése azoknak, akik feliratkoztak és ezt e-mailben megerősítették — ennek része néhány bemutatkozó levél a feliratkozás után, és értesítés új cikkekről, esettanulmányokról": [
+  "sending the newsletter to those who subscribed and confirmed it by e-mail — including a few introductory e-mails after subscribing, and notice of new articles and case studies",
+  "Versand des Newsletters an alle, die sich angemeldet und dies per E-Mail bestätigt haben — dazu gehören einige Vorstellungs-E-Mails nach der Anmeldung und Hinweise auf neue Artikel und Fallstudien"
+ ],
+ "<b>Levélküldő szolgáltató:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Amerikai Egyesült Államok. Szolgáltatás: a weboldal és a Portál automatikus e-mailjeinek kézbesítése — a hírlevél, a feliratkozás megerősítése, az űrlapok beküldésének visszaigazolása, a foglalt időpont előtti emlékeztető és a Portál értesítései (például az ügyfeleknek a projektjükről) —, amelyhez a címzett e-mail-címét, és ha ismert, a nevét kapja meg; valamint a Stratosnak szóló belső jelzés új beküldésről, amely személyes adatot nem tartalmaz. Az adattovábbítás az EU általános szerződési feltételei (SCC) és az EU–USA adatvédelmi keretrendszer alapján történik.": [
+  "<b>Email delivery provider:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, United States. Service: delivering the automatic emails of the website and the Portal — the newsletter, subscription confirmations, confirmations of form submissions, reminders before a booked call and the Portal's notifications (for example, to clients about their project) — for which it receives the recipient's email address and, where known, their name; and an internal alert to Stratos about a new submission, which contains no personal data. Transfers rely on the EU Standard Contractual Clauses and the EU-U.S. Data Privacy Framework.",
+  "<b>E-Mail-Versanddienst:</b> Plus Five Five, Inc. (Resend) — 2261 Market Street #5039, San Francisco, CA 94114, Vereinigte Staaten. Dienst: Zustellung der automatischen E-Mails der Website und des Portals — Newsletter, Anmeldebestätigungen, Bestätigungen abgesendeter Formulare, Erinnerungen vor einem gebuchten Termin und Benachrichtigungen des Portals (zum Beispiel an Kundinnen und Kunden über ihr Projekt) —, wofür er die E-Mail-Adresse der empfangenden Person und, falls bekannt, ihren Namen erhält; sowie ein interner Hinweis an Stratos über eine neue Einsendung, der keine personenbezogenen Daten enthält. Die Übermittlung erfolgt auf Grundlage der EU-Standardvertragsklauseln und des EU-U.S. Data Privacy Framework."
  ]
 }

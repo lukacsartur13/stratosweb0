@@ -108,11 +108,11 @@
     sent: 'Elküldve',
     thanks: 'Köszönjük — hamarosan válaszolunk a megadott címre.',
     /* The newsletter gets its own confirmation, because the general one
-       promises a reply and a newsletter request does not produce one. There is
-       no newsletter system: the address is stored and nothing is sent. Saying
-       "we will reply shortly" to that is a promise the software cannot keep.
-       See _build/reports/phase9-email-operations.md. */
-    thanks_newsletter: 'Megjegyeztük a címed. Hírlevelet még nem küldünk — az első levél akkor érkezik, amikor a hírlevél elindul.',
+       promises a reply and a newsletter request does not produce one. What it
+       does produce is a double opt-in e-mail (netlify/functions/newsletter*.mjs)
+       — unless the address is already subscribed, which the form never reveals,
+       hence the "if". */
+    thanks_newsletter: 'Köszönjük! Ha ez a cím még nem volt a listán, küldtünk rá egy megerősítő levelet — kattints a benne lévő gombra. Nem látod? Nézd meg a Promóciók vagy a Spam mappát.',
     fail: 'A küldés nem sikerült. Írj közvetlenül: hello@stratosweb.hu',
     invalid: 'Kérjük, ellenőrizd a kiemelt mezőket.',
     need_name: 'Kérjük, add meg a nevedet.',
