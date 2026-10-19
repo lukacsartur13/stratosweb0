@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
 import { Button, Field, Input, Panel } from '@/components/ui';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
@@ -68,8 +68,12 @@ export function LoginPage() {
   const {
     register, handleSubmit, formState: { errors, isSubmitting },
   } = useForm<LoginValues>({ resolver: zodResolver(loginSchema) });
+  // Back where the visitor was headed (ProtectedRoute, the OAuth consent page),
+  // as long as it is a path inside the Portal and not another site.
+  const from = (useLocation().state as { from?: unknown } | null)?.from;
+  const back = typeof from === 'string' && from.startsWith('/') && !from.startsWith('//') ? from : '/';
 
-  if (session) return <Navigate to="/" replace />;
+  if (session) return <Navigate to={back} replace />;
 
   return (
     <AuthShell title={t('Sign in')} lede={t('This area is for Stratos staff and clients.')}>
