@@ -1,0 +1,82 @@
+{
+ "This request is not valid": {
+  "hu": "A kérés nem érvényes",
+  "de": "Diese Anfrage ist ungültig"
+ },
+ "It has expired, has already been answered, or is incomplete.": {
+  "hu": "Lejárt, már válaszoltál rá, vagy hiányos.",
+  "de": "Sie ist abgelaufen, wurde bereits beantwortet oder ist unvollständig."
+ },
+ "Start the connection again from Claude.": {
+  "hu": "Indítsd újra a csatlakozást a Claude-ból.",
+  "de": "Starte die Verbindung erneut in Claude."
+ },
+ "Checking…": {
+  "hu": "Ellenőrzés…",
+  "de": "Wird geprüft…"
+ },
+ "One moment.": {
+  "hu": "Egy pillanat.",
+  "de": "Einen Moment."
+ },
+ "Reading the request.": {
+  "hu": "A kérés beolvasása.",
+  "de": "Die Anfrage wird gelesen."
+ },
+ "An app": {
+  "hu": "Egy alkalmazás",
+  "de": "Eine App"
+ },
+ "The answer could not be sent. Start the connection again from Claude.": {
+  "hu": "A választ nem sikerült elküldeni. Indítsd újra a csatlakozást a Claude-ból.",
+  "de": "Die Antwort konnte nicht gesendet werden. Starte die Verbindung erneut in Claude."
+ },
+ "Connect {name}": {
+  "hu": "{name} csatlakoztatása",
+  "de": "{name} verbinden"
+ },
+ "{name} is asking to use the Portal as you.": {
+  "hu": "{name} a nevedben szeretné használni a Portált.",
+  "de": "{name} möchte das Portal in deinem Namen nutzen."
+ },
+ "Account": {
+  "hu": "Fiók",
+  "de": "Konto"
+ },
+ "Returns to": {
+  "hu": "Visszatér ide",
+  "de": "Zurück zu"
+ },
+ "If you allow it, it can read and change everything this account reaches in the Portal — leads, clients, projects, payments, notes, hours, the newsletter — and run the Portal’s database functions. The database’s own rules still apply.": {
+  "hu": "Ha engedélyezed, mindent olvashat és módosíthat, amit ez a fiók elér a Portálban — leadeket, ügyfeleket, projekteket, befizetéseket, jegyzeteket, munkaidőt, a hírlevelet —, és futtathatja a Portál adatbázis-függvényeit. Az adatbázis saját szabályai ugyanúgy érvényesek.",
+  "de": "Wenn du es erlaubst, kann es alles lesen und ändern, was dieses Konto im Portal erreicht — Leads, Kunden, Projekte, Zahlungen, Notizen, Stunden, den Newsletter — und die Datenbankfunktionen des Portals ausführen. Die eigenen Regeln der Datenbank gelten weiterhin."
+ },
+ "Only the portal owner can connect an assistant. This account can only refuse.": {
+  "hu": "Asszisztenst csak a Portál tulajdonosa csatlakoztathat. Ez a fiók csak elutasíthatja.",
+  "de": "Nur der Inhaber des Portals kann einen Assistenten verbinden. Dieses Konto kann nur ablehnen."
+ },
+ "This is an app on this computer, such as Claude Code. Allow it only if you started it yourself.": {
+  "hu": "Ez egy alkalmazás ezen a gépen, például a Claude Code. Csak akkor engedélyezd, ha te indítottad.",
+  "de": "Das ist eine App auf diesem Computer, etwa Claude Code. Erlaube es nur, wenn du sie selbst gestartet hast."
+ },
+ "This is not Claude’s address. Allow it only if you started this connection yourself.": {
+  "hu": "Ez nem a Claude címe. Csak akkor engedélyezd, ha a csatlakozást te indítottad.",
+  "de": "Das ist nicht die Adresse von Claude. Erlaube es nur, wenn du diese Verbindung selbst gestartet hast."
+ },
+ "Sending…": {
+  "hu": "Küldés…",
+  "de": "Wird gesendet…"
+ },
+ "Allow": {
+  "hu": "Engedélyezés",
+  "de": "Erlauben"
+ },
+ "Deny": {
+  "hu": "Elutasítás",
+  "de": "Ablehnen"
+ },
+ "To disconnect it later, remove the connector in Claude, then revoke the app in Supabase under Authentication → OAuth Apps.": {
+  "hu": "Később így bonthatod a kapcsolatot: töröld a connectort a Claude-ban, majd vond vissza az alkalmazást a Supabase-ben (Authentication → OAuth Apps).",
+  "de": "Um die Verbindung später zu trennen, entferne den Connector in Claude und widerrufe dann die App in Supabase unter Authentication → OAuth Apps."
+ }
+}

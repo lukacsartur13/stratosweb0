@@ -216,6 +216,18 @@ oracle. Password reset always returns the same confirmation for the same reason.
 
 ---
 
+## Claude connector
+
+`POST /api/mcp` (`netlify/functions/portal-mcp.mjs`) is a remote MCP server:
+Claude adds it as a custom connector and reads and writes the Portal through
+six generic tools over PostgREST. Sign-in is Supabase Auth's own OAuth 2.1
+server, with `/portal/oauth/consent` as its approval screen, so the token
+Claude holds is the owner's own JWT and RLS applies to every call unchanged.
+Owner only, re-checked on every request. Setup and the security model:
+`supabase/CLAUDE_CONNECTOR.md`.
+
+---
+
 ## Deployment
 
 ```

@@ -71,6 +71,11 @@ const ClientApp = lazy(() => import('@/features/client/ClientApp').then((m) => (
 const AcceptInvitePage = lazy(() =>
   import('@/features/client/AcceptInvite').then((m) => ({ default: m.AcceptInvitePage })));
 
+// Where the owner approves Claude as a connector (supabase/CLAUDE_CONNECTOR.md).
+// Outside the shell: Supabase Auth sends the browser here mid-sign-in.
+const OAuthConsentPage = lazy(() =>
+  import('@/features/oauth/OAuthConsent').then((m) => ({ default: m.OAuthConsentPage })));
+
 /**
  * Who gets which portal. A `client` account never renders the staff shell or
  * any staff screen — the layout itself is swapped, so no staff route can be
@@ -152,6 +157,7 @@ export default function App() {
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/accept-invite" element={<Suspense fallback={null}><AcceptInvitePage /></Suspense>} />
+            <Route path="/oauth/consent" element={<Suspense fallback={null}><OAuthConsentPage /></Suspense>} />
 
             <Route
               element={
