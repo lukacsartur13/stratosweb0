@@ -319,7 +319,7 @@ test.describe('/api/booking', () => {
 
   test('nothing to book until the owner\'s Google is connected — and connected with the freeBusy permission', async () => {
     expect(await get()).toEqual({ status: 503, body: { ok: false, code: 'CALENDAR_NOT_CONNECTED' } });
-    await db.query(`insert into google_accounts (user_id, google_email, scopes, refresh_token_enc) values ($1, 'owner@media-stratos.example', $2, $3)`,
+    await db.query(`insert into google_accounts (user_id, google_email, scopes, refresh_token_enc) values ($1, 'owner@stratosweb.example', $2, $3)`,
       [U.owner, 'openid email https://www.googleapis.com/auth/calendar.events', sealToken('1//refresh')]);
     expect((await get()).body.code).toBe('CALENDAR_RECONNECT');
     await db.query(`update google_accounts set scopes = $1`, [SCOPES.join(' ')]);

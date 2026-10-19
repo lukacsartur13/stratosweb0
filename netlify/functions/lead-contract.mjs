@@ -724,8 +724,8 @@ export const MESSAGES = {
     method: 'Ez a végpont csak POST kérést fogad.',
     mediaType: 'A beküldést JSON formátumban várjuk.',
     limited: 'Túl sok beküldés egymás után. Kérlek, várj egy percet.',
-    unavailable: 'Az űrlap átmenetileg nem elérhető. Írj a lukacs.artur@media-stratos.com címre.',
-    storeFailed: 'Nem sikerült elmenteni. Írj a lukacs.artur@media-stratos.com címre.',
+    unavailable: 'Az űrlap átmenetileg nem elérhető. Írj a hello@stratosweb.hu címre.',
+    storeFailed: 'Nem sikerült elmenteni. Írj a hello@stratosweb.hu címre.',
   },
   en: {
     required: 'This field is required.',
@@ -743,8 +743,8 @@ export const MESSAGES = {
     method: 'This endpoint only accepts POST.',
     mediaType: 'This endpoint expects JSON.',
     limited: 'Too many submissions in a row. Please wait a minute.',
-    unavailable: 'The form is temporarily unavailable. Please email lukacs.artur@media-stratos.com.',
-    storeFailed: 'We could not save that. Please email lukacs.artur@media-stratos.com.',
+    unavailable: 'The form is temporarily unavailable. Please email hello@stratosweb.hu.',
+    storeFailed: 'We could not save that. Please email hello@stratosweb.hu.',
   },
   de: {
     required: 'Dieses Feld ist erforderlich.',
@@ -762,8 +762,8 @@ export const MESSAGES = {
     method: 'Dieser Endpunkt akzeptiert nur POST.',
     mediaType: 'Dieser Endpunkt erwartet JSON.',
     limited: 'Zu viele Übermittlungen hintereinander. Bitte warte eine Minute.',
-    unavailable: 'Das Formular ist vorübergehend nicht verfügbar. Schreib an lukacs.artur@media-stratos.com.',
-    storeFailed: 'Wir konnten das nicht speichern. Schreib an lukacs.artur@media-stratos.com.',
+    unavailable: 'Das Formular ist vorübergehend nicht verfügbar. Schreib an hello@stratosweb.hu.',
+    storeFailed: 'Wir konnten das nicht speichern. Schreib an hello@stratosweb.hu.',
   },
 };
 

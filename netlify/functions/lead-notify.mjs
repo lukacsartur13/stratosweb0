@@ -13,19 +13,24 @@
 // nothing logged an error, and the lead was safely in the database the whole
 // time.
 //
-// NO VENDOR IS CHOSEN HERE
-// ------------------------
-// Phase 9 forbids picking a production notification vendor without approval,
+// THE VENDOR IS THE OWNER'S CHOICE
+// --------------------------------
+// Phase 9 forbade picking a production notification vendor without approval,
 // and rightly: the choice has cost, data-processing and legal-basis
 // consequences that belong to the site owner rather than to this file.
 //
-// So the transport is an env var and the payload is a plain JSON POST, which is
+// So the transport is an env var. 'webhook' is a plain JSON POST, which is
 // what Slack, Discord, a Zapier or Make hook, a CRM endpoint and a self-hosted
-// receiver all accept. Choosing one is setting a URL. Choosing none is the
+// receiver all accept. 'email' (the owner's choice, 2026-10-18) is one e-mail
+// to the company inbox through Resend — the vendor the Portal's own e-mails
+// already go through — carrying exactly the same fields. Choosing none is the
 // default, and the default is what ships.
 //
-//     LEAD_NOTIFY_TRANSPORT   'none' (default) | 'webhook'
-//     LEAD_NOTIFY_WEBHOOK_URL an https:// endpoint
+//     LEAD_NOTIFY_TRANSPORT   'none' (default) | 'webhook' | 'email'
+//     LEAD_NOTIFY_WEBHOOK_URL an https:// endpoint            (webhook)
+//     LEAD_NOTIFY_EMAIL_TO    e.g. hello@stratosweb.hu        (email)
+//     RESEND_API_KEY          as for notify-dispatch.mjs      (email)
+//     NOTIFY_FROM             default: Stratos <portal@stratosweb.hu>
 //
 // WHAT IT SENDS, AND EVERYTHING IT DOES NOT
 // -----------------------------------------
@@ -47,6 +52,12 @@
 
 const TRANSPORT = process.env.LEAD_NOTIFY_TRANSPORT || 'none';
 const WEBHOOK_URL = process.env.LEAD_NOTIFY_WEBHOOK_URL || '';
+const EMAIL_TO = (process.env.LEAD_NOTIFY_EMAIL_TO || '').trim();
+const RESEND_KEY = process.env.RESEND_API_KEY || '';
+// The Portal's sender (notify-dispatch.mjs), duplicated for the same reason
+// `portalUrl()` below is: this module is bundled on its own.
+const EMAIL_FROM = process.env.NOTIFY_FROM || 'Stratos <portal@stratosweb.hu>';
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 /**
  * How long a notification may delay the visitor's response.
@@ -109,6 +120,72 @@ export function buildNotification({ leadId, submissionId, formType, locale, rout
 }
 
 /**
+ * The e-mail: the notification above, as words. Built from `buildNotification`
+ * and nothing else, so it carries exactly the same closed set of fields — no
+ * personal data. Hungarian, because it goes to the company inbox. Exported for
+ * the suite.
+ */
+export function buildEmail(summary) {
+  const n = buildNotification(summary);
+  const when = new Date(n.receivedAt).toLocaleString('hu-HU', { timeZone: 'Europe/Budapest' });
+  return {
+    subject: `Új beküldés a weboldalról: ${n.formType || 'űrlap'} (${n.locale || '—'})`,
+    text: [
+      'Új beküldés érkezett a weboldalról.',
+      '',
+      `Űrlap: ${n.formType || '—'}`,
+      `Nyelv: ${n.locale || '—'}`,
+      `Oldal: ${n.route || '—'}`,
+      `Időpont: ${when}`,
+      `Azonosító: ${n.leadId || '—'}`,
+      '',
+      `Megnyitás a Portálban: ${n.portalUrl}`,
+      '',
+      'Ez a levél szándékosan nem tartalmaz személyes adatot; a beküldés a Portálban olvasható.',
+    ].join('\n'),
+    leadId: n.leadId,
+    formType: n.formType,
+  };
+}
+
+/** The 'email' transport. Same contract as the webhook: never throws. */
+async function sendEmail(summary) {
+  if (!RESEND_KEY) {
+    console.error('lead-notify: LEAD_NOTIFY_TRANSPORT is "email" but RESEND_API_KEY is not set. '
+      + 'Nothing was sent.');
+    return { sent: false, reason: 'no-key' };
+  }
+  if (!EMAIL_RE.test(EMAIL_TO)) {
+    console.error('lead-notify: LEAD_NOTIFY_EMAIL_TO is not an e-mail address. Nothing was sent.');
+    return { sent: false, reason: 'bad-address' };
+  }
+
+  const mail = buildEmail(summary);
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { authorization: `Bearer ${RESEND_KEY}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ from: EMAIL_FROM, to: [EMAIL_TO], subject: mail.subject, text: mail.text }),
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+
+    if (!res.ok) {
+      console.error(`lead-notify: resend answered ${res.status} for lead ${mail.leadId}. `
+        + 'The lead is stored; the notification is not.');
+      return { sent: false, reason: `status-${res.status}` };
+    }
+
+    console.log(JSON.stringify({ event: 'notify.sent', leadId: mail.leadId, formType: mail.formType }));
+    return { sent: true, reason: 'ok' };
+  } catch (error) {
+    console.error(`lead-notify: could not reach resend for lead ${mail.leadId} — ${error.name}. `
+      + 'The lead is stored; the notification is not.');
+    return { sent: false, reason: error.name === 'TimeoutError' ? 'timeout' : 'unreachable' };
+  }
+}
+
+/**
  * Tell someone. Never throw, never reject, never take longer than TIMEOUT_MS.
  *
  * THE ONE RULE THIS MODULE HAS
@@ -132,9 +209,13 @@ export async function notifyLeadCreated(summary) {
     return { sent: false, reason: 'disabled' };
   }
 
+  if (TRANSPORT === 'email') {
+    return sendEmail(summary);
+  }
+
   if (TRANSPORT !== 'webhook') {
     console.error(`lead-notify: unknown LEAD_NOTIFY_TRANSPORT ${JSON.stringify(TRANSPORT)}; `
-      + 'expected "none" or "webhook". Nothing was sent.');
+      + 'expected "none", "webhook" or "email". Nothing was sent.');
     return { sent: false, reason: 'unknown-transport' };
   }
 

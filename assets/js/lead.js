@@ -113,7 +113,7 @@
        — unless the address is already subscribed, which the form never reveals,
        hence the "if". */
     thanks_newsletter: 'Köszönjük! Ha ez a cím még nem volt a listán, küldtünk rá egy megerősítő levelet — kattints a benne lévő gombra. Nem látod? Nézd meg a Promóciók vagy a Spam mappát.',
-    fail: 'A küldés nem sikerült. Írj közvetlenül: lukacs.artur@media-stratos.com',
+    fail: 'A küldés nem sikerült. Írj közvetlenül: hello@stratosweb.hu',
     invalid: 'Kérjük, ellenőrizd a kiemelt mezőket.',
     need_name: 'Kérjük, add meg a nevedet.',
     need_email: 'Ez az e-mail cím nem tűnik helyesnek.',

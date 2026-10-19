@@ -359,7 +359,7 @@ const DONE_HTML = {
   error: () => `<div class="quiz__step quiz__done" data-state="error">
       <h1 class="quiz__q">Hiba történt a küldés során.</h1>
       <p class="quiz__hint" style="margin:1rem auto 0">Kérlek próbáld újra, vagy írj a
-        <a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a> címre.</p>
+        <a href="mailto:hello@stratosweb.hu">hello@stratosweb.hu</a> címre.</p>
       <div class="quiz__nav" style="justify-content:center"><button id="retry">Újrapróbálás</button></div>
     </div>`,
 };

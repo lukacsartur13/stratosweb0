@@ -5,7 +5,7 @@
 Stratos is **two applications behind one domain**, not one application.
 
 ```
-media-stratos.com
+stratosweb.hu
 ├── /                 static, generated, trilingual  ← the public site
 ├── /portal/*         React SPA                      ← private
 └── /api/*            Netlify Functions              ← the only public write path
@@ -184,7 +184,7 @@ There is no self-service path to an elevated role. Sign the first user up
 through the portal — they land as `client` — then run once in the SQL editor:
 
 ```sql
-update profiles set role = 'super_admin' where email = 'you@media-stratos.com';
+update profiles set role = 'super_admin' where email = 'you@stratosweb.hu';
 ```
 
 Every later change goes through the Users screen, gated by
@@ -220,7 +220,10 @@ oracle. Password reset always returns the same confirmation for the same reason.
 
 `POST /api/mcp` (`netlify/functions/portal-mcp.mjs`) is a remote MCP server:
 Claude adds it as a custom connector and reads and writes the Portal through
-six generic tools over PostgREST. Sign-in is Supabase Auth's own OAuth 2.1
+six generic tools over PostgREST, three over the document library (Storage,
+small text uploads only) and two of the Portal's actions: a client invitation
+(portal-invite.mjs, called in-process) and a newsletter send that needs
+`confirm: true`. Sign-in is Supabase Auth's own OAuth 2.1
 server, with `/portal/oauth/consent` as its approval screen, so the token
 Claude holds is the owner's own JWT and RLS applies to every call unchanged.
 Owner only, re-checked on every request. Setup and the security model:

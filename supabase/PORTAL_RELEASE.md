@@ -365,7 +365,7 @@ felületi ellenőrzések (32 + 18 + 11), típusellenőrzés, production build, t
 | Auth (dashboardon, a tulajdonos által) | Site URL `https://stratosweb.hu`; + redirect `https://stratosweb.hu/portal/reset-password`; regisztráció ki; minimum jelszó 12 |
 | Írásvédelem | be 2026-09-27 23:11:07 UTC → ki 23:44:16 UTC; élesben igazolva: tulajdonosi írás 25006-tal elutasítva, fejléc `X-Stratos-Maintenance: on` |
 | Migrációk | a §4 sorrendje szerint mind a 12 (`20260928000100` … `20261003000100`), minden verify `ok` |
-| Tulajdonos / megbízott | lukacs.artur@media-stratos.com (super_admin) / info@media-stratos.com (admin, `portal_add_delegate`) |
+| Tulajdonos / megbízott | lukacs.artur@stratosweb.hu (super_admin) / timar.richard@stratosweb.hu (admin, `portal_add_delegate`) |
 | Éles próbák (TESZT ügyfél, „Teszt” projekt) | fizetési ütemezés és összesítő; jövőbeli dátum és kézi átírás elutasítva; feltöltés, véglegesítés, **upsert-felülírás 400, tartalom változatlan** a hosztolt Storage-on; letöltés; CORS és CSP a stratosweb.hu-ról; meghívás, jelszóbeállítás, ügyfélnézet, megosztott fájl letöltése, nyersanyag-leadás; hozzáférés-visszavonás → 0 projekt/dokumentum/objektum |
 | Tesztadat | a tulajdonos kérésére **bent maradt** (TESZT ügyfél, „Teszt” projekt, 2 részlet, 1 befizetés, 2 fájl); a tesztfiók (lukacsartur13@icloud.com) projekt-hozzárendelése visszavonva |
 | Eltérés | `PORTAL_ORIGIN` nem lett beállítva (Netlify: Forbidden) — a meghívó-függvény a Netlify `URL`-jét (https://stratosweb.hu) használja; `documents-verify.sql` a 4. szakasz megosztásaival hamis hibát adott → javítva (csak a szkript) |
@@ -723,7 +723,7 @@ Ellenőrizve (helyben): `tests/portal-hours-db.spec.ts` 4/4; tulajdonosi ellenő
    - `VAPID_PRIVATE_KEY` — a push privát kulcsa (a nyilvános párja a kódban van:
      `portal/src/lib/push.ts` és `netlify/functions/notify-dispatch.mjs`; egy teszt őrzi, hogy egyezzen).
    - Nem kötelező: `NOTIFY_FROM` (alap: `Stratos <portal@stratosweb.hu>`), `NOTIFY_REPLY_TO`
-     (alap: `lukacs.artur@media-stratos.com`).
+     (alap: `hello@stratosweb.hu`).
 3. Deploy (push a `main`-re). A `notify-dispatch` ütemezett függvény percenként fut (csak az éles deployon).
 
 Mit csinál:
@@ -752,7 +752,7 @@ kulcspár); `tests/portal-client-extras-db.spec.ts` értesítési része 6/6; tu
 ## 24. Értesítések az adminoknak is (16b. szakasz)
 
 **Élesítve 2026-10-05:** push a `main`-re, utána a migráció hiba nélkül lefutott. Ugyanekkor a tulajdonos
-döntése: az admin (`info@media-stratos.com`) **helyettes** lett (`portal_add_delegate`, 20261003000100) —
+döntése: az admin (`timar.richard@stratosweb.hu`) **helyettes** lett (`portal_add_delegate`, 20261003000100) —
 teljes tulajdonosi jog, így az értesítések linkje nála is a projektoldalra visz.
 
 **Sorrend: 23. → ez a migráció, majd deploy.**
@@ -899,7 +899,7 @@ nélkül lefutott, utána push a `main`-re.
 
 **Sorrend: 28. → Google Cloud beállítás → Netlify-kulcsok → ez a migráció → deploy → összekötés.**
 
-1. Google Cloud (a `lukacs.artur@media-stratos.com` Workspace-fiókkal), projekt „Stratos Portál”:
+1. Google Cloud (a `lukacs.artur@stratosweb.hu` Workspace-fiókkal), projekt „Stratos Portál”:
    - Gmail API és Google Calendar API bekapcsolva;
    - Google Auth Platform: Branding „Stratos Portál”, **Audience: Internal** (nem kell Google-jóváhagyás);
    - Client: Web application, Authorized redirect URI: `https://stratosweb.hu/api/google-oauth`.
@@ -1018,6 +1018,61 @@ push után a Netlify kitette; a tulajdonos lefuttatta a migrációt és újra ö
 `/api/booking` 316 szabad időpontot adott (első: hétfő 9:00 budapesti idő szerint). Az adatkezelési tájékoztató
 kiegészítése a jóváhagyás után került be.
 
+## 31. E-mail-címek: media-stratos.com → stratosweb.hu
+
+A céges levelezés (Google Workspace) átállt a `stratosweb.hu`-ra; a régi címek aliasként élnek, tehát a
+régi címre küldött levél megérkezik. Az új címrend (a tulajdonos döntése, 2026-10-18):
+
+| Cím | Hol |
+|---|---|
+| `hello@stratosweb.hu` | a cég elérhetősége mindenhol: lábléc, JSON-LD, Kapcsolat, CTA-k, Impresszum, Adatkezelési tájékoztató, űrlap-hibaüzenetek, súgó, a portál leveleinek Reply-To címe, és ide jön az új lead „csengője”. Csak fogadó cím: innen nem megy levél. |
+| `lukacs.artur@stratosweb.hu` | a weboldalon csak a Rólunk oldalon, a fotó alatt; a portálban a tulajdonos belépése (volt: `lukacs.artur@media-stratos.com`) |
+| `timar.richard@stratosweb.hu` | Rólunk, a fotó alatt; az admin/helyettes portál-belépése (volt: `info@media-stratos.com`) |
+| `portal@stratosweb.hu` | a portál leveleinek feladója (Resend, hitelesített domain); Workspace-alias a hello@ mellé |
+
+A munkatársi értesítések (foglalás, ügyfél-feltöltés, automatikus figyelmeztetések) továbbra is személyenként,
+a belépési címre mennek: a tulajdonoséi a `lukacs.artur@`-ra, Richárdéi a `timar.richard@`-ra. A Google-összekötés a
+saját Google-fiókkal történik; annak címét a Google adja, a portál csak eltárolja.
+
+**Sorrend: deploy → mentés → előellenőrzés → migráció → átállítás → ellenőrzés → Google → Netlify → Supabase SMTP.**
+
+1. Deploy (push a `main`-re) — csak a tulajdonos engedélyével.
+2. Mentés, mint a 12. pontban.
+3. SQL Editor: `supabase/checks/email-domain-preflight.sql` (csak olvas). Az első négy sor `ok`; az `ok`
+   nélküli sorok azt mutatják, hol van még „media-stratos” az adatokban.
+4. SQL Editor: `supabase/migrations/20261018000200_contact_email.sql` (ismételten is futtatható) — a
+   súgócikkek szövegében és fordításaiban a régi címet a `hello@`-ra cseréli.
+5. SQL Editor: `supabase/checks/email-domain-switch.sql` — **egyszer**. A két munkatársi fiók címe az
+   `auth.users`-ben, az `auth.identities`-ben és a `profiles`-ben egyszerre változik (a `profiles.email`-t
+   semmi nem tartja szinkronban, ezért kell külön). Jelszó, szerepkör, tulajdonosi kijelölés és helyettesség
+   (mind user id szerint) változatlan; a nyitott munkamenetek élnek.
+6. SQL Editor: `supabase/checks/email-domain-verify.sql` — minden sor `ok`. Visszaállítás:
+   `supabase/checks/email-domain-rollback.sql`.
+7. Portál → Beállítások → **Google → Connect Google** (a tulajdonos, és Richárd, ha össze van kötve). A
+   Gmail-szinkron a tárolt `google_email` alapján dönti el, melyik levél kimenő.
+8. Netlify → Environment variables (Functions): `LEAD_NOTIFY_TRANSPORT=email` és
+   `LEAD_NOTIFY_EMAIL_TO=hello@stratosweb.hu` (a csengő; a `RESEND_API_KEY` már megvan). Ha van
+   `NOTIFY_REPLY_TO` vagy `NOTIFY_FROM` régi címmel: az új értékre.
+9. Supabase → Authentication → Emails → SMTP Settings: egyéni SMTP a Resenden át, feladó `portal@stratosweb.hu`
+   (a domain ott már hitelesítve, új DNS-rekord nem kell). A beépített SMTP csak a projekt csapatának címeire
+   kézbesít, az új címekre küldött jelszó-visszaállító levél enélkül elveszhet.
+
+**Az új lead csengője** (`netlify/functions/lead-notify.mjs`, `email` szállítás): minden mentett beküldés után
+egy levél a `LEAD_NOTIFY_EMAIL_TO` címre — űrlaptípus, nyelv, oldal, időpont, azonosító és link a Portálba.
+Személyes adat nincs benne (se név, se e-mail, se üzenet), ugyanúgy, mint a webhook-változatban; a leadet a
+Portálban kell megnyitni. Hiba esetén a látogató válasza nem akad meg (2 mp-es plafon), és csak a hiba ténye
+naplózódik.
+
+Mit nem csinál: az ügyfelek, kapcsolattartók, jegyzetek szövegében lévő régi címet nem írja át (a 3. lépés
+listázza, kézi döntés); a szinkronizált levelek és a naplók története marad.
+
+Ellenőrizve (helyben, 2026-10-18): SQL-ek PGlite-on minden migrációval (előellenőrzés `ok`; a migráció a seedelt
+és egy saját cikkben is cserél, másodszorra semmit; átállítás után az ellenőrzés 7/7 `ok`, tulajdonos és helyettes
+megmaradt; ismételt futtatás változtatás nélkül megáll; visszaállítás, majd újbóli átállítás `ok`);
+`tests/lead-notify.spec.ts` 22/22 (az `email` szállítás is); node-projekt 530 zöld; böngészős űrlap-, nyilvános
+oldal- és nyitóoldal-tesztek 60/60 (desktop) és 28/28 (mobil) a saját `dist`-en; a generált oldalak a cím és a Rólunk
+blokk kivételével változatlanok.
+
 ## 32. Hírlevél: dupla megerősítés, üdvözlő levél, kampányok a portálból (23. szakasz)
 
 **Sorrend: a tájékoztató jóváhagyása → migráció → deploy → Resend-webhook → próba.** (A 31. szakasz a `main`-en van.)
@@ -1083,10 +1138,10 @@ Tudnivalók a tulajdonosnak:
   és a leiratkozás.
 - *Időtartam:* „a leiratkozásig; utána a címet csak azért őrizzük meg, hogy ne küldjünk rá újra hírlevelet —
   kérésre ezt is töröljük. Meg nem erősített feliratkozás: legfeljebb 30 nap.”
-- *Adatfeldolgozók:* új sor: Plus Five Five, Inc. (Resend), 2261 Market Street #5039, San Francisco, CA 94114, USA.
-  Adattovábbítás: EU általános szerződési feltételek (SCC) és EU–USA adatvédelmi keretrendszer, a Resend DPA-ja
-  szerint (resend.com/legal/dpa, 2026-10-18). Az „E-mail szolgáltató” sorból kikerült a már nem igaz mondat: „a
-  weboldal rendszere önmagában nem küld e-mailt”.
+- *Adatfeldolgozók:* a Resend sora (Plus Five Five, Inc., a 31. pontban került be) kiegészül: a weboldal leveleit
+  is kézbesíti (hírlevél, a feliratkozás megerősítése), és az adattovábbítás az EU általános szerződési feltételei
+  (SCC) és az EU–USA adatvédelmi keretrendszer alapján történik, a Resend DPA-ja szerint (resend.com/legal/dpa,
+  2026-10-18).
 - A jogalap továbbra sincs megnevezve. Ez a meglévő, jogászra váró hiány (`REQUIRES LEGAL REVIEW`). A hírlevélnél ez
   a hozzájárulás lenne (GDPR 6. cikk (1) a), Grt. 6. §).
 

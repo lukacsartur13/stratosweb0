@@ -358,7 +358,7 @@ const DONE_HTML = {
     </div>`,
   error: () => `<div class="quiz__step quiz__done" data-state="error">
       <h1 class="quiz__q">Beim Senden ist ein Fehler aufgetreten.</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">Bitte versuchen Sie es erneut oder schreiben Sie an<a href="mailto:lukacs.artur@media-stratos.com">lukacs.artur@media-stratos.com</a>.</p>
+      <p class="quiz__hint" style="margin:1rem auto 0">Bitte versuchen Sie es erneut oder schreiben Sie an<a href="mailto:hello@stratosweb.hu">hello@stratosweb.hu</a>.</p>
       <div class="quiz__nav" style="justify-content:center"><button id="retry">Erneut versuchen</button></div>
     </div>`,
 };
