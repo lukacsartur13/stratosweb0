@@ -3,7 +3,8 @@
 A `JARVIS_SPEC.md` összevetése a repóval és az élő Supabase-projekttel
 (`onyynfpowjwsoivkefcz`), 2026-10-19-én, a `main` 8e745d5 állapotán. Ahol a spec
 és a valóság eltér, a repó a mérvadó; itt minden eltérés mellett ott a javaslat
-is. A **Döntések** részben lévő kérdésekre a 2. fázis előtt kell válasz.
+is. A **Döntések** rész Artúr válaszait rögzíti; az 5. résztől fázisonként
+követi, mi készült el.
 
 ---
 
@@ -192,14 +193,85 @@ Megjegyzés: minden `authenticated`-nek kiadott definer-függvény +1
 
 ---
 
-## 4. Döntések a 2. fázis előtt
+## 4. Döntések (Artúr, 2026-10-19)
 
-1. **Futtatókörnyezet:** Netlify Functions (javasolt) vagy a spec szerinti
-   Supabase Edge Functions?
-2. **Migráció futtatása:** én futtatom a Supabase MCP `apply_migration`-nel (a
-   guard átengedi, mert `postgres`-ként fut; a migrációs napló ezzel indul), vagy
-   ahogy eddig, Artúr az SQL-editorban?
-3. **Jogosultság:** `is_admin()` (owner + admin), vagy az 1. körben csak
-   `is_owner()`?
-4. **Branch-ek:** fázisonként egy `feat/jarvis-N-…` branch, egymásra építve,
-   mindegyikből PR a `main`-re. Mehet így?
+1. **Futtatókörnyezet:** Netlify Functions.
+2. **Migráció:** a Supabase MCP `apply_migration`-nel futtatom (`postgres`-ként, a
+   guard átengedi); a Supabase migrációs naplója ezzel indul (`jarvis`).
+3. **Jogosultság:** `is_admin()`: owner és admin.
+4. **Branchek:** fázisonként egy `feat/jarvis-N-…` branch, mindegyik az előzőre
+   épül, mindegyikből PR (az első a `main`-re, a többi az előző fázis branchére,
+   így mindegyik PR csak a saját fázisát mutatja).
+
+---
+
+## 5. 2. fázis: adatbázis (kész)
+
+Migráció: `supabase/migrations/20261019000300_jarvis.sql`, élesben lefuttatva
+2026-10-19-én. Visszaállítás: `supabase/checks/jarvis-rollback.sql`. Tesztek:
+`tests/portal-jarvis-db.spec.ts` (PGlite, 9 teszt).
+
+### Táblák
+
+| Tábla | Mire | Ki éri el |
+|---|---|---|
+| `jarvis_threads` | beszélgetés, opcionálisan egy rekordhoz kötve | a saját gazdája, ha admin |
+| `jarvis_messages` | a Claude API content blockjai, modell, tokenek; csak hozzáfűzni lehet | a szál gazdája, ha admin |
+| `jarvis_runs` | háttérfutás: brief, ügynök, chatből indított hosszú munka | owner mind; admin a neki indítottakat; írni csak a szerverkulccsal |
+| `jarvis_actions` | minden írás vagy írási javaslat, jóváhagyással | owner mind; admin a sajátjait |
+| `jarvis_memory` | tények, preferenciák | owner mind; admin a jóváhagyottakat és a saját javaslatait, és csak javasolni tud |
+| `jarvis_settings` | egy sor: budget, brief, jobok, hang, rate limit, megőrzés | admin olvas, owner módosít |
+| `jarvis_usage` | tokenek budapesti naponként és modellenként | admin olvas; csak trigger ír |
+
+Az anon semmit nem lát, a `team_member` és a kliens sem. Minden táblán FORCE RLS
+van, parancsonként egy policy, `(select auth.uid())` / `(select is_admin())`
+alakban.
+
+### Eltérések a spec 2. fejezetétől
+
+- **`profiles(id)`** az `auth.users(id)` helyett; **`is_admin()`** az `is_staff()`
+  helyett (lásd 6. pont).
+- **`jarvis_actions`**: a policy a saját sorokra és az ownerre szűkít (lásd 7. pont).
+  Új státusz: **`reverted`** (a „visszavonható” belső írásokhoz). Az
+  állapotátmeneteket trigger őrzi: `pending → approved | rejected`,
+  `approved → executed | failed`, `failed → approved`, `executed → reverted`.
+  Külső akció csak `pending`-ként születhet, a jóváhagyás idejét és személyét a
+  trigger írja. A payload csak `pending` állapotban szerkeszthető, így az fut le,
+  amit jóváhagytak. A tool, a risk és a személyek nem változtathatók.
+- **Napló:** minden új akció és minden státuszváltás egy `activity_logs` sort kap
+  (`action = 'jarvis.<tool>'`, `entity_type = 'jarvis_action'`), definer-triggerből,
+  mert az API-szerepkörök a naplót nem írhatják. A metadata csak a tool, a risk és
+  a státusz: az összefoglaló owner-adatot tartalmazhat, a naplót pedig minden admin
+  olvassa.
+- **Tokenek:** a `jarvis_messages` mellé `cache_write_tokens` is került. A
+  `jarvis_runs`-ban a spec `tokens int` oszlopa helyett ugyanez a négy számláló
+  szerepel, plusz `model`, `user_id` és `thread_id`.
+- **Új tábla, `jarvis_usage`:** trigger számolja a napi fogyasztást, így a budget
+  egyetlen olvasás bármelyik adminnak, és senki nem olvassa más üzeneteit. Új
+  definer-RPC ehhez nem kellett, ezért új advisor-figyelmeztetés sem jött.
+- **`jarvis_settings`:** új oszlopok: `rate_limit_per_minute` (alapból 20),
+  `retention_days` (alapból 180), `updated_by`.
+- **`jarvis_memory`:** `created_by` és `updated_at` került bele. Az admin is tehet
+  javaslatot (`source='jarvis'`, nem jóváhagyott), mert a chat az ő tokenjével fut.
+- **Entitástípusok:** `lead` | `opportunity` | `client` | `project` (a spec
+  `organization` szava helyett).
+- **Ami kimaradt, és a 9. fázisba kerül:** a `notification_outbox` és az
+  `automation_alerts` kind-listáinak bővítése (`jarvis_brief`, `jarvis_*`). Ezek
+  más funkciók constraintjei, csak akkor nyúlok hozzájuk, amikor a brief és az
+  ügynök elkészül.
+
+### Ellenőrizve (2026-10-19)
+
+- `tests/portal-jarvis-db.spec.ts`: 9/9 zöld, PGlite-on. Lefedi: ki mit lát és
+  ír (owner, két admin, team member, kliens, anon); az akciók életútját és a
+  tiltott átmeneteket; a naplót (tartalom nélkül); a memória javaslat → jóváhagyás
+  útját; a beállításokat; a futásokat és a tokenszámlálást; az újrafuttathatóságot;
+  és hogy egy törölt felhasználó a szálait viszi, az akciói maradnak.
+- Az összes node-os teszt: 639 zöld, 1 kihagyva. `npm run build` zöld.
+- Élesben: 7 tábla, mindegyiken RLS + FORCE, anon nem olvas, a beállítás-sor
+  megvan, a migráció szerepel a naplóban. Owner-próba egy visszagörgetett
+  tranzakcióban: szál, üzenet, akció, napló és tokenszámlálás rendben, nyom nem
+  maradt.
+- Advisorok: **egy új WARN sincs** (minden WARN-szám változatlan). +14 INFO
+  `unused_index`, mert az új indexek még üres táblákon ülnek; ez használattal
+  eltűnik.

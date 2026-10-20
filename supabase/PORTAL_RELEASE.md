@@ -1214,3 +1214,17 @@ Ellenőrizve (helyben, 2026-10-19, valódi Supabase és Resend nélkül):
   - a webhely listájának minden tétele létező oldalra mutat.
 - Az összes node-os teszt: 574 zöld.
 - A levelek böngészőben is ellenőrizve.
+
+## 34. Jarvis: az asszisztens adatbázisa (`supabase/JARVIS.md`, 2. fázis)
+
+**Teendő most nincs:** a migráció 2026-10-19-én a Supabase MCP-n keresztül lefutott (`apply_migration`, név:
+`jarvis`; a Supabase migrációs naplójának első bejegyzése). Újrafuttatható, ha valaha kézzel kell:
+`supabase/migrations/20261019000300_jarvis.sql`.
+
+- 7 új tábla (`jarvis_threads`, `jarvis_messages`, `jarvis_runs`, `jarvis_actions`, `jarvis_memory`,
+  `jarvis_settings`, `jarvis_usage`). A Portál még nem használja őket: a chat a 3. fázisban jön.
+- Ki éri el: owner és admin, mindenki a saját beszélgetéseit; az akciókat és a futásokat az owner mind látja. A
+  team member, a kliens és az anon semmit.
+- Visszaállítás (az API elől elzár, adatot nem töröl): `supabase/checks/jarvis-rollback.sql`.
+- Új kulcs most nem kell. Az `ANTHROPIC_API_KEY` a 3. fázishoz kell majd (Netlify → Environment variables,
+  Functions scope).

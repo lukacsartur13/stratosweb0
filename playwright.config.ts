@@ -56,6 +56,8 @@ const NODE_ONLY = [
   /portal-mcp\.spec\.ts/,
   // The app's and widgets' summary (netlify/functions/portal-widget.mjs), against a mocked Supabase.
   /portal-widget\.spec\.ts/,
+  // Jarvis (20261019000300): its tables, against a real Postgres (PGlite).
+  /portal-jarvis-db\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are
