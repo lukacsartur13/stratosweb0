@@ -1279,3 +1279,26 @@ Ellenőrizve helyben: `npm run check:jarvis:ui` 9/9, mockolt szolgáltatásokkal
 Mit tud Jarvis írni: jegyzet, aktivitás, lead-státusz, deal (új és módosítás, lezárt nem),
 feladat, munkaidő, új lead. Törölni nem tud; minden írás az activity logban is megjelenik
 (`jarvis.<tool>`).
+
+## 39. Jarvis: Gmail-piszkozat, naptár, kliensüzenet (`supabase/JARVIS.md` 6. fázis)
+
+**Sorrend: Google Cloud → deploy → újracsatlakozás → próba.** Migráció és új kulcs nem kell.
+
+1. Google Cloud Console → az OAuth app (amit a `GOOGLE_CLIENT_ID` azonosít) → Data access /
+   Scopes: vedd fel a **`https://www.googleapis.com/auth/gmail.compose`** jogot (a
+   `gmail.readonly` mellé). Ha az app „Testing” állapotú, a tesztfelhasználóknak ez így
+   működik.
+2. Deploy.
+3. Portál → Settings → Google: megjelenik, hogy „Jarvis cannot write Gmail drafts…”. Kattints
+   a **Connect Google** gombra, és engedélyezd a piszkozatok kezelését. Ezt minden
+   adminnak meg kell tennie, aki Jarvisszal piszkozatot íratna.
+4. Próba:
+   - „Írj Kiss Péternek egy rövid e-mailt, hogy csütörtökön visszahívom.” → kártya
+     (Gmail-piszkozat) → Jóváhagyás → a Gmail Piszkozatok mappájában ott van, **elküldve
+     nincs**;
+   - „Mikor vagyok szabad jövő héten egy fél órás hívásra?” → szabad időpontok;
+   - egy projekt oldalán: „Tegyünk be egy demó-meetinget csütörtök 10-re, Meettel.” →
+     kártya → Jóváhagyás → a projekt meetingjei között és 2 percen belül a Google
+     Naptárban.
+
+Adatkezelés: a Gmail-piszkozat a jóváhagyó saját Gmailjébe kerül, Jarvis nem küld.

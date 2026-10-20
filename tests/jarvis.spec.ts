@@ -17,8 +17,13 @@ import { test, expect } from '@playwright/test';
 test.describe.configure({ mode: 'serial' });
 
 const SUPA = 'https://mock.supabase.invalid';
-const ENV = { SUPABASE_URL: SUPA, SUPABASE_ANON_KEY: 'public-key', ANTHROPIC_API_KEY: 'sk-ant-test-key' };
-const KEYS = [...Object.keys(ENV), 'VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY'];
+const ENV = {
+  SUPABASE_URL: SUPA, SUPABASE_ANON_KEY: 'public-key', ANTHROPIC_API_KEY: 'sk-ant-test-key',
+  // Phase 6: the one server-key read (the caller's own sealed Google token).
+  SUPABASE_SECRET_KEY: 'server-key-for-google-only', GOOGLE_CLIENT_ID: 'gid', GOOGLE_CLIENT_SECRET: 'gsecret',
+  GOOGLE_TOKEN_KEY: Buffer.alloc(32, 7).toString('base64'),
+};
+const KEYS = [...Object.keys(ENV), 'VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY', 'SUPABASE_SERVICE_ROLE_KEY'];
 const id = (n: number) => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
 const U = { owner: id(1), admin: id(3), client: id(6) };
 const TOKENS: Record<string, { user: string; admin: boolean; owner: boolean }> = {
@@ -31,7 +36,7 @@ const LEAD = id(401);
 type Row = Record<string, unknown>;
 type Call = { method: string; path: string; params: URLSearchParams; auth: string | null; body: unknown };
 type Scripted = { content: Row[]; stop_reason: string; model?: string; usage?: Row; stop_details?: Row; hang?: boolean; status?: number };
-type World = { tables: Record<string, Row[]>; calls: Call[]; claude: Scripted[]; sent: Row[]; seq: number };
+type World = { tables: Record<string, Row[]>; calls: Call[]; claude: Scripted[]; sent: Row[]; seq: number; google: Call[] };
 
 type Handler = {
   default: (r: Request) => Promise<Response>;
@@ -46,19 +51,38 @@ type Lib = {
   budapestDate: (at?: Date, days?: number) => string;
   contextBlock: (a: Row) => string;
 };
-type Tools = { toolsFor: (r: string) => Row[]; runTool: (n: string, i: unknown, c: Row) => Promise<Row>; fit: (v: unknown) => string };
+type Tools = {
+  toolsFor: (r: string) => Row[]; runTool: (n: string, i: unknown, c: Row) => Promise<Row>; fit: (v: unknown) => string;
+  __functions: { booking: (r: Request) => Promise<Response> };
+};
+type GoogleLib = { __net: { fetch: typeof fetch }; sealToken: (s: string) => string };
 
 let h: Handler;
 let lib: Lib;
 let tools: Tools;
+let googleLib: GoogleLib;
 const DEFAULT_LIMITS = { soft: 38_000, hard: 50_000, stepsPerRequest: 6, stepsPerMessage: 12 };
 
+let savedEnv: Record<string, string | undefined> = {};
 test.beforeAll(async () => {
+  savedEnv = Object.fromEntries(KEYS.map((k) => [k, process.env[k]]));
   for (const k of KEYS) delete process.env[k];
   Object.assign(process.env, ENV);
   h = (await import('../netlify/functions/jarvis.mjs')) as unknown as Handler;
   lib = (await import('../netlify/functions/jarvis-lib.mjs')) as unknown as Lib;
   tools = (await import('../netlify/functions/jarvis-tools.mjs')) as unknown as Tools;
+  googleLib = (await import('../netlify/functions/google-lib.mjs')) as unknown as GoogleLib;
+  realFetch = { jarvis: h.__net.fetch, google: googleLib.__net.fetch };
+});
+
+// google-lib.mjs is shared with every other file this worker runs (booking, google-sync):
+// its fetch goes back to what it was, or their "real" fetch would be this file's fake.
+let realFetch: { jarvis: typeof fetch; google: typeof fetch };
+test.afterAll(() => {
+  h.__net.fetch = realFetch.jarvis;
+  googleLib.__net.fetch = realFetch.google;
+  // And the environment: GOOGLE_TOKEN_KEY above all, which other files seal their tokens with.
+  for (const [k, v] of Object.entries(savedEnv)) { if (v === undefined) delete process.env[k]; else process.env[k] = v; }
 });
 
 function world(tables: Record<string, Row[]> = {}): World {
@@ -70,7 +94,7 @@ function world(tables: Record<string, Row[]> = {}): World {
       leads: [{ id: LEAD, name: 'Kiss Péter', company: 'Kiss Kft.', status: 'new' }],
       ...tables,
     },
-    calls: [], claude: [], sent: [], seq: 0,
+    calls: [], claude: [], sent: [], seq: 0, google: [],
   };
 }
 
@@ -108,6 +132,16 @@ function backend(w: World) {
     const headers = new Headers(init.headers);
     const method = (init.method ?? 'GET').toUpperCase();
 
+    if (url.hostname === 'oauth2.googleapis.com' || url.hostname.endsWith('googleapis.com')) {
+      const body = init.body ? (url.hostname === 'oauth2.googleapis.com' ? Object.fromEntries(new URLSearchParams(String(init.body))) : JSON.parse(String(init.body))) : undefined;
+      w.google.push({ method, path: url.pathname, params: url.searchParams, auth: headers.get('authorization'), body });
+      if (url.pathname === '/token') return reply(200, { access_token: 'ya29.test-access', expires_in: 3600 });
+      if (url.pathname.endsWith('/drafts')) return reply(200, { id: 'r-draft-1', message: { id: 'm-1', threadId: 't-1' } });
+      if (url.pathname.endsWith('/events')) {
+        return reply(200, { id: 'ev-1', htmlLink: 'https://www.google.com/calendar/event?eid=ZXYtMQ', hangoutLink: (body as Row)?.conferenceData ? 'https://meet.google.com/abc-defg-hij' : undefined });
+      }
+      return reply(404, {});
+    }
     if (url.hostname === 'api.anthropic.com') {
       const body = JSON.parse(String(init.body));
       w.sent.push(body);
@@ -176,6 +210,7 @@ function backend(w: World) {
 
 async function ask(w: World, body: Row, token = 'owner-token') {
   h.__net.fetch = backend(w) as typeof fetch;
+  googleLib.__net.fetch = backend(w) as typeof fetch;
   const res = await h.default(new Request('https://stratosweb.hu/api/jarvis', {
     method: 'POST', headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' }, body: JSON.stringify(body),
   }));
@@ -248,8 +283,9 @@ test('a first message: a new thread, the context block, one cached and fallback-
   expect(String(system[0].text)).not.toMatch(/\d{4}\. \w+ \d/); // no date in the stable prompt
   expect((req.tools as Row[]).map((t) => t.name)).toEqual([
     'crm_search', 'get_record', 'list_leads', 'list_opportunities', 'list_projects', 'pipeline_summary',
-    'revenue_report', 'payment_overview', 'open_alerts', 'email_search', 'list_meetings', 'time_summary',
+    'revenue_report', 'payment_overview', 'open_alerts', 'email_search', 'list_meetings', 'calendar_free_slots', 'time_summary',
     'add_note', 'log_interaction', 'update_lead_status', 'create_opportunity', 'update_opportunity', 'create_task', 'log_time', 'create_lead',
+    'gmail_create_draft', 'calendar_create_event', 'client_portal_message',
   ]);
   expect((req.tools as Row[]).every((t) => t.eager_input_streaming === true)).toBe(true);
   expect(req.messages).toEqual([{ role: 'user', content: user.content }]);
@@ -481,6 +517,7 @@ test('Budapest dates: midnight carries the right offset on both sides of a clock
 
 async function op(w: World, body: Row, token = 'owner-token') {
   h.__net.fetch = backend(w) as typeof fetch;
+  googleLib.__net.fetch = backend(w) as typeof fetch;
   const res = await h.default(new Request('https://stratosweb.hu/api/jarvis', {
     method: 'POST', headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' }, body: JSON.stringify(body),
   }));
@@ -642,4 +679,160 @@ test('the next message tells Jarvis what the person decided meanwhile', async ()
   expect(block).toContain('- Jóváhagyva, lefutott: Jegyzet · lead: „x”');
   const q = w.calls.find((c) => c.path === '/jarvis_actions' && c.method === 'GET');
   expect(q?.params.get('or')).toBe('(decided_at.gt."2026-10-01T08:00:00.000Z",result->>reverted_at.gt."2026-10-01T08:00:00.000Z")');
+});
+
+
+/* ================================================================ external (phase 6) */
+
+const GOOGLE_ACCOUNT = (scopes: string) => ({
+  user_id: U.owner, google_email: 'owner@stratos.example', scopes, last_error: null,
+  refresh_token_enc: googleLib.sealToken('1//refresh-token'),
+});
+const ALL_SCOPES = 'openid email https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.freebusy https://www.googleapis.com/auth/gmail.compose';
+const pendingExternal = (n: number, tool: string, payload: Row) => ({
+  id: id(n), thread_id: id(50), user_id: U.owner, tool, risk: 'external', status: 'pending', summary: 's', payload, result: { reason: 'external' },
+});
+
+test('an external tool always waits — even in a turn that read nothing from outside — and proposing touches no Google', async () => {
+  const w = world({ google_accounts: [GOOGLE_ACCOUNT(ALL_SCOPES)] });
+  w.claude.push(toolCall([['tu_1', 'gmail_create_draft', { to: ['peter@example.invalid'], subject: 'Ajánlat', body: 'Kedves Péter,\n\ncsatolom.' }]]));
+  w.claude.push(text('A piszkozat jóváhagyásra vár.'));
+  await ask(w, { message: 'Írj neki e-mailt.' });
+  const [a] = actions(w);
+  expect(a).toMatchObject({ tool: 'gmail_create_draft', risk: 'external', status: 'pending', result: { reason: 'external' },
+    summary: 'Gmail-piszkozat → peter@example.invalid: „Ajánlat”' });
+  expect(w.google).toEqual([]);
+  expect(w.calls.some((c) => c.auth === `Bearer ${ENV.SUPABASE_SECRET_KEY}`)).toBe(false);
+});
+
+test('approving a Gmail draft: the server key reads only the approver\'s own sealed token; the draft is plain UTF-8, never sent', async () => {
+  const w = world({
+    google_accounts: [GOOGLE_ACCOUNT(ALL_SCOPES)],
+    jarvis_actions: [pendingExternal(730, 'gmail_create_draft', {
+      to: ['peter@example.invalid'], cc: [], subject: 'Árajánlat — weboldal\r\nBcc: evil@example.invalid', body: 'Kedves Péter!\n\nÜdv,\nArtúr',
+      lead_id: LEAD, organization_id: null, opportunity_id: null,
+    })],
+  });
+  const r = await op(w, { op: 'approve', action_id: id(730) });
+  expect(r.json).toMatchObject({ ok: true, label: 'Piszkozat a Gmailben · Árajánlat — weboldal Bcc: evil@example.…',
+    action: { status: 'executed', link: 'https://mail.google.com/mail/u/0/#drafts', undoable: false } });
+
+  const keyed = w.calls.filter((c) => c.auth === `Bearer ${ENV.SUPABASE_SECRET_KEY}`);
+  expect(keyed.map((c) => `${c.method} ${c.path} ${c.params.get('user_id')}`)).toEqual([`GET /google_accounts eq.${U.owner}`]);
+  const [token, draft] = w.google;
+  expect(token.body).toMatchObject({ grant_type: 'refresh_token', refresh_token: '1//refresh-token', client_id: 'gid' });
+  expect(draft).toMatchObject({ method: 'POST', path: '/gmail/v1/users/me/drafts', auth: 'Bearer ya29.test-access' });
+  expect(w.google.some((c) => c.path.includes('/send'))).toBe(false);
+
+  const mime = Buffer.from(String(((draft.body as Row).message as Row).raw), 'base64url').toString('utf8');
+  const [head, body64] = mime.split('\r\n\r\n');
+  expect(head.split('\r\n')).toEqual([
+    'To: peter@example.invalid',
+    `Subject: =?UTF-8?B?${Buffer.from('Árajánlat — weboldal Bcc: evil@example.invalid').toString('base64')}?=`,
+    'MIME-Version: 1.0', 'Content-Type: text/plain; charset="UTF-8"', 'Content-Transfer-Encoding: base64',
+  ]);
+  expect(Buffer.from(body64.replace(/\r\n/g, ''), 'base64').toString('utf8')).toBe('Kedves Péter!\r\n\r\nÜdv,\r\nArtúr');
+});
+
+test('without the drafts permission the approval fails and says how to fix it; no token is fetched', async () => {
+  const w = world({
+    google_accounts: [GOOGLE_ACCOUNT('openid email https://www.googleapis.com/auth/gmail.readonly')],
+    jarvis_actions: [pendingExternal(731, 'gmail_create_draft', { to: ['a@example.invalid'], cc: [], subject: 'x', body: 'y', lead_id: null, organization_id: null, opportunity_id: null })],
+  });
+  const r = await op(w, { op: 'approve', action_id: id(731) });
+  expect(r.json).toMatchObject({ ok: false, action: { status: 'failed' } });
+  expect(String(r.json.label)).toContain('connect Google again in Settings and allow it to manage Gmail drafts');
+  expect(w.google).toEqual([]);
+});
+
+test('a project meeting goes through the Portal\'s own path: the meeting row (synced to Google within minutes) and the client notice', async () => {
+  const w = world({ jarvis_actions: [pendingExternal(732, 'calendar_create_event', {
+    title: 'Demó átbeszélése', start: '2026-12-01T09:00:00.000Z', minutes: 45, project_id: id(201), location: null, note: 'Hozd a kérdéseidet.',
+    meet: true, invite_clients: true, attendees: [],
+  })] });
+  const r = await op(w, { op: 'approve', action_id: id(732) });
+  expect(r.json).toMatchObject({ ok: true, label: 'Projektmeeting felvéve · 2026. 12. 01. 10:00' });
+  const [meeting] = writes(w, '/project_meetings');
+  expect(meeting.body).toEqual({
+    project_id: id(201), title: 'Demó átbeszélése', starts_at: '2026-12-01T09:00:00.000Z', ends_at: '2026-12-01T09:45:00.000Z',
+    time_zone: 'Europe/Budapest', location: 'Google Meet', client_note: 'Hozd a kérdéseidet.', google_meet: true, google_invite_clients: true,
+  });
+  expect(meeting.auth).toBe('Bearer owner-token');
+  expect(writes(w, '/notification_outbox')[0].body).toEqual({ audience: 'client', kind: 'meeting_scheduled', project_id: id(201),
+    payload: { title: 'Demó átbeszélése', starts_at: '2026-12-01T09:00:00.000Z', time_zone: 'Europe/Budapest' } });
+  expect(w.google).toEqual([]);
+});
+
+test('an event without a project goes into the approver\'s own Google Calendar; attendees are e-mailed by Google', async () => {
+  const w = world({
+    google_accounts: [GOOGLE_ACCOUNT(ALL_SCOPES)],
+    jarvis_actions: [pendingExternal(733, 'calendar_create_event', {
+      title: 'Bemutatkozó hívás', start: '2026-12-02T13:30:00.000Z', minutes: 30, project_id: null, location: null, note: null,
+      meet: true, invite_clients: false, attendees: ['peter@example.invalid'],
+    })],
+  });
+  const r = await op(w, { op: 'approve', action_id: id(733) });
+  expect(r.json).toMatchObject({ ok: true, action: { status: 'executed', link: 'https://www.google.com/calendar/event?eid=ZXYtMQ', meet: 'https://meet.google.com/abc-defg-hij' } });
+  const event = w.google.find((c) => c.path.endsWith('/events'))!;
+  expect(event.params.get('sendUpdates')).toBe('all');
+  expect(event.params.get('conferenceDataVersion')).toBe('1');
+  expect(event.body).toMatchObject({
+    summary: 'Bemutatkozó hívás', start: { dateTime: '2026-12-02T13:30:00.000Z', timeZone: 'Europe/Budapest' },
+    end: { dateTime: '2026-12-02T14:00:00.000Z' }, attendees: [{ email: 'peter@example.invalid' }],
+    conferenceData: { createRequest: { conferenceSolutionKey: { type: 'hangoutsMeet' } } },
+  });
+  expect(writes(w, '/project_meetings')).toEqual([]);
+});
+
+test('a client message: the Portal\'s message and its notice; the calendar input rules', async () => {
+  const w = world({ jarvis_actions: [pendingExternal(734, 'client_portal_message', { project_id: id(201), body: 'Elkészült a demó, várjuk a visszajelzést.' })] });
+  expect((await op(w, { op: 'approve', action_id: id(734) })).json).toMatchObject({ ok: true, label: 'Üzenet elküldve a kliensportálon' });
+  expect(writes(w, '/project_messages')[0].body).toEqual({ project_id: id(201), body: 'Elkészült a demó, várjuk a visszajelzést.' });
+  expect(writes(w, '/notification_outbox')[0].body).toEqual({ audience: 'client', kind: 'message_posted', project_id: id(201),
+    payload: { excerpt: 'Elkészült a demó, várjuk a visszajelzést.' } });
+
+  h.__net.fetch = backend(w) as typeof fetch;
+  const ctx = { token: 'owner-token', role: 'owner', userId: U.owner, threadId: null, tainted: false };
+  for (const [input, msg] of [
+    [{ title: 'x', start: '2020-01-01T10:00', meet: true }, 'in the future'],
+    [{ title: 'x', start: 'jövő kedd', meet: true }, 'YYYY-MM-DDTHH:MM'],
+    [{ title: 'x', start: '2026-12-01T10:00' }, 'give a location, or meet: true'],
+    [{ title: 'x', start: '2026-12-01T10:00', meet: true, project_id: id(201), attendees: ['a@b.hu'] }, 'invite_clients'],
+    [{ title: 'x', start: '2026-12-01T10:00', meet: true, invite_clients: true }, 'needs project_id'],
+  ] as [Row, string][]) {
+    const res = await tools.runTool('calendar_create_event', input, ctx);
+    expect(res.is_error, msg).toBe(true);
+    expect(String(res.content), msg).toContain(msg);
+  }
+  // 10:00 on Budapest's clock in December is 09:00 UTC.
+  const ok = await tools.runTool('calendar_create_event', { title: 'Hívás', start: '2026-12-01T10:00', meet: true }, ctx);
+  expect(JSON.parse(String(ok.content))).toMatchObject({ status: 'waiting_for_approval' });
+  expect((actions(w).at(-1)!.payload as Row).start).toBe('2026-12-01T09:00:00.000Z');
+});
+
+test('free times come from the booking function itself, as the person, grouped by Budapest day', async () => {
+  const seen: Request[] = [];
+  const real = tools.__functions.booking;
+  tools.__functions.booking = async (req: Request) => {
+    seen.push(req);
+    return reply(200, { ok: true, timeZone: 'Europe/Budapest', minutes: 30, slots: [
+      { start: '2026-10-22T07:00:00.000Z', end: '2026-10-22T07:30:00.000Z' }, { start: '2026-10-22T07:30:00.000Z', end: '2026-10-22T08:00:00.000Z' },
+      { start: '2026-10-23T12:00:00.000Z', end: '2026-10-23T12:30:00.000Z' }, { start: '2026-10-26T08:00:00.000Z', end: '2026-10-26T08:30:00.000Z' },
+    ] });
+  };
+  try {
+    const ctx = { token: 'owner-token', role: 'owner', userId: U.owner };
+    const r = await tools.runTool('calendar_free_slots', { days: 2 }, ctx);
+    expect(seen[0].headers.get('authorization')).toBe('Bearer owner-token');
+    expect(JSON.parse(String(r.content))).toEqual({ time_zone: 'Europe/Budapest', minutes: 30, days: [
+      { date: '2026-10-22', starts: ['09:00', '09:30'] }, { date: '2026-10-23', starts: ['14:00'] },
+    ] });
+    expect(r.label).toBe('Szabad időpontok · 3 kezdés, 2 nap');
+    tools.__functions.booking = async () => reply(503, { ok: false, code: 'CALENDAR_RECONNECT' });
+    const bad = await tools.runTool('calendar_free_slots', {}, ctx);
+    expect(bad.is_error).toBe(true);
+    expect(String(bad.content)).toContain('Google must be connected again in Settings');
+  } finally {
+    tools.__functions.booking = real;
+  }
 });

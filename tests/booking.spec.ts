@@ -354,7 +354,11 @@ test.describe('/api/booking', () => {
 
   test('a booking: Google gets the event with the guest, a Meet request and sendUpdates=all; it is confirmed, becomes a lead, and its time is gone', async () => {
     const free = (await get()).body.slots;
-    const start = days(free)[0];
+    // A start whose next free start follows it directly, so the 15-minute gap
+    // has a neighbour to take away. (The first start of the first day is not
+    // always one: late in the day, it is that day's last.)
+    const at = free.findIndex((s: { start: string }, i: number) => free[i + 1] && Date.parse(free[i + 1].start) - Date.parse(s.start) === 30 * 60_000);
+    const start = free[at].start;
     const res = await post(guest(start));
     expect(res.status).toBe(200);
     expect(res.body.booking).toMatchObject({ start: iso(Date.parse(start)), minutes: 30, status: 'confirmed', meetUrl: 'https://meet.google.com/abc-defg-hij',
@@ -374,10 +378,10 @@ test.describe('/api/booking', () => {
     expect((await rows(`select form_type from leads where id = $1`, [row.lead_id]))[0]).toEqual({ form_type: 'booking' });
     // Gone from the free times, and so are the neighbours inside the 15 minutes.
     const now = (await get()).body.slots.map((s: { start: string }) => s.start);
-    expect(now).not.toContain(free[0].start);
-    expect(now).not.toContain(free[1].start);
+    expect(now).not.toContain(free[at].start);
+    expect(now).not.toContain(free[at + 1].start);
     // The same address cannot hold two open bookings.
-    expect((await post(guest(free[4].start))).body.code).toBe('EMAIL_OPEN');
+    expect((await post(guest(free[at + 4].start))).body.code).toBe('EMAIL_OPEN');
   });
 
   test('a time that is no longer free is refused — by the check, and by the database when the check misses it', async () => {

@@ -489,3 +489,71 @@ akció hozott létre; leadet és dealt nem töröl, hanem a Kukába tesz, illetv
   számláló, Várakozók lista, tárolt akciók egy régi szálban, kontraszt mindkét témában.
 - Az összes node- és desktop-1440 teszt: 1153 zöld, 3 kihagyva. Build, typecheck, i18n
   (0 hiányzó), titokkeresés rendben.
+
+---
+
+## 9. 6. fázis: Gmail-piszkozat, naptár, kliensüzenet (kész)
+
+Az 5. fázis 2026-10-20-án élesbe ment (`main` 1ff2187), és Artúr élesben kipróbálta.
+
+Kód: `netlify/functions/jarvis-google.mjs` (a Google-token és -hívások),
+`jarvis-writes.mjs` (a 3 külső tool), `jarvis-tools.mjs` (`calendar_free_slots`),
+`google-lib.mjs` (új jog: `gmail.compose`), a Beállítások Google-része (újracsatlakozás-
+jelzés), a kártyák Gmail- és naptárlinkje. Migráció nem kellett.
+
+### Az új toolok
+
+| Tool | Kockázat | Mit csinál |
+|---|---|---|
+| `gmail_create_draft` | külső: mindig jóváhagyásra vár | **Piszkozat** a jóváhagyó saját Gmailjében (sima szöveg, UTF-8). Soha nem küld: a felhasználó a Gmailből küldi. A kártyán link a Gmail piszkozataihoz. |
+| `calendar_create_event` | külső | **Projekttel:** `project_meetings` sor, ahogy a Portál csinálja; a kliensportálon látszik, a kliens értesítést kap (`meeting_scheduled`); a meglévő szinkron 2 percen belül a Google Naptárba teszi, kérésre Meet-linkkel és a kliens meghívásával. **Projekt nélkül:** esemény a jóváhagyó saját Google Naptárában, opcionálisan meghívottakkal (őket a Google értesíti), Meet-linkkel. A kártyán link az eseményhez és a Meethez. |
+| `client_portal_message` | külső | Üzenet a projekt klienseinek a kliensportálon, és az értesítésük (`message_posted`), mint a Portál üzenetküldőjében. Csak az owner (RLS). |
+| `calendar_free_slots` | olvasás | A szabad időpontok **a foglalóoldal saját szabályaival**: a `booking.mjs` függvényt hívja ugyanazon a folyamaton belül, a hívó tokenjével. Ide tartozik a Google foglaltság, a foglalások, a munkaidő, az előzetes idő és a szünetek. Budapesti naponként csoportosít. (A 3. fázisból halasztva.) |
+
+- **Az időpontot** a modell budapesti falióra szerint adja meg (`YYYY-MM-DDTHH:MM`). A
+  szerver átváltja, és a múltbeli időpontot elutasítja (jóváhagyáskor is). A kártya
+  budapesti időben mutatja, szerkesztéskor budapesti dátum-idő mezővel.
+- **Szerkesztés:** a kártyán a címzett-listák (to, cc, attendees) vesszővel elválasztva
+  szerkeszthetők, a szerver újra ellenőrzi őket. A tárgy egysoros: a sortörést a szerver
+  szóközre cseréli, így a fejlécbe nem lehet új sort (pl. `Bcc:`) csempészni.
+- **Linkek:** a kártya csak a szerver által adott, `https://` és Google-hostos linket
+  (Gmail, Naptár, Meet) jeleníti meg; minden mást eldob. A `tests/portal.spec.ts`
+  href-szabálya ezt a függvényt (`googleLink`) is ismeri.
+
+### A szerverkulcs egyetlen használata
+
+A `refresh_token_enc` oszlopot egyetlen API-szerepkör sem olvashatja, a gazdája sem. Ezért a
+`jarvis-google.mjs` a szerverkulccsal olvassa ki a jóváhagyó **saját** `google_accounts`
+sorát (GoTrue-val ellenőrzött user id), pontosan ahogy a `google-sync.mjs` és a
+`booking.mjs`. Ez csak jóváhagyott külső akciónál történik, és máshol nem használja a kulcsot.
+Ha a fióknál hiányzik a szükséges jog (pl. `gmail.compose`), vagy a hozzáférést visszavonták,
+az akció elbukik, és megmondja, mit kell tenni („connect Google again in Settings…”).
+
+### Ellenőrizve (2026-10-20)
+
+- `tests/jarvis.spec.ts`: 28/28 (+7). Lefedi:
+  - a külső tool mindig vár, és a javaslat nem nyúl a Google-hoz;
+  - a Gmail-jóváhagyásnál a szerverkulcs csak a saját sort olvassa;
+  - a MIME-t (UTF-8 tárgy, törzs, nincs `Bcc`-injekció, nincs `/send`);
+  - a jog hiányát;
+  - a projektmeetinget (sor + kliensértesítés, Meet esetén „Google Meet” helyszín);
+  - a projekt nélküli eseményt (`sendUpdates=all`, Meet);
+  - a kliensüzenetet;
+  - a naptár-bemenet szabályait;
+  - a `calendar_free_slots`-ot a foglalófüggvényen át.
+- A `google.spec.ts` és a `booking.spec.ts` változatlanul zöld.
+- `npm run check:jarvis:ui`: 14/14 (+1): Gmail-piszkozat jóváhagyása szerkesztett
+  címzettekkel, Gmail-link `noopener`-rel, egy nem Google-link nem jelenik meg.
+- Az összes node- és desktop-1440 teszt: 1160 zöld, 0 piros (a `portal.spec.ts`
+  href-szabálya ismeri a `googleLink`-et).
+- Közben két hibát javítottam a meglévő tesztekben:
+  - A `tests/booking.spec.ts` egyik tesztje napszakfüggő volt. Az első nap első szabad
+    időpontját foglalta le, és a következőnek is el kellett tűnnie. Délután viszont az
+    első nap utolsó időpontja a következő nap első időpontjával szomszédos, így nem
+    tűnt el. Most egy olyan időpontot foglal, amelynek ugyanazon a napon van
+    közvetlen szomszédja.
+  - A `tests/jarvis.spec.ts` visszaállítja a megosztott `google-lib` fetch-et és a
+    környezeti változókat, hogy az ugyanabban a workerben futó többi fájlt ne zavarja. Build, typecheck, i18n (0 hiányzó; a Jarvis német
+  szövegei magázásra igazítva, mint a Portál többi része), titokkeresés rendben.
+- **Valódi Gmaillel és Naptárral nincs kipróbálva**: az éles próbához Artúrnak újra kell
+  csatlakoztatnia a Google-t (§39).

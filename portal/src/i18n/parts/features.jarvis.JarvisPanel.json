@@ -53,7 +53,7 @@
  },
  "Ask Jarvis…": {
   "hu": "Kérdezd Jarvist…",
-  "de": "Frag Jarvis…"
+  "de": "Jarvis fragen…"
  },
  "Enter to send · Shift+Enter for a new line": {
   "hu": "Enter: küldés · Shift+Enter: új sor",
@@ -65,7 +65,7 @@
  },
  "You": {
   "hu": "Te",
-  "de": "Du"
+  "de": "Sie"
  },
  "Jarvis did not answer this question.": {
   "hu": "Jarvis erre a kérdésre nem válaszolt.",
@@ -91,10 +91,6 @@
   "hu": "Cím nélküli beszélgetés",
   "de": "Unterhaltung ohne Titel"
  },
- "Ask about leads, deals, clients, projects, payments, meetings or hours. Jarvis answers from the Portal, with your access, and says when it has no data. It can also add notes, activities, tasks and hours, change a lead's status or a deal, and create leads and deals: each shows here as a card you can undo. It does not delete, send e-mails or invite anyone.": {
-  "hu": "Kérdezz leadekről, dealekről, ügyfelekről, projektekről, befizetésekről, meetingekről vagy munkaidőről. Jarvis a Portál adataiból válaszol, a te hozzáféréseddel, és megmondja, ha nincs adata. Jegyzetet, aktivitást, feladatot és munkaidőt is rögzít, módosítja egy lead státuszát vagy egy dealt, és leadet, dealt is létrehoz: mindegyik itt jelenik meg egy kártyán, amit visszavonhatsz. Nem töröl, nem küld e-mailt és nem hív meg senkit.",
-  "de": "Frag nach Leads, Deals, Kunden, Projekten, Zahlungen, Terminen oder Stunden. Jarvis antwortet aus dem Portal, mit deinen Rechten, und sagt, wenn es keine Daten hat. Es kann auch Notizen, Aktivitäten, Aufgaben und Stunden erfassen, den Status eines Leads oder einen Deal ändern und Leads und Deals anlegen: Jedes erscheint hier als Karte, die du rückgängig machen kannst. Es löscht nichts, sendet keine E-Mails und lädt niemanden ein."
- },
  "Waiting for approval: {n}": {
   "hu": "Jóváhagyásra vár: {n}",
   "de": "Wartet auf Freigabe: {n}"
@@ -110,5 +106,9 @@
  "Open the conversation": {
   "hu": "A beszélgetés megnyitása",
   "de": "Unterhaltung öffnen"
+ },
+ "Ask about leads, deals, clients, projects, payments, meetings or hours. Jarvis answers from the Portal, with your access, and says when it has no data. It can also add notes, activities, tasks and hours, change a lead's status or a deal, and create leads and deals: each shows here as a card you can undo. E-mails (as Gmail drafts), meetings and client messages it only proposes: they run once you approve them. It never deletes, and never sends an e-mail.": {
+  "hu": "Kérdezz leadekről, dealekről, ügyfelekről, projektekről, befizetésekről, meetingekről vagy munkaidőről. Jarvis a Portál adataiból válaszol, a te hozzáféréseddel, és megmondja, ha nincs adata. Jegyzetet, aktivitást, feladatot és munkaidőt is rögzít, módosítja egy lead státuszát vagy egy dealt, és leadet, dealt is létrehoz: mindegyik itt jelenik meg egy kártyán, amit visszavonhatsz. E-mailt (Gmail-piszkozatként), meetinget és kliensüzenetet csak javasol: ezek a jóváhagyásod után futnak le. Soha nem töröl, és e-mailt soha nem küld el.",
+  "de": "Fragen Sie nach Leads, Deals, Kunden, Projekten, Zahlungen, Terminen oder Stunden. Jarvis antwortet aus dem Portal, mit Ihren Rechten, und sagt, wenn es keine Daten hat. Es kann auch Notizen, Aktivitäten, Aufgaben und Stunden erfassen, den Status eines Leads oder einen Deal ändern und Leads und Deals anlegen: Jedes erscheint hier als Karte, die Sie rückgängig machen können. E-Mails (als Gmail-Entwürfe), Termine und Kundennachrichten schlägt es nur vor: Sie laufen erst nach Ihrer Freigabe. Es löscht nie und sendet nie eine E-Mail."
  }
 }

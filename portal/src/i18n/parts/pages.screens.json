@@ -359,5 +359,9 @@
  "The booking page cannot see when you are busy yet: connect Google again and allow it to see your free/busy times.": {
   "hu": "Az időpontfoglaló oldal még nem látja, mikor vagy elfoglalt: kösd össze újra a Google-fiókot, és engedélyezd a foglaltsági adatok megtekintését.",
   "de": "Die Buchungsseite sieht noch nicht, wann Sie beschäftigt sind: Google erneut verbinden und die Frei/Gebucht-Zeiten freigeben."
+ },
+ "Jarvis cannot write Gmail drafts for you yet: connect Google again and allow it to manage drafts. It only ever creates drafts; sending stays with you.": {
+  "hu": "Jarvis még nem tud Gmail-piszkozatot írni neked: csatlakoztasd újra a Google-t, és engedélyezd a piszkozatok kezelését. Csak piszkozatot hoz létre; a küldés a te dolgod marad.",
+  "de": "Jarvis kann noch keine Gmail-Entwürfe für Sie schreiben: Google erneut verbinden und die Verwaltung von Entwürfen erlauben. Es legt nur Entwürfe an; das Senden bleibt bei Ihnen."
  }
 }

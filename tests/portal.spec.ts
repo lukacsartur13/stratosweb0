@@ -228,6 +228,7 @@ test.describe('the portal renders stored values as text, never as markup', () =>
           /^safeUrl\(/.test(expr) ||                       // scheme decided at the point of use
           /^safeHttpsUrl\(/.test(expr) ||                  // https only, the database's own rule (lib/meetings.ts)
           /^googleCalendarUrl\(/.test(expr) ||              // always a literal https://calendar.google.com/… (lib/meetings.ts)
+          /^googleLink\(/.test(expr) ||                     // https only, Google's own hosts only, else null (lib/jarvis.ts)
           /^to$|^path$/.test(expr);                        // a router prop, not a URL
         if (!safe) offenders.push(`${path.relative(process.cwd(), file)}: href={${expr}}`);
       }

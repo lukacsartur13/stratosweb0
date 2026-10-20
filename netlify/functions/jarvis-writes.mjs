@@ -23,6 +23,9 @@
 // moved to the Trash / archive, as the Portal does.
 // =============================================================================
 import { UUID, budapestDate, rest } from './jarvis-lib.mjs';
+import { COMPOSE_SCOPE, EVENTS_SCOPE } from './google-lib.mjs';
+import { zoned } from './booking-lib.mjs';
+import { GoogleError, draftRaw, gapi, googleToken } from './jarvis-google.mjs';
 
 export class WriteInputError extends Error {}
 class WriteDbError extends Error {
@@ -327,7 +330,147 @@ export const WRITE_TOOLS = [
   },
 ].map((t) => ({ roles: ['owner', 'admin'], risk: 'internal', ...t }));
 
-export const WRITES = new Map(WRITE_TOOLS.map((t) => [t.name, t]));
+/* ===================================================== external (phase 6) */
+
+const TZ = 'Europe/Budapest';
+const emails = (v, field, { max = 10, required = false } = {}) => {
+  const list = v === undefined || v === null ? [] : Array.isArray(v) ? v : [v];
+  if (required && list.length === 0) throw new WriteInputError(`${field} is required`);
+  if (list.length > max) throw new WriteInputError(`${field}: at most ${max} addresses`);
+  return [...new Set(list.map((x) => email(x, field, { required: true })))];
+};
+const oneLine = (v, field, opts) => { const t = str(v, field, opts); return t ? t.replace(/[\r\n]+/g, ' ') : t; };
+const flag = (v) => v === true;
+
+/** A start time: "YYYY-MM-DDTHH:MM" on Budapest's clock, or an ISO instant with its offset. → ms */
+function startOf(v) {
+  if (typeof v !== 'string') throw new WriteInputError('start is required: YYYY-MM-DDTHH:MM (Budapest time)');
+  const local = /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})$/.exec(v.trim());
+  const ms = local ? zoned(+local[1], +local[2], +local[3], +local[4], +local[5], TZ)
+    : /(Z|[+-]\d{2}:\d{2})$/.test(v.trim()) ? Date.parse(v.trim()) : NaN;
+  if (ms === null || !Number.isFinite(ms)) throw new WriteInputError('start must be YYYY-MM-DDTHH:MM (Budapest time) or an ISO time with its offset');
+  return ms;
+}
+const clock = (ms) => new Intl.DateTimeFormat('hu-HU', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).format(ms);
+
+export const EXTERNAL_TOOLS = [
+  {
+    name: 'gmail_create_draft',
+    description: 'Writes an e-mail as a DRAFT in the Gmail of the person who approves it (plain text). It is never sent: the person reviews and sends it from Gmail. Waits for approval in the panel.',
+    input_schema: schema({
+      to: { type: 'array', items: { type: 'string' }, description: 'Recipients\' e-mail addresses.' },
+      cc: { type: 'array', items: { type: 'string' } },
+      subject: { type: 'string', description: 'Up to 200 characters, one line.' },
+      body: { type: 'string', description: 'The e-mail, plain text, up to 20000 characters. Sign it as the person, not as Jarvis.' },
+      lead_id: { type: 'string' }, organization_id: { type: 'string' }, opportunity_id: { type: 'string' },
+    }, ['to', 'subject', 'body']),
+    parse: (i) => ({
+      to: emails(i.to, 'to', { required: true }), cc: emails(i.cc, 'cc'),
+      subject: oneLine(i.subject, 'subject', { max: 200, required: true }), body: str(i.body, 'body', { max: 20000, required: true }),
+      lead_id: uuid(i.lead_id, 'lead_id'), organization_id: uuid(i.organization_id, 'organization_id'), opportunity_id: uuid(i.opportunity_id, 'opportunity_id'),
+    }),
+    summary: (a) => `Gmail-piszkozat → ${a.to.join(', ')}: „${short(a.subject, 60)}”`,
+    execute: async (ctx, a) => {
+      const { token, email: mailbox } = await googleToken(ctx.userId, COMPOSE_SCOPE);
+      const r = await gapi(token, 'https://gmail.googleapis.com/gmail/v1/users/me/drafts', {
+        method: 'POST', body: JSON.stringify({ message: { raw: draftRaw(a) } }),
+      });
+      if (!r.ok || !r.body?.id) throw new GoogleError('GOOGLE_FAILED', `Gmail did not take the draft (HTTP ${r.status}).`);
+      return {
+        data: { draft_id: r.body.id, mailbox, link: 'https://mail.google.com/mail/u/0/#drafts' },
+        label: `Piszkozat a Gmailben · ${short(a.subject, 40)}`, undo: null,
+      };
+    },
+  },
+  {
+    name: 'calendar_create_event',
+    description: 'Schedules a meeting. With project_id: a project meeting — shown to the project\'s clients in the client portal, who also get an e-mail; it goes into Google Calendar within two minutes, with a Meet link if asked and, with invite_clients, the clients invited. Without project_id: an event in the approver\'s own Google Calendar, optionally with attendees (Google e-mails them an invitation). Waits for approval.',
+    input_schema: schema({
+      title: { type: 'string', description: 'Up to 160 characters.' },
+      start: { type: 'string', description: 'YYYY-MM-DDTHH:MM on Budapest\'s clock.' },
+      minutes: { type: 'integer', minimum: 15, maximum: 480, description: 'Default 30.' },
+      project_id: { type: 'string' },
+      location: { type: 'string', description: 'A place or an address. Not needed with meet.' },
+      note: { type: 'string', description: 'For the participants, up to 1000 characters.' },
+      meet: { type: 'boolean', description: 'Add a Google Meet link.' },
+      invite_clients: { type: 'boolean', description: 'Project meetings only: invite the project\'s client accounts from Google Calendar.' },
+      attendees: { type: 'array', items: { type: 'string' }, description: 'Events without a project only: e-mail addresses to invite.' },
+    }, ['title', 'start']),
+    parse: (i) => {
+      const a = {
+        title: oneLine(i.title, 'title', { max: 160, required: true }), start: null, minutes: num(i.minutes, 'minutes', { min: 15, max: 480 }) ?? 30,
+        project_id: uuid(i.project_id, 'project_id'), location: oneLine(i.location, 'location', { max: 300 }), note: str(i.note, 'note', { max: 1000 }),
+        meet: flag(i.meet), invite_clients: flag(i.invite_clients), attendees: emails(i.attendees, 'attendees', { max: 20 }),
+      };
+      const ms = startOf(i.start);
+      if (ms < Date.now() + 5 * 60_000) throw new WriteInputError('start must be in the future');
+      a.start = new Date(ms).toISOString();
+      if (!Number.isInteger(a.minutes)) throw new WriteInputError('minutes must be a whole number');
+      if (a.project_id && a.attendees.length) throw new WriteInputError('a project meeting invites its clients with invite_clients, not attendees');
+      if (!a.project_id && a.invite_clients) throw new WriteInputError('invite_clients needs project_id');
+      if (!a.location && !a.meet) throw new WriteInputError('give a location, or meet: true');
+      return a;
+    },
+    summary: (a) => `${a.project_id ? 'Projektmeeting' : 'Naptáresemény'}: „${short(a.title, 50)}” · ${clock(Date.parse(a.start))} · ${a.minutes} perc`
+      + `${a.meet ? ' · Meet' : ''}${a.invite_clients ? ' · a kliens meghívva' : ''}${a.attendees.length ? ` · meghívottak: ${a.attendees.join(', ')}` : ''}`,
+    execute: async (ctx, a) => {
+      const end = new Date(Date.parse(a.start) + a.minutes * 60_000).toISOString();
+      if (a.project_id) {
+        const made = await insert(ctx, 'project_meetings', {
+          project_id: a.project_id, title: a.title, starts_at: a.start, ends_at: end, time_zone: TZ,
+          location: a.location ?? 'Google Meet', client_note: a.note, google_meet: a.meet, google_invite_clients: a.invite_clients,
+        });
+        // As the Portal does when a meeting is made: the client is told (notify-dispatch sends it).
+        const told = await rest(ctx.token, 'POST', '/notification_outbox', {
+          body: { audience: 'client', kind: 'meeting_scheduled', project_id: a.project_id, payload: { title: a.title, starts_at: a.start, time_zone: TZ } },
+          prefer: 'return=minimal',
+        });
+        return {
+          data: { meeting_id: made.id, client_notified: told.ok, calendar: 'Google Calendar within two minutes (the Portal\'s sync)' },
+          label: `Projektmeeting felvéve · ${clock(Date.parse(a.start))}`, undo: null,
+        };
+      }
+      const { token } = await googleToken(ctx.userId, EVENTS_SCOPE);
+      const event = {
+        summary: a.title, description: a.note ?? undefined, location: a.location ?? undefined,
+        start: { dateTime: a.start, timeZone: TZ }, end: { dateTime: end, timeZone: TZ },
+        attendees: a.attendees.map((x) => ({ email: x })), source: { title: 'Stratos', url: 'https://stratosweb.hu/portal/' },
+        ...(a.meet ? { conferenceData: { createRequest: { requestId: `jarvis-${Date.parse(a.start)}-${Math.random().toString(36).slice(2, 10)}`, conferenceSolutionKey: { type: 'hangoutsMeet' } } } } : {}),
+      };
+      const r = await gapi(token, `https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1&sendUpdates=${a.attendees.length ? 'all' : 'none'}`, {
+        method: 'POST', body: JSON.stringify(event),
+      });
+      if (!r.ok || !r.body?.id) throw new GoogleError('GOOGLE_FAILED', `Google Calendar did not take the event (HTTP ${r.status}).`);
+      return {
+        data: { event_id: r.body.id, link: r.body.htmlLink ?? null, meet: r.body.hangoutLink ?? null },
+        label: `Naptáresemény felvéve · ${clock(Date.parse(a.start))}`, undo: null,
+      };
+    },
+  },
+  {
+    name: 'client_portal_message',
+    description: 'Posts a message from Stratos to a project\'s clients in the client portal; they also get an e-mail about it. Owner only (projects are). Waits for approval.',
+    input_schema: schema({
+      project_id: { type: 'string' },
+      body: { type: 'string', description: 'The message, up to 4000 characters, in the clients\' language.' },
+    }, ['project_id', 'body']),
+    parse: (i) => ({ project_id: uuid(i.project_id, 'project_id', { required: true }), body: str(i.body, 'body', { max: 4000, required: true }) }),
+    summary: (a) => `Kliensüzenet: „${short(a.body, 70)}”`,
+    execute: async (ctx, a) => {
+      const made = await insert(ctx, 'project_messages', { project_id: a.project_id, body: a.body });
+      // As the Portal does after a message: the clients are told.
+      const told = await rest(ctx.token, 'POST', '/notification_outbox', {
+        body: { audience: 'client', kind: 'message_posted', project_id: a.project_id, payload: { excerpt: a.body.slice(0, 300) } },
+        prefer: 'return=minimal',
+      });
+      return { data: { message_id: made.id, client_notified: told.ok }, label: 'Üzenet elküldve a kliensportálon', undo: null };
+    },
+  },
+].map((t) => ({ roles: ['owner', 'admin'], risk: 'external', ...t }));
+
+/** Every write tool, in a fixed order: internal, then external. */
+export const ALL_WRITES = [...WRITE_TOOLS, ...EXTERNAL_TOOLS];
+export const WRITES = new Map(ALL_WRITES.map((t) => [t.name, t]));
 
 /* ======================================================= the life cycle */
 
@@ -337,11 +480,21 @@ export function publicAction(a) {
   return {
     id: a.id, thread_id: a.thread_id ?? null, tool: a.tool, risk: a.risk, status: a.status, summary: a.summary, payload: a.payload,
     reason: a.result?.reason ?? null, error: a.error ?? null, undoable: a.status === 'executed' && a.risk === 'internal' && !!a.result?.undo,
+    link: googleLink(a.result?.data?.link), meet: googleLink(a.result?.data?.meet),
   };
+}
+
+/** A link this server made to the person's own Gmail or Calendar — nothing else is passed on as a link. */
+export function googleLink(v) {
+  try {
+    const u = new URL(String(v ?? ''));
+    return u.protocol === 'https:' && ['mail.google.com', 'calendar.google.com', 'www.google.com', 'meet.google.com'].includes(u.hostname) ? u.href : null;
+  } catch { return null; }
 }
 
 const actionError = (e) => {
   if (e instanceof WriteDbError) return { error: e.detail, text: `database: ${e.detail.message ?? e.detail.code ?? e.detail.status}` };
+  if (e instanceof GoogleError) return { error: { code: e.code, message: e.message }, text: e.message };
   if (e instanceof WriteInputError) return { error: { message: e.message }, text: e.message };
   console.error('[jarvis] write', e?.name ?? 'error');
   return { error: { message: 'The Portal could not be reached.' }, text: 'The Portal could not be reached.' };
