@@ -1264,7 +1264,7 @@ még jóváhagyásra vár, és élesítés előtt kell.
 
 Ellenőrizve helyben: `npm run check:jarvis:ui` 9/9, mockolt szolgáltatásokkal.
 
-## 37. Jarvis: írás és jóváhagyó kártyák (`supabase/JARVIS.md` 5. fázis)
+## 38. Jarvis: írás és jóváhagyó kártyák (`supabase/JARVIS.md` 5. fázis)
 
 **Sorrend: deploy.** Új migráció és új kulcs nem kell.
 
