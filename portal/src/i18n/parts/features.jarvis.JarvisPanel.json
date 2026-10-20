@@ -1,0 +1,98 @@
+{
+ "What do we know about this?": {
+  "hu": "Erről mit tudunk?",
+  "de": "Was wissen wir darüber?"
+ },
+ "What needs my attention today?": {
+  "hu": "Mivel kell ma foglalkoznom?",
+  "de": "Worum muss ich mich heute kümmern?"
+ },
+ "Where does the pipeline stand?": {
+  "hu": "Hol tart a pipeline?",
+  "de": "Wie steht die Pipeline?"
+ },
+ "Which payments are overdue?": {
+  "hu": "Mely befizetések késnek?",
+  "de": "Welche Zahlungen sind überfällig?"
+ },
+ "Jarvis sees the record this screen shows.": {
+  "hu": "Jarvis látja a képernyőn nyitott rekordot.",
+  "de": "Jarvis sieht den Datensatz, den dieser Bildschirm zeigt."
+ },
+ "Context: {what}": {
+  "hu": "Kontextus: {what}",
+  "de": "Kontext: {what}"
+ },
+ "Conversations": {
+  "hu": "Beszélgetések",
+  "de": "Unterhaltungen"
+ },
+ "New conversation": {
+  "hu": "Új beszélgetés",
+  "de": "Neue Unterhaltung"
+ },
+ "Close Jarvis": {
+  "hu": "Jarvis bezárása",
+  "de": "Jarvis schließen"
+ },
+ "Ask about leads, deals, clients, projects, payments, meetings or hours. Jarvis answers from the Portal, with your access, and says when it has no data. For now it only reads: it does not write, send or invite.": {
+  "hu": "Kérdezz leadekről, dealekről, ügyfelekről, projektekről, befizetésekről, meetingekről vagy munkaidőről. Jarvis a Portál adataiból válaszol, a te hozzáféréseddel, és megmondja, ha nincs adata. Egyelőre csak olvas: nem ír, nem küld és nem hív meg senkit.",
+  "de": "Frag nach Leads, Deals, Kunden, Projekten, Zahlungen, Terminen oder Stunden. Jarvis antwortet aus dem Portal, mit deinen Rechten, und sagt, wenn es keine Daten hat. Vorerst liest es nur: Es schreibt, sendet und lädt niemanden ein."
+ },
+ "Suggested questions": {
+  "hu": "Javasolt kérdések",
+  "de": "Vorgeschlagene Fragen"
+ },
+ "Continue": {
+  "hu": "Folytatás",
+  "de": "Fortsetzen"
+ },
+ "Send again": {
+  "hu": "Újraküldés",
+  "de": "Erneut senden"
+ },
+ "Message to Jarvis": {
+  "hu": "Üzenet Jarvisnak",
+  "de": "Nachricht an Jarvis"
+ },
+ "Ask Jarvis…": {
+  "hu": "Kérdezd Jarvist…",
+  "de": "Frag Jarvis…"
+ },
+ "Enter to send · Shift+Enter for a new line": {
+  "hu": "Enter: küldés · Shift+Enter: új sor",
+  "de": "Enter: senden · Umschalt+Enter: neue Zeile"
+ },
+ "Stop": {
+  "hu": "Leállítás",
+  "de": "Stopp"
+ },
+ "You": {
+  "hu": "Te",
+  "de": "Du"
+ },
+ "Jarvis did not answer this question.": {
+  "hu": "Jarvis erre a kérdésre nem válaszolt.",
+  "de": "Jarvis hat diese Frage nicht beantwortet."
+ },
+ "failed": {
+  "hu": "sikertelen",
+  "de": "fehlgeschlagen"
+ },
+ "done": {
+  "hu": "kész",
+  "de": "fertig"
+ },
+ "The conversations could not be read.": {
+  "hu": "A beszélgetéseket nem sikerült beolvasni.",
+  "de": "Die Unterhaltungen konnten nicht gelesen werden."
+ },
+ "No conversations yet.": {
+  "hu": "Még nincs beszélgetés.",
+  "de": "Noch keine Unterhaltungen."
+ },
+ "Untitled conversation": {
+  "hu": "Cím nélküli beszélgetés",
+  "de": "Unterhaltung ohne Titel"
+ }
+}

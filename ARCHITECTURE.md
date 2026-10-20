@@ -237,7 +237,10 @@ browser as server-sent events. Its tools (`jarvis-tools.mjs`) are fixed,
 parameter-checked PostgREST calls made with the signed-in admin's own token,
 so RLS decides what Jarvis reads exactly as it decides what the Portal shows.
 Conversations, actions, memory and token usage live in the `jarvis_*` tables
-(`20261019000300_jarvis.sql`). Build log, decisions and every difference
+(`20261019000300_jarvis.sql`). The panel (`portal/src/features/jarvis/`, its
+own chunk, opened with Cmd/Ctrl+J or the Jarvis button) sends the screen's
+route and record with each message and draws the streamed answer as React
+elements, never as HTML. Build log, decisions and every difference
 from the spec: `supabase/JARVIS.md`.
 
 ---

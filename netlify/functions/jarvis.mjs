@@ -10,7 +10,7 @@
 //       step      { n }                           a model call begins
 //       text      { delta }                       the reply, as it is written
 //       discard   { n }                           drop step n's text (cut off by the time limit)
-//       tool      { id, name, status, label? }    running → done | error
+//       tool      { id, name, status, input?, label? }   running (with the input) → done | error (with a label)
 //       continue  {}                              time is up: POST { thread_id, continue: true }
 //       refusal   { category }
 //       done      { stop_reason, model, usage }
@@ -235,7 +235,9 @@ export default async (request) => {
       /** Runs the tool calls of an assistant turn and stores their results as one 'tool' message. */
       const runTools = async (calls) => {
         const results = await Promise.all(calls.map(async (call) => {
-          send('tool', { id: call.id, name: call.name, status: 'running' });
+          // The parameters, so the Portal's tool row can show what was asked (the person's own query).
+          const input = JSON.stringify(call.input ?? {});
+          send('tool', { id: call.id, name: call.name, status: 'running', input: input.length <= 500 ? call.input : null });
           const r = await runTool(call.name, call.input, ctx);
           send('tool', { id: call.id, name: call.name, status: r.is_error ? 'error' : 'done', label: r.label });
           return { type: 'tool_result', tool_use_id: call.id, content: r.content, ...(r.is_error ? { is_error: true } : {}) };

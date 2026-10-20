@@ -190,5 +190,9 @@
  "Bookings": {
   "hu": "Foglalások",
   "de": "Buchungen"
+ },
+ "Jarvis ({keys})": {
+  "hu": "Jarvis ({keys})",
+  "de": "Jarvis ({keys})"
  }
 }

@@ -1,8 +1,8 @@
-import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useMatch } from 'react-router-dom';
 import {
   Activity, Building2, CalendarCheck, CalendarClock, ChartLine, Clock, FileStack, FolderKanban, HeartHandshake, Image, Inbox, LayoutDashboard, LifeBuoy, LogOut,
-  ArrowDownUp, Mail, Menu, NotebookPen, RefreshCw, ScrollText, Settings, Target, Trash2, Users, Wallet, X,
+  ArrowDownUp, Mail, Menu, NotebookPen, RefreshCw, ScrollText, Settings, Sparkles, Target, Trash2, Users, Wallet, X,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
@@ -145,6 +145,15 @@ const TITLES: { path: string; title: string }[] = [
 /** The screens the period and environment controls actually apply to. */
 const SCOPED = ['/', '/analytics'];
 
+/**
+ * Jarvis (supabase/JARVIS.md): its own chunk, loaded the first time the panel
+ * is opened, so the Portal's first paint costs what it did before. Once
+ * opened it stays mounted — closing hides it — so a conversation survives
+ * moving between screens.
+ */
+const JarvisPanel = lazy(() => import('@/features/jarvis/JarvisPanel').then((m) => ({ default: m.JarvisPanel })));
+const isMac = () => /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+
 export function PortalShell() {
   const { profile, signOut } = useAuth();
   const [open, setOpen] = useState(false);
@@ -159,6 +168,33 @@ export function PortalShell() {
   const projectTemplates = useMatch('/projects/templates');
   const projectDetail = useMatch('/projects/:id');
   const impactApplication = useMatch('/impact/applications/:id');
+
+  // Jarvis: Cmd/Ctrl+J from anywhere opens and closes it; closing gives focus
+  // back to whatever had it before.
+  const jarvis = canAccess(profile, 'use_jarvis');
+  const [jarvisOpen, setJarvisOpen] = useState(false);
+  const [jarvisLoaded, setJarvisLoaded] = useState(false);
+  const jarvisReturn = useRef<HTMLElement | null>(null);
+  const toggleJarvis = useCallback((next?: boolean) => {
+    setJarvisOpen((was) => {
+      const open = next ?? !was;
+      if (open && !was) jarvisReturn.current = document.activeElement as HTMLElement | null;
+      if (!open && was) requestAnimationFrame(() => jarvisReturn.current?.focus?.());
+      return open;
+    });
+    setJarvisLoaded(true);
+  }, []);
+  useEffect(() => {
+    if (!jarvis) return;
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && !e.altKey && !e.shiftKey && e.key.toLowerCase() === 'j') {
+        e.preventDefault();
+        if (!e.repeat) toggleJarvis();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [jarvis, toggleJarvis]);
 
   const primary = PRIMARY.filter((n) => canAccess(profile, n.cap));
   const secondary = SECONDARY.filter((n) => canAccess(profile, n.cap));
@@ -225,9 +261,12 @@ export function PortalShell() {
             sits directly beneath this on a phone, and printing it twice in
             forty pixels of vertical space is two lines saying one thing. */}
         <span className="font-mark text-[13px] tracking-[0.24em] text-paper">STRATOS</span>
-        <Button size="sm" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="portal-drawer">
-          <Menu size={13} aria-hidden="true" /> {t('Menu')}
-        </Button>
+        <div className="flex items-center gap-2">
+          {jarvis && <JarvisButton open={jarvisOpen} onClick={() => toggleJarvis()} />}
+          <Button size="sm" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="portal-drawer">
+            <Menu size={13} aria-hidden="true" /> {t('Menu')}
+          </Button>
+        </div>
       </header>
 
       {/* --------------------------------------------------- mobile drawer */}
@@ -253,8 +292,12 @@ export function PortalShell() {
         </div>
       )}
 
-      <div className="flex min-w-0 flex-col">
-        <CommandBar title={title} scoped={SCOPED.includes(location.pathname)} />
+      {/* With Jarvis open on a wide screen the page moves aside rather than
+          under it, so the record Jarvis is talking about stays readable. Below
+          that width the panel lies over the page. */}
+      <div className={cn('flex min-w-0 flex-col', jarvisOpen && 'xl:mr-[420px]')}>
+        <CommandBar title={title} scoped={SCOPED.includes(location.pathname)}
+          jarvis={jarvis ? <JarvisButton open={jarvisOpen} onClick={() => toggleJarvis()} wide /> : null} />
         <main id="portal-main" className="min-w-0 flex-1 px-4 py-4 sm:px-5 lg:px-6 lg:py-5">
           {/* One boundary for every split route (see App.tsx). A reserved block
               rather than a spinner: the shell is already drawn, and the thing
@@ -264,7 +307,31 @@ export function PortalShell() {
           </Suspense>
         </main>
       </div>
+
+      {jarvis && jarvisLoaded && (
+        <Suspense fallback={null}>
+          <JarvisPanel open={jarvisOpen} onClose={() => toggleJarvis(false)} />
+        </Suspense>
+      )}
     </div>
+  );
+}
+
+/* ================================================================= jarvis == */
+
+/**
+ * The way in. Yellow only for its icon, and only while the panel is open: the
+ * sidebar's active marker is the one piece of yellow on a closed screen.
+ */
+function JarvisButton({ open, onClick, wide = false }: { open: boolean; onClick: () => void; wide?: boolean }) {
+  const keys = isMac() ? '⌘J' : 'Ctrl J';
+  return (
+    <Button size="sm" onClick={onClick} aria-expanded={open} aria-controls="jarvis-panel"
+      aria-keyshortcuts={isMac() ? 'Meta+J' : 'Control+J'} title={t('Jarvis ({keys})', { keys })} data-jarvis-open>
+      <Sparkles size={12} strokeWidth={1.75} className={open ? 'text-signal' : undefined} aria-hidden="true" />
+      <span>Jarvis</span>
+      {wide && <kbd className="hidden font-data text-[9px] tracking-normal text-haze xl:inline">{keys}</kbd>}
+    </Button>
   );
 }
 
@@ -385,13 +452,14 @@ function SidebarFooter({
  * screen; the moment a page-specific control appears up here the bar stops
  * meaning "global" and becomes a second, higher-status page header.
  */
-function CommandBar({ title, scoped }: { title: string; scoped: boolean }) {
+function CommandBar({ title, scoped, jarvis }: { title: string; scoped: boolean; jarvis: ReactNode }) {
   const { range, setRange, environment, setEnvironment, refresh } = useScope();
 
   return (
     <div className="sticky top-0 z-20 flex min-h-[56px] flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-hair bg-ink/95 px-4 py-2.5 backdrop-blur sm:px-5 lg:px-6">
       <h1 className="t-page">{title}</h1>
 
+      <div className="flex flex-wrap items-center gap-2">
       {scoped && (
         <div className="flex flex-wrap items-center gap-2">
           <label className="sr-only" htmlFor="scope-range">{t('Period')}</label>
@@ -418,6 +486,9 @@ function CommandBar({ title, scoped }: { title: string; scoped: boolean }) {
           </Button>
         </div>
       )}
+      {/* On a phone the top bar has it already. */}
+      {jarvis && <div className="hidden lg:block">{jarvis}</div>}
+      </div>
     </div>
   );
 }

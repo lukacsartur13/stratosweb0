@@ -1,0 +1,98 @@
+{
+ "Jarvis is for the owner and admins.": {
+  "hu": "Jarvis a tulajdonosnak és az adminoknak szól.",
+  "de": "Jarvis ist für den Inhaber und die Admins."
+ },
+ "Too many messages in a minute. Wait a moment, then send it again.": {
+  "hu": "Túl sok üzenet egy perc alatt. Várj egy kicsit, aztán küldd újra.",
+  "de": "Zu viele Nachrichten in einer Minute. Warte kurz und sende sie dann erneut."
+ },
+ "Jarvis is not set up on this deployment: the Claude API key is missing.": {
+  "hu": "Jarvis ezen a telepítésen nincs beállítva: hiányzik a Claude API-kulcs.",
+  "de": "Jarvis ist auf diesem Deployment nicht eingerichtet: Der Claude-API-Schlüssel fehlt."
+ },
+ "The Claude API refused the key. Check ANTHROPIC_API_KEY in Netlify.": {
+  "hu": "A Claude API elutasította a kulcsot. Ellenőrizd az ANTHROPIC_API_KEY-t a Netlify-ban.",
+  "de": "Die Claude-API hat den Schlüssel abgelehnt. Prüfe ANTHROPIC_API_KEY in Netlify."
+ },
+ "Claude is busy right now. Try again in a minute.": {
+  "hu": "A Claude most túlterhelt. Próbáld újra egy perc múlva.",
+  "de": "Claude ist gerade ausgelastet. Versuche es in einer Minute erneut."
+ },
+ "This took too many steps. Ask a narrower question.": {
+  "hu": "Ez túl sok lépésből állt. Kérdezz szűkebben.",
+  "de": "Das hat zu viele Schritte gebraucht. Stell eine engere Frage."
+ },
+ "This conversation is too long. Start a new one.": {
+  "hu": "Ez a beszélgetés túl hosszú. Kezdj újat.",
+  "de": "Diese Unterhaltung ist zu lang. Beginne eine neue."
+ },
+ "This is taking too long. Ask again, or ask a narrower question.": {
+  "hu": "Ez túl sokáig tart. Kérdezd újra, vagy kérdezz szűkebben.",
+  "de": "Das dauert zu lange. Frag noch einmal oder stell eine engere Frage."
+ },
+ "This conversation is no longer available.": {
+  "hu": "Ez a beszélgetés már nem érhető el.",
+  "de": "Diese Unterhaltung ist nicht mehr verfügbar."
+ },
+ "The Portal could not be reached. Check the connection and try again.": {
+  "hu": "A Portál nem érhető el. Ellenőrizd a kapcsolatot, és próbáld újra.",
+  "de": "Das Portal ist nicht erreichbar. Prüfe die Verbindung und versuche es erneut."
+ },
+ "Something went wrong. Try again.": {
+  "hu": "Valami hiba történt. Próbáld újra.",
+  "de": "Etwas ist schiefgelaufen. Versuche es erneut."
+ },
+ "Search": {
+  "hu": "Keresés",
+  "de": "Suche"
+ },
+ "Record opened": {
+  "hu": "Rekord megnyitva",
+  "de": "Datensatz geöffnet"
+ },
+ "Leads queried": {
+  "hu": "Leadek lekérdezve",
+  "de": "Leads abgefragt"
+ },
+ "Deals queried": {
+  "hu": "Dealek lekérdezve",
+  "de": "Deals abgefragt"
+ },
+ "Projects queried": {
+  "hu": "Projektek lekérdezve",
+  "de": "Projekte abgefragt"
+ },
+ "Pipeline queried": {
+  "hu": "Pipeline lekérdezve",
+  "de": "Pipeline abgefragt"
+ },
+ "Revenue report": {
+  "hu": "Bevételi riport",
+  "de": "Umsatzbericht"
+ },
+ "Payments queried": {
+  "hu": "Befizetések lekérdezve",
+  "de": "Zahlungen abgefragt"
+ },
+ "Open alerts": {
+  "hu": "Nyitott figyelmeztetések",
+  "de": "Offene Hinweise"
+ },
+ "E-mails searched": {
+  "hu": "E-mailek keresve",
+  "de": "E-Mails durchsucht"
+ },
+ "Calendar queried": {
+  "hu": "Naptár lekérdezve",
+  "de": "Kalender abgefragt"
+ },
+ "Hours queried": {
+  "hu": "Munkaidő lekérdezve",
+  "de": "Stunden abgefragt"
+ },
+ "Tool: {name}": {
+  "hu": "Tool: {name}",
+  "de": "Tool: {name}"
+ }
+}
