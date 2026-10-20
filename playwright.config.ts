@@ -58,6 +58,8 @@ const NODE_ONLY = [
   /portal-widget\.spec\.ts/,
   // Jarvis (20261019000300): its tables, against a real Postgres (PGlite).
   /portal-jarvis-db\.spec\.ts/,
+  // Jarvis's chat (netlify/functions/jarvis.mjs), against a mocked Supabase and Claude API.
+  /jarvis\.spec\.ts/,
 ];
 
 // The two interaction-hardening suites, and the four compositions they are

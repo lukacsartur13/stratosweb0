@@ -275,3 +275,86 @@ alakban.
 - Advisorok: **egy új WARN sincs** (minden WARN-szám változatlan). +14 INFO
   `unused_index`, mert az új indexek még üres táblákon ülnek; ez használattal
   eltűnik.
+
+---
+
+## 6. 3. fázis: a chat-függvény (kész)
+
+Kód: `netlify/functions/jarvis.mjs` (`POST /api/jarvis`), `jarvis-lib.mjs` (közös részek,
+prompt, dátumok), `jarvis-tools.mjs` (az olvasó toolok). Tesztek: `tests/jarvis.spec.ts`
+(15, mockolt Supabase és mockolt Claude API mellett, a valódi Anthropic SDK-val). Új
+függőség: `@anthropic-ai/sdk` a gyökér `package.json`-ban (a Netlify onnan csomagol).
+
+### Hogyan működik
+
+- **Belépés:** a Portál munkamenet-tokenje (`Authorization: Bearer`). Minden kérésnél
+  GoTrue + `is_admin()`; az owner és az admin is használhatja. Minden adatot a hívó saját
+  tokenjével olvas és ír (PostgREST); szerverkulcs nincs a függvényben.
+- **Kérés:** `{ message, thread_id?, context?: { route, entity_type, entity_id }, voice? }`,
+  vagy folytatás: `{ thread_id, continue: true }`.
+- **Válasz: SSE-stream.** Események: `thread`, `notice`, `step`, `text`, `discard`, `tool`
+  (`running` → `done` | `error`, magyar címkével, pl. „Pipeline lekérdezve · 3 deal”),
+  `continue`, `refusal`, `done`, `error`.
+- **Modell:** `claude-sonnet-5-5`, `effort: medium`, adaptív thinking. A **szerveroldali
+  refusal-fallback be van kapcsolva** (`fallbacks: "default"`): ha a Sonnet 5.5 egy
+  `cyber` vagy `frontier_llm` kategóriában visszautasít, ugyanabban a hívásban a Sonnet 5
+  válaszol. Ha a napi tokenkeret elfogyott, `claude-haiku-5-5` (`effort: low`) válaszol, és
+  a felhasználó `notice` eseményt kap. A keret számítása: input + cache-írás + output
+  teljes súllyal, a cache-olvasás egytized súllyal (így is számlázzák).
+- **A beszélgetés csak hozzáfűzhető.** A system prompt és a tool-lista minden körben
+  ugyanaz; ami változik (idő, képernyő, rekord, hangmód, a szál első üzeneténél a
+  jóváhagyott tanult tények), az a felhasználói üzenet első blokkja („Portál-kontextus”).
+  Így marad meleg a prompt-cache, és érvényesek maradnak a thinking blockok. Ha egy deploy
+  mégis megváltoztatja a promptot vagy a toolokat, a régi szálak thinking blockjai
+  elvesznek, de a kérés nem bukik el (`block_binding: drop_block`).
+- **Minden lépés azonnal a DB-be kerül:** a felhasználói üzenet, minden asszisztens-kör
+  és minden tool-eredmény. A 60 mp-es Netlify-korlát miatt 38 mp után nem indul új
+  modellhívás, az 50 mp-nél még futót a függvény megszakítja (a szövegét `discard` törli,
+  nem kerül tárolásra), és `continue` eseményt küld. Ha egy kör tooljai nem futottak le,
+  mert a függvény közben leállt, a következő kérés először azokat futtatja. Kérésenként
+  legfeljebb 6, üzenetenként legfeljebb 12 modellhívás.
+- **Rate limit:** a hívó saját üzenetei az elmúlt 60 mp-ben, a
+  `jarvis_settings.rate_limit_per_minute` szerint (alapból 20/perc).
+
+### Az olvasó toolok (12)
+
+`crm_search`, `get_record`, `list_leads`, `list_opportunities`, `list_projects`,
+`pipeline_summary`, `revenue_report`, `payment_overview`, `open_alerts`, `email_search`,
+`list_meetings`, `time_summary`. Mindegyik ellenőrzött paramétert kap (nyers SQL nincs),
+és rögzített PostgREST-hívásokat végez. Az eredmény JSON, legfeljebb 20 000 karakter;
+ha hosszabb, a leghosszabb listát felezi, és ezt jelzi is. A lista szerepkör szerint
+szűrhető (`toolsFor(role)`): az ownernek és az adminnak ugyanaz, kliensnek egyelőre
+üres. Az RLS miatt az admin projekt-, fizetési és meeting-adatot nem kap.
+
+Eltérések a spec 3. fejezetétől:
+- **A `calendar_free_slots` a 6. fázisba kerül.** A szabad sávokhoz a Google freebusy
+  kell, vagyis a Google-token feloldása; ez a Gmail-piszkozattal együtt készül el.
+  Helyette most **`list_meetings`** van: a foglalt hívások és a projektmeetingek egy
+  időszakban, csak a DB-ből.
+- **`revenue_report`:** szakaszokra bontva kérhető (`collected`, `client`, `service`,
+  `mrr`, `forecast`, `attribution`), alapból `collected` + `mrr` + `forecast`, az utolsó 6
+  hónapra.
+- **`payment_overview`:** a `project_payment_overview(p_project)` paraméter nélkül az
+  összes élő projektet adja, a leginkább lejárttal kezdve.
+- **A dátumhatárok budapesti idő szerint** számolódnak, az óraátállítás napján is helyesen.
+
+### Ellenőrizve (2026-10-20)
+
+- `tests/jarvis.spec.ts`: 15/15 zöld. Lefedi: a belépést; hogy minden Supabase-hívás a
+  hívó tokenjével megy; mit kap a Claude (modell, cache, fallback, betas, rögzített
+  tool-lista, változatlan előtag két kör között); a tool-loopot és a tárolást; a hibás
+  tool-inputot és az ismeretlen toolt; a `continue`-t; a megszakítást az időkorlátnál; a
+  le nem futott toolokat; a napi keretet; a rate limitet; a refusalt és az API-hibát; a
+  fallback utáni tárolást; az olvasó toolok PostgREST-paramétereit; a budapesti
+  dátumhatárokat.
+- Az összes node-os teszt: 654 zöld, 1 kihagyva. `npm run build` zöld. A függvény
+  esbuilddal csomagolva is betölt.
+- **Nincs ellenőrizve valódi Claude API-val:** itt nincs API-kulcs. A kérés alakja az SDK
+  (0.135.0) típusait és a Claude API dokumentációját követi. Az első valódi próba a
+  4. fázisban jön, amikor a panel elkészül, a deploy preview-n vagy élesben.
+
+### Későbbi fázisokra
+- **9. fázis, megőrzés:** egész szálakat kell törölni (amelyek utolsó üzenete régebbi a
+  `retention_days`-nél), nem egyes régi üzeneteket, mert a beszélgetés csak hozzáfűzhető.
+- **5. fázis:** az írási toolok bekerülésével a system prompt „csak olvasni tudsz” sora
+  és a tool-lista megváltozik. A régi szálak ettől működnek tovább (`drop_block`).

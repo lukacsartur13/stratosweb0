@@ -229,6 +229,17 @@ Claude holds is the owner's own JWT and RLS applies to every call unchanged.
 Owner only, re-checked on every request. Setup and the security model:
 `supabase/CLAUDE_CONNECTOR.md`.
 
+## Jarvis
+
+`POST /api/jarvis` (`netlify/functions/jarvis.mjs`) is the assistant inside
+the Portal: a server-side loop over the Claude Messages API, streamed to the
+browser as server-sent events. Its tools (`jarvis-tools.mjs`) are fixed,
+parameter-checked PostgREST calls made with the signed-in admin's own token,
+so RLS decides what Jarvis reads exactly as it decides what the Portal shows.
+Conversations, actions, memory and token usage live in the `jarvis_*` tables
+(`20261019000300_jarvis.sql`). Build log, decisions and every difference
+from the spec: `supabase/JARVIS.md`.
+
 ---
 
 ## Deployment

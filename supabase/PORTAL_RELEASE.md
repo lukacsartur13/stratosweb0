@@ -1228,3 +1228,23 @@ Ellenőrizve (helyben, 2026-10-19, valódi Supabase és Resend nélkül):
 - Visszaállítás (az API elől elzár, adatot nem töröl): `supabase/checks/jarvis-rollback.sql`.
 - Új kulcs most nem kell. Az `ANTHROPIC_API_KEY` a 3. fázishoz kell majd (Netlify → Environment variables,
   Functions scope).
+
+## 35. Jarvis: a chat-függvény (`/api/jarvis`, `supabase/JARVIS.md` 3. fázis)
+
+**Sorrend: 34. (az adatbázis, már élesben) → kulcs → deploy.** A Portálban még semmi nem
+látszik belőle: a panel a 4. fázisban jön.
+
+1. Netlify → Site configuration → Environment variables: `ANTHROPIC_API_KEY` (a
+   console.anthropic.com API-kulcsa), **Functions** scope. Titok: sehova máshova ne kerüljön.
+2. Deploy. Új függvény: `netlify/functions/jarvis.mjs` (`POST /api/jarvis`). Új függőség:
+   `@anthropic-ai/sdk`.
+3. Kulcs nélkül a függvény `503 ANTHROPIC_NOT_CONFIGURED`-ot ad, és semmi más nem változik.
+
+Mit tud (2026-10-20): kérdésekre válaszol a CRM-ből (leadek, dealek, ügyfelek, projektek,
+pipeline, bevétel, kintlévőségek, figyelmeztetések, e-mail-előzmények, meetingek,
+munkaidő), a bejelentkezett ember jogaival. Írni, e-mailt vagy meghívót küldeni még nem
+tud. Modell: Claude Sonnet 5.5; a napi keret felett Claude Haiku 5.5.
+
+Adatkezelés: a kérdés és a válaszhoz lekérdezett CRM-adat az Anthropichoz kerül
+(adatfeldolgozó). Az adatkezelési tájékoztató kiegészítése a JARVIS.md 26. pontja szerint
+még jóváhagyásra vár, és élesítés előtt kell.
