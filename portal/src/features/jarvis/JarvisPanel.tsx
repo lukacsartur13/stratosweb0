@@ -292,7 +292,7 @@ export function JarvisPanel({ open, onClose, pending = 0, onPendingChange }: {
         ) : turns.length === 0 ? (
           <div className="grid gap-4">
             <p className="text-[13px] leading-relaxed text-haze">
-              {t('Ask about leads, deals, clients, projects, payments, meetings or hours. Jarvis answers from the Portal, with your access, and says when it has no data. It can also add notes, activities, tasks and hours, change a lead\'s status or a deal, and create leads and deals: each shows here as a card you can undo. It does not delete, send e-mails or invite anyone.')}
+              {t('Ask about leads, deals, clients, projects, payments, meetings or hours. Jarvis answers from the Portal, with your access, and says when it has no data. It can also add notes, activities, tasks and hours, change a lead\'s status or a deal, and create leads and deals: each shows here as a card you can undo. E-mails (as Gmail drafts), meetings and client messages it only proposes: they run once you approve them. It never deletes, and never sends an e-mail.')}
             </p>
             <div className="grid gap-1.5" role="group" aria-label={t('Suggested questions')}>
               {suggestions.map((s) => (

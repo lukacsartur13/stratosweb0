@@ -401,8 +401,14 @@ function GoogleSettings() {
             {profile?.is_owner && a.last_error !== 'revoked' && !a.scopes.includes('calendar.freebusy') && (
               <p className="text-danger" data-google-freebusy="missing">{t('The booking page cannot see when you are busy yet: connect Google again and allow it to see your free/busy times.')}</p>
             )}
+            {/* Jarvis writes Gmail DRAFTS (supabase/JARVIS.md, phase 6), a
+                permission connections made before it do not have. It never sends. */}
+            {a.last_error !== 'revoked' && !a.scopes.includes('gmail.compose') && (
+              <p className="text-haze" data-google-compose="missing">{t('Jarvis cannot write Gmail drafts for you yet: connect Google again and allow it to manage drafts. It only ever creates drafts; sending stays with you.')}</p>
+            )}
             <div className="flex flex-wrap gap-2">
-              {(a.last_error === 'revoked' || (profile?.is_owner && !a.scopes.includes('calendar.freebusy'))) && <Button size="sm" variant="primary" onClick={connect} disabled={busy}>{t('Connect Google')}</Button>}
+              {(a.last_error === 'revoked' || (profile?.is_owner && !a.scopes.includes('calendar.freebusy')) || !a.scopes.includes('gmail.compose'))
+                && <Button size="sm" variant="primary" onClick={connect} disabled={busy}>{t('Connect Google')}</Button>}
               <Button size="sm" variant="quiet" onClick={disconnect} disabled={busy}>{t('Disconnect')}</Button>
             </div>
           </>

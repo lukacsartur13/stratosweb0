@@ -33,6 +33,8 @@ export type ActionState = {
   id: string; thread_id?: string | null; tool: string; risk: 'internal' | 'external';
   status: 'pending' | 'approved' | 'executed' | 'rejected' | 'failed' | 'reverted';
   summary: string; payload: Record<string, unknown>; reason: 'outside_text' | 'external' | null; error: string | null; undoable: boolean;
+  /** Where the result is, in the person's own Google (a draft, an event), and its Meet link. */
+  link?: string | null; meet?: string | null;
 };
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -71,6 +73,10 @@ export const TOOL_LABEL: Record<string, string> = {
   create_task: 'Task',
   log_time: 'Hours',
   create_lead: 'New lead',
+  calendar_free_slots: 'Free times',
+  gmail_create_draft: 'Gmail draft',
+  calendar_create_event: 'Calendar event',
+  client_portal_message: 'Client message',
 };
 export const toolLabel = (name: string) => t(TOOL_LABEL[name] ?? 'Tool: {name}', { name });
 
@@ -226,13 +232,23 @@ export async function loadThread(threadId: string): Promise<Turn[]> {
 
 /* ============================================================ actions */
 
-type StoredAction = Omit<ActionState, 'reason' | 'undoable'> & { result: { reason?: string; undo?: unknown } | null };
+type StoredAction = Omit<ActionState, 'reason' | 'undoable' | 'link' | 'meet'> & { result: { reason?: string; undo?: unknown; data?: { link?: string; meet?: string } } | null };
+
+/** Only links to the person's own Gmail, Calendar or Meet are drawn as links (jarvis-writes.mjs googleLink). */
+const GOOGLE_HOSTS = ['mail.google.com', 'calendar.google.com', 'www.google.com', 'meet.google.com'];
+export function googleLink(v: unknown): string | null {
+  try {
+    const u = new URL(String(v ?? ''));
+    return u.protocol === 'https:' && GOOGLE_HOSTS.includes(u.hostname) ? u.href : null;
+  } catch { return null; }
+}
 const ACTION_COLUMNS = 'id, thread_id, tool, risk, status, summary, payload, result, error, created_at';
 
 const toAction = (a: StoredAction): ActionState => ({
   id: a.id, thread_id: a.thread_id ?? null, tool: a.tool, risk: a.risk, status: a.status, summary: a.summary, payload: a.payload ?? {},
   reason: (a.result?.reason as ActionState['reason']) ?? null, error: a.error ?? null,
   undoable: a.status === 'executed' && a.risk === 'internal' && !!a.result?.undo,
+  link: googleLink(a.result?.data?.link), meet: googleLink(a.result?.data?.meet),
 });
 
 /** Writes waiting for a decision (RLS: the owner sees all of them, an admin their own), newest first. */
@@ -313,8 +329,21 @@ export function toTurns(rows: StoredMessage[], actions: Map<string, ActionState>
   return turns;
 }
 
-/** The parameters of a tool call, as short readable pairs. */
+const ISO_INSTANT = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})$/;
+
+/** An instant on Budapest's clock, as an <input type="datetime-local"> holds it: "YYYY-MM-DDTHH:MM". */
+export function budapestInput(iso: string): string {
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Budapest', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).formatToParts(new Date(iso)).map((x) => [x.type, x.value]));
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
+}
+export const isInstant = (v: unknown): v is string => typeof v === 'string' && ISO_INSTANT.test(v) && !Number.isNaN(Date.parse(v));
+
+/** The parameters of a tool call, as short readable pairs (times on Budapest's clock). */
 export function describeInput(input: Record<string, unknown> | null): string[] {
   if (!input) return [];
-  return Object.entries(input).map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(', ') : typeof v === 'object' && v !== null ? JSON.stringify(v) : String(v)}`);
+  return Object.entries(input).map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(', ')
+    : isInstant(v) ? `${budapestInput(v).replace('T', ' ')} (Budapest)`
+      : typeof v === 'object' && v !== null ? JSON.stringify(v) : String(v)}`);
 }

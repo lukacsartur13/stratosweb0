@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import { Check, CircleSlash, Clock, LoaderCircle, RotateCcw, TriangleAlert } from 'lucide-react';
+import { Check, CircleSlash, Clock, ExternalLink, LoaderCircle, RotateCcw, TriangleAlert } from 'lucide-react';
 import { Button, Input, Textarea, cn } from '@/components/ui';
-import { decide, describeInput, errorText, type ActionState } from '@/lib/jarvis';
+import { budapestInput, decide, describeInput, errorText, googleLink, isInstant, type ActionState } from '@/lib/jarvis';
 import { t } from '@/lib/i18n';
 
 /**
@@ -26,7 +26,9 @@ export function ActionCard({ action, onChange }: { action: ActionState; onChange
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState<Record<string, string>>({});
 
-  const editable = Object.entries(action.payload ?? {}).filter(([, v]) => v === null || typeof v === 'string' || typeof v === 'number');
+  // Text, numbers and lists of addresses (to, cc, attendees: comma-separated) can be edited; yes/no switches cannot.
+  const editable = Object.entries(action.payload ?? {}).filter(([, v]) => v === null || typeof v === 'string' || typeof v === 'number'
+    || (Array.isArray(v) && v.every((x) => typeof x === 'string')));
 
   const act = async (op: 'approve' | 'reject' | 'undo', payload?: Record<string, unknown>) => {
     setBusy(true);
@@ -39,7 +41,7 @@ export function ActionCard({ action, onChange }: { action: ActionState; onChange
   };
 
   const startEdit = () => {
-    setDraft(Object.fromEntries(editable.map(([k, v]) => [k, v === null ? '' : String(v)])));
+    setDraft(Object.fromEntries(editable.map(([k, v]) => [k, v === null ? '' : Array.isArray(v) ? v.join(', ') : isInstant(v) ? budapestInput(v) : String(v)])));
     setEditing(true);
   };
   const approveEdited = (e: FormEvent) => {
@@ -47,7 +49,8 @@ export function ActionCard({ action, onChange }: { action: ActionState; onChange
     const payload: Record<string, unknown> = { ...action.payload };
     for (const [k, original] of editable) {
       const v = (draft[k] ?? '').trim();
-      payload[k] = v === '' ? null : typeof original === 'number' ? Number(v.replace(',', '.')) : v;
+      payload[k] = Array.isArray(original) ? v.split(/[,;\s]+/).filter(Boolean)
+        : v === '' ? null : typeof original === 'number' ? Number(v.replace(',', '.')) : v;
     }
     void act('approve', payload);
   };
@@ -98,7 +101,8 @@ export function ActionCard({ action, onChange }: { action: ActionState; onChange
                 {LONG.has(k)
                   ? <Textarea id={id} rows={3} value={value} onChange={(e) => set(e.target.value)} className="min-h-0 py-1.5 text-[12px]" />
                   : <Input id={id} value={value} onChange={(e) => set(e.target.value)} className="py-1.5 text-[12px]"
-                      type={isDay(k) ? 'date' : 'text'} inputMode={typeof original === 'number' ? 'decimal' : undefined} />}
+                      // A time is edited on Budapest's clock; the server reads "YYYY-MM-DDTHH:MM" as such.
+                      type={isInstant(original) ? 'datetime-local' : isDay(k) ? 'date' : 'text'} inputMode={typeof original === 'number' ? 'decimal' : undefined} />}
               </div>
             );
           })}
@@ -115,6 +119,21 @@ export function ActionCard({ action, onChange }: { action: ActionState; onChange
           {editable.length > 0 && <Button size="sm" onClick={startEdit} disabled={busy}>{t('Edit')}</Button>}
           <Button size="sm" variant="quiet" onClick={() => act('reject')} disabled={busy}>{t('Reject')}</Button>
         </div>
+      )}
+
+      {action.status === 'executed' && (googleLink(action.link) || googleLink(action.meet)) && (
+        <p className="flex flex-wrap gap-3 text-[12px]">
+          {googleLink(action.link) && (
+            <a href={googleLink(action.link) as string} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-paper underline-offset-2 hover:underline" data-jarvis-link>
+              <ExternalLink size={11} aria-hidden="true" /> {action.tool === 'gmail_create_draft' ? t('Open the drafts in Gmail') : t('Open in Google Calendar')}
+            </a>
+          )}
+          {googleLink(action.meet) && (
+            <a href={googleLink(action.meet) as string} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-paper underline-offset-2 hover:underline">
+              <ExternalLink size={11} aria-hidden="true" /> Google Meet
+            </a>
+          )}
+        </p>
       )}
 
       {action.status === 'executed' && action.undoable && (

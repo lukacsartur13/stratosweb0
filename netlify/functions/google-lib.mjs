@@ -21,8 +21,13 @@ export const SCOPES = [
   // Booking (20261018000100): which times are busy, across the calendars that
   // count — and nothing else about them.
   'https://www.googleapis.com/auth/calendar.freebusy',
+  // Jarvis (supabase/JARVIS.md, phase 6): Gmail DRAFTS the person approves.
+  // Jarvis never sends; the person sends from Gmail.
+  'https://www.googleapis.com/auth/gmail.compose',
 ];
 export const FREEBUSY_SCOPE = 'https://www.googleapis.com/auth/calendar.freebusy';
+export const COMPOSE_SCOPE = 'https://www.googleapis.com/auth/gmail.compose';
+export const EVENTS_SCOPE = 'https://www.googleapis.com/auth/calendar.events';
 export const REDIRECT_PATH = '/api/google-oauth';
 
 export const __net = { fetch: (...args) => globalThis.fetch(...args) };

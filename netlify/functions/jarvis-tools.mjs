@@ -17,7 +17,20 @@
 // system prompt says so, and nothing here acts on it.
 // =============================================================================
 import { ENTITY_TYPES, UUID, budapestDate, budapestMidnight, rest } from './jarvis-lib.mjs';
-import { WRITE_TOOLS, WRITES, writeTool } from './jarvis-writes.mjs';
+import { ALL_WRITES, WRITES, writeTool } from './jarvis-writes.mjs';
+import booking from './booking.mjs';
+
+/** The Portal's own functions, called in-process. A seam: the tests replace them. */
+export const __functions = { booking };
+
+const BOOKING_REFUSALS = {
+  CALENDAR_NOT_CONNECTED: 'The owner has not connected Google yet (Settings → Google).',
+  CALENDAR_RECONNECT: 'Google must be connected again in Settings, allowing free/busy times.',
+  CALENDAR_UNREACHABLE: 'Google Calendar could not be reached. Try again.',
+  BOOKING_OFF: 'Booking is switched off in the Portal (Bookings → settings).',
+  NOT_INSTALLED: 'Booking is not installed on the database.',
+  NOT_CONFIGURED: 'Booking is not set up on this deployment.',
+};
 
 const MAX_RESULT = 20_000;
 const ROLES_STAFF = ['owner', 'admin'];
@@ -422,6 +435,32 @@ const TOOLS = [
     },
   },
   {
+    name: 'calendar_free_slots',
+    description: 'The free times for a call by the booking page\'s own rules — the owner\'s Google Calendar busy times, booked calls, working hours, notice and gaps — for the next days, by Budapest day. Use it before proposing a meeting time.',
+    input_schema: schema({ days: { type: 'integer', minimum: 1, maximum: 14, description: 'How many days ahead, from the first free one. Default 5.' } }),
+    parse: (i) => ({ days: count(i.days, 'days', { min: 1, max: 14, fallback: 5 }) }),
+    run: async (ctx, a) => {
+      const res = await __functions.booking(new Request('https://stratosweb.hu/api/booking', { headers: { authorization: `Bearer ${ctx.token}` } }));
+      const body = await res.json().catch(() => null);
+      if (!res.ok || !body?.ok) {
+        const code = body?.code ?? `HTTP_${res.status}`;
+        throw new ToolInputError(BOOKING_REFUSALS[code] ?? `The free times could not be read (${code}).`);
+      }
+      const zone = body.timeZone || 'Europe/Budapest';
+      const dayOf = (iso) => budapestDate(new Date(iso));
+      const timeOf = (iso) => new Intl.DateTimeFormat('hu-HU', { timeZone: zone, hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
+      const byDay = new Map();
+      for (const slot of body.slots ?? []) {
+        const d = dayOf(slot.start);
+        if (!byDay.has(d) && byDay.size >= a.days) break;
+        byDay.set(d, [...(byDay.get(d) ?? []), timeOf(slot.start)]);
+      }
+      const days = [...byDay].map(([date, starts]) => ({ date, starts }));
+      const n = days.reduce((x, d) => x + d.starts.length, 0);
+      return { data: { time_zone: zone, minutes: body.minutes, days }, label: `Szabad időpontok · ${n} kezdés, ${days.length} nap` };
+    },
+  },
+  {
     name: 'time_summary',
     description: 'Hours worked in a date range: the total, per project or label, and per person, plus the entries. Default: the current month so far.',
     input_schema: schema({
@@ -471,7 +510,7 @@ const BY_NAME = new Map(TOOLS.map((t) => [t.name, t]));
 
 /** The tool definitions one role may use, in a fixed order (reads, then writes), as the Messages API takes them. */
 export function toolsFor(role) {
-  return [...TOOLS, ...WRITE_TOOLS].filter((t) => t.roles.includes(role)).map(({ name, description, input_schema }) => ({
+  return [...TOOLS, ...ALL_WRITES].filter((t) => t.roles.includes(role)).map(({ name, description, input_schema }) => ({
     name, description, input_schema, eager_input_streaming: true,
   }));
 }

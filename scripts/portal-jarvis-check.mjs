@@ -93,10 +93,11 @@ async function open(browser, { role = 'super_admin', owner = true, state = fresh
       const status = { approve: 'executed', reject: 'rejected', undo: 'reverted' }[b.op];
       const base = [...state.pending, ...state.threadActions].find((a) => a.id === b.action_id) ?? { id: b.action_id, tool: 'add_note', risk: 'internal', summary: 'Jegyzet', payload: {} };
       const payload = b.payload ?? base.payload;
-      const summary = b.payload?.body ? `Jegyzet · lead: „${b.payload.body}”` : base.summary;
+      const summary = base.tool === 'add_note' && b.payload?.body ? `Jegyzet · lead: „${b.payload.body}”` : base.summary;
       state.pending = state.pending.filter((a) => a.id !== b.action_id);
       return json(route, { ok: true, label: 'Jegyzet mentve', action: { id: b.action_id, thread_id: base.thread_id ?? null, tool: base.tool, risk: base.risk,
-        status, summary, payload, reason: base.result?.reason ?? null, error: null, undoable: status === 'executed' } });
+        status, summary, payload, reason: base.result?.reason ?? null, error: null, undoable: status === 'executed' && base.risk === 'internal',
+        link: base.answerLink ?? null, meet: base.answerMeet ?? null } });
     }
     if (url.includes('/api/jarvis')) {
       state.jarvis.push({ body: JSON.parse(req.postData() || '{}'), auth: req.headers().authorization ?? null });
@@ -472,6 +473,42 @@ await check('a stored conversation shows its writes as they are now', async () =
   await page.locator('[data-jarvis-threads] button').first().click();
   await page.locator('[data-jarvis-action="reverted"]').getByText('Jegyzet · lead: „Holnap visszahívni.”').waitFor();
   assert(await page.locator('[data-jarvis-undo]').count() === 0, 'an undone write offers Undo again');
+  await context.close();
+});
+
+await check('an approved Gmail draft links to Gmail; a link that is not Google\'s own is never drawn', async () => {
+  const state = freshState();
+  state.pending = [
+    { id: '00000000-0000-4000-8000-000000000906', thread_id: THREAD, tool: 'gmail_create_draft', risk: 'external', status: 'pending',
+      summary: 'Gmail-piszkozat → peter@example.invalid: „Ajánlat”', payload: { to: ['peter@example.invalid'], cc: [], subject: 'Ajánlat', body: 'Kedves Péter!' },
+      result: { reason: 'external' }, reason: 'external', error: null, undoable: false, answerLink: 'https://mail.google.com/mail/u/0/#drafts' },
+    { id: '00000000-0000-4000-8000-000000000907', thread_id: THREAD, tool: 'calendar_create_event', risk: 'external', status: 'pending',
+      summary: 'Naptáresemény: „Hívás”', payload: { title: 'Hívás', start: '2026-12-01T09:00:00.000Z', minutes: 30, attendees: [] },
+      result: { reason: 'external' }, reason: 'external', error: null, undoable: false, answerLink: 'https://evil.example/login', answerMeet: 'javascript:alert(1)' },
+  ];
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  await openJarvis(page);
+  await page.locator('[data-jarvis-waiting]').click();
+  const list = page.locator('[data-jarvis-waiting-list]');
+  const draft = list.locator('[data-jarvis-action="pending"]').filter({ hasText: 'Gmail-piszkozat' });
+  await draft.getByText('This acts outside the Portal, so it runs only after you approve it.').waitFor();
+  assert(await draft.locator('[data-jarvis-undo]').count() === 0, 'an external write offers Undo');
+  await draft.getByRole('button', { name: 'Edit' }).click();
+  await draft.getByLabel('to').fill('peter@example.invalid, anna@example.invalid');
+  await draft.getByRole('button', { name: 'Approve as edited' }).click();
+  const done = list.locator('[data-jarvis-action="executed"]').filter({ hasText: 'Gmail-piszkozat' });
+  const link = done.locator('a[data-jarvis-link]');
+  await link.waitFor();
+  assert(await link.getAttribute('href') === 'https://mail.google.com/mail/u/0/#drafts', `href: ${await link.getAttribute('href')}`);
+  assert((await link.getAttribute('rel'))?.includes('noopener'), 'the Gmail link opens without noopener');
+  assert(JSON.stringify(state.ops[0].payload.to) === JSON.stringify(['peter@example.invalid', 'anna@example.invalid']), `to: ${JSON.stringify(state.ops[0].payload)}`);
+  await shot(page, 'draft-done');
+
+  await list.locator('[data-jarvis-action="pending"]').filter({ hasText: 'Naptáresemény' }).getByRole('button', { name: 'Approve' }).click();
+  const event = list.locator('[data-jarvis-action="executed"]').filter({ hasText: 'Naptáresemény' });
+  await event.waitFor();
+  assert(await event.locator('a').count() === 0, 'a link that is not Google\'s own was drawn');
   await context.close();
 });
 
