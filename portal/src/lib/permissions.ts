@@ -69,7 +69,11 @@ export type Capability =
   // moment there is more than one of us. `netlify/functions/portal-health.mjs`
   // enforces super_admin/admin server-side; this decides whether the nav item
   // and the route are drawn.
-  | 'view_system';
+  | 'view_system'
+  // Jarvis, the assistant (supabase/JARVIS.md): the panel and its shortcut.
+  // The same two roles as `is_admin()`, which /api/jarvis checks on every
+  // request and every jarvis_* policy asks; this decides what is drawn.
+  | 'use_jarvis';
 
 const MATRIX: Record<Role, Capability[]> = {
   super_admin: [
@@ -77,7 +81,7 @@ const MATRIX: Record<Role, Capability[]> = {
     'view_clients', 'manage_clients', 'view_sales', 'manage_sales',
     'view_case_studies', 'manage_case_studies',
     'manage_content', 'view_media', 'manage_users', 'manage_settings', 'view_activity',
-    'view_analytics', 'view_system', 'manage_newsletter',
+    'view_analytics', 'view_system', 'manage_newsletter', 'use_jarvis',
   ],
   admin: [
     'view_dashboard', 'view_leads', 'manage_leads',
@@ -86,6 +90,7 @@ const MATRIX: Record<Role, Capability[]> = {
     'manage_content', 'view_media', 'view_activity', 'view_analytics', 'view_system', 'manage_newsletter',
     // Settings: their own account, language and notifications (2026-10-05).
     'manage_settings',
+    'use_jarvis',
   ],
   // A team member does NOT see the commercial book. `opportunities` grants
   // select to `is_staff()`, so a team member CAN read the pipeline through

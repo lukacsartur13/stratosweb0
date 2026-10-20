@@ -34,6 +34,7 @@
     "test:client-portal": "playwright test tests/portal-client-db.spec.ts tests/portal-invite.spec.ts --project=desktop-1440",
     "check:client-portal:ui": "node scripts/portal-client-check.mjs",
     "check:client-portal:live": "node scripts/client-portal-live-check.mjs",
+    "check:jarvis:ui": "node scripts/portal-jarvis-check.mjs",
     "test:payments": "playwright test tests/portal-payments.spec.ts tests/portal-payments-db.spec.ts --project=node",
     "check:pg:integration": "node scripts/pg-integration-check.mjs",
     "check:release:local": "node scripts/local-supabase-release.mjs",

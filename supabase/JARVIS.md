@@ -358,3 +358,63 @@ Eltérések a spec 3. fejezetétől:
   `retention_days`-nél), nem egyes régi üzeneteket, mert a beszélgetés csak hozzáfűzhető.
 - **5. fázis:** az írási toolok bekerülésével a system prompt „csak olvasni tudsz” sora
   és a tool-lista megváltozik. A régi szálak ettől működnek tovább (`drop_block`).
+
+---
+
+## 7. 4. fázis: a panel a Portálban (kész)
+
+Kód: `portal/src/features/jarvis/JarvisPanel.tsx` (a panel), `Markdown.tsx` (a válaszok
+megjelenítése), `portal/src/lib/jarvis.ts` (az `/api/jarvis` kliense, a tárolt beszélgetések
+beolvasása). A shell (`PortalShell.tsx`) kapott egy Jarvis gombot és a Cmd/Ctrl+J-t, a
+jogosultságok egy `use_jarvis` képességet (owner és admin). Fordítások: HU/DE.
+Ellenőrzés: `npm run check:jarvis:ui` (`scripts/portal-jarvis-check.mjs`).
+
+### Hogyan működik
+
+- **Megnyitás:** Cmd/Ctrl+J bárhonnan (ki-be kapcsol), vagy a parancssáv Jarvis gombja
+  (telefonon a felső sávban). Escape zárja, a fókusz visszakerül oda, ahol előtte volt. A
+  panel saját chunkban van, és csak az első megnyitáskor töltődik le, így a Portál első
+  betöltése nem nehezebb. Megnyitás után mounted marad: képernyőváltáskor és újranyitáskor
+  is ugyanaz a beszélgetés látszik.
+- **Elrendezés:** asztalon jobb oldali, 420 px-es oszlop. Nem modális: az oldal mellette
+  használható marad, és 1280 px felett az oldal félrehúzódik, nem a panel alá kerül.
+  Telefonon a panel a teljes képernyő, és mögötte az oldal nem görget.
+- **Kontextus:** minden üzenettel megy a route (`/portal/...`) és a képernyő rekordja
+  (lead, deal, ügyfél, projekt), ha az oldal egy rekordé. A fejlécben egy chip jelzi
+  („Kontextus: Lead”).
+- **Válasz:** streamelve érkezik. A `continue`-t a kliens magától követi, így egy válasz
+  látszik, akkor is, ha két kérésből állt össze. A tool-hívások sorokként jelennek meg
+  (fut / kész / hiba, a szerver magyar címkéjével). Ha van paraméterük, a sor lenyitható,
+  és megmutatja, mit kérdezett Jarvis.
+- **Megjelenítés:** a Markdown (bekezdés, lista, félkövér, kód, címsor, táblázat)
+  React-elemekként jelenik meg, HTML soha. Linket sem csinál: egy prompt injectionnel
+  becsempészett link így nem kattintható.
+- **Hibák:** ha még semmi nem tárolódott (pl. rate limit), „Újraküldés” gomb jelenik meg;
+  ha a válasz közben szakadt meg (pl. túlterhelt API), „Folytatás”, ami a tárolt
+  beszélgetést viszi tovább. A napi keret elfogyásáról figyelmeztetés jelenik meg.
+- **Beszélgetések:** az előzmények listája (saját szálak, legújabb elöl). Megnyitáskor a
+  szál a DB-ből töltődik vissza: a Portál-kontextus blokk rejtve marad, a tool-sorok a
+  tárolt hívásokból épülnek. Van „Új beszélgetés” gomb is.
+- **Szerveroldali változás:** a `tool` esemény `running` állapotban a tool paramétereit is
+  küldi (legfeljebb 500 karakter), hogy a lenyitott sor mutassa őket.
+
+### Ellenőrizve (2026-10-20)
+
+- `scripts/portal-jarvis-check.mjs`: 9/9 zöld, valódi Chromiumban, mockolt Supabase és
+  mockolt `/api/jarvis` mellett. Lefedi:
+  - a Cmd/Ctrl+J-t, az Escape-et és a fókusz visszaadását;
+  - hogy a chunk csak megnyitáskor töltődik be;
+  - mit küld egy üzenet (route, rekord, token);
+  - a streamelt választ, a Markdownt és a HTML/link-biztonságot;
+  - a tool-sorokat paraméterekkel;
+  - a `continue`-t, mindkét hibautat és a budget-figyelmeztetést;
+  - az előzményeket;
+  - a képernyőváltást;
+  - hogy team membernek nincs Jarvis;
+  - a telefonos elrendezést;
+  - a kontrasztot (4,5:1) sötét és világos témában.
+- Az összes node- és desktop-1440 teszt: 1146 zöld, 3 kihagyva. `npm run build` zöld,
+  typecheck zöld, `i18n-check`: 0 hiányzó fordítás.
+- **Még nincs kipróbálva valódi Claude API-val.** A deploy preview csak `main`-re nyitott
+  PR-hoz készül, és a nem éles deployokat Netlify-csapatbejelentkezés védi. A próbát
+  Artúr végzi az előnézeten (lásd a PR-t).

@@ -1248,3 +1248,18 @@ tud. Modell: Claude Sonnet 5.5; a napi keret felett Claude Haiku 5.5.
 Adatkezelés: a kérdés és a válaszhoz lekérdezett CRM-adat az Anthropichoz kerül
 (adatfeldolgozó). Az adatkezelési tájékoztató kiegészítése a JARVIS.md 26. pontja szerint
 még jóváhagyásra vár, és élesítés előtt kell.
+
+## 36. Jarvis: a panel a Portálban (`supabase/JARVIS.md` 4. fázis)
+
+**Sorrend: 34. → 35. (a kulcs) → deploy.** Új kulcs nem kell.
+
+1. Deploy. A Portálban az owner és az adminok a parancssávban egy **Jarvis** gombot
+   látnak, a Cmd/Ctrl+J pedig bárhonnan megnyitja.
+2. Próba: nyiss meg egy leadet, Cmd/Ctrl+J, és kérdezd meg: „Erről mit tudunk?”. A
+   válasznak magyarul, a lead valódi adataiból kell jönnie; a tool-sorok (pl. „Rekord
+   megnyitva · …”) lenyithatók. Egy listaképernyőn kérdezd meg: „Hol tart a pipeline?”.
+3. Ha „Jarvis is not set up on this deployment” jön, az `ANTHROPIC_API_KEY` hiányzik az
+   adott deploy kontextusából (Netlify → Environment variables → a kulcs scope-ja és
+   kontextusai).
+
+Ellenőrizve helyben: `npm run check:jarvis:ui` 9/9, mockolt szolgáltatásokkal.
