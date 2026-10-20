@@ -1,5 +1,6 @@
 // =============================================================================
-// Jarvis — the tools (JARVIS_SPEC.md §3, phase 3: reading only)
+// Jarvis — the tools (JARVIS_SPEC.md §3: reading here; writing, from phase 5,
+// in jarvis-writes.mjs)
 //
 // No raw SQL and no generic table access: each tool takes a few checked
 // parameters and makes fixed PostgREST calls WITH THE CALLER'S TOKEN, so RLS
@@ -16,6 +17,7 @@
 // system prompt says so, and nothing here acts on it.
 // =============================================================================
 import { ENTITY_TYPES, UUID, budapestDate, budapestMidnight, rest } from './jarvis-lib.mjs';
+import { WRITE_TOOLS, WRITES, writeTool } from './jarvis-writes.mjs';
 
 const MAX_RESULT = 20_000;
 const ROLES_STAFF = ['owner', 'admin'];
@@ -467,9 +469,9 @@ const TOOLS = [
 
 const BY_NAME = new Map(TOOLS.map((t) => [t.name, t]));
 
-/** The tool definitions one role may use, in a fixed order, as the Messages API takes them. */
+/** The tool definitions one role may use, in a fixed order (reads, then writes), as the Messages API takes them. */
 export function toolsFor(role) {
-  return TOOLS.filter((t) => t.roles.includes(role)).map(({ name, description, input_schema }) => ({
+  return [...TOOLS, ...WRITE_TOOLS].filter((t) => t.roles.includes(role)).map(({ name, description, input_schema }) => ({
     name, description, input_schema, eager_input_streaming: true,
   }));
 }
@@ -480,6 +482,8 @@ export function toolsFor(role) {
  * input is untrusted anyway. Nothing here throws.
  */
 export async function runTool(name, input, ctx) {
+  const write = WRITES.get(name);
+  if (write && write.roles.includes(ctx.role)) return writeTool(write, input, ctx);
   const tool = BY_NAME.get(name);
   if (!tool || !tool.roles.includes(ctx.role)) {
     return { content: JSON.stringify({ error: `No tool named ${name}. Available: ${toolsFor(ctx.role).map((t) => t.name).join(', ')}` }), is_error: true, label: `Ismeretlen tool: ${String(name).slice(0, 40)}` };

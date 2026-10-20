@@ -146,6 +146,13 @@ function backend(w: World) {
 
     const table = path.slice(1);
     const list = (w.tables[table] ??= []);
+    if (method === 'PATCH' || method === 'DELETE') {
+      const idq = url.searchParams.get('id');
+      const hit = list.filter((r) => idq && String(r.id) === idq.slice(3));
+      if (method === 'DELETE') { w.tables[table] = list.filter((r) => !hit.includes(r)); return new Response(null, { status: 204 }); }
+      for (const r of hit) Object.assign(r, body);
+      return reply(200, hit);
+    }
     if (method === 'POST') {
       w.seq += 1;
       const row = { id: id(9000 + w.seq), created_at: new Date(Date.now() + w.seq).toISOString(), ...body };
@@ -158,6 +165,7 @@ function backend(w: World) {
       if (['select', 'order', 'limit', 'or'].includes(k)) continue;
       if (v.startsWith('eq.')) out = out.filter((r) => !(k in r) || String(r[k]) === v.slice(3));
       if (v === 'is.null') out = out.filter((r) => r[k] === null || r[k] === undefined);
+      if (v.startsWith('ilike.') && !v.includes('*')) out = out.filter((r) => k in r && String(r[k]).toLowerCase() === v.slice(6).toLowerCase());
       if (v.startsWith('gte.') && k === 'created_at') out = out.filter((r) => String(r[k]) >= v.slice(4));
     }
     const limit = Number(url.searchParams.get('limit'));
@@ -241,6 +249,7 @@ test('a first message: a new thread, the context block, one cached and fallback-
   expect((req.tools as Row[]).map((t) => t.name)).toEqual([
     'crm_search', 'get_record', 'list_leads', 'list_opportunities', 'list_projects', 'pipeline_summary',
     'revenue_report', 'payment_overview', 'open_alerts', 'email_search', 'list_meetings', 'time_summary',
+    'add_note', 'log_interaction', 'update_lead_status', 'create_opportunity', 'update_opportunity', 'create_task', 'log_time', 'create_lead',
   ]);
   expect((req.tools as Row[]).every((t) => t.eager_input_streaming === true)).toBe(true);
   expect(req.messages).toEqual([{ role: 'user', content: user.content }]);
@@ -465,4 +474,172 @@ test('Budapest dates: midnight carries the right offset on both sides of a clock
   const block = lib.contextBlock({ now: new Date('2026-10-20T07:14:00Z'), route: '/portal/today' });
   expect(block).toContain('09:14');
   expect(block).toContain('Képernyő: /portal/today');
+});
+
+
+/* ================================================================ writes (phase 5) */
+
+async function op(w: World, body: Row, token = 'owner-token') {
+  h.__net.fetch = backend(w) as typeof fetch;
+  const res = await h.default(new Request('https://stratosweb.hu/api/jarvis', {
+    method: 'POST', headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' }, body: JSON.stringify(body),
+  }));
+  return { status: res.status, json: await res.json() as Row };
+}
+const actions = (w: World) => w.tables.jarvis_actions ?? [];
+const writes = (w: World, path: string) => w.calls.filter((c) => c.path === path && c.method !== 'GET');
+
+test('an internal write runs at once, is stored as an executed action with its undo, and the panel hears of it', async () => {
+  const w = world();
+  w.claude.push(toolCall([['tu_1', 'add_note', { entity_type: 'lead', entity_id: LEAD, body: '  Holnap visszahívni.  ' }]]));
+  w.claude.push(text('Felírtam.'));
+  const r = await ask(w, { message: 'Írd fel, hogy holnap visszahívom.' });
+  expect(names(r.events)).toEqual(['thread', 'step', 'tool', 'tool', 'action', 'step', 'text', 'done']);
+
+  const [note] = writes(w, '/lead_notes');
+  expect(note.body).toEqual({ lead_id: LEAD, author_id: U.owner, body: 'Holnap visszahívni.' });
+  expect(note.auth).toBe('Bearer owner-token');
+  const [a] = actions(w);
+  expect(a).toMatchObject({ tool: 'add_note', risk: 'internal', status: 'executed', summary: 'Jegyzet · lead: „Holnap visszahívni.”',
+    payload: { entity_type: 'lead', entity_id: LEAD, body: 'Holnap visszahívni.' } });
+  expect((a.result as Row).undo).toEqual({ table: 'lead_notes', id: (w.tables.lead_notes[0] as Row).id });
+  expect(a.thread_id).toBe(w.tables.jarvis_threads[0].id);
+
+  const action = r.events.find((e) => e.event === 'action')!.data as { tool_use_id: string; action: Row };
+  expect(action.tool_use_id).toBe('tu_1');
+  expect(action.action).toMatchObject({ tool: 'add_note', status: 'executed', undoable: true, reason: null });
+  expect(action.action.result).toBeUndefined(); // the undo plan stays on the server
+  const result = JSON.parse(String((messages(w)[2].content as Row[])[0].content));
+  expect(result).toMatchObject({ status: 'done', action_id: a.id });
+});
+
+test('after the turn read outsiders\' text, an internal write waits for a person — but not one chosen side by side with that read', async () => {
+  const w = world();
+  w.claude.push(toolCall([['tu_1', 'get_record', { entity_type: 'lead', id: LEAD }], ['tu_2', 'add_note', { entity_type: 'lead', entity_id: LEAD, body: 'Egyszerre.' }]]));
+  w.claude.push(toolCall([['tu_3', 'update_lead_status', { lead_id: LEAD, status: 'spam' }]]));
+  w.claude.push(text('A státusz jóváhagyásra vár.'));
+  const r = await ask(w, { message: 'Nézd meg, és kezeld le.' });
+  expect(names(r.events).at(-1)).toBe('done');
+
+  const [sideBySide, later] = actions(w);
+  expect(sideBySide).toMatchObject({ tool: 'add_note', status: 'executed' });
+  expect(later).toMatchObject({ tool: 'update_lead_status', status: 'pending', result: { reason: 'outside_text' }, summary: 'Lead státusza → spam' });
+  expect(writes(w, '/leads')).toEqual([]);
+  const result = JSON.parse(String((messages(w).at(-2)!.content as Row[])[0].content));
+  expect(result).toMatchObject({ status: 'waiting_for_approval', action_id: later.id });
+  const card = r.events.filter((e) => e.event === 'action').at(-1)!.data as { action: Row };
+  expect(card.action).toMatchObject({ status: 'pending', reason: 'outside_text', undoable: false });
+});
+
+test('approve runs what was approved — the edited payload, checked again; reject and a second approve are refused', async () => {
+  const w = world({ jarvis_actions: [
+    { id: id(700), thread_id: id(50), user_id: U.owner, tool: 'add_note', risk: 'internal', status: 'pending', summary: 'Jegyzet · lead: „x”',
+      payload: { entity_type: 'lead', entity_id: LEAD, body: 'Eredeti' }, result: { reason: 'outside_text' } },
+    { id: id(701), thread_id: id(50), user_id: U.owner, tool: 'log_time', risk: 'internal', status: 'pending', summary: 'x',
+      payload: { hours: 1, work_date: '2026-10-20', project_id: null, label: 'Admin', note: null }, result: { reason: 'outside_text' } },
+  ] });
+  const bad = await op(w, { op: 'approve', action_id: id(701), payload: { hours: 0.3, label: 'Admin' } });
+  expect(bad).toMatchObject({ status: 422, json: { code: 'INVALID_INPUT', message: 'hours must be in quarter hours' } });
+  expect(actions(w)[1].status).toBe('pending');
+
+  const r = await op(w, { op: 'approve', action_id: id(700), payload: { entity_type: 'lead', entity_id: LEAD, body: 'Javított szöveg' } });
+  expect(r.status).toBe(200);
+  expect(r.json).toMatchObject({ ok: true, label: 'Jegyzet mentve' });
+  const patches = writes(w, '/jarvis_actions').map((c) => c.body as Row);
+  expect(patches[0]).toMatchObject({ status: 'approved', payload: { body: 'Javított szöveg' }, summary: 'Jegyzet · lead: „Javított szöveg”' });
+  expect(patches[1]).toMatchObject({ status: 'executed', result: { reason: 'outside_text', undo: { table: 'lead_notes' } } });
+  expect((writes(w, '/lead_notes')[0].body as Row).body).toBe('Javított szöveg');
+
+  expect((await op(w, { op: 'approve', action_id: id(700) })).status).toBe(409);
+  expect((await op(w, { op: 'reject', action_id: id(700) })).status).toBe(409);
+  const rej = await op(w, { op: 'reject', action_id: id(701) });
+  expect(rej).toMatchObject({ status: 200, json: { ok: true, action: { status: 'rejected' } } });
+  expect(writes(w, '/time_entries')).toEqual([]);
+
+  expect((await op(w, { op: 'approve', action_id: id(799) })).status).toBe(404);
+  expect((await op(w, { op: 'delete', action_id: id(700) })).status).toBe(400);
+  expect((await op(w, { op: 'approve', action_id: id(700) }, 'client-token')).status).toBe(403);
+  expect(w.calls.every((c) => c.auth !== 'Bearer client-token' || ['/auth/v1/user', '/rpc/is_admin', '/rpc/is_owner'].includes(c.path))).toBe(true);
+});
+
+test('undo: a note is removed, a status is put back, a created lead goes to the Trash; only executed internal writes', async () => {
+  const w = world({
+    leads: [{ id: LEAD, name: 'Kiss Péter', company: 'Kiss Kft.', status: 'contacted' }],
+    lead_notes: [{ id: id(801), lead_id: LEAD, body: 'x' }],
+    jarvis_actions: [
+      { id: id(710), tool: 'add_note', risk: 'internal', status: 'executed', summary: 's', payload: {}, result: { undo: { table: 'lead_notes', id: id(801) } } },
+      { id: id(711), tool: 'update_lead_status', risk: 'internal', status: 'executed', summary: 's', payload: {}, result: { undo: { table: 'leads', id: LEAD, set: { status: 'new' } } } },
+      { id: id(712), tool: 'create_lead', risk: 'internal', status: 'executed', summary: 's', payload: {}, result: { undo: { table: 'leads', id: LEAD, set: { trashed_at: { $now: true } } } } },
+      { id: id(713), tool: 'add_note', risk: 'internal', status: 'pending', summary: 's', payload: {}, result: null },
+    ],
+  });
+  expect((await op(w, { op: 'undo', action_id: id(710) })).json).toMatchObject({ ok: true, action: { status: 'reverted' } });
+  expect(w.tables.lead_notes).toEqual([]);
+  await op(w, { op: 'undo', action_id: id(711) });
+  expect(w.tables.leads[0].status).toBe('new');
+  await op(w, { op: 'undo', action_id: id(712) });
+  expect(String(w.tables.leads[0].trashed_at)).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+  expect((actions(w)[2].result as Row).reverted_at).toBeTruthy();
+  expect((await op(w, { op: 'undo', action_id: id(713) })).status).toBe(409);
+  expect((await op(w, { op: 'undo', action_id: id(710) })).status).toBe(409);
+});
+
+test('the write tools check their input and the records they touch', async () => {
+  const w = world({ leads: [{ id: LEAD, name: 'Kiss Péter', email: 'peter@example.invalid', status: 'new', trashed_at: null }] });
+  h.__net.fetch = backend(w) as typeof fetch;
+  const ctx = { token: 'owner-token', role: 'owner', userId: U.owner, threadId: null, tainted: false };
+  const run = async (name: string, input: Row) => tools.runTool(name, input, ctx);
+
+  const status = await run('update_lead_status', { lead_id: LEAD, status: 'contacted' });
+  expect(status.label).toBe('Lead státusza: new → contacted');
+  expect((actions(w).at(-1)!.result as Row).undo).toEqual({ table: 'leads', id: LEAD, set: { status: 'new' } });
+  expect((await run('update_lead_status', { lead_id: id(999), status: 'won' })).is_error).toBe(true);
+
+  const twin = await run('create_lead', { name: 'Másik Péter', email: 'PETER@example.invalid' });
+  expect(twin.is_error).toBe(true);
+  expect(String(twin.content)).toContain('exists already');
+  const fresh = await run('create_lead', { name: 'Nagy Éva', email: 'eva@example.invalid', message: 'Weboldalt keres.' });
+  expect(fresh.is_error).toBe(false);
+  expect(writes(w, '/leads').at(-1)!.body).toMatchObject({ source: 'jarvis', status: 'new', meta: { jarvis_review: true, created_by: U.owner } });
+
+  for (const [name, input, msg] of [
+    ['log_time', { hours: 0.3, label: 'Admin' }, 'quarter hours'],
+    ['log_time', { hours: 1 }, 'project_id or label is required'],
+    ['log_interaction', { kind: 'call', summary: 'x' }, 'one of lead_id'],
+    ['create_opportunity', { title: 'Web' }, 'organization_id or company_name'],
+    ['update_opportunity', { id: id(5) }, 'nothing to change'],
+    ['add_note', { entity_type: 'lead', entity_id: LEAD, body: 'x'.repeat(4001) }, 'longer than 4000'],
+  ] as [string, Row, string][]) {
+    const r = await run(name, input);
+    expect(r.is_error, name).toBe(true);
+    expect(String(r.content), name).toContain(msg);
+  }
+
+  // A task goes into the person's own Jarvis checklist, made the first time.
+  const task = await run('create_task', { title: 'Ajánlatot küldeni', due_on: '2026-10-22' });
+  expect(task.is_error).toBe(false);
+  expect(writes(w, '/notes').at(-1)!.body).toEqual({ kind: 'checklist', title: 'Jarvis feladatai' });
+  expect(writes(w, '/note_items').at(-1)!.body).toMatchObject({ text: 'Ajánlatot küldeni', due_on: '2026-10-22', position: 0 });
+});
+
+test('the next message tells Jarvis what the person decided meanwhile', async () => {
+  const w = world({
+    jarvis_threads: [{ id: id(50), user_id: U.owner, title: 'Régi', context_entity_type: null, context_entity_id: null, archived_at: null }],
+    jarvis_messages: [
+      { id: id(51), thread_id: id(50), role: 'user', content: [{ type: 'text', text: 'ctx' }, { type: 'text', text: 'Kezeld le.' }], created_at: '2026-10-01T08:00:00.000Z' },
+      { id: id(52), thread_id: id(50), role: 'assistant', content: [{ type: 'text', text: 'Jóváhagyásra vár.' }], created_at: '2026-10-01T08:00:01.000Z' },
+    ],
+    jarvis_actions: [
+      { id: id(720), thread_id: id(50), tool: 'update_lead_status', status: 'rejected', summary: 'Lead státusza → spam', error: null, decided_at: '2026-10-01T09:00:00.000Z' },
+      { id: id(721), thread_id: id(50), tool: 'add_note', status: 'executed', summary: 'Jegyzet · lead: „x”', error: null, decided_at: '2026-10-01T09:01:00.000Z' },
+    ],
+  });
+  w.claude.push(text('Rendben.'));
+  await ask(w, { thread_id: id(50), message: 'Mi a helyzet?' });
+  const block = String(((messages(w).at(-2)!.content as Row[])[0]).text);
+  expect(block).toContain('A felhasználó döntései az előző üzenet óta:');
+  expect(block).toContain('- Elvetve: Lead státusza → spam');
+  expect(block).toContain('- Jóváhagyva, lefutott: Jegyzet · lead: „x”');
+  const q = w.calls.find((c) => c.path === '/jarvis_actions' && c.method === 'GET');
+  expect(q?.params.get('or')).toBe('(decided_at.gt."2026-10-01T08:00:00.000Z",result->>reverted_at.gt."2026-10-01T08:00:00.000Z")');
 });

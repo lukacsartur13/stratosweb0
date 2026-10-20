@@ -1,0 +1,38 @@
+{
+ "Waiting for your approval": {
+  "hu": "A jóváhagyásodra vár",
+  "de": "Wartet auf deine Freigabe"
+ },
+ "Running…": {
+  "hu": "Fut…",
+  "de": "Läuft…"
+ },
+ "Undone": {
+  "hu": "Visszavonva",
+  "de": "Rückgängig gemacht"
+ },
+ "This acts outside the Portal, so it runs only after you approve it.": {
+  "hu": "Ez a Portálon kívül hat, ezért csak a jóváhagyásod után fut le.",
+  "de": "Das wirkt außerhalb des Portals und läuft daher erst nach deiner Freigabe."
+ },
+ "In this answer Jarvis read text that someone outside wrote (a form message, an e-mail), so a write waits for you.": {
+  "hu": "Ebben a válaszban Jarvis olyan szöveget olvasott, amit kívülálló írt (űrlapüzenet, e-mail), ezért az írás rád vár.",
+  "de": "In dieser Antwort hat Jarvis Text gelesen, den jemand von außen geschrieben hat (eine Formularnachricht, eine E-Mail), daher wartet die Änderung auf dich."
+ },
+ "Approve as edited": {
+  "hu": "Jóváhagyás így",
+  "de": "So freigeben"
+ },
+ "Approve": {
+  "hu": "Jóváhagyás",
+  "de": "Freigeben"
+ },
+ "Reject": {
+  "hu": "Elvetés",
+  "de": "Verwerfen"
+ },
+ "Undo": {
+  "hu": "Visszavonás",
+  "de": "Rückgängig"
+ }
+}

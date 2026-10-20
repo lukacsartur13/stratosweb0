@@ -194,5 +194,9 @@
  "Jarvis ({keys})": {
   "hu": "Jarvis ({keys})",
   "de": "Jarvis ({keys})"
+ },
+ "waiting for approval": {
+  "hu": "jóváhagyásra vár",
+  "de": "wartet auf Freigabe"
  }
 }

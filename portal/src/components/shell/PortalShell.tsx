@@ -9,6 +9,7 @@ import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { LanguageSwitch } from '@/features/i18n/LanguageGate';
 import { can, canAccess, ROLE_LABELS, type Capability } from '@/lib/permissions';
 import { useScope } from '@/lib/scope';
+import { supabase } from '@/lib/supabase';
 import { useHealth } from '@/lib/health';
 import { ENVIRONMENTS, RANGES } from '@/lib/analytics';
 import { Button, Select, Skeleton, cn } from '@/components/ui';
@@ -184,6 +185,14 @@ export function PortalShell() {
     });
     setJarvisLoaded(true);
   }, []);
+  // Writes waiting for approval: the number on the Jarvis button (RLS: the
+  // owner counts all of them, an admin their own). One head-only count.
+  const [jarvisPending, setJarvisPending] = useState(0);
+  const countPending = useCallback(() => {
+    void supabase.from('jarvis_actions').select('id', { count: 'exact', head: true }).eq('status', 'pending')
+      .then(({ count, error }) => setJarvisPending(error ? 0 : count ?? 0));
+  }, []);
+  useEffect(() => { if (jarvis) countPending(); }, [jarvis, countPending, jarvisOpen]);
   useEffect(() => {
     if (!jarvis) return;
     const onKey = (e: KeyboardEvent) => {
@@ -262,7 +271,7 @@ export function PortalShell() {
             forty pixels of vertical space is two lines saying one thing. */}
         <span className="font-mark text-[13px] tracking-[0.24em] text-paper">STRATOS</span>
         <div className="flex items-center gap-2">
-          {jarvis && <JarvisButton open={jarvisOpen} onClick={() => toggleJarvis()} />}
+          {jarvis && <JarvisButton open={jarvisOpen} pending={jarvisPending} onClick={() => toggleJarvis()} />}
           <Button size="sm" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="portal-drawer">
             <Menu size={13} aria-hidden="true" /> {t('Menu')}
           </Button>
@@ -297,7 +306,7 @@ export function PortalShell() {
           that width the panel lies over the page. */}
       <div className={cn('flex min-w-0 flex-col', jarvisOpen && 'xl:mr-[420px]')}>
         <CommandBar title={title} scoped={SCOPED.includes(location.pathname)}
-          jarvis={jarvis ? <JarvisButton open={jarvisOpen} onClick={() => toggleJarvis()} wide /> : null} />
+          jarvis={jarvis ? <JarvisButton open={jarvisOpen} pending={jarvisPending} onClick={() => toggleJarvis()} wide /> : null} />
         <main id="portal-main" className="min-w-0 flex-1 px-4 py-4 sm:px-5 lg:px-6 lg:py-5">
           {/* One boundary for every split route (see App.tsx). A reserved block
               rather than a spinner: the shell is already drawn, and the thing
@@ -310,7 +319,7 @@ export function PortalShell() {
 
       {jarvis && jarvisLoaded && (
         <Suspense fallback={null}>
-          <JarvisPanel open={jarvisOpen} onClose={() => toggleJarvis(false)} />
+          <JarvisPanel open={jarvisOpen} onClose={() => toggleJarvis(false)} pending={jarvisPending} onPendingChange={countPending} />
         </Suspense>
       )}
     </div>
@@ -323,13 +332,19 @@ export function PortalShell() {
  * The way in. Yellow only for its icon, and only while the panel is open: the
  * sidebar's active marker is the one piece of yellow on a closed screen.
  */
-function JarvisButton({ open, onClick, wide = false }: { open: boolean; onClick: () => void; wide?: boolean }) {
+function JarvisButton({ open, onClick, pending = 0, wide = false }: { open: boolean; onClick: () => void; pending?: number; wide?: boolean }) {
   const keys = isMac() ? '⌘J' : 'Ctrl J';
   return (
     <Button size="sm" onClick={onClick} aria-expanded={open} aria-controls="jarvis-panel"
       aria-keyshortcuts={isMac() ? 'Meta+J' : 'Control+J'} title={t('Jarvis ({keys})', { keys })} data-jarvis-open>
       <Sparkles size={12} strokeWidth={1.75} className={open ? 'text-signal' : undefined} aria-hidden="true" />
       <span>Jarvis</span>
+      {/* Writes waiting for approval — the one number on this button. */}
+      {pending > 0 && (
+        <span className="num rounded-sm bg-signal px-1 text-[10px] leading-4 tracking-normal text-black" data-jarvis-pending>
+          {pending}<span className="sr-only"> {t('waiting for approval')}</span>
+        </span>
+      )}
       {wide && <kbd className="hidden font-data text-[9px] tracking-normal text-haze xl:inline">{keys}</kbd>}
     </Button>
   );
