@@ -94,5 +94,21 @@
  "Tool: {name}": {
   "hu": "Tool: {name}",
   "de": "Tool: {name}"
+ },
+ "Lead status": {
+  "hu": "Lead státusza",
+  "de": "Lead-Status"
+ },
+ "New deal": {
+  "hu": "Új deal",
+  "de": "Neuer Deal"
+ },
+ "Deal changed": {
+  "hu": "Deal módosítva",
+  "de": "Deal geändert"
+ },
+ "New lead": {
+  "hu": "Új lead",
+  "de": "Neuer Lead"
  }
 }

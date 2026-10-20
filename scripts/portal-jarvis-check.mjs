@@ -62,7 +62,9 @@ const answer = (text, extra = []) => ({ events: [
 
 function freshState(over = {}) {
   return {
-    replies: [], jarvis: [], requests: [], chunks: [],
+    replies: [], jarvis: [], requests: [], chunks: [], ops: [],
+    // jarvis_actions as PostgREST holds them (phase 5): the Waiting list, a thread's writes, the count.
+    pending: [], threadActions: [],
     threads: [{ id: THREAD, title: 'Hol tart a pipeline?', updated_at: '2026-10-20T07:30:00Z', context_entity_type: null }],
     messages: [
       { id: 'm1', role: 'user', model: null, content: [{ type: 'text', text: '[Portál-kontextus — a Portál írta, nem a felhasználó]\nMost: …' }, { type: 'text', text: 'Hol tart a pipeline?' }] },
@@ -85,6 +87,17 @@ async function open(browser, { role = 'super_admin', owner = true, state = fresh
     if (url.startsWith(MOCK_URL)) state.requests.push(`${method} ${new URL(url).pathname}`);
     if (/\/assets\/JarvisPanel-[^/]+\.js$/.test(url)) state.chunks.push(url);
 
+    if (url.includes('/api/jarvis') && JSON.parse(req.postData() || '{}').op) {
+      const b = JSON.parse(req.postData() || '{}');
+      state.ops.push({ ...b, auth: req.headers().authorization ?? null });
+      const status = { approve: 'executed', reject: 'rejected', undo: 'reverted' }[b.op];
+      const base = [...state.pending, ...state.threadActions].find((a) => a.id === b.action_id) ?? { id: b.action_id, tool: 'add_note', risk: 'internal', summary: 'Jegyzet', payload: {} };
+      const payload = b.payload ?? base.payload;
+      const summary = b.payload?.body ? `Jegyzet · lead: „${b.payload.body}”` : base.summary;
+      state.pending = state.pending.filter((a) => a.id !== b.action_id);
+      return json(route, { ok: true, label: 'Jegyzet mentve', action: { id: b.action_id, thread_id: base.thread_id ?? null, tool: base.tool, risk: base.risk,
+        status, summary, payload, reason: base.result?.reason ?? null, error: null, undoable: status === 'executed' } });
+    }
     if (url.includes('/api/jarvis')) {
       state.jarvis.push({ body: JSON.parse(req.postData() || '{}'), auth: req.headers().authorization ?? null });
       const next = state.replies.shift() ?? answer('Rendben.');
@@ -100,6 +113,16 @@ async function open(browser, { role = 'super_admin', owner = true, state = fresh
     if (url.includes('/rest/v1/profiles')) return json(route, profile);
     if (url.includes('/rest/v1/jarvis_threads')) return json(route, state.threads);
     if (url.includes('/rest/v1/jarvis_messages')) return json(route, state.messages);
+    if (url.includes('/rest/v1/jarvis_actions')) {
+      // As Supabase answers a head-only count: the number in Content-Range, exposed to the page.
+      if (method === 'HEAD') {
+        return route.fulfill({ status: 200, body: '', headers: {
+          'content-range': `*/${state.pending.length}`, 'access-control-expose-headers': 'Content-Range', 'access-control-allow-origin': '*',
+        } });
+      }
+      if (url.includes('status=eq.pending')) return json(route, state.pending);
+      return json(route, state.threadActions);
+    }
     if (url.includes('/rest/v1/')) return json(route, []);
     return route.abort();
   });
@@ -361,6 +384,109 @@ await check('contrast: the panel with a conversation passes 4.5:1 in both themes
     const bad = await lowContrast(page);
     assert(bad.length === 0, `${scheme}: ${JSON.stringify(bad.slice(0, 5))}`);
     await shot(page, `theme-${scheme}`);
+    await context.close();
+  }
+});
+
+
+const LEAD_ACTION = (id, status, extra = {}) => ({ id, thread_id: THREAD, tool: 'add_note', risk: 'internal', status, summary: 'Jegyzet · lead: „Holnap visszahívni.”',
+  payload: { entity_type: 'lead', entity_id: LEAD, body: 'Holnap visszahívni.' }, reason: null, error: null, undoable: status === 'executed', ...extra });
+
+await check('a write Jarvis made shows as a card with Undo; Undo asks the server and the card says so', async () => {
+  const state = freshState();
+  state.replies.push(answer('Felírtam.', [
+    ['tool', { id: 'tu1', name: 'add_note', status: 'running', input: { entity_type: 'lead', entity_id: LEAD, body: 'Holnap visszahívni.' } }],
+    ['tool', { id: 'tu1', name: 'add_note', status: 'done', label: 'Jegyzet mentve' }],
+    ['action', { tool_use_id: 'tu1', action: LEAD_ACTION('00000000-0000-4000-8000-000000000901', 'executed') }],
+  ]));
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/leads/${LEAD}`);
+  await openJarvis(page);
+  await page.locator('#jarvis-input').fill('Írd fel, hogy holnap visszahívom.');
+  await page.keyboard.press('Enter');
+  const card = page.locator('[data-jarvis-action="executed"]');
+  await card.getByText('Jegyzet · lead: „Holnap visszahívni.”').waitFor();
+  assert(await page.locator('[data-jarvis-tool]').count() === 0, 'the write shows as a tool row too');
+  await card.locator('[data-jarvis-undo]').click();
+  await page.locator('[data-jarvis-action="reverted"]').waitFor();
+  assert(JSON.stringify(state.ops.map(({ op, action_id }) => [op, action_id])) === JSON.stringify([['undo', '00000000-0000-4000-8000-000000000901']]), `ops: ${JSON.stringify(state.ops)}`);
+  assert(state.ops[0].auth === 'Bearer mock-access-token', 'undo without the person\'s token');
+  await shot(page, 'undo');
+  await context.close();
+});
+
+await check('a waiting write is an approval card: why it waits; Edit sends the edited payload; Reject; the count follows', async () => {
+  const state = freshState();
+  const waiting = LEAD_ACTION('00000000-0000-4000-8000-000000000902', 'pending', { reason: 'outside_text', undoable: false });
+  state.pending = [{ ...waiting, result: { reason: 'outside_text' } }];
+  state.replies.push(answer('A jegyzet jóváhagyásra vár.', [
+    ['tool', { id: 'tu1', name: 'add_note', status: 'running', input: waiting.payload }],
+    ['tool', { id: 'tu1', name: 'add_note', status: 'done', label: 'Jóváhagyásra vár · Jegyzet' }],
+    ['action', { tool_use_id: 'tu1', action: waiting }],
+  ]));
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/leads/${LEAD}`);
+  await page.locator('[data-jarvis-open]:visible [data-jarvis-pending]').getByText('1').waitFor();
+  await openJarvis(page);
+  await page.locator('#jarvis-input').fill('Nézd meg az üzenetét, és írd fel.');
+  await page.keyboard.press('Enter');
+  const card = page.locator('[data-jarvis-action="pending"]');
+  await card.getByText('In this answer Jarvis read text that someone outside wrote').waitFor();
+  await card.getByText('body: Holnap visszahívni.').waitFor();
+  await shot(page, 'approval');
+  await card.getByRole('button', { name: 'Edit' }).click();
+  await card.getByLabel('body').fill('Csütörtökön visszahívni.');
+  await card.getByRole('button', { name: 'Approve as edited' }).click();
+  await page.locator('[data-jarvis-action="executed"]').getByText('Jegyzet · lead: „Csütörtökön visszahívni.”').waitFor();
+  const [approve] = state.ops;
+  assert(approve.op === 'approve' && approve.payload?.body === 'Csütörtökön visszahívni.' && approve.payload?.entity_id === LEAD, `approve: ${JSON.stringify(approve)}`);
+  await page.locator('[data-jarvis-open]:visible [data-jarvis-pending]').waitFor({ state: 'detached' });
+
+  // Reject, from the Waiting list.
+  state.pending = [{ ...LEAD_ACTION('00000000-0000-4000-8000-000000000903', 'pending', { summary: 'Lead státusza → spam', tool: 'update_lead_status', payload: { lead_id: LEAD, status: 'spam' } }), result: { reason: 'outside_text' } }];
+  await page.locator('[data-jarvis-waiting]').click();
+  const list = page.locator('[data-jarvis-waiting-list]');
+  await list.getByText('Lead státusza → spam').waitFor();
+  await list.getByRole('button', { name: 'Reject' }).click();
+  await list.locator('[data-jarvis-action="rejected"]').waitFor();
+  assert(state.ops.at(-1).op === 'reject', 'reject was not sent');
+  await page.locator('[data-jarvis-waiting]').click();
+  await page.locator('[data-jarvis-waiting]').click();
+  await page.getByText('Nothing is waiting for approval.').waitFor();
+  await context.close();
+});
+
+await check('a stored conversation shows its writes as they are now', async () => {
+  const state = freshState();
+  state.messages = [
+    { id: 'm1', role: 'user', model: null, content: [{ type: 'text', text: '[Portál-kontextus …]' }, { type: 'text', text: 'Írd fel.' }] },
+    { id: 'm2', role: 'assistant', model: 'claude-sonnet-5-5', content: [{ type: 'tool_use', id: 'tu1', name: 'add_note', input: {} }] },
+    { id: 'm3', role: 'tool', model: null, content: [{ type: 'tool_result', tool_use_id: 'tu1', content: JSON.stringify({ status: 'done', action_id: '00000000-0000-4000-8000-000000000904' }) }] },
+    { id: 'm4', role: 'assistant', model: 'claude-sonnet-5-5', content: [{ type: 'text', text: 'Felírtam.' }] },
+  ];
+  state.threadActions = [{ ...LEAD_ACTION('00000000-0000-4000-8000-000000000904', 'reverted'), result: { undo: { table: 'lead_notes', id: 'n' }, reverted_at: '2026-10-20T10:00:00Z' } }];
+  const { page, context } = await open(browser, { state });
+  await page.goto(`${BASE}/`);
+  await openJarvis(page);
+  await page.getByRole('button', { name: 'Conversations' }).click();
+  await page.locator('[data-jarvis-threads] button').first().click();
+  await page.locator('[data-jarvis-action="reverted"]').getByText('Jegyzet · lead: „Holnap visszahívni.”').waitFor();
+  assert(await page.locator('[data-jarvis-undo]').count() === 0, 'an undone write offers Undo again');
+  await context.close();
+});
+
+await check('contrast: approval and done cards pass 4.5:1 in both themes', async () => {
+  for (const scheme of ['dark', 'light']) {
+    const state = freshState();
+    state.pending = [{ ...LEAD_ACTION('00000000-0000-4000-8000-000000000905', 'pending', { reason: 'outside_text' }), result: { reason: 'outside_text' } }];
+    const { page, context } = await open(browser, { state, colorScheme: scheme });
+    await page.goto(`${BASE}/`);
+    await openJarvis(page);
+    await page.locator('[data-jarvis-waiting]').click();
+    await page.locator('[data-jarvis-action="pending"]').waitFor();
+    const bad = await lowContrast(page);
+    assert(bad.length === 0, `${scheme}: ${JSON.stringify(bad.slice(0, 5))}`);
+    await shot(page, `waiting-${scheme}`);
     await context.close();
   }
 });

@@ -418,3 +418,74 @@ Ellenőrzés: `npm run check:jarvis:ui` (`scripts/portal-jarvis-check.mjs`).
 - **Még nincs kipróbálva valódi Claude API-val.** A deploy preview csak `main`-re nyitott
   PR-hoz készül, és a nem éles deployokat Netlify-csapatbejelentkezés védi. A próbát
   Artúr végzi az előnézeten (lásd a PR-t).
+
+---
+
+## 8. 5. fázis: írás, jóváhagyó kártyák, a külső flow (kész)
+
+Az 1–4. fázis 2026-10-20-án élesbe ment (`main` 202f577), és Artúr élesben kipróbálta.
+
+Kód: `netlify/functions/jarvis-writes.mjs` (az írási toolok és az akciók életútja), a
+`jarvis.mjs` új `op` műveletei, `portal/src/features/jarvis/ActionCard.tsx` (a kártya), a
+panel „Jóváhagyásra vár” nézete és a shell számlálója. Migráció nem kellett: minden a
+2. fázis `jarvis_actions` táblájára és triggerére épül.
+
+### Az írási toolok (8, mind belső)
+
+| Tool | Mit ír | Visszavonás |
+|---|---|---|
+| `add_note` | `lead_notes` (lead) vagy `record_notes` (deal, ügyfél, projekt) | a jegyzet törlése |
+| `log_interaction` | `interactions` (hívás, e-mail, meeting, üzenet, egyéb) | az aktivitás törlése |
+| `update_lead_status` | `leads.status` | a régi státusz vissza |
+| `create_opportunity` | `opportunities` (nyitott szakaszba) | archiválás |
+| `update_opportunity` | szakasz, következő lépés és dátuma, valószínűség, várható zárás | a régi értékek vissza |
+| `create_task` | `note_items` a megadott vagy a saját „Jarvis feladatai” listában | a tétel törlése |
+| `log_time` | `time_entries` (negyedórák, projekt vagy címke) | a bejegyzés törlése |
+| `create_lead` | `leads` (`source='jarvis'`, `meta.jarvis_review`), azonos e-mailre nem | a Kukába |
+
+Mindegyik ellenőrzött paramétert kap, és a hívó tokenjével ír, így az RLS dönt (adminnak
+pl. projektjegyzet nem megy). Törlő tool nincs. A visszavonás csak azt törli, amit maga az
+akció hozott létre; leadet és dealt nem töröl, hanem a Kukába tesz, illetve archivál. Lezárt
+(won/lost) deal Jarvisból nem módosítható.
+
+### A flow
+
+- **Belső írás:** azonnal lefut. `jarvis_actions` sor `executed` státusszal, a
+  visszavonási tervvel együtt; a panelen kártya jelenik meg „Visszavonás” gombbal.
+- **Jóváhagyásra vár (`pending`):**
+  - ha a tool külső hatású (ilyen a 6. fázistól lesz: e-mail-piszkozat, meghívó,
+    kliensüzenet);
+  - **vagy ha ugyanebben a válaszban Jarvis olyan szöveget olvasott, amit kívülálló írt**
+    (`get_record`, `email_search`: űrlapüzenet, jegyzet, e-mail-kivonat). Ez a
+    prompt-injection védelem. Az ugyanabban a lépésben, párhuzamosan hívott írás nem
+    számít, mert azt Jarvis még az eredmény elolvasása előtt választotta.
+- **Kártya:** megmutatja, mit csinálna, és miért vár. Gombok:
+  - **Jóváhagyás**;
+  - **Szerkesztés**, ahol a mezők átírhatók, és a szerver újra ellenőrzi őket;
+  - **Elvetés**.
+- **Jóváhagyáskor** a payload az átírt változattal rögzül, és pontosan az fut le, amit
+  jóváhagytál. Ha nem sikerül, „Újra” gomb jelenik meg.
+- **A következő üzenet kontextusa** felsorolja, mit hagytál jóvá, mit vetettél el és mit
+  vontál vissza („A felhasználó döntései az előző üzenet óta”), így Jarvis tudja.
+- **Számláló:** a Jarvis gombon és a panel fejlécében a jóváhagyásra váró írások száma
+  (az ownernek mind, adminnak a sajátjai). A „Jóváhagyásra vár” nézetben szálakon átívelő
+  lista van, mindegyikből meg lehet nyitni a beszélgetést.
+- **Előzmények:** egy régi szál megnyitásakor a kártyák az akció mostani állapotát
+  mutatják (pl. visszavonva).
+
+### Ellenőrizve (2026-10-20)
+
+- `tests/jarvis.spec.ts`: 21/21 zöld (+6). Lefedi:
+  - az azonnali írást és a visszavonási tervet;
+  - a szennyezett kört, és hogy a párhuzamos hívás nem szennyez;
+  - a szerkesztett jóváhagyást és az újraellenőrzést;
+  - az elvetést, a kétszeri jóváhagyást, a 403/404/400-at;
+  - a háromféle visszavonást;
+  - a toolok bemenet-ellenőrzését és a lead-duplikátumot;
+  - a döntéseket a kontextusban.
+- `tests/portal-jarvis-db.spec.ts`: 10/10 (+1), a valódi triggeren: függőben →
+  szerkesztett jóváhagyás → végrehajtva → visszavonva, és a sikertelen újrajóváhagyása.
+- `npm run check:jarvis:ui`: 13/13 (+4): visszavonás, szerkesztett jóváhagyás, elvetés,
+  számláló, Várakozók lista, tárolt akciók egy régi szálban, kontraszt mindkét témában.
+- Az összes node- és desktop-1440 teszt: 1153 zöld, 3 kihagyva. Build, typecheck, i18n
+  (0 hiányzó), titokkeresés rendben.

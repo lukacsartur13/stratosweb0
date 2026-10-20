@@ -3,6 +3,7 @@
 //
 //   POST { message, thread_id?, context?: { route, entity_type, entity_id }, voice? }
 //   POST { thread_id, continue: true }
+//   POST { op: 'approve' | 'reject' | 'undo', action_id, payload? }   → JSON
 //   Authorization: Bearer <the person's Supabase session>
 //   → text/event-stream:
 //       thread    { id, title, model, over_budget }
@@ -11,6 +12,7 @@
 //       text      { delta }                       the reply, as it is written
 //       discard   { n }                           drop step n's text (cut off by the time limit)
 //       tool      { id, name, status, input?, label? }   running (with the input) → done | error (with a label)
+//       action    { tool_use_id, action }         a write: executed (undoable) or pending (an approval card)
 //       continue  {}                              time is up: POST { thread_id, continue: true }
 //       refusal   { category }
 //       done      { stop_reason, model, usage }
@@ -50,6 +52,7 @@ import {
   toApi, forReplay, toolUses, usageOf, spentToday,
 } from './jarvis-lib.mjs';
 import { toolsFor, runTool } from './jarvis-tools.mjs';
+import { TAINT_SOURCES, decide, publicAction } from './jarvis-writes.mjs';
 
 export { __net };
 
@@ -87,6 +90,11 @@ function readInput(raw) {
   let b;
   try { b = JSON.parse(raw || '{}'); } catch { return null; }
   if (!b || typeof b !== 'object' || Array.isArray(b)) return null;
+  // A person's decision on an action (jarvis-writes.mjs decide).
+  if (b.op !== undefined) {
+    if (!['approve', 'reject', 'undo'].includes(b.op) || typeof b.action_id !== 'string' || !UUID.test(b.action_id)) return null;
+    return { op: b.op, actionId: b.action_id.toLowerCase(), payload: b.payload && typeof b.payload === 'object' && !Array.isArray(b.payload) ? b.payload : null };
+  }
   const out = { continue: b.continue === true, voice: b.voice === true };
   if (b.thread_id !== undefined && b.thread_id !== null) {
     if (typeof b.thread_id !== 'string' || !UUID.test(b.thread_id)) return null;
@@ -124,6 +132,24 @@ async function insert(token, table, row) {
     throw new StopError('SAVE_FAILED');
   }
   return res.body[0];
+}
+
+/**
+ * Has this turn (everything since the last user message, `rows` as given)
+ * read text that outsiders wrote? Then an internal write waits for a person.
+ */
+function tainted(rows) {
+  const lastUser = rows.map((r) => r.role).lastIndexOf('user');
+  return rows.slice(lastUser + 1).some((r) => r.role === 'assistant' && toolUses(r.content).some((u) => TAINT_SOURCES.has(u.name)));
+}
+
+/** What a person decided about this thread's actions since `since` — for the next context block. */
+async function decisionsSince(token, threadId, since) {
+  if (!since) return [];
+  const list = await rows(token, '/jarvis_actions', [['select', 'status,summary,error'], ['thread_id', `eq.${threadId}`],
+    ['or', `(decided_at.gt."${since}",result->>reverted_at.gt."${since}")`], ['order', 'created_at.asc'], ['limit', '20']]).catch(() => []);
+  const word = { executed: 'Jóváhagyva, lefutott', failed: 'Jóváhagyva, de nem sikerült', rejected: 'Elvetve', reverted: 'Visszavonva', approved: 'Jóváhagyva' };
+  return list.filter((a) => word[a.status]).map((a) => `${word[a.status]}: ${a.summary}${a.status === 'failed' && a.error ? ` (${String(a.error).slice(0, 120)})` : ''}`);
 }
 
 /** One line about a record for the context block: what it is, as this person sees it. */
@@ -173,6 +199,15 @@ export default async (request) => {
     return json(503, { ok: false, code: 'UNREACHABLE' });
   }
 
+  if (input.op) {
+    try {
+      const r = await decide({ token, role, userId: me.id }, input.op, input.actionId, input.payload);
+      return json(r.status, r.body);
+    } catch {
+      return json(503, { ok: false, code: 'UNREACHABLE' });
+    }
+  }
+
   let settings;
   let thread;
   let history;
@@ -198,7 +233,7 @@ export default async (request) => {
     if (input.threadId) {
       [thread] = await rows(token, '/jarvis_threads', [['select', 'id,title,context_entity_type,context_entity_id,archived_at'], ['id', `eq.${input.threadId}`]]);
       if (!thread) return json(404, { ok: false, code: 'THREAD' });
-      history = await rows(token, '/jarvis_messages', [['select', 'id,role,content'], ['thread_id', `eq.${thread.id}`],
+      history = await rows(token, '/jarvis_messages', [['select', 'id,role,content,created_at'], ['thread_id', `eq.${thread.id}`],
         ['order', 'created_at.asc,id.asc'], ['limit', String(MAX_HISTORY + 1)]]);
       if (history.length > MAX_HISTORY) return json(409, { ok: false, code: 'THREAD_TOO_LONG' });
     } else {
@@ -219,7 +254,7 @@ export default async (request) => {
   const tools = toolsFor(role);
   const system = systemPrompt({ fullName: profile.full_name || profile.email || me.email });
   const client = new Anthropic({ apiKey: c.anthropicKey, fetch: (...args) => __net.fetch(...args), maxRetries: 1 });
-  const ctx = { token, role, userId: me.id };
+  const ctx = { token, role, userId: me.id, threadId: thread.id };
 
   const encoder = new TextEncoder();
   const body = new ReadableStream({
@@ -234,12 +269,16 @@ export default async (request) => {
 
       /** Runs the tool calls of an assistant turn and stores their results as one 'tool' message. */
       const runTools = async (calls) => {
+        // Taint comes from the turn's EARLIER steps: calls made side by side
+        // were chosen before any of their results were read.
+        const batch = { ...ctx, tainted: tainted(history.slice(0, -1)) };
         const results = await Promise.all(calls.map(async (call) => {
           // The parameters, so the Portal's tool row can show what was asked (the person's own query).
           const input = JSON.stringify(call.input ?? {});
           send('tool', { id: call.id, name: call.name, status: 'running', input: input.length <= 500 ? call.input : null });
-          const r = await runTool(call.name, call.input, ctx);
+          const r = await runTool(call.name, call.input, batch);
           send('tool', { id: call.id, name: call.name, status: r.is_error ? 'error' : 'done', label: r.label });
+          if (r.action) send('action', { tool_use_id: call.id, action: publicAction(r.action) });
           return { type: 'tool_result', tool_use_id: call.id, content: r.content, ...(r.is_error ? { is_error: true } : {}) };
         }));
         stats.tools += calls.length;
@@ -263,7 +302,9 @@ export default async (request) => {
             memory = await rows(token, '/jarvis_memory', [['select', 'scope,fact'], ['approved', 'is.true'], ['archived_at', 'is.null'],
               ['scope', `in.(${scopes.join(',')})`], ['order', 'created_at.asc'], ['limit', '50']]).catch(() => []);
           }
-          const context = contextBlock({ route: input.route, entity: entity ? await describe(token, entity) : null, memory, voice });
+          const lastUserRow = [...history].reverse().find((r) => r.role === 'user');
+          const decisions = lastUserRow ? await decisionsSince(token, thread.id, lastUserRow.created_at) : [];
+          const context = contextBlock({ route: input.route, entity: entity ? await describe(token, entity) : null, memory, voice, decisions });
           history.push(await insert(token, 'jarvis_messages', {
             thread_id: thread.id, role: 'user',
             content: [{ type: 'text', text: context }, { type: 'text', text: input.message }],

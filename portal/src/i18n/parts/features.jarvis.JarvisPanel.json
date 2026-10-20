@@ -35,10 +35,6 @@
   "hu": "Jarvis bezárása",
   "de": "Jarvis schließen"
  },
- "Ask about leads, deals, clients, projects, payments, meetings or hours. Jarvis answers from the Portal, with your access, and says when it has no data. For now it only reads: it does not write, send or invite.": {
-  "hu": "Kérdezz leadekről, dealekről, ügyfelekről, projektekről, befizetésekről, meetingekről vagy munkaidőről. Jarvis a Portál adataiból válaszol, a te hozzáféréseddel, és megmondja, ha nincs adata. Egyelőre csak olvas: nem ír, nem küld és nem hív meg senkit.",
-  "de": "Frag nach Leads, Deals, Kunden, Projekten, Zahlungen, Terminen oder Stunden. Jarvis antwortet aus dem Portal, mit deinen Rechten, und sagt, wenn es keine Daten hat. Vorerst liest es nur: Es schreibt, sendet und lädt niemanden ein."
- },
  "Suggested questions": {
   "hu": "Javasolt kérdések",
   "de": "Vorgeschlagene Fragen"
@@ -94,5 +90,25 @@
  "Untitled conversation": {
   "hu": "Cím nélküli beszélgetés",
   "de": "Unterhaltung ohne Titel"
+ },
+ "Ask about leads, deals, clients, projects, payments, meetings or hours. Jarvis answers from the Portal, with your access, and says when it has no data. It can also add notes, activities, tasks and hours, change a lead's status or a deal, and create leads and deals: each shows here as a card you can undo. It does not delete, send e-mails or invite anyone.": {
+  "hu": "Kérdezz leadekről, dealekről, ügyfelekről, projektekről, befizetésekről, meetingekről vagy munkaidőről. Jarvis a Portál adataiból válaszol, a te hozzáféréseddel, és megmondja, ha nincs adata. Jegyzetet, aktivitást, feladatot és munkaidőt is rögzít, módosítja egy lead státuszát vagy egy dealt, és leadet, dealt is létrehoz: mindegyik itt jelenik meg egy kártyán, amit visszavonhatsz. Nem töröl, nem küld e-mailt és nem hív meg senkit.",
+  "de": "Frag nach Leads, Deals, Kunden, Projekten, Zahlungen, Terminen oder Stunden. Jarvis antwortet aus dem Portal, mit deinen Rechten, und sagt, wenn es keine Daten hat. Es kann auch Notizen, Aktivitäten, Aufgaben und Stunden erfassen, den Status eines Leads oder einen Deal ändern und Leads und Deals anlegen: Jedes erscheint hier als Karte, die du rückgängig machen kannst. Es löscht nichts, sendet keine E-Mails und lädt niemanden ein."
+ },
+ "Waiting for approval: {n}": {
+  "hu": "Jóváhagyásra vár: {n}",
+  "de": "Wartet auf Freigabe: {n}"
+ },
+ "The waiting writes could not be read.": {
+  "hu": "A jóváhagyásra váró írásokat nem sikerült beolvasni.",
+  "de": "Die wartenden Änderungen konnten nicht gelesen werden."
+ },
+ "Nothing is waiting for approval.": {
+  "hu": "Semmi nem vár jóváhagyásra.",
+  "de": "Nichts wartet auf Freigabe."
+ },
+ "Open the conversation": {
+  "hu": "A beszélgetés megnyitása",
+  "de": "Unterhaltung öffnen"
  }
 }

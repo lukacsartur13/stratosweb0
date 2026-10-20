@@ -1263,3 +1263,19 @@ még jóváhagyásra vár, és élesítés előtt kell.
    kontextusai).
 
 Ellenőrizve helyben: `npm run check:jarvis:ui` 9/9, mockolt szolgáltatásokkal.
+
+## 38. Jarvis: írás és jóváhagyó kártyák (`supabase/JARVIS.md` 5. fázis)
+
+**Sorrend: deploy.** Új migráció és új kulcs nem kell.
+
+1. Deploy (`netlify/functions/jarvis-writes.mjs` új, a többi Jarvis-fájl módosul).
+2. Próba egy lead oldalán (Cmd/Ctrl+J): „Írd fel jegyzetnek, hogy holnap visszahívom.” → a
+   panelen kártya jelenik meg („Jegyzet · lead: …”, Kész), a lead jegyzetei között
+   megjelenik a jegyzet, a kártya **Visszavonás** gombja eltávolítja.
+3. Próba a jóváhagyásra: „Nézd meg, mit írt az űrlapon, és jegyezd fel a lényeget.” →
+   mivel Jarvis a lead üzenetét olvasta, a jegyzet **jóváhagyásra vár**: a Jarvis gombon
+   megjelenik a szám, a kártyán Jóváhagyás / Szerkesztés / Elvetés.
+
+Mit tud Jarvis írni: jegyzet, aktivitás, lead-státusz, deal (új és módosítás, lezárt nem),
+feladat, munkaidő, új lead. Törölni nem tud; minden írás az activity logban is megjelenik
+(`jarvis.<tool>`).

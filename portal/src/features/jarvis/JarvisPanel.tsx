@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Check, ChevronRight, History, LoaderCircle, Plus, Send, Sparkles, Square, TriangleAlert, X } from 'lucide-react';
+import { Check, ChevronRight, ClipboardCheck, History, LoaderCircle, Plus, Send, Sparkles, Square, TriangleAlert, X } from 'lucide-react';
 import { Button, Textarea, cn } from '@/components/ui';
 import {
-  ENTITY_LABEL, JarvisError, describeInput, entityFromPath, errorText, listThreads, loadThread, resume, send,
-  type JarvisEvent, type ThreadSummary, type ToolPart, type Turn,
+  ENTITY_LABEL, JarvisError, describeInput, entityFromPath, errorText, listPending, listThreads, loadThread, resume, send,
+  type ActionState, type JarvisEvent, type ThreadSummary, type ToolPart, type Turn,
 } from '@/lib/jarvis';
 import { getLang, t } from '@/lib/i18n';
 import { Markdown } from './Markdown';
+import { ActionCard } from './ActionCard';
 
 /**
  * The Jarvis panel (supabase/JARVIS.md, phase 4).
@@ -23,7 +24,9 @@ import { Markdown } from './Markdown';
  * are the database's: History lists them, and opening one reads it back.
  *
  * Jarvis's answers are drawn by <Markdown>, which makes React elements and
- * never HTML. Tool calls are rows — what was asked, and how it went.
+ * never HTML. Tool calls are rows — what was asked, and how it went — and a
+ * write is a card (<ActionCard>): done with Undo, or waiting for approval.
+ * "Waiting" lists every write that waits, across conversations.
  */
 
 type Retry = { kind: 'resume'; threadId: string } | { kind: 'resend'; message: string };
@@ -31,7 +34,9 @@ type Retry = { kind: 'resume'; threadId: string } | { kind: 'resend'; message: s
 let seq = 0;
 const nextId = () => `live-${(seq += 1)}`;
 
-export function JarvisPanel({ open, onClose }: { open: boolean; onClose: () => void }) {
+export function JarvisPanel({ open, onClose, pending = 0, onPendingChange }: {
+  open: boolean; onClose: () => void; pending?: number; onPendingChange?: () => void;
+}) {
   const location = useLocation();
   const entity = entityFromPath(location.pathname);
   const [turns, setTurns] = useState<Turn[]>([]);
@@ -39,8 +44,10 @@ export function JarvisPanel({ open, onClose }: { open: boolean; onClose: () => v
   const [draft, setDraft] = useState('');
   const [busy, setBusy] = useState(false);
   const [retry, setRetry] = useState<Retry | null>(null);
-  const [view, setView] = useState<'chat' | 'history'>('chat');
+  const [view, setView] = useState<'chat' | 'history' | 'pending'>('chat');
   const [threads, setThreads] = useState<ThreadSummary[] | null>(null);
+  const [waiting, setWaiting] = useState<ActionState[] | null>(null);
+  const [waitingError, setWaitingError] = useState(false);
   const [historyError, setHistoryError] = useState(false);
   const [mobile, setMobile] = useState(() => !window.matchMedia('(min-width: 1024px)').matches);
   const input = useRef<HTMLTextAreaElement>(null);
@@ -79,6 +86,11 @@ export function JarvisPanel({ open, onClose }: { open: boolean; onClose: () => v
   /** Applies one server event to the answer being written (always the last turn). */
   const apply = useCallback((e: JarvisEvent) => {
     if (e.event === 'thread') { setThreadId(e.data.id); return; }
+    if (e.event === 'action') {
+      setTurns((prev) => withAction(prev, e.data.tool_use_id, e.data.action));
+      if (e.data.action.status === 'pending') onPendingChange?.();
+      return;
+    }
     setTurns((prev) => {
       const turns = [...prev];
       if (e.event === 'notice') {
@@ -182,6 +194,24 @@ export function JarvisPanel({ open, onClose }: { open: boolean; onClose: () => v
     requestAnimationFrame(() => input.current?.focus());
   };
 
+  /** A card changed (approved, rejected, undone): the conversation, the Waiting list and the count follow. */
+  const onAction = (toolUseId: string | null, a: ActionState) => {
+    if (toolUseId) setTurns((prev) => withAction(prev, toolUseId, a));
+    else setTurns((prev) => prev.map((turn) => (turn.kind !== 'assistant' ? turn : {
+      ...turn, parts: turn.parts.map((p) => (p.type === 'tool' && p.action?.id === a.id ? { ...p, action: a } : p)),
+    })));
+    setWaiting((list) => list && list.map((x) => (x.id === a.id ? a : x)));
+    onPendingChange?.();
+  };
+
+  const showPending = async () => {
+    if (view === 'pending') { setView('chat'); return; }
+    setView('pending');
+    setWaitingError(false);
+    setWaiting(null);
+    try { setWaiting(await listPending()); } catch { setWaitingError(true); }
+  };
+
   const showHistory = async () => {
     if (view === 'history') { setView('chat'); return; }
     setView('history');
@@ -237,6 +267,11 @@ export function JarvisPanel({ open, onClose }: { open: boolean; onClose: () => v
           </span>
         )}
         <div className="ml-auto flex items-center gap-0.5">
+          <Button size="sm" variant="quiet" onClick={showPending} aria-pressed={view === 'pending'}
+            aria-label={pending > 0 ? t('Waiting for approval: {n}', { n: pending }) : t('Waiting for approval')} data-jarvis-waiting>
+            <ClipboardCheck size={13} aria-hidden="true" />
+            {pending > 0 && <span className="num rounded-sm bg-signal px-1 text-[10px] leading-4 text-black">{pending}</span>}
+          </Button>
           <Button size="sm" variant="quiet" onClick={showHistory} aria-pressed={view === 'history'} aria-label={t('Conversations')}>
             <History size={13} aria-hidden="true" />
           </Button>
@@ -250,12 +285,14 @@ export function JarvisPanel({ open, onClose }: { open: boolean; onClose: () => v
       </header>
 
       <div ref={scroller} onScroll={onScroll} className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
-        {view === 'history' ? (
+        {view === 'pending' ? (
+          <WaitingList actions={waiting} failed={waitingError} onChange={(a) => onAction(null, a)} onOpen={openThread} />
+        ) : view === 'history' ? (
           <ThreadList threads={threads} failed={historyError} current={threadId} onOpen={openThread} />
         ) : turns.length === 0 ? (
           <div className="grid gap-4">
             <p className="text-[13px] leading-relaxed text-haze">
-              {t('Ask about leads, deals, clients, projects, payments, meetings or hours. Jarvis answers from the Portal, with your access, and says when it has no data. For now it only reads: it does not write, send or invite.')}
+              {t('Ask about leads, deals, clients, projects, payments, meetings or hours. Jarvis answers from the Portal, with your access, and says when it has no data. It can also add notes, activities, tasks and hours, change a lead\'s status or a deal, and create leads and deals: each shows here as a card you can undo. It does not delete, send e-mails or invite anyone.')}
             </p>
             <div className="grid gap-1.5" role="group" aria-label={t('Suggested questions')}>
               {suggestions.map((s) => (
@@ -269,7 +306,7 @@ export function JarvisPanel({ open, onClose }: { open: boolean; onClose: () => v
         ) : (
           <ol className="grid gap-5" aria-live="polite" aria-relevant="additions text" data-jarvis-log>
             {turns.map((turn, i) => (
-              <TurnView key={turn.id} turn={turn} writing={busy && i === turns.length - 1} />
+              <TurnView key={turn.id} turn={turn} writing={busy && i === turns.length - 1} onAction={onAction} />
             ))}
           </ol>
         )}
@@ -312,7 +349,14 @@ export function JarvisPanel({ open, onClose }: { open: boolean; onClose: () => v
 
 /* ================================================================ turns */
 
-function TurnView({ turn, writing }: { turn: Turn; writing: boolean }) {
+/** The turns with one tool call's write set to `a`. */
+function withAction(turns: Turn[], toolUseId: string, a: ActionState): Turn[] {
+  return turns.map((turn) => (turn.kind !== 'assistant' ? turn : {
+    ...turn, parts: turn.parts.map((p) => (p.type === 'tool' && p.id === toolUseId ? { ...p, action: a } : p)),
+  }));
+}
+
+function TurnView({ turn, writing, onAction }: { turn: Turn; writing: boolean; onAction: (toolUseId: string, a: ActionState) => void }) {
   if (turn.kind === 'user') {
     return (
       <li data-jarvis-turn="user">
@@ -338,7 +382,7 @@ function TurnView({ turn, writing }: { turn: Turn; writing: boolean }) {
       <p className="t-section mb-1 text-signal">Jarvis</p>
       <div className="grid gap-2">
         {visible.map((p, i) => (p.type === 'tool'
-          ? <ToolRow key={p.id} part={p} />
+          ? (p.action ? <ActionCard key={p.id} action={p.action} onChange={(a) => onAction(p.id, a)} /> : <ToolRow key={p.id} part={p} />)
           : <Markdown key={`t${i}`} text={p.text} />))}
         {turn.refusal && <p className="text-[12px] text-haze">{t('Jarvis did not answer this question.')}</p>}
         {writing && (
@@ -380,6 +424,36 @@ function ToolRow({ part }: { part: ToolPart }) {
         {params.map((p) => <li key={p} className="break-words">{p}</li>)}
       </ul>
     </details>
+  );
+}
+
+/* ============================================================== waiting */
+
+function WaitingList({ actions, failed, onChange, onOpen }: {
+  actions: ActionState[] | null; failed: boolean; onChange: (a: ActionState) => void; onOpen: (threadId: string) => void;
+}) {
+  if (failed) return <p className="text-[12px] text-danger">{t('The waiting writes could not be read.')}</p>;
+  if (!actions) return <p className="t-meta">{t('Loading…')}</p>;
+  return (
+    <div>
+      <p className="t-section mb-2">{t('Waiting for approval')}</p>
+      {actions.length === 0
+        ? <p className="text-[12px] text-haze">{t('Nothing is waiting for approval.')}</p>
+        : (
+          <ul className="grid gap-3" data-jarvis-waiting-list>
+            {actions.map((a) => (
+              <li key={a.id} className="grid gap-1">
+                <ActionCard action={a} onChange={onChange} />
+                {a.thread_id && (
+                  <button type="button" onClick={() => onOpen(a.thread_id as string)} className="t-meta justify-self-start underline-offset-2 hover:underline">
+                    {t('Open the conversation')}
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+    </div>
   );
 }
 

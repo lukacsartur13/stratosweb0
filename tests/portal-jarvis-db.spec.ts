@@ -278,10 +278,30 @@ test('runs: written by the server; the owner reads them all, an admin those star
   expect(await ok(db, 'admin', `select * from jarvis_actions where run_id is not null`)).toEqual([]);
 });
 
+test('the life the write tools give an action (phase 5): pending with its reason → approved as edited → executed with its undo → reverted', async () => {
+  const [a] = await ok(db, 'admin', `insert into jarvis_actions (thread_id, tool, risk, payload, summary, status, result)
+    values ($1, 'add_note', 'internal', '{"entity_type":"lead","body":"Eredeti"}', 'Jegyzet · lead: „Eredeti”', 'pending', '{"reason":"outside_text"}') returning *`, [adminThread]);
+  expect(a.result).toEqual({ reason: 'outside_text' });
+  const [approved] = await ok(db, 'admin', `update jarvis_actions set status = 'approved', payload = '{"entity_type":"lead","body":"Javított"}',
+    summary = 'Jegyzet · lead: „Javított”' where id = $1 returning *`, [a.id]);
+  expect(approved).toMatchObject({ status: 'approved', summary: 'Jegyzet · lead: „Javított”', decided_by: U.admin });
+  const [done] = await ok(db, 'admin', `update jarvis_actions set status = 'executed', result = '{"reason":"outside_text","data":{"note_id":"n"},"undo":{"table":"lead_notes","id":"n"}}'
+    where id = $1 returning result, executed_at`, [a.id]);
+  expect(done.executed_at).not.toBeNull();
+  const [undone] = await ok(db, 'admin', `update jarvis_actions set status = 'reverted', result = result || '{"reverted_at":"2026-10-20T10:00:00Z"}'
+    where id = $1 returning status, result`, [a.id]);
+  expect(undone).toMatchObject({ status: 'reverted', result: { undo: { table: 'lead_notes' }, reverted_at: '2026-10-20T10:00:00Z' } });
+  // Approving a failed write again (retry) keeps what was approved.
+  const [f] = await ok(db, 'admin', `insert into jarvis_actions (thread_id, tool, risk, payload, summary, status, error)
+    values ($1, 'log_time', 'internal', '{"hours":1}', 'Munkaidő', 'failed', 'day limit') returning id`, [adminThread]);
+  expect((await as(db, 'admin', `update jarvis_actions set status = 'approved', payload = '{"hours":2}' where id = $1`, [f.id])).error).toContain('jarvis_action_decided');
+  await ok(db, 'admin', `update jarvis_actions set status = 'approved' where id = $1`, [f.id]);
+});
+
 test('re-running the migration changes nothing; a person who leaves takes their threads, their actions stay', async () => {
   await db.exec(read(JARVIS));
   expect((await ok(db, 'owner', `select daily_token_budget from jarvis_settings`))[0].daily_token_budget).toBe(3000000);
-  expect((await ok(db, 'owner', `select count(*)::int as n from jarvis_actions`))[0].n).toBe(4);
+  expect((await ok(db, 'owner', `select count(*)::int as n from jarvis_actions`))[0].n).toBe(6);
 
   await db.exec(`delete from auth.users where id = '${U.admin}'`);
   expect((await server(db, `select count(*)::int as n from jarvis_threads where id = $1`, [adminThread]))[0].n).toBe(0);

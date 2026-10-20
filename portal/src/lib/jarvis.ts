@@ -22,10 +22,18 @@ export type JarvisEvent =
   | { event: 'text'; data: { delta: string } }
   | { event: 'discard'; data: { n: number } }
   | { event: 'tool'; data: { id: string; name: string; status: 'running' | 'done' | 'error'; input?: Record<string, unknown> | null; label?: string } }
+  | { event: 'action'; data: { tool_use_id: string; action: ActionState } }
   | { event: 'continue'; data: Record<string, never> }
   | { event: 'refusal'; data: { category: string | null } }
   | { event: 'done'; data: { stop_reason: string; model: string } }
   | { event: 'error'; data: { code: string } };
+
+/** A write Jarvis made or proposes (jarvis_actions), as the server shows it (jarvis-writes.mjs publicAction). */
+export type ActionState = {
+  id: string; thread_id?: string | null; tool: string; risk: 'internal' | 'external';
+  status: 'pending' | 'approved' | 'executed' | 'rejected' | 'failed' | 'reverted';
+  summary: string; payload: Record<string, unknown>; reason: 'outside_text' | 'external' | null; error: string | null; undoable: boolean;
+};
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const CONTEXT_MARK = '[Portál-kontextus';
@@ -55,6 +63,14 @@ export const TOOL_LABEL: Record<string, string> = {
   email_search: 'E-mails searched',
   list_meetings: 'Calendar queried',
   time_summary: 'Hours queried',
+  add_note: 'Note',
+  log_interaction: 'Activity',
+  update_lead_status: 'Lead status',
+  create_opportunity: 'New deal',
+  update_opportunity: 'Deal changed',
+  create_task: 'Task',
+  log_time: 'Hours',
+  create_lead: 'New lead',
 };
 export const toolLabel = (name: string) => t(TOOL_LABEL[name] ?? 'Tool: {name}', { name });
 
@@ -173,7 +189,7 @@ async function run(first: Record<string, unknown>, knownThread: string | null, o
 
 /* ======================================================== stored turns */
 
-export type ToolPart = { type: 'tool'; id: string; name: string; status: 'running' | 'done' | 'error'; label: string; input: Record<string, unknown> | null };
+export type ToolPart = { type: 'tool'; id: string; name: string; status: 'running' | 'done' | 'error'; label: string; input: Record<string, unknown> | null; action?: ActionState };
 export type TextPart = { type: 'text'; step: number; text: string };
 export type Turn =
   | { kind: 'user'; id: string; text: string }
@@ -196,19 +212,68 @@ export async function listThreads(): Promise<ThreadSummary[]> {
   return (data ?? []) as ThreadSummary[];
 }
 
-/** One stored conversation as the panel draws it. */
+/** One stored conversation as the panel draws it, with the current state of its writes. */
 export async function loadThread(threadId: string): Promise<Turn[]> {
-  const { data, error } = await supabase.from('jarvis_messages')
-    .select('id, role, content, model')
-    .eq('thread_id', threadId)
-    .order('created_at', { ascending: true })
-    .limit(400);
-  if (error) throw new Error('DB');
-  return toTurns((data ?? []) as StoredMessage[]);
+  const [messages, writes] = await Promise.all([
+    supabase.from('jarvis_messages').select('id, role, content, model').eq('thread_id', threadId)
+      .order('created_at', { ascending: true }).limit(400),
+    supabase.from('jarvis_actions').select(ACTION_COLUMNS).eq('thread_id', threadId).limit(200),
+  ]);
+  if (messages.error) throw new Error('DB');
+  const byId = new Map(((writes.data ?? []) as StoredAction[]).map((a) => [a.id, toAction(a)]));
+  return toTurns((messages.data ?? []) as StoredMessage[], byId);
 }
 
-/** Stored messages → turns: the Portal's context block is not shown; tool calls become rows. */
-export function toTurns(rows: StoredMessage[]): Turn[] {
+/* ============================================================ actions */
+
+type StoredAction = Omit<ActionState, 'reason' | 'undoable'> & { result: { reason?: string; undo?: unknown } | null };
+const ACTION_COLUMNS = 'id, thread_id, tool, risk, status, summary, payload, result, error, created_at';
+
+const toAction = (a: StoredAction): ActionState => ({
+  id: a.id, thread_id: a.thread_id ?? null, tool: a.tool, risk: a.risk, status: a.status, summary: a.summary, payload: a.payload ?? {},
+  reason: (a.result?.reason as ActionState['reason']) ?? null, error: a.error ?? null,
+  undoable: a.status === 'executed' && a.risk === 'internal' && !!a.result?.undo,
+});
+
+/** Writes waiting for a decision (RLS: the owner sees all of them, an admin their own), newest first. */
+export async function listPending(): Promise<ActionState[]> {
+  const { data, error } = await supabase.from('jarvis_actions').select(ACTION_COLUMNS).eq('status', 'pending')
+    .order('created_at', { ascending: false }).limit(50);
+  if (error) throw new Error('DB');
+  return ((data ?? []) as StoredAction[]).map(toAction);
+}
+
+/** How many writes wait for a decision: the number on the Jarvis button. */
+export async function pendingCount(): Promise<number> {
+  const { count, error } = await supabase.from('jarvis_actions').select('id', { count: 'exact', head: true }).eq('status', 'pending');
+  return error ? 0 : count ?? 0;
+}
+
+export type Decision = { ok: true; action: ActionState; label?: string } | { ok: false; code: string; message?: string; action?: ActionState };
+
+/** A decision on one action: approve (optionally edited), reject, or undo. Never throws. */
+export async function decide(op: 'approve' | 'reject' | 'undo', actionId: string, payload?: Record<string, unknown>): Promise<Decision> {
+  const { data } = await supabase.auth.getSession();
+  const token = data.session?.access_token;
+  if (!token) return { ok: false, code: 'UNAUTHORIZED' };
+  try {
+    const res = await fetch('/api/jarvis', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${token}` },
+      body: JSON.stringify({ op, action_id: actionId, ...(payload ? { payload } : {}) }),
+    });
+    const body = await res.json().catch(() => null) as { ok?: boolean; code?: string; message?: string; label?: string; action?: ActionState } | null;
+    if (res.ok && body?.action) {
+      return body.ok ? { ok: true, action: body.action, label: body.label } : { ok: false, code: 'FAILED', message: body.label, action: body.action };
+    }
+    return { ok: false, code: body?.code ?? `HTTP_${res.status}`, message: body?.message, action: body?.action };
+  } catch {
+    return { ok: false, code: 'OFFLINE' };
+  }
+}
+
+/** Stored messages → turns: the Portal's context block is not shown; tool calls become rows, writes their cards. */
+export function toTurns(rows: StoredMessage[], actions: Map<string, ActionState> = new Map()): Turn[] {
   const turns: Turn[] = [];
   let current: Extract<Turn, { kind: 'assistant' }> | null = null;
   const tools = new Map<string, ToolPart>();
@@ -235,7 +300,13 @@ export function toTurns(rows: StoredMessage[]): Turn[] {
     } else {
       for (const b of blocks) {
         const part = b.tool_use_id ? tools.get(b.tool_use_id) : undefined;
-        if (part && b.is_error) part.status = 'error';
+        if (!part) continue;
+        if (b.is_error) part.status = 'error';
+        // A write's result names its action: the card shows that action as it is now.
+        let id: unknown = null;
+        try { id = (JSON.parse(String((b as { content?: unknown }).content ?? '')) as { action_id?: unknown }).action_id; } catch { id = null; }
+        const action = typeof id === 'string' ? actions.get(id) : undefined;
+        if (action) part.action = action;
       }
     }
   }
