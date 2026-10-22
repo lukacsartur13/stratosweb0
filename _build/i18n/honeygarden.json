@@ -1,0 +1,487 @@
+{
+ "_comment": [
+  "munka-honeygarden.html and its card on munkaink.html.",
+  "Every factual statement describes the published honeygarden.hu or the",
+  "project history; nothing asserts a business result."
+ ],
+ "HoneyGarden — kerttervező weboldala, tervlapként megrajzolva | Stratos": [
+  "HoneyGarden — a garden designer’s website, drawn as a plan sheet | Stratos",
+  "HoneyGarden — Website einer Gartenplanung, als Planblatt gezeichnet | Stratos"
+ ],
+ "Esettanulmány: Dóbiás Hanna kerttervező weboldala. Négy tervtípus egy lapon, kódból rajzolt alaprajzok, három régióoldal, két nyelv — az első változattól az élesítésig nyolc nap.": [
+  "Case study: the website of garden designer Hanna Dóbiás. Four plan types on one sheet, site plans drawn in code, three region pages, two languages — eight days from first version to launch.",
+  "Fallstudie: die Website der Gartenplanung von Hanna Dóbiás. Vier Planarten auf einem Blatt, im Code gezeichnete Lagepläne, drei Regionsseiten, zwei Sprachen — acht Tage von der ersten Fassung bis zum Livegang."
+ ],
+ "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Munkáink</a> / <b>HoneyGarden</b>": [
+  "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Work</a> / <b>HoneyGarden</b>",
+  "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Projekte</a> / <b>HoneyGarden</b>"
+ ],
+ "HoneyGarden kerttervezés — Győr, Budapest, Balaton": [
+  "HoneyGarden garden design — Győr, Budapest, Lake Balaton",
+  "HoneyGarden Gartenplanung — Győr, Budapest, Plattensee"
+ ],
+ "Mielőtt kert lenne, <span class=\"sig\">terv van.</span>": [
+  "Before the garden, <span class=\"sig\">there is a plan.</span>",
+  "Vor dem Garten <span class=\"sig\">steht der Plan.</span>"
+ ],
+ "Egy kerttervező nem kertet ad át, hanem tervet. Dóbiás Hanna weboldala ezért úgy épül fel, mint egy tervlap: alaprajzzal, méretaránnyal, rétegekkel — és pontosan azzal, amit a megrendelő a végén kézbe kap.": [
+  "A garden designer hands over a plan, not a garden. So Hanna Dóbiás’s website is built like a plan sheet: a site plan, a scale, layers — and exactly what the client ends up holding.",
+  "Wer Gärten plant, übergibt keinen Garten, sondern einen Plan. Die Website von Hanna Dóbiás ist deshalb aufgebaut wie ein Planblatt: mit Lageplan, Maßstab und Ebenen — und mit genau dem, was der Auftraggeber am Ende in den Händen hält."
+ ],
+ "<span>Weboldal</span><span>Saját rajzi nyelv</span><span>Helyi SEO</span><span>Kétnyelvű</span><span>AI-láthatóság</span>": [
+  "<span>Website</span><span>Custom drawing language</span><span>Local SEO</span><span>Bilingual</span><span>AI visibility</span>",
+  "<span>Website</span><span>Eigene Zeichensprache</span><span>Lokale SEO</span><span>Zweisprachig</span><span>KI-Sichtbarkeit</span>"
+ ],
+ "<span><b>Szektor</b> kerttervezés, tájépítészet</span> <span><b>Amit szállítottunk</b> weboldal és helyi SEO</span> <span><b>Nyelvek</b> magyar és angol</span> <span><b>Élő cím</b> <a href=\"https://honeygarden.hu/\" target=\"_blank\" rel=\"noopener\">honeygarden.hu</a></span>": [
+  "<span><b>Sector</b> garden design, landscape architecture</span> <span><b>What we delivered</b> website and local SEO</span> <span><b>Languages</b> Hungarian and English</span> <span><b>Live address</b> <a href=\"https://honeygarden.hu/\" target=\"_blank\" rel=\"noopener\">honeygarden.hu</a></span>",
+  "<span><b>Branche</b> Gartenplanung, Landschaftsarchitektur</span> <span><b>Was wir geliefert haben</b> Website und lokale SEO</span> <span><b>Sprachen</b> Ungarisch und Englisch</span> <span><b>Live-Adresse</b> <a href=\"https://honeygarden.hu/\" target=\"_blank\" rel=\"noopener\">honeygarden.hu</a></span>"
+ ],
+ "A HoneyGarden kerttervezés weboldalának nyitóképernyője: évelőágyás fotóján „Minden kert egy történet, a tiéd vajon mi lesz?” felirat, alatta egy családi kert méretarányos alaprajza tervlapi feliratmezővel.": [
+  "The opening screen of the HoneyGarden garden design website: the Hungarian line “Minden kert egy történet, a tiéd vajon mi lesz?” (“Every garden is a story – what will yours be?”) on a photo of a perennial border, and below it the scaled site plan of a family garden with a plan-sheet title block.",
+  "Der Startbildschirm der Website von HoneyGarden: die ungarische Zeile „Minden kert egy történet, a tiéd vajon mi lesz?“ (Jeder Garten ist eine Geschichte – welche wird deine?) auf dem Foto einer Staudenrabatte, darunter der maßstäbliche Lageplan eines Familiengartens mit Schriftfeld."
+ ],
+ "Nyitóképernyő — honeygarden.hu": [
+  "Opening screen — honeygarden.hu",
+  "Startbildschirm — honeygarden.hu"
+ ],
+ "A kerttervező terméke <span class=\"sig\">nem fér rá egy fotóra.</span>": [
+  "A garden designer’s product <span class=\"sig\">does not fit in a photo.</span>",
+  "Was eine Gartenplanung liefert, <span class=\"sig\">passt auf kein Foto.</span>"
+ ],
+ "Dóbiás Hanna tájrendező és kertépítő mérnök. Magánkerteket tervez Győrben, Budapesten és a Balaton környékén, HoneyGarden néven. Négy tervtípust kínál: koncepciótervet, növénykiültetési tervet, kiviteli kerttervet és 3D látványtervet.": [
+  "Hanna Dóbiás is a landscape and garden engineer who designs private gardens in Győr, Budapest and around Lake Balaton under the name HoneyGarden. Four plan types are on offer: a concept plan, a planting plan, construction drawings and a 3D visualisation.",
+  "Hanna Dóbiás hat Landschaftsgestaltung und Gartenbau studiert und plant unter dem Namen HoneyGarden Privatgärten in Győr, Budapest und rund um den Plattensee. Angeboten werden vier Planarten: Konzeptplan, Pflanzplan, Ausführungsplan und 3D-Visualisierung."
+ ],
+ "A kertes weboldalak többsége kész kerteket mutat. Egy tervezőnél ez nyitva hagyja a fontosabb kérdést: mit kap a megrendelő a pénzéért, mielőtt bárki ásni kezdene? A legtöbb látogató nem tudja, mi a különbség koncepció és kiviteli terv között — és azt sem, miért fizessen egy tervért, ha a kivitelező úgyis megcsinálja a kertet.": [
+  "Most garden websites show finished gardens. For a designer, that leaves the more important question open: what does the client get for the money before anyone starts digging? Most visitors do not know the difference between a concept plan and construction drawings — or why they should pay for a plan when the contractor will build the garden anyway.",
+  "Die meisten Garten-Websites zeigen fertige Gärten. Für eine Planung lässt das die wichtigere Frage offen: Was bekommt der Auftraggeber für sein Geld, bevor irgendjemand zu graben beginnt? Die meisten Besucher wissen nicht, worin sich ein Konzeptplan von einem Ausführungsplan unterscheidet — und auch nicht, warum sie für einen Plan bezahlen sollten, wenn der Gartenbauer den Garten ohnehin anlegt."
+ ],
+ "A feladat ezért nem egy szép kertes oldal volt, hanem egy olyan, ami megmutatja magát a terméket: a tervet.": [
+  "So the brief was not a pretty garden website, but one that shows the product itself: the plan.",
+  "Die Aufgabe war deshalb keine schöne Garten-Website, sondern eine, die das Produkt selbst zeigt: den Plan."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Dizájnirány</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Design direction</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Gestaltungsrichtung</span>"
+ ],
+ "A kert először rajz. <span class=\"sig\">Az oldal is.</span>": [
+  "The garden is a drawing first. <span class=\"sig\">So is the site.</span>",
+  "Ein Garten ist zuerst eine Zeichnung. <span class=\"sig\">Die Website auch.</span>"
+ ],
+ "Az egész oldal egy tervlap anyagaiból épül: papírszínű háttér, tusvonal, és élő színek csak ott, ahol növény van. A nyitóképernyő tetején egy tervlap feliratsora fut — rajzszám, méretarány, koordináta —, alatta egy családi kert alaprajza, a feliratmezőben Hanna nevével.": [
+  "The whole site is made from the materials of a plan sheet: paper-coloured ground, ink lines, and living colour only where there are plants. Across the top of the opening screen runs the label strip of a plan sheet — drawing number, scale, coordinates — and below it the site plan of a family garden, with Hanna’s name in the title block.",
+  "Die ganze Website besteht aus dem Material eines Planblatts: papierfarbener Grund, Tuschelinien und lebendige Farbe nur dort, wo Pflanzen sind. Oben auf dem Startbildschirm läuft die Beschriftungszeile eines Planblatts — Plannummer, Maßstab, Koordinaten —, darunter der Lageplan eines Familiengartens, mit Hannas Namen im Schriftfeld."
+ ],
+ "A betűk is a rajzasztalról jönnek: monospace a tervlapi feliratokhoz, széles groteszk a címekhez, dőlt antikva a személyes hangsúlyokhoz. A látogató így már az első képernyőn azt látja, amit a megbízás végén kézbe kap.": [
+  "The type comes from the drawing board too: a monospace for plan labels, a wide grotesque for headings, an italic serif for personal emphasis. On the very first screen, visitors see what they will hold at the end of the commission.",
+  "Auch die Schriften kommen vom Zeichentisch: eine Monospace für die Planbeschriftung, eine breite Grotesk für die Überschriften, eine kursive Antiqua für persönliche Betonungen. So sieht man schon auf dem ersten Bildschirm, was man am Ende des Auftrags in den Händen hält."
+ ],
+ "Minden rajz kódból készült": [
+  "Every drawing is made in code",
+  "Jede Zeichnung entsteht im Code"
+ ],
+ "Alaprajz, buborékdiagram, ültetési jelek, metszet, izometrikus kertmodell, virágzási naptár, régiótérképek — mind vektoros rajz, egy közös rajzi nyelven. Stock-illusztráció nincs az oldalon.": [
+  "Site plan, bubble diagram, planting symbols, section, isometric garden model, flowering calendar, regional maps — all vector drawings in one shared drawing language. There is no stock illustration on the site.",
+  "Lageplan, Blasendiagramm, Pflanzsymbole, Schnitt, isometrisches Gartenmodell, Blühkalender, Regionalkarten — alles Vektorzeichnungen in einer gemeinsamen Zeichensprache. Stock-Illustrationen gibt es auf der Website keine."
+ ],
+ "Egyes szám első személy": [
+  "First person singular",
+  "Erste Person Singular"
+ ],
+ "Hanna egyedül tervez, ezért az oldal az ő hangján beszél, tegezve: „Szia, Hanna vagyok.” A Rólam oldal az ő saját szövegére épül.": [
+  "Hanna designs alone, so the site speaks in the first person and on first-name terms: “Hi, I’m Hanna.” The About page is built on Hanna’s own text.",
+  "Hanna plant allein, deshalb spricht die Website in der ersten Person und duzt: „Hi, ich bin Hanna.“ Die Über-mich-Seite beruht auf Hannas eigenem Text."
+ ],
+ "Kártyák helyett rétegek": [
+  "Layers instead of cards",
+  "Ebenen statt Karten"
+ ],
+ "A négy tervtípus egymásra épül, ezért az oldal sem négy egyforma kártyaként mutatja őket, hanem négy rétegként ugyanazon a lapon.": [
+  "The four plan types build on one another, so the site does not show them as four identical cards but as four layers on the same sheet.",
+  "Die vier Planarten bauen aufeinander auf. Deshalb zeigt die Website sie nicht als vier gleiche Karten, sondern als vier Ebenen auf demselben Blatt."
+ ],
+ "Árlista helyett folyamat": [
+  "A process instead of a price list",
+  "Ablauf statt Preisliste"
+ ],
+ "A tervezési díj a telektől és a kért tervektől függ, ezért nincs árlista. Helyette az oldal leírja, mi történik az első üzenet után: válasz két munkanapon belül, helyszíni bejárás, írásos, tételes ajánlat.": [
+  "The design fee depends on the plot and the plans requested, so there is no price list. Instead, the site describes what happens after the first message: a reply within two working days, a site visit, a written, itemised quote.",
+  "Das Planungshonorar hängt vom Grundstück und den gewünschten Plänen ab, deshalb gibt es keine Preisliste. Stattdessen beschreibt die Website, was nach der ersten Nachricht passiert: Antwort innerhalb von zwei Werktagen, Ortstermin, schriftliches, aufgeschlüsseltes Angebot."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Egy telek, négy réteg</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">One plot, four layers</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Ein Grundstück, vier Ebenen</span>"
+ ],
+ "Négy szolgáltatás, <span class=\"sig\">egyetlen lapon.</span>": [
+  "Four services, <span class=\"sig\">one sheet.</span>",
+  "Vier Leistungen, <span class=\"sig\">ein Blatt.</span>"
+ ],
+ "A kezdőlap közepén sötét szakasz áll, benne egy telek alaprajza. Görgetés közben réteg kerül rá réteg után: a koncepció zónái, az ültetés, a kiviteli részletek — végül a négy réteg szétnyílik a térben, ahogy a 3D látványterv is egyben mutatja őket.": [
+  "In the middle of the home page sits a dark section with the site plan of a plot. As you scroll, layer after layer is added: the zones of the concept, the planting, the construction details — and finally the four layers open out in space, the way a 3D visualisation shows them together.",
+  "In der Mitte der Startseite liegt ein dunkler Abschnitt mit dem Lageplan eines Grundstücks. Beim Scrollen kommt Ebene um Ebene hinzu: die Zonen des Konzepts, die Bepflanzung, die Ausführungsdetails — am Ende fächern sich die vier Ebenen im Raum auf, so wie eine 3D-Visualisierung sie zusammen zeigt."
+ ],
+ "A kezdőlap rétegszakasza a második lépésnél: a telek alaprajzán a koncepció zónái fölött megjelennek a fák, a sövény és az ágyások; mellette a „Növénykiültetési terv” leírása.": [
+  "The home page layer section at its second step: above the concept zones on the site plan appear the trees, the hedge and the beds; beside it, the description of the planting plan.",
+  "Der Ebenen-Abschnitt der Startseite im zweiten Schritt: Über den Konzeptzonen des Lageplans erscheinen Bäume, Hecke und Beete; daneben die Beschreibung des Pflanzplans."
+ ],
+ "2. réteg — növénykiültetési terv": [
+  "Layer 2 — planting plan",
+  "Ebene 2 — Pflanzplan"
+ ],
+ "A rétegszakasz utolsó lépése: a négy tervréteg áttetsző lapokként szétnyílik a térben, mellette a „3D látványterv” leírása.": [
+  "The last step of the layer section: the four plan layers open out in space as translucent sheets; beside them, the description of the 3D visualisation.",
+  "Der letzte Schritt des Ebenen-Abschnitts: Die vier Planebenen fächern sich als durchscheinende Blätter im Raum auf; daneben die Beschreibung der 3D-Visualisierung."
+ ],
+ "4. réteg — a rétegek térben": [
+  "Layer 4 — the layers in space",
+  "Ebene 4 — die Ebenen im Raum"
+ ],
+ "A szolgáltatáslista <span class=\"sig\">maga a folyamat.</span>": [
+  "The list of services <span class=\"sig\">is the process.</span>",
+  "Die Leistungsliste <span class=\"sig\">ist der Ablauf.</span>"
+ ],
+ "A látogató nem négy dobozt hasonlít össze, hanem végignézi, hogyan lesz egy üres telekből kert, és közben megérti, melyik terv mit tesz hozzá. Minden réteg a saját szolgáltatásoldalára visz tovább.": [
+  "Visitors do not compare four boxes. They watch an empty plot become a garden, and on the way they learn what each plan adds. Every layer leads on to its own service page.",
+  "Besucher vergleichen nicht vier Kästchen, sondern sehen zu, wie aus einem leeren Grundstück ein Garten wird — und verstehen dabei, was jeder Plan beiträgt. Jede Ebene führt weiter zu ihrer eigenen Leistungsseite."
+ ],
+ "Telefonon az alaprajz a képernyő tetején marad, amíg a lépések alatta görögnek, és együtt mozdul a görgetésre elrejtőző fejléccel.": [
+  "On a phone, the site plan stays at the top of the screen while the steps scroll beneath it, and moves with the header as it hides on scroll.",
+  "Auf dem Smartphone bleibt der Lageplan oben am Bildschirm, während die Schritte darunter durchscrollen, und bewegt sich mit der Kopfzeile, die sich beim Scrollen ausblendet."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">Szállított terjedelem</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">Scope delivered</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">04</span><span class=\"smark__t\">Gelieferter Umfang</span>"
+ ],
+ "A Koncepcióterv oldal nyitóképernyője: a cím mellett buborékdiagram a kert zónáival — pihenő, víz, konyhakert, gyep, árnyék — és a köztük futó kapcsolatokkal.": [
+  "The opening screen of the concept plan page: beside the title, a bubble diagram of the garden’s zones — seating, water, kitchen garden, lawn, shade — and the links between them.",
+  "Der Startbildschirm der Seite zum Konzeptplan: neben dem Titel ein Blasendiagramm mit den Zonen des Gartens — Sitzplatz, Wasser, Küchengarten, Rasen, Schatten — und ihren Verbindungen."
+ ],
+ "Koncepcióterv — buborékdiagram": [
+  "Concept plan — bubble diagram",
+  "Konzeptplan — Blasendiagramm"
+ ],
+ "A Növénykiültetési terv oldal virágzási naptára „Január sem üres” címmel: tizenkét növény latin névvel és színes sávokkal hónapokra bontva, egy szaggatott függőleges vonallal az aktuális hónapon.": [
+  "The flowering calendar on the planting plan page, titled “Január sem üres” (“Even January isn’t empty”): twelve plants with Latin names and coloured bars across the months, with a dashed vertical line on the current month.",
+  "Der Blühkalender auf der Seite zum Pflanzplan mit dem Titel „Január sem üres“ (Auch der Januar ist nicht leer): zwölf Pflanzen mit lateinischem Namen und farbigen Balken über die Monate, eine gestrichelte senkrechte Linie markiert den aktuellen Monat."
+ ],
+ "Növénykiültetési terv — virágzási naptár": [
+  "Planting plan — flowering calendar",
+  "Pflanzplan — Blühkalender"
+ ],
+ "A Kiviteli kertterv oldal nyitóképernyője: a cím mellett rétegrendi metszet egy fával, burkolattal, ágyazattal és feliratozott rétegekkel.": [
+  "The opening screen of the construction plan page: beside the title, a build-up section with a tree, paving, bedding and labelled layers.",
+  "Der Startbildschirm der Seite zum Ausführungsplan: neben dem Titel ein Schnitt durch den Aufbau mit Baum, Belag, Bettung und beschrifteten Schichten."
+ ],
+ "Kiviteli kertterv — metszet": [
+  "Construction plan — section",
+  "Ausführungsplan — Schnitt"
+ ],
+ "A 3D látványterv oldal nyitóképernyője: izometrikus kertmodell házzal, fákkal, terasszal és tóval, alatta nézet- és évszakváltó gombokkal.": [
+  "The opening screen of the 3D visualisation page: an isometric garden model with a house, trees, a terrace and a pond, with view and season buttons below.",
+  "Der Startbildschirm der Seite zur 3D-Visualisierung: ein isometrisches Gartenmodell mit Haus, Bäumen, Terrasse und Teich, darunter Schaltflächen für Ansicht und Jahreszeit."
+ ],
+ "3D látványterv — kipróbálható kertmodell": [
+  "3D visualisation — a garden model to try",
+  "3D-Visualisierung — ein Gartenmodell zum Ausprobieren"
+ ],
+ "Négy szolgáltatásoldal, négy rajz": [
+  "Four service pages, four drawings",
+  "Vier Leistungsseiten, vier Zeichnungen"
+ ],
+ "Buborékdiagram a koncepciótervhez, ültetési jelek a növénykiültetési tervhez, rétegrendi metszet a kiviteli tervhez, izometrikus kertmodell a látványtervhez. Mindegyik oldal ugyanarra a négy kérdésre válaszol: mit kapsz, kinek ajánlom, hogyan készül, és mit szoktak még kérdezni.": [
+  "A bubble diagram for the concept plan, planting symbols for the planting plan, a build-up section for the construction plan, an isometric garden model for the visualisation. Every page answers the same four questions: what you get, who it is for, how it is made, and what people usually ask next.",
+  "Ein Blasendiagramm zum Konzeptplan, Pflanzsymbole zum Pflanzplan, ein Schnitt durch den Aufbau zum Ausführungsplan, ein isometrisches Gartenmodell zur Visualisierung. Jede Seite beantwortet dieselben vier Fragen: was man bekommt, für wen es gedacht ist, wie es entsteht und was sonst noch gefragt wird."
+ ],
+ "Élő virágzási naptár": [
+  "A live flowering calendar",
+  "Ein lebendiger Blühkalender"
+ ],
+ "Tizenkét növény virágzása és díszítő időszaka egész évre. A függőleges vonal mindig az aktuális hónapon áll, így a látogató azt látja, mi díszít éppen most.": [
+  "When twelve plants flower or look their best, across the whole year. The vertical line always sits on the current month, so visitors see what is in season right now.",
+  "Blüte und Zierphase von zwölf Pflanzen über das ganze Jahr. Die senkrechte Linie steht immer auf dem aktuellen Monat — man sieht also, was gerade jetzt schmückt."
+ ],
+ "Kipróbálható 3D modell": [
+  "A 3D model to try",
+  "Ein 3D-Modell zum Ausprobieren"
+ ],
+ "A kertmodell vonalrajzként indul, és pár másodperc alatt látványtervvé színeződik. A nézet (vonalrajz, látványterv) és az évszak (nyár, ősz, tél) is átváltható.": [
+  "The garden model starts as a line drawing and colours itself into a visualisation within a few seconds. Both the view (line drawing, visualisation) and the season (summer, autumn, winter) can be switched.",
+  "Das Gartenmodell beginnt als Strichzeichnung und färbt sich in wenigen Sekunden zur Visualisierung ein. Ansicht (Strichzeichnung, Visualisierung) und Jahreszeit (Sommer, Herbst, Winter) lassen sich umschalten."
+ ],
+ "Hangulati tabló": [
+  "Mood board",
+  "Moodboard"
+ ],
+ "A koncepcióterv oldalán az anyagok és a színek íves mintákon: mészkő, vörösfenyő, corten, zsálya, levendula, kavics. Hanna mondatával: „Mielőtt vonal lenne, hangulat van.”": [
+  "On the concept plan page, materials and colours on arched swatches: limestone, larch, Corten, sage, lavender, gravel. In Hanna’s words: “Before there’s a line, there’s a mood.”",
+  "Auf der Seite zum Konzeptplan stehen Materialien und Farben auf bogenförmigen Mustern: Kalkstein, Lärche, Cortenstahl, Salbei, Lavendel, Kies. Mit Hannas Worten: „Bevor es eine Linie gibt, gibt es eine Stimmung.“"
+ ],
+ "Mérőkereszt az alaprajzon": [
+  "A measuring crosshair on the plan",
+  "Ein Messkreuz auf dem Plan"
+ ],
+ "Ha az egér a kezdőlap alaprajza fölé ér, a lap enyhén felé fordul, és egy mérőkereszt méterben mutatja, hol jár a kurzor a telken.": [
+  "When the pointer moves over the site plan on the home page, the sheet turns slightly towards it, and a crosshair shows in metres where the cursor is on the plot.",
+  "Fährt der Mauszeiger über den Lageplan auf der Startseite, neigt sich das Blatt leicht zu ihm hin, und ein Messkreuz zeigt in Metern, wo auf dem Grundstück der Cursor steht."
+ ],
+ "Rajzoló mozgás": [
+  "Motion that draws",
+  "Bewegung, die zeichnet"
+ ],
+ "A rajzok és a vonalas ikonok kirajzolódnak, amikor a képernyőre érnek, a keretezett elemek sarkán pedig egérrel fölé állva tervlapi „+” jelek jelennek meg. Csökkentett mozgás beállításnál a mozgás elmarad.": [
+  "Drawings and line icons draw themselves as they come into view, and on hover, plan-sheet “+” marks appear at the corners of framed elements. With reduced motion switched on, the movement is left out.",
+  "Zeichnungen und Linien-Icons zeichnen sich, sobald sie ins Bild kommen; beim Darüberfahren erscheinen an den Ecken gerahmter Elemente „+“-Marken wie auf einem Planblatt. Bei aktivierter Einstellung für reduzierte Bewegung entfällt die Bewegung."
+ ],
+ "Rólam és ajánlatkérés": [
+  "About and enquiry",
+  "Über mich und Anfrage"
+ ],
+ "Hanna fotója egy rajzolt ívben, mellette a végzettsége és az elérhetősége. Az ajánlatkérő űrlapon a pontos cím megadható, hogy Hanna a bejárás előtt műholdképen megnézhesse a telket — de a település is elég.": [
+  "Hanna’s photo in a drawn arch, with degree and contact details beside it. On the enquiry form, the exact address can be given so the plot can be checked on satellite imagery before the site visit — but the town is enough.",
+  "Hannas Foto in einem gezeichneten Bogen, daneben Abschluss und Kontaktdaten. Im Anfrageformular lässt sich die genaue Adresse angeben, damit das Grundstück vor dem Ortstermin auf dem Satellitenbild angesehen werden kann — der Ort genügt aber auch."
+ ],
+ "Két nyelv": [
+  "Two languages",
+  "Zwei Sprachen"
+ ],
+ "Magyar és angol változat, oldalanként párban: összesen húsz oldal.": [
+  "Hungarian and English versions, paired page by page: twenty pages in all.",
+  "Ungarische und englische Fassung, Seite für Seite gepaart: insgesamt zwanzig Seiten."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Helyi keresés</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Local search</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">05</span><span class=\"smark__t\">Lokale Suche</span>"
+ ],
+ "Három régió, <span class=\"sig\">három külön oldal.</span>": [
+  "Three regions, <span class=\"sig\">three separate pages.</span>",
+  "Drei Regionen, <span class=\"sig\">drei eigene Seiten.</span>"
+ ],
+ "Hanna három régióban vállal helyszíni bejárást, ezért mindhárom saját oldalt kapott. Nem ugyanaz a szöveg kicserélt városnévvel: mindegyik a régió saját kérdéseiről szól.": [
+  "Hanna does site visits in three regions, so each one has its own page. Not the same text with the town name swapped: each is about the region’s own questions.",
+  "Hanna kommt in drei Regionen zum Ortstermin, deshalb hat jede ihre eigene Seite. Nicht derselbe Text mit ausgetauschtem Ortsnamen: Jede behandelt die eigenen Fragen der Region."
+ ],
+ "A Balaton környéki régióoldal nyitóképernyője: „Kerttervezés a Balaton környékén” cím, mellette a tó sematikus térképe a tervezési terület településeivel.": [
+  "The opening screen of the Lake Balaton region page: the title “Kerttervezés a Balaton környékén” (“Garden design around Lake Balaton”) beside a schematic map of the lake with the towns of the design area.",
+  "Der Startbildschirm der Regionsseite zum Plattensee: der Titel „Kerttervezés a Balaton környékén“ (Gartenplanung am Plattensee) neben einer schematischen Karte des Sees mit den Orten des Planungsgebiets."
+ ],
+ "Régióoldal — Balaton környéke": [
+  "Region page — Lake Balaton",
+  "Regionsseite — Plattensee"
+ ],
+ "Győr és Győr-Moson-Sopron": [
+  "Győr and Győr-Moson-Sopron",
+  "Győr und Győr-Moson-Sopron"
+ ],
+ "Szél és nyitott táj, talajvíz és vízelvezetés, a kisalföldi talajhoz illő növények, belátás az új lakóövezetek kisebb telkein.": [
+  "Wind and open landscape, groundwater and drainage, plants suited to the soils of the Little Hungarian Plain, privacy on the smaller plots of new housing areas.",
+  "Wind und offene Landschaft, Grundwasser und Entwässerung, Pflanzen für die Böden der Kleinen Ungarischen Tiefebene, Sichtschutz auf den kleineren Grundstücken der Neubaugebiete."
+ ],
+ "Budapest és agglomeráció": [
+  "Budapest and its surroundings",
+  "Budapest und Umland"
+ ],
+ "Lejtős telkek, kis alapterület, takarás a szomszédok felé, és a városi hősziget: árnyékot adó fák, vízáteresztő burkolatok.": [
+  "Sloping plots, small footprints, screening from the neighbours, and the urban heat island: shade trees, permeable paving.",
+  "Hanggrundstücke, kleine Flächen, Sichtschutz zu den Nachbarn und die städtische Wärmeinsel: Schattenbäume, wasserdurchlässige Beläge."
+ ],
+ "Balaton környéke": [
+  "Lake Balaton",
+  "Plattensee"
+ ],
+ "Köves vagy homokos talaj, szezonális használat, víztakarékos öntözés, a tóra nyíló kilátás és az árnyas terasz.": [
+  "Stony or sandy soil, seasonal use, water-saving irrigation, the view of the lake and a shaded terrace.",
+  "Steiniger oder sandiger Boden, saisonale Nutzung, wassersparende Bewässerung, der Blick auf den See und die schattige Terrasse."
+ ],
+ "Mindhárom oldalon": [
+  "On all three pages",
+  "Auf allen drei Seiten"
+ ],
+ "Sematikus régiótérkép, a tervezési terület településeinek listája, helyi gyakori kérdések, és link a másik két régióra.": [
+  "A schematic regional map, the list of towns in the design area, local FAQs, and links to the other two regions.",
+  "Eine schematische Regionalkarte, die Liste der Orte im Planungsgebiet, regionale FAQ und Links zu den beiden anderen Regionen."
+ ],
+ "A keresők nyelvén": [
+  "In the search engines’ language",
+  "In der Sprache der Suchmaschinen"
+ ],
+ "Oldalanként strukturált adat (szolgáltató, szolgáltatások a kiszolgált területtel, morzsamenü, gyakori kérdések), magyar–angol nyelvi párok, oldaltérkép, rövid URL-ek, mint a /kerttervezes-gyor, és Google Search Console-ellenőrzés.": [
+  "Structured data on every page (the business, its services with the area served, breadcrumbs, FAQs), Hungarian–English language pairs, a sitemap, short URLs such as /kerttervezes-gyor, and Google Search Console verification.",
+  "Strukturierte Daten auf jeder Seite (Anbieter, Leistungen mit Einzugsgebiet, Breadcrumbs, FAQ), ungarisch-englische Sprachpaare, Sitemap, kurze URLs wie /kerttervezes-gyor und eine Verifizierung in der Google Search Console."
+ ],
+ "AI-asszisztenseknek is olvasható": [
+  "Readable for AI assistants too",
+  "Auch für KI-Assistenten lesbar"
+ ],
+ "Egy llms.txt összefoglaló és egy llms-full.txt az oldal teljes szövegével. A robots.txt név szerint engedi az OpenAI, az Anthropic, a Perplexity és a Google AI-robotjait.": [
+  "An llms.txt summary and an llms-full.txt with the full text of the site. The robots.txt allows the AI crawlers of OpenAI, Anthropic, Perplexity and Google by name.",
+  "Eine llms.txt als Zusammenfassung und eine llms-full.txt mit dem vollständigen Text der Website. Die robots.txt erlaubt die KI-Crawler von OpenAI, Anthropic, Perplexity und Google namentlich."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Közös munka</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Working together</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">06</span><span class=\"smark__t\">Zusammenarbeit</span>"
+ ],
+ "Három kör, <span class=\"sig\">kilenc nap.</span>": [
+  "Three rounds, <span class=\"sig\">nine days.</span>",
+  "Drei Runden, <span class=\"sig\">neun Tage.</span>"
+ ],
+ "Hanna visszajelzései rövid listákban, menet közben érkeztek. A legnagyobb változás a második körben jött: a vállalkozás nevet váltott, és Dóbiás Hanna kerttervezésből HoneyGarden lett.": [
+  "Hanna’s feedback came in short lists, as the work went on. The biggest change came in the second round: the business changed its name, from Dóbiás Hanna kerttervezés to HoneyGarden.",
+  "Hannas Feedback kam in kurzen Listen, laufend während der Arbeit. Die größte Änderung brachte die zweite Runde: Das Unternehmen bekam einen neuen Namen, aus Dóbiás Hanna kerttervezés wurde HoneyGarden."
+ ],
+ "Az oldal szövegei és kapcsolati adatai nem a kész HTML-ben élnek, hanem a forrásfájlokban, amelyekből minden oldal generálódik. Az új név ezért egy lépésben került át minden oldalra, a keresőknek szóló adatokba és az AI-összefoglalóba is.": [
+  "The site’s text and contact details do not live in the finished HTML but in the source files every page is generated from. So the new name reached every page, the data for search engines and the AI summary in a single step.",
+  "Texte und Kontaktdaten der Website stehen nicht im fertigen HTML, sondern in den Quelldateien, aus denen jede Seite generiert wird. So kam der neue Name in einem einzigen Schritt auf jede Seite, in die Daten für Suchmaschinen und in die KI-Zusammenfassung."
+ ],
+ "Október 13. — első változat": [
+  "13 October — first version",
+  "13. Oktober — erste Fassung"
+ ],
+ "Húsz oldal két nyelven: kezdőlap, négy szolgáltatásoldal, három régióoldal, Rólam és ajánlatkérés.": [
+  "Twenty pages in two languages: home page, four service pages, three region pages, About and enquiry.",
+  "Zwanzig Seiten in zwei Sprachen: Startseite, vier Leistungsseiten, drei Regionsseiten, Über mich und Anfrage."
+ ],
+ "Október 16. — első kör": [
+  "16 October — first round",
+  "16. Oktober — erste Runde"
+ ],
+ "Új szakaszsorrend a kezdőlapon, új érv a klímaadaptív növényekről, ötödik lépés a folyamatban a fenntartási tanácsokkal, és címmező a műholdas előfelméréshez.": [
+  "A new section order on the home page, a new argument for climate-adaptive plants, a fifth step in the process with aftercare advice, and an address field for a satellite pre-survey.",
+  "Neue Reihenfolge der Abschnitte auf der Startseite, ein neues Argument für klimaangepasste Pflanzen, ein fünfter Schritt im Ablauf mit Pflegetipps und ein Adressfeld für die Vorabsicht per Satellitenbild."
+ ],
+ "Október 20. — második kör": [
+  "20 October — second round",
+  "20. Oktober — zweite Runde"
+ ],
+ "Új név és logó: HoneyGarden. Új mottó a nyitóképen, Hanna fotója a rajzolt ívben, a Rólam oldalon a saját szövege.": [
+  "A new name and logo: HoneyGarden. A new line on the opening image, Hanna’s photo in the drawn arch, and Hanna’s own text on the About page.",
+  "Neuer Name und neues Logo: HoneyGarden. Ein neuer Leitsatz auf dem Startbild, Hannas Foto im gezeichneten Bogen und auf der Über-mich-Seite Hannas eigener Text."
+ ],
+ "Október 21. — élesítés": [
+  "21 October — launch",
+  "21. Oktober — Livegang"
+ ],
+ "Az oldal a honeygarden.hu domainen, HTTPS-sel.": [
+  "The site goes live on the honeygarden.hu domain, over HTTPS.",
+  "Die Website geht unter honeygarden.hu live, mit HTTPS."
+ ],
+ "Október 22. — harmadik kör": [
+  "22 October — third round",
+  "22. Oktober — dritte Runde"
+ ],
+ "Rövid URL-ek .html nélkül, a végleges logó, elrendezési finomítások asztali gépen és telefonon.": [
+  "Short URLs without .html, the final logo, layout refinements on desktop and phone.",
+  "Kurze URLs ohne .html, das endgültige Logo, Feinschliff am Layout auf Desktop und Smartphone."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">07</span><span class=\"smark__t\">Részletek</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">07</span><span class=\"smark__t\">Details</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">07</span><span class=\"smark__t\">Details</span>"
+ ],
+ "Amit senki nem vesz észre, <span class=\"sig\">ha jól működik.</span>": [
+  "What nobody notices <span class=\"sig\">when it works.</span>",
+  "Was niemand bemerkt, <span class=\"sig\">wenn es funktioniert.</span>"
+ ],
+ "A telefonos nézet nem az asztali kicsinyítése: a hosszú magyar szavaknak, a nagy címeknek és a zsúfolt fejlécnek külön megoldás kellett.": [
+  "The phone view is not a shrunken desktop: long Hungarian words, large headings and a crowded header each needed their own solution.",
+  "Die Smartphone-Ansicht ist kein verkleinerter Desktop: Lange ungarische Wörter, große Überschriften und eine volle Kopfzeile brauchten jeweils eine eigene Lösung."
+ ],
+ "Három telefonos képernyő egymás mellett: a kezdőlap nyitóképe az alaprajzzal, a rétegszakasz a növénykiültetési tervnél, és az ajánlatkérő oldal „Mesélj a kertedről” címmel.": [
+  "Three phone screens side by side: the home page opening screen with the site plan, the layer section at the planting plan, and the enquiry page titled “Mesélj a kertedről” (“Tell me about your garden”).",
+  "Drei Smartphone-Bildschirme nebeneinander: der Startbildschirm mit dem Lageplan, der Ebenen-Abschnitt beim Pflanzplan und die Anfrageseite mit dem Titel „Mesélj a kertedről“ (Erzähl mir von deinem Garten)."
+ ],
+ "Telefonos nézet — kezdőlap, rétegek, ajánlatkérés": [
+  "Phone view — home page, layers, enquiry",
+  "Smartphone-Ansicht — Startseite, Ebenen, Anfrage"
+ ],
+ "Magyar szavak, nagy betűvel": [
+  "Hungarian words, in capitals",
+  "Ungarische Wörter in Versalien"
+ ],
+ "A „növénykiültetési” nagy, csupa nagybetűs címként nem fér ki egy sorba. A böngésző saját elválasztását kikapcsoltuk, az elválasztás kézzel került a helyes szótaghatárra: NÖVÉNY-KIÜLTETÉSI.": [
+  "“Növénykiültetési” (planting) does not fit on one line as a large all-caps heading. The browser’s own hyphenation is switched off, and the break was placed by hand at the right syllable: NÖVÉNY-KIÜLTETÉSI.",
+  "„Növénykiültetési“ (Bepflanzungs-) passt als große Überschrift in Versalien nicht in eine Zeile. Die automatische Silbentrennung des Browsers ist abgeschaltet, die Trennung wurde von Hand an die richtige Silbengrenze gesetzt: NÖVÉNY-KIÜLTETÉSI."
+ ],
+ "Fejléc a legkeskenyebb telefonon is": [
+  "A header that fits the narrowest phone",
+  "Eine Kopfzeile, die aufs schmalste Smartphone passt"
+ ],
+ "A logó, a nyelvváltó és a menügomb kis kijelzőn is kifér egy sorba; a „Menü” felirat 480 pixel alatt csak a képernyőolvasóknak szól.": [
+  "The logo, the language switch and the menu button fit on one line on small screens; below 480 pixels the “Menu” label is there for screen readers only.",
+  "Logo, Sprachumschalter und Menüschaltfläche passen auch auf kleinen Bildschirmen in eine Zeile; unter 480 Pixeln ist die Beschriftung „Menü“ nur noch für Screenreader da."
+ ],
+ "Windows-laptop nagyítással": [
+  "Windows laptops with display scaling",
+  "Windows-Laptops mit Anzeigeskalierung"
+ ],
+ "150–200%-os megjelenítési nagyításnál a böngésző keskeny képernyőnek látja a laptopot, és ilyenkor eltűnt a menü. Most 860 pixelig látható, alatta a menügomb veszi át.": [
+  "At 150–200% display scaling the browser sees the laptop as a narrow screen, and the navigation used to disappear. It now stays visible down to 860 pixels; below that the menu button takes over.",
+  "Bei 150–200 % Anzeigeskalierung hält der Browser den Laptop für einen schmalen Bildschirm, und die Navigation verschwand. Jetzt bleibt sie bis 860 Pixel sichtbar, darunter übernimmt die Menüschaltfläche."
+ ],
+ "Egy forrás, külső könyvtár nélkül": [
+  "One source, no external libraries",
+  "Eine Quelle, keine externen Bibliotheken"
+ ],
+ "Az oldalakat egyetlen Node-script generálja a forrásfájlokból, keretrendszer nélkül. A teljes viselkedés egy nagyjából 10 KB-os JavaScript-fájlban él; a kiszolgálás statikus, GitHub Pagesről.": [
+  "A single Node script generates the pages from the source files, with no framework. All of the site’s behaviour lives in one JavaScript file of about 10 KB; hosting is static, on GitHub Pages.",
+  "Ein einziges Node-Skript erzeugt die Seiten aus den Quelldateien, ohne Framework. Das gesamte Verhalten der Website steckt in einer JavaScript-Datei von rund 10 KB; das Hosting ist statisch, über GitHub Pages."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">08</span><span class=\"smark__t\">Eredmény</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">08</span><span class=\"smark__t\">Result</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">08</span><span class=\"smark__t\">Ergebnis</span>"
+ ],
+ "<b class=\"metric__v\">20</b><span class=\"metric__l\">Oldal, magyarul és angolul</span><span class=\"metric__src\">honeygarden.hu/sitemap.xml</span>": [
+  "<b class=\"metric__v\">20</b><span class=\"metric__l\">Pages, in Hungarian and English</span><span class=\"metric__src\">honeygarden.hu/sitemap.xml</span>",
+  "<b class=\"metric__v\">20</b><span class=\"metric__l\">Seiten, auf Ungarisch und Englisch</span><span class=\"metric__src\">honeygarden.hu/sitemap.xml</span>"
+ ],
+ "<b class=\"metric__v\">4 + 3</b><span class=\"metric__l\">Szolgáltatás- és régióoldal</span><span class=\"metric__src\">honeygarden.hu</span>": [
+  "<b class=\"metric__v\">4 + 3</b><span class=\"metric__l\">Service and region pages</span><span class=\"metric__src\">honeygarden.hu</span>",
+  "<b class=\"metric__v\">4 + 3</b><span class=\"metric__l\">Leistungs- und Regionsseiten</span><span class=\"metric__src\">honeygarden.hu</span>"
+ ],
+ "<b class=\"metric__v\">8 nap</b><span class=\"metric__l\">Az első változattól az élő domainig</span><span class=\"metric__src\">2026.10.13 — 2026.10.21</span>": [
+  "<b class=\"metric__v\">8 days</b><span class=\"metric__l\">From first version to live domain</span><span class=\"metric__src\">2026-10-13 — 2026-10-21</span>",
+  "<b class=\"metric__v\">8 Tage</b><span class=\"metric__l\">Von der ersten Fassung bis zur Live-Domain</span><span class=\"metric__src\">13.10.2026 — 21.10.2026</span>"
+ ],
+ "<b class=\"metric__v\">3</b><span class=\"metric__l\">Visszajelzési kör</span><span class=\"metric__src\">2026.10.16 — 2026.10.22</span>": [
+  "<b class=\"metric__v\">3</b><span class=\"metric__l\">Feedback rounds</span><span class=\"metric__src\">2026-10-16 — 2026-10-22</span>",
+  "<b class=\"metric__v\">3</b><span class=\"metric__l\">Feedbackrunden</span><span class=\"metric__src\">16.10.2026 — 22.10.2026</span>"
+ ],
+ "<b class=\"metric__v\">~10 KB</b><span class=\"metric__l\">JavaScript a teljes oldalon</span><span class=\"metric__src\">Tömörítés nélkül</span>": [
+  "<b class=\"metric__v\">~10 KB</b><span class=\"metric__l\">JavaScript across the whole site</span><span class=\"metric__src\">Uncompressed</span>",
+  "<b class=\"metric__v\">~10 KB</b><span class=\"metric__l\">JavaScript auf der ganzen Website</span><span class=\"metric__src\">Unkomprimiert</span>"
+ ],
+ "Egy oldal, ami <span class=\"sig\">a terméket mutatja.</span>": [
+  "A site that <span class=\"sig\">shows the product.</span>",
+  "Eine Website, die <span class=\"sig\">das Produkt zeigt.</span>"
+ ],
+ "Hanna oldala azt mutatja meg, amit egy kerttervező valójában elad: a tervet, rétegről rétegre. Mind a négy tervtípus külön oldalon mondja el, mit kap a megrendelő, kinek való, és hogyan készül; a három régió saját oldalon kereshető; az ajánlatkérés előre megmondja, mi történik utána.": [
+  "Hanna’s site shows what a garden designer actually sells: the plan, layer by layer. Each of the four plan types has its own page explaining what the client gets, who it suits and how it is made; the three regions can be found on their own pages; and the enquiry page says up front what happens next.",
+  "Hannas Website zeigt, was eine Gartenplanung tatsächlich verkauft: den Plan, Ebene für Ebene. Jede der vier Planarten erklärt auf einer eigenen Seite, was man bekommt, für wen sie passt und wie sie entsteht; die drei Regionen sind auf eigenen Seiten auffindbar; und die Anfrageseite sagt vorab, was danach passiert."
+ ],
+ "Az oldal 2026. október 21-én élesedett. Ajánlatkérési és keresési adatot akkor közlünk, ha mért, ellenőrizhető szám áll mögötte — becsült számot nem írunk le.": [
+  "The site went live on 21 October 2026. We will publish enquiry and search figures once there is a measured, verifiable number behind them — we do not publish estimates.",
+  "Die Website ist seit dem 21. Oktober 2026 live. Anfrage- und Suchdaten veröffentlichen wir, sobald eine gemessene, überprüfbare Zahl dahintersteht — Schätzungen schreiben wir nicht."
+ ],
+ "Ez a szolgáltatás áll a projekt mögött: előbb a régiók és a szerkezet, aztán a dizájn.": [
+  "The service behind this project: regions and structure first, then the design.",
+  "Diese Leistung steht hinter dem Projekt: zuerst Regionen und Struktur, dann das Design."
+ ],
+ "Következő projekt — egy kertépítő, akinél a kert a felszín alatt kezdődik.": [
+  "Next project — a landscaping company where the garden starts below the surface.",
+  "Nächstes Projekt — ein Garten- und Landschaftsbauer, bei dem der Garten unter der Oberfläche beginnt."
+ ],
+ "HoneyGarden — kerttervezés": [
+  "HoneyGarden — garden design",
+  "HoneyGarden — Gartenplanung"
+ ],
+ "A HoneyGarden kerttervezés weboldalának nyitóképernyője: évelőágyás fotóján „Minden kert egy történet” felirat, alatta egy családi kert méretarányos alaprajza.": [
+  "The opening screen of the HoneyGarden garden design website: the line “Minden kert egy történet” (“Every garden is a story”) on a photo of a perennial border, and below it the scaled site plan of a family garden.",
+  "Der Startbildschirm der Website von HoneyGarden: die Zeile „Minden kert egy történet“ (Jeder Garten ist eine Geschichte) auf dem Foto einer Staudenrabatte, darunter der maßstäbliche Lageplan eines Familiengartens."
+ ],
+ "Mielőtt kert lenne, terv van": [
+  "Before the garden, there is a plan",
+  "Vor dem Garten steht der Plan"
+ ],
+ "Egy kerttervező weboldala, tervlapként megrajzolva: a négy tervtípus négy rétegként épül egymásra ugyanazon az alaprajzon, mögötte három régióoldal két nyelven.": [
+  "A garden designer’s website, drawn as a plan sheet: the four plan types build up as four layers on the same site plan, backed by three region pages in two languages.",
+  "Die Website einer Gartenplanung, gezeichnet als Planblatt: Die vier Planarten bauen sich als vier Ebenen auf demselben Lageplan auf, dahinter drei Regionsseiten in zwei Sprachen."
+ ]
+}

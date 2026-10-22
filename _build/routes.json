@@ -80,6 +80,11 @@
    "en": "work-godatafusion.html",
    "de": "projekt-godatafusion.html"
   },
+  "case-honeygarden": {
+   "hu": "munka-honeygarden.html",
+   "en": "work-honeygarden.html",
+   "de": "projekt-honeygarden.html"
+  },
   "blog": {
    "hu": "blog.html",
    "en": "blog.html",
@@ -267,6 +272,11 @@
    "en": "/en/work-godatafusion",
    "de": "/de/projekt-godatafusion"
   },
+  "case-honeygarden": {
+   "hu": "/munka-honeygarden",
+   "en": "/en/work-honeygarden",
+   "de": "/de/projekt-honeygarden"
+  },
   "blog": {
    "hu": "/blog",
    "en": "/en/blog",
@@ -394,6 +404,7 @@
   "case-barbershop": "summary",
   "case-mentaltrening": "summary",
   "case-godatafusion": "summary",
+  "case-honeygarden": "summary",
   "blog": "full",
   "post-seo": "full",
   "post-arak": "full",
