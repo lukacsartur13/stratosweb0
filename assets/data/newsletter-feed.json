@@ -307,6 +307,28 @@
      "url": "/de/projekt-godatafusion"
     }
    }
+  },
+  {
+   "key": "case-honeygarden",
+   "type": "case",
+   "published": null,
+   "langs": {
+    "hu": {
+     "title": "HoneyGarden — kerttervező weboldala, tervlapként megrajzolva",
+     "desc": "Esettanulmány: Dóbiás Hanna kerttervező weboldala. Négy tervtípus egy lapon, kódból rajzolt alaprajzok, három régióoldal, két nyelv — az első változattól az élesítésig nyolc nap.",
+     "url": "/munka-honeygarden"
+    },
+    "en": {
+     "title": "HoneyGarden — a garden designer’s website, drawn as a plan sheet",
+     "desc": "Case study: the website of garden designer Hanna Dóbiás. Four plan types on one sheet, site plans drawn in code, three region pages, two languages — eight days from first version to launch.",
+     "url": "/en/work-honeygarden"
+    },
+    "de": {
+     "title": "HoneyGarden — Website einer Gartenplanung, als Planblatt gezeichnet",
+     "desc": "Fallstudie: die Website der Gartenplanung von Hanna Dóbiás. Vier Planarten auf einem Blatt, im Code gezeichnete Lagepläne, drei Regionsseiten, zwei Sprachen — acht Tage von der ersten Fassung bis zum Livegang.",
+     "url": "/de/projekt-honeygarden"
+    }
+   }
   }
  ]
 }
