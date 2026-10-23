@@ -85,6 +85,11 @@
    "en": "work-honeygarden.html",
    "de": "projekt-honeygarden.html"
   },
+  "case-o2": {
+   "hu": "munka-o2-tanacsado.html",
+   "en": "work-o2-tanacsado.html",
+   "de": "projekt-o2-tanacsado.html"
+  },
   "blog": {
    "hu": "blog.html",
    "en": "blog.html",
@@ -277,6 +282,11 @@
    "en": "/en/work-honeygarden",
    "de": "/de/projekt-honeygarden"
   },
+  "case-o2": {
+   "hu": "/munka-o2-tanacsado",
+   "en": "/en/work-o2-tanacsado",
+   "de": "/de/projekt-o2-tanacsado"
+  },
   "blog": {
    "hu": "/blog",
    "en": "/en/blog",
@@ -405,6 +415,7 @@
   "case-mentaltrening": "summary",
   "case-godatafusion": "summary",
   "case-honeygarden": "summary",
+  "case-o2": "summary",
   "blog": "full",
   "post-seo": "full",
   "post-arak": "full",
