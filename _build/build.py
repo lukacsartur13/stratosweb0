@@ -52,6 +52,7 @@ SLUGS = {
     "case-mentaltrening": {"hu": "munka-mentaltrening.html", "en": "work-mentaltrening.html",  "de": "projekt-mentaltrening.html"},
     "case-godatafusion": {"hu": "munka-godatafusion.html", "en": "work-godatafusion.html",    "de": "projekt-godatafusion.html"},
     "case-honeygarden":  {"hu": "munka-honeygarden.html",  "en": "work-honeygarden.html",     "de": "projekt-honeygarden.html"},
+    "case-o2":           {"hu": "munka-o2-tanacsado.html", "en": "work-o2-tanacsado.html",    "de": "projekt-o2-tanacsado.html"},
     "blog":        {"hu": "blog.html",                     "en": "blog.html",                  "de": "blog.html"},
     "post-seo":       {"hu": "blog-google-elso-oldal.html",     "en": "blog-google-first-page.html",       "de": "blog-google-erste-seite.html"},
     "post-arak":      {"hu": "blog-weboldal-arak.html",         "en": "blog-website-cost.html",            "de": "blog-website-kosten.html"},
@@ -109,7 +110,7 @@ SERVICES = ("sme", "enterprise", "shop", "ads", "seo", "impact")
 # The case studies and the articles are reachable from their index routes and
 # from the pages they belong to, not from the global navigation — a nav that
 # lists every leaf is a sitemap, not a navigation.
-CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening", "case-godatafusion", "case-honeygarden")
+CASES = ("case-rapidkert", "case-barbershop", "case-mentaltrening", "case-godatafusion", "case-honeygarden", "case-o2")
 
 # ---------------------------------------------------------- case-study status
 #
@@ -162,6 +163,9 @@ CASE_STATUS = {
     # 2026-10-22: media, challenge, design and technical account are on the
     # page; the site went live on 2026-10-21, so there are no results yet.
     "case-honeygarden": "summary",
+    # 2026-10-23: media, challenge, design and technical account are on the
+    # page; the site went live on 2026-10-22, so there are no results yet.
+    "case-o2": "summary",
 }
 
 

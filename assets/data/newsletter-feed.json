@@ -329,6 +329,28 @@
      "url": "/de/projekt-honeygarden"
     }
    }
+  },
+  {
+   "key": "case-o2",
+   "type": "case",
+   "published": null,
+   "langs": {
+    "hu": {
+     "title": "O2 Tanácsadó — weboldal a cégtulajdonosok nyelvén",
+     "desc": "Esettanulmány: az O2 Tanácsadó új weboldala. Pozicionált szövegek szó szerint, önellenőrző kérdéssor, öt leveles e-mail-sorozat és SEO — hat hét alatt.",
+     "url": "/munka-o2-tanacsado"
+    },
+    "en": {
+     "title": "O2 Tanácsadó — a website in the language of business owners",
+     "desc": "Case study: the new website of O2 Tanácsadó. Positioned copy word for word, a self-check questionnaire, a five-email sequence and SEO — in six weeks.",
+     "url": "/en/work-o2-tanacsado"
+    },
+    "de": {
+     "title": "O2 Tanácsadó — eine Website in der Sprache der Unternehmer",
+     "desc": "Fallstudie: die neue Website von O2 Tanácsadó. Positionierte Texte Wort für Wort, ein Selbsttest, eine Serie aus fünf E-Mails und SEO — in sechs Wochen.",
+     "url": "/de/projekt-o2-tanacsado"
+    }
+   }
   }
  ]
 }
