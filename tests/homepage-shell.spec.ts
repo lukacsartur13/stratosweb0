@@ -563,7 +563,8 @@ test.describe('the logos on a phone', () => {
     await expect(sets.nth(1)).toHaveClass(/is-rail/);
     const marks = (i: number) => sets.nth(i).locator('[data-logo]:not([data-rail-copy]) img').evaluateAll((els) => els.map((el) => (el as HTMLImageElement).alt));
     const [one, two] = [await marks(0), await marks(1)];
-    expect(one.length + two.length, 'every mark, once').toBe(12);
+    // 13 since HoneyGarden's mark joined on 2026-10-24.
+    expect(one.length + two.length, 'every mark, once').toBe(13);
     expect(one.filter((m) => two.includes(m)), 'no mark in both rows').toEqual([]);
     const copies = page.locator('[data-rail-copy]');
     expect(await copies.count(), 'copied so the loop has no seam').toBeGreaterThan(0);
