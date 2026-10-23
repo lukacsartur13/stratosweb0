@@ -63,7 +63,7 @@ SKIP_EXACT = {
     # Organisation names carried by logo alt text. A company's name is not
     # translated into German, and the alt text has to match the mark it
     # describes in every locale.
-    'Kontyos.hu', 'Grantool Kft.', 'Synergy Digital Hungary Kft.', 'HAIO',
+    'Kontyos Borház', 'GranTOOL Kft.', 'Synergy Digital Hungary Kft.', 'HAIO',
     'DPA', 'Duna Hajók', 'Duna Enterior', 'Rapidkert Kft.',
     'Barbershop Győr',
     # Identifiers from the questionnaire's inline wizard, not copy. The
@@ -81,7 +81,7 @@ SKIP_EXACT = {
     'kkv', 'nagyvallalat',
     # questionnaire state keys — these are looked up by ans('…'), never shown
     'szegmens', 'cegnev', 'funkciok', 'konstrukcio', 'konzultacio',
-    'kitolto', 'telefon', 'weboldal', 'weboldal_nagy', 'hatarido',
+    'szolgaltatas', 'kitolto', 'telefon', 'weboldal', 'weboldal_nagy', 'hatarido',
     'hatarido_nagy', 'koltsegkeret', 'koltsegkeret_nagy', 'havidij',
     # wizard end-state keys — the visible copy lives in DONE_HTML, not here
     'submitting', 'success', 'invalid', 'limited', 'error', 'retry', 'fix',

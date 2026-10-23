@@ -20,6 +20,11 @@
    "en": "bespoke-web-design.html",
    "de": "website-erstellen-lassen.html"
   },
+  "configurator": {
+   "hu": "3d-weboldal-konfigurator.html",
+   "en": "3d-website-configurator.html",
+   "de": "3d-website-konfigurator.html"
+  },
   "sme": {
    "hu": "kkv.html",
    "en": "web-design-small-business.html",
@@ -217,6 +222,11 @@
    "en": "/en/bespoke-web-design",
    "de": "/de/website-erstellen-lassen"
   },
+  "configurator": {
+   "hu": "/3d-weboldal-konfigurator",
+   "en": "/en/3d-website-configurator",
+   "de": "/de/3d-website-konfigurator"
+  },
   "sme": {
    "hu": "/kkv",
    "en": "/en/web-design-small-business",
@@ -402,6 +412,7 @@
   "index": "full",
   "about": "full",
   "services": "full",
+  "configurator": "full",
   "sme": "full",
   "enterprise": "full",
   "branding": "full",
@@ -413,7 +424,7 @@
   "case-rapidkert": "full",
   "case-barbershop": "summary",
   "case-mentaltrening": "summary",
-  "case-godatafusion": "summary",
+  "case-godatafusion": "full",
   "case-honeygarden": "summary",
   "case-o2": "summary",
   "blog": "full",
@@ -474,15 +485,15 @@
   "seo-web"
  ],
  "updated": {
-  "post-arak": "2026-10-10",
-  "post-cegprofil": "2026-10-10",
-  "post-elavult": "2026-10-10",
-  "post-hirdetes": "2026-10-10",
-  "post-konverzio": "2026-10-10",
-  "post-logo": "2026-08-27",
-  "post-marketing": "2026-10-09",
-  "post-seo": "2026-10-10",
-  "post-seo-alap": "2026-10-10",
-  "post-webdesign": "2026-08-27"
+  "post-arak": "2026-10-24",
+  "post-cegprofil": "2026-10-24",
+  "post-elavult": "2026-10-24",
+  "post-hirdetes": "2026-10-24",
+  "post-konverzio": "2026-10-24",
+  "post-logo": "2026-10-24",
+  "post-marketing": "2026-10-24",
+  "post-seo": "2026-10-24",
+  "post-seo-alap": "2026-10-24",
+  "post-webdesign": "2026-10-24"
  }
 }

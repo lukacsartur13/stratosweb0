@@ -1,0 +1,98 @@
+{
+ "_comment": [
+  "The GoDataFusion case study, copy pack 2026-10-23: the strings that changed.",
+  "Older GoDataFusion entries still in use live in esettanulmanyok.json; the shared related-card and closing strings live in rapidkert.json."
+ ],
+ "GoDataFusion: 3D építőipari weboldal | Stratos Webdesign": [
+  "GoDataFusion: 3D construction website | Stratos Webdesign",
+  "GoDataFusion: 3D-Website für die Baubranche | Stratos Webdesign"
+ ],
+ "Építőipari felmérő cég háromnyelvű weboldala, ahol egy görgetésre átalakuló 3D épületmodell mutatja meg mindhárom szolgáltatást. Esettanulmány.": [
+  "A construction surveying firm's three-language website, where a 3D building model that transforms as you scroll shows all three services. Case study.",
+  "Die dreisprachige Website eines Bauvermessungsbüros, auf der ein 3D-Gebäudemodell, das sich beim Scrollen verwandelt, alle drei Leistungen zeigt. Fallstudie."
+ ],
+ "A GoDataFusion három dolgot csinál: 360° kamerával rögzíti a helyszínt, felméri a terepet, és tervrajzból mennyiséget számol. Az oldal ezt egyetlen 3D épületen vezeti végig, felsorolás helyett.": [
+  "GoDataFusion does three things: it records a site with a 360° camera, surveys the terrain, and calculates quantities from drawings. Instead of listing them, the site walks the visitor through them on a single 3D building.",
+  "GoDataFusion macht drei Dinge: Es dokumentiert einen Standort mit der 360°-Kamera, vermisst das Gelände und ermittelt Mengen aus Plänen. Statt sie aufzuzählen, führt die Website an einem einzigen 3D-Gebäude durch alle drei."
+ ],
+ "<span><b>Szektor</b> építőipar, felmérés</span> <span><b>Amit készítettünk</b> weboldal, 3D webélmény, keresőoptimalizálás</span> <span><b>Nyelvek</b> magyar, angol, német</span> <span><b>Élő cím</b> <a href=\"https://godatafusion.com/\" target=\"_blank\" rel=\"noopener\">godatafusion.com</a></span>": [
+  "<span><b>Sector</b> construction, surveying</span> <span><b>What we built</b> website, 3D web experience, SEO</span> <span><b>Languages</b> Hungarian, English, German</span> <span><b>Live at</b> <a href=\"https://godatafusion.com/\" target=\"_blank\" rel=\"noopener\">godatafusion.com</a></span>",
+  "<span><b>Branche</b> Bauwesen, Vermessung</span> <span><b>Unsere Leistung</b> Website, 3D-Weberlebnis, Suchmaschinenoptimierung</span> <span><b>Sprachen</b> Ungarisch, Englisch, Deutsch</span> <span><b>Live unter</b> <a href=\"https://godatafusion.com/\" target=\"_blank\" rel=\"noopener\">godatafusion.com</a></span>"
+ ],
+ "Nyitóképernyő · godatafusion.com": [
+  "Opening screen · godatafusion.com",
+  "Startbildschirm · godatafusion.com"
+ ],
+ "A feladat ezért az volt, hogy megmutassuk: ugyanabból a helyszínből hogyan lesz kép, terepmodell és táblázat. Amit a vevő előre lát, azt nem kell neki külön elmagyarázni.": [
+  "So the job was to show how one and the same site becomes an image, a terrain model and a spreadsheet. What buyers can see in advance does not have to be explained to them separately.",
+  "Die Aufgabe war deshalb zu zeigen, wie aus ein und demselben Standort ein Bild, ein Geländemodell und eine Tabelle wird. Was der Kunde vorab sieht, muss man ihm nicht eigens erklären."
+ ],
+ "Capture · 360° felvételi pontok": [
+  "Capture · 360° capture points",
+  "Capture · 360°-Aufnahmepunkte"
+ ],
+ "Measure · terepmodell és szintvonalak": [
+  "Measure · terrain model and contour lines",
+  "Measure · Geländemodell und Höhenlinien"
+ ],
+ "Quantify · a tervlapból adat lesz": [
+  "Quantify · the drawing becomes data",
+  "Quantify · aus dem Plan werden Daten"
+ ],
+ "Capture: pontfelhő és felvételi pontok": [
+  "Capture: point cloud and capture points",
+  "Capture: Punktwolke und Aufnahmepunkte"
+ ],
+ "Measure: terep, szintvonalakkal": [
+  "Measure: terrain, with contour lines",
+  "Measure: Gelände, mit Höhenlinien"
+ ],
+ "Quantify: alaprajz, darabszámokkal": [
+  "Quantify: floor plan, with counts",
+  "Quantify: Grundriss, mit Stückzahlen"
+ ],
+ "A nyitóképernyőn bármelyik szolgáltatás fölé víve az egeret a teljes felület átvált. Minden fejezetnek saját színe van, ami végigkíséri a modellt és a számokat is.": [
+  "On the opening screen, hovering over any service switches the whole interface. Each chapter has its own colour, which follows the model and the figures too.",
+  "Auf dem Startbildschirm wechselt die ganze Oberfläche, sobald man mit der Maus über eine Leistung fährt. Jedes Kapitel hat eine eigene Farbe, die auch das Modell und die Zahlen begleitet."
+ ],
+ "Megjelölt mintaadatok": [
+  "Labelled sample data",
+  "Gekennzeichnete Beispieldaten"
+ ],
+ "A 360° kamera, a területfelmérés és a mennyiségszámítás saját aloldalt kapott, saját címmel és leírással, így mindegyik a saját keresésére tud válaszolni.": [
+  "The 360° camera, the site survey and the quantity takeoff each got their own page, with their own title and description, so each can answer its own search.",
+  "360°-Kamera, Geländeaufmaß und Mengenermittlung haben jeweils eine eigene Unterseite mit eigenem Titel und eigener Beschreibung bekommen, so kann jede auf ihre eigene Suche antworten."
+ ],
+ "Összekötött nyelvi változatok": [
+  "Linked language versions",
+  "Verknüpfte Sprachversionen"
+ ],
+ "Minden oldal jelzi a keresőnek, melyik nyelvi változata melyik közönségnek szól (hreflang), és melyik az elsődleges címe. Így a Google tudja, melyik nyelvet kinek mutassa.": [
+  "Every page tells search engines which of its language versions is meant for which audience (hreflang), and which address is its primary one. That way Google knows which language to show to whom.",
+  "Jede Seite teilt Suchmaschinen mit, welche ihrer Sprachversionen sich an welches Publikum richtet (hreflang) und welche Adresse die primäre ist. So weiß Google, welche Sprache es wem zeigen soll."
+ ],
+ "Oldaltérkép és robots.txt": [
+  "Sitemap and robots.txt",
+  "Sitemap und robots.txt"
+ ],
+ "Az oldal friss, a keresési helyezések most épülnek. Forgalmi vagy ajánlatkérési számot akkor írunk ide, amikor mérhető, és az ügyfél is jóváhagyta. Becsült számot nem.": [
+  "The site is new and its rankings are being built now. We will put traffic or enquiry figures here once they can be measured and the client has approved them. Never an estimate.",
+  "Die Website ist neu, die Rankings entstehen gerade. Zahlen zu Besuchern oder Anfragen ergänzen wir, sobald sie messbar sind und der Kunde sie freigegeben hat. Geschätzte Zahlen nie."
+ ],
+ "Weboldal ipari és B2B cégeknek": [
+  "Websites for industrial and B2B companies",
+  "Websites für Industrie- und B2B-Unternehmen"
+ ],
+ "Vállalati weboldal több nyelven, 3D termékbemutatóval.": [
+  "A corporate website in several languages, with a 3D product presentation.",
+  "Eine Unternehmenswebsite in mehreren Sprachen, mit 3D-Produktpräsentation."
+ ],
+ "Következő projekt: egy oldal, aminek egyetlen dolga az időpontfoglalás.": [
+  "Next project: a site whose only job is booking.",
+  "Nächstes Projekt: eine Seite, deren einzige Aufgabe die Terminbuchung ist."
+ ],
+ "GoDataFusion weboldal": [
+  "GoDataFusion website",
+  "GoDataFusion-Website"
+ ]
+}

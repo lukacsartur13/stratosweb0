@@ -3,37 +3,17 @@
   "Blog, contact and imprint pages.",
   ""
  ],
- "Blog — webdesign és online marketing tippek | Stratos": [
-  "Blog — web design and online marketing tips | Stratos",
-  "Blog — Tipps zu Webdesign und Online-Marketing | Stratos"
- ],
- "Érthető, szakzsargon nélküli útmutatók vállalkozóknak: SEO, weboldal árak, Google Cégprofil, hirdetések és a leggyakoribb weboldal-hibák.": [
-  "Clear, jargon-free guides for business owners: SEO, website pricing, Google Business Profile, advertising and the most common website mistakes.",
-  "Verständliche Leitfäden ohne Fachjargon für Unternehmer: SEO, Website-Preise, Google-Unternehmensprofil, Werbung und die häufigsten Website-Fehler."
- ],
- "<a href=\"index.html\">Stratos</a> / <b>Blog</b>": [
-  "<a href=\"index.html\">Stratos</a> / <b>Blog</b>",
-  "<a href=\"index.html\">Stratos</a> / <b>Blog</b>"
+ "<a href=\"index.html\">Főoldal</a> / <b>Blog</b>": [
+  "<a href=\"index.html\">Home</a> / <b>Blog</b>",
+  "<a href=\"index.html\">Startseite</a> / <b>Blog</b>"
  ],
  "Amit tudnod<br>kell, <span class=\"sig\">érthetően.</span>": [
   "What you need<br>to know, <span class=\"sig\">in plain words.</span>",
   "Was Sie wissen<br>müssen, <span class=\"sig\">verständlich.</span>"
  ],
- "Nem varázslat kell az online növekedéshez, hanem rendszer. Ezeket az útmutatókat azért írjuk, hogy a döntéseidet ne a marketinges zsargon hozza meg helyetted.": [
-  "Online growth doesn't take magic, it takes a system. We write these guides so that marketing jargon doesn't make your decisions for you.",
-  "Online-Wachstum braucht keine Magie, sondern ein System. Wir schreiben diese Leitfäden, damit nicht der Marketingjargon Ihre Entscheidungen trifft."
- ],
- "Kiemelt · SEO": [
-  "Featured · SEO",
-  "Empfohlen · SEO"
- ],
  "Hogyan kerülj a Google első oldalára? 7 lépés": [
   "How to reach Google's first page — 7 steps",
   "Wie kommen Sie auf Googles erste Seite? 7 Schritte"
- ],
- "Nem varázslat kell a Google első oldalához, hanem rendszer. 7 lépéses keresőoptimalizálási útmutató kisvállalkozásoknak, érthetően, szakzsargon nélkül.": [
-  "Getting onto Google's first page doesn't take magic, it takes a system. A seven-step SEO guide for small businesses, in plain language.",
-  "Auf Googles erste Seite zu kommen braucht keine Magie, sondern ein System. Ein SEO-Leitfaden in sieben Schritten für kleine Unternehmen, verständlich und ohne Fachjargon."
  ],
  "Árak": [
   "Pricing",
@@ -55,10 +35,6 @@
   "Setting up a Google Business Profile, step by step",
   "Google-Unternehmensprofil Schritt für Schritt einrichten"
  ],
- "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásoknak. Állítsd be 8 lépésben, és jelenj meg a térképes találatok között!": [
-  "A Google Business Profile is the most powerful free client acquisition tool for local businesses. Set it up in eight steps and show up in the map results.",
-  "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug zur Kundengewinnung für lokale Unternehmen. Richten Sie es in acht Schritten ein und erscheinen Sie in den Kartenergebnissen."
- ],
  "Hirdetés": [
   "Advertising",
   "Werbung"
@@ -66,10 +42,6 @@
  "Google vagy Facebook hirdetés? Melyik éri meg 2026-ban": [
   "Google or Facebook ads — which is worth it in 2026?",
   "Google- oder Facebook-Werbung? Was lohnt sich 2026?"
- ],
- "Rossz a kérdés. Megmutatjuk, melyik platform mire való, és miért a rendszer hozza az ügyfeleket, nem a platform.": [
-  "It's the wrong question. We show what each platform is for, and why clients come from the system, not the platform.",
-  "Falsche Frage. Wir zeigen, wofür welche Plattform gut ist — und warum die Kunden vom System kommen, nicht von der Plattform."
  ],
  "Számolás": [
   "Doing the maths",
@@ -79,101 +51,17 @@
   "How many clients is an outdated website costing you?",
   "Wie viele Kunden kostet Sie eine veraltete Website?"
  ],
- "Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Számold ki, mennyibe kerül havonta egy elavult weboldal — és mennyit nyernél.": [
-  "There's one number no business owner ever sees: the clients they lost. Work out what an outdated website costs you monthly — and what you'd gain.",
-  "Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Rechnen Sie aus, was Sie eine veraltete Website monatlich kostet — und was Sie gewinnen würden."
- ],
- "Konverzió": [
-  "Conversion",
-  "Conversion"
- ],
  "Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba": [
   "Why isn't your website bringing clients? 7 common mistakes",
   "Warum bringt Ihre Website keine Kunden? 7 häufige Fehler"
- ],
- "Van weboldalad, mégsem jönnek az ügyfelek? A 7 leggyakoribb hiba, amit a vállalkozások többsége elkövet — és hogyan javítsd ki mindegyiket.": [
-  "You have a website but the clients aren't coming? The seven most common mistakes most businesses make — and how to fix each one.",
-  "Sie haben eine Website, aber die Kunden bleiben aus? Die sieben häufigsten Fehler der meisten Unternehmen — und wie Sie jeden beheben."
- ],
- "Félsz, hogy kimaradsz?": [
-  "Afraid of missing out?",
-  "Angst, etwas zu verpassen?"
- ],
- "Többé nem kell. Az új cikkeket és a gyakorlatban működő tippeket elküldjük e-mailben — ritkán, de akkor tartalommal.": [
-  "Not any more. We'll email you new articles and tips that actually work — rarely, but with substance.",
-  "Ab jetzt nicht mehr. Wir schicken Ihnen neue Artikel und praxistaugliche Tipps per E-Mail — selten, aber mit Substanz."
- ],
- "Hírlevél feliratkozás (blog)": [
-  "Newsletter signup (blog)",
-  "Newsletter-Anmeldung (Blog)"
  ],
  "Az olvasás jó. A <span class=\"sig\">rendszer</span> jobb.": [
   "Reading is good. A <span class=\"sig\">system</span> is better.",
   "Lesen ist gut. Ein <span class=\"sig\">System</span> ist besser."
  ],
- "Ha nem akarod magad összerakni, mi megcsináljuk helyetted — weboldal, arculat és hirdetés egy kézben.": [
-  "If you'd rather not assemble it yourself, we'll do it for you — website, identity and advertising from one team.",
-  "Wenn Sie es nicht selbst zusammenbauen wollen, machen wir es für Sie — Website, Erscheinungsbild und Werbung aus einer Hand."
- ],
- "Ügyfélszolgálat és kapcsolat | Stratos": [
-  "Contact and support | Stratos",
-  "Kontakt und Support | Stratos"
- ],
- "Kérdésed van, vagy ingyenes konzultációt kérnél? Írj e-mailt, hívj minket, vagy töltsd ki az űrlapot — minden megkeresésre a lehető leghamarabb válaszolunk.": [
-  "Got a question, or want a free consultation? Send an email, call us, or fill in the form — we answer every enquiry as soon as we can.",
-  "Eine Frage oder Interesse an einer kostenlosen Beratung? Schreiben Sie eine E-Mail, rufen Sie an oder füllen Sie das Formular aus — wir antworten auf jede Anfrage so schnell wie möglich."
- ],
- "<a href=\"index.html\">Stratos</a> / <b>Ügyfélszolgálat</b>": [
-  "<a href=\"index.html\">Stratos</a> / <b>Contact</b>",
-  "<a href=\"index.html\">Stratos</a> / <b>Kontakt</b>"
- ],
- "Vedd fel<br>a <span class=\"sig\">kapcsolatot.</span>": [
-  "Get in<br><span class=\"sig\">touch.</span>",
-  "Nehmen Sie<br><span class=\"sig\">Kontakt auf.</span>"
- ],
- "Kérdésed van, érdeklődnél a szolgáltatásaink iránt, vagy csak szeretnél többet megtudni rólunk? Ne habozz — írj vagy hívj minket. Minden megkeresésre a lehető leghamarabb válaszolunk.": [
-  "Got a question, interested in our services, or just want to know more about us? Don't hesitate — write or call. We answer every enquiry as soon as we can.",
-  "Eine Frage, Interesse an unseren Leistungen oder einfach neugierig auf uns? Zögern Sie nicht — schreiben Sie oder rufen Sie an. Wir antworten auf jede Anfrage so schnell wie möglich."
- ],
- "Írásban a legegyszerűbb — általában egy munkanapon belül válaszolunk.": [
-  "Writing is easiest — we usually reply within one working day.",
-  "Schriftlich ist am einfachsten — wir antworten meist innerhalb eines Werktags."
- ],
  "Ha gyorsan kell egy válasz, hívj minket munkaidőben.": [
   "If you need an answer quickly, call us during business hours.",
   "Wenn es schnell gehen muss, rufen Sie uns während der Geschäftszeiten an."
- ],
- "Hol vagyunk": [
-  "Where we are",
-  "Wo wir sind"
- ],
- "Győr &amp; Budapest": [
-  "Győr &amp; Budapest",
-  "Győr &amp; Budapest"
- ],
- "Országszerte dolgozunk — az egyeztetések nagy része online zajlik, így nem a földrajz dönt.": [
-  "We work nationwide — most meetings happen online, so geography isn't the deciding factor.",
-  "Wir arbeiten landesweit — die meisten Termine laufen online, Geografie ist also nicht entscheidend."
- ],
- "Egy beszélgetés, ami után <span class=\"sig\">tudni fogod, mi kell.</span>": [
-  "One conversation and <span class=\"sig\">you'll know what you need.</span>",
-  "Ein Gespräch, und <span class=\"sig\">Sie wissen, was Sie brauchen.</span>"
- ],
- "Ha már közölnéd az igényeidet, a kérdőívünkön részletesen le tudod adni őket, és egy ingyenes online megbeszélés keretében átbeszélünk mindent az áraktól a kész projektig. Nincs kötelezettség, nincs értékesítési nyomás.": [
-  "If you're ready to share your requirements, the questionnaire lets you set them out in detail, and in a free online meeting we go through everything from pricing to the finished project. No obligation, no sales pressure.",
-  "Wenn Sie Ihre Anforderungen schon nennen wollen, können Sie sie im Fragebogen ausführlich hinterlegen, und in einem kostenlosen Online-Termin besprechen wir alles von den Preisen bis zum fertigen Projekt. Keine Verpflichtung, kein Verkaufsdruck."
- ],
- "Kérdezz,<br>vagy kérj<br>árajánlatot": [
-  "Ask, or<br>request<br>a quote",
-  "Fragen Sie nach<br>oder fordern Sie<br>ein Angebot an"
- ],
- "Írd le pár mondatban, mire lenne szükséged. Ha nem tudod pontosan, az sem baj — pont ezért van a beszélgetés.": [
-  "Describe in a few sentences what you'd need. If you're not sure yet, that's fine — that's exactly what the conversation is for.",
-  "Beschreiben Sie in ein paar Sätzen, was Sie brauchen. Wenn Sie es noch nicht genau wissen, ist das kein Problem — genau dafür ist das Gespräch da."
- ],
- "Kapcsolatfelvétel a weboldalról": [
-  "Contact request from the website",
-  "Kontaktanfrage über die Website"
  ],
  "Vezetéknév *": [
   "Last name *",
@@ -195,21 +83,9 @@
   "Company name *",
   "Firmenname *"
  ],
- "Megjegyzés *": [
-  "Message *",
-  "Nachricht *"
- ],
  "Mire lenne szükséged?": [
   "What would you need?",
   "Was brauchen Sie?"
- ],
- "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Igen\" required> <span>A továbblépéssel kijelentem, hogy elfogadtam az <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Adatvédelmi nyilatkozatban</a> foglaltakat és annak feltételeit. *</span>": [
-  "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Yes\" required> <span>By continuing I confirm that I accept the terms set out in the <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">privacy policy</a>. *</span>",
-  "<input type=\"checkbox\" name=\"adatvedelem_elfogadva\" value=\"Ja\" required> <span>Mit dem Fortfahren bestätige ich, dass ich die Bestimmungen der <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Datenschutzerklärung</a> akzeptiere. *</span>"
- ],
- "<input type=\"checkbox\" name=\"hirlevel\" value=\"Igen\"> <span>Feliratkozom a Stratos hírlevelére is — megerősítő levelet kapok, és bármikor leiratkozhatok.</span>": [
-  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Yes\"> <span>Also subscribe me to the Stratos newsletter — I will get a confirmation e-mail and can unsubscribe at any time.</span>",
-  "<input type=\"checkbox\" name=\"hirlevel\" value=\"Ja\"> <span>Ich möchte auch den Stratos-Newsletter erhalten — ich bekomme eine Bestätigungs-E-Mail und kann mich jederzeit abmelden.</span>"
  ],
  "A *-gal jelölt mezők kitöltése kötelező.": [
   "Fields marked with * are required.",
@@ -219,21 +95,13 @@
   "Imprint | Stratos",
   "Impressum | Stratos"
  ],
- "A Stratos Webdesign üzemeltetőjének adatai, elérhetőségek és tárhelyszolgáltató.": [
-  "Details of the operator of Stratos Webdesign, contact information and hosting provider.",
-  "Angaben zum Betreiber von Stratos Webdesign, Kontaktdaten und Hosting-Anbieter."
- ],
- "<a href=\"index.html\">Stratos</a> / <b>Impresszum</b>": [
-  "<a href=\"index.html\">Stratos</a> / <b>Imprint</b>",
-  "<a href=\"index.html\">Stratos</a> / <b>Impressum</b>"
+ "<a href=\"index.html\">Főoldal</a> / <b>Impresszum</b>": [
+  "<a href=\"index.html\">Home</a> / <b>Imprint</b>",
+  "<a href=\"index.html\">Startseite</a> / <b>Impressum</b>"
  ],
  "Impresszum": [
   "Imprint",
   "Impressum"
- ],
- "Cégnév / név": [
-  "Company / name",
-  "Firma / Name"
  ],
  "Lukács Artúr e.v.": [
   "Artúr Lukács, sole trader",
@@ -307,38 +175,6 @@
   "What we learn, first hand.",
   "Was wir lernen, aus erster Hand."
  ],
- "Weboldal, keresőoptimalizálás, online marketing — akkor írunk, ha van mit mondanunk. Megerősítő levelet küldünk, és bármikor leiratkozhatsz.": [
-  "Websites, search optimisation, online marketing — we write when we have something to say. We will send a confirmation e-mail, and you can unsubscribe at any time.",
-  "Websites, Suchmaschinenoptimierung, Online-Marketing — wir schreiben, wenn wir etwas zu sagen haben. Sie erhalten eine Bestätigungs-E-Mail und können sich jederzeit abmelden."
- ],
- "Illusztráció a keresőoptimalizálásról szóló cikkhez.": [
-  "Illustration for the article about search engine optimisation.",
-  "Illustration zum Artikel über Suchmaschinenoptimierung."
- ],
- "Illusztráció a weboldal árakról szóló cikkhez.": [
-  "Illustration for the article about website pricing.",
-  "Illustration zum Artikel über Website-Preise."
- ],
- "Illusztráció a Google Cégprofilról szóló cikkhez.": [
-  "Illustration for the article about the Google Business Profile.",
-  "Illustration zum Artikel über das Google-Unternehmensprofil."
- ],
- "Illusztráció a Google és Facebook hirdetésekről szóló cikkhez.": [
-  "Illustration for the article about Google and Facebook advertising.",
-  "Illustration zum Artikel über Google- und Facebook-Werbung."
- ],
- "Illusztráció az elavult weboldal költségéről szóló cikkhez.": [
-  "Illustration for the article about the cost of an outdated website.",
-  "Illustration zum Artikel über die Kosten einer veralteten Website."
- ],
- "Illusztráció a weboldal konverziós hibáiról szóló cikkhez.": [
-  "Illustration for the article about website conversion mistakes.",
-  "Illustration zum Artikel über Conversion-Fehler auf Websites."
- ],
- "Mit tudsz belőle ingyen megcsinálni, mennyibe kerül, ha nem magad csinálod, és mi a helyzet a mobilalkalmazásokkal.": [
-  "How much of it you can do free, what it costs if you don't, and how app stores differ.",
-  "Wie viel Sie selbst kostenlos erledigen können, was es sonst kostet und wie es in App-Stores läuft."
- ],
  "Melyik csatorna mikor éri meg, mikor kell ügynökség, és mit mérj, ha semmi mást nem mérsz.": [
   "Which channel is worth it when, when you need an agency, and what to measure if you measure nothing else.",
   "Welcher Kanal sich wann lohnt, wann Sie eine Agentur brauchen, und was Sie messen sollten, wenn Sie sonst nichts messen."
@@ -346,10 +182,6 @@
  "Öt dolog, amit meg lehet nézni egy terven, mielőtt bárki azt mondaná, hogy „nekem tetszik”.": [
   "Five things you can check on a layout before anyone says „I like it”.",
   "Fünf Dinge, die Sie an einem Entwurf prüfen können, bevor jemand „gefällt mir“ sagt."
- ],
- "Mennyibe kerül, mit kell megkapnod a végén, és mi az a három hiba, amitől a legtöbb logó használhatatlan lesz.": [
-  "What it costs, what you must receive at the end, and the three mistakes that leave most logos unusable.",
-  "Was es kostet, was Sie am Ende erhalten müssen, und die drei Fehler, die die meisten Logos unbrauchbar machen."
  ],
  "Arculat": [
   "Identity",
@@ -366,5 +198,77 @@
  "Keresőoptimalizálás": [
   "SEO",
   "SEO"
+ ],
+ "Blog: weboldal és keresőoptimalizálás | Stratos Webdesign": [
+  "Blog: websites and SEO | Stratos Webdesign",
+  "Blog: Websites und SEO | Stratos Webdesign"
+ ],
+ "Érthető útmutatók vállalkozóknak weboldalról, keresőoptimalizálásról, Google Cégprofilról, hirdetésről és arculatról, zsargon nélkül.": [
+  "Clear guides for business owners on websites, SEO, Google Business Profile, advertising and brand identity, without the jargon.",
+  "Verständliche Leitfäden für Unternehmer zu Websites, SEO, Google-Unternehmensprofil, Werbung und Corporate Design, ohne Fachjargon."
+ ],
+ "A Stratos Webdesign blogja vállalkozóknak szól: érthető útmutatók weboldalról, keresőoptimalizálásról, a Google Cégprofilról, az online hirdetésről és az arculatról. Azért írjuk őket, hogy a döntéseidet ne a marketinges zsargon hozza meg helyetted.": [
+  "The Stratos Webdesign blog is written for business owners: clear guides to websites, SEO, Google Business Profile, online advertising and brand identity. We write them so that marketing jargon doesn't make your decisions for you.",
+  "Der Blog von Stratos Webdesign richtet sich an Unternehmer: verständliche Leitfäden zu Websites, SEO, dem Google-Unternehmensprofil, Online-Werbung und Corporate Design. Wir schreiben sie, damit nicht der Marketingjargon Ihre Entscheidungen trifft."
+ ],
+ "Kiemelt · Keresőoptimalizálás": [
+  "Featured · SEO",
+  "Empfohlen · SEO"
+ ],
+ "Hét lépés sorrendben, amit egy kisvállalkozás maga is végig tud csinálni a jobb Google-helyezésért. Érthetően, garancia-ígéretek nélkül.": [
+  "Seven steps, in order, that a small business can work through itself for a better Google ranking. In plain language, with no promised guarantees.",
+  "Sieben Schritte in der richtigen Reihenfolge, die ein kleines Unternehmen selbst gehen kann, um bei Google besser platziert zu sein. Verständlich und ohne Garantieversprechen."
+ ],
+ "Helyi vállalkozásnak az egyik leghasznosabb ingyenes eszköz. Nyolc lépés a beállítástól az értékelésekig, hogy megjelenhess a térképes találatok között.": [
+  "One of the most useful free tools a local business has. Eight steps from setup to reviews, so that you can appear in the map results.",
+  "Für lokale Unternehmen eines der nützlichsten kostenlosen Werkzeuge. Acht Schritte von der Einrichtung bis zu den Bewertungen, damit Sie in den Kartenergebnissen erscheinen."
+ ],
+ "Melyik platform mire való, mikor melyikkel kezdj, és mi kell mindkettő előtt.": [
+  "What each platform is for, which one to start with when, and what has to be in place before either.",
+  "Wofür welche Plattform gut ist, womit Sie wann beginnen und was vor beiden stehen muss."
+ ],
+ "Az elmaradt ügyfél sehol nem jelenik meg a könyvelésben. Négy számmal megbecsülheted, mennyibe kerül havonta egy elavult weboldal.": [
+  "A client you never got appears nowhere in your books. With four numbers you can estimate what an outdated website costs you each month.",
+  "Ein entgangener Kunde taucht in keiner Buchhaltung auf. Mit vier Zahlen können Sie schätzen, was Sie eine veraltete Website jeden Monat kostet."
+ ],
+ "Ügyfélszerzés": [
+  "Winning clients",
+  "Kundengewinnung"
+ ],
+ "Miért nem hoz ügyfelet a weboldalad? 7 gyakori hiba": [
+  "Why isn't your website bringing clients? 7 common mistakes",
+  "Warum bringt Ihre Website keine Kunden? 7 häufige Fehler"
+ ],
+ "Van forgalom, de nincs megkeresés? Hét gyakori ok, amiért a látogató nem ír, és hogyan javítsd mindegyiket.": [
+  "Traffic, but no enquiries? Seven common reasons visitors don't get in touch, and how to fix each one.",
+  "Besucher, aber keine Anfragen? Sieben häufige Gründe, warum Besucher sich nicht melden, und wie Sie jeden davon beheben."
+ ],
+ "Mi az a keresőoptimalizálás? Útmutató kezdőknek": [
+  "What is SEO? A beginner's guide",
+  "Was ist SEO? Ein Leitfaden für Einsteiger"
+ ],
+ "Mit tudsz belőle ingyen megcsinálni, mikor érdemes szakemberre bízni, és mennyi idő, mire látszik.": [
+  "How much of it you can do for free, when it is worth handing to a specialist, and how long it takes to show.",
+  "Was Sie davon kostenlos selbst erledigen können, wann sich ein Spezialist lohnt und wie lange es dauert, bis es sichtbar wird."
+ ],
+ "Mit kell megkapnod a végén, mitől függ az ára, és mi az a három hiba, amitől egy logó használhatatlan lesz.": [
+  "What you must receive at the end, what the price depends on, and the three mistakes that make a logo unusable.",
+  "Was Sie am Ende erhalten müssen, wovon der Preis abhängt, und die drei Fehler, die ein Logo unbrauchbar machen."
+ ],
+ "Weboldal, keresőoptimalizálás, online marketing: akkor írunk, ha van mit mondanunk. Megerősítő levelet küldünk, és bármikor leiratkozhatsz.": [
+  "Websites, search optimisation, online marketing: we write when we have something to say. We will send a confirmation e-mail, and you can unsubscribe at any time.",
+  "Websites, Suchmaschinenoptimierung, Online-Marketing: Wir schreiben, wenn wir etwas zu sagen haben. Sie erhalten eine Bestätigungs-E-Mail und können sich jederzeit abmelden."
+ ],
+ "E-mail-cím": [
+  "Email address",
+  "E-Mail-Adresse"
+ ],
+ "e-mail-cím": [
+  "email address",
+  "E-Mail-Adresse"
+ ],
+ "Ha nem magad raknád össze, megcsináljuk veled együtt: weboldal, keresőoptimalizálás, hirdetés és arculat egy kézben.": [
+  "If you'd rather not put it together yourself, we'll build it with you: website, SEO, advertising and brand identity from one team.",
+  "Wenn Sie es nicht selbst zusammenstellen möchten, setzen wir es gemeinsam mit Ihnen um: Website, SEO, Werbung und Corporate Design aus einer Hand."
  ]
 }

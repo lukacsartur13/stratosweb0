@@ -3,10 +3,6 @@
   "Strings that appear on more than one page. Format: hungarian -> [english, german].",
   ""
  ],
- "Felszállás": [
-  "Take-off",
-  "Abflug"
- ],
  "Segítség": [
   "Help",
   "Hilfe"
@@ -16,7 +12,7 @@
   "Leistungen"
  ],
  "Gyakori<br>kérdések": [
-  "Frequently<br>asked",
+  "Frequently asked<br>questions",
   "Häufige<br>Fragen"
  ],
  "Nem találod a választ? <a class=\"tlink\" href=\"ugyfelszolgalat.html\">Írj nekünk</a>": [
@@ -30,18 +26,6 @@
  "Nem találod a választ? <a class=\"tlink\" href=\"ugyfelszolgalat.html\">Írj nekünk</a>, és szívesen egyeztetünk.": [
   "Can't find your answer? <a class=\"tlink\" href=\"ugyfelszolgalat.html\">Write to us</a> and let's talk it through.",
   "Antwort nicht gefunden? <a class=\"tlink\" href=\"ugyfelszolgalat.html\">Schreiben Sie uns</a>, wir besprechen es gern."
- ],
- "Projekt indítása": [
-  "Start a project",
-  "Projekt starten"
- ],
- "Megnézem a projekteket": [
-  "View the projects",
-  "Die Projekte ansehen"
- ],
- "Megnézem a munkáinkat": [
-  "See our work",
-  "Unsere Arbeiten ansehen"
  ],
  "Nálad hogy jön ki?": [
   "How does this add up for you?",
@@ -59,77 +43,17 @@
   "Have a project that would sit alongside these? Tell us, and we'll look at it together.",
   "Haben Sie ein Projekt, das neben diesen stehen könnte? Erzählen Sie es uns, und wir sehen es uns gemeinsam an."
  ],
- "Árajánlatot kérek": [
-  "Get a quote",
-  "Angebot anfordern"
- ],
- "Árajánlat kérése": [
-  "Request a quote",
-  "Angebot anfragen"
- ],
- "Árajánlat": [
-  "Get a quote",
-  "Angebot"
- ],
  "Kérek ajánlatot": [
   "Request a quote",
   "Angebot anfragen"
- ],
- "Kitöltöm a kérdőívet": [
-  "Fill in the questionnaire",
-  "Fragebogen ausfüllen"
- ],
- "Ingyenes konzultáció": [
-  "Free consultation",
-  "Kostenlose Beratung"
- ],
- "Konzultációt kérek": [
-  "Book a consultation",
-  "Beratung anfragen"
- ],
- "Egyeztetést kérek": [
-  "Book a call",
-  "Gespräch vereinbaren"
- ],
- "Kérdésem van": [
-  "I have a question",
-  "Ich habe eine Frage"
- ],
- "Előbb kérdeznék": [
-  "I'd rather ask first",
-  "Erst eine Frage stellen"
- ],
- "Inkább csak kérdeznék": [
-  "I'd rather just ask",
-  "Ich möchte lieber nur fragen"
- ],
- "Inkább beszélgetnék": [
-  "I'd rather talk first",
-  "Lieber erst reden"
  ],
  "Elolvasom →": [
   "Read it →",
   "Lesen →"
  ],
- "Megnézem →": [
-  "Take a look →",
-  "Ansehen →"
- ],
- "Jelentkezés →": [
-  "Apply →",
-  "Bewerben →"
- ],
  "Rólunk →": [
   "About us →",
   "Über uns →"
- ],
- "<a class=\"tlink\" href=\"rolunk.html\">Rólunk →</a>": [
-  "<a class=\"tlink\" href=\"rolunk.html\">About us →</a>",
-  "<a class=\"tlink\" href=\"rolunk.html\">Über uns →</a>"
- ],
- "<a class=\"tlink\" href=\"ugyfelszolgalat.html\">Ügyfélszolgálat →</a>": [
-  "<a class=\"tlink\" href=\"ugyfelszolgalat.html\">Contact →</a>",
-  "<a class=\"tlink\" href=\"ugyfelszolgalat.html\">Kontakt →</a>"
  ],
  "A folyamat": [
   "The process",
@@ -154,14 +78,6 @@
  "Az összehasonlítás": [
   "The comparison",
   "Der Vergleich"
- ],
- "Hozzáállás": [
-  "Mindset",
-  "Haltung"
- ],
- "Módszertan": [
-  "Method",
-  "Methodik"
  ],
  "Fókusz": [
   "Focus",
@@ -195,14 +111,6 @@
   "Operations",
   "Betrieb"
  ],
- "Támogatás": [
-  "Support",
-  "Support"
- ],
- "Platform": [
-  "Platform",
-  "Plattform"
- ],
  "Integráció": [
   "Integration",
   "Integration"
@@ -223,21 +131,9 @@
   "Typography",
   "Typografie"
  ],
- "Konzultáció": [
-  "Consultation",
-  "Beratung"
- ],
  "Élő oldalak": [
   "Live sites",
   "Live-Websites"
- ],
- "Kiemelt ügyfelek": [
-  "Selected clients",
-  "Ausgewählte Kunden"
- ],
- "Akikkel repülünk": [
-  "Who we fly with",
-  "Mit wem wir fliegen"
  ],
  "Hírlevél": [
   "Newsletter",
@@ -271,10 +167,6 @@
   "Maintenance",
   "Wartung"
  ],
- "Rendszerintegráció": [
-  "System integration",
-  "Systemintegration"
- ],
  "Egyedi dizájn": [
   "Bespoke design",
   "Individuelles Design"
@@ -283,29 +175,13 @@
   "Monthly report",
   "Monatsreport"
  ],
- "Konverziómérés": [
-  "Conversion tracking",
-  "Conversion-Tracking"
- ],
- "Szerződéshosszabbítás": [
-  "Contract renewal rate",
-  "Vertragsverlängerung"
- ],
  "Aktív ügyfél országszerte": [
   "Active clients nationwide",
   "Aktive Kunden landesweit"
  ],
- "Év kutatás és tapasztalat": [
-  "Years of research and practice",
-  "Jahre Forschung und Erfahrung"
- ],
  "Év folyamatos kutatás": [
   "Years of continuous research",
   "Jahre laufende Forschung"
- ],
- "Méter az átlag fölött": [
-  "Metres above the average",
-  "Meter über dem Durchschnitt"
  ],
  "Rapidkert Kft.": [
   "Rapidkert Kft.",
@@ -314,10 +190,6 @@
  "Barbershop Győr": [
   "Barbershop Győr",
   "Barbershop Győr"
- ],
- "Pille Sewing": [
-  "Pille Sewing",
-  "Pille Sewing"
  ],
  "mentaltrening.com": [
   "mentaltrening.com",
@@ -338,10 +210,6 @@
  "Telefon": [
   "Phone",
   "Telefon"
- ],
- "E-mail cím": [
-  "Email address",
-  "E-Mail-Adresse"
  ],
  "e-mail cím": [
   "email address",
@@ -382,22 +250,6 @@
  "Mennyire lesz testreszabott a weboldalam?": [
   "How custom will my website be?",
   "Wie individuell wird meine Website?"
- ],
- "Később bővíthető vagy fejleszthető a rendszer?": [
-  "Can the system be extended later?",
-  "Lässt sich das System später erweitern?"
- ],
- "Mobiltelefonon és tableten is megfelelően működik majd az oldal?": [
-  "Will the site work properly on phones and tablets?",
-  "Funktioniert die Seite auch auf Handy und Tablet?"
- ],
- "Segítetek a Google és Meta hirdetések kezelésében is?": [
-  "Do you also manage Google and Meta ads?",
-  "Betreuen Sie auch Google- und Meta-Werbung?"
- ],
- "Hogyan követhető a weboldal és a hirdetések teljesítménye?": [
-  "How is the performance of the site and the ads tracked?",
-  "Wie wird die Leistung von Website und Werbung gemessen?"
  ],
  "mindforge.hu": [
   "mindforge.hu",

@@ -3,13 +3,9 @@
   "Free websites for nonprofits | Stratos",
   "Kostenlose Websites für Non-Profits | Stratos"
  ],
- "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt. 0 Ft, rejtett díjak nélkül.": [
-  "Every year we build a handful of nonprofit organisations a fully professional website, completely free. No fee, no hidden costs.",
-  "Jedes Jahr bauen wir einigen Non-Profit-Organisationen eine professionelle Website — komplett kostenlos, ohne versteckte Kosten."
- ],
- "<a href=\"index.html\">Stratos</a> / <b>Impact Program</b>": [
-  "<a href=\"index.html\">Stratos</a> / <b>Impact Program</b>",
-  "<a href=\"index.html\">Stratos</a> / <b>Impact-Programm</b>"
+ "<a href=\"index.html\">Főoldal</a> / <b>Impact Program</b>": [
+  "<a href=\"index.html\">Home</a> / <b>Impact Program</b>",
+  "<a href=\"index.html\">Startseite</a> / <b>Impact-Programm</b>"
  ],
  "A Stratos Webdesign társadalmi kezdeményezése": [
   "A social initiative by Stratos Webdesign",
@@ -19,10 +15,6 @@
   "Premium websites<br>for the people who<br><span class=\"chr\">change lives.</span>",
   "Erstklassige Websites<br>für die Menschen, die<br><span class=\"chr\">Leben verändern.</span>"
  ],
- "Minden évben néhány nonprofit szervezetnek építünk teljesen ingyen professzionális weboldalt, hogy a munkájukhoz méltó digitális jelenlétet kapjanak.": [
-  "Every year we build a handful of nonprofits a professional website completely free, so their digital presence matches the work they do.",
-  "Jedes Jahr bauen wir einigen gemeinnützigen Organisationen eine professionelle Website — völlig kostenlos, damit ihr digitaler Auftritt ihrer Arbeit gerecht wird."
- ],
  "Jelentkezem": [
   "Apply now",
   "Jetzt bewerben"
@@ -30,22 +22,6 @@
  "Ez a projekt<br><span class=\"chr\">személyes.</span>": [
   "This project<br>is <span class=\"chr\">personal.</span>",
   "Dieses Projekt<br>ist <span class=\"chr\">persönlich.</span>"
- ],
- "A Stratos Webdesign azért jött létre, hogy ambiciózus márkák ambiciózusan nézzenek ki online. Ez a program viszont egészen máshonnan indult.": [
-  "Stratos Webdesign exists so that ambitious brands look ambitious online. This programme, though, started somewhere else entirely.",
-  "Stratos Webdesign gibt es, damit ambitionierte Marken online auch ambitioniert aussehen. Dieses Programm hat aber einen ganz anderen Ursprung."
- ],
- "Az alapító azért hozta létre az Impact Programot, mert a függőség hozzá közel álló embereket is érintett. Ezeket a küzdelmeket közelről látva vált világossá számára, mennyire fontosak a rehabilitációval, prevencióval és mentális egészséggel foglalkozó szervezetek — és milyen gyakran tartja vissza őket egy elavult weboldal, miközben rendkívüli munkát végeznek.": [
-  "Our founder created the Impact Program because addiction touched people close to him. Seeing those struggles up close made it clear how vital organisations working in rehabilitation, prevention and mental health are — and how often an outdated website holds them back while they do extraordinary work.",
-  "Unser Gründer hat das Impact-Programm ins Leben gerufen, weil Sucht Menschen in seinem nahen Umfeld betroffen hat. Diese Kämpfe aus der Nähe zu sehen machte ihm klar, wie wichtig Organisationen in Rehabilitation, Prävention und psychischer Gesundheit sind — und wie oft eine veraltete Website sie ausbremst, während sie Außergewöhnliches leisten."
- ],
- "A cél sosem csak weboldalak építése volt. A cél az, hogy ezek a szervezetek több emberhez jussanak el, akiknek szükségük van rájuk, és nagyobb hatást érjenek el, mint valaha.": [
-  "The goal was never simply to build websites. The goal is for these organisations to reach more of the people who need them, and to have more impact than ever.",
-  "Es ging nie nur darum, Websites zu bauen. Es geht darum, dass diese Organisationen mehr Menschen erreichen, die sie brauchen, und größere Wirkung entfalten als je zuvor."
- ],
- "— A Stratos Webdesign csapata": [
-  "— The Stratos Webdesign team",
-  "— Das Team von Stratos Webdesign"
  ],
  "Két ügy, ami<br>közel áll hozzánk": [
   "Two causes<br>close to us",
@@ -127,14 +103,6 @@
   "Youth organisations",
   "Jugendorganisationen"
  ],
- "Minden, ami egy<br>modern nonprofitnak<br>kell — <span class=\"chr\">ingyen</span>": [
-  "Everything a modern<br>nonprofit needs<br>— <span class=\"chr\">for free</span>",
-  "Alles, was eine moderne<br>Non-Profit braucht<br>— <span class=\"chr\">kostenlos</span>"
- ],
- "Minden kiválasztott szervezet teljes, professzionális weboldalt kap. Ugyanazt a csomagot, amit fizető ügyfeleinknek építünk.": [
-  "Every selected organisation gets a complete, professional website. The same package we build for paying clients.",
-  "Jede ausgewählte Organisation erhält eine vollständige, professionelle Website. Dasselbe Paket, das wir für zahlende Kunden bauen."
- ],
  "Dizájn és fejlesztés": [
   "Design and development",
   "Design und Entwicklung"
@@ -143,49 +111,13 @@
   "Bespoke premium website",
   "Individuelle Premium-Website"
  ],
- "UX és UI dizájn": [
-  "UX and UI design",
-  "UX- und UI-Design"
- ],
- "Reszponzív fejlesztés": [
-  "Responsive development",
-  "Responsive Entwicklung"
- ],
- "Mobil optimalizálás": [
-  "Mobile optimisation",
-  "Mobile Optimierung"
- ],
  "Működő funkciók": [
   "Working features",
   "Funktionierende Features"
  ],
- "Kapcsolatfelvételi űrlapok": [
-  "Contact forms",
-  "Kontaktformulare"
- ],
- "Önkéntes jelentkezési űrlapok": [
-  "Volunteer sign-up forms",
-  "Formulare für Freiwillige"
- ],
- "Adományozási oldalak": [
-  "Donation pages",
-  "Spendenseiten"
- ],
- "Eseményoldalak": [
-  "Event pages",
-  "Veranstaltungsseiten"
- ],
- "Blog és hírrendszer": [
-  "Blog and news system",
-  "Blog und Newsbereich"
- ],
  "Láthatóság": [
   "Visibility",
   "Sichtbarkeit"
- ],
- "SEO beállítás": [
-  "SEO setup",
-  "SEO-Einrichtung"
  ],
  "Google Analytics": [
   "Google Analytics",
@@ -195,49 +127,17 @@
   "Google Search Console",
   "Google Search Console"
  ],
- "Teljesítmény-optimalizálás": [
-  "Performance optimisation",
-  "Performance-Optimierung"
- ],
  "Minőség és indulás": [
   "Quality and launch",
   "Qualität und Start"
- ],
- "Akadálymentesítés": [
-  "Accessibility",
-  "Barrierefreiheit"
- ],
- "Biztonsági jó gyakorlatok": [
-  "Security best practices",
-  "Sicherheits-Best-Practices"
- ],
- "Weboldal élesítés": [
-  "Website launch",
-  "Website-Launch"
- ],
- "Kezdeti technikai támogatás": [
-  "Initial technical support",
-  "Anfänglicher technischer Support"
  ],
  "0 Ft": [
   "€0",
   "0 €"
  ],
- "Nulla költség a szervezetednek. Nincsenek rejtett díjak.": [
-  "Zero cost to your organisation. No hidden fees.",
-  "Null Kosten für Ihre Organisation. Keine versteckten Gebühren."
- ],
  "Kiknek": [
   "Who it's for",
   "Für wen"
- ],
- "Azoknak,<br>akik valódi<br>jót tesznek": [
-  "For those<br>who do<br>real good",
-  "Für alle,<br>die wirklich<br>Gutes tun"
- ],
- "Ha a munkátok embereken segít, és egy jobb weboldal segítene többükhöz eljutni, nektek szól ez a program.": [
-  "If your work helps people, and a better website would help you reach more of them, this programme is for you.",
-  "Wenn Ihre Arbeit Menschen hilft und eine bessere Website Ihnen helfen würde, mehr von ihnen zu erreichen, ist dieses Programm für Sie."
  ],
  "Nonprofit szervezetként működtök": [
   "You operate as a nonprofit",
@@ -259,10 +159,6 @@
   "You're open to working together",
   "Sie sind offen für Zusammenarbeit"
  ],
- "<b style=\"color:inherit;font-weight:600\">Előnyt élveznek</b> a felépüléssel, mentális egészséggel és gyermekvédelemmel foglalkozó szervezetek. De minden valódi hatást elérő szervezet jelentkezhet.": [
-  "<b style=\"color:inherit;font-weight:600\">Priority goes to</b> organisations working in recovery, mental health and child protection. But any organisation creating real impact can apply.",
-  "<b style=\"color:inherit;font-weight:600\">Vorrang haben</b> Organisationen in den Bereichen Genesung, psychische Gesundheit und Kinderschutz. Bewerben kann sich aber jede Organisation mit echter Wirkung."
- ],
  "Egyszerű,<br>emberi folyamat": [
   "A simple,<br>human process",
   "Ein einfacher,<br>menschlicher Ablauf"
@@ -275,10 +171,6 @@
   "Application",
   "Bewerbung"
  ],
- "A szervezetek beküldik a jelentkezésüket és megosztják a történetüket.": [
-  "Organisations send in their application and share their story.",
-  "Organisationen reichen ihre Bewerbung ein und erzählen ihre Geschichte."
- ],
  "Elbírálás": [
   "Review",
   "Auswahl"
@@ -290,10 +182,6 @@
  "Egyeztetés": [
   "A conversation",
   "Gespräch"
- ],
- "Átbeszéljük az igényeket, célokat és lehetőségeket.": [
-  "We go through needs, goals and possibilities together.",
-  "Wir besprechen Bedarf, Ziele und Möglichkeiten."
  ],
  "Weboldal készítés": [
   "Building the website",
@@ -311,53 +199,21 @@
   "We help the people who <span class=\"chr\">help others.</span>",
   "Wir helfen denen, die <span class=\"chr\">anderen helfen.</span>"
  ],
- "Ez nem egyszeri kampány. Az elkövetkező években nonprofit weboldalak tucatjait szeretnénk megépíteni, és hozzájárulni az erősebb közösségekhez Magyarországon.": [
-  "This isn't a one-off campaign. Over the coming years we want to build dozens of nonprofit websites and contribute to stronger communities in Hungary.",
-  "Das ist keine einmalige Kampagne. In den kommenden Jahren wollen wir Dutzende Non-Profit-Websites bauen und zu stärkeren Gemeinschaften in Ungarn beitragen."
- ],
- "Tucatnyi": [
-  "Dozens",
-  "Dutzende"
- ],
- "Weboldal a következő években": [
-  "Websites over the coming years",
-  "Websites in den kommenden Jahren"
- ],
  "Minden évben": [
   "Every year",
   "Jedes Jahr"
- ],
- "Új szervezeteket választunk": [
-  "We choose new organisations",
-  "Wählen wir neue Organisationen"
- ],
- "Ingyenes, mindig": [
-  "Free, always",
-  "Kostenlos, immer"
  ],
  "Tényleg ingyenes?": [
   "Is it really free?",
   "Ist es wirklich kostenlos?"
  ],
- "Igen, teljesen. A kiválasztott szervezetek semmit nem fizetnek. Nincsenek rejtett díjak, licencköltségek vagy kötelezettségek. A dizájnt, a fejlesztést és az élesítést mi álljuk.": [
-  "Yes, entirely. Selected organisations pay nothing. There are no hidden fees, licence costs or obligations. We cover the design, the development and the launch.",
-  "Ja, vollständig. Ausgewählte Organisationen zahlen nichts. Es gibt keine versteckten Gebühren, Lizenzkosten oder Verpflichtungen. Design, Entwicklung und Launch übernehmen wir."
- ],
  "Miért csináljátok ezt?": [
   "Why do you do this?",
   "Warum machen Sie das?"
  ],
- "Mert első kézből láttuk, mennyire fontosak a rehabilitációval, mentális egészséggel és gyermekvédelemmel foglalkozó szervezetek. Megvan a szakértelmünk, hogy segítsünk, ezért segítünk.": [
-  "Because we've seen first hand how vital organisations working in rehabilitation, mental health and child protection are. We have the expertise to help, so we help.",
-  "Weil wir aus erster Hand gesehen haben, wie wichtig Organisationen in Rehabilitation, psychischer Gesundheit und Kinderschutz sind. Wir haben das Können zu helfen — also helfen wir."
- ],
  "Ki jelentkezhet?": [
   "Who can apply?",
   "Wer kann sich bewerben?"
- ],
- "Olyan nonprofit szervezetek, amelyek valódi, mérhető társadalmi hatást hoznak létre, és nyitottak az együttműködésre. Előnyt élveznek a felépüléssel, mentális egészséggel és gyermekvédelemmel foglalkozó szervezetek.": [
-  "Nonprofit organisations that create real, measurable social impact and are open to working together. Priority goes to organisations working in recovery, mental health and child protection.",
-  "Gemeinnützige Organisationen, die echte, messbare gesellschaftliche Wirkung erzielen und offen für Zusammenarbeit sind. Vorrang haben Organisationen in Genesung, psychischer Gesundheit und Kinderschutz."
  ],
  "Hány szervezetet választotok ki?": [
   "How many organisations do you select?",
@@ -371,29 +227,9 @@
   "Do you maintain the website?",
   "Warten Sie die Website?"
  ],
- "Minden szervezet kap kezdeti technikai támogatást az élesítés után. A hosszabb távú igényeket az egyeztetésen közösen beszéljük át.": [
-  "Every organisation gets initial technical support after launch. Longer-term needs we discuss together during the conversation.",
-  "Jede Organisation erhält nach dem Launch anfänglichen technischen Support. Längerfristigen Bedarf besprechen wir gemeinsam im Gespräch."
- ],
  "Meglévő weboldalt is újraterveztek?": [
   "Do you also redesign existing websites?",
   "Gestalten Sie auch bestehende Websites neu?"
- ],
- "Természetesen. Akár a nulláról indultok, akár egy elavult oldalt váltanátok le, modern, professzionális jelenlétet építünk az alapoktól.": [
-  "Of course. Whether you're starting from scratch or replacing an outdated site, we build a modern, professional presence from the ground up.",
-  "Selbstverständlich. Ob Sie bei null anfangen oder eine veraltete Seite ablösen wollen — wir bauen einen modernen, professionellen Auftritt von Grund auf."
- ],
- "Jelentkezz<br>az Impact<br>Programba": [
-  "Apply to the<br>Impact<br>Program",
-  "Bewerben Sie sich<br>fürs Impact-<br>Programm"
- ],
- "Ha a szervezeted valódi társadalmi hatást ér el, szeretnénk megismerni a történeteteket.": [
-  "If your organisation creates real social impact, we'd like to hear your story.",
-  "Wenn Ihre Organisation echte gesellschaftliche Wirkung erzielt, möchten wir Ihre Geschichte hören."
- ],
- "[IMPACT] Jelentkezés az Impact Programba": [
-  "[IMPACT] Application to the Impact Program",
-  "[IMPACT] Bewerbung fürs Impact-Programm"
  ],
  "Szervezet neve *": [
   "Organisation name *",
@@ -402,14 +238,6 @@
  "Kapcsolattartó neve *": [
   "Contact person *",
   "Ansprechperson *"
- ],
- "E-mail cím *": [
-  "Email address *",
-  "E-Mail-Adresse *"
- ],
- "Jelenlegi weboldal — ha nincs, hagyd üresen": [
-  "Current website — leave empty if you don't have one",
-  "Aktuelle Website — leer lassen, wenn keine vorhanden"
  ],
  "Tevékenységi terület *": [
   "Area of work *",
@@ -467,8 +295,200 @@
   "What we're<br>building now",
   "Woran wir<br>gerade bauen"
  ],
- "A DPA weboldala jelenleg az Impact Programon keresztül épül. Ugyanaz a munka és ugyanaz a mérce, mint bármelyik másik projektnél — csak nincs számla a végén.": [
-  "DPA's website is being built through the Impact Program right now. The same work and the same standard as any other project — there just isn't an invoice at the end.",
-  "Die Website von DPA entsteht gerade über das Impact-Programm. Dieselbe Arbeit und derselbe Maßstab wie bei jedem anderen Projekt — am Ende steht nur keine Rechnung."
+ "Ingyenes weboldal nonprofitoknak | Stratos Webdesign": [
+  "Free websites for nonprofits | Stratos Webdesign",
+  "Kostenlose Websites für Non-Profits | Stratos Webdesign"
+ ],
+ "Minden évben néhány nonprofit szervezetnek ingyen építünk professzionális weboldalt. Nézd meg, kiknek szól a program, és jelentkezzetek.": [
+  "Every year we build a professional website for a few nonprofit organisations, free of charge. See who the programme is for, and apply.",
+  "Jedes Jahr bauen wir einigen gemeinnützigen Organisationen kostenlos eine professionelle Website. Sehen Sie, für wen das Programm gedacht ist, und bewerben Sie sich."
+ ],
+ "Minden évben néhány nonprofit szervezetnek ingyen építünk professzionális weboldalt, hogy a munkájukhoz méltó digitális jelenlétet kapjanak.": [
+  "Every year we build a professional website for a few nonprofits, free of charge, so that their digital presence matches the work they do.",
+  "Jedes Jahr bauen wir einigen gemeinnützigen Organisationen kostenlos eine professionelle Website, damit ihr digitaler Auftritt ihrer Arbeit gerecht wird."
+ ],
+ "A Stratos Webdesign azért jött létre, hogy ambiciózus márkák ambiciózusan nézzenek ki online. Ez a program máshonnan indult.": [
+  "Stratos Webdesign exists so that ambitious brands look ambitious online. This programme started somewhere else.",
+  "Stratos Webdesign gibt es, damit ambitionierte Marken online auch ambitioniert aussehen. Dieses Programm hat einen anderen Ursprung."
+ ],
+ "Az alapító azért hozta létre az Impact Programot, mert a függőség hozzá közel álló embereket is érintett. Ezeket a küzdelmeket közelről látva vált világossá számára, mennyire fontosak a rehabilitációval, a prevencióval és a mentális egészséggel foglalkozó szervezetek, és milyen gyakran tartja vissza őket egy elavult weboldal, miközben rendkívüli munkát végeznek.": [
+  "Our founder created the Impact Program because addiction touched people close to him. Seeing those struggles up close made it clear how vital organisations working in rehabilitation, prevention and mental health are, and how often an outdated website holds them back while they do extraordinary work.",
+  "Unser Gründer hat das Impact-Programm ins Leben gerufen, weil Sucht Menschen in seinem nahen Umfeld betroffen hat. Diese Kämpfe aus der Nähe zu sehen machte ihm klar, wie wichtig Organisationen in Rehabilitation, Prävention und psychischer Gesundheit sind, und wie oft eine veraltete Website sie ausbremst, während sie Außergewöhnliches leisten."
+ ],
+ "A cél az, hogy ezek a szervezetek több emberhez jussanak el, akiknek szükségük van rájuk, és nagyobb hatást érjenek el.": [
+  "The goal is for these organisations to reach more of the people who need them, and to have a greater impact.",
+  "Das Ziel ist, dass diese Organisationen mehr Menschen erreichen, die sie brauchen, und größere Wirkung entfalten."
+ ],
+ "A Stratos Webdesign csapata": [
+  "The Stratos Webdesign team",
+  "Das Team von Stratos Webdesign"
+ ],
+ "Amiből a ti<br>weboldalatok<br><span class=\"chr\">összeáll</span>": [
+  "What your<br>website is<br><span class=\"chr\">made of</span>",
+  "Woraus Ihre<br>Website<br><span class=\"chr\">besteht</span>"
+ ],
+ "Minden kiválasztott szervezet professzionális weboldalt kap, ugyanazzal a gondossággal és mércével, mint a fizető ügyfeleink. A terjedelmet a jelentkezés után közösen rögzítjük, és ebből azt építjük meg, amire a szervezeteteknek szüksége van.": [
+  "Every selected organisation gets a professional website, built with the same care and to the same standard as for our paying clients. We agree the scope together after you apply, and within it we build what your organisation needs.",
+  "Jede ausgewählte Organisation erhält eine professionelle Website, mit derselben Sorgfalt und nach demselben Maßstab wie für unsere zahlenden Kunden. Den Umfang legen wir nach der Bewerbung gemeinsam fest, und darin bauen wir, was Ihre Organisation braucht."
+ ],
+ "Felhasználói élmény és felülettervezés": [
+  "User experience and interface design",
+  "Nutzererlebnis und Oberflächengestaltung"
+ ],
+ "Minden eszközre tervezve": [
+  "Designed for every device",
+  "Für alle Geräte gestaltet"
+ ],
+ "Mobilon is gyors": [
+  "Fast on mobile too",
+  "Auch mobil schnell"
+ ],
+ "Önkéntes-jelentkezési űrlap": [
+  "Volunteer sign-up form",
+  "Formular für Freiwillige"
+ ],
+ "Adományozást segítő oldal": [
+  "A page that supports donations",
+  "Eine Seite, die Spenden erleichtert"
+ ],
+ "Eseményoldal": [
+  "Events page",
+  "Veranstaltungsseite"
+ ],
+ "Hírek, blog": [
+  "News, blog",
+  "News, Blog"
+ ],
+ "Keresőoptimalizálási alapbeállítás": [
+  "Basic SEO setup",
+  "SEO-Grundeinrichtung"
+ ],
+ "Gyors betöltés": [
+  "Fast loading",
+  "Schnelle Ladezeiten"
+ ],
+ "Akadálymentességi alapelvek szerint": [
+  "Built to core accessibility principles",
+  "Nach grundlegenden Prinzipien der Barrierefreiheit"
+ ],
+ "Biztonsági alapbeállítások": [
+  "Basic security settings",
+  "Grundlegende Sicherheitseinstellungen"
+ ],
+ "Technikai támogatás az indulás után": [
+  "Technical support after launch",
+  "Technischer Support nach dem Start"
+ ],
+ "A tervezés, a fejlesztés és az élesítés költségét mi álljuk. Rejtett díjak nincsenek.": [
+  "We cover the cost of design, development and launch. There are no hidden fees.",
+  "Die Kosten für Konzeption, Entwicklung und Launch übernehmen wir. Versteckte Gebühren gibt es nicht."
+ ],
+ "Azoknak,<br>akik másokért<br>dolgoznak": [
+  "For those<br>who work<br>for others",
+  "Für alle,<br>die sich für<br>andere einsetzen"
+ ],
+ "Ha a munkátok embereken segít, és egy jobb weboldallal többükhöz eljutnátok, nektek szól ez a program.": [
+  "If your work helps people, and a better website would let you reach more of them, this programme is for you.",
+  "Wenn Ihre Arbeit Menschen hilft und Sie mit einer besseren Website mehr von ihnen erreichen würden, ist dieses Programm für Sie."
+ ],
+ "<b style=\"color:inherit;font-weight:600\">Előnyben vannak</b> a felépüléssel, a mentális egészséggel és a gyermekvédelemmel foglalkozó szervezetek, de minden jelentős társadalmi hatást elérő szervezet jelentkezhet.": [
+  "<b style=\"color:inherit;font-weight:600\">Priority goes to</b> organisations working in recovery, mental health and child protection, but any organisation with significant social impact can apply.",
+  "<b style=\"color:inherit;font-weight:600\">Vorrang haben</b> Organisationen in den Bereichen Genesung, psychische Gesundheit und Kinderschutz, bewerben kann sich aber jede Organisation mit bedeutender gesellschaftlicher Wirkung."
+ ],
+ "A szervezetek beküldik a jelentkezésüket, és elmondják a történetüket.": [
+  "Organisations send in their application and tell their story.",
+  "Organisationen reichen ihre Bewerbung ein und erzählen ihre Geschichte."
+ ],
+ "Átbeszéljük az igényeket, a célokat és a lehetőségeket, és közösen rögzítjük a weboldal terjedelmét.": [
+  "We go through needs, goals and possibilities together, and agree the scope of the website.",
+  "Wir besprechen Bedarf, Ziele und Möglichkeiten und legen gemeinsam den Umfang der Website fest."
+ ],
+ "A DPA weboldala jelenleg az Impact Programon keresztül épül. Ugyanaz a munka és ugyanaz a mérce, mint bármelyik másik projektnél, csak nincs számla a végén.": [
+  "DPA's website is being built through the Impact Program right now. The same work and the same standard as any other project, there just isn't an invoice at the end.",
+  "Die Website von DPA entsteht gerade über das Impact-Programm. Dieselbe Arbeit und derselbe Maßstab wie bei jedem anderen Projekt, nur steht am Ende keine Rechnung."
+ ],
+ "Hosszú távra tervezzük. Az elkövetkező években minél több nonprofit weboldalt szeretnénk megépíteni, és hozzájárulni az erősebb közösségekhez Magyarországon.": [
+  "We are planning for the long term. Over the coming years we want to build as many nonprofit websites as we can, and contribute to stronger communities in Hungary.",
+  "Wir planen langfristig. In den kommenden Jahren wollen wir möglichst viele Non-Profit-Websites bauen und zu stärkeren Gemeinschaften in Ungarn beitragen."
+ ],
+ "Évről évre": [
+  "Year after year",
+  "Jahr für Jahr"
+ ],
+ "Újabb szervezetek": [
+  "More organisations",
+  "Weitere Organisationen"
+ ],
+ "Új jelentkezési kör": [
+  "A new round of applications",
+  "Eine neue Bewerbungsrunde"
+ ],
+ "Ingyenes": [
+  "Free",
+  "Kostenlos"
+ ],
+ "A kiválasztott szervezeteknek": [
+  "For the selected organisations",
+  "Für die ausgewählten Organisationen"
+ ],
+ "Ezt előre leírjuk, mert a csalódás rosszabb, mint az elutasítás. Ha bármelyik pont kizáró a szervezetetek számára, jobb most tudni.": [
+  "We state this in advance, because disappointment is worse than rejection. If any of these rules your organisation out, it's better to know now.",
+  "Wir schreiben das vorab, weil Enttäuschung schlimmer ist als eine Absage. Wenn einer dieser Punkte für Ihre Organisation ein Ausschluss ist, ist es besser, das jetzt zu wissen."
+ ],
+ "A jelentkezés nem jelenti azt, hogy a szervezet bekerül a programba. Egyszerre néhány szervezettel tudunk dolgozni, ezért több jó jelentkezést is el kell utasítanunk.": [
+  "Applying does not mean the organisation joins the programme. We can work with only a few organisations at a time, so we have to turn down good applications as well.",
+  "Eine Bewerbung bedeutet nicht, dass die Organisation ins Programm aufgenommen wird. Wir können gleichzeitig nur mit wenigen Organisationen arbeiten und müssen deshalb auch gute Bewerbungen absagen."
+ ],
+ "A tartalomhoz (szövegek, fotók, adatok) a szervezet közreműködése kell. Enélkül a legjobb weboldal is üres marad.": [
+  "The content (text, photographs, figures) needs the organisation's involvement. Without it, even the best website stays empty.",
+  "Für die Inhalte (Texte, Fotos, Daten) braucht es die Mitwirkung der Organisation. Ohne sie bleibt auch die beste Website leer."
+ ],
+ "Az elbírálás és a kivitelezés is időt vesz igénybe. Ha határidőre kell a weboldal, jelezzétek a jelentkezésben.": [
+  "Both assessment and delivery take time. If you need the website by a fixed date, say so in your application.",
+  "Sowohl die Prüfung als auch die Umsetzung brauchen Zeit. Wenn Sie die Website zu einem festen Termin brauchen, geben Sie das bitte in der Bewerbung an."
+ ],
+ "Igen. A kiválasztott szervezetek nem fizetnek a tervezésért, a fejlesztésért és az élesítésért, ezt mi álljuk. A tartalomhoz (szövegek, fotók) viszont a ti közreműködésetek kell.": [
+  "Yes. Selected organisations don't pay for the design, the development or the launch; we cover those. For the content (text, photographs), though, we need your involvement.",
+  "Ja. Ausgewählte Organisationen zahlen nicht für Konzeption, Entwicklung und Launch, das übernehmen wir. Für die Inhalte (Texte, Fotos) brauchen wir allerdings Ihre Mitwirkung."
+ ],
+ "Mert első kézből láttuk, mennyire fontosak a rehabilitációval, a mentális egészséggel és a gyermekvédelemmel foglalkozó szervezetek. Megvan a szakértelmünk, hogy segítsünk, ezért segítünk.": [
+  "Because we've seen first hand how vital organisations working in rehabilitation, mental health and child protection are. We have the expertise to help, so we help.",
+  "Weil wir aus erster Hand gesehen haben, wie wichtig Organisationen in Rehabilitation, psychischer Gesundheit und Kinderschutz sind. Wir haben das Können zu helfen, also helfen wir."
+ ],
+ "Olyan nonprofit szervezetek, amelyek valódi, mérhető társadalmi hatást hoznak létre, és nyitottak az együttműködésre. Előnyben vannak a felépüléssel, a mentális egészséggel és a gyermekvédelemmel foglalkozó szervezetek.": [
+  "Nonprofit organisations that create real, measurable social impact and are open to working together. Priority goes to organisations working in recovery, mental health and child protection.",
+  "Gemeinnützige Organisationen, die echte, messbare gesellschaftliche Wirkung erzielen und offen für Zusammenarbeit sind. Vorrang haben Organisationen in Genesung, psychischer Gesundheit und Kinderschutz."
+ ],
+ "Az élesítés után technikai támogatást kaptok az indulás időszakára. A hosszabb távú igényeket az egyeztetésen közösen beszéljük át.": [
+  "After launch you get technical support for the start-up period. Longer-term needs we discuss together during the conversation.",
+  "Nach dem Launch erhalten Sie technischen Support für die Anlaufphase. Längerfristigen Bedarf besprechen wir gemeinsam im Gespräch."
+ ],
+ "Igen. Akár a nulláról indultok, akár egy elavult oldalt váltanátok le, modern, professzionális jelenlétet építünk az alapoktól.": [
+  "Yes. Whether you're starting from scratch or replacing an outdated site, we build a modern, professional presence from the ground up.",
+  "Ja. Ob Sie bei null anfangen oder eine veraltete Seite ablösen wollen, wir bauen einen modernen, professionellen Auftritt von Grund auf."
+ ],
+ "Jelentkezzetek<br>az Impact<br>Programba": [
+  "Apply to the<br>Impact<br>Program",
+  "Bewerben Sie sich<br>fürs Impact-<br>Programm"
+ ],
+ "Ha a szervezetetek valódi társadalmi hatást ér el, szeretnénk megismerni a történeteteket.": [
+  "If your organisation creates real social impact, we'd like to hear your story.",
+  "Wenn Ihre Organisation echte gesellschaftliche Wirkung erzielt, möchten wir Ihre Geschichte hören."
+ ],
+ "E-mail-cím *": [
+  "Email address *",
+  "E-Mail-Adresse *"
+ ],
+ "Jelenlegi weboldal (ha nincs, hagyd üresen)": [
+  "Current website (leave empty if you don't have one)",
+  "Aktuelle Website (leer lassen, wenn keine vorhanden)"
+ ],
+ "Ezt a mezőt hagyd üresen": [
+  "Leave this field empty",
+  "Dieses Feld bitte leer lassen"
+ ],
+ "Élő oldalak, amiket építettünk, hogy lásd, mire számíthatsz.": [
+  "Live sites we built, so you can see what to expect.",
+  "Live-Websites, die wir gebaut haben, damit Sie sehen, was Sie erwartet."
  ]
 }

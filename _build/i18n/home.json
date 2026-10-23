@@ -1,31 +1,7 @@
 {
  "_note": [
-  "The homepage (_build/pages/index.html). Title and description are the three",
-  "search-owned strings the homepage has carried since the SEO ownership pass;",
-  "they are copied verbatim from the previous Vite shells and must not drift.",
-  "The Rapidkert figure is the case study's: quote requests from organic search,",
-  "never revenue, never summed with the 9M from ads (see rapidkert.json).",
-  "German addresses the reader with Sie."
- ],
- "Weboldal készítés és fejlesztés | Stratos": [
-  "Web Development &amp; Web Design Agency in Győr | Stratos",
-  "Webdesign und Entwicklung | Stratos"
- ],
- "Weboldal készítés, branding és hirdetéskezelés egy kézben, egyedi ajánlattal. Győrből, KKV-tól nagyvállalatig, magyarul, angolul és németül.": [
-  "Web development, web design, branding and ads from one team in Győr, Hungary — built in code, quoted per project. In English, German and Hungarian.",
-  "Webdesign, Webentwicklung, Branding und Werbeanzeigen aus einer Hand — im Code gebaut, zum Projektpreis. Vom Kleinunternehmen bis zum Konzern, in drei Sprachen."
- ],
- "<span class=\"hero__k t-micro\">Stratos — weboldal készítés és digitális rendszerek</span> <span class=\"hero__m t-monument\">Olyat építünk,<br> amit nem lehet<br> összetéveszteni.</span>": [
-  "<span class=\"hero__k t-micro\">Stratos — web design and development</span> <span class=\"hero__m t-monument\">Built to be<br> unmistakable.</span>",
-  "<span class=\"hero__k t-micro\">Stratos — Webdesign und Webentwicklung</span> <span class=\"hero__m t-monument\">Unverwechselbar<br> gebaut.</span>"
- ],
- "Digitális élmények és egyedi rendszerek olyan cégeknek, amelyeknél az átlag nem opció.": [
-  "Digital experiences and custom systems for companies where average is not an option.",
-  "Digitale Erlebnisse und individuelle Systeme für Unternehmen, für die Durchschnitt keine Option ist."
- ],
- "Rapidkert — 3D weboldal, SEO és Google Ads": [
-  "Rapidkert — 3D website, SEO and Google Ads",
-  "Rapidkert — 3D-Website, SEO und Google Ads"
+  "The homepage (_build/pages/index.html), on the copy pack of 2026-10-23: its title and description are the pack's. The Rapidkert figure is the case study's: quote requests from organic search, never revenue, never summed with the 9M from ads (see rapidkert.json).",
+  "German addresses the reader with Sie. Keys left over from the October build are pruned by the lead at the end."
  ],
  "A felszín csak<br> az utolsó réteg.": [
   "The surface is<br> only the last layer.",
@@ -42,10 +18,6 @@
  "<span class=\"still__a\">Nem mindenhez kell látvány.</span> <span class=\"still__b lit\">Csak ahhoz, amit nélküle rosszabbul lehetne elmondani.</span>": [
   "<span class=\"still__a\">Not everything needs spectacle.</span> <span class=\"still__b lit\">Only what would be told worse without it.</span>",
   "<span class=\"still__a\">Nicht alles braucht Effekte.</span> <span class=\"still__b lit\">Nur das, was sich ohne sie schlechter erzählen ließe.</span>"
- ],
- "GoDataFusion — építőipari adat és felmérés": [
-  "GoDataFusion — construction data and surveying",
-  "GoDataFusion — Baudaten und Vermessung"
  ],
  "A valóságból adat.": [
   "Reality into data.",
@@ -71,49 +43,21 @@
   "The project",
   "Das Projekt"
  ],
- "Amit csinálunk": [
-  "What we do",
-  "Was wir tun"
- ],
  "Élmények": [
   "Experiences",
   "Erlebnisse"
- ],
- "Weboldalak, webshopok és interaktív felületek, amelyek egy cég legerősebb érvei lesznek.": [
-  "Websites, online shops and interactive interfaces that become a company’s strongest argument.",
-  "Websites, Onlineshops und interaktive Oberflächen, die zum stärksten Argument eines Unternehmens werden."
- ],
- "<a href=\"kkv.html\">Weboldal KKV-nak</a>": [
-  "<a href=\"kkv.html\">Web design for small businesses</a>",
-  "<a href=\"kkv.html\">Webdesign für KMU</a>"
  ],
  "<a href=\"webshop-keszites.html\">Webshop készítés</a>": [
   "<a href=\"webshop-keszites.html\">Ecommerce web design</a>",
   "<a href=\"webshop-keszites.html\">Onlineshop-Erstellung</a>"
  ],
- "<a href=\"branding.html\">Branding</a>": [
-  "<a href=\"branding.html\">Branding</a>",
-  "<a href=\"branding.html\">Branding</a>"
- ],
  "Rendszerek": [
   "Systems",
   "Systeme"
  ],
- "Ügyfélportálok, kalkulátorok, belső rendszerek és integrációk — ERP-hez, CRM-hez, fizetéshez kötve.": [
-  "Client portals, calculators, internal systems and integrations — connected to ERP, CRM and payments.",
-  "Kundenportale, Kalkulatoren, interne Systeme und Integrationen — angebunden an ERP, CRM und Zahlung."
- ],
- "Webfejlesztés nagyvállalatoknak": [
-  "Bespoke web development",
-  "Webentwicklung für Unternehmen"
- ],
  "Növekedés": [
   "Growth",
   "Wachstum"
- ],
- "Keresőoptimalizálás, hirdetés és mérés ott, ahol a látogatóból ügyfélnek kell lennie.": [
-  "Search, advertising and measurement wherever a visitor has to become a client.",
-  "Suchmaschinenoptimierung, Werbung und Messung überall dort, wo aus Besuchern Kunden werden müssen."
  ],
  "<a href=\"hirdeteskezeles.html\">Hirdetéskezelés</a>": [
   "<a href=\"hirdeteskezeles.html\">Ads management</a>",
@@ -143,60 +87,332 @@
   "What we build has to work.",
   "Was wir bauen, muss funktionieren."
  ],
- "Sebességben, használhatóságban és üzletileg — az átadás után is.": [
-  "In speed, in use and in business terms — after handover, too.",
-  "In Geschwindigkeit, Bedienbarkeit und wirtschaftlich — auch nach der Übergabe."
- ],
- "Nagy szervezeteknek": [
-  "For larger organisations",
-  "Für größere Organisationen"
- ],
  "Ugyanaz a csapat, az első beszélgetéstől.": [
   "One team, from the first conversation.",
   "Ein Team, vom ersten Gespräch an."
- ],
- "Aki az első megbeszélésen ül, az viszi végig a munkát — az élesítés után is.": [
-  "The people in the first meeting carry the work through — and past launch.",
-  "Wer im ersten Gespräch sitzt, führt die Arbeit bis zum Ende — auch über den Launch hinaus."
- ],
- "A kód a tiétek.": [
-  "The code is yours.",
-  "Der Code gehört Ihnen."
- ],
- "Forráskód, dokumentáció és hozzáférések. Nincs bezártság egy beszállítóhoz.": [
-  "Source code, documentation and access. No vendor lock-in.",
-  "Quellcode, Dokumentation und Zugänge. Kein Vendor-Lock-in."
- ],
- "Kéthetente látható eredmény.": [
-  "Visible progress every two weeks.",
-  "Sichtbare Ergebnisse alle zwei Wochen."
- ],
- "Sprintek, rendszeres demó, átlátható backlog — a belső csapatotokkal együtt.": [
-  "Sprints, regular demos, a transparent backlog — alongside your internal team.",
-  "Sprints, regelmäßige Demos, ein transparentes Backlog — gemeinsam mit Ihrem internen Team."
- ],
- "Biztonság és megfelelőség.": [
-  "Security and compliance.",
-  "Sicherheit und Compliance."
- ],
- "Hozzáférés-kezelés, auditnapló, GDPR-megfelelő adatkezelés, és SLA, ahol az üzlet megkívánja.": [
-  "Access control, audit logging, GDPR-compliant data handling, and an SLA where the business needs one.",
-  "Zugriffsverwaltung, Audit-Protokoll, DSGVO-konforme Datenverarbeitung und ein SLA, wo das Geschäft es verlangt."
- ],
- "Fejlesztés nagyvállalatoknak": [
-  "Enterprise development",
-  "Entwicklung für Unternehmen"
  ],
  "Ha nagy a tét,<br> beszéljünk.": [
   "High stakes?<br> Let’s talk.",
   "Viel auf dem Spiel?<br> Dann sprechen wir."
  ],
- "Egy rövid beszélgetés után tudni fogod, mi segítene — és mi nem.": [
-  "After one short conversation you will know what would help — and what would not.",
-  "Nach einem kurzen Gespräch wissen Sie, was helfen würde — und was nicht."
- ],
  "A Rapidkert interaktív 3D kertépítő weboldala a Stratos Webdesigntól, a nyitóoldal elejétől a végéig görgetve: a kert és a talaj térbeli keresztmetszete, a megépített kertek, a szolgáltatások és az ajánlatkérés.": [
   "Rapidkert's interactive 3D landscaping website by Stratos Webdesign, its home page scrolled from top to bottom: the three-dimensional cross-section of the garden and the ground, the gardens built, the services and the quote request.",
   "Die interaktive 3D-Website von Rapidkert Gartenbau, umgesetzt von Stratos Webdesign, die Startseite von oben bis unten gescrollt: der räumliche Querschnitt durch Garten und Boden, die gebauten Gärten, die Leistungen und die Angebotsanfrage."
+ ],
+ "Weboldal készítés és 3D weboldalak | Stratos Webdesign": [
+  "Web design and 3D websites | Stratos Webdesign",
+  "Webdesign und 3D-Websites | Stratos Webdesign"
+ ],
+ "Egyedi kódból épített weboldalak, 3D weboldalak és termékkonfigurátorok, keresőoptimalizálás és hirdetés egy kézben, az egész országban.": [
+  "Websites built in custom code, 3D websites and product configurators, SEO and advertising from one team, across Hungary.",
+  "Websites aus individuellem Code, 3D-Websites und Produktkonfiguratoren, Suchmaschinenoptimierung und Werbung aus einer Hand, in ganz Ungarn."
+ ],
+ "<span class=\"hero__k t-micro\">Stratos Webdesign: weboldal készítés, 3D és keresőoptimalizálás</span> <span class=\"hero__m t-monument\">Olyat építünk,<br> amit nem lehet<br> összetéveszteni.</span>": [
+  "<span class=\"hero__k t-micro\">Stratos Webdesign: web design, 3D and SEO</span> <span class=\"hero__m t-monument\">Built to be<br> unmistakable.</span>",
+  "<span class=\"hero__k t-micro\">Stratos Webdesign: Webdesign, 3D und Suchmaschinenoptimierung</span> <span class=\"hero__m t-monument\">Unverwechselbar<br> gebaut.</span>"
+ ],
+ "Egyedi kódból épített weboldalak, 3D weboldalak és termékkonfigurátorok, havidíjas keresőoptimalizálás. Helyi szolgáltatóknak, ipari cégeknek, webshopoknak és szakértőknek. Egy csapatként dolgozunk veled, az első hívástól az átadás utánig.": [
+  "Websites built in custom code, 3D websites and product configurators, monthly SEO. For local service businesses, industrial companies, online shops and experts. We work with you as one team, from the first call until after handover.",
+  "Websites aus individuellem Code, 3D-Websites und Produktkonfiguratoren, monatliche Suchmaschinenoptimierung. Für lokale Dienstleister, Industrieunternehmen, Onlineshops und Fachleute. Wir arbeiten als ein Team mit Ihnen, vom ersten Gespräch bis über die Übergabe hinaus."
+ ],
+ "Rapidkert: 3D weboldal, keresőoptimalizálás és Google Ads · Awwwards Honorable Mention": [
+  "Rapidkert: 3D website, SEO and Google Ads · Awwwards Honorable Mention",
+  "Rapidkert: 3D-Website, Suchmaschinenoptimierung und Google Ads · Awwwards Honorable Mention"
+ ],
+ "Rapidkert: 3D weboldal, keresőoptimalizálás és Google Ads": [
+  "Rapidkert: 3D website, SEO and Google Ads",
+  "Rapidkert: 3D-Website, Suchmaschinenoptimierung und Google Ads"
+ ],
+ "Van weboldalad. Csak éppen nem keresnek rajta?": [
+  "You have a website. People just aren’t finding you through it?",
+  "Sie haben eine Website. Nur findet Sie darüber niemand?"
+ ],
+ "Valaki rákeres arra, amit csinálsz. Megtalál egy versenytársat, és őt hívja fel. Pedig lehet, hogy te jobban csinálod. Csak ezt a weboldalad nem mondja el, vagy a Google nem mutatja meg.": [
+  "Someone searches for what you do. They find a competitor and call them instead. You may well do it better. Your website just doesn’t say so, or Google doesn’t show it.",
+  "Jemand sucht nach dem, was Sie tun. Er findet einen Mitbewerber und ruft diesen an. Dabei machen Sie es vielleicht besser. Nur sagt Ihre Website das nicht, oder Google zeigt es nicht."
+ ],
+ "Egy weboldal akkor ér valamit, ha ügyfelet hoz. Ha a tiéd most nem teszi, megnézzük együtt, hol akad el: a megjelenésen, a szövegen, vagy azon, hogy meg sem találnak.": [
+  "A website is worth something when it brings in clients. If yours doesn’t right now, we’ll look together at where it gets stuck: the look, the copy, or the fact that people can’t find it at all.",
+  "Eine Website ist dann etwas wert, wenn sie Kunden bringt. Wenn Ihre das gerade nicht tut, sehen wir uns gemeinsam an, woran es hängt: am Auftritt, am Text oder daran, dass man Sie gar nicht erst findet."
+ ],
+ "Ehhez nem kell mindent újrakezdeni. Az ingyenes igényfelmérő hívásban átnézzük a mostani oldaladat, és megmondjuk, mi segítene, és mi nem.": [
+  "That doesn’t mean starting over. In the free discovery call we look through your current site and tell you what would help, and what wouldn’t.",
+  "Dafür müssen Sie nicht bei null anfangen. Im kostenlosen Erstgespräch sehen wir uns Ihre jetzige Website an und sagen Ihnen, was helfen würde und was nicht."
+ ],
+ "Ha a terméked vagy a szolgáltatásod nehezen magyarázható, a 3D megmutatja helyetted. A vevőd forgathatja, összerakhatja, belenézhet. Kevés magyar csapat építi ezt egyedi kódból. Mi ebben vagyunk otthon.": [
+  "If your product or service is hard to explain, 3D shows it for you. Your customer can turn it, put it together, look inside it. Few Hungarian teams build this in custom code. This is where we are at home.",
+  "Wenn Ihr Produkt oder Ihre Leistung schwer zu erklären ist, zeigt 3D es an Ihrer Stelle. Ihr Kunde kann es drehen, zusammensetzen, hineinschauen. Nur wenige ungarische Teams bauen so etwas in individuellem Code. Genau hier sind wir zu Hause."
+ ],
+ "A vevőd látja, mit vesz.": [
+  "Your customer sees what they are buying.",
+  "Ihr Kunde sieht, was er kauft."
+ ],
+ "Kevesebb a visszakérdezés, hamarabb születik döntés, és kevesebb időd megy el egy-egy ajánlat elmagyarázására.": [
+  "Fewer follow-up questions, quicker decisions, and less of your time spent explaining each quote.",
+  "Weniger Rückfragen, schnellere Entscheidungen und weniger Zeit, die Sie mit dem Erklären einzelner Angebote verbringen."
+ ],
+ "Kilógsz a mezőnyből.": [
+  "You stand out from the field.",
+  "Sie heben sich vom Feld ab."
+ ],
+ "A versenytársaidnál jó eséllyel nincs ilyen. Aki egyszer végiggörgette az oldaladat, emlékezni fog rá.": [
+  "Chances are your competitors have nothing like it. Anyone who has scrolled through your site once will remember it.",
+  "Ihre Mitbewerber haben so etwas aller Wahrscheinlichkeit nach nicht. Wer einmal durch Ihre Website gescrollt hat, wird sich an sie erinnern."
+ ],
+ "A drágább ajánlat is érthető lesz.": [
+  "A higher price starts to make sense.",
+  "Auch das teurere Angebot wird verständlich."
+ ],
+ "Ha a látvány a minőséget mutatja, a prémium ár természetes következmény, nem magyarázkodás.": [
+  "When the visuals show the quality, a premium price follows naturally instead of needing excuses.",
+  "Wenn das Bild die Qualität zeigt, ist der Premiumpreis eine natürliche Folge und keine Rechtfertigung."
+ ],
+ "A technológia az ötletet követi. 3D-t, animációt és egyedi kódot ott használunk, ahol az üzenet erősebb lesz tőle. Máshol nem.": [
+  "Technology follows the idea. We use 3D, motion and custom code where they make the message stronger. Nowhere else.",
+  "Die Technik folgt der Idee. 3D, Animation und eigener Code kommen dort zum Einsatz, wo sie die Botschaft stärker machen. Nirgends sonst."
+ ],
+ "3D weboldal és konfigurátor": [
+  "3D website and configurator",
+  "3D-Website und Konfigurator"
+ ],
+ "GoDataFusion: építőipari adat és felmérés": [
+  "GoDataFusion: construction data and surveying",
+  "GoDataFusion: Baudaten und Vermessung"
+ ],
+ "A hirdetés gyors, de csak addig hoz, amíg fizetsz érte.": [
+  "Ads are fast, but they only bring results while you pay for them.",
+  "Werbung wirkt schnell, aber nur so lange, wie Sie dafür bezahlen."
+ ],
+ "Hónapról hónapra azon dolgozunk, hogy téged találjanak meg, amikor valaki arra keres rá, amit csinálsz: a Google-ben és az AI-alapú keresők ajánlásaiban is.": [
+  "Month after month we work to make you the one people find when they search for what you do: on Google, and in the recommendations of AI search tools too.",
+  "Monat für Monat arbeiten wir daran, dass man Sie findet, wenn jemand nach dem sucht, was Sie tun: bei Google und auch in den Empfehlungen KI-gestützter Suchmaschinen."
+ ],
+ "Minden hónapban riportot kapsz: hol állsz a keresőben, mennyi látogató jött, és mi a következő teendő.": [
+  "Every month you get a report: where you stand in search, how many visitors came, and what comes next.",
+  "Jeden Monat erhalten Sie einen Bericht: wo Sie in der Suche stehen, wie viele Besucher kamen und was als Nächstes ansteht."
+ ],
+ "Rendbe tesszük a technikai alapokat: sebesség, indexelés, helyi megjelenés és a Google Cégprofilod.": [
+  "We put the technical basics in order: speed, indexing, local visibility and your Google Business Profile.",
+  "Wir bringen die technischen Grundlagen in Ordnung: Geschwindigkeit, Indexierung, lokale Sichtbarkeit und Ihr Google-Unternehmensprofil."
+ ],
+ "Figyeljük, hogy a ChatGPT, a Perplexity és a Gemini is téged ajánljon, ha a te szakterületedről kérdezik.": [
+  "We keep an eye on ChatGPT, Perplexity and Gemini too, so that they recommend you when someone asks about your field.",
+  "Wir achten darauf, dass auch ChatGPT, Perplexity und Gemini Sie empfehlen, wenn jemand nach Ihrem Fachgebiet fragt."
+ ],
+ "Az eredmény általában 3–6 hónap alatt kezd látszani. Helyezést senki nem tud tisztességgel garantálni, mi sem ígérünk ilyet. Azt viszont igen, hogy minden hónapban látod, mi történt.": [
+  "Results usually start to show within 3–6 months. Nobody can honestly guarantee rankings, and we don’t promise any. What we do promise is that every month you see what happened.",
+  "Ergebnisse zeigen sich in der Regel nach 3–6 Monaten. Platzierungen kann niemand seriös garantieren, und auch wir versprechen keine. Was wir versprechen: Sie sehen jeden Monat, was passiert ist."
+ ],
+ "Keresőoptimalizálás részletesen": [
+  "SEO in detail",
+  "Suchmaschinenoptimierung im Detail"
+ ],
+ "Melyik helyzet a tiéd?": [
+  "Which one sounds like you?",
+  "Welche Situation ist Ihre?"
+ ],
+ "Helyi szolgáltató vagy?": [
+  "A local service business?",
+  "Lokaler Dienstleister?"
+ ],
+ "Kert, klíma, autó, takarítás. Nálad az számít, hogy téged találjanak meg a Google-ben, amikor valaki a környékeden keres.": [
+  "Gardens, air conditioning, cars, cleaning. What matters for you is being the one people find on Google when they search in your area.",
+  "Garten, Klima, Auto, Reinigung. Bei Ihnen zählt, dass man Sie bei Google findet, wenn jemand in Ihrer Gegend sucht."
+ ],
+ "<a href=\"kkv.html\">Weboldal kkv-knak</a>": [
+  "<a href=\"kkv.html\">Web design for small business</a>",
+  "<a href=\"kkv.html\">Webdesign für KMU</a>"
+ ],
+ "Ipari vagy B2B cég vagy?": [
+  "An industrial or B2B company?",
+  "Industrie- oder B2B-Unternehmen?"
+ ],
+ "Gyártóként vagy építőipari cégként nagy értékű döntéseket kell segítened. Egy 3D konfigurátorral a vevőd előre látja, mit kap.": [
+  "As a manufacturer or construction company, you have high-value decisions to support. With a 3D configurator your customer sees in advance what they will get.",
+  "Als Hersteller oder Bauunternehmen müssen Sie Entscheidungen mit hohem Wert unterstützen. Mit einem 3D-Konfigurator sieht Ihr Kunde vorab, was er bekommt."
+ ],
+ "<a href=\"nagyvallalat.html\">Weboldal ipari és B2B cégeknek</a>": [
+  "<a href=\"nagyvallalat.html\">Websites for industrial and B2B companies</a>",
+  "<a href=\"nagyvallalat.html\">Websites für Industrie- und B2B-Unternehmen</a>"
+ ],
+ "Webshopod van?": [
+  "Running an online shop?",
+  "Sie betreiben einen Onlineshop?"
+ ],
+ "Termékeket árulsz, és azt szeretnéd, hogy a látogatókból vásárlók legyenek. A platformról a felmérés után döntünk, a te termékeidhez igazítva.": [
+  "You sell products and want your visitors to become buyers. We choose the platform after the assessment, to suit your products.",
+  "Sie verkaufen Produkte und möchten, dass aus Besuchern Käufer werden. Über die Plattform entscheiden wir nach der Bedarfsanalyse, passend zu Ihren Produkten."
+ ],
+ "Tanácsadó vagy szakértő vagy?": [
+  "A consultant or an expert?",
+  "Berater oder Experte?"
+ ],
+ "Coachként, HR-esként vagy jogászként a bizalmat adod el. Olyan weboldalt építünk, amiből az első percben kiderül, kivel fog dolgozni a látogató.": [
+  "As a coach, HR consultant or lawyer, what you sell is trust. We build a website that makes it clear within the first minute who the visitor will be working with.",
+  "Als Coach, HR-Berater oder Jurist verkaufen Sie Vertrauen. Wir bauen eine Website, auf der schon in der ersten Minute klar wird, mit wem der Besucher arbeiten wird."
+ ],
+ "Egy csapat, egy felelős. Nincs ujjal mutogatás.": [
+  "One team, one owner. No finger-pointing.",
+  "Ein Team, ein Verantwortlicher. Niemand zeigt auf den anderen."
+ ],
+ "Weboldal, keresőoptimalizálás, hirdetés és karbantartás egy helyen. Ha valami nem működik, nem neked kell kideríteni, melyik beszállítónál akadt el: nálunk minden kérdésnek egy gazdája van.": [
+  "Website, SEO, advertising and maintenance in one place. If something doesn’t work, it isn’t up to you to work out which supplier it got stuck with: with us, every question has one owner.",
+  "Website, Suchmaschinenoptimierung, Werbung und Wartung an einem Ort. Wenn etwas nicht funktioniert, müssen nicht Sie herausfinden, bei welchem Dienstleister es hängt: Bei uns hat jede Frage einen Verantwortlichen."
+ ],
+ "Weboldalak, webshopok és arculatok, amik egy cég legerősebb érvei lesznek. Mindig egyedi kódból, sablon nélkül.": [
+  "Websites, online shops and brand identities that become a company’s strongest argument. Always in custom code, never from a template.",
+  "Websites, Onlineshops und Markenauftritte, die zum stärksten Argument eines Unternehmens werden. Immer aus individuellem Code, ohne Vorlage."
+ ],
+ "<a href=\"branding.html\">Arculattervezés</a>": [
+  "<a href=\"branding.html\">Brand identity design</a>",
+  "<a href=\"branding.html\">Corporate Design</a>"
+ ],
+ "3D és konfigurátor": [
+  "3D and configurators",
+  "3D und Konfiguratoren"
+ ],
+ "3D weboldalak és termékkonfigurátorok, ahol a vevő a döntés előtt látja, mit vesz. Kevesebb kérdés, gyorsabb döntés.": [
+  "3D websites and product configurators where the customer sees what they are buying before they decide. Fewer questions, faster decisions.",
+  "3D-Websites und Produktkonfiguratoren, bei denen der Kunde vor der Entscheidung sieht, was er kauft. Weniger Fragen, schnellere Entscheidungen."
+ ],
+ "<a href=\"3d-weboldal-konfigurator.html\">3D weboldal és konfigurátor</a>": [
+  "<a href=\"3d-weboldal-konfigurator.html\">3D website and configurator</a>",
+  "<a href=\"3d-weboldal-konfigurator.html\">3D-Website und Konfigurator</a>"
+ ],
+ "Keresőoptimalizálás, hirdetés és mérés, hogy a látogatóból ügyfél legyen. Google Ads, Google Shopping és Meta (Facebook, Instagram).": [
+  "SEO, advertising and measurement, so that visitors become clients. Google Ads, Google Shopping and Meta (Facebook, Instagram).",
+  "Suchmaschinenoptimierung, Werbung und Messung, damit aus Besuchern Kunden werden. Google Ads, Google Shopping und Meta (Facebook, Instagram)."
+ ],
+ "<a href=\"keresooptimalizalas.html\">Keresőoptimalizálás</a>": [
+  "<a href=\"keresooptimalizalas.html\">SEO</a>",
+  "<a href=\"keresooptimalizalas.html\">Suchmaschinenoptimierung</a>"
+ ],
+ "A weboldalad mellé karbantartást is vállalunk: tárhely, domain, frissítések, mentés, SSL, kisebb tartalmi módosítások és gyors javítás, ha baj van.": [
+  "We also look after your website alongside it: hosting, domain, updates, backups, SSL, small content changes and quick fixes when something goes wrong.",
+  "Zu Ihrer Website übernehmen wir auch die Wartung: Hosting, Domain, Updates, Backups, SSL, kleinere inhaltliche Änderungen und schnelle Hilfe, wenn etwas nicht stimmt."
+ ],
+ "Úgy dolgozunk, mintha a csapatod része lennénk.": [
+  "We work as if we were part of your team.",
+  "Wir arbeiten, als wären wir Teil Ihres Teams."
+ ],
+ "A te problémádat akarjuk megoldani, nem egy megrendelést kipipálni. Ezért kérdezünk sokat az elején, és ezért mondjuk ki, ha valami szerintünk nem éri meg.": [
+  "We want to solve your problem, not tick off an order. That is why we ask a lot at the start, and why we say so when we think something isn’t worth it.",
+  "Wir wollen Ihr Problem lösen, nicht einen Auftrag abhaken. Deshalb fragen wir am Anfang viel, und deshalb sagen wir es offen, wenn sich etwas aus unserer Sicht nicht lohnt."
+ ],
+ "Amit építünk, annak működnie kell. Sebességben, használhatóságban és üzletileg, az átadás után is.": [
+  "What we build has to work. In speed, in use and in business terms, after handover too.",
+  "Was wir bauen, muss funktionieren. In Geschwindigkeit, Bedienbarkeit und wirtschaftlich, auch nach der Übergabe."
+ ],
+ "Ipari és B2B cégeknek": [
+  "For industrial and B2B companies",
+  "Für Industrie- und B2B-Unternehmen"
+ ],
+ "Aki az első megbeszélésen ott ül, az viszi végig a munkát, az élesítés után is.": [
+  "Whoever sits in the first meeting carries the work through, and past launch too.",
+  "Wer im ersten Gespräch dabei ist, führt die Arbeit bis zum Ende, auch über den Launch hinaus."
+ ],
+ "A 3D az értékesítőidnek is dolgozik.": [
+  "3D works for your sales team too.",
+  "3D arbeitet auch für Ihren Vertrieb."
+ ],
+ "Egy konfigurátor elmagyarázza a terméket akkor is, amikor senki nincs a telefonnál.": [
+  "A configurator explains the product even when nobody is by the phone.",
+  "Ein Konfigurator erklärt das Produkt auch dann, wenn niemand am Telefon ist."
+ ],
+ "A kód a tiéd.": [
+  "The code is yours.",
+  "Der Code gehört Ihnen."
+ ],
+ "Forráskód, dokumentáció és hozzáférések. Nem kötünk magunkhoz egy platformmal sem.": [
+  "Source code, documentation and access. We don’t tie you to us through any platform.",
+  "Quellcode, Dokumentation und Zugänge. Wir binden Sie über keine Plattform an uns."
+ ],
+ "Látható haladás.": [
+  "Visible progress.",
+  "Sichtbarer Fortschritt."
+ ],
+ "A kulcspontokon bemutatjuk, hol tartunk, úgy, hogy a vezetés, az értékesítés és a műszaki oldal is véleményezni tudja.": [
+  "At the key milestones we show where we stand, in a way that management, sales and the technical side can all comment on.",
+  "An den entscheidenden Punkten zeigen wir, wo wir stehen, so, dass Geschäftsführung, Vertrieb und Technik gleichermaßen Stellung nehmen können."
+ ],
+ "Biztonság és adatvédelem.": [
+  "Security and data protection.",
+  "Sicherheit und Datenschutz."
+ ],
+ "Hozzáférés-kezelés, GDPR-nek megfelelő adatkezelés, és rendelkezésre állási vállalás (SLA), ahol az üzlet megkívánja.": [
+  "Access management, GDPR-compliant data handling, and an availability commitment (SLA) where the business needs one.",
+  "Zugriffsverwaltung, DSGVO-konforme Datenverarbeitung und eine Verfügbarkeitszusage (SLA), wo das Geschäft es verlangt."
+ ],
+ "Weboldal ipari és B2B cégeknek": [
+  "Websites for industrial and B2B companies",
+  "Websites für Industrie- und B2B-Unternehmen"
+ ],
+ "Ez biztos sokba kerül.": [
+  "This must cost a lot.",
+  "Das kostet bestimmt viel."
+ ],
+ "Egy weboldalnak meg kell térülnie. Gyakran már egy-két új ügyfél vagy megrendelés kifizeti. Az igényfelmérő hívás után pontosan látod, mibe kerül és mit kapsz érte.": [
+  "A website has to pay for itself. Often one or two new clients or orders already cover it. After the discovery call you know exactly what it costs and what you get for it.",
+  "Eine Website muss sich rechnen. Oft decken schon ein oder zwei neue Kunden oder Aufträge die Kosten. Nach dem Erstgespräch wissen Sie genau, was sie kostet und was Sie dafür bekommen."
+ ],
+ "Már van weboldalam.": [
+  "I already have a website.",
+  "Ich habe schon eine Website."
+ ],
+ "Akkor az a kérdés, hogy hoz-e ügyfelet. A hívásban megnézzük együtt, mit veszítesz most, és mi az, amit érdemes megtartani.": [
+  "Then the question is whether it brings in clients. On the call we look together at what you are losing now, and what is worth keeping.",
+  "Dann ist die Frage, ob sie Kunden bringt. Im Gespräch sehen wir uns gemeinsam an, was Ihnen jetzt entgeht und was sich zu behalten lohnt."
+ ],
+ "Most nincs rá időm.": [
+  "I don’t have time for this right now.",
+  "Dafür habe ich gerade keine Zeit."
+ ],
+ "A munkát mi visszük. Tőled az anyagok kellenek és néhány döntés. Minden hét halogatás egy hét, amikor az érdeklődők máshol kötnek ki.": [
+  "We carry the work. From you we need the materials and a few decisions. Every week you put it off is a week in which interested buyers end up somewhere else.",
+  "Die Arbeit übernehmen wir. Von Ihnen brauchen wir die Unterlagen und einige Entscheidungen. Jede Woche Aufschub ist eine Woche, in der Interessenten woanders landen."
+ ],
+ "Garantáljátok az első helyet a Google-ben?": [
+  "Do you guarantee first place on Google?",
+  "Garantieren Sie den ersten Platz bei Google?"
+ ],
+ "Nem. Ilyet senki nem tud tisztességgel garantálni. Azt vállaljuk, hogy minden hónapban látod, mit csináltunk, és mi változott.": [
+  "No. Nobody can honestly guarantee that. What we do commit to is that every month you see what we did and what changed.",
+  "Nein. Das kann niemand seriös garantieren. Was wir zusagen: Sie sehen jeden Monat, was wir getan haben und was sich verändert hat."
+ ],
+ "Mi az a 3D weboldal?": [
+  "What is a 3D website?",
+  "Was ist eine 3D-Website?"
+ ],
+ "Olyan weboldal, amin a látogató térben, interaktívan nézheti meg a terméket vagy a szolgáltatást: forgathatja, rétegekre bonthatja, görgetéssel végigjárhatja. Ott éri meg, ahol a vevő nehezen képzeli el, mit kap, például egy kert föld alatti szerkezetét vagy egy épület felmérését.": [
+  "A website on which visitors can explore a product or service in space, interactively: turn it, take it apart layer by layer, walk through it by scrolling. It pays off where customers find it hard to picture what they will get, such as the underground structure of a garden or the survey of a building.",
+  "Eine Website, auf der Besucher ein Produkt oder eine Leistung räumlich und interaktiv betrachten können: drehen, in Schichten zerlegen, per Scrollen durchwandern. Sie lohnt sich dort, wo sich Kunden schwer vorstellen können, was sie bekommen, etwa den unterirdischen Aufbau eines Gartens oder die Vermessung eines Gebäudes."
+ ],
+ "Projektenként más, ezért általános számot nem mondunk. A határidőt az egyedi ajánlatban rögzítjük, és határidő-garanciát vállalunk rá, ha tőled minden anyag (szöveg, kép, hozzáférés) időben megérkezik.": [
+  "It differs from project to project, so we don’t give a general figure. We set the deadline in your tailored proposal and guarantee it, provided everything we need from you (text, images, access) arrives on time.",
+  "Das ist von Projekt zu Projekt verschieden, deshalb nennen wir keine allgemeine Zahl. Den Termin legen wir im individuellen Angebot fest und geben eine Termingarantie darauf, sofern alles, was wir von Ihnen brauchen (Texte, Bilder, Zugänge), rechtzeitig kommt."
+ ],
+ "Hol dolgoztok?": [
+  "Where do you work?",
+  "Wo arbeiten Sie?"
+ ],
+ "Az egész országban. A munka online gyorsabb: a tervezés, a visszajelzés és az átadás videóhívásban megy. Ha a projekt indokolja, bárhova kimegyünk személyesen. Magyarul, angolul és németül dolgozunk.": [
+  "Across Hungary. The work is quicker online: design, feedback and handover all happen on video calls. If the project calls for it, we come to you in person, wherever you are. We work in Hungarian, English and German.",
+  "In ganz Ungarn. Online geht die Arbeit schneller: Konzeption, Feedback und Übergabe laufen per Videocall. Wenn das Projekt es erfordert, kommen wir überall persönlich zu Ihnen. Wir arbeiten auf Ungarisch, Englisch und Deutsch."
+ ],
+ "Ha előbb utánanéznél": [
+  "If you’d like to read up first",
+  "Wenn Sie sich zuerst einlesen möchten"
+ ],
+ "Mi az a keresőoptimalizálás?": [
+  "What is SEO?",
+  "Was ist SEO?"
+ ],
+ "Mit veszítesz egy elavult weboldallal?": [
+  "What does an outdated website cost you?",
+  "Was kostet Sie eine veraltete Website?"
+ ],
+ "Az ingyenes igényfelmérő hívás után tudni fogod, mi segítene a vállalkozásodon, és mi nem.": [
+  "After the free discovery call you will know what would help your business, and what would not.",
+  "Nach dem kostenlosen Erstgespräch wissen Sie, was Ihrem Unternehmen helfen würde und was nicht."
  ]
 }

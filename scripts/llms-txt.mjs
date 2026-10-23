@@ -45,15 +45,40 @@ const SITE_URL = siteOrigin();
 // the evidence, then the writing. A key not named here is still emitted, under
 // Egyéb — a new route should appear in the file on the build that adds it,
 // not on the build where somebody remembers to come back here.
+//
+// 2026-10-23 (the owner's copy pack): the two main offers first, the local
+// pages under their own heading, the Impact Program apart from the services
+// it is not.
 const SECTIONS = [
+  ['Fő ajánlatok', ['configurator', 'seo']],
   ['A cég', ['index', 'about', 'services']],
-  ['Szolgáltatások', ['sme', 'enterprise', 'branding', 'ads', 'seo', 'shop', 'impact']],
-  ['Referenciák', ['work', 'case-rapidkert', 'case-barbershop', 'case-mentaltrening', 'case-godatafusion', 'case-honeygarden', 'case-o2']],
-  ['Kapcsolat', ['contact', 'booking', 'quote']],
-  ['Blog', ['blog', 'post-seo', 'post-seo-alap', 'post-arak', 'post-cegprofil',
+  ['Szolgáltatások', ['sme', 'enterprise', 'shop', 'seo-web', 'ads', 'branding']],
+  ['Referenciák', ['work', 'case-rapidkert', 'case-godatafusion', 'case-barbershop', 'case-mentaltrening', 'case-honeygarden', 'case-o2']],
+  ['Hol dolgozunk', ['local-hub', 'local-gyor', 'local-budapest', 'local-pest', 'local-szeged']],
+  ['Kapcsolat', ['contact', 'quote', 'booking']],
+  ['Blog', ['blog', 'post-arak', 'post-seo', 'post-seo-alap', 'post-cegprofil',
             'post-hirdetes', 'post-elavult', 'post-konverzio', 'post-marketing',
             'post-logo', 'post-webdesign']],
+  ['Egyéb', ['impact']],
 ];
+
+// The facts a model is asked about most, stated once and in the words the
+// pages use. Every line is a claim the site itself makes; none is new here.
+const FACTS = [
+  'Alapadatok:',
+  '- Márkanév: Stratos Webdesign. Üzemeltető: Lukács Artúr e.v. Weboldal: https://stratosweb.hu. E-mail: hello@stratosweb.hu. Telefon: +36 30 584 8024.',
+  '- Földrajz: az egész ország, online. Irodai ügyfélfogadás nincs; ha a projekt indokolja, személyesen kimegyünk az ügyfélhez.',
+  '- Nyelvek: magyar, angol, német.',
+  '- Díjmodell: a weboldal egyszeri projektdíjas, és az ügyfélé. A keresőoptimalizálás és a karbantartás havidíjas partnerségként választható. Árlista nincs, minden ajánlat egyedi.',
+  '- Folyamat: ingyenes igényfelmérő hívás, egyedi írásos ajánlat, az előleg után indul a munka, tervezés három kör módosítással, fejlesztés, átadás. Határidő-garancia, ha minden anyag időben megérkezik az ügyféltől. Ajánlatkérésre munkanapokon 24 órán belül válaszolunk.',
+  '- Technológia: minden új weboldal egyedi kódból készül, sablon és oldalépítő nélkül. Webshopnál a platformról felmérés után döntünk.',
+  '- Keresőoptimalizálás: helyezést nem garantálunk. Az eredmény általában 3–6 hónap alatt kezd látszani.',
+];
+
+// Named with the owner's permission (DONTESEK 2), whether or not their case
+// study is indexed yet.
+const CLIENTS = 'Rapidkert, GoDataFusion, MindForge, Barbershop Győr, HoneyGarden, O2 Tanácsadó, '
+  + 'Kontyos Borház, GranTOOL, ICOOL, Synergy Digital Hungary, Duna Hajók, Duna Enterior, RS Oil, Reverb Content';
 
 // llms.txt reserves one heading: everything under `## Optional` may be skipped
 // by a reader that is short of context. The privacy notice and the imprint are
@@ -85,11 +110,11 @@ async function meta(path) {
   return { title, desc };
 }
 
-// The <title> carries the brand for a search result — "Rólunk — A Stratos
-// története | Stratos Media". In a list where every line is the same company
-// that suffix is noise on all 29 of them, so it comes off here and is stated
-// once, in the heading.
-const shortTitle = (title) => title.replace(/\s*[|·—–-]\s*Stratos( Media)?\s*$/i, '').trim();
+// The <title> carries the brand for a search result — "Rólunk: kis csapat,
+// nagy felelősség | Stratos Webdesign". In a list where every line is the same
+// company that suffix is noise on every one of them, so it comes off here and
+// is stated once, in the heading.
+const shortTitle = (title) => title.replace(/\s*[|·—–-]\s*Stratos( Media| Webdesign)?\s*$/i, '').trim();
 
 async function main() {
   if (isPreviewOrigin()) {
@@ -109,7 +134,9 @@ async function main() {
 
   const placed = new Set([...SECTIONS.flatMap(([, keys]) => keys), ...OPTIONAL]);
   const extra = Object.keys(CANONICAL).filter((k) => !placed.has(k));
-  const groups = [...SECTIONS, ...(extra.length ? [['Egyéb', extra]] : []), ['Optional', OPTIONAL]];
+  const groups = [...SECTIONS.map(([h, keys]) => [h, h === 'Egyéb' ? [...keys, ...extra] : keys]),
+    ...(extra.length && !SECTIONS.some(([h]) => h === 'Egyéb') ? [['Egyéb', extra]] : []),
+    ['Optional', OPTIONAL]];
 
   const home = await meta(CANONICAL.index.hu);
   if (!home?.desc) {
@@ -118,14 +145,13 @@ async function main() {
   }
 
   const lines = [
-    '# Stratos Media',
+    '# Stratos Webdesign',
     '',
-    `> ${home.desc}`,
+    '> Magyar webdesign-ügynökség: egyedi kódból épített weboldalak, 3D weboldalak és termékkonfigurátorok, havidíjas keresőoptimalizálás (SEO) és hirdetéskezelés egy kézben, az egész országban.',
     '',
-    'Stratos Media — magyar webstúdió. Weboldal- és webshop-készítés, arculat és',
-    'hirdetéskezelés, egyedi fejlesztéssel, egyszeri díjas és havidíjas',
-    'konstrukcióban. A teljes oldal három nyelven él: magyarul, angolul és',
-    'németül; a magyar az elsődleges (x-default).',
+    'A Stratos Webdesign magyar webdesign-ügynökség. Egyedi kódból épített weboldalakat, 3D weboldalakat és termékkonfigurátorokat, webshopokat és arculatot készít, és havidíjas keresőoptimalizálással, Google- és Meta-hirdetéskezeléssel viszi tovább őket. Az egész országban dolgozik, online. Ha a projekt indokolja, személyesen is kimegy az ügyfélhez. Magyarul, angolul és németül dolgozik. A teljes oldal három nyelven él; a magyar az elsődleges (x-default).',
+    '',
+    ...FACTS,
     '',
   ];
 
@@ -145,6 +171,7 @@ async function main() {
     }
     if (!rows.length) continue;
     count += rows.length;
+    if (heading === 'Referenciák') rows.push(`- Ügyfeleink közül: ${CLIENTS}.`);
     lines.push(`## ${heading}`, '', ...rows, '');
   }
 

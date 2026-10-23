@@ -8,3 +8,8 @@
 .quiz__path i.is-past { background: var(--c-ink-2); }
 .quiz__path i.is-at { background: var(--c-ink); transform: scale(1.6); }
 @media (max-width: 560px) { .quiz__path { display: none; } }
+
+/* The end screen's call to action is an a.btn. `.quiz a` in site.css colours
+   every link in the wizard with the ink tone, which on a .btn is its own
+   background, so the label vanished. */
+.quiz a.btn { color: var(--c-bg); text-decoration: none; }

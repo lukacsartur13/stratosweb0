@@ -1,0 +1,34 @@
+{
+ "_comment": [
+  "Impresszum strings added with the copy pack of 2026-10-23. The page's older entries live in blog-kapcsolat.json.",
+  ""
+ ],
+ "Impresszum | Stratos Webdesign": [
+  "Imprint | Stratos Webdesign",
+  "Impressum | Stratos Webdesign"
+ ],
+ "A Stratos Webdesign (Lukács Artúr e.v.) adatai, elérhetőségei, tárhely- és adatbázis-szolgáltatója.": [
+  "Details, contact information, hosting provider and database provider of Stratos Webdesign (Artúr Lukács, sole trader).",
+  "Angaben, Kontaktdaten, Hosting- und Datenbank-Anbieter von Stratos Webdesign (Artúr Lukács, Einzelunternehmer)."
+ ],
+ "Márkanév": [
+  "Brand name",
+  "Markenname"
+ ],
+ "Stratos Webdesign": [
+  "Stratos Webdesign",
+  "Stratos Webdesign"
+ ],
+ "Név": [
+  "Name",
+  "Name"
+ ],
+ "<a href=\"mailto:hello@stratosweb.hu\">hello@stratosweb.hu</a>": [
+  "<a href=\"mailto:hello@stratosweb.hu\">hello@stratosweb.hu</a>",
+  "<a href=\"mailto:hello@stratosweb.hu\">hello@stratosweb.hu</a>"
+ ],
+ "<a class=\"tlink\" href=\"ugyfelszolgalat.html\">Kapcsolat →</a>": [
+  "<a class=\"tlink\" href=\"ugyfelszolgalat.html\">Contact →</a>",
+  "<a class=\"tlink\" href=\"ugyfelszolgalat.html\">Kontakt →</a>"
+ ]
+}

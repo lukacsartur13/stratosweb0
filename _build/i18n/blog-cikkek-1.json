@@ -17,10 +17,6 @@
   "Article",
   "Artikel"
  ],
- "Kérdésem van erről": [
-  "I have a question about this",
-  "Ich habe dazu eine Frage"
- ],
  "Űrlap": [
   "Form",
   "Formular"
@@ -30,34 +26,6 @@
   "Werbebetreuung"
  ],
  "_seo": "Article 1 — SEO.",
- "Hogyan kerülj a Google első oldalára? 7 lépés | Stratos": [
-  "How to reach Google's first page — 7 steps | Stratos",
-  "Wie kommen Sie auf Googles erste Seite? 7 Schritte | Stratos"
- ],
- "Nem varázslat kell a Google első oldalához, hanem rendszer. Hét lépés, amit egy kisvállalkozás magától is végig tud csinálni.": [
-  "Getting onto Google's first page takes a system, not magic. Seven steps a small business can work through on its own.",
-  "Für Googles erste Seite braucht es System, keine Magie. Sieben Schritte, die ein kleines Unternehmen selbst gehen kann."
- ],
- "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>SEO</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>SEO</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>SEO</b>"
- ],
- "Nem varázslat kell hozzá, hanem rendszer. Ez a hét lépés az, amit sorrendben érdemes megcsinálni — és amíg az elsőn nem vagy túl, a hetediknek nincs értelme.": [
-  "It doesn't take magic, it takes a system. These seven steps are worth doing in order — and until you're past the first, the seventh is pointless.",
-  "Es braucht keine Magie, sondern ein System. Diese sieben Schritte gehören in dieser Reihenfolge erledigt — und solange der erste nicht steht, ist der siebte sinnlos."
- ],
- "<span>Kategória <b>SEO</b></span> <span>Írta <b>Stratos</b></span>": [
-  "<span>Category <b>SEO</b></span> <span>Written by <b>Stratos</b></span>",
-  "<span>Kategorie <b>SEO</b></span> <span>Geschrieben von <b>Stratos</b></span>"
- ],
- "A keresőoptimalizálás körül két féligazság kering. Az egyik szerint pénz kérdése az egész, a másik szerint trükk. Egyik sem igaz. A Google azt próbálja eldönteni, hogy a te oldalad válaszol-e legjobban arra, amit valaki beírt — és ehhez olyan jeleket használ, amelyek nagy részét te magad állítod be.": [
-  "Two half-truths circulate about search optimisation. One says it's all about money, the other that it's a trick. Neither is true. Google is trying to decide whether your page answers what somebody typed best — and it uses signals that you set yourself, for the most part.",
-  "Über Suchmaschinenoptimierung kursieren zwei Halbwahrheiten. Die eine sagt, es sei nur eine Geldfrage, die andere, es sei ein Trick. Beides stimmt nicht. Google versucht zu entscheiden, ob Ihre Seite am besten auf das antwortet, was jemand eingegeben hat — und nutzt dafür Signale, die Sie größtenteils selbst setzen."
- ],
- "Az első oldal nem cél. A cél a megkeresés. A kettő között az van, hogy a megfelelő kérdésre kerülj oda.": [
-  "The first page isn't the goal. The enquiry is. What sits between them is getting there for the right question.",
-  "Die erste Seite ist nicht das Ziel. Das Ziel ist die Anfrage. Dazwischen steht, dass Sie für die richtige Frage dort landen."
- ],
  "1. Döntsd el, milyen kérdésre akarsz válaszolni": [
   "1. Decide which question you want to answer",
   "1. Entscheiden Sie, welche Frage Sie beantworten wollen"
@@ -74,10 +42,6 @@
   "2. One question, one page",
   "2. Eine Frage, eine Seite"
  ],
- "Ha egyetlen aloldal próbál öt különböző szolgáltatásra rangsorolni, egyikre sem fog. Minden komolyan vett szolgáltatásnak saját aloldal jár, saját címsorral és saját szöveggel. Ez egyszerre SEO-döntés és értékesítési döntés: a látogató is pontosan azt látja, amiért jött.": [
-  "If one page tries to rank for five different services, it will rank for none. Every service you take seriously deserves its own page, with its own headline and its own copy. That's an SEO decision and a sales decision at once: the visitor sees exactly what they came for.",
-  "Wenn eine Unterseite für fünf verschiedene Leistungen ranken will, rankt sie für keine. Jede ernst gemeinte Leistung verdient eine eigene Seite mit eigener Überschrift und eigenem Text. Das ist zugleich eine SEO- und eine Vertriebsentscheidung: Besucher sehen genau das, wofür sie gekommen sind."
- ],
  "3. Írd meg a szöveget úgy, ahogy elmondanád": [
   "3. Write the copy the way you'd say it",
   "3. Schreiben Sie den Text so, wie Sie ihn sagen würden"
@@ -89,10 +53,6 @@
  "a lényeg legyen az első bekezdésben, ne a harmadik alcím alatt;": [
   "put the point in the first paragraph, not under the third subheading;",
   "die Kernaussage gehört in den ersten Absatz, nicht unter die dritte Zwischenüberschrift;"
- ],
- "legyen kimondva, hol dolgozol — a helyi keresésben ez dönt;": [
-  "say where you work — in local search that's decisive;",
-  "sagen Sie, wo Sie arbeiten — in der lokalen Suche entscheidet das;"
  ],
  "a címsor mondja meg, mit kap az olvasó, ne a márkanevet ismételje.": [
   "let the headline say what the reader gets, rather than repeating the brand name.",
@@ -109,10 +69,6 @@
  "5. Gyorsítsd fel az oldalt": [
   "5. Make the page faster",
   "5. Machen Sie die Seite schneller"
- ],
- "A sebesség két helyen számít: a rangsorolásban közvetve, a látogatónál közvetlenül. Aki egy lassan betöltő oldalról visszalép a találati listára, az elveszett megkeresés — és a Google ezt a viselkedést látja.": [
-  "Speed matters in two places: indirectly in ranking, directly with the visitor. Anyone who backs out of a slow page to the results list is a lost enquiry — and Google sees that behaviour.",
-  "Geschwindigkeit zählt an zwei Stellen: indirekt beim Ranking, direkt bei den Besuchern. Wer von einer langsamen Seite zur Trefferliste zurückgeht, ist eine verlorene Anfrage — und Google sieht dieses Verhalten."
  ],
  "A leggyakoribb ok szinte mindig ugyanaz: túl nagy képek. Egy telefonnal készült, feltöltött fotó gyakran több megabájt, miközben a helyén elég lenne a töredéke.": [
   "The most common cause is almost always the same: oversized images. A photo taken on a phone and uploaded as-is is often several megabytes, where a fraction of that would do.",
@@ -133,14 +89,6 @@
  "7. Adj neki időt, és mérd": [
   "7. Give it time, and measure",
   "7. Geben Sie ihm Zeit, und messen Sie nach"
- ],
- "A keresőoptimalizálás nem kapcsoló, hanem kamatos kamat. Az első változásokat jellemzően hetekben, nem napokban mérik. Ezért kell mérőeszköz: ha nem látod, mire érkeznek a látogatók, csak tippelsz.": [
-  "Search optimisation isn't a switch, it's compound interest. The first changes are usually measured in weeks, not days. That's why you need measurement: if you can't see what visitors arrive for, you're guessing.",
-  "Suchmaschinenoptimierung ist kein Schalter, sondern Zinseszins. Die ersten Veränderungen misst man meist in Wochen, nicht in Tagen. Deshalb brauchen Sie Messung: Wenn Sie nicht sehen, wofür Besucher kommen, raten Sie nur."
- ],
- "Az 1–5. lépés az oldal felépítésének a része, nem utólagos ráépítés. Ha új oldal készül, ezek nem kerülnek külön pénzbe; ha meglévő oldalon kell őket megcsinálni, az átépítés. Ezért érdemes az elején beszélni róla.": [
-  "Steps 1–5 are part of building the site, not something bolted on afterwards. On a new site they cost nothing extra; on an existing site they're a rebuild. That's why it's worth discussing at the start.",
-  "Die Schritte 1–5 gehören zum Bau der Website, sie werden nicht nachträglich aufgesetzt. Bei einer neuen Website kosten sie nichts extra; bei einer bestehenden sind sie ein Umbau. Deshalb lohnt es sich, früh darüber zu sprechen."
  ],
  "Mit ne csinálj": [
   "What not to do",
@@ -166,42 +114,18 @@
   "Why isn't your website bringing clients?",
   "Warum bringt Ihre Website keine Kunden?"
  ],
- "Ha már megtalálnak, de mégsem írnak — hét gyakori ok.": [
-  "When people find you but still don't write — seven common causes.",
-  "Wenn man Sie findet, aber trotzdem nicht schreibt — sieben häufige Gründe."
- ],
- "Ha az oldal szerkezetét az alapoktól kell felépíteni.": [
-  "When the site's structure has to be built from the ground up.",
-  "Wenn die Struktur der Website von Grund auf gebaut werden muss."
- ],
  "_arak": "Article 2 — pricing.",
  "Mennyibe kerül egy weboldal 2026-ban? | Stratos": [
   "How much does a website cost in 2026? | Stratos",
   "Was kostet eine Website 2026? | Stratos"
  ],
- "Mitől függ egy weboldal ára? Mi hajtja fel a költséget, mi marad ki az ajánlatokból, és hogyan döntsd el, mennyit ér neked.": [
-  "What does a website's price depend on? What drives the cost, what quotes leave out, and how to decide what it is worth to you.",
-  "Wovon hängt der Preis einer Website ab? Was die Kosten treibt, was Angebote auslassen und wie Sie entscheiden, was sie Ihnen wert ist."
- ],
- "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Árak</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Pricing</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Preise</b>"
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"blog.html\">Blog</a> / <b>Árak</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"blog.html\">Blog</a> / <b>Pricing</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"blog.html\">Blog</a> / <b>Preise</b>"
  ],
  "Erre a kérdésre nincs egy szám, és aki azonnal mond egyet, az valamit nem kérdezett meg. Az viszont pontosan leírható, hogy mitől függ.": [
   "There is no single number here, and anyone who gives you one straight away didn't ask something. What can be described precisely is what it depends on.",
   "Darauf gibt es keine einzelne Zahl, und wer sofort eine nennt, hat etwas nicht gefragt. Genau beschreiben lässt sich dagegen, wovon es abhängt."
- ],
- "<span>Kategória <b>Árak</b></span> <span>Írta <b>Stratos</b></span>": [
-  "<span>Category <b>Pricing</b></span> <span>Written by <b>Stratos</b></span>",
-  "<span>Kategorie <b>Preise</b></span> <span>Geschrieben von <b>Stratos</b></span>"
- ],
- "A weboldal olyan, mint az iroda: lehet bérelni egy sarokasztalt, és lehet építtetni egy házat. Mindkettő „iroda”, és a kettő ára között nagyságrend van. Ez nem árazási trükk, hanem a feladat különbsége.": [
-  "A website is like an office: you can rent a desk in a corner, or you can have a building put up. Both are \"an office\", and there's an order of magnitude between them. That isn't a pricing trick, it's a difference in the task.",
-  "Eine Website ist wie ein Büro: Sie können einen Schreibtisch in der Ecke mieten oder ein Haus bauen lassen. Beides ist „ein Büro“, und dazwischen liegt eine Größenordnung. Das ist kein Preistrick, sondern ein Unterschied in der Aufgabe."
- ],
- "Nem az a jó kérdés, hogy mennyibe kerül. Az a jó kérdés, hogy mit kell tudnia, és mennyit ér neked, ha tudja.": [
-  "The good question isn't what it costs. The good question is what it has to do, and what it's worth to you once it does.",
-  "Die gute Frage ist nicht, was es kostet. Die gute Frage ist, was es können muss und was es Ihnen wert ist, wenn es das kann."
  ],
  "Mi hajtja fel az árat?": [
   "What drives the price up?",
@@ -214,14 +138,6 @@
  "<strong>Az oldalak száma és a tartalom.</strong> Egy egyoldalas bemutatkozó és egy húsz aloldalas szolgáltatásstruktúra nem ugyanaz a munka.": [
   "<strong>The number of pages and the content.</strong> A one-page introduction and a twenty-page service structure are not the same job.",
   "<strong>Die Anzahl der Seiten und der Inhalt.</strong> Eine einseitige Vorstellung und eine Leistungsstruktur mit zwanzig Unterseiten sind nicht dieselbe Arbeit."
- ],
- "<strong>Egyedi tervezés vagy sablon.</strong> A sablon olcsóbb és gyorsabb, viszont ugyanúgy fog kinézni, mint a versenytársadé.": [
-  "<strong>Custom design or a template.</strong> A template is cheaper and faster, but it will look like your competitor's.",
-  "<strong>Individuelles Design oder Vorlage.</strong> Eine Vorlage ist günstiger und schneller, sieht aber aus wie die Ihrer Konkurrenz."
- ],
- "<strong>Funkciók.</strong> Foglalás, webshop, fizetés, ügyfélfiók, több nyelv — mindegyik külön logika, külön tesztelés.": [
-  "<strong>Features.</strong> Booking, a shop, payments, customer accounts, several languages — each is separate logic and separate testing.",
-  "<strong>Funktionen.</strong> Buchung, Shop, Zahlung, Kundenkonto, mehrere Sprachen — jede ist eigene Logik und eigenes Testen."
  ],
  "<strong>Ki írja a szöveget és ki adja a képet.</strong> Ez a leggyakrabban alábecsült tétel. Ha nincs tartalom, azt valakinek el kell készítenie.": [
   "<strong>Who writes the copy and who supplies the images.</strong> This is the most frequently underestimated item. If there's no content, somebody has to make it.",
@@ -259,10 +175,6 @@
   "the advertising budget, if you also want to advertise.",
   "das Werbebudget, wenn Sie auch werben wollen."
  ],
- "Egy olcsóbb ajánlat gyakran attól olcsóbb, hogy ezek közül több nincs benne. Ez nem baj — de tudni kell róla.": [
-  "A cheaper proposal is often cheaper because several of these aren't in it. That's fine — but you should know about it.",
-  "Ein günstigeres Angebot ist oft deshalb günstiger, weil mehrere davon fehlen. Das ist in Ordnung — man sollte es nur wissen."
- ],
  "Hogyan számold ki, mennyit ér neked?": [
   "How to work out what it's worth to you",
   "Wie Sie berechnen, was es Ihnen wert ist"
@@ -282,18 +194,6 @@
  "hány megkeresést vársz az oldaltól havonta.": [
   "how many enquiries you expect from the site each month.",
   "wie viele Anfragen Sie monatlich von der Website erwarten."
- ],
- "Ha ezek közül bármelyiket nem tudod, az önmagában eredmény: az első feladat nem a weboldal, hanem a mérés. Ha viszont tudod, akkor a weboldal ára egyetlen kérdésre egyszerűsödik — hány hónap alatt hozza vissza magát.": [
-  "If you don't know any one of these, that's a finding in itself: the first task isn't the website, it's measurement. If you do know them, the price of the website reduces to a single question — how many months until it pays for itself.",
-  "Wenn Sie eine davon nicht kennen, ist das schon ein Ergebnis: Die erste Aufgabe ist nicht die Website, sondern die Messung. Kennen Sie sie, reduziert sich der Preis der Website auf eine einzige Frage — in wie vielen Monaten sie sich amortisiert."
- ],
- "Nálunk hogy megy": [
-  "How it works with us",
-  "Wie es bei uns läuft"
- ],
- "Nem teszünk ki csomagárakat, mert az őszinte csomagár annyi kikötést igényelne, hogy használhatatlan lenne. Az igényfelmérés után írásos ajánlatot adunk, amiben az is benne van, ami nincs benne.": [
-  "We don't publish package prices, because an honest package price would need so many conditions that it would be useless. After understanding the requirement we give a written proposal that also names what isn't included.",
-  "Wir veröffentlichen keine Paketpreise, weil ein ehrlicher Paketpreis so viele Bedingungen bräuchte, dass er unbrauchbar wäre. Nach der Bedarfsanalyse geben wir ein schriftliches Angebot, in dem auch steht, was nicht enthalten ist."
  ],
  "Három kérdés minden ajánlathoz": [
   "Three questions for any proposal",
@@ -324,41 +224,13 @@
   "Wenn Sie ein konkretes Angebot für Ihr eigenes Projekt wollen."
  ],
  "_cegprofil": "Article 3 — Google Business Profile.",
- "Google Cégprofil beállítása lépésről lépésre | Stratos": [
-  "Setting up a Google Business Profile | Stratos",
-  "Google-Unternehmensprofil einrichten | Stratos"
- ],
- "A Google Cégprofil a legerősebb ingyenes ügyfélszerző eszköz helyi vállalkozásnak. Nyolc lépés a beállítástól a karbantartásig.": [
-  "A Google Business Profile is the strongest free tool a local business has. Eight steps from setup to upkeep.",
-  "Das Google-Unternehmensprofil ist das stärkste kostenlose Werkzeug lokaler Unternehmen. Acht Schritte von der Einrichtung bis zur Pflege."
- ],
- "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Helyi keresés</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Local search</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Lokale Suche</b>"
- ],
- "Ha helyi vállalkozásod van, ez az egyetlen ingyenes eszköz, ami a weboldalad nélkül is hozhat ügyfelet. Nyolc lépés, egy délután alatt.": [
-  "If you run a local business, this is the one free tool that can bring clients even without your website. Eight steps, one afternoon.",
-  "Wenn Sie ein lokales Unternehmen führen, ist das das einzige kostenlose Werkzeug, das auch ohne Ihre Website Kunden bringen kann. Acht Schritte, ein Nachmittag."
- ],
- "<span>Kategória <b>Helyi keresés</b></span> <span>Írta <b>Stratos</b></span>": [
-  "<span>Category <b>Local search</b></span> <span>Written by <b>Stratos</b></span>",
-  "<span>Kategorie <b>Lokale Suche</b></span> <span>Geschrieben von <b>Stratos</b></span>"
- ],
- "Amikor valaki beír egy szolgáltatást és egy településnevet, a találati lista tetején nem weboldalak vannak, hanem térképes találatok. Ezek a Google Cégprofilokból jönnek. Ha nincs profilod, ebből a mezőből egyszerűen hiányzol — függetlenül attól, milyen jó a weboldalad.": [
-  "When somebody types a service and a place name, the top of the results isn't websites — it's map results. Those come from Google Business Profiles. Without a profile you're simply absent from that block, no matter how good your website is.",
-  "Wenn jemand eine Leistung und einen Ortsnamen eingibt, stehen oben in der Trefferliste keine Websites, sondern Kartentreffer. Diese stammen aus Google-Unternehmensprofilen. Ohne Profil fehlen Sie in diesem Block schlicht — egal, wie gut Ihre Website ist."
- ],
- "Ez az egyetlen marketingeszköz, ami ingyen van, egy délután alatt beállítható, és a versenytársad valószínűleg félbehagyta.": [
-  "This is the one marketing tool that's free, can be set up in an afternoon, and that your competitor probably left half-finished.",
-  "Das ist das einzige Marketingwerkzeug, das kostenlos ist, an einem Nachmittag eingerichtet werden kann — und das Ihre Konkurrenz vermutlich halbfertig liegen gelassen hat."
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"blog.html\">Blog</a> / <b>Helyi keresés</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"blog.html\">Blog</a> / <b>Local search</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"blog.html\">Blog</a> / <b>Lokale Suche</b>"
  ],
  "1. Igényeld vagy hozd létre a profilt": [
   "1. Claim or create the profile",
   "1. Fordern Sie das Profil an oder erstellen Sie es"
- ],
- "Először keress rá a saját cégedre. Előfordul, hogy már létezik egy profil, amit nem te hoztál létre — ilyenkor nem újat kell csinálni, hanem igényelni a meglévőt. Két profil ugyanarra a vállalkozásra rosszabb, mint egy sem.": [
-  "First search for your own business. Sometimes a profile already exists that you didn't create — then you claim the existing one rather than making a new one. Two profiles for the same business are worse than none.",
-  "Suchen Sie zuerst nach Ihrem eigenen Unternehmen. Manchmal existiert bereits ein Profil, das nicht Sie erstellt haben — dann fordern Sie das bestehende an, statt ein neues anzulegen. Zwei Profile für dasselbe Unternehmen sind schlimmer als keins."
  ],
  "2. Válaszd ki a fő kategóriát pontosan": [
   "2. Choose the primary category precisely",
@@ -376,10 +248,6 @@
   "If you have premises customers come into, make the address visible. If you work on call-out, set the service area instead — don't publish your home address.",
   "Wenn Sie Räume haben, in die Kunden kommen, machen Sie die Adresse sichtbar. Wenn Sie im Außendienst arbeiten, stellen Sie stattdessen das Servicegebiet ein und veröffentlichen Sie nicht Ihre Privatadresse."
  ],
- "4. Töltsd ki a nyitvatartást — és tartsd karban": [
-  "4. Fill in the opening hours — and keep them current",
-  "4. Tragen Sie die Öffnungszeiten ein — und halten Sie sie aktuell"
- ],
  "A rossz nyitvatartás rosszabb, mint a hiányzó. Aki hiába megy oda, az nem jön vissza, és gyakran ír is róla. Az ünnepnapi nyitvatartást külön be lehet állítani; érdemes évente egyszer végigmenni rajta.": [
   "Wrong opening hours are worse than none. Anyone who turns up for nothing doesn't come back, and often writes about it. Holiday hours can be set separately; it's worth going through them once a year.",
   "Falsche Öffnungszeiten sind schlimmer als gar keine. Wer umsonst hinfährt, kommt nicht wieder und schreibt oft darüber. Feiertagszeiten lassen sich gesondert einstellen; einmal im Jahr sollte man sie durchgehen."
@@ -388,14 +256,6 @@
   "5. Upload real photographs",
   "5. Laden Sie echte Fotos hoch"
  ],
- "Nem stockfotót és nem renderelt képet. A saját helyiségedről, a saját munkádról, a csapatról készült képek azt bizonyítják, hogy a vállalkozás létezik. Ez a profil legtöbbet nézett része.": [
-  "Not stock photos and not renders. Pictures of your own premises, your own work and your team prove the business exists. This is the most-viewed part of the profile.",
-  "Keine Stockfotos und keine Renderings. Bilder von Ihren eigenen Räumen, Ihrer eigenen Arbeit und Ihrem Team belegen, dass es das Unternehmen gibt. Das ist der meistbetrachtete Teil des Profils."
- ],
- "6. Írd meg a leírást úgy, ahogy elmondanád": [
-  "6. Write the description the way you'd say it",
-  "6. Schreiben Sie die Beschreibung so, wie Sie sie sagen würden"
- ],
  "Egy bekezdés arról, mit csinálsz, kinek, és hol. Nem kulcsszólista. A leírás elsősorban az embernek szól, aki eldönti, felhív-e.": [
   "One paragraph about what you do, for whom, and where. Not a keyword list. The description is primarily for the person deciding whether to call.",
   "Ein Absatz darüber, was Sie machen, für wen und wo. Keine Keyword-Liste. Die Beschreibung richtet sich in erster Linie an den Menschen, der entscheidet, ob er anruft."
@@ -403,18 +263,6 @@
  "7. Kérj értékelést, és válaszolj rájuk": [
   "7. Ask for reviews, and reply to them",
   "7. Bitten Sie um Bewertungen und antworten Sie darauf"
- ],
- "Az értékelés a helyi keresés legfontosabb bizalmi jele. Két gyakorlati dolog számít:": [
-  "Reviews are the most important trust signal in local search. Two practical things matter:",
-  "Bewertungen sind das wichtigste Vertrauenssignal in der lokalen Suche. Zwei praktische Dinge zählen:"
- ],
- "kérj értékelést minden ügyfeledtől a munka végén, személyesen és nyomásgyakorlás nélkül — ne csak azoktól, akikről tudod, hogy elégedettek, mert a válogatott kérés a Google szabályai szerint tiltott;": [
-  "ask every client for a review at the end of the job, in person and without pressure — not only the ones you know are happy, because asking selectively is against Google's rules;",
-  "bitten Sie jeden Kunden am Ende der Arbeit um eine Bewertung, persönlich und ohne Druck — nicht nur die, von denen Sie wissen, dass sie zufrieden sind, denn eine selektive Bitte verstößt gegen die Regeln von Google;"
- ],
- "válaszolj mindegyikre — a rosszakra is, higgadtan és tényszerűen.": [
-  "reply to every one — including the bad ones, calmly and factually.",
-  "antworten Sie auf jede — auch auf die schlechten, ruhig und sachlich."
  ],
  "Egy jól kezelt negatív értékelés többet ér, mint egy hibátlan lista, amiben senki nem hisz.": [
   "A well-handled negative review is worth more than a flawless list nobody believes.",
@@ -436,10 +284,6 @@
   "What not to do",
   "Was Sie nicht tun sollten"
  ],
- "Ne írj a cégnévbe kulcsszavakat — ez szabályszegés, és a profil felfüggeszthető.": [
-  "Don't put keywords in the business name — that breaks the rules and the profile can be suspended.",
-  "Schreiben Sie keine Keywords in den Firmennamen — das verstößt gegen die Regeln, und das Profil kann gesperrt werden."
- ],
  "Ne vegyél értékeléseket.": [
   "Don't buy reviews.",
   "Kaufen Sie keine Bewertungen."
@@ -456,18 +300,6 @@
   "Google or Facebook ads?",
   "Google- oder Facebook-Werbung?"
  ],
- "Ha az ingyenes felület már működik, és fizetni is akarsz a forgalomért.": [
-  "When the free surface already works and you also want to pay for traffic.",
-  "Wenn die kostenlose Fläche bereits funktioniert und Sie zusätzlich für Traffic zahlen wollen."
- ],
- "Google és Meta kampányok, méréssel és érthető riporttal.": [
-  "Google and Meta campaigns, with measurement and a report you can read.",
-  "Google- und Meta-Kampagnen, mit Messung und verständlichem Bericht."
- ],
- "Mit csinál pontosan a SEO, és mikor éri meg.": [
-  "What SEO actually does, and when it pays off.",
-  "Was SEO genau leistet und wann es sich lohnt."
- ],
  "A cégprofil az egyik ingyenes eszköz a négyből.": [
   "The business profile is one of the four free tools.",
   "Das Unternehmensprofil ist eines der vier kostenlosen Werkzeuge."
@@ -480,10 +312,6 @@
   "How do you track where you rank on Google?",
   "Wie verfolgen Sie, auf welchem Platz Sie bei Google stehen?"
  ],
- "A legegyszerűbb pozíciókövetés ingyenes: a Google Search Console Teljesítmény menüjében kifejezésenként látod az átlagos helyezést, a megjelenéseket és a kattintásokat. Hetente egyszer nézz rá, és ne egy-egy napot hasonlíts össze, hanem négyhetes időszakokat — a helyezés naponta ingadozik.": [
-  "The simplest rank tracking is free: in Google Search Console, under Performance, you see the average position, impressions and clicks for every query. Look once a week, and compare four-week periods rather than single days — positions move every day.",
-  "Die einfachste Positionsverfolgung ist kostenlos: In der Google Search Console sehen Sie unter Leistung für jede Suchanfrage die durchschnittliche Position, die Impressionen und die Klicks. Schauen Sie einmal pro Woche hinein und vergleichen Sie Vier-Wochen-Zeiträume statt einzelner Tage — die Position schwankt täglich."
- ],
  "Ha a 30. hely környékén vagy, a megjelenések száma kicsi és szeszélyes: néhány hely elmozdulás nullázhatja. Ez nem azt jelenti, hogy eltűntél, hanem hogy még nem vagy elég közel az első oldalhoz ahhoz, hogy stabilan lássanak. Ha sok kifejezést vagy a versenytársaidat is követnéd, arra fizetős pozíciókövető eszközök valók.": [
   "Around position 30, impressions are few and erratic: a move of a few places can take them to zero. That does not mean you have vanished — only that you are not yet close enough to the first page to be seen steadily. If you want to track many queries or your competitors, that is what paid rank trackers are for.",
   "Rund um Platz 30 sind die Impressionen wenige und sprunghaft: Ein paar Plätze Verschiebung können sie auf null bringen. Das heißt nicht, dass Sie verschwunden sind — nur, dass Sie der ersten Seite noch nicht nah genug sind, um stabil gesehen zu werden. Wer viele Suchanfragen oder die Konkurrenz verfolgen will, nutzt dafür kostenpflichtige Tools."
@@ -491,10 +319,6 @@
  "Mit tartalmazzon az egyszeri projektdíj?": [
   "What should a one-off project fee include?",
   "Was sollte ein einmaliger Projektpreis enthalten?"
- ],
- "Ami utána jön — tárhely, karbantartás, továbbfejlesztés —, azt külön, igény szerint érdemes megrendelni. Így az oldal a te eszközöd, és te döntesz a további költésről. Mi is így dolgozunk.": [
-  "What comes after — hosting, maintenance, further development — is best ordered separately, when you need it. That way the site is your tool, and you decide what to spend next. This is how we work too.",
-  "Was danach kommt — Hosting, Wartung, Weiterentwicklung —, bestellt man am besten separat, bei Bedarf. So bleibt die Website Ihr Werkzeug, und Sie entscheiden über weitere Ausgaben. So arbeiten auch wir."
  ],
  "Egyedi weboldal egyszeri projektdíjjal, azzal együtt, mi van benne.": [
   "A bespoke website for a one-off project fee, and what it includes.",
@@ -504,17 +328,9 @@
   "If the structure of the site has to be built from the ground up, around search.",
   "Wenn die Struktur der Website von Grund auf und für die Suche aufgebaut werden muss."
  ],
- "Egy egyedi weboldalt egyszeri projektdíjért érdemes rendelni, és az ajánlatnak tételesen meg kell mondania, mi van benne: kutatás, szerkezet, szövegírás, dizájn, fejlesztés, keresőoptimalizálás és élesítés. Ha a keresőoptimalizálás kimarad az első verzióból, utólag drágább pótolni — ezért a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">keresőoptimalizált weboldal</a> eleve erre a szerkezetre épül.": [
-  "A bespoke website is best ordered for a one-off project fee, and the quote should itemise what is in it: research, structure, copywriting, design, development, search engine optimisation and launch. If SEO is left out of the first version, it costs more to add later — which is why a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">search-optimised website</a> is built on that structure from the start.",
-  "Eine individuelle Website bestellt man am besten zu einem einmaligen Projektpreis, und das Angebot sollte aufschlüsseln, was darin enthalten ist: Recherche, Struktur, Text, Design, Entwicklung, Suchmaschinenoptimierung und Launch. Fehlt die Suchmaschinenoptimierung in der ersten Version, ist sie später teurer nachzuholen — deshalb baut eine <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">suchmaschinenoptimierte Website</a> von Anfang an auf dieser Struktur auf."
- ],
  "Ha nem magad csinálnád: a lépéseket mi visszük végig, havonta érthető riporttal.": [
   "If you would rather not do it yourself: we take the steps for you, with a clear monthly report.",
   "Wenn Sie es nicht selbst machen möchten: Wir übernehmen die Schritte, mit einem verständlichen Monatsbericht."
- ],
- "Mi az a keresőoptimalizálás? SEO útmutató kezdőknek": [
-  "What is SEO? A beginner's guide",
-  "Was ist SEO? Ein Leitfaden für Einsteiger"
  ],
  "Fekete háttéren króm hatású absztrakt szalagok, sárga nagybetűs felirattal: „Hogyan kerülj a Google első oldalára? Keresőoptimalizálás 7 lépésben”.": [
   "Chrome-like abstract ribbons on a black background with a yellow Hungarian headline: “Hogyan kerülj a Google első oldalára? Keresőoptimalizálás 7 lépésben” (How to reach Google's first page? SEO in 7 steps).",
@@ -527,5 +343,221 @@
  "Fekete háttéren króm hatású absztrakt szalagok, sárga nagybetűs felirattal: „Google Cégprofil beállítása lépésről lépésre: így hozz ingyen ügyfeleket a környékedről”.": [
   "Chrome-like abstract ribbons on a black background with a yellow Hungarian headline: “Google Cégprofil beállítása lépésről lépésre: így hozz ingyen ügyfeleket a környékedről” (Setting up a Google Business Profile step by step: free customers from your area).",
   "Chromartige abstrakte Bänder auf schwarzem Grund mit gelber ungarischer Überschrift: „Google Cégprofil beállítása lépésről lépésre: így hozz ingyen ügyfeleket a környékedről“ (Google-Unternehmensprofil Schritt für Schritt einrichten: kostenlos Kunden aus Ihrer Umgebung gewinnen)."
+ ],
+ "Mennyibe kerül egy weboldal 2026-ban? | Stratos Webdesign": [
+  "How much does a website cost in 2026? | Stratos Webdesign",
+  "Was kostet eine Website 2026? | Stratos Webdesign"
+ ],
+ "Mitől függ egy weboldal ára, mi marad ki az ajánlatokból, és hogyan számold ki, hány új ügyfél után hozza vissza az árát.": [
+  "What a website's price depends on, what quotes leave out, and how to work out how many new clients it takes to earn back its price.",
+  "Wovon der Preis einer Website abhängt, was in Angeboten fehlt und wie Sie ausrechnen, nach wie vielen neuen Kunden sie ihren Preis wieder eingespielt hat."
+ ],
+ "<span>Kategória <b>Árak</b></span> <span>Írta: <b>a Stratos Webdesign csapata</b></span>": [
+  "<span>Category <b>Pricing</b></span> <span>By <b>the Stratos Webdesign team</b></span>",
+  "<span>Kategorie <b>Preise</b></span> <span>Vom <b>Team von Stratos Webdesign</b></span>"
+ ],
+ "Egy weboldal ára elsősorban öt dologtól függ: az oldalak számától és a tartalomtól, attól, hogy egyedi tervezésű-e, a funkcióktól (foglalás, webshop, több nyelv, 3D), attól, ki készíti a szöveget és a képeket, és az integrációktól. A Stratos Webdesign szerint a hasznosabb kérdés az, hány új ügyfél vagy megrendelés hozza vissza az árát.": [
+  "The price of a website depends mainly on five things: the number of pages and the content, whether it is custom-designed, the features (booking, a shop, several languages, 3D), who produces the copy and the images, and integrations. In Stratos Webdesign's view, the more useful question is how many new clients or orders it takes to earn the price back.",
+  "Der Preis einer Website hängt vor allem von fünf Dingen ab: von der Anzahl der Seiten und dem Inhalt, davon, ob sie individuell gestaltet ist, von den Funktionen (Buchung, Shop, mehrere Sprachen, 3D), davon, wer Texte und Bilder erstellt, und von den Integrationen. Aus Sicht von Stratos Webdesign ist die nützlichere Frage, wie viele neue Kunden oder Aufträge den Preis wieder einspielen."
+ ],
+ "A weboldal olyan, mint az iroda: lehet bérelni egy sarokasztalt, és lehet építtetni egy házat. Mindkettő „iroda”, és a kettő ára között nagyságrend van. A különbséget a feladat adja.": [
+  "A website is like an office: you can rent a desk in a corner, or you can have a building put up. Both are \"an office\", and there's an order of magnitude between them. The difference comes from the task.",
+  "Eine Website ist wie ein Büro: Sie können einen Schreibtisch in der Ecke mieten oder ein Haus bauen lassen. Beides ist „ein Büro“, und dazwischen liegt eine Größenordnung. Den Unterschied macht die Aufgabe."
+ ],
+ "A hasznosabb kérdés az, hogy mit kell tudnia a weboldaladnak, és mennyit ér neked, ha tudja.": [
+  "The more useful question is what your website has to do, and what it's worth to you once it does.",
+  "Die nützlichere Frage ist, was Ihre Website können muss und was es Ihnen wert ist, wenn sie es kann."
+ ],
+ "<strong>Egyedi tervezés vagy sablon.</strong> A sablon kevesebb munka, ezért kisebb tétel, cserébe ugyanúgy fog kinézni, mint a versenytársadé. Mi minden weboldalt egyedi kóddal építünk, sablon nélkül.": [
+  "<strong>Custom design or a template.</strong> A template is less work, so it is a smaller item, but it will look just like your competitor's. We build every website in custom code, without templates.",
+  "<strong>Individuelles Design oder Vorlage.</strong> Eine Vorlage ist weniger Arbeit und damit ein kleinerer Posten, dafür sieht sie genauso aus wie die Ihrer Konkurrenz. Wir bauen jede Website mit individuellem Code, ohne Vorlage."
+ ],
+ "<strong>Funkciók.</strong> Foglalás, webshop, fizetés, ügyfélfiók, több nyelv, <a class=\"tlink\" href=\"3d-weboldal-konfigurator.html\">3D termékbemutató vagy konfigurátor</a>: mindegyik külön logika, külön tesztelés.": [
+  "<strong>Features.</strong> Booking, a shop, payments, customer accounts, several languages, a <a class=\"tlink\" href=\"3d-weboldal-konfigurator.html\">3D product showcase or configurator</a>: each is separate logic and separate testing.",
+  "<strong>Funktionen.</strong> Buchung, Shop, Zahlung, Kundenkonto, mehrere Sprachen, <a class=\"tlink\" href=\"3d-weboldal-konfigurator.html\">3D-Produktpräsentation oder Konfigurator</a>: Jede ist eigene Logik und eigenes Testen."
+ ],
+ "Egy alacsonyabb ajánlat gyakran attól alacsonyabb, hogy ezek közül több nincs benne. Ez nem baj, de tudni kell róla.": [
+  "A lower proposal is often lower because several of these aren't in it. That's fine, but you should know about it.",
+  "Ein niedrigeres Angebot ist oft deshalb niedriger, weil mehrere davon fehlen. Das ist in Ordnung, man sollte es nur wissen."
+ ],
+ "Egy egyedi weboldalt egyszeri projektdíjért érdemes rendelni, és az ajánlatnak tételesen meg kell mondania, mi van benne: kutatás, szerkezet, szövegírás, dizájn, fejlesztés, keresőoptimalizálás és élesítés. Ha a keresőoptimalizálás kimarad az első verzióból, utólag drágább pótolni, ezért a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">keresőoptimalizált weboldal</a> eleve erre a szerkezetre épül.": [
+  "A bespoke website is best ordered for a one-off project fee, and the quote should itemise what is in it: research, structure, copywriting, design, development, search engine optimisation and launch. If SEO is left out of the first version, it costs more to add later, which is why a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">search-optimised website</a> is built on that structure from the start.",
+  "Eine individuelle Website bestellt man am besten zu einem einmaligen Projektpreis, und das Angebot sollte aufschlüsseln, was darin enthalten ist: Recherche, Struktur, Text, Design, Entwicklung, Suchmaschinenoptimierung und Launch. Fehlt die Suchmaschinenoptimierung in der ersten Version, ist sie später teurer nachzuholen, deshalb baut eine <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">suchmaschinenoptimierte Website</a> von Anfang an auf dieser Struktur auf."
+ ],
+ "Ami utána jön (tárhely, karbantartás, továbbfejlesztés, keresőoptimalizálás), azt külön, igény szerint érdemes megrendelni. Így az oldal a te eszközöd, és te döntesz a további költésről. Nálunk is így van: a weboldal egyszeri projektdíjas, és a tiéd. A keresőoptimalizálást és a karbantartást havidíjas partnerségként választhatod mellé, ha szükséged van rá.": [
+  "What comes after (hosting, maintenance, further development, SEO) is best ordered separately, when you need it. That way the site is your tool, and you decide what to spend next. It is the same with us: the website is a one-off project fee, and it is yours. You can add SEO and maintenance alongside it as a monthly partnership if you need them.",
+  "Was danach kommt (Hosting, Wartung, Weiterentwicklung, Suchmaschinenoptimierung), bestellt man am besten separat, bei Bedarf. So bleibt die Website Ihr Werkzeug, und Sie entscheiden über weitere Ausgaben. Bei uns ist es genauso: Die Website kostet ein einmaliges Projekthonorar und gehört Ihnen. Suchmaschinenoptimierung und Wartung können Sie bei Bedarf als monatliche Partnerschaft dazu wählen."
+ ],
+ "Ha ezek közül bármelyiket nem tudod, az önmagában eredmény: az első feladat a mérés, és csak utána a weboldal. Ha viszont tudod, akkor a weboldal ára egyetlen kérdésre egyszerűsödik: hány hónap alatt hozza vissza magát.": [
+  "If you don't know any one of these, that's a finding in itself: the first task is measurement, and only then the website. If you do know them, the price of the website comes down to a single question: how many months until it pays for itself.",
+  "Wenn Sie eine davon nicht kennen, ist das schon ein Ergebnis: Die erste Aufgabe ist die Messung, erst danach kommt die Website. Kennen Sie sie, reduziert sich der Preis der Website auf eine einzige Frage: in wie vielen Monaten sie sich amortisiert."
+ ],
+ "Egy példa a gondolatmenetre, számok nélkül: ha egy új ügyfél egy év alatt többet hoz, mint amennyibe a weboldal kerül, akkor már egyetlen új ügyfél kifizeti. Minden további ügyfél már a megtérülésen felül jön. Ezt a számítást az igényfelmérő hívásban a te számaiddal közösen is végigvesszük.": [
+  "An example of the reasoning, without numbers: if one new client brings in more over a year than the website costs, a single new client already pays for it. Every client after that comes on top of the payback. On the discovery call we can work through this calculation together, with your own numbers.",
+  "Ein Beispiel für die Überlegung, ohne Zahlen: Bringt ein neuer Kunde in einem Jahr mehr ein, als die Website kostet, dann bezahlt sie bereits ein einziger neuer Kunde. Jeder weitere Kunde kommt über die Amortisation hinaus dazu. Im Erstgespräch gehen wir diese Rechnung auch gemeinsam mit Ihren eigenen Zahlen durch."
+ ],
+ "Nálunk így megy": [
+  "This is how it works with us",
+  "So läuft es bei uns"
+ ],
+ "Nem teszünk ki csomagárakat, mert az őszinte csomagár annyi kikötést igényelne, hogy használhatatlan lenne. Ingyenes igényfelmérő hívással kezdünk, utána tételes, írásos ajánlatot küldünk, amiben az is szerepel, ami nincs benne. Az ajánlat 14 napig érvényes, és az előleg után indul a munka. Ajánlatkérésre munkanapokon 24 órán belül válaszolunk.": [
+  "We don't publish package prices, because an honest package price would need so many conditions that it would be useless. We start with a free discovery call, then send an itemised written proposal that also states what isn't included. The proposal is valid for 14 days, and work starts once the deposit arrives. We reply to quote requests within 24 hours on working days.",
+  "Wir veröffentlichen keine Paketpreise, weil ein ehrlicher Paketpreis so viele Bedingungen bräuchte, dass er unbrauchbar wäre. Wir beginnen mit einem kostenlosen Erstgespräch und schicken danach ein aufgeschlüsseltes, schriftliches Angebot, in dem auch steht, was nicht enthalten ist. Das Angebot gilt 14 Tage, und die Arbeit beginnt nach Eingang der Anzahlung. Auf Angebotsanfragen antworten wir an Werktagen innerhalb von 24 Stunden."
+ ],
+ "Weboldal kkv-knak": [
+  "Web design for small business",
+  "Webdesign für KMU"
+ ],
+ "Ha termékeket árulsz, és a platformot is együtt választanánk ki.": [
+  "If you sell products and would like to choose the platform together with us.",
+  "Wenn Sie Produkte verkaufen und die Plattform gemeinsam mit uns auswählen möchten."
+ ],
+ "Mi az a keresőoptimalizálás?": [
+  "What is SEO?",
+  "Was ist SEO?"
+ ],
+ "Mit csinál pontosan, és mikor éri meg.": [
+  "What SEO actually does, and when it pays off.",
+  "Was SEO genau leistet und wann es sich lohnt."
+ ],
+ "Hogyan kerülj a Google első oldalára? | Stratos Webdesign": [
+  "How to reach Google's first page | Stratos Webdesign",
+  "Wie kommen Sie auf Googles erste Seite? | Stratos Webdesign"
+ ],
+ "Hét lépés sorrendben, amit egy kisvállalkozás maga is végig tud csinálni a jobb Google-helyezésért. Garantált első hely nincs, rendszer van.": [
+  "Seven steps, in order, that a small business can work through itself for a better Google ranking. There's no guaranteed first place, but there is a system.",
+  "Sieben Schritte in der richtigen Reihenfolge, die ein kleines Unternehmen selbst gehen kann, um bei Google besser platziert zu sein. Einen garantierten ersten Platz gibt es nicht, ein System schon."
+ ],
+ "Varázslat nincs benne, rendszer viszont van. Ez a hét lépés az, amit sorrendben érdemes megcsinálni, és amíg az elsőn nem vagy túl, a hetediknek nincs értelme.": [
+  "There's no magic in it, but there is a system. These seven steps are worth doing in order, and until you're past the first, the seventh is pointless.",
+  "Magie steckt nicht dahinter, ein System aber schon. Diese sieben Schritte gehören in dieser Reihenfolge erledigt, und solange der erste nicht steht, ist der siebte sinnlos."
+ ],
+ "<span>Kategória <b>Keresőoptimalizálás</b></span> <span>Írta: <b>a Stratos Webdesign csapata</b></span>": [
+  "<span>Category <b>SEO</b></span> <span>By <b>the Stratos Webdesign team</b></span>",
+  "<span>Kategorie <b>SEO</b></span> <span>Vom <b>Team von Stratos Webdesign</b></span>"
+ ],
+ "A Google első oldalára nem lehet helyezést vásárolni, de az esélyt hét lépéssel sokat lehet javítani: a vevő kérdéseinek feltérképezése, szolgáltatásonként külön oldal, érthető szöveg, tiszta címsorok, gyors betöltés, Google Cégprofil és mérés. A Stratos Webdesign tapasztalata szerint az eredmény általában 3–6 hónap alatt kezd látszani.": [
+  "You can't buy a place on Google's first page, but seven steps improve your chances a great deal: mapping your buyers' questions, a separate page for each service, clear copy, clean headings, fast loading, a Google Business Profile and measurement. In Stratos Webdesign's experience, results usually start to show within 3–6 months.",
+  "Einen Platz auf Googles erster Seite kann man nicht kaufen, aber mit sieben Schritten lassen sich die Chancen deutlich verbessern: die Fragen der Kunden erfassen, eine eigene Seite pro Leistung, verständlicher Text, klare Überschriften, schnelles Laden, ein Google-Unternehmensprofil und Messung. Nach der Erfahrung von Stratos Webdesign zeigt sich das Ergebnis meist nach 3–6 Monaten."
+ ],
+ "A keresőoptimalizálás körül két féligazság kering. Az egyik szerint pénz kérdése az egész, a másik szerint trükk. Egyik sem igaz. A Google azt próbálja eldönteni, hogy a te oldalad válaszol-e legjobban arra, amit valaki beírt, és ehhez olyan jeleket használ, amelyek nagy részét te magad állítod be.": [
+  "Two half-truths circulate about search optimisation. One says it's all about money, the other that it's a trick. Neither is true. Google is trying to decide whether your page best answers what somebody typed, and it uses signals that, for the most part, you set yourself.",
+  "Über Suchmaschinenoptimierung kursieren zwei Halbwahrheiten. Die eine sagt, es sei nur eine Geldfrage, die andere, es sei ein Trick. Beides stimmt nicht. Google versucht zu entscheiden, ob Ihre Seite am besten auf das antwortet, was jemand eingegeben hat, und nutzt dafür Signale, die Sie größtenteils selbst setzen."
+ ],
+ "Az igazi cél a megkeresés, az első oldal csak eszköz hozzá. A kettő között az van, hogy a megfelelő kérdésre kerülj oda.": [
+  "The real goal is the enquiry; the first page is only a means to it. What sits between them is getting there for the right question.",
+  "Das eigentliche Ziel ist die Anfrage, die erste Seite ist nur ein Mittel dazu. Dazwischen steht, dass Sie für die richtige Frage dort landen."
+ ],
+ "Ha egyetlen aloldal próbál öt különböző szolgáltatásra rangsorolni, egyikre sem fog. Minden komolyan vett szolgáltatásnak saját aloldal jár, saját címsorral és saját szöveggel. Ez egyszerre keresőoptimalizálási és értékesítési döntés: a látogató is pontosan azt látja, amiért jött.": [
+  "If one page tries to rank for five different services, it will rank for none. Every service you take seriously deserves its own page, with its own headline and its own copy. That's an SEO decision and a sales decision at once: the visitor sees exactly what they came for.",
+  "Wenn eine Unterseite für fünf verschiedene Leistungen ranken will, rankt sie für keine. Jede ernst gemeinte Leistung verdient eine eigene Seite mit eigener Überschrift und eigenem Text. Das ist zugleich eine SEO- und eine Vertriebsentscheidung: Besucher sehen genau das, wofür sie gekommen sind."
+ ],
+ "legyen kimondva, hol dolgozol: a helyi keresésben ez dönt;": [
+  "say where you work: in local search that's decisive;",
+  "sagen Sie, wo Sie arbeiten: In der lokalen Suche entscheidet das;"
+ ],
+ "A sebesség két helyen számít: a rangsorolásban közvetve, a látogatónál közvetlenül. Aki egy lassan betöltő oldalról visszalép a találati listára, az elveszett megkeresés, és a Google ezt a viselkedést látja.": [
+  "Speed matters in two places: indirectly in ranking, directly with the visitor. Anyone who backs out of a slow page to the results list is a lost enquiry, and Google sees that behaviour.",
+  "Geschwindigkeit zählt an zwei Stellen: indirekt beim Ranking, direkt bei den Besuchern. Wer von einer langsamen Seite zur Trefferliste zurückgeht, ist eine verlorene Anfrage, und Google sieht dieses Verhalten."
+ ],
+ "A keresőoptimalizálás kamatos kamatként működik. A technikai javítások hatása néhány hét alatt megjelenhet, az érdemi elmozdulás általában 3–6 hónap alatt kezd látszani. Ezért kell mérőeszköz: ha nem látod, mire érkeznek a látogatók, csak tippelsz.": [
+  "SEO works like compound interest. The effect of technical fixes can appear within a few weeks; real movement usually starts to show within 3–6 months. That's why you need a measuring tool: if you can't see what visitors arrive on, you're only guessing.",
+  "Suchmaschinenoptimierung wirkt wie Zinseszins. Technische Verbesserungen können sich nach wenigen Wochen zeigen, eine spürbare Veränderung wird meist nach 3–6 Monaten sichtbar. Deshalb brauchen Sie ein Messwerkzeug: Wenn Sie nicht sehen, worauf die Besucher landen, raten Sie nur."
+ ],
+ "A legegyszerűbb pozíciókövetés ingyenes: a Google Search Console Teljesítmény menüjében kifejezésenként látod az átlagos helyezést, a megjelenéseket és a kattintásokat. Hetente egyszer nézz rá, és ne egy-egy napot hasonlíts össze, hanem négyhetes időszakokat, mert a helyezés naponta ingadozik.": [
+  "The simplest rank tracking is free: in Google Search Console, under Performance, you see the average position, impressions and clicks for every query. Look once a week, and compare four-week periods rather than single days, because positions move every day.",
+  "Die einfachste Positionsverfolgung ist kostenlos: In der Google Search Console sehen Sie unter Leistung für jede Suchanfrage die durchschnittliche Position, die Impressionen und die Klicks. Schauen Sie einmal pro Woche hinein und vergleichen Sie Vier-Wochen-Zeiträume statt einzelner Tage, denn die Position schwankt täglich."
+ ],
+ "És az AI-keresők?": [
+  "And AI search?",
+  "Und die KI-Suche?"
+ ],
+ "A ChatGPT, a Perplexity és a Gemini egyre több kérdésre maga ad választ, és ehhez weboldalakat idéz. Itt is ugyanazok a lépések segítenek: világos, önmagában is érthető válaszok, pontos cégadatok, és szolgáltatásonként külön oldal.": [
+  "ChatGPT, Perplexity and Gemini answer more and more questions themselves, and they cite websites to do it. The same steps help here too: clear answers that make sense on their own, accurate company details, and a separate page for each service.",
+  "ChatGPT, Perplexity und Gemini beantworten immer mehr Fragen selbst und zitieren dafür Websites. Auch hier helfen dieselben Schritte: klare, für sich verständliche Antworten, genaue Unternehmensdaten und eine eigene Seite pro Leistung."
+ ],
+ "Az 1–5. lépés nálunk az új weboldal része, nem utólagos ráépítés. A 6. és a 7. lépést, a Cégprofilt és a havi mérést, a <a href=\"keresooptimalizalas.html\">havidíjas keresőoptimalizálásban</a> visszük tovább, havi riporttal. Ha meglévő oldalon kell őket megcsinálni, az átépítés, ezért érdemes az elején beszélni róla.": [
+  "With us, steps 1–5 are part of the new website, not something bolted on afterwards. We take steps 6 and 7, the Business Profile and monthly measurement, further in our <a href=\"keresooptimalizalas.html\">monthly SEO service</a>, with a monthly report. On an existing site they mean a rebuild, which is why it's worth discussing them at the start.",
+  "Bei uns gehören die Schritte 1–5 zur neuen Website, sie werden nicht nachträglich aufgesetzt. Die Schritte 6 und 7, das Unternehmensprofil und die monatliche Messung, führen wir in der <a href=\"keresooptimalizalas.html\">monatlichen Suchmaschinenoptimierung</a> weiter, mit monatlichem Bericht. Bei einer bestehenden Website bedeuten sie einen Umbau, deshalb lohnt es sich, früh darüber zu sprechen."
+ ],
+ "Ha már megtalálnak, de mégsem írnak: hét gyakori ok.": [
+  "When people find you but still don't write: seven common causes.",
+  "Wenn man Sie findet, aber trotzdem nicht schreibt: sieben häufige Gründe."
+ ],
+ "Google Cégprofil beállítása 8 lépésben | Stratos Webdesign": [
+  "Setting up a Google Business Profile in 8 steps | Stratos Webdesign",
+  "Google-Unternehmensprofil in 8 Schritten einrichten | Stratos Webdesign"
+ ],
+ "Google Cégprofil beállítása nyolc lépésben, az igényléstől az értékelésekig: így jelenhetsz meg a térképes találatok között a környékeden.": [
+  "Setting up a Google Business Profile in eight steps, from claiming it to reviews: how to appear in the map results in your area.",
+  "Google-Unternehmensprofil in acht Schritten einrichten, von der Inanspruchnahme bis zu den Bewertungen: So erscheinen Sie in Ihrer Umgebung in den Kartenergebnissen."
+ ],
+ "Ha helyi vállalkozásod van, a Google Cégprofil ingyen, akár a weboldalad nélkül is hozhat ügyfelet. Nyolc lépés, egy délután alatt.": [
+  "If you run a local business, a Google Business Profile can bring you clients for free, even without your website. Eight steps, one afternoon.",
+  "Wenn Sie ein lokales Unternehmen führen, kann Ihnen das Google-Unternehmensprofil kostenlos Kunden bringen, sogar ohne Ihre Website. Acht Schritte, ein Nachmittag."
+ ],
+ "<span>Kategória <b>Helyi keresés</b></span> <span>Írta: <b>a Stratos Webdesign csapata</b></span>": [
+  "<span>Category <b>Local search</b></span> <span>By <b>the Stratos Webdesign team</b></span>",
+  "<span>Kategorie <b>Lokale Suche</b></span> <span>Vom <b>Team von Stratos Webdesign</b></span>"
+ ],
+ "A Google Cégprofil (korábban Google Cégem) ingyenes, és helyi vállalkozásoknál nagyrészt ez dönti el, ki jelenik meg a térképes találatok között. A beállítás nyolc lépés: igénylés és hitelesítés, pontos fő kategória, szolgáltatási terület, nyitvatartás, valódi fotók, leírás, értékelések kérése és megválaszolása, végül a weboldal összekötése és a havi ellenőrzés.": [
+  "A Google Business Profile (formerly Google My Business) is free, and for local businesses it largely decides who appears in the map results. Setting it up takes eight steps: claiming and verification, a precise main category, service area, opening hours, real photos, a description, asking for and replying to reviews, and finally linking your website and checking monthly.",
+  "Das Google-Unternehmensprofil (früher Google My Business) ist kostenlos und entscheidet bei lokalen Unternehmen weitgehend darüber, wer in den Kartenergebnissen erscheint. Die Einrichtung umfasst acht Schritte: Inanspruchnahme und Bestätigung, eine präzise Hauptkategorie, das Einzugsgebiet, die Öffnungszeiten, echte Fotos, die Beschreibung, Bewertungen erbitten und beantworten und schließlich die Verknüpfung mit der Website und die monatliche Kontrolle."
+ ],
+ "Amikor valaki beír egy szolgáltatást és egy településnevet, a találati lista tetején nem weboldalak vannak, hanem térképes találatok. Ezek a Google Cégprofilokból jönnek. Ha nincs profilod, ebből a mezőből egyszerűen hiányzol, függetlenül attól, milyen jó a weboldalad.": [
+  "When somebody types a service and a place name, the top of the results isn't websites, it's map results. Those come from Google Business Profiles. Without a profile you're simply absent from that block, no matter how good your website is.",
+  "Wenn jemand eine Leistung und einen Ortsnamen eingibt, stehen oben in der Trefferliste keine Websites, sondern Kartentreffer. Diese stammen aus Google-Unternehmensprofilen. Ohne Profil fehlen Sie in diesem Block schlicht, egal, wie gut Ihre Website ist."
+ ],
+ "Ingyen van, egy délután alatt beállítható, és sok profil félkészen áll, ezért itt kis munkával is előnyhöz juthatsz.": [
+  "It's free, it can be set up in an afternoon, and many profiles are left half-finished, so a little work here can already give you an edge.",
+  "Es ist kostenlos, an einem Nachmittag eingerichtet, und viele Profile sind nur halb ausgefüllt. Hier verschafft Ihnen schon wenig Arbeit einen Vorsprung."
+ ],
+ "Először keress rá a saját cégedre. Előfordul, hogy már létezik egy profil, amit nem te hoztál létre. Ilyenkor a meglévőt kell igényelni, újat nem érdemes csinálni. Két profil ugyanarra a vállalkozásra rosszabb, mint egy sem. Igénylés után a Google ellenőrzi, hogy a vállalkozás tényleg a tiéd: a hitelesítés módját a Google ajánlja fel (például videó vagy telefon), és néhány napig is eltarthat.": [
+  "First search for your own business. Sometimes a profile already exists that you didn't create. In that case, claim the existing one; there's no point making a new one. Two profiles for the same business are worse than none. Once you've claimed it, Google checks that the business really is yours: Google offers the verification method (a video or a phone call, for example), and it can take a few days.",
+  "Suchen Sie zuerst nach Ihrem eigenen Unternehmen. Manchmal existiert bereits ein Profil, das nicht Sie erstellt haben. Dann fordern Sie das bestehende an, ein neues anzulegen lohnt sich nicht. Zwei Profile für dasselbe Unternehmen sind schlimmer als keins. Nach der Anforderung prüft Google, ob das Unternehmen wirklich Ihnen gehört: Die Bestätigungsmethode schlägt Google vor (zum Beispiel per Video oder Telefon), und das kann einige Tage dauern."
+ ],
+ "4. Töltsd ki a nyitvatartást, és tartsd karban": [
+  "4. Fill in the opening hours and keep them current",
+  "4. Tragen Sie die Öffnungszeiten ein und halten Sie sie aktuell"
+ ],
+ "Nem stockfotót és nem renderelt képet. A saját helyiségedről, a saját munkádról, a csapatról készült képek azt bizonyítják, hogy a vállalkozás létezik. A fotók az elsők között látszanak a profilon.": [
+  "Not stock photos and not renders. Pictures of your own premises, your own work and your team prove the business exists. Photos are among the first things people see on the profile.",
+  "Keine Stockfotos und keine Renderings. Bilder von Ihren eigenen Räumen, Ihrer eigenen Arbeit und Ihrem Team belegen, dass es das Unternehmen gibt. Die Fotos gehören zum Ersten, was man im Profil sieht."
+ ],
+ "6. Írd meg a leírást egyszerűen": [
+  "6. Keep the description simple",
+  "6. Schreiben Sie die Beschreibung einfach"
+ ],
+ "Az értékelés a helyi keresés egyik legfontosabb bizalmi jele. Két gyakorlati dolog számít:": [
+  "Reviews are one of the most important trust signals in local search. Two practical things matter:",
+  "Bewertungen sind eines der wichtigsten Vertrauenssignale in der lokalen Suche. Zwei praktische Dinge zählen:"
+ ],
+ "kérj értékelést minden ügyfeledtől a munka végén, személyesen és nyomásgyakorlás nélkül, és ne csak azoktól, akikről tudod, hogy elégedettek, mert a válogatott kérés a Google szabályai szerint tiltott;": [
+  "ask every client for a review at the end of the job, in person and without pressure, and not only the ones you know are happy, because asking selectively is against Google's rules;",
+  "bitten Sie jeden Kunden am Ende der Arbeit um eine Bewertung, persönlich und ohne Druck, und nicht nur die, von denen Sie wissen, dass sie zufrieden sind, denn eine selektive Bitte verstößt gegen die Regeln von Google;"
+ ],
+ "válaszolj mindegyikre, a rosszakra is, higgadtan és tényszerűen.": [
+  "reply to every one, including the bad ones, calmly and factually.",
+  "antworten Sie auf jede, auch auf die schlechten, ruhig und sachlich."
+ ],
+ "A Cégprofilt te is be tudod állítani, és ha csak ez az egy dolog hiányzik, ne fizess érte senkinek. Ahol segíteni tudunk, az a következő lépés: hogy a profilról érkező látogató ne egy elavult oldalra érkezzen. Ha a profil mellé rendszeres munka is kell (bejegyzések, értékelések kezelése, havi riport), az a <a href=\"keresooptimalizalas.html\">havidíjas keresőoptimalizálásunk</a> része.": [
+  "You can set the profile up yourself, and if this is the only thing missing, don't pay anyone for it. Where we can help is the next step: making sure a visitor arriving from the profile doesn't land on an outdated site. If the profile needs regular work as well (posts, handling reviews, a monthly report), that is part of our <a href=\"keresooptimalizalas.html\">monthly SEO service</a>.",
+  "Das Profil können Sie selbst einrichten, und wenn nur das fehlt, bezahlen Sie niemanden dafür. Helfen können wir beim nächsten Schritt: dass Besucher aus dem Profil nicht auf einer veralteten Website landen. Braucht das Profil auch laufende Pflege (Beiträge, Umgang mit Bewertungen, monatlicher Bericht), gehört das zu unserer <a href=\"keresooptimalizalas.html\">monatlichen Suchmaschinenoptimierung</a>."
+ ],
+ "Ne írj a cégnévbe kulcsszavakat: ez szabályszegés, és a profil felfüggeszthető.": [
+  "Don't put keywords in the business name: that breaks the rules, and the profile can be suspended.",
+  "Schreiben Sie keine Keywords in den Firmennamen: Das verstößt gegen die Regeln, und das Profil kann gesperrt werden."
+ ],
+ "Ha a profilt és a weboldalat havonta, riporttal vinnénk tovább.": [
+  "If you'd like us to look after the profile and the website month by month, with a report.",
+  "Wenn wir Profil und Website Monat für Monat mit Bericht weiterführen sollen."
+ ],
+ "Mi változik a helyi keresésben Győrben, Budapesten és máshol.": [
+  "What changes in local search in Győr, Budapest and elsewhere.",
+  "Was sich bei der lokalen Suche in Győr, Budapest und anderswo ändert."
+ ],
+ "Régiók": [
+  "Regions",
+  "Regionen"
  ]
 }

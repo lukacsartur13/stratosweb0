@@ -1,7 +1,7 @@
 {
- "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Webdesign</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Web design</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Webdesign</b>"
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"blog.html\">Blog</a> / <b>Webdesign</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"blog.html\">Blog</a> / <b>Web design</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"blog.html\">Blog</a> / <b>Webdesign</b>"
  ],
  "Webdesign: mitől jó egy weboldal design?": [
   "Web design: what makes one good?",
@@ -11,21 +11,9 @@
   "Web design: what makes one good? | Stratos",
   "Webdesign: was macht ein gutes aus? | Stratos"
  ],
- "Mi különbözteti meg a jó webdesignt a széptől, mit nézz meg egy honlap designon, mielőtt jóváhagyod, és miért nem ízlés kérdése a döntés.": [
-  "What separates good web design from pretty web design, what to check before approving a layout, and why the decision is not a matter of taste.",
-  "Was gutes Webdesign von hübschem unterscheidet, was Sie vor der Freigabe prüfen sollten und warum die Entscheidung keine Geschmacksfrage ist."
- ],
  "A legtöbb weboldal design vitája ízlésről szól, pedig a kérdés eldönthető. Öt dolog van, amit meg lehet nézni, mielőtt bárki azt mondaná, hogy „nekem tetszik”.": [
   "Most arguments about a layout are about taste, yet the question can be settled. There are five things to check before anyone says „I like it”.",
   "Die meisten Layout-Diskussionen drehen sich um Geschmack, dabei ist die Frage entscheidbar. Fünf Dinge lassen sich prüfen, bevor jemand „gefällt mir“ sagt."
- ],
- "<span>Kategória <b>Webdesign</b></span> <span>Írta <b>Stratos</b></span>": [
-  "<span>Category <b>Web design</b></span> <span>Written by <b>Stratos</b></span>",
-  "<span>Kategorie <b>Webdesign</b></span> <span>Von <b>Stratos</b></span>"
- ],
- "A webdesign nem díszítés. Az a munka, ami eldönti, hogy a látogató három másodperc alatt megérti-e, hova érkezett, és megtalálja-e a következő lépést. Minden más — szín, betűtípus, animáció — ennek van alárendelve.": [
-  "Web design is not decoration. It is the work that decides whether a visitor understands in three seconds where they have landed and finds the next step. Everything else — colour, typeface, animation — is subordinate to that.",
-  "Webdesign ist keine Dekoration. Es ist die Arbeit, die entscheidet, ob eine Besucherin in drei Sekunden versteht, wo sie gelandet ist, und den nächsten Schritt findet. Alles andere — Farbe, Schrift, Animation — ist dem untergeordnet."
  ],
  "A szép és a jó nem ugyanaz. Egy szép weboldal design tetszik neked. Egy jó weboldal design elviszi a látogatót oda, ahova szeretnéd.": [
   "Pretty and good are not the same. A pretty layout pleases you. A good layout takes the visitor where you want them to go.",
@@ -34,10 +22,6 @@
  "1. Az első képernyő megmondja, mi ez": [
   "1. The first screen says what this is",
   "1. Der erste Bildschirm sagt, worum es geht"
- ],
- "Nyisd meg a tervet, és takard le a fejlécet meg a logót. Ha ezután nem derül ki, mit csinál a cég és kinek, akkor a honlap design nem kész, akármilyen jól néz ki.": [
-  "Open the design and cover the header and the logo. If it is then unclear what the company does and for whom, the layout is not finished, however good it looks.",
-  "Öffnen Sie den Entwurf und decken Sie Header und Logo ab. Wenn dann unklar ist, was die Firma tut und für wen, ist das Layout nicht fertig — egal wie gut es aussieht."
  ],
  "A leggyakoribb hiba egy nagy, hangulatos kép egy általános mondattal. „Építsük együtt a jövőt” lehet igaz, de nem mond semmit. A látogatót az érdekli, hogy te azt csinálod-e, amit ő keres.": [
   "The commonest mistake is a large atmospheric image with a generic line. „Let's build the future together” may be true but says nothing. What the visitor wants to know is whether you do the thing they are looking for.",
@@ -55,10 +39,6 @@
   "3. Look at it on a phone first",
   "3. Schauen Sie es zuerst am Handy an"
  ],
- "A látogatók többsége telefonon érkezik, a tervek többsége mégis asztali képernyőn készül és ott is fogadják el. Fordítsd meg: a weboldal design készítés során a mobil verzió legyen az, amit jóváhagysz, és az asztali a bővítés.": [
-  "Most visitors arrive on a phone, yet most designs are made and approved on a desktop screen. Turn it around: make the mobile version the one you sign off, and treat the desktop as the extension.",
-  "Die meisten Besucher kommen per Handy, die meisten Entwürfe entstehen und werden am Desktop freigegeben. Drehen Sie es um: Geben Sie die mobile Version frei und behandeln Sie den Desktop als Erweiterung."
- ],
  "Amit mobilon külön nézz meg: elolvasható-e a szöveg nagyítás nélkül, elérhető-e hüvelykujjal a fő gomb, és nem takarja-e le valami a képernyő alján a tartalmat.": [
   "What to check specifically on a phone: is the text readable without zooming, is the main button reachable with a thumb, and does anything at the bottom of the screen cover the content.",
   "Was Sie am Handy besonders prüfen sollten: Ist der Text ohne Zoom lesbar, ist der Hauptbutton mit dem Daumen erreichbar, und verdeckt etwas am unteren Rand den Inhalt?"
@@ -70,10 +50,6 @@
  "Ha a terven lorem ipsum van, akkor nem tudod, milyen lesz. A valódi szöveg mindig hosszabb, mint a kitöltő, és a jó elrendezés fele arról szól, hogy a valódi mondatok elférjenek benne.": [
   "If the design carries lorem ipsum, you do not know what it will look like. Real copy is always longer than filler, and half of a good layout is about the real sentences fitting into it.",
   "Wenn im Entwurf Lorem Ipsum steht, wissen Sie nicht, wie es aussehen wird. Echter Text ist immer länger als Fülltext, und die Hälfte eines guten Layouts besteht darin, dass echte Sätze hineinpassen."
- ],
- "Ez a leggyakoribb csúszás oka is: nem a fejlesztés tart sokáig, hanem az, hogy a szövegek három hónapig készülnek. Aki designt rendel, rendeljen szöveget is vele együtt.": [
-  "This is also the commonest cause of delay: it is not the engineering that takes long, it is the copy taking three months. If you order a design, order the copy with it.",
-  "Das ist auch der häufigste Grund für Verzögerungen: Nicht die Entwicklung dauert lange, sondern die Texte brauchen drei Monate. Wer ein Design bestellt, sollte den Text mitbestellen."
  ],
  "5. A sebesség is design": [
   "5. Speed is design too",
@@ -99,21 +75,9 @@
   "Do not compare it to your competitor. You do not know whether their site works; they may just have copied someone else's too.",
   "Vergleichen Sie nicht mit dem Wettbewerb. Sie wissen nicht, ob dessen Seite funktioniert; vielleicht hat er auch nur abgeschaut."
  ],
- "És ne szavaztasd meg a csapattal. Ugyanaz történik, mint egy logónál: mindenki lecsíp róla valamit, és a végén marad egy terv, ami senkinek nem tetszik, viszont senki nem tiltakozott ellene.": [
-  "And do not put it to a team vote. The same thing happens as with a logo: everyone trims something off, and what remains is a design nobody likes but nobody objected to.",
-  "Und lassen Sie das Team nicht abstimmen. Es passiert dasselbe wie beim Logo: Jeder schneidet etwas weg, und übrig bleibt ein Entwurf, den niemand mag, gegen den aber niemand Einspruch erhob."
- ],
  "Sablon vagy egyedi?": [
   "Template or bespoke?",
   "Vorlage oder individuell?"
- ],
- "Egy sablon akkor jó, ha a tartalmad pont olyan alakú, mint amire a sablont tervezték. Ez ritkább, mint gondolnád: a legtöbb vállalkozás a harmadik hónapban ütközik bele abba, hogy amit be akar tenni, arra nincs hely.": [
-  "A template is right when your content happens to be the shape the template was designed for. That is rarer than you think: most businesses hit the wall in month three, when there is no room for what they want to add.",
-  "Eine Vorlage passt, wenn Ihr Inhalt genau die Form hat, für die sie gemacht wurde. Das ist seltener als gedacht: Die meisten stoßen im dritten Monat an die Grenze, wenn für das Neue kein Platz ist."
- ],
- "Az egyedi weboldal design készítés drágább az elején, viszont a szerkezetet a te tartalmadhoz szabja, és nem hoz magával olyan kódot, amit soha nem használsz. A választás nem elvi kérdés, hanem az, hogy mennyire szokványos, amit el akarsz mondani.": [
-  "A bespoke design costs more at the start but fits the structure to your content and carries no code you will never use. The choice is not a matter of principle but of how conventional the thing you have to say is.",
-  "Ein individueller Entwurf kostet anfangs mehr, passt die Struktur aber an Ihre Inhalte an und schleppt keinen Code mit, den Sie nie nutzen. Die Wahl ist keine Grundsatzfrage, sondern eine danach, wie gewöhnlich das ist, was Sie sagen wollen."
  ],
  "A weboldal design akkor kész, ha egy idegen három másodperc alatt meg tudja mondani, mit csinálsz, és tíz alatt megtalálja, hogyan érjen el. Minden más ízlés.": [
   "A layout is finished when a stranger can say in three seconds what you do and find in ten how to reach you. Everything else is taste.",
@@ -135,12 +99,60 @@
   "Why isn't your website bringing clients?",
   "Warum bringt Ihre Website keine Kunden?"
  ],
- "Branding és arculattervezés": [
-  "Branding and identity design",
-  "Branding und Corporate Design"
+ "Webdesign: mitől jó egy weboldal design? | Stratos Webdesign": [
+  "Web design: what makes one good? | Stratos Webdesign",
+  "Webdesign: was macht ein gutes aus? | Stratos Webdesign"
  ],
- "Weboldal készítés KKV-nak": [
-  "Web design for SMEs",
+ "Öt szempont, amivel eldöntheted, jó-e egy weboldalterv, mielőtt jóváhagyod: első képernyő, egy döntés, mobil, valódi szöveg, sebesség.": [
+  "Five criteria for deciding whether a website design is good before you approve it: first screen, one decision, mobile, real copy, speed.",
+  "Fünf Kriterien, mit denen Sie vor der Freigabe entscheiden, ob ein Website-Entwurf gut ist: erster Bildschirm, eine Entscheidung, mobil, echter Text, Geschwindigkeit."
+ ],
+ "<span>Kategória <b>Webdesign</b></span> <span>Írta: <b>a Stratos Webdesign csapata</b></span>": [
+  "<span>Category <b>Web design</b></span> <span>By <b>the Stratos Webdesign team</b></span>",
+  "<span>Kategorie <b>Webdesign</b></span> <span>Vom <b>Team von Stratos Webdesign</b></span>"
+ ],
+ "Egy weboldal designja akkor jó, ha egy idegen pár másodperc alatt megérti, mit csinálsz, és megtalálja, hogyan érhet el. A Stratos Webdesign öt szempontot javasol a jóváhagyás előtt: első képernyő, képernyőnként egy döntés, mobil először, valódi szöveg a terven, és sebesség.": [
+  "A website's design is good when a stranger understands within a few seconds what you do and finds how to reach you. Stratos Webdesign suggests five criteria before approval: the first screen, one decision per screen, mobile first, real copy in the design, and speed.",
+  "Das Design einer Website ist gut, wenn ein Fremder in wenigen Sekunden versteht, was Sie tun, und findet, wie er Sie erreicht. Stratos Webdesign empfiehlt vor der Freigabe fünf Kriterien: der erste Bildschirm, eine Entscheidung pro Bildschirm, mobil zuerst, echter Text im Entwurf und Geschwindigkeit."
+ ],
+ "A webdesign az a munka, ami eldönti, hogy a látogató pár másodperc alatt megérti-e, hova érkezett, és megtalálja-e a következő lépést. Minden más (szín, betűtípus, animáció) ennek van alárendelve.": [
+  "Web design is the work that decides whether a visitor understands within a few seconds where they have landed and finds the next step. Everything else (colour, typeface, animation) is subordinate to that.",
+  "Webdesign ist die Arbeit, die entscheidet, ob Besucher in wenigen Sekunden verstehen, wo sie gelandet sind, und den nächsten Schritt finden. Alles andere (Farbe, Schrift, Animation) ist dem untergeordnet."
+ ],
+ "Nyisd meg a tervet, és takard le a fejlécet meg a logót. Ha ezután nem derül ki, mit csinál a cég és kinek, akkor a weboldal dizájnja nem kész, akármilyen jól néz ki.": [
+  "Open the design and cover the header and the logo. If it is then unclear what the company does and for whom, the website's design is not finished, however good it looks.",
+  "Öffnen Sie den Entwurf und decken Sie Header und Logo ab. Wenn dann unklar ist, was die Firma tut und für wen, ist das Design der Website nicht fertig, egal wie gut es aussieht."
+ ],
+ "Sok vállalkozásnál a látogatók nagy része telefonról érkezik (nézd meg a saját méréseidben), a tervek mégis többnyire asztali képernyőn készülnek, és ott is fogadják el őket. Fordítsd meg: a weboldal design készítés során a mobil verzió legyen az, amit jóváhagysz, és az asztali a bővítés.": [
+  "For many businesses a large share of visitors arrive on a phone (check your own analytics), yet designs are mostly made and approved on a desktop screen. Turn it around: make the mobile version the one you sign off, and treat the desktop as the extension.",
+  "Bei vielen Unternehmen kommt ein großer Teil der Besucher per Handy (sehen Sie in Ihren eigenen Messdaten nach), trotzdem entstehen die Entwürfe meist am Desktop und werden dort freigegeben. Drehen Sie es um: Geben Sie die mobile Version frei und behandeln Sie den Desktop als Erweiterung."
+ ],
+ "Ez gyakori oka a csúszásnak is: sokszor a szövegek készülnek tovább, mint maga a fejlesztés. Aki designt rendel, rendeljen szöveget is vele együtt.": [
+  "This is also a common cause of delay: the copy often takes longer than the development itself. If you order a design, order the copy with it.",
+  "Das ist auch ein häufiger Grund für Verzögerungen: Die Texte brauchen oft länger als die Entwicklung selbst. Wer ein Design bestellt, sollte den Text mitbestellen."
+ ],
+ "És ne szavaztasd meg a csapattal. Ugyanaz történik, mint <a class=\"tlink\" href=\"blog-logo-keszites.html\">egy logónál</a>: mindenki lecsíp róla valamit, és a végén marad egy terv, ami senkinek nem tetszik, viszont senki nem tiltakozott ellene.": [
+  "And do not put it to a team vote. The same thing happens as <a class=\"tlink\" href=\"blog-logo-keszites.html\">with a logo</a>: everyone trims something off, and what remains is a design nobody likes but nobody objected to.",
+  "Und lassen Sie das Team nicht abstimmen. Es passiert dasselbe wie <a class=\"tlink\" href=\"blog-logo-keszites.html\">beim Logo</a>: Jeder schneidet etwas weg, und übrig bleibt ein Entwurf, den niemand mag, gegen den aber niemand Einspruch erhob."
+ ],
+ "Egy sablon akkor jó, ha a tartalmad pont olyan alakú, mint amire a sablont tervezték. Ez ritkább, mint gondolnád: sok vállalkozás hamar beleütközik abba, hogy amit be akar tenni, arra nincs hely.": [
+  "A template is right when your content happens to be the shape the template was designed for. That is rarer than you think: many businesses soon hit the point where there is no room for what they want to add.",
+  "Eine Vorlage passt, wenn Ihr Inhalt genau die Form hat, für die sie gemacht wurde. Das ist seltener als gedacht: Viele Unternehmen stoßen bald darauf, dass für das, was sie ergänzen wollen, kein Platz ist."
+ ],
+ "Az egyedi weboldaltervezés az elején nagyobb munka, viszont a szerkezetet a te tartalmadhoz szabja, és nem hoz magával olyan kódot, amit soha nem használsz. A választás azon múlik, mennyire szokványos, amit el akarsz mondani. Mi minden weboldalt egyedi kóddal építünk: gyorsabb, a te tartalmadra szabott, és nem köt egy platformhoz. Ha a termékedet látni is kell, <a class=\"tlink\" href=\"3d-weboldal-konfigurator.html\">3D termékbemutató vagy konfigurátor</a> is építhető bele.": [
+  "A bespoke design is more work at the start, but it fits the structure to your content and carries no code you will never use. The choice comes down to how conventional the thing you have to say is. We build every website in custom code: it is faster, shaped around your content, and does not tie you to a platform. If your product needs to be seen, a <a class=\"tlink\" href=\"3d-weboldal-konfigurator.html\">3D product showcase or configurator</a> can be built in too.",
+  "Ein individueller Entwurf ist anfangs mehr Arbeit, passt die Struktur aber an Ihre Inhalte an und schleppt keinen Code mit, den Sie nie nutzen. Die Wahl hängt davon ab, wie gewöhnlich das ist, was Sie sagen wollen. Wir bauen jede Website mit individuellem Code: Sie ist schneller, auf Ihre Inhalte zugeschnitten und bindet Sie an keine Plattform. Wenn Ihr Produkt gesehen werden muss, lässt sich auch eine <a class=\"tlink\" href=\"3d-weboldal-konfigurator.html\">3D-Produktpräsentation oder ein Konfigurator</a> einbauen."
+ ],
+ "Ha a felület mellé az arculat is most készül.": [
+  "If your brand identity is being created alongside the website.",
+  "Wenn neben der Website auch das Corporate Design jetzt entsteht."
+ ],
+ "Weboldal kkv-knak": [
+  "Web design for small business",
   "Webdesign für KMU"
+ ],
+ "Arculattervezés": [
+  "Brand identity design",
+  "Corporate Design"
  ]
 }

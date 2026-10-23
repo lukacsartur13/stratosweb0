@@ -39,7 +39,10 @@ SLUGS = {
     "index":       {"hu": "index.html",                    "en": "index.html",                 "de": "index.html"},
     "about":       {"hu": "rolunk.html",                   "en": "about.html",                 "de": "ueber-uns.html"},
     "services":    {"hu": "szolgaltatasok.html",           "en": "bespoke-web-design.html",              "de": "website-erstellen-lassen.html"},
-    "sme":         {"hu": "kkv.html",                      "en": "web-design-small-business.html",        "de": "webdesign-kmu.html"},
+    # ---- 2026-10-23: the 3D website and product configurator, first in the
+    #      services menu (owner's copy pack, DONTESEK 5).
+    "configurator": {"hu": "3d-weboldal-konfigurator.html", "en": "3d-website-configurator.html", "de": "3d-website-konfigurator.html"},
+    "sme":        {"hu": "kkv.html",                      "en": "web-design-small-business.html",        "de": "webdesign-kmu.html"},
     "enterprise":  {"hu": "nagyvallalat.html",             "en": "bespoke-web-development.html", "de": "webentwicklung-agentur.html"},
     "branding":    {"hu": "branding.html",                 "en": "branding.html",              "de": "branding.html"},
     "ads":         {"hu": "hirdeteskezeles.html",          "en": "ads-management.html",        "de": "werbeanzeigen.html"},
@@ -105,8 +108,10 @@ assert len(BY_ANY) == len({(k, fn) for k, v in SLUGS.items() for fn in v.values(
     "two routes share a filename — relink() can no longer resolve one"
 
 # Branding is still a page (sitemap, content links) but no longer a menu item:
-# the owner took it out of the header and footer on 2026-10-07.
-SERVICES = ("sme", "enterprise", "shop", "ads", "seo", "impact")
+# the owner took it out of the header and footer on 2026-10-07, and kept it out
+# when the copy pack of 2026-10-23 would have put it back. The order is the
+# pack's: the 3D offer first, the Impact Program last.
+SERVICES = ("configurator", "sme", "enterprise", "shop", "seo", "ads", "impact")
 # The case studies and the articles are reachable from their index routes and
 # from the pages they belong to, not from the global navigation — a nav that
 # lists every leaf is a sitemap, not a navigation.
@@ -159,7 +164,12 @@ CASE_STATUS = {
     "case-mentaltrening": "summary",
     # 2026-10-07: media, challenge, design and technical account are on the
     # page; results are not yet (the site is new). `summary` until they are.
-    "case-godatafusion": "summary",
+    # 2026-10-23: promoted by the owner's copy pack — indexed and in the
+    # sitemap with its language pair. Its claims are about what the live site
+    # does, and godatafusion.com is itself indexable (checked that day: no
+    # robots meta, no X-Robots-Tag, robots.txt allows all), so every one of
+    # them can be checked by a reader. Still no result figures on the page.
+    "case-godatafusion": "full",
     # 2026-10-22: media, challenge, design and technical account are on the
     # page; the site went live on 2026-10-21, so there are no results yet.
     "case-honeygarden": "summary",
@@ -308,13 +318,14 @@ POSTS = ("post-seo", "post-arak", "post-cegprofil", "post-hirdetes",
 # are named on the single page where each is the subject, and nowhere else.
 ORGS = {
     "kontyos": {
-        "name": "Kontyos.hu",
+        # Named as the business, not the domain (copy pack, 2026-10-23).
+        "name": "Kontyos Borház",
         "asset": "assets/img/logo-kontyos.webp",
         "ready": True,
         "relationship": "collab",
     },
     "grantool": {
-        "name": "Grantool Kft.",
+        "name": "GranTOOL Kft.",
         "asset": "assets/img/logo-grantool.png",
         "ready": True,
         "relationship": "collab",
@@ -475,9 +486,10 @@ UI = {
                 "contact": "Kapcsolat"},
         "svc_all": "Minden szolgáltatás",
         "svc": {
-            "sme": ("Weboldal készítés KKV-nak", "1 200 M"),
-            "enterprise": ("Weboldal nagyvállalatoknak", "9 400 M"),
-            "branding": ("Branding", "4 800 M"),
+            "configurator": ("3D weboldal és konfigurátor", "2 400 M"),
+            "sme": ("Weboldal kkv-knak", "1 200 M"),
+            "enterprise": ("Weboldal ipari és B2B cégeknek", "9 400 M"),
+            "branding": ("Arculattervezés", "4 800 M"),
             "ads": ("Hirdetéskezelés", "17 000 M"),
             "seo": ("Keresőoptimalizálás", "6 200 M"),
             "shop": ("Webshop készítés", "3 400 M"),
@@ -485,22 +497,23 @@ UI = {
         },
         "menu": {
             "index": "Főoldal", "about": "A Stratos", "services": "Megoldásaink",
-            "sme": "KKV", "enterprise": "Nagyvállalat", "branding": "Branding",
-            "ads": "Hirdetés", "seo": "SEO", "shop": "Webshop", "impact": "Impact", "work": "Ügyfeleink",
-            "blog": "Blog", "contact": "Kapcsolat", "quote": "Árajánlat",
+            "configurator": "3D", "sme": "KKV", "enterprise": "Ipari és B2B", "branding": "Arculat",
+            "ads": "Hirdetés", "seo": "Keresőoptimalizálás", "shop": "Webshop", "impact": "Impact", "work": "Ügyfeleink",
+            "blog": "Blog", "contact": "Kapcsolat", "quote": "Ajánlatkérés",
+            "booking": "Ingyenes igényfelmérő hívás",
         },
         # A hírlevél 2026-10-18 óta működik, dupla megerősítéssel
         # (netlify/functions/newsletter*.mjs): a beküldés után megerősítő levél
         # megy, és csak a benne lévő gomb után lesz valaki feliratkozó. A szöveg
         # ezt mondja; gyakoriságot nem ígér.
-        "nl_lede": "Iratkozz fel a hírlevelünkre: weboldal, SEO, online marketing. Megerősítő levelet küldünk, és bármikor leiratkozhatsz.",
-        "nl_label": "E-mail cím",
-        "nl_placeholder": "e-mail cím",
+        "nl_lede": "Iratkozz fel a hírlevelünkre: weboldal, keresőoptimalizálás, online marketing. Megerősítő levelet küldünk, és bármikor leiratkozhatsz.",
+        "nl_label": "E-mail-cím",
+        "nl_placeholder": "e-mail-cím",
         "nl_button": "Feliratkozom",
         "f_contact": "Kapcsolat",
         "f_social": "Közösség",
         "f_gbp": "Google Cégprofil",
-        "f_rights": "© 2026 Stratos Webdesign — Minden jog fenntartva.",
+        "f_rights": "© 2026 Stratos Webdesign. Minden jog fenntartva.",
         "f_privacy": "Adatkezelési tájékoztató",
         "f_imprint": "Impresszum",
         # ---- Phase 8.5: flight-deck header, full-screen menu, Arrival footer.
@@ -508,10 +521,12 @@ UI = {
         # response expectation is the Contact page's own wording; the location
         # is the one in the site description. Nothing in this block is new fact.
         "p85": {
-            "start": "Projekt indítása",
-            "st_reply": "Válasz jellemzően pár órán belül",
-            "st_where": "Győr és Budapest",
-            "st_langs": "Magyarul, angolul és németül dolgozunk",
+            # The copy pack of 2026-10-23: one button label everywhere, one
+            # promised response time, the whole country rather than two cities.
+            "start": "Kérek ajánlatot",
+            "st_reply": "Munkanapokon 24 órán belül válaszolunk.",
+            "st_where": "Az egész országban dolgozunk, online.",
+            "st_langs": "Magyarul, angolul és németül dolgozunk.",
             # The homepage is the one route that actually flies the ascent, so
             # its convergence reports the ascent rather than the calibration.
             # Archetype-specific closing lines (brief §8.5).
@@ -560,9 +575,10 @@ UI = {
                 "contact": "Contact"},
         "svc_all": "All services",
         "svc": {
+            "configurator": ("3D website and configurator", "2,400 M"),
             "sme": ("Web design for small business", "1,200 M"),
-            "enterprise": ("Web development", "9,400 M"),
-            "branding": ("Branding", "4,800 M"),
+            "enterprise": ("Websites for industrial and B2B companies", "9,400 M"),
+            "branding": ("Brand identity design", "4,800 M"),
             "ads": ("Ads management", "17,000 M"),
             "seo": ("SEO consultancy", "6,200 M"),
             "shop": ("Ecommerce", "3,400 M"),
@@ -570,10 +586,11 @@ UI = {
         },
         "menu": {
             "index": "Home", "about": "Stratos", "services": "Solutions",
-            "sme": "SME", "enterprise": "Enterprise", "branding": "Branding",
+            "configurator": "3D", "sme": "SME", "enterprise": "Industrial and B2B", "branding": "Branding",
             "ads": "Ads", "seo": "SEO", "shop": "Stores", "impact": "Impact", "work": "Clients",
             "blog": "Blog",
-            "contact": "Contact", "quote": "Get a quote",
+            "contact": "Contact", "quote": "Request a quote",
+            "booking": "Free discovery call",
         },
         "nl_lede": "Get our newsletter: websites, SEO, online marketing. We'll send a confirmation e-mail, and you can unsubscribe at any time.",
         "nl_label": "Email address",
@@ -582,14 +599,14 @@ UI = {
         "f_contact": "Contact",
         "f_social": "Social",
         "f_gbp": "Google Business Profile",
-        "f_rights": "© 2026 Stratos Webdesign — All rights reserved.",
+        "f_rights": "© 2026 Stratos Webdesign. All rights reserved.",
         "f_privacy": "Privacy policy",
         "f_imprint": "Imprint",
         "p85": {
-            "start": "Start a project",
-            "st_reply": "A reply usually within a few hours",
-            "st_where": "Győr and Budapest",
-            "st_langs": "We work in Hungarian, English and German",
+            "start": "Request a quote",
+            "st_reply": "We reply within 24 hours on working days.",
+            "st_where": "We work across Hungary, online.",
+            "st_langs": "We work in Hungarian, English and German.",
             "cta_service": "Have a similar challenge?",
             "cta_work": "Build the next project with us.",
             "cta_about": "Let's see what we can build together.",
@@ -631,9 +648,10 @@ UI = {
                 "contact": "Kontakt"},
         "svc_all": "Alle Leistungen",
         "svc": {
+            "configurator": ("3D-Website und Konfigurator", "2.400 M"),
             "sme": ("Webdesign für KMU", "1.200 M"),
-            "enterprise": ("Webentwicklung", "9.400 M"),
-            "branding": ("Branding", "4.800 M"),
+            "enterprise": ("Websites für Industrie- und B2B-Unternehmen", "9.400 M"),
+            "branding": ("Corporate Design", "4.800 M"),
             "ads": ("Werbeanzeigen", "17.000 M"),
             "seo": ("SEO Betreuung", "6.200 M"),
             "shop": ("Onlineshop", "3.400 M"),
@@ -641,9 +659,10 @@ UI = {
         },
         "menu": {
             "index": "Start", "about": "Stratos", "services": "Lösungen",
-            "sme": "KMU", "enterprise": "Konzerne", "branding": "Branding",
+            "configurator": "3D", "sme": "KMU", "enterprise": "Industrie und B2B", "branding": "Branding",
             "ads": "Werbung", "seo": "SEO", "shop": "Shop", "impact": "Impact", "work": "Kunden",
-            "blog": "Blog", "contact": "Kontakt", "quote": "Angebot",
+            "blog": "Blog", "contact": "Kontakt", "quote": "Angebot anfragen",
+            "booking": "Kostenloses Erstgespräch",
         },
         "nl_lede": "Unser Newsletter: Websites, SEO, Online-Marketing. Sie erhalten eine Bestätigungs-E-Mail und können sich jederzeit abmelden.",
         "nl_label": "E-Mail-Adresse",
@@ -652,14 +671,14 @@ UI = {
         "f_contact": "Kontakt",
         "f_social": "Social Media",
         "f_gbp": "Google Unternehmensprofil",
-        "f_rights": "© 2026 Stratos Webdesign — Alle Rechte vorbehalten.",
+        "f_rights": "© 2026 Stratos Webdesign. Alle Rechte vorbehalten.",
         "f_privacy": "Datenschutzerklärung",
         "f_imprint": "Impressum",
         "p85": {
-            "start": "Projekt starten",
-            "st_reply": "Antwort in der Regel innerhalb weniger Stunden",
-            "st_where": "Győr und Budapest",
-            "st_langs": "Wir arbeiten auf Ungarisch, Englisch und Deutsch",
+            "start": "Angebot anfragen",
+            "st_reply": "Wir antworten an Werktagen innerhalb von 24 Stunden.",
+            "st_where": "Wir arbeiten in ganz Ungarn, online.",
+            "st_langs": "Wir arbeiten auf Ungarisch, Englisch und Deutsch.",
             "cta_service": "Eine ähnliche Aufgabe?",
             "cta_work": "Bauen wir gemeinsam das nächste Projekt.",
             "cta_about": "Sehen wir, was wir gemeinsam aufbauen können.",
@@ -981,8 +1000,12 @@ def dress_byline(body, lang, meta):
     m = re.search(r'(<p class="article__by">)(.*?)(</p>)', body, re.S)
     if not m:
         return body
-    inner = re.sub(r"<b>Stratos</b>",
-                   f'<b><a href="{href(lang, "about")}">Stratos</a></b>', m.group(2), count=1)
+    # The author is whatever the first <b> names, as long as it is us:
+    # "Stratos" once, "a Stratos Webdesign csapata" since 2026-10-23, and the
+    # same in each language's wording.
+    inner = re.sub(r"<b>([^<]*Stratos[^<]*)</b>",
+                   lambda a: f'<b><a href="{href(lang, "about")}">{a.group(1)}</a></b>',
+                   m.group(2), count=1)
     spans = ""
     for field in ("published", "updated"):
         iso = meta.get(field)
@@ -1281,6 +1304,7 @@ PAGE_TYPE_SCHEMA = {
 # The route above each route, for breadcrumbs. Mirrors the trail the pages
 # already render; `breadcrumb()` refuses to emit anything if the two disagree.
 BREADCRUMB_PARENT = {
+    "configurator": "services",
     "sme": "services", "enterprise": "services",
     "branding": "services", "ads": "services", "seo": "services",
     "shop": "services", "seo-web": "services",
@@ -1302,6 +1326,37 @@ LOCAL_AREAS = {
     "local-pest": [{"@type": "AdministrativeArea", "name": "Pest vármegye"}],
     "local-szeged": [{"@type": "City", "name": "Szeged"},
                      {"@type": "AdministrativeArea", "name": "Csongrád-Csanád vármegye"}],
+}
+
+# What the organisation is, in one sentence: the company definition the About
+# page quotes word for word (copy pack, 2026-10-23). In Hungarian on every page,
+# like everything else on the organisation node: it is ONE entity, identical on
+# all 111 documents (tests/structured-data.spec.ts), and Hungarian is the
+# x-default. The pages' own nodes (WebPage, Service, FAQPage) carry the reader's
+# language.
+ORG_DESCRIPTION = ("A Stratos Webdesign magyar webdesign-ügynökség. Egyedi kódból épített "
+                   "weboldalakat, 3D weboldalakat és termékkonfigurátorokat, webshopokat és "
+                   "arculatot készít, és havidíjas keresőoptimalizálással, Google- és "
+                   "Meta-hirdetéskezeléssel viszi tovább őket. Az egész országban dolgozik, online.")
+
+# The trades, and only the trades the pages sell: no custom business systems
+# (CRM, ERP, client portals) since the owner's decision of 2026-10-23.
+KNOWS_ABOUT = ["weboldal készítés", "3D weboldal", "termékkonfigurátor", "webshop készítés",
+               "keresőoptimalizálás", "helyi keresőoptimalizálás", "Google Ads",
+               "Meta hirdetés", "arculattervezés", "logótervezés"]
+
+COUNTRY = {"hu": "Magyarország", "en": "Hungary", "de": "Ungarn"}
+
+# The service routes the organisation's OfferCatalog lists, in menu order.
+# Prices stay out, as everywhere else: every offer is quoted, not listed.
+CATALOG = ("configurator", "sme", "enterprise", "shop", "seo", "seo-web", "ads", "branding")
+SERVICE_ROUTES = set(CATALOG)
+
+# serviceType per service route, where the route's own name does not say it.
+SERVICE_TYPES = {
+    "configurator": {"hu": ["3D weboldal", "Termékkonfigurátor"],
+                     "en": ["3D website", "Product configurator"],
+                     "de": ["3D-Website", "Produktkonfigurator"]},
 }
 
 CRUMBS_RE = re.compile(r'<p class="crumbs">(.*?)</p>', re.S)
@@ -1408,7 +1463,24 @@ def breadcrumb(lang, key, body, page_url):
     }
 
 
-def build_structured_data(lang, key, title, desc, meta, body):
+def localised(text, table, lang):
+    """A front-matter string in `lang`: the dictionary's translation, or the
+    Hungarian text when there is none (the same fall-through as the body)."""
+    if not text:
+        return None
+    if lang == "hu" or not table:
+        return text
+    return table.get(tr.normalise(text), text)
+
+
+def service_label(lang, key):
+    """A service route's name as the menu writes it."""
+    if key == "seo-web":
+        return "Keresőoptimalizált weboldal készítés"
+    return UI[lang]["svc"][key][0]
+
+
+def build_structured_data(lang, key, title, desc, meta, body, table=None):
     """The JSON-LD block for one route.
 
     `body` is the rendered, translated page body — the breadcrumb is read from
@@ -1458,6 +1530,7 @@ def build_structured_data(lang, key, title, desc, meta, body):
         # WebSite node below carries the same pair.
         "name": "Stratos Webdesign",
         "alternateName": ["Stratos", "stratosweb.hu"],
+        "description": ORG_DESCRIPTION,
         # The operator, as /impresszum states it: a sole proprietorship (e.v.)
         # and its Hungarian tax number. Not a vatID — that is the EU form.
         "legalName": "Lukács Artúr e.v.",
@@ -1474,39 +1547,10 @@ def build_structured_data(lang, key, title, desc, meta, body):
         "image": SITE + "/assets/img/logo-square.png",
         "email": CONTACT_EMAIL,
         "telephone": "+36 30 584 8024",
-        # The SEAT, and it deliberately does not match the Google Business
-        # Profile. Do not "fix" this.
-        #
-        # The profile publishes 9027 Győr, Gesztenyefa út 4 — the office, where
-        # clients actually go. This is 9151 Abda, the székhely, which is the
-        # address /impresszum.html is required by law to state and the one this
-        # markup has always carried. Both are real and the owner has confirmed
-        # the split: seat in Abda, office in Győr.
-        #
-        # It was raised as a NAP inconsistency, because that is what it looks
-        # like from outside — two of the four elements disagree, 11.6km apart,
-        # while phone and website match — and the owner's answer was to keep
-        # both as they are. Recorded here so the next audit reads a decision
-        # rather than a defect and does not quietly rewrite 90 pages.
-        #
-        # Revisited 2026-10-10, after the SEO audit (the owner asked for every
-        # fixable finding to be fixed): the seat stays the `address`, and the
-        # office the Business Profile shows is now stated too — in the footer,
-        # on the contact page and here, as a `location` Place, which is the
-        # schema.org way to say both at once. No opening hours: the site still
-        # publishes none.
-        "location": {
-            "@type": "Place",
-            "name": "Stratos Webdesign iroda",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Gesztenyefa út 4.",
-                "addressLocality": "Győr",
-                "addressRegion": "Győr-Moson-Sopron",
-                "postalCode": "9027",
-                "addressCountry": "HU",
-            },
-        },
+        # The SEAT, /impresszum's address, and since 2026-10-23 the only
+        # address the site states. The `location` Place (the Győr office the
+        # Business Profile showed) is gone with the footer's office line: no
+        # clients are received at an office (owner, DONTESEK 9).
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Arany János utca 13.",
@@ -1515,40 +1559,22 @@ def build_structured_data(lang, key, title, desc, meta, body):
             "postalCode": "9151",
             "addressCountry": "HU",
         },
-        # Cities AND countries, which is the third position this field has held
-        # and the first one that is not a trade.
-        #
-        # It was Győr, Budapest and the county once, alongside a route dedicated
-        # to the city, and both were withdrawn together: naming a town as the
-        # area served reads as a claim about how far the company reaches, and
-        # this one reaches as far as it has languages. The route came back on
-        # 2026-10-06 as one of four regional pages under /hol-dolgozunk, and
-        # this list names every region those pages serve (Pest and Szeged were
-        # missing until 2026-10-10).
-        #
-        # areaServed is not exclusive. A ProfessionalService that serves three
-        # countries and names two cities inside one of them has said more than
-        # one that names only the countries, not less; the country entries below
-        # are untouched, so nothing the previous position protected is given up.
-        # What the narrow version cost is measurable: Search Console has
-        # "keresőoptimalizálás győr" at position 83 with the seat two towns away
-        # from the city in question.
-        #
-        # The county is an AdministrativeArea rather than a City because it is
-        # one, and it is here because the seat in Abda is inside it — a local
-        # result for the wider area is the one claim here the address by itself
-        # already supports.
-        "areaServed": [
-            {"@type": "City", "name": "Győr"},
-            {"@type": "City", "name": "Budapest"},
-            {"@type": "AdministrativeArea", "name": "Győr-Moson-Sopron vármegye"},
-            {"@type": "AdministrativeArea", "name": "Pest vármegye"},
-            {"@type": "City", "name": "Szeged"},
-            {"@type": "Country", "name": "Magyarország"},
-            {"@type": "Country", "name": "Österreich"},
-            {"@type": "Country", "name": "Deutschland"},
-        ],
+        # One country. The cities and counties are each local page's own
+        # Service.areaServed (LOCAL_AREAS), not a claim about the company's
+        # reach; Austria and Germany went with the foreign-client claims
+        # (owner, DONTESEK 12) — the languages stay, in knowsLanguage.
+        "areaServed": [{"@type": "Country", "name": COUNTRY["hu"]}],
         "knowsLanguage": ["hu", "en", "de"],
+        "knowsAbout": KNOWS_ABOUT,
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": UI["hu"]["services"],
+            "itemListElement": [
+                {"@type": "Service", "@id": SITE + absolute("hu", k) + "#service",
+                 "name": service_label("hu", k), "url": SITE + absolute("hu", k)}
+                for k in CATALOG
+            ],
+        },
         "sameAs": SOCIAL_PROFILES,
     }
 
@@ -1599,19 +1625,41 @@ def build_structured_data(lang, key, title, desc, meta, body):
             ],
         })
 
-    if key in ("sme", "enterprise", "shop", "branding", "ads", "seo", "seo-web"):
-        # No `offers`, no `priceRange`, no `areaServed`. The site publishes no
-        # price for any of the four, and a Service node without an Offer is a
-        # complete and valid description of a service that is quoted rather
-        # than listed.
-        graph.append({
+    if key in SERVICE_ROUTES:
+        # No `offers` and no `priceRange`. The site publishes no price for any
+        # of them, and a Service node without an Offer is a complete and valid
+        # description of a service that is quoted rather than listed. The name
+        # is the plain service name (front matter `service:`), not the title
+        # with its keyword and brand.
+        service = {
             "@type": "Service",
             "@id": page_url + "#service",
-            "name": title.split("|")[0].strip(),
+            "name": localised(meta.get("service"), table, lang) or title.split("|")[0].strip(),
             "description": desc,
             "provider": {"@id": SITE + "/#organization"},
+            "areaServed": {"@type": "Country", "name": COUNTRY[lang]},
             "mainEntityOfPage": {"@id": page_url + "#webpage"},
-        })
+        }
+        if key in SERVICE_TYPES:
+            service["serviceType"] = SERVICE_TYPES[key][lang]
+        graph.append(service)
+
+    if key in CASES and meta.get("client"):
+        # The work itself, credited to the organisation and about the client
+        # it was made for; an award belongs here, not on the organisation.
+        work = {
+            "@type": "CreativeWork",
+            "@id": page_url + "#work",
+            "name": localised(meta.get("work_name"), table, lang) or title.split("|")[0].strip(),
+            "about": {"@type": "Organization", "name": meta["client"]},
+            "creator": {"@id": SITE + "/#organization"},
+            "mainEntityOfPage": {"@id": page_url + "#webpage"},
+        }
+        if meta.get("client_url"):
+            work["about"]["url"] = meta["client_url"]
+        if meta.get("award"):
+            work["award"] = localised(meta["award"], table, lang)
+        graph.append(work)
 
     if key in LOCAL_AREAS:
         # The region this page is about, as the area the service is offered
@@ -2099,11 +2147,11 @@ V2_UI = {
                 ("about", "A Stratos"), ("blog", "Blog")),
         "contact": "Kapcsolat",
         "menu": "Menü", "close": "Bezárás", "menu_aria": "Menü megnyitása",
-        "tagline": "Digitális élmények és egyedi rendszerek — Győrből, magyarul, "
-                   "angolul és németül.",
+        "tagline": "Egyedi kódból épített weboldalak, 3D élmények és "
+                   "keresőoptimalizálás, az egész országban.",
         "pages": "Oldalak",
         "close_head": "Ha nagy a tét, beszéljünk.",
-        "close_lede": "Egy rövid beszélgetés után tudni fogod, mi segítene — és mi nem.",
+        "close_lede": "Egy ingyenes igényfelmérő hívás után tudni fogod, mi segítene, és mi nem.",
         "close_work": "Ügyfeleink",
     },
     "en": {
@@ -2111,11 +2159,11 @@ V2_UI = {
                 ("about", "Stratos"), ("blog", "Insights")),
         "contact": "Contact",
         "menu": "Menu", "close": "Close", "menu_aria": "Open the menu",
-        "tagline": "Digital experiences and custom systems — from Győr, in "
-                   "Hungarian, English and German.",
+        "tagline": "Websites built in custom code, 3D experiences and search "
+                   "engine optimisation, across Hungary.",
         "pages": "Pages",
         "close_head": "High stakes? Let’s talk.",
-        "close_lede": "After one short conversation you will know what would help — and what would not.",
+        "close_lede": "After a free discovery call you will know what would help, and what would not.",
         "close_work": "Our clients",
     },
     "de": {
@@ -2123,11 +2171,11 @@ V2_UI = {
                 ("about", "Stratos"), ("blog", "Insights")),
         "contact": "Kontakt",
         "menu": "Menü", "close": "Schließen", "menu_aria": "Menü öffnen",
-        "tagline": "Digitale Erlebnisse und individuelle Systeme — aus Győr, auf "
-                   "Ungarisch, Englisch und Deutsch.",
+        "tagline": "Websites aus individuellem Code, 3D-Erlebnisse und "
+                   "Suchmaschinenoptimierung, in ganz Ungarn.",
         "pages": "Seiten",
         "close_head": "Viel auf dem Spiel? Dann sprechen wir.",
-        "close_lede": "Nach einem kurzen Gespräch wissen Sie, was helfen würde — und was nicht.",
+        "close_lede": "Nach einem kostenlosen Erstgespräch wissen Sie, was helfen würde und was nicht.",
         "close_work": "Unsere Projekte",
     },
 }
@@ -2210,9 +2258,12 @@ HEADER_V2 = """<header class="hdr" data-hdr>
 </header>"""
 
 # The footer. Everything the old one carried that a visitor or a crawler uses —
-# the newsletter form and its honeypot, NAP, the four profiles the JSON-LD
-# names, the local links, the consent switch, the language switcher — and none
-# of the instrument: no convergence trace, no ceiling, no "return to 0 m".
+# the newsletter form and its honeypot, e-mail and phone, the four profiles the
+# JSON-LD names, the local links, the consent switch, the language switcher —
+# and none of the instrument: no convergence trace, no ceiling, no "return to
+# 0 m". No postal address since 2026-10-23: clients are not received at an
+# office (owner, DONTESEK 9), so the office line went, and the seat is stated
+# where the law asks for it, on /impresszum, and nowhere else.
 FOOTER_V2 = """<footer class="ftr">
   <div class="wrap" data-nosnippet>
     <div class="ftr__top">
@@ -2250,7 +2301,6 @@ FOOTER_V2 = """<footer class="ftr">
         <ul>
           <li><a href="mailto:hello@stratosweb.hu">hello@stratosweb.hu</a></li>
           <li><a href="tel:+36305848024">+36 30 584 8024</a></li>
-          <li><address class="ftr__nap">{{f_office}} 9027 Győr, Gesztenyefa út 4.<br>{{f_seat}} 9151 Abda, Arany János utca 13.</address></li>
         </ul>
         <ul class="ftr__status">
           <li>{{st_reply}}</li>
@@ -2303,14 +2353,16 @@ def build_footer_v2(lang, key):
     p = u["p85"]
     pages = "".join(
         f'\n          <li><a href="{href(lang, k)}">{u["menu"][k]}</a></li>'
-        for k in ("about", "work", "contact", "blog", "quote"))
+        for k in ("about", "work", "blog", "contact", "quote", "booking"))
+    # The search-optimised-website page and the local hub are Hungarian only
+    # (HU_ONLY), so are their links; the first sits after the SEO service it
+    # belongs with.
     svc = f'\n          <li><a href="{href(lang, "services")}">{u["svc_all"]}</a></li>'
-    svc += "".join(
-        f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
-        for k in SERVICES)
-    # The local landing pages are Hungarian only (HU_ONLY), so is their link.
+    for k in SERVICES:
+        svc += f'\n          <li><a href="{href(lang, k)}">{u["svc"][k][0]}</a></li>'
+        if k == "seo" and lang == "hu":
+            svc += f'\n          <li><a href="{href(lang, "seo-web")}">Keresőoptimalizált weboldal</a></li>'
     if lang == "hu":
-        svc += f'\n          <li><a href="{href(lang, "seo-web")}">Keresőoptimalizált weboldal</a></li>'
         svc += f'\n          <li><a href="{href(lang, "local-hub")}">Hol dolgozunk</a></li>'
     return render(FOOTER_V2, dict(
         home=href(lang, "index"), brand_aria=u["brand_aria"],
@@ -2320,14 +2372,8 @@ def build_footer_v2(lang, key):
         f_pages_h=v["pages"], f_pages=pages,
         f_services=u["services"], f_svc=svc,
         f_contact=u["f_contact"], f_social=u["f_social"], f_gbp=u["f_gbp"],
-        f_office={"hu": "Iroda:", "en": "Office:", "de": "Büro:"}[lang],
-        f_seat={"hu": "Székhely:", "en": "Registered office:", "de": "Firmensitz:"}[lang],
         st_reply=p["st_reply"],
-        # Hungarian only: the two cities link to their regional pages, which
-        # exist in Hungarian only.
-        st_where=(f'<a href="{href(lang, "local-gyor")}">Győr</a> és '
-                  f'<a href="{href(lang, "local-budapest")}">Budapest</a>'
-                  if lang == "hu" else p["st_where"]),
+        st_where=p["st_where"],
         st_langs=p["st_langs"],
         f_rights=u["f_rights"],
         privacy=href(lang, "privacy"), f_privacy=u["f_privacy"],
@@ -2424,7 +2470,7 @@ def render_v2(lang, key, title, desc, meta, body, table, js, *,
                    else '\n<meta name="robots" content="noindex, follow">',
             alternates=build_alternates(key, lang),
             social=build_social(lang, key, title, desc, meta, body, table),
-            jsonld=build_structured_data(lang, key, title, desc, meta, body),
+            jsonld=build_structured_data(lang, key, title, desc, meta, body, table),
         )
     # The homepage is its own composition; every other document speaks the
     # shared page vocabulary in site.css, plus the stylesheet its front matter

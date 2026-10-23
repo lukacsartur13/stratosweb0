@@ -1,39 +1,19 @@
 {
- "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Szolgáltatások</a> / <b>Keresőoptimalizálás</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Services</a> / <b>SEO consultancy</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Leistungen</a> / <b>SEO Betreuung</b>"
- ],
- "Minden nap beírják a Google-be, amit te árulsz. A keresőoptimalizálás arról szól, hogy ilyenkor a te oldalad jöjjön elő.": [
-  "Every day someone types what you sell into Google. SEO consultancy is the work of making sure your page is what comes back.",
-  "Jeden Tag tippt jemand bei Google ein, was Sie verkaufen. SEO Betreuung sorgt dafür, dass dann Ihre Seite erscheint."
- ],
- "Technikai SEO": [
-  "Technical SEO",
-  "Technisches SEO"
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"szolgaltatasok.html\">Szolgáltatások</a> / <b>Keresőoptimalizálás</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"szolgaltatasok.html\">Services</a> / <b>SEO consultancy</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"szolgaltatasok.html\">Leistungen</a> / <b>SEO Betreuung</b>"
  ],
  "Tartalom": [
   "Content",
   "Inhalt"
  ],
- "Egy jól megírt oldal évekig hozhat megkeresést anélkül, hogy egyetlen forintot költenél rá. Lassabban indul, mint egy kampány, és pont ezért éri meg elkezdeni ma.": [
-  "A well-written page can bring enquiries for years without costing you anything further. It starts more slowly than a campaign, which is exactly why it is worth starting today.",
-  "Eine gut geschriebene Seite kann jahrelang Anfragen bringen, ohne dass Sie weiter dafür zahlen. Sie startet langsamer als eine Kampagne — genau deshalb lohnt es sich, heute anzufangen."
- ],
  "A munka": [
   "The work",
   "Die Arbeit"
  ],
- "Miből áll<br>a keresőoptimalizálás?": [
-  "What does<br>SEO actually involve?",
-  "Woraus besteht<br>SEO eigentlich?"
- ],
  "Alap": [
   "Foundation",
   "Basis"
- ],
- "Betöltési sebesség, mobilnézet, címsorszerkezet, strukturált adat, belső linkek. Ez az a réteg, amit a látogató nem lát, de a Google csak ezt látja.": [
-  "Loading speed, mobile layout, heading structure, structured data, internal links. This is the layer a visitor never sees and the only one Google reads.",
-  "Ladezeit, mobile Ansicht, Überschriftenstruktur, strukturierte Daten, interne Links. Diese Ebene sieht ein Besucher nie — und nur sie liest Google."
  ],
  "Kutatás": [
   "Research",
@@ -43,18 +23,6 @@
   "Keywords and intent",
   "Keywords und Absicht"
  ],
- "Nem a legnagyobb keresési számot keressük, hanem azt a kérdést, amit a vevőd tényleg beír. Egy szűkebb kifejezés, ami vásárlót hoz, többet ér a nagynál, ami nézelődőt.": [
-  "We are not after the biggest search volume but the question your customer actually types. A narrower phrase that brings a buyer is worth more than a broad one that brings a browser.",
-  "Uns interessiert nicht das größte Suchvolumen, sondern die Frage, die Ihr Kunde wirklich eintippt. Ein engerer Begriff, der einen Käufer bringt, ist mehr wert als ein breiter, der nur Neugierige bringt."
- ],
- "Oldalak és szövegek": [
-  "Pages and copy",
-  "Seiten und Texte"
- ],
- "Egy kérdés, egy oldal. Megírjuk vagy átírjuk azokat az oldalakat, amiknek rangsorolniuk kell, úgy, ahogy elmondanád — nem úgy, ahogy a szakma szereti.": [
-  "One question, one page. We write or rewrite the pages that need to rank, in the words you would use out loud — not the ones the industry prefers.",
-  "Eine Frage, eine Seite. Wir schreiben oder überarbeiten die Seiten, die ranken müssen, so wie Sie es sagen würden — nicht so, wie es die Branche mag."
- ],
  "Helyi": [
   "Local",
   "Lokal"
@@ -62,10 +30,6 @@
  "Google Cégprofil": [
   "Google Business Profile",
   "Google-Unternehmensprofil"
- ],
- "Helyi vállalkozásnak a térképes találat gyakran többet hoz, mint a weboldal. Beállítjuk, kategorizáljuk, feltöltjük, és megtanítjuk karbantartani.": [
-  "For a local business the map result often brings more than the website does. We set it up, categorise it, fill it in, and teach you to keep it current.",
-  "Für ein lokales Unternehmen bringt der Karteneintrag oft mehr als die Website. Wir richten ihn ein, kategorisieren, befüllen ihn und zeigen Ihnen die Pflege."
  ],
  "Bizonyíték": [
   "Proof",
@@ -75,57 +39,17 @@
   "110 million forints,<br>from zero forints<br>of ad spend.",
   "110 Millionen Forint,<br>aus null Forint<br>Werbebudget."
  ],
- "A Rapidkert Kft. organikus keresésből nagyjából 110 millió Ft értékű ajánlatkérést kapott — hirdetési költség nélkül. A hirdetés ezen felül mintegy 9 millió Ft-ot hozott.": [
-  "Rapidkert received roughly HUF 110 million in quote requests from organic search — with no ad spend at all. On top of that, advertising brought in around HUF 9 million.",
-  "Rapidkert erhielt aus der organischen Suche Angebotsanfragen im Wert von rund 110 Mio. HUF — ganz ohne Werbebudget. Die Anzeigen brachten zusätzlich rund 9 Mio. HUF."
- ],
  "A teljes Rapidkert esettanulmány": [
   "The full Rapidkert case study",
   "Die ganze Rapidkert-Fallstudie"
- ],
- "Négy hónap,<br>négy szakasz": [
-  "Four months,<br>four stages",
-  "Vier Monate,<br>vier Phasen"
- ],
- "A keresőoptimalizálás nem egyszeri beavatkozás. Az első mérhető elmozdulás jellemzően a harmadik hónap környékén jelenik meg.": [
-  "SEO is not a one-off intervention. The first measurable movement usually shows up around the third month.",
-  "SEO ist kein einmaliger Eingriff. Die erste messbare Bewegung zeigt sich meist um den dritten Monat."
- ],
- "1. hónap": [
-  "Month 1",
-  "Monat 1"
  ],
  "Feltárás": [
   "Discovery",
   "Analyse"
  ],
- "Végigmérjük az oldalt, megnézzük, mire keresnek rád ma, és mire keresnek a versenytársaidra. Ebből lesz egy rangsorolt lista arról, mi hoz a legtöbbet a legkevesebb munkából.": [
-  "We measure the whole site, look at what people search to find you today, and what they search to find your competitors. That becomes a ranked list of what returns most for the least work.",
-  "Wir vermessen die ganze Website, sehen uns an, wonach man heute sucht, um Sie zu finden, und wonach, um Ihre Wettbewerber zu finden. Daraus wird eine Rangliste: Was bringt am meisten bei geringstem Aufwand."
- ],
- "1–2. hónap": [
-  "Months 1–2",
-  "Monat 1–2"
- ],
  "Technikai javítás": [
   "Technical fixes",
   "Technische Korrekturen"
- ],
- "Sebesség, szerkezet, strukturált adat, hibás linkek, duplikált oldalak. Ez a rész gyorsan kész van, és a legtöbb oldalon ez adja az első ugrást.": [
-  "Speed, structure, structured data, broken links, duplicate pages. This part is done quickly, and on most sites it is what produces the first jump.",
-  "Geschwindigkeit, Struktur, strukturierte Daten, defekte Links, doppelte Seiten. Dieser Teil ist schnell erledigt und sorgt auf den meisten Seiten für den ersten Sprung."
- ],
- "2–4. hónap": [
-  "Months 2–4",
-  "Monat 2–4"
- ],
- "Tartalomépítés": [
-  "Building content",
-  "Inhaltsaufbau"
- ],
- "Megírjuk azokat az oldalakat, amik hiányoznak, és átírjuk azokat, amik nem válaszolnak arra, amit kérdeztek. Hónapról hónapra, nem egyszerre.": [
-  "We write the pages that are missing and rewrite the ones that do not answer what was asked. Month by month, not all at once.",
-  "Wir schreiben die fehlenden Seiten und überarbeiten die, die nicht beantworten, was gefragt wurde. Monat für Monat, nicht alles auf einmal."
  ],
  "folyamatos": [
   "ongoing",
@@ -135,33 +59,13 @@
   "Measurement and reporting",
   "Messung und Report"
  ],
- "Search Console, Analytics, pozíciókövetés. Havonta kapsz egy érthető összefoglalót arról, mi mozdult, mi nem, és mit csinálunk a következő hónapban.": [
-  "Search Console, Analytics, rank tracking. Every month you get a readable summary of what moved, what did not, and what we are doing next.",
-  "Search Console, Analytics, Rankingverfolgung. Jeden Monat erhalten Sie eine verständliche Zusammenfassung: was sich bewegt hat, was nicht, und was als Nächstes kommt."
- ],
  "Nézzük meg, mire keresnek rád ma.": [
   "Let's look at what people search to find you today.",
   "Sehen wir nach, wonach man heute sucht, um Sie zu finden."
  ],
- "Őszintén": [
-  "Straight talk",
-  "Ehrlich gesagt"
- ],
  "Amit nem<br>ígérünk meg.": [
   "What we will<br>not promise.",
   "Was wir nicht<br>versprechen."
- ],
- "Nem ígérünk első helyet, mert nem az eladó dönti el. Aki garantálja, az vagy nem érti, hogyan működik a rangsorolás, vagy tudja, és mégis kimondja.": [
-  "We do not promise the first position, because it is not the seller's to give. Anyone who guarantees it either does not understand how ranking works, or does and says it anyway.",
-  "Wir versprechen keinen ersten Platz, denn den vergibt nicht der Anbieter. Wer ihn garantiert, versteht entweder das Ranking nicht — oder versteht es und sagt es trotzdem."
- ],
- "Nem veszünk linkeket, és nem írunk kulcsszóval telepakolt szöveget. Mindkettő hozhat rövid távon elmozdulást, és mindkettő olyan kockázatot visz az oldaladra, amit később nekünk kellene kitakarítani.": [
-  "We do not buy links and we do not write keyword-stuffed copy. Both can move the needle briefly, and both put a risk on your site that we would have to clean up later.",
-  "Wir kaufen keine Links und schreiben keine mit Keywords vollgestopften Texte. Beides kann kurzfristig etwas bewegen, und beides bringt ein Risiko auf Ihre Seite, das wir später ausräumen müssten."
- ],
- "És nem kezdjük el, ha az adott vállalkozásnál a hirdetés vagy egy jobb weboldal többet hozna ugyanabból a pénzből. Ezt az első beszélgetésen szoktuk megmondani, mielőtt bármit kiszámláznánk.": [
-  "And we do not start at all if advertising or a better website would return more from the same money. We say so in the first conversation, before anything is invoiced.",
-  "Und wir fangen gar nicht erst an, wenn Werbung oder eine bessere Website aus demselben Geld mehr herausholen würde. Das sagen wir im ersten Gespräch, bevor irgendetwas abgerechnet wird."
  ],
  "GYIK": [
   "FAQ",
@@ -171,25 +75,13 @@
   "How long before results show?",
   "Wann zeigen sich Ergebnisse?"
  ],
- "A technikai javítások hatása néhány héten belül megjelenhet, mert a Google újra bejárja az oldalt. A tartalomból származó elmozdulás jellemzően a harmadik-negyedik hónap környékén válik mérhetővé. Aki ennél gyorsabbat ígér, az vagy hirdetést árul SEO néven, vagy olyan módszert használ, aminek később ára lesz.": [
-  "Technical fixes can show within a few weeks, because Google re-crawls the site. Movement from content usually becomes measurable around the third or fourth month. Anyone promising faster is either selling advertising under the name SEO, or using a method that has a price later.",
-  "Technische Korrekturen können sich innerhalb weniger Wochen zeigen, weil Google die Seite neu crawlt. Bewegung aus Inhalten wird meist im dritten bis vierten Monat messbar. Wer Schnelleres verspricht, verkauft entweder Werbung unter dem Namen SEO oder nutzt eine Methode, die später einen Preis hat."
- ],
  "Garantáltok első helyet a Google-ben?": [
   "Do you guarantee first place on Google?",
   "Garantieren Sie Platz eins bei Google?"
  ],
- "Nem, és senki más sem tud. Az első helyet a Google rangsorolása dönti el, ami folyamatosan változik, és amire senkinek nincs ráhatása. Amit garantálni tudunk, az a munka: mit mérünk, mit javítunk, mit írunk meg, és hogy erről havonta érthető riportot kapsz.": [
-  "No, and nobody can. First place is decided by Google's ranking, which changes constantly and which nobody controls. What we can guarantee is the work: what we measure, what we fix, what we write, and a readable report on it every month.",
-  "Nein, und niemand kann das. Platz eins entscheidet Googles Ranking, das sich ständig ändert und das niemand steuert. Garantieren können wir die Arbeit: was wir messen, was wir korrigieren, was wir schreiben — und einen verständlichen Report jeden Monat."
- ],
  "Mennyibe kerül a keresőoptimalizálás?": [
   "What does SEO cost?",
   "Was kostet SEO?"
- ],
- "Attól függ, milyen állapotban van az oldal, és mekkora a mező, amiben versenyzel. Egy helyi szolgáltatónál lényegesen kevesebb munka kell, mint egy országos webáruháznál. A díjmentes feltárás után kapsz egy konkrét ajánlatot, benne azzal, hogy pontosan mit csinálunk az első négy hónapban.": [
-  "It depends on the state of the site and the size of the field you compete in. A local service business needs considerably less work than a national online store. After the free discovery you get a concrete quote, including exactly what we will do in the first four months.",
-  "Das hängt vom Zustand der Seite ab und davon, wie groß das Feld ist, in dem Sie antreten. Ein lokaler Dienstleister braucht deutlich weniger Arbeit als ein landesweiter Onlineshop. Nach der kostenlosen Analyse erhalten Sie ein konkretes Angebot samt genauem Plan für die ersten vier Monate."
  ],
  "Kell hozzá új weboldal?": [
   "Do I need a new website for it?",
@@ -199,45 +91,21 @@
   "Not necessarily. Most existing sites have enough room to make starting worthwhile. If discovery shows that the site's structure or speed would waste most of the work, we say so, and fix the website first instead.",
   "Nicht unbedingt. Die meisten bestehenden Seiten bieten genug Spielraum, dass sich der Start lohnt. Zeigt die Analyse, dass Struktur oder Geschwindigkeit den Großteil der Arbeit verpuffen ließen, sagen wir das und bringen zuerst die Website in Ordnung."
  ],
- "Mi a különbség a SEO és a Google Ads között?": [
-  "What is the difference between SEO and Google Ads?",
-  "Was ist der Unterschied zwischen SEO und Google Ads?"
- ],
- "A hirdetés azonnal hoz forgalmat, és akkor áll le, amikor kifogy a keret. A keresőoptimalizálás lassabban indul, de a megszerzett pozíció akkor is dolgozik, amikor nem költesz. A kettő nem egymás alternatívája: a Rapidkertnél párhuzamosan futottak, és külön-külön is termeltek.": [
-  "Advertising brings traffic immediately and stops when the budget runs out. SEO starts more slowly, but a position you have earned keeps working when you are not spending. They are not alternatives: at Rapidkert both ran in parallel and each produced on its own.",
-  "Werbung bringt sofort Traffic und endet, wenn das Budget aufgebraucht ist. SEO startet langsamer, aber eine erarbeitete Position arbeitet weiter, auch wenn Sie nichts ausgeben. Die beiden sind keine Alternativen: Bei Rapidkert liefen sie parallel und lieferten jeweils eigenständig."
- ],
  "Ha felmondom, elveszik minden?": [
   "If I stop, do I lose everything?",
   "Wenn ich kündige, ist alles weg?"
- ],
- "Nem. Amit megírtunk és megjavítottunk, az az oldaladon marad, és tovább dolgozik. A pozíciók idővel romolhatnak, ha senki nem foglalkozik velük, de nem tűnnek el egyik napról a másikra, és semmit nem kapcsolunk le.": [
-  "No. What we wrote and fixed stays on your site and keeps working. Positions can decay over time if nobody tends them, but they do not vanish overnight, and we switch nothing off.",
-  "Nein. Was wir geschrieben und korrigiert haben, bleibt auf Ihrer Seite und arbeitet weiter. Positionen können mit der Zeit nachlassen, wenn sich niemand kümmert, aber sie verschwinden nicht über Nacht — und wir schalten nichts ab."
  ],
  "Kapcsolódó oldalak és olvasnivaló.": [
   "Related pages and reading.",
   "Verwandte Seiten und Lesestoff."
  ],
- "Ha nem akarsz hónapokat várni, és fizetnél a forgalomért.": [
-  "If you would rather not wait months and are willing to pay for traffic.",
-  "Wenn Sie nicht Monate warten wollen und bereit sind, für Traffic zu zahlen."
- ],
  "A hét lépés, amit egy kisvállalkozás magától is végig tud csinálni.": [
   "The seven steps a small business can work through on its own.",
   "Die sieben Schritte, die ein kleines Unternehmen selbst gehen kann."
  ],
- "Egy élő példa: 110 millió Ft ajánlatkérés organikus keresésből.": [
-  "A live example: HUF 110 million in quote requests from organic search.",
-  "Ein echtes Beispiel: 110 Mio. HUF an Angebotsanfragen aus der organischen Suche."
- ],
  "Esettanulmány": [
   "Case study",
   "Fallstudie"
- ],
- "A kereslet<br>már megvan.<br><span class=\"sig\">Téged nem talál.</span>": [
-  "The demand<br>is already there.<br><span class=\"sig\">It isn't finding you.</span>",
-  "Die Nachfrage<br>ist längst da.<br><span class=\"sig\">Sie findet Sie nicht.</span>"
  ],
  "A hirdetés leáll a kerettel. A keresés <span class=\"sig\">nem áll le.</span>": [
   "Ads stop with the budget. Search <span class=\"sig\">does not stop.</span>",
@@ -247,10 +115,6 @@
   "SEO agency",
   "SEO-Agentur"
  ],
- "Keresőoptimalizálás szakértő": [
-  "SEO specialist",
-  "SEO-Spezialist"
- ],
  "Helyi keresőoptimalizálás": [
   "Local SEO",
   "Lokales SEO"
@@ -258,10 +122,6 @@
  "Keresőoptimalizálás,<br>ami ügyfelet hoz.<br><span class=\"sig\">Nem csak helyezést.</span>": [
   "SEO that brings<br>customers.<br><span class=\"sig\">Not just rankings.</span>",
   "SEO, das Kunden<br>bringt.<br><span class=\"sig\">Nicht nur Rankings.</span>"
- ],
- "A kereslet már megvan — téged nem talál. Minden nap beírják a Google-be, amit te árulsz, és a keresőoptimalizálás arról szól, hogy ilyenkor a te oldalad jöjjön elő.": [
-  "The demand is already there — it just cannot find you. Every day someone types what you sell into Google, and SEO consultancy is the work of making sure your page is what comes back.",
-  "Die Nachfrage ist längst da — sie findet Sie nur nicht. Jeden Tag tippt jemand bei Google ein, was Sie verkaufen, und SEO Betreuung sorgt dafür, dass dann Ihre Seite erscheint."
  ],
  "Az ár": [
   "The price",
@@ -271,10 +131,6 @@
   "What does SEO<br>actually cost?",
   "Was kostet<br>SEO wirklich?"
  ],
- "Havidíjas konstrukcióban dolgozunk, mert a keresőoptimalizálás folyamatos munka. A díjat a feltárás után mondjuk meg — addig nem tudnánk, mit ígérünk.": [
-  "We work on a monthly fee, because SEO is continuous work. We name the figure after the discovery — before that we would not know what we were promising.",
-  "Wir arbeiten mit einer Monatspauschale, denn SEO ist fortlaufende Arbeit. Die Höhe nennen wir nach der Analyse — vorher wüssten wir nicht, was wir versprechen."
- ],
  "Mitől függ": [
   "What drives it",
   "Was es bestimmt"
@@ -283,69 +139,21 @@
   "The state of the site",
   "Der Zustand der Website"
  ],
- "Egy két éve épült, tiszta szerkezetű oldalon a technikai réteg néhány hét alatt rendben van. Egy tíz éve toldozgatott oldalon ugyanez hónapokig tart, és néha olcsóbb újraépíteni, mint javítani. Ezt a feltárás mondja meg, nem a megérzés.": [
-  "On a two-year-old site with a clean structure, the technical layer is sorted in a few weeks. On one patched up over ten years the same work runs for months, and sometimes rebuilding costs less than repairing. The discovery answers that, not a hunch.",
-  "Bei einer zwei Jahre alten Website mit sauberer Struktur ist die technische Ebene in wenigen Wochen in Ordnung. Bei einer zehn Jahre lang zusammengeflickten dauert dasselbe Monate, und manchmal ist ein Neubau günstiger als die Reparatur. Das sagt die Analyse, nicht das Bauchgefühl."
- ],
  "A mező, amiben versenyzel": [
   "The field you compete in",
   "Das Feld, in dem Sie antreten"
- ],
- "Egy abdai kertépítőnek néhány tucat kifejezésért kell dolgoznia, egy országos webáruháznak több ezerért. A keresőoptimalizálás ára ezért nem egy listaár, hanem annak a munkának a mennyisége, amivel a te mezőnyödben elő lehet jönni.": [
-  "A village landscaper competes for a few dozen phrases; a national online store for several thousand. The price of SEO is therefore not a list price but the amount of work it takes to surface in your particular field.",
-  "Ein Garten- und Landschaftsbauer im Dorf kämpft um ein paar Dutzend Begriffe, ein landesweiter Onlineshop um mehrere Tausend. Der Preis für SEO ist deshalb kein Listenpreis, sondern die Menge Arbeit, mit der man in Ihrem Feld nach vorn kommt."
- ],
- "Meddig tartunk ki": [
-  "How long we stay with it",
-  "Wie lange wir dabei bleiben"
- ],
- "Négy hónap alatt látszik, hogy működik-e. Aki egy hónapra szerződne, annak őszintén azt mondjuk, hogy kidobott pénz lenne. Aki három évre, annak azt, hogy az első négy hónap után döntse el újra — a mérésből, nem a szerződésből.": [
-  "Four months is enough to see whether it works. If you wanted to sign for one, we will tell you plainly that it would be money thrown away. If you wanted to sign for three years, we will tell you to decide again after the first four months — from the measurements, not from the contract.",
-  "In vier Monaten zeigt sich, ob es funktioniert. Wer für einen Monat unterschreiben möchte, dem sagen wir ehrlich: Das wäre weggeworfenes Geld. Wer für drei Jahre unterschreiben möchte, dem sagen wir: Entscheiden Sie nach den ersten vier Monaten neu — anhand der Messung, nicht des Vertrags."
- ],
- "Amit biztosan tudsz előre: a feltárás díjmentes, és a végén egy konkrét, tételes ajánlatot kapsz arról, mi történik az első négy hónapban. Nincs belépési díj, és nincs olyan tétel az ajánlatban, amit ne tudnánk megindokolni.": [
-  "What you do know in advance: the discovery is free, and at the end of it you get a specific, itemised proposal for what happens in the first four months. There is no joining fee, and no line in the proposal we cannot account for.",
-  "Was Sie vorab sicher wissen: Die Analyse ist kostenlos, und am Ende erhalten Sie ein konkretes, aufgeschlüsseltes Angebot darüber, was in den ersten vier Monaten passiert. Es gibt keine Aufnahmegebühr und keine Position im Angebot, die wir nicht begründen können."
- ],
- "Ha a feltárásból az jön ki, hogy nálad most a hirdetés vagy egy jobb weboldal hozna többet ugyanabból a keretből, azt mondjuk meg, és nem adunk el keresőoptimalizálást. Ez ritkábban fordul elő, mint gondolnád, de előfordul.": [
-  "If the discovery shows that ads or a better website would return more from the same budget in your case, that is what we will say, and we will not sell you SEO. It happens less often than you would think, but it happens.",
-  "Wenn die Analyse ergibt, dass bei Ihnen Werbung oder eine bessere Website aus demselben Budget mehr bringen würde, sagen wir genau das — und verkaufen Ihnen kein SEO. Das kommt seltener vor, als Sie denken, aber es kommt vor."
- ],
- "A havidíjas modell azért ez, és nem egyszeri projektdíj, mert a keresőoptimalizálásban az egyszeri beavatkozás elavul. A technikai javítás egy évig tart, amíg valaki hozzá nem nyúl az oldalhoz; a megírt tartalom addig dolgozik, amíg a kérdés, amire válaszol, releváns marad.": [
-  "The model is a monthly fee rather than a one-off project price because in SEO a one-off intervention goes stale. A technical fix holds for a year, until somebody touches the site; a page that has been written keeps working for as long as the question it answers stays relevant.",
-  "Das Modell ist eine Monatspauschale und kein einmaliger Projektpreis, weil ein einmaliger Eingriff im SEO veraltet. Eine technische Korrektur hält ein Jahr, bis jemand die Website anfasst; ein geschriebener Text arbeitet so lange, wie die Frage relevant bleibt, die er beantwortet."
  ],
  "Mennyi idő, amíg<br>a keresőoptimalizálás<br><span class=\"sig\">eredményt hoz?</span>": [
   "How long before<br>SEO actually<br><span class=\"sig\">produces results?</span>",
   "Wie lange, bis<br>SEO wirklich<br><span class=\"sig\">Ergebnisse bringt?</span>"
  ],
- "Négy hónap, négy szakasz. A keresőoptimalizálás nem egyszeri beavatkozás: az első mérhető elmozdulás jellemzően a harmadik hónap környékén jelenik meg.": [
-  "Four months, four stages. SEO is not a one-off intervention: the first measurable movement usually shows up around the third month.",
-  "Vier Monate, vier Phasen. SEO ist kein einmaliger Eingriff: Die erste messbare Bewegung zeigt sich meist um den dritten Monat."
- ],
  "Ahol dolgozunk": [
   "Where we work",
   "Wo wir arbeiten"
  ],
- "Keresőoptimalizálás<br>Győrben és <span class=\"sig\">Budapesten</span>": [
-  "SEO in Győr<br>and <span class=\"sig\">Budapest</span>",
-  "SEO in Győr<br>und <span class=\"sig\">Budapest</span>"
- ],
- "Az irodánk <a class=\"tlink\" href=\"weboldal-keszites-gyor.html\">Győrben</a> van, az ügyfelek fele <a class=\"tlink\" href=\"weboldal-keszites-budapest.html\">budapesti</a>, a munka pedig távolról is ugyanaz. A helyi keresés viszont nem ugyanaz.": [
-  "Our office is in Győr, half the clients are in Budapest, and the work is the same at a distance. Local search is not.",
-  "Unser Büro ist in Győr, die Hälfte der Kunden sitzt in Budapest, und die Arbeit ist aus der Ferne dieselbe. Die lokale Suche ist es nicht."
- ],
- "Győr és környéke": [
-  "Győr and around it",
-  "Győr und Umgebung"
- ],
  "Ahol a térkép dönt": [
   "Where the map decides",
   "Wo die Karte entscheidet"
- ],
- "Egy győri szolgáltatónál a keresés jellemzően „valami + Győr” vagy „valami hozzám közel”, és a találat fele a térképes doboz. Itt a Google Cégprofil, a szolgáltatási terület és az értékelések legalább annyit számítanak, mint maga a weboldal — a Rapidkertnél is ez a réteg indult be először.": [
-  "For a provider in Győr the search is usually \"something + Győr\" or \"something near me\", and half the result is the map box. Here the Google Business Profile, the service area and the reviews count for at least as much as the website itself — with Rapidkert this was the layer that moved first.",
-  "Bei einem Anbieter in Győr lautet die Suche meist „etwas + Győr\" oder „etwas in meiner Nähe\", und die halbe Trefferseite ist der Kartenbereich. Hier zählen das Google Unternehmensprofil, das Einzugsgebiet und die Bewertungen mindestens so viel wie die Website selbst — bei Rapidkert war das die Ebene, die zuerst ansprang."
  ],
  "Budapest": [
   "Budapest",
@@ -355,44 +163,336 @@
   "Where the field decides",
   "Wo das Feld entscheidet"
  ],
- "Budapesten ugyanarra a kifejezésre nagyságrenddel többen pályáznak, és a térképes találat ritkábban dönti el a kérdést. Itt a tartalom és a technikai réteg viszi a munka nagy részét: az nyer, akinek az oldala pontosabban válaszol arra, amit beírtak.": [
-  "In Budapest an order of magnitude more businesses chase the same phrase, and the map result settles the question less often. Here content and the technical layer carry most of the work: the winner is whoever answers what was typed more precisely.",
-  "In Budapest bewerben sich um denselben Begriff um eine Größenordnung mehr Anbieter, und der Karteneintrag entscheidet seltener. Hier tragen Inhalt und technische Ebene den Großteil der Arbeit: Es gewinnt, wessen Seite genauer beantwortet, was eingetippt wurde."
- ],
- "Nem vagyunk győri ügynökség abban az értelemben, hogy csak Győrben dolgoznánk: három nyelven, magyar, osztrák és német ügyfelekkel is. De ha a te vevőd néhány kilométerre van tőled, akkor a helyi keresés az, ami pénzt hoz, és ahhoz ismerni kell a két piac különbségét. A székhelyünk és az elérhetőségeink az <a class=\"tlink\" href=\"impresszum.html\">impresszumban</a> szerepelnek.": [
-  "We are not a Győr agency in the sense of only working in Győr: we work in three languages, with Hungarian, Austrian and German clients. But if your customer is a few kilometres away, local search is what brings the money, and that takes knowing the difference between the two markets. Our seat and contact details are in the <a class=\"tlink\" href=\"impresszum.html\">imprint</a>.",
-  "Wir sind keine Győrer Agentur in dem Sinne, dass wir nur in Győr arbeiten: Wir arbeiten in drei Sprachen, mit ungarischen, österreichischen und deutschen Kunden. Aber wenn Ihr Kunde ein paar Kilometer entfernt sitzt, ist die lokale Suche das, was Geld bringt — und dafür muss man den Unterschied zwischen beiden Märkten kennen. Sitz und Kontaktdaten stehen im <a class=\"tlink\" href=\"impresszum.html\">Impressum</a>."
- ],
- "Keresőoptimalizálás ügynökség és SEO szakértő | Stratos": [
-  "SEO Consultancy | Technical, Content & Local SEO | Stratos",
-  "SEO Betreuung | Technik, Inhalte und lokale Suche | Stratos"
- ],
  "Keresőoptimalizálás ügynökség,<br>szakértő vagy <span class=\"sig\">tanácsadó?</span>": [
   "An SEO agency,<br>a specialist or <span class=\"sig\">a consultant?</span>",
   "SEO-Agentur,<br>Spezialist oder <span class=\"sig\">Berater?</span>"
- ],
- "Mit tartalmaz a keresőoptimalizálás szolgáltatás?": [
-  "What does an SEO service include?",
-  "Was gehört zu einer SEO-Betreuung?"
- ],
- "Havonta: technikai javítások (sebesség, szerkezet, strukturált adat), azoknak az oldalaknak a megírása vagy átírása, amiknek rangsorolniuk kell, a Google Cégprofil karbantartása, és egy érthető riport arról, mi mozdult. A pontos tartalmat a díjmentes feltárás után, tételesen írjuk le az ajánlatban.": [
-  "Every month: technical fixes (speed, structure, structured data), writing or rewriting the pages that need to rank, keeping the Google Business Profile in order, and a plain report on what moved. The exact scope is itemised in the quote, after the free audit.",
-  "Jeden Monat: technische Korrekturen (Geschwindigkeit, Struktur, strukturierte Daten), das Schreiben oder Überarbeiten der Seiten, die ranken sollen, die Pflege des Google-Unternehmensprofils und ein verständlicher Bericht darüber, was sich bewegt hat. Den genauen Umfang führen wir nach der kostenlosen Analyse im Angebot einzeln auf."
- ],
- "Keresőoptimalizáló cég vagy egyéni tanácsadó — melyik kell?": [
-  "An SEO company or an independent consultant — which do you need?",
-  "SEO-Agentur oder freier Berater — was brauchen Sie?"
- ],
- "Egy tanácsadó akkor elég, ha egy konkrét kérdésre kell válasz, és van, aki a javaslatokat végrehajtja. Ha nincs, egy cég a jobb választás, ahol ugyanaz a csapat méri, írja és javítja az oldalt. Nálunk mindkettő kérhető: egyszeri szakértői konzultáció vagy havidíjas munka.": [
-  "A consultant is enough when you need an answer to one specific question and someone to carry out the advice. If you do not have that person, a company is the better choice: the same team measures, writes and fixes the site. We do both: a one-off expert consultation or monthly work.",
-  "Ein Berater genügt, wenn Sie eine Antwort auf eine konkrete Frage brauchen und jemand die Empfehlungen umsetzt. Wenn nicht, ist eine Agentur die bessere Wahl: dasselbe Team misst, schreibt und verbessert die Website. Bei uns geht beides: eine einmalige Expertenberatung oder laufende Betreuung."
  ],
  "Ha az oldaladat is újra kell építeni, a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">keresőoptimalizált weboldal</a> egyszeri projektként készül, és a keresőoptimalizálás már az első verziójában benne van.": [
   "If your site needs rebuilding too, a <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">search-optimised website</a> is built as a one-off project, with SEO already in its first version.",
   "Wenn auch Ihre Website neu gebaut werden muss, entsteht eine <a class=\"tlink\" href=\"keresooptimalizalt-weboldal-keszites.html\">suchmaschinenoptimierte Website</a> als einmaliges Projekt, mit SEO bereits in der ersten Version."
  ],
- "Keresőoptimalizálás szolgáltatás Győrben és Budapesten: technikai SEO, tartalom, helyi keresés és érthető havi riport. Kérj díjmentes feltárást.": [
-  "SEO services from Győr and Budapest: technical SEO, content, local search and a clear monthly report. Ask for a free audit.",
-  "SEO-Betreuung aus Győr und Budapest: technische SEO, Inhalte, lokale Suche und ein verständlicher Monatsbericht. Fordern Sie eine kostenlose Analyse an."
+ "Havidíjas keresőoptimalizálás (SEO) | Stratos Webdesign": [
+  "Monthly SEO services | Stratos Webdesign",
+  "Monatliche SEO-Betreuung | Stratos Webdesign"
+ ],
+ "Havidíjas keresőoptimalizálás (SEO): technikai alap, Google Cégprofil, AI-keresők és érthető havi riport. Hatás általában 3–6 hónap alatt. Kérj ajánlatot.": [
+  "Monthly SEO: a sound technical foundation, Google Business Profile, AI search and a clear monthly report. Results usually start to show within 3–6 months. Request a quote.",
+  "Monatliche Suchmaschinenoptimierung (SEO): technische Basis, Google-Unternehmensprofil, KI-Suche und ein verständlicher Monatsreport. Wirkung meist innerhalb von 3–6 Monaten. Angebot anfragen."
+ ],
+ "Havidíjas keresőoptimalizálás": [
+  "Monthly SEO",
+  "Monatliche SEO-Betreuung"
+ ],
+ "A kereslet már megvan, csak téged nem talál. Minden nap beírják a Google-be, amit te árulsz. A keresőoptimalizálás arról szól, hogy ilyenkor a te oldalad jöjjön elő: a térképen, a találati listában és az AI-alapú keresők ajánlásaiban is.": [
+  "The demand is already there; it just isn't finding you. Every day people type what you sell into Google. SEO is about making sure your page is what comes up: on the map, in the search results and in the recommendations of AI search tools too.",
+  "Die Nachfrage ist längst da, sie findet Sie nur nicht. Jeden Tag tippen Menschen bei Google ein, was Sie verkaufen. Bei der Suchmaschinenoptimierung geht es darum, dass dann Ihre Seite erscheint: auf der Karte, in den Suchergebnissen und auch in den Empfehlungen von KI-Suchmaschinen."
+ ],
+ "Technikai keresőoptimalizálás": [
+  "Technical SEO",
+  "Technisches SEO"
+ ],
+ "Google Cégprofil és helyi keresés": [
+  "Google Business Profile and local search",
+  "Google-Unternehmensprofil und lokale Suche"
+ ],
+ "AI-keresők": [
+  "AI search",
+  "KI-Suche"
+ ],
+ "Egy jól felépített oldal hosszú ideig hozhat megkeresést hirdetési költség nélkül. Lassabban indul, mint egy kampány: a hatása általában 3–6 hónap alatt kezd látszani. Ezért éri meg ma elkezdeni.": [
+  "A well-built page can bring in enquiries for a long time without any ad spend. It starts more slowly than a campaign: the effect usually starts to show within 3–6 months. That is why it pays to start today.",
+  "Eine gut aufgebaute Seite kann lange Zeit Anfragen bringen, ganz ohne Werbekosten. Sie startet langsamer als eine Kampagne: Die Wirkung zeigt sich in der Regel innerhalb von 3–6 Monaten. Deshalb lohnt es sich, heute anzufangen."
+ ],
+ "Ismerős?": [
+  "Sound familiar?",
+  "Kommt Ihnen das bekannt vor?"
+ ],
+ "Beírod a saját szolgáltatásodat a Google-be, a városod nevével. Ott van három versenytárs, egy katalógusoldal, egy régi fórumbejegyzés. Te a második oldalon vagy, ha egyáltalán. Pedig te jobban csinálod.": [
+  "You type your own service into Google, with the name of your town. There are three competitors, a directory site and an old forum post. You are on the second page, if at all. And yet you do it better.",
+  "Sie geben Ihre eigene Leistung bei Google ein, zusammen mit dem Namen Ihrer Stadt. Da stehen drei Wettbewerber, ein Branchenverzeichnis, ein alter Forenbeitrag. Sie selbst sind auf Seite zwei, wenn überhaupt. Dabei machen Sie es besser."
+ ],
+ "Egy idő után megszokod, hogy aki rád talál, az ajánlásból jön. A keresésből jövő ügyfelek közben máshol kötnek ki, minden nap.": [
+  "After a while you get used to the idea that whoever finds you comes through a referral. Meanwhile the customers who come from search end up somewhere else, every day.",
+  "Mit der Zeit gewöhnen Sie sich daran, dass alle, die Sie finden, über eine Empfehlung kommen. Die Kunden aus der Suche landen derweil woanders, jeden Tag."
+ ],
+ "Mit kapsz<br>minden hónapban?": [
+  "What do you get<br>every month?",
+  "Was bekommen Sie<br>jeden Monat?"
+ ],
+ "Betöltési sebesség, mobilnézet, indexelés, címsorszerkezet, strukturált adat, belső linkek. Ezt a réteget a látogató nem látja, a Google viszont ezt látja.": [
+  "Loading speed, mobile layout, indexing, heading structure, structured data, internal links. Visitors don't see this layer, but this is the layer Google sees.",
+  "Ladezeit, mobile Ansicht, Indexierung, Überschriftenstruktur, strukturierte Daten, interne Links. Besucher sehen diese Ebene nicht, Google dagegen sieht genau sie."
+ ],
+ "Helyi vállalkozásnál a térképes találat gyakran többet hoz, mint maga a weboldal. Beállítjuk, kategorizáljuk, feltöltjük, és havonta rendben tartjuk.": [
+  "For a local business the map result often brings in more than the website itself. We set it up, categorise it, fill it in and keep it in order every month.",
+  "Für ein lokales Unternehmen bringt der Karteneintrag oft mehr als die Website selbst. Wir richten ihn ein, kategorisieren und befüllen ihn und halten ihn jeden Monat in Ordnung."
+ ],
+ "Megjelenés a ChatGPT, a Perplexity és a Gemini ajánlásaiban": [
+  "Appearing in ChatGPT, Perplexity and Gemini recommendations",
+  "Präsenz in den Empfehlungen von ChatGPT, Perplexity und Gemini"
+ ],
+ "Egyre többen kérdeznek egy AI-alapú keresőt, amikor szolgáltatót keresnek. Úgy építjük az oldaladat és a róla szóló információkat, hogy ezek az ajánlások is megtaláljanak.": [
+  "More and more people ask an AI search tool when they are looking for a provider. We shape your site and the information about it so that these recommendations can find you too.",
+  "Immer mehr Menschen fragen eine KI-Suchmaschine, wenn sie einen Anbieter suchen. Wir gestalten Ihre Website und die Informationen darüber so, dass auch diese Empfehlungen Sie finden."
+ ],
+ "Azt a kérdést keressük, amit a vevőd tényleg beír, és nem a legnagyobb keresési számot. Egy szűkebb kifejezés, ami vásárlót hoz, többet ér egy nagynál, ami nézelődőt.": [
+  "We look for the question your customer actually types, not the biggest search volume. A narrower phrase that brings a buyer is worth more than a broad one that brings a browser.",
+  "Wir suchen die Frage, die Ihr Kunde wirklich eintippt, nicht das größte Suchvolumen. Ein engerer Begriff, der Käufer bringt, ist mehr wert als ein breiter, der nur Neugierige bringt."
+ ],
+ "Oldalak": [
+  "Pages",
+  "Seiten"
+ ],
+ "Ami hiányzik vagy nem válaszol": [
+  "What's missing or doesn't answer",
+  "Was fehlt oder nicht antwortet"
+ ],
+ "Ha a feltárás szerint egy fontos szolgáltatásodnak nincs saját oldala, vagy a meglévő nem arra válaszol, amit kérdeznek, megírjuk vagy átírjuk, úgy, ahogy elmondanád. Hogy mit, az az ajánlatban tételesen szerepel.": [
+  "If the discovery shows that an important service of yours has no page of its own, or the existing one doesn't answer what people ask, we write or rewrite it, the way you would explain it yourself. Exactly which pages is itemised in the proposal.",
+  "Zeigt die Analyse, dass eine wichtige Leistung keine eigene Seite hat oder die vorhandene nicht beantwortet, was gefragt wird, schreiben oder überarbeiten wir sie so, wie Sie es selbst erklären würden. Welche Seiten das sind, steht einzeln im Angebot."
+ ],
+ "Riport": [
+  "Report",
+  "Report"
+ ],
+ "Havi összefoglaló": [
+  "Monthly summary",
+  "Monatliche Zusammenfassung"
+ ],
+ "Helyezések, forgalom, teendők. Havonta kapsz egy érthető összefoglalót arról, mi mozdult, mi nem, és mit csinálunk a következő hónapban.": [
+  "Rankings, traffic, next steps. Every month you get a readable summary of what moved, what didn't, and what we are doing next month.",
+  "Rankings, Traffic, nächste Schritte. Jeden Monat erhalten Sie eine verständliche Zusammenfassung: was sich bewegt hat, was nicht und was wir im nächsten Monat tun."
+ ],
+ "Havidíjas konstrukcióban dolgozunk, mert a keresőoptimalizálás folyamatos munka. A díjat a feltárás után mondjuk meg, mert addig nem tudnánk, mit ígérünk.": [
+  "We work on a monthly fee, because SEO is ongoing work. We name the fee after the discovery, because until then we wouldn't know what we were promising.",
+  "Wir arbeiten mit einer Monatspauschale, denn Suchmaschinenoptimierung ist fortlaufende Arbeit. Die Höhe nennen wir nach der Analyse, denn vorher wüssten wir nicht, was wir versprechen."
+ ],
+ "Egy tiszta szerkezetű, friss oldalon a technikai réteg gyorsan rendben van. Egy évek óta toldozgatott oldalon ugyanez sokkal tovább tart, és néha kevesebb munka újraépíteni, mint javítani. Ezt a feltárás mondja meg, nem a megérzés.": [
+  "On a fresh site with a clean structure, the technical layer is sorted quickly. On one that has been patched up for years, the same work takes much longer, and sometimes rebuilding is less work than repairing. The discovery tells us which, not a hunch.",
+  "Bei einer neuen Website mit sauberer Struktur ist die technische Ebene schnell in Ordnung. Bei einer, die seit Jahren geflickt wird, dauert dasselbe deutlich länger, und manchmal ist ein Neubau weniger Arbeit als die Reparatur. Das sagt die Analyse, nicht das Bauchgefühl."
+ ],
+ "Egy kisvárosi kertépítőnek néhány tucat kifejezésért kell dolgoznia, egy országos webáruháznak több ezerért. Ezért nincs listaár: a díj annak a munkának a mennyisége, amivel a te mezőnyödben elő lehet jönni.": [
+  "A landscaper in a small town has to work for a few dozen phrases; a national online shop for several thousand. That is why there is no list price: the fee is the amount of work it takes to come up in your field.",
+  "Ein Gartenbauer in einer Kleinstadt muss um ein paar Dutzend Begriffe kämpfen, ein landesweiter Onlineshop um mehrere Tausend. Deshalb gibt es keinen Listenpreis: Das Honorar ist die Menge Arbeit, mit der man in Ihrem Feld nach vorn kommt."
+ ],
+ "Mennyi idő kell": [
+  "How long it takes",
+  "Wie lange es dauert"
+ ],
+ "Hónapokban gondolkodunk": [
+  "We think in months",
+  "Wir denken in Monaten"
+ ],
+ "A hatás általában 3–6 hónap alatt kezd látszani. Ezért nem egy hónapra tervezünk: a mérés mutatja meg, mit érdemes folytatni, és mit nem.": [
+  "The effect usually starts to show within 3–6 months. That is why we don't plan for a single month: the measurements show what is worth continuing and what isn't.",
+  "Die Wirkung zeigt sich in der Regel innerhalb von 3–6 Monaten. Deshalb planen wir nicht für einen einzelnen Monat: Die Messung zeigt, was sich fortzusetzen lohnt und was nicht."
+ ],
+ "Amit előre tudsz: a feltárás után konkrét, tételes ajánlatot kapsz arról, mi történik az első hónapokban, és nincs benne olyan tétel, amit ne tudnánk megindokolni.": [
+  "What you know in advance: after the discovery you get a specific, itemised proposal for what happens in the first months, and there is no line in it we can't justify.",
+  "Was Sie vorab wissen: Nach der Analyse erhalten Sie ein konkretes, aufgeschlüsseltes Angebot dazu, was in den ersten Monaten passiert, und darin steht keine Position, die wir nicht begründen können."
+ ],
+ "Ha a feltárásból az jön ki, hogy nálad most a hirdetés vagy egy jobb weboldal hozna többet ugyanabból a keretből, megmondjuk, és nem adunk el keresőoptimalizálást.": [
+  "If the discovery shows that, for you, ads or a better website would bring more from the same budget right now, we tell you so, and we don't sell you SEO.",
+  "Zeigt die Analyse, dass bei Ihnen derzeit Werbung oder eine bessere Website aus demselben Budget mehr bringen würde, sagen wir es Ihnen und verkaufen Ihnen keine Suchmaschinenoptimierung."
+ ],
+ "A havidíjas modell azért ez, mert a keresőoptimalizálásban az egyszeri beavatkozás elavul. A technikai javítás addig tart, amíg valaki hozzá nem nyúl az oldalhoz; a megírt tartalom addig dolgozik, amíg a kérdés, amire válaszol, releváns marad.": [
+  "The model is a monthly fee because in SEO a one-off intervention goes stale. A technical fix lasts until somebody touches the site; a page that has been written keeps working for as long as the question it answers stays relevant.",
+  "Das Modell ist eine Monatspauschale, weil ein einmaliger Eingriff in der Suchmaschinenoptimierung veraltet. Eine technische Korrektur hält, bis jemand die Website anfasst; ein geschriebener Text arbeitet so lange, wie die Frage relevant bleibt, die er beantwortet."
+ ],
+ "A Rapidkert Kft. organikus keresésből nagyjából 110 millió Ft értékű ajánlatkérést kapott, hirdetési költség nélkül. A hirdetés ezen felül mintegy 9 millió Ft-ot hozott. A számok a beérkezett ajánlatkérések összértékét mutatják, nem árbevételt.": [
+  "Rapidkert received roughly HUF 110 million worth of quote requests from organic search, with no ad spend. On top of that, advertising brought in around HUF 9 million. The figures show the total value of the quote requests received, not revenue.",
+  "Rapidkert erhielt aus der organischen Suche Angebotsanfragen im Wert von rund 110 Mio. HUF, ganz ohne Werbekosten. Die Anzeigen brachten zusätzlich rund 9 Mio. HUF. Die Zahlen zeigen den Gesamtwert der eingegangenen Angebotsanfragen, nicht den Umsatz."
+ ],
+ "A hatás általában 3–6 hónap alatt kezd látszani, a versenytől és az oldal állapotától függően. Garanciát erre senki nem adhat, mi sem. Amit vállalunk, az a munka és a havi riport.": [
+  "The effect usually starts to show within 3–6 months, depending on the competition and the state of the site. Nobody can guarantee it, and neither can we. What we commit to is the work and the monthly report.",
+  "Die Wirkung zeigt sich in der Regel innerhalb von 3–6 Monaten, je nach Wettbewerb und Zustand der Website. Garantieren kann das niemand, auch wir nicht. Was wir zusagen, sind die Arbeit und der monatliche Report."
+ ],
+ "Végigmérjük az oldalt, megnézzük, mire keresnek rád ma, és mire a versenytársaidra. Ebből lesz egy rangsorolt lista arról, mi hoz a legtöbbet a legkevesebb munkából.": [
+  "We measure the whole site and look at what people search for to find you today, and what they search for to find your competitors. That becomes a ranked list of what brings the most for the least work.",
+  "Wir vermessen die ganze Website und sehen uns an, wonach man heute sucht, um Sie zu finden, und wonach, um Ihre Wettbewerber zu finden. Daraus entsteht eine Rangliste: Was bringt am meisten bei geringstem Aufwand."
+ ],
+ "Sebesség, szerkezet, strukturált adat, hibás linkek, duplikált oldalak. Ez a rész általában gyorsan kész van, és sok oldalon ez adja az első elmozdulást.": [
+  "Speed, structure, structured data, broken links, duplicate pages. This part is usually done quickly, and on many sites it is what produces the first movement.",
+  "Geschwindigkeit, Struktur, strukturierte Daten, defekte Links, doppelte Seiten. Dieser Teil ist meist schnell erledigt und sorgt auf vielen Seiten für die erste Bewegung."
+ ],
+ "Ezzel párhuzamosan": [
+  "Alongside it",
+  "Parallel dazu"
+ ],
+ "Helyi jelenlét és AI-keresők": [
+  "Local presence and AI search",
+  "Lokale Präsenz und KI-Suche"
+ ],
+ "Google Cégprofil, szolgáltatási terület, és azok az információk, amikből az AI-alapú keresők dolgoznak.": [
+  "Google Business Profile, service area, and the information AI search tools work from.",
+  "Google-Unternehmensprofil, Einzugsgebiet und die Informationen, aus denen KI-Suchmaschinen schöpfen."
+ ],
+ "Ahol kell": [
+  "Where needed",
+  "Wo nötig"
+ ],
+ "Megírjuk vagy átírjuk azokat az oldalakat, amiket a feltárás kijelöl.": [
+  "We write or rewrite the pages the discovery identifies.",
+  "Wir schreiben oder überarbeiten die Seiten, die die Analyse benennt."
+ ],
+ "Minden hónapban": [
+  "Every month",
+  "Jeden Monat"
+ ],
+ "Google Search Console, Google Analytics és helyezéskövetés, és egy érthető havi összefoglaló.": [
+  "Google Search Console, Google Analytics and rank tracking, plus a readable monthly summary.",
+  "Google Search Console, Google Analytics und Rankingverfolgung, dazu eine verständliche monatliche Zusammenfassung."
+ ],
+ "Amit nem ígérünk": [
+  "What we don't promise",
+  "Was wir nicht versprechen"
+ ],
+ "Első helyet, mert azt nem az eladó dönti el. Aki garantálja, az vagy nem érti, hogyan működik a rangsorolás, vagy érti, és mégis kimondja.": [
+  "First place, because it is not the seller's to give. Anyone who guarantees it either doesn't understand how ranking works, or understands and says it anyway.",
+  "Platz eins, denn den vergibt nicht der Anbieter. Wer ihn garantiert, versteht entweder nicht, wie das Ranking funktioniert, oder versteht es und sagt es trotzdem."
+ ],
+ "Megvásárolt linkeket és kulcsszóval telepakolt szöveget. Mindkettő hozhat rövid távon elmozdulást, és mindkettő olyan kockázatot visz az oldaladra, amit később ki kellene takarítani.": [
+  "Bought links and keyword-stuffed copy. Both can produce movement in the short term, and both put a risk on your site that would have to be cleaned up later.",
+  "Gekaufte Links und mit Keywords vollgestopfte Texte. Beides kann kurzfristig etwas bewegen, und beides bringt ein Risiko auf Ihre Seite, das später wieder beseitigt werden müsste."
+ ],
+ "És nem kezdjük el, ha nálad a hirdetés vagy egy jobb weboldal többet hozna ugyanabból a pénzből. Ezt az első beszélgetésen megmondjuk, mielőtt bármit kiszámláznánk.": [
+  "And we don't start if, for you, advertising or a better website would bring more from the same money. We tell you in the first conversation, before we invoice anything.",
+  "Und wir fangen nicht an, wenn bei Ihnen Werbung oder eine bessere Website aus demselben Geld mehr herausholen würde. Das sagen wir im ersten Gespräch, bevor wir irgendetwas in Rechnung stellen."
+ ],
+ "Kis csapat vagyunk, ezért azzal beszélsz, aki a munkát csinálja.": [
+  "We are a small team, so you talk to the person who does the work.",
+  "Wir sind ein kleines Team, deshalb sprechen Sie mit der Person, die die Arbeit macht."
+ ],
+ "Keresőoptimalizálási ügynökség": [
+  "SEO agency",
+  "SEO-Agentur"
+ ],
+ "Egy keresőoptimalizálási ügynökség akkor ér valamit, ha ugyanaz a csapat méri, írja és javítja az oldalt. Nálunk a fejlesztő és a szövegíró egy csapatban dolgozik, így a technikai javítás nem egy másik szolgáltató jegyrendszerében landol.": [
+  "An SEO agency is worth something when the same team measures, writes and fixes the site. With us the developer and the copywriter work in one team, so a technical fix doesn't end up in another provider's ticket system.",
+  "Eine SEO-Agentur ist dann etwas wert, wenn dasselbe Team die Website misst, schreibt und verbessert. Bei uns arbeiten Entwickler und Texter in einem Team, sodass eine technische Korrektur nicht im Ticketsystem eines anderen Dienstleisters landet."
+ ],
+ "Keresőoptimalizálási szakértő": [
+  "SEO specialist",
+  "SEO-Spezialist"
+ ],
+ "Nálunk a szakértő az, aki a munkát csinálja: ugyanaz méri fel az oldalt, ugyanaz javítja, és ugyanaz írja a havi riportot. Így nem vész el semmi két ember között.": [
+  "With us, the specialist is the person who does the work: the same person audits the site, fixes it and writes the monthly report. So nothing gets lost between two people.",
+  "Bei uns ist der Spezialist derjenige, der die Arbeit macht: Dieselbe Person prüft die Website, verbessert sie und schreibt den monatlichen Report. So geht zwischen zwei Personen nichts verloren."
+ ],
+ "Itt kevesebben keresnek, de aki keres, az néhány kilométerre van, és jellemzően aznap dönt. Cégprofil, szolgáltatási terület, értékelések, és olyan oldalak, amik a „hozzám közel” kérdésre válaszolnak.": [
+  "Fewer people search here, but whoever does is a few kilometres away and usually decides the same day. Business Profile, service area, reviews, and pages that answer the “near me” question.",
+  "Hier suchen weniger Menschen, aber wer sucht, ist nur wenige Kilometer entfernt und entscheidet meist noch am selben Tag. Unternehmensprofil, Einzugsgebiet, Bewertungen und Seiten, die die Frage „in meiner Nähe“ beantworten."
+ ],
+ "Webáruház-keresőoptimalizálás": [
+  "Online shop SEO",
+  "SEO für Onlineshops"
+ ],
+ "A kategória- és termékoldalakon dől el: egyedi leírás sablon helyett, tiszta szűrő-URL-ek, strukturált termékadat, és olyan belső linkelés, ami nem hagyja árván a mély oldalakat.": [
+  "It is decided on the category and product pages: unique descriptions instead of templates, clean filter URLs, structured product data, and internal linking that doesn't leave deep pages orphaned.",
+  "Entschieden wird es auf den Kategorie- und Produktseiten: eigene Beschreibungen statt Vorlagen, saubere Filter-URLs, strukturierte Produktdaten und eine interne Verlinkung, die tiefe Seiten nicht verwaisen lässt."
+ ],
+ "Helyi és országos<br><span class=\"sig\">keresőoptimalizálás</span>": [
+  "Local and national<br><span class=\"sig\">SEO</span>",
+  "Lokale und landesweite<br><span class=\"sig\">Suchmaschinenoptimierung</span>"
+ ],
+ "Az egész országban dolgozunk, online, és ügyfeleink fele budapesti. A munka mindenhol ugyanaz, a helyi keresés viszont nem.": [
+  "We work across the whole country, online, and half our clients are in Budapest. The work is the same everywhere; local search isn't.",
+  "Wir arbeiten im ganzen Land, online, und die Hälfte unserer Kunden sitzt in Budapest. Die Arbeit ist überall dieselbe, die lokale Suche nicht."
+ ],
+ "Egy vidéki szolgáltatónál a keresés jellemzően „szolgáltatás + város” vagy „a közelben”, és a találatok jó része a térképes dobozban van. Itt a Google Cégprofil, a szolgáltatási terület és az értékelések legalább annyit számítanak, mint maga a weboldal. A Rapidkertnél is ez a réteg indult be először.": [
+  "For a provider outside the capital, the search is usually “service + town” or “nearby”, and a good share of the results sit in the map box. Here the Google Business Profile, the service area and the reviews count for at least as much as the website itself. At Rapidkert, too, this was the layer that moved first.",
+  "Bei einem Anbieter außerhalb der Hauptstadt lautet die Suche meist „Leistung + Ort“ oder „in der Nähe“, und ein guter Teil der Treffer steht im Kartenbereich. Hier zählen das Google-Unternehmensprofil, das Einzugsgebiet und die Bewertungen mindestens so viel wie die Website selbst. Auch bei Rapidkert sprang diese Ebene zuerst an."
+ ],
+ "Budapesten és országos kifejezéseken ugyanarra a keresésre nagyságrenddel többen pályáznak, és a térkép ritkábban dönt. Itt a tartalom és a technikai réteg viszi a munka nagy részét: az nyer, akinek az oldala pontosabban válaszol arra, amit beírtak.": [
+  "In Budapest and on national phrases, an order of magnitude more businesses compete for the same search, and the map decides less often. Here content and the technical layer carry most of the work: the winner is whoever's page answers what was typed more precisely.",
+  "In Budapest und bei landesweiten Begriffen bewerben sich um dieselbe Suche um eine Größenordnung mehr Anbieter, und die Karte entscheidet seltener. Hier tragen Inhalt und technische Ebene den Großteil der Arbeit: Es gewinnt, wessen Seite genauer beantwortet, was eingetippt wurde."
+ ],
+ "Magyarul, angolul és németül dolgozunk.": [
+  "We work in Hungarian, English and German.",
+  "Wir arbeiten auf Ungarisch, Englisch und Deutsch."
+ ],
+ "Weboldal készítés <a class=\"tlink\" href=\"weboldal-keszites-gyor.html\">Győrben</a>, <a class=\"tlink\" href=\"weboldal-keszites-budapest.html\">Budapesten</a>, <a class=\"tlink\" href=\"weboldal-keszites-pest-megye.html\">Pest megyében</a> és <a class=\"tlink\" href=\"weboldal-keszites-szeged.html\">Szegeden</a>.": [
+  "Web design in Győr, Budapest, Pest County and Szeged.",
+  "Webdesign in Győr, Budapest, im Komitat Pest und in Szeged."
+ ],
+ "A technikai javítások hatása néhány héten belül megjelenhet, mert a Google újra bejárja az oldalt. Az érdemi elmozdulás általában 3–6 hónap alatt kezd látszani. Aki ennél gyorsabbat ígér, az vagy hirdetést árul keresőoptimalizálás néven, vagy olyan módszert használ, aminek később ára lesz.": [
+  "Technical fixes can show within a few weeks, because Google re-crawls the site. Real movement usually starts to show within 3–6 months. Anyone promising faster is either selling advertising under the name of SEO, or using a method that will cost you later.",
+  "Technische Korrekturen können sich innerhalb weniger Wochen zeigen, weil Google die Seite neu crawlt. Spürbare Bewegung zeigt sich in der Regel innerhalb von 3–6 Monaten. Wer Schnelleres verspricht, verkauft entweder Werbung unter dem Namen SEO oder nutzt eine Methode, die später ihren Preis hat."
+ ],
+ "Nem, és senki más sem tud. A helyezést a Google rangsorolása dönti el, ami folyamatosan változik. Amit vállalni tudunk, az a munka: mit mérünk, mit javítunk, mit írunk meg, és hogy erről havonta érthető riportot kapsz.": [
+  "No, and nobody else can either. Rankings are decided by Google's algorithm, which changes constantly. What we can commit to is the work: what we measure, what we fix, what we write, and a readable report on it every month.",
+  "Nein, und niemand sonst kann das. Über das Ranking entscheidet Googles Algorithmus, und der ändert sich ständig. Zusagen können wir die Arbeit: was wir messen, was wir verbessern, was wir schreiben, und dass Sie darüber jeden Monat einen verständlichen Report erhalten."
+ ],
+ "Attól függ, milyen állapotban van az oldal, és mekkora a mező, amiben versenyzel. Egy helyi szolgáltatónál lényegesen kevesebb munka kell, mint egy országos webáruháznál. A feltárás után konkrét ajánlatot kapsz arról, mit csinálunk az első hónapokban.": [
+  "It depends on the state of the site and the size of the field you compete in. A local service business needs considerably less work than a national online shop. After the discovery you get a concrete proposal for what we will do in the first months.",
+  "Das hängt vom Zustand der Website ab und davon, wie groß das Feld ist, in dem Sie antreten. Ein lokaler Dienstleister braucht deutlich weniger Arbeit als ein landesweiter Onlineshop. Nach der Analyse erhalten Sie ein konkretes Angebot dazu, was wir in den ersten Monaten tun."
+ ],
+ "Mi a különbség a keresőoptimalizálás és a Google Ads között?": [
+  "What is the difference between SEO and Google Ads?",
+  "Was ist der Unterschied zwischen SEO und Google Ads?"
+ ],
+ "A hirdetés azonnal hoz forgalmat, és akkor áll le, amikor kifogy a keret. A keresőoptimalizálás lassabban indul, de a megszerzett helyezés akkor is dolgozik, amikor nem költesz. A kettő kiegészíti egymást: a Rapidkertnél párhuzamosan futottak, és külön-külön is hoztak ajánlatkérést.": [
+  "Advertising brings traffic immediately and stops when the budget runs out. SEO starts more slowly, but a ranking you have earned keeps working when you are not spending. The two complement each other: at Rapidkert they ran in parallel, and each brought in quote requests on its own.",
+  "Werbung bringt sofort Traffic und endet, wenn das Budget aufgebraucht ist. Suchmaschinenoptimierung startet langsamer, aber ein erarbeitetes Ranking arbeitet weiter, auch wenn Sie nichts ausgeben. Beides ergänzt sich: Bei Rapidkert liefen sie parallel, und jedes brachte für sich Angebotsanfragen."
+ ],
+ "Mit tartalmaz a havidíj?": [
+  "What does the monthly fee include?",
+  "Was ist in der Monatspauschale enthalten?"
+ ],
+ "Havi riportot, technikai keresőoptimalizálást, a Google Cégprofil és a helyi keresés kezelését, a megjelenést az AI-alapú keresőkben, és a feltárásban kijelölt oldalak megírását vagy átírását. A pontos tartalmat az ajánlatban tételesen leírjuk.": [
+  "A monthly report, technical SEO, management of your Google Business Profile and local search, visibility in AI search tools, and writing or rewriting the pages identified in the discovery. The exact scope is itemised in the proposal.",
+  "Einen monatlichen Report, technische Suchmaschinenoptimierung, die Betreuung Ihres Google-Unternehmensprofils und der lokalen Suche, die Präsenz in KI-Suchmaschinen sowie das Schreiben oder Überarbeiten der Seiten, die die Analyse benennt. Den genauen Umfang führen wir im Angebot einzeln auf."
+ ],
+ "Írtok rendszeres blogcikkeket?": [
+  "Do you write regular blog posts?",
+  "Schreiben Sie regelmäßig Blogartikel?"
+ ],
+ "Alapból nem része a havidíjnak. Ha a feltárásból az jön ki, hogy nálad a tartalom hozná a legtöbbet, külön leírjuk az ajánlatban.": [
+  "Not as part of the standard monthly fee. If the discovery shows that content would bring you the most, we set it out separately in the proposal.",
+  "Standardmäßig ist das nicht Teil der Monatspauschale. Zeigt die Analyse, dass bei Ihnen Inhalte am meisten bringen würden, führen wir das im Angebot gesondert auf."
+ ],
+ "Megjelenhetek a ChatGPT ajánlásaiban?": [
+  "Can I appear in ChatGPT's recommendations?",
+  "Kann ich in den Empfehlungen von ChatGPT erscheinen?"
+ ],
+ "Ezen is dolgozunk: az AI-alapú keresők a weboldaladból, a Cégprofilodból és a rólad szóló nyilvános információkból dolgoznak. Ezeket tesszük rendbe és egységessé. Megjelenést garantálni itt sem lehet.": [
+  "We work on that too: AI search tools draw on your website, your Business Profile and the public information about you. We put those in order and make them consistent. Appearing there cannot be guaranteed either.",
+  "Auch daran arbeiten wir: KI-Suchmaschinen schöpfen aus Ihrer Website, Ihrem Unternehmensprofil und den öffentlichen Informationen über Sie. Diese bringen wir in Ordnung und machen sie einheitlich. Garantieren lässt sich eine Erwähnung auch hier nicht."
+ ],
+ "Keresőoptimalizáló cég vagy egyéni tanácsadó kell?": [
+  "Do I need an SEO company or an independent consultant?",
+  "Brauche ich eine SEO-Agentur oder einen freien Berater?"
+ ],
+ "Egy tanácsadó akkor elég, ha egy konkrét kérdésre kell válasz, és van, aki a javaslatokat végrehajtja. Ha nincs, egy cég a jobb választás, ahol ugyanaz a csapat méri, írja és javítja az oldalt.": [
+  "A consultant is enough when you need an answer to one specific question and someone to carry out the advice. If you don't have that person, a company is the better choice, where the same team measures, writes and fixes the site.",
+  "Ein Berater genügt, wenn Sie eine Antwort auf eine konkrete Frage brauchen und jemand die Empfehlungen umsetzt. Wenn nicht, ist eine Agentur die bessere Wahl, bei der dasselbe Team die Website misst, schreibt und verbessert."
+ ],
+ "Nem. Amit megírtunk és megjavítottunk, az az oldaladon marad, és tovább dolgozik. A helyezések idővel romolhatnak, ha senki nem foglalkozik velük, de nem tűnnek el egyik napról a másikra, és semmit nem kapcsolunk le.": [
+  "No. What we wrote and fixed stays on your site and keeps working. Rankings can slip over time if nobody looks after them, but they don't vanish overnight, and we switch nothing off.",
+  "Nein. Was wir geschrieben und verbessert haben, bleibt auf Ihrer Seite und arbeitet weiter. Rankings können mit der Zeit nachlassen, wenn sich niemand darum kümmert, aber sie verschwinden nicht über Nacht, und wir schalten nichts ab."
+ ],
+ "Mi az a keresőoptimalizálás?": [
+  "What is SEO?",
+  "Was ist SEO?"
+ ],
+ "Mit csinál pontosan a keresőoptimalizálás, és mikor éri meg.": [
+  "What SEO actually does, and when it pays off.",
+  "Was Suchmaschinenoptimierung genau leistet und wann sie sich lohnt."
+ ],
+ "Google Cégprofil beállítása": [
+  "Setting up a Google Business Profile",
+  "Google-Unternehmensprofil einrichten"
+ ],
+ "Hogyan kerülj be a környékbeli térképes találatok közé.": [
+  "How to get into the local map results.",
+  "Wie Sie in die lokalen Kartentreffer kommen."
+ ],
+ "Amikor a keresőoptimalizálás már az első verzióban benne van.": [
+  "When SEO is built into the very first version.",
+  "Wenn Suchmaschinenoptimierung schon in der ersten Version steckt."
+ ],
+ "Írd le, mivel foglalkozol, és hol szeretnél megjelenni. Egy ingyenes igényfelmérő hívásban megnézzük, hol tartasz most a keresésben.": [
+  "Tell us what you do and where you would like to appear. In a free discovery call we look at where you stand in search today.",
+  "Schreiben Sie uns, womit Sie sich beschäftigen und wo Sie erscheinen möchten. In einem kostenlosen Erstgespräch sehen wir uns an, wo Sie in der Suche heute stehen."
  ]
 }
