@@ -642,6 +642,12 @@
         // the button is a flex item, and loose letters would each become one,
         // spread apart by the button's gap.
         var wrap = doc.createElement('span'), kids = [];
+        // The run's own width, kerning included: letters in boxes of their
+        // own lose the pairs' kerning ("Ké", "aj"), which moved a button by a
+        // pixel in WebKit. The wrapper is held to this width below.
+        var range = doc.createRange();
+        range.selectNodeContents(text);
+        var runWidth = range.getBoundingClientRect().width;
         Array.from(text.data).forEach(function (ch) {
           var kid;
           // A space stays text: an inline-block holding only a space has
@@ -651,12 +657,16 @@
           kids.push(kid);
           wrap.appendChild(kid);
         });
-        parts.push({ text: text, parent: text.parentNode, wrap: wrap, kids: kids });
+        parts.push({ text: text, parent: text.parentNode, wrap: wrap, kids: kids, width: runWidth });
         text.parentNode.replaceChild(wrap, text);
       });
       // Each letter's own width, read once, before any of them changes face.
       var widths = letters.map(function (l) { return l.getBoundingClientRect().width; });
       letters.forEach(function (l, i) { l.style.width = widths[i] + 'px'; });
+      parts.forEach(function (p) {
+        var dw = p.width - p.wrap.getBoundingClientRect().width;
+        if (Math.abs(dw) > 0.01) p.wrap.style.marginRight = dw + 'px';
+      });
       var n = letters.length, dur = Math.max(MIN, Math.min(MAX, n * STEP));
       var lit = [], t0 = 0, cur = -1;
       var restore = function () {
