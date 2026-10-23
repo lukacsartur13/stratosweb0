@@ -204,8 +204,14 @@ test('every own-site URL is on the one origin this build resolved', async () => 
   );
 
   for (const doc of docs) {
+    // A case study's CreativeWork names the client it is `about`, with the
+    // client's own address — off-site by definition, and allowed only where the
+    // page itself links to that address.
+    const clients = new Set(nodesOfType(doc, 'CreativeWork')
+      .map((w) => w.about?.url as string | undefined)
+      .filter((u): u is string => !!u && doc.html.includes(`href="${u}`)));
     for (const value of strings(doc.graph)) {
-      if (!/^https?:\/\//i.test(value) || offSite.has(value)) continue;
+      if (!/^https?:\/\//i.test(value) || offSite.has(value) || clients.has(value)) continue;
       expect(value.startsWith(`${origin}/`), `${doc.file}: ${value} is not on ${origin}`).toBe(true);
     }
   }
@@ -286,7 +292,7 @@ test('nothing claims a rating, a review, a price or an award', () => {
   const forbidden = [
     'aggregateRating', 'review', 'reviewRating', 'ratingValue', 'reviewCount',
     'offers', 'price', 'priceRange', 'priceSpecification',
-    'award', 'awards', 'numberOfEmployees', 'foundingDate', 'founder',
+    'awards', 'numberOfEmployees', 'foundingDate', 'founder',
     'geo', 'openingHours', 'openingHoursSpecification',
     'vatID', 'duns', 'leiCode', 'naics', 'isicV4',
     'employee', 'member', 'potentialAction',
@@ -303,10 +309,21 @@ test('nothing claims a rating, a review, a price or an award', () => {
   // `address`: /impresszum states the operator ("Lukács Artúr e.v.") and the
   // tax number, as Hungarian law requires. `vatID` stays — that is the EU
   // number, which the site does not state.
+  //
+  // `award` came off it on 2026-10-23 (the owner's copy pack), and only in one
+  // shape: on the case study's CreativeWork — the work won it, not the company
+  // — and only where the page states the award in its own visible text, which
+  // the Rapidkert page does (Awwwards Honorable Mention, 2026-09-24).
   for (const doc of docs) {
     const serialised = JSON.stringify(doc.graph);
     for (const key of forbidden) {
       expect(serialised.includes(`"${key}"`), `${doc.file} claims ${key}`).toBe(false);
+    }
+    for (const node of doc.graph) {
+      if (!('award' in node)) continue;
+      expect(node['@type'], `${doc.file}: an award belongs to the work`).toBe('CreativeWork');
+      const named = String(node.award).replace(/\s*\(.*\)\s*$/, '');
+      expect(doc.html, `${doc.file}: the award is stated on the page`).toContain(named);
     }
   }
 });
@@ -381,10 +398,11 @@ test('a Service node describes a service and offers no price', () => {
       expect(service, `${doc.file}`).not.toHaveProperty('offers');
     }
   }
-  // Six service pages in three languages, plus the four Hungarian-only local
-  // landing pages (HU_ONLY in _build/build.py), whose Service names its region,
-  // plus the Hungarian-only "keresőoptimalizált weboldal készítés" page.
-  expect(services, 'six service pages in three languages + four local pages + seo-web').toBe(23);
+  // Seven service pages in three languages (the 3D page joined on
+  // 2026-10-23), plus the four Hungarian-only local landing pages (HU_ONLY in
+  // _build/build.py), whose Service names its region, plus the Hungarian-only
+  // "keresőoptimalizált weboldal készítés" page.
+  expect(services, 'seven service pages in three languages + four local pages + seo-web').toBe(26);
 });
 
 test('sameAs lists only profiles the site itself links to', () => {
@@ -426,5 +444,7 @@ test('the breadcrumb trail matches the one the page renders', () => {
   // with the Hungarian-only seo-web page, 90 with the GoDataFusion case study
   // in three languages, 93 with the booking page (Kapcsolat / Időpontfoglalás),
   // 96 with the HoneyGarden case study and 99 with O2 Tanácsadó, each in three.
-  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(99);
+  // 105 on 2026-10-23: the 3D page, and the questionnaire, which now renders
+  // „Főoldal / Ajánlatkérés” (copy pack, G3) — every route but the homepage.
+  expect(withTrail, 'every route but the homepage renders a trail').toBe(105);
 });

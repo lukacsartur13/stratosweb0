@@ -169,7 +169,9 @@ test.describe('homepage, without JavaScript', () => {
   test('every scene, every word and every link is in the HTML', async ({ page }) => {
     await page.goto('/index.html');
     for (const scene of SCENES) await expect(page.locator(`main ${scene}`), scene).toHaveCount(1);
-    await expect(page.locator('main h2')).toHaveCount(7);
+    // 11 since the copy pack of 2026-10-23 (3D, monthly SEO, who it is for,
+    // objections, FAQ, reading list joined the scenes).
+    await expect(page.locator('main h2')).toHaveCount(11);
     // The proof, as the case study states it.
     await expect(page.locator('.take')).toContainText('~110M Ft');
     await expect(page.locator('.take')).toContainText('Ajánlatkérési érték organikus keresésből');
@@ -188,10 +190,12 @@ test.describe('homepage, without JavaScript', () => {
 
   test('the SME pricing argument is not on the homepage', async ({ page }) => {
     // It lives on /kkv, which the homepage links to; the homepage argues for
-    // the conversation, not for a fee model.
+    // the conversation, not for a fee model. „Havidíjas keresőoptimalizálás”
+    // is a SERVICE the homepage names since the copy pack of 2026-10-23, so
+    // „havidíj” on its own is no longer the tell; the fee-model words are.
     await page.goto('/index.html');
     const text = (await page.locator('main').innerText()).toLowerCase();
-    for (const phrase of ['projektdíj', 'mennyibe kerül', 'havidíj', 'havi díj']) {
+    for (const phrase of ['projektdíj', 'mennyibe kerül', 'havi díj']) {
       expect(text, phrase).not.toContain(phrase);
     }
   });

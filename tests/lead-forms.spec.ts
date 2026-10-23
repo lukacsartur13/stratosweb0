@@ -101,7 +101,7 @@ test.describe('contact form', () => {
   test('a valid submission reaches /api/lead with every field mapped', async ({ page }) => {
     const sent = await interceptLead(page);
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
 
     await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
     expect(sent).toHaveLength(1);
@@ -130,7 +130,7 @@ test.describe('contact form', () => {
   test('shows the success state and clears the form', async ({ page }) => {
     await interceptLead(page);
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
 
     await expect(status(page)).toHaveText(/Köszönjük/, { timeout: 15_000 });
     await expect(page.locator('#em')).toHaveValue('');
@@ -142,7 +142,7 @@ test.describe('contact form', () => {
   test('shows a submitting state while the request is in flight', async ({ page }) => {
     await interceptLead(page, { delayMs: 1500 });
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
 
     await expect(status(page)).toHaveAttribute('data-state', 'submitting', { timeout: 15_000 });
     await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
@@ -154,11 +154,11 @@ test.describe('contact form', () => {
       body: { ok: false, code: 'RATE_LIMITED', message: 'Túl sok beküldés egymás után. Kérlek, várj egy percet.' },
     });
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
 
     await expect(status(page)).toHaveAttribute('data-state', 'limited', { timeout: 15_000 });
     await expect(status(page)).toHaveText(/várj egy percet/i);
-    await expect(page.getByRole('button', { name: 'Küldés' })).toBeEnabled();
+    await expect(page.getByRole('button', { name: 'Elküldöm' })).toBeEnabled();
   });
 
   test('shows a generic server-error state on 500', async ({ page }) => {
@@ -167,12 +167,12 @@ test.describe('contact form', () => {
       body: { ok: false, code: 'STORE_FAILED', message: 'We could not save that.' },
     });
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
 
     await expect(status(page)).toHaveAttribute('data-state', 'error', { timeout: 15_000 });
     // Nothing internal leaks into the page.
     await expect(status(page)).not.toHaveText(/postgres|supabase|constraint/i);
-    await expect(page.getByRole('button', { name: 'Küldés' })).toBeEnabled();
+    await expect(page.getByRole('button', { name: 'Elküldöm' })).toBeEnabled();
   });
 
   test("surfaces the server's own validation message on 422", async ({ page }) => {
@@ -186,7 +186,7 @@ test.describe('contact form', () => {
       },
     });
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
 
     await expect(status(page)).toHaveAttribute('data-state', 'invalid', { timeout: 15_000 });
     await expect(status(page)).toHaveText(/does not look right/i);
@@ -227,7 +227,7 @@ test.describe('contact form', () => {
 
   test('an empty form never reaches the network', async ({ page }) => {
     const sent = await interceptLead(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
     await page.waitForTimeout(4000);
     expect(sent).toHaveLength(0);
   });
@@ -236,7 +236,7 @@ test.describe('contact form', () => {
     const sent = await interceptLead(page);
     await fillContact(page);
     await page.fill('#hp-contact', 'https://spam.example');
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
 
     await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
     // The page must not decide this locally — the endpoint answers a filled
@@ -251,7 +251,9 @@ test.describe('contact form', () => {
     const sent = await interceptLead(page, { delayMs: 2500 });
     await fillContact(page);
 
-    const button = page.getByRole('button', { name: 'Küldés' });
+    // By its role in the form, not its label: the label becomes „Küldés…” the
+    // moment the first click lands, and the second click must still find it.
+    const button = page.locator('form[data-lead="contact"] button[type="submit"]');
     await button.click();
     await button.click({ force: true, noWaitAfter: true }).catch(() => {});
 
@@ -262,7 +264,7 @@ test.describe('contact form', () => {
   test('Enter in a text field cannot slip a second request past the disabled button', async ({ page }) => {
     const sent = await interceptLead(page, { delayMs: 2500 });
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
 
     // A disabled submit button does not stop an implicit submit from a text
     // input, so the guard has to be on the form, not on the button.
@@ -278,13 +280,13 @@ test.describe('contact form', () => {
   test('a network failure shows the failure state and keeps everything typed', async ({ page }) => {
     await page.route('**/api/lead', (route) => route.abort('failed'));
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
 
     await expect(status(page)).toHaveAttribute('data-state', 'error', { timeout: 15_000 });
     // Nothing the visitor typed may be lost by a failure they did not cause.
     await expect(page.locator('#em')).toHaveValue('janos@example.com');
     await expect(page.locator('#mj')).toHaveValue('Szeretnék árajánlatot kérni egy új weboldalra.');
-    await expect(page.getByRole('button', { name: 'Küldés' })).toBeEnabled();
+    await expect(page.getByRole('button', { name: 'Elküldöm' })).toBeEnabled();
   });
 
   test('a retry after a failure re-sends the same submission id', async ({ page }) => {
@@ -302,10 +304,10 @@ test.describe('contact form', () => {
     });
 
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
     await expect(status(page)).toHaveAttribute('data-state', 'error', { timeout: 15_000 });
 
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
     await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
 
     expect(sent).toHaveLength(2);
@@ -319,7 +321,7 @@ test.describe('contact form', () => {
   test('a fresh enquiry after a success gets a new submission id', async ({ page }) => {
     const sent = await interceptLead(page);
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
     await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
 
     // The button stays disabled after a success, so a second enquiry means a
@@ -329,7 +331,7 @@ test.describe('contact form', () => {
       form.querySelectorAll('button').forEach((b) => { b.disabled = false; });
     });
     await fillContact(page);
-    await page.getByRole('button', { name: /Elküldve|Küldés/ }).click();
+    await page.getByRole('button', { name: /Elküldve|Elküldöm/ }).click();
     await expect.poll(() => sent.length, { timeout: 15_000 }).toBe(2);
 
     expect(sent[1].submissionId).not.toBe(sent[0].submissionId);
@@ -393,7 +395,7 @@ test.describe('the minimum fill wait', () => {
 
     const sent = await interceptLead(page);
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
     await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
     const realElapsed = Date.now() - readyAt;
 
@@ -423,7 +425,7 @@ test.describe('the minimum fill wait', () => {
     // restoring a boundary-exact aim.
     const sent = await interceptLead(page);
     await fillContact(page);
-    await page.getByRole('button', { name: 'Küldés' }).click();
+    await page.getByRole('button', { name: 'Elküldöm' }).click();
     await expect(status(page)).toHaveAttribute('data-state', 'success', { timeout: 15_000 });
 
     expect(sent).toHaveLength(1);
@@ -536,7 +538,7 @@ test.describe('questionnaire', () => {
     }
 
     await expect(page.locator('.quiz__done[data-state="success"]')).toBeVisible({ timeout: 20_000 });
-    await expect(page.getByText(/Köszönjük a kitöltést/)).toBeVisible();
+    await expect(page.getByText(/Köszönjük, megkaptuk/)).toBeVisible();
 
     expect(sent).toHaveLength(1);
     const envelope = sent[0];
@@ -553,7 +555,7 @@ test.describe('questionnaire', () => {
     expect(envelope.fields.answers.length).toBeGreaterThan(5);
     expect(envelope.fields.answers[0]).toHaveProperty('q');
     expect(envelope.fields.answers[0]).toHaveProperty('a');
-    expect(envelope.fields.answers.map((x: any) => x.q)).toContain('Mi a vállalkozás neve?');
+    expect(envelope.fields.answers.map((x: any) => x.q)).toContain('Mi a vállalkozásod neve?');
   });
 
   test('shows the rate-limited screen when the endpoint says 429', async ({ page }) => {

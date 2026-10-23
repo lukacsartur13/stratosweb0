@@ -419,9 +419,12 @@ test.describe('the taxonomy is actually emitted', () => {
 
     await page.click('#start');
     await page.waitForTimeout(250);
+    // Step 1 asks what the visitor needs (a check question), step 2 the name.
+    await page.locator('.opt').first().click();
+    await page.click('#next');
     await page.fill('#inp', 'Teszt Kft');
     await page.click('#next');
-    await settle(events, 4, page);
+    await settle(events, 5, page);
 
     expect(names(events)).toContain('questionnaire_start');
 
@@ -429,7 +432,8 @@ test.describe('the taxonomy is actually emitted', () => {
     expect(steps.length).toBeGreaterThanOrEqual(2);
     expect(steps[0].step_index).toBe(1);
     // step_key is a field name, never an answer.
-    expect(steps[0].step_key).toBe('cegnev');
+    expect(steps[0].step_key).toBe('szolgaltatas');
+    expect(steps[1].step_key).toBe('cegnev');
     expect(JSON.stringify(events)).not.toContain('Teszt Kft');
   });
 });
