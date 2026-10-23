@@ -424,6 +424,7 @@ test('the breadcrumb trail matches the one the page renders', () => {
   }
   // 81 before the five Hungarian-only local pages (hub + four regions), 87
   // with the Hungarian-only seo-web page, 90 with the GoDataFusion case study
-  // in three languages, 93 with the booking page (Kapcsolat / Időpontfoglalás).
-  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(93);
+  // in three languages, 93 with the booking page (Kapcsolat / Időpontfoglalás),
+  // 96 with the HoneyGarden case study and 99 with O2 Tanácsadó, each in three.
+  expect(withTrail, 'the questionnaire is the only route with no trail').toBe(99);
 });
