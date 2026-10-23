@@ -1,116 +1,124 @@
 // Kliens oldali wizard, beküldés a POST /api/lead végpontra.
-// Szegmentálás a 2. kérdésnél: kis-/középvállalkozás vs. nagyvállalat — a két ág
+// Szegmentálás a 2. kérdésnél: kis-/középvállalkozás vs. ipari/B2B és nagyvállalat — a két ág
 // teljesen külön kérdéssort kap, a cond() függvények kapcsolják a láthatóságot.
 const ans = id => { const i = Q.findIndex(q=>q.id===id); return answers[i] || {}; };
-const NAGY = 'Nagyvállalat / multinacionális cég';
+const NAGY = 'Ipari / B2B cég vagy nagyvállalat';
 const isNagy = () => ans('szegmens').value === NAGY;
 const kkv = () => !isNagy();
 
 const Q = [
   // ===== KÖZÖS: alapadatok =====
-  {t:'text',    q:'Mi a vállalkozás neve?', req:1, min:2, id:'cegnev'},
-  {t:'radio',   q:'Melyik jellemzi leginkább a vállalkozást?', req:1, id:'szegmens',
+  // 2026-10-23 (copy pack): what the visitor wants comes first, 3D and
+  // keresőoptimalizálás included. Not a contract field — it travels in the
+  // answers transcript, which is the lead's message.
+  {t:'check',   q:'Miben segíthetünk? (Több is jelölhető)', req:1, id:'szolgaltatas',
+    o:['Új weboldal vagy a meglévő megújítása','3D weboldal vagy termékkonfigurátor','Webshop','Keresőoptimalizálás','Hirdetéskezelés','Arculat és logó']},
+  {t:'text',    q:'Mi a vállalkozásod neve?', req:1, min:2, id:'cegnev'},
+  {t:'radio',   q:'Melyik jellemzi leginkább a vállalkozásodat?', req:1, id:'szegmens',
     o:['Egyéni vállalkozó / kisvállalkozás','Középvállalkozás',NAGY]},
   {t:'text',    q:'Ki tölti ki a kérdőívet? (név, pozíció)', min:2, id:'kitolto'},
-  {t:'tel',     q:'Telefonszám:', req:1, id:'telefon'},
-  {t:'email',   q:'Email cím:', req:1, id:'email'},
+  {t:'tel',     q:'Telefonszám', req:1, id:'telefon'},
+  {t:'email',   q:'E-mail-cím', req:1, id:'email'},
 
   // ===== KKV ÁG =====
-  {t:'textarea',q:'Mivel foglalkozik a céged? (rövid bemutatás)', req:1, cond:kkv},
-  {t:'text',    q:'Van jelenlegi weboldalatok? Ha igen, mi a címe?', id:'weboldal', cond:kkv},
+  {t:'textarea',q:'Mivel foglalkozik a vállalkozásod? (röviden)', req:1, cond:kkv},
+  {t:'text',    q:'Van most weboldalad? Ha igen, mi a címe?', id:'weboldal', cond:kkv},
   {t:'radio',   q:'Hogyan találtál ránk?', other:1, cond:kkv,
-    o:['Google keresés','Facebook / Instagram','TikTok','Ismerős ajánlása']},
+    o:['Google-keresés','Facebook / Instagram','TikTok','Ismerős ajánlása']},
   {t:'check',   q:'Mi a weboldal célja? (Több is jelölhető)', req:1, other:1, cond:kkv,
-    o:['Több ügyfél szerzése','Online értékesítés (webshop)','Időpontfoglalás','Márkaépítés']},
+    o:['Több ügyfél','Online értékesítés (webshop)','Időpontfoglalás','Márkaépítés']},
   {t:'radio',   q:'Kik a fő ügyfeleid?', req:1, cond:kkv,
-    o:['Lakossági (B2C)','Céges (B2B)','Mindkettő']},
-  {t:'radio',   q:'Egynyelvű vagy többnyelvű weboldalra van szükséged?', other:1, cond:kkv,
-    hint:'Ha több nyelv kell, kérlek sorold fel őket az egyéb részben.',
+    o:['Magánszemélyek','Cégek','Mindkettő']},
+  {t:'radio',   q:'Egynyelvű vagy többnyelvű weboldal kell?', other:1, cond:kkv,
+    hint:'Ha több nyelv kell, sorold fel őket az egyéb mezőben.',
     o:['Egynyelvű','Többnyelvű']},
-  {t:'textarea',q:'Sorold fel a szolgáltatásaidat / termékeidet, és jelöld meg, melyik a legfontosabb!', req:1, cond:kkv,
+  {t:'textarea',q:'Sorold fel a szolgáltatásaidat vagy termékeidet, és jelöld, melyik a legfontosabb.', req:1, cond:kkv,
     hint:'Ha vannak szezonális vagy akciós ajánlataid, azokat is írd ide.'},
-  {t:'textarea',q:'Milyen menüpontokat / aloldalakat képzelsz el?', cond:kkv,
-    hint:'Például: Főoldal, Szolgáltatások, Rólunk, Árak, Kapcsolat. Ha nincs elképzelésed, hagyd üresen — javaslunk mi.'},
+  {t:'textarea',q:'Milyen menüpontokat, aloldalakat képzelsz el?', cond:kkv,
+    hint:'Például: Főoldal, Szolgáltatások, Rólunk, Árak, Kapcsolat. Ha nincs elképzelésed, hagyd üresen, javaslunk mi.'},
   {t:'check',   q:'Milyen funkciók kellenek az oldalra?', req:1, other:1, id:'funkciok', cond:kkv,
-    o:['Időpontfoglaló rendszer','Webshop','Kapcsolatfelvételi űrlap','Chat / Messenger / WhatsApp','Blog','Hírlevél feliratkozás','Automatikus ajánlatkérés','CRM','Fizetési rendszer','Hirdetéskövetés (Meta Pixel, Google Ads)']},
-  {t:'textarea',q:'Webshop részletek: kb. hány termékkel indulnátok, kell-e szállítási integráció (pl. Foxpost, GLS), és van-e preferált fizetési szolgáltató (pl. SimplePay, Barion, Stripe)?',
+    o:['Időpontfoglalás','Webshop','Kapcsolatfelvételi űrlap','Chat / Messenger / WhatsApp','Blog','Hírlevél-feliratkozás','Ajánlatkérő űrlap','Online fizetés','3D termékbemutató vagy konfigurátor','Hirdetésmérés (Meta Pixel, Google Ads)']},
+  {t:'textarea',q:'Webshop részletei: körülbelül hány termékkel indulnál, kell-e szállítási kapcsolat (például Foxpost, GLS), és van-e kedvenc fizetési szolgáltatód (például SimplePay, Barion, Stripe)?',
     cond:()=> kkv() && (ans('funkciok').value||[]).includes('Webshop')},
-  {t:'radio',   q:'Van kész logód / arculatod?', req:1, cond:kkv,
-    o:['Van logó és teljes arculat (színek, betűtípusok, brandbook)','Csak logó van','Nincs, arculattervezésre is szükség van']},
-  {t:'radio',   q:'Van saját domain és tárhely?', other:1, cond:kkv,
-    hint:'A domain a weboldal címe (pl. cegnev.hu). Ha tudod, az egyéb mezőbe írd be, kinél van regisztrálva.',
+  {t:'radio',   q:'Van kész logód, arculatod?', req:1, cond:kkv,
+    o:['Van logó és teljes arculat (színek, betűtípusok, arculati kézikönyv)','Csak logó van','Nincs, arculattervezés is kell']},
+  {t:'radio',   q:'Van saját domained és tárhelyed?', other:1, cond:kkv,
+    hint:'A domain a weboldal címe (például cegnev.hu). Ha tudod, az egyéb mezőbe írd be, kinél van regisztrálva.',
     o:['Van, és hozzáférek','Van, de nem én kezelem','Nincs még']},
   {t:'radio',   q:'Ki adja a tartalmat (szövegek, képek)?', req:1, cond:kkv,
     o:['Mindent mi adunk','Részben megvan, kell segítség','Teljes szövegírást és képanyagot kérünk']},
-  {t:'radio',   q:'Szeretnéd később saját kezűleg szerkeszteni az oldalt?', cond:kkv,
-    o:['Igen, kell szerkeszthetőség és betanítás','Nem, a módosításokat rátok bíznám','Még nem tudom']},
-  {t:'textarea',q:'Hosszabb leírás a vállalkozásról a szövegezéshez', cond:kkv,
-    hint:'Opcionális — ha van meglévő bemutatkozó anyagod (weboldal, Facebook-oldal, prospektus), elég belinkelned.'},
+  {t:'radio',   q:'Szeretnéd később magad szerkeszteni az oldalt?', cond:kkv,
+    o:['Igen, szeretném magam szerkeszteni','Nem, a módosításokat rátok bíznám','Még nem tudom']},
+  {t:'textarea',q:'Hosszabb leírás a vállalkozásodról a szövegíráshoz', cond:kkv,
+    hint:'Nem kötelező. Ha van meglévő bemutatkozó anyagod (weboldal, Facebook-oldal, prospektus), elég belinkelned.'},
   {t:'radio',   q:'Milyen stílus tetszik leginkább?', req:1, other:1, cond:kkv,
-    o:['Letisztult, minimal','Modern, dinamikus','Prémium, elegáns','Kreatív, merész']},
-  {t:'radio',   q:'Formavilág:', req:1, cond:kkv,
-    o:['Lekerekített elemek (rounded, barátságos)','Éles, kocka-szerű, strukturált elemek (komolyabb, tech jelleg)','Vegyes']},
-  {t:'radio',   q:'Színek:', req:1, other:1, cond:kkv,
-    hint:'Ha van konkrét színpaletta, az egyéb mezőbe várjuk a színkódokat! (pl: ABCD25)',
-    o:['Világos (fehér, bézs, pasztell)','Sötét (fekete, sötétszürke, deep tones)','Márka színek dominanciája']},
+    o:['Letisztult, minimalista','Modern, dinamikus','Prémium, elegáns','Kreatív, merész']},
+  {t:'radio',   q:'Formavilág', req:1, cond:kkv,
+    o:['Lekerekített, barátságos elemek','Éles, szögletes, strukturált elemek (komolyabb, technikai jelleg)','Vegyes']},
+  {t:'radio',   q:'Színek', req:1, other:1, cond:kkv,
+    hint:'Ha van konkrét színpalettád, az egyéb mezőbe írd a színkódokat (például ABCD25).',
+    o:['Világos (fehér, bézs, pasztell)','Sötét (fekete, sötétszürke, mély tónusok)','A márkaszínek dominálnak']},
   {t:'radio',   q:'Mennyire legyen látványos az oldal?', req:1, cond:kkv,
-    o:['Letisztult és gyors — a funkció a lényeg','Modern, finom animációkkal','Látványos „wow” élmény, scroll-animációkkal']},
+    o:['Letisztult és gyors, a funkció a lényeg','Modern, finom animációkkal','Látványos élmény, görgetésre induló animációkkal, akár 3D-vel']},
   {t:'textarea',q:'Van olyan weboldal, ami tetszik? És olyan, ami kifejezetten nem? (linkek)', cond:kkv,
     hint:'A negatív példa legalább annyit segít, mint a pozitív.'},
   {t:'textarea',q:'Kik a fő versenytársaid, és miben vagy más, mint ők?', cond:kkv},
-  {t:'radio',   q:'Futtattok jelenleg hirdetéseket?', req:1, other:1, cond:kkv,
-    hint:'Ha igen, kérlek a platformot részletezd az egyéb mezőben.',
+  {t:'radio',   q:'Futtatsz most hirdetéseket?', req:1, other:1, cond:kkv,
+    hint:'Ha igen, az egyéb mezőben írd meg, melyik platformon.',
     o:['Igen','Nem']},
-  {t:'text',    q:'Közösségi média oldalaitok linkjei:', cond:kkv,
-    hint:'Facebook, Instagram, TikTok, LinkedIn — ami van.'},
+  {t:'text',    q:'A közösségimédia-oldalaid linkjei', cond:kkv,
+    hint:'Facebook, Instagram, TikTok, LinkedIn, ami van.'},
   {t:'radio',   q:'Mikorra kell elkészülnie a weboldalnak?', req:1, other:1, id:'hatarido', cond:kkv,
     o:['1 héten belül','1 hónapon belül','Pár hónapon belül']},
   // The monthly model is withdrawn (owner, 2026-10-07): projects are quoted
   // as a one-off fee, so there is no payment-model question any more.
-  {t:'radio',   q:'Van tervezett költségkeret?', req:1, other:1, id:'koltsegkeret',
+  // The forint bands are the visitor's budget, not Stratos prices. Whether they
+  // stay is an open point in the 2026-10-23 copy pack; until it is decided the
+  // bands are unchanged.
+  {t:'radio',   q:'Van tervezett költségkereted?', req:1, other:1, id:'koltsegkeret',
     cond:kkv,
-    o:['300 000 Ft – 800 000 Ft','800 000 Ft – 1 500 000 Ft','1 500 000 Ft – 3 000 000 Ft','3 000 000 Ft – 5 000 000 Ft','Még nincs, ajánlat alapján döntök']},
+    o:['300 000 Ft – 800 000 Ft','800 000 Ft – 1 500 000 Ft','1 500 000 Ft – 3 000 000 Ft','3 000 000 Ft – 5 000 000 Ft','Még nincs, az ajánlat alapján döntök']},
 
-  // ===== NAGYVÁLLALATI ÁG =====
-  {t:'textarea',q:'Mivel foglalkozik a cég, és melyik részleg kezeli ezt a projektet?', req:1, cond:isNagy,
-    hint:'Például: marketing, IT, beszerzés, ügyvezetés.'},
+  // ===== IPARI / B2B ÉS NAGYVÁLLALATI ÁG =====
+  // (A rendszerintegrációs kérdés 2026-10-23-án kikerült: egyedi üzleti
+  // rendszereket nem kommunikálunk.)
+  {t:'textarea',q:'Mivel foglalkozik a cég, és melyik részleg viszi ezt a projektet?', req:1, cond:isNagy,
+    hint:'Például marketing, IT, beszerzés, ügyvezetés.'},
   {t:'radio',   q:'Mi a projekt tárgya?', req:1, other:1, cond:isNagy,
-    o:['Új vállalati weboldal','Meglévő weboldal újratervezése','E-commerce platform','Belső portál / webalkalmazás','Kampány landing page-ek']},
-  {t:'text',    q:'Jelenlegi weboldal(ak) címe:', id:'weboldal_nagy', cond:isNagy},
-  {t:'textarea',q:'Mi a projekt üzleti célja, és milyen mérőszámok alapján lesz sikeres?', req:1, cond:isNagy,
-    hint:'Például: lead-generálás növelése, nemzetközi piacra lépés, munkáltatói márka erősítése, konverziós ráta.'},
-  {t:'check',   q:'Milyen rendszerekkel kell integrálni?', other:1, cond:isNagy,
-    o:['CRM (pl. Salesforce, HubSpot)','ERP (pl. SAP)','Marketing automatizáció / hírlevél','SSO / címtár (pl. Azure AD)','Egyedi belső rendszer / API','Analitika / BI','Nincs integrációs igény']},
-  {t:'radio',   q:'Van belső IT / fejlesztői csapat, akivel együtt dolgoznánk?', req:1, cond:isNagy,
+    o:['Új vállalati weboldal','Meglévő weboldal újratervezése','3D termékbemutató vagy konfigurátor','Webshop','Kampány-céloldalak']},
+  {t:'text',    q:'A jelenlegi weboldal(ak) címe', id:'weboldal_nagy', cond:isNagy},
+  {t:'textarea',q:'Mi a projekt üzleti célja, és miből látjátok majd, hogy sikeres?', req:1, cond:isNagy,
+    hint:'Például több ajánlatkérés, nemzetközi piacra lépés, munkáltatói márka erősítése, több látogatóból lesz érdeklődő.'},
+  {t:'radio',   q:'Van belső IT- vagy fejlesztőcsapatotok, akivel együtt dolgoznánk?', req:1, cond:isNagy,
     o:['Igen, van belső csapat','Nincs, teljes kivitelezést kérünk','Külső partner kezeli a rendszereinket']},
-  {t:'radio',   q:'Rendelkezésre áll arculati kézikönyv (brand guidelines)?', req:1, cond:isNagy,
-    o:['Igen, teljes körű','Részben (logó, alapszínek)','Nincs, arculati munkát is kérünk']},
+  {t:'radio',   q:'Van arculati kézikönyvetek?', req:1, cond:isNagy,
+    o:['Igen, teljes','Részben (logó, alapszínek)','Nincs, arculattervezést is kérünk']},
   {t:'text',    q:'Hány nyelven és mely piacokon kell megjelennie az oldalnak?', req:1, cond:isNagy},
   {t:'check',   q:'Vannak megfelelőségi vagy biztonsági követelmények?', other:1, cond:isNagy,
-    o:['GDPR / adatkezelési előírások','Akadálymentesítés (WCAG)','Adattárolás helye (EU szerver)','Belső biztonsági audit / ISO','Még egyeztetés alatt']},
-  {t:'radio',   q:'Ki szállítja a tartalmat (szövegek, képek, videók)?', req:1, cond:isNagy,
-    o:['A marketingosztályunk','Részben, kell külső támogatás','Teljes tartalomgyártást kérünk']},
-  {t:'textarea',q:'Hogyan zajlik a beszerzési és döntési folyamat?', req:1, cond:isNagy,
-    hint:'Például: tender / több ajánlat bekérése, jóváhagyási körök száma, kik a döntéshozók, van-e ajánlattételi határidő.'},
-  {t:'radio',   q:'Szükséges titoktartási megállapodás (NDA) az egyeztetésekhez?', cond:isNagy,
+    o:['GDPR, adatkezelési előírások','Akadálymentesség (WCAG)','Adattárolás helye (EU-s szerver)','Belső biztonsági audit vagy ISO','Még egyeztetés alatt']},
+  {t:'radio',   q:'Ki adja a tartalmat (szövegek, képek, videók)?', req:1, cond:isNagy,
+    o:['A marketingosztályunk','Részben, kell külső segítség','Teljes tartalomgyártást kérünk']},
+  {t:'textarea',q:'Hogyan zajlik nálatok a beszerzés és a döntés?', req:1, cond:isNagy,
+    hint:'Például tender vagy több ajánlat bekérése, jóváhagyási körök száma, kik a döntéshozók, van-e ajánlattételi határidő.'},
+  {t:'radio',   q:'Kell titoktartási megállapodás (NDA) az egyeztetésekhez?', cond:isNagy,
     o:['Igen','Nem','Később derül ki']},
   {t:'radio',   q:'Mi a projekt időkerete?', req:1, other:1, id:'hatarido_nagy', cond:isNagy,
     o:['1 hónapon belül','Negyedéven belül','Fél éven belül']},
   {t:'radio',   q:'Mekkora a tervezett költségkeret?', req:1, other:1, id:'koltsegkeret_nagy', cond:isNagy,
     o:['1 – 3 millió Ft','3 – 10 millió Ft','10 millió Ft felett','Belső jóváhagyás alatt']},
-  {t:'textarea',q:'Design elvárások, referenciák (linkek):', cond:isNagy,
-    hint:'Versenytársak vagy más vállalati oldalak, amik iránymutatóak — akár pozitív, akár negatív példaként.'},
+  {t:'textarea',q:'Dizájnelvárások, irányadó oldalak (linkek)', cond:isNagy,
+    hint:'Versenytársak vagy más vállalati oldalak, akár pozitív, akár negatív példaként.'},
 
   // ===== KÖZÖS: zárás =====
-  {t:'radio',   q:'Szeretnél ingyenes konzultációt igényelni?', id:'konzultacio',
+  {t:'radio',   q:'Szeretnél ingyenes igényfelmérő hívást?', id:'konzultacio',
     o:['Igen','Nincs rá szükségem']},
-  {t:'radio',   q:'Hogyan egyeztessünk?', other:1,
-    hint:'Az egyéb mezőbe írhatod, mikor vagy leginkább elérhető.',
-    o:['Telefonon','Google Meet / videóhívás','Személyesen'],
+  {t:'radio',   q:'Hogyan beszéljük meg az ingyenes igényfelmérő hívást?', other:1,
+    hint:'Az egyéb mezőbe írhatod, mikor érsz rá leginkább.',
+    o:['Telefonon','Google Meeten, videóhívásban','Személyesen, ha a projekt indokolja (kimegyünk hozzád)'],
     cond:()=> ans('konzultacio').value === 'Igen'},
-  {t:'textarea',q:'Van bármi, amit fontosnak tartasz még hozzátenni?'},
-  {t:'consent', q:'Adatkezelési Nyilatkozat', req:1,
-    o:['Az űrlap leadásával kijelentem, hogy elolvastam és elfogadom az Adatkezelési Nyilatkozatban foglaltakat és annak feltételeit.']},
+  {t:'textarea',q:'Van még valami, amit fontosnak tartasz?'},
+  {t:'consent', q:'Adatkezelési tájékoztató', req:1,
+    o:['Elolvastam és elfogadom az Adatkezelési tájékoztatót.']},
 ];
 
 const answers = {};
@@ -155,9 +163,9 @@ function render(){
   let f = '';
   const saved = answers[step] || {};
   if(['text','tel','email'].includes(d.t)){
-    f = `<input type="${d.t==='text'?'text':d.t}" id="inp" placeholder="Ide írd a választ…" value="${esc(saved.value||'')}">`;
+    f = `<input type="${d.t==='text'?'text':d.t}" id="inp" placeholder="Ide írd a válaszod…" value="${esc(saved.value||'')}">`;
   } else if(d.t === 'textarea'){
-    f = `<textarea id="inp" placeholder="Ide írd a választ…">${esc(saved.value||'')}</textarea>`;
+    f = `<textarea id="inp" placeholder="Ide írd a válaszod…">${esc(saved.value||'')}</textarea>`;
   } else if(d.t === 'radio'){
     f = `<div class="opts">` +
       d.o.map(o=>`<label class="opt radio${saved.value===o?' selected':''}"><input type="radio" name="r" value="${esc(o)}"><span class="box"></span>${esc(o)}</label>`).join('') +
@@ -173,7 +181,7 @@ function render(){
       (d.other?`<div class="other-input${sel.includes('Egyéb')?' show':''}"><input type="text" id="other" placeholder="Egyéb…" value="${esc(saved.other||'')}"></div>`:'');
   } else if(d.t === 'consent'){
     f = `<div class="opts"><label class="opt"><input type="checkbox" id="inp"${saved.value?' checked':''}><span class="box"></span>${esc(d.o[0])}</label></div>
-         <p class="quiz__hint" style="margin-top:1rem">Adatkezelési Nyilatkozat: <a href="/adatkezelesi-tajekoztato.html" target="_blank" rel="noopener">adatkezelesi-tajekoztato</a></p>`;
+         <p class="quiz__hint" style="margin-top:1rem"><a href="/adatkezelesi-tajekoztato.html" target="_blank" rel="noopener">Adatkezelési tájékoztató</a></p>`;
   }
 
   const isLast = nextVisible(step,1) === undefined;
@@ -191,7 +199,7 @@ function render(){
     <div class="quiz__err" id="err">Ez a kérdés kötelező.</div>
     <div class="quiz__nav">
       ${pos>0?'<button class="ghost" id="prev">Vissza</button>':''}
-      <button id="next">${isLast?'Beküldés':'Tovább'}</button>
+      <button id="next">${isLast?'Elküldöm':'Tovább'}</button>
       <span class="quiz__enter">ENTER ↵</span>
     </div>
   </div>`;
@@ -274,12 +282,13 @@ function renderIntro(){
   bar.style.width='0';
   if(pathTotal>0) drawPath(-1, pathTotal);
   app.innerHTML = `<div class="quiz__step quiz__intro">
-    <div class="quiz__num">Stratos · Igényfelmérő</div>
-    <h1>Weboldal<br>igényfelmérő<br>kérdőív</h1>
-    <p>Minden kérdés külön oldalon jelenik meg. A csillaggal (<span class="quiz__req">*</span>) jelölt kérdések kötelezőek.</p>
-    <p>A kitöltés alapján pár órán belül keresni fogunk a további információkkal és a személyre szabott árajánlattal.</p>
-    <p>Becsült kitöltési idő: 8 perc.</p>
-    <div class="quiz__nav"><button id="start">Kezdés</button><span class="quiz__enter">ENTER ↵</span></div>
+    <p class="crumbs"><a href="/index.html">Főoldal</a> / <b>Ajánlatkérés</b></p>
+    <div class="quiz__num">Stratos Webdesign · Ajánlatkérés</div>
+    <h1>Kérj ajánlatot pár perc alatt.</h1>
+    <p>Minden kérdés külön képernyőn jelenik meg, a csillaggal (<span class="quiz__req">*</span>) jelöltekre kötelező válaszolni. Körülbelül 8 perc.</p>
+    <p>Mi történik utána? Munkanapokon 24 órán belül jelentkezünk, és egyeztetünk egy ingyenes igényfelmérő hívást. Utána írásban megkapod az egyedi ajánlatot, 14 napig érvényesen.</p>
+    <p>Ha ez most sok, egy rövid üzenet is elég: <a href="/ugyfelszolgalat.html#uzenet">Inkább írok pár sort</a>.</p>
+    <div class="quiz__nav"><button id="start">Kezdjük</button><span class="quiz__enter">ENTER ↵</span></div>
   </div>`;
   document.getElementById('start').onclick = ()=>{ step = visibleIdx()[0]; render(); };
 }
@@ -342,9 +351,9 @@ const DONE_HTML = {
     </div>`,
   success: () => `<div class="quiz__step quiz__done" data-state="success">
       <div class="quiz__mark">✓</div>
-      <h1 class="quiz__q">Köszönjük a kitöltést!</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">Válaszaidat rögzítettük, hamarosan felvesszük veled a kapcsolatot.</p>
-      <div class="quiz__nav" style="justify-content:center"><a class="btn" href="/index.html"><span>Vissza a főoldalra</span></a></div>
+      <h1 class="quiz__q">Köszönjük, megkaptuk.</h1>
+      <p class="quiz__hint" style="margin:1rem auto 0">Munkanapokon 24 órán belül jelentkezünk a megadott elérhetőségen, és egyeztetünk egy ingyenes igényfelmérő hívást. Ha nem szeretnél várni, foglalj időpontot most.</p>
+      <div class="quiz__nav" style="justify-content:center"><a class="btn" href="/idopontfoglalas.html"><span>Ingyenes igényfelmérő hívás</span></a><a class="tlink" href="/index.html">Vissza a főoldalra</a></div>
     </div>`,
   invalid: msg => `<div class="quiz__step quiz__done" data-state="invalid">
       <h1 class="quiz__q">Hiányzik valami.</h1>
@@ -353,14 +362,14 @@ const DONE_HTML = {
     </div>`,
   limited: () => `<div class="quiz__step quiz__done" data-state="limited">
       <h1 class="quiz__q">Túl sok beküldés egymás után.</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">Kérlek, várj egy percet, aztán próbáld újra.</p>
-      <div class="quiz__nav" style="justify-content:center"><button id="retry">Újrapróbálás</button></div>
+      <p class="quiz__hint" style="margin:1rem auto 0">Várj egy percet, aztán próbáld újra.</p>
+      <div class="quiz__nav" style="justify-content:center"><button id="retry">Újrapróbálom</button></div>
     </div>`,
   error: () => `<div class="quiz__step quiz__done" data-state="error">
-      <h1 class="quiz__q">Hiba történt a küldés során.</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">Kérlek próbáld újra, vagy írj a
+      <h1 class="quiz__q">Nem sikerült elküldeni.</h1>
+      <p class="quiz__hint" style="margin:1rem auto 0">Próbáld újra, vagy írj a
         <a href="mailto:hello@stratosweb.hu">hello@stratosweb.hu</a> címre.</p>
-      <div class="quiz__nav" style="justify-content:center"><button id="retry">Újrapróbálás</button></div>
+      <div class="quiz__nav" style="justify-content:center"><button id="retry">Újrapróbálom</button></div>
     </div>`,
 };
 
@@ -396,7 +405,7 @@ async function renderDone(){
   const name = fields.kitolto.length >= 2 ? fields.kitolto : fields.cegnev;
   if(name.length < 2){
     sending = false;
-    finish('invalid', 'Kérjük, add meg a vállalkozás vagy a kapcsolattartó nevét.');
+    finish('invalid', 'Add meg a vállalkozás vagy a kapcsolattartó nevét.');
     return;
   }
   const problem = window.Stratos.lead.validate('questionnaire', fields);

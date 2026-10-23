@@ -1,116 +1,124 @@
 // Kliens oldali wizard, beküldés a POST /api/lead végpontra.
-// Szegmentálás a 2. kérdésnél: kis-/középvállalkozás vs. nagyvállalat — a két ág
+// Szegmentálás a 2. kérdésnél: kis-/középvállalkozás vs. ipari/B2B és nagyvállalat — a két ág
 // teljesen külön kérdéssort kap, a cond() függvények kapcsolják a láthatóságot.
 const ans = id => { const i = Q.findIndex(q=>q.id===id); return answers[i] || {}; };
-const NAGY = 'Large enterprise / multinational';
+const NAGY = 'Industrial / B2B company or large enterprise';
 const isNagy = () => ans('szegmens').value === NAGY;
 const kkv = () => !isNagy();
 
 const Q = [
   // ===== KÖZÖS: alapadatok =====
-  {t:'text',    q:'What is the name of the business?', req:1, min:2, id:'cegnev'},
-  {t:'radio',   q:'Which best describes the business?', req:1, id:'szegmens',
+  // 2026-10-23 (copy pack): what the visitor wants comes first, 3D and
+  // keresőoptimalizálás included. Not a contract field — it travels in the
+  // answers transcript, which is the lead's message.
+  {t:'check',   q:'How can we help? (Choose as many as apply)', req:1, id:'szolgaltatas',
+    o:['A new website, or a refresh of the current one','A 3D website or product configurator','Online shop','SEO','Ads management','Brand identity and logo']},
+  {t:'text',    q:'What is your business called?', req:1, min:2, id:'cegnev'},
+  {t:'radio',   q:'Which best describes your business?', req:1, id:'szegmens',
     o:['Sole trader / small business','Medium-sized business',NAGY]},
   {t:'text',    q:'Who is filling in the questionnaire? (name, role)', min:2, id:'kitolto'},
-  {t:'tel',     q:'Phone number:', req:1, id:'telefon'},
-  {t:'email',   q:'Email address:', req:1, id:'email'},
+  {t:'tel',     q:'Phone number', req:1, id:'telefon'},
+  {t:'email',   q:'Email address', req:1, id:'email'},
 
   // ===== KKV ÁG =====
-  {t:'textarea',q:'What does your company do? (short description)', req:1, cond:kkv},
-  {t:'text',    q:'Do you have a current website? If so, what\'s the address?', id:'weboldal', cond:kkv},
+  {t:'textarea',q:'What does your business do? (briefly)', req:1, cond:kkv},
+  {t:'text',    q:'Do you have a website now? If so, what\'s the address?', id:'weboldal', cond:kkv},
   {t:'radio',   q:'How did you find us?', other:1, cond:kkv,
     o:['Google search','Facebook / Instagram','TikTok','Recommended by someone I know']},
   {t:'check',   q:'What is the goal of the website? (multiple choice)', req:1, other:1, cond:kkv,
-    o:['Winning more clients','Selling online (shop)','Appointment booking','Brand building']},
+    o:['More clients','Selling online (shop)','Appointment booking','Brand building']},
   {t:'radio',   q:'Who are your main clients?', req:1, cond:kkv,
-    o:['Consumers (B2C)','Businesses (B2B)','Both']},
+    o:['Private individuals','Businesses','Both']},
   {t:'radio',   q:'Do you need a single-language or a multilingual website?', other:1, cond:kkv,
-    hint:'If you need several languages, please list them in the other field.',
+    hint:'If you need several languages, list them in the other field.',
     o:['Single-language','Multilingual']},
-  {t:'textarea',q:'List your services / products and mark which one matters most.', req:1, cond:kkv,
+  {t:'textarea',q:'List your services or products and mark which one matters most.', req:1, cond:kkv,
     hint:'If you have seasonal or promotional offers, add them here too.'},
-  {t:'textarea',q:'What menu items / subpages do you have in mind?', cond:kkv,
-    hint:'For example: Home, Services, About, Pricing, Contact. If you have no idea yet, leave it empty — we\'ll suggest something.'},
+  {t:'textarea',q:'What menu items and subpages do you have in mind?', cond:kkv,
+    hint:'For example: Home, Services, About, Pricing, Contact. If you have no idea yet, leave it empty and we\'ll suggest something.'},
   {t:'check',   q:'What features does the site need?', req:1, other:1, id:'funkciok', cond:kkv,
-    o:['Appointment booking system','Online shop','Contact form','Chat / Messenger / WhatsApp','Blog','Newsletter signup','Automated quote requests','CRM','Payment system','Ad tracking (Meta Pixel, Google Ads)']},
-  {t:'textarea',q:'Online shop details: roughly how many products would you start with, do you need a shipping integration (e.g. DHL, GLS), and do you have a preferred payment provider (e.g. Stripe, PayPal, Klarna)?',
+    o:['Appointment booking','Online shop','Contact form','Chat / Messenger / WhatsApp','Blog','Newsletter sign-up','Quote request form','Online payment','3D product showcase or configurator','Ad tracking (Meta Pixel, Google Ads)']},
+  {t:'textarea',q:'Online shop details: roughly how many products would you start with, do you need a shipping integration (e.g. Foxpost, GLS), and do you have a preferred payment provider (e.g. SimplePay, Barion, Stripe)?',
     cond:()=> kkv() && (ans('funkciok').value||[]).includes('Online shop')},
-  {t:'radio',   q:'Do you already have a logo / visual identity?', req:1, cond:kkv,
-    o:['Logo and full identity (colours, typefaces, brand book)','Logo only','No — identity design is needed too']},
+  {t:'radio',   q:'Do you already have a logo and brand identity?', req:1, cond:kkv,
+    o:['Logo and full brand identity (colours, fonts, brand guidelines)','Logo only','No, I need brand identity design too']},
   {t:'radio',   q:'Do you have your own domain and hosting?', other:1, cond:kkv,
-    hint:'The domain is the website\'s address (e.g. company.com). If you know, write in the other field where it\'s registered.',
+    hint:'The domain is the website\'s address (e.g. yourcompany.hu). If you know where it\'s registered, put that in the other field.',
     o:['Yes, and I have access','Yes, but I don\'t manage it','Not yet']},
   {t:'radio',   q:'Who provides the content (copy, images)?', req:1, cond:kkv,
     o:['We provide everything','Partly ready, we need help','We\'d like full copywriting and imagery']},
   {t:'radio',   q:'Would you like to edit the site yourself later?', cond:kkv,
-    o:['Yes — I want editing access and training','No, I\'d leave the changes to you','I don\'t know yet']},
-  {t:'textarea',q:'A longer description of the business, for the copywriting', cond:kkv,
-    hint:'Optional — if you already have introductory material (website, Facebook page, brochure), a link is enough.'},
+    o:['Yes, I\'d like to edit it myself','No, I\'d leave the changes to you','I don\'t know yet']},
+  {t:'textarea',q:'A longer description of your business for the copywriting', cond:kkv,
+    hint:'Optional. If you already have introductory material (website, Facebook page, brochure), a link is enough.'},
   {t:'radio',   q:'Which style appeals to you most?', req:1, other:1, cond:kkv,
-    o:['Clean, minimal','Modern, dynamic','Premium, elegant','Creative, bold']},
-  {t:'radio',   q:'Shapes:', req:1, cond:kkv,
-    o:['Rounded elements (soft, friendly)','Sharp, boxy, structured elements (serious, tech feel)','A mix of both']},
-  {t:'radio',   q:'Colours:', req:1, other:1, cond:kkv,
-    hint:'If you have a specific palette, put the colour codes in the other field (e.g. ABCD25).',
-    o:['Light (white, beige, pastel)','Dark (black, charcoal, deep tones)','Brand colours dominating']},
+    o:['Clean, minimalist','Modern, dynamic','Premium, elegant','Creative, bold']},
+  {t:'radio',   q:'Shapes', req:1, cond:kkv,
+    o:['Rounded, friendly elements','Sharp, angular, structured elements (more serious, technical feel)','A mix of both']},
+  {t:'radio',   q:'Colours', req:1, other:1, cond:kkv,
+    hint:'If you have a specific colour palette, put the colour codes in the other field (e.g. ABCD25).',
+    o:['Light (white, beige, pastel)','Dark (black, charcoal, deep tones)','Brand colours lead']},
   {t:'radio',   q:'How showy should the site be?', req:1, cond:kkv,
-    o:['Clean and fast — function first','Modern, with subtle animation','A striking “wow” experience with scroll animation']},
+    o:['Clean and fast, function first','Modern, with subtle animation','A striking experience with scroll-triggered animation, even 3D']},
   {t:'textarea',q:'Is there a website you like? And one you definitely don\'t? (links)', cond:kkv,
     hint:'A negative example helps at least as much as a positive one.'},
   {t:'textarea',q:'Who are your main competitors, and how are you different?', cond:kkv},
-  {t:'radio',   q:'Are you currently running ads?', req:1, other:1, cond:kkv,
-    hint:'If yes, please specify the platform in the other field.',
+  {t:'radio',   q:'Are you running ads at the moment?', req:1, other:1, cond:kkv,
+    hint:'If so, say which platform in the other field.',
     o:['Yes','No']},
-  {t:'text',    q:'Links to your social media pages:', cond:kkv,
-    hint:'Facebook, Instagram, TikTok, LinkedIn — whatever you have.'},
+  {t:'text',    q:'Links to your social media pages', cond:kkv,
+    hint:'Facebook, Instagram, TikTok, LinkedIn, whatever you have.'},
   {t:'radio',   q:'When does the website need to be finished?', req:1, other:1, id:'hatarido', cond:kkv,
     o:['Within 1 week','Within 1 month','Within a few months']},
   // The monthly model is withdrawn (owner, 2026-10-07): projects are quoted
   // as a one-off fee, so there is no payment-model question any more.
+  // The forint bands are the visitor's budget, not Stratos prices. Whether they
+  // stay is an open point in the 2026-10-23 copy pack; until it is decided the
+  // bands are unchanged.
   {t:'radio',   q:'Do you have a planned budget?', req:1, other:1, id:'koltsegkeret',
     cond:kkv,
-    o:['HUF 300,000 – 800,000','HUF 800,000 – 1,500,000','HUF 1,500,000 – 3,000,000','HUF 3,000,000 – 5,000,000','Not yet — I\'ll decide based on the quote']},
+    o:['HUF 300,000 – 800,000','HUF 800,000 – 1,500,000','HUF 1,500,000 – 3,000,000','HUF 3,000,000 – 5,000,000','Not yet, I\'ll decide based on the quote']},
 
-  // ===== NAGYVÁLLALATI ÁG =====
-  {t:'textarea',q:'What does the company do, and which department is handling this project?', req:1, cond:isNagy,
-    hint:'For example: marketing, IT, procurement, management.'},
+  // ===== IPARI / B2B ÉS NAGYVÁLLALATI ÁG =====
+  // (A rendszerintegrációs kérdés 2026-10-23-án kikerült: egyedi üzleti
+  // rendszereket nem kommunikálunk.)
+  {t:'textarea',q:'What does the company do, and which department is running this project?', req:1, cond:isNagy,
+    hint:'For example marketing, IT, procurement, management.'},
   {t:'radio',   q:'What is the project about?', req:1, other:1, cond:isNagy,
-    o:['A new corporate website','Redesign of an existing website','E-commerce platform','Internal portal / web application','Campaign landing pages']},
-  {t:'text',    q:'Address of the current website(s):', id:'weboldal_nagy', cond:isNagy},
-  {t:'textarea',q:'What is the business goal of the project, and which metrics define success?', req:1, cond:isNagy,
-    hint:'For example: increasing lead generation, entering international markets, strengthening the employer brand, conversion rate.'},
-  {t:'check',   q:'Which systems does it need to integrate with?', other:1, cond:isNagy,
-    o:['CRM (e.g. Salesforce, HubSpot)','ERP (e.g. SAP)','Marketing automation / newsletter','SSO / directory (e.g. Azure AD)','Custom internal system / API','Analytics / BI','No integration needed']},
-  {t:'radio',   q:'Is there an internal IT / development team we\'d work with?', req:1, cond:isNagy,
+    o:['A new corporate website','Redesign of an existing website','3D product showcase or configurator','Online shop','Campaign landing pages']},
+  {t:'text',    q:'Address of the current website(s)', id:'weboldal_nagy', cond:isNagy},
+  {t:'textarea',q:'What is the business goal of the project, and how will you know it has succeeded?', req:1, cond:isNagy,
+    hint:'For example more quote requests, entering international markets, a stronger employer brand, more visitors turning into enquiries.'},
+  {t:'radio',   q:'Do you have an internal IT or development team we would work with?', req:1, cond:isNagy,
     o:['Yes, there\'s an internal team','No — we\'d like full delivery','An external partner manages our systems']},
-  {t:'radio',   q:'Are brand guidelines available?', req:1, cond:isNagy,
-    o:['Yes, comprehensive','Partly (logo, base colours)','No — we\'d like identity work as well']},
+  {t:'radio',   q:'Do you have brand guidelines?', req:1, cond:isNagy,
+    o:['Yes, complete','Partly (logo, base colours)','No, we\'d like brand identity design as well']},
   {t:'text',    q:'In how many languages and on which markets does the site need to appear?', req:1, cond:isNagy},
   {t:'check',   q:'Are there compliance or security requirements?', other:1, cond:isNagy,
-    o:['GDPR / data protection requirements','Accessibility (WCAG)','Data residency (EU servers)','Internal security audit / ISO','Still under discussion']},
+    o:['GDPR, data protection rules','Accessibility (WCAG)','Data residency (EU server)','Internal security audit or ISO','Still under discussion']},
   {t:'radio',   q:'Who supplies the content (copy, images, video)?', req:1, cond:isNagy,
-    o:['Our marketing department','Partly — external support is needed','We\'d like full content production']},
-  {t:'textarea',q:'What does the procurement and decision process look like?', req:1, cond:isNagy,
-    hint:'For example: tender / multiple quotes required, number of approval rounds, who the decision makers are, whether there\'s a submission deadline.'},
-  {t:'radio',   q:'Is a non-disclosure agreement (NDA) needed for the discussions?', cond:isNagy,
+    o:['Our marketing department','Partly, we need outside help','We\'d like full content production']},
+  {t:'textarea',q:'How do procurement and decision-making work at your company?', req:1, cond:isNagy,
+    hint:'For example a tender or several quotes, the number of approval rounds, who the decision makers are, whether there is a submission deadline.'},
+  {t:'radio',   q:'Do you need a non-disclosure agreement (NDA) for the discussions?', cond:isNagy,
     o:['Yes','No','To be decided later']},
   {t:'radio',   q:'What is the project timeframe?', req:1, other:1, id:'hatarido_nagy', cond:isNagy,
     o:['Within 1 month','Within a quarter','Within six months']},
   {t:'radio',   q:'What is the planned budget?', req:1, other:1, id:'koltsegkeret_nagy', cond:isNagy,
     o:['€2,500 – €8,000','€8,000 – €25,000','Over €25,000','Awaiting internal approval']},
-  {t:'textarea',q:'Design expectations, references (links):', cond:isNagy,
-    hint:'Competitors or other corporate sites that give direction — as a positive or a negative example.'},
+  {t:'textarea',q:'Design expectations, reference sites (links)', cond:isNagy,
+    hint:'Competitors or other corporate sites, as positive or negative examples.'},
 
   // ===== KÖZÖS: zárás =====
-  {t:'radio',   q:'Would you like to request a free consultation?', id:'konzultacio',
+  {t:'radio',   q:'Would you like a free discovery call?', id:'konzultacio',
     o:['Yes','I don\'t need one']},
-  {t:'radio',   q:'How should we meet?', other:1,
-    hint:'Use the other field to say when you\'re most reachable.',
-    o:['By phone','Google Meet / video call','In person'],
+  {t:'radio',   q:'How should we hold the free discovery call?', other:1,
+    hint:'Use the other field to tell us when suits you best.',
+    o:['By phone','On Google Meet, by video call','In person, if the project calls for it (we come to you)'],
     cond:()=> ans('konzultacio').value === 'Yes'},
-  {t:'textarea',q:'Is there anything else you think is important to add?'},
-  {t:'consent', q:'Privacy statement', req:1,
-    o:['By submitting this form I declare that I have read and accept the privacy statement and its terms.']},
+  {t:'textarea',q:'Is there anything else you think is important?'},
+  {t:'consent', q:'Privacy policy', req:1,
+    o:['I have read and accept the privacy policy.']},
 ];
 
 const answers = {};
@@ -173,7 +181,7 @@ function render(){
       (d.other?`<div class="other-input${sel.includes('Other')?' show':''}"><input type="text" id="other" placeholder="Other…" value="${esc(saved.other||'')}"></div>`:'');
   } else if(d.t === 'consent'){
     f = `<div class="opts"><label class="opt"><input type="checkbox" id="inp"${saved.value?' checked':''}><span class="box"></span>${esc(d.o[0])}</label></div>
-         <p class="quiz__hint" style="margin-top:1rem">Privacy statement:<a href="/en/privacy-policy.html" target="_blank" rel="noopener">privacy-policy</a></p>`;
+         <p class="quiz__hint" style="margin-top:1rem"><a href="/en/privacy-policy.html" target="_blank" rel="noopener">Privacy policy</a></p>`;
   }
 
   const isLast = nextVisible(step,1) === undefined;
@@ -191,7 +199,7 @@ function render(){
     <div class="quiz__err" id="err">This question is required.</div>
     <div class="quiz__nav">
       ${pos>0?'<button class="ghost" id="prev">Back</button>':''}
-      <button id="next">${isLast?'Submit':'Next'}</button>
+      <button id="next">${isLast?'Send':'Next'}</button>
       <span class="quiz__enter">ENTER ↵</span>
     </div>
   </div>`;
@@ -274,12 +282,13 @@ function renderIntro(){
   bar.style.width='0';
   if(pathTotal>0) drawPath(-1, pathTotal);
   app.innerHTML = `<div class="quiz__step quiz__intro">
-    <div class="quiz__num">Stratos · Requirements</div>
-    <h1>Website<br>requirements<br>questionnaire</h1>
-    <p>Each question appears on its own screen. Questions marked with a star (<span class="quiz__req">*</span>) are required.</p>
-    <p>Based on your answers we'll be in touch within a few hours with more information and a tailored quote.</p>
-    <p>Estimated time to complete: 8 minutes.</p>
-    <div class="quiz__nav"><button id="start">Start</button><span class="quiz__enter">ENTER ↵</span></div>
+    <p class="crumbs"><a href="/en/index.html">Home</a> / <b>Quote request</b></p>
+    <div class="quiz__num">Stratos Webdesign · Quote request</div>
+    <h1>Request a quote in a few minutes.</h1>
+    <p>Each question appears on its own screen; questions marked with an asterisk (<span class="quiz__req">*</span>) need an answer. About 8 minutes.</p>
+    <p>What happens next? We get back to you within 24 hours on working days and arrange a free discovery call. After that you receive your tailored quote in writing, valid for 14 days.</p>
+    <p>If that's too much right now, a short message is enough: <a href="/en/contact.html#uzenet">I'd rather write a few lines</a>.</p>
+    <div class="quiz__nav"><button id="start">Let's start</button><span class="quiz__enter">ENTER ↵</span></div>
   </div>`;
   document.getElementById('start').onclick = ()=>{ step = visibleIdx()[0]; render(); };
 }
@@ -342,9 +351,9 @@ const DONE_HTML = {
     </div>`,
   success: () => `<div class="quiz__step quiz__done" data-state="success">
       <div class="quiz__mark">✓</div>
-      <h1 class="quiz__q">Thank you for filling it in.</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">We've recorded your answers and will be in touch shortly.</p>
-      <div class="quiz__nav" style="justify-content:center"><a class="btn" href="/en/index.html"><span>Back to the home page</span></a></div>
+      <h1 class="quiz__q">Thank you, we've received it.</h1>
+      <p class="quiz__hint" style="margin:1rem auto 0">We'll get back to you on the details you gave within 24 hours on working days and arrange a free discovery call. If you'd rather not wait, book a time now.</p>
+      <div class="quiz__nav" style="justify-content:center"><a class="btn" href="/en/book-a-call.html"><span>Free discovery call</span></a><a class="tlink" href="/en/index.html">Back to the home page</a></div>
     </div>`,
   invalid: msg => `<div class="quiz__step quiz__done" data-state="invalid">
       <h1 class="quiz__q">Something is missing.</h1>
@@ -353,12 +362,12 @@ const DONE_HTML = {
     </div>`,
   limited: () => `<div class="quiz__step quiz__done" data-state="limited">
       <h1 class="quiz__q">Too many submissions in a row.</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">Please wait a minute, then try again.</p>
+      <p class="quiz__hint" style="margin:1rem auto 0">Wait a minute, then try again.</p>
       <div class="quiz__nav" style="justify-content:center"><button id="retry">Try again</button></div>
     </div>`,
   error: () => `<div class="quiz__step quiz__done" data-state="error">
-      <h1 class="quiz__q">Something went wrong while sending.</h1>
-      <p class="quiz__hint" style="margin:1rem auto 0">Please try again, or write to<a href="mailto:hello@stratosweb.hu">hello@stratosweb.hu</a>.</p>
+      <h1 class="quiz__q">It couldn't be sent.</h1>
+      <p class="quiz__hint" style="margin:1rem auto 0">Try again, or write to <a href="mailto:hello@stratosweb.hu">hello@stratosweb.hu</a>.</p>
       <div class="quiz__nav" style="justify-content:center"><button id="retry">Try again</button></div>
     </div>`,
 };
@@ -395,7 +404,7 @@ async function renderDone(){
   const name = fields.kitolto.length >= 2 ? fields.kitolto : fields.cegnev;
   if(name.length < 2){
     sending = false;
-    finish('invalid', 'Please give the business or contact name.');
+    finish('invalid', 'Give the business or contact name.');
     return;
   }
   const problem = window.Stratos.lead.validate('questionnaire', fields);

@@ -8,29 +8,13 @@
   "Google or Facebook ads in 2026? | Stratos",
   "Google- oder Facebook-Werbung 2026? | Stratos"
  ],
- "Rossz a kérdés. Megmutatjuk, melyik platform mire való, mikor melyiket érdemes választani, és miért a rendszer hozza az ügyfeleket, nem a platform.": [
-  "It's the wrong question. We show what each platform is for, when to choose which, and why clients come from the system, not the platform.",
-  "Falsche Frage. Wir zeigen, wofür welche Plattform gut ist, wann sich welche lohnt und warum die Kunden vom System kommen, nicht von der Plattform."
- ],
- "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Hirdetés</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Advertising</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Werbung</b>"
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"blog.html\">Blog</a> / <b>Hirdetés</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"blog.html\">Blog</a> / <b>Advertising</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"blog.html\">Blog</a> / <b>Werbung</b>"
  ],
  "A kérdés úgy hangzik, mintha két versenyző közül kellene választani. Valójában két különböző munkakörről van szó.": [
   "The question sounds like choosing between two competitors. It's actually two different jobs.",
   "Die Frage klingt, als müsste man sich zwischen zwei Konkurrenten entscheiden. Tatsächlich geht es um zwei verschiedene Aufgaben."
- ],
- "<span>Kategória <b>Hirdetés</b></span> <span>Írta <b>Stratos</b></span>": [
-  "<span>Category <b>Advertising</b></span> <span>Written by <b>Stratos</b></span>",
-  "<span>Kategorie <b>Werbung</b></span> <span>Geschrieben von <b>Stratos</b></span>"
- ],
- "A különbség egyetlen mondatban: a Google-hirdetés olyan embert talál meg, aki már keresi, amit árulsz. A Meta-hirdetés (Facebook, Instagram) olyan embert szólít meg, aki nem keresi — de a leírás alapján érdekelhetné.": [
-  "The difference in one sentence: Google advertising finds someone already looking for what you sell. Meta advertising (Facebook, Instagram) addresses someone who isn't looking — but who, on the description, might be interested.",
-  "Der Unterschied in einem Satz: Google-Werbung findet jemanden, der bereits sucht, was Sie verkaufen. Meta-Werbung (Facebook, Instagram) spricht jemanden an, der nicht sucht — den es der Beschreibung nach aber interessieren könnte."
- ],
- "Az egyik meglévő keresletet fog be. A másik keresletet próbál kelteni. A kettő nem helyettesíti egymást.": [
-  "One captures existing demand. The other tries to create demand. Neither substitutes for the other.",
-  "Die eine fängt bestehende Nachfrage ein. Die andere versucht, Nachfrage zu wecken. Die eine ersetzt die andere nicht."
  ],
  "Mikor a Google a jó válasz?": [
   "When is Google the right answer?",
@@ -47,10 +31,6 @@
  "Ha van egy konkrét, jól megnevezhető termék vagy szolgáltatás.": [
   "When there is a concrete, easily named product or service.",
   "Wenn es ein konkretes, klar benennbares Produkt oder eine solche Leistung gibt."
- ],
- "Ilyenkor a szándék már megvan, neked csak ott kell lenned. Ezért is drágább általában egy kattintás: a szándékért fizetsz.": [
-  "Here the intent already exists; you just have to be there. That's also why a click is usually more expensive: you're paying for the intent.",
-  "Hier ist die Absicht bereits da; Sie müssen nur präsent sein. Deshalb ist ein Klick meist teurer: Sie zahlen für die Absicht."
  ],
  "Mikor a Meta a jó válasz?": [
   "When is Meta the right answer?",
@@ -75,14 +55,6 @@
  "Ami mindkettőnél ugyanaz": [
   "What's the same for both",
   "Was bei beiden gleich ist"
- ],
- "A hirdetés forgalmat vesz. Nem ügyfelet — forgalmat. Hogy abból lesz-e ügyfél, azt az dönti el, ami a kattintás után történik. Ha oda, ahová a hirdetés visz, nem érkezik meg a hirdetésben ígért dolog egy görgetésen belül, a pénz elment.": [
-  "Advertising buys traffic. Not clients — traffic. Whether that becomes a client is decided by what happens after the click. If what the ad promised isn't there within one scroll of where it sent people, the money is gone.",
-  "Werbung kauft Traffic. Keine Kunden — Traffic. Ob daraus Kunden werden, entscheidet, was nach dem Klick passiert. Wenn dort, wohin die Anzeige führt, das Versprochene nicht innerhalb eines Scrollens auftaucht, ist das Geld weg."
- ],
- "Ezért a leggyakoribb hiba nem a platformválasztás, hanem ez: hirdetés indul egy olyan oldalra, ami nem kér semmit, vagy lassan tölt be, vagy mást ígér, mint a hirdetés.": [
-  "So the most common mistake isn't the choice of platform, it's this: ads run to a page that asks for nothing, or loads slowly, or promises something different from the ad.",
-  "Der häufigste Fehler ist deshalb nicht die Plattformwahl, sondern dieser: Anzeigen führen auf eine Seite, die nichts verlangt, langsam lädt oder etwas anderes verspricht als die Anzeige."
  ],
  "Mielőtt bármelyiket elindítod": [
   "Before you start either",
@@ -112,14 +84,6 @@
   "That makes sense, but not starting both at once. Begin with whichever fits the description above, measure it, and only expand once the first channel works. Two half-configured systems are worse than one well-configured one.",
   "Das ist sinnvoll, aber nicht mit beidem gleichzeitig. Fangen Sie mit dem an, was laut obiger Beschreibung zu Ihnen passt, messen Sie es, und erweitern Sie erst, wenn der erste Kanal funktioniert. Zwei halb eingerichtete Systeme sind schlechter als ein gut eingerichtetes."
  ],
- "Ha nem biztos, hogy a hirdetés a szűk keresztmetszet, azt is meg lehet nézni előbb. Előfordul, hogy a forgalom megvan, és nem a hirdetésre, hanem az oldalra kell költeni. Ezt egy beszélgetésen el lehet dönteni.": [
-  "If it isn't certain that advertising is the bottleneck, that can be checked first. Sometimes the traffic is already there and the money belongs in the site, not in ads. One conversation settles it.",
-  "Wenn nicht sicher ist, ob Werbung der Engpass ist, lässt sich das vorher prüfen. Manchmal ist der Traffic schon da und das Geld gehört in die Website statt in Anzeigen. Ein Gespräch klärt das."
- ],
- "Ami a kattintás után történik — hét gyakori hiba.": [
-  "What happens after the click — seven common mistakes.",
-  "Was nach dem Klick passiert — sieben häufige Fehler."
- ],
  "Az ingyenes út, amit hirdetés előtt érdemes kihasználni.": [
   "The free route worth exhausting before you advertise.",
   "Der kostenlose Weg, den man vor der Werbung ausschöpfen sollte."
@@ -133,29 +97,9 @@
   "What an outdated website costs you | Stratos",
   "Was eine veraltete Website kostet | Stratos"
  ],
- "Van egy szám, amit egyetlen vállalkozó sem lát: az elvesztett ügyfelek. Végigvezetünk a számoláson, és megmutatjuk, mit érdemes megmérni előtte.": [
-  "There's one number no business owner ever sees: the clients they lost. We walk through the calculation and show what to measure first.",
-  "Es gibt eine Zahl, die kein Unternehmer je sieht: die verlorenen Kunden. Wir gehen die Rechnung durch und zeigen, was Sie vorher messen sollten."
- ],
- "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Számolás</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Doing the maths</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Rechnen</b>"
- ],
- "A kiadásaidat forintra ismered. Az elmaradt bevételt nem — mert az sehol nem jelenik meg. Ez a cikk arról szól, hogyan lehet mégis megbecsülni.": [
-  "You know your outgoings to the last coin. The revenue you didn't get, you don't — because it appears nowhere. This article is about estimating it anyway.",
-  "Ihre Ausgaben kennen Sie auf den Cent genau. Den entgangenen Umsatz nicht — weil er nirgends auftaucht. In diesem Artikel geht es darum, ihn trotzdem zu schätzen."
- ],
- "<span>Kategória <b>Számolás</b></span> <span>Írta <b>Stratos</b></span>": [
-  "<span>Category <b>Doing the maths</b></span> <span>Written by <b>Stratos</b></span>",
-  "<span>Kategorie <b>Rechnen</b></span> <span>Geschrieben von <b>Stratos</b></span>"
- ],
- "Egy elavult weboldal nem küld számlát. Nem sípol, nem áll le, nem hívja fel a figyelmet magára. Egyszerűen csak kevesebb megkeresés érkezik, mint amennyi érkezhetne — és ez a különbség sehol nem látszik, mert az elmaradt ügyfél nem hagy nyomot.": [
-  "An outdated website doesn't send an invoice. It doesn't beep, it doesn't stop, it doesn't draw attention to itself. Simply fewer enquiries arrive than could — and that difference shows up nowhere, because the client who didn't come leaves no trace.",
-  "Eine veraltete Website schickt keine Rechnung. Sie piept nicht, sie fällt nicht aus, sie macht nicht auf sich aufmerksam. Es kommen einfach weniger Anfragen als möglich wären — und dieser Unterschied taucht nirgends auf, weil der ausgebliebene Kunde keine Spur hinterlässt."
- ],
- "A könyvelésben nincs olyan sor, hogy „aki majdnem írt”. Ettől még ez a legnagyobb tétel.": [
-  "There's no line in the accounts for \"the one who almost wrote\". It's still the biggest item.",
-  "In der Buchhaltung gibt es keine Zeile „wer fast geschrieben hätte“. Trotzdem ist das der größte Posten."
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"blog.html\">Blog</a> / <b>Számolás</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"blog.html\">Blog</a> / <b>Doing the maths</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"blog.html\">Blog</a> / <b>Rechnen</b>"
  ],
  "A számolás": [
   "The calculation",
@@ -165,37 +109,13 @@
   "It takes four numbers, and you know all four better than anyone.",
   "Es braucht vier Zahlen, und alle vier kennen Sie am besten."
  ],
- "<strong>A</strong> — hány látogató érkezik havonta az oldalra;": [
-  "<strong>A</strong> — how many visitors the site gets per month;",
-  "<strong>A</strong> — wie viele Besucher die Website monatlich hat;"
- ],
- "<strong>B</strong> — ebből hányan vesznek fel veled kapcsolatot;": [
-  "<strong>B</strong> — how many of them get in touch;",
-  "<strong>B</strong> — wie viele davon Kontakt aufnehmen;"
- ],
- "<strong>C</strong> — a megkeresésekből hány százalékból lesz ügyfél;": [
-  "<strong>C</strong> — what percentage of enquiries become clients;",
-  "<strong>C</strong> — wie viel Prozent der Anfragen zu Kunden werden;"
- ],
- "<strong>D</strong> — mennyit hoz átlagosan egy ügyfél, egy éven belül.": [
-  "<strong>D</strong> — what one client brings in on average within a year.",
-  "<strong>D</strong> — was ein Kunde im Schnitt binnen eines Jahres bringt."
- ],
  "A jelenlegi havi eredményed: <strong>A × B × C × D</strong>. Most futtasd le ugyanezt úgy, hogy a <strong>B</strong> megduplázódik. A két szám különbsége az, amit havonta nem kapsz meg.": [
   "Your current monthly result is <strong>A × B × C × D</strong>. Now run the same sum with <strong>B</strong> doubled. The difference between the two numbers is what you don't receive each month.",
   "Ihr aktuelles Monatsergebnis ist <strong>A × B × C × D</strong>. Rechnen Sie dieselbe Formel nun mit verdoppeltem <strong>B</strong>. Die Differenz zwischen beiden Zahlen ist das, was Sie monatlich nicht bekommen."
  ],
- "Ez nem ígéret arra, hogy a megkeresések meg fognak duplázódni. Ez egy becslés arra, hogy <em>mennyit érne</em>, ha megduplázódnának — és ebből derül ki, hogy egyáltalán érdemes-e foglalkozni vele.": [
-  "This isn't a promise that enquiries will double. It's an estimate of <em>what it would be worth</em> if they did — and that's what tells you whether it's worth pursuing at all.",
-  "Das ist kein Versprechen, dass sich die Anfragen verdoppeln. Es ist eine Schätzung, <em>was es wert wäre</em>, wenn sie sich verdoppelten — und daran zeigt sich, ob sich die Sache überhaupt lohnt."
- ],
  "Ha nem tudod a számokat": [
   "If you don't know the numbers",
   "Wenn Sie die Zahlen nicht kennen"
- ],
- "Ez a gyakoribb eset, és önmagában eredmény. Ha nem tudod, hány látogatód van, és hány megkeresés jött belőlük, akkor az első feladat nem az új weboldal, hanem a mérés. Enélkül minden fejlesztés hitkérdés lesz.": [
-  "That's the more common case, and it's a finding in itself. If you don't know how many visitors you have and how many enquiries came from them, the first task isn't a new website, it's measurement. Without it, every improvement is a matter of faith.",
-  "Das ist der häufigere Fall, und schon das ist ein Ergebnis. Wenn Sie nicht wissen, wie viele Besucher Sie haben und wie viele Anfragen daraus entstanden sind, ist die erste Aufgabe nicht die neue Website, sondern die Messung. Ohne sie ist jede Verbesserung Glaubenssache."
  ],
  "A minimum, amit érdemes látni: honnan érkeznek a látogatók, melyik oldalon lépnek ki, és hány űrlapkitöltés vagy hívás származik az oldalról.": [
   "The minimum worth seeing: where visitors come from, which page they leave on, and how many form submissions or calls the site produces.",
@@ -204,10 +124,6 @@
  "Mitől „elavult” egy oldal?": [
   "What makes a site \"outdated\"?",
   "Was macht eine Website „veraltet“?"
- ],
- "Nem a kortól. Egy hét éve készült, gyors, jól szerkesztett oldal jobban teljesíthet, mint egy tavalyi, ami mindent egyszerre akar. Ezek a valódi jelek:": [
-  "Not its age. A fast, well-organised site built seven years ago can outperform last year's site that wants to do everything at once. These are the real signs:",
-  "Nicht das Alter. Eine schnelle, gut strukturierte Website von vor sieben Jahren kann besser abschneiden als eine letztjährige, die alles gleichzeitig will. Das sind die echten Anzeichen:"
  ],
  "mobilon nehezen olvasható vagy csúszkálni kell oldalra;": [
   "hard to read on a phone, or it scrolls sideways;",
@@ -233,17 +149,9 @@
   "nothing can be changed without contacting somebody.",
   "nichts lässt sich ändern, ohne jemanden zu kontaktieren."
  ],
- "Mi az, ami olcsón sokat javít?": [
-  "What improves a lot for very little?",
-  "Was bringt für wenig Geld viel?"
- ],
  "Nem mindig teljes újjáépítés a válasz. Gyakran ezek hozzák a legnagyobb változást a legkisebb ráfordításból:": [
   "A full rebuild isn't always the answer. These often produce the biggest change for the smallest outlay:",
   "Ein kompletter Neubau ist nicht immer die Antwort. Diese Punkte bringen oft die größte Veränderung bei geringstem Aufwand:"
- ],
- "a képek méretének csökkentése — sokszor ez önmagában másodperceket hoz;": [
-  "reducing image sizes — often that alone saves seconds;",
-  "die Bildgrößen reduzieren — oft bringt allein das Sekunden;"
  ],
  "egyetlen, egyértelmű gomb az első képernyőn;": [
   "one clear button on the first screen;",
@@ -261,58 +169,18 @@
   "current opening hours and contact details, identical everywhere.",
   "aktuelle Öffnungszeiten und Kontaktdaten, überall gleich."
  ],
- "A fenti listát végig lehet menni magadtól is, és ha ennyi elég, akkor ennyi elég. Ha kiderül, hogy a szerkezet a probléma, arról érdemes beszélni — de a méréssel kezdjük, nem az ajánlattal.": [
-  "You can work through the list above yourself, and if that's enough, it's enough. If it turns out the structure is the problem, that's worth a conversation — but we start with measurement, not with a proposal.",
-  "Die obige Liste können Sie selbst durchgehen, und wenn das reicht, reicht es. Stellt sich heraus, dass die Struktur das Problem ist, lohnt sich ein Gespräch — aber wir beginnen mit der Messung, nicht mit einem Angebot."
- ],
- "A hét leggyakoribb ok, egyenként javítható.": [
-  "The seven most common causes, each fixable on its own.",
-  "Die sieben häufigsten Ursachen, jede einzeln behebbar."
- ],
  "Mennyibe kerül egy weboldal?": [
   "How much does a website cost?",
   "Was kostet eine Website?"
- ],
- "Ha az oldalt nem csak megépíteni kell, hanem karban is tartani.": [
-  "When the site doesn't only have to be built, but maintained.",
-  "Wenn die Website nicht nur gebaut, sondern auch gepflegt werden muss."
  ],
  "_konverzio": "Article 6 — why the site isn't converting.",
  "Miért nem hoz ügyfelet a weboldalad? | Stratos": [
   "Why your website brings no clients | Stratos",
   "Warum Ihre Website keine Kunden bringt | Stratos"
  ],
- "Van weboldalad, mégsem jönnek az ügyfelek. A hét leggyakoribb ok, amit a legtöbb vállalkozás elkövet — és hogyan javítsd ki mindegyiket.": [
-  "You have a website but the clients aren't coming. The seven most common causes most businesses run into — and how to fix each one.",
-  "Sie haben eine Website, aber die Kunden bleiben aus. Die sieben häufigsten Ursachen, in die die meisten Unternehmen laufen — und wie Sie jede beheben."
- ],
- "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Konverzió</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Conversion</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"blog.html\">Blog</a> / <b>Conversion</b>"
- ],
- "Van oldalad, jönnek is rá látogatók, de nem történik semmi. Majdnem mindig ugyanaz a hét ok áll mögötte, és mind a hét javítható.": [
-  "You have a site, visitors do arrive, and nothing happens. It's almost always the same seven causes, and all seven are fixable.",
-  "Sie haben eine Website, es kommen auch Besucher, und es passiert nichts. Fast immer stecken dieselben sieben Ursachen dahinter, und alle sieben sind behebbar."
- ],
- "<span>Kategória <b>Konverzió</b></span> <span>Írta <b>Stratos</b></span>": [
-  "<span>Category <b>Conversion</b></span> <span>Written by <b>Stratos</b></span>",
-  "<span>Kategorie <b>Conversion</b></span> <span>Geschrieben von <b>Stratos</b></span>"
- ],
- "Előbb egy fontos elágazás: ha kevés a látogató, az forgalmi probléma, és arról máshol írtunk. Ez a cikk arról szól, amikor <em>van</em> forgalom, de nincs megkeresés.": [
-  "First, an important fork: if visitor numbers are low, that's a traffic problem, and we wrote about it elsewhere. This article is about having traffic <em>and</em> no enquiries.",
-  "Zuerst eine wichtige Weggabelung: Wenn die Besucherzahlen niedrig sind, ist das ein Traffic-Problem, darüber haben wir an anderer Stelle geschrieben. In diesem Artikel geht es darum, dass Traffic <em>da</em> ist, aber keine Anfragen kommen."
- ],
- "A látogató nem azért nem ír, mert nem tetszik neki az oldal. Azért nem ír, mert nem tudja, mit kellene tennie, vagy nem meri.": [
-  "Visitors don't stay silent because they dislike the site. They stay silent because they don't know what to do, or don't dare.",
-  "Besucher schreiben nicht deshalb nicht, weil ihnen die Seite nicht gefällt. Sie schreiben nicht, weil sie nicht wissen, was sie tun sollen — oder sich nicht trauen."
- ],
  "1. Nem derül ki az első képernyőn, mit csinálsz": [
   "1. The first screen doesn't say what you do",
   "1. Auf dem ersten Bildschirm steht nicht, was Sie machen"
- ],
- "A leggyakoribb hiba egy szlogen a szolgáltatás helyén. „Álmaid otthona” — ez lehet ingatlanos, építőipari cég, bútorbolt vagy hitelközvetítő. Írd oda, mit csinálsz, kinek, és hol. A márkaépítés jöhet a második képernyőn.": [
-  "The most common mistake is a slogan standing in for the service. \"The home of your dreams\" — that could be an estate agent, a builder, a furniture shop or a mortgage broker. Say what you do, for whom, and where. Brand-building can wait for the second screen.",
-  "Der häufigste Fehler ist ein Slogan anstelle der Leistung. „Das Zuhause Ihrer Träume“ — das kann ein Makler sein, ein Bauunternehmen, ein Möbelhaus oder ein Kreditvermittler. Schreiben Sie hin, was Sie machen, für wen und wo. Markenaufbau kann auf dem zweiten Bildschirm kommen."
  ],
  "2. Nincs egyértelmű következő lépés": [
   "2. There's no clear next step",
@@ -326,10 +194,6 @@
   "3. Slow loading",
   "3. Langsames Laden"
  ],
- "A látogató nem várja meg. Nem panaszkodik, nem ír e-mailt — visszalép. A leggyakoribb ok szinte mindig ugyanaz: túl nagy, feltöltés előtt nem átméretezett képek.": [
-  "Visitors don't wait it out. They don't complain, they don't email — they go back. The most common cause is almost always the same: oversized images that weren't resized before upload.",
-  "Besucher warten nicht ab. Sie beschweren sich nicht, sie schreiben keine E-Mail — sie gehen zurück. Die häufigste Ursache ist fast immer dieselbe: zu große Bilder, die vor dem Hochladen nicht verkleinert wurden."
- ],
  "4. Mobilon használhatatlan": [
   "4. Unusable on a phone",
   "4. Auf dem Smartphone unbrauchbar"
@@ -341,10 +205,6 @@
  "5. Nincs bizonyíték": [
   "5. There's no proof",
   "5. Es fehlt der Beleg"
- ],
- "A látogató nem téged nem hisz el, hanem az internetet nem hiszi el. Ami segít: valódi értékelések, valódi fotók a saját munkádról, megnevezett ügyfelek, konkrét példák. Ami nem segít: „több éves tapasztalat”, „megbízható partner”, stockfotó egy irodáról, ami nem a tiéd.": [
-  "It isn't you the visitor disbelieves, it's the internet. What helps: real reviews, real photographs of your own work, named clients, concrete examples. What doesn't: \"years of experience\", \"a reliable partner\", a stock photo of an office that isn't yours.",
-  "Besucher misstrauen nicht Ihnen, sondern dem Internet. Was hilft: echte Bewertungen, echte Fotos Ihrer eigenen Arbeit, namentlich genannte Kunden, konkrete Beispiele. Was nicht hilft: „langjährige Erfahrung“, „verlässlicher Partner“, ein Stockfoto von einem Büro, das nicht Ihres ist."
  ],
  "6. Túl sokat kérsz elsőre": [
   "6. You ask for too much up front",
@@ -370,14 +230,6 @@
   "Open your own site on your phone, on mobile data, not wifi. Count the seconds until it's usable. Read the first screen as though you didn't know what the company does. Then try to contact yourself.",
   "Öffnen Sie Ihre eigene Website auf dem Smartphone, im Mobilfunknetz, nicht im WLAN. Zählen Sie die Sekunden, bis sie benutzbar ist. Lesen Sie den ersten Bildschirm so, als wüssten Sie nicht, was die Firma macht. Versuchen Sie dann, sich selbst zu kontaktieren."
  ],
- "Ez a három lépés általában megtalálja a hét hibából legalább kettőt.": [
-  "Those three steps usually find at least two of the seven.",
-  "Diese drei Schritte finden meist mindestens zwei der sieben Fehler."
- ],
- "Az 1., 2. és 6. pont szerkezeti kérdés, és rendszerint javítható a meglévő oldalon is. Ha ezek után sem változik semmi, akkor érdemes az egészről beszélni — de nem előbb.": [
-  "Points 1, 2 and 6 are structural, and they can usually be fixed on the existing site. If nothing changes after that, then it's worth discussing the whole thing — but not before.",
-  "Die Punkte 1, 2 und 6 sind strukturell und lassen sich meist auf der bestehenden Website beheben. Ändert sich danach nichts, lohnt sich ein Gespräch über das Ganze — aber nicht vorher."
- ],
  "Mennyi ügyfelet veszítesz?": [
   "How many clients are you losing?",
   "Wie viele Kunden verlieren Sie?"
@@ -385,10 +237,6 @@
  "A számolás, amiből kiderül, megéri-e foglalkozni vele.": [
   "The calculation that shows whether it's worth pursuing.",
   "Die Rechnung, aus der hervorgeht, ob sich die Sache lohnt."
- ],
- "Ha nem a konverzió a szűk keresztmetszet, hanem a forgalom.": [
-  "When the bottleneck isn't conversion but traffic.",
-  "Wenn der Engpass nicht die Conversion ist, sondern der Traffic."
  ],
  "Élő oldalak, ahol ezek a döntések látszanak.": [
   "Live sites where these decisions are visible.",
@@ -406,10 +254,6 @@
   "Web design: what makes one good?",
   "Webdesign: was macht ein gutes aus?"
  ],
- "Mitől lesz „elavult” egy oldal — öt ellenőrizhető pont.": [
-  "What makes a site „dated” — five checkable points.",
-  "Was eine Seite „veraltet“ macht — fünf prüfbare Punkte."
- ],
  "Az első ok részletesen: mit mondjon az első képernyő.": [
   "The first reason in detail: what the first screen should say.",
   "Der erste Grund im Detail: was der erste Bildschirm sagen soll."
@@ -425,5 +269,189 @@
  "Fekete háttéren króm hatású absztrakt szalagok, sárga nagybetűs felirattal: „Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba, amit a vállalkozások többsége elkövet”.": [
   "Chrome-like abstract ribbons on a black background with a yellow Hungarian headline: “Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba, amit a vállalkozások többsége elkövet” (Why isn't your website bringing in customers? 7 common mistakes most businesses make).",
   "Chromartige abstrakte Bänder auf schwarzem Grund mit gelber ungarischer Überschrift: „Miért nem hoz ügyfeleket a weboldalad? 7 gyakori hiba, amit a vállalkozások többsége elkövet“ (Warum bringt Ihre Website keine Kunden? 7 häufige Fehler, die die meisten Unternehmen machen)."
+ ],
+ "Google vagy Facebook hirdetés 2026-ban? | Stratos Webdesign": [
+  "Google or Facebook ads in 2026? | Stratos Webdesign",
+  "Google- oder Facebook-Werbung 2026? | Stratos Webdesign"
+ ],
+ "Melyik mire való: a Google a már keresőket éri el, a Meta a még nem keresőket. Mikor melyikkel kezdj, és mi kell mindkettő előtt.": [
+  "What each one is for: Google reaches people already searching, Meta reaches people who aren't yet. Which to start with when, and what you need before either.",
+  "Wofür welche gut ist: Google erreicht Menschen, die schon suchen, Meta Menschen, die noch nicht suchen. Womit Sie wann beginnen und was vor beiden stehen muss."
+ ],
+ "<span>Kategória <b>Hirdetés</b></span> <span>Írta: <b>a Stratos Webdesign csapata</b></span>": [
+  "<span>Category <b>Advertising</b></span> <span>By <b>the Stratos Webdesign team</b></span>",
+  "<span>Kategorie <b>Werbung</b></span> <span>Vom <b>Team von Stratos Webdesign</b></span>"
+ ],
+ "A Google-hirdetés azokat éri el, akik már keresik, amit árulsz, a Meta-hirdetés (Facebook, Instagram) pedig azokat, akik még nem keresik, de érdekelhetné őket. A Stratos Webdesign szerint ott érdemes kezdeni, ahol a vevőid most vannak, és csak akkor bővíteni, ha az első csatorna már mérhetően működik.": [
+  "Google ads reach people who are already looking for what you sell; Meta ads (Facebook, Instagram) reach people who aren't looking yet but might be interested. In Stratos Webdesign's view, it's worth starting where your buyers are now, and expanding only once the first channel works measurably.",
+  "Google-Werbung erreicht Menschen, die bereits suchen, was Sie verkaufen, Meta-Werbung (Facebook, Instagram) Menschen, die noch nicht suchen, die es aber interessieren könnte. Aus Sicht von Stratos Webdesign lohnt es sich, dort zu beginnen, wo Ihre Kunden jetzt sind, und erst zu erweitern, wenn der erste Kanal messbar funktioniert."
+ ],
+ "A különbség egyetlen mondatban: a Google-hirdetés olyan embert talál meg, aki már keresi, amit árulsz. A Meta-hirdetés (Facebook, Instagram) olyan embert szólít meg, aki még nem keresi, de a leírás alapján érdekelhetné.": [
+  "The difference in one sentence: Google advertising finds someone already looking for what you sell. Meta advertising (Facebook, Instagram) addresses someone who isn't looking yet, but who, going by the description, might be interested.",
+  "Der Unterschied in einem Satz: Google-Werbung findet jemanden, der bereits sucht, was Sie verkaufen. Meta-Werbung (Facebook, Instagram) spricht jemanden an, der noch nicht sucht, den es der Beschreibung nach aber interessieren könnte."
+ ],
+ "Az egyik a meglévő keresletet fogja be, a másik keresletet próbál kelteni, ezért nem helyettesítik egymást.": [
+  "One captures existing demand, the other tries to create demand, so neither replaces the other.",
+  "Die eine fängt bestehende Nachfrage ein, die andere versucht, Nachfrage zu wecken, deshalb ersetzt keine die andere."
+ ],
+ "Ilyenkor a szándék már megvan, neked csak ott kell lenned. Ezért lehet drágább egy kattintás: a szándékért fizetsz.": [
+  "Here the intent already exists; you just have to be there. That's why a click can cost more: you're paying for the intent.",
+  "Hier ist die Absicht bereits da; Sie müssen nur präsent sein. Deshalb kann ein Klick teurer sein: Sie zahlen für die Absicht."
+ ],
+ "Ha webshopod van, a Google Shopping a termékeidet képpel és árral mutatja a keresőben. Termékes vállalkozásnál gyakran ez a jó kezdőpont. <a class=\"tlink\" href=\"webshop-keszites.html\">Webshop készítés</a>": [
+  "If you have an online shop, Google Shopping shows your products in search with a picture and a price. For a business that sells products, this is often the right place to start. <a class=\"tlink\" href=\"webshop-keszites.html\">Online store development</a>",
+  "Wenn Sie einen Onlineshop haben, zeigt Google Shopping Ihre Produkte mit Bild und Preis in der Suche. Für Unternehmen mit Produkten ist das oft der richtige Einstieg. <a class=\"tlink\" href=\"webshop-keszites.html\">Onlineshop-Erstellung</a>"
+ ],
+ "A hirdetés forgalmat vesz, ügyfelet nem. Hogy abból lesz-e ügyfél, azt az dönti el, ami a kattintás után történik. Ha oda, ahová a hirdetés visz, nem érkezik meg a hirdetésben ígért dolog egy görgetésen belül, a pénz elment.": [
+  "Advertising buys traffic, not clients. Whether that becomes a client is decided by what happens after the click. If what the ad promised isn't there within one scroll of where it sent people, the money is gone.",
+  "Werbung kauft Traffic, keine Kunden. Ob daraus Kunden werden, entscheidet, was nach dem Klick passiert. Wenn dort, wohin die Anzeige führt, das Versprochene nicht innerhalb eines Scrollens auftaucht, ist das Geld weg."
+ ],
+ "Ezért a leggyakoribb hiba ritkán a platformválasztás. Sokkal gyakoribb ez: hirdetés indul egy olyan oldalra, ami nem kér semmit, vagy lassan tölt be, vagy mást ígér, mint a hirdetés.": [
+  "So the most common mistake is rarely the choice of platform. Far more often it's this: ads run to a page that asks for nothing, or loads slowly, or promises something different from the ad.",
+  "Der häufigste Fehler ist deshalb selten die Plattformwahl. Viel häufiger ist dieser: Anzeigen führen auf eine Seite, die nichts verlangt, langsam lädt oder etwas anderes verspricht als die Anzeige."
+ ],
+ "Ha nem biztos, hogy a hirdetés a szűk keresztmetszet, azt is meg lehet nézni előbb. Előfordul, hogy a forgalom megvan, és a hirdetés helyett az oldalra érdemes költeni. Ezt egy ingyenes igényfelmérő hívásban el lehet dönteni.": [
+  "If it isn't certain that advertising is the bottleneck, that can be checked first. Sometimes the traffic is already there and the money is better spent on the site than on ads. A free discovery call is enough to decide.",
+  "Wenn nicht sicher ist, ob Werbung der Engpass ist, lässt sich das vorher prüfen. Manchmal ist der Traffic schon da und das Geld ist in der Website besser angelegt als in Anzeigen. Das lässt sich in einem kostenlosen Erstgespräch klären."
+ ],
+ "Ami a kattintás után történik: hét gyakori hiba.": [
+  "What happens after the click: seven common mistakes.",
+  "Was nach dem Klick passiert: sieben häufige Fehler."
+ ],
+ "Mit veszítesz egy elavult weboldallal? | Stratos Webdesign": [
+  "What an outdated website costs you | Stratos Webdesign",
+  "Was eine veraltete Website kostet | Stratos Webdesign"
+ ],
+ "Az elmaradt ügyfél sehol nem jelenik meg a könyvelésben. Négy számmal megbecsülheted, mennyit ér, és mit érdemes előtte megmérni.": [
+  "A client you never got appears nowhere in your books. Four numbers let you estimate what it is worth, and what to measure first.",
+  "Ein entgangener Kunde taucht in keiner Buchhaltung auf. Mit vier Zahlen schätzen Sie, was er wert ist, und was Sie vorher messen sollten."
+ ],
+ "A kiadásaidat forintra ismered. Az elmaradt bevételt nem, mert az sehol nem jelenik meg. Ez a cikk arról szól, hogyan lehet mégis megbecsülni.": [
+  "You know your outgoings to the last coin. The revenue you didn't get, you don't, because it appears nowhere. This article is about estimating it anyway.",
+  "Ihre Ausgaben kennen Sie auf den Cent genau. Den entgangenen Umsatz nicht, weil er nirgends auftaucht. In diesem Artikel geht es darum, ihn trotzdem zu schätzen."
+ ],
+ "<span>Kategória <b>Számolás</b></span> <span>Írta: <b>a Stratos Webdesign csapata</b></span>": [
+  "<span>Category <b>Doing the maths</b></span> <span>By <b>the Stratos Webdesign team</b></span>",
+  "<span>Kategorie <b>Rechnen</b></span> <span>Vom <b>Team von Stratos Webdesign</b></span>"
+ ],
+ "Hogy mennyi ügyfelet veszítesz egy elavult weboldal miatt, négy számmal becsülheted meg: a havi látogatók számával, a kapcsolatfelvételek arányával, a megkeresésekből lett ügyfelek arányával és egy ügyfél éves értékével. A Stratos Webdesign szerint ha ezeket nem ismered, az első lépés a mérés, és csak utána jöhet az új weboldal.": [
+  "How many clients an outdated website costs you can be estimated with four numbers: monthly visitors, the share who get in touch, the share of enquiries that become clients, and what one client is worth in a year. In Stratos Webdesign's view, if you don't know these, the first step is measurement, and only then a new website.",
+  "Wie viele Kunden Sie eine veraltete Website kostet, lässt sich mit vier Zahlen schätzen: den monatlichen Besuchern, dem Anteil derer, die Kontakt aufnehmen, dem Anteil der Anfragen, aus denen Kunden werden, und dem Jahreswert eines Kunden. Aus Sicht von Stratos Webdesign gilt: Kennen Sie diese Zahlen nicht, ist der erste Schritt die Messung, erst danach kommt eine neue Website."
+ ],
+ "Egy elavult weboldal nem küld számlát, és nem is jelez, ha baj van. Egyszerűen csak kevesebb megkeresés érkezik, mint amennyi érkezhetne, és ez a különbség sehol nem látszik, mert az elmaradt ügyfél nem hagy nyomot.": [
+  "An outdated website doesn't send you an invoice, and it doesn't warn you when something is wrong. Fewer enquiries simply arrive than could, and the difference shows up nowhere, because a client you never got leaves no trace.",
+  "Eine veraltete Website schickt keine Rechnung und meldet sich auch nicht, wenn etwas nicht stimmt. Es kommen einfach weniger Anfragen, als kommen könnten, und dieser Unterschied ist nirgends zu sehen, weil ein entgangener Kunde keine Spuren hinterlässt."
+ ],
+ "A könyvelésben nincs olyan sor, hogy „aki majdnem írt”. Ettől még lehet, hogy ez a legnagyobb tétel.": [
+  "There's no line in the accounts for \"the one who almost wrote\". It may still be the biggest item.",
+  "In der Buchhaltung gibt es keine Zeile „wer fast geschrieben hätte“. Trotzdem kann das der größte Posten sein."
+ ],
+ "<strong>A</strong>: hány látogató érkezik havonta az oldalra;": [
+  "<strong>A</strong>: how many visitors the site gets per month;",
+  "<strong>A</strong>: wie viele Besucher die Website monatlich hat;"
+ ],
+ "<strong>B</strong>: a látogatók hány százaléka veszi fel veled a kapcsolatot;": [
+  "<strong>B</strong>: what percentage of visitors get in touch with you;",
+  "<strong>B</strong>: wie viel Prozent der Besucher mit Ihnen Kontakt aufnehmen;"
+ ],
+ "<strong>C</strong>: a megkeresések hány százalékából lesz ügyfél;": [
+  "<strong>C</strong>: what percentage of enquiries become clients;",
+  "<strong>C</strong>: wie viel Prozent der Anfragen zu Kunden werden;"
+ ],
+ "<strong>D</strong>: mennyit hoz átlagosan egy ügyfél egy év alatt.": [
+  "<strong>D</strong>: what one client brings in on average over a year.",
+  "<strong>D</strong>: was ein Kunde im Schnitt in einem Jahr einbringt."
+ ],
+ "Ezzel nem azt ígérjük, hogy a megkeresések megduplázódnak. A számítás azt mutatja meg, mennyit <em>érne</em>, ha így lenne, és ebből derül ki, érdemes-e egyáltalán foglalkozni vele.": [
+  "This isn't a promise that your enquiries will double. The calculation shows what it <em>would</em> be worth if they did, and that tells you whether it's worth pursuing at all.",
+  "Damit versprechen wir nicht, dass sich die Anfragen verdoppeln. Die Rechnung zeigt, was es wert <em>wäre</em>, wenn es so käme, und daran sehen Sie, ob sich die Sache überhaupt lohnt."
+ ],
+ "Ez a gyakoribb eset, és önmagában eredmény. Ha nem tudod, hány látogatód van, és hány megkeresés jött belőlük, akkor az első feladat a mérés, és csak utána az új weboldal. Enélkül minden fejlesztés hitkérdés lesz.": [
+  "That's the more common case, and it's a finding in itself. If you don't know how many visitors you have and how many enquiries came from them, the first task is measurement, and only then a new website. Without it, every improvement is a matter of faith.",
+  "Das ist der häufigere Fall, und schon das ist ein Ergebnis. Wenn Sie nicht wissen, wie viele Besucher Sie haben und wie viele Anfragen daraus entstanden sind, ist die erste Aufgabe die Messung, erst danach kommt die neue Website. Ohne sie ist jede Verbesserung Glaubenssache."
+ ],
+ "A kor önmagában keveset számít. Egy hét éve készült, gyors, jól szerkesztett oldal jobban teljesíthet, mint egy tavalyi, ami mindent egyszerre akar. Ezek a valódi jelek:": [
+  "Age on its own matters little. A fast, well-organised site built seven years ago can outperform last year's site that wants to do everything at once. These are the real signs:",
+  "Das Alter allein sagt wenig. Eine schnelle, gut strukturierte Website von vor sieben Jahren kann besser abschneiden als eine letztjährige, die alles gleichzeitig will. Das sind die echten Anzeichen:"
+ ],
+ "Mi javít sokat kis ráfordítással?": [
+  "What improves a lot with little effort?",
+  "Was bringt mit wenig Aufwand viel?"
+ ],
+ "a képek méretének csökkentése: sokszor ez önmagában érezhetően gyorsít;": [
+  "reducing image sizes: often that alone makes a noticeable difference to speed;",
+  "die Bildgrößen reduzieren: Oft macht allein das die Seite spürbar schneller;"
+ ],
+ "A fenti listát végig lehet menni magadtól is, és ha ennyi elég, akkor ennyi elég. Ha kiderül, hogy a szerkezet a probléma, beszéljünk róla: ingyenes igényfelmérő hívással kezdünk, és ott a te számaidat nézzük meg először.": [
+  "You can work through the list above yourself, and if that's enough, it's enough. If it turns out the structure is the problem, let's talk: we start with a free discovery call, and the first thing we look at there is your numbers.",
+  "Die obige Liste können Sie selbst durchgehen, und wenn das reicht, reicht es. Stellt sich heraus, dass die Struktur das Problem ist, sprechen wir darüber: Wir beginnen mit einem kostenlosen Erstgespräch und sehen uns dort zuerst Ihre Zahlen an."
+ ],
+ "Hét gyakori ok, egyenként javítható.": [
+  "Seven common causes, each fixable on its own.",
+  "Sieben häufige Ursachen, jede einzeln behebbar."
+ ],
+ "Ha az oldalt a keresésre építve kell újragondolni.": [
+  "When the site needs rethinking around search.",
+  "Wenn die Website rund um die Suche neu gedacht werden muss."
+ ],
+ "Mitől lesz „elavult” egy oldal: öt ellenőrizhető pont.": [
+  "What makes a site \"dated\": five points you can check.",
+  "Was eine Seite „veraltet“ macht: fünf prüfbare Punkte."
+ ],
+ "Miért nem hoz ügyfelet a weboldalad? | Stratos Webdesign": [
+  "Why your website brings no clients | Stratos Webdesign",
+  "Warum Ihre Website keine Kunden bringt | Stratos Webdesign"
+ ],
+ "Van forgalom, de nincs megkeresés? Hét gyakori ok, amiért a látogató nem ír, és hogyan javíthatod mindegyiket a meglévő oldaladon.": [
+  "Traffic, but no enquiries? Seven common reasons visitors don't get in touch, and how you can fix each one on your existing site.",
+  "Besucher, aber keine Anfragen? Sieben häufige Gründe, warum Besucher sich nicht melden, und wie Sie jeden davon auf Ihrer bestehenden Website beheben."
+ ],
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"blog.html\">Blog</a> / <b>Ügyfélszerzés</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"blog.html\">Blog</a> / <b>Winning clients</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"blog.html\">Blog</a> / <b>Kundengewinnung</b>"
+ ],
+ "Van oldalad, jönnek is rá látogatók, de nem történik semmi. Az okok jellemzően ugyanabba a hét csoportba esnek, és mindegyik javítható.": [
+  "You have a site, visitors do arrive, and nothing happens. The causes usually fall into the same seven groups, and every one of them is fixable.",
+  "Sie haben eine Website, es kommen auch Besucher, und es passiert nichts. Die Ursachen fallen meist in dieselben sieben Gruppen, und jede davon ist behebbar."
+ ],
+ "<span>Kategória <b>Ügyfélszerzés</b></span> <span>Írta: <b>a Stratos Webdesign csapata</b></span>": [
+  "<span>Category <b>Winning clients</b></span> <span>By <b>the Stratos Webdesign team</b></span>",
+  "<span>Kategorie <b>Kundengewinnung</b></span> <span>Vom <b>Team von Stratos Webdesign</b></span>"
+ ],
+ "Ha a weboldaladra jönnek látogatók, de nem írnak, annak jellemzően hét oka van: nem derül ki az első képernyőn, mit csinálsz; nincs egyértelmű következő lépés; lassú; mobilon használhatatlan; nincs bizonyíték; túl sokat kérsz elsőre; és nincs mérés. A Stratos Webdesign szerint ezek többsége a meglévő oldalon is javítható.": [
+  "If visitors come to your website but don't get in touch, there are usually seven reasons: the first screen doesn't say what you do; there's no clear next step; it's slow; it's unusable on mobile; there's no proof; you ask for too much at first; and nothing is measured. In Stratos Webdesign's view, most of these can be fixed on the existing site.",
+  "Wenn Besucher auf Ihre Website kommen, sich aber nicht melden, gibt es dafür meist sieben Gründe: Der erste Bildschirm sagt nicht, was Sie machen; es gibt keinen klaren nächsten Schritt; die Seite ist langsam; sie ist mobil unbrauchbar; es fehlen Belege; Sie verlangen anfangs zu viel; und es wird nichts gemessen. Aus Sicht von Stratos Webdesign lassen sich die meisten davon auf der bestehenden Website beheben."
+ ],
+ "Előbb egy fontos elágazás: ha kevés a látogató, az forgalmi probléma, és arról <a class=\"tlink\" href=\"blog-google-elso-oldal.html\">ebben a cikkben</a> írtunk. Ez a cikk arról szól, amikor <em>van</em> forgalom, de nincs megkeresés.": [
+  "First, an important fork: if visitor numbers are low, that's a traffic problem, and we wrote about it in <a class=\"tlink\" href=\"blog-google-elso-oldal.html\">this article</a>. This article is about having traffic <em>and</em> no enquiries.",
+  "Zuerst eine wichtige Weggabelung: Wenn die Besucherzahlen niedrig sind, ist das ein Traffic-Problem, darüber haben wir in <a class=\"tlink\" href=\"blog-google-elso-oldal.html\">diesem Artikel</a> geschrieben. In diesem Artikel geht es darum, dass Traffic <em>da</em> ist, aber keine Anfragen kommen."
+ ],
+ "Ha a látogató nem ír, annak ritkán a dizájn az oka. Sokkal inkább az, hogy nem tudja, mit kellene tennie, vagy nem meri megtenni.": [
+  "When a visitor doesn't get in touch, the design is rarely the reason. Far more often they don't know what they're supposed to do, or don't dare to do it.",
+  "Wenn Besucher sich nicht melden, liegt es selten am Design. Viel öfter wissen sie nicht, was sie tun sollen, oder sie trauen sich nicht."
+ ],
+ "A leggyakoribb hiba egy szlogen a szolgáltatás helyén. „Álmaid otthona”: ez lehet ingatlanos, építőipari cég, bútorbolt vagy hitelközvetítő. Írd oda, mit csinálsz, kinek, és hol. A márkaépítés jöhet a második képernyőn.": [
+  "The most common mistake is a slogan standing in for the service. \"The home of your dreams\": that could be an estate agent, a builder, a furniture shop or a mortgage broker. Say what you do, for whom, and where. Brand-building can wait for the second screen.",
+  "Der häufigste Fehler ist ein Slogan anstelle der Leistung. „Das Zuhause Ihrer Träume“: Das kann ein Makler sein, ein Bauunternehmen, ein Möbelhaus oder ein Kreditvermittler. Schreiben Sie hin, was Sie machen, für wen und wo. Markenaufbau kann auf dem zweiten Bildschirm kommen."
+ ],
+ "A látogató nem várja meg. Nem panaszkodik, nem ír e-mailt, egyszerűen visszalép. A leggyakoribb ok szinte mindig ugyanaz: túl nagy, feltöltés előtt nem átméretezett képek.": [
+  "Visitors don't wait it out. They don't complain, they don't email, they simply go back. The most common cause is almost always the same: oversized images that weren't resized before upload.",
+  "Besucher warten nicht ab. Sie beschweren sich nicht, sie schreiben keine E-Mail, sie gehen einfach zurück. Die häufigste Ursache ist fast immer dieselbe: zu große Bilder, die vor dem Hochladen nicht verkleinert wurden."
+ ],
+ "A látogató nem veled szemben bizalmatlan, hanem az internettel. Ami segít: valódi értékelések, valódi fotók a saját munkádról, megnevezett ügyfelek, konkrét példák. Ami nem segít: „több éves tapasztalat”, „megbízható partner”, stockfotó egy irodáról, ami nem a tiéd.": [
+  "It isn't you the visitor distrusts, it's the internet. What helps: real reviews, real photographs of your own work, named clients, concrete examples. What doesn't: \"years of experience\", \"a reliable partner\", a stock photo of an office that isn't yours.",
+  "Besucher misstrauen nicht Ihnen, sondern dem Internet. Was hilft: echte Bewertungen, echte Fotos Ihrer eigenen Arbeit, namentlich genannte Kunden, konkrete Beispiele. Was nicht hilft: „langjährige Erfahrung“, „verlässlicher Partner“, ein Stockfoto von einem Büro, das nicht Ihres ist."
+ ],
+ "Ez a három lépés sokszor több hibát is megmutat a hétből.": [
+  "Those three steps often reveal several of the seven at once.",
+  "Diese drei Schritte zeigen oft gleich mehrere der sieben Fehler."
+ ],
+ "Az 1., a 2. és a 6. pont szerkezeti kérdés, ami a meglévő oldalon is javítható. Ha ezek után sem változik semmi, beszéljünk az egészről: ingyenes igényfelmérő hívással kezdünk.": [
+  "Points 1, 2 and 6 are structural, and they can be fixed on the existing site. If nothing changes after that, let's talk about the whole thing: we start with a free discovery call.",
+  "Die Punkte 1, 2 und 6 sind strukturell und lassen sich auf der bestehenden Website beheben. Ändert sich danach nichts, sprechen wir über das Ganze: Wir beginnen mit einem kostenlosen Erstgespräch."
+ ],
+ "Ha a szűk keresztmetszet a forgalom.": [
+  "When the bottleneck is traffic.",
+  "Wenn der Engpass der Traffic ist."
  ]
 }

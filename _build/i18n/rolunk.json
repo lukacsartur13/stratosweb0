@@ -1,43 +1,7 @@
 {
- "Rólunk — A Stratos története | Stratos": [
-  "About us — the Stratos story | Stratos",
-  "Über uns — die Geschichte von Stratos | Stratos"
- ],
- "A Stratos név a sztratoszférából ered. Megmutatjuk, kik vagyunk, hogyan gondolkodunk, és miért nem elégszünk meg a hétköznapi szinttel.": [
-  "The name Stratos comes from the stratosphere. Here's who we are, how we think, and why the everyday altitude is never enough for us.",
-  "Der Name Stratos stammt aus der Stratosphäre. Hier erfahren Sie, wer wir sind, wie wir denken und warum uns die alltägliche Höhe nie reicht."
- ],
- "<a href=\"index.html\">Stratos</a> / <b>Rólunk</b>": [
-  "<a href=\"index.html\">Stratos</a> / <b>About us</b>",
-  "<a href=\"index.html\">Stratos</a> / <b>Über uns</b>"
- ],
- "A Stratos<br>története": [
-  "The Stratos<br>story",
-  "Die Geschichte<br>von Stratos"
- ],
- "„A Stratos név a sztratoszféra kifejezésből ered — abból a magas rétegből, amely számunkra az átlag, hétköznapi szint fölött helyezkedik el. Míg partnereink versenytársai még csak a földön járnak, mi már a sztratoszférába repítettük őket és a számaikat.\"": [
-  "“The name Stratos comes from the word stratosphere — the high layer that, for us, sits above the average, everyday altitude. While our partners' competitors are still walking on the ground, we have already flown our partners and their numbers into the stratosphere.”",
-  "„Der Name Stratos kommt vom Wort Stratosphäre — jener hohen Schicht, die für uns über der durchschnittlichen, alltäglichen Höhe liegt. Während die Wettbewerber unserer Partner noch am Boden laufen, haben wir unsere Partner und ihre Zahlen längst in die Stratosphäre gebracht.“"
- ],
- "Ez nem munka.<br>Ez <span class=\"sig\">életszemlélet.</span>": [
-  "This isn't a job.<br>It's a <span class=\"sig\">way of life.</span>",
-  "Das ist kein Job.<br>Das ist eine <span class=\"sig\">Lebenshaltung.</span>"
- ],
- "Célunk, hogy ügyfeleink vállalkozásait kiemeljük az átlagból, és a digitális térben a versenytársaik fölé emeljük. Miközben partnereink növekedésén dolgozunk, saját magunkat is folyamatosan fejlesztjük, hogy mindig egy szinttel a megszokott megoldások fölött gondolkodjunk.": [
-  "Our aim is to lift our clients' businesses out of the average and above their competitors in the digital space. While we work on our partners' growth, we keep developing ourselves too, so that we always think one level above the usual solutions.",
-  "Unser Ziel ist es, die Unternehmen unserer Kunden aus dem Durchschnitt herauszuheben und im digitalen Raum über ihre Wettbewerber zu stellen. Während wir am Wachstum unserer Partner arbeiten, entwickeln wir auch uns selbst ständig weiter — damit wir immer eine Stufe über den gewohnten Lösungen denken."
- ],
- "Csapatunk fiatal, nyitott szemléletű emberekből áll, akik közül mindenki már tinédzser kora óta a digitális világgal, weboldalakkal, marketinggel vagy programozással foglalkozik. Számunkra ez nem egyszerű munka, hanem egy életstílus, amely a mindennapjaink része.": [
-  "Our team is made up of young, open-minded people who have all been working with the digital world — websites, marketing or programming — since their teens. For us this isn't simply a job, it's a lifestyle and part of our everyday life.",
-  "Unser Team besteht aus jungen, offenen Menschen, die sich alle seit ihrer Jugend mit der digitalen Welt beschäftigen — mit Websites, Marketing oder Programmierung. Für uns ist das kein bloßer Job, sondern ein Lebensstil und Teil unseres Alltags."
- ],
- "Hiszünk abban, hogy a valódi tapasztalat, a folyamatos önfejlesztés, az új rendszerek gyors megtanulása és az eltökélt hozzáállás mindennél többet jelent a gyakorlatban.": [
-  "We believe that real experience, continuous self-development, learning new systems fast and a determined attitude count for more in practice than anything else.",
-  "Wir glauben, dass echte Erfahrung, ständige Weiterentwicklung, das schnelle Erlernen neuer Systeme und eine entschlossene Haltung in der Praxis mehr wert sind als alles andere."
- ],
- "A fedélzeten": [
-  "On board",
-  "An Bord"
+ "<a href=\"index.html\">Főoldal</a> / <b>Rólunk</b>": [
+  "<a href=\"index.html\">Home</a> / <b>About us</b>",
+  "<a href=\"index.html\">Startseite</a> / <b>Über uns</b>"
  ],
  "Alapító / Partner": [
   "Founder / Partner",
@@ -51,10 +15,6 @@
   "Artúr Lukács",
   "Artúr Lukács"
  ],
- "„Hiszek abban, hogy a vállalkozás nem az állandó tűzoltásról, hanem a szabadságról és a saját szakmai szenvedélyünk megéléséről kell, hogy szóljon. Éppen ezért olyan weboldalakat és ügyfélszerző rendszereket építek, amelyek leveszik a vállalkozók válláról az ügyfélszerzés terhét, és kiszámítható növekedést teremtenek. Célom, hogy ügyfeleink több időt töltsenek azzal, amihez igazán értenek és amit valóban élveznek.\"": [
-  "“I believe running a business should be about freedom and living out your professional passion, not about constant firefighting. That's why I build websites and client acquisition systems that take the burden of finding clients off business owners' shoulders and create predictable growth. My goal is for our clients to spend more time on what they're genuinely good at and genuinely enjoy.”",
-  "„Ich glaube, Unternehmertum sollte von Freiheit und der eigenen fachlichen Leidenschaft handeln — nicht vom ständigen Löschen von Bränden. Deshalb baue ich Websites und Systeme zur Kundengewinnung, die Unternehmern die Last der Akquise abnehmen und planbares Wachstum schaffen. Mein Ziel ist, dass unsere Kunden mehr Zeit mit dem verbringen, was sie wirklich können und wirklich gern tun.“"
- ],
  "Partner / Hirdetéskezelés": [
   "Partner / Ads management",
   "Partner / Werbebetreuung"
@@ -67,105 +27,13 @@
   "Richárd Tímár",
   "Richárd Tímár"
  ],
- "„Partnerként és hirdetéskezelési specialistaként a fókuszom a teljesítményalapú marketingen van. Olyan hirdetési rendszereket építek és kezelek, amelyek nemcsak elérést generálnak, hanem valódi, minőségi ügyfeleket hoznak a vállalkozások számára. Munkám során a stratégiai gondolkodást a gyakorlati optimalizálással ötvözöm, hogy a kampányok hosszú távon is kiszámítható növekedést biztosítsanak.\"": [
-  "“As a partner and ads specialist my focus is performance marketing. I build and run advertising systems that don't just generate reach but bring real, high-quality clients to a business. In my work I combine strategic thinking with hands-on optimisation, so campaigns deliver predictable growth over the long term.”",
-  "„Als Partner und Spezialist für Werbebetreuung liegt mein Fokus auf Performance-Marketing. Ich baue und betreue Werbesysteme, die nicht nur Reichweite erzeugen, sondern echte, hochwertige Kunden bringen. Dabei verbinde ich strategisches Denken mit praktischer Optimierung, damit Kampagnen auch langfristig planbares Wachstum liefern.“"
- ],
- "<span class=\"n\">04</span> Miért a Stratos <span class=\"ind\"></span> <span>Hat ok</span>": [
-  "<span class=\"n\">04</span> Why Stratos <span class=\"ind\"></span> <span>Six reasons</span>",
-  "<span class=\"n\">04</span> Warum Stratos <span class=\"ind\"></span> <span>Sechs Gründe</span>"
- ],
- "Miért a Stratos — hat ok": [
-  "Why Stratos — six reasons",
-  "Warum Stratos — sechs Gründe"
- ],
- "Nemzetközi mércével mért kivitelezés": [
-  "Built to an international standard",
-  "Umsetzung nach internationalem Maßstab"
- ],
- "Minden projekt szenior szintű munkával, tiszta gondolkodással és olyan részletességgel készül, amit szívesen kiteszünk a saját portfóliónkba.": [
-  "Every project is built with senior-level craft, clear thinking and the kind of attention to detail we're happy to put in our own portfolio.",
-  "Jedes Projekt entsteht mit Senior-Handwerk, klarem Denken und einer Detailtiefe, die wir gern in unser eigenes Portfolio stellen."
- ],
- "Nem sablonból dolgozunk. Minden felület, arculati elem és digitális élmény a te céljaid köré épül, nem egy kész téma köré.": [
-  "We don't work from templates. Every screen, brand element and digital experience is built around your goals, not around an off-the-shelf theme.",
-  "Wir arbeiten nicht mit Vorlagen. Jede Oberfläche, jedes Markenelement und jedes digitale Erlebnis entsteht rund um Ihre Ziele — nicht um ein fertiges Theme."
- ],
- "Problémamegoldás": [
-  "Problem solving",
-  "Problemlösung"
- ],
- "Nem csak szépet csinálunk. Megkeressük, hol akad el a látogató, kiegyenesítjük az útját, és céllal tervezünk — nem díszítünk.": [
-  "We don't just make things pretty. We find where visitors get stuck, straighten their path, and design with purpose — we don't decorate.",
-  "Wir machen nicht nur Schönes. Wir finden, wo Besucher hängen bleiben, begradigen ihren Weg und gestalten mit Absicht — wir dekorieren nicht."
- ],
- "A szövegírás is benne van": [
-  "Copywriting included",
-  "Text inklusive"
- ],
- "A szövegek, a menüpontok és az apró feliratok a dizájnnal együtt születnek, így az oldal kerek egész lesz — nem kell utólag tartalmat keresned hozzá.": [
-  "Copy, menu labels and the smallest microcopy are written alongside the design, so the site is whole — you don't have to go hunting for content afterwards.",
-  "Texte, Menüpunkte und selbst die kleinsten Beschriftungen entstehen zusammen mit dem Design. So ist die Seite ein rundes Ganzes — Sie müssen nicht nachträglich Inhalte suchen."
- ],
- "Gyors átfutás": [
-  "Fast turnaround",
-  "Schnelle Umsetzung"
- ],
- "A határidőt a projekt terjedelme és a szükséges anyagok alapján, az egyeztetés során rögzítjük. Gyorsan haladunk, de nem kapkodva — és nem sablonból.": [
-  "We set the deadline during our consultation, based on the scope and the materials needed. We move fast, but never in a rush — and never from a template.",
-  "Den Termin legen wir im Abstimmungsgespräch fest, je nach Umfang und benötigten Materialien. Wir arbeiten schnell, aber nicht hastig — und nie aus einer Vorlage."
- ],
- "Átlátható árazás": [
-  "Clear pricing",
-  "Transparente Preise"
- ],
- "Világos hatókör, előre tisztázott konstrukció, és nincs meglepetésköltség, ha egyszer megvan az irány. Se hűségidő, se kötbér.": [
-  "A clear scope, terms agreed up front, and no surprise costs once the direction is set. No lock-in, no penalty clauses.",
-  "Klarer Umfang, vorab geklärte Konditionen und keine Überraschungskosten, sobald die Richtung steht. Keine Mindestlaufzeit, keine Vertragsstrafe."
- ],
  "Mennyi idő alatt készül el egy weboldal?": [
   "How long does a website take?",
   "Wie lange dauert eine Website?"
  ],
- "A pontos határidőt a projekt terjedelme és a szükséges anyagok rendelkezésre állása alapján, az egyeztetés során rögzítjük.": [
-  "We set the exact deadline during our consultation, based on the scope of the project and when the materials we need are available.",
-  "Den genauen Termin legen wir im Abstimmungsgespräch fest — je nach Umfang des Projekts und danach, wann die nötigen Materialien vorliegen."
- ],
- "Minden weboldalt a vállalkozás arculatához, céljaihoz és működéséhez igazítunk. A cél nem egy sablonos megoldás, hanem egy olyan rendszer, amely valóban tükrözi a márkát és támogatja az ügyfélszerzést.": [
-  "Every website is fitted to the business's brand, goals and way of working. The aim isn't a templated solution but a system that genuinely reflects the brand and supports client acquisition.",
-  "Jede Website wird an Marke, Ziele und Arbeitsweise des Unternehmens angepasst. Ziel ist keine Standardlösung, sondern ein System, das die Marke wirklich widerspiegelt und die Kundengewinnung unterstützt."
- ],
- "Igen, a weboldalak hosszú távú szemlélettel készülnek, így később is bővíthetők új funkciókkal vagy tartalmakkal. A digitális igények változásával a rendszer is fejleszthető és korszerűsíthető.": [
-  "Yes. The sites are built with the long term in mind, so new features or content can be added later. As digital needs change, the system can be developed and modernised with them.",
-  "Ja. Die Seiten werden langfristig gedacht, sodass später neue Funktionen oder Inhalte hinzukommen können. Ändern sich die digitalen Anforderungen, lässt sich das System weiterentwickeln und modernisieren."
- ],
- "Igen, minden weboldal reszponzív kialakítással készül, így mobilon, tableten és számítógépen is megfelelően jelenik meg. Ez ma már alapvető része a modern felhasználói élménynek.": [
-  "Yes. Every website is built responsively, so it displays properly on phones, tablets and desktops. That's a basic part of a modern user experience today.",
-  "Ja. Jede Website wird responsiv gebaut und stellt sich auf Handy, Tablet und Desktop korrekt dar. Das gehört heute zur modernen Nutzererfahrung dazu."
- ],
- "Igen, a weboldalak mellett Google és Meta hirdetéskezeléssel is foglalkozunk. A kampányokat a célközönséghez és a vállalkozás céljaihoz igazítva építjük fel és optimalizáljuk.": [
-  "Yes. Alongside websites we also manage Google and Meta advertising. Campaigns are built and optimised around the target audience and the business's goals.",
-  "Ja. Neben Websites betreuen wir auch Google- und Meta-Werbung. Kampagnen bauen und optimieren wir passend zur Zielgruppe und zu den Unternehmenszielen."
- ],
- "Kapok segítséget a weboldal működésének és az online marketing alapjainak megértésében?": [
-  "Will I get help understanding how the site and online marketing basics work?",
-  "Bekomme ich Hilfe, um die Website und die Grundlagen des Online-Marketings zu verstehen?"
- ],
- "Igen, oktatási és tájékoztató anyagaink célja, hogy ügyfeleink átlássák a modern online jelenlét és ügyfélszerzés működését. Így pontosabban érthetővé válik, milyen rendszerek támogatják a vállalkozás növekedését.": [
-  "Yes. Our educational material exists so clients can see how a modern online presence and client acquisition actually work — and understand which systems support the growth of their business.",
-  "Ja. Unsere Lernmaterialien sollen Kunden zeigen, wie moderne Online-Präsenz und Kundengewinnung wirklich funktionieren — und welche Systeme das Wachstum ihres Unternehmens tragen."
- ],
- "A teljesítmény analitikai rendszereken keresztül követhető nyomon, például Google Analytics és Meta Pixel integrációval. Ezek segítségével pontosan látható a látogatottság, az érdeklődések és a kampányok eredményessége.": [
-  "Performance is tracked through analytics systems such as Google Analytics and Meta Pixel. They show traffic, enquiries and campaign results precisely.",
-  "Die Leistung wird über Analysesysteme wie Google Analytics und Meta Pixel verfolgt. Sie zeigen Besucherzahlen, Anfragen und Kampagnenergebnisse präzise."
- ],
  "Ismerjük meg <span class=\"sig\">egymást.</span>": [
   "Let's <span class=\"sig\">get to know each other.</span>",
   "Lernen wir <span class=\"sig\">uns kennen.</span>"
- ],
- "Egy rövid, kötetlen beszélgetés — utána pontosan tudni fogod, mi az, ami a te vállalkozásodon segítene, és mi az, ami nem.": [
-  "A short, informal conversation — afterwards you'll know exactly what would help your business and what wouldn't.",
-  "Ein kurzes, lockeres Gespräch — danach wissen Sie genau, was Ihrem Unternehmen helfen würde und was nicht."
  ],
  "Kiválasztott együttműködések": [
   "Selected collaborations",
@@ -175,45 +43,13 @@
   "Phase 8.5 — the braided-path section (brief §18). Tervezés, Fejlesztés",
   "and Hirdetés already resolve from the shared table."
  ],
- "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Ahogy dolgozunk</span>": [
-  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">How we work</span>",
-  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Wie wir arbeiten</span>"
- ],
- "Szöveg és kereső": [
-  "Copy and search",
-  "Text und Suche"
- ],
- "A négy szál külön is megáll, de egy projektben ugyanaz a kéz fogja össze őket. Ezért nem kell négy beszállítót egyeztetned.": [
-  "Each of the four stands on its own, but on a project the same hands braid them together. That is why you are not co-ordinating four suppliers.",
-  "Jeder der vier Stränge steht für sich, aber in einem Projekt führt sie dieselbe Hand zusammen. Deshalb müssen Sie nicht vier Dienstleister koordinieren."
- ],
- "Hegyvonulat a felhők fölött — a Stratos névadó sztratoszférája.": [
-  "A mountain range above the clouds — the stratosphere Stratos is named after.",
-  "Eine Bergkette über den Wolken — die Stratosphäre, die Stratos den Namen gab."
- ],
  "Hogyan áraztok?": [
   "How do you price your work?",
   "Wie kalkulieren Sie Ihre Preise?"
  ],
- "Egyszeri, tételes projektdíjjal. A díjmentes felmérés után megkapod, mi készül, mennyi idő alatt és mennyiért — és az átadás után az oldal teljesen a tiéd, kötelező havi díj nélkül.": [
-  "With a one-off, itemised project fee. After the free assessment you get what will be built, how long it takes and what it costs — and after handover the site is entirely yours, with no compulsory monthly fee.",
-  "Mit einem einmaligen, aufgeschlüsselten Projektpreis. Nach der kostenlosen Analyse erhalten Sie, was entsteht, wie lange es dauert und was es kostet — und nach der Übergabe gehört die Website ganz Ihnen, ohne monatliche Pflichtgebühr."
- ],
- "Rólunk — kis csapat, közvetlen felelősség | Stratos": [
-  "About — a small team, direct responsibility | Stratos",
-  "Über uns — kleines Team, direkte Verantwortung | Stratos"
- ],
- "Kis csapat, közvetlen felelősség: azok tervezik, fejlesztik és viszik tovább a munkát, akikkel az első beszélgetésen ülsz. Ismerd meg a Stratost.": [
-  "A small team with direct responsibility: the people in your first meeting are the ones who design, build and carry the work on. Meet Stratos.",
-  "Kleines Team, direkte Verantwortung: Wer im ersten Gespräch sitzt, entwirft, entwickelt und betreut die Arbeit weiter. Lernen Sie Stratos kennen."
- ],
  "Kis csapat.<br><span class=\"sig\">Nagy felelősség.</span>": [
   "A small team.<br><span class=\"sig\">Full responsibility.</span>",
   "Kleines Team.<br><span class=\"sig\">Große Verantwortung.</span>"
- ],
- "A Stratos szándékosan kicsi. Kevés projekt, közvetlen kapcsolat, és ugyanazok az emberek az első beszélgetéstől az élesítésig — és azon túl.": [
-  "Stratos is small on purpose. Few projects, direct contact, and the same people from the first conversation to launch — and beyond it.",
-  "Stratos ist bewusst klein. Wenige Projekte, direkter Kontakt und dieselben Menschen vom ersten Gespräch bis zum Launch — und darüber hinaus."
  ],
  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Miért maradunk kicsik</span>": [
   "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Why we stay small</span>",
@@ -227,41 +63,21 @@
   "Direct contact",
   "Direkter Kontakt"
  ],
- "Nincs account manager a döntés és a munka között: azokkal egyeztetsz, akik tervezik és építik az oldaladat.": [
-  "No account manager between the decision and the work: you deal with the people who design and build your site.",
-  "Kein Account Manager zwischen Entscheidung und Arbeit: Sie sprechen mit denen, die Ihre Website entwerfen und bauen."
- ],
  "Egy kézben": [
   "One pair of hands",
   "In einer Hand"
- ],
- "Tervezés, fejlesztés, szöveg és hirdetés egy projekten belül marad, így minden kérdésnek és minden hibának egy gazdája van.": [
-  "Design, development, copy and advertising stay inside one project, so every question and every fault has one owner.",
-  "Konzept, Entwicklung, Text und Werbung bleiben in einem Projekt, so hat jede Frage und jeder Fehler genau einen Verantwortlichen."
  ],
  "Mesterség": [
   "Craft",
   "Handwerk"
  ],
- "Minden felület kódból, sablon nélkül készül — olyan részletességgel, amit szívesen kiteszünk a saját portfóliónkba.": [
-  "Every interface is built in code, without a template — to a level of detail we would put in our own portfolio.",
-  "Jede Oberfläche entsteht im Code, ohne Vorlage — in einer Sorgfalt, die wir selbst gern in unser Portfolio stellen."
- ],
  "Fegyelem": [
   "Discipline",
   "Disziplin"
  ],
- "Mérhető célok, dokumentált átadás, és a forráskód meg a hozzáférések a tiétek.": [
-  "Measurable goals, a documented handover, and the source code and access are yours.",
-  "Messbare Ziele, eine dokumentierte Übergabe, und Quellcode und Zugänge gehören Ihnen."
- ],
  "Akikkel dolgozol": [
   "The people you work with",
   "Mit wem Sie arbeiten"
- ],
- "Alapító, partner. Weboldalakat és ügyfélszerző rendszereket tervez és épít — a stratégiától a kódig.": [
-  "Founder, partner. Designs and builds websites and client-acquisition systems — from strategy to code.",
-  "Gründer, Partner. Entwirft und baut Websites und Systeme zur Kundengewinnung — von der Strategie bis zum Code."
  ],
  "Partner, hirdetéskezelés. Google- és Meta-kampányokat épít és kezel, és azt méri, mennyi valódi megkeresést hoznak.": [
   "Partner, advertising. Builds and runs Google and Meta campaigns, and measures how many real enquiries they bring.",
@@ -274,5 +90,181 @@
  "<a class=\"tlink\" href=\"mailto:timar.richard@stratosweb.hu\">timar.richard@stratosweb.hu</a>": [
   "<a class=\"tlink\" href=\"mailto:timar.richard@stratosweb.hu\">timar.richard@stratosweb.hu</a>",
   "<a class=\"tlink\" href=\"mailto:timar.richard@stratosweb.hu\">timar.richard@stratosweb.hu</a>"
+ ],
+ "Rólunk: kis csapat, nagy felelősség | Stratos Webdesign": [
+  "About us: small team, big responsibility | Stratos Webdesign",
+  "Über uns: kleines Team, große Verantwortung | Stratos"
+ ],
+ "A Stratos Webdesign csapata egyedi weboldalakat, 3D weboldalakat és keresőoptimalizálást készít, országosan. Azzal beszélsz, aki a munkát csinálja.": [
+  "The Stratos Webdesign team builds custom websites, 3D websites and SEO, across Hungary. You talk to the people who do the work.",
+  "Stratos Webdesign baut individuelle Websites, 3D-Websites und SEO, in ganz Ungarn. Sie sprechen mit denen, die die Arbeit machen."
+ ],
+ "A Stratos Webdesign szándékosan kicsi. Kevés projektet viszünk egyszerre, hogy mindegyikben ott lehessünk: ugyanazok vagyunk az első beszélgetéstől az élesítésig, és azon túl is.": [
+  "Stratos Webdesign is small on purpose. We take on few projects at a time so that we can be there for each one: the same people from the first conversation to launch, and beyond.",
+  "Stratos Webdesign ist bewusst klein. Wir betreuen wenige Projekte gleichzeitig, damit wir bei jedem dabei sein können: dieselben Menschen vom ersten Gespräch bis zum Launch und darüber hinaus."
+ ],
+ "A Stratos Webdesign magyar webdesign-ügynökség. Egyedi kódból épített weboldalakat, 3D weboldalakat és termékkonfigurátorokat, webshopokat és arculatot készít, és havidíjas keresőoptimalizálással, Google- és Meta-hirdetéskezeléssel viszi tovább őket. Az egész országban dolgozik, online.": [
+  "Stratos Webdesign is a Hungarian web design agency. It builds websites in custom code, 3D websites and product configurators, online shops and brand identities, and carries them forward with monthly search engine optimisation and Google and Meta ads management. It works across Hungary, online.",
+  "Stratos Webdesign ist eine ungarische Webdesign-Agentur. Sie baut Websites aus individuellem Code, 3D-Websites und Produktkonfiguratoren, Onlineshops und Markenauftritte und betreut sie mit monatlicher Suchmaschinenoptimierung sowie Google- und Meta-Anzeigen weiter. Sie arbeitet in ganz Ungarn, online."
+ ],
+ "<span class=\"stat__n\">15+</span><span class=\"stat__l\">Aktív ügyfél országszerte</span>": [
+  "<span class=\"stat__n\">15+</span><span class=\"stat__l\">Active clients across Hungary</span>",
+  "<span class=\"stat__n\">15+</span><span class=\"stat__l\">Aktive Kunden in ganz Ungarn</span>"
+ ],
+ "<span class=\"stat__n\">20+</span><span class=\"stat__l\">Projekt</span>": [
+  "<span class=\"stat__n\">20+</span><span class=\"stat__l\">Projects</span>",
+  "<span class=\"stat__n\">20+</span><span class=\"stat__l\">Projekte</span>"
+ ],
+ "<span class=\"stat__n\">4</span><span class=\"stat__l\">Év folyamatos kutatás</span>": [
+  "<span class=\"stat__n\">4</span><span class=\"stat__l\">Years of continuous research</span>",
+  "<span class=\"stat__n\">4</span><span class=\"stat__l\">Jahre kontinuierliche Forschung</span>"
+ ],
+ "Ha dolgoztál már ügynökséggel, ismerheted ezt: az első megbeszélésen még a vezető ül veled szemben, utána egy ügyintézőnek írsz, a weboldalt valaki más építi, a hirdetést egy harmadik cég viszi. Ha valami nem működik, mindenki a másikra mutat. Mi ezért dolgozunk másképp.": [
+  "If you have worked with an agency before, you may know this: at the first meeting the boss sits across from you, after that you write to an account handler, someone else builds the website and a third company runs the ads. When something doesn’t work, everyone points at someone else. That is why we work differently.",
+  "Wenn Sie schon mit einer Agentur gearbeitet haben, kennen Sie das vielleicht: Beim ersten Termin sitzt Ihnen noch die Geschäftsführung gegenüber, danach schreiben Sie einem Sachbearbeiter, die Website baut jemand anderes, die Werbung betreut eine dritte Firma. Wenn etwas nicht funktioniert, zeigt jeder auf den anderen. Deshalb arbeiten wir anders."
+ ],
+ "Úgy dolgozunk, mintha a csapatod része lennénk: átérezzük a helyzetedet, kimondjuk, ha valami szerintünk nem éri meg, és együtt keressük meg a legjobb irányt. Neked ez annyit jelent, hogy egyszer kell elmondanod, mit szeretnél, és azok viszik végig, akiknek elmondtad.": [
+  "We work as if we were part of your team: we put ourselves in your position, we say so when we think something isn’t worth it, and we look for the best direction together. For you, it means you only have to say once what you want, and the people you told carry it through.",
+  "Wir arbeiten, als wären wir Teil Ihres Teams: Wir versetzen uns in Ihre Lage, sagen offen, wenn sich etwas aus unserer Sicht nicht lohnt, und suchen gemeinsam die beste Richtung. Für Sie heißt das: Sie sagen einmal, was Sie möchten, und genau die Menschen, denen Sie es gesagt haben, setzen es um."
+ ],
+ "Nincs közvetítő a döntés és a munka között: azokkal egyeztetsz, akik tervezik és építik az oldaladat.": [
+  "No go-between between the decision and the work: you deal with the people who design and build your site.",
+  "Kein Vermittler zwischen Entscheidung und Arbeit: Sie sprechen mit denen, die Ihre Website entwerfen und bauen."
+ ],
+ "Tervezés, fejlesztés, szöveg, keresőoptimalizálás és hirdetés egy projekten belül marad, így minden kérdésnek és minden hibának egy gazdája van.": [
+  "Design, development, copy, SEO and advertising stay inside one project, so every question and every fault has one owner.",
+  "Konzeption, Entwicklung, Text, Suchmaschinenoptimierung und Werbung bleiben in einem Projekt, so hat jede Frage und jeder Fehler einen Verantwortlichen."
+ ],
+ "Minden felület egyedi kódból, sablon nélkül készül, olyan részletességgel, amit szívesen kiteszünk a saját portfóliónkba.": [
+  "Every interface is built in custom code, without a template, to a level of detail we would happily put in our own portfolio.",
+  "Jede Oberfläche entsteht aus individuellem Code, ohne Vorlage, in einer Sorgfalt, die wir gern in unser eigenes Portfolio stellen."
+ ],
+ "Mérhető célok, dokumentált átadás, és a forráskód meg a hozzáférések a tiéd.": [
+  "Measurable goals, a documented handover, and the source code and access are yours.",
+  "Messbare Ziele, eine dokumentierte Übergabe, und Quellcode und Zugänge gehören Ihnen."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Ahogy dolgozunk</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">How we work</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">02</span><span class=\"smark__t\">Wie wir arbeiten</span>"
+ ],
+ "A négy szál külön is megáll, de nálunk ugyanaz a kéz fogja össze őket. Így nem kell négy beszállítót egyeztetned.": [
+  "Each of the four stands on its own, but with us the same hands hold them together. So you don’t have to coordinate four suppliers.",
+  "Jeder der vier Stränge steht für sich, aber bei uns hält sie dieselbe Hand zusammen. So müssen Sie nicht vier Dienstleister koordinieren."
+ ],
+ "<b>Előbb redukálunk.</b> Ha mindent egyszerre mondunk, semmi nem marad meg. Azzal kezdünk, amit el lehet hagyni.": [
+  "<b>We reduce first.</b> Say everything at once and nothing stays. We start with what can be left out.",
+  "<b>Zuerst reduzieren wir.</b> Wer alles auf einmal sagt, dem bleibt nichts im Gedächtnis. Wir beginnen mit dem, was wegfallen kann."
+ ],
+ "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Akikkel dolgozol</span>": [
+  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">The people you work with</span>",
+  "<span class=\"smark__n\" aria-hidden=\"true\">03</span><span class=\"smark__t\">Mit wem Sie arbeiten</span>"
+ ],
+ "Alapító, partner. Weboldalakat tervez és épít, a stratégiától a kódig.": [
+  "Founder, partner. Designs and builds websites, from strategy to code.",
+  "Gründer, Partner. Entwirft und baut Websites, von der Strategie bis zum Code."
+ ],
+ "Nem találod a választ? <a class=\"tlink\" href=\"ugyfelszolgalat.html\">Írj nekünk</a>.": [
+  "Can’t find your answer? <a class=\"tlink\" href=\"ugyfelszolgalat.html\">Write to us</a>.",
+  "Keine Antwort gefunden? <a class=\"tlink\" href=\"ugyfelszolgalat.html\">Schreiben Sie uns</a>."
+ ],
+ "Kik vagytok?": [
+  "Who are you?",
+  "Wer sind Sie?"
+ ],
+ "A Stratos Webdesign magyar webdesign-ügynökség. Egyedi kódból épített weboldalakat, 3D weboldalakat és termékkonfigurátorokat, webshopokat és arculatot készítünk, és havidíjas keresőoptimalizálással, Google- és Meta-hirdetéskezeléssel visszük tovább őket. A partnerek: Lukács Artúr (alapító) és Tímár Richárd (hirdetéskezelés).": [
+  "Stratos Webdesign is a Hungarian web design agency. We build websites in custom code, 3D websites and product configurators, online shops and brand identities, and carry them forward with monthly search engine optimisation and Google and Meta ads management. The partners: Artúr Lukács (founder) and Richárd Tímár (ads management).",
+  "Stratos Webdesign ist eine ungarische Webdesign-Agentur. Wir bauen Websites aus individuellem Code, 3D-Websites und Produktkonfiguratoren, Onlineshops und Markenauftritte und betreuen sie mit monatlicher Suchmaschinenoptimierung sowie Google- und Meta-Anzeigen weiter. Die Partner: Artúr Lukács (Gründer) und Richárd Tímár (Werbebetreuung)."
+ ],
+ "Hogyan indul egy közös munka?": [
+  "How does working together start?",
+  "Wie beginnt eine Zusammenarbeit?"
+ ],
+ "Egy ingyenes igényfelmérő hívással. Utána írásos, egyedi ajánlatot küldünk, ami 14 napig érvényes. Ha igent mondasz, az előleg beérkezése után indul a munka: tervezés, fejlesztés, átadás.": [
+  "With a free discovery call. After it we send you a tailored proposal in writing, valid for 14 days. If you say yes, the work starts once the deposit arrives: design, development, handover.",
+  "Mit einem kostenlosen Erstgespräch. Danach senden wir Ihnen ein schriftliches, individuelles Angebot, das 14 Tage gilt. Wenn Sie zusagen, beginnt die Arbeit nach Eingang der Anzahlung: Konzeption, Entwicklung, Übergabe."
+ ],
+ "A weboldal egyszeri projektdíjas, és a tiéd. A keresőoptimalizálást és a karbantartást havidíjas partnerségként választhatod mellé. Árlistát nem teszünk ki, mert minden ajánlat egyedi: a díjat az ingyenes igényfelmérő hívás után, írásban és tételesen adjuk meg.": [
+  "The website is a one-off project fee, and it is yours. You can add SEO and maintenance alongside it as a monthly partnership. We don’t publish a price list, because every proposal is individual: we give you the fee after the free discovery call, in writing and itemised.",
+  "Die Website kostet ein einmaliges Projekthonorar und gehört Ihnen. Suchmaschinenoptimierung und Wartung können Sie als monatliche Partnerschaft dazu wählen. Eine Preisliste veröffentlichen wir nicht, weil jedes Angebot individuell ist: Das Honorar nennen wir nach dem kostenlosen Erstgespräch, schriftlich und aufgeschlüsselt."
+ ],
+ "Projektenként más. A pontos határidőt az ajánlatban rögzítjük, és határidő-garanciát vállalunk rá, ha minden anyag időben megérkezik tőled.": [
+  "It differs from project to project. We set the exact deadline in the proposal and guarantee it, provided everything we need from you arrives on time.",
+  "Das ist von Projekt zu Projekt verschieden. Den genauen Termin legen wir im Angebot fest und geben eine Termingarantie darauf, sofern alles, was wir von Ihnen brauchen, rechtzeitig kommt."
+ ],
+ "Mit vállaltok garanciaként?": [
+  "What do you guarantee?",
+  "Was garantieren Sie?"
+ ],
+ "Kettőt: a határidőt, ha minden anyag (szöveg, kép, hozzáférés) időben megérkezik tőled, és három kör módosítást a tervezés során.": [
+  "Two things: the deadline, provided everything we need from you (text, images, access) arrives on time, and three rounds of revisions during design.",
+  "Zweierlei: den Termin, sofern alles, was wir von Ihnen brauchen (Texte, Bilder, Zugänge), rechtzeitig kommt, und drei Korrekturrunden während der Konzeption."
+ ],
+ "Mennyire lesz egyedi a weboldalam?": [
+  "How bespoke will my website be?",
+  "Wie individuell wird meine Website?"
+ ],
+ "Teljesen. Egyedi kódból építjük, sablon és oldalépítő nélkül, a te arculatodra, vevőidre és céljaidra szabva.": [
+  "Entirely. We build it in custom code, without templates or page builders, tailored to your brand, your customers and your goals.",
+  "Vollständig. Wir bauen sie aus individuellem Code, ohne Vorlagen und Baukästen, zugeschnitten auf Ihr Erscheinungsbild, Ihre Kunden und Ihre Ziele."
+ ],
+ "Később bővíthető lesz?": [
+  "Can it be extended later?",
+  "Lässt sie sich später erweitern?"
+ ],
+ "Igen. Új oldallal, funkcióval vagy nyelvvel később is bővíthető, és mivel a kód a tiéd, nem kötődsz hozzánk.": [
+  "Yes. New pages, features or languages can be added later, and because the code is yours, you are not tied to us.",
+  "Ja. Neue Seiten, Funktionen oder Sprachen lassen sich später ergänzen, und weil der Code Ihnen gehört, sind Sie nicht an uns gebunden."
+ ],
+ "Mi történik az átadás után?": [
+  "What happens after handover?",
+  "Was passiert nach der Übergabe?"
+ ],
+ "Megkapod a hozzáféréseket és a fájlokat. Ha szeretnéd, havidíjas karbantartással mi figyelünk a tárhelyre, a frissítésekre és a mentésekre, és havidíjas keresőoptimalizálással visszük tovább az oldalt.": [
+  "You get the access and the files. If you like, with monthly maintenance we look after hosting, updates and backups, and with monthly SEO we keep taking the site forward.",
+  "Sie erhalten die Zugänge und die Dateien. Wenn Sie möchten, kümmern wir uns mit monatlicher Wartung um Hosting, Updates und Backups und entwickeln die Website mit monatlicher Suchmaschinenoptimierung weiter."
+ ],
+ "Hirdetéseket is kezeltek?": [
+  "Do you manage ads as well?",
+  "Betreuen Sie auch Werbung?"
+ ],
+ "Igen. Google Ads, Google Shopping és Meta (Facebook, Instagram) kampányokat építünk és kezelünk, méréssel, hogy lásd, mi hozott megkeresést.": [
+  "Yes. We build and run Google Ads, Google Shopping and Meta (Facebook, Instagram) campaigns, with measurement, so you can see what brought in enquiries.",
+  "Ja. Wir bauen und betreuen Kampagnen in Google Ads, Google Shopping und Meta (Facebook, Instagram), mit Messung, damit Sie sehen, was Anfragen gebracht hat."
+ ],
+ "Hogyan látom, mit hoz a weboldal?": [
+  "How do I see what the website brings in?",
+  "Wie sehe ich, was die Website bringt?"
+ ],
+ "Beállítjuk a mérést (például Google Analytics és Meta Pixel), így látod, hányan jönnek, honnan, és hány megkeresés lett belőlük. Keresőoptimalizálásnál és hirdetésnél havi riportot is kapsz.": [
+  "We set up measurement (for example Google Analytics and Meta Pixel), so you can see how many people come, from where, and how many enquiries they turned into. With SEO and advertising you also get a monthly report.",
+  "Wir richten die Messung ein (zum Beispiel Google Analytics und Meta Pixel), damit Sie sehen, wie viele Besucher kommen, woher, und wie viele Anfragen daraus wurden. Bei Suchmaschinenoptimierung und Werbung erhalten Sie zusätzlich einen monatlichen Bericht."
+ ],
+ "Nem, ilyet senki nem tud tisztességgel garantálni. A keresőoptimalizálás hatása általában 3–6 hónap alatt kezd látszani, és minden hónapban látod, hol tartunk.": [
+  "No, nobody can honestly guarantee that. The effect of SEO usually starts to show within 3–6 months, and every month you see where we stand.",
+  "Nein, das kann niemand seriös garantieren. Die Wirkung von Suchmaschinenoptimierung zeigt sich in der Regel nach 3–6 Monaten, und Sie sehen jeden Monat, wo wir stehen."
+ ],
+ "Kapcsolódó oldalak.": [
+  "Related pages.",
+  "Verwandte Seiten."
+ ],
+ "Mit csinálunk, és melyik szolgáltatás melyik üzleti problémára válasz.": [
+  "What we do, and which service answers which business problem.",
+  "Was wir machen und welche Leistung auf welches geschäftliche Problem antwortet."
+ ],
+ "Élő oldalak, amiket mi építettünk, hogy lásd, mire számíthatsz.": [
+  "Live sites we built, so you can see what to expect.",
+  "Live-Websites, die wir gebaut haben, damit Sie sehen, was Sie erwartet."
+ ],
+ "Néhány perc kitöltés, és munkanapokon 24 órán belül jelentkezünk.": [
+  "A few minutes to fill in, and we get back to you within 24 hours on working days.",
+  "Ein paar Minuten zum Ausfüllen, und wir melden uns an Werktagen innerhalb von 24 Stunden."
+ ],
+ "Egy rövid, kötetlen hívás, utána pontosan tudni fogod, mi segítene a vállalkozásodon, és mi nem.": [
+  "One short, informal call, and afterwards you will know exactly what would help your business, and what would not.",
+  "Ein kurzes, lockeres Gespräch, und danach wissen Sie genau, was Ihrem Unternehmen helfen würde und was nicht."
+ ],
+ "<a class=\"tlink\" href=\"munkaink.html\">Megnézem a munkáitokat</a>": [
+  "<a class=\"tlink\" href=\"munkaink.html\">See your work</a>",
+  "<a class=\"tlink\" href=\"munkaink.html\">Ihre Projekte ansehen</a>"
  ]
 }

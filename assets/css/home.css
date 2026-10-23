@@ -1,7 +1,9 @@
 /* ==========================================================================
    STRATOS — the homepage composition.
 
-   Eight scenes on the system in assets/css/system.css. Nothing here defines a
+   Eight scenes on the system in assets/css/system.css, and since the copy
+   pack of 2026-10-23 the pack's new sections written in their vocabulary
+   (see "the copy pack's scenes" below). Nothing here defines a
    colour, a size or a curve the system does not already name, except the two
    project worlds (Rapidkert's soil, GoDataFusion's screen), which are the
    client's colours and nobody else's.
@@ -78,6 +80,13 @@ body {
   margin-top: clamp(2.25rem, 7vh, 5rem);
 }
 .hero__lede { color: var(--c-ink-2); }
+
+/* Two actions — the button and the text link, the home's two kinds — with
+   the microcopy under them, and the proof line closing the hero (copy pack,
+   2026-10-23). `.acts` is the same pair wherever a scene ends on an action. */
+.acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4) var(--sp-6); }
+.acts__note { margin-top: var(--sp-3); max-width: 38ch; }
+.hero__proof { margin-top: clamp(1.75rem, 5vh, 3rem); }
 
 @keyframes light-on { from { color: var(--c-ink-3); } }
 @keyframes field-on { from { opacity: 0; } }
@@ -176,6 +185,7 @@ body {
   min-height: 86svh;
   padding: var(--sp-scene) 0;
 }
+.still__k { margin-bottom: clamp(1.25rem, 3vh, 2rem); }
 .still__h { max-width: 19ch; }
 .still__a, .still__b { display: block; }
 .still__a { color: var(--c-ink-3); transition: color var(--dur-light) var(--ease-std); }
@@ -315,6 +325,11 @@ body {
 .cap:hover::before,
 .cap:focus-within::before { opacity: 1; transform: none; }
 .cap__d { max-width: 38ch; }
+/* A statement over the rows instead of a micro label (copy pack, 2026-10-23),
+   and the line under them. */
+.caps__h { max-width: 22ch; }
+.caps__lede { max-width: 56ch; margin: var(--sp-5) 0 clamp(1.5rem, 4vw, 3rem); }
+.caps__foot { max-width: 60ch; margin-top: var(--sp-5); }
 .cap__l { display: grid; gap: 0.4rem; font-size: var(--t-small); }
 .cap__l a {
   color: var(--c-ink-2);
@@ -371,6 +386,84 @@ body {
   .ways__k { padding-top: 0; margin-bottom: calc(-1 * var(--sp-7)); }
   .principle { grid-template-columns: 1fr; gap: var(--sp-3); }
   .ledger__list > div { grid-template-columns: 1fr; gap: var(--sp-2); }
+}
+
+.ledger__note { margin-top: var(--sp-4); }
+.ledger .acts { margin-top: var(--sp-6); }
+
+/* ------------------------------------------------- the copy pack's scenes */
+/* The sections the copy pack of 2026-10-23 added — the reader's situation,
+   the 3D argument, monthly search, the four situations, the objections, the
+   questions, the reading list — are set in the vocabulary above rather than
+   a new one: the principles' two columns (`.ways__grid`, a micro label on
+   the left), their lit rows (`.principles`), the ledger's hairline rows, the
+   capabilities' rows of type. What they add is only what that vocabulary had
+   no word for: a statement and its paragraphs in the right-hand column, a
+   hairline list, the numbers of a numbered list, and the questions. */
+.pain, .offer, .seo, .fit, .doubts, .faqs, .reads { padding: calc(var(--sp-scene) * 0.5) 0; }
+.ways__main { grid-column: 2; }
+.ways__main > * + * { margin-top: var(--sp-5); }
+.ways__main > .ways__h + * { margin-top: var(--sp-6); }
+.ways__main > .acts { margin-top: var(--sp-6); }
+.ways__main > .principles { margin-block: var(--sp-8); }
+.ways__main > .ways__list:not(:first-child) { margin-block: var(--sp-6); }
+.ways__h { max-width: 22ch; }
+.ways__main :is(.t-body, .t-lead) { max-width: 58ch; }
+.ways__list { max-width: 62ch; border-top: 1px solid var(--c-line); }
+.ways__list li { padding: 1.1rem 0; border-bottom: 1px solid var(--c-line); color: var(--c-ink-2); }
+
+/* A numbered list shows its numbers: the 3D reasons, the five steps. */
+.principles { counter-reset: principle; }
+.principle { counter-increment: principle; }
+.principle__t::before {
+  content: counter(principle, decimal-leading-zero);
+  display: block;
+  margin-bottom: var(--sp-3);
+  font-family: var(--font-body);
+  font-size: var(--t-micro);
+  font-weight: var(--w-ui);
+  letter-spacing: 0.01em;
+  color: var(--c-ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The questions: the shape site.css gives `.faq` on every other route (the
+   homepage does not load site.css). Open is unmistakable without colouring
+   the words: the mark turns from + to ×, and the rule under it darkens. */
+.faq { border-top: 1px solid var(--c-line); }
+.faq details { border-bottom: 1px solid var(--c-line); transition: border-color var(--dur-state) var(--ease-std); }
+.faq summary {
+  position: relative;
+  list-style: none;
+  cursor: var(--cursor-hot);
+  padding: 1.25rem 3rem 1.25rem 0;
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  font-weight: var(--w-title);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--c-ink);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "";
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 1.5px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1.5px 100% no-repeat;
+  color: var(--c-ink-3);
+  transition: transform var(--dur-state) var(--ease-out);
+}
+.faq details[open] summary::after { transform: rotate(45deg); color: var(--c-ink); }
+.faq details[open] { border-bottom-color: var(--c-ink); }
+.faq__a { max-width: 70ch; padding: 0 clamp(1rem, 8vw, 6rem) 1.5rem 0; font-size: var(--t-body); line-height: 1.55; color: var(--c-ink-2); }
+
+@media (max-width: 860px) {
+  .ways__main { grid-column: 1; }
 }
 
 /* --------------------------------------------------------------- 07 · marks */
@@ -470,6 +563,7 @@ body {
 .close__act { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4) var(--sp-6); }
 .close__act .link { font-weight: 400; color: var(--c-on-dark-2); }
 .close__act .link:hover { color: var(--c-on-dark); }
+.close__end .acts__note { max-width: 44ch; }
 
 @media (max-width: 760px) {
   .close__foot { flex-direction: column; align-items: flex-start; }

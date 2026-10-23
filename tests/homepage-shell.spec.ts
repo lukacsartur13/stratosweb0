@@ -200,7 +200,7 @@ test.describe('the menu', () => {
 });
 
 test.describe('the footer', () => {
-  test('carries the lead form, NAP, the four profiles, legal links and the consent switch', async ({ page }) => {
+  test('carries the lead form, e-mail and phone, the four profiles, legal links and the consent switch', async ({ page }) => {
     await page.goto('/index.html');
     const ftr = page.locator('footer.ftr');
     await expect(ftr).toHaveCount(1);
@@ -208,8 +208,12 @@ test.describe('the footer', () => {
     await expect(form.locator('input[type="email"][name="email"][required]')).toHaveCount(1);
     await expect(form.locator('.hp input[name="company_website"]')).toHaveCount(1);
     await expect(form.locator('.form__note[role="status"]')).toHaveCount(1);
-    await expect(ftr.locator('address')).toContainText('9027 Győr, Gesztenyefa út 4.');
-    await expect(ftr.locator('address')).toContainText('9151 Abda, Arany János utca 13.');
+    // No postal address since 2026-10-23: no clients are received at an office
+    // (owner, copy pack), and the seat is stated on /impresszum alone.
+    await expect(ftr.locator('address')).toHaveCount(0);
+    await expect(ftr).not.toContainText('Gesztenyefa');
+    await expect(ftr.locator('a[href="mailto:hello@stratosweb.hu"]')).toHaveCount(1);
+    await expect(ftr.locator('a[href="tel:+36305848024"]')).toHaveCount(1);
     for (const profile of ['linkedin.com/company/stratos-media-agency', 'instagram.com/stratosweb',
       'facebook.com/profile.php?id=61590329356257', 'maps.google.com/?cid=2524074190501925711']) {
       await expect(ftr.locator(`a[href*="${profile}"]`), profile).toHaveCount(1);
@@ -217,9 +221,12 @@ test.describe('the footer', () => {
     await expect(ftr.locator('a[href="/adatkezelesi-tajekoztato.html"]')).toHaveCount(1);
     await expect(ftr.locator('a[href="/impresszum.html"]')).toHaveCount(1);
     await expect(ftr.locator('[data-consent-settings]')).toHaveCount(1);
-    // The regional pages are Hungarian only, and so is their link.
-    await expect(ftr.locator('a[href="/weboldal-keszites-gyor.html"]')).toHaveCount(1);
-    await expect(ftr.locator('a[href="/weboldal-keszites-budapest.html"]')).toHaveCount(1);
+    // The regional hub is Hungarian only, and so is its link. Since the copy
+    // pack of 2026-10-23 the status line says „Az egész országban dolgozunk,
+    // online.” instead of naming Győr and Budapest; the regions are one click
+    // further, on the hub.
+    await expect(ftr.locator('a[href="/hol-dolgozunk.html"]')).toHaveCount(1);
+    await expect(ftr).toContainText('Az egész országban dolgozunk, online.');
   });
 
   test('every footer link resolves', async ({ page, request }) => {
@@ -541,7 +548,10 @@ test.describe('the logos on a phone', () => {
     test.skip(page.viewportSize()!.width > 760, 'the carousel is for a phone');
     const reduce = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
     const sets = page.locator('.logoset--marks');
-    await sets.first().scrollIntoViewIfNeeded();
+    // Scrolled to by script: since the copy pack the rail sits under the hero
+    // and is already running on load, and a moving set is never "stable"
+    // enough for Playwright's own scroll.
+    await sets.first().evaluate((el) => el.scrollIntoView({ block: 'center' }));
     expect(await sets.first().locator('img').first().evaluate((el) => getComputedStyle(el).filter), 'in its own colour').toBe('none');
     if (reduce) {
       await expect(sets, 'no motion for a reader who asked for less: one set, in its rows').toHaveCount(1);

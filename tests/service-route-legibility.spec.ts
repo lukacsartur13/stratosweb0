@@ -494,13 +494,15 @@ test('the repaired routes keep their section order', async ({ page }) => {
   // CTA reads differently once it is answered. Everything around it is in the
   // order §38 left it. (The Arrival band that used to close the list went with
   // the original shell; this page ends on its own closing launch.)
+  // The copy pack of 2026-10-23 replaced the HAIO band with the questions
+  // block, a full `band` — the ninth entry; the order around it is unchanged.
   await page.goto('/hirdeteskezeles.html');
   const bands = await page.evaluate(() =>
     [...document.querySelectorAll('section')].map((s) => s.className.trim()));
   expect(bands).toEqual([
     'phead', 'band band--tight', 'band', 'band band--pale', 'band',
     'band band--pale',
-    'band band--tight', 'band band--tight', 'band band--tight',
+    'band band--tight', 'band band--tight', 'band',
     'band band--pale', 'band band--tight', 'band',
   ]);
 });

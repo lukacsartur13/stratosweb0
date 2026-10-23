@@ -6,3 +6,10 @@
 .braid__list li { padding-top: var(--sp-4); font-family: var(--font-display); font-size: var(--t-title); font-weight: 400; letter-spacing: 0.01em; line-height: 1.1; text-transform: uppercase; }
 .braid__w { max-width: 52ch; color: var(--c-ink-2); }
 @media (max-width: 760px) { .braid__list { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--sp-5); } }
+/* Since the copy pack of 2026-10-23 the third strand is one long word,
+   „Keresőoptimalizálás”, wider than a quarter of the row. So the strands take
+   the width their words need instead of four equal quarters, two to a row on
+   a narrow screen and one on a phone, and no word is ever cut in two. */
+.braid__list { grid-template-columns: repeat(4, auto); justify-content: space-between; }
+@media (max-width: 960px) { .braid__list { grid-template-columns: repeat(2, auto); justify-content: start; column-gap: clamp(1.5rem, 6vw, 3rem); row-gap: var(--sp-5); } }
+@media (max-width: 480px) { .braid__list { grid-template-columns: minmax(0, 1fr); } }

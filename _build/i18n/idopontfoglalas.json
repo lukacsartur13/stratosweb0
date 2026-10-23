@@ -6,33 +6,13 @@
   "assets/js/booking.js. German addresses the reader with Sie, like the rest",
   "of the German site."
  ],
- "Időpontfoglalás: díjmentes online konzultáció | Stratos": [
-  "Book a call: free online consultation | Stratos",
-  "Termin buchen: kostenlose Online-Beratung | Stratos"
- ],
- "Foglalj 30 perces, díjmentes online konzultációt. Csak a valóban szabad időpontokat látod, a Google Meet-meghívót azonnal megkapod e-mailben.": [
-  "Book a free 30-minute online consultation. You only see times that are genuinely free, and the Google Meet invitation reaches your inbox straight away.",
-  "Buchen Sie eine kostenlose 30-minütige Online-Beratung. Sie sehen nur wirklich freie Termine, und die Google-Meet-Einladung kommt sofort per E-Mail."
- ],
- "<a href=\"index.html\">Stratos</a> / <a href=\"ugyfelszolgalat.html\">Kapcsolat</a> / <b>Időpontfoglalás</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"ugyfelszolgalat.html\">Contact</a> / <b>Book a call</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"ugyfelszolgalat.html\">Kontakt</a> / <b>Termin buchen</b>"
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"ugyfelszolgalat.html\">Kapcsolat</a> / <b>Időpontfoglalás</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"ugyfelszolgalat.html\">Contact</a> / <b>Book a call</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"ugyfelszolgalat.html\">Kontakt</a> / <b>Termin buchen</b>"
  ],
  "Foglalj egy<br><span class=\"sig\">félórát.</span>": [
   "Book<br><span class=\"sig\">thirty minutes.</span>",
   "Buchen Sie<br><span class=\"sig\">eine halbe Stunde.</span>"
- ],
- "Díjmentes online konzultáció Google Meeten. Csak azokat az időpontokat látod, amikor tényleg ráérünk, és a meghívót a Meet-linkkel azonnal megkapod e-mailben.": [
-  "A free online consultation on Google Meet. You only see the times when we are genuinely free, and the invitation with the Meet link reaches your inbox straight away.",
-  "Eine kostenlose Online-Beratung über Google Meet. Sie sehen nur die Zeiten, zu denen wir wirklich frei sind, und die Einladung mit dem Meet-Link erhalten Sie sofort per E-Mail."
- ],
- "Ha inkább írnál, az is jó: <a class=\"tlink\" href=\"ugyfelszolgalat.html\">rövid üzenet vagy igényfelmérő</a>. Válasz jellemzően egy munkanapon belül.": [
-  "Rather write? That works too: <a class=\"tlink\" href=\"ugyfelszolgalat.html\">a short message or the full brief</a>. We usually reply within one working day.",
-  "Lieber schreiben? Auch gut: <a class=\"tlink\" href=\"ugyfelszolgalat.html\">eine kurze Nachricht oder der Fragebogen</a>. Antwort in der Regel innerhalb eines Werktags."
- ],
- "<span><b>Hossz</b> 30 perc</span> <span><b>Helyszín</b> Google Meet</span> <span><b>Díj</b> nincs</span>": [
-  "<span><b>Length</b> 30 minutes</span> <span><b>Where</b> Google Meet</span> <span><b>Fee</b> none</span>",
-  "<span><b>Dauer</b> 30 Minuten</span> <span><b>Ort</b> Google Meet</span> <span><b>Kosten</b> keine</span>"
  ],
  "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Időpont</span>": [
   "<span class=\"smark__n\" aria-hidden=\"true\">01</span><span class=\"smark__t\">Time</span>",
@@ -73,18 +53,6 @@
  "Vállalkozás neve": [
   "Business name",
   "Name des Unternehmens"
- ],
- "Miről beszélgetnél? *": [
-  "What would you like to talk about? *",
-  "Worüber möchten Sie sprechen? *"
- ],
- "Pár mondat elég: mit csinál a vállalkozásod, és miben segítsünk?": [
-  "A few sentences are enough: what your business does and how we can help.",
-  "Ein paar Sätze genügen: was Ihr Unternehmen macht und wobei wir helfen können."
- ],
- "<input type=\"checkbox\" name=\"consent\" value=\"Igen\" required> <span>A foglalással kijelentem, hogy elfogadtam az <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Adatvédelmi nyilatkozatban</a> foglaltakat. *</span>": [
-  "<input type=\"checkbox\" name=\"consent\" value=\"Yes\" required> <span>By booking I confirm that I accept the terms set out in the <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">privacy policy</a>. *</span>",
-  "<input type=\"checkbox\" name=\"consent\" value=\"Ja\" required> <span>Mit der Buchung bestätige ich, dass ich die Bestimmungen der <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Datenschutzerklärung</a> akzeptiere. *</span>"
  ],
  "Lefoglalom": [
   "Book this time",
@@ -146,10 +114,6 @@
   "A few details",
   "Ein paar Angaben"
  ],
- "A neved, az e-mail-címed és néhány mondat arról, miről beszélgetnénk.": [
-  "Your name, your e-mail address and a few sentences about what we should talk about.",
-  "Ihr Name, Ihre E-Mail-Adresse und ein paar Sätze dazu, worüber wir sprechen sollen."
- ],
  "Meghívó": [
   "The invitation",
   "Die Einladung"
@@ -202,14 +166,6 @@
   "Please enter a valid e-mail address.",
   "Bitte geben Sie eine gültige E-Mail-Adresse an."
  ],
- "Írj pár szót arról, miről beszélgetnénk.": [
-  "Please write a few words about what we should talk about.",
-  "Bitte schreiben Sie kurz, worüber wir sprechen sollen."
- ],
- "A foglaláshoz el kell fogadnod az adatvédelmi nyilatkozatot.": [
-  "To book, please accept the privacy policy.",
-  "Für die Buchung müssen Sie die Datenschutzerklärung akzeptieren."
- ],
  "Ez nem tűnik telefonszámnak.": [
   "That does not look like a phone number.",
   "Das sieht nicht nach einer Telefonnummer aus."
@@ -229,10 +185,6 @@
  "A foglalásod betöltése…": [
   "Loading your booking…",
   "Ihre Buchung wird geladen…"
- ],
- "Ezt a foglalást nem találjuk. Lehet, hogy a link hiányos — nézd meg a meghívóban.": [
-  "We cannot find this booking. The link may be incomplete — please check the invitation.",
-  "Diese Buchung finden wir nicht. Vielleicht ist der Link unvollständig – bitte prüfen Sie die Einladung."
  ],
  "Ha közbejön valami, legkésőbb 12 órával előtte lemondhatod vagy másik időpontra teheted.": [
   "If something comes up, you can cancel it or move it to another time up to 12 hours before.",
@@ -266,12 +218,57 @@
   "This is too close to change online. Please write to us.",
   "Dafür ist es zu kurzfristig für eine Online-Änderung. Bitte schreiben Sie uns."
  ],
- "Inkább rögtön beszélnél? <a class=\"tlink\" href=\"idopontfoglalas.html\">Foglalj időpontot online</a> — 30 perc Google Meeten, a naptárunk szabad időpontjaiból.": [
-  "Rather talk straight away? <a class=\"tlink\" href=\"idopontfoglalas.html\">Book a call online</a> — 30 minutes on Google Meet, at a time our calendar has free.",
-  "Lieber gleich sprechen? <a class=\"tlink\" href=\"idopontfoglalas.html\">Buchen Sie online einen Termin</a> — 30 Minuten über Google Meet, zu einer freien Zeit in unserem Kalender."
- ],
  "Üzenet küldése": [
   "Send us a message",
   "Nachricht senden"
+ ],
+ "_copy_2026_10_23": "Szövegcsomag 2026-10-23: ingyenes igényfelmérő hívás, Adatkezelési tájékoztató, „Miben segíthetünk?”.",
+ "Ingyenes igényfelmérő hívás | Stratos Webdesign": [
+  "Free discovery call | Stratos Webdesign",
+  "Kostenloses Erstgespräch | Stratos Webdesign"
+ ],
+ "Foglalj 30 perces, ingyenes igényfelmérő hívást Google Meeten. Csak a valóban szabad időpontokat látod, a meghívót azonnal megkapod e-mailben.": [
+  "Book a free 30-minute discovery call on Google Meet. You only see times that are genuinely free, and the invitation reaches your inbox straight away.",
+  "Buchen Sie ein kostenloses 30-minütiges Erstgespräch über Google Meet. Sie sehen nur wirklich freie Termine, und die Einladung kommt sofort per E-Mail."
+ ],
+ "Ingyenes igényfelmérő hívás Google Meeten. Megnézzük, hol tart most a vállalkozásod online, mit szeretnél elérni, és melyik út vezet oda. Utána egyedi, írásos ajánlatot küldünk.": [
+  "A free discovery call on Google Meet. We look at where your business stands online today, what you want to achieve, and which route gets you there. Afterwards we send you a tailored, written quote.",
+  "Ein kostenloses Erstgespräch über Google Meet. Wir schauen uns an, wo Ihr Unternehmen online heute steht, was Sie erreichen wollen und welcher Weg dorthin führt. Danach schicken wir Ihnen ein individuelles, schriftliches Angebot."
+ ],
+ "Csak azokat az időpontokat látod, amikor tényleg ráérünk, és a meghívót a Meet-linkkel azonnal megkapod e-mailben.": [
+  "You only see the times when we are genuinely free, and the invitation with the Meet link reaches your inbox straight away.",
+  "Sie sehen nur die Zeiten, zu denen wir wirklich frei sind, und die Einladung mit dem Meet-Link erhalten Sie sofort per E-Mail."
+ ],
+ "Ha inkább írnál, az is jó: <a class=\"tlink\" href=\"ugyfelszolgalat.html#uzenet\">írj pár sort</a>, vagy <a class=\"tlink\" href=\"arajanlat.html\">kérj ajánlatot a kérdőívvel</a>. Munkanapokon 24 órán belül válaszolunk.": [
+  "Rather write? That works too: <a class=\"tlink\" href=\"ugyfelszolgalat.html#uzenet\">send us a few lines</a>, or <a class=\"tlink\" href=\"arajanlat.html\">request a quote with the questionnaire</a>. We reply within 24 hours on working days.",
+  "Lieber schreiben? Auch gut: <a class=\"tlink\" href=\"ugyfelszolgalat.html#uzenet\">schreiben Sie uns ein paar Zeilen</a> oder <a class=\"tlink\" href=\"arajanlat.html\">fragen Sie über den Fragebogen ein Angebot an</a>. An Werktagen antworten wir innerhalb von 24 Stunden."
+ ],
+ "<span><b>Hossz</b> 30 perc</span> <span><b>Helyszín</b> Google Meet</span> <span><b>Díj</b> ingyenes</span>": [
+  "<span><b>Length</b> 30 minutes</span> <span><b>Where</b> Google Meet</span> <span><b>Cost</b> free of charge</span>",
+  "<span><b>Dauer</b> 30 Minuten</span> <span><b>Ort</b> Google Meet</span> <span><b>Preis</b> kostenlos</span>"
+ ],
+ "Pár mondat elég: mit csinál a vállalkozásod, és mire lenne szükséged.": [
+  "A few sentences are enough: what your business does and what you would need.",
+  "Ein paar Sätze genügen: was Ihr Unternehmen macht und was Sie brauchen."
+ ],
+ "<input type=\"checkbox\" name=\"consent\" value=\"Igen\" required> <span>Elolvastam és elfogadom az <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Adatkezelési tájékoztatót</a>. *</span>": [
+  "<input type=\"checkbox\" name=\"consent\" value=\"Yes\" required> <span>I have read and accept the <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">privacy policy</a>. *</span>",
+  "<input type=\"checkbox\" name=\"consent\" value=\"Ja\" required> <span>Ich habe die <a class=\"tlink\" href=\"adatkezelesi-tajekoztato.html\">Datenschutzerklärung</a> gelesen und akzeptiere sie. *</span>"
+ ],
+ "A neved, az e-mail-címed és néhány mondat arról, miben segíthetünk.": [
+  "Your name, your e-mail address and a few sentences about how we can help.",
+  "Ihr Name, Ihre E-Mail-Adresse und ein paar Sätze dazu, wobei wir helfen können."
+ ],
+ "Írj pár szót arról, miben segíthetünk.": [
+  "Please write a few words about how we can help.",
+  "Bitte schreiben Sie kurz, wobei wir helfen können."
+ ],
+ "A foglaláshoz el kell fogadnod az Adatkezelési tájékoztatót.": [
+  "To book, please accept the privacy policy.",
+  "Für die Buchung müssen Sie die Datenschutzerklärung akzeptieren."
+ ],
+ "Ezt a foglalást nem találjuk. Lehet, hogy a link hiányos: nézd meg a meghívóban.": [
+  "We cannot find this booking. The link may be incomplete: please check the invitation.",
+  "Diese Buchung finden wir nicht. Vielleicht ist der Link unvollständig: Bitte prüfen Sie die Einladung."
  ]
 }

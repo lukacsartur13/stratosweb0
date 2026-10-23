@@ -1,31 +1,7 @@
 {
- "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Szolgáltatások</a> / <b>Hirdetéskezelés</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Services</a> / <b>Ads management</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"szolgaltatasok.html\">Leistungen</a> / <b>Werbebetreuung</b>"
- ],
- "Nem elérést<br>veszel.<br><span class=\"sig\">Ügyfelet.</span>": [
-  "You're not<br>buying reach.<br><span class=\"sig\">You're buying clients.</span>",
-  "Sie kaufen keine<br>Reichweite.<br><span class=\"sig\">Sie kaufen Kunden.</span>"
- ],
- "Hirdetéskezelés, -elemzés és skálázás Google és Meta felületeken. A figyelmet érdeklődéssé, az érdeklődést ügyféllé alakítjuk.": [
-  "Ad management, analysis and scaling across Google and Meta. We turn attention into interest, and interest into clients.",
-  "Werbebetreuung, Analyse und Skalierung auf Google und Meta. Wir verwandeln Aufmerksamkeit in Interesse und Interesse in Kunden."
- ],
- "A figyelem<br>a legértékesebb<br>erőforrás": [
-  "Attention is<br>the most valuable<br>resource",
-  "Aufmerksamkeit ist<br>die wertvollste<br>Ressource"
- ],
- "A mai digitális piacon a figyelem a legértékesebb erőforrás, miközben a verseny minden platformon folyamatosan nő. Az organikus elérés önmagában már nem elég: a vállalkozások többsége ugyanazért a közönségért versenyez a fizetett hirdetési rendszerekben, ahol a siker nem a jelenléten, hanem a stratégián múlik.": [
-  "In today's digital market attention is the most valuable resource, while competition keeps growing on every platform. Organic reach alone is no longer enough: most businesses compete for the same audience inside paid advertising systems, where success comes down to strategy, not presence.",
-  "Im heutigen digitalen Markt ist Aufmerksamkeit die wertvollste Ressource, während der Wettbewerb auf jeder Plattform weiter wächst. Organische Reichweite allein reicht nicht mehr: Die meisten Unternehmen konkurrieren in bezahlten Werbesystemen um dieselbe Zielgruppe — und dort entscheidet die Strategie, nicht die bloße Präsenz."
- ],
- "Ebben a környezetben azok a cégek tudnak előnyt szerezni, amelyek pontosan értik, hogyan kell adatvezérelt módon építeni a hirdetéseket és a felhasználói útvonalakat. A cél nem pusztán a megjelenés, hanem az, hogy a megfelelő üzenet a megfelelő emberhez jusson el a megfelelő pillanatban.": [
-  "In that environment, the companies that get ahead are the ones that understand precisely how to build ads and user journeys from data. The goal isn't simply to appear, but to get the right message to the right person at the right moment.",
-  "In diesem Umfeld gewinnen die Unternehmen, die genau verstehen, wie man Anzeigen und Nutzerwege datenbasiert aufbaut. Ziel ist nicht bloße Sichtbarkeit, sondern die richtige Botschaft zur richtigen Zeit beim richtigen Menschen."
- ],
- "Mi a célcsoport és a piac viselkedésének elemzésére építve alakítjuk ki a hirdetési struktúrákat, és ehhez igazítjuk a kreatívokat és a kampánylogikát. Így nem elszigetelt hirdetésekben gondolkodunk, hanem egymásra épülő, skálázható rendszerekben.": [
-  "We build ad structures on analysis of the target group and market behaviour, and fit the creative and campaign logic to that. So we don't think in isolated ads but in layered, scalable systems.",
-  "Wir bauen Werbestrukturen auf der Analyse von Zielgruppe und Marktverhalten auf und richten Kreation und Kampagnenlogik daran aus. Wir denken also nicht in einzelnen Anzeigen, sondern in aufeinander aufbauenden, skalierbaren Systemen."
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"szolgaltatasok.html\">Szolgáltatások</a> / <b>Hirdetéskezelés</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"szolgaltatasok.html\">Services</a> / <b>Ads management</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"szolgaltatasok.html\">Leistungen</a> / <b>Werbebetreuung</b>"
  ],
  "Két csatorna": [
   "Two channels",
@@ -35,26 +11,6 @@
   "Are they searching<br>for you, or must<br>you find them?",
   "Suchen Kunden Sie,<br>oder müssen Sie<br>sie finden?"
  ],
- "Nem az a kérdés, melyik platform a jobb, hanem az, hogy hol vannak a te ügyfeleid. Sok vállalkozásnak a kettő kombinációja hozza a legjobb eredményt.": [
-  "The question isn't which platform is better, it's where your clients are. For many businesses the combination of the two performs best.",
-  "Die Frage ist nicht, welche Plattform besser ist, sondern wo Ihre Kunden sind. Für viele Unternehmen bringt die Kombination beider das beste Ergebnis."
- ],
- "A keresleti csatorna": [
-  "The demand channel",
-  "Der Nachfragekanal"
- ],
- "Aki beírja, hogy „vízszerelő Győr”, az venni akar. Itt nem meggyőzni kell, hanem ott lenni abban a pillanatban, amikor a döntés megszületik.": [
-  "Someone typing “plumber near me” intends to buy. Here you don't need to persuade — you need to be there at the moment the decision is made.",
-  "Wer „Klempner in der Nähe“ eingibt, will kaufen. Hier müssen Sie nicht überzeugen, sondern in dem Moment da sein, in dem die Entscheidung fällt."
- ],
- "Kulcsszókutatás és keresési szándék szerinti struktúra": [
-  "Keyword research and structure by search intent",
-  "Keyword-Recherche und Struktur nach Suchintention"
- ],
- "Licitstratégia és költségkeret-optimalizálás": [
-  "Bidding strategy and budget optimisation",
-  "Gebotsstrategie und Budgetoptimierung"
- ],
  "Hirdetésszövegek és bővítmények": [
   "Ad copy and extensions",
   "Anzeigentexte und Erweiterungen"
@@ -62,14 +18,6 @@
  "Google Cégprofil és térképes megjelenés": [
   "Google Business Profile and map listings",
   "Google-Unternehmensprofil und Kartenpräsenz"
- ],
- "A kereslet-teremtő csatorna": [
-  "The demand-generation channel",
-  "Der Nachfrage schaffende Kanal"
- ],
- "Itt te szólítod meg a felhasználót a hírfolyamban — jó ajánlattal és látványos kreatívval. A figyelmet előbb meg kell szerezni, csak utána jön az érdeklődés.": [
-  "Here you approach the user in their feed — with a good offer and striking creative. Attention has to be earned first; interest comes after.",
-  "Hier sprechen Sie den Nutzer im Feed an — mit einem guten Angebot und auffälliger Kreation. Aufmerksamkeit muss zuerst verdient werden, das Interesse kommt danach."
  ],
  "Célközönség-kutatás és szegmentálás": [
   "Audience research and segmentation",
@@ -79,53 +27,9 @@
   "Creative: image, video, ad copy",
   "Kreation: Bild, Video, Anzeigentext"
  ],
- "Remarketing és lookalike közönségek": [
-  "Remarketing and lookalike audiences",
-  "Remarketing und Lookalike-Zielgruppen"
- ],
- "Meta Pixel és konverziós események": [
-  "Meta Pixel and conversion events",
-  "Meta Pixel und Conversion-Events"
- ],
- "A hirdetés­kezelés<br>folyamata": [
-  "How ads<br>management works",
-  "Der Ablauf der<br>Werbebetreuung"
- ],
- "A hirdetés az egyetlen csatorna, ahol lényegében a bekapcsolás napján jöhetnek az első érdeklődők. Az érdemi eredményhez viszont idő kell.": [
-  "Advertising is the only channel where the first enquiries can arrive essentially on the day you switch it on. Meaningful results, though, take time.",
-  "Werbung ist der einzige Kanal, bei dem die ersten Anfragen praktisch am Tag der Aktivierung kommen können. Für belastbare Ergebnisse braucht es aber Zeit."
- ],
  "Kutatás és felépítés": [
   "Research and setup",
   "Recherche und Aufbau"
- ],
- "Célközönség- és versenytárs-elemzés, ajánlat élesítése, fiókstruktúra felépítése a te saját Google Ads és Meta fiókodban. Konverziómérés beállítása, hogy az első naptól számokat lássunk, ne benyomásokat.": [
-  "Audience and competitor analysis, sharpening the offer, building the account structure inside your own Google Ads and Meta accounts. Conversion tracking is set up so that from day one we see numbers, not impressions.",
-  "Zielgruppen- und Wettbewerbsanalyse, Schärfung des Angebots, Aufbau der Kontostruktur in Ihren eigenen Google-Ads- und Meta-Konten. Conversion-Tracking wird eingerichtet, damit wir ab Tag eins Zahlen sehen statt Eindrücke."
- ],
- "Tanulási szakasz — 2–4 hét": [
-  "Learning phase — 2–4 weeks",
-  "Lernphase — 2–4 Wochen"
- ],
- "Az első hetek adatgyűjtésről szólnak. Több üzenetet, célzást és kreatívot teszünk élesbe, és hagyjuk, hogy az adat döntsön arról, melyik irány működik.": [
-  "The first weeks are about gathering data. We put several messages, targetings and creatives live and let the data decide which direction works.",
-  "Die ersten Wochen dienen dem Datensammeln. Wir schalten mehrere Botschaften, Targetings und Kreationen live und lassen die Daten entscheiden, welche Richtung funktioniert."
- ],
- "Optimalizálás és skálázás": [
-  "Optimisation and scaling",
-  "Optimierung und Skalierung"
- ],
- "4–6 hét után látszik a stabil irány: melyik hirdetés, célközönség és üzenet hozza a legjobb megtérülést. Innentől a nyerő kombinációkra terelünk keretet, a többit kivezetjük.": [
-  "After 4–6 weeks the stable direction is visible: which ad, audience and message returns the most. From then on we move budget onto the winning combinations and phase out the rest.",
-  "Nach 4–6 Wochen zeigt sich die stabile Richtung: welche Anzeige, Zielgruppe und Botschaft am meisten zurückbringt. Ab dann verschieben wir Budget auf die Gewinnerkombinationen und fahren den Rest aus."
- ],
- "80–150e Ft": [
-  "€200–400",
-  "200–400 €"
- ],
- "Ajánlott induló havi keret": [
-  "Recommended starting monthly budget",
-  "Empfohlenes Startbudget pro Monat"
  ],
  "2–4 hét": [
   "2–4 weeks",
@@ -143,101 +47,33 @@
   "Until the direction emerges",
   "Bis sich die Richtung zeigt"
  ],
- "Nem a lájkokat nézzük, hanem az <span class=\"sig\">üzleti eredményt.</span>": [
-  "We don't watch likes, we watch <span class=\"sig\">business results.</span>",
-  "Wir schauen nicht auf Likes, sondern auf das <span class=\"sig\">Geschäftsergebnis.</span>"
- ],
- "Konverziómérést állítunk be: hány ajánlatkérés, hívás, űrlapkitöltés vagy vásárlás jött a hirdetésből, és az mennyibe került. Így számok alapján tudjuk, hogy egy érdeklődő mennyibe kerül. Ezt havi riportban kapod meg — nem zsargonban, hanem úgy, hogy rögtön lásd, mi hoz pénzt és mi nem.": [
-  "We set up conversion tracking: how many quote requests, calls, form submissions or purchases came from the ads, and what each cost. That tells us in hard numbers what one lead costs. You get it in a monthly report — not in jargon, but so you can see straight away what makes money and what doesn't.",
-  "Wir richten Conversion-Tracking ein: wie viele Angebotsanfragen, Anrufe, Formulareinsendungen oder Käufe aus der Werbung kamen und was sie gekostet haben. So wissen wir in Zahlen, was ein Interessent kostet. Sie bekommen das im Monatsreport — nicht im Fachjargon, sondern so, dass Sie sofort sehen, was Geld bringt und was nicht."
- ],
  "Mennyi hirdetési kerettel érdemes indulni, és ez hogyan viszonyul a kezelési díjhoz?": [
   "What ad budget should I start with, and how does that relate to the management fee?",
   "Mit welchem Werbebudget sollte ich starten, und wie verhält es sich zur Betreuungsgebühr?"
- ],
- "Két külön tételről van szó: a hirdetési keret, amit a Google vagy a Meta kap, és a kezelési díj, amit mi kapunk a munkáért. A legtöbb kis- és középvállalkozásnak havi 80–150 ezer forintos kerettel már érdemes indulni — ez alatt nehéz elég adatot gyűjteni az optimalizáláshoz. Az induló keretet mindig a piacodhoz és a céljaidhoz szabjuk.": [
-  "These are two separate items: the ad budget, which goes to Google or Meta, and the management fee, which we receive for the work. Most small and medium businesses can start meaningfully at €200–400 a month — below that it's hard to gather enough data to optimise. We always fit the starting budget to your market and your goals.",
-  "Das sind zwei getrennte Posten: das Werbebudget, das an Google oder Meta geht, und die Betreuungsgebühr für unsere Arbeit. Die meisten kleinen und mittleren Unternehmen können sinnvoll mit 200–400 € pro Monat starten — darunter ist es schwer, genug Daten zur Optimierung zu sammeln. Das Startbudget richten wir immer nach Ihrem Markt und Ihren Zielen."
  ],
  "Mikor látok először eredményt?": [
   "When will I see the first results?",
   "Wann sehe ich die ersten Ergebnisse?"
  ],
- "A hirdetés az egyetlen csatorna, ahol lényegében a bekapcsolás napján jöhetnek az első érdeklődők. Az érdemi eredményhez viszont idő kell: az első 2–4 hét tanulási és adatgyűjtési szakasz, innentől optimalizálunk élesben. Reális elvárás, hogy 4–6 hét után már látszik a stabil irány.": [
-  "Advertising is the only channel where the first enquiries can arrive essentially on the day you switch it on. Meaningful results take longer: the first 2–4 weeks are a learning and data-gathering phase, after which we optimise live. A realistic expectation is that the stable direction is visible after 4–6 weeks.",
-  "Werbung ist der einzige Kanal, bei dem die ersten Anfragen praktisch am Tag der Aktivierung kommen können. Belastbare Ergebnisse brauchen länger: Die ersten 2–4 Wochen sind Lern- und Datensammelphase, danach optimieren wir im laufenden Betrieb. Realistisch zeigt sich die stabile Richtung nach 4–6 Wochen."
- ],
- "Google Ads vagy Meta hirdetés éri meg jobban a vállalkozásomnak?": [
-  "Which is better for my business — Google Ads or Meta?",
-  "Was lohnt sich für mein Unternehmen mehr — Google Ads oder Meta?"
- ],
- "Attól függ, hogy az ügyfeled keres-e rád, vagy neked kell megtalálnod őt. A Google Ads a keresleti csatorna: aki beírja, hogy „vízszerelő Győr”, az venni akar. A Meta a kereslet-teremtő csatorna: ott te szólítod meg a felhasználót a hírfolyamban. Sok vállalkozásnak a kettő kombinációja hozza a legjobb eredményt.": [
-  "It depends on whether your client searches for you or you have to find them. Google Ads is the demand channel: someone typing “plumber near me” intends to buy. Meta is the demand-generation channel: there you approach the user in their feed. For many businesses the combination performs best.",
-  "Das hängt davon ab, ob Ihr Kunde nach Ihnen sucht oder ob Sie ihn finden müssen. Google Ads ist der Nachfragekanal: Wer „Klempner in der Nähe“ eingibt, will kaufen. Meta ist der Nachfrage schaffende Kanal: Dort sprechen Sie den Nutzer im Feed an. Für viele Unternehmen bringt die Kombination das beste Ergebnis."
- ],
- "Honnan tudom, hogy megtérül a hirdetés — mit és hogyan mértek?": [
-  "How do I know the advertising pays off — what do you measure and how?",
-  "Woher weiß ich, dass sich Werbung rechnet — was messen Sie und wie?"
- ],
- "Nem a lájkokat és a megjelenéseket nézzük, hanem az üzleti eredményt. Konverziómérést állítunk be: hány ajánlatkérés, hívás, űrlapkitöltés vagy vásárlás jött a hirdetésből, és az mennyibe került. Ezt havi riportban átlátható formában kapod meg.": [
-  "We don't watch likes and impressions, we watch business results. We set up conversion tracking: how many quote requests, calls, form submissions or purchases came from the ads, and what each cost. You get it in a clear monthly report.",
-  "Wir schauen nicht auf Likes und Impressionen, sondern auf das Geschäftsergebnis. Wir richten Conversion-Tracking ein: wie viele Angebotsanfragen, Anrufe, Formulareinsendungen oder Käufe aus der Werbung kamen und was sie gekostet haben. Das bekommen Sie übersichtlich im Monatsreport."
- ],
  "Mi történik a hirdetési fiókkal, ha felmondom a szerződést?": [
   "What happens to the ad account if I cancel?",
   "Was passiert mit dem Werbekonto, wenn ich kündige?"
- ],
- "A hirdetési fiók a tiéd marad — ez nálunk alapelv. A kampányokat mindig a te saját Google Ads és Meta fiókodban építjük fel, amihez mi kezelői hozzáférést kapunk, nem fordítva. Ha bármikor elválnak útjaink, a fiók, az adatok és a felépített kampányok mind veled maradnak.": [
-  "The ad account stays yours — that's a principle for us. We always build campaigns inside your own Google Ads and Meta accounts, to which we get manager access, not the other way round. If our paths ever part, the account, the data and the campaigns all stay with you.",
-  "Das Werbekonto bleibt Ihr Eigentum — das ist bei uns Grundsatz. Kampagnen bauen wir immer in Ihren eigenen Google-Ads- und Meta-Konten auf, zu denen wir Verwalterzugriff erhalten, nicht umgekehrt. Trennen sich unsere Wege, bleiben Konto, Daten und Kampagnen bei Ihnen."
- ],
- "Miért fizetek havidíjat a kezelésért, ha úgyis a Google/Meta kapja a hirdetési összeget?": [
-  "Why pay a monthly management fee if Google/Meta gets the ad spend anyway?",
-  "Warum zahle ich eine monatliche Betreuungsgebühr, wenn das Werbebudget ohnehin an Google/Meta geht?"
- ],
- "Mert a platform csak egy eszköz — a pénzed elköltésének módja dönti el, hogy megtérül-e. Egy rosszul beállított kampány pontosan ugyanúgy elviszi a keretedet, csak eredmény nélkül. A kezelési díjért mi végezzük a valódi munkát: célközönség-kutatás, hirdetésszövegek, kreatívok, licitstratégia, folyamatos optimalizálás és mérés.": [
-  "Because the platform is only a tool — how the money is spent decides whether it pays off. A badly set-up campaign burns through your budget just as fast, only without results. The management fee covers the actual work: audience research, ad copy, creative, bidding strategy, continuous optimisation and measurement.",
-  "Weil die Plattform nur ein Werkzeug ist — wie das Geld ausgegeben wird, entscheidet über die Rendite. Eine schlecht aufgesetzte Kampagne verbrennt Ihr Budget genauso schnell, nur ohne Ergebnis. Die Betreuungsgebühr deckt die eigentliche Arbeit: Zielgruppenrecherche, Anzeigentexte, Kreation, Gebotsstrategie, laufende Optimierung und Messung."
  ],
  "Kell hozzá kész weboldal, vagy elég egy Facebook-oldal is?": [
   "Do I need a finished website, or is a Facebook page enough?",
   "Brauche ich eine fertige Website, oder reicht eine Facebook-Seite?"
  ],
- "Kell egy hely, ahová a hirdetés vezet, és ahol az érdeklődő döntést tud hozni. A legjobb egy erre kihegyezett landing oldal vagy jól felépített weboldal, mert ott te irányítod az élményt és tudsz mérni. Ha nincs megfelelő oldalad, nálunk a weboldal és a hirdetés egy kézben van.": [
-  "You need somewhere the ad leads to, where the prospect can make a decision. A purpose-built landing page or a well-structured website is best, because there you control the experience and can measure. If you don't have a suitable site, with us the website and the advertising come from one team.",
-  "Sie brauchen einen Ort, zu dem die Anzeige führt und an dem der Interessent entscheiden kann. Am besten eine dafür gebaute Landingpage oder eine gut strukturierte Website, denn dort steuern Sie das Erlebnis und können messen. Fehlt eine geeignete Seite, kommen Website und Werbung bei uns aus einer Hand."
- ],
  "Garantáljátok, hogy megnő az ügyfélszám?": [
   "Do you guarantee more clients?",
   "Garantieren Sie mehr Kunden?"
- ],
- "Konkrét ügyfélszámot vagy bevételt tisztességesen senki nem garantálhat — aki mégis ilyet ígér, ott legyél óvatos. Amit garantálunk: szakszerű beállítás, mérésen alapuló folyamatos optimalizálás, átlátható riportálás és őszinte kommunikáció.": [
-  "No one can honestly guarantee a specific number of clients or a revenue figure — if someone promises that, be careful. What we do guarantee: professional setup, continuous optimisation based on measurement, transparent reporting and honest communication.",
-  "Eine konkrete Kundenzahl oder einen Umsatz kann seriös niemand garantieren — wer das verspricht, sollte Sie misstrauisch machen. Was wir garantieren: fachgerechte Einrichtung, laufende Optimierung auf Basis von Messwerten, transparentes Reporting und ehrliche Kommunikation."
  ],
  "Ki írja a hirdetésszövegeket és készíti a kreatívokat?": [
   "Who writes the ad copy and makes the creative?",
   "Wer schreibt die Anzeigentexte und erstellt die Kreation?"
  ],
- "A szövegezés és a kampányok felépítése a mi dolgunk — ez benne van a szolgáltatásban. A vizuális kreatívoknál a legjobb, ha a tényleges munkádról, termékedről kapunk anyagot, mert a hiteles, valódi kép sokszor jobban teljesít, mint a steril stockfotó. Egy jó telefonos felvétel a kész munkádról gyakran aranyat ér.": [
-  "Copywriting and campaign structure are our job — they're part of the service. For visual creative it's best if we get material from your actual work or products, because an authentic, real photo often outperforms a sterile stock image. A good phone shot of finished work is frequently worth its weight in gold.",
-  "Texte und Kampagnenaufbau sind unsere Aufgabe — sie sind Teil der Leistung. Für visuelle Kreation ist es am besten, wenn wir Material von Ihrer tatsächlichen Arbeit oder Ihren Produkten bekommen, denn ein echtes, authentisches Bild schlägt oft das sterile Stockfoto. Eine gute Handyaufnahme fertiger Arbeit ist oft Gold wert."
- ],
- "Mi a különbség a fizetett hirdetés és a SEO között?": [
-  "What's the difference between paid advertising and SEO?",
-  "Was ist der Unterschied zwischen bezahlter Werbung und SEO?"
- ],
- "A kettő nem egymás helyettesítője, hanem kiegészítője. A hirdetés azonnal hoz forgalmat: bekapcsolod, jönnek az érdeklődők — de amint elzárod a csapot, elapad. A SEO lassabban épül, hónapok munkája, viszont utána tartósan, hirdetési költség nélkül hozza az ügyfeleket. A kettő együtt a legerősebb.": [
-  "They don't replace each other, they complement each other. Advertising brings traffic immediately: switch it on and enquiries arrive — but the moment you close the tap it dries up. SEO builds more slowly, taking months of work, but afterwards it brings clients steadily without ad spend. Together they're strongest.",
-  "Sie ersetzen einander nicht, sie ergänzen sich. Werbung bringt sofort Traffic: einschalten, Anfragen kommen — aber sobald Sie den Hahn zudrehen, versiegt es. SEO baut sich langsamer auf, kostet Monate Arbeit, bringt danach aber dauerhaft Kunden ohne Werbebudget. Zusammen sind beide am stärksten."
- ],
  "Nézzük meg, hol vannak az <span class=\"sig\">ügyfeleid.</span>": [
   "Let's find out where <span class=\"sig\">your clients are.</span>",
   "Finden wir heraus, wo <span class=\"sig\">Ihre Kunden sind.</span>"
- ],
- "Egy egyeztetésen kiderül, melyik csatorna való hozzád, mekkora kerettel érdemes indulni, és mit várhatsz az első hónapokban.": [
-  "One call will tell you which channel suits you, what budget to start with, and what to expect in the first months.",
-  "Ein Gespräch zeigt Ihnen, welcher Kanal zu Ihnen passt, mit welchem Budget Sie starten sollten und was Sie in den ersten Monaten erwarten können."
  ],
  "_p85": [
   "Phase 8.5 — the six-station signal path (brief §13). Process only:",
@@ -256,45 +92,17 @@
   "<span class=\"signal__n\">01</span><span class=\"signal__t\">Intent</span><span class=\"signal__w\">Someone is searching for something, or is in a situation your service answers.</span>",
   "<span class=\"signal__n\">01</span><span class=\"signal__t\">Absicht</span><span class=\"signal__w\">Jemand sucht etwas oder ist in einer Lage, auf die Ihre Leistung antwortet.</span>"
  ],
- "<span class=\"signal__n\">02</span><span class=\"signal__t\">Üzenet</span><span class=\"signal__w\">A hirdetés arra a helyzetre válaszol, nem általánosságban dicsér.</span>": [
-  "<span class=\"signal__n\">02</span><span class=\"signal__t\">Message</span><span class=\"signal__w\">The ad answers that situation instead of praising you in general.</span>",
-  "<span class=\"signal__n\">02</span><span class=\"signal__t\">Botschaft</span><span class=\"signal__w\">Die Anzeige antwortet auf diese Lage, statt allgemein zu loben.</span>"
- ],
  "<span class=\"signal__n\">03</span><span class=\"signal__t\">Kattintás</span><span class=\"signal__w\">Csak akkor ér valamit, ha az érkezik, akinek tényleg szól.</span>": [
   "<span class=\"signal__n\">03</span><span class=\"signal__t\">Click</span><span class=\"signal__w\">It is only worth anything if the person who arrives is the one it was for.</span>",
   "<span class=\"signal__n\">03</span><span class=\"signal__t\">Klick</span><span class=\"signal__w\">Er ist nur etwas wert, wenn die Person ankommt, für die er gedacht war.</span>"
- ],
- "<span class=\"signal__n\">04</span><span class=\"signal__t\">Landoló oldal</span><span class=\"signal__w\">Az oldalnak ugyanazt kell folytatnia, amit a hirdetés elkezdett.</span>": [
-  "<span class=\"signal__n\">04</span><span class=\"signal__t\">Landing page</span><span class=\"signal__w\">The page has to continue what the ad started.</span>",
-  "<span class=\"signal__n\">04</span><span class=\"signal__t\">Landingpage</span><span class=\"signal__w\">Die Seite muss fortsetzen, was die Anzeige begonnen hat.</span>"
- ],
- "<span class=\"signal__n\">05</span><span class=\"signal__t\">Megkeresés</span><span class=\"signal__w\">Az űrlap vagy a hívás — ez az egyetlen szám, ami üzletileg számít.</span>": [
-  "<span class=\"signal__n\">05</span><span class=\"signal__t\">Enquiry</span><span class=\"signal__w\">The form or the phone call — the one number that matters commercially.</span>",
-  "<span class=\"signal__n\">05</span><span class=\"signal__t\">Anfrage</span><span class=\"signal__w\">Das Formular oder der Anruf — die einzige Zahl, die geschäftlich zählt.</span>"
  ],
  "<span class=\"signal__n\">06</span><span class=\"signal__t\">Visszacsatolás</span><span class=\"signal__w\">Amit a mérés megmutat, az a következő kör kiindulópontja.</span>": [
   "<span class=\"signal__n\">06</span><span class=\"signal__t\">Feedback</span><span class=\"signal__w\">What the measurement shows is where the next round starts.</span>",
   "<span class=\"signal__n\">06</span><span class=\"signal__t\">Rückkopplung</span><span class=\"signal__w\">Was die Messung zeigt, ist der Ausgangspunkt der nächsten Runde.</span>"
  ],
- "Egy kampány,<br>amit nem<br>számlázunk ki": [
-  "A campaign<br>we don't<br>invoice for",
-  "Eine Kampagne,<br>die wir nicht<br>in Rechnung stellen"
- ],
- "Hivatalos szponzorai vagyunk a HAIO-nak — az ELTE által szervezett Hungarian AI Olympiadnak —, és a verseny hirdetéseit is mi visszük. Ugyanaz a munka, mint fentebb; itt csak nem ügyfél a másik oldal.": [
-  "We are an official sponsor of HAIO — the Hungarian AI Olympiad organised by ELTE — and we run the competition's advertising as well. The same work as above; the other side simply isn't a client here.",
-  "Wir sind offizieller Sponsor der HAIO — der von der ELTE organisierten Hungarian AI Olympiad — und betreuen auch die Werbung des Wettbewerbs. Dieselbe Arbeit wie oben; die andere Seite ist hier nur kein Kunde."
- ],
- "Egy hirdetési kampány szerkezete: rétegek, amelyek egymásra épülnek.": [
-  "The structure of an advertising campaign: layers built on one another.",
-  "Die Struktur einer Werbekampagne: Ebenen, die aufeinander aufbauen."
- ],
  "Google és Meta<br>hirdetéskezelés,<br><span class=\"sig\">ami ügyfelet hoz.</span>": [
   "Google and Meta<br>ads management<br><span class=\"sig\">that brings clients.</span>",
   "Google- und Meta-<br>Werbebetreuung,<br><span class=\"sig\">die Kunden bringt.</span>"
- ],
- "Nem elérést veszel, hanem ügyfelet. Hirdetéskezelés, -elemzés és skálázás Google és Meta felületeken: a figyelmet érdeklődéssé, az érdeklődést ügyféllé alakítjuk.": [
-  "You are not buying reach, you are buying customers. Ads management, analysis and scaling across Google and Meta: we turn attention into enquiries and enquiries into clients.",
-  "Sie kaufen keine Reichweite, sondern Kunden. Betreuung, Analyse und Skalierung von Werbeanzeigen auf Google und Meta: Wir machen aus Aufmerksamkeit Anfragen und aus Anfragen Kunden."
  ],
  "Hogyan zajlik<br>a hirdetéskezelés?": [
   "How ads management<br>actually runs",
@@ -304,10 +112,6 @@
   "What does ads<br>management cost?",
   "Was kostet die<br>Werbebetreuung?"
  ],
- "Két tétel van, és a kettő nem ugyanaz: a hirdetési keret, amit a Google és a Meta kap, és a kezelési díj, amit mi. Az elsőt te határozod meg.": [
-  "There are two line items and they are not the same thing: the ad budget, which goes to Google and Meta, and the management fee, which goes to us. You set the first one.",
-  "Es gibt zwei Posten, und sie sind nicht dasselbe: das Werbebudget, das an Google und Meta geht, und das Betreuungshonorar, das an uns geht. Das erste bestimmen Sie."
- ],
  "A keret": [
   "The budget",
   "Das Budget"
@@ -315,10 +119,6 @@
  "Amit a platform kap": [
   "What the platform gets",
   "Was die Plattform bekommt"
- ],
- "Ez a pénz nem hozzánk folyik be, hanem a Google-höz és a Metához, és te látod a saját fiókodban, forintra. A legtöbb kis- és középvállalkozásnak havi 80–150 ezer forintos kerettel érdemes indulni: ez alatt nehéz annyi adatot gyűjteni, amiből optimalizálni lehet.": [
-  "This money never reaches us — it goes to Google and Meta, and you see it in your own account to the cent. For most small and medium businesses a monthly budget of around €200–400 is the sensible starting point: below that it is hard to gather enough data to optimise on.",
-  "Dieses Geld fließt nicht zu uns, sondern an Google und Meta, und Sie sehen es auf den Cent genau in Ihrem eigenen Konto. Für die meisten kleinen und mittleren Unternehmen ist ein Monatsbudget von etwa 200–400 € der sinnvolle Einstieg: darunter lassen sich kaum genug Daten für die Optimierung sammeln."
  ],
  "A díj": [
   "The fee",
@@ -328,48 +128,300 @@
   "What the management gets",
   "Was die Betreuung bekommt"
  ],
- "Havidíj a munkáért, a kerettől elkülönítve: célközönség-kutatás, hirdetésszövegek, kreatívok, licitstratégia, folyamatos optimalizálás és mérés. A platform csak eszköz — az dönti el a megtérülést, ahogyan a keretet elköltik, és ez a rész a munka, nem a szoftver.": [
-  "A monthly fee for the work, kept separate from the budget: audience research, ad copy, creative, bidding strategy, continuous optimisation and measurement. The platform is only a tool — what decides the return is how the budget gets spent, and that part is work, not software.",
-  "Ein Monatshonorar für die Arbeit, getrennt vom Budget: Zielgruppenrecherche, Anzeigentexte, Kreation, Gebotsstrategie, laufende Optimierung und Messung. Die Plattform ist nur ein Werkzeug — über den Ertrag entscheidet, wie das Budget ausgegeben wird, und dieser Teil ist Arbeit, keine Software."
- ],
- "A belépés": [
-  "Getting started",
-  "Der Einstieg"
- ],
- "Mikor derül ki, megéri-e": [
-  "When you find out if it pays",
-  "Wann sich zeigt, ob es sich lohnt"
- ],
- "Az első 2–4 hét tanulási és adatgyűjtési szakasz, utána optimalizálunk élesben; reális elvárás, hogy 4–6 hét után látszik a stabil irány. Addig nem tudod, mennyibe kerül nálad egy megkeresés — utána forintra tudod, és erről szól a havi riport.": [
-  "The first 2–4 weeks are learning and data collection, after which we optimise live; a realistic expectation is a stable direction after 4–6 weeks. Until then you do not know what an enquiry costs in your market — after that you know it to the cent, and that is what the monthly report is about.",
-  "Die ersten 2–4 Wochen sind Lern- und Datenphase, danach optimieren wir im laufenden Betrieb; realistisch ist eine stabile Richtung nach 4–6 Wochen. Bis dahin wissen Sie nicht, was eine Anfrage bei Ihnen kostet — danach wissen Sie es auf den Cent genau, und genau davon handelt der Monatsreport."
- ],
- "A Google Ads kezelés és a Meta kampányok díja nem külön tétel: egy díjban van benne mindkét felület, mert a két csatorna egy költségvetésért verseng, és külön optimalizálni őket azt jelentené, hogy senki nem nézi a kettő együttes eredményét.": [
-  "Google Ads management and Meta campaigns are not billed separately: one fee covers both, because the two channels compete for one budget, and optimising them apart would mean nobody is looking at what the pair returns together.",
-  "Google-Ads-Betreuung und Meta-Kampagnen sind keine getrennten Posten: Ein Honorar deckt beide ab, denn die beiden Kanäle konkurrieren um ein Budget, und getrennt zu optimieren hieße, dass niemand das gemeinsame Ergebnis ansieht."
- ],
- "A fiókok a tieid maradnak. Ha másik kezelőhöz mennél, nem kell újraépíteni semmit — a hozzáférést visszaadjuk, az előzmény és a tanulás a fiókban marad.": [
-  "The accounts stay yours. If you move to another manager, nothing has to be rebuilt — we hand the access back, and the history and the learning stay in the account.",
-  "Die Konten bleiben Ihre. Wenn Sie zu einer anderen Betreuung wechseln, muss nichts neu aufgebaut werden — wir geben die Zugänge zurück, Historie und Lernphase bleiben im Konto."
- ],
- "Konkrét ügyfélszámot vagy bevételt tisztességesen senki nem garantál. Amit garantálunk: szakszerű beállítás, mérésen alapuló optimalizálás, átlátható riport, és hogy megmondjuk, ha valami nem működik.": [
-  "Nobody honest guarantees a specific number of clients or a revenue figure. What we do guarantee: competent setup, optimisation based on measurement, a report you can read, and that we will say so when something is not working.",
-  "Eine konkrete Kundenzahl oder einen Umsatz garantiert seriös niemand. Was wir garantieren: fachgerechte Einrichtung, Optimierung auf Basis von Messung, einen verständlichen Report — und dass wir es sagen, wenn etwas nicht funktioniert."
- ],
- "Ha a beszélgetésből az jön ki, hogy a keretedből most a <a class=\"tlink\" href=\"keresooptimalizalas.html\">keresőoptimalizálás</a> hozna többet, azt mondjuk meg. A hirdetés gyorsabb, de a keret végével leáll; a kettő együtt működik a legjobban.": [
-  "If the conversation shows that <a class=\"tlink\" href=\"keresooptimalizalas.html\">SEO consultancy</a> would return more from your budget right now, that is what we will say. Ads are faster but stop with the budget; the two work best together.",
-  "Wenn sich im Gespräch zeigt, dass <a class=\"tlink\" href=\"keresooptimalizalas.html\">SEO Betreuung</a> aus Ihrem Budget derzeit mehr bringen würde, sagen wir genau das. Werbung wirkt schneller, endet aber mit dem Budget; zusammen wirken beide am besten."
- ],
- "Hirdetéskezelés — Google Ads és Meta | Stratos": [
-  "Google and Meta ads management | Stratos",
-  "Google- und Meta-Werbeanzeigen | Stratos"
- ],
- "Hirdetéskezelés: Google Ads és Meta kampányok, a hirdetési kerettől elkülönített díjjal. Árak, célközönség, kreatív, konverziómérés. Ingyenes konzultáció.": [
-  "Ads management: Google Ads and Meta campaigns, with our fee kept separate from the ad budget. Pricing, audiences, creative, conversion tracking. Free consultation.",
-  "Anzeigenbetreuung: Google-Ads- und Meta-Kampagnen, unser Honorar getrennt vom Werbebudget. Preise, Zielgruppen, Kreation, Conversion-Messung. Kostenlose Beratung."
- ],
  "Fejhallgatós ember laptopon dolgozik egy sötét teraszon.": [
   "A person in headphones working on a laptop on a dark terrace.",
   "Eine Person mit Kopfhörern arbeitet auf einer dunklen Terrasse am Laptop."
+ ],
+ "Google Ads és Meta hirdetéskezelés | Stratos Webdesign": [
+  "Google Ads and Meta ads management | Stratos Webdesign",
+  "Google-Ads- und Meta-Werbebetreuung | Stratos Webdesign"
+ ],
+ "Google Keresés, Shopping, Performance Max, Facebook és Instagram hirdetések a saját fiókodban, méréssel és érthető havi riporttal. Kérj ajánlatot.": [
+  "Google Search, Shopping, Performance Max, Facebook and Instagram ads in your own account, with measurement and a clear monthly report. Request a quote.",
+  "Google-Suche, Shopping, Performance Max, Facebook- und Instagram-Anzeigen in Ihrem eigenen Konto, mit Messung und verständlichem Monatsreport. Fordern Sie ein Angebot an."
+ ],
+ "Hirdetéskezelés Google-ön, Facebookon és Instagramon": [
+  "Ads management on Google, Facebook and Instagram",
+  "Werbebetreuung auf Google, Facebook und Instagram"
+ ],
+ "Beállítjuk, mérjük és hétről hétre javítjuk a kampányaidat, hogy lásd, mennyibe kerül egy érdeklődő, és melyik hirdetés hozza. A fiók végig a tiéd.": [
+  "We set up, measure and improve your campaigns week by week, so you can see what an enquiry costs and which ad brings it in. The account stays yours throughout.",
+  "Wir richten Ihre Kampagnen ein, messen sie und verbessern sie Woche für Woche, damit Sie sehen, was eine Anfrage kostet und welche Anzeige sie bringt. Das Konto bleibt durchgehend Ihres."
+ ],
+ "Google Keresés": [
+  "Google Search",
+  "Google-Suche"
+ ],
+ "Shopping és Performance Max": [
+  "Shopping and Performance Max",
+  "Shopping und Performance Max"
+ ],
+ "Facebook és Instagram": [
+  "Facebook and Instagram",
+  "Facebook und Instagram"
+ ],
+ "<span class=\"signal__n\">02</span><span class=\"signal__t\">Üzenet</span><span class=\"signal__w\">A hirdetés arra a helyzetre válaszol, és nem általánosságban dicsér.</span>": [
+  "<span class=\"signal__n\">02</span><span class=\"signal__t\">Message</span><span class=\"signal__w\">The ad answers that situation, and doesn't praise you in general terms.</span>",
+  "<span class=\"signal__n\">02</span><span class=\"signal__t\">Botschaft</span><span class=\"signal__w\">Die Anzeige antwortet auf genau diese Lage und lobt nicht allgemein.</span>"
+ ],
+ "<span class=\"signal__n\">04</span><span class=\"signal__t\">Céloldal</span><span class=\"signal__w\">Az oldalnak ugyanazt kell folytatnia, amit a hirdetés elkezdett.</span>": [
+  "<span class=\"signal__n\">04</span><span class=\"signal__t\">Landing page</span><span class=\"signal__w\">The page has to continue what the ad started.</span>",
+  "<span class=\"signal__n\">04</span><span class=\"signal__t\">Zielseite</span><span class=\"signal__w\">Die Seite muss fortsetzen, was die Anzeige begonnen hat.</span>"
+ ],
+ "<span class=\"signal__n\">05</span><span class=\"signal__t\">Megkeresés</span><span class=\"signal__w\">Az űrlap vagy a hívás. Üzletileg ez a szám számít.</span>": [
+  "<span class=\"signal__n\">05</span><span class=\"signal__t\">Enquiry</span><span class=\"signal__w\">The form or the phone call. Commercially, this is the number that counts.</span>",
+  "<span class=\"signal__n\">05</span><span class=\"signal__t\">Anfrage</span><span class=\"signal__w\">Das Formular oder der Anruf. Geschäftlich zählt diese Zahl.</span>"
+ ],
+ "Elindítottál egy kampányt. A Google naponta leemeli a keretet, a hónap végén kapsz egy képernyőfotót a kattintásokról. Hogy ebből hány telefon és hány ajánlatkérés lett, azt senki nem tudja megmondani.": [
+  "You started a campaign. Google takes the budget every day, and at the end of the month you get a screenshot of the clicks. How many phone calls and quote requests came of it, nobody can tell you.",
+  "Sie haben eine Kampagne gestartet. Google bucht täglich das Budget ab, und am Monatsende bekommen Sie einen Screenshot der Klicks. Wie viele Anrufe und Angebotsanfragen daraus wurden, kann Ihnen niemand sagen."
+ ],
+ "Vagy néha megnyomod a Kiemelés gombot a Facebook-oldaladon, és reméled, hogy jó embereknek mutatja.": [
+  "Or now and then you press the Boost button on your Facebook page and hope it shows the post to the right people.",
+  "Oder Sie drücken ab und zu auf Ihrer Facebook-Seite auf „Beitrag bewerben“ und hoffen, dass er den richtigen Leuten angezeigt wird."
+ ],
+ "Mi a mérésnél kezdjük: előbb beállítjuk, hogy lásd, mi hoz megkeresést, és csak utána költünk többet arra, ami működik.": [
+  "We start with measurement: first we set things up so you can see what brings in enquiries, and only then do we spend more on what works.",
+  "Wir beginnen mit der Messung: Zuerst richten wir ein, dass Sie sehen, was Anfragen bringt, und erst dann geben wir mehr für das aus, was funktioniert."
+ ],
+ "Az a kérdés, hol vannak az ügyfeleid. Sok vállalkozásnak a kettő együtt hozza a legjobb eredményt.": [
+  "The question is where your clients are. For many businesses, the two together bring the best results.",
+  "Die Frage ist, wo Ihre Kunden sind. Vielen Unternehmen bringen beide zusammen das beste Ergebnis."
+ ],
+ "Google: amikor már keresnek": [
+  "Google: when they are already searching",
+  "Google: wenn schon gesucht wird"
+ ],
+ "Aki beírja, hogy „vízszerelő Kecskemét”, az venni akar. Itt ott kell lenni abban a pillanatban, amikor dönt.": [
+  "Anyone who types in “plumber Kecskemét” wants to buy. Here you have to be there at the moment they decide.",
+  "Wer „Installateur Kecskemét“ eintippt, will kaufen. Hier muss man genau in dem Moment da sein, in dem die Entscheidung fällt."
+ ],
+ "Kulcsszókutatás és keresési szándék szerinti felépítés": [
+  "Keyword research and a structure built around search intent",
+  "Keyword-Recherche und Aufbau nach Suchabsicht"
+ ],
+ "Licitstratégia és a keret elosztása": [
+  "Bidding strategy and budget allocation",
+  "Gebotsstrategie und Budgetverteilung"
+ ],
+ "<a class=\"tlink\" href=\"webshop-keszites.html\">Webshopoknak</a>: Google Shopping és Performance Max, termékfeeddel": [
+  "For <a class=\"tlink\" href=\"webshop-keszites.html\">online shops</a>: Google Shopping and Performance Max, with a product feed",
+  "Für <a class=\"tlink\" href=\"webshop-keszites.html\">Onlineshops</a>: Google Shopping und Performance Max, mit Produktfeed"
+ ],
+ "Facebook és Instagram: amikor még nem keresnek": [
+  "Facebook and Instagram: when they aren't searching yet",
+  "Facebook und Instagram: wenn noch nicht gesucht wird"
+ ],
+ "Itt te szólítod meg a felhasználót a hírfolyamban, jó ajánlattal és látványos képpel, videóval. Előbb a figyelmet kell megszerezni, utána jön az érdeklődés.": [
+  "Here you approach people in their feed, with a good offer and a striking image or video. First you have to win their attention; interest comes after that.",
+  "Hier sprechen Sie die Nutzer im Feed an, mit einem guten Angebot und einem auffälligen Bild oder Video. Zuerst muss man die Aufmerksamkeit gewinnen, danach kommt das Interesse."
+ ],
+ "Újracélzás és hasonló közönségek a meglévő vevőid alapján": [
+  "Retargeting and lookalike audiences based on your existing customers",
+  "Retargeting und ähnliche Zielgruppen auf Basis Ihrer bestehenden Kunden"
+ ],
+ "Meta képpont beállítása és a megkeresések mérése": [
+  "Setting up the Meta pixel and measuring enquiries",
+  "Einrichtung des Meta-Pixels und Messung der Anfragen"
+ ],
+ "A hirdetés az egyetlen csatorna, ahol a bekapcsolás napján jöhetnek az első érdeklődők. Az érdemi eredményhez viszont idő kell.": [
+  "Advertising is the only channel where the first enquiries can arrive on the day you switch it on. Meaningful results, though, take time.",
+  "Werbung ist der einzige Kanal, bei dem die ersten Anfragen schon am Tag der Aktivierung kommen können. Für belastbare Ergebnisse braucht es aber Zeit."
+ ],
+ "Ingyenes igényfelmérő hívás és ajánlat": [
+  "Free discovery call and proposal",
+  "Kostenloses Erstgespräch und Angebot"
+ ],
+ "Átbeszéljük, hol vannak az ügyfeleid, melyik csatorna illik hozzád, és mekkora kerettel érdemes indulni.": [
+  "We talk through where your clients are, which channel suits you and what budget it makes sense to start with.",
+  "Wir besprechen, wo Ihre Kunden sind, welcher Kanal zu Ihnen passt und mit welchem Budget sich der Start lohnt."
+ ],
+ "Célközönség- és versenytárs-elemzés, az ajánlat élesítése, a kampányok felépítése a te saját Google- és Meta-fiókodban. Mérés beállítása, hogy az első naptól számokat lássunk.": [
+  "Audience and competitor analysis, sharpening the offer, and building the campaigns in your own Google and Meta accounts. Setting up measurement, so we see numbers from day one.",
+  "Zielgruppen- und Wettbewerbsanalyse, Schärfung des Angebots, Aufbau der Kampagnen in Ihren eigenen Google- und Meta-Konten. Einrichtung der Messung, damit wir ab dem ersten Tag Zahlen sehen."
+ ],
+ "Tanulási szakasz, általában 2–4 hét": [
+  "Learning phase, usually 2–4 weeks",
+  "Lernphase, meist 2–4 Wochen"
+ ],
+ "Az első hetek adatgyűjtésről szólnak. Több üzenetet, célzást és kreatívot indítunk, és az adat dönti el, melyik irány működik.": [
+  "The first weeks are about gathering data. We launch several messages, targeting options and creatives, and the data decides which direction works.",
+  "Die ersten Wochen dienen dem Sammeln von Daten. Wir starten mehrere Botschaften, Ausrichtungen und Kreationen, und die Daten entscheiden, welche Richtung funktioniert."
+ ],
+ "Javítás és bővítés": [
+  "Improving and expanding",
+  "Verbessern und ausbauen"
+ ],
+ "Általában 4–6 hét után látszik a stabil irány: melyik hirdetés, célközönség és üzenet hozza a legtöbb megkeresést. Innentől a működő kombinációkra tesszük a keretet, a többit leállítjuk.": [
+  "Usually after 4–6 weeks a stable direction emerges: which ad, audience and message bring in the most enquiries. From then on we put the budget on the combinations that work and switch off the rest.",
+  "Meist zeigt sich nach 4–6 Wochen eine stabile Richtung: welche Anzeige, Zielgruppe und Botschaft die meisten Anfragen bringt. Ab dann setzen wir das Budget auf die funktionierenden Kombinationen und schalten den Rest ab."
+ ],
+ "80–150 ezer Ft": [
+  "HUF 80,000–150,000",
+  "80.000–150.000 HUF"
+ ],
+ "Jellemző induló havi hirdetési keret kkv-knál (piaci sáv; ezt a Google és a Meta kapja, nem mi)": [
+  "Typical starting monthly ad budget for small businesses (market range; this goes to Google and Meta, not to us)",
+  "Typisches monatliches Startbudget für Werbung bei KMU (Marktspanne; das bekommen Google und Meta, nicht wir)"
+ ],
+ "Tanulási szakasz, általában": [
+  "Learning phase, usually",
+  "Lernphase, meist"
+ ],
+ "Mire kirajzolódik az irány, általában": [
+  "Until the direction becomes clear, usually",
+  "Bis sich die Richtung abzeichnet, meist"
+ ],
+ "Két tétel van, és a kettő nem ugyanaz: a hirdetési keret, amit a Google és a Meta kap, és a kezelési díj, amit mi. A keretet te határozod meg.": [
+  "There are two items, and they are not the same thing: the ad budget, which goes to Google and Meta, and the management fee, which comes to us. You set the budget.",
+  "Es gibt zwei Posten, und sie sind nicht dasselbe: das Werbebudget, das Google und Meta erhalten, und die Betreuungsgebühr, die wir erhalten. Das Budget legen Sie fest."
+ ],
+ "Ez a pénz a Google-höz és a Metához megy, és a saját fiókodban forintra látod. A jellemző piaci sáv kkv-knál havi 80–150 ezer Ft induló keret: ez alatt nehéz annyi adatot gyűjteni, amiből javítani lehet. A pontos keretet a piacodhoz és a céljaidhoz szabjuk.": [
+  "This money goes to Google and Meta, and you can see it to the last forint in your own account. The typical market range for small businesses is a starting budget of HUF 80,000–150,000 a month: below that it is hard to gather enough data to improve on. We tailor the exact budget to your market and your goals.",
+  "Dieses Geld geht an Google und Meta, und Sie sehen es in Ihrem eigenen Konto auf den Forint genau. Die typische Marktspanne bei KMU liegt bei einem monatlichen Startbudget von 80.000–150.000 HUF: Darunter lassen sich kaum genug Daten sammeln, um zu verbessern. Das genaue Budget stimmen wir auf Ihren Markt und Ihre Ziele ab."
+ ],
+ "Havidíj a munkáért, a kerettől elkülönítve: célközönség-kutatás, hirdetésszövegek, kreatívok, licitstratégia, folyamatos javítás és mérés. A platform csak eszköz: a megtérülést az dönti el, hogyan költik el a keretet. Ez a munka, és ezért jár a kezelési díj.": [
+  "A monthly fee for the work, kept separate from the budget: audience research, ad copy, creatives, bidding strategy, continuous improvement and measurement. The platform is only a tool: the return depends on how the budget is spent. That is the work, and that is what the management fee pays for.",
+  "Eine monatliche Gebühr für die Arbeit, getrennt vom Budget: Zielgruppenrecherche, Anzeigentexte, Kreationen, Gebotsstrategie, laufende Verbesserung und Messung. Die Plattform ist nur ein Werkzeug: Über die Rendite entscheidet, wie das Budget ausgegeben wird. Das ist die Arbeit, und dafür ist die Betreuungsgebühr da."
+ ],
+ "Egy díj, minden felület": [
+  "One fee, every platform",
+  "Eine Gebühr, alle Plattformen"
+ ],
+ "Google és Meta együtt": [
+  "Google and Meta together",
+  "Google und Meta zusammen"
+ ],
+ "A Google- és a Meta-kampányok kezelése egy díjban van, mert a két csatorna ugyanazért a keretért verseng. Így valaki mindig a kettő együttes eredményét nézi.": [
+  "Managing the Google and Meta campaigns is covered by one fee, because the two channels compete for the same budget. That way someone is always looking at their combined result.",
+  "Die Betreuung der Google- und Meta-Kampagnen ist in einer Gebühr enthalten, weil beide Kanäle um dasselbe Budget konkurrieren. So hat immer jemand das gemeinsame Ergebnis im Blick."
+ ],
+ "A fiókok a tieid maradnak. A kampányokat a te fiókodban építjük, mi kezelői hozzáférést kapunk. Ha máshoz mennél, nem kell újraépíteni semmit: az előzmény és a tanulás a fiókban marad.": [
+  "The accounts remain yours. We build the campaigns in your account and get manager access. If you moved to someone else, nothing would need rebuilding: the history and the learning stay in the account.",
+  "Die Konten bleiben Ihre. Wir bauen die Kampagnen in Ihrem Konto auf und erhalten Verwaltungszugriff. Wechseln Sie zu jemand anderem, muss nichts neu aufgebaut werden: Verlauf und Lerneffekte bleiben im Konto."
+ ],
+ "Konkrét ügyfélszámot vagy bevételt tisztességesen senki nem ígérhet. Amit vállalunk: szakszerű beállítás, mérésen alapuló javítás, átlátható havi riport, és hogy szólunk, ha valami nem működik.": [
+  "No one can honestly promise a specific number of clients or a revenue figure. What we commit to: a professional setup, improvement based on measurement, a transparent monthly report, and telling you when something isn't working.",
+  "Eine bestimmte Kundenzahl oder einen bestimmten Umsatz kann seriös niemand versprechen. Was wir zusagen: eine fachgerechte Einrichtung, Verbesserung auf Basis von Messung, einen transparenten Monatsreport, und dass wir Bescheid sagen, wenn etwas nicht funktioniert."
+ ],
+ "Ha a beszélgetésből az jön ki, hogy a keretedből most a <a class=\"tlink\" href=\"keresooptimalizalas.html\">keresőoptimalizálás</a> hozna többet, megmondjuk. A hirdetés gyors, de csak addig hoz, amíg fizetsz érte; a kettő együtt működik a legjobban.": [
+  "If our conversation shows that <a class=\"tlink\" href=\"keresooptimalizalas.html\">SEO</a> would get more out of your budget right now, we'll tell you. Advertising is fast, but it only delivers while you pay for it; the two work best together.",
+  "Wenn sich im Gespräch zeigt, dass <a class=\"tlink\" href=\"keresooptimalizalas.html\">Suchmaschinenoptimierung</a> aus Ihrem Budget gerade mehr herausholen würde, sagen wir es Ihnen. Werbung ist schnell, bringt aber nur so lange etwas, wie Sie dafür zahlen; am besten wirken beide zusammen."
+ ],
+ "Azt mérjük, ami <span class=\"sig\">pénzt hoz.</span>": [
+  "We measure what <span class=\"sig\">brings in money.</span>",
+  "Wir messen, was <span class=\"sig\">Geld bringt.</span>"
+ ],
+ "Beállítjuk, hány ajánlatkérés, hívás, űrlapkitöltés vagy vásárlás jött a hirdetésből, és mennyibe került. Így forintra tudod, mennyibe kerül nálad egy érdeklődő. Ezt havi riportban kapod meg, közérthetően, hogy rögtön lásd, mi hoz pénzt és mi nem.": [
+  "We set up tracking of how many quote requests, calls, form submissions or purchases came from the ads, and what they cost. So you know to the forint what an enquiry costs you. You get this in a monthly report, in plain language, so you can see at once what brings in money and what doesn't.",
+  "Wir richten ein, wie viele Angebotsanfragen, Anrufe, Formulareinsendungen oder Käufe aus der Werbung kamen und was sie gekostet haben. So wissen Sie auf den Forint genau, was Sie eine Anfrage kostet. Das erhalten Sie im Monatsreport, verständlich aufbereitet, damit Sie sofort sehen, was Geld bringt und was nicht."
+ ],
+ "Amit hirdetésnél kérdezni szoktak": [
+  "What people usually ask about advertising",
+  "Was man uns zur Werbung häufig fragt"
+ ],
+ "Már próbáltam, nem működött.": [
+  "I've tried it before, it didn't work.",
+  "Habe ich schon probiert, hat nicht funktioniert."
+ ],
+ "Az első kérdésünk az lesz, mit mértetek. Ha nem volt mérés, nem tudni, mi nem működött: a hirdetés, a célzás vagy az oldal, ahová érkezett.": [
+  "Our first question will be what you measured. Without measurement, there is no way to know what didn't work: the ad, the targeting or the page people landed on.",
+  "Unsere erste Frage wird sein, was Sie gemessen haben. Ohne Messung weiß man nicht, was nicht funktioniert hat: die Anzeige, die Ausrichtung oder die Seite, auf der die Leute gelandet sind."
+ ],
+ "Drága a kezelési díj, amikor a keret is pénz.": [
+  "The management fee is expensive when the budget costs money too.",
+  "Die Betreuungsgebühr ist teuer, wenn auch das Budget Geld kostet."
+ ],
+ "Egy rosszul beállított kampány ugyanúgy elviszi a keretet, csak eredmény nélkül. A díjért az a munka jár, ami a keretből érdeklődőt csinál.": [
+  "A badly set-up campaign spends the budget just the same, only without results. The fee pays for the work that turns the budget into enquiries.",
+  "Eine schlecht eingerichtete Kampagne verbraucht das Budget genauso, nur ohne Ergebnis. Die Gebühr bezahlt die Arbeit, die aus dem Budget Anfragen macht."
+ ],
+ "Nincs időm ezzel foglalkozni.": [
+  "I don't have time to deal with this.",
+  "Ich habe keine Zeit, mich darum zu kümmern."
+ ],
+ "Nem is kell. Tőled néhány fotó a munkádról, és havonta pár perc a riportra.": [
+  "You don't need to. From you: a few photos of your work, and a few minutes a month for the report.",
+  "Müssen Sie auch nicht. Von Ihnen brauchen wir ein paar Fotos Ihrer Arbeit und monatlich ein paar Minuten für den Report."
+ ],
+ "Két külön tételről van szó: a hirdetési keret, amit a Google vagy a Meta kap, és a kezelési díj, amit mi kapunk a munkáért. A jellemző piaci sáv kkv-knál havi 80–150 ezer Ft induló keret, mert ez alatt nehéz elég adatot gyűjteni. A pontos keretet mindig a piacodhoz és a céljaidhoz szabjuk.": [
+  "These are two separate items: the ad budget, which goes to Google or Meta, and the management fee, which we receive for the work. The typical market range for small businesses is a starting budget of HUF 80,000–150,000 a month, because below that it is hard to gather enough data. We always tailor the exact budget to your market and your goals.",
+  "Es geht um zwei getrennte Posten: das Werbebudget, das Google oder Meta erhält, und die Betreuungsgebühr, die wir für die Arbeit erhalten. Die typische Marktspanne bei KMU liegt bei einem monatlichen Startbudget von 80.000–150.000 HUF, weil sich darunter kaum genug Daten sammeln lassen. Das genaue Budget stimmen wir immer auf Ihren Markt und Ihre Ziele ab."
+ ],
+ "A hirdetés az egyetlen csatorna, ahol a bekapcsolás napján jöhetnek az első érdeklődők. Az érdemi eredményhez viszont idő kell: az első 2–4 hét általában tanulási és adatgyűjtési szakasz, és általában 4–6 hét után látszik a stabil irány.": [
+  "Advertising is the only channel where the first enquiries can arrive on the day you switch it on. Meaningful results, though, take time: the first 2–4 weeks are usually a learning and data-gathering phase, and a stable direction usually emerges after 4–6 weeks.",
+  "Werbung ist der einzige Kanal, bei dem die ersten Anfragen schon am Tag der Aktivierung kommen können. Für belastbare Ergebnisse braucht es aber Zeit: Die ersten 2–4 Wochen sind meist eine Lern- und Datensammelphase, und meist zeigt sich nach 4–6 Wochen eine stabile Richtung."
+ ],
+ "Google vagy Meta hirdetés éri meg jobban a vállalkozásomnak?": [
+  "Are Google or Meta ads better value for my business?",
+  "Lohnt sich für mein Unternehmen eher Google- oder Meta-Werbung?"
+ ],
+ "Attól függ, hogy az ügyfeled keres-e rád, vagy neked kell megtalálnod őt. Aki beírja, hogy „vízszerelő Kecskemét”, az venni akar: ez a Google. A hírfolyamban te szólítod meg: ez a Facebook és az Instagram. Webshopnál a Google Shopping és a Performance Max is szóba jön. Sok vállalkozásnak a kettő együtt hozza a legjobb eredményt.": [
+  "It depends on whether your clients search for you or you have to find them. Anyone who types in “plumber Kecskemét” wants to buy: that is Google. In the feed, you approach them: that is Facebook and Instagram. For an online shop, Google Shopping and Performance Max come into play too. For many businesses, the two together bring the best results.",
+  "Das hängt davon ab, ob Ihre Kunden nach Ihnen suchen oder ob Sie sie finden müssen. Wer „Installateur Kecskemét“ eintippt, will kaufen: Das ist Google. Im Feed sprechen Sie die Leute an: Das sind Facebook und Instagram. Bei einem Onlineshop kommen auch Google Shopping und Performance Max infrage. Vielen Unternehmen bringen beide zusammen das beste Ergebnis."
+ ],
+ "Honnan tudom, hogy megtérül a hirdetés?": [
+  "How do I know the advertising pays off?",
+  "Woher weiß ich, ob sich die Werbung lohnt?"
+ ],
+ "A lájkok és a megjelenések helyett az üzleti eredményt nézzük. Beállítjuk, hány ajánlatkérés, hívás, űrlapkitöltés vagy vásárlás jött a hirdetésből, és az mennyibe került. Ezt havi riportban, átlátható formában kapod meg.": [
+  "Instead of likes and impressions, we look at the business result. We set up tracking of how many quote requests, calls, form submissions or purchases came from the ads, and what they cost. You get this in a monthly report, in a clear format.",
+  "Statt Likes und Impressionen betrachten wir das geschäftliche Ergebnis. Wir richten ein, wie viele Angebotsanfragen, Anrufe, Formulareinsendungen oder Käufe aus der Werbung kamen und was sie gekostet haben. Das erhalten Sie im Monatsreport, übersichtlich aufbereitet."
+ ],
+ "A hirdetési fiók a tiéd marad, ez nálunk alapelv. A kampányokat mindig a te saját Google- és Meta-fiókodban építjük fel, amihez mi kezelői hozzáférést kapunk. Ha elválnak útjaink, a fiók, az adatok és a felépített kampányok veled maradnak.": [
+  "The ad account remains yours; that is a principle for us. We always build the campaigns in your own Google and Meta accounts, to which we get manager access. If we part ways, the account, the data and the campaigns we built stay with you.",
+  "Das Werbekonto bleibt Ihres, das ist bei uns ein Grundsatz. Wir bauen die Kampagnen immer in Ihren eigenen Google- und Meta-Konten auf, für die wir Verwaltungszugriff erhalten. Wenn sich unsere Wege trennen, bleiben Konto, Daten und aufgebaute Kampagnen bei Ihnen."
+ ],
+ "Miért fizetek havidíjat a kezelésért, ha úgyis a Google és a Meta kapja a hirdetési összeget?": [
+  "Why do I pay a monthly management fee if Google and Meta get the ad spend anyway?",
+  "Warum zahle ich eine monatliche Betreuungsgebühr, wenn Google und Meta das Werbebudget ohnehin bekommen?"
+ ],
+ "Mert a platform csak eszköz: a pénzed elköltésének módja dönti el, hogy megtérül-e. Egy rosszul beállított kampány ugyanúgy elviszi a keretedet, csak eredmény nélkül. A kezelési díjért mi végezzük a munkát: célközönség-kutatás, hirdetésszövegek, kreatívok, licitstratégia, folyamatos javítás és mérés.": [
+  "Because the platform is only a tool: how your money is spent decides whether it pays off. A badly set-up campaign spends your budget just the same, only without results. For the management fee we do the work: audience research, ad copy, creatives, bidding strategy, continuous improvement and measurement.",
+  "Weil die Plattform nur ein Werkzeug ist: Wie Ihr Geld ausgegeben wird, entscheidet, ob es sich lohnt. Eine schlecht eingerichtete Kampagne verbraucht Ihr Budget genauso, nur ohne Ergebnis. Für die Betreuungsgebühr erledigen wir die Arbeit: Zielgruppenrecherche, Anzeigentexte, Kreationen, Gebotsstrategie, laufende Verbesserung und Messung."
+ ],
+ "Kell egy hely, ahová a hirdetés vezet, és ahol az érdeklődő dönteni tud. A legjobb egy erre írt céloldal vagy egy jól felépített weboldal, mert ott mérni is tudunk. Ha nincs ilyened, nálunk a weboldal és a hirdetés egy kézben van.": [
+  "You need a place the ad leads to, where the person can make a decision. A landing page written for this, or a well-built website, is best, because there we can measure too. If you don't have one, with us the website and the advertising are in one pair of hands.",
+  "Es braucht einen Ort, zu dem die Anzeige führt und an dem sich Interessenten entscheiden können. Am besten ist eine eigens dafür geschriebene Zielseite oder eine gut aufgebaute Website, denn dort können wir auch messen. Haben Sie so etwas nicht, liegen Website und Werbung bei uns in einer Hand."
+ ],
+ "Konkrét ügyfélszámot vagy bevételt tisztességesen senki nem ígérhet; ha valaki mégis ilyet ígér, légy óvatos. Amit vállalunk: szakszerű beállítás, mérésen alapuló folyamatos javítás, átlátható riport, és hogy szólunk, ha valami nem működik.": [
+  "No one can honestly promise a specific number of clients or a revenue figure; if someone does, be careful. What we commit to: a professional setup, continuous improvement based on measurement, a transparent report, and telling you when something isn't working.",
+  "Eine bestimmte Kundenzahl oder einen bestimmten Umsatz kann seriös niemand versprechen; wenn es doch jemand tut, seien Sie vorsichtig. Was wir zusagen: eine fachgerechte Einrichtung, laufende Verbesserung auf Basis von Messung, einen transparenten Report, und dass wir Bescheid sagen, wenn etwas nicht funktioniert."
+ ],
+ "A szövegírás és a kampányok felépítése a mi dolgunk, ez benne van a szolgáltatásban. A képeknél a legjobb, ha a tényleges munkádról, termékedről kapunk anyagot, mert a valódi kép sokszor jobban teljesít, mint a stockfotó. Egy jó telefonos felvétel a kész munkádról gyakran többet ér bármilyen díszletnél.": [
+  "Writing the copy and building the campaigns is our job; it is part of the service. For images, it is best if we get material of your actual work or products, because a real picture often performs better than a stock photo. A good phone shot of your finished work is often worth more than any staged set.",
+  "Texte und Kampagnenaufbau sind unsere Aufgabe, das ist in der Leistung enthalten. Bei Bildern ist es am besten, wenn wir Material von Ihrer tatsächlichen Arbeit oder Ihren Produkten bekommen, denn ein echtes Bild schneidet oft besser ab als ein Stockfoto. Eine gute Handyaufnahme Ihrer fertigen Arbeit ist oft mehr wert als jede Inszenierung."
+ ],
+ "Mi a különbség a hirdetés és a keresőoptimalizálás között?": [
+  "What is the difference between advertising and SEO?",
+  "Was ist der Unterschied zwischen Werbung und Suchmaschinenoptimierung?"
+ ],
+ "A hirdetés azonnal hoz forgalmat, és leáll, amikor elzárod a csapot. A keresőoptimalizálás lassabban épül, a hatása általában 3–6 hónap alatt kezd látszani, utána viszont hirdetési költség nélkül is hoz érdeklődőt. A kettő kiegészíti egymást.": [
+  "Advertising brings traffic immediately, and stops when you turn off the tap. SEO builds up more slowly; its effect usually starts to show within 3–6 months, but after that it brings enquiries without ad spend. The two complement each other.",
+  "Werbung bringt sofort Traffic und hört auf, sobald Sie den Hahn zudrehen. Suchmaschinenoptimierung baut sich langsamer auf, ihre Wirkung zeigt sich meist innerhalb von 3–6 Monaten, danach bringt sie aber auch ohne Werbekosten Anfragen. Beides ergänzt sich."
+ ],
+ "Vállaltok LinkedIn- vagy TikTok-hirdetést?": [
+  "Do you run LinkedIn or TikTok ads?",
+  "Übernehmen Sie auch LinkedIn- oder TikTok-Werbung?"
+ ],
+ "Nem. Három felületre figyelünk: Google (keresés, Shopping, Performance Max), Facebook és Instagram. Itt tudunk a legtöbbet hozni.": [
+  "No. We focus on three platforms: Google (Search, Shopping, Performance Max), Facebook and Instagram. That is where we can deliver the most.",
+  "Nein. Wir konzentrieren uns auf drei Plattformen: Google (Suche, Shopping, Performance Max), Facebook und Instagram. Dort können wir am meisten erreichen."
+ ],
+ "Google vagy Facebook hirdetés 2026-ban?": [
+  "Google or Facebook ads in 2026?",
+  "Google- oder Facebook-Werbung 2026?"
+ ],
+ "Ha olyan forgalom is kell, ami hirdetési költség nélkül jön.": [
+  "If you also want traffic that comes without ad spend.",
+  "Wenn Sie auch Traffic wollen, der ohne Werbekosten kommt."
+ ],
+ "Ha a Shopping-hirdetésnek egy jól mért bolt kell, ahová vezet.": [
+  "If your Shopping ads need a well-measured shop to lead to.",
+  "Wenn Ihre Shopping-Anzeigen einen gut gemessenen Shop brauchen, zu dem sie führen."
+ ],
+ "Egy ingyenes igényfelmérő hívás után kiderül, melyik csatorna való hozzád, mekkora kerettel érdemes indulni, és mit várhatsz az első hónapokban.": [
+  "After a free discovery call it will be clear which channel suits you, what budget it makes sense to start with, and what you can expect in the first months.",
+  "Nach einem kostenlosen Erstgespräch ist klar, welcher Kanal zu Ihnen passt, mit welchem Budget sich der Start lohnt und was Sie in den ersten Monaten erwarten können."
  ]
 }

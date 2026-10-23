@@ -49,15 +49,19 @@ const CHECK = process.argv.includes('--check');
 // h2: several pages legitimately carry them in an h3 (`Weboldal készítés árak`
 // on /kkv, `Keresőoptimalizálás` on /szolgaltatasok), and those are section
 // labels inside a page about something else, not claims on the query.
+//
+// 2026-10-23, the owner's copy pack redrew the map: „weboldal készítés” belongs
+// to the HOMEPAGE now („a »weboldal készítés« a főoldalé”), /szolgaltatasok is
+// a collection page with no head term of its own, and /nagyvallalat moved from
+// „weboldal fejlesztés” to „vállalati weboldal” with the ipari/B2B rewrite.
 const OWNERSHIP = [
-  { term: 'weboldal készítés', owner: 'szolgaltatasok.html',
+  { term: 'weboldal készítés', owner: 'index.html',
     qualifiers: ['havidíjas', 'keresőoptimalizált', 'céges', 'egyedi', 'professzionális', 'ingyenes'] },
   // Moved to its own page on 2026-10-07 (it had no impressions as an h3 on
   // /szolgaltatasok).
   { term: 'keresőoptimalizált weboldal készítés', owner: 'keresooptimalizalt-weboldal-keszites.html',
     qualifiers: [], h3: true },
-  { term: 'weboldal fejlesztés', owner: 'nagyvallalat.html',
-    qualifiers: ['céges', 'egyedi', 'vállalati'] },
+  { term: 'vállalati weboldal', owner: 'nagyvallalat.html', qualifiers: [] },
   { term: 'keresőoptimalizálás', owner: 'keresooptimalizalas.html',
     qualifiers: ['helyi', 'webáruház', 'mi az a'] },
   { term: 'logó tervezés', owner: 'branding.html', qualifiers: [] },
@@ -75,7 +79,9 @@ const OWNERSHIP = [
 // second claim on "weboldal készítés". Without it every local page would read
 // as a collision with the service page that owns the national term.
 // Stems, not words: "megyében" is megy-é-ben, so "pest megye" is not its prefix.
-const PLACES = ['győr', 'budapest', 'pest megy', 'pest vármegy', 'szeged', 'csongrád'];
+// „országosan” is the hub's own modifier (/hol-dolgozunk, „weboldal készítés
+// országosan”): the nationwide query, a sibling of the regional ones.
+const PLACES = ['győr', 'budapest', 'pest megy', 'pest vármegy', 'szeged', 'csongrád', 'országos'];
 
 // A service page and the article about the same subject must not both read as
 // commercial landing pages. The article's title has to be a question — that is
@@ -89,18 +95,34 @@ const INTENT_PAIRS = [
 
 const INTERROGATIVE = /^(mi|mit|mire|miért|mennyi|mennyibe|hogyan|mikor|hol|melyik|milyen|mennyit)\b/;
 
+// A question either opens the title or follows its topic and a colon: „Logó
+// készítés: mit kérj, mit ne?” reads as a question as plainly as „Mire figyelj
+// logó készítésnél?”, and it is the form the copy pack gives its articles.
+const readsAsQuestion = (title) => title.includes('?')
+  && (INTERROGATIVE.test(title) || INTERROGATIVE.test(title.split(':').slice(1).join(':').trim()));
+
+// Collection pages are listed, not failed, exactly like the homepage below: the
+// blog index names the topics it collects („Blog: weboldal és
+// keresőoptimalizálás”), which is a table of contents, not a landing page.
+const HUBS = ['blog.html'];
+
 const strip = (s) => s.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
 
 async function readPage(file) {
   const html = await readFile(join(DIST, file), 'utf8');
   const title = strip(html.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? '');
   const heads = [...html.matchAll(/<h[12][^>]*>([\s\S]*?)<\/h[12]>/g)].map((m) => strip(m[1]));
+  const h1s = [...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/g)].map((m) => strip(m[1]));
   const subheads = [...html.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => strip(m[1]));
-  return { file, title, heads, subheads };
+  return { file, title, heads, h1s, subheads };
 }
 
-/** The headings a term is judged on: h1/h2, plus h3 when the term asks for it. */
-const scope = (page, term) => (term.h3 ? [...page.heads, ...page.subheads] : page.heads);
+/** The headings a term is judged on: h1/h2, plus h3 when the term asks for it.
+ *  An article that already reads as a question (an INTENT_PAIRS article) is
+ *  judged on its h1 alone: its h2s are the chapters of an answer — „Kereső-
+ *  optimalizálás az AI-keresők korában” — not a second landing page. */
+const scope = (page, term) => (page.informational ? page.h1s
+  : term.h3 ? [...page.heads, ...page.subheads] : page.heads);
 
 /** Does `text` contain `term` with no qualifier immediately before it? */
 function claims(text, term, qualifiers) {
@@ -117,7 +139,11 @@ function claims(text, term, qualifiers) {
 
 const manifest = JSON.parse(await readFile(join(ROOT, '_build', 'routes.json'), 'utf8'));
 const huFiles = Object.values(manifest.slugs).map((s) => s.hu).filter((f) => f !== 'index.html');
-const pages = await Promise.all(huFiles.map(readPage));
+const pages = (await Promise.all(huFiles.map(readPage))).filter((p) => !HUBS.includes(p.file));
+for (const { article } of INTENT_PAIRS) {
+  const a = pages.find((p) => p.file === article);
+  if (a && readsAsQuestion(a.title)) a.informational = true;
+}
 
 // The homepage is scanned but never fails a term, and that exemption is stated
 // out loud rather than left as a silent filter. It is built by Vite, not by
@@ -136,6 +162,15 @@ for (const entry of OWNERSHIP) {
     (p) => claims(p.title, term, qualifiers)
       || scope(p, entry).some((h) => claims(h, term, qualifiers)));
   const names = claimants.map((p) => '/' + p.file.replace(/\.html$/, ''));
+
+  if (owner === 'index.html') {
+    const homeClaims = Boolean(home) && (claims(home.title, term, qualifiers)
+      || scope(home, entry).some((h) => claims(h, term, qualifiers)));
+    table.push({ term, owner: '/', claimants: [...(homeClaims ? ['/'] : []), ...names] });
+    if (!homeClaims) failures.push(`"${term}" — the homepage owns it, but its title and headings no longer claim it`);
+    if (claimants.length) failures.push(`"${term}" — the homepage owns it, but ${names.join(', ')} claim(s) it too`);
+    continue;
+  }
   table.push({ term, owner: '/' + owner.replace(/\.html$/, ''), claimants: names });
 
   if (claimants.length === 0) {
@@ -152,7 +187,7 @@ for (const { service, article, subject } of INTENT_PAIRS) {
   const s = pages.find((p) => p.file === service);
   const a = pages.find((p) => p.file === article);
   if (!s || !a) { failures.push(`intent pair ${service} / ${article} — page missing`); continue; }
-  const aQuestion = a.title.includes('?') && INTERROGATIVE.test(a.title);
+  const aQuestion = readsAsQuestion(a.title);
   if (!aQuestion) {
     failures.push(`/${article.replace(/\.html$/, '')} — the article about "${subject}" no longer reads as a `
       + `question, so it presents as a second commercial landing page alongside /${service.replace(/\.html$/, '')}. `
@@ -172,12 +207,13 @@ for (const r of table) {
 console.log('\nseo-ownership: service/article intent separation\n');
 for (const { service, article } of INTENT_PAIRS) {
   const a = pages.find((p) => p.file === article);
-  const q = a && a.title.includes('?') && INTERROGATIVE.test(a.title);
+  const q = a && readsAsQuestion(a.title);
   console.log(`  ${q ? 'ok  ' : 'FAIL'}  /${article.replace(/\.html$/, '')} reads as ${q ? 'informational' : 'COMMERCIAL'}`);
 }
 
 if (home) {
   const alsoHome = OWNERSHIP
+    .filter((e) => e.owner !== 'index.html')
     .filter((e) => claims(home.title, e.term, e.qualifiers)
       || scope(home, e).some((h) => claims(h, e.term, e.qualifiers)))
     .map((o) => o.term);
@@ -186,6 +222,16 @@ if (home) {
     console.log('  Not a failure — see 05-hu-implemented.md section E. Homepage and');
     console.log('  category hub co-ranking is expected, and the homepage is outside the');
     console.log('  routes this guard governs.');
+  }
+}
+
+const hubs = await Promise.all(HUBS.map(readPage));
+for (const hub of hubs) {
+  const also = OWNERSHIP.filter((e) => claims(hub.title, e.term, e.qualifiers)
+    || scope(hub, e).some((h) => claims(h, e.term, e.qualifiers))).map((o) => o.term);
+  if (also.length) {
+    console.log(`\nseo-ownership: the collection page /${hub.file.replace(/\.html$/, '')} names ${also.map((t) => `"${t}"`).join(', ')}`);
+    console.log('  Not a failure — a hub lists the topics it collects (HUBS above).');
   }
 }
 

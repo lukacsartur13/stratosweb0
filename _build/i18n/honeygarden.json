@@ -12,9 +12,9 @@
   "Case study: the website of garden designer Hanna Dóbiás. Four plan types on one sheet, site plans drawn in code, three region pages, two languages — eight days from first version to launch.",
   "Fallstudie: die Website der Gartenplanung von Hanna Dóbiás. Vier Planarten auf einem Blatt, im Code gezeichnete Lagepläne, drei Regionsseiten, zwei Sprachen — acht Tage von der ersten Fassung bis zum Livegang."
  ],
- "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Munkáink</a> / <b>HoneyGarden</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Work</a> / <b>HoneyGarden</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Projekte</a> / <b>HoneyGarden</b>"
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Munkáink</a> / <b>HoneyGarden</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Work</a> / <b>HoneyGarden</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Projekte</a> / <b>HoneyGarden</b>"
  ],
  "HoneyGarden kerttervezés — Győr, Budapest, Balaton": [
   "HoneyGarden garden design — Győr, Budapest, Lake Balaton",
@@ -28,11 +28,11 @@
   "A garden designer hands over a plan, not a garden. So Hanna Dóbiás’s website is built like a plan sheet: a site plan, a scale, layers — and exactly what the client ends up holding.",
   "Wer Gärten plant, übergibt keinen Garten, sondern einen Plan. Die Website von Hanna Dóbiás ist deshalb aufgebaut wie ein Planblatt: mit Lageplan, Maßstab und Ebenen — und mit genau dem, was der Auftraggeber am Ende in den Händen hält."
  ],
- "<span>Weboldal</span><span>Saját rajzi nyelv</span><span>Helyi SEO</span><span>Kétnyelvű</span><span>AI-láthatóság</span>": [
+ "<span>Weboldal</span><span>Saját rajzi nyelv</span><span>Helyi keresőoptimalizálás</span><span>Kétnyelvű</span><span>AI-láthatóság</span>": [
   "<span>Website</span><span>Custom drawing language</span><span>Local SEO</span><span>Bilingual</span><span>AI visibility</span>",
   "<span>Website</span><span>Eigene Zeichensprache</span><span>Lokale SEO</span><span>Zweisprachig</span><span>KI-Sichtbarkeit</span>"
  ],
- "<span><b>Szektor</b> kerttervezés, tájépítészet</span> <span><b>Amit szállítottunk</b> weboldal és helyi SEO</span> <span><b>Nyelvek</b> magyar és angol</span> <span><b>Élő cím</b> <a href=\"https://honeygarden.hu/\" target=\"_blank\" rel=\"noopener\">honeygarden.hu</a></span>": [
+ "<span><b>Szektor</b> kerttervezés, tájépítészet</span> <span><b>Amit szállítottunk</b> weboldal és helyi keresőoptimalizálás</span> <span><b>Nyelvek</b> magyar és angol</span> <span><b>Élő cím</b> <a href=\"https://honeygarden.hu/\" target=\"_blank\" rel=\"noopener\">honeygarden.hu</a></span>": [
   "<span><b>Sector</b> garden design, landscape architecture</span> <span><b>What we delivered</b> website and local SEO</span> <span><b>Languages</b> Hungarian and English</span> <span><b>Live address</b> <a href=\"https://honeygarden.hu/\" target=\"_blank\" rel=\"noopener\">honeygarden.hu</a></span>",
   "<span><b>Branche</b> Gartenplanung, Landschaftsarchitektur</span> <span><b>Was wir geliefert haben</b> Website und lokale SEO</span> <span><b>Sprachen</b> Ungarisch und Englisch</span> <span><b>Live-Adresse</b> <a href=\"https://honeygarden.hu/\" target=\"_blank\" rel=\"noopener\">honeygarden.hu</a></span>"
  ],
@@ -467,10 +467,6 @@
  "Következő projekt — egy kertépítő, akinél a kert a felszín alatt kezdődik.": [
   "Next project — a landscaping company where the garden starts below the surface.",
   "Nächstes Projekt — ein Garten- und Landschaftsbauer, bei dem der Garten unter der Oberfläche beginnt."
- ],
- "HoneyGarden — kerttervezés": [
-  "HoneyGarden — garden design",
-  "HoneyGarden — Gartenplanung"
  ],
  "A HoneyGarden kerttervezés weboldalának nyitóképernyője: évelőágyás fotóján „Minden kert egy történet” felirat, alatta egy családi kert méretarányos alaprajza.": [
   "The opening screen of the HoneyGarden garden design website: the line “Minden kert egy történet” (“Every garden is a story”) on a photo of a perennial border, and below it the scaled site plan of a family garden.",

@@ -12,9 +12,9 @@
   "Case study: the new website of O2 Tanácsadó. Positioned copy word for word, a self-check questionnaire, a five-email sequence and SEO — in six weeks.",
   "Fallstudie: die neue Website von O2 Tanácsadó. Positionierte Texte Wort für Wort, ein Selbsttest, eine Serie aus fünf E-Mails und SEO — in sechs Wochen."
  ],
- "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Munkáink</a> / <b>O2 Tanácsadó</b>": [
-  "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Work</a> / <b>O2 Tanácsadó</b>",
-  "<a href=\"index.html\">Stratos</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Projekte</a> / <b>O2 Tanácsadó</b>"
+ "<a href=\"index.html\">Főoldal</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Munkáink</a> / <b>O2 Tanácsadó</b>": [
+  "<a href=\"index.html\">Home</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Work</a> / <b>O2 Tanácsadó</b>",
+  "<a href=\"index.html\">Startseite</a> / <a href=\"munkaink.html\" data-transition=\"case-to-work\">Projekte</a> / <b>O2 Tanácsadó</b>"
  ],
  "O2 Tanácsadó — vezetői és HR-tanácsadás, Budapest": [
   "O2 Tanácsadó — leadership and HR consulting, Budapest",
@@ -28,11 +28,11 @@
   "The two founders of O2 Tanácsadó have run their own company for 25 years, and they pass that practice on to other business owners. The new website carries their fresh positioning through word for word, and a self-check questionnaire gives a smaller first step to anyone for whom a personal conversation is still too big a one.",
   "Die beiden Gründer von O2 Tanácsadó führen seit 25 Jahren ihr eigenes Unternehmen und geben diese Praxis an andere Unternehmer weiter. Die neue Website setzt ihre frische Positionierung Wort für Wort um und bietet mit einem Selbsttest einen kleineren ersten Schritt für alle, denen ein persönliches Gespräch noch zu groß ist."
  ],
- "<span>Weboldal</span><span>Pozicionált szövegek</span><span>Önellenőrző kérdéssor</span><span>E-mail-sorozat</span><span>SEO</span>": [
+ "<span>Weboldal</span><span>Pozicionált szövegek</span><span>Önellenőrző kérdéssor</span><span>E-mail-sorozat</span><span>Keresőoptimalizálás</span>": [
   "<span>Website</span><span>Positioned copy</span><span>Self-check questionnaire</span><span>Email sequence</span><span>SEO</span>",
   "<span>Website</span><span>Positionierte Texte</span><span>Selbsttest</span><span>E-Mail-Serie</span><span>SEO</span>"
  ],
- "<span><b>Szektor</b> vezetői és HR-tanácsadás</span> <span><b>Amit szállítottunk</b> weboldal, kérdéssor, e-mail-sorozat és SEO</span> <span><b>Időtartam</b> hat hét, 2026. szeptember–október</span> <span><b>Élő cím</b> <a href=\"https://o2tanacsado.hu/\" target=\"_blank\" rel=\"noopener\">o2tanacsado.hu</a></span>": [
+ "<span><b>Szektor</b> vezetői és HR-tanácsadás</span> <span><b>Amit szállítottunk</b> weboldal, kérdéssor, e-mail-sorozat és keresőoptimalizálás</span> <span><b>Időtartam</b> hat hét, 2026. szeptember–október</span> <span><b>Élő cím</b> <a href=\"https://o2tanacsado.hu/\" target=\"_blank\" rel=\"noopener\">o2tanacsado.hu</a></span>": [
   "<span><b>Sector</b> leadership and HR consulting</span> <span><b>What we delivered</b> website, questionnaire, email sequence and SEO</span> <span><b>Duration</b> six weeks, September–October 2026</span> <span><b>Live address</b> <a href=\"https://o2tanacsado.hu/\" target=\"_blank\" rel=\"noopener\">o2tanacsado.hu</a></span>",
   "<span><b>Branche</b> Führungs- und HR-Beratung</span> <span><b>Was wir geliefert haben</b> Website, Selbsttest, E-Mail-Serie und SEO</span> <span><b>Dauer</b> sechs Wochen, September–Oktober 2026</span> <span><b>Live-Adresse</b> <a href=\"https://o2tanacsado.hu/\" target=\"_blank\" rel=\"noopener\">o2tanacsado.hu</a></span>"
  ],
@@ -532,7 +532,7 @@
   "Five things that worked on this project and would work beyond a consultancy.",
   "Fünf Dinge, die sich in diesem Projekt bewährt haben und nicht nur bei einer Beratungsfirma funktionieren würden."
  ],
- "A pozicionálás és a SEO összefér": [
+ "A pozicionálás és a keresőoptimalizálás összefér": [
   "Positioning and SEO get along",
   "Positionierung und SEO vertragen sich"
  ],
@@ -611,10 +611,6 @@
  "Ez a szolgáltatás áll a projekt mögött: kulcsszavak a címekben, miközben a szöveg a szövegíróé marad.": [
   "This is the service behind the project: keywords in the titles, while the copy stays the copywriter’s.",
   "Diese Leistung steht hinter dem Projekt: Keywords in den Titeln, während der Text bei den Textern bleibt."
- ],
- "O2 Tanácsadó — HR-tanácsadás": [
-  "O2 Tanácsadó — HR consulting",
-  "O2 Tanácsadó — HR-Beratung"
  ],
  "Az O2 Tanácsadó weboldalának nyitóképernyője: „Működjön a cég a napi jelenléted nélkül is” cím három kipipált állítással, mellette fekete-fehér fotó kör alakban, türkiz félkörrel.": [
   "The opening screen of the O2 Tanácsadó website: the headline “Működjön a cég a napi jelenléted nélkül is” (“Let the company run without your daily presence”) with three ticked statements, beside it a circular black-and-white photo with a turquoise half-circle.",
