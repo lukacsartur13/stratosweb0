@@ -356,6 +356,9 @@ ORGS = {
     "rsoil": {"name": "RS Oil", "asset": "assets/img/logo-rsoil.png", "ready": True, "relationship": "client"},
     "godatafusion": {"name": "GoDataFusion", "asset": "assets/img/logo-godatafusion.png", "ready": True, "relationship": "client"},
     "o2": {"name": "O2 Tanácsadó", "asset": "assets/img/logo-o2.png", "ready": True, "relationship": "client"},
+    # HoneyGarden — the client of the munka-honeygarden case study. The owner
+    # supplied the artwork on 2026-10-24 (transparent PNG, cropped to the mark).
+    "honeygarden": {"name": "HoneyGarden", "asset": "assets/img/logo-honeygarden.png", "ready": True, "relationship": "client"},
     # MindForge (formerly mentáliserő.hu, mentaltrening.com) — the client of
     # the munka-mentaltrening case study, under its new name and domain.
     "mindforge": {"name": "MindForge", "asset": "assets/img/logo-mindforge.png", "ready": True, "relationship": "client"},
